@@ -1,0 +1,11 @@
+{
+	"encoding": ["utf8","ISO_8859-15"],
+	"input":"sandbox.mcd",
+	"output":"sandbox-svg.py",
+	"colors":"bw",
+	"shapes":"trebuchet",
+	"df":"DF",
+	"sep":",",
+	"table":["html","txt"],
+	"attraction": 40
+}

@@ -1,0 +1,17 @@
+{
+"backgroundColor"               : null,
+"entityColor"                   : "#c0d4ff",
+"entityCartoucheColor"          : "#97b8ff",
+"entityCartoucheTextColor"      : "#131114",
+"entityAttributeTextColor"      : "#3e3c42",
+"entityStrokeColor"             : "#578dff",
+"associationColor"              : "#ccd6ba",
+"associationCartoucheColor"     : "#b2bba4",
+"associationCartoucheTextColor" : "#27360c",
+"associationAttributeTextColor" : "#607734",
+"associationStrokeColor"        : "#85956b",
+"legStrokeColor"                : "#726f83",
+"cardTextColor"                 : "#726f83",
+"labelTextColor"                : "#726f83"
+}
+

@@ -1,0 +1,19 @@
+{
+	"extension": "txt",
+	"opening": "",
+	"table": "%s",
+	"primary": "_%s_",
+	"simple": "%s",
+	"foreign": "#%s",
+	"foreignPrimary": "_#%s_",
+	"columnSep": ", ",
+	"line": "%(table)s (%(columns)s)",
+	"lineSep": "\n",
+	"closing": "",
+	"comment": "--- %s",
+	"strengthen":"%(attribute)s",
+	"df":"%(attribute)s",
+	"nonDf":"%(attribute)s",
+	"distinguish":"%(label)s.%(count)s",
+	"replace": []
+}

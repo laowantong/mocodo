@@ -1,0 +1,19 @@
+{
+	"extension": "tex",
+	"opening": "\\begin{mld}\n",
+	"table": "\\relat{%(capitalize)s}",
+	"primary": "\\prim{%s}",
+	"simple": "\\attr{%s}",
+	"foreign": "\\foreign{%s}",
+	"foreignPrimary": "\\prim{\\foreign{%s}}",
+	"columnSep": ", ",
+	"line": "  %(table)s & (%(columns)s)\\\\",
+	"lineSep": "\n",
+	"closing": "\n\\end{mld}",
+	"comment": "%% %s",
+	"strengthen":"%(attribute)s",
+	"df":"%(attribute)s",
+	"nonDf":"%(attribute)s",
+	"distinguish":"%(label)s.%(count)s",
+	"replace": [["_","\\_"]]
+}
