@@ -10,7 +10,7 @@ try:
 except ImportError:
 	import simplejson as json
 
-version = "1.4"
+version = "1.4.1"
 
 class Common:
 	
