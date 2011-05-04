@@ -1,0 +1,22 @@
+{
+	"extension": "sql",
+	"opening": "",
+	"table": "\"%s\"",
+	"primary": "\"%s\"",
+	"simple": "\"%s\"",
+	"foreign": "\"%s\"",
+	"foreignPrimary": "\"%s\"",
+	"attributeWithType": "%(attribute)s %(attributeType)s",
+	"columnSep": ",\n  ",
+	"line": "CREATE TABLE %(table)s (\n  %(columns)s,\n  PRIMARY KEY(%(primaryList)s)\n);",
+	"lineSep": "\n\n",
+	"primarySep": ", ",
+	"closing": "",
+	"comment": "/*\n%s\n*/",
+	"strengthen":"%(attribute)s",
+	"df":"%(attribute)s",
+	"nonDf":"%(attribute)s",
+	"distinguish":"%(label)s.%(count)s",
+	"replace": [],
+	"addForeignKey": "ALTER TABLE \"%(table)s\" ADD FOREIGN KEY (\"%(foreignKey)s\") REFERENCES \"%(foreignTable)s\" (\"%(foreignKey)s\");"
+}
