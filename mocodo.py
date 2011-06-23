@@ -15,6 +15,11 @@ except ImportError:
 	import simplejson as json
 from main.common import *
 
+if sys.version >= "3":
+	print "Mocodo does not work under Python %s." % sys.version
+	print "Please install Python 2.6 or 2.7."
+	sys.exit()
+
 help_message = '''
 Mocodo est un traceur de Modèles Conceptuels de Données.
 À partir d'une liste ordonnée d'entités et d'associations,
