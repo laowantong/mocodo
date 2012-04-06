@@ -7,5 +7,6 @@
 	"df":"DF",
 	"sep":",",
 	"table":["html","txt"],
-	"attraction": 40
+	"attraction": 40,
+	"extract": false
 }

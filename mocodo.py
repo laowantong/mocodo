@@ -1,5 +1,6 @@
-#!env python
+#!/usr/bin/env python
 # encoding: utf-8
+
 """
 mocodo.py
 
@@ -55,7 +56,7 @@ def main():
 	argv = sys.argv
 	try:
 		try:
-			(opts,args) = getopt.getopt(argv[1:], "hvo:i:c:s:e:m:a:", ["help", "version", "output=", "input=", "colors=", "shapes=", "df=", "sep=", "cleanup", "encoding=", "table=", "attraction="])
+			(opts,args) = getopt.getopt(argv[1:], "hvo:i:c:s:e:m:a:", ["help", "version", "output=", "input=", "colors=", "shapes=", "df=", "sep=", "cleanup", "encoding=", "table=", "attraction=", "extract"])
 		except getopt.error, msg:
 			raise Usage(msg)
 		if "--cleanup" in [option for (option,value) in opts]:
@@ -80,6 +81,7 @@ def main():
 			elif option in ("-a", "--attraction"): params["attraction"] = value
 			elif option == "--df":                 params["df"] = unicode(value)
 			elif option == "--sep":                params["sep"] = value
+			elif option == "--extract":            params["extract"] = True
 		# launching
 		if params["output"].endswith("svg.py"):
 			import mcd2svg

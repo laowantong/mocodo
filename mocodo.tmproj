@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>mocodo.py</string>
+	<string>sandbox.mcd</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -13,19 +13,19 @@
 					<key>filename</key>
 					<string>doc/fr-refman.t2t</string>
 					<key>lastUsed</key>
-					<date>2011-03-21T20:03:41Z</date>
+					<date>2011-11-17T11:43:35Z</date>
 				</dict>
 				<dict>
 					<key>filename</key>
 					<string>doc/gallery.t2t</string>
 					<key>lastUsed</key>
-					<date>2010-10-17T18:29:49Z</date>
+					<date>2011-04-12T06:13:05Z</date>
 				</dict>
 				<dict>
 					<key>filename</key>
 					<string>doc/latex.tex</string>
 					<key>lastUsed</key>
-					<date>2010-12-30T18:15:41Z</date>
+					<date>2011-04-12T06:13:12Z</date>
 				</dict>
 				<dict>
 					<key>children</key>
@@ -34,7 +34,7 @@
 							<key>filename</key>
 							<string>doc/fr-refman.gwiki</string>
 							<key>lastUsed</key>
-							<date>2010-10-17T20:15:14Z</date>
+							<date>2011-04-12T06:06:30Z</date>
 						</dict>
 						<dict>
 							<key>filename</key>
@@ -46,7 +46,7 @@
 							<key>filename</key>
 							<string>doc/fr-refman.tex</string>
 							<key>lastUsed</key>
-							<date>2011-03-21T20:01:36Z</date>
+							<date>2011-11-22T10:20:37Z</date>
 						</dict>
 						<dict>
 							<key>filename</key>
@@ -56,21 +56,25 @@
 						</dict>
 						<dict>
 							<key>filename</key>
-							<string>doc/ter-mocodo.tex</string>
+							<string>doc/projet-ir-mocodo.tex</string>
 							<key>lastUsed</key>
-							<date>2010-10-18T15:06:27Z</date>
+							<date>2012-03-10T19:36:40Z</date>
+						</dict>
+						<dict>
+							<key>filename</key>
+							<string>doc/projet-synthèse-mocodo.tex</string>
+							<key>lastUsed</key>
+							<date>2011-12-01T21:11:38Z</date>
 						</dict>
 					</array>
-					<key>expanded</key>
-					<true/>
 					<key>name</key>
 					<string>output</string>
 				</dict>
 				<dict>
 					<key>filename</key>
-					<string>doc/ter-mocodo.t2t</string>
+					<string>doc/projet-ir-mocodo.t2t</string>
 					<key>lastUsed</key>
-					<date>2010-11-22T17:23:37Z</date>
+					<date>2012-03-07T20:27:04Z</date>
 				</dict>
 			</array>
 			<key>expanded</key>
@@ -91,7 +95,7 @@
 					<key>filename</key>
 					<string>meta/dist.sh</string>
 					<key>lastUsed</key>
-					<date>2010-11-13T20:59:01Z</date>
+					<date>2011-05-04T08:21:05Z</date>
 				</dict>
 				<dict>
 					<key>filename</key>
@@ -101,19 +105,23 @@
 				</dict>
 				<dict>
 					<key>filename</key>
+					<string>meta/Lisez-moi.txt</string>
+					<key>lastUsed</key>
+					<date>2011-05-07T15:29:57Z</date>
+				</dict>
+				<dict>
+					<key>filename</key>
 					<string>meta/lorem.txt</string>
 					<key>lastUsed</key>
-					<date>2011-01-17T10:47:48Z</date>
+					<date>2011-06-13T15:07:46Z</date>
 				</dict>
 				<dict>
 					<key>filename</key>
 					<string>meta/obfuscate.py</string>
 					<key>lastUsed</key>
-					<date>2011-01-17T10:49:24Z</date>
+					<date>2011-10-06T08:52:10Z</date>
 				</dict>
 			</array>
-			<key>expanded</key>
-			<true/>
 			<key>name</key>
 			<string>meta</string>
 		</dict>
@@ -124,31 +132,31 @@
 					<key>filename</key>
 					<string>sandbox-nodebox.py</string>
 					<key>lastUsed</key>
-					<date>2011-03-18T11:15:03Z</date>
+					<date>2011-06-13T15:04:51Z</date>
 				</dict>
 				<dict>
 					<key>filename</key>
 					<string>sandbox-svg.py</string>
 					<key>lastUsed</key>
-					<date>2011-01-24T18:01:20Z</date>
+					<date>2012-03-10T19:55:09Z</date>
 				</dict>
 				<dict>
 					<key>filename</key>
 					<string>sandbox.htm</string>
 					<key>lastUsed</key>
-					<date>2011-03-18T17:33:04Z</date>
+					<date>2012-03-07T19:29:37Z</date>
 				</dict>
 				<dict>
 					<key>filename</key>
 					<string>sandbox.sql</string>
 					<key>lastUsed</key>
-					<date>2011-03-18T17:42:47Z</date>
+					<date>2012-03-10T20:20:26Z</date>
 				</dict>
 				<dict>
 					<key>filename</key>
 					<string>sandbox.svg</string>
 					<key>lastUsed</key>
-					<date>2011-03-18T17:33:05Z</date>
+					<date>2012-03-10T19:43:33Z</date>
 				</dict>
 				<dict>
 					<key>filename</key>
@@ -166,7 +174,7 @@
 					<key>filename</key>
 					<string>sandbox.txt</string>
 					<key>lastUsed</key>
-					<date>2011-03-18T17:36:14Z</date>
+					<date>2012-03-07T19:29:58Z</date>
 				</dict>
 			</array>
 			<key>expanded</key>
@@ -233,7 +241,7 @@
 							<key>filename</key>
 							<string>main/common.py</string>
 							<key>lastUsed</key>
-							<date>2011-03-21T20:04:27Z</date>
+							<date>2011-04-14T12:53:22Z</date>
 						</dict>
 						<dict>
 							<key>filename</key>
@@ -245,19 +253,19 @@
 							<key>filename</key>
 							<string>main/fontMetrics.py</string>
 							<key>lastUsed</key>
-							<date>2011-03-18T16:11:50Z</date>
+							<date>2011-11-22T10:34:14Z</date>
 						</dict>
 						<dict>
 							<key>filename</key>
 							<string>main/goodies.py</string>
 							<key>lastUsed</key>
-							<date>2011-03-18T16:11:51Z</date>
+							<date>2011-05-03T19:31:13Z</date>
 						</dict>
 						<dict>
 							<key>filename</key>
 							<string>main/leg.py</string>
 							<key>lastUsed</key>
-							<date>2011-03-18T16:11:54Z</date>
+							<date>2011-03-25T11:06:53Z</date>
 						</dict>
 						<dict>
 							<key>filename</key>
@@ -269,23 +277,21 @@
 							<key>filename</key>
 							<string>main/nodeboxgoodies.py</string>
 							<key>lastUsed</key>
-							<date>2011-03-18T16:12:01Z</date>
+							<date>2011-04-14T12:53:14Z</date>
 						</dict>
 						<dict>
 							<key>filename</key>
 							<string>main/svggoodies.py</string>
 							<key>lastUsed</key>
-							<date>2010-12-30T16:58:21Z</date>
+							<date>2011-04-14T12:53:16Z</date>
 						</dict>
 						<dict>
 							<key>filename</key>
 							<string>main/tables.py</string>
 							<key>lastUsed</key>
-							<date>2011-03-19T13:31:59Z</date>
+							<date>2011-05-07T15:35:20Z</date>
 						</dict>
 					</array>
-					<key>expanded</key>
-					<true/>
 					<key>name</key>
 					<string>program</string>
 				</dict>
@@ -308,7 +314,7 @@
 							<key>filename</key>
 							<string>main/fontMetrics-tests.py</string>
 							<key>lastUsed</key>
-							<date>2011-03-18T17:53:40Z</date>
+							<date>2011-11-22T10:51:19Z</date>
 						</dict>
 						<dict>
 							<key>filename</key>
@@ -320,17 +326,13 @@
 							<key>filename</key>
 							<string>main/tables-tests.py</string>
 							<key>lastUsed</key>
-							<date>2011-03-19T13:31:57Z</date>
+							<date>2011-05-04T08:07:29Z</date>
 						</dict>
 					</array>
-					<key>expanded</key>
-					<true/>
 					<key>name</key>
 					<string>tests</string>
 				</dict>
 			</array>
-			<key>expanded</key>
-			<true/>
 			<key>name</key>
 			<string>private</string>
 		</dict>
@@ -341,33 +343,33 @@
 					<key>filename</key>
 					<string>default.json</string>
 					<key>lastUsed</key>
-					<date>2011-03-18T11:16:15Z</date>
+					<date>2012-03-10T20:23:10Z</date>
 				</dict>
 				<dict>
 					<key>filename</key>
 					<string>mcd2nodebox.py</string>
 					<key>lastUsed</key>
-					<date>2011-03-18T16:46:11Z</date>
+					<date>2012-03-07T19:47:58Z</date>
 				</dict>
 				<dict>
 					<key>filename</key>
 					<string>mcd2svg.py</string>
 					<key>lastUsed</key>
-					<date>2011-03-18T17:06:07Z</date>
+					<date>2011-11-04T06:51:58Z</date>
 				</dict>
 				<dict>
 					<key>filename</key>
 					<string>mocodo.py</string>
 					<key>lastUsed</key>
-					<date>2011-03-21T20:04:27Z</date>
-					<key>selected</key>
-					<true/>
+					<date>2012-03-10T20:23:56Z</date>
 				</dict>
 				<dict>
 					<key>filename</key>
 					<string>sandbox.mcd</string>
 					<key>lastUsed</key>
-					<date>2011-03-21T20:03:52Z</date>
+					<date>2012-03-10T20:23:56Z</date>
+					<key>selected</key>
+					<true/>
 				</dict>
 			</array>
 			<key>expanded</key>
@@ -389,15 +391,21 @@
 						</dict>
 						<dict>
 							<key>filename</key>
+							<string>colors/bw-noalpha.json</string>
+							<key>lastUsed</key>
+							<date>2011-11-22T12:14:47Z</date>
+						</dict>
+						<dict>
+							<key>filename</key>
 							<string>colors/bw.json</string>
 							<key>lastUsed</key>
-							<date>2010-06-01T16:15:44Z</date>
+							<date>2011-11-22T12:14:29Z</date>
 						</dict>
 						<dict>
 							<key>filename</key>
 							<string>colors/desert.json</string>
 							<key>lastUsed</key>
-							<date>2010-06-01T16:17:09Z</date>
+							<date>2012-03-07T19:32:24Z</date>
 						</dict>
 						<dict>
 							<key>filename</key>
@@ -409,7 +417,7 @@
 							<key>filename</key>
 							<string>colors/mondrian.json</string>
 							<key>lastUsed</key>
-							<date>2010-06-01T16:16:09Z</date>
+							<date>2011-11-22T12:14:29Z</date>
 						</dict>
 						<dict>
 							<key>filename</key>
@@ -448,6 +456,8 @@
 							<date>2010-06-01T16:17:30Z</date>
 						</dict>
 					</array>
+					<key>expanded</key>
+					<true/>
 					<key>name</key>
 					<string>colors</string>
 				</dict>
@@ -458,7 +468,7 @@
 							<key>filename</key>
 							<string>shapes/arial.json</string>
 							<key>lastUsed</key>
-							<date>2011-01-24T17:53:28Z</date>
+							<date>2012-03-07T19:31:57Z</date>
 						</dict>
 						<dict>
 							<key>filename</key>
@@ -476,7 +486,7 @@
 							<key>filename</key>
 							<string>shapes/myshape.json</string>
 							<key>lastUsed</key>
-							<date>2010-10-17T18:06:54Z</date>
+							<date>2011-11-22T10:36:44Z</date>
 						</dict>
 						<dict>
 							<key>filename</key>
@@ -531,13 +541,25 @@
 							<key>filename</key>
 							<string>tables/latex.json</string>
 							<key>lastUsed</key>
-							<date>2011-03-18T15:54:54Z</date>
+							<date>2011-05-07T15:30:47Z</date>
 						</dict>
 						<dict>
 							<key>filename</key>
 							<string>tables/mysql.json</string>
 							<key>lastUsed</key>
-							<date>2011-03-18T16:55:14Z</date>
+							<date>2011-05-07T15:30:19Z</date>
+						</dict>
+						<dict>
+							<key>filename</key>
+							<string>tables/oracle.json</string>
+							<key>lastUsed</key>
+							<date>2011-05-04T08:09:08Z</date>
+						</dict>
+						<dict>
+							<key>filename</key>
+							<string>tables/sqlite.json</string>
+							<key>lastUsed</key>
+							<date>2011-06-05T20:03:01Z</date>
 						</dict>
 						<dict>
 							<key>filename</key>
@@ -552,8 +574,6 @@
 							<date>2011-03-18T15:55:36Z</date>
 						</dict>
 					</array>
-					<key>expanded</key>
-					<true/>
 					<key>name</key>
 					<string>tables</string>
 				</dict>
@@ -582,6 +602,20 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
+		<key>colors/bw-noalpha.json</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>44</integer>
+				<key>line</key>
+				<integer>2</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
 		<key>colors/bw.json</key>
 		<dict>
 			<key>caret</key>
@@ -589,12 +623,28 @@
 				<key>column</key>
 				<integer>0</integer>
 				<key>line</key>
-				<integer>15</integer>
+				<integer>16</integer>
 			</dict>
+			<key>columnSelection</key>
+			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
+			<key>selectFrom</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>0</integer>
+			</dict>
+			<key>selectTo</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>16</integer>
+			</dict>
 		</dict>
 		<key>colors/desert.json</key>
 		<dict>
@@ -713,14 +763,30 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>0</integer>
+				<integer>11</integer>
 				<key>line</key>
-				<integer>0</integer>
+				<integer>16</integer>
 			</dict>
+			<key>columnSelection</key>
+			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
+			<key>selectFrom</key>
+			<dict>
+				<key>column</key>
+				<integer>12</integer>
+				<key>line</key>
+				<integer>16</integer>
+			</dict>
+			<key>selectTo</key>
+			<dict>
+				<key>column</key>
+				<integer>11</integer>
+				<key>line</key>
+				<integer>16</integer>
+			</dict>
 		</dict>
 		<key>doc/fr-refman.gwiki</key>
 		<dict>
@@ -729,7 +795,7 @@
 				<key>column</key>
 				<integer>0</integer>
 				<key>line</key>
-				<integer>42</integer>
+				<integer>27</integer>
 			</dict>
 			<key>columnSelection</key>
 			<false/>
@@ -742,14 +808,14 @@
 				<key>column</key>
 				<integer>0</integer>
 				<key>line</key>
-				<integer>26</integer>
+				<integer>6</integer>
 			</dict>
 			<key>selectTo</key>
 			<dict>
 				<key>column</key>
 				<integer>0</integer>
 				<key>line</key>
-				<integer>42</integer>
+				<integer>27</integer>
 			</dict>
 		</dict>
 		<key>doc/fr-refman.log</key>
@@ -771,44 +837,28 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>0</integer>
+				<integer>38</integer>
 				<key>line</key>
-				<integer>321</integer>
+				<integer>35</integer>
 			</dict>
-			<key>columnSelection</key>
-			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>309</integer>
-			<key>selectFrom</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>316</integer>
-			</dict>
-			<key>selectTo</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>321</integer>
-			</dict>
+			<integer>15</integer>
 		</dict>
 		<key>doc/fr-refman.tex</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>22</integer>
+				<integer>0</integer>
 				<key>line</key>
-				<integer>909</integer>
+				<integer>0</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>883</integer>
+			<integer>19</integer>
 		</dict>
 		<key>doc/gallery.gwiki</key>
 		<dict>
@@ -852,37 +902,21 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>doc/ter-mocodo.t2t</key>
+		<key>doc/projet-ir-mocodo.t2t</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>229</integer>
+				<integer>28</integer>
 				<key>line</key>
-				<integer>48</integer>
+				<integer>23</integer>
 			</dict>
-			<key>columnSelection</key>
-			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>29</integer>
-			<key>selectFrom</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>0</integer>
-			</dict>
-			<key>selectTo</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>64</integer>
-			</dict>
+			<integer>0</integer>
 		</dict>
-		<key>doc/ter-mocodo.tex</key>
+		<key>doc/projet-ir-mocodo.tex</key>
 		<dict>
 			<key>caret</key>
 			<dict>
@@ -894,7 +928,21 @@
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>1</integer>
+			<integer>0</integer>
+		</dict>
+		<key>doc/projet-synthèse-mocodo.tex</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>71</integer>
+				<key>line</key>
+				<integer>12</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
 		</dict>
 		<key>main/association-tests.py</key>
 		<dict>
@@ -929,7 +977,7 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>16</integer>
+				<integer>1</integer>
 				<key>line</key>
 				<integer>20</integer>
 			</dict>
@@ -943,14 +991,30 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>0</integer>
+				<integer>36</integer>
 				<key>line</key>
-				<integer>0</integer>
+				<integer>40</integer>
 			</dict>
+			<key>columnSelection</key>
+			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>17</integer>
+			<integer>0</integer>
+			<key>selectFrom</key>
+			<dict>
+				<key>column</key>
+				<integer>24</integer>
+				<key>line</key>
+				<integer>40</integer>
+			</dict>
+			<key>selectTo</key>
+			<dict>
+				<key>column</key>
+				<integer>36</integer>
+				<key>line</key>
+				<integer>40</integer>
+			</dict>
 		</dict>
 		<key>main/entity-tests.py</key>
 		<dict>
@@ -971,7 +1035,7 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>11</integer>
+				<integer>0</integer>
 				<key>line</key>
 				<integer>6</integer>
 			</dict>
@@ -985,9 +1049,9 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>6</integer>
+				<integer>52</integer>
 				<key>line</key>
-				<integer>0</integer>
+				<integer>10</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
@@ -999,9 +1063,9 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>7</integer>
+				<integer>34</integer>
 				<key>line</key>
-				<integer>11</integer>
+				<integer>18</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
@@ -1013,14 +1077,30 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>18</integer>
+				<integer>57</integer>
 				<key>line</key>
-				<integer>27</integer>
+				<integer>9</integer>
 			</dict>
+			<key>columnSelection</key>
+			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
+			<key>selectFrom</key>
+			<dict>
+				<key>column</key>
+				<integer>56</integer>
+				<key>line</key>
+				<integer>9</integer>
+			</dict>
+			<key>selectTo</key>
+			<dict>
+				<key>column</key>
+				<integer>57</integer>
+				<key>line</key>
+				<integer>9</integer>
+			</dict>
 		</dict>
 		<key>main/leg.py</key>
 		<dict>
@@ -1108,7 +1188,7 @@
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>6</integer>
+			<integer>0</integer>
 		</dict>
 		<key>main/svggoodies.py</key>
 		<dict>
@@ -1143,28 +1223,44 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>45</integer>
+				<integer>28</integer>
 				<key>line</key>
-				<integer>81</integer>
+				<integer>54</integer>
 			</dict>
+			<key>columnSelection</key>
+			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
 			<integer>42</integer>
+			<key>selectFrom</key>
+			<dict>
+				<key>column</key>
+				<integer>19</integer>
+				<key>line</key>
+				<integer>54</integer>
+			</dict>
+			<key>selectTo</key>
+			<dict>
+				<key>column</key>
+				<integer>28</integer>
+				<key>line</key>
+				<integer>54</integer>
+			</dict>
 		</dict>
 		<key>mcd2nodebox.py</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>18</integer>
+				<integer>24</integer>
 				<key>line</key>
-				<integer>46</integer>
+				<integer>21</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>11</integer>
+			<integer>0</integer>
 		</dict>
 		<key>mcd2svg.py</key>
 		<dict>
@@ -1178,7 +1274,37 @@
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>33</integer>
+			<integer>0</integer>
+		</dict>
+		<key>meta/Lisez-moi.txt</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>9</integer>
+			</dict>
+			<key>columnSelection</key>
+			<false/>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+			<key>selectFrom</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>0</integer>
+			</dict>
+			<key>selectTo</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>9</integer>
+			</dict>
 		</dict>
 		<key>meta/banner.py</key>
 		<dict>
@@ -1199,30 +1325,14 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>46</integer>
+				<integer>0</integer>
 				<key>line</key>
-				<integer>4</integer>
+				<integer>8</integer>
 			</dict>
-			<key>columnSelection</key>
-			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
-			<key>selectFrom</key>
-			<dict>
-				<key>column</key>
-				<integer>27</integer>
-				<key>line</key>
-				<integer>4</integer>
-			</dict>
-			<key>selectTo</key>
-			<dict>
-				<key>column</key>
-				<integer>46</integer>
-				<key>line</key>
-				<integer>4</integer>
-			</dict>
 		</dict>
 		<key>meta/draft.txt</key>
 		<dict>
@@ -1243,23 +1353,23 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>446</integer>
+				<integer>7</integer>
 				<key>line</key>
-				<integer>0</integer>
+				<integer>6</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>0</integer>
+			<integer>147</integer>
 		</dict>
 		<key>meta/obfuscate.py</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>9</integer>
+				<integer>30</integer>
 				<key>line</key>
-				<integer>15</integer>
+				<integer>24</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
@@ -1271,9 +1381,9 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>0</integer>
+				<integer>19</integer>
 				<key>line</key>
-				<integer>0</integer>
+				<integer>13</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
@@ -1403,12 +1513,28 @@
 				<key>column</key>
 				<integer>0</integer>
 				<key>line</key>
-				<integer>0</integer>
+				<integer>62</integer>
 			</dict>
+			<key>columnSelection</key>
+			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>0</integer>
+			<integer>149</integer>
+			<key>selectFrom</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>59</integer>
+			</dict>
+			<key>selectTo</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>62</integer>
+			</dict>
 		</dict>
 		<key>sandbox-svg.py</key>
 		<dict>
@@ -1417,28 +1543,12 @@
 				<key>column</key>
 				<integer>1</integer>
 				<key>line</key>
-				<integer>27</integer>
+				<integer>13</integer>
 			</dict>
-			<key>columnSelection</key>
-			<true/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
-			<key>selectFrom</key>
-			<dict>
-				<key>column</key>
-				<integer>32</integer>
-				<key>line</key>
-				<integer>22</integer>
-			</dict>
-			<key>selectTo</key>
-			<dict>
-				<key>column</key>
-				<integer>1</integer>
-				<key>line</key>
-				<integer>27</integer>
-			</dict>
 		</dict>
 		<key>sandbox.htm</key>
 		<dict>
@@ -1459,9 +1569,9 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>0</integer>
+				<integer>21</integer>
 				<key>line</key>
-				<integer>5</integer>
+				<integer>8</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
@@ -1494,7 +1604,7 @@
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>31</integer>
+			<integer>0</integer>
 		</dict>
 		<key>sandbox.t2t</key>
 		<dict>
@@ -1601,9 +1711,9 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>35</integer>
+				<integer>68</integer>
 				<key>line</key>
-				<integer>24</integer>
+				<integer>1</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
@@ -1727,9 +1837,9 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>144</integer>
+				<integer>0</integer>
 				<key>line</key>
-				<integer>20</integer>
+				<integer>22</integer>
 			</dict>
 			<key>columnSelection</key>
 			<false/>
@@ -1740,17 +1850,45 @@
 			<key>selectFrom</key>
 			<dict>
 				<key>column</key>
-				<integer>19</integer>
+				<integer>0</integer>
 				<key>line</key>
-				<integer>20</integer>
+				<integer>0</integer>
 			</dict>
 			<key>selectTo</key>
 			<dict>
 				<key>column</key>
-				<integer>144</integer>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>22</integer>
+			</dict>
+		</dict>
+		<key>tables/oracle.json</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>0</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
+		<key>tables/sqlite.json</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>23</integer>
 				<key>line</key>
 				<integer>20</integer>
 			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
 		</dict>
 		<key>tables/txt.json</key>
 		<dict>
@@ -1784,8 +1922,9 @@
 	<key>openDocuments</key>
 	<array>
 		<string>doc/fr-refman.t2t</string>
-		<string>doc/ter-mocodo.t2t</string>
-		<string>doc/ter-mocodo.tex</string>
+		<string>doc/projet-ir-mocodo.t2t</string>
+		<string>doc/projet-synthèse-mocodo.tex</string>
+		<string>doc/projet-ir-mocodo.tex</string>
 		<string>doc/fr-refman.tex</string>
 		<string>doc/fr-refman.log</string>
 		<string>main/attribute.py</string>
@@ -1796,6 +1935,7 @@
 		<string>sandbox.t2t</string>
 		<string>sandbox.txt</string>
 		<string>meta/obfuscate.py</string>
+		<string>meta/Lisez-moi.txt</string>
 		<string>meta/dist.sh</string>
 		<string>doc/gallery.gwiki</string>
 		<string>doc/fr-refman.gwiki</string>
@@ -1808,6 +1948,7 @@
 		<string>shapes/sans.json</string>
 		<string>shapes/serif.json</string>
 		<string>colors/bw.json</string>
+		<string>colors/bw-noalpha.json</string>
 		<string>colors/desert.json</string>
 		<string>colors/keepsake.json</string>
 		<string>colors/mondrian.json</string>
@@ -1847,6 +1988,8 @@
 		<string>tables/html.json</string>
 		<string>tables/txt2tags.json</string>
 		<string>tables/mysql.json</string>
+		<string>tables/sqlite.json</string>
+		<string>tables/oracle.json</string>
 		<string>main/tables-tests.py</string>
 		<string>main/entity-tests.py</string>
 		<string>default.json</string>
@@ -1869,21 +2012,6 @@
 			<key>isExpanded</key>
 			<true/>
 			<key>subItems</key>
-			<dict>
-				<key>output</key>
-				<dict>
-					<key>isExpanded</key>
-					<true/>
-					<key>subItems</key>
-					<dict/>
-				</dict>
-			</dict>
-		</dict>
-		<key>meta</key>
-		<dict>
-			<key>isExpanded</key>
-			<true/>
-			<key>subItems</key>
 			<dict/>
 		</dict>
 		<key>output</key>
@@ -1892,28 +2020,6 @@
 			<true/>
 			<key>subItems</key>
 			<dict/>
-		</dict>
-		<key>private</key>
-		<dict>
-			<key>isExpanded</key>
-			<true/>
-			<key>subItems</key>
-			<dict>
-				<key>program</key>
-				<dict>
-					<key>isExpanded</key>
-					<true/>
-					<key>subItems</key>
-					<dict/>
-				</dict>
-				<key>tests</key>
-				<dict>
-					<key>isExpanded</key>
-					<true/>
-					<key>subItems</key>
-					<dict/>
-				</dict>
-			</dict>
 		</dict>
 		<key>public</key>
 		<dict>
@@ -1928,7 +2034,7 @@
 			<true/>
 			<key>subItems</key>
 			<dict>
-				<key>tables</key>
+				<key>colors</key>
 				<dict>
 					<key>isExpanded</key>
 					<true/>
@@ -1939,6 +2045,6 @@
 		</dict>
 	</dict>
 	<key>windowFrame</key>
-	<string>{{133, 0}, {1396, 1026}}</string>
+	<string>{{106, 2}, {1396, 1026}}</string>
 </dict>
 </plist>

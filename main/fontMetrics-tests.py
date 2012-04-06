@@ -1,12 +1,10 @@
-#!env python
+#!/Library/Frameworks/Python.framework/Versions/2.6/bin/python2.6
 # encoding: utf-8
 
 import unittest
 from fontMetrics import *
 
 # print tkFont.families()
-
-widthFactor = 1.0
 
 helv36b  = FontMetrics({"family":"Helvetica","size":36,"weight":"bold"})
 helv36b2 = FontMetrics({"family":"Helvetica-Bold","size":36})
@@ -17,9 +15,13 @@ times12  = FontMetrics({"family":"Times","size":12})
 
 class FontMetricsTest(unittest.TestCase):
 	
-	def testGetPixelHeight(self):
+	def testHelv36GetPixelHeight(self):
 		self.assertEqual(helv36.getPixelHeight(),36)
+	
+	def testHelv36bGetPixelHeight(self):
 		self.assertEqual(helv36b.getPixelHeight(),36)
+	
+	def testTimes12GetPixelHeight(self):
 		self.assertEqual(times12.getPixelHeight(),12)
 	
 	def testHelv36GetPixelWidth(self):
@@ -39,6 +41,8 @@ class FontMetricsTest(unittest.TestCase):
 	
 	def testTimes12GetPixelWidth(self):
 		self.assertEqual(times12.getPixelWidth("My string"),47)
+	
+	def testEmptyStringGetPixelWidth(self):
 		self.assertEqual(times12.getPixelWidth(""),0)
 	
 

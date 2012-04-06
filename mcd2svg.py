@@ -16,12 +16,7 @@ def main(params):
 	result.append("# encoding: utf-8")
 	result.append("# %s\n" % common.timeStamp())
 	result.append("import time, codecs\n")
-	result.append("(width,height) = (%s,%s)" % (mcd.w,mcd.h))
-	result.extend(common.prettyDict("cx",[(box.name,box.x+box.w/2) for row in mcd.ordering for box in row]))
-	result.extend(common.prettyDict("cy",[(box.name,box.y+box.h/2) for row in mcd.ordering for box in row]))
-	result.extend(common.prettyDict("k",[(leg.identifier(),leg.value()) for row in mcd.ordering for box in row if box.__class__ is Association for leg in box.legs]))
-	result.extend(common.prettyDict("t",[(leg.identifier(),0.5) for row in mcd.ordering for box in row if box.__class__ is Association for leg in box.legs if leg.arrow]))
-	result.extend(common.prettyDict("colors ",[((c,style[c]) if style[c] else (c,None)) for c in sorted(style.keys()) if c.endswith("Color")]))
+	result.extend(common.processGeometry(mcd,style))
 	result.append("cardMaxWidth = %(cardMaxWidth)s\ncardMaxHeight = %(cardMaxHeight)s\ncardMargin = %(cardMargin)s\narrowWidth = %(arrowWidth)s\narrowHalfHeight = %(arrowHalfHeight)s\narrowAxis = %(arrowAxis)s" % style)
 	result.append(open("main/goodies.py").read())
 	result.append(open("main/svggoodies.py").read())
@@ -46,7 +41,7 @@ def main(params):
 		"begin":          """<g id="%(id)s">""",
 		"end":            """</g>""",
 	}
-	legs = dict((leg.identifier(),leg.value()) for row in mcd.ordering for box in row if box.__class__ is Association for leg in box.legs)
+	legs = dict((leg.identifier(),leg.value()) for row in mcd.ordering for box in row for leg in box.legs)
 	others = {}
 	tabs = 0
 	rex = re.compile(r"(?<=%\().+?(?=\)s)")
