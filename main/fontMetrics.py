@@ -7,7 +7,7 @@ try:
 	root = tk.Tk()
 except:
 	import sys
-	sys.stderr.write(u"Warning: Tkinter is not correctly installed or Mocodo is run on server side with no display. The calculated width will be correct only for monospace fonts.\n")
+	sys.stderr.write(u"Warning: Tkinter is not correctly installed or Mocodo is run on server side with no display. All proportional fonts are replaced by Courier.\n")
 	root = None
 
 def FontMetrics(font):
@@ -49,20 +49,20 @@ class FontMetricsWithoutTk():
 			u"@SimHei": (128, 256),
 			u"@SimSun": (128, 256),
 			u"@SimSun-ExtB": (128, 256),
-			u"Andale Mono": (154, 288),
+			u"Andale Mono": (154, 299),
 			u"Ayuthaya": (154, 355),
 			u"BatangChe": (128, 256),
 			u"Bookshelf Symbol 7": (256, 256),
 			u"Braille": (213, 256),
 			u"Consolas": (141, 300),
-			u"Courier": (154, 256),
+			u"Courier": (154, 290),
 			u"Courier 10 Pitch": (154, 297),
 			u"Courier New": (154, 290),
 			u"Courier New Bold": (154, 290),
 			u"Courier New Bold Italic": (154, 290),
 			u"Courier New Italic": (154, 290),
 			u"DFKai-SB": (128, 256),
-			u"DejaVu Sans Mono": (154, 299),
+			u"DejaVu Sans Mono": (154, 298),
 			u"DotumChe": (128, 256),
 			u"Estrangelo Edessa": (128, 256),
 			u"FangSong": (128, 256),
@@ -98,7 +98,7 @@ class FontMetricsWithoutTk():
 			u"LM Mono Slanted 10 Regular": (134, 341),
 			u"Latha": (128, 351),
 			u"Letter Gothic Std": (154, 311),
-			u"Liberation Mono": (154, 291),
+			u"Liberation Mono": (154, 290),
 			u"Lucida Console": (154, 256),
 			u"MS Gothic": (128, 256),
 			u"MS Mincho": (128, 256),
@@ -156,11 +156,11 @@ class FontMetricsWithoutTk():
 			u"pangzhonghua": (128, 256),
 			u"文泉驛等寬微米黑": (154, 301),
 		}
-		refFont = (font["family"] if font["family"] in monospaceFonts else u"Courier")
-		font["family"] = refFont
-		(self.fontWidth,self.fontHeight) = monospaceFonts[refFont]
+		actualFont = (font["family"] if font["family"] in monospaceFonts else u"Courier")
+		font["family"] = actualFont
+		(self.fontWidth,self.fontHeight) = monospaceFonts[actualFont]
 		self.fontWidth = self.fontWidth*font["size"]/256.0
-		self.fontHeight = self.fontHeight*font["size"]/256.0
+		self.fontHeight = int((self.fontHeight*font["size"]+0.5)/256)
 	
 	def getPixelHeight(self):
 		return self.fontHeight
