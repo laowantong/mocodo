@@ -6,14 +6,14 @@ from fontMetrics import *
 
 # print tkFont.families()
 
-helv36b  = FontMetrics({"family":"Helvetica","size":36,"weight":"bold"})
-helv36b2 = FontMetrics({"family":"Helvetica-Bold","size":36})
-helv36b3 = FontMetrics({"family":"Helvetica-Bold","size":36,"weight":"bold"})
-helv36b4 = FontMetrics({"family":"Helvetica-Bold","size":36,"weight":tkFont.BOLD})
-helv36   = FontMetrics({"family":"Helvetica","size":36})
-times12  = FontMetrics({"family":"Times","size":12})
+helv36b  = FontMetricsWithTk({"family":"Helvetica","size":36,"weight":"bold"})
+helv36b2 = FontMetricsWithTk({"family":"Helvetica-Bold","size":36})
+helv36b3 = FontMetricsWithTk({"family":"Helvetica-Bold","size":36,"weight":"bold"})
+helv36b4 = FontMetricsWithTk({"family":"Helvetica-Bold","size":36,"weight":tkFont.BOLD})
+helv36   = FontMetricsWithTk({"family":"Helvetica","size":36})
+times12  = FontMetricsWithTk({"family":"Times","size":12})
 
-class FontMetricsTest(unittest.TestCase):
+class FontMetricsWithTkTest(unittest.TestCase):
 	
 	def testHelv36GetPixelHeight(self):
 		self.assertEqual(helv36.getPixelHeight(),36)
@@ -44,6 +44,30 @@ class FontMetricsTest(unittest.TestCase):
 	
 	def testEmptyStringGetPixelWidth(self):
 		self.assertEqual(times12.getPixelWidth(""),0)
+
+courier12 = FontMetricsWithoutTk({"family":"Courier","size":12})
+proportional = FontMetricsWithoutTk({"family":"Helvetica","size":12})
+prestige = FontMetricsWithoutTk({"family":"Prestige Elite Std","size":12})
+
+class FontMetricsWithoutTkTest(unittest.TestCase):
+	
+	def testCourier12GetPixelHeight(self):
+		self.assertEqual(courier12.getPixelHeight(),12)
+	
+	def testCourier12GetPixelWidth(self):
+		self.assertEqual(courier12.getPixelWidth("My string"),63)
+	
+	def testFallbackGetPixelHeight(self):
+		self.assertEqual(proportional.getPixelHeight(),12)
+	
+	def testFallbackGetPixelWidth(self):
+		self.assertEqual(proportional.getPixelWidth("My string"),63)
+	
+	def testPrestigeGetPixelHeight(self):
+		self.assertEqual(prestige.getPixelHeight(),13)
+	
+	def testPrestigeGetPixelWidth(self):
+		self.assertEqual(prestige.getPixelWidth("My string"),63)
 	
 
 if __name__ == '__main__':

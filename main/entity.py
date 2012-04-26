@@ -30,7 +30,7 @@ class Entity:
 		(self.name,self.attributes) = clause.split(":")
 		(self.name,self.cartouche,self.attributes) = cleanUp(self.name,self.attributes)
 		self.attributes = dispatchStrength(self.attributes)
-		self.legs = [] # iterating over box's legs do nothing if this is not an association 
+		self.legs = [] # iterating over box's legs does nothing if this is not an association 
 	
 	def calculateSize(self,style):
 		cartoucheFont = FontMetrics(style["entityCartoucheFont"])
