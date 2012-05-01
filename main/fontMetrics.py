@@ -44,7 +44,7 @@ class FontMetricsWithoutTk():
 	def __init__(self,font):
 		if font["family"] not in self.staticData["fonts"]:
 			sys.stderr.write(u"Warning: Missing metrics for font '%s'. If it is installed on your system, you may run updateFontMetrics.py to add it (require Tkinter). In the meantime, I will replace it by Courier New.\n" % font["family"])
-			font["family"] = "Courier New"
+			font["family"] = u"Courier New"
 		refSize = self.staticData["size"]
 		metrics = self.staticData["fonts"][font["family"]]
 		self.fontHeight = int((metrics["height"]*font["size"]+0.5)/refSize)
