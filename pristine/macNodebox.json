@@ -8,5 +8,6 @@
 	"sep":",",
 	"table":["html","txt"],
 	"attraction": 40,
-	"extract": false
+	"extract": false,
+	"tkinter": false
 }

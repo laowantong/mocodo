@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
-from fontMetrics import FontMetrics
+import fontMetrics
 
 import sys
 
@@ -18,7 +18,7 @@ class Leg:
 		self.cards = card
 	
 	def calculateSize(self,style):
-		font = FontMetrics(style["cardFont"])
+		font = fontMetrics.FontMetrics(style["cardFont"])
 		self.h = font.getPixelHeight()
 		self.style = style
 	

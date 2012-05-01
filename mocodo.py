@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
+
 """
 mocodo.py
 
@@ -16,9 +17,10 @@ except ImportError:
 	import simplejson as json
 from main.common import *
 
+print(sys.version)
 if sys.version >= "3":
 	print "Mocodo does not work under Python %s." % sys.version
-	print "Please install Python 2.6 or 2.7."
+	print "Please install Python 2.7 or 2.6 (or 2.5 + simplejson)."
 	sys.exit()
 
 help_message = '''
@@ -56,7 +58,7 @@ def main():
 	argv = sys.argv
 	try:
 		try:
-			(opts,args) = getopt.getopt(argv[1:], "hvo:i:c:s:e:m:a:", ["help", "version", "output=", "input=", "colors=", "shapes=", "df=", "sep=", "cleanup", "encoding=", "table=", "attraction=", "extract"])
+			(opts,args) = getopt.getopt(argv[1:], "hvo:i:c:s:e:m:a:", ["help", "version", "output=", "input=", "colors=", "shapes=", "df=", "sep=", "cleanup", "encoding=", "table=", "attraction=", "extract", "tkinter"])
 		except getopt.error, msg:
 			raise Usage(msg)
 		if "--cleanup" in [option for (option,value) in opts]:
@@ -82,6 +84,7 @@ def main():
 			elif option == "--df":                 params["df"] = unicode(value)
 			elif option == "--sep":                params["sep"] = value
 			elif option == "--extract":            params["extract"] = True
+			elif option == "--tkinter":            params["tkinter"] = True
 		# launching
 		if params["output"].endswith("svg.py"):
 			import mcd2svg

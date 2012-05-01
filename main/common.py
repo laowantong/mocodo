@@ -11,7 +11,7 @@ try:
 except ImportError:
 	import simplejson as json
 
-version = "1.4.2"
+version = "1.5"
 
 class Common:
 	
@@ -85,7 +85,7 @@ class Common:
 			("t",[(leg.identifier(),0.5) for row in mcd.ordering for box in row for leg in box.legs if leg.arrow]),
 			("colors",[((c,style[c]) if style[c] else (c,None)) for c in sorted(style.keys()) if c.endswith("Color")]),
 		]
-		if self.params["extract"]:
+		if self.params.get("extract",False):
 			self.dumpGeoFile(dict(l))
 			result = ["""try:\n\timport json\nexcept ImportError:\n\timport simplejson as json\n\ngeo = json.loads(open("%s-geo.json").read())""" % self.params["baseOutputName"]]
 			result.append("""(width,height) = geo.pop("size")""")

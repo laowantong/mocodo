@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
-from fontMetrics import FontMetrics
+import fontMetrics
 
 from attribute import *
 from leg import *
@@ -26,10 +26,10 @@ class Association:
 	
 	def calculateSize(self,style):
 		self.style = style
-		cartoucheFont = FontMetrics(style["associationCartoucheFont"])
+		cartoucheFont = fontMetrics.FontMetrics(style["associationCartoucheFont"])
 		self.getCartoucheStringWidth = cartoucheFont.getPixelWidth
 		self.cartoucheHeight = cartoucheFont.getPixelHeight()
-		attributeFont = FontMetrics(style["associationAttributeFont"])
+		attributeFont = fontMetrics.FontMetrics(style["associationAttributeFont"])
 		self.attributeHeight = attributeFont.getPixelHeight()
 		self.calculateSizeDependingOnDf()
 		self.w += self.w % 2

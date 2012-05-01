@@ -4,7 +4,7 @@
 import sys
 from association import *
 from entity import *
-from fontMetrics import FontMetrics
+import fontMetrics
 
 def attract(rows,dx):
 	l = sorted(reduce(lambda l1,l2:l1+l2,rows))
@@ -23,6 +23,7 @@ def attract(rows,dx):
 class Mcd:
 	
 	def __init__(self, clauses, params):
+		fontMetrics.FontMetrics = fontMetrics.fontMetricsFactory(params.get("tkinter",False))
 		self.entities = {}
 		self.associations = {}
 		self.elements = {}
@@ -72,8 +73,8 @@ class Mcd:
 					box.x -= dx
 			self.w -= dx
 		#
-		style["cardMaxHeight"] = FontMetrics(style["cardFont"]).getPixelHeight()
-		style["cardMaxWidth"] = FontMetrics(style["cardFont"]).getPixelWidth(self.cardLongestString)
+		style["cardMaxHeight"] = fontMetrics.FontMetrics(style["cardFont"]).getPixelHeight()
+		style["cardMaxWidth"] = fontMetrics.FontMetrics(style["cardFont"]).getPixelWidth(self.cardLongestString)
 		self.w = 0
 		verticalOffset = style["marginSize"]
 		widths = []

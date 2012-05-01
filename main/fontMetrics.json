@@ -1,0 +1,3094 @@
+{
+"alphabet": " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~¡¢£¤¥¦§©«¬®°±²³µ¶·º»¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿ—‘’•…′″‵‶", 
+"fonts": {
+"Minion Pro": {
+"default": 123, 
+"widths": ":GQ{{Â¶+YYg:[:U{{{{{{{{{{::aÁ±ª¼·ÄWT¬ä¾¿¿y¼´ù§¢XUXfplmLxEBAÒ_^Nw¯yvlYCYG{{{{Cz´rRXWW:Vra±±±±±±Þ©WWWW½¾¿¿¿¿¿À¼¼¼¼¢pppppp¬lmmmmEEEEvvì99dø?iS", 
+"height": 345
+}, 
+"LM Mono Prop 10 Regular": {
+"default": 134, 
+"widths": "ZKoààÑKhhÑKZKKKÑ³Â»ÂÊ³¬ÑÂZÊ¤ïÂÑ³ÑÂÂÂÂčÂÂ¤LLÂxxRKRKàhjhÂxKxÂĀÂĀÑeÑĀĀÑqÂÂÂÂÂÂïÂ³³³³ZZZZĀÂÑÑÑÑÑĀÑÂÂÂÂĀĀÂxxxxxKKKKĀÑĀĀčKKÑ®?iȀȀ", 
+"height": 336
+}, 
+"TeX Gyre Schola Italic": {
+"default": 142, 
+"widths": "GUfÕÚGUUGUGGGr¿´¹¹Ç¹«ÇÕh¾«òÑÇ«Ç¾«¯Ñ´í´¯«UUUrrUUQUärrZÇwUUUĀĀ¿m¿fĀĀ¦G_mr´´´´´´ß¹¹¹¹¹hhhhĀÑÇÇÇÇÇĀÇÑÑÑÑĀĀ¹rrrrrUUUUĀĀĀĀ44Ā?iȀȀ", 
+"height": 371
+}, 
+"Heiti TC Light": {
+"default": 256, 
+"widths": "@LO¸ÆÂ3^^mGUGpGGÞ½Ð¾|ß¯:{vë½Þßm¨´ö{ZZ¬a¯¯¦¯¦P¬343ð¨¯¯McWÕ{mZzZĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀȀȀȀȀȀȀȀȀȀ", 
+"height": 256
+}, 
+"Liberation Serif": {
+"default": 128, 
+"widths": "@UiÕÇ.UU@U@GGGrì¹««¹¹¹Ud¹ä¹¹¹«¹¹ò¹¹UGUxUrrrUGGGÇUdG¹r{3{U3ÃÃfMMt@Or¹¹¹¹¹¹ä«UUUU¹¹¹¹¹¹¹¹¹¹¹¹¹rrrrrr«rrrrrGGGGĀUUZĀ8k:`", 
+"height": 285
+}, 
+"TeX Gyre Adventor Bold": {
+"default": 154, 
+"widths": "HH\\Ü®8aaqHlHvHH½½È³{×®H{qæ½××l¤³æ®R¤Rl©©¤©¤H©=C=ñ¤©©RqMÍvWWHĀĀ½v½fĀĀH\\v½½½½½½æÈHHHHĀ½×××××Ā×¤¤¤¤ĀĀ©©©©©©Ĕ¤¤¤¤¤====Ā¤¤¤¤¤©ĀĀĀHHĀ?iȀȀ", 
+"height": 394
+}, 
+"Gisha": {
+"default": 138, 
+"widths": "FIdÒÍ;MMk¯8f8d88¯¯¯sõ¥´}°¶D[yÒÀÁÁ°ïMaM¯jEvPA>AÝYmW{¹v|tM=M¯I=sä¯äa¯^^u8ns¥¥¥¥¥¥ÜDDDD´ÀÁÁÁÁÁ¯Á°°°°ÕvAAAA¯||Ā;;h¼?iS", 
+"height": 300
+}, 
+"BiauKai": {
+"default": 256, 
+"widths": "V5h«xðÈ-CCx«5C5Hxxxxxxxxxx55«««]ë» ­ ­­PP­Õ­­­ ­­­ð­­CHCxUxkkPCCCÈx]kP»k{{«ĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀȀȀȀȀȀȀȀȀȀ", 
+"height": 262
+}, 
+"@GungsuhChe": {
+"default": 128, 
+"height": 256
+}, 
+"URW Palladio L": {
+"default": 128, 
+"widths": "@G_×Ç5UUd@U@@@r¿Ç¶ÆÃÕVUºòÕÉÉ«Ç¹Ā«««UUUr{UK<KâemSÖUUG¿¿fMM¡@UrÇÇÇÇÇÇò¶VVVVÆÕÉÉÉÉÉÕÇÇÇÇ«Âr{{{{IIIIĀGGĀ:`:`", 
+"height": 328
+}, 
+"WenQuanYi Micro Hei": {
+"default": 141, 
+"widths": "CEg¥Ó´:MM@RE`EEmÞ¯~±´WE~ß»¾¾³âN`NiwTBBBåftW{¿}q[[E|Õ}ÕnUU¨EZ}mÚWWWW¯»¾¾¾¾¾¾³³³³ÕwBBBB}}ĀĀĀ`Ā:g:`", 
+"height": 301
+}, 
+"Chalkduster": {
+"default": 256, 
+"widths": "[Ă«Ûë6p OW®°°ë¤«ÍTk{­|~Ö½«Ð³½¿Ĝ¨¢×¶º¶¾ÇÄ¶¾èÝË´®`±¡È¯exÇxă¼¸¥u°Ñ£¦xPªhÀĀ­Āû¸ĐqĀĀãÛa¥£«°µ«±¥Ĥ¸Ãµ°Ā¸¸µ³µµĀë¸»µ´ĀĀÁ£¨¥­£¨ñ¨«£¨kUkYĀÀ¼½µÅÃ¸Ã½Ã¸ĀĀ£®QR þ?iȀȀ", 
+"height": 323
+}, 
+"Gentium Book Basic": {
+"default": 123, 
+"widths": ";Iq{|µ®BRRrj>X>y{{{{|{{{{{>>rrrqÔ}ªOQ}Ò§}©¨ÚQxQ~yRyrxR~HEHÑjfZ¶sX;X}I{{{{;{¸{[\\iVV+HqÊOOOO§j©©©©yyyyyyµrxxxxHHHHjÇ==G¸?iS", 
+"height": 297
+}, 
+"Times New Roman Italic": {
+"default": 128, 
+"widths": "@UlÕÇ7UU­@U@GUU­­­ì«¹¹¹Ur«Õ«¹¹¹ÕdGdlUrrGGGrG¹ddGr«rrdfFfdĀĀÃ­ÃfĀĀ@Oä«UUUUĀ«¹¹¹¹¹Ā¹¹¹¹¹ĀĀ«rrrrrGGGGĀĀĀräUUZä?iȀȀ", 
+"height": 283
+}, 
+"Garuda": {
+"default": 142, 
+"widths": "WG[ä«1UUcGUGGGGĄ««¹¹«Ç¹G«Õ¹Ç«Ç¹«¹«ò««GGGxUG999ÕUG¹VBVUB¼¼fUUG]««««««Ā¹««««GGGG¹¹ÇÇÇÇÇÇ¹¹¹¹««ä9999¶EG:`:`", 
+"height": 481
+}, 
+"LM Roman 8 Italic": {
+"default": 141, 
+"widths": "bTpááÓTppÓTbTTTÓÓÓÓÌÁÅÏº³ÔÌjÓ¬öÌÓºÓÈÅÌÌĒÌÌ¨TTÌ~~~T~TT~Fá~tp[~·pLT~ÑĀÌĀ¯Ó¯iÓĀĀ¦ÓvÌÌÌÌÌÌòÅººººjjjjĀÌÓÓÓÓÓĀÓÌÌÌÌĀĀÅ~~~~~TTTTĀÓĀĀęTTÓ»?iȀȀ", 
+"height": 363
+}, 
+"Myriad Hebrew": {
+"default": 141, 
+"widths": "7DjÕ =[[Z;R;oII|Ïª~|¥§=_yÎ¨°°~¦Ù[o[M{sK<>x<ÖTeU{¼wynj=jD=|»¥mUWU=_¥vÊ~~~~====¬¨°°°°°°¦¦¦¦{{{{{{Æs<<<<yyÉ??YĀ?iS", 
+"height": 309
+}, 
+"@Gungsuh": {
+"default": 171, 
+"widths": "Ukk «Kkk UÕU`UUµ µ¼°¯°®¨¨³´w° Ð¶¬§´´¦·¯Ë««£ÀT£££§xy¤à¦¨¨¨¥¥À¦Ëk °º@ É°ÉpÕ°°UµµµµµµĀµµµµµµÀµµµµµÕµËËËËµ«À««««««Ð      ««««««Õ««««««««ĀssĀæĀĀS", 
+"height": 256
+}, 
+"LM Roman 12 Regular": {
+"default": 125, 
+"widths": "SF\\Ñ}ÑÃFbb}ÃFSF}}}}}}}}}}}FFÃÃÃvÃ¼±µ¿ª¤Å¼ZÃæ¼ÃªÃ¹µ¼¼Ă¼¼FF¼}}ooM}FMFÑ}bcbµoGFo¼Ā¼Āz¯Ã¯^ÃĀĀÃiv¼¼¼¼¼¼âµªªªªZZZZĀ¼ÃÃÃÃÃĀÃ¼¼¼¼ĀĀ}}}}}}}µoooooFFFFĀ}}}}}Ã}ĀĀûFFÃ¥?iȀȀ", 
+"height": 361
+}, 
+"TeX Gyre Heros Cn Bold Italic": {
+"default": 117, 
+"widths": ":Fduu»2FFR{:F::uuuuuuuuuuFF{{{Í£:u¯££ÆF:F{uFuuuF::u:»RuFu£uuiR;R{FuuĀuĀuu{T{ĀĀu:MuÒ::::Ā£££££Ā£ĀĀuuuuuu»uuuuu::::Ā{ĀĀuÒ::IÒ?iȀȀ", 
+"height": 359
+}, 
+"Helvetica CY": {
+"default": 128, 
+"widths": "::Kuu»(FFR{:F::uuuuuuuuuu::{{{uÕ£:iu¯££Æ:::cuFuuiuu:uu//i/¯uuuuFi:uiiiiF7F{uĀĀuÍu{ÍT{ĀĀuquĀĀĀĀĀ{ĀĀÒ//JÒ?iȀȀ", 
+"height": 243
+}, 
+"LM Roman Caps 10 Oblique": {
+"default": 208, 
+"widths": "aRjççØRppØRaRRRØØØØÐÅÉÔ¾·ÚÐhØ¯ýÐØ¾ØÍÉÐÐěÐÐ«RRÐ ¤Mm£¿££uÖGRÐĀÐĀ¯Ø¯jØĀĀØÐÐÐÐÐÐúÉ¾¾¾¾hhhhĀÐØØØØØĀØÐÐÐÐĀĀê¼MMMMĀ£££££Ø£ĀĀěRRØ¸?iȀȀ", 
+"height": 356
+}, 
+"ori1Uni": {
+"default": 163, 
+"widths": "¨gv×£óÈFdd×Q\\QV££££££££££VV×××Ā¯°³Å¢ÆÁLL¨ÝÀÊÊ²£»¯ý¯¯dVd×££Z£¢GGGù¢££id¢Ñ£V£×g££££VĀ×Ā×gg££Qy¯¯¯¯¯¯ù³¢¢¢¢LLLLÆÀÊÊÊÊÊ×Ê»»»»¡ûGGGG¢×¢¢¢¢£ƀZZĀ:`:`", 
+"height": 468
+}, 
+"@MingLiU-ExtB": {
+"default": 128, 
+"widths": "ĀQQvĀ?iS", 
+"height": 256
+}, 
+"TeX Gyre Heros Bold": {
+"default": 142, 
+"widths": "GUyä¹=UUdGUGGUUú¹¹¹¹«Ç¹G¹Õ¹Ç«Ç¹«¹«ò««UGUUUGGGädUÇdHdUĀĀ½½fĀĀG]¹¹¹¹¹¹Ā¹««««GGGGĀ¹ÇÇÇÇÇĀÇ¹¹¹¹ĀĀäGGGGĀĀĀĀGGZĀ?iȀȀ", 
+"height": 367
+}, 
+"Andalus": {
+"default": 141, 
+"widths": "?QE«u¸£(RRUv4v4G4=«v«sëµ{m«°MKxã­»{»s­øPPxUxspPECEÍ}e]K{Àxs{{«Qs3kÄk«Ä`v[[p3SksÒ{{{{MMMMµ­»»»»»v»­­­­{xxxxxx¹sppppEEEE}}}}}}v}xxĀ==HĀ?iS", 
+"height": 391
+}, 
+"Kozuka Mincho Pro EL": {
+"default": 155, 
+"widths": "HMXµ¹7SSu8P8y88|¿¥¬¤ºNnäµ¶¶°«ý­¡QyQcy~TCAD×epTÀ}rSeSMeĀÀrÀĀĀggĀ8tr|¥¥¥¥¥¥âNNNN¬µ¶¶¶¶¶Ā¶°°°°¡Ìy~~~~CCCCĀĀ77tĀĀĀS", 
+"height": 343
+}, 
+"American Typewriter Condensed Light": {
+"default": 128, 
+"widths": "@9C¦(LLe:+:m::t¼Gz}³}z}¨xLLloergIn}?:w;·lnl_bKlukh«9ĀĀÍRĀĀ\u0016URt×GGGSĀĀĀĀllllll§egggg????ĀlllllmĀĀk55«®?iȀȀ", 
+"height": 275
+}, 
+"Verdana": {
+"default": 163, 
+"widths": "ZevÒ£ĔºEtt£Ò]t]t££££££££££ttÒÒÒĀ¯°³Å¢ÇÀlt±ØÀÊÊ²¯»¯ý¯¯tttÒ££  Z ¢FXFù¢  me¢Ò£t£Òe££££t£Ā¥ÒĀÒ¤£]¥¯¯¯¯¯¯ü³¢¢¢¢llllÇÀÊÊÊÊÊÒÊ»»»»õFFFF¢Ò¢¢¢¢ ĀEEÒ]S", 
+"height": 311
+}, 
+"@Microsoft JhengHei": {
+"default": 189, 
+"widths": "@Nk£áÜ?RRs½;o;k;;½½½|Ĉ±«Á½ÃIa÷ÎÐÐ¤½«ā¢RhR½sI¢¢U¢BBBí¢¢¢_u]Æ}}RAR½NA{ö½öh½ee~Āw|±±±±±±í«IIIIÁÎÐÐÐÐÑ½Ð½½½½æBBBB¢¢¢¢¢½¢¢ĀĀĀĀĀĀĀĀ", 
+"height": 340
+}, 
+"KacstQurn": {
+"default": 163, 
+"widths": "?gv×£óÈFdd×Q\\QV££££££££££VV×××Ā¯°³Å¢ÆÁLL¨ÝÀÊÊ²£»¯ý¯¯dVd×££Z£¢GGGù¢££id¢Ñ£V£×g££££VĀ×Ā×gg££Qy¯¯¯¯¯¯ù³¢¢¢¢LLLLÆÀÊÊÊÊÊ×Ê»»»»¡ûGGGG¢×¢¢¢¢£ĀQQĀ:`:`", 
+"height": 396
+}, 
+"TlwgMono": {
+"default": 154, 
+"height": 316
+}, 
+"LM Sans Quot 8 Oblique": {
+"default": 160, 
+"widths": "k[ċ ċðY|| ùYkY           YYÓùÓÕÎÒÍäÇ¾ÕÐR×µąÐ÷É÷Ñ²åÏÎħÎÎÄZZÎ   b  GPGù    k{s ÕL[ÎĀÎĀ­¯ ù¯xùĀĀ ¦ù ÎÎÎÎÎÎĐÍÇÇÇÇRRRRĀÐ÷÷÷÷÷ĀùÏÏÏÏĀĀçGGGGĀ      ù     ĀĀŀYYùÅ?iȀȀ", 
+"height": 357
+}, 
+"Osaka": {
+"default": 128, 
+"widths": "GN««èºNrr«NaN««««««««««NN«««ßº£§³­°>~ªÊµ¼¼¤«ºòr«r««d<G<åcqÈs?s«ĀĀĀĀĀátĀĀĀĀĀĀsĀĀĀĀĀĀĀĀĀĀĀvĈĀĀȀȀ", 
+"height": 320
+}, 
+"OpenSymbol": {
+"default": 163, 
+"widths": "L[£ÕÇFWWd@U@G££££££££££GGÌĀ¯°³Å¢ÆÁLL¨ÝÀÊÊ²£»¯ý¯¯HVHU££Z£¢GGGù¢££id¢ÑbVbÌgn£VĀ¦ĀmÌgg£Qyr¯¯¯¯¯¯ù³¢¢¢¢LLLLÆÀÊÊÊÊÊÌÊ»»»»¡ûGGGG¢Ì¢¢¢¢£Ā<<[ô:`:`", 
+"height": 316
+}, 
+"@Adobe Ming Std L": {
+"default": 256, 
+"widths": "@Yh½ÂÓHKK~@_AO@@hċÀ¬®®¯¬½¼U~»²ç¸À­¿¬¡ÅµÇã¶·GOGZK~[RRQ½`q\\¾prCryQĀĀ¢Ā_ĀĀĀ¢ĀĀll ¢ĀllĀĀ±±±±è±ĀĀĀJJJJÀ½ĀĀÇÇÇĀÇ±±±± ĀĀÚĀĀĀĀĀJJĀĀĀĀĀĀĀ¡ĀĀĀĀĀĀiĀ", 
+"height": 266
+}, 
+"Century Schoolbook L": {
+"default": 142, 
+"widths": "GLdÕÑ4UUGUGGGGr½¹¹¹Ç¹«ÇÕhÇ«òÑÇ«Ç¹¡«Ñ¹û´´UUUrUQLQärwdÇ{UUL½m½fUUGMmr¹¹¹¹¹¹Ā¹¹¹¹¹hhhhÇÑÇÇÇÇÇÇÑÑÑÑ´«ÌrQQQQĀ44Ā:`:`", 
+"height": 331
+}, 
+"Helvetica Neue UltraLight": {
+"default": 128, 
+"widths": "G/G¯+99ZGUGUGGÍ¯¦{¹¦!w{È¦¹¹¢ß9U9!{4!!r!ÇBw>h¯hhhU9U/ĀĀÍZÍfĀĀGMZÚ¯!!!!Ā¦¹¹¹¹¹Ā¹¢¢¢¢ĀĀ{{{{{{{ä!!!!ĀĀĀhĀ++Ā?iȀȀ", 
+"height": 293
+}, 
+"TeX Gyre Cursor Italic": {
+"default": 154, 
+"height": 307
+}, 
+"Impact": {
+"default": 140, 
+"widths": "-E_ ±/PPH+K/ebd44ÆjfJUa¸vÑ|yfHeH|UJFHzFÅ\\yNp«osZ_E_EyE|É_ÉYQTyUT_·jjjjJJJJyÁFFFFssĀ++Y/cS", 
+"height": 312
+}, 
+"@Adobe Kaiti Std R": {
+"default": 256, 
+"widths": "GMZ¹¼7SSs8N8t88|¾¥®¦½Ro£ç¶··±«ý®¢QtQ7zVFDGÛirWÃtSaSQ¢¢Ā_Ā½Ì¢ĀĀll ¢Āll±±±±±±è±JJJJÀ½ÇÇÇÇÇĀÇ±±±± ĀĀÚĀĀĀĀĀJJĀĀĀĀĀĀ¡ĀĀĀĀĀĀĀĀ", 
+"height": 304
+}, 
+"Gulim": {
+"default": 160, 
+"widths": "UU`Àà°I`` V VkVV   Ā¥­¸¹ Å»E£Ð³Å£Æ«¢¶å   ëUX>>;ÝUPÀËk @É´É`Õ```p««««««ðÀ««««KKKKÀÀËËËËËÕËÀÀÀÀ  Ê@@@@       Õ  ĀUU`Ā`S", 
+"height": 256
+}, 
+"LM Roman 12 Bold": {
+"default": 144, 
+"widths": "`XwððàPppàP`PPPåàåàÚÍÐÝ½µâákâ­đáØÅØ× ÈÝÚĩÚÚ°PPÚ  X PXPð  vrp ÐRXÚĀÚĀ®° à°làĀĀ ´ày ÚÚÚÚÚÚąÐ½½½½kkkkĀáØØØØØĀàÝÝÝÝĀĀÐPPPPĀ à    ĀĀĠPPàÍ?iȀȀ", 
+"height": 365
+}, 
+"LM Sans Quot 8 Bold": {
+"default": 176, 
+"widths": "ud­ĥ°įćb°Ēbub°°°°°°°°°°°bbåĒå¦ëäçáûÛÑëæ\\£íÇġæďÝďæÄüåäŅää×kkä°¥®®¡l®®MV¤MĐ®°®®t®éRdäĀäĀ»¯°Ē¯ĒĀĀ®´Ē°¦ääääääĬáÛÛÛÛ\\\\\\\\ĀæďďďďďĀĒååååĀĀ¥¥¥¥¥¥¥þ¡¡¡¡MMMMĀ®°°°°°Ē°®®®®ĀĀŠbbĒê?iȀȀ", 
+"height": 363
+}, 
+"Arial Rounded MT Bold": {
+"default": 152, 
+"widths": "@U{ÛÃ>[[pPUPHPPû¸¸¾¾«ËÃP¾ÕÃË«Ë¸« Ã°ð ¥[H[U  U EEEã  p[ÐcHcUĀ Ā¾¾eĀĀPc¸¸¸¸¸¸þ¾««««PPPPĀÃËËËËËĀËÃÃÃÃĀĀíEEEEĀĀĀĀPP[Ā?iȀȀ", 
+"height": 296
+}, 
+"gargi": {
+"default": 145, 
+"widths": "H\\ç­9WWeHWHHHHĈ­­¼¼­Ê¼H­Ù¼Ê­Ê¼­¼­õ­­HHHz:H:::ÙWH¼WDWg££££VĀ×Ā×gg££Qy¯¯¯¯¯¯ù³¢¢¢¢LLLLÆÀÊÊÊÊÊ×Ê»»»»¡ûGGGG¢×¢¢¢¢£==ï:`:`", 
+"height": 373
+}, 
+"FZYingBiXingShu-S16T": {
+"default": 256, 
+"widths": "A28­£\u001aADW/82(.ÐÇPâ´¯«¯å­¬¹±¯¨²·Ø±®A1AhraWyD/Kz>äb}So¬izd[We¡ĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀ?iȀȀ", 
+"height": 282
+}, 
+"FZYingBiXingShu-S16S": {
+"default": 256, 
+"widths": "A28­£\u001aADW/82(.ÐÇPâ´¯«¯å­¬¹±¯¨²·Ø±®A1AhraWyD/Kz>äb}So¬izd[We¡ĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀ?iȀȀ", 
+"height": 282
+}, 
+"Letter Gothic Std": {
+"default": 154, 
+"height": 311
+}, 
+"Braille": {
+"default": 213, 
+"height": 256
+}, 
+"Kalinga": {
+"default": 143, 
+"widths": "FMcïµ7ZZl8V8i88ï¤°¹Ä£ÁÇD£ëÎÌ¦Ì©«À ÿ¢QiQM  I ===ó  YL×yZ?ZM?ÊÊege8|¤¤¤¤¤¤ð¹££££DDDDÄÎÌÌÌÌÌÌÀÀÀÀ¦÷==== Ĉ++q¨?iS", 
+"height": 380
+}, 
+"FangSong": {
+"default": 128, 
+"height": 256
+}, 
+"MingLiU": {
+"default": 128, 
+"height": 256
+}, 
+"Segoe Print": {
+"default": 187, 
+"widths": "fSgÌ»í;g]X¤@»»»»»»»»»»LU ÓÇ¼³Ë¯ÇÎQ¿¡òÏÎµÏ»¤¬Æ¸ă¼¬ÄhkkP©_ JSIćª¦mxâlSgÇI«»¦Skõ»¸ïqc¾«Bp»{ÇÇÇÇÇÇĜ³¯¯¯¯QQQQËÏÎÎÎÎÎÎÆÆÆÆ¬ËÑJJJJª¦ĥP=nÐ;gS", 
+"height": 446
+}, 
+"LM Sans 8 Regular": {
+"default": 136, 
+"widths": "[VxããÎLjjÓL[LLLÓÓÓµµµ®Ä£µÀL½íÀÉ®É°º»µāµµ¦OOµyySAHAØ]hb}º}}vLVyµĀµĀ²Ó²fÓĀĀ¦Órµµµµµµê®££££LLLLĀÀÉÉÉÉÉĀÓ»»»»ĀĀÄyyyyyAAAAĀÓĀĀ}ĐLLÓ«?iȀȀ", 
+"height": 375
+}, 
+"Norasi": {
+"default": 128, 
+"widths": "^UhÕÇ=UU@U@GGGqë¸««¸¸¸Uc¸ã¸¸¸«¸¸ñ¸¸UGUxUqqqUGGGÇUcG¸qz3zU3ÂÂfLLt@Oq¸¸¸¸¸¸ã«UUUU¸¸¸¸¸¸¸¸¸¸¸¸¸qqqqqq«qqqqqGGGGÿUUYÿ:`:`", 
+"height": 437
+}, 
+"Courier New CE": {
+"default": 142, 
+"widths": "GG[ä«1UUdGUGGGGĄ««¹¹«Ç¹G«Õ¹Ç«Ç¹«¹«ò««GGGxUG999ÕUG¹VCVUC½½fUUU^««««««Ā¹««««GGGG¹¹ÇÇÇÇÇÇ¹¹¹¹««äGGGGĀ99ZĀ0[", 
+"height": 286
+}, 
+"DejaVu Sans Light": {
+"default": 155, 
+"widths": "QftÓ¡ðÅFccÓQ\\QV¡¡¡¡¡¡¡¡¡¡VVÓÓÓü­¥°Â Ä¾KK¦Ú½ÇÇ¯ ¹­ù­­cVcÓ  Y GGGö   hc Î¡V¡Óf¡¡¡¡VüÓüÓff¡¡Qw­­­­­­ö°    KKKKÄ½ÇÇÇÇÇÓÇ¹¹¹¹«÷GGGG Ó     üQQwü@jT", 
+"height": 298
+}, 
+"Khmer OS": {
+"default": 138, 
+"widths": "KG[ä«1UUdGUGGGGĄ««¹¹«Ç¹G«Õ¹Ç«Ç¹«¹«ò««GGGxUG566Î[G¹}8}8K8¼w}¼jjKw¯QQQQÆ££££££Î8888á8>Û:`:`", 
+"height": 513
+}, 
+"QXyingbixing": {
+"default": 256, 
+"height": 280
+}, 
+"TeX Gyre Pagella": {
+"default": 128, 
+"widths": "@G_×Ç5UUd@U@@@r¿Ç¶ÆÃÕVUºòÕÉÉ«Ç¹Ā«««UUUr{UJ<JâemSÖUUGĀĀ¿¿fĀĀ¡@UrÇÇÇÇÇÇò¶VVVVĀÕÉÉÉÉÉĀÕÇÇÇÇĀĀÂr{{{{IIIIĀĀĀĀGGĀ?iȀȀ", 
+"height": 353
+}, 
+"LM Mono Light 10 Regular": {
+"default": 134, 
+"height": 336
+}, 
+"TeX Gyre Chorus": {
+"default": 113, 
+"widths": "8H8qq®È)C8l8H8WqqqqqqqqqqC=a³³®af©×³v½¤á={RMllWqWRfq=8q=vfqfMRRvq®lfq==HqqĀqĀl½W½fĀĀv8Caa½aaaaĀ³Ā©½½½½ĀĀlllllllWWWWW====ĀvfffffqvvvvĀĀfĀ==Ā?iȀȀ", 
+"height": 337
+}, 
+"@MS Mincho": {
+"default": 128, 
+"height": 256
+}, 
+"Marlett": {
+"default": 128, 
+"widths": "ĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀ\u0000\u0000\u0000¢¢_¢ÛÌ¢GÌll ¢¢ll±±±±±±è±JJJJÀ½ÇÇÇÇÇÌÇ±±±± ÚJJJJÌ¡ĀQQvĀ?iS", 
+"height": 256
+}, 
+"Tahoma Bold": {
+"default": 163, 
+"widths": "KX}Ò£ĳÈGtt£ÒPnP££££££££££]]ÒÒÒì¯°«Â¿Ä|²åÅÅ¨Åº¢½­ć¯¬ttÒ£¢¡b¡¤M]Mô¤¡¡oj¤ä £ ÒX££Ā£Ā£î´ÒîÒĀĀ§£]´¯¯¯¯¯¯ý«||||ĀÅÅÅÅÅÅĀÅ½½½½ĀĀ¥ðMMMMĀ¤Ò¤¤¤¤ĀĀéGG£Ā?iȀȀ", 
+"height": 309
+}, 
+"David": {
+"default": 128, 
+"widths": "9NqjqÆ¤9@@\\@U@Uqqqqqqqqqqcc\\ì¹««¹¹¹Ud¹ä¹¹¹«¹¹ò¹¹@G@cUrrrUGGGÇUdG¹r{ {Nq3qÃÃdGGtUO\\±±±±±±è±JJJJÀ½ÇÇÇÇÇÇ±±±± ÚJJJJ¡ĀUUZĀ?iS", 
+"height": 252
+}, 
+"Bitstream Charter": {
+"default": 142, 
+"widths": "GWU¿Ú´,kkÕGRG{RRÕÕÕ|ñ¤¢±²½SrÞ·»»¥²îl{lĀr~RHDHØbfV~Åx||ÕWæqÕæTÕ^^|Ggq|¤¤¤¤¤¤Þ¢SSSS±·»»»»»Õ»²²²²ºr~~~~HHHHÕĀ33Ā:`:`", 
+"height": 308
+}, 
+"LM Sans Demi Cond 10 Oblique": {
+"default": 122, 
+"widths": "QN}Ëzá¸D^^z½DQDzzzzzzzzzzzDDÇ½Çs¢££°¢®HsªÖ®²²¥¨£æ££KK£zt|l|pJ||8?u8¿|z||R]Y|n¤nniGNl£Ā£Ā~²z½²[½ĀĀ|´½fzs££££££ÒHHHHĀ®²²²²²Ā½¨¨¨¨ĀĀxtttttt°lpppp8888Ā|zzzzz½z||||ĀĀnóDD½¥?iȀȀ", 
+"height": 361
+}, 
+"Mallige": {
+"default": 157, 
+"widths": "KHB×£ñÈBoO\\CPQ×k{Ā¯°³Å¢ÆÁLL¨ÝÀÊÊ²£»¯ý¯¯dVd×££Z£¢GGGù¢££id¢Ñ£V£×g££££VĀ×Ā×gg££Qy¯¯¯¯¯¯ù³¢¢¢¢LLLLÆÀÊÊÊÊÊ×Ê»»»»¡ûGGGG¢×¢¢¢¢£ĀQQĀ:`:`", 
+"height": 425
+}, 
+"Arial Baltic": {
+"default": 142, 
+"widths": "GG[ä«1UUdGUGGGGĄ««¹¹«Ç¹G«Õ¹Ç«Ç¹«¹«ò««GGGxUG999ÕUG¹VCVUC½½fUUU^««««««Ā¹««««GGGG¹¹ÇÇÇÇÇÇ¹¹¹¹««äGGGGĀ99ZĀ0[", 
+"height": 286
+}, 
+"DejaVu Sans Condensed": {
+"default": 146, 
+"widths": "I\\jÁÛ´?ZZsÁISINNNÁÁÁzæ¡±³­DDÇ¬µµ ©äZNZÁssQ@@@à_xZ¼yNÁ\\NsæÁæsÁ\\\\Imzà¡DDDD³¬µµµµµÁµ©©©©â@@@@ÁæIIæ4V4V", 
+"height": 298
+}, 
+"Courier New Baltic": {
+"default": 142, 
+"widths": "GG[ä«1UUdGUGGGGĄ««¹¹«Ç¹G«Õ¹Ç«Ç¹«¹«ò««GGGxUG999ÕUG¹VCVUC½½fUUU^««««««Ā¹««««GGGG¹¹ÇÇÇÇÇÇ¹¹¹¹««äGGGGĀ99ZĀ0[", 
+"height": 286
+}, 
+"Microsoft PhagsPa": {
+"default": 138, 
+"widths": "FIdÒÍ;MMk¯8f8d88¯¯¯sõ¥´}°¶D[yæÀÁÁ°ïMaM¯jEvP>>>ÝYmW{¹v|tM=M¯I=sä¯äa¯^^u8ns¥¥¥¥¥¥ÜDDDD´ÀÁÁÁÁÁ¯Á°°°°Õv>>>>¯||¯;;h¼;a;a", 
+"height": 327
+}, 
+"URW Gothic L": {
+"default": 142, 
+"widths": "GLOÆÂ3^^mGUGpGGÞ½Ð¾|ß¯:{vë½Þßm¨´ö{ZZa¯¯¦¯¦P¬343ð¨¯¯McWÕ{mZ¬ZL¬¿m¿fUUG^m½½½½½½þÐ::::Ê½ÞÞÞÞÞÞ¨¨¨¨¯¯¯¯¯¯Ĩ¦¦¦¦¦3333¨¨¨¨¨¨§¯ĀZZĀ:`:`", 
+"height": 314
+}, 
+"KacstLetter": {
+"default": 163, 
+"widths": "?gv×£óÈFdd×Q\\QV££££££££££VV×××Ā¯°³Å¢ÆÁLL¨ÝÀÊÊ²£»¯ý¯¯dVd×££Z£¢GGGù¢££id¢Ñ£V£×g££££VĀ×Ā×gg££Qy¯¯¯¯¯¯ù³¢¢¢¢LLLLÆÀÊÊÊÊÊ×Ê»»»»¡ûGGGG¢×¢¢¢¢£ĀQQĀ:`:`", 
+"height": 275
+}, 
+"@Adobe Myungjo Std M": {
+"default": 256, 
+"widths": "UjjÕ êÕ@ÕJÕJ`          UUÕÕêĀÊµµÀµªÀÊ`ÊªêÊÀªÀµªÊÊÀĀµµª`U`JUJàu`Õ  ÀĀ¢¢Ā¢_ĀĀĀÌ¢ĀĀĀĀ ĀĀĀĀĀ±±±±±±Ā±JJJJĀ½ÇÇÇÇÇĀĀ±±±± ĀĀĀJJJJĀĀĀĀĀĀĀĀĀĀĀĀĀ", 
+"height": 263
+}, 
+"Heiti SC Light": {
+"default": 256, 
+"widths": "@LO¸ÆÂ3^^mGUGpGGÞ½Ð¾|ß¯:{vë½Þßm¨´ö{ZZ¬a¯¯¦¯¦P¬343ð¨¯¯McWÕ{mZzZĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀȀȀȀȀȀȀȀȀȀ", 
+"height": 256
+}, 
+"GB18030 Bitmap": {
+"default": 256, 
+"height": 320
+}, 
+"Herculanum": {
+"default": 161, 
+"widths": "GQMÕÕ\u0014UUhGUG_Uw{wGG{«¦{¡´UUÌīí¡¯dèÚò¡Ú¯U_UGG¾¦{¡´UU÷¾¡¯Ìd´¡ò¡¡U3UíQĀĀrÍ{ÍfĀĀ´Ga{{««««««¹{{{{UUUUĀí¡¡¡¡¡Ā¡èèèèĀĀÇ¾¾¾¾¾¾¹{{{{UUUUĀ¾¡¡¡¡¡¡´´´´ĀĀĀGGfĀ?iȀȀ", 
+"height": 256
+}, 
+"Apple Symbols": {
+"default": 85, 
+"widths": "U7[yy¥7QQ\\y7E7byyyyyyyyyy77yyygtvie{},Zyjjnnty¬ooiQbQyykeocmiGoj+2b+£jnmmF]Qjg`heR-Ry7yyĀyĀy ay >yĀĀky<DagUUUUUUUUUUUUUUUUĀUUUUUUĀUUUUUĀĀUUUUUUUUUUUUUUUUUĀUUUUUUyUUUUUĀĀU×f>aí?iȀȀ", 
+"height": 235
+}, 
+"Adobe Garamond Pro Bold": {
+"default": 133, 
+"widths": "=AyÞÓAWWhCTCWCCUÅ £°Ë¼Î_b·è¿ÊÊª¥½¤öªWRWaqjlP{IHGÎ_\\Su¯uxjW?WA?ÈoY`ff}CgoU      ×°____Î¿ÊÊÊÊÊÊ½½½½qqqqqq¡jllllIIIIxxĀAAeĀ@jT", 
+"height": 307
+}, 
+"Bell Gothic Std Light": {
+"default": 128, 
+"widths": "FdUĀ¹9ddGUGGUUÍ«««««¹d«ä¹««¹«ò««dGdGrUGGGÇddUr¹rrU9Ud«9ÍÍfffGZ««««««Ā««««dddd«¹¹¹¹¹««ÇrGGGGrrĀGGĀ?iS", 
+"height": 311
+}, 
+"Kozuka Gothic Pro R": {
+"default": 141, 
+"widths": "<?]Û§5OOt­8W8b88­­­pÎ¨¶±³AeÞµ¼¼²ëO`O­W|O?B?çYm[Í~uOAO­?AĀÄt­vĀĀUSĀ8ctp¨¨¨¨¨¨×AAAA¸µ¼¼¼¼¼Ā¼²²²²Ö|????Āġ88NĀĀĀS", 
+"height": 345
+}, 
+"@DotumChe": {
+"default": 128, 
+"height": 256
+}, 
+"LM Roman Slanted 17 Regular": {
+"default": 118, 
+"widths": "M@RÆvÆ¸@[[v¸@M@vvvvvvvvvvv@@Ã¸Ão¸±§«µ¡º±Ty¸Ú±¸¡¸®«±±ô±±@@±vvhhGv@G|@Æv|[\\[|«||hG@h±Ā±Āv¯¸¯X¸ĀĀ¸co±±±±±±Ö«¡¡¡¡TTTTĀ±¸¸¸¸¸Ā¸±±±±ĀĀvvvvvvv«hhhhh@@@@Āvvvvv¸vĀĀ|ë@@¸?iȀȀ", 
+"height": 361
+}, 
+"Untitled1": {
+"default": 163, 
+"widths": "Qgv×£óÈFdd×Q\\QV££££££££££VV×××Ā¯°³Å¢ÆÁLL¨ÝÀÊÊ²£»¯ý¯¯dVd×££Z£¢GGGù¢££id¢Ñ£V£×g££££VĀ×Ā×gg££Qy¯¯¯¯¯¯ù³¢¢¢¢LLLLÆÀÊÊÊÊÊ×Ê»»»»¡ûGGGG¢×¢¢¢¢£ĀQQĀ:`:`", 
+"height": 311
+}, 
+"Kozuka Gothic Pro B": {
+"default": 146, 
+"widths": "7Hjç³8UU|®FXE\\EF®®®uÐª µ°µLjà¶¸¸³£ìUXU®Xx[HKHçcqcÎzUJU®HJĀÆ}®|ĀĀ\\ZĀFh}uªªªªªªßLLLL·¶¸¸¸¸¸Ā¸³³³³ ×xHHHHĀĤBBZĀĀĀT", 
+"height": 362
+}, 
+"Kozuka Gothic Pro M": {
+"default": 144, 
+"widths": "9Ddâ­7RRx­?X?_??­­­rÏ©µ°´Fgßµºº²ìR]R­WzUDGDç^o^ÍxRFR­DFĀÅy­yĀĀYWĀ?fyr©©©©©©ÛFFFF·µºººººĀº²²²²ÖzDDDDĀģ>>TĀĀĀS", 
+"height": 354
+}, 
+"LM Roman Dunhill 10 Oblique": {
+"default": 128, 
+"widths": "UGÕÕÇGddÇGUGGGÇÇÇyÇÀµ¹Ä®§ÉÀ\\Ç ëÀÇ®Ç¼¹ÀÀćÀÀGGÀrrNGNGÕded¹rGGr¤ĀÀĀ|Ĝ«ĜUÇĀĀGryÀÀÀÀÀÀç¹®®®®\\\\\\\\ĀÀÇÇÇÇÇĀÇÀÀÀÀĀĀ¹rrrrrGGGGĀÇĀĀĀGGī?iȀȀ", 
+"height": 529
+}, 
+"Kozuka Gothic Pro H": {
+"default": 149, 
+"widths": "6Lné·8VV~¯KVKZKK¯¯¯vÑ©¥´¯¶Ql¤à·¶¶¢³¦ìVTV¯Xw`LOLègsgÏ}VMV¯LMĀÇ¯}ĀĀ_]ĀKiv©©©©©©áQQQQ¶·¶¶¶¶¶Ā¶³³³³¥ÙwLLLLĀĥEE_ĀĀĀT", 
+"height": 369
+}, 
+"Garamond": {
+"default": 131, 
+"widths": "@8h«sÓ»-KKm«8P8xxxxxxxxxx88«««]ë­£Å¨ÅÃ[U½ÕÅÈÅ {µ­ã³¨¨EEUhkkSs;;x;Å}U]K}x«ukm{{«8k­¨mÃ]«Ãe«PPsUU]]­­­­­­Û£¨¨¨¨[[[[ÅÅÈÈÈÈÈ«Èµµµµ¨hhhhhhkkkkk;;;;}}}}kkĀ88[Ā%`S", 
+"height": 288
+}, 
+"Sathu": {
+"default": 171, 
+"widths": "1N««èºNrr«NaN««««««««««NN«««ßº£§³­°>~ªÊµ¼¼¤«ºòrr««d<G<åcrÈs?s«N««Ā«Ā«á«áW«ĀĀ««_ººººººþ§>>>>Āµ¼¼¼¼¼Ā¼««««ĀĀî<<<<Ā«ĀĀĈNN«Ĉ?iȀȀ", 
+"height": 312
+}, 
+"Myriad Pro": {
+"default": 131, 
+"widths": "6;VË0IIj5O5X55h½ª~}¥§=_yÎ¨°°~¦ÙIWIM{sK<>x<ÖTeU{¼wynI=I;=­kkQPN5[khÊ~~~~====¬¨°°°°°°¦¦¦¦{{{{{{Ær<<<<yyĀ55HĀ?iS", 
+"height": 308
+}, 
+"LM Roman 7 Italic": {
+"default": 154, 
+"widths": "m^|õõæ^||æ^m^^^åæåæÞÓ×âËÄçÞtå¼ċÞæËæÚ©×ÞÞĩÞÞ¹^^Þ^^^Oõ©|f¢Ç|W^áĀÞĀ¯©æ¯tæĀĀµæ©ÞÞÞÞÞÞć×ËËËËttttĀÞæææææĀæÞÞÞÞĀĀ¢×^^^^Ā©æ¢¢¢¢ĀĀĵ^^æÊ?iȀȀ", 
+"height": 362
+}, 
+"URW Chancery L": {
+"default": 113, 
+"widths": "8H8qq®È)C8l8H8WqqqqqqqqqqC=a³³®af©×³v½¤á={R8llWqWRfq=8q=vfqfMRRvq®lfq==Hqqqql½W½fDDv8Caf½aaaa³³©½½½½lllllllWWWWW====fvfffffqvvvvfqfĀ==Ā:`:`", 
+"height": 330
+}, 
+"HanaMinB Regular": {
+"default": 256, 
+"height": 263
+}, 
+"LM Roman 10 Regular": {
+"default": 128, 
+"widths": "UG`ÕÕÇGddÇGUGGGÇÇÇyÇÀµ¹Ä®§ÉÀ\\Ç ëÀÇ®Ç¼¹ÀÀćÀÀGGÀrrNGNGÕded¹rGGrÀĀÀĀ|¯Ç¯`ÇĀĀÇkyÀÀÀÀÀÀç¹®®®®\\\\\\\\ĀÀÇÇÇÇÇĀÇÀÀÀÀĀĀ¹rrrrrGGGGĀÇĀĀĀGGÇ¬?iȀȀ", 
+"height": 363
+}, 
+"TeX Gyre Termes": {
+"default": 128, 
+"widths": "@UhÕÇ.UU@U@GGGrì¹««¹¹¹Ud¹ä¹¹¹«¹¹ò¹¹UGUxUrrrUGGGÇUdG¹r{3{UĀĀÃÃfĀĀt@Or¹¹¹¹¹¹ä«UUUUĀ¹¹¹¹¹¹Ā¹¹¹¹¹ĀĀrrrrrr«rrrrrGGGGĀĀĀĀUUZĀ?iȀȀ", 
+"height": 342
+}, 
+"American Typewriter": {
+"default": 163, 
+"widths": "@kT£ÍÒ0tt£FOFf££££££££££FF±¿±£º¬¶ÈbÈ£òÄ¨£¨º£¶ºîÈºpp~Y£OJOî£~~fÍ£«k£ºĀ¶Ā£ÊYĀĀ#mY¿¿¿¿¿¿ą£¬¬¬¬bbbbĀÄ¨¨¨¨¨Ā¨¶¶¶¶ĀĀ£ÖOOOOĀ£ĀĀÄAB«Ñ?iȀȀ", 
+"height": 295
+}, 
+"LM Sans 10 Oblique": {
+"default": 128, 
+"widths": "URoÕÕÂGddÇGUGGGÇÇÇy«««¤¹«µGy²àµ¼¤¼¥®°«ò««JJ«{rrN=D}=ËXb\\v¯vvoGRr«Ā«Ā²Ç²`ÇĀĀÇky««««««Ü¤GGGGĀµ¼¼¼¼¼ĀÇ°°°°ĀĀ{{{{{{{¹rrrrr====ĀÇĀĀvĀGGÇ ?iȀȀ", 
+"height": 374
+}, 
+"OCR A Std": {
+"default": 184, 
+"height": 272
+}, 
+"@Dotum": {
+"default": 149, 
+"widths": "VVk ë¶K````kWW  Ā«®¹º¡À¹B|¨Ï³À¥À«¤ºåõ UX;;;ëRPzº{{|Ëk @É´ÉhÕSSU`««««««ðÀ««««KKKLÁÀËËËËËÕËÀÀÀÀ « Ð@@@@       Õ  ĀĀæĀĀS", 
+"height": 256
+}, 
+"Kokila": {
+"default": 99, 
+"widths": "2BQcc¥$BBcp2B27cccccccccc77pppX·ynBMy°nny»yB7B]cBXcXcXBcc77c7ccccBM7ccccX_(_kBcccc(ccpOm;;rZ2=cX°yyyyBBBBpncXXXXXXXXXXX7777cccccccmccccccccÆBBEÆ?iS", 
+"height": 295
+}, 
+"MT Extra": {
+"default": 128, 
+"widths": "OUUUUiiĀąÿĀĀąÿ¤¤Ó©ĀĀUĀĀÝ©?ý¯­ofiiiiiiÛÛQ¢¢¢¢_¢ÛÌ¢GÌll ¢¢ll±±±±±±è±JJJJÀ½ÇÇÇÇÇÌÇ±±±± ÚJJJJÌ¡ĀQQvĀ?iS", 
+"height": 259
+}, 
+"Century Gothic": {
+"default": 142, 
+"widths": "GLO¸ÆÂ3__mGUGpGGÞ½Ð¿|ß¯:{vë½ßßm¨´ö{ZZ¬a¯¯¦¯¦P¬343ð¨¯¯McWÕ{mZ¬ZL¬¿m¿fUXU_m½½½½½½þÐ::::Ê½ßßßßßÞ¨¨¨¨¯¯¯¯¯¯Ĩ¦¦¦¦¦3333¨¨¨¨¨¨§¯ĀZZĀ3OS", 
+"height": 305
+}, 
+"Heiti SC Medium": {
+"default": 256, 
+"widths": "@LO¸ÆÂ3^^mGUGpGGÞ½Ð¾|ß¯:{vë½Þßm¨´ö{ZZ¬a¯¯¦¯¦P¬343ð¨¯¯McWÕ{mZ¬ZĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀȀȀȀȀȀȀȀȀȀ", 
+"height": 256
+}, 
+"TeX Gyre Heros Bold Italic": {
+"default": 142, 
+"widths": "GUyä¹=UUdGUGGUUú¹¹¹¹«Ç¹G¹Õ¹Ç«Ç¹«¹«ò««UGUUUGGGädUÇdHdUĀĀ½½fĀĀG]¹¹¹¹¹¹Ā¹««««GGGGĀ¹ÇÇÇÇÇĀÇ¹¹¹¹ĀĀäGGGGĀĀĀĀGGZĀ?iȀȀ", 
+"height": 366
+}, 
+"FZYingBiKaiShu-S15S": {
+"default": 256, 
+"widths": "A28­£\u001aADW/82(.ÐÇPâ´¯«¯å­¬¹±¯¨²·Ø±®A1AhraWyD/Kz>äb}So¬izd[We¡ĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀ?iȀȀ", 
+"height": 282
+}, 
+"FZYingBiKaiShu-S15T": {
+"default": 256, 
+"widths": "A28­£\u001aADW/82(.ÐÇPâ´¯«¯å­¬¹±¯¨²·Ø±®A1AhraWyD/Kz>äb}So¬izd[We¡ĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀ?iȀȀ", 
+"height": 282
+}, 
+"Simplified Arabic": {
+"default": 128, 
+"widths": "QR9Í,RR@RRR@ê¦¦³¦@sÀ¦³³¦¦Ú@@@lMs@33s3ÀMs@s¦sssM<MR<ªxª\\MM|MTxô¦@@@@Q¦³³³³³³¦¦¦¦Ós@@@@ssæVVQæ8k", 
+"height": 424
+}, 
+"@MS PGothic": {
+"default": 128, 
+"widths": "N84NN4444t«¢£ª¦®¤?¾¤µµ ¤¢¾VVjNjzNv68v6¼YvZz¦vzu<<<j8«:Ā««¤«ĀĀ==Ā4[«t¢¢¢¢¢¢«ªVJoV¦¤«««««Ā«¤¤¤¤zzzzzz«KKo\\ĀzzĀĀĀĀĀĀĀ", 
+"height": 256
+}, 
+"MS PMincho": {
+"default": 128, 
+"widths": "NNvNNNNNNNºª³±¶¹Jc«ÍªÄÄ ±ªß¨ UUNNNtwyAy>>~>´^jZzxzt>8>Dm~\u001eĀ«««ĀĀGG|9bt««««««««KKKW¤««««««Ā««««««|rrrrrr«mpppp>>LUnwwwwwĀwz«=ĀĀĀS", 
+"height": 256
+}, 
+"HAN NOM B": {
+"default": 128, 
+"height": 255
+}, 
+"Palatino Linotype": {
+"default": 128, 
+"widths": "@G_{×Ç5UUd@U@R@@r¯Ç¶ÆÃÕVUºòÕÉÉ«Ç¹Ā«««UUUr{UK<KâemTÖUUG¿¿fRR¦¡@UrÇÇÇÇÇÇò¶VVVVÆÕÉÉÉÉÉÕÇÇÇÇ«Âr{{{{KKKKĀGGĀ8kS", 
+"height": 346
+}, 
+"HAN NOM A": {
+"default": 128, 
+"height": 255
+}, 
+"MingLiU_HKSCS-ExtB": {
+"default": 128, 
+"widths": "ĀQQvĀ?iS", 
+"height": 256
+}, 
+"TeX Gyre Adventor": {
+"default": 142, 
+"widths": "GLOÆÂ3^^mGUGpGGÞ½Ð¾|ß¯:{vë½Þßm¨´ö{ZZ`¯¯¦¯¦P¬343ð¨¯¯McWÕ{mZ¬ZLĀĀ¿m¿fĀĀG^m½½½½½½þÐ::::Ā½ÞÞÞÞÞĀÞ¨¨¨¨ĀĀ¯¯¯¯¯¯Ĩ¦¦¦¦¦3333Ā¨¨¨¨¨§ĀĀĀZZĀ?iȀȀ", 
+"height": 372
+}, 
+"@Adobe Fangsong Std R": {
+"default": 256, 
+"widths": "HMY·º7SSt8O8w88|¿¥­¥»Pn¡æ¶··°«ý®¢QwQ7zUEBEÙgqVÁsScSQ¢¢Ā_Ā¾Ì¢ĀĀll ¢Āll±±±±±±è±JJJJÀ½ÇÇÇÇÇĀÇ±±±± ĀĀÚĀĀĀĀĀJJĀĀĀĀĀĀ¡ĀĀĀĀĀĀĀĀ", 
+"height": 302
+}, 
+"MS Mincho": {
+"default": 128, 
+"height": 256
+}, 
+"Rachana": {
+"default": 128, 
+"widths": "GUhÕÇ.UU@U@GGGrì¹««¹¹¹Ud¹ä¹¹¹«¹¹ò¹¹UGUxUrrrUGGGÇUdG¹r{3{g££££VĀ×Ā×gg££Qy¯¯¯¯¯¯ù³¢¢¢¢LLLLÆÀÊÊÊÊÊ×Ê»»»»¡ûGGGG¢×¢¢¢¢£ĀQQĀ:`:`", 
+"height": 309
+}, 
+"BrowalliaUPC": {
+"default": 93, 
+"widths": "9.;]]p 88Ab.8..]]]]]]]]]]..bbb]ªppyypfy.Tp]ypypfypppf...N]8]]T]].]]%%T%]]]]8T.]TyTTT8+8b8]]]]+]{]b{C\\88`Z.=]fpppppp§ypppp....yybyyyyppf]]]]]]T]]]]....]]]]]]]\\f]]]]T]T§%%;§?iS", 
+"height": 320
+}, 
+"Chalkboard": {
+"default": 256, 
+"widths": "bAtÌÐµ2QQAzL_I]m}qsÑ¥£ªqÔ¨ºÃ ¨¥ý¨¨OL|£L~o@cM½}pnuw¸X@Z¤]} ĀĀzæßfĀĀ©U¥¥¥¥¥¥åqqtqĀªºººººĀº¨¨¨¨ĀĀ Ò~DEPSĀ}ĀĀ£FCsÁ?iȀȀ", 
+"height": 323
+}, 
+"Lucida Console": {
+"default": 154, 
+"height": 256
+}, 
+"Chaparral Pro": {
+"default": 134, 
+"widths": "8FRÃ¶.TT[?Q?d??m±ª»S~¢Þ·¸¸~« áSdSUtgrVwD>BÐ`g\\y®yvqVVFtÃizPVV?cimÚSSSSµ·¸¸¸¸¸¸««««tttttt±grrrrDDDDvvĀ44OË?iS", 
+"height": 304
+}, 
+"Leelawadee": {
+"default": 138, 
+"widths": "FIdÒÍ;MMk¯8f8d88¯¯¯sõ¥´}°¶D[yÒÀÁÁ°ïMaM¯jEvPA>AÝYmW{¹v|tM=M¯I=sä¯äa¯^^u8ns¥¥¥¥¥¥ÜDDDD´ÀÁÁÁÁÁ¯Á°°°°ÕvAAAA¯||Ā;;h¼?iS", 
+"height": 306
+}, 
+"Helvetica Light Oblique": {
+"default": 142, 
+"widths": "GUGä«9UUd©GUGGGG©©©Í««¹¹Ç¹G«Õ¹ÇÇ«¹äUGU©UG999ÕUG¹UgU©UĀĀÍ©Íf©ĀĀ¦GV««««««Ā¹GGGGĀ¹ÇÇÇÇÇĀÇ¹¹¹¹ĀĀä9999Ā©ĀĀĀ99Ā?iȀȀ", 
+"height": 256
+}, 
+"Minion Pro SmBd": {
+"default": 126, 
+"widths": "9H\\~~Ã·0YYg?Y?T~~~~~~~~~~??dÃ³¬À¹Ç]Z±ä¾ÂÁ¥~¢»µú®¦YUYfuloR|IGEÖdaSw¯zwpZDZH~~~~D{³tRVXX>[td³³³³³³á¬]]]]Á¾ÂÂÂÂÂÃ»»»»¦uuuuuu¬looooIIIIwwì<<eú@jT", 
+"height": 351
+}, 
+"DokChampa": {
+"default": 142, 
+"widths": "GG[ä«1UUdGUGGGGĄ««¹¹«Ç¹G«Õ¹Ç«Ç¹«¹«ò««GGGxUG999ÕUG¹VCVUC½½fUUG^««««««Ā¹««««GGGG¹¹ÇÇÇÇÇÇ¹¹¹¹««äGGGGĀ99ZĀ?iS", 
+"height": 496
+}, 
+"Kozuka Mincho Pr6N EL": {
+"default": 155, 
+"widths": "HMXµ¹7SSu8P8y88|¿¥¬¤ºNnäµ¶¶°«ý­¡QyQcy~TCAD×epTÀ}rSeSMeĀÀrÀĀĀggĀ8tr|¥¥¥¥¥¥âNNNN¬µ¶¶¶¶¶Ā¶°°°°¡Ìy~~~~CCCCĀĀ77tĀĀĀS", 
+"height": 420
+}, 
+"@Meiryo": {
+"default": 159, 
+"widths": "WasÎĈºBqqÎYĀYsnnÎÎÎą®¬¬Àº¾gr©Õ¾ÃÃ¯££»¯Ā«¢§qqÎVATAöjaÕqÎaqĀ©ÎĀÎww Y©®®®®®®þ¬ggggÁ¾ÃÃÃÃÃÎÃ»»»»¢ðAAAAÎĀBĀĀĀĀĀĀĀ", 
+"height": 384
+}, 
+"KacstPoster": {
+"default": 163, 
+"widths": "?gv×£óÈFdd×Q\\QV££££££££££VV×××Ā¯°³Å¢ÆÁLL¨ÝÀÊÊ²£»¯ý¯¯dVd×££Z£¢GGGù¢££id¢Ñ£V£×g££££VĀ×Ā×gg££Qy¯¯¯¯¯¯ù³¢¢¢¢LLLLÆÀÊÊÊÊÊ×Ê»»»»¡ûGGGG¢×¢¢¢¢£ĀQQĀ:`:`", 
+"height": 275
+}, 
+"Kai": {
+"default": 256, 
+"widths": "UIE¬¶EFFhFFFFnÇ³©½£ÇÆZgµëÃº»±Á±ó¸®¨GGEurvPxCA|CÕTdKs«xu«ĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀȀȀȀȀȀȀȀȀȀ", 
+"height": 256
+}, 
+"Kozuka Gothic Pr6N R": {
+"default": 141, 
+"widths": "<?]Û§5OOt­8W8b88­­­pÎ¨¶±³AeÞµ¼¼²ëO`O­W|O?B?çYm[Í~uOAO­?AĀÄt­vĀĀUSĀ8ctp¨¨¨¨¨¨×AAAA¸µ¼¼¼¼¼Ā¼²²²²Ö|????Āġ88NĀĀĀS", 
+"height": 447
+}, 
+"Vijaya": {
+"default": 103, 
+"widths": "4EWgg¬ ,EEg4E49ggggggggggEEg¾~~~~E\\s¬~~gs~¬~ssP9PWgEgg\\g\\9gg99\\9ggggPP9g\\\\\\PR9RpPgggg9ggRq>>wl4@gg~~~~~~·~~~~EEEEs~ggggggg\\\\\\\\\\9999gggggggqggggg\\g\\·EEH·?iS", 
+"height": 258
+}, 
+"RicAldi Italic": {
+"default": 128, 
+"widths": "@TUÅÑÒ,TTÕ@T@GTTÕÕÕpü´¶¶Í°¥ÄÔgÄ¥ïÉÁ°Á¿ªÎ´ĀÄ¶¨hGhĀ}pb}bJp}FI~E¼o}pTTFz¶vppÕTĀ³ĀÒpÕÒTÕĀĀ@Tpp´´´´´´ô¶°°°°ggggĀÉÁÁÁÁÁĀÁÎÎÎÎĀĀ}}}}}}bbbbbFFFFĀoooooÕoĀĀpĀ@@Ā?iȀȀ", 
+"height": 307
+}, 
+"LM Mono Caps 10 Oblique": {
+"default": 134, 
+"height": 333
+}, 
+"KacstDigital": {
+"default": 163, 
+"widths": "?gv×£óÈFdd×Q\\QV££££££££££VV×××Ā¯°³Å¢ÆÁLL¨ÝÀÊÊ²£»¯ý¯¯dVd×££Z£¢GGGù¢££id¢Ñ£V£×g££££VĀ×Ā×gg££Qy¯¯¯¯¯¯ù³¢¢¢¢LLLLÆÀÊÊÊÊÊ×Ê»»»»¡ûGGGG¢×¢¢¢¢£ĀQQĀ:`:`", 
+"height": 275
+}, 
+"Myriad Pro Cond": {
+"default": 99, 
+"widths": "(4Occ¥~,AA_2G2Hcccccccccc22Ooj_r[Xpw3DgXwrfri\\[ul§de\\ACAM]fMf]:fh/0[1hbff?JAfYWYPA3A4cccc3g­[_H?<fg2M[Oooooooe[[[[3333twrrrrrruuuueen]]]]]]M]]]]////bhbbbbbbffffYfYĀ--BĀ?iS", 
+"height": 303
+}, 
+"@PMingLiU-ExtB": {
+"default": 120, 
+"widths": "CPbxxÈ»+PPx<P<CxxxxxxxxxxCCkÞ®¡¡®®®P^®Ö®®®¡®®ã®®PCPqxPkxkxkPxxCCxC»xxxxP^Cxx®xxkt0t*~,gÂÂ>VK5Pc¶¶¶¶¶¶ó¢WW]h¾·­­­­­­¶¶¶¶³qqqqqq²ooooKK]]yyyyyu~~ĀQQvĀ?iS", 
+"height": 256
+}, 
+"Levenim MT": {
+"default": 147, 
+"widths": "U?{¶HMMe5u5t::]Þ½Ð¿|ß¯:{vë½ßßm¨´ö{nunYta¯¯¦¯¦P¬343ð¨¯¯McWÕ{mjTj?¸¬¿m¿UiiG_m]±±±±±±è±JJJJÀ½ÇÇÇÇÇÇ±±±± ÚJJJJ¡ĀZZĀ?iS", 
+"height": 338
+}, 
+"Angsana New": {
+"default": 85, 
+"widths": "*8EUU\u001e88U_*8*/UUUUUUUUUU//___Kzqqzg^zz8Bzgzz^zq^gzz zzg8/8OU8KUKUK8UU//U/UUUU8B/UUzUUKQ\"Q[8UUUU\"UU_D]33aM*4UKzzzzzzqgggg8888zzzzzzz_zzzzzz^UKKKKKKqKKKKK////UUUUUUU]UUUUUUUU©88;©?iS", 
+"height": 346
+}, 
+"Arial Narrow Bold": {
+"default": 117, 
+"widths": ":Fduu»2FFR{:F::uuuuuuuuuuFF{{{Í£:u¯££ÆF:F{uFuuuF::u:»RuFu£uuiR;R{FuuĀuĀuu{fĀĀu:MuÒ::::Ā£££££Ā£ĀĀuuuuuu»uuuuu::::ĀĀĀuÒ::JÒ?iȀȀ", 
+"height": 294
+}, 
+"DotumChe": {
+"default": 128, 
+"height": 256
+}, 
+"Roman": {
+"default": 122, 
+"widths": "b=bz=UUb==zzzzzzzzzz==n¥zzC[nztzzzUUUz=zttOtCCCÉzzhh[nztnU1UQ¢¢¢¢_¢ÛÌ¢GÌll ¢¢ll±±±±±±è±JJJJÀ½ÇÇÇÇÇÌÇ±±±± ÚJJJJÌ¡ĀQQvĀ?iS", 
+"height": 293
+}, 
+"TeX Gyre Termes Bold Italic": {
+"default": 128, 
+"widths": "@dÕÇGUU@U@GUUÕ«««¹««¹Çd«ä¹¹¹«¹«ä«UGUUrrUGGGÇddGr«rdY8YdĀĀ¿¿fĀĀ@M««««««ò«««««ddddĀ¹¹¹¹¹¹Ā¹¹¹¹¹ĀĀ¹rrrrrGGGGĀĀĀrĀUUZĀ?iȀȀ", 
+"height": 360
+}, 
+"Phetsarath OT": {
+"default": 142, 
+"widths": "KG[ä«1UUdGUGGXGGĄ««¹¹«Ç¹G«Õ¹Ç«Ç¹«¹«ò««GGGxUG566Î[G¹}8}UG^fÕllNf««««««Û¹««««GGGG¹¹ÇÇÇÇÇÇ¹¹¹¹«Á9999fÕ99ZĀ:`:`", 
+"height": 400
+}, 
+"Gabriola": {
+"default": 99, 
+"widths": "-;Cka¹&??Fc*?*Ff;TUeWgbaf,,ccc[­q|ld88yg¥jyZiu¶ziqDED])2\\fNlO;`j1.c2n[jdLJ>jS~cUVEHF^:SqsjHaªScbFcKKax-IS[¢|llll8888ciim\\\\\\\\\\\\NOOOO1111bn[[[[[c[jjjjUfUĀ&&9t?iS", 
+"height": 471
+}, 
+"Linux Biolinum G": {
+"default": 128, 
+"widths": "@:Vxw®¶1MMo8U8Swwrwwwwwww88}}hå¡­¶¸ºKR¡ã¸¾¾±¢ó\\K\\|d{ntPCFAÏ[eWu¸tjG6Gs:4|¢¢DPP|@Yh¡¡¡¡¡¡Í­KKKK¶¸¾¾¾¾¾¾±±±±{{{{{{°nttttCCCC¾EEZÀ@b>^", 
+"height": 292
+}, 
+"FreesiaUPC": {
+"default": 91, 
+"widths": "99@qdj1QQTg4g,Zqqqqqqqqqq:4RgPf^hho^Poo,ChToo^ohhTk^[^[2W2eT@[[P[[2T[(%T([[[[6W6[JoJGG2,2e9YYYY*YvY^v@X55\\V-;Yb^^^^^^ h^^^^,,,,ooooooo^okkkk^kb[[[[[[P[[[[((((Y[[[[[[X[[[[[GYG/0ec?iS", 
+"height": 307
+}, 
+"Lohit Hindi": {
+"default": 157, 
+"widths": "OUsê²Ý¾HzuªÚZ­F¨F\\¥È¥¦ą¯°³Å¢ÆÁLL¨ÝÀÊÊ²£»¯ý¯¯bb¨ä\u0000££Z£¢GGGù¢££id¢ÑyCz´g»£££VĀ×Ā×gg££Qy¯¯¯¯¯¯ù³¢¢¢¢LLLLÆÀÊÊÊÊÊ¦Ê»»»»¡ûGGGG¢Ð¢¢¢¢£ōXaĄ:`:`", 
+"height": 385
+}, 
+"@Malgun Gothic": {
+"default": 141, 
+"widths": "ZJeÖÑ;NNm³8i8e88³³³vû©£¸´ºE\\{ëÄÆÆ´¢ôNÄN³mFyQ???á[oX}½w~vN=N³J=uê³êc³``x8qv©©©©©©á£EEEE¸ÄÆÆÆÆÆ³Æ´´´´Ûy????³~~\u001aPPM£CCS", 
+"height": 341
+}, 
+"AngsanaUPC": {
+"default": 85, 
+"widths": "*8EUU\u001e88U_*8*/UUUUUUUUUU//___Kzqqzg^zz8Bzgzz^zq^gzz zzg8/8OU8KUKUK8UU//U/UUUU8B/UUzUUKQ\"Q[8UUUU\"UU_D]33aM*4UKzzzzzzqgggg8888zzzzzzz_zzzzzz^UKKKKKKqKKKKK////UUUUUUU]UUUUUUUU©88;©?iS", 
+"height": 346
+}, 
+"Helvetica Neue Black Condensed": {
+"default": 133, 
+"widths": "CP{ÇCPPhC^CUCCÍ{C{wÂvÇ{PUPC{{QBBBÇZwQw½{wrU9UPĀĀÍrÍfĀĀªCZrÇCCCCĀĀĀĀ½{{{{{BBBBĀĀĀwĀCCĀ?iȀȀ", 
+"height": 307
+}, 
+"Euphemia UCAS Bold": {
+"default": 256, 
+"widths": "EoîĄÄHUT?`<v©¥©£¦I7ªªĠ´§³·½»H°à¹ÒÒ¤§¥Á®ù°§V¢V£\u0000£¦` LIOç££  oc¢Àii¯IrĀ§ĀùµùXĀĀ¢=¤´´´´´´ô²IHIHĀ¹ÒÒÒÒÒĀÒÁÁÁÁĀĀ¡¡¡¡¡¡¡ØBCBBĀ££££££¤¢¢¢¢ĀĀá<<mÒ?iȀȀ", 
+"height": 338
+}, 
+"Ricsung New": {
+"default": 128, 
+"widths": "@UiÕÇ.UU@U@GGGrì¹««¹¹¹Ud¹ä¹¹¹«¹¹ò¹¹UGUxUrrrUGGGÇUdG¹r{3{UĀĀÃÃfĀĀtUOr¹¹¹¹¹¹ä«UUUUĀ¹¹¹¹¹¹Ā¹¹¹¹¹ĀĀrrrrrr«rrrrrGGGGĀĀĀĀUUvĀ?iȀȀ", 
+"height": 281
+}, 
+"PMingLiU-ExtB": {
+"default": 120, 
+"widths": "CPbxxÈ»+PPx<P<CxxxxxxxxxxCCkÞ®¡¡®®®P^®Ö®®®¡®®ã®®PCPqxPkxkxkPxxCCxC»xxxxP^Cxx®xxkt0t*~,gÂÂ>VK5Pc¶¶¶¶¶¶ó¢WW]h¾·­­­­­­¶¶¶¶³qqqqqq²ooooKK]]yyyyyu~~ĀQQvĀ?iS", 
+"height": 256
+}, 
+"Monotype Corsiva": {
+"default": 113, 
+"widths": "8H8®q®È)C8l8H8WqqqqqqqqqqC=a³³®af©×³v½¤á={R8llWqWRfq=8q=vfqfMRRvq®lfq==Hq{¸l½W½fDDUCaf½aaaa³³©½½½½lllllllWWWWW====fvfffffqvvvvfqfĀ==Ā)8S", 
+"height": 280
+}, 
+"Aharoni": {
+"default": 106, 
+"widths": "G@cjj£¤9NNN9N9UjjjjjjjjjjGGy°¶²}|Ç½Px³xêÎÑÑ¡y¹³Ą¶¤¢NGNcoYEEEàisTè¨{ {@j«\\ÃÃcGGN]y²²²²²²é²KKKKÁ¾ÈÈÈÈÈÈ²²²²¡ÛKKKK     ¢ÄXX«é@jT", 
+"height": 253
+}, 
+"Gill Sans Light": {
+"default": 128, 
+"widths": "G-G©³9UUx©-P-H--©©©HÍ«­¾~p¸¸55xÈÅÓÓx³Ĉ°£MHM©Umk{>m~00m0Å~U[M~mµ{keU9U©-kĀĀeÍ©Íf©ĀĀ¦U[H««««««Þ­~~~~5555ĀÅÓÓÓÓÓĀÓ³³³³ĀĀmmmmmm«k{{{{0000Ā~©~~~~ĀĀkĀ--Ā?iȀȀ", 
+"height": 291
+}, 
+"Arial": {
+"default": 142, 
+"widths": "GG[ä«1UUdGUGGGGĄ««¹¹«Ç¹G«Õ¹Ç«Ç¹«¹«ò««GGGxUG999ÕUG¹VCVUC½½fUUU^««««««Ā¹««««GGGG¹¹ÇÇÇÇÇÇ¹¹¹¹««äGGGGĀ99ZĀ0[", 
+"correction": 1.05, 
+"height": 286
+}, 
+"LM Roman Demi 10 Oblique": {
+"default": 128, 
+"widths": "UNqÕÕÇGddÇGUGGGåÇåyÇÂ¶¹Ä¨¡ÉÈfÈóÈÀ¯ÀÃ²ÅÂĈÂÂHHÂ|rxNGNGÕned¹rRNrÂĀÂĀ°Ç°`ÇĀĀ´ÇkyÂÂÂÂÂÂè¹¨¨¨¨ffffĀÈÀÀÀÀÀĀÇÅÅÅÅĀĀ||||||¹rxxxxGGGGĀÇĀĀĀGGÇÅ?iȀȀ", 
+"height": 367
+}, 
+"Kozuka Gothic Pr6N B": {
+"default": 146, 
+"widths": "7Hjç³8UU|®FXE\\EF®®®uÐª µ°µLjà¶¸¸³£ìUXU®Xx[HKHçcqcÎzUJU®HJĀÆ}®|ĀĀ\\ZĀFh}uªªªªªªßLLLL·¶¸¸¸¸¸Ā¸³³³³ ×xHHHHĀĤBBZĀĀĀT", 
+"height": 468
+}, 
+"Nueva Std": {
+"default": 83, 
+"widths": "'1,T]\u0019AA4S\"@\"HsF]\\o_m^ok\"\"SSST|zrk@bn¼v~i|À~{{AJAS8wxazeLw~88o7Äu{x\\ZTzk©jieAEAS1WllnE_?S5)SGGxn\"L?T­zrrrr@@@@S{xwwwwwwªaeeee7777suuuuuSuzzzzi{ià\u001a\u001a.à?iS", 
+"height": 256
+}, 
+"@SimHei": {
+"default": 128, 
+"height": 256
+}, 
+"Adobe Arabic": {
+"default": 90, 
+"widths": "24>ZZ!AAKj+C+>ZZZZZZZZZZ++ejeGpkdA?f¨kvZv¸~ysA?Ag[IS`OdP9Ye31]0gacaFE:dWYVOA2Aj4ZZZZ2YSj;?j@@a]+?SG¤kkkkAAAAjyhgSSSSSS}OPPPP3333`gaaaaajaddddVaV©**I¶?iS", 
+"height": 279
+}, 
+"Helvetica Neue Bold Condensed": {
+"default": 123, 
+"widths": "=Lw{{ÇCLLd=_=U{{{{{{{{{{=={Í{wBww½{Ã{QUQ9{wwL===Â{UrLr´vrmQ9QL{{Ā{Ā{ÍmÍfĀĀ{=Pm{Â{{{{BBBBĀĀĀĀ{{{{{{¹wwwww====Ā{{{{{{ĀĀrĀCCĀ?iȀȀ", 
+"height": 303
+}, 
+"@BatangChe": {
+"default": 128, 
+"height": 256
+}, 
+"Hoefler Text": {
+"default": 256, 
+"widths": "@<hºÜÉ:LLcp?S?Harhir{??pZÆ¼¦¼Ó§ÒÞqaÊùÜÔ Ô»¶ÈÅĠÊÈ«VRV^zZrvxVyH?BÔ_b^t³{uuA(A]2vĀ«ĀÒ[{ÑGhĀĀ®5[[U¼¼¼¼¼¼ċ¼§§§§qqqqĀÜÔÔÔÔÔĀÔÈÈÈÈĀĀrrrrrr²vxxxxEEEEĀeĀĀuú55WÅ?iȀȀ", 
+"height": 256
+}, 
+"TakaoPGothic": {
+"default": 161, 
+"widths": "ELW¡¡Ú²1UU_¡D\\D¡¡¡¡¡¡¡¡¡¡RR¡¡¡å£©ºÂÁÀJa¥çÃÌÌ¦¿£î°¤M¡M  NEEEß_vY|Á}~yT3TL¡Õ¡Ã3ĀĀĀWÒff£ĀDs££££££âºJJJJÂÃÌÌÌÌÌÒÌ¿¿¿¿äEEEEÒ~¡~ödd[ĀHs:`", 
+"height": 257
+}, 
+"Optima": {
+"default": 142, 
+"widths": "GUUä¹GGGrGUGGGGdÍ««ÇÇÇGGäÇÕÕÇ«ĀUUUGGGGÕUdGÇUUUUĀĀÀÀfĀĀÍGWd««««««Õ«GGGGĀÇÕÕÕÕÕĀÕÇÇÇÇĀĀÇGGGGĀĀĀĀGGĀ?iȀȀ", 
+"height": 304
+}, 
+"Trebuchet MS Bold Italic": {
+"default": 150, 
+"widths": "M^d¼µM^^o^^^f^^fÅ¢­®G¦É©´Å ¯©¯í¨¯|z|~iTcRÕrvpÆ||^ĀĀ··ĀĀ^o^öGGGGĀ©´´´´´Ā´©©©©ĀĀå~TTTTĀĀĀ¼^^¼?iȀȀ", 
+"height": 297
+}, 
+"LM Mono Slanted 10 Regular": {
+"default": 134, 
+"height": 341
+}, 
+"Trebuchet MS": {
+"default": 134, 
+"widths": "M^Sµ)^^^^^^^^^Å­¨Gz¶£­­{¦Ú^[^_I^LÕdhf}¿~z^^^t··tt^^^ÞGGGG£­­­­­¨¦¦¦¦àIIII~~¼^^¼)WS", 
+"correction": 1.025, 
+"height": 297
+}, 
+"TeX Gyre Bonum Regular": {
+"default": 159, 
+"widths": "RMaæÍ8MMqRfRRRÒ®½½Í¸¤ÍÍW¸ì½ÍÒ¸©È³ö¸¤¤MMWR©MMMñ©qa®È{HHMĀĀ½\\½fĀĀ®Rl\\®®®®®®Ń½¸¸¸¸WWWWĀ½ÍÍÍÍÍĀÍÈÈÈÈĀĀ©ÜMMMMĀ©®®®®ĀĀĀ88vĀ?iȀȀ", 
+"height": 343
+}, 
+"Shruti": {
+"default": 132, 
+"widths": "dPÈÈ»7kk FiF kFF» »þ««¸«BvÅ«¸¸««ßx xWvB66v6ÅOvBv«vvvb»BC®¡®fUUK]ì«BBBB««¸¸¸¸¸ ¸««««Òv6666 vvãFFfã?iS", 
+"height": 430
+}, 
+"Sylfaen": {
+"default": 128, 
+"widths": "@DY×»8TTP@a@O@@dØ¶¦¹µÃZS«çºÂÂ§{¸¶ĉ§­ TOTqrvQzIBIÒb\\UÅ}sS@SD@ÂgÂN__@Ogd¶¶¶¶¶¶ò¦ZZZZ¹ºÂÂÂÂÂÂ¸¸¸¸­ qqqqqqªrvvvvJJJJĀ::GĀ8YS", 
+"height": 337
+}, 
+"LM Mono Caps 10 Regular": {
+"default": 134, 
+"height": 333
+}, 
+"Adobe Caslon Pro": {
+"default": 128, 
+"widths": "AA_ÀÓ5TTTAgAZAA_É¾©¿Ð±ÑÚ_U¶©ûÌÒÑ²´¿µČ²ª´[Z[VmimO|D?BÎW[Ro°ppo[Z[AZÓiMVVA_i_¾¾¾¾¾¾í¿±±±±____ÐÌÒÒÒÒÒÒ¿¿¿¿ªmmmmmm£kmmmmDDDD}ppĀ11WĀ?iS", 
+"height": 436
+}, 
+"Apple Chancery": {
+"default": 142, 
+"widths": "GBYc¼ã/WWr5]5onv|55]±¸¹Ø»´ªÙutÍ¤þâ°«±ÊÃÛ±æ´¥QYQr|b_PwLDvDÊn|k[[s¡iY4YBuĀĀÅÅEĀĀL]¸¸¸¸¸¸ö»»»»uuuuĀâ°°°°°Ā°ÛÛÛÛĀĀ®b____LLLLĀnnnnnnĀĀÜ55Ü?iȀȀ", 
+"height": 405
+}, 
+"Loma": {
+"default": 142, 
+"widths": "G[ä«1UUdGUGJGGĄ««¹¹«¹¹Q«Õ¹Ç«Ï¯«¹«ò««GGGxUG999ÕUG¹VCVUbîºîyº~~[y¯¯¯¯¯¯ù³¢¢¢¢LLLLÆÀÊÊÊÊÊ×Ê»»»»¡ûGGGG¢×¢¢¢¢£ì8IwÎKz:`", 
+"height": 407
+}, 
+"Nimbus Mono L": {
+"default": 154, 
+"height": 282
+}, 
+"Tlwg Typo": {
+"default": 154, 
+"height": 318
+}, 
+"SimHei": {
+"default": 128, 
+"height": 256
+}, 
+"LM Roman 10 Bold Italic": {
+"default": 151, 
+"widths": "jcòòã[yyã[j[[[åãåãÞÑÔàÂºååyå³ēåÛÉÛÜ¦ÌâÞĩÞÞ¶[[Þf[[Lò¦}cÅ~RcÞĀÞĀ¯°¦ã°qãĀĀ´ã¦ÞÞÞÞÞÞĆÔÂÂÂÂyyyyĀåÛÛÛÛÛĀãââââĀĀªÔ[[[[Ā¦ãĀĀį[[ãØ?iȀȀ", 
+"height": 373
+}, 
+"@Gulim": {
+"default": 160, 
+"widths": "UU`Àà°I`` V VkVV   Ā¥­¸¹ Å»E£Ð³Å£Æ«¢¶å   ëUX>>;ÝUPÀËk @É´É`Õ```p««««««ðÀ««««KKKKÀÀËËËËËÕËÀÀÀÀ  Ê@@@@       Õ  ĀssĀæĀĀS", 
+"height": 256
+}, 
+"LilyUPC": {
+"default": 85, 
+"widths": "=;Yqs8IINn*n)\\rrrrrrrrrr99cnfwqj_l\\Zom+Yh]nohnib_nikfaBSBA`8UWKXR9XU\"&[#UWWXAP9UMtSTM6*6c:]q]q/]~]b~Cn88`d/=]wqqqqqq _\\\\\\\\++++lnooooononnnnfhfUUUUUUKRRRR\"\"\"\"fUWWWWWnWUUUUTWT¯53\\v?iS", 
+"height": 244
+}, 
+"@Kozuka Gothic Pr6N EL": {
+"default": 137, 
+"widths": ";9RÍ2JJn«.T.e..«««jË¥¢·°²9`~Ü´¾¾±èIeI«VH9:t9éQhV}Êv{pJ:J«9:ĀÂm«nĀĀOMĀ.^mj¥¥¥¥¥¥Î¢9999¸´¾¾¾¾¾Ā¾±±±±×9999Ā{{ğ..CĀĀĀS", 
+"height": 423
+}, 
+"Courier New Bold": {
+"default": 154, 
+"height": 290
+}, 
+"Arial Bold": {
+"default": 142, 
+"widths": "GUyä¹=UUdGUGGUUú¹¹¹¹«Ç¹G¹Õ¹Ç«Ç¹«¹«ò««UGUUUGGGädUÇdHdUĀĀ½½fĀĀÀ^¹¹¹¹¹¹Ā¹««««GGGGĀ¹ÇÇÇÇÇĀÇ¹¹¹¹ĀĀäGGGGĀĀĀĀGGZĀ?iȀȀ", 
+"height": 286
+}, 
+"FreeMono": {
+"default": 154, 
+"height": 257
+}, 
+"@Kozuka Mincho Pro B": {
+"default": 161, 
+"widths": "ELa¡¡¿Ã8SSo9J9i¡¡¡¡¡¡¡¡¡¡99}¼§¢´©Ä[q­î·º¢º¨³«þ°¤QiQd}ZMKMâqt]ÈwTZTL¡¡¡¡ZĀ·v·ĀĀjjĀ9yv}§§§§§§á[[[[´·ºººººĀº³³³³¤¢Ò}MMMMĀĀ88sĀĀĀT", 
+"height": 345
+}, 
+"Arial Greek": {
+"default": 142, 
+"widths": "GG[ä«1UUdGUGGGGĄ««¹¹«Ç¹G«Õ¹Ç«Ç¹«¹«ò««GGGxUG999ÕUG¹VCVUC½½fUUU^««««««Ā¹««««GGGG¹¹ÇÇÇÇÇÇ¹¹¹¹««äGGGGĀ99ZĀ0[", 
+"height": 286
+}, 
+"Myriad Pro Light": {
+"default": 137, 
+"widths": "5@_×¥3MMp<Q<V<<nÁ£¯ª¬Dd~Ô­´´ªÞMVMMsRBEBÙ[kZÀ~sMCM@C­rqWUT<_rn££££££ÕDDDD°­´´´´´´ªªªªÊsBBBBĀ<<PĀ@jT", 
+"height": 313
+}, 
+"LM Roman 8 Bold": {
+"default": 157, 
+"widths": "h_ąąôWzzôWhWWWåôåôìÞãðÎÅöôv¢õ¼ĩôìÖìê®ÚðìŃììÀWWì®®`®W`¦Wą®®¦|z®¦ã¦¦R_ìĀìĀ½°®ô°vôĀĀ®´ô®ììììììĜãÎÎÎÎvvvvĀôìììììĀôððððĀĀ£ãWWWWĀ®ô®®®®ĀĀ¦ĺWWôá?iȀȀ", 
+"height": 370
+}, 
+"Marker Felt": {
+"default": 256, 
+"widths": "@3O³)CCwq1_1;1adaiè}s}nl}=nlîs}{óddM}6vnana\\lx36{3¸}inna_\\iq¸ix{d4dT3`Ā¡Ā_qz;qĀĀqx1sqi~½t\\\\]]65J?ĀppqprĀoqpoĀĀtttttt©`aaaa46XPĀ~jijjj_ljjjjĀĀxĀ:A¥?iȀȀ", 
+"height": 278
+}, 
+"Gungsuh": {
+"default": 171, 
+"widths": "Ukk «Kkk UÕU`UUµ µ¼°¯°®¨¨³´w° Ð¶¬§´´¦·¯Ë««£ÀT£££§xy¤à¦¨¨¨¥¥À¦Ëk °º@ É°ÉpÕ°°UµµµµµµĀµµµµµµÀµµµµµÕµËËËËµ«À««««««Ð      ««««««Õ««««««««ĀUU`ĀUS", 
+"height": 256
+}, 
+"Thonburi": {
+"default": 171, 
+"widths": "UN««èºNrr«NaN««««««««««NN«««ßº£§³­±>~ªÊµ¼¼¤«ºòrr««d<G<åcrÈs?s«N««Ā«Ā«á«áW«ĀĀ««_ººººººþ§>>>>Ā¶¼¼¼¼¼Ā¼««««ĀĀî<<<<Ā«ĀĀĈNN«Ĉ?iȀȀ", 
+"height": 335
+}, 
+"Skia": {
+"default": 256, 
+"widths": "@w_±lý»6jj]±CWCUbv{|RR±±±æª¤»°ÈO`¢òÊÂÂ¢ÁªČjUj±dt^DEDàchdÎzjKj±wu|ĀĀtñ±ñi±ĀĀCiªªªªªªéOOOOĀÊÂÂÂÂÂĀÂÁÁÁÁĀĀÏtDDDDĀ±ĀĀĀ66Ā?iȀȀ", 
+"height": 256
+}, 
+"Umpush": {
+"default": 142, 
+"widths": "G[ä«1UUdGUGJGGĄ««¹¹«¹¹Q«Õ¹Ç«Ï¯«¹«ò««GGGxUG999ÕUG¹VCVUbîºîyº~~[y¯¯¯¯¯¯ù³¢¢¢¢LLLLÆÀÊÊÊÊÊ×Ê»»»»¡ûGGGG¢×¢¢¢¢£ì8IwÎKz:`", 
+"height": 489
+}, 
+"LM Roman 17 Regular": {
+"default": 118, 
+"widths": "M@RÆvÆ¸@[[v¸@M@vvvvvvvvvvv@@Ã¸Ão¸±§«µ¡º±Ty¸Ú±¸¡¸®«±±ô±±@@±vvhhGv@G|@Æv|[\\[|«||hG@h±Ā±Āv¯¸¯X¸ĀĀ¸co±±±±±±Ö«¡¡¡¡TTTTĀ±¸¸¸¸¸Ā¸±±±±ĀĀvvvvvvv«hhhhh@@@@Āvvvvv¸vĀĀ|ë@@¸?iȀȀ", 
+"height": 361
+}, 
+"Orator Std": {
+"default": 154, 
+"height": 342
+}, 
+"@MS Gothic": {
+"default": 128, 
+"height": 256
+}, 
+"Narkisim": {
+"default": 106, 
+"widths": "GUUjj¸¤2@@j9G9\\jjjjjjjjjjGGqÚ¸¢x³¯I^|Õ¼ÉxÉx¸³Ú@G@ck|koIo|88o8À||UQM|o¢osZ{ {Ujs\\skÚscGGIZkq±±±±±±è±JJJJÀ½ÇÇÇÇÇÇ±±±± ÚJJJJ¡ĀII¦Ā?iS", 
+"height": 253
+}, 
+"JasmineUPC": {
+"default": 79, 
+"widths": "9CDy°-@@T](](`uuuuuuuuuu11[d]drlrv_Yy)Lo_vbl_fyooo\\&_&iO3ORIRO0RY&#O#YY\\R9@0RIrOLC0i0iCPXXX#XXcF]66aP,:Xdrrrrrr r____))))vv]yyyyobUOOOOOOIOOOO&&&&XYYYYYY]YRRRRL\\L¥--bn?iS", 
+"height": 271
+}, 
+"Eccentric Std": {
+"default": 104, 
+"widths": "44Qhhr444h4444hhhhhhhhhh44L{m_dZUdh4GdZmhZhhUUhm¦ZZZ444hE{m_dZUdh4GdZmhZhhUUhm¦ZZZCUC4hhhUhÍhhBBh4hhL{{{{{{_ZZZZ4444hmhhhhhhhhhhZZª{{{{{{_ZZZZ4444hmhhhhhhhhhhZZZĀ44?iS", 
+"height": 301
+}, 
+"Arial Black": {
+"default": 171, 
+"widths": "UU©«ĀäGdd©UUUG««««««««««UU©©©¾ÇÇÇÇ¹«ÕÕd«Õ«òÕÕ¹ÕÇ¹¹ÕÇĀÇÇ¹dGd©U«««««d««UU«UĀ««««rr«ò«dGd©U««©«G«Í«©Íf©ff«ÚUf«ÇÇÇÇÇÇĀÇ¹¹¹¹ddddÇÕÕÕÕÕÕ©ÕÕÕÕÕÇ¹«««««««Ā«««««UUUU«««««««©««««««ĀGGĀNT", 
+"height": 361
+}, 
+"Iskoola Pota": {
+"default": 128, 
+"widths": "@UiÕÇ.UU@U@GGGrì¹««¹¹¹Ud¹ä¹¹¹«¹¹ò¹¹UGUxUrrrUGGGÇUdG¹r{3{U3ÃÃfMMtUOr¹¹¹¹¹¹ä«UUUU¹¹¹¹¹¹¹¹¹¹¹¹¹rrrrrr«rrrrrGGGGĀUUZĀ?iS", 
+"height": 291
+}, 
+"Hoefler Text Ornaments": {
+"default": 205, 
+"widths": "ĀÍÍÍÍÍÍÍÍÍÍÍÍĀÍÍƐĀĀĀĀÍÍÍƐƐÍÍÍÍÍÍÍĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĚŨƤÍÍÍÍÍÍÍƝÍƝÍÍÍĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĚŨƤáµþÚæĀÅÍÍÍÍÍÍÍĀÍĀÍÍÍÍÍÍÍĀĀÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍĀÍÍÍÍÍÍĀÍÍÍÍÍĀĀÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍĀÍÍÍÍÍÍÍÍÍÍÍÍĀĀÍÍÍÍÍÍ?iȀȀ", 
+"height": 259
+}, 
+"Geneva CY": {
+"default": 128, 
+"widths": "UN««èºNrr«NaN««««««««««NN«««ßº£§³­±>~ªÊµ¼¼¤«ºòrr««d<G<åcrÈs?s««ĀĀ«á«áW«ĀĀ«ĀĀĀĀĀ«ĀĀĈNN«Ĉ?iȀȀ", 
+"height": 320
+}, 
+"Didot": {
+"default": 152, 
+"widths": "GPr«ÇÇGGGrG_GLGGhÕ¾«¹Ñ´«ÌÑcw¾¯ß¹Õ¦Õ¹«¯Â¹ēÂ´¦GLGG{{ULLLßhmU{¾{{mU9UP¡ĀĀÕh}fĀĀG\\hh¾¾¾¾¾¾ò¹´´´´ccccĀ¹ÕÕÕÕÕĀÕÂÂÂÂĀĀ{{{{{{¹{LLLLĀĀĀ{ĀGGĀ?iȀȀ", 
+"height": 318
+}, 
+"Courier New CYR": {
+"default": 142, 
+"widths": "GG[ä«1UUdGUGGGGĄ««¹¹«Ç¹G«Õ¹Ç«Ç¹«¹«ò««GGGxUG999ÕUG¹VCVUC½½fUUU^««««««Ā¹««««GGGG¹¹ÇÇÇÇÇÇ¹¹¹¹««äGGGGĀ99ZĀ0[", 
+"height": 286
+}, 
+"NSimSun": {
+"default": 128, 
+"height": 256
+}, 
+"Georgia Bold Italic": {
+"default": 180, 
+"widths": "A`´¤áÍErr{´TaTy´}  ¦¦­¦^^´´´øÂÂ·Ö¹¬ÏêsÑ°ĉÔÒµÒÌ§¯ÕÃĠÍ»±ryr´´©¦ªb¦­^]¤[ā±£ª¦k¯ï«c´`±Ā¼Āñ´ñl´ĀĀ­WÂÂÂÂÂÂē·¹¹¹¹rrrsĀÔÒÒÒÒÒĀÒÕÕÕÕĀĀ¨©©©©©©Û^^^^Ā±£££££´£¯¯¯¯ĀĀ«îEEpñ?iȀȀ", 
+"height": 291
+}, 
+"@Adobe Song Std L": {
+"default": 256, 
+"widths": "5EXxvÌ¶=``l=`=Vvvvvvvvvvv==X¿¯²½»ËQPªåÂÆÆ¡wÁ¶ù¦`U`=kmjDr>;:ËWVGs§wth_B_Q¢¢Āv_Ā¯Ì¢ĀĀll ¢Āll±±±±±±è±JJJJÀ½ÇÇÇÇÇĀÇ±±±± ĀĀÚĀĀĀĀĀJJĀĀĀĀĀĀ¡ĀĀĀĀĀĀĀĀ", 
+"height": 291
+}, 
+"KacstBook": {
+"default": 163, 
+"widths": "?gv×£óÈFdd×Q\\QV££££££££££VV×××Ā¯°³Å¢ÆÁLL¨ÝÀÊÊ²£»¯ý¯¯dVd×££Z£¢GGGù¢££id¢Ñ£V£×g££££VĀ×Ā×gg££Qy¯¯¯¯¯¯ù³¢¢¢¢LLLLÆÀÊÊÊÊÊ×Ê»»»»¡ûGGGG¢×¢¢¢¢£ĀQQĀ:`:`", 
+"height": 275
+}, 
+"@Adobe Gothic Std B": {
+"default": 256, 
+"widths": "7Hjç³8UU|®FXE\\EF®®®uÐª µ°µLjà¶¸¸³£ìUXU®Xx[HKHçcqcÎzUJU®Ā££Ā£`ĀÆĀÍ£ĀĀĀĀ¡ĀĀĀĀĀ²²²²²²Ā²KKKKĀ¾ÈÈÈÈÈĀĀ²²²²¡ĀĀĀKKKKĀ ĀĀ    ĀĀĀĀĀĀĀĀĀĀ", 
+"height": 322
+}, 
+"Papyrus Condensed": {
+"default": 256, 
+"widths": "(.:l^#MMBZ1Q1]u-ZTtW]QX]11cQcUkm*`~ks¡s¡ys{gsovM]M^X3_kXk^E_d%%a'}ajlfDS@cNqV_N-'-a.SĀtĀQ¡Ze¡7]ĀĀOd-UZUÈ****Ās¡¡¡¡¡Ā¡ĀĀ_______ X^^^^%%%%ĀajjjjjYjccccĀĀ_½11=±?iȀȀ", 
+"height": 395
+}, 
+"Webdings": {
+"default": 256, 
+"widths": "ĀĀĀĀþĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀØĀĀĀĀnĀĀĀĀªĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀŋĀĀĀĀĀQQvĀ?iS", 
+"height": 256
+}, 
+"FrankRuehl": {
+"default": 128, 
+"widths": "5qcjj±¤9GGx9U9\\jjjjjjjjjjUUqì¹««¹¹¹Ud¹ä¹¹¹«¹¹ò¹¹GGGcUrrrUGGGÇUdG¹r{ {q3ÃÃcGGtUOq±±±±±±è±JJJJÀ½ÇÇÇÇÇÇ±±±± ÚJJJJ¡ĀUUZĀ?iS", 
+"height": 238
+}, 
+"Lohit Punjabi": {
+"default": 157, 
+"widths": "HWsô¼ØÈG°]°Z]]¯°¯Áď¯°³Å¢ÆÁLL¨ÝÀÊÊ²£»¯ý¯¯ ¡ ²î_££Z£¢GGGù¢££id¢ÑM¾g££££VĀ×Ā×gg££Qy¯¯¯¯¯¯ù³¢¢¢¢LLLLÆÀÊÊÊÊÊ»Ê»»»»¡ûGGGG¢Ç¢¢¢¢£ōaaØ:`:`", 
+"height": 467
+}, 
+"Euphemia UCAS": {
+"default": 149, 
+"widths": ":aäì¾<QP{?^5@@||zĎ ªªª±;Ç±ÎÎ¸ß HH£\u0000P>;?Ø^|Ww¬u{UU>vĀĀà¬àQĀĀ9s}      òª;;;;Ā±ÍÍÍÍÍĀÏ¸¸¸¸ĀĀÐ><<;ĀĀĀà33hÇ?iȀȀ", 
+"height": 338
+}, 
+"MS Reference Specialty": {
+"default": 192, 
+"widths": "GÀÀÕŢĀĀĀĀĀĀĀĀ1¹Čª©âĳĳĳËÕ/ŬŷČëÕäÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀĩÂhúďĐ¯Ĉ¯ŵ¯¯uĈǿĈ¯¯uuuuuuu¯uu¹ĜĜ¹¹uu¿uuuuúĹúúúàvàà?ĹJJJJÀ½ÇÇÇÇÇÌÇ±±±± ÚJJJJÌ¡ĀQQvĀ?iS", 
+"height": 314
+}, 
+"Khmer UI": {
+"default": 138, 
+"widths": "FIdÒÍ;MMk¯8f8d88¯¯¯sõ¥´}°¶D[yæÀÁÁ°ïMaM¯jEvP>>>ÝYmW{¹v|tM=M¯I=sä¯äa¯^^u8ns¥¥¥¥¥¥ÜDDDD´ÀÁÁÁÁÁ¯Á°°°°Õv>>>>¯||Ā;;h¼?iS", 
+"height": 290
+}, 
+"Cochin": {
+"default": 128, 
+"widths": "@dUÕ¾9dd@U@G@@Í´¯´Õ¯¡ÇÕd¡¾¦÷ÑÕ¡Õ¹¦Ì´Ā¾¹´dGdBwrrQBBBÇddQ¾rd9cdĀĀÍrÍfĀĀ@Mr´´´´´´÷´¯¯¯¯ddddĀÑÕÕÕÕÕĀÕÌÌÌÌĀĀwwwwww¯rrrrrBBBBĀĀĀĀ99Ā?iȀȀ", 
+"height": 294
+}, 
+"@MingLiU_HKSCS-ExtB": {
+"default": 128, 
+"widths": "ĀQQvĀ?iS", 
+"height": 256
+}, 
+"Zapfino": {
+"default": 256, 
+"widths": "ÑÓîƌȵêĄ£ĀÊìę­ċàĎ¾ÜÜ×ÜĀĀĀ®ŴŔĸŊůİàŬŮÐŁĚǠşŹčŞňÓÿƋĚǣŗāĘØìáĀŀ¶£­ªt}Àá§ ¤}s¤ñ ªªĀëĳĀęĀÁƚÖĀĀĀĀĀĀŀç¦ŔŔŔŔŔŔǱŊİİİİĀşŹŹŹŹŹĀŹƋƋƋƋĀĀ¶¶¶¶¶¶ÄttttĀ¨     Ā¤¤¤¤ĀĀʀŀų?iȀȀ", 
+"height": 865
+}, 
+"@KaiTi": {
+"default": 128, 
+"height": 256
+}, 
+"Big Caslon": {
+"default": 256, 
+"widths": "6N[À{¦Û9PPc³>B>PQpeer|CC«³«bÞ´¿ÇÚ¶¨ÓæffÄµþàÏ¨ÏÃ½Ö«þµ¦²IPIAsooEA?}?Ë[bSq½ujoI?IN®ĀĀxĀe³h«ĀĀ¡CHeb´´´´´´ĄÇ¶¶¶¶ffffĀàÏÏÏÏÏĀÏÖÖÖÖĀĀssssss°oooooAAAAĀ³ĀĀjä  Á?iȀȀ", 
+"height": 305
+}, 
+"Comic Sans MS Bold": {
+"default": 156, 
+"widths": "o=pØ²Ò¨o^^ooooî»¡¹ ®ÅªâÐÌà¤²²½­Ċ¹£²``¡HgFÇ{}y}¯^l^=ËĀĀ£Ì¤ÌĀĀÃ¤»»»»»»Ė    ĀÐÌÌÌÌÌĀÌ½½½½ĀĀéHHHHĀĀĀâ::­?iȀȀ", 
+"height": 357
+}, 
+"LM Roman 8 Regular": {
+"default": 136, 
+"widths": "[LgããÓLjjÓL[LLLÓÓÓÓÌÁÄÐ¹±ÖÌbÓªùÌÓ¹ÓÈÄÌÌėÌÌ¦LLÌyySLSLãjkjÄyLLyÌĀÌĀ¯Ó¯fÓĀĀ¦ÓrÌÌÌÌÌÌöÄ¹¹¹¹bbbbĀÌÓÓÓÓÓĀÓÌÌÌÌĀĀÄyyyyyLLLLĀÓĀĀĐLLÓ¶?iȀȀ", 
+"height": 363
+}, 
+"TeX Gyre Pagella Bold": {
+"default": 128, 
+"widths": "@GgäÕ:UUr@U@L@@r¿Ç«¹ÕÕÕddÇĀÕÕÕ¹«ÇÇĀ«««UUUrdUUUädrUÕOOGĀĀ¿¿fĀĀ¤@}rÇÇÇÇÇÇĀ¹ddddĀÕÕÕÕÕÕĀÕÇÇÇÇĀĀÇrUUUUĀĀĀĀGGĀ?iȀȀ", 
+"height": 349
+}, 
+"LM Sans 9 Regular": {
+"default": 132, 
+"widths": "XStÛÛÇIffÍIXIIIÍÍÍ|¯°°¨¾¯ºI|·æºÂ¨Âª´µ°ù°°¡MM°~uuP?F?ÑZe_y´yyrISu°Ā°Ā²Í²cÍĀĀ¡Ín|°°°°°°ã¨IIIIĀºÂÂÂÂÂĀÍµµµµĀĀ~~~~~~~¾uuuuu????ĀÍĀĀyćIIÍ¤?iȀȀ", 
+"height": 376
+}, 
+"Chaparral Pro Light": {
+"default": 128, 
+"widths": "4=E·§(QQY;I;c;;kª¡´LwÓ±³³y¤×KKpqrWvbLf{<;m<¸~ksqXYSxo§lifQQ=r½gsKNN};SgkÑLLLLª±³³³³³³¤¤¤¤qqqqqq£Wbbbb<<<<i~kkkkkkxxxxisiĀ**F¿?iS", 
+"height": 301
+}, 
+"KacstTitleL": {
+"default": 163, 
+"widths": "?gv×£óÈFdd×Q\\QV££££££££££VV×××Ā¯°³Å¢ÆÁLL¨ÝÀÊÊ²£»¯ý¯¯dVd×££Z£¢GGGù¢££id¢Ñ£V£×g££££VĀ×Ā×gg££Qy¯¯¯¯¯¯ù³¢¢¢¢LLLLÆÀÊÊÊÊÊ×Ê»»»»¡ûGGGG¢×¢¢¢¢£ĀQQĀ:`:`", 
+"height": 396
+}, 
+"TeX Gyre Bonum Bold": {
+"default": 169, 
+"widths": "W\\l©©ñÍ=RRvW\\W©©©©©©©©©©WW©Ò¸¸½È¸®ÈÒf¤Í¤ñ½Í©ÍÈ©³½¸ñÈ³¤MMf¤a®\\W©WĀ®¤vv©ÍRR\\©©Ā©Ā½f½fĀĀ©ÍWff©¸¸¸¸¸¸Ĥ½¸¸¸¸ffffĀ½ÍÍÍÍÍĀÍ½½½½ĀĀ©á\\\\\\\\Ā®©©©©ĀĀĀRRvĀ?iȀȀ", 
+"height": 373
+}, 
+"Linux Libertine G": {
+"default": 119, 
+"widths": "@JVww£´1LL^8W8Swwwwwwwwww<<oå²¥³z²»LR£×³´´|©§ô©[I[|du~nrOEFDÊ_dQ¿}mG4GsJwwww6y²²DOO@Yo²²²²²²Ý¥LLLL³³´´´´´´©©©«uuuuuu°nrrrrEEEE|¾EEZÀ@b>^", 
+"height": 292
+}, 
+"Cooper Std Black": {
+"default": 161, 
+"widths": "QS¡¡ÚêQÂ¡QMQ¡¡¡¡¡¡¡¡¡¡QQ¡¡¡ÂÞÁÂØº²ÖØo©ÞªîßÑ¸ÒÑ®½ÝØĘÖÒ¹¡hª¯r·`cÅbĄ´¢³®}¶©Ċ¢§¡S¡¡¡¡ÂÂ¡Âa¡aa¶¡QiÞÞÞÞÞÞĖÂººººooooØßÑÑÑÑÑ¡ÑÝÝÝÝÒ¸®×````¢´¢¢¢¢¢¡¢¶¶¶¶§³§ĀQQÂĀ@jT", 
+"height": 308
+}, 
+"Lithos Pro Regular": {
+"default": 181, 
+"widths": "MMNµñ)MMZEZEWµµµµµµµµµµEEnÊÍ¤©Ó½ídh¹ĘêÚÙ±¦Õ¼ĒÂ¯°ZWZÚ¶¹¨ÓZ]¨~ñÎÆÆ{½¨ò©Z?ZMµµµ?{Ú}ÚSd`Ey}nÍÍÍÍÍÍï©ddddÓêÚÚÚÚÚÚÕÕÕÕ¯ ö¶¶¶¶¶¶ÕZZZZºÎÆÆÆÆÆÆ½½½½Ā))MĀ?iS", 
+"height": 301
+}, 
+"Minion Pro Cond": {
+"default": 119, 
+"widths": "2DYww»«.TTc?O?Nwwwwwwwwww??b¸¢«¢²YU¢Í¨§§y¨£áSNSfpejNtFE|CÈ}a]Qp¤tpjT?TDwwww?w²sPSSSz?Xsb¢¢¢¢¢¢ÐYYYY­¨§§§§§¨¨¨¨¨pppppp¤ejjjjGGGG|}}}}}~ppè::bæ@jT", 
+"height": 350
+}, 
+"@Microsoft YaHei": {
+"default": 150, 
+"widths": "LPp£äßBVVu¾>o>m>>¾¾¾|Ĉ´¡«Ã¾ÆKe£úÐÑÑ§¿­ą¥VkV¾sL¤¤Y¤DDDð£¤¤bw_Ê~VEV¾PE}ö¾öh¾gg¡>x|´´´´´´ð«KKKKÃÐÑÑÑÑÑ¾Ñ¿¿¿¿æDDDD£££££¾£¤ĀĀĀĀĀĀĀĀ", 
+"height": 338
+}, 
+"Symbol": {
+"default": 157, 
+"widths": "@Uv£ÕÇFUU@\\@GGGrĀ¯°³Å¢ÆÁLL¨ÝÀÊÊ²£»¯ý¯¯UVU×££Z£¢GGGù¢££id¢Ñ{3{×g££££VĀ·Āfgg£Qy¯¯¯¯¯¯ù³¢¢¢¢LLLLÆÀÊÊÊÊÊÊ»»»»¡ûGGGG¢¢¢¢¢£ĀQQvĀ?i:`", 
+"height": 335
+}, 
+"Rekha": {
+"default": 125, 
+"widths": "iTfn~fCTOEG[NO}}}}}}}}}}BGXVµ§§µµµSaµÞµµµ§µµìµµ0uBu}So}o}oS}}FF}FÃ}}}}SaF}}µ}}oO2Qg££££VĀ×Ā×gg££Qy¯¯¯¯¯¯ù³¢¢¢¢LLLLÆÀÊÊÊÊÊ×Ê»»»»¡ûGGGG¢×¢¢¢¢£úSSĀ:`:`", 
+"height": 371
+}, 
+"@Kozuka Mincho Pro R": {
+"default": 157, 
+"widths": "GMZ¹¼7SSs8N8t88|¾¥®¦½Ro£ç¶··±«ý®¢QtQczVFDGÛirWÃtSaSMaĀ½s½ĀĀhhĀ8vs|¥¥¥¥¥¥áRRRR®¶·····Ā·±±±±¢ÎzFFFFĀĀ77tĀĀĀS", 
+"height": 334
+}, 
+"LM Mono Prop Light 10 BoldOblique": {
+"default": 134, 
+"widths": "ZKoààÑKhhÑKZKKKÑ³Â»ÂÊ³¬ÑÂZÊ¤ïÂÑ³ÑÂÂÂÂčÂÂ¤LLÂxxRKRKàhjhÂxKxÂĀÂĀÑeÑĀĀÑqÂÂÂÂÂÂïÂ³³³³ZZZZĀÂÑÑÑÑÑĀÑÂÂÂÂĀĀÂxxxxxKKKKĀÑĀĀčKKÑ®?iȀȀ", 
+"height": 340
+}, 
+"@Kozuka Gothic Pr6N R": {
+"default": 141, 
+"widths": "<?]Û§5OOt­8W8b88­­­pÎ¨¶±³AeÞµ¼¼²ëO`O­W|O?B?çYm[Í~uOAO­?AĀÄt­vĀĀUSĀ8ctp¨¨¨¨¨¨×AAAA¸µ¼¼¼¼¼Ā¼²²²²Ö|????Āġ88NĀĀĀS", 
+"height": 446
+}, 
+"RicpyHum Bold Italic": {
+"default": 256, 
+"widths": "LkUÅèº,XXÕLULGkkÕÕÕĀ¶¤»»µLe¨ë¾ÂÂ·ª÷¨¦`G`Ā¤z¢f¢ JJJç ¤¢huf ß~ÕkĀĀÕÕÕTÕĀĀLx¶¶¶¶¶¶÷¤LLLLĀ¾ÂÂÂÂÂĀÂ····ĀĀßzJJJJĀ Õ    ĀĀĀLLĀ?iȀȀ", 
+"height": 313
+}, 
+"Bookshelf Symbol 7": {
+"default": 256, 
+"widths": "Nzz~¢ª¦¦XÆ®®£o\\½¼¤´´YY¡¡zoozz««ÅÕÕçĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀQ¢¢¢¢_¢ÛÌ¢GÌll ¢¢ll±±±±±±è±JJJJÀ½ÇÇÇÇÇÌÇ±±±± ÚJJJJÌ¡ĀQQvĀ?iS", 
+"height": 256
+}, 
+"@Kozuka Gothic Pr6N B": {
+"default": 146, 
+"widths": "7Hjç³8UU|®FXE\\EF®®®uÐª µ°µLjà¶¸¸³£ìUXU®Xx[HKHçcqcÎzUJU®HJĀÆ}®|ĀĀ\\ZĀFh}uªªªªªªßLLLL·¶¸¸¸¸¸Ā¸³³³³ ×xHHHHĀĤBBZĀĀĀT", 
+"height": 468
+}, 
+"TeX Gyre Cursor": {
+"default": 154, 
+"height": 307
+}, 
+"@Kozuka Gothic Pr6N L": {
+"default": 140, 
+"widths": "==YÖ¢4MMr¬4V3c34¬¬¬nÍ§¡·±³=cÞµ¾¾²êMcM¬V~L=>{=èUkYÍ{~sM>M¬=>ĀÃq¬rĀĀRQĀ4aqn§§§§§§Ô¡====¸µ¾¾¾¾¾Ā¾²²²²Ö~====Ā~~Ġ44IĀĀĀS", 
+"height": 437
+}, 
+"@Kozuka Gothic Pr6N M": {
+"default": 144, 
+"widths": "9Ddâ­7RRx­?X?_??­­­rÏ©µ°´Fgßµºº²ìR]R­WzUDGDç^o^ÍxRFR­DFĀÅy­yĀĀYWĀ?fyr©©©©©©ÛFFFF·µºººººĀº²²²²ÖzDDDDĀģ>>TĀĀĀS", 
+"height": 459
+}, 
+"@Kozuka Mincho Pro H": {
+"default": 164, 
+"widths": "CKf¤¤ÆÊ8SSk:F:_¤¤¤¤¤¤¤¤¤¤::}º¨©¡¹¬Êcs·ô¸½©½°¢´«þ²¦Q_Qe^¡RRRé¡xwbÌzTSTK¤¤¤¤SĀ²x²ĀĀmmĀ:|x}¨¨¨¨¨¨à¡cccc¹¸½½½½½Ā½´´´´¦©¨ÖRRRR¡ĀĀ88rĀĀĀT", 
+"height": 356
+}, 
+"@Kozuka Gothic Pr6N H": {
+"default": 149, 
+"widths": "6Lné·8VV~¯KVKZKK¯¯¯vÑ©¥´¯¶Ql¤à·¶¶¢³¦ìVTV¯Xw`LOLègsgÏ}VMV¯LMĀÇ¯}ĀĀ_]ĀKiv©©©©©©áQQQQ¶·¶¶¶¶¶Ā¶³³³³¥ÙwLLLLĀĥEE_ĀĀĀT", 
+"height": 475
+}, 
+"Saab": {
+"default": 128, 
+"widths": "*Q|ÑWCEI¥­Ñ¯°³Å¢ÆÁLL¨ÝÀÊÊ²£»¯ý¯¯}££Z£¢GGGù¢££id¢Ña×g£¡£VĀ×Ā×gg££Qy¯¯¯¯¯¯ù³¢¢¢¢LLLLÆÀÊÊÊÊÊÊ»»»»¡ûGGGG¢¢¢¢¢£ãRRã:`:`", 
+"height": 425
+}, 
+"@Kozuka Mincho Pro L": {
+"default": 156, 
+"widths": "HMY·º7SSt8O8w88|¿¥­¥»Pn¡æ¶··°«ý®¢QwQczUEBEÙgqVÁsScSMcĀ¾s¾ĀĀggĀ8us|¥¥¥¥¥¥âPPPP­¶·····Ā·°°°°¢ÍzEEEEĀĀ77tĀĀĀS", 
+"height": 331
+}, 
+"@Kozuka Mincho Pro M": {
+"default": 158, 
+"widths": "FL]»¿7SSq8M8p88}½¦±§¿Up§ê¶¹¹£±«ý¯£QpQd{XIGIÝlsYÅuS^SL^Ā»t»ĀĀiiĀ8wt}¦¦¦¦¦¦áUUUU±¶¹¹¹¹¹Ā¹±±±±£Ð{IIIIĀĀ77sĀĀĀS", 
+"height": 338
+}, 
+"Copperplate Light": {
+"default": 156, 
+"widths": "NUUä«9ddNUNGNNr«¹¹¹«¹ÇU«ÕÇ¹«¹¹«¹òdGdU«Ur¹««Çd9dUĀĀfĀĀ«N^r««««««Ā¹««««UUUUĀÇ¹¹¹¹¹Ā¹¹¹¹¹ĀĀĝäUUUUĀ«««««ĀĀĀGGĀ?iȀȀ", 
+"height": 259
+}, 
+"Times New Roman TUR": {
+"default": 142, 
+"widths": "GG[ä«1UUdGUGGGGĄ««¹¹«Ç¹G«Õ¹Ç«Ç¹«¹«ò««GGGxUG999ÕUG¹VCVUC½½fUUU^««««««Ā¹««««GGGG¹¹ÇÇÇÇÇÇ¹¹¹¹««äGGGGĀ99ZĀ0[", 
+"height": 286
+}, 
+"Courier": {
+"default": 154, 
+"height": 290
+}, 
+"Kedage": {
+"default": 157, 
+"widths": "QYM×£ÍÈMaa{M\\MMDD×\\Ā¯°³Å¢ÆÁLL¨ÝÀÊÊ²£»¯ý¯¯dVd×££Z£¢GGGù¢££id¢Ñ£V£×g££££VĀ×Ā×gg££Qy¯¯¯¯¯¯ù³¢¢¢¢LLLLÆÀÊÊÊÊÊ×Ê»»»»¡ûGGGG¢×¢¢¢¢£ĀQQĀ:`:`", 
+"height": 425
+}, 
+"Euphemia UCAS Italic": {
+"default": 149, 
+"widths": ":aäì¾<ON{?^9@@||zċ ®ª­±;Ç±ÍÍ¸ß HH£\u0000L?;?×Yz\\y­{~{UU>oĀĀà¬àQĀĀ9}      òª;;;;Ā±ÍÍÍÍÍĀÏ¸¸¸¸ĀĀé????ĀĀĀà33hÇ?iȀȀ", 
+"height": 338
+}, 
+"Script": {
+"default": 103, 
+"widths": "S4Smg|4HHS44rgggggggggg44||]gwgwggw|XN|b«|mrgb|w|wmHHHrS9SH9S4)NN$$H)]HNNC9/NNmSNHH)H|Q¢¢¢¢_¢ÛÌ¢GÌll ¢¢ll±±±±±±è±JJJJÀ½ÇÇÇÇÇÌÇ±±±± ÚJJJJÌ¡ĀQQvĀ?iS", 
+"height": 287
+}, 
+"Miriam": {
+"default": 128, 
+"widths": "GGjjy¸¤GNNGGGcyyyyyyyyyyGN\\ê¦¦³¦@sÀ¦³³¦¦ÚNGNcMs@33s3ÀMs@s¦sss{ {Gy<qªªcNN|MT\\±±±±±±è±JJJJÀ½ÇÇÇÇÇÇ±±±± ÚJJJJ¡Ā33QĀ?iS", 
+"height": 257
+}, 
+"Lao UI": {
+"default": 138, 
+"widths": "FIdÒÍ;MMk¯8f8d88¯¯¯sõ¥´}°¶D[yæÀÁÁ°ïMaM¯jEvP>>>ÝYmW{¹v|tM=M¯I=sä¯äa¯^^u8ns¥¥¥¥¥¥ÜDDDD´ÀÁÁÁÁÁ¯Á°°°°Õv>>>>¯||Ā;;h¼?iS", 
+"height": 340
+}, 
+"Pothana2000": {
+"default": 157, 
+"widths": ");\\k­3TSy£Cc9yRtnwpw}p9C¢¢¡w¬¯°³Å¢ÆÁLL¨ÝÀÊÊ²£»¯ý¯¯TyT»Ù;££Z£¢GGGù¢££id¢Ñ[(\\µg££££VĀ×Ā×gg££Qy¯¯¯¯¯¯ù³¢¢¢¢LLLLÆÀÊÊÊÊÊ×Ê»»»»¡ûGGGG¢Å¢¢¢¢£ĀQQĀ:`:`", 
+"height": 442
+}, 
+"Adobe Ming Std L": {
+"default": 256, 
+"widths": "@Yh½ÂÓHKK~@_AO@@hċÀ¬®®¯¬½¼U~»²ç¸À­¿¬¡ÅµÇã¶·GOGZK~[RRQ½`q\\¾prCryQĀĀ¢Ā_ĀĀĀ¢ĀĀll ¢ĀllĀĀ±±±±è±ĀĀĀJJJJÀ½ĀĀÇÇÇĀÇ±±±± ĀĀÚĀĀĀĀĀJJĀĀĀĀĀĀĀ¡ĀĀĀĀĀĀiĀ", 
+"height": 266
+}, 
+"@DFKai-SB": {
+"default": 128, 
+"height": 256
+}, 
+"Georgia Bold": {
+"default": 180, 
+"widths": "A`´¤áÍErr{´TaTy´}  ¦¦­¦^^´´´øÂÂ·Ö¹¬ÏêrÑ°Ć×Ò´ÒÌ¦¯ÕÃĠÏ»±ryr´´¥ªe®[Y¢XĄ±£¨¦f­Ýc´`±Ā¼Āñ´ñl´ĀĀ«WÂÂÂÂÂÂĒ·¹¹¹¹rrrrĀ×ÒÒÒÒÒĀÒÕÕÕÕĀĀ¨Ü[[[[Ā±£££££´£­­­­ĀĀîEEpñ?iȀȀ", 
+"height": 291
+}, 
+"EucrosiaUPC": {
+"default": 87, 
+"widths": "8D@nq1SSTg9g3\\hhhhhhhhhh98OgOo¡~uu~ka~~:D~k~~a~uak~~¥~~k:1:RW:NWNWN:WW11W1WWWW:D1WW~WWNT#T_:WWWW#WWcF`44eO,6WN~~~~~~ukkkk::::~~~~~~~c~~~~~~aWNNNNNNuNNNNN1111WWWWWWW`WWWWWWWW??hn?iS", 
+"height": 314
+}, 
+"Adobe Fangsong Std R": {
+"default": 256, 
+"widths": "HMY·º7SSt8O8w88|¿¥­¥»Pn¡æ¶··°«ý®¢QwQ7zUEBEÙgqVÁsScSQ¢¢Ā_Ā¾Ì¢ĀĀll ¢Āll±±±±±±è±JJJJÀ½ÇÇÇÇÇĀÇ±±±± ĀĀÚĀĀĀĀĀJJĀĀĀĀĀĀ¡ĀĀĀĀĀĀĀĀ", 
+"height": 321
+}, 
+"LM Mono Prop Light 10 Oblique": {
+"default": 134, 
+"widths": "ZKoààÑKhhÑKZKKKÑ³Â»ÂÊ³¬ÑÂZÊ¤ïÂÑ³ÑÂÂÂÂčÂÂ¤LLÂxxRKRKàhjhÂxKxÂĀÂĀÑeÑĀĀÑqÂÂÂÂÂÂïÂ³³³³ZZZZĀÂÑÑÑÑÑĀÑÂÂÂÂĀĀÂxxxxxKKKKĀÑĀĀčKKÑ®?iȀȀ", 
+"height": 331
+}, 
+"HanWangShinSuMedium": {
+"default": 256, 
+"widths": "5V _¡5u]mB<cK|r{mrn{j68lâyvxu}h]~mH@r}Sb^[bZaUmiQdYlij_aT_msagjC=B|ĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀ?iȀȀ", 
+"height": 258
+}, 
+"Simplified Arabic Fixed": {
+"default": 154, 
+"height": 280
+}, 
+"Menlo Italic": {
+"default": 154, 
+"height": 298
+}, 
+"TeX Gyre Adventor Italic": {
+"default": 142, 
+"widths": "GLOÆÂ3^^mGUGpGGÞ½Ð¾|ß¯:{vë½Þßm¨´ö{ZZ`¯¯¦¯¦P¬343ð¨¯¯McWÕ{mZ¬ZLĀĀ¿m¿fĀĀG^m½½½½½½þÐ::::Ā½ÞÞÞÞÞĀÞ¨¨¨¨ĀĀ¯¯¯¯¯¯Ĩ¦¦¦¦¦3333Ā¨¨¨¨¨§ĀĀĀZZĀ?iȀȀ", 
+"height": 372
+}, 
+"@Adobe Heiti Std R": {
+"default": 256, 
+"widths": "9Ddâ­>RRx­?X?_??­­­rÏ©µ°´Fgßµºº²ìR]R­>zUDGDç^o^ÍxRFR­Q¢¢Ā_ĀÅÌ¢ĀĀll ¢Āll±±±±±±è±JJJJÀ½ÇÇÇÇÇĀÇ±±±± ĀĀÚĀĀĀĀĀJJĀĀĀĀĀĀ¡ĀĀĀĀĀĀĀĀ", 
+"height": 320
+}, 
+"ForMateKonaVe Regular": {
+"default": 154, 
+"height": 298
+}, 
+"Trebuchet MS Italic": {
+"default": 134, 
+"widths": "M^S{µ)^^^^^^^^^Å­¨GzÃ£­­{¦Ú^[^vgO^RÕkhl}¿~z^^^ĀĀt··ĀĀv^ÞGGGGĀ£­­­­­Ā­¦¦¦¦ĀĀØvOOOOĀĀĀ~¼^^¼?iȀȀ", 
+"height": 297
+}, 
+"Latha": {
+"default": 128, 
+"widths": "@RÍ,MMZ@M@@@@ê§§´§@sÀ§´´§§Ú@@@lUs@55s5ÀMs@s§sssM<M@AªªdSS|I[ç§@@@@§§´´´´´´§§§§Ís5555ss33d?iS", 
+"height": 351
+}, 
+"LM Sans 10 Bold": {
+"default": 141, 
+"widths": "^^ëćÕNnnÛN^NNNåÛå¼¼¼´Ë¤¼ËUÄúËË´Ë´¼Ä¼Ċ¼¼¬XX¼}VBIBÞ_lg¾zR^}¼Ā¼Ā²Û²jÛĀĀ´Ûv¼¼¼¼¼¼ò´¤¤¤¤UUUUĀËËËËËËĀÛÄÄÄÄĀĀË}BBBBĀÛĀĀĚNNÛÅ?iȀȀ", 
+"height": 366
+}, 
+"RicAldi": {
+"default": 128, 
+"widths": "@VUÅÆÆ,UUÕ@U@GVVÕÕÕrü¸ª«Ï©©ÀÔdgÕ¸ñÍÄ Ä³¸Æ¶üÆ¸ªWGWĀrrrQOHLÙddVµrÕVĀ¶ĀÒoÕÒTÕĀĀ@bor¸¸¸¸¸¸þ«©©©©ddddĀÍÄÄÄÄÄĀÄÆÆÆÆĀĀrrrrrrªrrrrrOOOOĀÕĀĀĀ@@Ā?iȀȀ", 
+"height": 307
+}, 
+"DilleniaUPC": {
+"default": 82, 
+"widths": "96@RR---Hb)6)6OOOOOOOOOO))bbbHvdmmd[vv-Hd[vv[vd[dmmmdd-6-bR-R[R[R-[[-$R$[R[[6H6[RRRH6$6b6O^^^,^|^b|C]22a[/>^Hvvvvvv©mdddd----mvvvvvvbvmmmmd[fRRRRRRRRRRR----^[RRRRR]R[[[[R[R\u001e\u001e9z?iS", 
+"height": 335
+}, 
+"Verdana Italic": {
+"default": 163, 
+"widths": "ZevÒ£ĔºEtt£Ò]t]t££££££££££ttÒÒÒĀ¯°³Ä¢ÇÀlt±ØÀÊÊ²¯»¯þ¯¯tttÒ££  Z¢FXFù¢  me¢Ò£t£Òe££Ā£Ā£Ā¥ÒĀÒĀĀ¤£]¥¯¯¯¯¯¯ý³¢¢¢¢llllĀÀÊÊÊÊÊĀÊ»»»»ĀĀôFFFFĀ¢Ò¢¢¢¢ĀĀĀEEÒ?iȀȀ", 
+"height": 311
+}, 
+"Lucida Grande CE": {
+"default": 128, 
+"widths": "QQ`¢¢«³;SS{ÌQQ¢¢¢¢¢¢¢¢¢¢QQÌÌÌlÜ±±À¹¼JP§Ý½ÇÇ¢¢±§Û  SS¢¡¡^ JNJï¡¡i`ÅS`S¢¢ĀĀ¢ÛÌÛoĀĀ¢±±JĀÇÇÇÇĀ±± ĀJĀÌĀĀQQĀ?iȀȀ", 
+"height": 302
+}, 
+"Dingbats": {
+"default": 163, 
+"widths": "Ggv×£óÈFdd×Q\\QV££££££££££VV×××Ā¯°³Å¢ÆÁLL¨ÝÀÊÊ²£»¯ý¯¯dVd×££Z£¢GGGù¢££id¢Ñ£V£×g££££VĀ×Ā×gg££Qy¯¯¯¯¯¯ù³¢¢¢¢LLLLÆÀÊÊÊÊÊ×Ê»»»»¡ûGGGG¢×¢¢¢¢£ĀQQĀ:`:`", 
+"height": 247
+}, 
+"DejaVu Sans Mono": {
+"default": 154, 
+"height": 299
+}, 
+"Courier New Bold Italic": {
+"default": 154, 
+"height": 290
+}, 
+"Kinnari": {
+"default": 128, 
+"widths": "bUhÕÇ.UU@U@GGGqì¹««¹¹¹Uc¹ã¹¹¹«¹¹ñ¹¹UGUxUqqqUGGGÇUcG¹q{3{g££££VĀ×¼×gg££Qy¯¯¯¯¯¯ù³¢¢¢¢LLLLÆÀÊÊÊÊÊÊ»»»»¡ûGGGG¢¢¢¢¢£ƉUUcÿ:`:`", 
+"height": 457
+}, 
+"LM Roman 9 Bold": {
+"default": 152, 
+"widths": "e\\üüìTvvìTeTTTåìåìå×ÛèÇ¾îírí¶ğíäÏäã¨ÓéåĹåå¹TTå¨¨]¨T] Tü¨¨ }xv¨ Û  R\\åĀåĀ·°¨ì°rìĀĀ¨´ì¨ååååååĒÛÇÇÇÇrrrrĀíäääääĀìééééĀĀÛTTTTĀ¨ì¨¨¨¨ĀĀ įTTìÛ?iȀȀ", 
+"height": 368
+}, 
+"SimSun-ExtB": {
+"default": 128, 
+"height": 256
+}, 
+"LM Roman Slanted 9 Regular": {
+"default": 132, 
+"widths": "XIcÛÛÍIffÍIXIIIÍÍÍ|ÍÅº¾É³¬ÏÅ_Í¤ñÅÍ³ÍÂ¾ÅÅĎÅÅ¡IIÅuuPIPIÛghf¾uIIuÅĀÅĀ¯Í¯cÍĀĀ¡Ín|ÅÅÅÅÅÅî¾³³³³____ĀÅÍÍÍÍÍĀÍÅÅÅÅĀĀ¾uuuuuIIIIĀÍĀĀćIIÍ°?iȀȀ", 
+"height": 364
+}, 
+"Adobe Devanagari": {
+"default": 176, 
+"widths": "4aMrr¸©)TT7V7Ptttttttttt77r³¤­~©µPN Ô±°°p°¨çTPTw_iyf~fFp@<w<Ãz}zXXH~o¥qodU?UArrsq?t¦kSRRRzw6Pl[¤¤¤¤¤¤ÐPPPP®±°°°°°±°°°°iiiiii¢effff@@@@yzzzzzz~~~~o{oĀFD`ç?iS", 
+"height": 347
+}, 
+"LM Mono 10 Regular": {
+"default": 134, 
+"height": 341
+}, 
+"TeX Gyre Pagella Italic": {
+"default": 128, 
+"widths": "@UäÇUUUd@U@L@@¿¹«Ç¹ÇUU«òÇÇÇ«Ç¹ò¹««UUUrwhdGGGrGÇrwddU¹rUUUĀĀ¿¿fĀĀ@U¹¹¹¹¹¹ñ«UUUUĀÇÇÇÇÇÇĀÇÇÇÇÇĀĀrrrrrr£hddddGGGGĀrrrrrrĀĀĀGGĀ?iȀȀ", 
+"height": 351
+}, 
+"Vrinda": {
+"default": 128, 
+"widths": "{Â¶¶5°°°WWhWW¶¶°ä¦¦³¦@sÀ¦³³¦¦ÙuuTs@44s4ÀMs@s¦sss¶EA©©dSS{d[æ¦@@@@¦¦³³³³³³¦¦¦¦Ìs4444ssÜRRIÜ?iS", 
+"height": 349
+}, 
+"Brush Script MT Italic": {
+"default": 256, 
+"widths": "HXMx°~8UUS«UUHpEpmmkpsuUU«««Să£¥¥p`¨Õ ¥¨¥ m³KH^xUhSKkKEc^;H^;^Ph`KP@cS~K`Mkk«X[­Ā Ā¾h«¾e«ĀĀ¥U@hS££££££óppppĀĀ    ĀĀhhhhhhhKKKKK;;;;Ā^PPPPP«PccccĀĀ`ĀUU[Ā?iȀȀ", 
+"height": 314
+}, 
+"Times New Roman": {
+"default": 128, 
+"widths": "@UiÕÇ.UU@U@GGGrì¹««¹¹¹Ud¹ä¹¹¹«¹¹ò¹¹UGUxUrrrUGGGÇUdG¹r{3{U3ÃÃfMMtUOr¹¹¹¹¹¹ä«UUUU¹¹¹¹¹¹¹¹¹¹¹¹¹rrrrrr«rrrrrGGGGĀUUZĀ8k", 
+"correction": 1.04, 
+"height": 283
+}, 
+"@MS PMincho": {
+"default": 128, 
+"widths": "NNvNNNNNNNºª³±¶¹Jc«ÍªÄÄ ±ªß¨ UUNNNtwyAy>>~>´^jZzxzt>8>Dm~\u001eĀ«««ĀĀGG|Ā9bt««««««««KKKW¤««««««Ā««««««|rrrrrr«mpppp>>LUnwwwwwĀwzĀĀĀĀĀĀĀ", 
+"height": 256
+}, 
+"DejaVu Serif": {
+"default": 163, 
+"widths": "Qgv×£óäFdd×QWQV££££££££££VV×××Ā¹¼ÄÍ»²Íßeg¿ªĆàÒ¬ÒÁ¯«Ø¹ć¶©²dVd×¤¤_¤¥RORó¥¤¤zg¥Û£V£×g££££VĀ×Ā×gg¦£Qx¹¹¹¹¹¹ĀÄ»»»»eeeeÏàÒÒÒÒÒ×ÒØØØØ©­«ñRRRR¥×¥¥¥¥¤ĀQQĀ:`:`", 
+"height": 299
+}, 
+"Times New Roman Greek": {
+"default": 142, 
+"widths": "GG[ä«1UUdGUGGGGĄ««¹¹«Ç¹G«Õ¹Ç«Ç¹«¹«ò««GGGxUG999ÕUG¹VCVUC½½fUUU^««««««Ā¹««««GGGG¹¹ÇÇÇÇÇÇ¹¹¹¹««äGGGGĀ99ZĀ0[", 
+"height": 286
+}, 
+"TeX Gyre Cursor Bold Italic": {
+"default": 154, 
+"height": 349
+}, 
+"Tunga": {
+"default": 111, 
+"widths": "PIPo-DDllElEGvtozdvzEEulus¼z8do¦z½zOOTgCoodoo8oo..d.¦ooooCd8oddddj(j8oooo4oouPuCCok8IooÈ8888lzoooooo²doooo....ooooooolooooodod¾,,F£?iS", 
+"height": 425
+}, 
+"Arabic Typesetting": {
+"default": 85, 
+"widths": "41HUU)>>BU+6+DUUUUUUUUUU++UUUDxjf]=:|berXnx¬ymr>D>UXNZI\\L4U`/,[.aY]Z@A6^QzTSL>0>U1UUUU8cRUBUBBZn+KRBxxxxxx§ffff====UmebNNNNNNsILLLL////XaYYYYYUY^^^^SZS¸++\\?iS", 
+"height": 291
+}, 
+"Adobe Garamond Pro": {
+"default": 128, 
+"widths": "@8gØÑ<RRe@R@T@@RÄ²È¿ÎWX­éÈÌÌ¥}©¿­ö¥¤ROR\\gfeJrBA{?É|USOo©opaR=R8=ÊaRM\\\\@caRÚ²WWWWÉÈÌÌÌÌÌÌ¿¿¿¿gggggggeeeeBBBB|||||||ppĀ<<cĀ?iS", 
+"height": 325
+}, 
+"Microsoft Tai Le": {
+"default": 138, 
+"widths": "FIdÒÍ;MMk¯8f8d88¯¯¯sõ¥´}°¶D[yæÀÁÁ°ïMaM¯jEvP>>>ÝYmW{¹v|tM=M¯I=sä¯äa¯^^u8ns¥¥¥¥¥¥ÜDDDD´ÀÁÁÁÁÁ¯Á°°°°Õv>>>>¯||ĀĀĀhĀ?iS", 
+"height": 325
+}, 
+"LM Roman Unslanted 10 Regular": {
+"default": 142, 
+"widths": "dUrääÕUrrÕUdUUUÖÕÖÕÎÄÇÒ¼µ×ÎkÕ®ùÎÕ¼ÕËÇÎÎĕÎÎ«UUÎUUUGäur\\¹rMU²ĀÎĀ±Õ±kÕĀĀ¨ÕwÎÎÎÎÎÎõÇ¼¼¼¼kkkkĀÎÕÕÕÕÕĀÕÎÎÎÎĀĀÇUUUUĀÕĀĀĜUUÕ¾?iȀȀ", 
+"height": 363
+}, 
+"Raavi": {
+"default": 128, 
+"widths": "PPtÈÈ»:kk FiF ¤k©©FF» »þ§§´§@sÀ§´´§§Út tUs@55s5ÀMs@s§sssb»@AªªdSS|I[ç§@@@@§§´´´´´ ´§§§§Ís5555 ssãPPdã?iS", 
+"height": 425
+}, 
+"DFKai-SB": {
+"default": 128, 
+"height": 256
+}, 
+"Copperplate": {
+"default": 156, 
+"widths": "NUUä¹9ddNUNGNNr«¹¹¹«¹ÇU«ÕÇÇ«Ç¹«¹«ò«dGdU«Ur¹««Çd9dUĀĀfĀĀ«N^r««««««Ā¹««««UUUUĀÇÇÇÇÇÇĀÇ¹¹¹¹ĀĀĝäUUUUĀ«««««ĀĀĀGGĀ?iȀȀ", 
+"height": 258
+}, 
+"LM Sans 10 Regular": {
+"default": 128, 
+"widths": "URoÕÕÂGddÇGUGGGÇÇÇy«««¤¹«µGy²àµ¼¤¼¥®°«ò««JJ«{rrN=D}=ËXb\\v¯vvoGRr«Ā«Ā²Ç²`ÇĀĀÇky««««««Ü¤GGGGĀµ¼¼¼¼¼ĀÇ°°°°ĀĀ{{{{{{{¹rrrrr====ĀÇĀĀvĀGGÇ ?iȀȀ", 
+"height": 374
+}, 
+"Mongolian Baiti": {
+"default": 128, 
+"widths": "@UiÕÇ.UU@U@GGGrì¹««¹¹¹Ud¹ä¹¹¹«¹¹ò¹¹UGUxUrrrUGGGÇUdG¹r{3{U3ÃÃfMMtZOr¹¹¹¹¹¹ä«UUUU¹¹¹¹¹¹¹¹¹¹¹¹¹rrrrrr«rrrrrGGGGĀUUZĀ?iS", 
+"height": 272
+}, 
+"KacstNaskh": {
+"default": 163, 
+"widths": "?gv×£óÈFdd×Q\\QV££££££££££VV×××Ā¯°³Å¢ÆÁLL¨ÝÀÊÊ²£»¯ý¯¯dVd×££Z£¢GGGù¢££id¢Ñ£V£×g££££VĀ×Ā×gg££Qy¯¯¯¯¯¯ù³¢¢¢¢LLLLÆÀÊÊÊÊÊ×Ê»»»»¡ûGGGG¢×¢¢¢¢£ĀQQĀ:`:`", 
+"height": 275
+}, 
+"Charlemagne Std": {
+"default": 242, 
+"widths": "@\\IÄÐ&ZZiRsR}­w£¢¡RRä¶¯Ïñ££èøqkÍďèò¤ò¿¿Û¿Ď¶§¸Z}Zë¶¯Ïñ££èøqkÍďèò¤ò¿¿Û¿Ď¶§¸ZHZ\\zH}×b_ilR}¶¶¶¶¶¶åÏ££££qqqqñèòòòòòòÛÛÛÛ§¦ě¶¶¶¶¶¶åÏ££££qqqqñèòòòòòòÛÛÛÛ§¦§Ā;;dĀ@jT", 
+"height": 304
+}, 
+"Brush Script Std": {
+"default": 145, 
+"widths": "WdU¥9SS¤MRMvMM¦¦xËÇ¶·Î´²²ç~×³ĥÖ¤¾¯Î¶­à³ú°¾¥aVa¥Z}f\\[OqqG\\|M¶ve}tY\\Kzm£Yq^ZhZd²Ïhßbß{¨`hz¨MVbxÇÇÇÇÇÇň·´´´´~~~~ÎÖ¤¤¤¤¤¤¤àààà¾}}}}}}¡\\[[[[GGGGveeeee¤ezzzzq}qĀMMfĀ?iS", 
+"height": 297
+}, 
+"Helvetica": {
+"default": 142, 
+"widths": "GG[ä«1UUdGUGGGGĄ««¹¹«Ç¹G«Õ¹Ç«Ç¹«¹«ò««GGGxUG999ÕUG¹VCVUĀĀ½½fĀĀG^««««««Ā¹««««GGGGĀ¹ÇÇÇÇÇĀÇ¹¹¹¹ĀĀäGGGGĀĀĀĀ99ZĀ?iȀȀ", 
+"height": 256
+}, 
+"Arial Narrow": {
+"default": 117, 
+"widths": "::Kuu»(FFR{:F::uuuuuuuuuu::{{{uÕ£:iu¯££Æ:::cuFuuiuu:uu//i/¯uuuuFi:uiiiiF7F{Fuuuu7uu{fFFqFMuÒ::::£££££{£uuuuuu»iuuuu::::uuuuuuuuuuuiuiÒ//JÒ(KS", 
+"height": 290
+}, 
+"GulimChe": {
+"default": 128, 
+"height": 256
+}, 
+"LM Sans Quot 8 Regular": {
+"default": 160, 
+"widths": "k[ċ ċðY|| ùYkY           YYÓùÓÕÎÒÍäÇ¾ÕÐR×µąÐ÷É÷Ñ²åÏÎħÎÎÄZZÎ   b  GPGù    k{s ÕL[ÎĀÎĀ­¯ ù¯xùĀĀ ¦ù ÎÎÎÎÎÎĐÍÇÇÇÇRRRRĀÐ÷÷÷÷÷ĀùÏÏÏÏĀĀçGGGGĀ      ù     ĀĀŀYYùÅ?iȀȀ", 
+"height": 357
+}, 
+"LM Roman Slanted 8 Regular": {
+"default": 136, 
+"widths": "[LgããÓLjjÓL[LLLÓÓÓÓÌÁÄÐ¹±ÖÌbÓªùÌÓ¹ÓÈÄÌÌėÌÌ¦LLÌyySLSLãjkjÄyLLyÌĀÌĀ¯Ó¯fÓĀĀ¦ÓrÌÌÌÌÌÌöÄ¹¹¹¹bbbbĀÌÓÓÓÓÓĀÓÌÌÌÌĀĀÄyyyyyLLLLĀÓĀĀĐLLÓ¶?iȀȀ", 
+"height": 363
+}, 
+"LM Roman Slanted 10 Regular": {
+"default": 128, 
+"widths": "UG`ÕÕÇGddÇGUGGGÇÇÇyÇÀµ¹Ä®§ÉÀ\\Ç ëÀÇ®Ç¼¹ÀÀćÀÀGGÀrrNGNGÕded¹rGGrÀĀÀĀ|¯Ç¯`ÇĀĀÇkyÀÀÀÀÀÀç¹®®®®\\\\\\\\ĀÀÇÇÇÇÇĀÇÀÀÀÀĀĀ¹rrrrrGGGGĀÇĀĀĀGGÇ¬?iȀȀ", 
+"height": 363
+}, 
+"Chalkboard Bold": {
+"default": 143, 
+"widths": "jMØ ÛÁ=\\\\MWjThx|~Ü«©°¥wÚ®ÀÈ¥®«ă­®[X®WtFiSÂvt{}¾cLe¯h«ĀĀñªëqĀĀµ¤aª««««««ëwwzwĀ¯ÀÀÀÀÀĀÅ®®®®ĀĀ«ØIKVYĀĀĀ®QN~Ì?iȀȀ", 
+"height": 323
+}, 
+"Arial Narrow Italic": {
+"default": 117, 
+"widths": "::Kuu»(FFR{:F::uuuuuuuuuu::{{{uÕ£:iu¯££Æ:::cuFuuiuu:uu//i/¯uuuuFi:uiiiiF7F{FuuĀuĀuu{fĀĀq:MuÒ::::Ā£££££Ā£ĀĀuuuuuu»iuuuu::::ĀuuuuuuuuuuĀĀiÒ//JÒ?iȀȀ", 
+"height": 294
+}, 
+"Meiryo UI": {
+"default": 159, 
+"widths": "WasÎĈºBqqÎYqYsnnÎÎÎą®¬¬Àº¾gr©Õ¾ÃÃ¯££»¯Ā«¢§qqÎVATAöjaÕqÎaqĀ©ÎĀÎww Y©®®®®®®þ¬ggggÁ¾ÃÃÃÃÃÎÃ»»»»¢ðAAAAÎĀBBĀBs*R", 
+"height": 325
+}, 
+"LM Roman 7 Bold": {
+"default": 166, 
+"widths": "ofē¦ēā]¦ā]o]¦¦¦¦¦¦¦¦¦¦¦]]åāåāøêîüØÏăā{ªāÆķāøáøö¸æüøœøøÊ]]ø¦¡¸¸f¦¸]f¯]ē¸¦¸¯¸¯î¯¯RføĀøĀÈ°¸ā°|āĀĀ¸´ā¸øøøøøøĪîØØØØ{{{{ĀāøøøøøĀāüüüüĀĀ«¡¡¡¡¡¡î]]]]Ā¸¦¦¦¦¦ā¦¸¸¸¸ĀĀ¯ŋ]]āì?iȀȀ", 
+"height": 371
+}, 
+"GungsuhChe": {
+"default": 128, 
+"height": 256
+}, 
+"Mukti Narrow": {
+"default": 142, 
+"widths": "GG[ä«1UUdNUGGĄ««¹¹«Ç¹G«Õ¹Ç«Ç¹«¹«ò««GGGxUG999ÕUG¹VCVg££££VĀ×Ā×gg££Qy¯¯¯¯¯¯ù³¢¢¢¢LLLLÆÀÊÊÊÊÊ®Ê»»»»¡ûGGGG¢¢¢¢¢¢£ĀQQĀ:`:`", 
+"height": 431
+}, 
+"Batang": {
+"default": 128, 
+"widths": "UPk ÛÕ@aaÕK K`UU   Ā½µµ¼¬¥¾ÄTm¿¤åÇ½¨½¬ ÀÇÀò°° Ā^JKKÙq\\ÏÀk«@ÉÉÉpÐ\\\\ UxÀÀÀÀÀÀĀ­««««````µÀµµµµµÐµÀÀÀÀ«« ØKKKKÐĀKK`ĀDdS", 
+"height": 256
+}, 
+"KacstPen": {
+"default": 163, 
+"widths": "?gv×£óÈFdd×Q\\QV££££££££££VV×××Ā¯°³Å¢ÆÁLL¨ÝÀÊÊ²£»¯ý¯¯dVd×££Z£¢GGGù¢££id¢Ñ£V£×g££££VĀ×Ā×gg££Qy¯¯¯¯¯¯ù³¢¢¢¢LLLLÆÀÊÊÊÊÊ×Ê»»»»¡ûGGGG¢×¢¢¢¢£ĀQQĀ:`:`", 
+"height": 275
+}, 
+"Mangal": {
+"default": 148, 
+"widths": "J^ì±3XXJXJJJJč±±ÀÀ±¢ÎÀJ±ÝÀÎ±ÎÀ±¢À±ú±±¢JJJ|aJ<<<ÝXJÀYEYJ KÃ µÃs¨``Ti ±±±±±±ĉÀ±±±±JJJJÀÀÎÎÎÎÎÎÀÀÀÀ±±¢ì<<<<;;s?iS", 
+"height": 430
+}, 
+"Cambria Math": {
+"default": 125, 
+"widths": "8Ieä°=jjm¿5U5~DDÀ¿Àlã ©°SO¡Ñ®§§¦ìZ~Z_I}q}NGDFÕjnWÆ|tcQc¶IqQÚ}¿Ú`¿hhHn}l      ÞSSSSª®§§§§§·§¦¦¦¦}}}}}}Áq}}}}GGGG¿Ā99rÁBnS", 
+"height": 1429
+}, 
+"LM Sans 12 Regular": {
+"default": 125, 
+"widths": "SPmÑ}Ñ¾Fbb}ÃFSF}}}}}}}}}}}FFÃÃÃv§¦¦ ´§°Dv­Ú°¹¹¡««¦ë¦¦HH¦}xooM};Bz;Æ}U`[sªssmGPo¦Ā¦Ā²}Ã²^ÃĀĀÃi}v¦¦¦¦¦¦× DDDDĀ°¹¹¹¹¹ĀÃ««««ĀĀxxxxxxxµooooo;;;;Ā}}}}}Ã}ĀĀsûFFÃ?iȀȀ", 
+"height": 374
+}, 
+"Candara": {
+"default": 129, 
+"widths": "8Atr¯AZZAAADZv|~yAAZĂ¥}§Gj}Û­²²¯ãZDZF~tW88};Ò[k\\{ÄwuZAZAr}rAk¤t¤DDD«AMtZÑGGGG¥­²²²²²²¯¯¯¯~~~~~~Êt8888wwĀAA©Ā?iS", 
+"height": 313
+}, 
+"Tekton Pro": {
+"default": 142, 
+"widths": "/<X¤¨.UUb8X9W¨¨¨¨¨¨¨¨¨¨88wÎ  ® <tÉ¨¢~ÌVWVY}{wxX|z7;q7½y~axyl¡pyu]D]<¨¨¨DÐ|ÐMajy9h|w      Ñ<<<<¡¤}}}}}}Éwxxxx7777y~~~~~yyyyyyĀ..UĀ@jT", 
+"height": 311
+}, 
+"Menlo Regular": {
+"default": 154, 
+"height": 298
+}, 
+"Monaco": {
+"default": 154, 
+"height": 320
+}, 
+"Kozuka Gothic Pr6N M": {
+"default": 144, 
+"widths": "9Ddâ­7RRx­?X?_??­­­rÏ©µ°´Fgßµºº²ìR]R­WzUDGDç^o^ÍxRFR­DFĀÅy­yĀĀYWĀ?fyr©©©©©©ÛFFFF·µºººººĀº²²²²ÖzDDDDĀģ>>TĀĀĀS", 
+"height": 459
+}, 
+"Kozuka Gothic Pr6N L": {
+"default": 140, 
+"widths": "==YÖ¢4MMr¬4V3c34¬¬¬nÍ§¡·±³=cÞµ¾¾²êMcM¬V~L=>{=èUkYÍ{~sM>M¬=>ĀÃq¬rĀĀRQĀ4aqn§§§§§§Ô¡====¸µ¾¾¾¾¾Ā¾²²²²Ö~====Ā~~Ġ44IĀĀĀS", 
+"height": 446
+}, 
+"NanumMyeongjo": {
+"default": 243, 
+"widths": "M_RáÜ-^^¤¤F¤Foii¤ÛººÊÊÙRaºąØØØº«º»ąÊºº^Ā^8wrTEEEØccTÌr^^¸ó££ó£Vóóó×óóóóó¦óJóóó¹¹¹¹¹góq»»»»eeeeóóÒÒÒÒÒóóØØØØ©óóóRRRRó¥óó¥¥¥¥óóóJJóóóóóó", 
+"height": 295
+}, 
+"Kozuka Gothic Pr6N H": {
+"default": 149, 
+"widths": "6Lné·8VV~¯KVKZKK¯¯¯vÑ©¥´¯¶Ql¤à·¶¶¢³¦ìVTV¯Xw`LOLègsgÏ}VMV¯LMĀÇ¯}ĀĀ_]ĀKiv©©©©©©áQQQQ¶·¶¶¶¶¶Ā¶³³³³¥ÙwLLLLĀĥEE_ĀĀĀT", 
+"height": 475
+}, 
+"Kozuka Mincho Pr6N H": {
+"default": 164, 
+"widths": "CKf¤¤ÆÊ8SSk:F:_¤¤¤¤¤¤¤¤¤¤::}º¨©¡¹¬Êcs·ô¸½©½°¢´«þ²¦Q_Qe^¡RRRé¡xwbÌzTSTK¤¤¤¤SĀ²x²ĀĀmmĀ:|x}¨¨¨¨¨¨à¡cccc¹¸½½½½½Ā½´´´´¦©¨ÖRRRR¡ĀĀ88rĀĀĀT", 
+"height": 441
+}, 
+"Courier New": {
+"default": 154, 
+"height": 290
+}, 
+"LM Mono 12 Regular": {
+"default": 132, 
+"height": 341
+}, 
+"TeX Gyre Heros": {
+"default": 142, 
+"widths": "GG[ä«1UUdGUGGGGĄ««¹¹«Ç¹G«Õ¹Ç«Ç¹«¹«ò««GGGxUG999ÕUG¹VCVGĀĀ½½fĀĀG]««««««Ā¹««««GGGGĀ¹ÇÇÇÇÇĀÇ¹¹¹¹ĀĀäGGGGĀĀĀĀ99ZĀ?iȀȀ", 
+"height": 367
+}, 
+"Fixedsys": {
+"default": 142, 
+"widths": "GG[ä«1UUdGUGGGGĄ««¹¹«Ç¹G«Õ¹Ç«Ç¹«¹«ò««GGGxUG999ÕUG¹VCVUC½½fUUU^««««««Ā¹««««GGGG¹¹ÇÇÇÇÇÇ¹¹¹¹««äGGGGĀ99ZĀ0[", 
+"height": 286
+}, 
+"Rosewood Std Regular": {
+"default": 132, 
+"widths": "1Ma¾¯:RPeBH@fe??ÅY£¬ª©ÂXLXDY£¬ª©Â[A[OAµ\\YTYAabxÆYYYYĔÆYYYYÚC:FÔ@jT", 
+"height": 300
+}, 
+"Adobe Naskh Medium": {
+"default": 94, 
+"widths": "4;>Y^#MMGi+8+X^^^^^^^^^^77iiiH¡wsniAA~k£mx^{y©wmrJUJYfMQaPbS6Wb11[0caaaCF;aT|PUMS8Si7^^^^8[~i<9iBA[p-G}Cwwwwww£nnnnAAAAimmcQQQQQQzPSSSS1111`caaaaaiaaaaaU`UÀ++MÀ?iS", 
+"height": 411
+}, 
+"Vemana2000": {
+"default": 157, 
+"widths": ")5S£«+qq¤7<n}B~¡|76¬{¬´¯°³Å¢ÆÁLL¨ÝÀÊÊ²£»¯ý¯¯TyT»ÙC££Z£¢GGGù¢££id¢Ñb(b¼g££££VĀ×Ā×gg££Qy¯¯¯¯¯¯ù³¢¢¢¢LLLLÆÀÊÊÊÊÊ×Ê»»»»¡ûGGGG¢Í¢¢¢¢£ĀQQĀ:`:`", 
+"height": 442
+}, 
+"@PMingLiU": {
+"default": 120, 
+"widths": "CPbxxÈ»+PPx<P<CxxxxxxxxxxCCkÞ®¡¡®®®P^®Ö®®®¡®®ã®®PCPqxPkxkxkPxxCCxC»xxxxP^Cxx®xxkt0t*~,gÂÂ>VK5Pc¶¶¶¶¶¶ó¢WW]h¾·­­­­­­¶¶¶¶³qqqqqq²ooooKK]]yyyyyu~~ĀĀĀĀĀĀĀĀ", 
+"height": 256
+}, 
+"Adobe Song Std L": {
+"default": 256, 
+"widths": "5EXxvÌ¶=``l=`=Vvvvvvvvvvv==X¿¯²½»ËQPªåÂÆÆ¡wÁ¶ù¦`U`=kmjDr>;:ËWVGs§wth_B_Q¢¢Āv_Ā¯Ì¢ĀĀll ¢Āll±±±±±±è±JJJJÀ½ÇÇÇÇÇĀÇ±±±± ĀĀÚĀĀĀĀĀJJĀĀĀĀĀĀ¡ĀĀĀĀĀĀĀĀ", 
+"height": 297
+}, 
+"LM Mono Prop Light 10 Regular": {
+"default": 134, 
+"widths": "ZKoààÑKhhÑKZKKKÑ³Â»ÂÊ³¬ÑÂZÊ¤ïÂÑ³ÑÂÂÂÂčÂÂ¤LLÂxxRKRKàhjhÂxKxÂĀÂĀÑeÑĀĀÑqÂÂÂÂÂÂïÂ³³³³ZZZZĀÂÑÑÑÑÑĀÑÂÂÂÂĀĀÂxxxxxKKKKĀÑĀĀčKKÑ®?iȀȀ", 
+"height": 331
+}, 
+"Microsoft New Tai Lue": {
+"default": 138, 
+"widths": "FIdÒÍ;MMk¯8f8d88¯¯¯sõ¥´}°¶D[yæÀÁÁ°ïMaM¯jEvP>>>ÝYmW{¹v|tM=M¯I=sä¯äa¯^^u8ns¥¥¥¥¥¥ÜDDDD´ÀÁÁÁÁÁ¯Á°°°°Õv>>>>¯||Ā;;h¼?iS", 
+"height": 335
+}, 
+"LM Sans 9 Oblique": {
+"default": 132, 
+"widths": "XStÛÛÇIffÍIXIIIÍÍÍ|¯°°¨¾¯ºI|·æºÂ¨Âª´µ°ù°°¡MM°~uuP?F?ÑZe_y´yyrISu°Ā°Ā²Í²cÍĀĀ¡Ín|°°°°°°ã¨IIIIĀºÂÂÂÂÂĀÍµµµµĀĀ~~~~~~~¾uuuuu????ĀÍĀĀyćIIÍ¤?iȀȀ", 
+"height": 376
+}, 
+"Times New Roman CYR": {
+"default": 142, 
+"widths": "GG[ä«1UUdGUGGGGĄ««¹¹«Ç¹G«Õ¹Ç«Ç¹«¹«ò««GGGxUG999ÕUG¹VCVUC½½fUUU^««««««Ā¹««««GGGG¹¹ÇÇÇÇÇÇ¹¹¹¹««äGGGGĀ99ZĀ0[", 
+"height": 286
+}, 
+"LM Mono Prop Light 10 Bold": {
+"default": 134, 
+"widths": "ZKoààÑKhhÑKZKKKÑ³Â»ÂÊ³¬ÑÂZÊ¤ïÂÑ³ÑÂÂÂÂčÂÂ¤LLÂxxRKRKàhjhÂxKxÂĀÂĀÑeÑĀĀÑqÂÂÂÂÂÂïÂ³³³³ZZZZĀÂÑÑÑÑÑĀÑÂÂÂÂĀĀÂxxxxxKKKKĀÑĀĀčKKÑ®?iȀȀ", 
+"height": 340
+}, 
+"Segoe UI": {
+"default": 138, 
+"widths": "FIdÒÍ;MMk¯8f8d88¯¯¯sõ¥´}°¶D[yæÀÁÁ°ïMaM¯jEvP>>>ÝYmW{¹v|tM=M¯I=sä¯äa¯^^u8ns¥¥¥¥¥¥ÜDDDD´ÀÁÁÁÁÁ¯Á°°°°Õv>>>>¯||Ā;;h¼;aS", 
+"height": 340
+}, 
+"Arial Italic": {
+"default": 142, 
+"widths": "GG[ä«1UUdGUGGGGĄ««¹¹«Ç¹G«Õ¹Ç«Ç¹«¹«ò««GGGxUG999ÕUG¹VCVUĀĀ½½fĀĀÀ^««««««Ā¹««««GGGGĀ¹ÇÇÇÇÇĀÇ¹¹¹¹ĀĀäGGGGĀĀĀĀ99ZĀ?iȀȀ", 
+"height": 286
+}, 
+"Arabic Transparent": {
+"default": 142, 
+"widths": "GG[ä«1UUdGUGGGGĄ««¹¹«Ç¹G«Õ¹Ç«Ç¹«¹«ò««GGGxUG999ÕUG¹VCVUC½½fUUU^««««««Ā¹««««GGGG¹¹ÇÇÇÇÇÇ¹¹¹¹««äGGGGĀ99ZĀ0[S", 
+"height": 286
+}, 
+"LM Roman Caps 10 Regular": {
+"default": 208, 
+"widths": "aRjççØRppØRaRRRØØØØÐÅÉÔ¾·ÚÐhØ¯ýÐØ¾ØÍÉÐÐěÐÐ«RRÐ ¤Mm£¿££uÖGRÐĀÐĀ¯Ø¯jØĀĀØÐÐÐÐÐÐúÉ¾¾¾¾hhhhĀÐØØØØØĀØÐÐÐÐĀĀê¼MMMMĀ£££££Ø£ĀĀěRRØ¸?iȀȀ", 
+"height": 356
+}, 
+"LM Sans 17 Regular": {
+"default": 120, 
+"widths": "PMjÉxÉ¶C^^x»CPCxxxxxxxxxxxCCÃ»Ãr¡  ®¡ªBq§Òª±±¤¥ ã  FF xs|k|kIx|9@u9¿|x||R\\W|o¤oohGMk Ā Ā²x»²Z»ĀĀ|»exr      ÏBBBBĀª±±±±±Ā»¥¥¥¥ĀĀsssssss®kkkkk9999Ā|xxxxx»x||||ĀĀoñCC»?iȀȀ", 
+"height": 375
+}, 
+"LM Roman 7 Regular": {
+"default": 146, 
+"widths": "cSpððáSrráScSSSåáåáØÍÑÜÅ½âØjàµćØáÅáÔ¢ÑØØħØØ±SSØ¢¢[¢S[Sð¢¢rtr¢ÑWSØĀØĀ¯¢á¯máĀĀ¢µáz¢ØØØØØØĄÑÅÅÅÅjjjjĀØáááááĀáØØØØĀĀÑSSSSĀ¢á¢¢¢¢ĀĀĤSSáÂ?iȀȀ", 
+"height": 363
+}, 
+"RicpyHum Bold": {
+"default": 159, 
+"widths": "LjUÅèº,ZZÕLWLGLLÕÕÕĀ®¥¸½³Ke¢ò¼ÀÀµª÷¨\\G\\Ā£~£d¡GGGð££eugÝ|ÕjĀĀÕÕÕTÕĀĀLx®®®®®®ð¥KKKKĀ¼ÀÀÀÀÀĀÀµµµµĀĀâ~GGGGĀÕĀĀĀLLĀ?iȀȀ", 
+"height": 311
+}, 
+"Cambria": {
+"default": 142, 
+"widths": "8Ieä°=bbm5U5~DDlã ©°SO¡Ñ®§§¦ìZ~Z_I}q}NGDFÕjnWÆ|tcQc¶IqQÚ}Ú`hhHn}l      ÞSSSSª®§§§§§§¦¦¦¦}}}}}}Áq}}}}GGGGĀ99rÁBnS", 
+"height": 300
+}, 
+"Gautami": {
+"default": 132, 
+"widths": "PPÈÈ»7kk FiF kFF» »þ««¸«BvÅ«¸¸««ßx xWvB66v6ÅOvBv«vvvb»BC®¡®fUUK]ì«BBBB««¸¸¸¸¸ ¸««««Òv6666 vvã++fã?iS", 
+"height": 445
+}, 
+"Adobe Myungjo Std M": {
+"default": 256, 
+"widths": "UjjÕ êÕ@ÕJÕJ`          UUÕÕêĀÊµµÀµªÀÊ`ÊªêÊÀªÀµªÊÊÀĀµµª`U`JUJàu`Õ  ÀĀ¢¢Ā¢_ĀĀĀÌ¢ĀĀĀĀ ĀĀĀĀĀ±±±±±±Ā±JJJJĀ½ÇÇÇÇÇĀĀ±±±± ĀĀĀJJJJĀĀĀĀĀĀĀĀĀĀĀĀĀ", 
+"height": 264
+}, 
+"Tlwg Typist": {
+"default": 154, 
+"widths": ":`:`", 
+"height": 318
+}, 
+"LM Roman Dunhill 10 Regular": {
+"default": 128, 
+"widths": "UGÕÕÇGddÇGUGGGÇÇÇyÇÀµ¹Ä®§ÉÀ\\Ç ëÀÇ®Ç¼¹ÀÀćÀÀGGÀrrNGNGÕded¹rGGr¤ĀÀĀ|Ĝ«ĜUÇĀĀGryÀÀÀÀÀÀç¹®®®®\\\\\\\\ĀÀÇÇÇÇÇĀÇÀÀÀÀĀĀ¹rrrrrGGGGĀÇĀĀĀGGī?iȀȀ", 
+"height": 529
+}, 
+"Arial TUR": {
+"default": 142, 
+"widths": "GG[ä«1UUdGUGGGGĄ««¹¹«Ç¹G«Õ¹Ç«Ç¹«¹«ò««GGGxUG999ÕUG¹VCVUC½½fUUU^««««««Ā¹««««GGGG¹¹ÇÇÇÇÇÇ¹¹¹¹««äGGGGĀ99ZĀ0[", 
+"height": 286
+}, 
+"TextMateJ Regular": {
+"default": 154, 
+"height": 298
+}, 
+"Lucida Grande": {
+"default": 162, 
+"widths": "QQ`¢¢«³;SS{ÌQQ¢¢¢¢¢¢¢¢¢¢QQÌÌÌlÜ±±À¹¼JP§Ý½ÇÇ¢¢±§Û  SS¢¡¡^ JNJï¡¡i`ÅS`S¢Q¢¢Ā¢Ā¢ÛÌÛoÌĀĀ ¢¢xl±±±±±±è±JJJJĀ½ÇÇÇÇÇĀÇ±±±±ĀĀÚJJJJĀÌĀĀĀQQĀ?iȀȀ", 
+"height": 302
+}, 
+"@MingLiU": {
+"default": 128, 
+"height": 256
+}, 
+"Microsoft Himalaya": {
+"default": 86, 
+"widths": "+9FVV\u001f99Va+9+0VVVVVVVVVV00aaaL|rr|i_||9C|i||_|r_i||¢||i909QV9LVLVL9VV00V0VVVV9C0VV|VVLR\"R]9VVVV\"VVaE^33cN95VL||||||riiii9999|||||||a||||||_VLLLLLLrLLLLL0000VVVVVVV^VVVVVVVV¬99<¬?iS", 
+"height": 257
+}, 
+"Minion Pro Med": {
+"default": 124, 
+"widths": ":GT||Â¶-YYg<Z<T||||||||||<<bÁ²«½¸ÅYV®ä¾À¿¡{¼´ù©£YUYfrlmNyFCBÓa_Pw¯yvmYDYG||||Dz³rRWXX;Wrb²²²²²²ßªYYYY¾¾ÀÀÀÀÀÁ¼¼¼¼£rrrrrr¬lmmmmFFFFvvì::dù?iS", 
+"height": 347
+}, 
+"Heiti TC Medium": {
+"default": 256, 
+"widths": "@LO¸ÆÂ3^^mGUGpGGÞ½Ð¾|ß¯:{vë½Þßm¨´ö{ZZ¬a¯¯¦¯¦P¬343ð¨¯¯McWÕ{mZ¬ZĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀȀȀȀȀȀȀȀȀȀ", 
+"height": 256
+}, 
+"HanaMinA Regular": {
+"default": 256, 
+"height": 259
+}, 
+"LM Roman Demi 10 Regular": {
+"default": 128, 
+"widths": "UNqÕÕÇGddÇGUGGGåÇåyÇÂ¶¹Ä¨¡ÉÈfÈóÈÀ¯ÀÃ²ÅÂĈÂÂHHÂ|rxNGNGÕned¹rRNrÂĀÂĀ°Ç°`ÇĀĀ´ÇkyÂÂÂÂÂÂè¹¨¨¨¨ffffĀÈÀÀÀÀÀĀÇÅÅÅÅĀĀ||||||¹rxxxxGGGGĀÇĀĀĀGGÇÅ?iȀȀ", 
+"height": 367
+}, 
+"RicAldi Bold": {
+"default": 140, 
+"widths": "F_]ÙÚÚ0^^ëF^FN__ëëë}ĖË»¼äººÓénqêËĉáØ¯ØÅÊÚÈĕÚË»_N_Ě~}}Z£WOTî£nn_Ç}ë_ĀÈĀçzëç]ëĀĀFlz}ËËËËËËĘ¼ººººnnnnĀáØØØØØĀØÚÚÚÚĀĀ~~~~~~º}}}}}WWWWĀ£ëĀĀĚFF¦Ě?iȀȀ", 
+"height": 307
+}, 
+"LM Sans 12 Oblique": {
+"default": 125, 
+"widths": "SPmÑ}Ñ¾Fbb}ÃFSF}}}}}}}}}}}FFÃÃÃv§¦¦ ´§°Dv­Ú°¹¹¡««¦ë¦¦HH¦}xooM};Bz;Æ}U`[sªssmGPo¦Ā¦Ā²}Ã²^ÃĀĀÃi}v¦¦¦¦¦¦× DDDDĀ°¹¹¹¹¹ĀÃ««««ĀĀxxxxxxxµooooo;;;;Ā}}}}}Ã}ĀĀsûFFÃ?iȀȀ", 
+"height": 374
+}, 
+"Ubuntu Mono": {
+"default": 128, 
+"height": 257
+}, 
+"Traditional Arabic": {
+"default": 133, 
+"widths": "?GG«u¸»-GGUvGvGG~~~~~~~~~~GC«v«[ë­£»Ã¾ËUM³ëÐÓÓÍ~­Ë°ĀÀµ­MuMxUempExC@>ËUMK{¾~xh{{GmÃ«µxÃh«ÃevMMsCXh[­­­­­­Ü»UUUUÃÐÓÓÓÓÓvÓËËËËµveeeeee¢mppppCCCCvxxĀCC[Ā0[", 
+"height": 383
+}, 
+"TeX Gyre Bonum Bold Italic": {
+"default": 174, 
+"widths": "WRa®®áû.CCvWHW\\®®®®®®®®®®WWÈ¸¸³Ã¸©ÃÍaÈ¤Ü½Ã¤Ã½³³½©Ā½©®CCa®®l³aR³aö®©q®ÜMMR®®Ā®ĀÈaÈfĀĀ®®Wqa¸¸¸¸¸¸Ĥ³¸¸¸¸aaaaĀ½ÃÃÃÃÃĀÃ½½½½ĀĀ©®®®®®®áaaaaĀ®®®®®ĀĀĀRR\\Ā?iȀȀ", 
+"height": 376
+}, 
+"@Kozuka Mincho Pr6N H": {
+"default": 164, 
+"widths": "CKf¤¤ÆÊ8SSk:F:_¤¤¤¤¤¤¤¤¤¤::}º¨©¡¹¬Êcs·ô¸½©½°¢´«þ²¦Q_Qe^¡RRRé¡xwbÌzTSTK¤¤¤¤SĀ²x²ĀĀmmĀ:|x}¨¨¨¨¨¨à¡cccc¹¸½½½½½Ā½´´´´¦©¨ÖRRRR¡ĀĀ88rĀĀĀT", 
+"height": 445
+}, 
+"@GulimChe": {
+"default": 128, 
+"height": 256
+}, 
+"FreeSans": {
+"default": 142, 
+"widths": "GG[ä«1UUdGUGGGGĄ««¹¹«Ç¹G«Õ¹Ç«Ç¹«¹«ò««GGGxUG999ÕUG¹VCVGC½s½ZZG]s««««««Ā¹««««GGGG¹¹ÇÇÇÇÇÇ¹¹¹¹««å@@@@Ā99ZĀGxGx", 
+"height": 333
+}, 
+"LM Sans 8 Oblique": {
+"default": 136, 
+"widths": "[VxããÎLjjÓL[LLLÓÓÓµµµ®Ä£µÀL½íÀÉ®É°º»µāµµ¦OOµyySAHAØ]hb}º}}vLVyµĀµĀ²Ó²fÓĀĀ¦Órµµµµµµê®££££LLLLĀÀÉÉÉÉÉĀÓ»»»»ĀĀÄyyyyyAAAAĀÓĀĀ}ĐLLÓ«?iȀȀ", 
+"height": 375
+}, 
+"Myriad Arabic": {
+"default": 94, 
+"widths": "16>[^n\"<<Lm&8&?^^^^^^^^^^42mmmMpcjzZYvw,DcVx~a~bZ[vfhce;>;m[7XhRg\\5fe+,V+edhg<H=eXUVN:,:m-^^^^,_|UmM:m98e^&AUKppppppjZZZZ,,,,{x~~~~~m~vvvvcadXXXXXXR\\\\\\\\++++cedddddmdeeeeVhV&&4·?iS", 
+"height": 354
+}, 
+"Microsoft Uighur": {
+"default": 85, 
+"widths": "&1HUU)>>BU+6+DYJ^QSPWRUR++UUUDxjf]=:|berXnx¬ymr>D>UXNZI\\L4U`/,[.aY]Z@A6^QzTSL>0>U1UUUU8cRU<UBBZ+KRBxxxxxx§ffff====UmebNNNNNNsILLLL////XaYYYYYUY^^^^SZS¸++\\?iS", 
+"height": 256
+}, 
+"Sakkal Majalla": {
+"default": 103, 
+"widths": "'/Bs]$>>Ug'=*Lhhhhhhhhhh**XgXM¯slq][11xZ«fr_dr­nhw?L?dU8\\gRg[:\\i//]/igggAL:i]]\\Q=-=p+Rkgk-TTgCg??jX*ITMssssssq]]]]1111ghfe\\\\\\\\\\\\R[[[[////gigggggggiiii\\g\\Ā&&K~?iS", 
+"height": 357
+}, 
+"SimSun": {
+"default": 128, 
+"widths": "ĀĀĀĀĀĀĀĀĀĀĀĀĀĀ", 
+"height": 256
+}, 
+"MV Boli": {
+"default": 135, 
+"widths": "}]t°´»9^]v]´g««¯««¨«]]ã±²®»K®°íÊ¶¨²³¤µ§í¶®Óoo|z|meyAA{AÜmj}¼}upuAl«jäæl}w©]l±±±±±±þKKKK²Ê¶¶¶¶¶¶µµµµ®||||||ÆmAAAAì]]wÂ?iS", 
+"height": 413
+}, 
+"JiaguRic A": {
+"default": 128, 
+"height": 281
+}, 
+"JiaguRic B": {
+"default": 128, 
+"height": 281
+}, 
+"Baskerville Semibold": {
+"default": 256, 
+"widths": "@H«~ØÀEEE«HXHKHH«««sã°¨¾Å¨ÅÓ``Ë¥øÃÕ¥Õ¾µÀÃûÓµ¥eKeU~UPPPóp{^Ð~``«H~¾ĀµĀµ«µ`«ĀĀH[s°°°°°°û¾¨¨¨¨````ĀÃÕÕÕÕÕĀÕÀÀÀÀĀĀ¾~PPPPĀ«ĀĀĀHHUĀ?iȀȀ", 
+"height": 292
+}, 
+"Courier New Greek": {
+"default": 142, 
+"widths": "GG[ä«1UUdGUGGGGĄ««¹¹«Ç¹G«Õ¹Ç«Ç¹«¹«ò««GGGxUG999ÕUG¹VCVUC½½fUUU^««««««Ā¹««««GGGG¹¹ÇÇÇÇÇÇ¹¹¹¹««äGGGGĀ99ZĀ0[", 
+"height": 286
+}, 
+"Kozuka Gothic Pro EL": {
+"default": 137, 
+"widths": ";9RÍ2JJn«.T.e..«««jË¥¢·°²9`~Ü´¾¾±èIeI«VH9:t9éQhV}Êv{pJ:J«9:ĀÂm«nĀĀOMĀ.^mj¥¥¥¥¥¥Î¢9999¸´¾¾¾¾¾Ā¾±±±±×9999Ā{{ğ..CĀĀĀS", 
+"height": 335
+}, 
+"Hei": {
+"default": 256, 
+"widths": "U9E¦E7777¼¶ ÁÆËËPV¢āËÑÑ¦¡¦Ë¶ċ¦«¦LLEPFFFæf{VÑv«ĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀȀȀȀȀȀȀȀȀȀ", 
+"height": 256
+}, 
+"Purisa": {
+"default": 168, 
+"widths": "¦¨¡¼¼§£Æ·îÆZÆqpvg^¢´½¨ºÛ³«°ÇµºÔ¨§Ã£Õ­¾áÃ»ï|±rl¨· ´GwMØ§¨©~²Q]V©®»]»z ×B·hº|z¢½½½½½½ÂºÛÔ¨¨¨¨¨¨¨­­­­»³wÕGGXG§§§§§§g§°µRQ­¢:`:`", 
+"height": 413
+}, 
+"Courier New TUR": {
+"default": 142, 
+"widths": "GG[ä«1UUdGUGGGGĄ««¹¹«Ç¹G«Õ¹Ç«Ç¹«¹«ò««GGGxUG999ÕUG¹VCVUC½½fUUU^««««««Ā¹««««GGGG¹¹ÇÇÇÇÇÇ¹¹¹¹««äGGGGĀ99ZĀ0[", 
+"height": 286
+}, 
+"LM Mono 10 Italic": {
+"default": 134, 
+"height": 341
+}, 
+"Corbel": {
+"default": 131, 
+"widths": "3D]¨Î«2MMDUDFst{nDDmă£¬««?`Ò²»½¬âQFQ}X}pQ;>};ÔVhYv¶u{rM:MD:mÓ}iPLDi}m££££££ã????°²»»»»»»¬¬¬¬}}}}}}Çp;;;;{{Õ88rË?iS", 
+"height": 313
+}, 
+"Bell Gothic Std Black": {
+"default": 142, 
+"widths": "FdUäÇ9ddGUGGUUÍ««««««¹d¹ä¹««««¹«ò««dGdGdGUGÕdrd¹rU9Ud«9ÍÍfZZGf««««««Ā«««««dddd«¹««««««¹¹¹¹««ÇGGGGĀGGĀ@jT", 
+"height": 305
+}, 
+"LM Mono Light Cond 10 Regular": {
+"default": 90, 
+"height": 336
+}, 
+"KodchiangUPC": {
+"default": 85, 
+"widths": "88EUU\u001e88U_*8*/XXXXXXXXXX./XgXKzqqzg^zz8Bzgzz^zq^gzz zzg8/8OU8KUKUK8UU//U/UUUU8B/UUzUUKQ\"Q[8UUUU\"UU_D_33aM*4UKzzzzzzqgggg8888zzzzzzz]zzzzzz^UKKKKKKqKKKKK////UUUUUUU_UUUUUUUU¬55{k?iS", 
+"height": 252
+}, 
+"Arial CE": {
+"default": 142, 
+"widths": "GG[ä«1UUdGUGGGGĄ««¹¹«Ç¹G«Õ¹Ç«Ç¹«¹«ò««GGGxUG999ÕUG¹VCVUC½½fUUU^««««««Ā¹««««GGGG¹¹ÇÇÇÇÇÇ¹¹¹¹««äGGGGĀ99ZĀ0[", 
+"height": 286
+}, 
+"Meera": {
+"default": 157, 
+"widths": "TXswz¼U>vUz6I=HxGwtzwxrrv4;x}|zÜz£+lv©­ªÐ=H:\\|AzzryzDwm$*n$ªnzyyImDnq¡mmmD0Bvg££££VĀ×Ā×gg££Qy¯¯¯¯¯¯ù³¢¢¢¢LLLLÆÀÊÊÊÊÊ×Ê»»»»¡ûGGGG¢×¢¢¢¢£ĀQQĀ:`:`", 
+"height": 340
+}, 
+"Euphemia": {
+"default": 149, 
+"widths": ":aäì¾<QP{?^5@@||zĎ ªªª¯;Ç±ÎÎ¸ß HH£\u0000P>;?Ø^|Ww¬u{UU>v«ààQop9s}      òª;;;;ª±ÍÍÍÍÍÏ¸¸¸¸Ð><<;à33hÇ?iS", 
+"height": 337
+}, 
+"Segoe UI Semibold": {
+"default": 142, 
+"widths": "FNp×ÓBUUo²>g>j>>²²²rô¬¸³¼Jf}íÄÂÂ´¤÷UhU²jJxXCCCã_n]ÂwUGU²NGwâ²âa²bb{>qr¬¬¬¬¬¬åJJJJ¸ÄÂÂÂÂÂ²Â´´´´ÕxCCCC²ĀBBjÐBnT", 
+"height": 340
+}, 
+"Nimbus Sans L": {
+"default": 142, 
+"widths": "GG[ä«1UUdGUGGGGĄ««¹¹«Ç¹G«Õ¹Ç«Ç¹«¹«ò««GGGxUG999ÕUG¹VCVUC½½ZZG]««««««Ā¹««««GGGG¹¹ÇÇÇÇÇÇ¹¹¹¹««äGGGGĀ99ZĀ0[:`", 
+"height": 317
+}, 
+"American Typewriter Condensed": {
+"default": 128, 
+"widths": "@<RÅ¬/VV737n77y²P~¶{~°DDqphtjLl~?:x<³nqndiS{w¡}xn«<ĀĀÆVĀĀ\u001cUVyÏPPPPĀĀĀĀqqqqqq¥hjjjjA?A?Ānnnnnn{{{{ĀĀx88«¥?iȀȀ", 
+"height": 290
+}, 
+"mry_KacstQurn": {
+"default": 163, 
+"widths": "Kgv×£óÈFdd×Q\\QV££££££££££VV×××Ā¯°³Å¢ÆÁLL¨ÝÀÊÊ²£»¯ý¯¯dVd×££Z£¢GGGù¢££id¢Ñ£V£×g££££VĀ×Ā×gg££Qy¯¯¯¯¯¯ù³¢¢¢¢LLLLÆÀÊÊÊÊÊ×Ê»»»»¡ûGGGG¢×¢¢¢¢£ĀQQĀ:`:`", 
+"height": 192
+}, 
+"Georgia": {
+"default": 165, 
+"widths": ">Ui¥Ñ¶7``y¥E`ExnPP¥¥¥{î¬§¤À§ºÑd²íÄ¿¿´Â«ú¶`x`¥¥t|SKKIâioX½~rn`n¥U`ñ¥ñk¥H{¬¬¬¬¬¬ù¤§§§§ddddÀÄ¿¿¿¿¿¥¿ÂÂÂÂ½t||||KKKK¥~~Û::eÏRS", 
+"correction": 1.0, 
+"height": 291
+}, 
+"@MingLiU_HKSCS": {
+"default": 128, 
+"widths": "ĀĀĀĀĀĀĀĀĀ", 
+"height": 256
+}, 
+"Aparajita": {
+"default": 103, 
+"widths": "4ETgg¬ %EEgt4E49gggggggggg99ttt\\¾~sEP~·ss~Ã~E9EagE\\g\\g\\Egg99g9 ggggEP9gggg\\c)cpEgggg)ggtRq>>w]4@g\\·~~~~EEEEtsg\\\\\\\\\\\\\\\\\\\\\\9999gggggggqggggggggÎEEHÎ?iS", 
+"height": 303
+}, 
+"Times New Roman Bold": {
+"default": 128, 
+"widths": "@UĀÕGUU@U@GUUî¹«¹¹«ÇÇdÇ«ò¹ÇÇ¹«¹¹Ā¹¹«UGUUrrUGUGÕrdU¹re8eUĀĀ¿¿fĀĀÇU¹¹¹¹¹¹Ā¹««««ddddĀ¹ÇÇÇÇÇĀÇ¹¹¹¹ĀĀ¹rrrrrGGGGĀĀĀĀUUZĀ?iȀȀ", 
+"height": 283
+}, 
+"@Kozuka Gothic Pro EL": {
+"default": 137, 
+"widths": ";9RÍ2JJn«.T.e..«««jË¥¢·°²9`~Ü´¾¾±èIeI«VH9:t9éQhV}Êv{pJ:J«9:ĀÂm«nĀĀOMĀ.^mj¥¥¥¥¥¥Î¢9999¸´¾¾¾¾¾Ā¾±±±±×9999Ā{{ğ..CĀĀĀS", 
+"height": 328
+}, 
+"LM Mono Light 10 Bold": {
+"default": 134, 
+"height": 345
+}, 
+"Meiryo": {
+"default": 159, 
+"widths": "WasÎĈºBqqÎYqYsnnÎÎÎą®¬¬Àº¾gr©Õ¾ÃÃ¯££»¯Ā«¢§qqÎVATAöjaÕqÎaqĀ©ÎĀÎww Y©®®®®®®þ¬ggggÁ¾ÃÃÃÃÃÎÃ»»»»¢ðAAAAÎĀBBĀBs*R", 
+"height": 384
+}, 
+"Terminal": {
+"default": 142, 
+"widths": "GG[ä«1UUdGUGGGGĄ««¹¹«Ç¹G«Õ¹Ç«Ç¹«¹«ò««GGGxUG999ÕUG¹VCVUC½½fUUU^««««««Ā¹««««GGGG¹¹ÇÇÇÇÇÇ¹¹¹¹««äGGGGĀ99ZĀ0[", 
+"height": 286
+}, 
+"LM Roman Slanted 12 Regular": {
+"default": 125, 
+"widths": "SF\\Ñ}ÑÃFbb}ÃFSF}}}}}}}}}}}FFÃÃÃvÃ¼±µ¿ª¤Å¼ZÃæ¼ÃªÃ¹µ¼¼Ă¼¼FF¼}}ooM}FMFÑ}bcbµoGFo¼Ā¼Āz¯Ã¯^ÃĀĀÃiv¼¼¼¼¼¼âµªªªªZZZZĀ¼ÃÃÃÃÃĀÃ¼¼¼¼ĀĀ}}}}}}}µoooooFFFFĀ}}}}}Ã}ĀĀûFFÃ¥?iȀȀ", 
+"height": 361
+}, 
+"Giddyup Std": {
+"default": 169, 
+"widths": ",G;{sÆÃ$>>Fo!O!Td¤x!!ooom©»Æq¶å¶©ª¢©º°ß´°ÊHTHo4YVMWLMR\\)/^(ZWXU=I6VMRUV_9_oGso9d½To=oREb!NTm©©©©©©Ĕqqqq¶©©©©©o©ºººº°vYYYYYYMLLLL))))UZWWWWWoVVVVVUhUÍ\u0014\u00145Í?iS", 
+"height": 301
+}, 
+"Helvetica Neue Medium": {
+"default": 142, 
+"widths": "GGrĀ¦GGG_GdGZGGÍ«´¹¹¡Â¹G¯ä¹Ã«Ã´¦¹ò¦¦¡LZL>Q>>>ßZUÇL9LGĀĀÍwÍfĀĀGaw««««««÷¹¡¡¡¡GGGGĀ¹ÃÃÃÃÃĀÃ¹¹¹¹ĀĀä>>>>ĀĀĀĀGGĀ?iȀȀ", 
+"height": 306
+}, 
+"MS Sans Serif": {
+"default": 90, 
+"widths": "--7ZZn#77<_-2--ZPZZZZZZZZ--___Unissid}s(PiZx}i}nidsnind---KZ7ZZPZU-ZZ##P#ZZZZ7P-ZKsKKP7#7_-ZZZZ#ZxZ_x7_--ZU-<ZUnnnnnn siiii((((sx}}}}}_}ssssni_ZZZZZZPUUUU####ZZZZZZZ_ZZZZZKZKĀ99ZĀ0[", 
+"height": 296
+}, 
+"Thonburi Bold": {
+"default": 171, 
+"widths": "UN««èºNrr«NaN««««««««««NN«««ßº£§³­±>~ªÊµ¼¼¤«ºòrr««d<G<åcrÈs?s«N««Ā«Ā«á«áW«ĀĀ««_ººººººþ§>>>>Ā¶¼¼¼¼¼Ā¼««««ĀĀî<<<<Ā«ĀĀĈNN«Ĉ?iȀȀ", 
+"height": 335
+}, 
+"Sawasdee": {
+"default": 133, 
+"widths": "[>VÄ©8=9rAk>>>þ¥¢É¨Ü®5ÙÒÜÜ{®¡öy66y5C54w5Ç QpEvÈqvoG5HG£5pÜm®Ü^nm>sm¥¥¥¥¥¥ÁÊ5555¨ÒÜÜÜÜÜÜ®®®®è~5555      ¡wvAA|Ý:`:`", 
+"height": 374
+}, 
+"@Batang": {
+"default": 128, 
+"widths": "UPk ÛÕ@aaÕK K`UU   Ā½µµ¼¬¥¾ÄTm¿¤åÇ½¨½¬ ÀÇÀò°° Ā^JKKÙq\\ÏÀk«@ÉÉÉpÐ\\\\ UxÀÀÀÀÀÀĀ­««««````µÀµµµµµÐµÀÀÀÀ«« ØKKKKÐĀĀæĀĀS", 
+"height": 256
+}, 
+"Menlo Bold": {
+"default": 154, 
+"height": 298
+}, 
+"KacstArt": {
+"default": 163, 
+"widths": "?gv×£óÈFdd×Q\\QV££££££££££VV×××Ā¯°³Å¢ÆÁLL¨ÝÀÊÊ²£»¯ý¯¯dVd×££Z£¢GGGù¢££id¢Ñ£V£×g££££VĀ×Ā×gg££Qy¯¯¯¯¯¯ù³¢¢¢¢LLLLÆÀÊÊÊÊÊ×Ê»»»»¡ûGGGG¢×¢¢¢¢£ĀQQĀ:`:`", 
+"height": 275
+}, 
+"KacstTitle": {
+"default": 163, 
+"widths": "?gv×£óÈFdd×Q\\QV££££££££££VV×××Ā¯°³Å¢ÆÁLL¨ÝÀÊÊ²£»¯ý¯¯dVd×££Z£¢GGGù¢££id¢Ñ£V£×g££££VĀ×Ā×gg££Qy¯¯¯¯¯¯ù³¢¢¢¢LLLLÆÀÊÊÊÊÊ×Ê»»»»¡ûGGGG¢×¢¢¢¢£ĀQQĀ:`:`", 
+"height": 275
+}, 
+"InaiMathi": {
+"default": 128, 
+"widths": "M?Rt¯+DDb|?L?9tttttttttt??|||sÒz 6grªz¼8B8}h)~~y~C~/0t.Á~IqB~t§rqtF4FĀĀÉĀĀĀĀĀĀĀĀĀą88X?iȀȀ", 
+"height": 320
+}, 
+"Times New Roman CE": {
+"default": 142, 
+"widths": "GG[ä«1UUdGUGGGGĄ««¹¹«Ç¹G«Õ¹Ç«Ç¹«¹«ò««GGGxUG999ÕUG¹VCVUC½½fUUU^««««««Ā¹««««GGGG¹¹ÇÇÇÇÇÇ¹¹¹¹««äGGGGĀ99ZĀ0[", 
+"height": 286
+}, 
+"Utsaah": {
+"default": 102, 
+"widths": "33Aff£z#==Gk3=33ffffffffff33kkkfºzzzp3\\zfzzpz­zzp333Vf=ff\\ff3ff))\\)ffff=\\3f\\\\\\\\=0=k=ffff0ffkIe==jc3Cfpzzzzzz·zzzz3333kzzpffffff£\\ffff3333fffffffepffff\\f\\·))@·?iS", 
+"height": 287
+}, 
+"TlwgTypewriter": {
+"default": 154, 
+"widths": ":`:`", 
+"height": 328
+}, 
+"KacstDecorative": {
+"default": 163, 
+"widths": "?4v×£óÈFjjdQUHG££££££££££HVĀ¯°³Å¢ÆÁLL¨ÝÀÊÊ²£»¯ý¯¯jGjxU££Z£¢GGGù¢££id¢ÑuCug££££VĀ×Ā×gg££Qy¯¯¯¯¯¯ù³¢¢¢¢LLLLÆÀÊÊÊÊÊ×Ê»»»»¡ûGGGG¢×¢¢¢¢£ĀQQĀ:`:`", 
+"height": 294
+}, 
+"Kozuka Gothic Pr6N EL": {
+"default": 137, 
+"widths": ";9RÍ2JJn«.T.e..«««jË¥¢·°²9`~Ü´¾¾±èIeI«VH9:t9éQhV}Êv{pJ:J«9:ĀÂm«nĀĀOMĀ.^mj¥¥¥¥¥¥Î¢9999¸´¾¾¾¾¾Ā¾±±±±×9999Ā{{ğ..CĀĀĀS", 
+"height": 444
+}, 
+"Baskerville": {
+"default": 128, 
+"widths": "@@h«}à³-==k«@P@@@«««eë­¸Ã ÅÍ[[ÈíÀÓÓ»³Å»óÅ­£XXxUxmpEx@@u=Í]UKu­{um{{«@mµĀĀeÃx«Ãe«ĀĀsUSxe­­­­­­ã¸    [[[[ĀÀÓÓÓÓÓĀÓÅÅÅÅĀĀxxxxxx mpppp@@@@Ā«ĀĀuĀ@@[Ā?iȀȀ", 
+"height": 293
+}, 
+"Birch Std": {
+"default": 79, 
+"widths": "\u001f%BOvc\"::G\u00191\u0019:O1EGJHOBNO\u0019\u0019HÍUUKWOOT_1F[Lp[SSVWGTUWy[SP,G,6JL@LF*LO''M'rOJLM9=-OCcKBC595%OGT9GLf56O!7LHUUUUUUwKOOOO1111W[SSSSSSUUUUSSRJJJJJJj@FFFF''''JOJJJJJJOOOOBLBĀ\"\")?iS", 
+"height": 301
+}, 
+"Silom": {
+"default": 171, 
+"widths": "@ÕëÕ@kkUU««««««««««UU««ë««««««ÀĀÀ««««««Ā«««kk««««««««U«UĀ««««««Ā«««kkk«ÀĀ«ĀÕÀÕĀĀÕÀUÀ«««««««ë«ĀÀ«««««Ā«««««ĀĀ«««««««Ā««««UUUUĀ«««««««««««ĀĀ«ÕUUī?iȀȀ", 
+"height": 327
+}, 
+"Waree": {
+"default": 163, 
+"widths": "Qgv×£óÈFdd×Q\\QV££££££££££VV×××Ā¯°³Å¢ÆÁLL¨ÝÀÊÊ²£»¯ý¯¯dVd×££Z£¢GGGù¢££id¢Ñ£V£×g££££VĀ×Ā×gg££Qy¯¯¯¯¯¯ù³¢¢¢¢LLLLÆÀÊÊÊÊÊ×Ê»»»»¡ûGGGG¢×¢¢¢¢£ĀQQĀKz:`", 
+"height": 427
+}, 
+"Trebuchet MS Bold": {
+"default": 150, 
+"widths": "M^^¯µ;^^o^^^d^^pÅ¢¥¬¯G¿«´¶®âg[g_L^LÜmnfÉoo^ĀĀt··ĀĀ^np¢¢¢¢¢¢ïGGGGĀ«´´´´´Ā¯®®®®ĀĀÝLLLLĀĀĀ¼^^¼?iȀȀ", 
+"height": 297
+}, 
+"Andale Mono": {
+"default": 154, 
+"height": 288
+}, 
+"LM Mono 8 Regular": {
+"default": 136, 
+"height": 342
+}, 
+"CordiaUPC": {
+"default": 93, 
+"widths": "/8/]]p%88Ao/8//]]]]]]]]]]//oooTppyyf]y/Tp]yfpf]yffff8/8oT8]f]f]/f]%%T%]]ff8T/]TyTTT8%8o:aaaa-aafF_::d]0@ajpppppp®yffff////~yfyyyyftj]]]]]]]]]]]0000a]]]]]]_j]]]]TaT¨%%T¨?iS", 
+"height": 355
+}, 
+"Lucida Grande CY": {
+"default": 128, 
+"widths": "QQ`¢¢«³;SS{ÌQQ¢¢¢¢¢¢¢¢¢¢QQÌÌÌlÜ±±À¹¼JP§Ý½ÇÇ¢¢±§Û  SS¢¡¡^ JNJï¡¡i`ÅS`S¢¢ĀĀ¢ÛÌÛoÌĀĀ ¢ĀĀĀĀĀÌĀĀĀQQĀ?iȀȀ", 
+"height": 302
+}, 
+"Hobo Std": {
+"default": 148, 
+"widths": "JSUËõ9vv¦J@JJJ{ß³©¥¬©¶Tf§Þ¶¶ ¹ª¥ ¬¥Ú£¥f]fc}\\DMBØm]¹xfWfSWîîjZZJf{³³³³³³Ď¥TTTT¬¶¶¶¶¶¶¶¬¬¬¬¥ Ò}DDDDĀWWfĀ?iS", 
+"height": 362
+}, 
+"Liberation Mono": {
+"default": 154, 
+"height": 291
+}, 
+"Bookman Old Style": {
+"default": 159, 
+"widths": "RMaæÍ8MMqRfRRRÒ®½½Í¸¤ÍÍW¸ì½ÍÍ¸©È³ö¸¤¤MMWR©MMMñ©qa®È{HHM¾\\¾f__Cl\\®®®®®®Ń½¸¸¸¸WWWWÍ½ÍÍÍÍÍÍÈÈÈÈ¤©ÜMMMM©®®®®Ā88vĀ8aS", 
+"height": 288
+}, 
+"Gentium Basic": {
+"default": 120, 
+"widths": "8Fmxw±«@QQri;V;xxxxxyxxxxx;;pppoÎz§LNzÎ¦z§¦ÚOxP~xRvpvP}EBEÎecX~µ~qV;V}Fxxxx;x·|x[\\iTT&H|oÇLLLL¦i§§§§vvvvvv±pvvvvEEEEi~~Ä;;G«?iS", 
+"height": 297
+}, 
+"AppleMyungjo": {
+"default": 256, 
+"widths": "gg¤¤ÂÉg¨gg¤¤¤¤¤¤¤¤¤¤X^¦wÔÃ±¥»§£»Æ^È¬òÌ·¤¶¶¤ÍÄþ¶Á@lvYwLHMÖynf`Àm§ĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀȀȀȀȀȀȀȀȀȀ", 
+"height": 304
+}, 
+"TeX Gyre Heros Italic": {
+"default": 142, 
+"widths": "GG[ä«1UUdGUGGGGĄ««¹¹«Ç¹G«Õ¹Ç«Ç¹«¹«ò««GGGxUG999ÕUG¹VCVGĀĀ½½fĀĀG]««««««Ā¹««««GGGGĀ¹ÇÇÇÇÇĀÇ¹¹¹¹ĀĀäGGGGĀĀĀĀ99ZĀ?iȀȀ", 
+"height": 361
+}, 
+"Kozuka Mincho Pro R": {
+"default": 157, 
+"widths": "GMZ¹¼7SSs8N8t88|¾¥®¦½Ro£ç¶··±«ý®¢QtQczVFDGÛirWÃtSaSMaĀ½s½ĀĀhhĀ8vs|¥¥¥¥¥¥áRRRR®¶·····Ā·±±±±¢ÎzFFFFĀĀ77tĀĀĀS", 
+"height": 345
+}, 
+"RicpyHumCap": {
+"default": 256, 
+"widths": "LjUÅèº,ZZÕLWLGLLÕÕÕĀ®¥¸½³Ke¢ò¼ÀÀµª÷¨\\G\\Ā®¥¸½³Ke¢ò¼ÀÀµª÷¨ÕjĀĀÕÕÕTÕĀĀLx®®®®®®ð¥KKKKĀ¼ÀÀÀÀÀĀÀµµµµĀĀ®®®®®â~KKKKĀ¼ÀÀÀÀÀÕµµµµĀĀĀLLĀ?iȀȀ", 
+"height": 311
+}, 
+"KacstOffice": {
+"default": 163, 
+"widths": "?gv×£óÈFdd×Q\\QV££££££££££VV×××Ā¯°³Å¢ÆÁLL¨ÝÀÊÊ²£»¯ý¯¯dVd×££Z£¢GGGù¢££id¢Ñ£V£×g££££VĀ×Ā×gg££Qy¯¯¯¯¯¯ù³¢¢¢¢LLLLÆÀÊÊÊÊÊ×Ê»»»»¡ûGGGG¢×¢¢¢¢£ĀQQĀ:`:`", 
+"height": 275
+}, 
+"Microsoft JhengHei": {
+"default": 189, 
+"widths": "@Nk£áÜ?RRs½;o;k;;½½½|Ĉ±«Á½ÃIa÷ÎÐÐ¤½«ā¢RhR½sI¢¢U¢BBBí¢¢¢_u]Æ}}RAR½NA{ö½öh½ee~;w|±±±±±±í«IIIIÁÎÐÐÐÐÑ½Ð½½½½æBBBB¢¢¢¢¢½¢¢ĕĀĀqÇ>f>", 
+"height": 340
+}, 
+"Segoe Script": {
+"default": 187, 
+"widths": "fSgÌ»í;g]X¤@»»»»»»»»»»LU ÓÖÁ½ÞÀÎÓPÈ­āÖÎÈÕà´Æ»ă¼®ÙhkkP¨®µf}ÌwN¯rąÂ¬¦k`Äæ­¡lSgÇI«»¦Skõ»¸ïqc¾«Bp»{ÖÖÖÖÖÞĚ½ÀÀÀÀPPPPçÖÎÎÎÎÎÚÆÆÆÆ®Ë¨¨¨¨¨¨»ttttÂÄÄÄÄ¡­¡ĥP=nÐ;gS", 
+"height": 406
+}, 
+"Kozuka Mincho Pro B": {
+"default": 161, 
+"widths": "ELa¡¡¿Ã8SSo9J9i¡¡¡¡¡¡¡¡¡¡99}¼§¢´©Ä[q­î·º¢º¨³«þ°¤QiQd}ZMKMâqt]ÈwTZTL¡¡¡¡ZĀ·v·ĀĀjjĀ9yv}§§§§§§á[[[[´·ºººººĀº³³³³¤¢Ò}MMMMĀĀ88sĀĀĀT", 
+"height": 350
+}, 
+"Kozuka Mincho Pro M": {
+"default": 158, 
+"widths": "FL]»¿7SSq8M8p88}½¦±§¿Up§ê¶¹¹£±«ý¯£QpQd{XIGIÝlsYÅuS^SL^Ā»t»ĀĀiiĀ8wt}¦¦¦¦¦¦áUUUU±¶¹¹¹¹¹Ā¹±±±±£Ð{IIIIĀĀ77sĀĀĀS", 
+"height": 347
+}, 
+"Kozuka Mincho Pro L": {
+"default": 156, 
+"widths": "HMY·º7SSt8O8w88|¿¥­¥»Pn¡æ¶··°«ý®¢QwQczUEBEÙgqVÁsScSMcĀ¾s¾ĀĀggĀ8us|¥¥¥¥¥¥âPPPP­¶·····Ā·°°°°¢ÍzEEEEĀĀ77tĀĀĀS", 
+"height": 344
+}, 
+"Courier 10 Pitch": {
+"default": 154, 
+"height": 297
+}, 
+"@SimSun-ExtB": {
+"default": 128, 
+"height": 256
+}, 
+"Kozuka Mincho Pro H": {
+"default": 164, 
+"widths": "CKf¤¤ÆÊ8SSk:F:_¤¤¤¤¤¤¤¤¤¤::}º¨©¡¹¬Êcs·ô¸½©½°¢´«þ²¦Q_Qe^¡RRRé¡xwbÌzTSTK¤¤¤¤SĀ²x²ĀĀmmĀ:|x}¨¨¨¨¨¨à¡cccc¹¸½½½½½Ā½´´´´¦©¨ÖRRRR¡ĀĀ88rĀĀĀT", 
+"height": 355
+}, 
+"Microsoft Sans Serif": {
+"default": 142, 
+"widths": "DG[ä«1UUdGUGGGGĄ««¹¹«Ç¹G«Õ¹Ç«Ç¹«¹«ò««GGGxUG:::ÕUG¹VCVGC½½fUUG^««««««Ā¹««««GGGG¹¹ÇÇÇÇÇÇ¹¹¹¹««ä::::99ZUUS", 
+"height": 290
+}, 
+"RicpyHum": {
+"default": 256, 
+"widths": "JgMÅÞ²(SSÕJWJGJJÕÕÕĀ©°z¶®E\\wêµ¼¼±¢ò¢TGTĀwZ@@@â\\l^zÐvzxÕgĀĀÕÕÕTÕĀĀJq©©©©©©çEEEEĀµ¼¼¼¼¼Ā¼±±±±ĀĀÕw@@@@ĀÕĀĀzĀJJĀ?iȀȀ", 
+"height": 308
+}, 
+"Verdana Bold Italic": {
+"default": 182, 
+"widths": "XgÞ¶ņÝU¶Þ]{]±¶¶¶¶¶¶¶¶¶¶ggÞÞÞ÷ÇÃ¹Õ¯§ÐÖÅ£óÙÚ¼ÚÈ¶¯ÐÄġÄ½±±Þ¶¶«³³ªl³¶Xg¬Xď¶°³³u¶¦û«§¶¶Þg¶¶Ā¶Ā¶÷ÚÞ÷ÞĀĀ¹¶]ÚÇÇÇÇÇÇĘ¹¯¯¯¯ĀÙÚÚÚÚÚĀÚÐÐÐÐĀĀ·««««««ąªªªªXXXXĀ¶°°°°°Þ°¶¶¶¶ĀĀ§ĀUU¶č?iȀȀ", 
+"height": 311
+}, 
+"KufiStandardGK": {
+"default": 128, 
+"height": 361
+}, 
+"Adobe Fan Heiti Std B": {
+"default": 256, 
+"widths": "9Ddâ­7RRx­?X?_??­­­rÏ©µ°´Fgßµºº²ìR]R­WzUDGDç^o^ÍxRFR­RĀĀ£Ā`ĀÅĀ£ĀĀmm¡£ĀmmĀĀ²²²²é²ĀĀĀKKKKÁ¾ĀĀÈÈÈĀÈ²²²²¡ĀĀÛĀĀĀĀĀKK ĀĀĀĀĀĀ Ā¢ĀĀĀĀĀĀjĀ", 
+"height": 320
+}, 
+"Microsoft YaHei": {
+"default": 150, 
+"widths": "LPp£äßBVVu¾>o>m>>¾¾¾|Ĉ´¡«Ã¾ÆKe£úÐÑÑ§¿­ą¥VkV¾sL¤¤Y¤DDDð£¤¤bw_Ê~VEV¾PE}ö¾öh¾gg¡>x|´´´´´´ð«KKKKÃÐÑÑÑÑÑ¾Ñ¿¿¿¿æDDDD£££££¾£¤ĕĀĀqÐAlA", 
+"height": 338
+}, 
+"LM Mono Light Cond 10 Oblique": {
+"default": 90, 
+"height": 336
+}, 
+"LM Mono Light 10 Bold Oblique": {
+"default": 134, 
+"height": 345
+}, 
+"@NSimSun": {
+"default": 128, 
+"height": 256
+}, 
+"Hiragino Sans GB W3": {
+"default": 256, 
+"widths": "UP[¨¦áÌ2[[Y¨=\\=y¨¨¨¨©¨¨¨¨¨==¨èÀ¶ÂÂ¥ÁÇ@µòÆÌ©Ìº«¦Æ¸Ă¹°«YyY¥¥k¤=D;î ¦¥ndÅY`YĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀȀȀȀȀȀȀȀȀȀ", 
+"height": 256
+}, 
+"Hiragino Sans GB W6": {
+"default": 256, 
+"widths": "UWh¸¶ïÜ<hhb¯EiE¶¶¶¶¶¶¶¶¶¶EE¯ðÏÁËÎ¯¥ÊÓKÈ¥ýÒ×¶×Æ·¶ÔÉďÐÂµhh¢µ µ£z±¬EO§Eă¬¬µµ~o¬Ú¡imiĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀȀȀȀȀȀȀȀȀȀ", 
+"height": 256
+}, 
+"LM Roman 10 Italic": {
+"default": 131, 
+"widths": "\\OgÑÑÄOiiÄO\\OOOÇÄÇÄ¾´·Á®§Æ¾cÅ¡æ¾Ä®Ä»·¾¾Ā¾¾OO¾vvvOvOOvBÑvliUvªw|iGOvÅĀ¾Ā}¯Ä¯bÄĀĀÄn¾¾¾¾¾¾â·®®®®ccccĀ¾ÄÄÄÄÄĀÄ¾¾¾¾ĀĀ·vvvvvOOOOĀÄĀĀ|ĆOOÄ¯?iȀȀ", 
+"height": 362
+}, 
+"Segoe UI Light": {
+"default": 166, 
+"widths": "FIVÉ²7HHh¦9f9^99¦¦¦nò¡­w«­:SuÕ¶ÃÁ¦åH^H¦j@rG55r5ÒUcLt­ltwH:H¦I:sâw¦âc¦TTy9ewn¡¡¡¡¡¡Õ::::­¶ÃÃÃÃÃ¦Ã¦¦¦¦×r5555¦ttĀ77e«?eS", 
+"height": 340
+}, 
+"@Adobe Fan Heiti Std B": {
+"default": 256, 
+"widths": "9Ddâ­7RRx­?X?_??­­­rÏ©µ°´Fgßµºº²ìR]R­WzUDGDç^o^ÍxRFR­RĀĀ£Ā`ĀÅĀ£ĀĀmm¡£ĀmmĀĀ²²²²é²ĀĀĀKKKKÁ¾ĀĀÈÈÈĀÈ²²²²¡ĀĀÛĀĀĀĀĀKK ĀĀĀĀĀĀ Ā¢ĀĀĀĀĀĀjĀ", 
+"height": 320
+}, 
+"Arial Unicode MS": {
+"default": 142, 
+"widths": "GG[ä«1UUdGUGGGGĄ««¹¹«Ç¹G«Õ¹Ç«Ç¹«¹«ò««GGGxUG999ÕUG¹VCVUC½½fUUG^««««««Ā¹««««GGGG¹¹ÇÇÇÇÇÇ¹¹¹¹««äGGGGĀ99ZĀ9_5[", 
+"height": 343
+}, 
+"Calibri": {
+"default": 135, 
+"widths": ":Sg·¯9NN@NAcEEwå}v¢ ARlÛ¥ª¬v}¤ä}xOcOK{lNy;=t;ÍYdVt·oteQvQSÖWVVAlwÃ}}}}AAAA ¥ªªªªªª¤¤¤¤}{{{{{{Æl;;;;ttè@@±9gS", 
+"height": 313
+}, 
+"Mesquite Std": {
+"default": 71, 
+"widths": "!'1L9oW\u001d66?P\"1\"?C+88B8D9DC\"\"PPP:{GF;K@>CO(;N>cKJFJK8DHGjNG8141VJGF;K@>CO(;N>cKJFJK8DHGjNG86-6P';;BG-Ph5Ph9P))cM\"55:GGGGGGb;@@@@((((KKJJJJJPLHHHHGFpGGGGGGb;@@@@((((KKJJJJJPLHHHHGFGĀ\"\"4?iS", 
+"height": 305
+}, 
+"Trajan Pro": {
+"default": 146, 
+"widths": "SRSßÆ3\\\\Z@d@@@}è³°ÎëÝöqjÁčòê¤ìÁ±Ô¾Ě²§±\\\\é µÏÂÙd^ªíÕÏÏ¬»§ø\\\\Rè5Orj¶@p}³³³³³³éÎqqqqëòêêêêêêÔÔÔÔ§¦Č      ÑµddddÏÕÏÏÏÏÏÏ»»»»Ā33lĀ?iS", 
+"height": 321
+}, 
+"LM Roman 6 Bold": {
+"default": 178, 
+"widths": "xnĥ²ĥĒe²Ēexe²²²²²²²²²²²eeåĒå¨ĒćùþčæÝĔđ¶đÓŊđĈðĈąÅõČćŧććØeeć²­ÅÅ¢n²Åen»eĥÅ²Å»Å»þ»»RnćĀćĀ×°ÅĒ°ĒĀĀÅ´ĒÅ¨ććććććļþææææĀđĈĈĈĈĈĀĒČČČČĀĀµ­­­­­­þ¢¢¢¢eeeeĀÅ²²²²²Ē²ÅÅÅÅĀĀ»ţeeĒù?iȀȀ", 
+"height": 373
+}, 
+"TeX Gyre Termes Bold": {
+"default": 128, 
+"widths": "@UĀÕGUU@U@GUUî¹«¹¹«ÇÇdÇ«ò¹ÇÇ¹«¹¹Ā¹¹«UGUUrrUGUGÕrdU¹re8eUĀĀ¿¿fĀĀ@T¹¹¹¹¹¹Ā¹««««ddddĀ¹ÇÇÇÇÇĀÇ¹¹¹¹ĀĀ¹rrrrrGGGGĀĀĀĀUUZĀ?iȀȀ", 
+"height": 373
+}, 
+"@Kozuka Mincho Pr6N L": {
+"default": 156, 
+"widths": "HMY·º7SSt8O8w88|¿¥­¥»Pn¡æ¶··°«ý®¢QwQczUEBEÙgqVÁsScSMcĀ¾s¾ĀĀggĀ8us|¥¥¥¥¥¥âPPPP­¶·····Ā·°°°°¢ÍzEEEEĀĀ77tĀĀĀS", 
+"height": 401
+}, 
+"@Kozuka Mincho Pr6N M": {
+"default": 158, 
+"widths": "FL]»¿7SSq8M8p88}½¦±§¿Up§ê¶¹¹£±«ý¯£QpQd{XIGIÝlsYÅuS^SL^Ā»t»ĀĀiiĀ8wt}¦¦¦¦¦¦áUUUU±¶¹¹¹¹¹Ā¹±±±±£Ð{IIIIĀĀ77sĀĀĀS", 
+"height": 413
+}, 
+"Charcoal CY": {
+"default": 128, 
+"widths": "@Z©á¹JllJYJyJJuÖ­¥­­­`y«ï²±±­ö©YyYJ££V££PPPú££££nwe£àYJYĀĀtÍkkĀĀ£ĀĀĀĀĀĀĀĀJJĀ?iȀȀ", 
+"height": 320
+}, 
+"LM Roman Slanted 10 Bold": {
+"default": 147, 
+"widths": "bZ{õõåRrråRbRRRååååÞÑÕâÂ¹çæpç±ĘæÝÉÝÝ¤ÍãÞİÞÞ´RRÞ¤¤Z¤RZRõ¤¤ytr¤ÕRZÞĀÞĀ²°¤å°nåĀĀ¤´å{¤ÞÞÞÞÞÞċÕÂÂÂÂppppĀæÝÝÝÝÝĀåããããĀĀÕRRRRĀ¤å¤¤¤¤ĀĀĦRRå×?iȀȀ", 
+"height": 366
+}, 
+"Apple LiSung Light": {
+"default": 256, 
+"widths": "VPbxxÈ»+PPx<P<CxxxxxxxxxxCCkÝ®¡¡®®®P]®Ö®®®¡®®ã®®PCPqxPkxkxkPrxCCxC»xxxxP]Cxx®xxks0sĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀȀȀȀȀȀȀȀȀȀ", 
+"height": 256
+}, 
+"@Kozuka Gothic Pro L": {
+"default": 140, 
+"widths": "==YÖ¢4MMr¬4V3c34¬¬¬nÍ§¡·±³=cÞµ¾¾²êMcM¬V~L=>{=èUkYÍ{~sM>M¬=>ĀÃq¬rĀĀRQĀ4aqn§§§§§§Ô¡====¸µ¾¾¾¾¾Ā¾²²²²Ö~====Ā~~Ġ44IĀĀĀS", 
+"height": 340
+}, 
+"@Kozuka Mincho Pr6N B": {
+"default": 161, 
+"widths": "ELa¡¡¿Ã8SSo9J9i¡¡¡¡¡¡¡¡¡¡99}¼§¢´©Ä[q­î·º¢º¨³«þ°¤QiQd}ZMKMâqt]ÈwTZTL¡¡¡¡ZĀ·v·ĀĀjjĀ9yv}§§§§§§á[[[[´·ºººººĀº³³³³¤¢Ò}MMMMĀĀ88sĀĀĀT", 
+"height": 426
+}, 
+"TeX Gyre Schola": {
+"default": 142, 
+"widths": "GLdÕÑ4UUGUGGGGr½¹¹¹Ç¹«ÇÕhÇ«òÑÇ«Ç¹¡«Ñ¹û´´UUUrUQLQärwdÇ{UULĀĀ½m½fĀĀGMmr¹¹¹¹¹¹Ā¹¹¹¹¹hhhhĀÑÇÇÇÇÇĀÇÑÑÑÑĀĀÌrQQQQĀĀĀĀ44Ā?iȀȀ", 
+"height": 376
+}, 
+"MingLiU-ExtB": {
+"default": 128, 
+"widths": "ĀQQvĀ?iS", 
+"height": 256
+}, 
+"MS Gothic": {
+"default": 128, 
+"height": 256
+}, 
+"LM Sans 10 Bold Oblique": {
+"default": 141, 
+"widths": "^^ëćÕNnnÛN^NNNåÛå¼¼¼´Ë¤¼ËUÄúËË´Ë´¼Ä¼Ċ¼¼¬XX¼}VBIBÞ_lg¾zR^}¼Ā¼Ā²Û²jÛĀĀ´Ûv¼¼¼¼¼¼ò´¤¤¤¤UUUUĀËËËËËËĀÛÄÄÄÄĀĀË}BBBBĀÛĀĀĚNNÛÅ?iȀȀ", 
+"height": 366
+}, 
+"IrisUPC": {
+"default": 82, 
+"widths": "877[[v...Ic.7..____e__`__++cccTmdmRR..dR[dR[m¤ddd7R7cR7R[R[R.R[..R.[[[[7@.[RRRR777c7[[Z[*ZxZ_xAc55^W-=ZTmmmmmmmRRRR....cdlcRRRRRRRRRRR....Z[[[[[[c[[[[[R[R &%Qs?iS", 
+"height": 324
+}, 
+"Helvetica Neue": {
+"default": 142, 
+"widths": "GBmĀ¡GBBZGdGUGGÍ¦¯¹´Â¹B«ß¹Ã¦Ã¯¦¹í¦BUB9L999ÚUQÂ{U9UBĀĀÍwÍfĀĀGbw¦¦¦¦¦¦í¹BBBBĀ¹ÃÃÃÃÃĀÃ¹¹¹¹ĀĀß9999ĀĀĀĀGGĀ?iȀȀ", 
+"height": 299
+}, 
+"Kartika": {
+"default": 148, 
+"widths": "¾J^ì±3YYgJYJJJJč±±ÀÀ±¢ÏÀJ±ÝÀÏ±ÏÀ±¢À±ú±±¢JJJ}YJ<<<ÝYJÀYEYJEÄÄjYYJa±±±±±±ĉÀ±±±±JJJJÀÀÏÏÏÏÏÏÀÀÀÀ±±¢ì<<<<;;]?iS", 
+"height": 366
+}, 
+"American Typewriter Light": {
+"default": 158, 
+"widths": "@kBÍÒ'bb8b8f88¬º±£º­ºÈYÄéÈ¬£¬¿¿£ÖºTT~Y£OFJ÷­~~]£È«k£ĀĀÐ]ĀĀ\u001bm]ººººººĘ£­­­­YYYYĀÈ¬¬¬¬¬Ā¬¿¿¿¿ĀĀ£äOOOOĀ­££££ĀĀ¿==«¨?iȀȀ", 
+"height": 292
+}, 
+"@Kozuka Mincho Pr6N R": {
+"default": 157, 
+"widths": "GMZ¹¼7SSs8N8t88|¾¥®¦½Ro£ç¶··±«ý®¢QtQczVFDGÛirWÃtSaSMaĀ½s½ĀĀhhĀ8vs|¥¥¥¥¥¥áRRRR®¶·····Ā·±±±±¢ÎzFFFFĀĀ77tĀĀĀS", 
+"height": 406
+}, 
+"Adobe Kaiti Std R": {
+"default": 256, 
+"widths": "GMZ¹¼7SSs8N8t88|¾¥®¦½Ro£ç¶··±«ý®¢QtQ7zVFDGÛirWÃtSaSQ¢¢Ā_Ā½Ì¢ĀĀll ¢Āll±±±±±±è±JJJJÀ½ÇÇÇÇÇĀÇ±±±± ĀĀÚĀĀĀĀĀJJĀĀĀĀĀĀ¡ĀĀĀĀĀĀĀĀ", 
+"height": 322
+}, 
+"@Kozuka Gothic Pro R": {
+"default": 141, 
+"widths": "<?]Û§5OOt­8W8b88­­­pÎ¨¶±³AeÞµ¼¼²ëO`O­W|O?B?çYm[Í~uOAO­?AĀÄt­vĀĀUSĀ8ctp¨¨¨¨¨¨×AAAA¸µ¼¼¼¼¼Ā¼²²²²Ö|????Āġ88NĀĀĀS", 
+"height": 349
+}, 
+"LM Sans Quot 8 Bold Oblique": {
+"default": 176, 
+"widths": "ud­ĥ°įćb°Ēbub°°°°°°°°°°°bbåĒå¦ëäçáûÛÑëæ\\£íÇġæďÝďæÄüåäŅää×kkä°¥®®¡l®®MV¤MĐ®°®®t®éRdäĀäĀ»¯°Ē¯ĒĀĀ®´Ē°¦ääääääĬáÛÛÛÛ\\\\\\\\ĀæďďďďďĀĒååååĀĀ¥¥¥¥¥¥¥þ¡¡¡¡MMMMĀ®°°°°°Ē°®®®®ĀĀŠbbĒê?iȀȀ", 
+"height": 363
+}, 
+"Estrangelo Edessa": {
+"default": 129, 
+"widths": "5G^Â°.KKg;\\8d8;gÇ­ws­¶EVmÔ¹µµ{~®óLdLd8xp~N?=w?ÂTYSl¨olhSSGxÀ|ÀPVV8i|gÄwwwwEEEE­¹µµµµµµ®®®®xxxxxxÀp~~~~????llì22b°?iS", 
+"height": 286
+}, 
+"LM Mono Light 10 Oblique": {
+"default": 134, 
+"height": 336
+}, 
+"LM Sans 17 Oblique": {
+"default": 120, 
+"widths": "PMjÉxÉ¶C^^x»CPCxxxxxxxxxxxCCÃ»Ãr¡  ®¡ªBq§Òª±±¤¥ ã  FF xs|k|kIx|9@u9¿|x||R\\W|o¤oohGMk Ā Ā²x»²Z»ĀĀ|»exr      ÏBBBBĀª±±±±±Ā»¥¥¥¥ĀĀsssssss®kkkkk9999Ā|xxxxx»x||||ĀĀoñCC»?iȀȀ", 
+"height": 375
+}, 
+"@Kozuka Gothic Pro B": {
+"default": 146, 
+"widths": "7Hjç³8UU|®FXE\\EF®®®uÐª µ°µLjà¶¸¸³£ìUXU®Xx[HKHçcqcÎzUJU®HJĀÆ}®|ĀĀ\\ZĀFh}uªªªªªªßLLLL·¶¸¸¸¸¸Ā¸³³³³ ×xHHHHĀĤBBZĀĀĀT", 
+"height": 367
+}, 
+"DejaVu Sans": {
+"default": 163, 
+"widths": "Qgv×£óÈFdd×Q\\QV££££££££££VV×××Ā¯°³Å¢ÆÁLL¨ÝÀÊÊ²£»¯ý¯¯dVd×££Z£¢GGGù¢££id¢Ñ£V£×g££££VĀ×Ā×gg££Qy¯¯¯¯¯¯ù³¢¢¢¢LLLLÆÀÊÊÊÊÊ×Ê»»»»¡ûGGGG¢×¢¢¢¢£ĀQQĀ:`:`", 
+"height": 299
+}, 
+"Krungthep": {
+"default": 171, 
+"widths": "?ÕëÕ@kkUU««««««««««UU««ë««««««ÀĀÀ««««««Ā«««kk««««««««U«UĀ««««««Ā«««kkk«ÀĀ«ĀÕÀÕĀĀÕÀUÀ«««««««ë«ĀÀ«««««Ā«««««ĀĀ«««««««Ā««««UUUUĀ«««««««««««ĀĀ«ÕUUī?iȀȀ", 
+"height": 326
+}, 
+"@Kozuka Gothic Pro H": {
+"default": 149, 
+"widths": "6Lné·8VV~¯KVKZKK¯¯¯vÑ©¥´¯¶Ql¤à·¶¶¢³¦ìVTV¯Xw`LOLègsgÏ}VMV¯LMĀÇ¯}ĀĀ_]ĀKiv©©©©©©áQQQQ¶·¶¶¶¶¶Ā¶³³³³¥ÙwLLLLĀĥEE_ĀĀĀT", 
+"height": 372
+}, 
+"Gill Sans": {
+"default": 128, 
+"widths": "GE[­ 0SSk8S8H8;Uă«µÀx¾»@@¨~ÈÈÓÓuµċµ¥UHUxUmp{@m88{8ÅecUp¸pkUCUEpĀĀh¾~¾eĀĀU^~U««««««åµ@@@@ĀÈÓÓÓÓÓĀÓµµµµĀĀmmmmmm«p{{{{8888ĀĀĀpĀ88[Ā?iȀȀ", 
+"correction": 1.02, 
+"height": 294
+}, 
+"@Kozuka Gothic Pro M": {
+"default": 144, 
+"widths": "9Ddâ­7RRx­?X?_??­­­rÏ©µ°´Fgßµºº²ìR]R­WzUDGDç^o^ÍxRFR­DFĀÅy­yĀĀYWĀ?fyr©©©©©©ÛFFFF·µºººººĀº²²²²ÖzDDDDĀģ>>TĀĀĀS", 
+"height": 359
+}, 
+"TeX Gyre Bonum Italic": {
+"default": 159, 
+"widths": "MR\\ÍÒ3HHqMRMMMÈ³¸¸½®ÃÍR¸Ü¸ÃÈ³¤¸®ö³©CCW{¤WHHHáfWá\\\\RĀĀ½M½fĀĀMfM³³³³³³ĸ¸®®®®RRRRĀ¸ÃÃÃÃÃĀÃ¸¸¸¸ĀĀá{HHHHĀĀĀĀHHvĀ?iȀȀ", 
+"height": 346
+}, 
+"@Kozuka Mincho Pr6N EL": {
+"default": 155, 
+"widths": "HMXµ¹7SSu8P8y88|¿¥¬¤ºNnäµ¶¶°«ý­¡QyQcy~TCAD×epTÀ}rSeSMeĀÀrÀĀĀggĀ8tr|¥¥¥¥¥¥âNNNN¬µ¶¶¶¶¶Ā¶°°°°¡Ìy~~~~CCCCĀĀ77tĀĀĀS", 
+"height": 399
+}, 
+"KaiTi": {
+"default": 128, 
+"height": 256
+}, 
+"MS Reference Sans Serif": {
+"default": 163, 
+"widths": "ZevÒ£ĔºEtt£Ò]t]t££££££££££ttÒÒÒĀ¯°³Å¢ÇÀlt±ØÀÊÊ²¯»¯ý¯¯tttÒ££  Z ¢FXFù¢  me¢Ò£t£Òe££££t£Ā¥ÒĀÒ¤£]¥¯¯¯¯¯¯ü³¢¢¢¢llllÇÀÊÊÊÊÊÒÊ»»»»õFFFF¢Ò¢¢¢¢ ĀEEÒ]S", 
+"height": 311
+}, 
+"Nimbus Roman No9 L": {
+"default": 128, 
+"widths": "@UhÕÇ.UU@U@GGGrì¹««¹¹¹Ud¹ä¹¹¹«¹¹ò¹¹UGUxUrrrUGGGÇUdG¹r{3{U3ÃÃfMMt@Or¹¹¹¹¹¹ä«UUUU¹¹¹¹¹¹¹¹¹¹¹¹¹rrrrrr«rrrrrGGGGĀUUZĀ8k:`", 
+"height": 309
+}, 
+"RicpyHum Italic": {
+"default": 150, 
+"widths": "JgMÅÞ°(OOÕJUJGggÕÕÕĀ¯±x¸±E\\¡yæ·½½²¢ó ¡RGRĀv\\@@@Ü]k\\}Ñ}|vÕgĀĀÕÕÕTÕĀĀJq¯¯¯¯¯¯ëEEEEĀ·½½½½½Ā½²²²²ĀĀÕv@@@@ĀÕĀĀ|ĀIIĀ?iȀȀ", 
+"height": 309
+}, 
+"Adobe Gothic Std B": {
+"default": 256, 
+"widths": "7Hjç³8UU|®FXE\\EF®®®uÐª µ°µLjà¶¸¸³£ìUXU®Xx[HKHçcqcÎzUJU®Ā££Ā£`ĀÆĀÍ£ĀĀĀĀ¡ĀĀĀĀĀ²²²²²²Ā²KKKKĀ¾ÈÈÈÈÈĀĀ²²²²¡ĀĀĀKKKKĀ ĀĀ    ĀĀĀĀĀĀĀĀĀĀ", 
+"height": 322
+}, 
+"LM Roman 6 Regular": {
+"default": 156, 
+"widths": "kZyĀĀïZ{{ïZkZZZ÷ï÷ïåÚßêÒÉñåq îÁėåïÒïâ­ßååĸåå¾Z¤Zå­­b­Zb¥ZĀ­­¥{}{­¥ß¥¥¤a¤ZåĀåĀ¯­ï¯uïĀĀ­Åï­ååååååĔßÒÒÒÒqqqqĀåïïïïïĀïååååĀĀßZZZZĀ­ï­­­­ĀĀ¥ĹZZïÍ?iȀȀ", 
+"height": 364
+}, 
+"Consolas": {
+"default": 141, 
+"height": 300
+}, 
+"Small Fonts": {
+"default": 142, 
+"widths": "GG[ä«1UUdGUGGGGĄ««¹¹«Ç¹G«Õ¹Ç«Ç¹«¹«ò««GGGxUG999ÕUG¹VCVUC½½fUUU^««««««Ā¹««««GGGG¹¹ÇÇÇÇÇÇ¹¹¹¹««äGGGGĀ99ZĀ0[", 
+"height": 286
+}, 
+"Miriam Fixed": {
+"default": 154, 
+"height": 253
+}, 
+"Times New Roman Baltic": {
+"default": 142, 
+"widths": "GG[ä«1UUdGUGGGGĄ««¹¹«Ç¹G«Õ¹Ç«Ç¹«¹«ò««GGGxUG999ÕUG¹VCVUC½½fUUU^««««««Ā¹««««GGGG¹¹ÇÇÇÇÇÇ¹¹¹¹««äGGGGĀ99ZĀ0[", 
+"height": 286
+}, 
+"LM Mono 9 Regular": {
+"default": 134, 
+"height": 341
+}, 
+"MingLiU_HKSCS": {
+"default": 128, 
+"widths": "ĀĀĀĀĀĀĀĀ", 
+"height": 256
+}, 
+"Wingdings 3": {
+"default": 228, 
+"widths": "ĀääµµµµääÒÒää¶¶¶¶ûûäääääääääääääääääĖäÛÐÐññññññññññññääµµµµäûûûûááááááááäääêêäääääc>ääää­Ìääääääääääää¡¡¡¡õõääÁÁÁÁĆĆääÓÓÓÓĝĝääììììDD``Ì¡ĀQQvĀ?iS", 
+"height": 292
+}, 
+"Wingdings 2": {
+"default": 228, 
+"widths": "ĀĈąăąĥĀĖ|³³ä³³ä³³ä³³ĢęäääĢďď­­òòòòññññä¥ÄääääääääĖØÂÅ{lĀĀĀĀĀĀĀĀäääääääääääääääääääääääääääääN`·ýýýýP]äääääääääääääääääääääääääääääääääääääääääääääääääääääääää»ä¡ĀQQvĀ?iS", 
+"height": 270
+}, 
+"Zapf Dingbats": {
+"default": 202, 
+"widths": "Gùöùû¸ÊÊË±öðÛéïéòùÁÙÃÃ­ÃÃÂÁ±ÉÊÊÊËËÑÓÊ×ÓÕÑÕì¿¹ÀÊË²ÇÅËÂµµ¯´ÔÑÊÊµ°²°ÉÊ·ËÉËàÃÃÃÂÂääÊÉp#Gjdd««»é«ÃÃ ÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊå×ĄuÀíÀëíîîÖàÔííëîîwâÖÖÞÞ²²àĀàÃòÅÞÅãøãÕàíøëËĀĀŁvĀ?iȀȀ", 
+"height": 253
+}, 
+"System": {
+"default": 40, 
+"widths": "\u0014\u0014\u001e((7-\u0014\u0014\u0014\u001e(\u0014\u0014\u0014\u0014((((((((((\u0014\u0014((((F(2-2-(22\u0014#-(<22-22-(2(F-2-\u0014\u0014\u0014\u0019(\u0019((#((\u0014((\u0014\u0014#\u0014<((((\u0019(\u0014((2(((\u0019\u0014\u0019\u0019\u0014((((\u0014(2#(2\u0019(\u0014\u0014(#\u0014\u0019#(((((((A-----\u0014\u0014\u0014\u00142222222(222222-(((((((<#((((\u0014\u0014\u0014\u0014(((((((\u001e((((((((i\"\"1i\u001b*#9", 
+"height": 128
+}, 
+"Arial Bold Italic": {
+"default": 142, 
+"widths": "GUyä¹=UUdGUGGUUú¹¹¹¹«Ç¹G¹Õ¹Ç«Ç¹«¹«ò««UGUUUGGGädUÇdHdUĀĀ½½fĀĀÀ^¹¹¹¹¹¹Ā¹««««GGGGĀ¹ÇÇÇÇÇĀÇ¹¹¹¹ĀĀäGGGGĀĀĀĀGGZĀ?iȀȀ", 
+"height": 286
+}, 
+"Lohit Bengali": {
+"default": 157, 
+"widths": "GBô¼íÈ\u0017ÁkZËZi¯Á¯Éď¯°³Å¢ÆÁLL¨ÝÀÊÊ²£»¯ý¯¯¡²î_££Z£¢GGGù¢££id¢ÑM¾gª£££VĀ×Ā×gg££Qy¯¯¯¯¯¯ù³¢¢¢¢LLLLÆÀÊÊÊÊÊ­Ê»»»»¡ûGGGG¢±¢¢¢¢£ŕfiĎ:`:`", 
+"height": 362
+}, 
+"AppleGothic": {
+"default": 256, 
+"widths": "R`f®®ĀÑfw¯HX®®®®®®®®®®ÅĀº¥¯¯¾´7¥éºÇÉ¤¢©¼¶Ć·²¨@W)G+åZXÖ»ĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀȀȀȀȀȀȀȀȀȀ", 
+"height": 311
+}, 
+"URW Bookman L": {
+"default": 159, 
+"widths": "RMaæÍ8MMqRfRRRÒ®½½Í¸¤ÍÍW¸ì½ÍÒ¸©È³ö¸¤¤MMWR©MMMñ©qa®È{HHM½\\½f__®Rl\\®®®®®®Ń½¸¸¸¸WWWWÍ½ÍÍÍÍÍÍÈÈÈÈ¤©ÜMMMM©®®®®Ā88vĀ:`:`", 
+"height": 309
+}, 
+"TeX Gyre Schola Bold": {
+"default": 156, 
+"widths": "ILUÕÚ>ddGUGGGG¿ÂÇÇÕÂ¹Õßr¦Ñ¹ûÕÕÂÕÑ«¹ÕÂû¹¹«ddU¦«d¯_Z«Z÷¯«¦m¯äddLĀĀ¿¿fĀĀ¯¿G^ÂÂÂÂÂÂûÇÂÂÂÂrrrrĀÕÕÕÕÕÕĀÕÕÕÕÕĀĀß____Ā¯¯¯¯¯ĀĀĀ>>Ā?iȀȀ", 
+"height": 395
+}, 
+"Tekton Pro Cond": {
+"default": 133, 
+"widths": "$5N|}(EE]1F3D21a¦q|qg4lw]£}}qbq¥jxuEDELcd_l_Dba04^0adggOf^aTW^\\JBJ5Bx¤e¤DMTav3Sea§qqqqq4444}}}}}}xocccccc_____0000eadddddgaaaa^g^Ā((HĀ@jT", 
+"height": 308
+}, 
+"Dotum": {
+"default": 149, 
+"widths": "VVk ë¶K````kWW  Ā«®¹º¡À¹B|¨Ï³À¥À«¤ºåõ UX;;;ëRPzº{{|Ëk @É´ÉhÕSSU`««««««ðÀ««««KKKLÁÀËËËËËÕËÀÀÀÀ « Ð@@@@       Õ  ĀKK`ĀVS", 
+"height": 256
+}, 
+"Tekton Pro Ext": {
+"default": 222, 
+"widths": "?Eh«ÞÎÐ7mmhArBsÞÞÞÞÞÞÞÞÞÞBAĊÓÓ½Ðº«åÑG°¹ĂÍÒ¼ÝÄ×ªÃµĈ¨ÉÃosom¥­w£AFAø¦¥©}© Ó zFzEÞÞÞFÈĒ Ē\\¯B ÓÓÓÓÓÓĐ½ººººGGGGÓÍÒÒÒÒÒØÃÃÃÃÉºÄ¥¥¥¥¥¥ĈAAAA©¦¦¦¦¦ª ¥ Ā77iĀ@jT", 
+"height": 314
+}, 
+"Ubuntu Condensed": {
+"default": 110, 
+"widths": "2Can¥9IIcn;<;Ennnnnnnnnn;;nnnXÓxumBekº|fmÂysoHEHn^PoxZxpNx{>>m>³{wxxTWR{fde[DEDnCnnnnEf¶tn¶JnHH}:]tX»xuuuuBBBBns|}ooooooªZpppp>>>>v{wwwwwnw{{{{exe¾99TÑ:`:`", 
+"height": 288
+}, 
+"Nueva Std Cond": {
+"default": 93, 
+"widths": "!)(LP|\u0016773H$<$>b9QRbT_Qb^$$HHHMwik^r]Zkz8Nl[nncnhWcpffdb7E7H%Y`OaS>[h1/]0¡j]a_LICfYYYT7+7H)L\\Wb+V}7H6*H:;fc$>7Miiiiii^]]]]8888vnnnnnnHnppppderYYYYYYOSSSS1111^j]]]]]H]ffffYaYÀ\u0018\u00182À?iS", 
+"height": 257
+}, 
+"Malgun Gothic": {
+"default": 141, 
+"widths": "ZJeÖÑ;NNm³8i8e88³³³vû©£¸´ºE\\{ëÄÆÆ´¢ôNÄN³mFyQ???á[oX}½w~vN=N³J=uê³êc³``x8qv©©©©©©á£EEEE¸ÄÆÆÆÆÆ³Æ´´´´Ûy????³~~ć;;k½;aS", 
+"height": 341
+}, 
+"Khmer OS System": {
+"default": 138, 
+"widths": "KG[ä«1UUdGUGGGGĄ««¹¹«Ç¹G«Õ¹Ç«Ç¹«¹«ò««GGGxUG566Î[G¹}8}8K8¼w}¼jjKw¯QQQQÆ££££££Î8888á8>Û:`:`", 
+"height": 451
+}, 
+"Stencil Std": {
+"default": 178, 
+"widths": "WaU¢ÑÈ9ccr`]P¡¡¡¡¡¡¡¡¡¡]`ë²À¨º¨£²ÙrÓáÁ¶·¸É¢ªÃ­ì¯¬ZYZ]²À¨º¨£²ÙrÓáÁ¶·¸É¢ªÃ­ì¯¬ZQZa¥¢¬Q¡ððnhhµ]_²²²²²²ý¨¨¨¨¨rrrrºÁ¶¶¶¶¶¶ÃÃÃÃ¬´Ń²²²²²²ý¨¨¨¨¨rrrrºÁ¶¶¶¶¶¶ÃÃÃÃ¬´¬Ā``eĀ@jT", 
+"height": 337
+}, 
+"@Arial Unicode MS": {
+"default": 142, 
+"widths": "GG[ä«1ĀĀdGUGGGGĄ««¹¹«Ç¹G«Õ¹Ç«Ç¹«¹«ò««GGGxĀUG999ÕUG¹ĀCĀUC½½fUUG^««««««Ā¹««««GGGG¹¹ÇÇÇÇÇÇ¹¹¹¹««äGGGGððððððððð", 
+"height": 343
+}, 
+"@SimSun": {
+"default": 128, 
+"widths": "ĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀ", 
+"height": 256
+}, 
+"Georgia Italic": {
+"default": 147, 
+"widths": ">Ui¥Ñ¶7``y¥E`Exnbb¥¥¥{î¬§¤À§ºÑd²íÄ»»´Â«ú¶`x`¥¥tyTLKIávnYÓrn`n¥UĀĀñ¥ñk¥ĀĀH{¬¬¬¬¬¬ù¤§§§§ddddĀÄ¿¿¿»¿Ā¿ÂÂÂÂĀĀÄtyyyyLLLLĀ¥ĀĀÛ22eÏ?iȀȀ", 
+"height": 291
+}, 
+"Times": {
+"default": 128, 
+"widths": "@UiÕÇ.UU@U@GGGrì¹««¹¹¹Ud¹ä¹¹¹«¹¹ò¹¹UGUxUrrrUGGGÇUdG¹r{3{UĀĀÃÃfĀĀt@Or¹¹¹¹¹¹ä«UUUUĀ¹¹¹¹¹¹Ā¹¹¹¹¹ĀĀrrrrrr«rrrrrGGGGĀĀĀĀUUZĀ?iȀȀ", 
+"height": 256
+}, 
+"FreeSerif": {
+"default": 128, 
+"widths": "@UhÕÇ.UU@U@GGGrì¹««¹¹¹Ud¹ä¹¹¹«¹¹ò¹¹ULUxUrrrUGGGÇUdG¹r{3{U3ËrËfRR|@Oqr¹¹¹¹¹¹ä«UUUU¹¹¹¹¹¹¹¹¹¹¹¹¹rrrrrr§rrrrrGGGGĀ@@ZĀ?i?i", 
+"height": 308
+}, 
+"Lohit Tamil": {
+"default": 157, 
+"widths": "MGhòÈÉBlląG{G{GG©{©ă¯°³Å¢ÆÁLL¨ÝÀÊÊ²£»¯ý¯¯y·y¿^££Z£¢GGGù¢££id¢ÑAÆg£££VĀ×Ā×gg££Qy¯¯¯¯¯¯ù³¢¢¢¢LLLLÆÀÊÊÊÊÊÊ»»»»¡ûGGGG¢¢¢¢¢£ĳHGô:`:`", 
+"height": 242
+}, 
+"Helvetica Light": {
+"default": 142, 
+"widths": "GUGä«9UUd©GUGGGG©©©Í««¹¹Ç¹G«Õ¹ÇÇ«¹äUGU©UG999ÕUG¹U9U©UĀĀÍ©Íf©ĀĀ¦GV««««««Ā¹GGGGĀ¹ÇÇÇÇÇĀÇ¹¹¹¹ĀĀä9999Ā©ĀĀĀ99Ā?iȀȀ", 
+"height": 256
+}, 
+"Book Antiqua": {
+"default": 128, 
+"widths": "@G_×Ç5UUd@U@@@r¿Ç¶ÆÃÕVUºòÕÉÉ«Ç¹Ā«««UUUr{UK<KâemTÖUUG¿¿fOO¡UUrÇÇÇÇÇÇò¶VVVVÆÕÉÉÉÉÉÕÇÇÇÇ«Âr{{{{JJJJĀGGĀ5_S", 
+"height": 318
+}, 
+"LM Mono Prop 10 Oblique": {
+"default": 134, 
+"widths": "ZKoààÑKhhÑKZKKKÑ³Â»ÂÊ³¬ÑÂZÊ¤ïÂÑ³ÑÂÂÂÂčÂÂ¤LLÂxxRKRKàhjhÂxKxÂĀÂĀÑeÑĀĀÑqÂÂÂÂÂÂïÂ³³³³ZZZZĀÂÑÑÑÑÑĀÑÂÂÂÂĀĀÂxxxxxKKKKĀÑĀĀčKKÑ®?iȀȀ", 
+"height": 336
+}, 
+"Browallia New": {
+"default": 93, 
+"widths": "9.;]]p 88Ab.8..]]]]]]]]]]..bbb]ªppyypfy.Tp]ypypfypppf...N]8]]T]].]]%%T%]]]]8T.]TyTTT8+8b8]]]]+]{]b{C\\88`Z.=]fpppppp§ypppp....yybyyyyppf]]]]]]T]]]]....]]]]]]]\\f]]]]T]T§%%;§?iS", 
+"height": 320
+}, 
+"Liberation Sans Narrow": {
+"default": 117, 
+"widths": "::Kuu»(FFR{:F::uuuuuuuuuu::{{{uÕ£:iu¯££Æ:::cuFuuiuu:uu//i/¯uuuuFi:uiiiiF7F{Fuuuu7uu{fFFuqFMuÒ::::£££££{£uuuuuu»iuuuu::::uuuuuuuuuuuiuiÒ//JÒ(K:`", 
+"height": 295
+}, 
+"Rod": {
+"default": 154, 
+"height": 251
+}, 
+"LM Roman 9 Regular": {
+"default": 132, 
+"widths": "XIcÛÛÍIffÍIXIIIÍÍÍ|ÍÅº¾É³¬ÏÅ_Í¤ñÅÍ³ÍÂ¾ÅÅĎÅÅ¡IIÅuuPIPIÛghf¾uIIuÅĀÅĀ¯Í¯cÍĀĀ¡Ín|ÅÅÅÅÅÅî¾³³³³____ĀÅÍÍÍÍÍĀÍÅÅÅÅĀĀ¾uuuuuIIIIĀÍĀĀćIIÍ°?iȀȀ", 
+"height": 364
+}, 
+"Times New Roman Bold Italic": {
+"default": 128, 
+"widths": "@dÕÇGUU@U@GUUÕ«««¹««¹Çd«ä¹¹¹«¹«ä«UGUUrrUGGGÇddGr«rdY8YdĀĀ¿¿fĀĀ@M««««««ò«««««ddddĀ¹¹¹¹¹¹Ā¹¹¹¹¹ĀĀ¹rrrrrGGGGĀĀĀrĀUUZĀ?iȀȀ", 
+"height": 283
+}, 
+"Segoe UI Symbol": {
+"default": 138, 
+"widths": "FIdÒÍ;MMk¯8f8d88¯¯¯sõ¥´}°¶D[yæÀÁÁ°ïMaM¯jEvP>>>ÝYmW{¹v|tM=M¯I=sä¯äa¯^^u8ns¥¥¥¥¥¥ÜDDDD´ÀÁÁÁÁÁ¯Á°°°°Õv>>>>¯||Ā;;h¼;a;a", 
+"height": 340
+}, 
+"@FangSong": {
+"default": 128, 
+"height": 256
+}, 
+"@MS UI Gothic": {
+"default": 128, 
+"widths": "N84NN4444t«¢£ª¦®¤?¾¤µµ ¤¢¾VVjNjzNv68v6¼YvZz¦vzu<<<j8«:Ā««¤«ĀĀ==Ā4[«t¢¢¢¢¢¢«ªVJoV¦¤«««««Ā«¤¤¤¤zzzzzz«KKo\\ĀzzĀĀĀĀĀĀĀ", 
+"height": 256
+}, 
+"LM Roman 5 Bold": {
+"default": 194, 
+"widths": "z§ľÂľĩpÂĩppÂÂÂÂÂÂÂÂÂÂÂppåĩå¸ĩĝďĕģúðīħÆħæťħğĄğĚ×ċĢĝƄĝĝëppĝÂ½×®×±zÂ×pzÍpľ×Â×Í×ÍĕÍÍ®Rz®ĝĀĝĀé°×ĩ°ĩĀĀ×´ĩ£×¸ĝĝĝĝĝĝŗĕúúúúĀħğğğğğĀĩĢĢĢĢĀĀÃ½½½½½½ĕ®±±±±ppppĀ×ÂÂÂÂÂĩÂ××××ĀĀÍƄppĩĊ?iȀȀ", 
+"height": 381
+}, 
+"Ayuthaya": {
+"default": 154, 
+"height": 355
+}, 
+"Constantia": {
+"default": 123, 
+"widths": "@G\\qÒ­3^^oB\\BgP|uz|BBoØ­§À³ËWP©èÀÎÎ¢¾¬ą¨XgXi{v{OIDHÞbhZ|»{{{ZYZBt|]ÌjX\\\\BUn­­­­­­æ§WWWWÀÀÎÎÎÎÎÎ¾¾¾¾{{{{{{½v{{{{IIII{{Ā55P¹?iS", 
+"height": 313
+}, 
+"Futura Condensed": {
+"default": 106, 
+"widths": "5Gajj4KKjj5.5sjjjjjjjjjj55j_¾hibw]Zwx8KlUxzfzl`Tw_`caZsZeeIe^?eh33d3hceeDK9hW`^VMMÁGjjĀjĀjÛ^ÛnjĀĀhj5M^_hhhhhhb]]]]8888ĀxzzzzzĀzwwwwĀĀjeeeeeeI^^^^3333ĀhcccccjchhhhĀĀ^;;Á¢?iȀȀ", 
+"height": 308
+}, 
+"FZHuangCao-S09S": {
+"default": 256, 
+"widths": "10@e]V VSCW8Y/gggggggggg87GEGj}®}u ¦}cq¬zvs´u|4CvFhlscSci?OkT­ubhifRmeXU`k@8@ĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀ?iȀȀ", 
+"height": 312
+}, 
+"Ricsung New B": {
+"default": 128, 
+"height": 281
+}, 
+"Arial Narrow Bold Italic": {
+"default": 117, 
+"widths": ":Fduu»2FFR{:F::uuuuuuuuuuFF{{{Í£:u¯££ÆF:F{uFuuuF::u:»RuFu£uuiR;R{FuuĀuĀuu{fĀĀu:MuÒ::::Ā£££££Ā£ĀĀuuuuuu»uuuuu::::ĀĀĀuÒ::JÒ?iȀȀ", 
+"height": 294
+}, 
+"BatangChe": {
+"default": 128, 
+"height": 256
+}, 
+"Liberation Sans": {
+"default": 142, 
+"widths": "GG[ä«1UUdGUGGGGĄ««¹¹«Ç¹G«Õ¹Ç«Ç¹«¹«ò««GGGxUG999ÕUG¹VCVUC½½fUUG^««««««Ā¹««««GGGG¹¹ÇÇÇÇÇÇ¹¹¹¹««äGGGGĀ99ZĀ0[:`", 
+"height": 287
+}, 
+"Adobe Heiti Std R": {
+"default": 256, 
+"widths": "9Ddâ­>RRx­?X?_??­­­rÏ©µ°´Fgßµºº²ìR]R­>zUDGDç^o^ÍxRFR­Q¢¢Ā_ĀÅÌ¢ĀĀll ¢Āll±±±±±±è±JJJJÀ½ÇÇÇÇÇĀÇ±±±± ĀĀÚĀĀĀĀĀJJĀĀĀĀĀĀ¡ĀĀĀĀĀĀĀĀ", 
+"height": 320
+}, 
+"LM Sans Demi Cond 10 Regular": {
+"default": 122, 
+"widths": "QN}Ëzá¸D^^z½DQDzzzzzzzzzzzDDÇ½Çs¢££°¢®HsªÖ®²²¥¨£æ££KK£zt|l|pJ||8?u8¿|z||R]Y|n¤nniGNl£Ā£Ā~²z½²[½ĀĀ|´½fzs££££££ÒHHHHĀ®²²²²²Ā½¨¨¨¨ĀĀxtttttt°lpppp8888Ā|zzzzz½z||||ĀĀnóDD½¥?iȀȀ", 
+"height": 361
+}, 
+"LM Roman 10 Bold": {
+"default": 147, 
+"widths": "bZ{õõåRrråRbRRRååååÞÑÕâÂ¹çæpç±ĘæÝÉÝÝ¤ÍãÞİÞÞ´RRÞ¤¤Z¤RZRõ¤¤ytr¤ÕRZÞĀÞĀ²°¤å°nåĀĀ¤´å{¤ÞÞÞÞÞÞċÕÂÂÂÂppppĀæÝÝÝÝÝĀåããããĀĀÕRRRRĀ¤å¤¤¤¤ĀĀĦRRå×?iȀȀ", 
+"height": 366
+}, 
+"DejaVu Serif Condensed": {
+"default": 147, 
+"widths": "I]jÁÛÍ?ZZsÁININNNÁÁÁ|æ¦©°¹¨ ¸É[\\¬ìÊ½½­Â¦í¤ ZNZÁssUJGJÚnv]ÅyNÁ]NsæÁæsÁ\\\\Il|¦¦¦¦¦¦ç°¨¨¨¨[[[[ºÊ½½½½½Á½ÂÂÂÂÙJJJJÁæIIæ4V4V", 
+"height": 298
+}, 
+"Blackoak Std": {
+"default": 457, 
+"widths": "ĬÁũșȝ©©²ªq¶ƆĊšŧŷũƂŋƄƂªªªłąǙǘƔǛǉƿǡȅĎƨǧǈɅȁǉǓǪȄƘǒǆǒɜƷǌƢ¼f¼¥ŷŰķųŔèƈƘÔÓƬÔɟƗřűůĨĴúƗŪǿżƂş¼X¼ªĵĽÁƌX¹ĻÑªĻqªæéƗ¸àÑłǙǙǙǙǙǙȘƔǉǉǉǉĎĎĎĎǛȁǉǉǉǉǉªǉǆǆǆǆǌǓŌŷŷŷŷŷŷȃķŔŔŔŔÔÔÔÔřƗřřřřřªřƗƗƗƗƂůƂĀÈľ@jT", 
+"height": 343
+}, 
+"TeX Gyre Heros Cn Bold": {
+"default": 117, 
+"widths": ":Fduu»2FFR{:F::uuuuuuuuuuFF{{{Í£:u¯££ÆF:F{uFuuuF::u:»RuFu£uuiR;R{FuuĀuĀuu{T{ĀĀu:MuÒ::::Ā£££££Ā£ĀĀuuuuuu»uuuuu::::Ā{ĀĀuÒ::IÒ?iȀȀ", 
+"height": 362
+}, 
+"Nyala": {
+"default": 101, 
+"widths": "K;Nen¶+SSae/L/Cy>qtwt~//eee^½ zo?:sÀ©x©tÑ|{PCPeK?eybxdEpy99l7¹zr{wXXM{g¡cffP\u0018Ne;dvtxBu´YejGeSOv4[Y]¿zzzz????¢©©©©©e©{}eeeeeebdddd9999uzrrrrrer{{{{f{fĀ00b?iS", 
+"height": 268
+}, 
+"MS PGothic": {
+"default": 128, 
+"widths": "N84NN4444t«¢£ª¦®¤?¾¤µµ ¤¢¾VVjNjzNv68v6¼YvZz¦vzu<<<j8«:Ā««¤«ĀĀ==4[«t¢¢¢¢¢¢«ªVJoV¦¤«««««Ā«¤¤¤¤zzzzzz«KKo\\Āzz«4ĀĀĀL", 
+"height": 256
+}, 
+"Ubuntu": {
+"default": 144, 
+"widths": ";Gk«Ü«>SS{?M?b??góª¥·¬´E¡ßºÇÇ¡°¨î¢TbT~`wcAAFÜcrgÇyUGUGG~ÐÐU\\\\¥?rgªªªªªªïEEEEººÇÇÇÇÇÇ°°°°ÜwAAAAÿ<<\\ÿ:`:`", 
+"height": 288
+}, 
+"Adobe Caslon Pro Bold": {
+"default": 128, 
+"widths": "3C`Ìì3TTTHfH`HHaÎº°Á×²¡×Þj\\½ªýÏÞ¤ß¼½»¯č±´Z`Z;upsSJEJÓ^cWy¯nqtZZZCZÓoR\\\\Heo]ººººººõ¾²²²²jjjj×ÏÞÞÞÞÞÞ»»»»¥uuuuuu®mssssJJJJqqĀ33WĀ@jT", 
+"height": 436
+}, 
+"TeX Gyre Schola Bold Italic": {
+"default": 147, 
+"widths": "IUfääIhhIUIGII{¿¾ÂÂÕ¾´Ñßr«Ç´òÚÕ¾ÕÌ¯¹Õ¾ò¾´´hhU««d¯d_¦dò¯¦¡{h¯ÕhhUĀĀ¿{¿fĀĀ¯¦I[{{¾¾¾¾¾¾äÂ¾¾¾¾rrrrĀÚÕÕÕÕÕĀÕÕÕÕÕĀĀ««««««ÑddddĀ¯¯¯¯¯ĀĀĀBBĀ?iȀȀ", 
+"height": 392
+}, 
+"TeX Gyre Heros Cn Italic": {
+"default": 117, 
+"widths": "::Juu»(FFR{:F::uuuuuuuuuu::{{{uÕ£:iu¯££Æ:::cuFuuiuu:uu//i/¯uuuuFi:uiiiiF7F{:uuĀuĀuu{T{ĀĀuq:MuuÒ::::Ā£££££Ā£ĀĀuuuuuu»iuuuu::::Āuuuuuu{uuuuĀĀiÒ//IÒ?iȀȀ", 
+"height": 352
+}, 
+"LM Roman 9 Italic": {
+"default": 134, 
+"widths": "^Qk××ÉQllÉQ^QQQÍÉÍÉÃ¹¼Æ²¬ËÃeÊ¥ìÃÉ²ÉÀ¼ÃÃĆÃÃ¡QQÃyyyQyQQyC×yolWy¯ylIQyÉĀÃĀ¯É¯eÉĀĀ¡ÉqÃÃÃÃÃÃè¼²²²²eeeeĀÃÉÉÉÉÉĀÉÃÃÃÃĀĀ¼yyyyyQQQQĀÉĀĀčQQÉ³?iȀȀ", 
+"height": 364
+}, 
+"PMingLiU": {
+"default": 120, 
+"widths": "CPbxxÈ»+PPx<P<CxxxxxxxxxxCCkÞ®¡¡®®®P^®Ö®®®¡®®ã®®PCPqxPkxkxkPxxCCxC»xxxxP^Cxx®xxkt0t*~,gÂÂ>VK5Pc¶¶¶¶¶¶ó¢WW]h¾·­­­­­­¶¶¶¶³qqqqqq²ooooKK]]yyyyyu~~ĀĀĀĀĀĀĀĀ", 
+"height": 256
+}, 
+"KacstOne": {
+"default": 128, 
+"widths": "KUhÕÇ.UU@U@GGGrì¯°³Å¢ÆÁLL¨ÝÀÊÊ²£»¯ý¯¯ULUx££Z£¢GGGù¢££id¢Ñ{3{g££££VĀr×Āgg£|Qyq¯¯¯¯¯¯ù³¢¢¢¢LLLLÆÀÊÊÊÊÊÊ»»»»¡ûGGGG¢¢¢¢¢£ĀQQĀ:`:`", 
+"height": 338
+}, 
+"Menlo Bold Italic": {
+"default": 154, 
+"height": 298
+}, 
+"MS Serif": {
+"default": 80, 
+"widths": "(-<PP}-77PZ(2((PPPPPPPPPP((ZZZFniisdZss7AndssZsiZ_sn¥sni7(7PP7FUFUF2PP(-P(xPUUU7A(PU}PUFA-AP-PPPU-PxPZx7Z((PK(-PFnnnnnnidddd7777sssssssZssssssZPFFFFFFiFFFFF((((UPUUUUUZPPPPPUUUĀUUZĀ8k", 
+"height": 280
+}, 
+"MoolBoran": {
+"default": 84, 
+"widths": "!0CbSp\"??IX'4+DYYYYYYYYYY++KXKBj_gyURsx00lP}\\dT]whc\\f<D<UI0T]L]T8X_//[/_[]]=F=_S{VQJ;';`1L_X\\'F}QX}9X57_O$>QBjjjjjjgUUUU0000y}X}wwww\\\\^TTTTTT~LTTTT////X_[[[[[X[____Q]QÛ&&@?iS", 
+"height": 344
+}, 
+"Shonar Bangla": {
+"default": 106, 
+"widths": "5GVjj°¥&GGjw5G5;jjjjjjjjjj;;www^ÃvGR¼vvÈG;GcjG^j^j^Gjj;;j;¥jjjjGR;jjjj^f*fsGjjj*j¡jw¡Ut@@r`5Bj^¼GGGGwvj^^^^^^^^^^^;;;;jjjjjjjtjjjjjjjjÔGGJÔ?iS", 
+"height": 332
+}, 
+"Kozuka Mincho Pr6N M": {
+"default": 158, 
+"widths": "FL]»¿7SSq8M8p88}½¦±§¿Up§ê¶¹¹£±«ý¯£QpQd{XIGIÝlsYÅuS^SL^Ā»t»ĀĀiiĀ8wt}¦¦¦¦¦¦áUUUU±¶¹¹¹¹¹Ā¹±±±±£Ð{IIIIĀĀ77sĀĀĀS", 
+"height": 428
+}, 
+"Kozuka Mincho Pr6N L": {
+"default": 156, 
+"widths": "HMY·º7SSt8O8w88|¿¥­¥»Pn¡æ¶··°«ý®¢QwQczUEBEÙgqVÁsScSMcĀ¾s¾ĀĀggĀ8us|¥¥¥¥¥¥âPPPP­¶·····Ā·°°°°¢ÍzEEEEĀĀ77tĀĀĀS", 
+"height": 422
+}, 
+"Century": {
+"default": 142, 
+"widths": "GLdÕÑ4UUGUGGGGr½¹¹¹Ç¹«ÇÕhÇ«òÑÇ«Ç¹¡«Ñ¹û´´UUUrUQLQärwdÇ{UUL´½m½fUUUMmr¹¹¹¹¹¹Ā¹¹¹¹¹hhhhÇÑÇÇÇÇÇÇÑÑÑÑ´«ÌrQQQQĀ44Ā4dS", 
+"height": 307
+}, 
+"Standard Symbols L": {
+"default": 157, 
+"widths": "@Uv£ÕÇFUU@\\@GGGrĀ¯°³Å¢ÆÁLL¨ÝÀÊÊ²£»¯ý¯¯UVU×££Z£¢GGGù¢££id¢Ñ{3{×g££££VĀ·Āfgg£Qy¯¯¯¯¯¯ù³¢¢¢¢LLLLÆÀÊÊÊÊÊÊ»»»»¡ûGGGG¢¢¢¢¢£ĀQQvĀ?i:`", 
+"height": 335
+}, 
+"Kozuka Mincho Pr6N B": {
+"default": 161, 
+"widths": "ELa¡¡¿Ã8SSo9J9i¡¡¡¡¡¡¡¡¡¡99}¼§¢´©Ä[q­î·º¢º¨³«þ°¤QiQd}ZMKMâqt]ÈwTZTL¡¡¡¡ZĀ·v·ĀĀjjĀ9yv}§§§§§§á[[[[´·ºººººĀº³³³³¤¢Ò}MMMMĀĀ88sĀĀĀT", 
+"height": 433
+}, 
+"Arial CYR": {
+"default": 142, 
+"widths": "GG[ä«1UUdGUGGGGĄ««¹¹«Ç¹G«Õ¹Ç«Ç¹«¹«ò««GGGxUG999ÕUG¹VCVUC½½fUUU^««««««Ā¹««««GGGG¹¹ÇÇÇÇÇÇ¹¹¹¹««äGGGGĀ99ZĀ0[", 
+"height": 286
+}, 
+"Franklin Gothic Medium": {
+"default": 150, 
+"widths": "@GaÆ¸7KK>>>{>>¸¨¤¤D_Í¦¥¥¥|âK{KwQ???ßUtSr²qqkKKG«ÆTÆcc\u001fYTÙDDDD¨¦¥¥¥¥¥¥Üw????qq«>>«¾7aS", 
+"height": 291
+}, 
+"TeX Gyre Adventor Bold Italic": {
+"default": 154, 
+"widths": "HH\\Ü®8aaqHlHvHH½½È³{×®H{qæ½××l¤³æ®R¤Rl©©¤©¤H©=C=ñ¤©©RqMÍvWWHĀĀ½v½fĀĀH\\v½½½½½½æÈHHHHĀ½×××××Ā×¤¤¤¤ĀĀ©©©©©©Ĕ¤¤¤¤¤====Ā¤¤¤¤¤©ĀĀĀHHĀ?iȀȀ", 
+"height": 394
+}, 
+"Tahoma": {
+"default": 140, 
+"widths": "PUgºú­6bbºN]Nb[[ºººyé®«­`kÅ«µµ¨çbbbºvR;H;×\\rV¾r{b{ºUbîºîyº~~[~yê````³«µµµµµºµ¨¨¨¨áv;;;;ºé66tÑKzS", 
+"height": 309
+}, 
+"LM Roman 12 Italic": {
+"default": 128, 
+"widths": "ZMcÍ}ÍÀMffÀMZMMMÃÀÃÀº°³½ª£ÂºaÁáºÀªÀ·³ººúººMMºsssMsMMs@ÍsjfSs¦szfGMsÁĀºĀ{¯À¯`ÀĀĀÀkººººººÝ³ªªªªaaaaĀºÀÀÀÀÀĀÀººººĀĀ³sssssMMMMĀÀĀĀzĀMMÀ¨?iȀȀ", 
+"height": 362
+}, 
+"Kozuka Gothic Pro L": {
+"default": 140, 
+"widths": "==YÖ¢4MMr¬4V3c34¬¬¬nÍ§¡·±³=cÞµ¾¾²êMcM¬V~L=>{=èUkYÍ{~sM>M¬=>ĀÃq¬rĀĀRQĀ4aqn§§§§§§Ô¡====¸µ¾¾¾¾¾Ā¾²²²²Ö~====Ā~~Ġ44IĀĀĀS", 
+"height": 338
+}, 
+"Microsoft Yi Baiti": {
+"default": 106, 
+"widths": "qQ[¤k'r=r=o==l½w6al¢w·wQhQcc>jj`jj5jj,,`,jjjj@`5j````D=DQshf f|fs|Ik==^[ICfÂ6666cujjjjjj°`jjjj,,,,jjjjjjjrjjjjj`j`¢993¢?iS", 
+"height": 256
+}, 
+"Poplar Std": {
+"default": 116, 
+"widths": "\u001a7jm³5::Gt-C/1rDnsswu\\st//tttl¹~py{ll|s;mvj°{rwqv{u~t`3K3Yd^]^a:Rb43^4`_]^FZ@\\X\\ZO7S7t7]pvSuLtu_tKP\\}/DLl~~~~~~°yllll;;;;~{rrrrrtruuuuwhdddddd^aaaa4444_`_____t`\\\\\\\\Z]ZĀ55J@jT", 
+"height": 305
+}, 
+"Kozuka Mincho Pr6N R": {
+"default": 157, 
+"widths": "GMZ¹¼7SSs8N8t88|¾¥®¦½Ro£ç¶··±«ý®¢QtQczVFDGÛirWÃtSaSMaĀ½s½ĀĀhhĀ8vs|¥¥¥¥¥¥áRRRR®¶·····Ā·±±±±¢ÎzFFFFĀĀ77tĀĀĀS", 
+"height": 424
+}, 
+"KacstFarsi": {
+"default": 163, 
+"widths": "?gv×£óÈFdd×Q\\QV££££££££££VV×××Ā¯°³Å¢ÆÁLL¨ÝÀÊÊ²£»¯ý¯¯dVd×££Z£¢GGGù¢££id¢Ñ£V£×g££££VĀ×Ā×gg££Qy¯¯¯¯¯¯ù³¢¢¢¢LLLLÆÀÊÊÊÊÊ×Ê»»»»¡ûGGGG¢×¢¢¢¢£ĀQQĀ:`:`", 
+"height": 275
+}, 
+"MS UI Gothic": {
+"default": 128, 
+"widths": "N84NN4444t«¢£ª¦®¤?¾¤µµ ¤¢¾VVjNjzNv68v6¼YvZz¦vzu<<<j8«:Ā««¤«ĀĀ==4[«t¢¢¢¢¢¢«ªVJoV¦¤«««««Ā«¤¤¤¤zzzzzz«KKo\\Āzz«4ĀĀĀL", 
+"height": 256
+}, 
+"Apple LiGothic Medium": {
+"default": 256, 
+"widths": "VCeww=88Vw<D<owwwwwwwwww<<wwwdÉr|e_4PS¬¡m¡sl]Éyw;o;wgNttWtg>to44l1¥oqttLT9ne¡qkcPoPwĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀȀȀȀȀȀȀȀȀȀ", 
+"height": 256
+}, 
+"Ebrima": {
+"default": 138, 
+"widths": "FIdÒÍ;MMk¯8f8d88¯¯¯sõ¥´}°¶D[yæÀÁÁ°ïMaM¯jEvP>>>ÝYmW{¹v|tM=M¯I=sä¯äa¯^^u8ns¥¥¥¥¥¥ÜDDDD´ÀÁÁÁÁÁ¯Á°°°°Õv>>>>¯||Ā;;h¼?iS", 
+"height": 340
+}, 
+"Verdana Bold": {
+"default": 182, 
+"widths": "XgÞ¶ņÝU¶Þ]{]±¶¶¶¶¶¶¶¶¶¶ggÞÞÞ÷ÇÃ¹Õ¯§ÐÖÅ£óÙÚ¼ÚÈ¶¯ÐÄġÄ½±±Þ¶¶«³³ªl³¶Xg¬Xď¶°³³u¶¦û«§¶¶Þg¶¶Ā¶Ā¶÷ÚÞ÷ÞĀĀ¹¶]ÚÇÇÇÇÇÇĘ¹¯¯¯¯ĀÙÚÚÚÚÚĀÚÐÐÐÐĀĀ·««««««ąªªªªXXXXĀ¶°°°°°Þ°¶¶¶¶ĀĀ§ĀUU¶č?iȀȀ", 
+"height": 311
+}, 
+"@Kozuka Mincho Pro EL": {
+"default": 155, 
+"widths": "HMXµ¹7SSu8P8y88|¿¥¬¤ºNnäµ¶¶°«ý­¡QyQcy~TCAD×epTÀ}rSeSMeĀÀrÀĀĀggĀ8tr|¥¥¥¥¥¥âNNNN¬µ¶¶¶¶¶Ā¶°°°°¡Ìy~~~~CCCCĀĀ77tĀĀĀS", 
+"height": 329
+}, 
+"Adobe Hebrew": {
+"default": 129, 
+"widths": "<IU~»¼-[[i<]<W<<dÆ·±Ã¾Ì[X²ëÅÇÆ¤}¤Âºā®¨ [X[htopO{GDCØbaQz´|yo[E[I~E}·tSYZZ<Xud······å°[[[[ÄÅÇÇÇÇÇÈÂÂÂÂ¨tttttt°oppppGGGGyyð;;fÿ?iS", 
+"height": 320
+}, 
+"Simsun (Founder Extended)": {
+"default": 256, 
+"widths": "GCh«u¸»-MM«C«Cu}}}}}}}}}}CC«««[ë­£»Ã½ËUM³ëÐÓÓÍ}­Ë°ĀÀµ­MuMUUempExC@=ËUMK{½}xh{{­mÃĀUĀĀĀ»­ĀCĀĀĀĀ¸­meUĀĀĀĀpĀ ĀCĀpĀĀĀCCUĀĀUĀĀĀĀĀĀĀĀĀĀĀ¸ĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀĀÓ[ĀĀĀĀĀĀÓÐÓÓ?iȀȀ", 
+"height": 288
+}, 
+"Optima ExtraBlack": {
+"default": 166, 
+"widths": "LU÷ÑL__h«LmLhQQ«««mÍ¹¹¹ÑÌÕdd¹ûÌä´ä¾Ì´Ā¦¯«_h_«G¦¦Z¦UUUò¦¦¦¦w{_¦Úf9f«UĀĀÍ«f«ĀĀ¦Lmm¹¹¹¹¹¹í¹ddddĀÌäääääĀäÌÌÌÌĀĀ«ÚUUUUĀ¦¦¦¦¦¦«¦¦¦¦¦ĀĀĀLLĀ?iȀȀ", 
+"height": 313
+}, 
+"Wingdings": {
+"default": 228, 
+"widths": "ĀĈĥōŘåĸuĖäĢĢĬĬűŲęŘ³³äēóĔñääääééË­­ññäØØØĜ©Ùėãá§Ð¿¿¹²ËãäåäĨĎ÷ėñïòĆîęđÈčŅ¿ô¿ääääu¿ýäďďääääääääôuäääääääääääääääääääääČČČČĀĀĀĀĀĀĀĀĀĀŁŁËËääääääûûääÇÇÇÇđđääßßßßääÐÐďÐÈÈÈÈ{c£ÉääĉĀQQvĀ?iS", 
+"height": 284
+}, 
+"TeX Gyre Heros Cn": {
+"default": 117, 
+"widths": "::Juu»(FFR{:F::uuuuuuuuuu::{{{uÕ£:iu¯££Æ:::cuFuuiuu:uu//i/¯uuuuFi:uiiiiF7F{:uuĀuĀuu{T{ĀĀuq:MuuÒ::::Ā£££££Ā£ĀĀuuuuuu»iuuuu::::Āuuuuuu{uuuuuĀĀiÒ//IÒ?iȀȀ", 
+"height": 351
+}, 
+"Prestige Elite Std": {
+"default": 154, 
+"height": 290
+}, 
+"Geneva": {
+"default": 171, 
+"widths": "UN««èºNrr«NaN««««««««««NN«««ßº£§³­±>~ªÊµ¼¼¤«ºòrr««d<G<åcrÈs?s«N««Ā«Ā«á«áW«ĀĀ««_ººººººþ§>>>>Āµ¼¼¼¼¼Ā¼««««ĀĀî<<<<Ā«ĀĀĈNN«Ĉ?iȀȀ", 
+"height": 320
+}, 
+"RicAldi Bold Italic": {
+"default": 140, 
+"widths": "F\\]Ùåç0]]ëF]FN\\\\ëëë{ĖÆÈÈâÂµØéq×¶ĆÝÕÁÕÒ©ºãÅĚ×È¹sNsĚ|llQ{MPLÏ{{\\\\MÈ{|ë\\ĀÅĀç{ëç]ëĀĀF\\{{ÆÆÆÆÆÆČÈÂÂÂÂqqqqĀÝÕÕÕÕÕĀÕããããĀĀ¬lllllMMMMĀ{{{{{ë{ĀĀ{ĚFF¦Ě?iȀȀ", 
+"height": 307
+}, 
+"Helvetica Neue Light": {
+"default": 142, 
+"widths": "G>_äG>>ZG_GUGGÍ¡«´¯¾´9¦Õ´¾¡¾«¡¯è>U>/B///ÕQ{Lw¾{wwU9U>ĀĀÍmÍfĀĀGVm¡¡¡¡¡¡è´9999Ā´¾¾¾¾¾Ā¾¯¯¯¯ĀĀß////ĀĀĀwĀGGĀ?iȀȀ", 
+"height": 303
+}, 
+"Vani": {
+"default": 165, 
+"widths": ">Ui¥Ñ¶7``y¥E`ExnPP¥¥¥{î¬§¤À§ºÑd²íÄ¿¿´Â«ú¶`x`¥¥t|SKKIâioX½~rn`n¥U`ñ¥ñk¥H{¬¬¬¬¬¬ù¤§§§§ddddÀÄ¿¿¿¿¿¥¿ÂÂÂÂ½t||||KKKK¥~~Û::eÏ?iS", 
+"height": 431
+}, 
+"TeX Gyre Cursor Bold": {
+"default": 154, 
+"height": 345
+}, 
+"NanumGothic": {
+"default": 155, 
+"widths": "HmnėºN]]§N]N`NN§ßº¬ºÌº>]¤|øºÉÉº«ć««]÷]§>|]>E>è]m]|Ùw|N>N§Mññ×ñVYÛñññrin£Jñ§¯§¯¯¯ÙLL_cËÀÊÊ³ÊÊÈ¤»¤¤¯êGG_c¢¦¢Ý//ññv{JJ", 
+"height": 295
+}, 
+"TeX Gyre Termes Italic": {
+"default": 128, 
+"widths": "@UlÕÇ7UU­@U@GUU­­­ì«¹¹¹Ur«Õ«¹¹¹ÕdGdlUrrGGGrG¹ddGr«rrdfFfUĀĀÃ­Ãf­ĀĀ@Oä«UUUUĀ«¹¹¹¹¹Ā¹¹¹¹¹ĀĀ«rrrrrGGGGĀ­ĀĀräUUZä?iȀȀ", 
+"height": 343
+}, 
+"LM Roman 5 Regular": {
+"default": 174, 
+"widths": "ygę®ęćg®ćgyg®®®®®®®®®®®ggććć¥ćûïõāæÝĈû~±ĄÕİûćæćøÀõûûŔûûÒg¼gû®®ÀÀp®Àgp·gęÀ®À·À·õ··¼u¼gûĀûĀ«¯Àć¯ćĀĀÀàćÀ¥ûûûûûûĮõææææ~~~~ĀûćććććĀćûûûûĀĀ®®®®®®®õggggĀÀ®®®®®ć®ÀÀÀÀĀĀ·Ŝggćß?iȀȀ", 
+"height": 366
+}, 
+"Courier New Italic": {
+"default": 154, 
+"height": 290
+}, 
+"Papyrus": {
+"default": 256, 
+"widths": ":CSÃÈ3oo`GvGªAz©~vGGv{¼¹¾Ô¹¼Ä>·Ý§é¦é¯§²ÍÉ§ ªooIe658µcy]q¤}rA8ACx»Ā©ĀuééPĀĀsAz{¼¼¼¼¼¼Ģ¾¹¹¹¹>>>>Ā§éééééĀéÍÍÍÍĀĀè6666ĀĀĀđGGYĀ?iȀȀ", 
+"height": 395
+}, 
+"pangzhonghua": {
+"default": 128, 
+"height": 256
+}, 
+"Lucida Sans Unicode": {
+"default": 162, 
+"widths": "QQ`¢¢«³;SS{ÌQQ¢¢¢¢¢¢¢¢¢¢QQÌÌÌlÜ±±À¹¼JP§Ý½ÇÇ¢¢±§Û  SS¢¡¡^ JNJï¡¡i`ÅS`S¢Q¢¢¢¢_¢ÛÌ¢GÌll ¢¢ll±±±±±±è±JJJJÀ½ÇÇÇÇÇÌÇ±±±± ÚJJJJÌ¡ĀQQ¢ĀSS", 
+"height": 394
+}, 
+"Futura": {
+"default": 158, 
+"widths": "OUië»;^^O8OOO}á¾³ºØ¼LiªröØåå|½­Đ \\\\zL@@@Ë`hFÆ\\\\ÁUĀĀÜÜ¤ĀĀOi}¾¾¾¾¾¾Č³LLLLĀØåååååĀå½½½½ĀĀÜz@@@@ĀĀĀ§TTÁò?iȀȀ", 
+"correction": 1.45, 
+"height": 332
+}, 
+"QXyingbikai": {
+"default": 256, 
+"height": 280
+}, 
+"Lohit Gujarati": {
+"default": 157, 
+"widths": "IYtá®Ý¹L¤¯m¿YÂ_h¢¢Ā¯°³Å¢ÆÁLL¨ÝÀÊÊ²£»¯ý¯¯¤ÜX££Z£¢GGGù¢££id¢ÑyGy°g££££VĀ×Ā×gg££Qy¯¯¯¯¯¯ù³¢¢¢¢LLLLÆÀÊÊÊÊÊÊ»»»»¡ûGGGG¢£¢¢¢¢£Ļmmù:`:`", 
+"height": 332
+}, 
+"Cordia New": {
+"default": 93, 
+"widths": "/8/]]p%88Ao/8//]]]]]]]]]]//oooTppyyf]y/Tp]yfpf]yffff8/8oT8]f]f]/f]%%T%]]ff8T/]TyTTT8%8o:aaaa-aafF_::d]0@ajpppppp®yffff////~yfyyyyftj]]]]]]]]]]]0000a]]]]]]_j]]]]TaT¨%%T¨?iS", 
+"height": 355
+}, 
+"DaunPenh": {
+"default": 85, 
+"widths": "?1HUU->>BU+6+DUUUUUUUUUU++UUUDxjf]=:|berXnx¬ymr>D>U<NZI\\L4U`/,[.aY]Z@A6^QzTSL>0>U1UUUU8cRUBUBB^n+KRBxxxxxx§ffff====UmebNNNNNNsILLLL////XaYYYYYUY^^^^SZS¸++\\?iS", 
+"height": 344
+}, 
+"Modern": {
+"default": 122, 
+"widths": "b=bz=UUb==zzzzzzzzzz==n¥ntn1bhzbnznzUUUU=ttntnItt1=h1·ttttOhItbhbhU1UQ¢¢¢¢_¢ÛÌ¢GÌll ¢¢ll±±±±±±è±JJJJÀ½ÇÇÇÇÇÌÇ±±±± ÚJJJJÌ¡ĀQQvĀ?iS", 
+"height": 293
+}, 
+"@Meiryo UI": {
+"default": 159, 
+"widths": "WasÎĈºBqqÎYĀYsnnÎÎÎą®¬¬Àº¾gr©Õ¾ÃÃ¯££»¯Ā«¢§qqÎVATAöjaÕqÎaqĀ©ÎĀÎww Y©®®®®®®þ¬ggggÁ¾ÃÃÃÃÃÎÃ»»»»¢ðAAAAÎĀBĀĀĀĀĀĀĀ", 
+"height": 325
+}, 
+"Comic Sans MS": {
+"default": 204, 
+"widths": "M=mØ²Ò¨c^^{Gk@sMMbbî»¡¹ ®ÅªâÌÌà¡²®½¦Ċ¹£²``¡HgFÇ{}y}¯^l^= Ë£h£Ì{Ìi{§§²@s»»»»»»Ė    ¹ÌÌÌÌÌÌ{Ì½½½½£réHHHH{nâ..c­.US", 
+"height": 357
+}, 
+"WenQuanYi Micro Hei Mono": {
+"default": 154, 
+"widths": ":`", 
+"height": 301
+}, 
+"TeX Gyre Pagella Bold Italic": {
+"default": 142, 
+"widths": "@UäÕ@UUr@d@Q@@rÕ¹«¯ÇÇÇdd¹òÇÕ«Õ¹Ç«Ā¹«UUUrrUUUUÕdrdÕUUUĀĀ¿¿fĀĀ@Ur¹¹¹¹¹¹ò¯ddddĀÇÕÕÕÕÕĀÕÇÇÇÇĀĀ½rrrrrUUUUĀĀĀĀGGĀ?iȀȀ", 
+"height": 353
+}, 
+"Plantagenet Cherokee": {
+"default": 133, 
+"widths": "C7FÕ»%WWw7C3F<Euufå¼°½ÀÔaa»çÊÀÀ¬¥Ë®ï³¦EFEl_<~w}YJIRêgfT¶kG;G7u;|¾}m9yRRt3k}f¼¼¼¼¼¼ô°aaaa½ÊÀÀÀÀÀÀËËËË¦~~~~~~·u}}}}IIIIĀ00UĀ?iS", 
+"height": 325
+}, 
+"KacstScreen": {
+"default": 163, 
+"widths": "?gv×£óÈFdd×Q\\QV££££££££££VV×××Ā¯°³Å¢ÆÁLL¨ÝÀÊÊ²£»¯ý¯¯dVd×££Z£¢GGGù¢££id¢Ñ£V£×g££££VĀ×Ā×gg££Qy¯¯¯¯¯¯ù³¢¢¢¢LLLLÆÀÊÊÊÊÊ×Ê»»»»¡ûGGGG¢×¢¢¢¢£ĀQQĀ:`:`", 
+"height": 275
+}
+}, 
+"size": 256
+}

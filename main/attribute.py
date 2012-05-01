@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
-from fontMetrics import FontMetrics
+import fontMetrics
 
 import re
 
@@ -21,7 +21,7 @@ class Attribute:
 	
 	def calculateSize(self,style):
 		self.attributeFont = style[self.fontType]
-		font = FontMetrics(self.attributeFont)
+		font = fontMetrics.FontMetrics(self.attributeFont)
 		self.w = font.getPixelWidth(self.label)
 		self.h = font.getPixelHeight()
 		self.style = style

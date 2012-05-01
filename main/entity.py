@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
-from fontMetrics import FontMetrics
+import fontMetrics
 
 from attribute import *
 
@@ -33,10 +33,10 @@ class Entity:
 		self.legs = [] # iterating over box's legs does nothing if this is not an association 
 	
 	def calculateSize(self,style):
-		cartoucheFont = FontMetrics(style["entityCartoucheFont"])
+		cartoucheFont = fontMetrics.FontMetrics(style["entityCartoucheFont"])
 		self.getCartoucheStringWidth = cartoucheFont.getPixelWidth
 		self.cartoucheHeight = cartoucheFont.getPixelHeight()
-		attributeFont = FontMetrics(style["entityAttributeFont"])
+		attributeFont = fontMetrics.FontMetrics(style["entityAttributeFont"])
 		self.attributeHeight = attributeFont.getPixelHeight()
 		for attribute in self.attributes:
 			attribute.calculateSize(style)
