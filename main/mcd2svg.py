@@ -77,20 +77,13 @@ def main(params):
 							subDict[k] = d[k]
 					line = line % subDict
 					subDict = "{%s}" % ", ".join("'%s': %s" % (k,(d[k] if k in d else k)) for k in rex.findall(line))
-					result.append("lines += u'\\n%s'" % ("\t"*tabs+line) + " % " + str(subDict))
+					result.append("lines += u\"\"\"\\n%s\"\"\"" % ("\t"*tabs+line) + " % " + str(subDict))
 				tabs = tabs + (1 if d["key"] == "begin" else 0)
 		else:
 			result.append("""\nlines += u'\\n\\n<!-- %s -->'""" % d)
 	result.append("""lines += u'\\n</svg>'""")
-	name = params["output"][:params["output"].rindex("-")]
-	result.append("""\nimport codecs\ncodecs.open("%s.svg","w","utf8").write(lines)""" % name)
-	result.append("""print 'Output file %s.svg successfully generated.'""" % name)
+	result.append("""\nimport codecs\ncodecs.open("%(root)s.svg","w","utf8").write(lines)""" % params)
+	result.append("""print 'Output file "%(root)s.svg" successfully generated.'""" % params)
 	common.dumpOutputFile("\n".join(result))
 	common.dumpMldFiles(mcd)
 	
-
-if __name__=="__main__":
-	params = json.loads(open("default.json").read())
-	params["output"] = params["output"].replace("nodebox","svg")
-	main(params)
-

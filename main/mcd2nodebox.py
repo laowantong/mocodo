@@ -47,8 +47,3 @@ def main(params):
 	common.dumpOutputFile("\n".join(result))
 	common.dumpMldFiles(mcd)
 	
-
-if __name__=="__main__":
-	params = json.loads(open("default.json").read())
-	params["output"] = params["output"].replace(".svg",".py")
-	main(params)

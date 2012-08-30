@@ -1,12 +1,12 @@
 {
-	"encoding": ["utf8","macroman"],
+	"encodings": ["utf8","macroman"],
 	"input":"sandbox.mcd",
-	"output":"sandbox-svg.py",
+	"output":"svg",
 	"colors":"bw",
 	"shapes":"trebuchet",
 	"df":"DF",
 	"sep":",",
-	"table":["html","txt"],
+	"tables":["html","txt"],
 	"attraction": 40,
 	"extract": false,
 	"tkinter": false
