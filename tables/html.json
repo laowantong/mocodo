@@ -1,6 +1,6 @@
 {
 	"extension": "htm",
-	"opening": "<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.0 Transitional//EN'>\n<HTML>\n<HEAD>\n<META HTTP-EQUIV='Content-Type' CONTENT='text/html; charset=utf8'> \n</HEAD><BODY BGCOLOR='white' TEXT='black'>\n<FONT SIZE='4'>\n</FONT></CENTER>\n",
+	"opening": "<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.0 Transitional//EN'>\n<HTML>\n<HEAD>\n<META HTTP-EQUIV='Content-Type' CONTENT='text/html; charset=utf8'> \n</HEAD><BODY BGCOLOR='white' TEXT='black'>\n<FONT SIZE='4'>\n</FONT>\n",
 	"table": "<B>%s</B>",
 	"primary": "<U>%s</U>",
 	"simple": "%s",

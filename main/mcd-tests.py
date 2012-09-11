@@ -4,17 +4,24 @@
 import unittest
 from mcd import *
 
+import gettext
+gettext.NullTranslations().install()
+
 params = {
 	"df": u"DF",
 	"sep": u",",
 }
+
+import os
+os.chdir("..")
 
 class McdTest(unittest.TestCase):
 	
 	def testEntityRecognition(self):
 		clauses = [
 			u"PROJET: num. projet, nom projet, budget projet",
-			u"PROJET ABC: num. projet, nom projet, budget projet"
+			u"PROJET ABC: num. projet, nom projet, budget projet",
+			u"PROJET CDE:",
 		]
 		mcd = Mcd(clauses,params)
 		self.assertEqual(len(mcd.elements),len(clauses))
@@ -22,7 +29,8 @@ class McdTest(unittest.TestCase):
 			self.assertEqual(element.__class__, Entity)
 	
 	def testAssociationRecognition(self):
-		clauses = [
+		entities = [u"FONCTION:", u"DÉPARTEMENT:", u"EMPLOYÉ:", u"PERSONNE:", u"ÉTUDIANT:", u"DATE:", u"CLIENT:", u"COMMANDE:", u"BANDIT:", u"EMPLOYÉ ABC:"]
+		associations = [
 			u"ASSUMER, 1N EMPLOYÉ, 1N FONCTION: date début, date fin",
 			u"DIRIGER, 11 DÉPARTEMENT, 01 EMPLOYÉ",
 			u"ENGENDRER, 0NParent PERSONNE, 1NEnfant PERSONNE",
@@ -30,12 +38,14 @@ class McdTest(unittest.TestCase):
 			u"DF, 0N CLIENT, 11 COMMANDE",
 			u"DF2, 0N CLIENT, 11 COMMANDE",
 			u"ÊTRE AMI, 0N BANDIT, 0N BANDIT",
-			u"ASSUMER2, 1N EMPLOYÉ ABC, 1N FONCTION: date début, date fin",
+			u"ASSURER2, 1N EMPLOYÉ ABC, 1N FONCTION: date début, date fin",
 		]
+		clauses = entities + associations
 		mcd = Mcd(clauses,params)
 		self.assertEqual(len(mcd.elements),len(clauses))
 		for element in mcd.elements.values():
-			self.assertEqual(element.__class__, Association)
+			if element.name+":" not in entities:
+				self.assertEqual(element.__class__, Association)
 	
 	def testOrdering(self):
 		clauses = u"""
@@ -60,7 +70,13 @@ class McdTest(unittest.TestCase):
 		self.assertEqual([element.name for element in mcd.ordering[2]],[u"ROULEAU", u"HERSE"])
 		self.assertEqual([element.name for element in mcd.ordering[3]],[u"FLÉAU"])
 	
-
+	def testInputErrors(self):
+		clauses = [
+			u"PROJET: num. projet, nom projet, budget projet",
+			u"ASSUMER, 1N PROJET, 1N INDIVIDU",
+		]
+		self.assertRaisesRegexp(RuntimeError,"Mocodo Err.1",Mcd,clauses,params)
+	
 
 class AttractTest(unittest.TestCase):
 	

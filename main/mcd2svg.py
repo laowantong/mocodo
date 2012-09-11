@@ -80,7 +80,7 @@ def main(params):
 					result.append("lines += u\"\"\"\\n%s\"\"\"" % ("\t"*tabs+line) + " % " + str(subDict))
 				tabs = tabs + (1 if d["key"] == "begin" else 0)
 		else:
-			result.append("""\nlines += u'\\n\\n<!-- %s -->'""" % d)
+			result.append("\nlines += u\"\"\"\\n\\n<!-- %s -->\"\"\"" % d)
 	result.append("""lines += u'\\n</svg>'""")
 	result.append("""\nimport codecs\ncodecs.open("%(root)s.svg","w","utf8").write(lines)""" % params)
 	result.append("""print 'Output file "%(root)s.svg" successfully generated.'""" % params)

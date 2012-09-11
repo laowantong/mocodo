@@ -2,7 +2,6 @@
 # encoding: utf-8
 
 import fontMetrics
-
 import sys
 
 class Leg:
@@ -20,13 +19,32 @@ class Leg:
 	def calculateSize(self,style):
 		font = fontMetrics.FontMetrics(style["cardFont"])
 		self.h = font.getPixelHeight()
+		self.w = font.getPixelWidth(self.cardinalities)
 		self.style = style
+	
+	def cardinalityCorner(self):
+		ex = self.entity.x + self.entity.w / 2
+		ey = self.entity.y + self.entity.h / 2
+		ew = self.entity.w / 2
+		eh = self.entity.h / 2
+		ax = self.association.x + self.association.w / 2
+		ay = self.association.y + self.association.h / 2
+		k = self.value()
+		if ax!=ex and abs(float(ay-ey)/(ax-ex)) < float(eh)/ew:
+			(x0,x1) = (ex+cmp(ax,ex)*(ew+self.style["cardMargin"]), ex+cmp(ax,ex)*(ew+self.style["cardMargin"]+self.style["cardMaxWidth"]))
+			(y0,y1) = sorted([ey+(x0-ex)*(ay-ey)/(ax-ex), ey+(x1-ex)*(ay-ey)/(ax-ex)])
+			(x,y) = (min(x0,x1),(y0+y1-self.style["cardMaxHeight"]+k*abs(y1-y0+self.style["cardMaxHeight"]))/2+cmp(k,0)*self.style["cardMargin"])
+		else:
+			(y0,y1) = (ey+cmp(ay,ey)*(eh+self.style["cardMargin"]), ey+cmp(ay,ey)*(eh+self.style["cardMargin"]+self.style["cardMaxHeight"]))
+			(x0,x1) = sorted([ex+(y0-ey)*(ax-ex)/(ay-ey), ex+(y1-ey)*(ax-ex)/(ay-ey)])
+			(x,y) = ((x0+x1-self.style["cardMaxWidth"]+k*abs(x1-x0+self.style["cardMaxWidth"]))/2+cmp(k,0)*self.style["cardMargin"],min(y0,y1))
+		return (x+self.w, y+self.h)
 	
 	def setEntity(self,entities):
 		try:
 			self.entity = entities[self.entityName]
 		except KeyError:
-			sys.stderr.write(u"Warning: association %s linked to an unknown entity %s!\n" % (repr(self.association.name),repr(self.entityName)))
+			raise RuntimeError(("Mocodo Err.1 - " + _(u'Association "%(a)s" linked to an unknown entity "%(e)s"!') % {"a":self.association.name,"e":self.entityName}).encode("utf8"))
 	
 	def setCardSep(self,cardSep):
 		self.cardinalities = ("" if self.cards.startswith("XX") else self.cards[0] + cardSep + self.cards[1])

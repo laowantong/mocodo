@@ -6,13 +6,24 @@ import fontMetrics
 from attribute import *
 from leg import *
 
+
 class Association:
 	
 	def __init__(self, clause, params = {"df": u"DF"}):
 		def cleanUp(name,legs,attributes):
 			name = name.strip()
 			cartouche = (name[:-1] if name[-1].isdigit() else name)
-			(cards,entities) = zip(*[i.strip().split(" ",1) for i in legs.split(",")])
+			(cards,entities) = ([],[])
+			l = []
+			for leg in legs.split(","):
+				leg = leg.strip()
+				if " " not in leg:
+					raise RuntimeError(("Mocodo Err.2 - " + _('Missing cardinalities in leg "%(leg)s" of association "%(name)s".') % {"leg":leg,"name":name}).encode("utf8"))
+				(card,entity) = leg.split(" ",1)
+				if len(card)<2:
+					raise RuntimeError(("Mocodo Err.3 - " + _('Missing minimum or maximum cardinality in leg "%(leg)s" of association "%(name)s".') % {"leg":leg,"name":name}).encode("utf8"))
+				l.append(leg.split(" ",1))
+			(cards,entities) = zip(*l)
 			return (name,cartouche,cards,list(entities),outerSplit(attributes))
 		
 		(name,legsAndAttributes) = clause.split(",",1)

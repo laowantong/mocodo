@@ -4,6 +4,10 @@
 import unittest
 from association import *
 
+import gettext
+gettext.NullTranslations().install()
+
+
 class parseTest(unittest.TestCase):
 	
 	def testReflexive(self):
@@ -134,6 +138,9 @@ class parseTest(unittest.TestCase):
 		self.assertEqual(a.legs[2].entityName,"ENSEIGNANT")
 		self.assertEqual(a.legs[2].mayIdentify,True)
 	
+	def testInputErrors(self):
+		self.assertRaisesRegexp(RuntimeError,r"Mocodo Err.2",Association,"EMPLOYER, PARTICIPANT, 0N ENTREPRISE",)
+		self.assertRaisesRegexp(RuntimeError,r"Mocodo Err.3",Association,"EMPLOYER, 1 PARTICIPANT, 0N ENTREPRISE",)
 
 if __name__ == '__main__':
 	unittest.main()

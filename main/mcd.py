@@ -4,6 +4,7 @@
 import sys
 from association import *
 from entity import *
+from goodies import cardPos
 import fontMetrics
 
 def attract(rows,dx):
@@ -46,6 +47,8 @@ class Mcd:
 					continue
 			else:
 				self.ordering.append([])
+		if self.elements == {}:
+			raise RuntimeError(("Mocodo Err.4 - " + _('The MCD is empty!')).encode("utf8"))
 		self.ordering = filter(None,self.ordering)
 		for association in self.associations.values():
 			for leg in association.legs:
@@ -64,7 +67,6 @@ class Mcd:
 			self.w = 0
 			for row in self.ordering:
 				self.w = max(self.w,row[-1].x+row[-1].w)
-			self.w += style["marginSize"]
 		#
 		def cancelExcessiveIndentation():
 			dx = min([row[0].x for row in self.ordering]) - style["marginSize"]
@@ -72,6 +74,13 @@ class Mcd:
 				for box in row:
 					box.x -= dx
 			self.w -= dx
+		#
+		def adjustWithCardinalityRightPosition():
+			for association in self.associations.values():
+				for leg in association.legs:
+					(x,y) = leg.cardinalityCorner()
+					self.w = max(self.w,x)
+					self.h = max(self.h,y)
 		#
 		style["cardMaxHeight"] = fontMetrics.FontMetrics(style["cardFont"]).getPixelHeight()
 		style["cardMaxWidth"] = fontMetrics.FontMetrics(style["cardFont"]).getPixelWidth(self.cardLongestString)
@@ -90,13 +99,16 @@ class Mcd:
 			for box in row:
 				box.y = verticalOffset + (maxBoxHeight-box.h)/2
 			verticalOffset += maxBoxHeight + style["cardMaxHeight"] + 2 * style["cardMargin"]
-		self.h = verticalOffset - style["cardMaxHeight"] - 2 * style["cardMargin"] + style["marginSize"]
+		self.h = verticalOffset - style["cardMaxHeight"] - 2 * style["cardMargin"]
 		maxWidth = max(widths)
 		for (row,width) in zip(self.ordering,widths):
 			for box in row:
 				box.x += (maxWidth - width) / 2
 		applyAttraction()
 		cancelExcessiveIndentation()
+		adjustWithCardinalityRightPosition()
+		self.w += style["marginSize"]
+		self.h += style["marginSize"]
 	
 	def description(self):
 		result = []
