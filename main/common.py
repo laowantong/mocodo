@@ -34,7 +34,7 @@ class Common:
 		for encoding in self.params["encodings"]:
 			try:
 				self.encoding = encoding
-				return codecs.open(self.params["dirRootExt"],encoding=encoding).read().split("\n")
+				return codecs.open(self.params["dirRootExt"],encoding=encoding).read().replace('"','').split("\n")
 			except UnicodeError:
 				pass
 		raise RuntimeError(("Mocodo Err.5 - " + _('Unable to read "%(file)s" with any of the following encodings: "%(encodings)s".') % {"file":self.params["dirRootExt"],"encodings":", ".join(self.params["encodings"])}).encode("utf8"))
