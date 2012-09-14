@@ -87,6 +87,7 @@ def main():
 			recreateDefaultParamsFile()
 		if "--default" in opts:
 			defaultPath = os.path.join(initialDir,opts["--default"])
+			# print >> sys.stderr, defaultPath
 		else:
 			defaultPath = "default.json"
 		params = json.loads(open(defaultPath).read())
@@ -106,6 +107,7 @@ def main():
 			elif option == "--tkinter":            params["tkinter"] = True
 			elif option == "--df":                 params["df"] = unicode(value)
 			elif option == "--sep":                params["sep"] = value
+		# print >> sys.stderr, repr(params)
 		params["dirRootExt"] = os.path.join(initialDir,params["input"])
 		params["dirRoot"] = os.path.splitext(params["dirRootExt"])[0]
 		(params["dir"],params["root"]) = os.path.split(params["dirRoot"])
@@ -118,7 +120,7 @@ def main():
 				import main.mcd2svg
 				main.mcd2svg.main(params)
 				os.chdir(params["dir"])
-				sys.path.append(params["dir"])
+				sys.path[0:0] = [params["dir"]]
 				__import__("%(root)s-svg" % params)
 			elif params["output"]=="nodebox":
 				import main.mcd2nodebox

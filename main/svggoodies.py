@@ -15,3 +15,9 @@ def arrow(x,y,a,b):
 		"L",x+arrowWidth*cos+arrowHalfHeight*sin,y+arrowHalfHeight*cos-arrowWidth*sin,
 		"Z"
 	]])
+
+def safePrint(s):
+	try:
+		print s
+	except UnicodeEncodeError:
+		print s.encode("utf8")

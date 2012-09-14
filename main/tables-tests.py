@@ -5,6 +5,9 @@ import unittest
 from tables import *
 from mcd import Mcd
 
+import os
+os.chdir("..")
+
 
 class TablesTest(unittest.TestCase):
 	

@@ -48,7 +48,7 @@ class Mcd:
 			else:
 				self.ordering.append([])
 		if self.elements == {}:
-			raise RuntimeError(("Mocodo Err.4 - " + _('The MCD is empty!')).encode("utf8"))
+			raise RuntimeError(("Mocodo Err.4 - " + _('The MCD is empty.')).encode("utf8"))
 		self.ordering = filter(None,self.ordering)
 		for association in self.associations.values():
 			for leg in association.legs:
