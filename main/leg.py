@@ -38,7 +38,7 @@ class Leg:
 			(y0,y1) = (ey+cmp(ay,ey)*(eh+self.style["cardMargin"]), ey+cmp(ay,ey)*(eh+self.style["cardMargin"]+self.style["cardMaxHeight"]))
 			(x0,x1) = sorted([ex+(y0-ey)*(ax-ex)/(ay-ey), ex+(y1-ey)*(ax-ex)/(ay-ey)])
 			(x,y) = ((x0+x1-self.style["cardMaxWidth"]+k*abs(x1-x0+self.style["cardMaxWidth"]))/2+cmp(k,0)*self.style["cardMargin"],min(y0,y1))
-		return (x+self.w, y+self.h)
+		return (int(x+self.w),int(y+self.h))
 	
 	def setEntity(self,entities):
 		try:
@@ -47,7 +47,7 @@ class Leg:
 			raise RuntimeError(("Mocodo Err.1 - " + _(u'Association "%(a)s" linked to an unknown entity "%(e)s"!') % {"a":self.association.name,"e":self.entityName}).encode("utf8"))
 	
 	def setCardSep(self,cardSep):
-		self.cardinalities = ("" if self.cards.startswith("XX") else self.cards[0] + cardSep + self.cards[1])
+		self.cardinalities = (u"" if self.cards.startswith("XX") else self.cards[0] + cardSep + self.cards[1])
 	
 
 class StraightLeg(Leg):
