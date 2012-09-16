@@ -83,12 +83,11 @@ def main():
 		opts = dict(opts)
 		if "--cleanup" in opts:
 			return recreateDefaultParamsFile()
-		if not os.path.exists("default.json"):
-			recreateDefaultParamsFile()
 		if "--default" in opts:
 			defaultPath = os.path.join(initialDir,opts["--default"])
-			# print >> sys.stderr, defaultPath
 		else:
+			if not os.path.exists("default.json"):
+				recreateDefaultParamsFile()
 			defaultPath = "default.json"
 		params = json.loads(open(defaultPath).read())
 		# option processing
