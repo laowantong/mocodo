@@ -61,7 +61,7 @@ class Common:
 		t = tables.Tables(mcd)
 		t.processAll()
 		for mldFormat in mldFormats:
-			path = "%s.%s" % (self.params["dirRoot"],mldFormat["extension"])
+			path = self.params["dirRoot"] + mldFormat["extension"]
 			try:
 				text = t.getText(mldFormat)
 				safePrint(self.outputSuccessMessage(path))

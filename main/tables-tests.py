@@ -202,7 +202,7 @@ SEMPER (_#ultricies.SEMPER.RISUS(nonDf)_, _#cras.SEMPER.RISUS(nonDf)_, _#ligula.
 	
 	def testMySQLOutput(self):
 		format = {
-			"extension": "sql",
+			"extension": ".sql",
 			"opening": "",
 			"table": "`%s`",
 			"primary": "`%s`",

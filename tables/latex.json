@@ -1,5 +1,5 @@
 {
-	"extension": "tex",
+	"extension": ".tex",
 	"opening": "\\begin{mld}\n",
 	"table": "\\relat{%(capitalize)s}",
 	"primary": "\\prim{%s}",

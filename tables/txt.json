@@ -1,5 +1,5 @@
 {
-	"extension": "txt",
+	"extension": ".txt",
 	"opening": "",
 	"table": "%s",
 	"primary": "_%s_",

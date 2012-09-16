@@ -1,5 +1,5 @@
 {
-	"extension": "t2t",
+	"extension": ".t2t",
 	"opening": "\n\n\n%!encoding: utf8\n",
 	"table": "**%s**",
 	"primary": "__%s__",
