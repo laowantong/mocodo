@@ -135,15 +135,16 @@ class TablesTest(unittest.TestCase):
 			"nonDf": "%(attribute)s.%(association)s.%(entity)s(nonDf)",
 			"distinguish": "%(label)s.%(count)s"
 		}
+		t.sort()
 		expected = """\
+LOREM (_#diam.DF.SUSPENDISSE(strengthen)_, _ipsum_, dolor, sit, #elit.AMET.CONSECTETUER(df), adipiscing)
+CONSECTETUER (_elit_, sed)
 SOLLICITUDIN (_#diam.SOLLICITUDIN.SUSPENDISSE(nonDf)_, _#elit.SOLLICITUDIN.CONSECTETUER(nonDf)_, _#diam.SOLLICITUDIN.LOREM(nonDf)_, _#ipsum.SOLLICITUDIN.LOREM(nonDf)_, lectus)
-SEMPER (_#ultricies.SEMPER.RISUS(nonDf)_, _#cras.SEMPER.RISUS(nonDf)_, _#ligula.SEMPER.DIGNISSIM(nonDf)_)
 RISUS (_ultricies_, _cras_, elementum, #ultricies.NON.RISUS(df), #cras.NON.RISUS(df))
+--- SUSPENDISSE (_diam_)
 MAECENAS (_#ligula.MAECENAS.DIGNISSIM(nonDf).1_, _#ligula.MAECENAS.DIGNISSIM(nonDf).2_)
 DIGNISSIM (_ligula_, massa, varius, #ultricies.TORTOR.RISUS(df), #cras.TORTOR.RISUS(df), #elit.TORTOR.CONSECTETUER(df), nec)
-CONSECTETUER (_elit_, sed)
---- SUSPENDISSE (_diam_)
-LOREM (_#diam.DF.SUSPENDISSE(strengthen)_, _ipsum_, dolor, sit, #elit.AMET.CONSECTETUER(df), adipiscing)"""
+SEMPER (_#ultricies.SEMPER.RISUS(nonDf)_, _#cras.SEMPER.RISUS(nonDf)_, _#ligula.SEMPER.DIGNISSIM(nonDf)_)"""
 		self.assertEqual(t.getText(format),expected)
 	
 	def testForeignKeyAllNSpecialCase(self):
@@ -155,7 +156,7 @@ LOREM (_#diam.DF.SUSPENDISSE(strengthen)_, _ipsum_, dolor, sit, #elit.AMET.CONSE
 		"""
 		t = Tables(Mcd(clauses.split("\n"),{"df": u"DF","sep": u","}))
 		t.processAll()
-		expected = { 'name': 'SOLLICITUDIN',
+		expected = { 'name': 'SOLLICITUDIN', 'index': 3,
 				'columns': [
 					{'format': 'nonDf', 'attribute': 'diam', 'attributeType': None, 'association': 'SOLLICITUDIN', 'entity': 'SUSPENDISSE', 'primary': True, 'foreign': True},
 					{'format': 'nonDf', 'attribute': 'elit', 'attributeType': None, 'association': 'SOLLICITUDIN', 'entity': 'CONSECTETUER', 'primary': False, 'foreign': True},
@@ -165,8 +166,6 @@ LOREM (_#diam.DF.SUSPENDISSE(strengthen)_, _ipsum_, dolor, sit, #elit.AMET.CONSE
 			}
 		self.assert_('SOLLICITUDIN' in t.tables)
 		self.assertEqual(t.tables['SOLLICITUDIN'], expected)
-
-
 	
 	def testForeignKey01SpecialCase(self):
 		clauses = """
@@ -177,7 +176,7 @@ LOREM (_#diam.DF.SUSPENDISSE(strengthen)_, _ipsum_, dolor, sit, #elit.AMET.CONSE
 		"""
 		t = Tables(Mcd(clauses.split("\n"),{"df": u"DF","sep": u","}))
 		t.processAll()
-		expected = { 'name': 'SOLLICITUDIN',
+		expected = { 'name': 'SOLLICITUDIN', 'index': 3,
 				'columns': [
 					{'format': 'nonDf', 'attribute': 'diam', 'attributeType': None, 'association': 'SOLLICITUDIN', 'entity': 'SUSPENDISSE', 'primary': True, 'foreign': True},
 					{'format': 'nonDf', 'attribute': 'elit', 'attributeType': None, 'association': 'SOLLICITUDIN', 'entity': 'CONSECTETUER', 'primary': False, 'foreign': True},
@@ -185,6 +184,21 @@ LOREM (_#diam.DF.SUSPENDISSE(strengthen)_, _ipsum_, dolor, sit, #elit.AMET.CONSE
 					{'attribute': 'lectus', 'attributeType': None, 'primary': False, 'foreign': False},
 				],
 			}
+		self.assert_('SOLLICITUDIN' in t.tables)
+		self.assertEqual(t.tables['SOLLICITUDIN'], expected)
+	
+	def testOrderWithNameClashes(self):
+		clauses = """
+		LOREM1: -ipsum, dolor, sit
+		LOREM2: elit, sed
+		LOREM3: diam
+		LOREM4, 11 LOREM1, 1N LOREM2: transit
+		LOREM4, 0N LOREM3, 0N LOREM2, 0N LOREM1: lectus
+		"""
+		t = Tables(Mcd(clauses.split("\n"),{"df": u"DF","sep": u","}))
+		t.processAll()
+		expected = [(0, 'ipsum, dolor, sit'), (1, 'elit, sed'), (2, 'diam'), (4, 'diam, elit, ipsum, lectus')]
+		self.assertEqual(expected,sorted((d["index"],", ".join([column["attribute"] for column in d["columns"]])) for d in t.tables.values()))
 	
 	def testMySQLOutput(self):
 		format = {
@@ -219,13 +233,6 @@ LOREM (_#diam.DF.SUSPENDISSE(strengthen)_, _ipsum_, dolor, sit, #elit.AMET.CONSE
 		t = Tables(Mcd(clauses.split("\n"),{"df": u"DF","sep": u","}))
 		t.processAll()
 		expected = """\
-CREATE TABLE `PRODUIT` (
-  `Réf. produit` varchar(8),
-  `Libellé` varchar(20),
-  `Prix unitaire` decimal(5,2) DEFAULT '0.00',
-  PRIMARY KEY(`Réf. produit`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
-
 CREATE TABLE `CLIENT` (
   `Réf. client` varchar(8),
   `Nom` varchar(20),
@@ -249,6 +256,13 @@ CREATE TABLE `INCLURE` (
   PRIMARY KEY(`Num commande`, `Réf. produit`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
+CREATE TABLE `PRODUIT` (
+  `Réf. produit` varchar(8),
+  `Libellé` varchar(20),
+  `Prix unitaire` decimal(5,2) DEFAULT '0.00',
+  PRIMARY KEY(`Réf. produit`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+
 ALTER TABLE `COMMANDE` ADD FOREIGN KEY (`Réf. client`) REFERENCES `CLIENT` (`Réf. client`) ON UPDATE CASCADE;
 
 ALTER TABLE `INCLURE` ADD FOREIGN KEY (`Num commande`) REFERENCES `COMMANDE` (`Num commande`) ON UPDATE CASCADE;
@@ -268,13 +282,6 @@ ALTER TABLE `INCLURE` ADD FOREIGN KEY (`Réf. produit`) REFERENCES `PRODUIT` (`R
 		t = Tables(Mcd(clauses.split("\n"),{"df": u"DF","sep": u","}))
 		t.processAll()
 		expected = """\
-CREATE TABLE `PRODUIT` (
-  `Réf. produit` varchar(8),
-  `Libellé` varchar(20),
-  `Prix unitaire` decimal(5,2) DEFAULT '0.00',
-  PRIMARY KEY(`Réf. produit`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
-
 /*
 CREATE TABLE `CLIENT` (
   `Réf. client` varchar(8),
@@ -295,6 +302,13 @@ CREATE TABLE `INCLURE` (
   `Réf. produit` varchar(8),
   `Quantité` tinyint(4),
   PRIMARY KEY(`Num commande`, `Réf. produit`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+
+CREATE TABLE `PRODUIT` (
+  `Réf. produit` varchar(8),
+  `Libellé` varchar(20),
+  `Prix unitaire` decimal(5,2) DEFAULT '0.00',
+  PRIMARY KEY(`Réf. produit`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 /*

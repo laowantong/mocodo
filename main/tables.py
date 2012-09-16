@@ -13,12 +13,14 @@ class Tables:
 		self.tablesFromEntities()
 		self.strengthenWeakIdentifiers()
 		self.processAssociations()
+		self.sort()
 	
 	def getText(self,format):
 		def substitutions(s):
 			for (pattern,repl) in format["replace"]:
 				s = re.sub(pattern,repl,s)
 			return s
+		
 		def case(fmt,s):
 			if "%s" in fmt:
 				return fmt % s
@@ -28,6 +30,7 @@ class Tables:
 				"lower": s.lower(),
 				"title": s.title(),
 			}
+		
 		def distinguishLabels(columns):
 			occurrences = {}
 			for column in columns:
@@ -39,10 +42,10 @@ class Tables:
 					column["count"] = occurrences[label]
 					column["label"] = format["distinguish"] % column
 					occurrences[label] -= 1
-		#
+		
 		lines = []
 		foreignKeys = []
-		for table in self.tables.values():
+		for table in sorted(self.tables.values(),key=lambda v:v["index"]):
 			labels = []
 			for column in table["columns"]:
 				column["label"] = (format[column["format"]] % column if "format" in column else column["attribute"])
@@ -174,4 +177,12 @@ class Tables:
 					else:
 						alreadyRejected = True
 				self.tables[entityName]["columns"].extend([{"attribute":attribute.label, "attributeType": attribute.attributeType, "primary": False, "foreign": False} for attribute in association.attributes])
+	
+	def sort(self):
+		index = 0
+		for row in self.mcd.ordering:
+			for box in row:
+				if box.name in self.tables:
+					self.tables[box.name]["index"] = index
+				index += 1
 	
