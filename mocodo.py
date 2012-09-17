@@ -111,8 +111,6 @@ def main():
 		params["dirRoot"] = os.path.splitext(params["dirRootExt"])[0]
 		(params["dir"],params["root"]) = os.path.split(params["dirRoot"])
 		initLocalization(params.get("language",""))
-		del params["input"]
-		del params["language"]
 		# launching
 		try:
 			if params["output"]=="svg":
