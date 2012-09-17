@@ -43,7 +43,8 @@ class Common:
 		style = {}
 		style.update(json.loads(codecs.open("colors/%s.json" % self.params["colors"],"r","utf8").read()))
 		style.update(json.loads(codecs.open("shapes/%s.json" % self.params["shapes"],"r","utf8").read()))
-		style.update({"attraction":self.params["attraction"]})
+		style["attraction"] = self.params["attraction"]
+		style[u"transparentColor"] = None
 		return style
 	
 	def dumpOutputFile(self,result):

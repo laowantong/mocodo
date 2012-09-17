@@ -7,7 +7,6 @@ from main.common import *
 def main(params):
 	common = Common(params)
 	style = common.loadStyle()
-	style[u"transparentColor"] = u"#00000000"
 	mcd = Mcd(common.loadInputFile(),params)
 	mcd.calculateSize(style)
 	result = ["# %s\n" % common.timeStamp()]
