@@ -38,7 +38,7 @@ import gettext
 import locale
 import re
 
-def initLocalization(language = ""):
+def initLocalization(language):
 	if language == "":
 		if sys.platform.lower().startswith("darwin") and os.system("defaults read -g AppleLanguages > /tmp/languages.txt")==0:
 			language = re.search("\W*(\w+)",open("/tmp/languages.txt").read()).group(1)
