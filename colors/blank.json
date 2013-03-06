@@ -11,6 +11,6 @@
 "associationAttributeTextColor" : null,
 "associationStrokeColor"        : "#000000",
 "legStrokeColor"                : "#000000",
-"cardTextColor"                 : "#000000",
+"cardTextColor"                 : null,
 "labelTextColor"                : "#000000"
 }
