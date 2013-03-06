@@ -77,6 +77,39 @@ class McdTest(unittest.TestCase):
 		]
 		self.assertRaisesRegexp(RuntimeError,"Mocodo Err.1",Mcd,clauses,params)
 	
+	def testDuplicateErrors(self):
+		clauses = [
+			u"DF, 11 BARATTE, 1N ROULEAU",
+			u"BARATTE: piston, racloir, fusil",
+			u"TINET: fendoir, grattoir",
+			u"DF, 0N ROULEAU, 0N TINET: charrue",
+			u"ROULEAU: tribulum",
+		]
+		self.assertRaisesRegexp(RuntimeError,"Mocodo Err.7",Mcd,clauses,params)
+		clauses = [
+			u"DF, 11 BARATTE, 1N ROULEAU",
+			u"BARATTE: piston, racloir, fusil",
+			u"TINET: fendoir, grattoir",
+			u"BALANCE, 0N ROULEAU, 0N TINET: charrue",
+			u"BARATTE: tribulum",
+		]
+		self.assertRaisesRegexp(RuntimeError,"Mocodo Err.6",Mcd,clauses,params)
+		clauses = [
+			u"BARATTE, 11 BARATTE, 1N ROULEAU",
+			u"BARATTE: piston, racloir, fusil",
+			u"TINET: fendoir, grattoir",
+			u"BALANCE, 0N ROULEAU, 0N TINET: charrue",
+			u"ROULEAU: tribulum",
+		]
+		self.assertRaisesRegexp(RuntimeError,"Mocodo Err.8",Mcd,clauses,params)
+		clauses = [
+			u"BARATTE: piston, racloir, fusil",
+			u"BARATTE, 11 BARATTE, 1N ROULEAU",
+			u"TINET: fendoir, grattoir",
+			u"BALANCE, 0N ROULEAU, 0N TINET: charrue",
+			u"ROULEAU: tribulum",
+		]
+		self.assertRaisesRegexp(RuntimeError,"Mocodo Err.8",Mcd,clauses,params)
 
 class AttractTest(unittest.TestCase):
 	

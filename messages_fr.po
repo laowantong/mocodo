@@ -51,6 +51,18 @@ msgstr "Impossible de générer le fichier \"%s\"."
 msgid "Association \"%(a)s\" linked to an unknown entity \"%(e)s\"!"
 msgstr "Association « %(a)s » liée à une entité inconnue « %(e)s »."
 
+#: main/mcd.py:38
+msgid "Duplicate entity \"%s\". If you want make two entities appear with the same name, you must suffix it with a number."
+msgstr "Entité « %s » dupliquée. Si vous souhaitez réellement que deux entités apparaissent sous le même nom, vous devez suffixer celui-ci par un nombre."
+
+#: main/mcd.py:41
+msgid "One entity and one association share the same name \"%s\"."
+msgstr "Une entité et une association ont le même nom « %s »."
+
+#: main/mcd.py:49
+msgid "Duplicate association \"%s\". If you want make two associations appear with the same name, you must suffix it with a number."
+msgstr "Association « %s » dupliquée. Si vous souhaitez réellement que deux associations apparaissent sous le même nom, vous devez suffixer celui-ci par un nombre."
+
 #: main/mcd.py:51
 msgid "The MCD is empty."
 msgstr "Le MCD est vide."

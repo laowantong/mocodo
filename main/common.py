@@ -11,7 +11,7 @@ try:
 except ImportError:
 	import simplejson as json
 
-version = "1.6"
+version = "1.6.1"
 
 def safePrint(s):
 	try:

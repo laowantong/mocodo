@@ -34,14 +34,22 @@ class Mcd:
 				s = clause.split(":")
 				if "," not in s[0] and len(s) == 2:
 					element = Entity(clause)
+					if element.name in self.entities:
+						raise RuntimeError(("Mocodo Err.6 - " + _('Duplicate entity "%s". If you want make two entities appear with the same name, you must suffix it with a number.') % element.name).encode("utf8"))
 					self.entities[element.name] = element
+					if element.name in self.elements:
+						raise RuntimeError(("Mocodo Err.8 - " + _('One entity and one association share the same name "%s".') % element.name).encode("utf8"))
 					self.elements[element.name] = element
 					self.ordering[-1].append(self.elements[element.name])
 					continue
 				if "," in s[0]:
 					attr = s[0].split(",")[1].strip()
 					element = Association(clause, params)
+					if element.name in self.associations:
+						raise RuntimeError(("Mocodo Err.7 - " + _('Duplicate association "%s". If you want make two associations appear with the same name, you must suffix it with a number.') % element.name).encode("utf8"))
 					self.associations[element.name] = element
+					if element.name in self.elements:
+						raise RuntimeError(("Mocodo Err.8 - " + _('One entity and one association share the same name "%s".') % element.name).encode("utf8"))
 					self.elements[element.name] = element
 					self.ordering[-1].append(self.elements[element.name])
 					continue
