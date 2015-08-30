@@ -91,6 +91,7 @@ class MocodoMagics(Magics):
                         parser.add_argument("--flip", nargs="?")
                         (_, options) = parser.parse_known_args(options)
                         codecs.open(input_path, "w", "utf8").write(stdoutdata.decode("utf8"))
+                        options.extend(["--input", input_path, "--output_dir", output_dir, "--image_format", "svg"])
                         if execute_command(options):
                             display_diagrams()
 
