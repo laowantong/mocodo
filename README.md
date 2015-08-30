@@ -1,5 +1,5 @@
 
-![](banner.pdf)
+![](banner.png)
 
 Mocodo est un logiciel d'aide à l'enseignement et à la conception des [bases de données relationnelles](https://fr.wikipedia.org/wiki/Base_de_données_relationnelle).
 
@@ -25,83 +25,15 @@ Ci-dessous, un exemple d'appel du programme (première ligne) sur un texte d'ent
     Enseigner, 11 Prof, 1N Matière
 
 
-![svg](output_2_0.svg)
+![svg](output_2_0.png)
 
 
-
-<html>
-<head>
-<meta charset='utf-8'>
-<style>
-  #mld .relation { font-variant: small-caps; font-weight: bold }
-  #mld .primary { text-decoration: underline }
-  #mld .foreign { font-style: oblique }
-  #mld .normal { }
-</style>
-</head>
-<body>
-<div id='mld'>
-<div>
-  <span class='relation'>Classe</span> (
-    <span class='primary'>Num. classe</span>,
-    <span class='normal'>Num. salle</span>
-  )
-</div>
-<div>
-  <span class='relation'>Faire Cours</span> (
-    <span class='foreign primary'>Num. classe</span>,
-    <span class='foreign primary'>Num. prof</span>,
-    <span class='normal'>Vol. horaire</span>
-  )
-</div>
-<div>
-  <span class='relation'>Catégorie</span> (
-    <span class='primary'>Code catégorie</span>,
-    <span class='normal'>Nom catégorie</span>
-  )
-</div>
-<div>
-  <span class='relation'>Élève</span> (
-    <span class='primary'>Num. élève</span>,
-    <span class='normal'>Nom élève</span>,
-    <span class='foreign'>Num. classe</span>
-  )
-</div>
-<div>
-  <span class='relation'>Noter</span> (
-    <span class='foreign primary'>Num. élève</span>,
-    <span class='foreign primary'>Num. prof</span>,
-    <span class='foreign primary'>Libellé matière</span>,
-    <span class='foreign primary'>Date</span>,
-    <span class='normal'>Note</span>
-  )
-</div>
-<div>
-  <span class='relation'>Prof</span> (
-    <span class='primary'>Num. prof</span>,
-    <span class='normal'>Nom prof</span>,
-    <span class='foreign'>Libellé matière</span>,
-    <span class='foreign'>Code catégorie</span>
-  )
-</div>
-<!--
-<div>
-  <span class='relation'>Date</span> (
-    <span class='primary'>Date</span>
-  )
-</div>
--->
-<!--
-<div>
-  <span class='relation'>Matière</span> (
-    <span class='primary'>Libellé matière</span>
-  )
-</div>
--->
-</div>
-</body>
-</html>
-
+**Classe** (<u>Num. classe</u>, Num. salle)  
+**Faire Cours** (<u>_Num. classe_</u>, <u>_Num. prof_</u>, Vol. horaire)  
+**Catégorie** (<u>Code catégorie</u>, Nom catégorie)  
+**Élève** (<u>Num. élève</u>, Nom élève, _Num. classe_)  
+**Noter** (<u>_Num. élève_</u>, <u>_Num. prof_</u>, <u>_Libellé matière_</u>, <u>_Date_</u>, Note)  
+**Prof** (<u>Num. prof</u>, Nom prof, _Libellé matière_, _Code catégorie_)  
 
 L'appel ci-dessus a également construit le dictionnaire des données:
 
@@ -124,7 +56,7 @@ Ainsi que le diagramme relationnel, qui peut être visualisé par un nouvel appe
     %mocodo --input mocodo_notebook/sandbox.mld --colors desert
 
 
-![svg](output_6_0.svg)
+![svg](output_6_0.png)
 
 
 La devise de Mocodo, « nickel, ni souris », en synthétise les points forts:
