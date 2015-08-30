@@ -1,0 +1,5 @@
+# Un mot personnel pour conclure #
+
+En l'état, Mocodo pour Nodebox suffit à mes modestes besoins d'enseignant de Bases de données. Sa façade SVG est un ajout destiné à le rendre multiplateforme. Son placement sous GPL devrait en garantir la pérennité, même si la poursuite de son développement ne fait pas partie de mes priorités actuelles.
+
+Mes quatre étudiants de projet de synthèse, Abou-Sophiane Belhadj, Benjamin Gannat, Dorian Mahut et Cédric Poinsaint, ont travaillé au printemps 2009 sur une version préliminaire du code. Michel Grandmougin a essuyé les plâtres de la version bêta. Zsuzsanna Róka m'a fait profiter à maintes reprises de son expérience en bases de données. Bryan Oakley m'a indiqué comment résoudre un problème Tkinter particulièrement retors. Qu'ils en soient chaleureusement remerciés, ainsi que tous les collègues, étudiants ou amis qui ont suivi ou accompagné le développement.
