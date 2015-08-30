@@ -1,0 +1,73 @@
+{
+  "extension": "_oracle.sql",
+  "transform_attribute": [
+    {
+      "search": " ",
+      "replace": "_"
+    },
+    {
+      "search": "\\.",
+      "replace": ""
+    }
+  ],
+  "compose_label_disambiguated_by_number": "{label}_{disambiguation_number}",
+  "transform_title": [
+    {
+      "search": " ",
+      "replace": "_"
+    },
+    {
+      "search": "\\.",
+      "replace": ""
+    }
+  ],
+  "transform_relation_name": [
+    {
+      "search": " ",
+      "replace": "_"
+    },
+    {
+      "search": "\\.",
+      "replace": ""
+    }
+  ],
+  "compose_primary_key": "\"{label_lowercase}\" {data_type},\nADD_PRIMARY \"{label_lowercase}\"",
+  "compose_normal_attribute": "\"{label_lowercase}\" {data_type}",
+  "compose_foreign_key": "\"{label_lowercase}\" {data_type},\n  ALTER TABLE \"{this_relation_name_uppercase}\" ADD FOREIGN KEY (\"{label_lowercase}\") REFERENCES \"{primary_relation_name_uppercase}\" (\"{label_lowercase}\");",
+  "compose_foreign_primary_key": "\"{label_lowercase}\" {data_type},\nADD_PRIMARY \"{label_lowercase}\",\n  ALTER TABLE \"{this_relation_name_uppercase}\" ADD FOREIGN KEY (\"{label_lowercase}\") REFERENCES \"{primary_relation_name_uppercase}\" (\"{label_lowercase}\");",
+  "column_separator": ",\n  ",
+  "compose_relation": "CREATE TABLE \"{this_relation_name_uppercase}\" (\n  {columns},\n  PRIMARY KEY()\n);\n",
+  "transform_single_column_relation": [
+    {
+      "search": "(?s)(.+)\n",
+      "replace": "/*\n\\1\n*/\n"
+    }
+  ],
+  "transform_relation": [
+    {
+      "search": "(?sm)ADD_PRIMARY ([^\n]+)\n(.+?PRIMARY KEY[^\n]+?)\\)",
+      "replace": "\\2\\1 )",
+      "iterated": true
+    },
+    {
+      "search": ", \\)",
+      "replace": ")"
+    }
+  ],
+  "relation_separator": "\n",
+  "transform_relational_schema": [
+    {
+      "search": "(?s)(.+)",
+      "replace": "\\1\n"
+    },
+    {
+      "search": "(?sm)^  (ALTER TABLE [^\n]+),\n(.+)",
+      "replace": "\\2\\1\n",
+      "iterated": true
+    },
+    {
+      "search": "\n+$",
+      "replace": ""
+    }
+  ]
+}

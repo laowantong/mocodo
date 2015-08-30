@@ -1,0 +1,14 @@
+PEUT VIVRE DANS, 1N ESPÈCE, 1N ENCLOS: nb. max. congénères
+ENCLOS: num. enclos
+OCCUPE, 1N ANIMAL, 1N PÉRIODE, 1N ENCLOS
+PÉRIODE: date début, _date fin
+
+ESPÈCE: code espèce, libellé
+DF, 0N ESPÈCE, _11 ANIMAL
+ANIMAL: nom, sexe, date naissance, date décès
+A MÈRE, 01 ANIMAL, 0N> [mère] ANIMAL
+
+PEUT COHABITER AVEC, 0N ESPÈCE, 0N [commensale] ESPÈCE: nb. max. commensaux
+:
+A PÈRE, 0N ANIMAL, 0N> [père présumé] ANIMAL
+:

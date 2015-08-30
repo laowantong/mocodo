@@ -1,0 +1,20 @@
+{
+"background_color"                 : null,
+"entity_color"                     : "#e4e3b4",
+"entity_cartouche_color"           : "#cbcbb5",
+"entity_cartouche_text_color"      : "#422f2c",
+"entity_attribute_text_color"      : "#57483d",
+"entity_stroke_color"              : null,
+"association_color"                : "#d3b5b2",
+"association_cartouche_color"      : "#c6aea5",
+"association_cartouche_text_color" : "#422f2c",
+"association_attribute_text_color" : "#57483d",
+"association_stroke_color"         : null,
+"leg_stroke_color"                 : "#57483d",
+"card_text_color"                  : "#57483d",
+"label_text_color"                 : "#57483d",
+"annotation_text_color"            : "#FFFFD7",
+"annotation_color"                 : "#0F0F0A",
+"annotation_opacity"               : 0.7
+}
+

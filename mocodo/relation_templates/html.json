@@ -1,0 +1,44 @@
+{
+  "extension": ".html",
+  "transform_attribute": [
+    {
+      "search": "&",
+      "replace": "&amp;"
+    },
+    {
+      "search": ">",
+      "replace": "&gt;"
+    },
+    {
+      "search": "<",
+      "replace": "&lt;"
+    }
+  ],
+  "transform_relation_name": [
+    {
+      "search": "&",
+      "replace": "&amp;"
+    },
+    {
+      "search": ">",
+      "replace": "&gt;"
+    },
+    {
+      "search": "<",
+      "replace": "&lt;"
+    }
+  ],
+  "compose_primary_key": "<span class='primary'>{label}</span>",
+  "compose_normal_attribute": "<span class='normal'>{label}</span>",
+  "compose_foreign_key": "<span class='foreign'>{label}</span>",
+  "compose_foreign_primary_key": "<span class='foreign primary'>{label}</span>",
+  "column_separator": ",\n    ",
+  "compose_relation": "<div>\n  <span class='relation'>{this_relation_name}</span> (\n    {columns}\n  )\n</div>",
+  "transform_single_column_relation": [
+    {
+      "search": "(?s)(.+)",
+      "replace": "<!--\n\\1\n-->"
+    }
+  ],
+  "compose_relational_schema": "<html>\n<head>\n<meta charset='utf-8'>\n<style>\n  #mld .relation {{ font-variant: small-caps; font-weight: bold }}\n  #mld .primary {{ text-decoration: underline }}\n  #mld .foreign {{ font-style: oblique }}\n  #mld .normal {{ }}\n</style>\n</head>\n<body>\n<div id='mld'>\n{relations}\n</div>\n</body>\n</html>"
+}

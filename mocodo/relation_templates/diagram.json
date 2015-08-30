@@ -1,0 +1,15 @@
+{
+  "extension": ".mld",
+  "compose_primary_key": "_{label}",
+  "compose_foreign_key": "#{label}.{association_name}->{primary_relation_name}->{raw_label}",
+  "compose_foreign_attribute": "{label}.{association_name}",
+  "compose_foreign_primary_key": "_#{label}->{primary_relation_name}->{raw_label}",
+  "compose_relation": "{this_relation_name}: {columns}",
+  "transform_relation": [
+    {
+      "search": ": _",
+      "replace": ": "
+    }
+  ],
+  "compose_relational_schema": "%%mocodo\n{relations}"
+}

@@ -1,0 +1,64 @@
+{
+  "extension": "_sqlite.sql",
+  "transform_attribute": [
+    {
+      "search": " ",
+      "replace": "_"
+    },
+    {
+      "search": "\\.",
+      "replace": ""
+    }
+  ],
+  "compose_label_disambiguated_by_number": "{label}_{disambiguation_number}",
+  "transform_title": [
+    {
+      "search": " ",
+      "replace": "_"
+    },
+    {
+      "search": "\\.",
+      "replace": ""
+    }
+  ],
+  "transform_relation_name": [
+    {
+      "search": " ",
+      "replace": "_"
+    },
+    {
+      "search": "\\.",
+      "replace": ""
+    }
+  ],
+  "compose_primary_key": "\"{label_lowercase}\" {data_type} PRIMARY KEY",
+  "compose_normal_attribute": "\"{label_lowercase}\" {data_type}",
+  "compose_foreign_key": "\"{label_lowercase}\" {data_type},\nFOREIGN KEY (\"{label_lowercase}\") REFERENCES \"{primary_relation_name_uppercase}\" (\"{label_lowercase}\")",
+  "compose_foreign_primary_key": "\"{label_lowercase}\" {data_type},\nFOREIGN KEY (\"{label_lowercase}\") REFERENCES \"{primary_relation_name_uppercase}\" (\"{label_lowercase}\")",
+  "column_separator": ",\n  ",
+  "compose_relation": "CREATE TABLE \"{this_relation_name_uppercase}\" (\n  {columns},\n);\n",
+  "transform_single_column_relation": [
+    {
+      "search": "(?s)(.+)\n",
+      "replace": "/*\n\\1\n*/\n"
+    }
+  ],
+  "transform_relation": [
+    {
+      "search": "(?sm)^(FOREIGN KEY[^\n]+\n)(.*?\n?)\\);\n",
+      "replace": "\\2  \\1);\n",
+      "iterated": true
+    },
+    {
+      "search": ",\n\\);",
+      "replace": "\n);"
+    }
+  ],
+  "compose_relational_schema": ".open \"{title_uppercase}\";\n\n{relations}",
+  "transform_relational_schema": [
+    {
+      "search": "\n+$",
+      "replace": ""
+    }
+  ]
+}
