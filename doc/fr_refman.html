@@ -172,16 +172,6 @@ div#notebook {
   <div tabindex="-1" id="notebook" class="border-box-sizing">
     <div class="container" id="notebook-container">
 
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><img src="https://rawgit.com/laowantong/mocodo/master/doc/banner.pdf" alt=""></p>
-
-</div>
-</div>
-</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
@@ -194,6 +184,16 @@ div#notebook {
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img src="https://rawgit.com/laowantong/mocodo/master/doc/banner.pdf" alt=""></p>
+
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -321,6 +321,7 @@ div#notebook {
 </li>
 </ul>
 </li>
+<li><a href="#credits">7. Crédits</a></li>
 </ul>
 
 </div>
@@ -1461,7 +1462,7 @@ codecs.open(&quot;mocodo_notebook/params.json&quot;, &quot;w&quot;, &quot;utf8&q
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Copiez cette sortie dans une nouvelle cellule, modifiez-la à votre gré (attention au dernier couple clef-valeur qui n'est pas terminé par une virgule) et exécutez-la pour créer un fichier bien nommé et au bon endroit (notez que la valeur de <code>--print_params</code> a été passée à <code>false</code> pour vous éviter de le faire à la main).</p>
+<p>Copiez cette sortie dans une nouvelle cellule, modifiez-la à votre gré (attention au dernier couple clef-valeur, qui n'est pas terminé par une virgule) et exécutez-la pour créer un fichier bien nommé et au bon endroit (notez que la valeur de <code>--print_params</code> a été passée à <code>false</code> pour vous éviter de le faire à la main).</p>
 
 </div>
 </div>
@@ -1619,7 +1620,7 @@ PRODUIT: Réf. produit, Libellé, Prix unitaire
 <li>la première ligne :
 <pre><code>  %%mocodo
 </code></pre>
-... ne fait pas partie de la description. Dans ce document, elle permet de faire appel à une « commande magique », qui lance Mocodo sur les lignes qui la suivent. Sauf si vous travaillez sous IPython Notebook, pouvez l'omettre dans votre texte d'entrée.<br>
+... ne fait pas partie de la description. Dans ce document, elle permet de faire appel à une « commande magique », qui lance Mocodo sur les lignes qui la suivent. Sauf sous Jupyter / IPython Notebook, vous pouvez l'omettre dans votre texte d'entrée.<br>
 <strong>Nouveauté.</strong> De façon générale, la ou les premières lignes d'un MCD qui commencent par le symbole de pourcentage (<code>%</code>) sont ignorées. Cela permet de placer en en-tête un commentaire qui pourra être préservé lors des éventuels réarrangements ultérieurs.</li>
 <li>Les accents présents dans votre fichier d'entrée sont correctement gérés pourvu que vous ayez enregistré celui-ci dans l'encodage attendu par Mocodo en entrée: c'est par défaut Unicode UTF-8. Une tolérance existe: si Mocodo échoue à décoder votre fichier avec <code>utf8</code>, il se rabattra sur le codec d'Europe de l'Ouest associé historiquement à votre plateforme: <code>iso-8859-15</code> pour Windows et Linux, <code>mac-roman</code> pour Mac OS X. Si les accents n'apparaissent pas correctement, vous aurez encore trois solutions:<ol>
 <li>soit (fortement conseillé), ré-enregistrer votre fichier en UTF-8 au lieu d'un encodage historique;</li>
@@ -11011,7 +11012,7 @@ PRODUIT: Réf. produit, Libellé, Prix unitaire
 <li><code>"transform_attribute"</code> applique une première transformation à chaque attribut (identificateur <code>attribute</code>). Il s'agit en général de supprimer ou remplacer les caractères interdits par le format-cible. Le résultat est référencé par un nouvel identificateur, appelé <code>"raw_label"</code> (on va voir un peu plus loin en quoi il est ambigu).</li>
 <li>Différentes capitalisations de ce libellé sont ajoutées sous les noms de <code>"raw_label_lowercase"</code> (minuscules),  <code>"raw_label_uppercase"</code> (majuscules) et  <code>"raw_label_titlecase"</code> (majuscules initiales).</li>
 <li><code>"compose_label_disambiguated_by_annotation"</code> crée sous le nom de <code>"label"</code> une copie de <code>"raw_label"</code>, en introduisant en plus dans les clefs étrangères les annotations des pattes correspondantes. La valeur par défaut est <code>"{raw_label} {leg_annotation}"</code>, mais pour plus de liberté on peut très bien imaginer de remplacer le label par l'annotation elle-même (avec <code>"{leg_annotation}"</code>). Cette composition est optionnelle: pour la désactiver, passer l'option <code>disambiguation=numbers_only</code>.</li>
-<li><a id='disambiguation_by_number'></a><code>"compose_label_disambiguated_by_number"</code> différencie les libellés homonymes d'une même relation en leur ajoutant un numéro. Par exemple, et c'est la valeur par défaut, pour suffixer le libellé par un point suivi de ce numéro, on écrira: <code>""{label}.{disambiguation_number}"</code>. L'identificateur <code>"label"</code> est mis à jour avec le résultat. C'est lui que l'utilisateur utilisera en général dans la suite de l'algorithme, mais il a encore accès aux variantes précédentes.</li>
+<li><a id='disambiguation_by_number'></a><code>"compose_label_disambiguated_by_number"</code> différencie les libellés homonymes d'une même relation en leur ajoutant un numéro. Par exemple, et c'est la valeur par défaut, pour suffixer le libellé par un point suivi de ce numéro, on écrira: <code>"{label}.{disambiguation_number}"</code>. L'identificateur <code>"label"</code> est mis à jour avec le résultat. C'est lui que l'utilisateur utilisera en général dans la suite de l'algorithme, mais il a encore accès aux variantes précédentes.</li>
 <li>Différentes capitalisations de ce libellé sont ajoutées: <code>"label_lowercase"</code>, <code>"label_uppercase"</code> et  <code>"label_titlecase"</code>.</li>
 <li><code>"transform_title"</code> reçoit le nom du MCD. Le résultat et ses capitalisations sont associés aux identificateurs <code>"title"</code>, <code>"title_lowercase"</code>, <code>"title_uppercase"</code> et  <code>"title_titlecase"</code>.</li>
 <li><p>Ensuite, pour chacune des relations créées dans la représentation interne:</p>
@@ -11753,6 +11754,73 @@ Busy: fail
     <span class="nt">&quot;transform_relational_schema&quot;</span><span class="p">:</span> <span class="p">[]</span>
 <span class="p">}</span>
 </pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="7.-Cr&#233;dits-">7. Cr&#233;dits <a id="credits" /><a class="anchor-link" href="#7.-Cr&#233;dits-">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li><strong>Auteur</strong><ul>
+<li>Aristide Grange, Université de Lorraine, Metz, <a href="http://lcoms.univ-lorraine.fr">LCOMS</a>.</li>
+</ul>
+</li>
+<li><strong>Outils</strong><ul>
+<li>Aspect visuel<ul>
+<li><a href="http://fortawesome.github.io/Font-Awesome/">Font Awesome</a> (Dave Gandy).</li>
+<li><a href="https://ar.al/scribbles/fork-me-on-github-retina-ribbons/">Fork me on GitHub Retina Ribbons</a> (Aral Balkan).</li>
+<li><a href="http://realfavicongenerator.net">Real Favicon Generator</a> (Philippe Bernard).</li>
+<li><a href="http://meyerweb.com/eric/tools/css/reset/">reset.css</a> (Eric Meyer).</li>
+<li><a href="https://github.com/adobe-fonts/source-code-pro">Source Code Pro</a> (Paul D. Hunt).</li>
+</ul>
+</li>
+<li>JavaScript<ul>
+<li><a href="http://jquery.com/">JQuery</a> (John Resig).</li>
+<li><a href="https://github.com/js-cookie/js-cookie">JS-Cookie</a> (Klaus Hartl).</li>
+</ul>
+</li>
+<li>Python<ul>
+<li><a href="http://mwh.geek.nz/2009/04/26/python-damerau-levenshtein-distance/">Distance de Damerau-Levenshtein</a> (Michael Homer).</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong><a href="https://www.transifex.com/aristide/mocodo/">Localisation</a></strong><ul>
+<li>Chinois: Liu Jingjiao.</li>
+<li>Français: Aristide Grange.</li>
+</ul>
+</li>
+<li><strong>Sans oublier</strong> 
+Abou-Sophiane Belhadj,
+Kamel Chelghoum,
+Rémi Da Costa,
+Benjamin Gannat,
+Michel Grandmougin,
+Alexandre Grison,
+David Lorge,
+Dorian Mahut,
+Sébastien Martin,
+Cyril Minette,
+Idris Neumann,
+Bryan Oakley,
+Georges Perec,
+Cédric Poinsaint,
+Zsuzsanna Róka,
+Tong Ji
+et d'innombrables contributeurs de <a href="http://stackoverflow.com">Stack Overflow</a>.</li>
+</ul>
 
 </div>
 </div>
