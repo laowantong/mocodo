@@ -63,4 +63,4 @@ Mocodo est libre, gratuit et multiplateforme. Si vous l'aimez, répandez la bonn
 
 Pour vous familiariser avec Mocodo, le mieux est d'utiliser [sa version en ligne](http://mocodo.wingi.net).
 
-Pour en savoir plus, lisez la documentation [au format HTML](http://htmlpreview.github.io/?https://github.com/laowantong/mocodo/blob/master/doc/fr_refman.html) ou téléchargez-la [au format Jupyter / IPython Notebook](doc/fr_refman.ipynb).
+Pour en savoir plus, lisez la documentation [au format HTML](https://rawgit.com/laowantong/mocodo/master/doc/fr_refman.html) ou téléchargez-la [au format Jupyter / IPython Notebook](doc/fr_refman.ipynb).
