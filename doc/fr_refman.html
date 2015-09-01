@@ -177,7 +177,7 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><img src="banner.pdf" alt=""></p>
+<p><img src="https://rawgit.com/laowantong/mocodo/master/doc/banner.pdf" alt=""></p>
 
 </div>
 </div>
@@ -187,8 +187,7 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="kn">import</span> <span class="n">SVG</span>
-<span class="o">%</span><span class="k">reload_ext</span> mocodo
+<div class=" highlight hl-ipython2"><pre><span class="o">%</span><span class="k">reload_ext</span> mocodo
 </pre></div>
 
 </div>
@@ -4810,6 +4809,7 @@ k = {
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="o">!</span><span class="nb">cd </span>mocodo_notebook <span class="p">;</span> sed -i.tmp -e <span class="s1">&#39;7,25d&#39;</span> -e <span class="s1">&#39;5r replace.tmp&#39;</span> sandbox_svg.py <span class="p">;</span> rm *.tmp
 <span class="o">!</span>python mocodo_notebook/sandbox_svg.py
+<span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="kn">import</span> <span class="n">SVG</span>
 <span class="n">SVG</span><span class="p">(</span><span class="s">&quot;mocodo_notebook/sandbox.svg&quot;</span><span class="p">)</span>
 </pre></div>
 
