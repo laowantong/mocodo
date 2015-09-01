@@ -1318,15 +1318,12 @@ N'affiche pas le diagramme conceptuel dans la sortie de la cellule (défaut: <co
 <p>Il peut être utile de comprendre ce qui se passe en coulisses lorsque l'on invoque la commande magique sur une cellule:</p>
 <ul>
 <li>dans le répertoire courant est créé au besoin un sous-répertoire <code>mocodo_notebook</code>;</li>
-<li>celui-ci devient le répertoire courant;</li>
 <li>le texte d'entrée y est sauvegardé sous le nom de <code>sandbox.mcd</code>;</li>
 <li>la commande est lancée sur ce fichier avec tous les paramètres donnés par l'utilisateur. Cela signifie que tous les fichiers générés le seront au même endroit sous les noms de <code>sandbox.svg</code>, <code>sandbox.html</code>, etc.;</li>
 <li>si la commande a produit un dessin, celui-ci est affiché en sortie (sauf avec l'option <code>--no_mcd</code>); avec l'option <code>--mld</code>, le schéma relationnel est également affiché au-dessous (au format HTML);</li>
-<li>si elle n'a pas produit de dessin, mais une nouvelle version du texte d'entrée (options <code>--arrange</code>, <code>--flip</code>, <code>--obfuscate</code>, ...), Mocodo est automatiquement relancé sur celle-ci, permettant de visualiser le diagramme et/ou le schéma relationnel correspondants;</li>
-<li>l'ancien répertoire courant est rétabli.</li>
+<li>si elle n'a pas produit de dessin, mais une nouvelle version du texte d'entrée (options <code>--arrange</code>, <code>--flip</code>, <code>--obfuscate</code>, ...), Mocodo est automatiquement relancé sur celle-ci, permettant de visualiser le diagramme et/ou le schéma relationnel correspondants.</li>
 </ul>
 <p>Tous les fichiers peuvent être lus dans le répertoire <code>mocodo_notebook</code> (commande magique <code>%load</code>, mise en commentaire dans ce notebook pour éviter de recharger le fichier à chaque exécution).</p>
-<p><strong>Attention.</strong> La commande magique <code>%%mocodo</code> change temporairement le répertoire courant en <code>mocodo_notebook</code>. Si vous avez à préciser un chemin (comme pour l'option <code>--input</code>) en relatif, gardez à l'esprit que c'est depuis ce répertoire que Mocodo est lancé.</p>
 
 </div>
 </div>
@@ -1357,7 +1354,7 @@ N'affiche pas le diagramme conceptuel dans la sortie de la cellule (défaut: <co
 </code></pre>
 <p>Tandis que le diagramme relationnel (MLD) est tracé en relançant Mocodo dessus:</p>
 
-<pre><code>%mocodo --input sandbox.mld --colors desert</code></pre>
+<pre><code>%mocodo --input mocodo_notebook/sandbox.mld --colors desert</code></pre>
 
 </div>
 </div>
