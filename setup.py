@@ -12,6 +12,42 @@ from os import path
 
 from mocodo.argument_parser import long_description
 long_description = long_description.strip().replace("\n  ", " ")
+long_description += """
+
+Installation
+------------
+
+::
+
+    pip install mocodo
+
+Usage
+-------
+
+Generate the conceptual diagram of a default ERD:
+
+::
+
+    mocodo
+
+Show the argument list:
+
+::
+
+    mocodo --help
+
+More
+------
+
+`Mocodo online
+<http://mocodo.wingi.net/>`_
+
+`Documentation
+<https://rawgit.com/laowantong/mocodo/master/doc/fr_refman.html>`_
+
+`Source code on GitHub
+<https://github.com/laowantong/mocodo/>`_"""
+
 open("README.rst", "w", "utf8").write(long_description)
 
 setup(
@@ -20,7 +56,7 @@ setup(
     # Versions should comply with PEP440.  For a discussion on single-sourcing
     # the version across setup.py and the project code, see
     # https://packaging.python.org/en/latest/single_source_version.html
-    version='2.0.0',
+    version='2.0.1',
 
     description='A tool for designing and teaching relational databases',
     long_description=long_description,
