@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# encoding: utf-8
+
 """A setuptools based setup module.
 See:
 https://packaging.python.org/en/latest/distributing.html
@@ -56,9 +59,9 @@ setup(
     # Versions should comply with PEP440.  For a discussion on single-sourcing
     # the version across setup.py and the project code, see
     # https://packaging.python.org/en/latest/single_source_version.html
-    version='2.0.1',
+    version='2.0.2',
 
-    description='A tool for designing and teaching relational databases',
+    description=u'Modélisation Conceptuelle de Données. Nickel. Ni souris.',
     long_description=long_description,
 
     # The project's main homepage.
