@@ -240,10 +240,11 @@ div#notebook {
 <li><a href="#types_de_donnees">4.2.5. Types de données</a></li>
 <li><a href="#card_sep">4.2.6. Séparateur des cardinalités</a></li>
 <li><a href="#df_symbol">4.2.7. Symbole de dépendance fonctionnelle</a></li>
+<li><a href="#box_duplication">4.2.8. Créer plusieurs entités ou associations de même nom</a></li>
 </ul>
 </li>
 <li><a href="#besoins_specifiques_a_la_pedagogie">4.3. Besoins spécifiques à la pédagogie</a><ul>
-<li><a href="#box_duplication">4.3.1. Dupliquer des entités ou des associations</a></li>
+<li><a href="#creer_une_vue_en_extension">4.3.1. Créer une vue en extension</a></li>
 <li><a href="#leg_annotation_description">4.3.2. Afficher l'explication des cardinalités</a></li>
 <li><a href="#creer_un_mcd_a_completer">4.3.3. Créer un MCD à compléter</a><ul>
 <li><a href="#supprimer_le_marquage_d_un_identifiant">4.3.3.1. Supprimer le marquage d'un identifiant</a></li>
@@ -2769,6 +2770,465 @@ PRODUIT: Réf. produit, Libellé, Prix unitaire
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="4.2.8.-Cr&#233;er-plusieurs-entit&#233;s-ou-associations-de-m&#234;me-nom-">4.2.8. Cr&#233;er plusieurs entit&#233;s ou associations de m&#234;me nom <a id="box_duplication" /><a class="anchor-link" href="#4.2.8.-Cr&#233;er-plusieurs-entit&#233;s-ou-associations-de-m&#234;me-nom-">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Normalement on doit choisir des noms différents pour toutes les boîtes (entités et associations) du MCD, à l'exception des associations de dépendance fonctionnelle figurées par un sigle. On a vu que dans ce cas, il suffisait d'ajouter à leur nom un suffixe numérique: celui-ci n'apparaîtra pas en sortie. Cette possibilité vaut pour n'importe quelle boîte.</p>
+<p>Elle servira typiquement à « distribuer » une entité DATE réduite à son identifiant <em>date</em>, mais associée à de nombreuses entités qui n'ont rien à voir entre elles. Sachant qu'une telle entité est amenée à disparaître lors du passage au relationnel, il n'y a aucun inconvénient à en créer plusieurs, et cela peut avoir l'avantage de faciliter (ou même de rendre possible) l'obtention d'une bonne mise en page.</p>
+<p>Par exemple, la mise en page du MCD suivant est indûment complexifiée par le haut degré de l'entité DATE.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="o">%%</span><span class="k">mocodo</span>
+:
+Rhoncus: dolor a, bibendum, euismod, consectetuer, leo
+Porttitor, 1N Rhoncus, 1N Curabitur
+:
+:
+
+Ultricies, 11 Rhoncus, 0N Egestas
+Imperdiet, 0N Egestas, 0N Curabitur, 0N DATE
+Curabitur: blandit, suscipit
+Mollis, 0N Curabitur, 0N Curabitur
+:
+
+:
+Egestas: vivamus, semper, aliquam
+Pharetra, 0N Curabitur, 0N DATE, 0N Vitae justo: massa
+Vitae justo: lobortis, purus
+adipiscing, 0N Curabitur, 0N Vitae justo, 0N DATE
+
+:
+:
+DATE: date
+:
+:
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+
+<div class="output_svg output_subarea ">
+<svg height="406" view_box="0 0 652 406" width="652" xmlns="http://www.w3.org/2000/svg" xmlns:link="http://www.w3.org/1999/xlink">\n\n<desc>Généré par Mocodo 2.0.3 le Sat, 05 Sep 2015 19:51:05</desc>
+
+<rect fill="none" height="406" id="frame" stroke="none" stroke-width="0" width="652" x="0" y="0"/>
+
+<!-- Association Pharetra -->
+<line stroke="#000000" stroke-width="1" x1="317" x2="317" y1="188" y2="286"/>
+<text fill="#000000" font-family="Futura" font-size="11" x="321.0" y="241.9">0,N</text>
+<line stroke="#000000" stroke-width="1" x1="317" x2="317" y1="367" y2="286"/>
+<text fill="#000000" font-family="Futura" font-size="11" x="321.0" y="330.9">0,N</text>
+<line stroke="#000000" stroke-width="1" x1="452" x2="317" y1="286" y2="286"/>
+<text fill="#000000" font-family="Futura" font-size="11" x="371" y="301.9">0,N</text>
+<g id="association-Pharetra">
+	<path d="M 353 257 a 14 14 90 0 1 14 14 V 285 h -100 V 271 a 14 14 90 0 1 14 -14" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+	<path d="M 367 285 v 16 a 14 14 90 0 1 -14 14 H 281 a 14 14 90 0 1 -14 -14 V 285 H 100" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+	<rect fill="none" height="58" rx="14" stroke="#000000" stroke-width="1.5" width="100" x="267" y="257"/>
+	<line stroke="#000000" stroke-width="1.5" x1="267" x2="367" y1="285" y2="285"/>
+	<text fill="#000000" font-family="Copperplate" font-size="18" x="274" y="278.3">Pharetra</text>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="274" y="303.05">massa</text>
+</g>
+
+<!-- Association Ultricies -->
+<line stroke="#000000" stroke-width="1" x1="185" x2="59" y1="73" y2="188"/>
+<text fill="#000000" font-family="Futura" font-size="11" x="114" y="153.701587302">1,1</text>
+<line stroke="#000000" stroke-width="1" x1="185" x2="59" y1="286" y2="188"/>
+<text fill="#000000" font-family="Futura" font-size="11" x="119" y="264.566666667">0,N</text>
+<g id="association-Ultricies">
+	<path d="M 95 159 a 14 14 90 0 1 14 14 V 187 h -100 V 173 a 14 14 90 0 1 14 -14" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+	<path d="M 109 187 v 16 a 14 14 90 0 1 -14 14 H 23 a 14 14 90 0 1 -14 -14 V 187 H 100" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+	<rect fill="none" height="58" rx="14" stroke="#000000" stroke-width="1.5" width="100" x="9" y="159"/>
+	<line stroke="#000000" stroke-width="1.5" x1="9" x2="109" y1="187" y2="187"/>
+	<text fill="#000000" font-family="Copperplate" font-size="18" x="16" y="180.3">Ultricies</text>
+</g>
+
+<!-- Association adipiscing -->
+<line stroke="#000000" stroke-width="1" x1="317" x2="590" y1="188" y2="286"/>
+<text fill="#000000" font-family="Futura" font-size="11" x="377" y="231.9">0,N</text>
+<line stroke="#000000" stroke-width="1" x1="452" x2="590" y1="286" y2="286"/>
+<text fill="#000000" font-family="Futura" font-size="11" x="515" y="301.9">0,N</text>
+<line stroke="#000000" stroke-width="1" x1="317" x2="590" y1="367" y2="286"/>
+<text fill="#000000" font-family="Futura" font-size="11" x="353" y="372.218681319">0,N</text>
+<g id="association-adipiscing">
+	<path d="M 629 257 a 14 14 90 0 1 14 14 V 285 h -106 V 271 a 14 14 90 0 1 14 -14" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+	<path d="M 643 285 v 16 a 14 14 90 0 1 -14 14 H 551 a 14 14 90 0 1 -14 -14 V 285 H 106" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+	<rect fill="none" height="58" rx="14" stroke="#000000" stroke-width="1.5" width="106" x="537" y="257"/>
+	<line stroke="#000000" stroke-width="1.5" x1="537" x2="643" y1="285" y2="285"/>
+	<text fill="#000000" font-family="Copperplate" font-size="18" x="544" y="278.3">adipiscing</text>
+</g>
+
+<!-- Association Porttitor -->
+<line stroke="#000000" stroke-width="1" x1="185" x2="317" y1="73" y2="73"/>
+<text fill="#000000" font-family="Futura" font-size="11" x="238" y="88.9">1,N</text>
+<line stroke="#000000" stroke-width="1" x1="317" x2="317" y1="188" y2="73"/>
+<text fill="#000000" font-family="Futura" font-size="11" x="321.0" y="143.9">1,N</text>
+<g id="association-Porttitor">
+	<path d="M 355 44 a 14 14 90 0 1 14 14 V 72 h -104 V 58 a 14 14 90 0 1 14 -14" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+	<path d="M 369 72 v 16 a 14 14 90 0 1 -14 14 H 279 a 14 14 90 0 1 -14 -14 V 72 H 104" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+	<rect fill="none" height="58" rx="14" stroke="#000000" stroke-width="1.5" width="104" x="265" y="44"/>
+	<line stroke="#000000" stroke-width="1.5" x1="265" x2="369" y1="72" y2="72"/>
+	<text fill="#000000" font-family="Copperplate" font-size="18" x="272" y="65.3">Porttitor</text>
+</g>
+
+<!-- Association Imperdiet -->
+<line stroke="#000000" stroke-width="1" x1="185" x2="185" y1="286" y2="188"/>
+<text fill="#000000" font-family="Futura" font-size="11" x="189.0" y="232.9">0,N</text>
+<line stroke="#000000" stroke-width="1" x1="317" x2="185" y1="188" y2="188"/>
+<text fill="#000000" font-family="Futura" font-size="11" x="239" y="203.9">0,N</text>
+<line stroke="#000000" stroke-width="1" x1="317" x2="185" y1="367" y2="188"/>
+<text fill="#000000" font-family="Futura" font-size="11" x="295.927374302" y="330.9">0,N</text>
+<g id="association-Imperdiet">
+	<path d="M 221 159 a 14 14 90 0 1 14 14 V 187 h -100 V 173 a 14 14 90 0 1 14 -14" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+	<path d="M 235 187 v 16 a 14 14 90 0 1 -14 14 H 149 a 14 14 90 0 1 -14 -14 V 187 H 100" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+	<rect fill="none" height="58" rx="14" stroke="#000000" stroke-width="1.5" width="100" x="135" y="159"/>
+	<line stroke="#000000" stroke-width="1.5" x1="135" x2="235" y1="187" y2="187"/>
+	<text fill="#000000" font-family="Copperplate" font-size="18" x="142" y="180.3">Imperdiet</text>
+</g>
+
+<!-- Association Mollis -->
+<path d="M317 188 C 350.75 154.25 418.25 154.25 452 188" fill="none" stroke="#000000" stroke-width="1"/>
+<text fill="#000000" font-family="Futura" font-size="11" x="377" y="160.9">0,N</text>
+<path d="M317 188 C 350.75 221.75 418.25 221.75 452 188" fill="none" stroke="#000000" stroke-width="1"/>
+<text fill="#000000" font-family="Futura" font-size="11" x="377" y="224.9">0,N</text>
+<g id="association-Mollis">
+	<path d="M 476 159 a 14 14 90 0 1 14 14 V 187 h -76 V 173 a 14 14 90 0 1 14 -14" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+	<path d="M 490 187 v 16 a 14 14 90 0 1 -14 14 H 428 a 14 14 90 0 1 -14 -14 V 187 H 76" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+	<rect fill="none" height="58" rx="14" stroke="#000000" stroke-width="1.5" width="76" x="414" y="159"/>
+	<line stroke="#000000" stroke-width="1.5" x1="414" x2="490" y1="187" y2="187"/>
+	<text fill="#000000" font-family="Copperplate" font-size="18" x="421" y="180.3">Mollis</text>
+</g>
+
+<!-- Entity Curabitur -->
+<g id="entity-Curabitur">
+	<g id="frame-Curabitur">
+		<rect fill="#FFFFFF" height="30" stroke="#FFFFFF" stroke-width="0" width="112" x="261" y="150"/>
+		<rect fill="#FFFFFF" height="46" stroke="#FFFFFF" stroke-width="0" width="112" x="261" y="180"/>
+		<rect fill="none" height="76" stroke="#000000" stroke-width="1.5" width="112" x="261" y="150"/>
+		<line stroke="#000000" stroke-width="1.5" x1="261" x2="373" y1="180" y2="180"/>
+	</g>
+	<text fill="#000000" font-family="Copperplate" font-size="18" x="269" y="171.3">Curabitur</text>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="269" y="197.05">blandit</text>
+	<line stroke="#000000" stroke-width="1" x1="269" x2="310" y1="200" y2="200"/>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="269" y="214.05">suscipit</text>
+</g>
+
+<!-- Entity DATE -->
+<g id="entity-DATE">
+	<g id="frame-DATE">
+		<rect fill="#FFFFFF" height="30" stroke="#FFFFFF" stroke-width="0" width="64" x="285" y="337"/>
+		<rect fill="#FFFFFF" height="30" stroke="#FFFFFF" stroke-width="0" width="64" x="285" y="367"/>
+		<rect fill="none" height="60" stroke="#000000" stroke-width="1.5" width="64" x="285" y="337"/>
+		<line stroke="#000000" stroke-width="1.5" x1="285" x2="349" y1="367" y2="367"/>
+	</g>
+	<text fill="#000000" font-family="Copperplate" font-size="18" x="293" y="358.3">DATE</text>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="293" y="384.05">date</text>
+	<line stroke="#000000" stroke-width="1" x1="293" x2="320" y1="387" y2="387"/>
+</g>
+
+<!-- Entity Rhoncus -->
+<g id="entity-Rhoncus">
+	<g id="frame-Rhoncus">
+		<rect fill="#FFFFFF" height="30" stroke="#FFFFFF" stroke-width="0" width="98" x="136" y="9"/>
+		<rect fill="#FFFFFF" height="98" stroke="#FFFFFF" stroke-width="0" width="98" x="136" y="39"/>
+		<rect fill="none" height="128" stroke="#000000" stroke-width="1.5" width="98" x="136" y="9"/>
+		<line stroke="#000000" stroke-width="1.5" x1="136" x2="234" y1="39" y2="39"/>
+	</g>
+	<text fill="#000000" font-family="Copperplate" font-size="18" x="145" y="30.3">Rhoncus</text>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="144" y="56.05">dolor a</text>
+	<line stroke="#000000" stroke-width="1" x1="144" x2="189" y1="59" y2="59"/>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="144" y="73.05">bibendum</text>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="144" y="90.05">euismod</text>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="144" y="107.05">consectetuer</text>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="144" y="124.05">leo</text>
+</g>
+
+<!-- Entity Vitae justo -->
+<g id="entity-Vitae justo">
+	<g id="frame-Vitae justo">
+		<rect fill="#FFFFFF" height="30" stroke="#FFFFFF" stroke-width="0" width="118" x="393" y="248"/>
+		<rect fill="#FFFFFF" height="46" stroke="#FFFFFF" stroke-width="0" width="118" x="393" y="278"/>
+		<rect fill="none" height="76" stroke="#000000" stroke-width="1.5" width="118" x="393" y="248"/>
+		<line stroke="#000000" stroke-width="1.5" x1="393" x2="511" y1="278" y2="278"/>
+	</g>
+	<text fill="#000000" font-family="Copperplate" font-size="18" x="401" y="269.3">Vitae justo</text>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="401" y="295.05">lobortis</text>
+	<line stroke="#000000" stroke-width="1" x1="401" x2="449" y1="298" y2="298"/>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="401" y="312.05">purus</text>
+</g>
+
+<!-- Entity Egestas -->
+<g id="entity-Egestas">
+	<g id="frame-Egestas">
+		<rect fill="#FFFFFF" height="30" stroke="#FFFFFF" stroke-width="0" width="88" x="141" y="239"/>
+		<rect fill="#FFFFFF" height="64" stroke="#FFFFFF" stroke-width="0" width="88" x="141" y="269"/>
+		<rect fill="none" height="94" stroke="#000000" stroke-width="1.5" width="88" x="141" y="239"/>
+		<line stroke="#000000" stroke-width="1.5" x1="141" x2="229" y1="269" y2="269"/>
+	</g>
+	<text fill="#000000" font-family="Copperplate" font-size="18" x="149" y="260.3">Egestas</text>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="149" y="286.05">vivamus</text>
+	<line stroke="#000000" stroke-width="1" x1="149" x2="198" y1="289" y2="289"/>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="149" y="303.05">semper</text>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="149" y="320.05">aliquam</text>
+</g>
+</svg>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Ajouter une autre entité DATE (sous le nom de DATE2) permettra à Mocodo de calculer une mise en page à la fois plus agréable à l'œil et plus compacte ($4\times3$ au lieu de $5\times4$). La sémantique est inchangée.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="o">%%</span><span class="k">mocodo</span>
+Egestas: vivamus, semper, aliquam
+DATE: date
+Pharetra, 0N Curabitur, 0N DATE, 0N Vitae justo: massa
+Vitae justo: lobortis, purus
+
+Ultricies, 11 Rhoncus, 0N Egestas
+Imperdiet, 0N Egestas, 0N Curabitur, 0N DATE
+Curabitur: blandit, suscipit
+adipiscing, 0N Curabitur, 0N Vitae justo, 0N DATE2
+
+Rhoncus: dolor a, bibendum, euismod, consectetuer, leo
+Porttitor, 1N Rhoncus, 1N Curabitur
+Mollis, 0N Curabitur, 0N Curabitur
+DATE2: date
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+
+<div class="output_svg output_subarea ">
+<svg height="342" view_box="0 0 521 342" width="521" xmlns="http://www.w3.org/2000/svg" xmlns:link="http://www.w3.org/1999/xlink">\n\n<desc>Généré par Mocodo 2.0.3 le Sat, 05 Sep 2015 19:52:21</desc>
+
+<rect fill="none" height="342" id="frame" stroke="none" stroke-width="0" width="521" x="0" y="0"/>
+
+<!-- Association Pharetra -->
+<line stroke="#000000" stroke-width="1" x1="318" x2="318" y1="154" y2="56"/>
+<text fill="#000000" font-family="Futura" font-size="11" x="322.0" y="109.9">0,N</text>
+<line stroke="#000000" stroke-width="1" x1="186" x2="318" y1="56" y2="56"/>
+<text fill="#000000" font-family="Futura" font-size="11" x="222" y="71.9">0,N</text>
+<line stroke="#000000" stroke-width="1" x1="453" x2="318" y1="56" y2="56"/>
+<text fill="#000000" font-family="Futura" font-size="11" x="372" y="71.9">0,N</text>
+<g id="association-Pharetra">
+	<path d="M 354 27 a 14 14 90 0 1 14 14 V 55 h -100 V 41 a 14 14 90 0 1 14 -14" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+	<path d="M 368 55 v 16 a 14 14 90 0 1 -14 14 H 282 a 14 14 90 0 1 -14 -14 V 55 H 100" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+	<rect fill="none" height="58" rx="14" stroke="#000000" stroke-width="1.5" width="100" x="268" y="27"/>
+	<line stroke="#000000" stroke-width="1.5" x1="268" x2="368" y1="55" y2="55"/>
+	<text fill="#000000" font-family="Copperplate" font-size="18" x="275" y="48.3">Pharetra</text>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="275" y="73.05">massa</text>
+</g>
+
+<!-- Association Ultricies -->
+<line stroke="#000000" stroke-width="1" x1="59" x2="59" y1="269" y2="154"/>
+<text fill="#000000" font-family="Futura" font-size="11" x="63.0" y="198.9">1,1</text>
+<line stroke="#000000" stroke-width="1" x1="59" x2="59" y1="56" y2="154"/>
+<text fill="#000000" font-family="Futura" font-size="11" x="63.0" y="118.9">0,N</text>
+<g id="association-Ultricies">
+	<path d="M 95 125 a 14 14 90 0 1 14 14 V 153 h -100 V 139 a 14 14 90 0 1 14 -14" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+	<path d="M 109 153 v 16 a 14 14 90 0 1 -14 14 H 23 a 14 14 90 0 1 -14 -14 V 153 H 100" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+	<rect fill="none" height="58" rx="14" stroke="#000000" stroke-width="1.5" width="100" x="9" y="125"/>
+	<line stroke="#000000" stroke-width="1.5" x1="9" x2="109" y1="153" y2="153"/>
+	<text fill="#000000" font-family="Copperplate" font-size="18" x="16" y="146.3">Ultricies</text>
+</g>
+
+<!-- Association adipiscing -->
+<line stroke="#000000" stroke-width="1" x1="318" x2="453" y1="154" y2="154"/>
+<text fill="#000000" font-family="Futura" font-size="11" x="378" y="169.9">0,N</text>
+<line stroke="#000000" stroke-width="1" x1="453" x2="453" y1="56" y2="154"/>
+<text fill="#000000" font-family="Futura" font-size="11" x="457.0" y="109.9">0,N</text>
+<line stroke="#000000" stroke-width="1" x1="453" x2="453" y1="269" y2="154"/>
+<text fill="#000000" font-family="Futura" font-size="11" x="457.0" y="232.9">0,N</text>
+<g id="association-adipiscing">
+	<path d="M 492 125 a 14 14 90 0 1 14 14 V 153 h -106 V 139 a 14 14 90 0 1 14 -14" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+	<path d="M 506 153 v 16 a 14 14 90 0 1 -14 14 H 414 a 14 14 90 0 1 -14 -14 V 153 H 106" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+	<rect fill="none" height="58" rx="14" stroke="#000000" stroke-width="1.5" width="106" x="400" y="125"/>
+	<line stroke="#000000" stroke-width="1.5" x1="400" x2="506" y1="153" y2="153"/>
+	<text fill="#000000" font-family="Copperplate" font-size="18" x="407" y="146.3">adipiscing</text>
+</g>
+
+<!-- Association Porttitor -->
+<line stroke="#000000" stroke-width="1" x1="59" x2="186" y1="269" y2="269"/>
+<text fill="#000000" font-family="Futura" font-size="11" x="112" y="284.9">1,N</text>
+<line stroke="#000000" stroke-width="1" x1="318" x2="186" y1="154" y2="269"/>
+<text fill="#000000" font-family="Futura" font-size="11" x="273.791304348" y="207.9">1,N</text>
+<g id="association-Porttitor">
+	<path d="M 224 240 a 14 14 90 0 1 14 14 V 268 h -104 V 254 a 14 14 90 0 1 14 -14" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+	<path d="M 238 268 v 16 a 14 14 90 0 1 -14 14 H 148 a 14 14 90 0 1 -14 -14 V 268 H 104" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+	<rect fill="none" height="58" rx="14" stroke="#000000" stroke-width="1.5" width="104" x="134" y="240"/>
+	<line stroke="#000000" stroke-width="1.5" x1="134" x2="238" y1="268" y2="268"/>
+	<text fill="#000000" font-family="Copperplate" font-size="18" x="141" y="261.3">Porttitor</text>
+</g>
+
+<!-- Association Imperdiet -->
+<line stroke="#000000" stroke-width="1" x1="59" x2="186" y1="56" y2="154"/>
+<text fill="#000000" font-family="Futura" font-size="11" x="107" y="122.829133858">0,N</text>
+<line stroke="#000000" stroke-width="1" x1="318" x2="186" y1="154" y2="154"/>
+<text fill="#000000" font-family="Futura" font-size="11" x="240" y="169.9">0,N</text>
+<line stroke="#000000" stroke-width="1" x1="186" x2="186" y1="56" y2="154"/>
+<text fill="#000000" font-family="Futura" font-size="11" x="190.0" y="101.9">0,N</text>
+<g id="association-Imperdiet">
+	<path d="M 222 125 a 14 14 90 0 1 14 14 V 153 h -100 V 139 a 14 14 90 0 1 14 -14" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+	<path d="M 236 153 v 16 a 14 14 90 0 1 -14 14 H 150 a 14 14 90 0 1 -14 -14 V 153 H 100" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+	<rect fill="none" height="58" rx="14" stroke="#000000" stroke-width="1.5" width="100" x="136" y="125"/>
+	<line stroke="#000000" stroke-width="1.5" x1="136" x2="236" y1="153" y2="153"/>
+	<text fill="#000000" font-family="Copperplate" font-size="18" x="143" y="146.3">Imperdiet</text>
+</g>
+
+<!-- Association Mollis -->
+<path d="M318 154 C 289.25 182.75 289.25 240.25 318 269" fill="none" stroke="#000000" stroke-width="1"/>
+<text fill="#000000" font-family="Futura" font-size="11" x="269.0" y="207.9">0,N</text>
+<path d="M318 154 C 346.75 182.75 346.75 240.25 318 269" fill="none" stroke="#000000" stroke-width="1"/>
+<text fill="#000000" font-family="Futura" font-size="11" x="349.0" y="207.9">0,N</text>
+<g id="association-Mollis">
+	<path d="M 342 240 a 14 14 90 0 1 14 14 V 268 h -76 V 254 a 14 14 90 0 1 14 -14" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+	<path d="M 356 268 v 16 a 14 14 90 0 1 -14 14 H 294 a 14 14 90 0 1 -14 -14 V 268 H 76" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+	<rect fill="none" height="58" rx="14" stroke="#000000" stroke-width="1.5" width="76" x="280" y="240"/>
+	<line stroke="#000000" stroke-width="1.5" x1="280" x2="356" y1="268" y2="268"/>
+	<text fill="#000000" font-family="Copperplate" font-size="18" x="287" y="261.3">Mollis</text>
+</g>
+
+<!-- Entity DATE2 -->
+<g id="entity-DATE2">
+	<g id="frame-DATE2">
+		<rect fill="#FFFFFF" height="30" stroke="#FFFFFF" stroke-width="0" width="64" x="421" y="239"/>
+		<rect fill="#FFFFFF" height="30" stroke="#FFFFFF" stroke-width="0" width="64" x="421" y="269"/>
+		<rect fill="none" height="60" stroke="#000000" stroke-width="1.5" width="64" x="421" y="239"/>
+		<line stroke="#000000" stroke-width="1.5" x1="421" x2="485" y1="269" y2="269"/>
+	</g>
+	<text fill="#000000" font-family="Copperplate" font-size="18" x="429" y="260.3">DATE</text>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="429" y="286.05">date</text>
+	<line stroke="#000000" stroke-width="1" x1="429" x2="456" y1="289" y2="289"/>
+</g>
+
+<!-- Entity Vitae justo -->
+<g id="entity-Vitae justo">
+	<g id="frame-Vitae justo">
+		<rect fill="#FFFFFF" height="30" stroke="#FFFFFF" stroke-width="0" width="118" x="394" y="18"/>
+		<rect fill="#FFFFFF" height="46" stroke="#FFFFFF" stroke-width="0" width="118" x="394" y="48"/>
+		<rect fill="none" height="76" stroke="#000000" stroke-width="1.5" width="118" x="394" y="18"/>
+		<line stroke="#000000" stroke-width="1.5" x1="394" x2="512" y1="48" y2="48"/>
+	</g>
+	<text fill="#000000" font-family="Copperplate" font-size="18" x="402" y="39.3">Vitae justo</text>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="402" y="65.05">lobortis</text>
+	<line stroke="#000000" stroke-width="1" x1="402" x2="450" y1="68" y2="68"/>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="402" y="82.05">purus</text>
+</g>
+
+<!-- Entity Egestas -->
+<g id="entity-Egestas">
+	<g id="frame-Egestas">
+		<rect fill="#FFFFFF" height="30" stroke="#FFFFFF" stroke-width="0" width="88" x="15" y="9"/>
+		<rect fill="#FFFFFF" height="64" stroke="#FFFFFF" stroke-width="0" width="88" x="15" y="39"/>
+		<rect fill="none" height="94" stroke="#000000" stroke-width="1.5" width="88" x="15" y="9"/>
+		<line stroke="#000000" stroke-width="1.5" x1="15" x2="103" y1="39" y2="39"/>
+	</g>
+	<text fill="#000000" font-family="Copperplate" font-size="18" x="23" y="30.3">Egestas</text>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="23" y="56.05">vivamus</text>
+	<line stroke="#000000" stroke-width="1" x1="23" x2="72" y1="59" y2="59"/>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="23" y="73.05">semper</text>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="23" y="90.05">aliquam</text>
+</g>
+
+<!-- Entity Curabitur -->
+<g id="entity-Curabitur">
+	<g id="frame-Curabitur">
+		<rect fill="#FFFFFF" height="30" stroke="#FFFFFF" stroke-width="0" width="112" x="262" y="116"/>
+		<rect fill="#FFFFFF" height="46" stroke="#FFFFFF" stroke-width="0" width="112" x="262" y="146"/>
+		<rect fill="none" height="76" stroke="#000000" stroke-width="1.5" width="112" x="262" y="116"/>
+		<line stroke="#000000" stroke-width="1.5" x1="262" x2="374" y1="146" y2="146"/>
+	</g>
+	<text fill="#000000" font-family="Copperplate" font-size="18" x="270" y="137.3">Curabitur</text>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="270" y="163.05">blandit</text>
+	<line stroke="#000000" stroke-width="1" x1="270" x2="311" y1="166" y2="166"/>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="270" y="180.05">suscipit</text>
+</g>
+
+<!-- Entity DATE -->
+<g id="entity-DATE">
+	<g id="frame-DATE">
+		<rect fill="#FFFFFF" height="30" stroke="#FFFFFF" stroke-width="0" width="64" x="154" y="26"/>
+		<rect fill="#FFFFFF" height="30" stroke="#FFFFFF" stroke-width="0" width="64" x="154" y="56"/>
+		<rect fill="none" height="60" stroke="#000000" stroke-width="1.5" width="64" x="154" y="26"/>
+		<line stroke="#000000" stroke-width="1.5" x1="154" x2="218" y1="56" y2="56"/>
+	</g>
+	<text fill="#000000" font-family="Copperplate" font-size="18" x="162" y="47.3">DATE</text>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="162" y="73.05">date</text>
+	<line stroke="#000000" stroke-width="1" x1="162" x2="189" y1="76" y2="76"/>
+</g>
+
+<!-- Entity Rhoncus -->
+<g id="entity-Rhoncus">
+	<g id="frame-Rhoncus">
+		<rect fill="#FFFFFF" height="30" stroke="#FFFFFF" stroke-width="0" width="98" x="10" y="205"/>
+		<rect fill="#FFFFFF" height="98" stroke="#FFFFFF" stroke-width="0" width="98" x="10" y="235"/>
+		<rect fill="none" height="128" stroke="#000000" stroke-width="1.5" width="98" x="10" y="205"/>
+		<line stroke="#000000" stroke-width="1.5" x1="10" x2="108" y1="235" y2="235"/>
+	</g>
+	<text fill="#000000" font-family="Copperplate" font-size="18" x="19" y="226.3">Rhoncus</text>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="18" y="252.05">dolor a</text>
+	<line stroke="#000000" stroke-width="1" x1="18" x2="63" y1="255" y2="255"/>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="18" y="269.05">bibendum</text>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="18" y="286.05">euismod</text>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="18" y="303.05">consectetuer</text>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="18" y="320.05">leo</text>
+</g>
+</svg>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="4.3.-Besoins-sp&#233;cifiques-&#224;-la-p&#233;dagogie-">4.3. Besoins sp&#233;cifiques &#224; la p&#233;dagogie <a id="besoins_specifiques_a_la_pedagogie" /><a class="anchor-link" href="#4.3.-Besoins-sp&#233;cifiques-&#224;-la-p&#233;dagogie-">&#182;</a></h2>
 </div>
 </div>
@@ -2788,7 +3248,7 @@ PRODUIT: Réf. produit, Libellé, Prix unitaire
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="4.3.1.-Dupliquer-des-entit&#233;s-ou-des-associations-">4.3.1. Dupliquer des entit&#233;s ou des associations <a id="box_duplication" /><a class="anchor-link" href="#4.3.1.-Dupliquer-des-entit&#233;s-ou-des-associations-">&#182;</a></h3>
+<h3 id="4.3.1.-Cr&#233;er-une-vue-en-extension-">4.3.1. Cr&#233;er une vue en extension <a id="creer_une_vue_en_extension" /><a class="anchor-link" href="#4.3.1.-Cr&#233;er-une-vue-en-extension-">&#182;</a></h3>
 </div>
 </div>
 </div>
@@ -2797,8 +3257,7 @@ PRODUIT: Réf. produit, Libellé, Prix unitaire
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Normalement on doit choisir des noms différents pour toutes les boîtes (entités et associations) du MCD, à l'exception des associations de dépendance fonctionnelle figurées par un sigle. On a vu que dans ce cas, il suffisait d'ajouter à leur nom un suffixe numérique: celui-ci n'apparaîtra pas en sortie. Cette possibilité vaut pour n'importe quelle boîte. Elle peut servir à mettre côte à côte deux variantes d'un même MCD, ou encore à produire une vue en extension.</p>
-<p>Voici par exemple le MCD que j'utilise en cours pour introduire la notion d'entité faible (à gauche, vue en compréhension, à droite vue en extension):</p>
+<p>La <a href="#box_duplication">technique de duplication</a> que l'on vient de voir peut servir à produire une vue en extension d'un MCD. Voici par exemple le MCD que j'utilise en cours pour introduire la notion d'entité faible (à gauche, vue en compréhension, à droite vue en extension):</p>
 
 </div>
 </div>
