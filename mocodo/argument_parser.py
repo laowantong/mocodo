@@ -13,19 +13,15 @@ import gettext
 import locale
 from time import time
 
-long_description = """
-  Mocodo is an open-source tool for designing and teaching relational databases.
-  It takes as an input a textual description of both entities and associations
-  of an entity-relationship diagram (ERD). It outputs a vectorial drawing in SVG
-  and a relational schema in various formats (SQL, LaTeX, Markdown, etc.).
-""" # used by setup.py to generate README.rst
-
 DESCRIPTION = """
 NAME:
   Mocodo - An Entity-Relation Diagram Generator.
 
 DESCRIPTION:
-%s
+  Mocodo is an open-source tool for designing and teaching relational databases.
+  It takes as an input a textual description of both entities and associations
+  of an entity-relationship diagram (ERD). It outputs a vectorial drawing in SVG
+  and a relational schema in various formats (SQL, LaTeX, Markdown, etc.).
 
 NOTE:
   Each one of the following value is:
@@ -33,7 +29,7 @@ NOTE:
   - otherwise, retrieved from a file located at --params_path;
   - otherwise, retrieved from a file named 'params.json' in the input directory;
   - otherwise, calculated from a default value, possibly dependant of your system.
-""" % long_description
+"""
 
 EPILOG = u"""
 SEE ALSO:
