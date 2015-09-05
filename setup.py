@@ -20,7 +20,7 @@ Mocodo is an open-source tool for designing and teaching relational databases. I
 Installation
 ------------
 
-The recommended way to install mocodo is to use pip:
+The recommended way to install Mocodo is to use pip:
 
 ::
 
