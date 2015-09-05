@@ -10,6 +10,16 @@
       "replace": "\\$"
     }
   ],
+  "transform_relation_name": [
+    {
+      "search": "_",
+      "replace": "\\_"
+    },
+    {
+      "search": "\\$",
+      "replace": "\\$"
+    }
+  ],
   "compose_primary_key": "\\prim{{{label}}}",
   "compose_normal_attribute": "\\attr{{{label}}}",
   "compose_foreign_key": "\\foreign{{{label}}}",
