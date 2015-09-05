@@ -4,12 +4,11 @@
 import codecs
 import time
 from relations import Relations
+from version_number import version
 import os
 import sys
 import json
 import re
-
-version = "2.0"
 
 def safe_print_for_PHP(s):
     """ It seems that when called from PHP, Python is unable to guess correctly
