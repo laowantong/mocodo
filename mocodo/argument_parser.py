@@ -135,14 +135,15 @@ def parsed_arguments():
     io_group.add_argument("--input", metavar="PATH", help="the path of the input file. By default, the output files will be generated in the same directory")
     (args, remaining_args) = parser.parse_known_args()
     
-    if os.path.exists(args.params_path):
-        default_params.update(json.loads(codecs.open(args.params_path, "r", "utf8").read()))
     if args.input and not os.path.exists(args.input):
         if os.path.exists(args.input + ".mcd"):
             args.input += ".mcd"
         else:  # the user has explicitely specified a non existent input file
+            init_localization(script_directory, default_params.get("language", args.language))
             raise RuntimeError(("Mocodo Err.18 - " + _('The file "{input}" doesn\'t exist.').format(input=args.input)).encode("utf8"))
     default_params["input"] = args.input
+    if os.path.exists(args.params_path):
+        default_params.update(json.loads(codecs.open(args.params_path, "r", "utf8").read()))
     if not default_params["input"]:
         default_params["input"] = "sandbox.mcd"
     default_params["language"] = init_localization(script_directory, default_params.get("language", args.language))
