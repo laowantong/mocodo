@@ -64,6 +64,8 @@ class MocodoMagics(Magics):
                     raise
             input_path = "mocodo_notebook/sandbox.mcd"
             codecs.open(input_path, "w", "utf8").write(cell)
+        elif not os.path.isfile(input_path) and os.path.isfile(input_path + ".mcd"):
+            input_path += ".mcd"
         
         output_dir = notebook_options.output_dir
         if not output_dir:

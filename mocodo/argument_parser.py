@@ -135,15 +135,18 @@ def parsed_arguments():
     io_group.add_argument("--input", metavar="PATH", help="the path of the input file. By default, the output files will be generated in the same directory")
     (args, remaining_args) = parser.parse_known_args()
     
-    default_params["input"] = args.input
     if os.path.exists(args.params_path):
         default_params.update(json.loads(codecs.open(args.params_path, "r", "utf8").read()))
+    if args.input and not os.path.exists(args.input):
+        if os.path.exists(args.input + ".mcd"):
+            args.input += ".mcd"
+        else:  # the user has explicitely specified a non existent input file
+            raise RuntimeError(("Mocodo Err.18 - " + _('The file "{input}" doesn\'t exist.').format(input=args.input)).encode("utf8"))
+    default_params["input"] = args.input
     if not default_params["input"]:
         default_params["input"] = "sandbox.mcd"
     default_params["language"] = init_localization(script_directory, default_params.get("language", args.language))
     default_params.setdefault("output_dir", os.path.dirname(default_params["input"]))
-    if args.input and not os.path.exists(args.input): # the user has explicitely specified a non existent input file
-        raise RuntimeError(("Mocodo Err.18 - " + _('The file "{input}" doesn\'t exist.').format(input=args.input)).encode("utf8"))
     
     mocodo_group.add_argument("--help", action="help", help="show this help message and exit")
     mocodo_group.add_argument("--version", action="version", version="%(prog)s " + version, help="display the version number, then exit")
@@ -195,6 +198,7 @@ def parsed_arguments():
     add_key("script_directory", script_directory)
     add_key("has_expired", has_expired(params["timeout"]))
     add_key("output_name", os.path.join(params["output_dir"], os.path.splitext(os.path.basename(params["input"]))[0]))
+
     # import pprint
     # pprint.pprint(params)
     if not os.path.exists(params["input"]):
