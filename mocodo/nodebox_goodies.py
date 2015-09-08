@@ -40,7 +40,7 @@ def lower_round_rect(x, y, w, h, r):
 def dash_line(x0, x1, y, w):
     nofill()
     beginpath(x0, y)
-    for i in range(x0, x1, 2 * w):
+    for i in range(int(x0 + 0.5), int(x1 + 0.5), int(2 * w + 0.5)):
         lineto(min(i + w, x1), y)
         moveto(i + 2 * w, y)
     endpath()

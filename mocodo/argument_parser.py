@@ -82,9 +82,24 @@ def has_expired(timeout):
     return inner_function
 
 def rate(string):
-    value = float(string)
+    try:
+        value = float(string)
+    except ValueError:
+        msg = "The rate %r cannot be coerced to float" % string
+        raise argparse.ArgumentTypeError(msg)
     if not (0.0 <= value <= 1.0):
         msg = "The rate %r is not between 0.0 and 1.1" % string
+        raise argparse.ArgumentTypeError(msg)
+    return value
+
+def scale(string):
+    try:
+        value = float(string)
+    except ValueError:
+        msg = "The scale %r cannot be coerced to float" % string
+        raise argparse.ArgumentTypeError(msg)
+    if value <= 0:
+        msg = "The scale %r is not strictly positive" % string
         raise argparse.ArgumentTypeError(msg)
     return value
 
@@ -158,6 +173,7 @@ def parsed_arguments():
     aspect_group.add_argument("--tkinter", action="store_true", help="use Tkinter to calculate the pixel-dimensions of the labels")
     aspect_group.add_argument("--colors", metavar="PATH", default="bw", help="the color palette to use when generating the drawing. Name (without extension) of a file located in the directory 'colors', or path to a personal file")
     aspect_group.add_argument("--shapes", metavar="PATH", help="specification of the fonts, dimensions, etc. Name (without extension) of a file located in the directory 'shapes', or path to a personal file")
+    aspect_group.add_argument("--scale", metavar="RATE", type=scale, default=1.0, help="scale the diagram by the given factor")
     
     relational_group.add_argument("--relations", metavar="NAME", nargs="*", default=["html", "text"], help="one or several templates for the generated relational schemas. Cf. directory 'relation_templates'")
     relational_group.add_argument("--disambiguation", choices=["numbers_only", "annotations"], default="annotations", help="specify the way to disambiguate foreign attributes")

@@ -56,7 +56,14 @@ class Common:
         
         style = {}
         style.update(load_by_name("colors"))
-        style.update(load_by_name("shapes"))
+        shapes = load_by_name("shapes")
+        if self.params["scale"] != 1:
+            for key in shapes:
+                if key.endswith("font"):
+                    shapes[key]["size"] *= self.params["scale"]
+                elif not key.endswith("ratio") and isinstance(shapes[key], (int, long, float, complex)):
+                    shapes[key] *= self.params["scale"]
+        style.update(shapes)
         style["transparent_color"] = None
         return style
 
