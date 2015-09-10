@@ -57,12 +57,6 @@ class Leg:
             (x, y) = ((x0 + x1 - self.style["card_max_width"] + k * abs(x1 - x0 + self.style["card_max_width"])) / 2 + cmp(k, 0) * self.style["card_margin"], min(y0, y1))
         return (int(x), int(y), int(x + self.w), int(y + self.h))
 
-    def set_entity(self, entities):
-        try:
-            self.entity = entities[self.entity_name]
-        except KeyError:
-            raise RuntimeError(("Mocodo Err.1 - " + _(u'Association "{association}" linked to an unknown entity "{entity}"!').format(association=self.association.name, entity=self.entity_name)).encode("utf8"))
-
     def set_card_sep(self, card_sep):
         self.cardinalities = (u"" if self.cards.startswith("XX") else self.cards[0] + card_sep + self.cards[1])
 

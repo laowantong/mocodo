@@ -61,7 +61,13 @@ class Mcd:
         def add_legs():
             for association in self.associations.values():
                 for leg in association.legs:
-                    leg.set_entity(self.entities)
+                    try:
+                        leg.entity = self.entities[leg.entity_name]
+                    except KeyError:
+                        if leg.entity_name in self.associations:
+                            raise RuntimeError(("Mocodo Err.20 - " + _(u'Association "{association_1}" linked to another association "{association_2}"!').format(association_1=association.name, association_2=leg.entity_name)).encode("utf8"))
+                        else:
+                            raise RuntimeError(("Mocodo Err.1 - " + _(u'Association "{association}" linked to an unknown entity "{entity}"!').format(association=association.name, entity=leg.entity_name)).encode("utf8"))
                     leg.set_card_sep(params["sep"])
         
         def add_attributes_and_strength():
