@@ -45,11 +45,13 @@ class Mcd:
                     if element.name in self.associations:
                         raise RuntimeError(("Mocodo Err.7 - " + _('Duplicate association "{association}". If you want to make two associations appear with the same name, you must suffix it with a number.').format(association=element.name)).encode("utf8"))
                     self.associations[element.name] = element
-                else:
+                elif ":" in clause:
                     element = Entity(clause)
                     if element.name in self.entities:
                         raise RuntimeError(("Mocodo Err.6 - " + _('Duplicate entity "{entity}". If you want to make two entities appear with the same name, you must suffix it with a number.').format(entity=element.name)).encode("utf8"))
                     self.entities[element.name] = element
+                else:
+                    raise RuntimeError(("Mocodo Err.21 - " + _('"{clause}" does not constitute a valid declaration of an entity or association.').format(clause=clause)).encode("utf8"))
                 if element.name in seen:
                     raise RuntimeError(("Mocodo Err.8 - " + _('One entity and one association share the same name "{name}".').format(name=element.name)).encode("utf8"))
                 seen.add(element.name)
