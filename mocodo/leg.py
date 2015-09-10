@@ -15,6 +15,15 @@ html_escape_table = {
     "<": "&lt;",
 }
 
+auto_correction = {
+    "01": ["O1", "o1", "10", "1O", "1o"],
+    "0N": ["ON", "oN", "NO", "No", "N0"],
+    "0n": ["On", "on", "no", "nO", "n0"],
+    "1N": ["N1"],
+    "1n": ["n1"]
+}
+auto_correction = dict((v,k) for k in auto_correction for v in auto_correction[k])
+
 def html_escape(text):
     return "".join(html_escape_table.get(c,c) for c in text)
 
@@ -30,6 +39,8 @@ class Leg:
         self.strengthen = self.cards == "_11"
         if self.strengthen:
             self.cards = "11"
+        else:
+            self.cards = auto_correction.get(self.cards, self.cards)
         if self.annotation:
             self.annotation = html_escape(self.annotation.replace("<<<protected-comma>>>", ",").replace("<<<protected-colon>>>", ":"))
 

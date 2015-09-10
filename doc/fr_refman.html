@@ -239,8 +239,9 @@ div#notebook {
 <li><a href="#styles">4.2.4. Styles</a></li>
 <li><a href="#types_de_donnees">4.2.5. Types de données</a></li>
 <li><a href="#card_sep">4.2.6. Séparateur des cardinalités</a></li>
-<li><a href="#df_symbol">4.2.7. Symbole de dépendance fonctionnelle</a></li>
-<li><a href="#box_duplication">4.2.8. Créer plusieurs entités ou associations de même nom</a></li>
+<li><a href="#rectification_automatique_des_cardinalites_mal_formees">4.2.7. Rectification automatique des cardinalités mal formées</a></li>
+<li><a href="#df_symbol">4.2.8. Symbole de dépendance fonctionnelle</a></li>
+<li><a href="#box_duplication">4.2.9. Créer plusieurs entités ou associations de même nom</a></li>
 </ul>
 </li>
 <li><a href="#besoins_specifiques_a_la_pedagogie">4.3. Besoins spécifiques à la pédagogie</a><ul>
@@ -1608,16 +1609,16 @@ PRODUIT: Réf. produit, Libellé, Prix unitaire
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>La syntaxe ne devrait pas poser problème :</p>
+<p>La syntaxe ne devrait pas poser problème:</p>
 <ul>
-<li>une entité est définie par son nom, deux-points, sa liste d'attributs séparés par des virgules ;</li>
+<li>une entité est définie par son nom, deux-points, sa liste d'attributs séparés par des virgules;</li>
 <li>une association est définie par son nom, virgule, les cardinalités et l'entité de sa première patte, virgule, les cardinalités et l'entité de sa deuxième patte, etc., deux-points, sa liste d'attributs séparés par des virgules.</li>
 </ul>
 <p>À noter :</p>
 <ul>
-<li>le premier attribut d'une entité est considéré par défaut comme son identifiant, et donc souligné ;</li>
-<li>pour les associations sans attributs, le deux-points est facultatif ;</li>
-<li>la première ligne :
+<li>le premier attribut d'une entité est considéré par défaut comme son identifiant, et donc souligné;</li>
+<li>pour les associations sans attributs, le deux-points est facultatif;</li>
+<li>la première ligne:
 <pre><code>  %%mocodo
 </code></pre>
 ... ne fait pas partie de la description. Dans ce document, elle permet de faire appel à une « commande magique », qui lance Mocodo sur les lignes qui la suivent. Sauf sous Jupyter / IPython Notebook, vous pouvez l'omettre dans votre texte d'entrée.<br>
@@ -2546,7 +2547,7 @@ PRODUIT: Réf. produit, Libellé, Prix unitaire
 <div class="output_area"><div class="prompt"></div>
 
 <div class="output_svg output_subarea ">
-<svg height="128" view_box="0 0 612 128" width="612" xmlns="http://www.w3.org/2000/svg" xmlns:link="http://www.w3.org/1999/xlink">\n\n<desc>Généré par Mocodo 2.0 le Sun, 30 Aug 2015 20:09:24</desc>
+<svg height="128" view_box="0 0 612 128" width="612" xmlns="http://www.w3.org/2000/svg" xmlns:link="http://www.w3.org/1999/xlink">\n\n<desc>Généré par Mocodo 2.0.5 le Thu, 10 Sep 2015 16:51:03</desc>
 
 <rect fill="none" height="128" id="frame" stroke="none" stroke-width="0" width="612" x="0" y="0"/>
 
@@ -2636,7 +2637,56 @@ PRODUIT: Réf. produit, Libellé, Prix unitaire
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="4.2.7.-Symbole-de-d&#233;pendance-fonctionnelle-">4.2.7. Symbole de d&#233;pendance fonctionnelle <a id="df_symbol" /><a class="anchor-link" href="#4.2.7.-Symbole-de-d&#233;pendance-fonctionnelle-">&#182;</a></h3>
+<h3 id="4.2.7.-Rectification-automatique-des-cardinalit&#233;s-mal-form&#233;es-">4.2.7. Rectification automatique des cardinalit&#233;s mal form&#233;es <a id="rectification_automatique_des_cardinalites_mal_formees" /><a class="anchor-link" href="#4.2.7.-Rectification-automatique-des-cardinalit&#233;s-mal-form&#233;es-">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Certaines fautes de frappe fréquentes (inversion des cardinalités minimale et maximale, lettre « O » au lieu du chiffre « 0 ») sont silencieusement rectifiées:</p>
+<table>
+<thead><tr>
+<th>formes erronées</th>
+<th>forme rectifiée</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>O1</code>, <code>o1</code>, <code>10</code>, <code>1O</code>, <code>1o</code></td>
+<td><code>01</code></td>
+</tr>
+<tr>
+<td><code>ON</code>, <code>oN</code>, <code>NO</code>, <code>No</code>, <code>N0</code></td>
+<td><code>0N</code></td>
+</tr>
+<tr>
+<td><code>On</code>, <code>on</code>, <code>no</code>, <code>nO</code>, <code>n0</code></td>
+<td><code>0n</code></td>
+</tr>
+<tr>
+<td><code>N1</code></td>
+<td><code>1N</code></td>
+</tr>
+<tr>
+<td><code>n1</code></td>
+<td><code>1n</code></td>
+</tr>
+</tbody>
+</table>
+<p>Les cardinalités (N,N), qui selon une certaine école dénotent une cardinalité minimale supérieure à 1, sont laissées telles quelles.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="4.2.8.-Symbole-de-d&#233;pendance-fonctionnelle-">4.2.8. Symbole de d&#233;pendance fonctionnelle <a id="df_symbol" /><a class="anchor-link" href="#4.2.8.-Symbole-de-d&#233;pendance-fonctionnelle-">&#182;</a></h3>
 </div>
 </div>
 </div>
@@ -2773,7 +2823,7 @@ PRODUIT: Réf. produit, Libellé, Prix unitaire
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="4.2.8.-Cr&#233;er-plusieurs-entit&#233;s-ou-associations-de-m&#234;me-nom-">4.2.8. Cr&#233;er plusieurs entit&#233;s ou associations de m&#234;me nom <a id="box_duplication" /><a class="anchor-link" href="#4.2.8.-Cr&#233;er-plusieurs-entit&#233;s-ou-associations-de-m&#234;me-nom-">&#182;</a></h3>
+<h3 id="4.2.9.-Cr&#233;er-plusieurs-entit&#233;s-ou-associations-de-m&#234;me-nom-">4.2.9. Cr&#233;er plusieurs entit&#233;s ou associations de m&#234;me nom <a id="box_duplication" /><a class="anchor-link" href="#4.2.9.-Cr&#233;er-plusieurs-entit&#233;s-ou-associations-de-m&#234;me-nom-">&#182;</a></h3>
 </div>
 </div>
 </div>
@@ -8290,6 +8340,16 @@ TINCIDUNT: faucibus, orci, cursus
 </ol>
 </li>
 </ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Remarque.</strong> Un couple de cardinalités non standard, c'est-à-dire distinct de (0,1), (1,1), (0,N) et (1,N), est traité comme (0,1) si son deuxième symbole est un 1, et comme (0,N) sinon. Cela couvre en particulier les cas (*, 1), (*,N), (?,?) et (X,X).</p>
 
 </div>
 </div>

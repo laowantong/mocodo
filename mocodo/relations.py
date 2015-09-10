@@ -259,7 +259,7 @@ class Relations:
             (entity_name, entity_priority) = (None, 0)
             may_identify = True
             for leg in association.legs:
-                current_entity_priority = (2 if leg.cards[:2] == "11" else (1 if leg.cards[:2] == "01" else 0))
+                current_entity_priority = (2 if leg.cards[:2] == "11" else (1 if leg.cards[1] == "1" else 0))
                 if current_entity_priority > entity_priority:
                     entity_name = leg.entity_name
                     entity_priority = current_entity_priority
