@@ -111,7 +111,7 @@ class Mcd:
         
         
         font_metrics.FontMetrics = font_metrics.font_metrics_factory(params)
-        self.card_longest_string = "0%sN" % params["sep"]
+        self.card_longest_string = "M%sM" % params["sep"]
         phantom_counter = itertools.count()
         parse_clauses()
         add_legs()
