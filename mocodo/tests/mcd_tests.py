@@ -164,8 +164,7 @@ class McdTest(unittest.TestCase):
 
             :
             FLÉAU: battadère, van, mesure
-            :
-            :
+            ::
         """.strip().replace("  ", "")
         self.assertEquals(mcd.get_clauses_from_layout(range(16)), expected)
 
@@ -232,8 +231,7 @@ class McdTest(unittest.TestCase):
         expected = u"""
             :
             FLÉAU: battadère, van, mesure
-            :
-            :
+            ::
 
             :
             ROULEAU: tribulum
@@ -267,8 +265,7 @@ class McdTest(unittest.TestCase):
             ROULEAU: tribulum
             :
 
-            :
-            :
+            ::
             FLÉAU: battadère, van, mesure
             :
         """.strip().replace("  ", "")
@@ -276,8 +273,7 @@ class McdTest(unittest.TestCase):
         expected = u"""
             BARATTE: piston, racloir, fusil
             DF, 11 BARATTE, 1N ROULEAU
-            :
-            :
+            ::
 
             MARTEAU, 0N BARATTE, 11 TINET: ciseaux
             BALANCE, 0N ROULEAU, 0N TINET: charrue
@@ -291,8 +287,7 @@ class McdTest(unittest.TestCase):
 
             CROCHET: égrenoir, _gorgeoir, bouillie
             PORTE, 11 CROCHET, 0N CROCHET
-            :
-            :
+            ::
         """.strip().replace("  ", "")
         self.assertEquals(mcd.get_clauses_diagonal_mirror(), expected)
 

@@ -12,6 +12,8 @@ import font_metrics
 import itertools
 from collections import defaultdict
 
+compress_colons = re.compile(r"(?m)^:\n(?=:$)").sub
+
 class Mcd:
 
     def __init__(self, clauses, params):
@@ -175,17 +177,22 @@ class Mcd:
         suppress_empty_cols(0)
         suppress_empty_cols(-1)
         if self.associations:
-           return self.header + "\n\n".join(self.get_row_text(row) for row in rows)
-        return self.header + "\n\n".join(":\n" + "\n:\n".join(self.get_row_text(row).split("\n")) + "\n:" for row in rows)
+            result = self.header + "\n\n".join(self.get_row_text(row) for row in rows)
+        else:
+            result = self.header + "\n\n".join(":\n" + "\n:\n".join(self.get_row_text(row).split("\n")) + "\n:" for row in rows)
+        return compress_colons(":", result)
     
     def get_clauses_horizontal_mirror(self):
-        return self.header + "\n\n".join(self.get_row_text(row) for row in self.rows[::-1])
+        result = self.header + "\n\n".join(self.get_row_text(row) for row in self.rows[::-1])
+        return compress_colons(":", result)
     
     def get_clauses_vertical_mirror(self):
-        return self.header + "\n\n".join(self.get_row_text(row[::-1]) for row in self.rows)
+        result = self.header + "\n\n".join(self.get_row_text(row[::-1]) for row in self.rows)
+        return compress_colons(":", result)
     
     def get_clauses_diagonal_mirror(self):
-        return self.header + "\n\n".join(self.get_row_text(row) for row in zip(*self.rows))
+        result = self.header + "\n\n".join(self.get_row_text(row) for row in zip(*self.rows))
+        return compress_colons(":", result)
     
     def calculate_size(self, style):
         def calculate_sizes():

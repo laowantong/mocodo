@@ -115,18 +115,15 @@ class ArrangeBB(unittest.TestCase):
             CONSECTETUER: elit, sed
             MAECENAS, 1N DIGNISSIM, 1N DIGNISSIM
 
-            :
-            :
+            ::
             TORTOR, 0N RISUS, 11 DIGNISSIM, 1N CONSECTETUER: nec
             DIGNISSIM: ligula, massa, varius
 
-            :
-            :
+            ::
             RISUS: ultricies, _cras, elementum
             SEMPER, 0N RISUS, 1N DIGNISSIM
 
-            :
-            :
+            ::
             DF, 11 RISUS, 0N RISUS
             :
         """.strip().replace("  ", "")
