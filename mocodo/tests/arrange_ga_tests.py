@@ -9,7 +9,7 @@ from mocodo.argument_parser import parsed_arguments
 from time import time
 from random import seed
 
-class ArrangeBB(unittest.TestCase):
+class ArrangeGA(unittest.TestCase):
     
     def test_run(self):
         clauses = u"""
