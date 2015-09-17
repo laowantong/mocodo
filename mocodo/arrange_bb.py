@@ -2,9 +2,11 @@
 # encoding: utf-8
 
 from itertools import product, count
-from random import random, shuffle, randrange
+from random import random, shuffle, randrange, choice
 from cross import cross, memoize
 from math import hypot, sqrt
+
+import sys
 
 def arrange(col_count, row_count, successors, multiplicity, organic, min_objective, max_objective, call_limit, verbose, has_expired, **kwargs):
     
@@ -52,7 +54,7 @@ def arrange(col_count, row_count, successors, multiplicity, organic, min_objecti
     
     def recurs(box_coords, next_boxes, already_placed_segments, cumulated_distances):
         if cumulated_distances > objective:
-            # print >> sys.stderr, "cut"
+            # print "cut"
             return None
         if len(next_boxes) == 0:
             return {
@@ -62,27 +64,30 @@ def arrange(col_count, row_count, successors, multiplicity, organic, min_objecti
             }
         outside_hull_count = len(next_boxes) - len(hull(frozenset(box_coords.values())))
         if outside_hull_count * outside_hull_minimal_distance + cumulated_distances > objective:
-            # print >> sys.stderr, "Lower bound cut"
+            # print "Lower bound cut"
             return None
         if has_expired():
             raise RuntimeError(("Mocodo Err.10 - " + _('Layout calculation time exceeded.')).encode("utf8"))
         if iteration.next() > call_limit:
-            # print >> sys.stderr, "call limit exceeded"
+            # print "call limit exceeded"
             return None
         box_to_place = next_boxes[0]
         already_placed_successors = {box_coords[box]: box for box in successors[box_to_place] if box in box_coords}
-        already_placed_successor_coords = iter(already_placed_successors)
-        possible_coords = neighborhood(already_placed_successor_coords.next()).copy()
-        # print >> sys.stderr, already_placed_successors[0], possible_coords
-        for coord in already_placed_successor_coords:
-            possible_coords.intersection_update(neighborhood(coord))
-            if not possible_coords:
-                # print >> sys.stderr, "neighborhood intersection is empty"
-                return None
-        # print >> sys.stderr, possible_coords
+        if already_placed_successors:
+            already_placed_successor_coords = iter(already_placed_successors)
+            possible_coords = neighborhood(already_placed_successor_coords.next()).copy()
+            # print already_placed_successors[0], possible_coords
+            for coord in already_placed_successor_coords:
+                possible_coords.intersection_update(neighborhood(coord))
+                if not possible_coords:
+                    # print "neighborhood intersection is empty"
+                    return None
+        else:
+            # print "the box to place has no successors: all empty coords are possible"
+            possible_coords = set(product(range(col_count), range(row_count)))
         possible_coords.difference_update(box_coords.values())
         if not possible_coords:
-            # print >> sys.stderr, "neighborhood intersection is not free"
+            # print "neighborhood intersection is not free"
             return None
         non_crossing_possible_coords = []
         for (x1,y1) in possible_coords:
@@ -92,7 +97,7 @@ def arrange(col_count, row_count, successors, multiplicity, organic, min_objecti
             else:
                 non_crossing_possible_coords.append((x1, y1))
         if not non_crossing_possible_coords:
-            # print >> sys.stderr, "all possible coords result in a crossing with existing segment"
+            # print "all possible coords result in a crossing with existing segment"
             return None
         weighted_possible_coords = []
         for (x1,y1) in non_crossing_possible_coords:
@@ -105,6 +110,11 @@ def arrange(col_count, row_count, successors, multiplicity, organic, min_objecti
             box_coords[box_to_place] = (x1, y1)
             new_segments = [(x1, y1, x2, y2) for (x2, y2) in already_placed_successors]
             new_next_boxes = list(successors[box_to_place].difference(box_coords).difference(next_boxes))
+            if len(next_boxes) == 1 and len(new_next_boxes) == 0 and len(box_coords) != box_count:
+                # print "the placed boxes have no more non placed successors"
+                new_next_boxes = list(set(range(box_count)).difference(box_coords))
+                if new_next_boxes:
+                    new_next_boxes = [choice(new_next_boxes)]
             shuffle(new_next_boxes)
             result = recurs(
                 box_coords,
@@ -123,6 +133,15 @@ def arrange(col_count, row_count, successors, multiplicity, organic, min_objecti
     radius = 3
     distances = [[hypot(i, j) - 1 for j in range(radius + 1)] for i in range(radius + 1)]
     outside_hull_minimal_distance = distances[1][2]
+    if all(not successor for successor in successors):
+        # print "no link: return a random layout"
+        layout = range(box_count)
+        shuffle(layout)
+        return {
+            "layout": layout,
+            "crossings": 0,
+            "distances": 0,
+        }
     for objective in range(min_objective, max_objective + 1):
         if verbose:
             print "Objective %s." % objective
