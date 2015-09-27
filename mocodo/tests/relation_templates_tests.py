@@ -47,30 +47,30 @@ class relationTemplatesTest(unittest.TestCase):
             :
             :
             :
-            GAME: glad, oven, #glad.1.BOOT->GAME->glad, snap.BOOT
+            GAME: glad, oven, #glad.1->GAME->glad, snap
             :
             SHED: #else->SLOW->else, _#glad->GAME->glad, _#iron->DIET->iron, free
             :
-            SLOW: else, line, #cute.ALLY->ODDS->cute, #echo.ALLY->ODDS->echo, whom.ALLY
+            SLOW: else, line, #cute->ODDS->cute, #echo->ODDS->echo, whom
             :
-            CORD: #else.CORD->SLOW->else, _#bury->LOCK->bury, left
+            CORD: #else->SLOW->else, _#bury->LOCK->bury, left
             :
             LOCK: bury
             :
             
             
             :
-            PEAK: amid, salt, #glad.PASS->GAME->glad, rain.PASS
+            PEAK: amid, salt, #glad->GAME->glad, rain
             :
             :
             :
-            DIET: iron, cell, #rich.MYTH->QUIT->rich, clip.MYTH
+            DIET: iron, cell, #rich->QUIT->rich, clip
             :
             SOUL: #iron->DIET->iron, _#else->SLOW->else, joke
             :
             :
             :
-            FUND: #bury->LOCK->bury, #cute.FUND->ODDS->cute, #echo.FUND->ODDS->echo, dump
+            FUND: #bury->LOCK->bury, #cute->ODDS->cute, #echo->ODDS->echo, dump
             :
             
             
@@ -85,7 +85,7 @@ class relationTemplatesTest(unittest.TestCase):
             :
             :
             :
-            ODDS: #cute->POEM->cute, _echo, golf.HANG
+            ODDS: #cute->POEM->cute, _echo, golf
             :
         """.strip().replace("    ", "").split()
         result = t.get_text(template).split()
@@ -451,21 +451,21 @@ class relationTemplatesTest(unittest.TestCase):
     def test_markdown(self):
         template = json.loads(codecs.open("mocodo/relation_templates/markdown.json").read())
         expected = u"""
-            **GAME** (<u>glad</u>, oven, _glad.1_, snap)  
-            **SHED** (<u>_else_</u>, <u>_glad_</u>, <u>_iron_</u>, free)  
-            **SLOW** (<u>else</u>, line, _cute_, _echo_, whom)  
-            **CORD** (_else_, <u>_bury_</u>, left)  
+            **GAME** (<ins>glad</ins>, oven, _glad.1_, snap)  
+            **SHED** (<ins>_else_</ins>, <ins>_glad_</ins>, <ins>_iron_</ins>, free)  
+            **SLOW** (<ins>else</ins>, line, _cute_, _echo_, whom)  
+            **CORD** (_else_, <ins>_bury_</ins>, left)  
             <!---
-            **LOCK** (<u>bury</u>)
+            **LOCK** (<ins>bury</ins>)
             --->  
-            **PEAK** (<u>amid</u>, salt, _glad_, rain)  
-            **DIET** (<u>iron</u>, cell, _rich_, clip)  
-            **SOUL** (<u>_iron_</u>, <u>_else_</u>, joke)  
-            **FUND** (<u>_bury_</u>, _cute_, _echo_, dump)  
-            **DENY** (<u>_rich_</u>, <u>_rich.1_</u>, hers)  
-            **QUIT** (<u>rich</u>, milk)  
-            **POEM** (<u>cute</u>, farm)  
-            **ODDS** (<u>_cute_</u>, <u>echo</u>, golf)
+            **PEAK** (<ins>amid</ins>, salt, _glad_, rain)  
+            **DIET** (<ins>iron</ins>, cell, _rich_, clip)  
+            **SOUL** (<ins>_iron_</ins>, <ins>_else_</ins>, joke)  
+            **FUND** (<ins>_bury_</ins>, _cute_, _echo_, dump)  
+            **DENY** (<ins>_rich_</ins>, <ins>_rich.1_</ins>, hers)  
+            **QUIT** (<ins>rich</ins>, milk)  
+            **POEM** (<ins>cute</ins>, farm)  
+            **ODDS** (<ins>_cute_</ins>, <ins>echo</ins>, golf)
         """.strip().replace("    ", "").split()
         result = t.get_text(template).split()
         for (result_line, expected_line) in zip(result, expected):
@@ -474,70 +474,70 @@ class relationTemplatesTest(unittest.TestCase):
     def test_markdown_verbose(self):
         template = json.loads(codecs.open("mocodo/relation_templates/markdown_verbose.json").read())
         expected = u"""
-            **GAME** (<u>glad</u>, oven, _glad.1_, snap)  
+            **GAME** (<ins>glad</ins>, oven, _glad.1_, snap)  
             - Le champ _glad_ constitue la clef primaire de la table. C'était déjà un identifiant de l'entité _GAME_.  
             - Le champ _oven_ était déjà un simple attribut de l'entité _GAME_.  
             - Le champ _glad.1_ est une clef étrangère. Il a migré à partir de l'entité _GAME_ par l'association de dépendance fonctionnelle _BOOT_ en perdant son caractère identifiant.  
             - Le champ _snap_ a migré à partir de l'association de dépendance fonctionnelle _BOOT_.  
             
-            **SHED** (<u>_else_</u>, <u>_glad_</u>, <u>_iron_</u>, free)  
+            **SHED** (<ins>_else_</ins>, <ins>_glad_</ins>, <ins>_iron_</ins>, free)  
             - Le champ _else_ fait partie de la clef primaire de la table. C'est une clef étrangère qui a migré directement à partir de l'entité _SLOW_.  
             - Le champ _glad_ fait partie de la clef primaire de la table. C'est une clef étrangère qui a migré directement à partir de l'entité _GAME_.  
             - Le champ _iron_ fait partie de la clef primaire de la table. C'est une clef étrangère qui a migré directement à partir de l'entité _DIET_.  
             - Le champ _free_ était déjà un simple attribut de l'association _SHED_.  
             
-            **SLOW** (<u>else</u>, line, _cute_, _echo_, whom)  
+            **SLOW** (<ins>else</ins>, line, _cute_, _echo_, whom)  
             - Le champ _else_ constitue la clef primaire de la table. C'était déjà un identifiant de l'entité _SLOW_.  
             - Le champ _line_ était déjà un simple attribut de l'entité _SLOW_.  
             - Le champ _cute_ est une clef étrangère. Il a migré à partir de l'entité _ODDS_ par l'association de dépendance fonctionnelle _ALLY_ en perdant son caractère identifiant.  
             - Le champ _echo_ est une clef étrangère. Il a migré à partir de l'entité _ODDS_ par l'association de dépendance fonctionnelle _ALLY_ en perdant son caractère identifiant.  
             - Le champ _whom_ a migré à partir de l'association de dépendance fonctionnelle _ALLY_.  
             
-            **CORD** (_else_, <u>_bury_</u>, left)  
+            **CORD** (_else_, <ins>_bury_</ins>, left)  
             - Le champ _else_ est une clef étrangère issue de l'entité _SLOW_. Il devrait normalement migrer à travers l'association _CORD_, mais celle-ci a été explicitement promue au rang de table.  
             - Le champ _bury_ constitue la clef primaire de la table. C'est une clef étrangère qui a migré directement à partir de l'entité _LOCK_.  
             - Le champ _left_ était déjà un simple attribut de l'association _CORD_.  
             
-            **LOCK** (<u>bury</u>)  
+            **LOCK** (<ins>bury</ins>)  
             - **Avertissement.** Cette table ne comportant qu'un seul champ, on peut envisager de la supprimer.
             - Le champ _bury_ constitue la clef primaire de la table. C'était déjà un identifiant de l'entité _LOCK_.  
             
-            **PEAK** (<u>amid</u>, salt, _glad_, rain)  
+            **PEAK** (<ins>amid</ins>, salt, _glad_, rain)  
             - Le champ _amid_ constitue la clef primaire de la table. C'était déjà un identifiant de l'entité _PEAK_.  
             - Le champ _salt_ était déjà un simple attribut de l'entité _PEAK_.  
             - Le champ _glad_ est une clef étrangère. Il a migré à partir de l'entité _GAME_ par l'association de dépendance fonctionnelle _PASS_ en perdant son caractère identifiant.  
             - Le champ _rain_ a migré à partir de l'association de dépendance fonctionnelle _PASS_.  
             
-            **DIET** (<u>iron</u>, cell, _rich_, clip)  
+            **DIET** (<ins>iron</ins>, cell, _rich_, clip)  
             - Le champ _iron_ constitue la clef primaire de la table. C'était déjà un identifiant de l'entité _DIET_.  
             - Le champ _cell_ était déjà un simple attribut de l'entité _DIET_.  
             - Le champ _rich_ est une clef étrangère. Il a migré à partir de l'entité _QUIT_ par l'association de dépendance fonctionnelle _MYTH_ en perdant son caractère identifiant.  
             - Le champ _clip_ a migré à partir de l'association de dépendance fonctionnelle _MYTH_.  
             
-            **SOUL** (<u>_iron_</u>, <u>_else_</u>, joke)  
+            **SOUL** (<ins>_iron_</ins>, <ins>_else_</ins>, joke)  
             - Le champ _iron_ fait partie de la clef primaire de la table. C'est une clef étrangère qui a migré directement à partir de l'entité _DIET_.  
             - Le champ _else_ fait partie de la clef primaire de la table. C'est une clef étrangère qui a migré directement à partir de l'entité _SLOW_.  
             - Le champ _joke_ était déjà un simple attribut de l'association _SOUL_.  
             
-            **FUND** (<u>_bury_</u>, _cute_, _echo_, dump)  
+            **FUND** (<ins>_bury_</ins>, _cute_, _echo_, dump)  
             - Le champ _bury_ constitue la clef primaire de la table. C'est une clef étrangère qui a migré directement à partir de l'entité _LOCK_.  
             - Le champ _cute_ est une clef étrangère issue de l'entité _ODDS_. Il devrait normalement faire partie de l'identifiant de _FUND_, mais a été rétrogradé explicitement au rang de simple attribut.  
             - Le champ _echo_ est une clef étrangère issue de l'entité _ODDS_. Il devrait normalement faire partie de l'identifiant de _FUND_, mais a été rétrogradé explicitement au rang de simple attribut.  
             - Le champ _dump_ était déjà un simple attribut de l'association _FUND_.  
             
-            **DENY** (<u>_rich_</u>, <u>_rich.1_</u>, hers)  
+            **DENY** (<ins>_rich_</ins>, <ins>_rich.1_</ins>, hers)  
             - Les champs _rich_ et _rich.1_ constituent la clef primaire de la table. Ce sont des clefs étrangères qui ont migré directement à partir de l'entité _QUIT_.  
             - Le champ _hers_ était déjà un simple attribut de l'association _DENY_.  
             
-            **QUIT** (<u>rich</u>, milk)  
+            **QUIT** (<ins>rich</ins>, milk)  
             - Le champ _rich_ constitue la clef primaire de la table. C'était déjà un identifiant de l'entité _QUIT_.  
             - Le champ _milk_ était déjà un simple attribut de l'entité _QUIT_.  
             
-            **POEM** (<u>cute</u>, farm)  
+            **POEM** (<ins>cute</ins>, farm)  
             - Le champ _cute_ constitue la clef primaire de la table. C'était déjà un identifiant de l'entité _POEM_.  
             - Le champ _farm_ était déjà un simple attribut de l'entité _POEM_.  
             
-            **ODDS** (<u>_cute_</u>, <u>echo</u>, golf)  
+            **ODDS** (<ins>_cute_</ins>, <ins>echo</ins>, golf)  
             - Le champ _cute_ fait partie de la clef primaire de la table. Il a migré à partir de l'entité _POEM_ pour renforcer l'identifiant.  
             - Le champ _echo_ fait partie de la clef primaire de la table. C'était déjà un identifiant de l'entité _ODDS_.  
             - Le champ _golf_ a migré à partir de l'association de dépendance fonctionnelle _HANG_.
