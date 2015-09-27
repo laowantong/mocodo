@@ -1,5 +1,4 @@
-
-![](doc/banner.png)
+![](https://cdn.rawgit.com/laowantong/mocodo/master/logos/banner.svg)
 
 Mocodo est un logiciel d'aide à l'enseignement et à la conception des [bases de données relationnelles](https://fr.wikipedia.org/wiki/Base_de_données_relationnelle).
 
@@ -25,9 +24,14 @@ Ci-dessous, un exemple sous [Jupyter / IPython Notebook](https://jupyter.org). L
 
 En sortie, le MCD (diagramme conceptuel) et le MLD (schéma relationnel) correspondants:
 
-![](doc/readme_1.png)
+![](https://cdn.rawgit.com/laowantong/mocodo/master/doc/readme_1.svg)
 
-![](doc/readme_2.png)
+**Classe** (<ins>Num. classe</ins>, Num. salle)  
+**Faire Cours** (<ins>_Num. classe_</ins>, <ins>_Num. prof_</ins>, Vol. horaire)  
+**Catégorie** (<ins>Code catégorie</ins>, Nom catégorie)  
+**Élève** (<ins>Num. élève</ins>, Nom élève, _Num. classe_)  
+**Noter** (<ins>_Num. élève_</ins>, <ins>_Num. prof_</ins>, <ins>_Libellé matière_</ins>, <ins>_Date_</ins>, Note)  
+**Prof** (<ins>Num. prof</ins>, Nom prof, _Libellé matière_, _Code catégorie_)  
 
 L'appel ci-dessus a également construit le dictionnaire des données:
 
@@ -50,7 +54,7 @@ Ainsi que le diagramme relationnel, qui peut être visualisé par un nouvel appe
     %mocodo --input mocodo_notebook/sandbox.mld --colors desert
 
 
-![Diagramme relationnel](doc/readme_3.png)
+![](https://cdn.rawgit.com/laowantong/mocodo/master/doc/readme_2.svg)
 
 
 La devise de Mocodo, « nickel, ni souris », en synthétise les points forts:

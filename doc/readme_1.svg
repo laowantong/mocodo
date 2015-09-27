@@ -1,0 +1,160 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+
+<svg width="517" height="274" view_box="0 0 517 274"
+xmlns="http://www.w3.org/2000/svg"
+xmlns:link="http://www.w3.org/1999/xlink">\n\n<desc>Généré par Mocodo 2.0.11 le Sun, 27 Sep 2015 17:38:35</desc>
+
+<rect id="frame" x="0" y="0" width="517" height="274" fill="#f5f5f5" stroke="none" stroke-width="0"/>
+
+<!-- Association DF -->
+<line x1="53" y1="145" x2="53" y2="47" stroke="#bf812d" stroke-width="1"/>
+<text x="57.0" y="100.9" fill="#01665e" font-family="Futura" font-size="11">1,1</text>
+<line x1="166" y1="47" x2="53" y2="47" stroke="#bf812d" stroke-width="1"/>
+<text x="94" y="62.9" fill="#01665e" font-family="Futura" font-size="11">1,N</text>
+<g id="association-DF">
+	<circle cx="53" cy="47" r="19.0" stroke="#bf812d" stroke-width="1.5" fill="#dfc27d"/>
+	<text x="41" y="52.8" fill="#000000" font-family="Copperplate" font-size="18">DF</text>
+</g>
+
+<!-- Association Enseigner -->
+<line x1="304" y1="145" x2="304" y2="235" stroke="#bf812d" stroke-width="1"/>
+<text x="308.0" y="198.9" fill="#01665e" font-family="Futura" font-size="11">1,1</text>
+<line x1="166" y1="235" x2="304" y2="235" stroke="#bf812d" stroke-width="1"/>
+<text x="224" y="250.9" fill="#01665e" font-family="Futura" font-size="11">1,N</text>
+<g id="association-Enseigner">
+	<path d="M 344 206 a 14 14 90 0 1 14 14 V 234 h -108 V 220 a 14 14 90 0 1 14 -14" fill="#dfc27d" stroke="#dfc27d" stroke-width="0"/>
+	<path d="M 358 234 v 16 a 14 14 90 0 1 -14 14 H 264 a 14 14 90 0 1 -14 -14 V 234 H 108" fill="#f6e8c3" stroke="#f6e8c3" stroke-width="0"/>
+	<rect x="250" y="206" width="108" height="58" fill="none" rx="14" stroke="#bf812d" stroke-width="1.5"/>
+	<line x1="250" y1="234" x2="358" y2="234" stroke="#bf812d" stroke-width="1.5"/>
+	<text x="257" y="227.3" fill="#000000" font-family="Copperplate" font-size="18">Enseigner</text>
+</g>
+
+<!-- Association Relever -->
+<line x1="452" y1="47" x2="452" y2="145" stroke="#bf812d" stroke-width="1"/>
+<text x="456.0" y="100.9" fill="#01665e" font-family="Futura" font-size="11">0,N</text>
+<line x1="304" y1="145" x2="452" y2="145" stroke="#bf812d" stroke-width="1"/>
+<text x="349" y="160.9" fill="#01665e" font-family="Futura" font-size="11">1,1</text>
+<g id="association-Relever">
+	<path d="M 482 116 a 14 14 90 0 1 14 14 V 144 h -88 V 130 a 14 14 90 0 1 14 -14" fill="#dfc27d" stroke="#dfc27d" stroke-width="0"/>
+	<path d="M 496 144 v 16 a 14 14 90 0 1 -14 14 H 422 a 14 14 90 0 1 -14 -14 V 144 H 88" fill="#f6e8c3" stroke="#f6e8c3" stroke-width="0"/>
+	<rect x="408" y="116" width="88" height="58" fill="none" rx="14" stroke="#bf812d" stroke-width="1.5"/>
+	<line x1="408" y1="144" x2="496" y2="144" stroke="#bf812d" stroke-width="1.5"/>
+	<text x="415" y="137.3" fill="#000000" font-family="Copperplate" font-size="18">Relever</text>
+</g>
+
+<!-- Association Noter -->
+<line x1="53" y1="145" x2="166" y2="145" stroke="#bf812d" stroke-width="1"/>
+<text x="101" y="160.9" fill="#01665e" font-family="Futura" font-size="11">1,N</text>
+<line x1="304" y1="145" x2="166" y2="145" stroke="#bf812d" stroke-width="1"/>
+<text x="237" y="160.9" fill="#01665e" font-family="Futura" font-size="11">0,N</text>
+<line x1="166" y1="235" x2="166" y2="145" stroke="#bf812d" stroke-width="1"/>
+<text x="170.0" y="198.9" fill="#01665e" font-family="Futura" font-size="11">0,N</text>
+<line x1="53" y1="235" x2="166" y2="145" stroke="#bf812d" stroke-width="1"/>
+<text x="86" y="224.616814159" fill="#01665e" font-family="Futura" font-size="11">1,N</text>
+<g id="association-Noter">
+	<path d="M 187 116 a 14 14 90 0 1 14 14 V 144 h -70 V 130 a 14 14 90 0 1 14 -14" fill="#dfc27d" stroke="#dfc27d" stroke-width="0"/>
+	<path d="M 201 144 v 16 a 14 14 90 0 1 -14 14 H 145 a 14 14 90 0 1 -14 -14 V 144 H 70" fill="#f6e8c3" stroke="#f6e8c3" stroke-width="0"/>
+	<rect x="131" y="116" width="70" height="58" fill="none" rx="14" stroke="#bf812d" stroke-width="1.5"/>
+	<line x1="131" y1="144" x2="201" y2="144" stroke="#bf812d" stroke-width="1.5"/>
+	<text x="138" y="137.3" fill="#000000" font-family="Copperplate" font-size="18">Noter</text>
+	<text x="138" y="162.05" fill="#000000" font-family="Gill Sans" font-size="15">Note</text>
+</g>
+
+<!-- Association Faire Cours -->
+<line x1="166" y1="47" x2="304" y2="47" stroke="#bf812d" stroke-width="1"/>
+<text x="216" y="62.9" fill="#01665e" font-family="Futura" font-size="11">1,N</text>
+<line x1="304" y1="145" x2="304" y2="47" stroke="#bf812d" stroke-width="1"/>
+<text x="308.0" y="100.9" fill="#01665e" font-family="Futura" font-size="11">1,N</text>
+<g id="association-Faire Cours">
+	<path d="M 352 18 a 14 14 90 0 1 14 14 V 46 h -124 V 32 a 14 14 90 0 1 14 -14" fill="#dfc27d" stroke="#dfc27d" stroke-width="0"/>
+	<path d="M 366 46 v 16 a 14 14 90 0 1 -14 14 H 256 a 14 14 90 0 1 -14 -14 V 46 H 124" fill="#f6e8c3" stroke="#f6e8c3" stroke-width="0"/>
+	<rect x="242" y="18" width="124" height="58" fill="none" rx="14" stroke="#bf812d" stroke-width="1.5"/>
+	<line x1="242" y1="46" x2="366" y2="46" stroke="#bf812d" stroke-width="1.5"/>
+	<text x="249" y="39.3" fill="#000000" font-family="Copperplate" font-size="18">Faire Cours</text>
+	<text x="249" y="64.05" fill="#000000" font-family="Gill Sans" font-size="15">Vol. horaire</text>
+</g>
+
+<!-- Entity Matière -->
+<g id="entity-Matière">
+	<g id="frame-Matière">
+		<rect x="112" y="205" width="108" height="30" fill="#80cdc1" stroke="#80cdc1" stroke-width="0"/>
+		<rect x="112" y="235" width="108" height="30" fill="#c7eae5" stroke="#c7eae5" stroke-width="0"/>
+		<rect x="112" y="205" width="108" height="60" fill="none" stroke="#35978f" stroke-width="1.5"/>
+		<line x1="112" y1="235" x2="220" y2="235" stroke="#35978f" stroke-width="1.5"/>
+	</g>
+	<text x="130" y="226.3" fill="#000000" font-family="Copperplate" font-size="18">Matière</text>
+	<text x="120" y="252.05" fill="#000000" font-family="Gill Sans" font-size="15">Libellé matière</text>
+	<line x1="120" y1="255" x2="212" y2="255" stroke="#000000" stroke-width="1"/>
+</g>
+
+<!-- Entity Classe -->
+<g id="entity-Classe">
+	<g id="frame-Classe">
+		<rect x="120" y="9" width="92" height="30" fill="#80cdc1" stroke="#80cdc1" stroke-width="0"/>
+		<rect x="120" y="39" width="92" height="46" fill="#c7eae5" stroke="#c7eae5" stroke-width="0"/>
+		<rect x="120" y="9" width="92" height="76" fill="none" stroke="#35978f" stroke-width="1.5"/>
+		<line x1="120" y1="39" x2="212" y2="39" stroke="#35978f" stroke-width="1.5"/>
+	</g>
+	<text x="134" y="30.3" fill="#000000" font-family="Copperplate" font-size="18">Classe</text>
+	<text x="128" y="56.05" fill="#000000" font-family="Gill Sans" font-size="15">Num. classe</text>
+	<line x1="128" y1="59" x2="203" y2="59" stroke="#000000" stroke-width="1"/>
+	<text x="128" y="73.05" fill="#000000" font-family="Gill Sans" font-size="15">Num. salle</text>
+</g>
+
+<!-- Entity Catégorie -->
+<g id="entity-Catégorie">
+	<g id="frame-Catégorie">
+		<rect x="396" y="9" width="112" height="30" fill="#80cdc1" stroke="#80cdc1" stroke-width="0"/>
+		<rect x="396" y="39" width="112" height="46" fill="#c7eae5" stroke="#c7eae5" stroke-width="0"/>
+		<rect x="396" y="9" width="112" height="76" fill="none" stroke="#35978f" stroke-width="1.5"/>
+		<line x1="396" y1="39" x2="508" y2="39" stroke="#35978f" stroke-width="1.5"/>
+	</g>
+	<text x="406" y="30.3" fill="#000000" font-family="Copperplate" font-size="18">Catégorie</text>
+	<text x="404" y="56.05" fill="#000000" font-family="Gill Sans" font-size="15">Code catégorie</text>
+	<line x1="404" y1="59" x2="500" y2="59" stroke="#000000" stroke-width="1"/>
+	<text x="404" y="73.05" fill="#000000" font-family="Gill Sans" font-size="15">Nom catégorie</text>
+</g>
+
+<!-- Entity Élève -->
+<g id="entity-Élève">
+	<g id="frame-Élève">
+		<rect x="9" y="107" width="88" height="30" fill="#80cdc1" stroke="#80cdc1" stroke-width="0"/>
+		<rect x="9" y="137" width="88" height="46" fill="#c7eae5" stroke="#c7eae5" stroke-width="0"/>
+		<rect x="9" y="107" width="88" height="76" fill="none" stroke="#35978f" stroke-width="1.5"/>
+		<line x1="9" y1="137" x2="97" y2="137" stroke="#35978f" stroke-width="1.5"/>
+	</g>
+	<text x="27" y="128.3" fill="#000000" font-family="Copperplate" font-size="18">Élève</text>
+	<text x="17" y="154.05" fill="#000000" font-family="Gill Sans" font-size="15">Num. élève</text>
+	<line x1="17" y1="157" x2="88" y2="157" stroke="#000000" stroke-width="1"/>
+	<text x="17" y="171.05" fill="#000000" font-family="Gill Sans" font-size="15">Nom élève</text>
+</g>
+
+<!-- Entity Date -->
+<g id="entity-Date">
+	<g id="frame-Date">
+		<rect x="24" y="205" width="58" height="30" fill="#80cdc1" stroke="#80cdc1" stroke-width="0"/>
+		<rect x="24" y="235" width="58" height="30" fill="#c7eae5" stroke="#c7eae5" stroke-width="0"/>
+		<rect x="24" y="205" width="58" height="60" fill="none" stroke="#35978f" stroke-width="1.5"/>
+		<line x1="24" y1="235" x2="82" y2="235" stroke="#35978f" stroke-width="1.5"/>
+	</g>
+	<text x="32" y="226.3" fill="#000000" font-family="Copperplate" font-size="18">Date</text>
+	<text x="32" y="252.05" fill="#000000" font-family="Gill Sans" font-size="15">Date</text>
+	<line x1="32" y1="255" x2="62" y2="255" stroke="#000000" stroke-width="1"/>
+</g>
+
+<!-- Entity Prof -->
+<g id="entity-Prof">
+	<g id="frame-Prof">
+		<rect x="263" y="107" width="82" height="30" fill="#80cdc1" stroke="#80cdc1" stroke-width="0"/>
+		<rect x="263" y="137" width="82" height="46" fill="#c7eae5" stroke="#c7eae5" stroke-width="0"/>
+		<rect x="263" y="107" width="82" height="76" fill="none" stroke="#35978f" stroke-width="1.5"/>
+		<line x1="263" y1="137" x2="345" y2="137" stroke="#35978f" stroke-width="1.5"/>
+	</g>
+	<text x="282" y="128.3" fill="#000000" font-family="Copperplate" font-size="18">Prof</text>
+	<text x="271" y="154.05" fill="#000000" font-family="Gill Sans" font-size="15">Num. prof</text>
+	<line x1="271" y1="157" x2="336" y2="157" stroke="#000000" stroke-width="1"/>
+	<text x="271" y="171.05" fill="#000000" font-family="Gill Sans" font-size="15">Nom prof</text>
+</g>
+</svg>
