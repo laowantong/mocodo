@@ -7,7 +7,7 @@ Mocodo est un logiciel d'aide à l'enseignement et à la conception des [bases d
 
 Ci-dessous, un exemple sous [Jupyter / IPython Notebook](https://jupyter.org). L'appel du programme se fait en première ligne, sur un texte d'entrée donné lignes suivantes.
 
-    %%mocodo --mld --colors ocean --shapes copperplate --relations diagram markdown_data_dict
+    %%mocodo --mld --colors brewer+1 --shapes copperplate --relations diagram markdown_data_dict
     DF, 11 Élève, 1N Classe
     Classe: Num. classe, Num. salle
     Faire Cours, 1N Classe, 1N Prof: Vol. horaire
@@ -51,7 +51,7 @@ L'appel ci-dessus a également construit le dictionnaire des données:
 Ainsi que le diagramme relationnel, qui peut être visualisé par un nouvel appel:
 
 
-    %mocodo --input mocodo_notebook/sandbox.mld --colors desert
+    %mocodo --input mocodo_notebook/sandbox.mld --colors brewer+1
 
 
 ![](https://cdn.rawgit.com/laowantong/mocodo/master/doc/readme_2.svg)
