@@ -59,7 +59,7 @@ def obfuscate(clauses, params):
     random_chunk = random_chunks_of(lorem_text, params["obfuscation_max_length"])
     header = map(lambda comment: comment + "\n", itertools.takewhile(lambda line: line.startswith("%"), clauses))
     clauses = "\n".join(clauses[len(header):])
-    elements = re.split(r"(?u)([:,\n]+ *(?:_?(?:01|0N|11|1N|XX|\?\?)\S*(?: +\[.+?\])? +/?)?)", clauses) + ['']
+    elements = re.split(r"(?u)([:,\n]+ *(?:_?(?:01|0N|11|1N|XX|\?\?)\S* +/?)?)", clauses) + ['']
     for i in range(0,len(elements),2):
         elements[i] = obfuscate_label(elements[i])
     return "".join(header + elements).strip()
@@ -71,10 +71,9 @@ if __name__=="__main__":
         CLIENT: Réf. client, Nom, Prénom, Adresse
         PASSER, 0N CLIENT, 11 COMMANDE
         COMMANDE: Num commande, Date, Montant
-        INCLURE, 1N [foobar] COMMANDE, 0N PRODUIT: Quantité
+        INCLURE, 1N COMMANDE, 0N PRODUIT: Quantité
         PRODUIT: Réf. produit, Libellé, Prix unitaire
     """.replace("  ", "").split("\n")
     params = parsed_arguments()
-    params["seed"] = 42
     params["obfuscate"] = "four_letter_words.txt"
     print obfuscate(clauses, params)
