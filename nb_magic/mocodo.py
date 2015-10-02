@@ -44,7 +44,8 @@ class MocodoMagics(Magics):
                 if not notebook_options.no_mcd:
                     display(SVG(filename=output_name + ".svg"))
                 if notebook_options.mld:
-                    display(HTML(filename=output_name + ".html"))
+                    mld = codecs.open(filename=(output_name + ".html"), encoding='utf8')
+					display(HTML(mld.read()))
                 return True
         
         parser = argparse.ArgumentParser(add_help=False)
