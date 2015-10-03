@@ -2,9 +2,8 @@
 Mocodo IPython magic extension
 
 Magic methods:
-    %%mocodo 
-    %%mocodo mld
-    %%mocodo mld mcd
+    %mocodo [command line options]
+    %%mocodo [command line options]
     < MCD ... >
 
 Usage:
@@ -44,8 +43,8 @@ class MocodoMagics(Magics):
                 if not notebook_options.no_mcd:
                     display(SVG(filename=output_name + ".svg"))
                 if notebook_options.mld:
-                    mld = codecs.open(output_name + ".html", "r", 'utf8')
-                    display(HTML(mld.read()))
+                    mld = codecs.open(output_name + ".html", "r", 'utf8').read()
+                    display(HTML(mld))
                 return True
         
         parser = argparse.ArgumentParser(add_help=False)
