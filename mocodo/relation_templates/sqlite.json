@@ -33,8 +33,8 @@
   ],
   "compose_primary_key": "\"{label_lowercase}\" {data_type} PRIMARY KEY",
   "compose_normal_attribute": "\"{label_lowercase}\" {data_type}",
-  "compose_foreign_key": "\"{label_lowercase}\" {data_type},\nFOREIGN KEY (\"{label_lowercase}\") REFERENCES \"{primary_relation_name_uppercase}\" (\"{label_lowercase}\")",
-  "compose_foreign_primary_key": "\"{label_lowercase}\" {data_type},\nFOREIGN KEY (\"{label_lowercase}\") REFERENCES \"{primary_relation_name_uppercase}\" (\"{label_lowercase}\")",
+  "compose_foreign_key": "\"{label_lowercase}\" {data_type},\nFOREIGN KEY (\"{label_lowercase}\") REFERENCES \"{primary_relation_name_uppercase}\" (\"{raw_label_lowercase}\")",
+  "compose_foreign_primary_key": "\"{label_lowercase}\" {data_type},\nFOREIGN KEY (\"{label_lowercase}\") REFERENCES \"{primary_relation_name_uppercase}\" (\"{raw_label_lowercase}\")",
   "column_separator": ",\n  ",
   "compose_relation": "CREATE TABLE \"{this_relation_name_uppercase}\" (\n  {columns},\n);\n",
   "transform_single_column_relation": [

@@ -648,7 +648,7 @@ class relationTemplatesTest(unittest.TestCase):
               PRIMARY KEY(`cute`, `echo`)
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
             
-            ALTER TABLE `GAME` ADD FOREIGN KEY (`glad_1`) REFERENCES `GAME` (`glad_1`);
+            ALTER TABLE `GAME` ADD FOREIGN KEY (`glad_1`) REFERENCES `GAME` (`glad`);
             ALTER TABLE `SHED` ADD FOREIGN KEY (`else`) REFERENCES `SLOW` (`else`);
             ALTER TABLE `SHED` ADD FOREIGN KEY (`glad`) REFERENCES `GAME` (`glad`);
             ALTER TABLE `SHED` ADD FOREIGN KEY (`iron`) REFERENCES `DIET` (`iron`);
@@ -664,7 +664,7 @@ class relationTemplatesTest(unittest.TestCase):
             ALTER TABLE `FUND` ADD FOREIGN KEY (`cute`) REFERENCES `ODDS` (`cute`);
             ALTER TABLE `FUND` ADD FOREIGN KEY (`echo`) REFERENCES `ODDS` (`echo`);
             ALTER TABLE `DENY` ADD FOREIGN KEY (`rich`) REFERENCES `QUIT` (`rich`);
-            ALTER TABLE `DENY` ADD FOREIGN KEY (`rich_1`) REFERENCES `QUIT` (`rich_1`);
+            ALTER TABLE `DENY` ADD FOREIGN KEY (`rich_1`) REFERENCES `QUIT` (`rich`);
             ALTER TABLE `ODDS` ADD FOREIGN KEY (`cute`) REFERENCES `POEM` (`cute`);
         """.strip().replace("    ", "").split()
         result = t.get_text(template).split()
@@ -770,7 +770,7 @@ class relationTemplatesTest(unittest.TestCase):
               PRIMARY KEY("cute", "echo")
             );
             
-            ALTER TABLE "GAME" ADD FOREIGN KEY ("glad_1") REFERENCES "GAME" ("glad_1");
+            ALTER TABLE "GAME" ADD FOREIGN KEY ("glad_1") REFERENCES "GAME" ("glad");
             ALTER TABLE "SHED" ADD FOREIGN KEY ("else") REFERENCES "SLOW" ("else");
             ALTER TABLE "SHED" ADD FOREIGN KEY ("glad") REFERENCES "GAME" ("glad");
             ALTER TABLE "SHED" ADD FOREIGN KEY ("iron") REFERENCES "DIET" ("iron");
@@ -786,7 +786,7 @@ class relationTemplatesTest(unittest.TestCase):
             ALTER TABLE "FUND" ADD FOREIGN KEY ("cute") REFERENCES "ODDS" ("cute");
             ALTER TABLE "FUND" ADD FOREIGN KEY ("echo") REFERENCES "ODDS" ("echo");
             ALTER TABLE "DENY" ADD FOREIGN KEY ("rich") REFERENCES "QUIT" ("rich");
-            ALTER TABLE "DENY" ADD FOREIGN KEY ("rich_1") REFERENCES "QUIT" ("rich_1");
+            ALTER TABLE "DENY" ADD FOREIGN KEY ("rich_1") REFERENCES "QUIT" ("rich");
             ALTER TABLE "ODDS" ADD FOREIGN KEY ("cute") REFERENCES "POEM" ("cute");
         """.strip().replace("    ", "").split()
         result = t.get_text(template).split()
@@ -895,7 +895,7 @@ class relationTemplatesTest(unittest.TestCase):
               PRIMARY KEY("cute", "echo")
             );
             
-            ALTER TABLE "GAME" ADD FOREIGN KEY ("glad_1") REFERENCES "GAME" ("glad_1");
+            ALTER TABLE "GAME" ADD FOREIGN KEY ("glad_1") REFERENCES "GAME" ("glad");
             ALTER TABLE "SHED" ADD FOREIGN KEY ("else") REFERENCES "SLOW" ("else");
             ALTER TABLE "SHED" ADD FOREIGN KEY ("glad") REFERENCES "GAME" ("glad");
             ALTER TABLE "SHED" ADD FOREIGN KEY ("iron") REFERENCES "DIET" ("iron");
@@ -911,7 +911,7 @@ class relationTemplatesTest(unittest.TestCase):
             ALTER TABLE "FUND" ADD FOREIGN KEY ("cute") REFERENCES "ODDS" ("cute");
             ALTER TABLE "FUND" ADD FOREIGN KEY ("echo") REFERENCES "ODDS" ("echo");
             ALTER TABLE "DENY" ADD FOREIGN KEY ("rich") REFERENCES "QUIT" ("rich");
-            ALTER TABLE "DENY" ADD FOREIGN KEY ("rich_1") REFERENCES "QUIT" ("rich_1");
+            ALTER TABLE "DENY" ADD FOREIGN KEY ("rich_1") REFERENCES "QUIT" ("rich");
             ALTER TABLE "ODDS" ADD FOREIGN KEY ("cute") REFERENCES "POEM" ("cute");
         """.strip().replace("    ", "").split()
         result = t.get_text(template).split()
@@ -928,7 +928,7 @@ class relationTemplatesTest(unittest.TestCase):
               "oven" None,
               "glad_1" None,
               "snap" None,
-              FOREIGN KEY ("glad_1") REFERENCES "GAME" ("glad_1")
+              FOREIGN KEY ("glad_1") REFERENCES "GAME" ("glad")
             );
             
             CREATE TABLE "SHED" (
@@ -1004,7 +1004,7 @@ class relationTemplatesTest(unittest.TestCase):
               "rich_1" None,
               "hers" None,
               FOREIGN KEY ("rich") REFERENCES "QUIT" ("rich"),
-              FOREIGN KEY ("rich_1") REFERENCES "QUIT" ("rich_1")
+              FOREIGN KEY ("rich_1") REFERENCES "QUIT" ("rich")
             );
             
             CREATE TABLE "QUIT" (
