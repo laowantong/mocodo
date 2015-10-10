@@ -7,8 +7,14 @@
   "transform_single_column_relation": [
     {
       "search": "(?s)(.+)",
-      "replace": "<!---\n\\1\n--->"
+      "replace": "<!--\n\\1  \n-->"
     }
   ],
-  "relation_separator": "  \n"
+  "relation_separator": "  \n",
+  "transform_relational_schema": [
+    {
+      "search": "\n-->  \n",
+      "replace": "\n-->\n"
+    }
+  ]
 }

@@ -455,9 +455,9 @@ class relationTemplatesTest(unittest.TestCase):
             **SHED** (<ins>_else_</ins>, <ins>_glad_</ins>, <ins>_iron_</ins>, free)  
             **SLOW** (<ins>else</ins>, line, _cute_, _echo_, whom)  
             **CORD** (_else_, <ins>_bury_</ins>, left)  
-            <!---
-            **LOCK** (<ins>bury</ins>)
-            --->  
+            <!--
+            **LOCK** (<ins>bury</ins>)  
+            -->
             **PEAK** (<ins>amid</ins>, salt, _glad_, rain)  
             **DIET** (<ins>iron</ins>, cell, _rich_, clip)  
             **SOUL** (<ins>_iron_</ins>, <ins>_else_</ins>, joke)  
