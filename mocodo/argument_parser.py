@@ -174,6 +174,7 @@ def parsed_arguments():
     aspect_group.add_argument("--colors", metavar="PATH", default="bw", help="the color palette to use when generating the drawing. Name (without extension) of a file located in the directory 'colors', or path to a personal file")
     aspect_group.add_argument("--shapes", metavar="PATH", help="specification of the fonts, dimensions, etc. Name (without extension) of a file located in the directory 'shapes', or path to a personal file")
     aspect_group.add_argument("--scale", metavar="RATE", type=scale, default=1.0, help="scale the diagram by the given factor")
+    aspect_group.add_argument("--hide_annotations", action="store_true", help="ignore the hovering of annotated elements")
     
     relational_group.add_argument("--relations", metavar="NAME", nargs="*", default=["html", "text"], help="one or several templates for the generated relational schemas. Cf. directory 'relation_templates'")
     relational_group.add_argument("--disambiguation", choices=["numbers_only", "annotations"], default="annotations", help="specify the way to disambiguate foreign attributes")

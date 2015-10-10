@@ -93,7 +93,7 @@ def main(mcd, common):
                 tabs = tabs + (1 if d["key"] == "begin" else 0)
         else:
             result.append("\nlines += u\"\"\"\\n\\n<!-- %s -->\"\"\"" % d)
-    if has_annotated_card:
+    if has_annotated_card and not params["hide_annotations"]:
         salt = ''.join(random.SystemRandom().choice(string.ascii_letters + string.digits) for _ in range(8)) # prevent the same identifiers to appear in several figures of the same notebook
         result.append("""annotation_overlay_height = %(annotation_overlay_height)s\nannotation_baseline = %(annotation_baseline)s\nannotation_font = %(annotation_font)s\nannotation_text_color = "%(annotation_text_color)s"\nannotation_color = "%(annotation_color)s"\nannotation_opacity = %(annotation_opacity)s\n""" % style)
         result.append("""lines += '\\n\\n<!-- Annotations -->'""")

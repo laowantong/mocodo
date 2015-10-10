@@ -1108,7 +1108,9 @@ Palette de couleurs à utiliser lors de la génération du dessin. Nom (sans ext
 <li><a href="#introduction"><strong><code>--shapes PATH</code></strong></a>.<br>
 Spécification des polices, des dimensions, etc. Nom (sans extension) d'un fichier du répertoire <code>shapes</code>, ou chemin vers un fichier personnel (défaut: dépendant de votre système).</li>
 <li><a href="#introduction"><strong><code>--scale SCALE</code></strong></a>.<br>
-facteur d'échelle multiplicatif (défaut: <code>1.0</code>).</li>
+Facteur d'échelle multiplicatif (défaut: <code>1.0</code>).</li>
+<li><strong><code>--hide_annotations</code></strong>.<br>
+Ignore le survol des éléments annotés (défaut: <code>False</code>).</li>
 </ul>
 </li>
 </ul>
@@ -3649,6 +3651,7 @@ PRODUIT: Réf. produit, Libellé, Prix unitaire
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Les annotations s'insèrent entre cardinalités et nom de l'entité. Elles sont délimitées par des crochets droits.</p>
 <p>Avec l'option <code>--disambiguation=annotations</code> (par défaut), elles sont également exploitables lors du passage au relationnel pour <a href="#retablissement_semantique_df">préciser la sémantique d'une clef étrangère</a>.</p>
+<p>L'affichage est désactivé avec l'option <code>--hide_annotations</code>.</p>
 <p><strong>Limitations.</strong></p>
 <ul>
 <li>Ne fonctionne pas sous Inkscape.</li>
