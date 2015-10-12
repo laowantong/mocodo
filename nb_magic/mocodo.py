@@ -1,16 +1,3 @@
-"""
-Mocodo IPython magic extension
-
-Magic methods:
-    %mocodo [command line options]
-    %%mocodo [command line options]
-    < MCD ... >
-
-Usage:
-    %load_ext mocodo
-"""
-
-
 from IPython.core.display import HTML
 from IPython.core.display import SVG
 from IPython.core.display import display
@@ -28,6 +15,17 @@ class MocodoMagics(Magics):
 
     @line_cell_magic
     def mocodo(self, line, cell=""):
+        """
+        Mocodo IPython magic extension
+
+        Magic methods:
+            %mocodo [command line options]
+            %%mocodo [command line options]
+            < MCD ... >
+
+        Usage:
+            %load_ext mocodo
+        """
         
         def execute_command(options):
             global stdoutdata
