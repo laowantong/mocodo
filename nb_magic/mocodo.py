@@ -55,6 +55,11 @@ class MocodoMagics(Magics):
         
         input_path = notebook_options.input
         if not input_path:
+            try:
+                os.makedirs("mocodo_notebook")
+            except OSError:
+                if not os.path.isdir("mocodo_notebook"):
+                    raise
             input_path = "mocodo_notebook/sandbox.mcd"
             codecs.open(input_path, "w", "utf8").write(cell)
         elif not os.path.isfile(input_path) and os.path.isfile(input_path + ".mcd"):
@@ -63,11 +68,12 @@ class MocodoMagics(Magics):
         output_dir = notebook_options.output_dir
         if not output_dir:
             output_dir = "mocodo_notebook"
-        try:
-            os.makedirs(output_dir)
-        except OSError:
-            if not os.path.isdir(output_dir):
-                raise
+        else:
+            try:
+                os.makedirs(output_dir)
+            except OSError:
+                if not os.path.isdir(output_dir):
+                    raise
         output_name = os.path.join(output_dir, os.path.splitext(os.path.split(input_path)[1])[0])
         
         options.extend(["--input", input_path, "--output_dir", output_dir, "--image_format", "svg"]) # may override user's provided options
