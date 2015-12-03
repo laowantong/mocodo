@@ -10307,7 +10307,7 @@ PRODUIT: Réf. produit, Libellé, Prix unitaire
 <li>Les champs <em>Date</em> et <em>Montant</em> étaient déjà de simples attributs de l'entité <em>COMMANDE</em>.  </li>
 <li>Le champ <em>Réf. client</em> est une clef étrangère. Il a migré à partir de l'entité <em>CLIENT</em> par l'association de dépendance fonctionnelle <em>DF</em> en perdant son caractère identifiant.  </li>
 </ul>
-<p><strong>INCLURE</strong> (<u><em>Num commande</em></u>, <u><em>Réf. produit</em></u>, Quantité)</p>
+<p><strong>INCLURE</strong> (<u>_Num commande_</u>, <u>_Réf. produit_</u>, Quantité)</p>
 <ul>
 <li>Le champ <em>Num commande</em> fait partie de la clef primaire de la table. C'est une clef étrangère qui a migré directement à partir de l'entité <em>COMMANDE</em>.  </li>
 <li>Le champ <em>Réf. produit</em> fait partie de la clef primaire de la table. C'est une clef étrangère qui a migré directement à partir de l'entité <em>PRODUIT</em>.  </li>
@@ -10856,7 +10856,58 @@ PRODUIT: Réf. produit, Libellé, Prix unitaire
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Limitation.</strong> Les clefs étrangères composites sont actuellement représentées comme si elles étaient séparées (autant de flèches que de parties).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="6.2.1.4.-Sorties-SQL-">6.2.1.4. Sorties SQL <a id="sql_generation" /><a class="anchor-link" href="#6.2.1.4.-Sorties-SQL-">&#182;</a></h4>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Nouveauté.</strong> Mocodo est désormais livré avec des fichiers de spécification pour les dialectes SQL suivants:</p>
+<table>
+<thead><tr>
+<th>SGBD</th>
+<th>Argument</th>
+<th>Suffixe et extension</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://www.mysql.fr">MySQL</a></td>
+<td><code>--relations mysql</code></td>
+<td><code>"_mysql.sql"</code></td>
+</tr>
+<tr>
+<td><a href="http://oracle.com">Oracle</a></td>
+<td><code>--relations oracle</code></td>
+<td><code>"_oracle.sql"</code></td>
+</tr>
+<tr>
+<td><a href="http://postgresql.org">PostgreSQL</a></td>
+<td><code>--relations postgresql</code></td>
+<td><code>"_postgresql.sql"</code></td>
+</tr>
+<tr>
+<td><a href="http://sqlite.org">SQLite</a></td>
+<td><code>--relations sqlite</code></td>
+<td><code>"_sqlite.sql"</code></td>
+</tr>
+</tbody>
+</table>
+<p>Notez que les contraintes de clefs étrangères sont ajoutées après création de l'ensemble des tables, sauf pour SQLite, qui n'impose pas d'ordre de création spécifique, et qui de toute façon ne prend pas en charge ce type d'altération.</p>
+
 </div>
 </div>
 </div>
@@ -10894,47 +10945,47 @@ PRODUIT: Réf. produit [varchar(8)], Libellé [varchar(20)], Prix unitaire [deci
 <div class="output_area"><div class="prompt"></div>
 
 <div class="output_svg output_subarea ">
-<svg height="112" view_box="0 0 562 112" width="562" xmlns="http://www.w3.org/2000/svg" xmlns:link="http://www.w3.org/1999/xlink">\n\n<desc>Généré par Mocodo 2.0 le Sun, 30 Aug 2015 20:24:02</desc>
+<svg height="112" view_box="0 0 578 112" width="578" xmlns="http://www.w3.org/2000/svg" xmlns:link="http://www.w3.org/1999/xlink">\n\n<desc>Généré par Mocodo 2.0.16 le Thu, 03 Dec 2015 22:13:56</desc>
 
-<rect fill="none" height="112" id="frame" stroke="none" stroke-width="0" width="562" x="0" y="0"/>
+<rect fill="none" height="112" id="frame" stroke="none" stroke-width="0" width="578" x="0" y="0"/>
 
 <!-- Association DF -->
-<line stroke="#000000" stroke-width="1" x1="51" x2="138" y1="56" y2="56"/>
+<line stroke="#000000" stroke-width="1" x1="51" x2="142" y1="56" y2="56"/>
 <text fill="#000000" font-family="Futura" font-size="11" x="97" y="71.9">0,N</text>
-<line stroke="#000000" stroke-width="1" x1="245" x2="138" y1="56" y2="56"/>
-<text fill="#000000" font-family="Futura" font-size="11" x="161" y="71.9">1,1</text>
+<line stroke="#000000" stroke-width="1" x1="253" x2="142" y1="56" y2="56"/>
+<text fill="#000000" font-family="Futura" font-size="11" x="165" y="71.9">1,1</text>
 <g id="association-DF">
-	<circle cx="138" cy="56" fill="#FFFFFF" r="19.0" stroke="#000000" stroke-width="1.5"/>
-	<text fill="#000000" font-family="Copperplate" font-size="18" x="126" y="61.8">DF</text>
+	<circle cx="142" cy="56" fill="#FFFFFF" r="19.0" stroke="#000000" stroke-width="1.5"/>
+	<text fill="#000000" font-family="Copperplate" font-size="18" x="130" y="61.8">DF</text>
 </g>
 
 <!-- Association INCLURE -->
-<line stroke="#000000" stroke-width="1" x1="245" x2="381" y1="56" y2="56"/>
-<text fill="#000000" font-family="Futura" font-size="11" x="311" y="71.9">1,N</text>
-<line stroke="#000000" stroke-width="1" x1="504" x2="381" y1="56" y2="56"/>
-<text fill="#000000" font-family="Futura" font-size="11" x="433" y="71.9">0,N</text>
+<line stroke="#000000" stroke-width="1" x1="253" x2="393" y1="56" y2="56"/>
+<text fill="#000000" font-family="Futura" font-size="11" x="319" y="71.9">1,N</text>
+<line stroke="#000000" stroke-width="1" x1="520" x2="393" y1="56" y2="56"/>
+<text fill="#000000" font-family="Futura" font-size="11" x="445" y="71.9">0,N</text>
 <g id="association-INCLURE">
-	<path d="M 415 27 a 14 14 90 0 1 14 14 V 55 h -96 V 41 a 14 14 90 0 1 14 -14" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
-	<path d="M 429 55 v 16 a 14 14 90 0 1 -14 14 H 347 a 14 14 90 0 1 -14 -14 V 55 H 96" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
-	<rect fill="none" height="58" rx="14" stroke="#000000" stroke-width="1.5" width="96" x="333" y="27"/>
-	<line stroke="#000000" stroke-width="1.5" x1="333" x2="429" y1="55" y2="55"/>
-	<text fill="#000000" font-family="Copperplate" font-size="18" x="340" y="48.3">INCLURE</text>
-	<text fill="#000000" font-family="Gill Sans" font-size="15" x="340" y="73.05">Quantité</text>
+	<path d="M 427 27 a 14 14 90 0 1 14 14 V 55 h -96 V 41 a 14 14 90 0 1 14 -14" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+	<path d="M 441 55 v 16 a 14 14 90 0 1 -14 14 H 359 a 14 14 90 0 1 -14 -14 V 55 H 96" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+	<rect fill="none" height="58" rx="14" stroke="#000000" stroke-width="1.5" width="96" x="345" y="27"/>
+	<line stroke="#000000" stroke-width="1.5" x1="345" x2="441" y1="55" y2="55"/>
+	<text fill="#000000" font-family="Copperplate" font-size="18" x="352" y="48.3">INCLURE</text>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="352" y="73.05">Quantité</text>
 </g>
 
 <!-- Entity PRODUIT -->
 <g id="entity-PRODUIT">
 	<g id="frame-PRODUIT">
-		<rect fill="#FFFFFF" height="30" stroke="#FFFFFF" stroke-width="0" width="98" x="455" y="9"/>
-		<rect fill="#FFFFFF" height="64" stroke="#FFFFFF" stroke-width="0" width="98" x="455" y="39"/>
-		<rect fill="none" height="94" stroke="#000000" stroke-width="1.5" width="98" x="455" y="9"/>
-		<line stroke="#000000" stroke-width="1.5" x1="455" x2="553" y1="39" y2="39"/>
+		<rect fill="#FFFFFF" height="30" stroke="#FFFFFF" stroke-width="0" width="98" x="471" y="9"/>
+		<rect fill="#FFFFFF" height="64" stroke="#FFFFFF" stroke-width="0" width="98" x="471" y="39"/>
+		<rect fill="none" height="94" stroke="#000000" stroke-width="1.5" width="98" x="471" y="9"/>
+		<line stroke="#000000" stroke-width="1.5" x1="471" x2="569" y1="39" y2="39"/>
 	</g>
-	<text fill="#000000" font-family="Copperplate" font-size="18" x="463" y="30.3">PRODUIT</text>
-	<text fill="#000000" font-family="Gill Sans" font-size="15" x="463" y="56.05">Réf. produit</text>
-	<line stroke="#000000" stroke-width="1" x1="463" x2="537" y1="59" y2="59"/>
-	<text fill="#000000" font-family="Gill Sans" font-size="15" x="463" y="73.05">Libellé</text>
-	<text fill="#000000" font-family="Gill Sans" font-size="15" x="463" y="90.05">Prix unitaire</text>
+	<text fill="#000000" font-family="Copperplate" font-size="18" x="479" y="30.3">PRODUIT</text>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="479" y="56.05">Réf. produit</text>
+	<line stroke="#000000" stroke-width="1" x1="479" x2="553" y1="59" y2="59"/>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="479" y="73.05">Libellé</text>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="479" y="90.05">Prix unitaire</text>
 </g>
 
 <!-- Entity CLIENT -->
@@ -10955,16 +11006,16 @@ PRODUIT: Réf. produit [varchar(8)], Libellé [varchar(20)], Prix unitaire [deci
 <!-- Entity COMMANDE -->
 <g id="entity-COMMANDE">
 	<g id="frame-COMMANDE">
-		<rect fill="#FFFFFF" height="30" stroke="#FFFFFF" stroke-width="0" width="124" x="183" y="9"/>
-		<rect fill="#FFFFFF" height="64" stroke="#FFFFFF" stroke-width="0" width="124" x="183" y="39"/>
-		<rect fill="none" height="94" stroke="#000000" stroke-width="1.5" width="124" x="183" y="9"/>
-		<line stroke="#000000" stroke-width="1.5" x1="183" x2="307" y1="39" y2="39"/>
+		<rect fill="#FFFFFF" height="30" stroke="#FFFFFF" stroke-width="0" width="124" x="191" y="9"/>
+		<rect fill="#FFFFFF" height="64" stroke="#FFFFFF" stroke-width="0" width="124" x="191" y="39"/>
+		<rect fill="none" height="94" stroke="#000000" stroke-width="1.5" width="124" x="191" y="9"/>
+		<line stroke="#000000" stroke-width="1.5" x1="191" x2="315" y1="39" y2="39"/>
 	</g>
-	<text fill="#000000" font-family="Copperplate" font-size="18" x="191" y="30.3">COMMANDE</text>
-	<text fill="#000000" font-family="Gill Sans" font-size="15" x="191" y="56.05">Num commande</text>
-	<line stroke="#000000" stroke-width="1" x1="191" x2="295" y1="59" y2="59"/>
-	<text fill="#000000" font-family="Gill Sans" font-size="15" x="191" y="73.05">Date</text>
-	<text fill="#000000" font-family="Gill Sans" font-size="15" x="191" y="90.05">Montant</text>
+	<text fill="#000000" font-family="Copperplate" font-size="18" x="199" y="30.3">COMMANDE</text>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="199" y="56.05">Num commande</text>
+	<line stroke="#000000" stroke-width="1" x1="199" x2="303" y1="59" y2="59"/>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="199" y="73.05">Date</text>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="199" y="90.05">Montant</text>
 </g>
 </svg>
 </div>
@@ -11010,7 +11061,7 @@ PRODUIT: Réf. produit [varchar(8)], Libellé [varchar(20)], Prix unitaire [deci
   <span class="o">`</span><span class="n">r</span><span class="err">é</span><span class="n">f_client</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span>
   <span class="o">`</span><span class="n">nom</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span>
   <span class="o">`</span><span class="n">adresse</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">40</span><span class="p">),</span>
-  <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">(</span><span class="o">`</span><span class="n">r</span><span class="err">é</span><span class="n">f_client</span><span class="o">`</span><span class="p">)</span>
+  <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="o">`</span><span class="n">r</span><span class="err">é</span><span class="n">f_client</span><span class="o">`</span><span class="p">)</span>
 <span class="p">)</span> <span class="n">ENGINE</span><span class="o">=</span><span class="n">InnoDB</span> <span class="k">DEFAULT</span> <span class="n">CHARSET</span><span class="o">=</span><span class="n">utf8</span><span class="p">;</span>
 
 <span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">COMMANDE</span><span class="o">`</span> <span class="p">(</span>
@@ -11018,26 +11069,26 @@ PRODUIT: Réf. produit [varchar(8)], Libellé [varchar(20)], Prix unitaire [deci
   <span class="o">`</span><span class="nb">date</span><span class="o">`</span> <span class="nb">date</span><span class="p">,</span>
   <span class="o">`</span><span class="n">montant</span><span class="o">`</span> <span class="nb">decimal</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="s1">&#39;0.00&#39;</span><span class="p">,</span>
   <span class="o">`</span><span class="n">r</span><span class="err">é</span><span class="n">f_client</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span>
-  <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">(</span><span class="o">`</span><span class="n">num_commande</span><span class="o">`</span><span class="p">)</span>
+  <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="o">`</span><span class="n">num_commande</span><span class="o">`</span><span class="p">)</span>
 <span class="p">)</span> <span class="n">ENGINE</span><span class="o">=</span><span class="n">InnoDB</span> <span class="k">DEFAULT</span> <span class="n">CHARSET</span><span class="o">=</span><span class="n">utf8</span><span class="p">;</span>
 
 <span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">INCLURE</span><span class="o">`</span> <span class="p">(</span>
   <span class="o">`</span><span class="n">num_commande</span><span class="o">`</span> <span class="n">tinyint</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span>
   <span class="o">`</span><span class="n">r</span><span class="err">é</span><span class="n">f_produit</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span>
   <span class="o">`</span><span class="n">quantit</span><span class="err">é</span><span class="o">`</span> <span class="n">tinyint</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span>
-  <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">(</span><span class="o">`</span><span class="n">num_commande</span><span class="o">`</span><span class="p">,</span> <span class="o">`</span><span class="n">r</span><span class="err">é</span><span class="n">f_produit</span><span class="o">`</span><span class="p">)</span>
+  <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="o">`</span><span class="n">num_commande</span><span class="o">`</span><span class="p">,</span> <span class="o">`</span><span class="n">r</span><span class="err">é</span><span class="n">f_produit</span><span class="o">`</span><span class="p">)</span>
 <span class="p">)</span> <span class="n">ENGINE</span><span class="o">=</span><span class="n">InnoDB</span> <span class="k">DEFAULT</span> <span class="n">CHARSET</span><span class="o">=</span><span class="n">utf8</span><span class="p">;</span>
 
 <span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">PRODUIT</span><span class="o">`</span> <span class="p">(</span>
   <span class="o">`</span><span class="n">r</span><span class="err">é</span><span class="n">f_produit</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span>
   <span class="o">`</span><span class="n">libell</span><span class="err">é</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span>
   <span class="o">`</span><span class="n">prix_unitaire</span><span class="o">`</span> <span class="nb">decimal</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span>
-  <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">(</span><span class="o">`</span><span class="n">r</span><span class="err">é</span><span class="n">f_produit</span><span class="o">`</span><span class="p">)</span>
+  <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="o">`</span><span class="n">r</span><span class="err">é</span><span class="n">f_produit</span><span class="o">`</span><span class="p">)</span>
 <span class="p">)</span> <span class="n">ENGINE</span><span class="o">=</span><span class="n">InnoDB</span> <span class="k">DEFAULT</span> <span class="n">CHARSET</span><span class="o">=</span><span class="n">utf8</span><span class="p">;</span>
 
 <span class="k">ALTER</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">COMMANDE</span><span class="o">`</span> <span class="k">ADD</span> <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="p">(</span><span class="o">`</span><span class="n">r</span><span class="err">é</span><span class="n">f_client</span><span class="o">`</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="o">`</span><span class="n">CLIENT</span><span class="o">`</span> <span class="p">(</span><span class="o">`</span><span class="n">r</span><span class="err">é</span><span class="n">f_client</span><span class="o">`</span><span class="p">);</span>
-<span class="k">ALTER</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">INCLURE</span><span class="o">`</span> <span class="k">ADD</span> <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="p">(</span><span class="o">`</span><span class="n">num_commande</span><span class="o">`</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="o">`</span><span class="n">COMMANDE</span><span class="o">`</span> <span class="p">(</span><span class="o">`</span><span class="n">num_commande</span><span class="o">`</span><span class="p">);</span>
 <span class="k">ALTER</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">INCLURE</span><span class="o">`</span> <span class="k">ADD</span> <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="p">(</span><span class="o">`</span><span class="n">r</span><span class="err">é</span><span class="n">f_produit</span><span class="o">`</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="o">`</span><span class="n">PRODUIT</span><span class="o">`</span> <span class="p">(</span><span class="o">`</span><span class="n">r</span><span class="err">é</span><span class="n">f_produit</span><span class="o">`</span><span class="p">);</span>
+<span class="k">ALTER</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">INCLURE</span><span class="o">`</span> <span class="k">ADD</span> <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="p">(</span><span class="o">`</span><span class="n">num_commande</span><span class="o">`</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="o">`</span><span class="n">COMMANDE</span><span class="o">`</span> <span class="p">(</span><span class="o">`</span><span class="n">num_commande</span><span class="o">`</span><span class="p">);</span>
 </pre></div>
 
 </div>
@@ -11048,37 +11099,200 @@ PRODUIT: Réf. produit [varchar(8)], Libellé [varchar(20)], Prix unitaire [deci
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Nouveauté.</strong> Mocodo est désormais livré avec des fichiers de spécification pour les dialectes SQL suivants:</p>
-<table>
-<thead><tr>
-<th>SGBD</th>
-<th>Argument</th>
-<th>Suffixe et extension</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="https://www.mysql.fr">MySQL</a></td>
-<td><code>--relations mysql</code></td>
-<td><code>"_mysql.sql"</code></td>
-</tr>
-<tr>
-<td><a href="http://oracle.com">Oracle</a></td>
-<td><code>--relations oracle</code></td>
-<td><code>"_oracle.sql"</code></td>
-</tr>
-<tr>
-<td><a href="http://postgresql.org">PostgreSQL</a></td>
-<td><code>--relations postgresql</code></td>
-<td><code>"_postgresql.sql"</code></td>
-</tr>
-<tr>
-<td><a href="http://sqlite.org">SQLite</a></td>
-<td><code>--relations sqlite</code></td>
-<td><code>"_sqlite.sql"</code></td>
-</tr>
-</tbody>
-</table>
+<p><strong>Nouveauté de la version 2.0.17.</strong> Les clefs étrangères composites sont gérées (cf. <a href="https://github.com/laowantong/mocodo/issues/14">issue 14</a>) et les types manquants remplacés par <code>VARCHAR(</code><a href="https://fr.wikipedia.org/wiki/La_grande_question_sur_la_vie,_l%27univers_et_le_reste"><code>42</code></a>):</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="o">%%</span><span class="k">mocodo</span> --title=appartements --relations=sqlite
+Appartement: num appart., nb pièces appart.
+Composer, 0N Étage, _11 Appartement
+Étage: num étage, nb appart. étage
+Appartenir, 1N Immeuble, _11 Étage
+Immeuble: num immeuble, nb étages immeuble
+Se situer, 0N Rue, _11 Immeuble
+Rue: code rue, nom rue
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+
+<div class="output_svg output_subarea ">
+<svg height="94" view_box="0 0 978 94" width="978" xmlns="http://www.w3.org/2000/svg" xmlns:link="http://www.w3.org/1999/xlink">\n\n<desc>Généré par Mocodo 2.0.16 le Thu, 03 Dec 2015 22:21:07</desc>
+
+<rect fill="none" height="94" id="frame" stroke="none" stroke-width="0" width="978" x="0" y="0"/>
+
+<!-- Association Appartenir -->
+<line stroke="#000000" stroke-width="1" x1="667" x2="509" y1="47" y2="47"/>
+<text fill="#000000" font-family="Futura" font-size="11" x="571" y="62.9">1,N</text>
+<line stroke="#000000" stroke-width="1" x1="363" x2="509" y1="47" y2="47"/>
+<text fill="#000000" font-family="Futura" font-size="11" x="425" y="62.9">1,1</text>
+<line stroke="#000000" stroke-width="1" x1="425" x2="442" y1="64.9" y2="64.9"/>
+<g id="association-Appartenir">
+	<path d="M 553 18 a 14 14 90 0 1 14 14 V 46 h -116 V 32 a 14 14 90 0 1 14 -14" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+	<path d="M 567 46 v 16 a 14 14 90 0 1 -14 14 H 465 a 14 14 90 0 1 -14 -14 V 46 H 116" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+	<rect fill="none" height="58" rx="14" stroke="#000000" stroke-width="1.5" width="116" x="451" y="18"/>
+	<line stroke="#000000" stroke-width="1.5" x1="451" x2="567" y1="46" y2="46"/>
+	<text fill="#000000" font-family="Copperplate" font-size="18" x="458" y="39.3">Appartenir</text>
+</g>
+
+<!-- Association Composer -->
+<line stroke="#000000" stroke-width="1" x1="363" x2="223" y1="47" y2="47"/>
+<text fill="#000000" font-family="Futura" font-size="11" x="279" y="62.9">0,N</text>
+<line stroke="#000000" stroke-width="1" x1="75" x2="223" y1="47" y2="47"/>
+<text fill="#000000" font-family="Futura" font-size="11" x="145" y="62.9">1,1</text>
+<line stroke="#000000" stroke-width="1" x1="145" x2="162" y1="64.9" y2="64.9"/>
+<g id="association-Composer">
+	<path d="M 261 18 a 14 14 90 0 1 14 14 V 46 h -104 V 32 a 14 14 90 0 1 14 -14" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+	<path d="M 275 46 v 16 a 14 14 90 0 1 -14 14 H 185 a 14 14 90 0 1 -14 -14 V 46 H 104" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+	<rect fill="none" height="58" rx="14" stroke="#000000" stroke-width="1.5" width="104" x="171" y="18"/>
+	<line stroke="#000000" stroke-width="1.5" x1="171" x2="275" y1="46" y2="46"/>
+	<text fill="#000000" font-family="Copperplate" font-size="18" x="178" y="39.3">Composer</text>
+</g>
+
+<!-- Association Se situer -->
+<line stroke="#000000" stroke-width="1" x1="933" x2="817" y1="47" y2="47"/>
+<text fill="#000000" font-family="Futura" font-size="11" x="871" y="62.9">0,N</text>
+<line stroke="#000000" stroke-width="1" x1="667" x2="817" y1="47" y2="47"/>
+<text fill="#000000" font-family="Futura" font-size="11" x="741" y="62.9">1,1</text>
+<line stroke="#000000" stroke-width="1" x1="741" x2="758" y1="64.9" y2="64.9"/>
+<g id="association-Se situer">
+	<path d="M 853 18 a 14 14 90 0 1 14 14 V 46 h -100 V 32 a 14 14 90 0 1 14 -14" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+	<path d="M 867 46 v 16 a 14 14 90 0 1 -14 14 H 781 a 14 14 90 0 1 -14 -14 V 46 H 100" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+	<rect fill="none" height="58" rx="14" stroke="#000000" stroke-width="1.5" width="100" x="767" y="18"/>
+	<line stroke="#000000" stroke-width="1.5" x1="767" x2="867" y1="46" y2="46"/>
+	<text fill="#000000" font-family="Copperplate" font-size="18" x="774" y="39.3">Se situer</text>
+</g>
+
+<!-- Entity Étage -->
+<g id="entity-Étage">
+	<g id="frame-Étage">
+		<rect fill="#FFFFFF" height="30" stroke="#FFFFFF" stroke-width="0" width="116" x="305" y="9"/>
+		<rect fill="#FFFFFF" height="46" stroke="#FFFFFF" stroke-width="0" width="116" x="305" y="39"/>
+		<rect fill="none" height="76" stroke="#000000" stroke-width="1.5" width="116" x="305" y="9"/>
+		<line stroke="#000000" stroke-width="1.5" x1="305" x2="421" y1="39" y2="39"/>
+	</g>
+	<text fill="#000000" font-family="Copperplate" font-size="18" x="337" y="30.3">Étage</text>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="313" y="56.05">num étage</text>
+	<line style="fill:none;stroke:#000000;stroke-width:1;stroke-dasharray:4;" x1="313" x2="377" y1="59" y2="59"/>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="313" y="73.05">nb appart. étage</text>
+</g>
+
+<!-- Entity Appartement -->
+<g id="entity-Appartement">
+	<g id="frame-Appartement">
+		<rect fill="#FFFFFF" height="30" stroke="#FFFFFF" stroke-width="0" width="132" x="9" y="9"/>
+		<rect fill="#FFFFFF" height="46" stroke="#FFFFFF" stroke-width="0" width="132" x="9" y="39"/>
+		<rect fill="none" height="76" stroke="#000000" stroke-width="1.5" width="132" x="9" y="9"/>
+		<line stroke="#000000" stroke-width="1.5" x1="9" x2="141" y1="39" y2="39"/>
+	</g>
+	<text fill="#000000" font-family="Copperplate" font-size="18" x="17" y="30.3">Appartement</text>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="17" y="56.05">num appart.</text>
+	<line style="fill:none;stroke:#000000;stroke-width:1;stroke-dasharray:4;" x1="17" x2="91" y1="59" y2="59"/>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="17" y="73.05">nb pièces appart.</text>
+</g>
+
+<!-- Entity Immeuble -->
+<g id="entity-Immeuble">
+	<g id="frame-Immeuble">
+		<rect fill="#FFFFFF" height="30" stroke="#FFFFFF" stroke-width="0" width="140" x="597" y="9"/>
+		<rect fill="#FFFFFF" height="46" stroke="#FFFFFF" stroke-width="0" width="140" x="597" y="39"/>
+		<rect fill="none" height="76" stroke="#000000" stroke-width="1.5" width="140" x="597" y="9"/>
+		<line stroke="#000000" stroke-width="1.5" x1="597" x2="737" y1="39" y2="39"/>
+	</g>
+	<text fill="#000000" font-family="Copperplate" font-size="18" x="624" y="30.3">Immeuble</text>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="605" y="56.05">num immeuble</text>
+	<line style="fill:none;stroke:#000000;stroke-width:1;stroke-dasharray:4;" x1="605" x2="697" y1="59" y2="59"/>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="605" y="73.05">nb étages immeuble</text>
+</g>
+
+<!-- Entity Rue -->
+<g id="entity-Rue">
+	<g id="frame-Rue">
+		<rect fill="#FFFFFF" height="30" stroke="#FFFFFF" stroke-width="0" width="72" x="897" y="9"/>
+		<rect fill="#FFFFFF" height="46" stroke="#FFFFFF" stroke-width="0" width="72" x="897" y="39"/>
+		<rect fill="none" height="76" stroke="#000000" stroke-width="1.5" width="72" x="897" y="9"/>
+		<line stroke="#000000" stroke-width="1.5" x1="897" x2="969" y1="39" y2="39"/>
+	</g>
+	<text fill="#000000" font-family="Copperplate" font-size="18" x="915" y="30.3">Rue</text>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="905" y="56.05">code rue</text>
+	<line stroke="#000000" stroke-width="1" x1="905" x2="961" y1="59" y2="59"/>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="905" y="73.05">nom rue</text>
+</g>
+</svg>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="c"># %load mocodo_notebook/sandbox_sqlite.sql</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="highlight"><pre><span class="p">.</span><span class="k">open</span> <span class="ss">&quot;APPARTEMENTS&quot;</span><span class="p">;</span>
+
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="ss">&quot;APPARTEMENT&quot;</span> <span class="p">(</span>
+  <span class="ss">&quot;code_rue&quot;</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">42</span><span class="p">),</span>
+  <span class="ss">&quot;num_immeuble&quot;</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">42</span><span class="p">),</span>
+  <span class="ss">&quot;num_étage&quot;</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">42</span><span class="p">),</span>
+  <span class="ss">&quot;num_appart&quot;</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">42</span><span class="p">),</span>
+  <span class="ss">&quot;nb_pièces_appart&quot;</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">42</span><span class="p">),</span>
+  <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="ss">&quot;code_rue&quot;</span><span class="p">,</span> <span class="ss">&quot;num_immeuble&quot;</span><span class="p">,</span> <span class="ss">&quot;num_étage&quot;</span><span class="p">,</span> <span class="ss">&quot;num_appart&quot;</span><span class="p">),</span>
+  <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="p">(</span><span class="ss">&quot;code_rue&quot;</span><span class="p">,</span> <span class="ss">&quot;num_immeuble&quot;</span><span class="p">,</span> <span class="ss">&quot;num_étage&quot;</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="ss">&quot;ÉTAGE&quot;</span> <span class="p">(</span><span class="ss">&quot;code_rue&quot;</span><span class="p">,</span> <span class="ss">&quot;num_immeuble&quot;</span><span class="p">,</span> <span class="ss">&quot;num_étage&quot;</span><span class="p">)</span>
+<span class="p">);</span>
+
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="ss">&quot;ÉTAGE&quot;</span> <span class="p">(</span>
+  <span class="ss">&quot;code_rue&quot;</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">42</span><span class="p">),</span>
+  <span class="ss">&quot;num_immeuble&quot;</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">42</span><span class="p">),</span>
+  <span class="ss">&quot;num_étage&quot;</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">42</span><span class="p">),</span>
+  <span class="ss">&quot;nb_appart_étage&quot;</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">42</span><span class="p">),</span>
+  <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="ss">&quot;code_rue&quot;</span><span class="p">,</span> <span class="ss">&quot;num_immeuble&quot;</span><span class="p">,</span> <span class="ss">&quot;num_étage&quot;</span><span class="p">),</span>
+  <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="p">(</span><span class="ss">&quot;code_rue&quot;</span><span class="p">,</span> <span class="ss">&quot;num_immeuble&quot;</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="ss">&quot;IMMEUBLE&quot;</span> <span class="p">(</span><span class="ss">&quot;code_rue&quot;</span><span class="p">,</span> <span class="ss">&quot;num_immeuble&quot;</span><span class="p">)</span>
+<span class="p">);</span>
+
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="ss">&quot;IMMEUBLE&quot;</span> <span class="p">(</span>
+  <span class="ss">&quot;code_rue&quot;</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">42</span><span class="p">),</span>
+  <span class="ss">&quot;num_immeuble&quot;</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">42</span><span class="p">),</span>
+  <span class="ss">&quot;nb_étages_immeuble&quot;</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">42</span><span class="p">),</span>
+  <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="ss">&quot;code_rue&quot;</span><span class="p">,</span> <span class="ss">&quot;num_immeuble&quot;</span><span class="p">),</span>
+  <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="p">(</span><span class="ss">&quot;code_rue&quot;</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="ss">&quot;RUE&quot;</span> <span class="p">(</span><span class="ss">&quot;code_rue&quot;</span><span class="p">)</span>
+<span class="p">);</span>
+
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="ss">&quot;RUE&quot;</span> <span class="p">(</span>
+  <span class="ss">&quot;code_rue&quot;</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">42</span><span class="p">),</span>
+  <span class="ss">&quot;nom_rue&quot;</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">42</span><span class="p">),</span>
+  <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="ss">&quot;code_rue&quot;</span><span class="p">)</span>
+<span class="p">);</span>
+</pre></div>
 
 </div>
 </div>
