@@ -72,7 +72,7 @@
       "iterated": true
     },
     {
-      "comment": "Prefix any FOREIGN KEY with a minus signe = mark it as unprotected.",
+      "comment": "Prefix any FOREIGN KEY with a minus sign = mark it as unprotected.",
       "search": "(?m)^  FOREIGN KEY",
       "replace": "- FOREIGN KEY"
     }
