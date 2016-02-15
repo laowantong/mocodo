@@ -55,7 +55,8 @@ More
 `Source code on GitHub
 <https://github.com/laowantong/mocodo/>`_"""
 
-open("README.rst", "w", "utf8").write(long_description)
+with open("README.rst", "w", "utf8") as f:
+    f.write(long_description)
 
 setup(
     name='mocodo',

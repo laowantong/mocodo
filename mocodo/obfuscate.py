@@ -4,7 +4,7 @@
 import re
 import textwrap
 import random
-import codecs
+from file_helpers import read_contents
 import itertools
 import os
 from damerau_levenshtein import damerau_levenshtein
@@ -48,14 +48,14 @@ def obfuscate(clauses, params):
 
     lorem_filename = params["obfuscate"] or ""
     try:
-        lorem_text = codecs.open(lorem_filename, encoding="utf8").read()
+        lorem_text = read_contents(lorem_filename)
     except IOError:
         try:
             if lorem_filename.endswith(".txt"):
                 lorem_filename = lorem_filename[:-4]
-            lorem_text = codecs.open("%s/lorem/%s.txt" % (params["script_directory"], os.path.basename(lorem_filename)), encoding="utf8").read()
+            lorem_text = read_contents("%s/lorem/%s.txt" % (params["script_directory"], os.path.basename(lorem_filename)))
         except IOError:
-            lorem_text = codecs.open("%s/lorem/lorem_ipsum.txt" % params["script_directory"]).read()
+            lorem_text = read_contents("%s/lorem/lorem_ipsum.txt" % params["script_directory"])
     random_chunk = random_chunks_of(lorem_text, params["obfuscation_max_length"])
     header = map(lambda comment: comment + "\n", itertools.takewhile(lambda line: line.startswith("%"), clauses))
     clauses = "\n".join(clauses[len(header):])

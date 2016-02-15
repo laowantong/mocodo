@@ -10,6 +10,14 @@ import argparse
 from subprocess import Popen, PIPE
 import os, codecs
 
+def read_contents(filename, encoding="utf8"):
+    with codecs.open(filename, encoding=encoding) as f:
+        return f.read()
+
+def write_contents(filename, contents, encoding="utf8"):
+    with codecs.open(filename, encoding=encoding, mode="w") as f:
+        f.write(contents)
+
 @magics_class
 class MocodoMagics(Magics):
 
@@ -41,7 +49,7 @@ class MocodoMagics(Magics):
                 if not notebook_options.no_mcd:
                     display(SVG(filename=output_name + ".svg"))
                 if notebook_options.mld:
-                    mld = codecs.open(output_name + ".html", "r", 'utf8').read()
+                    mld = read_contents(output_name + ".html")
                     display(HTML(mld))
                 return True
         
@@ -61,7 +69,7 @@ class MocodoMagics(Magics):
                 if not os.path.isdir("mocodo_notebook"):
                     raise
             input_path = "mocodo_notebook/sandbox.mcd"
-            codecs.open(input_path, "w", "utf8").write(cell)
+            write_contents(input_path, cell)
         elif not os.path.isfile(input_path) and os.path.isfile(input_path + ".mcd"):
             input_path += ".mcd"
         
@@ -85,7 +93,7 @@ class MocodoMagics(Magics):
         if execute_command(options):
             if not display_diagrams():
                 if "--print_params" in options:
-                    print '# You may edit and run the following lines in a new cell\n\nimport codecs\nparams = u"""\n%s"""\ncodecs.open("%s/params.json", "w", "utf8").write(params.strip())' % (stdoutdata, output_dir)
+                    print '# You may edit and run the following lines in a new cell\n\nimport codecs\nparams = u"""\n%s"""\nwith codecs.open("%s/params.json", "utf8", "w") as f:\n    f.write(params.strip())' % (stdoutdata, output_dir)
                 elif "--help" in options:
                     print stdoutdata
                 else:
@@ -96,7 +104,7 @@ class MocodoMagics(Magics):
                         parser.add_argument("--obfuscate", nargs="?")
                         parser.add_argument("--flip", nargs="?")
                         (_, options) = parser.parse_known_args(options)
-                        codecs.open(input_path, "w", "utf8").write(stdoutdata.decode("utf8"))
+                        write_contents(input_path, stdoutdata.decode("utf8"))
                         options.extend(["--input", input_path, "--output_dir", output_dir, "--image_format", "svg"])
                         if execute_command(options):
                             display_diagrams()

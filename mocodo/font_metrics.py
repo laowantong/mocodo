@@ -2,7 +2,7 @@
 # encoding: utf-8
 
 import sys
-import codecs
+from file_helpers import read_contents
 import os
 import json
 
@@ -33,7 +33,7 @@ def font_metrics_factory(params):
             
         sys.stderr.write(u"Warning: Tkinter is not correctly installed or Mocodo is run on server side with no display. Option 'tkinter' ignored.\n")
     path = os.path.join(params["script_directory"], "font_metrics.json")
-    text = codecs.open(path, "r", "utf8").read()
+    text = read_contents(path)
     
     class FontMetricsWithoutTk():
 

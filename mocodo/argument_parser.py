@@ -5,7 +5,7 @@ import argparse
 import random
 import os
 import json
-import codecs
+from file_helpers import read_contents
 from common import version
 import sys
 import re
@@ -57,15 +57,15 @@ class ArgumentDefaultsRawDescriptionHelpFormatter(argparse.ArgumentDefaultsHelpF
 def init_localization(script_directory, language):
     if not language:
         if sys.platform.lower().startswith("darwin") and os.system("defaults read -g AppleLanguages > /tmp/languages.txt") == 0:
-            language = re.search("\W*(\w+)", open("/tmp/languages.txt").read()).group(1)
+            language = re.search("\W*(\w+)", read_contents("/tmp/languages.txt")).group(1)
         else:
             try:
                 language = locale.getdefaultlocale()[0][:2]
             except:
                 language = "en"
     try:
-        mo_contents = open("%s/res/messages_%s.mo" % (script_directory, language), "rb")
-        trans = gettext.GNUTranslations(mo_contents)
+        with open("%s/res/messages_%s.mo" % (script_directory, language), "rb") as mo_contents:
+            trans = gettext.GNUTranslations(mo_contents)
     except IOError:
         trans = gettext.NullTranslations()
     trans.install(unicode=True)
@@ -158,7 +158,7 @@ def parsed_arguments():
             raise RuntimeError(("Mocodo Err.18 - " + _('The file "{input}" doesn\'t exist.').format(input=args.input)).encode("utf8"))
     default_params["input"] = args.input
     if os.path.exists(args.params_path):
-        default_params.update(json.loads(codecs.open(args.params_path, "r", "utf8").read()))
+        default_params.update(json.loads(read_contents(args.params_path)))
     if not default_params["input"]:
         default_params["input"] = "sandbox.mcd"
     default_params["language"] = init_localization(script_directory, default_params.get("language", args.language))

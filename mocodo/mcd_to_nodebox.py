@@ -2,6 +2,7 @@
 # encoding: utf-8
 
 import os
+from file_helpers import read_contents
 
 def main(mcd, common):
     params = common.params
@@ -12,8 +13,8 @@ def main(mcd, common):
     result.extend(common.process_geometry(mcd, style))
     result.append("""\nfor c in colors: colors[c] = (color(*[int((colors[c]+"FF")[i:i+2],16)/255.0 for i in range(1,9,2)]) if colors[c] else None)""")
     result.append("card_max_width = %(card_max_width)s\ncard_max_height = %(card_max_height)s\ncard_margin = %(card_margin)s\narrow_width = %(arrow_width)s\narrow_half_height = %(arrow_half_height)s\narrow_axis = %(arrow_axis)s" % style)
-    result.append(open(os.path.join(params["script_directory"], "goodies.py")).read())
-    result.append(open(os.path.join(params["script_directory"], "nodebox_goodies.py")).read())
+    result.append(read_contents(os.path.join(params["script_directory"], "goodies.py")))
+    result.append(read_contents(os.path.join(params["script_directory"], "nodebox_goodies.py")))
     result.append("\nsize(width,height)")
     result.append("autoclosepath(False)")
     result.append("background(colors['background_color'])")

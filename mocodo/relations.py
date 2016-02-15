@@ -6,6 +6,7 @@ import collections
 import itertools
 import unicodedata
 import os
+from file_helpers import write_contents
 # import pprint
 
 class Relations:
@@ -49,7 +50,7 @@ class Relations:
             title = title.capitalize()
             if not title:
                 return
-            open("%(output_name)s_new_title.txt" % params, "w").write(title)
+            write_contents("%(output_name)s_new_title.txt" % params, title)
             params["title"] = title
             params["output_name"] = os.path.join(params["output_dir"], title)
         

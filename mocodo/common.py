@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
-import codecs
 import time
 from relations import Relations
 from version_number import version
@@ -9,6 +8,7 @@ import os
 import sys
 import json
 import re
+from file_helpers import read_contents, write_contents
 
 def safe_print_for_PHP(s):
     """ It seems that when called from PHP, Python is unable to guess correctly
@@ -17,7 +17,6 @@ def safe_print_for_PHP(s):
         print >> sys.stdout, s
     except UnicodeEncodeError:
         print >> sys.stdout, s.encode("utf8")
-
 
 class Common:
 
@@ -34,7 +33,7 @@ class Common:
         for encoding in self.params["encodings"]:
             try:
                 self.encoding = encoding
-                return codecs.open(self.params["input"], encoding=encoding).read().replace('"', '').split("\n")
+                return read_contents(self.params["input"], encoding=encoding).replace('"', '').split("\n")
             except UnicodeError:
                 pass
         raise RuntimeError(("Mocodo Err.5 - " + _('Unable to read "{filename}" with any of the following encodings: "{encodings}".').format(filename=self.params["input"], encodings= ", ".join(self.params["encodings"])).encode("utf8")))
@@ -45,12 +44,12 @@ class Common:
             path = self.params[name] + ("" if self.params[name].endswith(".json") else ".json") 
             if os.path.exists(path):
                 try:
-                    return json.loads(codecs.open(path, "r", "utf8").read())
+                    return json.loads(read_contents(path))
                 except:
                     raise RuntimeError(("Mocodo Err.3 - " + _('Problem with "{name}" file "{path}.json".').format(name=name, path=path)).encode("utf8"))
             path = os.path.join(self.params["script_directory"], name, path)
             try:
-                return json.loads(codecs.open(path, "r", "utf8").read())
+                return json.loads(read_contents(path))
             except:
                 raise RuntimeError(("Mocodo Err.3 - " + _('Problem with "{name}" file "{path}.json".').format(name=name, path=path)).encode("utf8"))
         
@@ -69,7 +68,7 @@ class Common:
 
     def dump_output_file(self, result):
         path = "%(output_name)s_%(image_format)s.py" % self.params
-        codecs.open(path, "w", encoding="utf8").write(result)
+        write_contents(path, result)
         safe_print_for_PHP(self.output_success_message(path))
 
     def dump_mld_files(self, relations):
@@ -77,7 +76,7 @@ class Common:
         for relation_template in self.params["relations"]:
             try:
                 path = os.path.join(self.params["script_directory"], "relation_templates", "%s.json" % relation_template)
-                contents = json.loads(codecs.open(path, "r", "utf8").read())
+                contents = json.loads(read_contents(path))
                 relation_templates.append(contents)
             except:
                 safe_print_for_PHP(_('Problem with template {template}.').format(template=relation_template + ".json"))
@@ -90,14 +89,14 @@ class Common:
                 text = _("Problem during the generation of the relational schema.")
                 safe_print_for_PHP(text)
                 raise
-            codecs.open(path, "w", encoding="utf8").write(text)
+            write_contents(path, text)
 
     def process_geometry(self, mcd, style):
         
         def dump_geo_file(d):
             try:
                 path = "%(output_name)s_geo.json" % self.params
-                codecs.open(path, "w", "utf8").write(json.dumps(d, ensure_ascii=False))
+                write_contents(path, json.dumps(d, ensure_ascii=False))
                 safe_print_for_PHP(self.output_success_message(path))
             except IOError:
                 safe_print_for_PHP(_('Unable to generate file "{filename}"!').format(filename=os.path.basename(path)))
@@ -115,7 +114,8 @@ class Common:
             result = []
             result.append("import json")
             result.append("")
-            result.append("geo = json.loads(open('%(output_name)s_geo.json').read())" % self.params)
+            result.append("with codecs.open('%(output_name)s_geo.json') as f:" % self.params)
+            result.append("    geo = json.loads(f.read())")
             result.append("(width,height) = geo.pop('size')")
             result.append("for (name, l) in geo.iteritems(): globals()[name] = dict(l)")
         else: # include the geometry at the beginning of the generated Python file

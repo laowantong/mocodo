@@ -8,6 +8,7 @@ if sys.version < "2.6" or sys.version >= "3":
 
 import os
 from common import Common, safe_print_for_PHP
+from file_helpers import write_contents
 from argument_parser import parsed_arguments
 from mcd import Mcd
 from relations import Relations
@@ -20,7 +21,7 @@ def main():
         if params["restore"]:
             import shutil
             shutil.copyfile(os.path.join(params["script_directory"], "pristine_sandbox.mcd"), "sandbox.mcd")
-            return open("params.json", "w").write("{}")
+            return write_contents("params.json", "{}")
         if params["print_params"]:
             import json
             for added_key in params["added_keys"][:]:

@@ -5,12 +5,12 @@ import unittest
 from mocodo.relations import *
 from mocodo.mcd import Mcd
 import json
-import codecs
+from file_helpers import read_contents
 from copy import deepcopy
 from mocodo.argument_parser import parsed_arguments
 
-minimal_template = json.loads(codecs.open("mocodo/relation_templates/text.json").read())
-json_template = json.loads(codecs.open("mocodo/relation_templates/json.json").read())
+minimal_template = json.loads(read_contents("mocodo/relation_templates/text.json"))
+json_template = json.loads(read_contents("mocodo/relation_templates/json.json"))
 params = parsed_arguments()
 params["title"] = "Untitled"
 params["guess_title"] = False

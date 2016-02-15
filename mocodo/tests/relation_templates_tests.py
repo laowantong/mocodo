@@ -5,7 +5,7 @@ import unittest
 from mocodo.relations import *
 from mocodo.mcd import Mcd
 import json
-import codecs
+from mocodo.file_helpers import read_contents
 from mocodo.argument_parser import parsed_arguments
 
 clauses = """
@@ -39,7 +39,7 @@ t = Relations(Mcd(clauses, params), params)
 class RelationTemplatesTest(unittest.TestCase):
 
     def test_diagram(self):
-        template = json.loads(codecs.open("mocodo/relation_templates/diagram.json").read())
+        template = json.loads(read_contents("mocodo/relation_templates/diagram.json"))
         expected = u"""
             %%mocodo
             :
@@ -91,7 +91,7 @@ class RelationTemplatesTest(unittest.TestCase):
             self.assertEquals(result_line, expected_line)
 
     def test_html(self):
-        template = json.loads(codecs.open("mocodo/relation_templates/html.json").read())
+        template = json.loads(read_contents("mocodo/relation_templates/html.json"))
         expected = u"""
             <html>
             <head>
@@ -210,7 +210,7 @@ class RelationTemplatesTest(unittest.TestCase):
             self.assertEquals(result_line, expected_line)
 
     def test_html_verbose(self):
-        template = json.loads(codecs.open("mocodo/relation_templates/html_verbose.json").read())
+        template = json.loads(read_contents("mocodo/relation_templates/html_verbose.json"))
         expected = u"""
             <html>
             <head>
@@ -411,7 +411,7 @@ class RelationTemplatesTest(unittest.TestCase):
             self.assertEquals(result_line, expected_line)
 
     def test_latex(self):
-        template = json.loads(codecs.open("mocodo/relation_templates/latex.json").read())
+        template = json.loads(read_contents("mocodo/relation_templates/latex.json"))
         expected = u"""
             % Copy this before \\begin{document}
             
@@ -447,7 +447,7 @@ class RelationTemplatesTest(unittest.TestCase):
             self.assertEquals(result_line, expected_line)
 
     def test_markdown(self):
-        template = json.loads(codecs.open("mocodo/relation_templates/markdown.json").read())
+        template = json.loads(read_contents("mocodo/relation_templates/markdown.json"))
         expected = u"""
             **GAME** (<ins>glad</ins>, oven, _glad.1_, snap)  
             **SHED** (<ins>_else_</ins>, <ins>_glad_</ins>, <ins>_iron_</ins>, free)  
@@ -470,7 +470,7 @@ class RelationTemplatesTest(unittest.TestCase):
             self.assertEquals(result_line, expected_line)
 
     def test_markdown_verbose(self):
-        template = json.loads(codecs.open("mocodo/relation_templates/markdown_verbose.json").read())
+        template = json.loads(read_contents("mocodo/relation_templates/markdown_verbose.json"))
         expected = u"""
             **GAME** (<ins>glad</ins>, oven, _glad.1_, snap)  
             - Le champ _glad_ constitue la clef primaire de la table. C'était déjà un identifiant de l'entité _GAME_.  
@@ -545,7 +545,7 @@ class RelationTemplatesTest(unittest.TestCase):
             self.assertEquals(result_line, expected_line)
 
     def test_mysql(self):
-        template = json.loads(codecs.open("mocodo/relation_templates/mysql.json").read())
+        template = json.loads(read_contents("mocodo/relation_templates/mysql.json"))
         expected = u"""
             CREATE DATABASE IF NOT EXISTS `UNTITLED` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
             USE `UNTITLED`;
@@ -668,7 +668,7 @@ class RelationTemplatesTest(unittest.TestCase):
             self.assertEquals(result_line, expected_line)
 
     def test_oracle(self):
-        template = json.loads(codecs.open("mocodo/relation_templates/oracle.json").read())
+        template = json.loads(read_contents("mocodo/relation_templates/oracle.json"))
         expected = u"""
             CREATE TABLE "GAME" (
               "glad" VARCHAR(42),
@@ -788,7 +788,7 @@ class RelationTemplatesTest(unittest.TestCase):
             self.assertEquals(result_line, expected_line)
 
     def test_postgresql(self):
-        template = json.loads(codecs.open("mocodo/relation_templates/postgresql.json").read())
+        template = json.loads(read_contents("mocodo/relation_templates/postgresql.json"))
         expected = u"""
             CREATE DATABASE "UNTITLED";
             \\c "UNTITLED;
@@ -911,7 +911,7 @@ class RelationTemplatesTest(unittest.TestCase):
             self.assertEquals(result_line, expected_line)
 
     def test_sqlite(self):
-        template = json.loads(codecs.open("mocodo/relation_templates/sqlite.json").read())
+        template = json.loads(read_contents("mocodo/relation_templates/sqlite.json"))
         expected = u"""
             .open "UNTITLED";
             
@@ -1032,7 +1032,7 @@ class RelationTemplatesTest(unittest.TestCase):
             self.assertEquals(result_line, expected_line)
 
     def test_text(self):
-        template = json.loads(codecs.open("mocodo/relation_templates/text.json").read())
+        template = json.loads(read_contents("mocodo/relation_templates/text.json"))
         expected = u"""
             GAME (_glad_, oven, #glad.1, snap)
             SHED (_#else_, _#glad_, _#iron_, free)
@@ -1053,7 +1053,7 @@ class RelationTemplatesTest(unittest.TestCase):
             self.assertEquals(result_line, expected_line)
 
     def test_txt2tags(self):
-        template = json.loads(codecs.open("mocodo/relation_templates/txt2tags.json").read())
+        template = json.loads(read_contents("mocodo/relation_templates/txt2tags.json"))
         expected = u"""
             Untitled
             Généré par Mocodo
@@ -1107,7 +1107,7 @@ u = Relations(Mcd(clauses_with_composite_foreign_keys, params), params)
 class MoreRelationTemplatesTest(unittest.TestCase):
 
     def test_mysql(self):
-        template = json.loads(codecs.open("mocodo/relation_templates/mysql.json").read())
+        template = json.loads(read_contents("mocodo/relation_templates/mysql.json"))
         expected = u"""
             CREATE DATABASE IF NOT EXISTS `UNTITLED` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
             USE `UNTITLED`;
@@ -1223,7 +1223,7 @@ class MoreRelationTemplatesTest(unittest.TestCase):
             self.assertEquals(result_line, expected_line)
 
     def test_oracle(self):
-        template = json.loads(codecs.open("mocodo/relation_templates/oracle.json").read())
+        template = json.loads(read_contents("mocodo/relation_templates/oracle.json"))
         expected = u"""
             CREATE TABLE "PEUT_VIVRE_DANS" (
               "code_espèce" VARCHAR(42),
@@ -1336,7 +1336,7 @@ class MoreRelationTemplatesTest(unittest.TestCase):
             self.assertEquals(result_line, expected_line)
 
     def test_postgresql(self):
-        template = json.loads(codecs.open("mocodo/relation_templates/postgresql.json").read())
+        template = json.loads(read_contents("mocodo/relation_templates/postgresql.json"))
         expected = u"""
             CREATE DATABASE "UNTITLED";
             \c "UNTITLED;
@@ -1452,7 +1452,7 @@ class MoreRelationTemplatesTest(unittest.TestCase):
             self.assertEquals(result_line, expected_line)
 
     def test_sqlite(self):
-        template = json.loads(codecs.open("mocodo/relation_templates/sqlite.json").read())
+        template = json.loads(read_contents("mocodo/relation_templates/sqlite.json"))
         expected = u"""
             .open "UNTITLED";
 
