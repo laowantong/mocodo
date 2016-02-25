@@ -193,6 +193,7 @@ def parsed_arguments():
     source_group.add_argument("--obfuscate", metavar="PATH", type=os.path.abspath, nargs="?", const="lorem_ipsum.txt", help="display an obfuscated version of the input file, then exit. Cf. directory 'lorem'")
     source_group.add_argument("--obfuscation_max_length", metavar="INT", type=int, help="maximal length of obfuscated labels")
     source_group.add_argument("--seed", metavar="FLOAT", type=float, help="initial value for the random number generator")
+    source_group.add_argument("--replace", action="store_true", help="replace the content of the current cell by the output of the for the rearrangement option")
 
     bb_group.add_argument("--call_limit", metavar="INT", type=int, default=10000, help="maximal number of calls for a given starting box")
     bb_group.add_argument("--min_objective", metavar="INT", type=int, default=0, help="best acceptable fitness for a layout")
