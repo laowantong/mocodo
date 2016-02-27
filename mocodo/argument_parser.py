@@ -209,6 +209,7 @@ def parsed_arguments():
     
     nb_group.add_argument("--mld", action="store_true", help="display the HTML relational model in the cell output")
     nb_group.add_argument("--no_mcd", action="store_true", help="do not display the conceptual diagram in the cell output")
+    nb_group.add_argument("--replace", action="store_true", help="replaces the cell contents by its output")
     
     parser.set_defaults(**default_params)
     params = vars(parser.parse_args(remaining_args))
