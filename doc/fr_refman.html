@@ -216,7 +216,8 @@ div#notebook {
 <li><a href="#invocation">3.3.1. Invocation</a></li>
 <li><a href="#principes_de_fonctionnement">3.3.2. Principes de fonctionnement</a></li>
 <li><a href="#exemples_d_invocation">3.3.3. Exemples d'invocation</a></li>
-<li><a href="#magic_long_term_settings">3.3.4. Paramétrage à long terme</a></li>
+<li><a href="#option_replace">3.3.4. Modification <em>in situ</em> d'une cellule avec l'option <code>--replace</code></a></li>
+<li><a href="#magic_long_term_settings">3.3.5. Paramétrage à long terme</a></li>
 </ul>
 </li>
 </ul>
@@ -1233,6 +1234,8 @@ ignorées lors de l'appel en ligne de commande</p>
 Affiche le schéma relationnel en HTML dans la sortie de la cellule (défaut: <code>False</code>).</li>
 <li><a href="#retablissement_semantique_df"><strong><code>--no_mcd</code></strong></a>.<br>
 N'affiche pas le diagramme conceptuel dans la sortie de la cellule (défaut: <code>False</code>).</li>
+<li><a href="#option_replace"><strong><code>--replace</code></strong></a>.<br>
+Remplace le contenu de la cellule par le résultat de son évaluation (défaut: <code>False</code>).</li>
 </ul>
 </li>
 </ul>
@@ -1367,7 +1370,82 @@ N'affiche pas le diagramme conceptuel dans la sortie de la cellule (défaut: <co
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="3.3.4.-Param&#233;trage-&#224;-long-terme-">3.3.4. Param&#233;trage &#224; long terme <a id="magic_long_term_settings" /><a class="anchor-link" href="#3.3.4.-Param&#233;trage-&#224;-long-terme-">&#182;</a></h3>
+<h3 id="3.3.4.-Modification-in-situ-d'une-cellule-avec-l'option---replace-">3.3.4. Modification <em>in situ</em> d'une cellule avec l'option <code>--replace</code> <a id="option_replace" /><a class="anchor-link" href="#3.3.4.-Modification-in-situ-d'une-cellule-avec-l'option---replace-">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Nouveauté de la version 2.0.20 (contribution de Thomas Giro).</strong> Avec les options <code>--arrange</code>, <code>--flip</code> et <code>--obfuscate</code> le résultat de l'évaluation de la cellule est un nouveau MCD, normalement affiché au-dessous. Ajoutez l'option <code>--replace</code> pour substituer ce MCD au contenu de la cellule. Réévaluez alors celle-ci pour tracer le MCD résultant, ou Annulez la dernière opération pour revenir au contenu originel.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Par exemple, l'évaluation de la cellule suivante:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="o">%%</span><span class="k">mocodo</span> --flip=v --replace
+CLIENT: Réf. client, Nom, Prénom, Adresse
+PASSER, 0N CLIENT, 11 COMMANDE
+COMMANDE: Num commande, Date, Montant
+INCLURE, 1N COMMANDE, 0N PRODUIT: Quantité
+PRODUIT: Réf. produit, Libellé, Prix unitaire
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>... remplacerait celle-ci par celle-là:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="o">%%</span><span class="k">mocodo</span>
+PRODUIT: Réf. produit, Libellé, Prix unitaire
+INCLURE, 1N COMMANDE, 0N PRODUIT: Quantité
+COMMANDE: Num commande, Date, Montant
+PASSER, 0N CLIENT, 11 COMMANDE
+CLIENT: Réf. client, Nom, Prénom, Adresse
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="3.3.5.-Param&#233;trage-&#224;-long-terme-">3.3.5. Param&#233;trage &#224; long terme <a id="magic_long_term_settings" /><a class="anchor-link" href="#3.3.5.-Param&#233;trage-&#224;-long-terme-">&#182;</a></h3>
 </div>
 </div>
 </div>
@@ -4343,12 +4421,11 @@ PRODUIT: Réf. produit, Libellé, Prix unitaire
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>%%mocodo
-PURUS EU: Rutrum erat, Curae diam, Praesent, Consectetur
-VOLUTPAT, 0N PURUS EU, 11 PHARETRA DUI
-PHARETRA DUI: Mi mauris, Tellus, Blandit
-ELEMENTUM, 1N PHARETRA DUI, 0N PELLENTESQUE: Molestie
-PELLENTESQUE: Fermentum, Primis, Tempor
-
+PRAESENT: Rhoncus, Nulla id, Adipiscing, Quis et eu
+PELLENTESQUE, 0N PRAESENT, 11 VIVAMUS UT
+VIVAMUS UT: Eleifend, Curae ante, Velit
+ELEMENTUM, 1N VIVAMUS UT, 0N DUI AT ARCU: Augue
+DUI AT ARCU: Pharetra, Molestie, Ullamcorper
 </pre>
 </div>
 </div>
@@ -4356,81 +4433,81 @@ PELLENTESQUE: Fermentum, Primis, Tempor
 <div class="output_area"><div class="prompt"></div>
 
 <div class="output_svg output_subarea ">
-<svg height="128" view_box="0 0 788 128" width="788" xmlns="http://www.w3.org/2000/svg" xmlns:link="http://www.w3.org/1999/xlink">\n\n<desc>Généré par Mocodo 2.0 le Mon, 31 Aug 2015 14:52:24</desc>
+<svg height="128" view_box="0 0 804 128" width="804" xmlns="http://www.w3.org/2000/svg" xmlns:link="http://www.w3.org/1999/xlink">\n\n<desc>Généré par Mocodo 2.0.19 le Sat, 27 Feb 2016 21:45:25</desc>
 
-<rect fill="none" height="128" id="frame" stroke="none" stroke-width="0" width="788" x="0" y="0"/>
+<rect fill="none" height="128" id="frame" stroke="none" stroke-width="0" width="804" x="0" y="0"/>
+
+<!-- Association PELLENTESQUE -->
+<line stroke="#000000" stroke-width="1" x1="66" x2="233" y1="64" y2="64"/>
+<text fill="#000000" font-family="Futura" font-size="11" x="127" y="79.9">0,N</text>
+<line stroke="#000000" stroke-width="1" x1="407" x2="233" y1="64" y2="64"/>
+<text fill="#000000" font-family="Futura" font-size="11" x="317" y="79.9">1,1</text>
+<g id="association-PELLENTESQUE">
+	<path d="M 299 35 a 14 14 90 0 1 14 14 V 63 h -160 V 49 a 14 14 90 0 1 14 -14" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+	<path d="M 313 63 v 16 a 14 14 90 0 1 -14 14 H 167 a 14 14 90 0 1 -14 -14 V 63 H 160" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+	<rect fill="none" height="58" rx="14" stroke="#000000" stroke-width="1.5" width="160" x="153" y="35"/>
+	<line stroke="#000000" stroke-width="1.5" x1="153" x2="313" y1="63" y2="63"/>
+	<text fill="#000000" font-family="Copperplate" font-size="18" x="160" y="56.3">PELLENTESQUE</text>
+</g>
 
 <!-- Association ELEMENTUM -->
-<line stroke="#000000" stroke-width="1" x1="358" x2="526" y1="64" y2="64"/>
-<text fill="#000000" font-family="Futura" font-size="11" x="439" y="79.9">1,N</text>
-<line stroke="#000000" stroke-width="1" x1="698" x2="526" y1="64" y2="64"/>
-<text fill="#000000" font-family="Futura" font-size="11" x="595" y="79.9">0,N</text>
+<line stroke="#000000" stroke-width="1" x1="407" x2="566" y1="64" y2="64"/>
+<text fill="#000000" font-family="Futura" font-size="11" x="475" y="79.9">1,N</text>
+<line stroke="#000000" stroke-width="1" x1="728" x2="566" y1="64" y2="64"/>
+<text fill="#000000" font-family="Futura" font-size="11" x="635" y="79.9">0,N</text>
 <g id="association-ELEMENTUM">
-	<path d="M 577 35 a 14 14 90 0 1 14 14 V 63 h -130 V 49 a 14 14 90 0 1 14 -14" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
-	<path d="M 591 63 v 16 a 14 14 90 0 1 -14 14 H 475 a 14 14 90 0 1 -14 -14 V 63 H 130" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
-	<rect fill="none" height="58" rx="14" stroke="#000000" stroke-width="1.5" width="130" x="461" y="35"/>
-	<line stroke="#000000" stroke-width="1.5" x1="461" x2="591" y1="63" y2="63"/>
-	<text fill="#000000" font-family="Copperplate" font-size="18" x="468" y="56.3">ELEMENTUM</text>
-	<text fill="#000000" font-family="Gill Sans" font-size="15" x="468" y="81.05">Molestie</text>
+	<path d="M 617 35 a 14 14 90 0 1 14 14 V 63 h -130 V 49 a 14 14 90 0 1 14 -14" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+	<path d="M 631 63 v 16 a 14 14 90 0 1 -14 14 H 515 a 14 14 90 0 1 -14 -14 V 63 H 130" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+	<rect fill="none" height="58" rx="14" stroke="#000000" stroke-width="1.5" width="130" x="501" y="35"/>
+	<line stroke="#000000" stroke-width="1.5" x1="501" x2="631" y1="63" y2="63"/>
+	<text fill="#000000" font-family="Copperplate" font-size="18" x="508" y="56.3">ELEMENTUM</text>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="508" y="81.05">Augue</text>
 </g>
 
-<!-- Association VOLUTPAT -->
-<line stroke="#000000" stroke-width="1" x1="64" x2="200" y1="64" y2="64"/>
-<text fill="#000000" font-family="Futura" font-size="11" x="123" y="79.9">0,N</text>
-<line stroke="#000000" stroke-width="1" x1="358" x2="200" y1="64" y2="64"/>
-<text fill="#000000" font-family="Futura" font-size="11" x="259" y="79.9">1,1</text>
-<g id="association-VOLUTPAT">
-	<path d="M 241 35 a 14 14 90 0 1 14 14 V 63 h -110 V 49 a 14 14 90 0 1 14 -14" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
-	<path d="M 255 63 v 16 a 14 14 90 0 1 -14 14 H 159 a 14 14 90 0 1 -14 -14 V 63 H 110" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
-	<rect fill="none" height="58" rx="14" stroke="#000000" stroke-width="1.5" width="110" x="145" y="35"/>
-	<line stroke="#000000" stroke-width="1.5" x1="145" x2="255" y1="63" y2="63"/>
-	<text fill="#000000" font-family="Copperplate" font-size="18" x="152" y="56.3">VOLUTPAT</text>
-</g>
-
-<!-- Entity PELLENTESQUE -->
-<g id="entity-PELLENTESQUE">
-	<g id="frame-PELLENTESQUE">
-		<rect fill="#FFFFFF" height="30" stroke="#FFFFFF" stroke-width="0" width="162" x="617" y="17"/>
-		<rect fill="#FFFFFF" height="64" stroke="#FFFFFF" stroke-width="0" width="162" x="617" y="47"/>
-		<rect fill="none" height="94" stroke="#000000" stroke-width="1.5" width="162" x="617" y="17"/>
-		<line stroke="#000000" stroke-width="1.5" x1="617" x2="779" y1="47" y2="47"/>
+<!-- Entity PRAESENT -->
+<g id="entity-PRAESENT">
+	<g id="frame-PRAESENT">
+		<rect fill="#FFFFFF" height="30" stroke="#FFFFFF" stroke-width="0" width="114" x="9" y="9"/>
+		<rect fill="#FFFFFF" height="80" stroke="#FFFFFF" stroke-width="0" width="114" x="9" y="39"/>
+		<rect fill="none" height="110" stroke="#000000" stroke-width="1.5" width="114" x="9" y="9"/>
+		<line stroke="#000000" stroke-width="1.5" x1="9" x2="123" y1="39" y2="39"/>
 	</g>
-	<text fill="#000000" font-family="Copperplate" font-size="18" x="625" y="38.3">PELLENTESQUE</text>
-	<text fill="#000000" font-family="Gill Sans" font-size="15" x="625" y="64.05">Fermentum</text>
-	<line stroke="#000000" stroke-width="1" x1="625" x2="697" y1="67" y2="67"/>
-	<text fill="#000000" font-family="Gill Sans" font-size="15" x="625" y="81.05">Primis</text>
-	<text fill="#000000" font-family="Gill Sans" font-size="15" x="625" y="98.05">Tempor</text>
+	<text fill="#000000" font-family="Copperplate" font-size="18" x="17" y="30.3">PRAESENT</text>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="17" y="56.05">Rhoncus</text>
+	<line stroke="#000000" stroke-width="1" x1="17" x2="70" y1="59" y2="59"/>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="17" y="73.05">Nulla id</text>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="17" y="90.05">Adipiscing</text>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="17" y="107.05">Quis et eu</text>
 </g>
 
-<!-- Entity PHARETRA DUI -->
-<g id="entity-PHARETRA DUI">
-	<g id="frame-PHARETRA DUI">
-		<rect fill="#FFFFFF" height="30" stroke="#FFFFFF" stroke-width="0" width="154" x="281" y="17"/>
-		<rect fill="#FFFFFF" height="64" stroke="#FFFFFF" stroke-width="0" width="154" x="281" y="47"/>
-		<rect fill="none" height="94" stroke="#000000" stroke-width="1.5" width="154" x="281" y="17"/>
-		<line stroke="#000000" stroke-width="1.5" x1="281" x2="435" y1="47" y2="47"/>
+<!-- Entity VIVAMUS UT -->
+<g id="entity-VIVAMUS UT">
+	<g id="frame-VIVAMUS UT">
+		<rect fill="#FFFFFF" height="30" stroke="#FFFFFF" stroke-width="0" width="128" x="343" y="17"/>
+		<rect fill="#FFFFFF" height="64" stroke="#FFFFFF" stroke-width="0" width="128" x="343" y="47"/>
+		<rect fill="none" height="94" stroke="#000000" stroke-width="1.5" width="128" x="343" y="17"/>
+		<line stroke="#000000" stroke-width="1.5" x1="343" x2="471" y1="47" y2="47"/>
 	</g>
-	<text fill="#000000" font-family="Copperplate" font-size="18" x="289" y="38.3">PHARETRA DUI</text>
-	<text fill="#000000" font-family="Gill Sans" font-size="15" x="289" y="64.05">Mi mauris</text>
-	<line stroke="#000000" stroke-width="1" x1="289" x2="350" y1="67" y2="67"/>
-	<text fill="#000000" font-family="Gill Sans" font-size="15" x="289" y="81.05">Tellus</text>
-	<text fill="#000000" font-family="Gill Sans" font-size="15" x="289" y="98.05">Blandit</text>
+	<text fill="#000000" font-family="Copperplate" font-size="18" x="351" y="38.3">VIVAMUS UT</text>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="351" y="64.05">Eleifend</text>
+	<line stroke="#000000" stroke-width="1" x1="351" x2="399" y1="67" y2="67"/>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="351" y="81.05">Curae ante</text>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="351" y="98.05">Velit</text>
 </g>
 
-<!-- Entity PURUS EU -->
-<g id="entity-PURUS EU">
-	<g id="frame-PURUS EU">
-		<rect fill="#FFFFFF" height="30" stroke="#FFFFFF" stroke-width="0" width="110" x="9" y="9"/>
-		<rect fill="#FFFFFF" height="80" stroke="#FFFFFF" stroke-width="0" width="110" x="9" y="39"/>
-		<rect fill="none" height="110" stroke="#000000" stroke-width="1.5" width="110" x="9" y="9"/>
-		<line stroke="#000000" stroke-width="1.5" x1="9" x2="119" y1="39" y2="39"/>
+<!-- Entity DUI AT ARCU -->
+<g id="entity-DUI AT ARCU">
+	<g id="frame-DUI AT ARCU">
+		<rect fill="#FFFFFF" height="30" stroke="#FFFFFF" stroke-width="0" width="134" x="661" y="17"/>
+		<rect fill="#FFFFFF" height="64" stroke="#FFFFFF" stroke-width="0" width="134" x="661" y="47"/>
+		<rect fill="none" height="94" stroke="#000000" stroke-width="1.5" width="134" x="661" y="17"/>
+		<line stroke="#000000" stroke-width="1.5" x1="661" x2="795" y1="47" y2="47"/>
 	</g>
-	<text fill="#000000" font-family="Copperplate" font-size="18" x="17" y="30.3">PURUS EU</text>
-	<text fill="#000000" font-family="Gill Sans" font-size="15" x="17" y="56.05">Rutrum erat</text>
-	<line stroke="#000000" stroke-width="1" x1="17" x2="94" y1="59" y2="59"/>
-	<text fill="#000000" font-family="Gill Sans" font-size="15" x="17" y="73.05">Curae diam</text>
-	<text fill="#000000" font-family="Gill Sans" font-size="15" x="17" y="90.05">Praesent</text>
-	<text fill="#000000" font-family="Gill Sans" font-size="15" x="17" y="107.05">Consectetur</text>
+	<text fill="#000000" font-family="Copperplate" font-size="18" x="669" y="38.3">DUI AT ARCU</text>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="669" y="64.05">Pharetra</text>
+	<line stroke="#000000" stroke-width="1" x1="669" x2="722" y1="67" y2="67"/>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="669" y="81.05">Molestie</text>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="669" y="98.05">Ullamcorper</text>
 </g>
 </svg>
 </div>
@@ -4440,6 +4517,16 @@ PELLENTESQUE: Fermentum, Primis, Tempor
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Nouveauté de la version 2.0.20.</strong> Pour remplacer le texte de la cellule par le résultat de son évaluation, ajoutez l'<a href="#option_replace">option <code>--replace</code></a>.</p>
+
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -4475,12 +4562,11 @@ PRODUIT: Réf. produit, Libellé, Prix unitaire
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>%%mocodo
-TAGS: Chaînes si, Symétrique, Réservé, Prise
-SUGGÉRÉ, 0N TAGS, 11 BARRE CRÉE
-BARRE CRÉE: That, Adipiscing, Puissant
-CONCERNÉES, 1N BARRE CRÉE, 0N SUPPRIMANT: Compléter
-SUPPRIMANT: Ajouté, Following, Aucun
-
+EXEMPLE: Abou, Text, Circle, Proprement
+SUIVI, 0N EXEMPLE, 11 DEMANDER
+DEMANDER: Éventail, Columns, Arcs
+TOUTES, 1N DEMANDER, 0N ENCERCLER: Placées
+ENCERCLER: Semper, _dish_ txt, _mocodo
 </pre>
 </div>
 </div>
@@ -4545,7 +4631,6 @@ DRAW, 0N ITEM, 11 LADY
 LADY: Face, Soon, Ever
 UNIT, 1N LADY, 0N TOUR: Fold
 TOUR: Bind, Gene, Aids
-
 </pre>
 </div>
 </div>
@@ -5596,6 +5681,16 @@ Puni, 11 Lappa, 0N Lappa
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Nouveauté de la version 2.0.20.</strong> Pour remplacer le texte de la cellule par le résultat de son évaluation, ajoutez l'<a href="#option_replace">option <code>--replace</code></a>.</p>
+
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -6686,6 +6781,16 @@ MAECENAS, 1N DIGNISSIM, 1N DIGNISSIM
 <li>un algorithme exact (<code>bb</code>, pour <em>Branch &amp; Bound</em>), qui ne trouve que des solutions satisfaisant aux deux critères;</li>
 <li>un algorithme approché (<code>ga</code>, pour <em>Genetic Algorithm</em>), réservé aux cas où il est impossible de satisfaire au premier critère. L'algorithme va alors chercher des solutions où les liens se coupent seulement le moins possible.</li>
 </ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Nouveauté de la version 2.0.20.</strong> Pour remplacer le texte de la cellule par le résultat de son évaluation, ajoutez l'<a href="#option_replace">option <code>--replace</code></a>.</p>
 
 </div>
 </div>
@@ -12284,40 +12389,40 @@ Busy: fail
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Voici pour référence un gabarit JSON prêt à l'emploi, à partir duquel vous pourrez créer les vôtres. Il comporte l'intégralité des identificateurs disponibles, avec leur valeur par défaut et dans l'ordre de déroulement de l'algorithme:</p>
-<div class="highlight"><pre><span class="p">{</span>
-    <span class="nt">&quot;extension&quot;</span><span class="p">:</span> <span class="s2">&quot;requis: pas de valeur par défaut&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;transform_attribute&quot;</span><span class="p">:</span> <span class="p">[],</span>
-    <span class="nt">&quot;transform_title&quot;</span><span class="p">:</span> <span class="p">[],</span>
-    <span class="nt">&quot;transform_data_type&quot;</span><span class="p">:</span> <span class="p">[],</span>
-    <span class="nt">&quot;compose_label_disambiguated_by_annotation&quot;</span><span class="p">:</span> <span class="s2">&quot;{raw_label} {leg_annotation}&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;compose_label_disambiguated_by_number&quot;</span><span class="p">:</span> <span class="s2">&quot;{label}.{disambiguation_number}&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;compose_primary_key&quot;</span><span class="p">:</span> <span class="s2">&quot;_{label}_&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;compose_normal_attribute&quot;</span><span class="p">:</span> <span class="s2">&quot;{label}&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;compose_foreign_key&quot;</span><span class="p">:</span> <span class="s2">&quot;#{label}&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;compose_foreign_attribute&quot;</span><span class="p">:</span> <span class="s2">&quot;par défaut, même valeur que compose_normal_attribute&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;compose_foreign_primary_key&quot;</span><span class="p">:</span> <span class="s2">&quot;_#{label}_&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;compose_association_attribute&quot;</span><span class="p">:</span> <span class="s2">&quot;par défaut, même valeur que compose_normal_attribute&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;compose_strengthening_primary_key&quot;</span><span class="p">:</span> <span class="s2">&quot;par défaut, même valeur que compose_foreign_primary_key&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;compose_demoted_foreign_key&quot;</span><span class="p">:</span> <span class="s2">&quot;par défaut, même valeur que compose_foreign_key&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;compose_promoting_foreign_key&quot;</span><span class="p">:</span> <span class="s2">&quot;par défaut, même valeur que compose_foreign_key&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;transform_relation_name&quot;</span><span class="p">:</span> <span class="p">[],</span>
-    <span class="nt">&quot;column_sorting_key&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&quot;search&quot;</span><span class="p">:</span> <span class="s2">&quot;(.+)&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;replace&quot;</span><span class="p">:</span> <span class="s2">&quot;\\1&quot;</span>
-    <span class="p">},</span>
-    <span class="nt">&quot;column_separator&quot;</span><span class="p">:</span> <span class="s2">&quot;, &quot;</span><span class="p">,</span>
-    <span class="nt">&quot;compose_relation&quot;</span><span class="p">:</span> <span class="s2">&quot;{this_relation_name} ({columns})&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;transform_single_column_relation&quot;</span><span class="p">:</span> <span class="p">[],</span>
-    <span class="nt">&quot;transform_relation&quot;</span><span class="p">:</span> <span class="p">[],</span>
-    <span class="nt">&quot;relation_sorting_key&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&quot;search&quot;</span><span class="p">:</span> <span class="s2">&quot;(.+)&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;replace&quot;</span><span class="p">:</span> <span class="s2">&quot;\\1&quot;</span>
-    <span class="p">},</span>
-    <span class="nt">&quot;relation_separator&quot;</span><span class="p">:</span> <span class="s2">&quot;\n&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;compose_relational_schema&quot;</span><span class="p">:</span> <span class="s2">&quot;{relations}&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;transform_relational_schema&quot;</span><span class="p">:</span> <span class="p">[]</span>
-<span class="p">}</span>
-</pre></div>
+
+<pre><code>{
+    "extension": "requis: pas de valeur par défaut",
+    "transform_attribute": [],
+    "transform_title": [],
+    "transform_data_type": [],
+    "compose_label_disambiguated_by_annotation": "{raw_label} {leg_annotation}",
+    "compose_label_disambiguated_by_number": "{label}.{disambiguation_number}",
+    "compose_primary_key": "_{label}_",
+    "compose_normal_attribute": "{label}",
+    "compose_foreign_key": "#{label}",
+    "compose_foreign_attribute": "par défaut, même valeur que compose_normal_attribute",
+    "compose_foreign_primary_key": "_#{label}_",
+    "compose_association_attribute": "par défaut, même valeur que compose_normal_attribute",
+    "compose_strengthening_primary_key": "par défaut, même valeur que compose_foreign_primary_key",
+    "compose_demoted_foreign_key": "par défaut, même valeur que compose_foreign_key",
+    "compose_promoting_foreign_key": "par défaut, même valeur que compose_foreign_key",
+    "transform_relation_name": [],
+    "column_sorting_key": {
+        "search": "(.+)",
+        "replace": "\\1"
+    },
+    "column_separator": ", ",
+    "compose_relation": "{this_relation_name} ({columns})",
+    "transform_single_column_relation": [],
+    "transform_relation": [],
+    "relation_sorting_key": {
+        "search": "(.+)",
+        "replace": "\\1"
+    },
+    "relation_separator": "\n",
+    "compose_relational_schema": "{relations}",
+    "transform_relational_schema": []
+}</code></pre>
 
 </div>
 </div>
