@@ -97,8 +97,11 @@ class MocodoMagics(Magics):
                 elif "--help" in options:
                     print stdoutdata
                 else:
-                    print "%%mocodo"
-                    print stdoutdata
+                    if "--replace" in options:
+                        get_ipython().set_next_input("%%mocodo\n"+stdoutdata, replace = True)
+                    else:
+                        print "%%mocodo"
+                        print stdoutdata
                     if not notebook_options.no_mcd or notebook_options.mld:
                         parser.add_argument("--arrange", nargs="?")
                         parser.add_argument("--obfuscate", nargs="?")
