@@ -1454,7 +1454,7 @@ CLIENT: Réf. client, Nom, Prénom, Adresse
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Si vous voulez éviter de préciser à chaque fois les mêmes arguments (par exemple un changement de couleurs), vous pouvez placer un fichier <code>params.json</code> dans le répertoire <code>mocodo_notebook</code>. Mocodo peut même vous aider à le faire avec l'invocation suivante:</p>
+<p>Si vous voulez éviter de préciser à chaque fois les mêmes arguments (par exemple un changement de couleurs), vous pouvez placer un fichier <code>params.json</code> dans le répertoire <code>mocodo_notebook</code>. Mocodo peut même vous aider à le faire en exécutant la cellule suivante:</p>
 
 </div>
 </div>
@@ -1471,66 +1471,82 @@ CLIENT: Réf. client, Nom, Prénom, Adresse
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Son évaluation remplace son propre contenu par des lignes de code similaires à:</p>
 
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre># You may edit and run the following lines in a new cell
-
-import codecs
-params = u&quot;&quot;&quot;
-{
-  &quot;arrange&quot;: null, 
-  &quot;call_limit&quot;: 10000, 
-  &quot;colors&quot;: &quot;bw&quot;, 
-  &quot;crossover_rate&quot;: 0.9, 
-  &quot;df&quot;: &quot;DF&quot;, 
-  &quot;disambiguation&quot;: &quot;annotations&quot;, 
-  &quot;encodings&quot;: [
-    &quot;utf8&quot;, 
-    &quot;macroman&quot;
-  ], 
-  &quot;extract&quot;: false, 
-  &quot;flip&quot;: null, 
-  &quot;guess_title&quot;: false, 
-  &quot;image_format&quot;: &quot;svg&quot;, 
-  &quot;input&quot;: &quot;mocodo_notebook/sandbox.mcd&quot;, 
-  &quot;language&quot;: &quot;fr&quot;, 
-  &quot;max_generations&quot;: 300, 
-  &quot;max_objective&quot;: 15, 
-  &quot;min_objective&quot;: 0, 
-  &quot;mld&quot;: false, 
-  &quot;mutation_rate&quot;: 0.06, 
-  &quot;no_mcd&quot;: false, 
-  &quot;obfuscate&quot;: null, 
-  &quot;obfuscation_max_length&quot;: null, 
-  &quot;organic&quot;: false, 
-  &quot;output_dir&quot;: &quot;mocodo_notebook&quot;, 
-  &quot;plateau&quot;: 30, 
-  &quot;population_size&quot;: 1000, 
-  &quot;print_params&quot;: false, 
-  &quot;relations&quot;: [
-    &quot;html&quot;, 
-    &quot;text&quot;
-  ], 
-  &quot;restore&quot;: false, 
-  &quot;sample_size&quot;: 7, 
-  &quot;seed&quot;: null, 
-  &quot;sep&quot;: &quot;,&quot;, 
-  &quot;shapes&quot;: &quot;copperplate&quot;, 
-  &quot;timeout&quot;: null, 
-  &quot;title&quot;: &quot;Sans titre&quot;, 
-  &quot;tkinter&quot;: false, 
-  &quot;verbose&quot;: false
-}
-&quot;&quot;&quot;
-codecs.open(&quot;mocodo_notebook/params.json&quot;, &quot;w&quot;, &quot;utf8&quot;).write(params.strip())
-</pre>
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="c"># You may edit and run the following lines</span>
+<span class="kn">import</span> <span class="nn">codecs</span><span class="o">,</span> <span class="nn">json</span>
+<span class="n">params</span> <span class="o">=</span> <span class="s">u&quot;&quot;&quot;</span>
+<span class="s">{</span>
+<span class="s">  &quot;arrange&quot;: null, </span>
+<span class="s">  &quot;call_limit&quot;: 10000, </span>
+<span class="s">  &quot;colors&quot;: &quot;bw&quot;, </span>
+<span class="s">  &quot;crossover_rate&quot;: 0.9, </span>
+<span class="s">  &quot;df&quot;: &quot;DF&quot;, </span>
+<span class="s">  &quot;disambiguation&quot;: &quot;annotations&quot;, </span>
+<span class="s">  &quot;encodings&quot;: [</span>
+<span class="s">    &quot;utf8&quot;, </span>
+<span class="s">    &quot;macroman&quot;</span>
+<span class="s">  ], </span>
+<span class="s">  &quot;extract&quot;: false, </span>
+<span class="s">  &quot;flip&quot;: null, </span>
+<span class="s">  &quot;guess_title&quot;: false, </span>
+<span class="s">  &quot;hide_annotations&quot;: false, </span>
+<span class="s">  &quot;image_format&quot;: &quot;svg&quot;, </span>
+<span class="s">  &quot;input&quot;: &quot;mocodo_notebook/sandbox.mcd&quot;, </span>
+<span class="s">  &quot;language&quot;: &quot;fr&quot;, </span>
+<span class="s">  &quot;max_generations&quot;: 300, </span>
+<span class="s">  &quot;max_objective&quot;: 15, </span>
+<span class="s">  &quot;min_objective&quot;: 0, </span>
+<span class="s">  &quot;mld&quot;: false, </span>
+<span class="s">  &quot;mutation_rate&quot;: 0.06, </span>
+<span class="s">  &quot;no_mcd&quot;: false, </span>
+<span class="s">  &quot;obfuscate&quot;: null, </span>
+<span class="s">  &quot;obfuscation_max_length&quot;: null, </span>
+<span class="s">  &quot;organic&quot;: false, </span>
+<span class="s">  &quot;output_dir&quot;: &quot;mocodo_notebook&quot;, </span>
+<span class="s">  &quot;plateau&quot;: 30, </span>
+<span class="s">  &quot;population_size&quot;: 1000, </span>
+<span class="s">  &quot;print_params&quot;: false, </span>
+<span class="s">  &quot;relations&quot;: [</span>
+<span class="s">    &quot;html&quot;, </span>
+<span class="s">    &quot;text&quot;</span>
+<span class="s">  ], </span>
+<span class="s">  &quot;replace&quot;: false, </span>
+<span class="s">  &quot;restore&quot;: false, </span>
+<span class="s">  &quot;sample_size&quot;: 7, </span>
+<span class="s">  &quot;scale&quot;: 1.0, </span>
+<span class="s">  &quot;seed&quot;: null, </span>
+<span class="s">  &quot;sep&quot;: &quot;,&quot;, </span>
+<span class="s">  &quot;shapes&quot;: &quot;copperplate&quot;, </span>
+<span class="s">  &quot;timeout&quot;: null, </span>
+<span class="s">  &quot;title&quot;: &quot;Sans titre&quot;, </span>
+<span class="s">  &quot;tkinter&quot;: false, </span>
+<span class="s">  &quot;verbose&quot;: false</span>
+<span class="s">}</span>
+<span class="s">&quot;&quot;&quot;</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s">&quot;Invalid JSON. Find out why on http://jsonlint.com&quot;</span><span class="p">)</span>
+<span class="k">with</span> <span class="n">codecs</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s">&quot;mocodo_notebook/params.json&quot;</span><span class="p">,</span> <span class="s">&quot;w&quot;</span><span class="p">,</span> <span class="s">&quot;utf8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">params</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+</pre></div>
 
+</div>
 </div>
 </div>
 
@@ -1540,7 +1556,7 @@ codecs.open(&quot;mocodo_notebook/params.json&quot;, &quot;w&quot;, &quot;utf8&q
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Copiez cette sortie dans une nouvelle cellule, modifiez-la à votre gré (attention au dernier couple clef-valeur, qui n'est pas terminé par une virgule) et exécutez-la pour créer un fichier bien nommé et au bon endroit (notez que la valeur de <code>--print_params</code> a été passée à <code>false</code> pour vous éviter de le faire à la main).</p>
+<p>Modifiez la variable <code>params</code> à votre gré en respectant la syntaxe <a href="http://json.org">JSON</a> (attention en particulier au dernier couple clef-valeur, qui n'est pas terminé par une virgule). Exécutez la cellule pour créer un fichier de nom et emplacement adéquats (notez que la valeur de <code>--print_params</code> a été passée à <code>false</code> pour vous éviter de le faire à la main).</p>
 
 </div>
 </div>

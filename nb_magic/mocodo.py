@@ -93,24 +93,35 @@ class MocodoMagics(Magics):
         if execute_command(options):
             if not display_diagrams():
                 if "--print_params" in options:
-                    print '# You may edit and run the following lines in a new cell\n\nimport codecs\nparams = u"""\n%s"""\nwith codecs.open("%s/params.json", "utf8", "w") as f:\n    f.write(params.strip())' % (stdoutdata, output_dir)
-                elif "--help" in options:
+                    form = '# You may edit and run the following lines\n'\
+                           'import codecs, json\n'\
+                           'params = u"""\n'\
+                           '%s"""\n'\
+                           'try:\n'\
+                           '    json.loads(params)\n'\
+                           'except:\n'\
+                           '    raise RuntimeError("Invalid JSON. Find out why on http://jsonlint.com")\n'\
+                           'with codecs.open("%s/params.json", "w", "utf8") as f:\n'\
+                           '    f.write(params.strip())'
+                    get_ipython().set_next_input(form % (stdoutdata, output_dir), replace = True)
+                    return
+                if "--help" in options:
                     print stdoutdata
-                else:
-                    if "--replace" in options:
-                        get_ipython().set_next_input("%%mocodo\n" + stdoutdata.rstrip(), replace = True)
-                        return
-                    print "%%mocodo"
-                    print stdoutdata.rstrip()
-                    if not notebook_options.no_mcd or notebook_options.mld:
-                        parser.add_argument("--arrange", nargs="?")
-                        parser.add_argument("--obfuscate", nargs="?")
-                        parser.add_argument("--flip", nargs="?")
-                        (_, options) = parser.parse_known_args(options)
-                        write_contents(input_path, stdoutdata.decode("utf8"))
-                        options.extend(["--input", input_path, "--output_dir", output_dir, "--image_format", "svg"])
-                        if execute_command(options):
-                            display_diagrams()
+                    return
+                if "--replace" in options:
+                    get_ipython().set_next_input("%%mocodo\n" + stdoutdata.rstrip(), replace = True)
+                    return
+                print "%%mocodo"
+                print stdoutdata.rstrip()
+                if not notebook_options.no_mcd or notebook_options.mld:
+                    parser.add_argument("--arrange", nargs="?")
+                    parser.add_argument("--obfuscate", nargs="?")
+                    parser.add_argument("--flip", nargs="?")
+                    (_, options) = parser.parse_known_args(options)
+                    write_contents(input_path, stdoutdata.decode("utf8"))
+                    options.extend(["--input", input_path, "--output_dir", output_dir, "--image_format", "svg"])
+                    if execute_command(options):
+                        display_diagrams()
 
 def load_ipython_extension(ipython):
     """Load the extension in IPython."""
