@@ -20,6 +20,7 @@ def main(mcd, common):
     result.append("# encoding: utf-8")
     result.append("# %s\n" % common.timestamp())
     result.append("import time, codecs\n")
+    result.append("""from math import hypot""")
     result.extend(common.process_geometry(mcd, style))
     result.append("card_max_width = %(card_max_width)s\ncard_max_height = %(card_max_height)s\ncard_margin = %(card_margin)s\narrow_width = %(arrow_width)s\narrow_half_height = %(arrow_half_height)s\narrow_axis = %(arrow_axis)s\n" % style)
     result.append(read_contents(os.path.join(params["script_directory"], "goodies.py")))
