@@ -30,7 +30,7 @@ def main(mcd, common):
         "round_rect": "round_rect(%(x)s,%(y)s,%(w)s,%(h)s,%(radius)s)",
         "line": "line(%(x0)s,%(y0)s,%(x1)s,%(y1)s)",
         "arrow": """arrow(%(x)s,%(y)s,%(a)s,%(b)s)""",
-        "line_arrow": """line_arrow(%(x0)s,%(y0)s,%(x1)s,%(y1)s,t[u"%(leg_identifier)s"])""",
+        "line_arrow": """line_arrow(%(x0)s,%(y0)s,%(w0)s,%(h0)s,%(x1)s,%(y1)s,%(w1)s,%(h1)s,t[u"%(leg_identifier)s"])""",
         "dash_line": "dash_line(%(x0)s,%(x1)s,%(y)s,%(dash_width)s)",
         "curve": "curve(%(x0)s,%(y0)s,%(x1)s,%(y1)s,%(x2)s,%(y2)s,%(x3)s,%(y3)s)",
         "curve_arrow": """curve_arrow(%(x0)s,%(y0)s,%(x1)s,%(y1)s,%(x2)s,%(y2)s,%(x3)s,%(y3)s,1-t[u"%(leg_identifier)s"])""",

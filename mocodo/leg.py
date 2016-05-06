@@ -147,8 +147,12 @@ class StraightLeg(Leg):
                     "key": u"line_arrow",
                     "x0": "ex",
                     "y0": "ey",
+                    "w0": self.entity.w / 2,
+                    "h0": self.entity.h / 2,
                     "x1": "x",
                     "y1": "y",
+                    "w1": self.association.w / 2,
+                    "h1": self.association.h / 2,
                     "leg_identifier": "%s,%s" % (self.association.name, self.entity_name),
                 }
             ])
@@ -164,10 +168,14 @@ class StraightLeg(Leg):
                 },
                 {
                     "key": u"line_arrow",
-                    "x0": "x",
-                    "y0": "y",
                     "x1": "ex",
                     "y1": "ey",
+                    "w1": self.entity.w / 2,
+                    "h1": self.entity.h / 2,
+                    "x0": "x",
+                    "y0": "y",
+                    "w0": self.association.w / 2,
+                    "h0": self.association.h / 2,
                     "leg_identifier": "%s,%s" % (self.association.name, self.entity_name),
                 }
             ])

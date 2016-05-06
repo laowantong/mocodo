@@ -9,7 +9,23 @@ def card_pos(ex, ey, ew, eh, ax, ay, k):
         (x0, x1) = sorted([ex + (y0 - ey) * (ax - ex) / (ay - ey), ex + (y1 - ey) * (ax - ex) / (ay - ey)])
         return ((x0 + x1 - card_max_width + k * abs(x1 - x0 + card_max_width)) / 2 + cmp(k, 0) * card_margin, min(y0, y1))
 
-def line_arrow(x0, y0, x1, y1, t):
+def visible_end(x0, y0, w0, h0, x1, y1):
+    (x, y) = (x1 - x0, y1 - y0)
+    (a, b) = (h0 * x, w0 * y)
+    if a > b:
+        if a > -b:
+            return (x0 + w0, y0 + y*w0/x)
+        else:
+            return (x0 - x*h0/y, y0 - h0)
+    else:
+        if a > -b:
+            return (x0 + x*h0/y, y0 + h0)
+        else:
+            return (x0 - w0, y0 - y*w0/x)
+
+def line_arrow(x0, y0, w0, h0, x1, y1, w1, h1, t):
+    ((x0, y0), (x1,y1)) = (visible_end(x0, y0, w0, h0, x1, y1), visible_end(x1, y1, w1, h1, x0, y0))
+    t += arrow_width / 2 / hypot(x1 - x0, y1 - y0)
     (x, y) = (t * x0 + (1 - t) * x1, t * y0 + (1 - t) * y1)
     return arrow(x, y, x1 - x0, y0 - y1)
 
