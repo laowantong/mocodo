@@ -7,7 +7,6 @@ from association import Association
 from entity import Entity
 from phantom import Phantom
 from diagram_link import DiagramLink
-from goodies import card_pos
 import font_metrics
 import itertools
 from collections import defaultdict

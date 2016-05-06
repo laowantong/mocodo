@@ -25,6 +25,8 @@
 "round_corner_radius"         : 30,
 "leg_stroke_depth"            : 2,
 "card_margin"                 : 10,
+"curvature_ratio"             : 0.45,
+"curvature_length"            : 30,
 "arrow_width"                 : 12,
 "arrow_half_height"           : 6,
 "arrow_axis"                  : 8,

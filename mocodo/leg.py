@@ -197,21 +197,25 @@ class CurvedLeg(Leg):
                 "stroke_depth": self.style["leg_stroke_depth"],
             })
         result.append({
+                "key": u"stroke_color",
+                "stroke_color": "leg_stroke_color",
+            })
+        result.append({
                 "key": u"env",
                 "env": [("ex", """cx[u"%s"]""" % self.entity.name), ("ey", """cy[u"%s"]""" % self.entity.name)],
             })
         result.append({
-                "key": u"stroke_color",
-                "stroke_color": "leg_stroke_color",
+                "key": u"env",
+                "env": [("d", "hypot(x-ex,y-ey)")],
             })
         result.append({
                 "key": u"curve",
                 "x0": "ex",
                 "y0": "ey",
-                "x1": "(3*ex+x+(y-ey)*%s)/4" % self.spin,
-                "y1": "(3*ey+y+(x-ex)*%s)/4" % self.spin,
-                "x2": "(3*x+ex+(y-ey)*%s)/4" % self.spin,
-                "y2": "(3*y+ey+(x-ex)*%s)/4" % self.spin,
+                "x1": "ex+(x-ex)*%s-%s*(%s*(y-ey)/d)" % (self.style["curvature_ratio"], self.spin, self.style["curvature_length"]),
+                "y1": "ey+(y-ey)*%s+%s*(%s*(x-ex)/d)" % (self.style["curvature_ratio"], self.spin, self.style["curvature_length"]),
+                "x2": "x+(ex-x)*%s-%s*(%s*(y-ey)/d)" % (self.style["curvature_ratio"], self.spin, self.style["curvature_length"]),
+                "y2": "y+(ey-y)*%s+%s*(%s*(x-ex)/d)" % (self.style["curvature_ratio"], self.spin, self.style["curvature_length"]),
                 "x3": "x",
                 "y3": "y",
             })
@@ -263,10 +267,10 @@ class CurvedLeg(Leg):
                     "key": u"curve_arrow",
                     "x0": "ex",
                     "y0": "ey",
-                    "x1": "(3*ex+x+(y-ey)*%s)/4" % self.spin,
-                    "y1": "(3*ey+y+(x-ex)*%s)/4" % self.spin,
-                    "x2": "(3*x+ex+(y-ey)*%s)/4" % self.spin,
-                    "y2": "(3*y+ey+(x-ex)*%s)/4" % self.spin,
+                    "x1": "ex+(x-ex)*%s-%s*(%s*(y-ey)/d)" % (self.style["curvature_ratio"], self.spin, self.style["curvature_length"]),
+                    "y1": "ey+(y-ey)*%s+%s*(%s*(x-ex)/d)" % (self.style["curvature_ratio"], self.spin, self.style["curvature_length"]),
+                    "x2": "x+(ex-x)*%s-%s*(%s*(y-ey)/d)" % (self.style["curvature_ratio"], self.spin, self.style["curvature_length"]),
+                    "y2": "y+(ey-y)*%s+%s*(%s*(x-ex)/d)" % (self.style["curvature_ratio"], self.spin, self.style["curvature_length"]),
                     "x3": "x",
                     "y3": "y",
                     "leg_identifier": self.identifier(),
@@ -286,10 +290,10 @@ class CurvedLeg(Leg):
                     "key": u"curve_arrow",
                     "x3": "ex",
                     "y3": "ey",
-                    "x2": "(3*ex+x+(y-ey)*%s)/4" % self.spin,
-                    "y2": "(3*ey+y+(x-ex)*%s)/4" % self.spin,
-                    "x1": "(3*x+ex+(y-ey)*%s)/4" % self.spin,
-                    "y1": "(3*y+ey+(x-ex)*%s)/4" % self.spin,
+                    "x2": "ex+(x-ex)*%s-%s*(%s*(y-ey)/d)" % (self.style["curvature_ratio"], self.spin, self.style["curvature_length"]),
+                    "y2": "ey+(y-ey)*%s+%s*(%s*(x-ex)/d)" % (self.style["curvature_ratio"], self.spin, self.style["curvature_length"]),
+                    "x1": "x+(ex-x)*%s-%s*(%s*(y-ey)/d)" % (self.style["curvature_ratio"], self.spin, self.style["curvature_length"]),
+                    "y1": "y+(ey-y)*%s+%s*(%s*(x-ex)/d)" % (self.style["curvature_ratio"], self.spin, self.style["curvature_length"]),
                     "x0": "x",
                     "y0": "y",
                     "leg_identifier": self.identifier(),
