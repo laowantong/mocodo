@@ -54,7 +54,7 @@ def curve(x0, y0, x1, y1, x2, y2, x3, y3):
 
 
 def arrow(x, y, a, b):
-    c = (a * a + b * b)**0.5
+    c = hypot(a, b)
     (cos, sin) = (a / c, b / c)
     beginpath(x, y)
     lineto(x + arrow_width * cos - arrow_half_height * sin,

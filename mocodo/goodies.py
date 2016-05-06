@@ -1,4 +1,6 @@
 
+from math import hypot
+
 def card_pos(ex, ey, ew, eh, ax, ay, k):
     if ax != ex and abs(float(ay - ey) / (ax - ex)) < float(eh) / ew:
         (x0, x1) = (ex + cmp(ax, ex) * (ew + card_margin), ex + cmp(ax, ex) * (ew + card_margin + card_max_width))
@@ -40,7 +42,7 @@ def curve_arrow(x0, y0, x1, y1, x2, y2, x3, y3, t):
     while t < u:
         m = (u + t) / 2.0
         (xc, yc) = bezier(m)
-        d = ((x - xc)**2 + (y - yc)**2)**0.5
+        d = hypot(x - xc, y - yc)
         if abs(d - arrow_axis) < 0.01:
             break
         if d > arrow_axis:

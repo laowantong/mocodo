@@ -11,7 +11,6 @@ def main(mcd, common):
     mcd.calculate_size(style)
     result = ["# %s\n" % common.timestamp()]
     result.extend(common.process_geometry(mcd, style))
-    result.append("""from math import hypot""")
     result.append("""\nfor c in colors: colors[c] = (color(*[int((colors[c]+"FF")[i:i+2],16)/255.0 for i in range(1,9,2)]) if colors[c] else None)""")
     result.append("card_max_width = %(card_max_width)s\ncard_max_height = %(card_max_height)s\ncard_margin = %(card_margin)s\narrow_width = %(arrow_width)s\narrow_half_height = %(arrow_half_height)s\narrow_axis = %(arrow_axis)s" % style)
     result.append(read_contents(os.path.join(params["script_directory"], "goodies.py")))
