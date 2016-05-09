@@ -72,7 +72,7 @@ def main(mcd, common):
                 elif d["key"] == "line_arrow":
                     result.append('path = line_arrow(%(x0)s,%(y0)s,%(w0)s,%(h0)s,%(x1)s,%(y1)s,%(w1)s,%(h1)s,t[u"%(leg_identifier)s"])' % d)
                 elif d["key"] == "curve_arrow":
-                    result.append('path = curve_arrow(%(x0)s,%(y0)s,%(x1)s,%(y1)s,%(x2)s,%(y2)s,%(x3)s,%(y3)s,t[u"%(leg_identifier)s"])' % d)
+                    result.append('path = curve_arrow(%(x0)s,%(y0)s,%(w0)s,%(h0)s,%(x1)s,%(y1)s,%(x2)s,%(y2)s,%(x3)s,%(y3)s,%(w3)s,%(h3)s,1-t[u"%(leg_identifier)s"])' % d)
                 elif d["key"] in ("color", "stroke_color"):
                     others[d["key"]] = "colors['%s']" % d[d["key"]]
                 elif d["key"] == "stroke_depth":

@@ -106,7 +106,7 @@ class Common:
             ("cx", [(box.name, box.x + box.w / 2) for row in mcd.rows for box in row if box.kind != "phantom"]),
             ("cy", [(box.name, box.y + box.h / 2) for row in mcd.rows for box in row if box.kind != "phantom"]),
             ("k", [(leg.identifier(), leg.value()) for row in mcd.rows for box in row for leg in box.legs]),
-            ("t", [(leg.identifier(), 0.5) for row in mcd.rows for box in row for leg in box.legs if leg.arrow]),
+            ("t", [(leg.identifier(), 1.0) for row in mcd.rows for box in row for leg in box.legs if leg.arrow]),
             ("colors", [((c, style[c]) if style[c] else (c, None)) for c in sorted(style.keys()) if c.endswith("_color")]),
         ]
         if self.params.get("extract"): # Generate a separated JSON file for the geometry

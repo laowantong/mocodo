@@ -275,12 +275,16 @@ class CurvedLeg(Leg):
                     "key": u"curve_arrow",
                     "x0": "ex",
                     "y0": "ey",
+                    "w0": self.entity.w / 2,
+                    "h0": self.entity.h / 2,
                     "x1": "ex+(x-ex)*%s-%s*(%s*(y-ey)/d)" % (self.style["curvature_ratio"], self.spin, self.style["curvature_length"]),
                     "y1": "ey+(y-ey)*%s+%s*(%s*(x-ex)/d)" % (self.style["curvature_ratio"], self.spin, self.style["curvature_length"]),
                     "x2": "x+(ex-x)*%s-%s*(%s*(y-ey)/d)" % (self.style["curvature_ratio"], self.spin, self.style["curvature_length"]),
                     "y2": "y+(ey-y)*%s+%s*(%s*(x-ex)/d)" % (self.style["curvature_ratio"], self.spin, self.style["curvature_length"]),
                     "x3": "x",
                     "y3": "y",
+                    "w3": self.association.w / 2,
+                    "h3": self.association.h / 2,
                     "leg_identifier": self.identifier(),
                 }
             ])
@@ -298,12 +302,16 @@ class CurvedLeg(Leg):
                     "key": u"curve_arrow",
                     "x3": "ex",
                     "y3": "ey",
+                    "w3": self.entity.w / 2,
+                    "h3": self.entity.h / 2,
                     "x2": "ex+(x-ex)*%s-%s*(%s*(y-ey)/d)" % (self.style["curvature_ratio"], self.spin, self.style["curvature_length"]),
                     "y2": "ey+(y-ey)*%s+%s*(%s*(x-ex)/d)" % (self.style["curvature_ratio"], self.spin, self.style["curvature_length"]),
                     "x1": "x+(ex-x)*%s-%s*(%s*(y-ey)/d)" % (self.style["curvature_ratio"], self.spin, self.style["curvature_length"]),
                     "y1": "y+(ey-y)*%s+%s*(%s*(x-ex)/d)" % (self.style["curvature_ratio"], self.spin, self.style["curvature_length"]),
                     "x0": "x",
                     "y0": "y",
+                    "w0": self.association.w / 2,
+                    "h0": self.association.h / 2,
                     "leg_identifier": self.identifier(),
                 }
             ])
