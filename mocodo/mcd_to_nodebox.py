@@ -36,6 +36,7 @@ def main(mcd, common):
         "text": """fill(colors["%(text_color)s"]);font("%(family)s",%(size)s);text(u"%(text)s",%(x)s,%(y)s)""",
         "card": """(tx,ty)=card_pos(%(ex)s,%(ey)s,%(ew)s,%(eh)s,%(ax)s,%(ay)s,k[u"%(leg_identifier)s"]);fill(colors["%(text_color)s"]);font("%(family)s",%(size)s);text(u"%(text)s",tx,ty)""",
         "annotated_card": """(tx,ty)=card_pos(%(ex)s,%(ey)s,%(ew)s,%(eh)s,%(ax)s,%(ay)s,k[u"%(leg_identifier)s"]);fill(colors["%(text_color)s"]);font("%(family)s",%(size)s);text(u"%(text)s",tx,ty)""",
+        "card_underline": """line(%(x1)s,%(y1)s,%(x2)s,%(y1)s)""",
     }
     for d in mcd.description():
         try:
