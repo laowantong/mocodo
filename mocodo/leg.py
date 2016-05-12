@@ -29,18 +29,28 @@ def html_escape(text):
 
 class Leg:
 
-    def __init__(self, association, card, entity_name):
+    def __init__(self, association, card, entity_name, params):
         self.association = association
         self.may_identify = not entity_name.startswith("/")
         if not self.may_identify:
             entity_name = entity_name[1:]
         self.entity_name = entity_name
         (self.cards, self.arrow, self.annotation) = match_card(card).groups()
+        self.underlined_card = False
         self.strengthen = self.cards == "_11"
         if self.strengthen:
             self.cards = "11"
+            if params["strengthen_card"].startswith("_") and params["strengthen_card"].endswith("_"):
+                self.underlined_card = True
+                self.cardinalities = params["strengthen_card"][1:-1]
+            else:
+                self.cardinalities = params["strengthen_card"]
         else:
             self.cards = auto_correction.get(self.cards, self.cards)
+            if self.cards.startswith("XX"):
+                self.cardinalities = u""
+            else:
+                self.cardinalities = params["card_format"].format(min_card=self.cards[0], max_card=self.cards[1])
         if self.annotation:
             self.annotation = html_escape(self.annotation.replace("<<<protected-comma>>>", ",").replace("<<<protected-colon>>>", ":"))
 
@@ -68,14 +78,11 @@ class Leg:
             (x, y) = ((x0 + x1 - self.style["card_max_width"] + k * abs(x1 - x0 + self.style["card_max_width"])) / 2 + cmp(k, 0) * self.style["card_margin"], min(y0, y1))
         return (int(x), int(y), int(x + self.w), int(y + self.h))
 
-    def set_card_sep(self, card_sep):
-        self.cardinalities = (u"" if self.cards.startswith("XX") else self.cards[0] + card_sep + self.cards[1])
-
 
 class StraightLeg(Leg):
 
-    def __init__(self, association, card, entity_name):
-        Leg.__init__(self, association, card, entity_name)
+    def __init__(self, association, card, entity_name, params):
+        Leg.__init__(self, association, card, entity_name, params)
         self.num = 0
 
     def description(self):
@@ -118,7 +125,7 @@ class StraightLeg(Leg):
                 "key": u"annotated_card",
                 "annotation": self.annotation,
             })
-        if self.strengthen:
+        if self.underlined_card:
             result.append({
                     "key": u"stroke_depth",
                     "stroke_depth": self.style["card_underline_depth"],
@@ -182,8 +189,8 @@ class StraightLeg(Leg):
 
 class CurvedLeg(Leg):
 
-    def __init__(self, association, card, entity_name, count, num):
-        Leg.__init__(self, association, card, entity_name)
+    def __init__(self, association, card, entity_name, count, num, params):
+        Leg.__init__(self, association, card, entity_name, params)
         self.count = count
         self.num = num
         self.spin = float(2 * self.num) / (self.count - 1) - 1

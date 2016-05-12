@@ -169,7 +169,8 @@ def parsed_arguments():
     mocodo_group.add_argument("--restore", action="store_true", help="recreate a pristine version of the files 'sandbox.mcd' and 'params.json' in the input directory, then exit")
     
     aspect_group.add_argument("--df", metavar="STR", type=unicode, default=u"DF", help="the acronym to be circled in a functional dependency")
-    aspect_group.add_argument("--sep", metavar="STR", type=unicode, nargs="?", const=u" ", default=u",", help="separator between minimal and maximal cardinalities")
+    aspect_group.add_argument("--card_format", metavar="STR", type=unicode, nargs="?", default=u"{min_card},{max_card}", help="format string for minimal and maximal cardinalities")
+    aspect_group.add_argument("--strengthen_card", metavar="STR", type=unicode, nargs="?", default=u"_1,1_", help="string for relative cardinalities")
     aspect_group.add_argument("--tkinter", action="store_true", help="use Tkinter to calculate the pixel-dimensions of the labels")
     aspect_group.add_argument("--colors", metavar="PATH", default="bw", help="the color palette to use when generating the drawing. Name (without extension) of a file located in the directory 'colors', or path to a personal file")
     aspect_group.add_argument("--shapes", metavar="PATH", help="specification of the fonts, dimensions, etc. Name (without extension) of a file located in the directory 'shapes', or path to a personal file")

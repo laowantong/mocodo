@@ -72,7 +72,6 @@ class Mcd:
                             raise RuntimeError(("Mocodo Err.20 - " + _(u'Association "{association_1}" linked to another association "{association_2}"!').format(association_1=association.name, association_2=leg.entity_name)).encode("utf8"))
                         else:
                             raise RuntimeError(("Mocodo Err.1 - " + _(u'Association "{association}" linked to an unknown entity "{entity}"!').format(association=association.name, entity=leg.entity_name)).encode("utf8"))
-                    leg.set_card_sep(params["sep"])
         
         def add_attributes_and_strength():
             strengthen_legs = dict((entity_name, []) for entity_name in self.entities)
@@ -111,7 +110,7 @@ class Mcd:
         
         
         font_metrics.FontMetrics = font_metrics.font_metrics_factory(params)
-        self.card_longest_string = "M%sM" % params["sep"]
+        self.card_longest_string = params["card_format"].format(min_card="M", max_card="M")
         phantom_counter = itertools.count()
         parse_clauses()
         add_legs()
