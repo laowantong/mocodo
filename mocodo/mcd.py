@@ -72,7 +72,6 @@ class Mcd:
                             raise RuntimeError(("Mocodo Err.20 - " + _(u'Association "{association_1}" linked to another association "{association_2}"!').format(association_1=association.name, association_2=leg.entity_name)).encode("utf8"))
                         else:
                             raise RuntimeError(("Mocodo Err.1 - " + _(u'Association "{association}" linked to an unknown entity "{entity}"!').format(association=association.name, entity=leg.entity_name)).encode("utf8"))
-                    leg.set_card_sep(params["sep"])
         
         def add_attributes_and_strength():
             strengthen_legs = dict((entity_name, []) for entity_name in self.entities)
@@ -111,7 +110,6 @@ class Mcd:
         
         
         font_metrics.FontMetrics = font_metrics.font_metrics_factory(params)
-        self.card_longest_string = "M%sM" % params["sep"]
         phantom_counter = itertools.count()
         parse_clauses()
         add_legs()
@@ -197,6 +195,14 @@ class Mcd:
         return compress_colons(":", result)
     
     def calculate_size(self, style):
+        def card_max_width():
+            cardinalities = set()
+            for association in self.associations.values():
+                for leg in association.legs:
+                    cardinalities.add(leg.cardinalities)
+            get_pixel_width = font_metrics.FontMetrics(style["card_font"]).get_pixel_width
+            return max(map(get_pixel_width, cardinalities))
+        #
         def calculate_sizes():
             for row in self.rows:
                 for (i, box) in enumerate(row):
@@ -272,7 +278,7 @@ class Mcd:
             self.w = right_most - left_most
             self.h = bottom_most - top_most
 
-        style["card_max_width"] = font_metrics.FontMetrics(style["card_font"]).get_pixel_width(self.card_longest_string)
+        style["card_max_width"] = card_max_width()
         style["card_max_height"] = font_metrics.FontMetrics(style["card_font"]).get_pixel_height()
         join_width  = 2 * style["card_margin"] + style["card_max_width"]
         join_height = 2 * style["card_margin"] + style["card_max_height"]
