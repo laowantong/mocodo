@@ -1,0 +1,92 @@
+{
+  "extension": "_verbose.md",
+  "compose_primary_key": "<ins>{label}</ins><item>Le champ _{label}_ fait partie de la clef primaire de la table<primary></primary>. C'était déjà un identifiant de l'entité _{this_relation_name}_.</item>",
+  "compose_normal_attribute": "{label}<item>Le champ _{label}_ était déjà un simple attribut de l'entité _{this_relation_name}_.</item>",
+  "compose_foreign_key": "_{label}_<item>Le champ _{label}_ est une clef étrangère. Il a migré à partir de l'entité _{primary_relation_name}_ par l'association de dépendance fonctionnelle _{association_name}_ en perdant son caractère identifiant.</item>",
+  "compose_foreign_attribute": "{label}<item>Le champ _{label}_ a migré à partir de l'association de dépendance fonctionnelle _{association_name}_.</item>",
+  "compose_foreign_primary_key": "<ins>_{label}_</ins><item>Le champ _{label}_ fait partie de la clef primaire de la table<primary></primary>. C'est une clef étrangère qui a migré directement à partir de l'entité _{primary_relation_name}_.</item>",
+  "compose_association_attribute": "{label}<item>Le champ _{label}_ était déjà un simple attribut de l'association _{this_relation_name}_.</item>",
+  "compose_strengthening_primary_key": "<ins>_{label}_</ins><item>Le champ _{label}_ fait partie de la clef primaire de la table<primary></primary>. Il a migré à partir de l'entité _{primary_relation_name}_ pour renforcer l'identifiant.</item>",
+  "compose_demoted_foreign_key": "_{label}_<item>Le champ _{label}_ est une clef étrangère issue de l'entité _{primary_relation_name}_. Il devrait normalement faire partie de l'identifiant de _{this_relation_name}_, mais a été rétrogradé explicitement au rang de simple attribut.</item>",
+  "compose_promoting_foreign_key": "_{label}_<item>Le champ _{label}_ est une clef étrangère issue de l'entité _{primary_relation_name}_. Il devrait normalement migrer à travers l'association _{this_relation_name}_, mais celle-ci a été explicitement promue au rang de table.</item>",
+  "compose_relation": "**{this_relation_name}** ({columns})  ",
+  "transform_single_column_relation": [
+    {
+      "search": "(?s)(.+)$",
+      "replace": "\\1\n- **Avertissement.** Cette table ne comportant qu'un seul champ, on peut envisager de la supprimer."
+    }
+  ],
+  "transform_relation": [
+    {
+      "search": "(?s)<item>(.+?)</item>(.+)",
+      "replace": "\\2\n- \\1  ",
+      "iterated": true
+    },
+    {
+      "search": "(- Le champ )(.+?)( était déjà un simple attribut de .+?.)\n\\1(.+?)\\3",
+      "replace": "\\1\\2, \\4\\3",
+      "iterated": true
+    },
+    {
+      "search": "- Le champ (.+), (.+?) était déjà un simple attribut( de .+?.)",
+      "replace": "- Les champs \\1 et \\2 étaient déjà de simples attributs\\3"
+    },
+    {
+      "search": "(- Le champ )(.+?)( est une clef étrangère\\. Il a migré à partir de l'entité .+? par l'association de dépendance fonctionnelle .+? en perdant son caractère identifiant.)\n\\1(.+?)\\3",
+      "replace": "\\1\\2, \\4\\3",
+      "iterated": true
+    },
+    {
+      "search": "- Le champ (.+), (.+?) est une clef étrangère\\. Il a (migré à partir de l'entité .+? par l'association de dépendance fonctionnelle .+? en perdant) son (caractère identifiant.)",
+      "replace": "- Les champs \\1 et \\2 sont des clefs étrangères. Ils ont \\3 leur \\4"
+    },
+    {
+      "search": "(- Le champ )(.+?)( fait partie de la clef primaire de la table<primary></primary>.+?)\n\\1(.+?)\\3",
+      "replace": "\\1\\2, \\4\\3",
+      "iterated": true
+    },
+    {
+      "search": "- Le champ (.+), (.+?) fait partie de la clef primaire de la table<primary></primary>. C'est une clef étrangère qui a (migré directement à partir de l'entité .+?)",
+      "replace": "- Les champs \\1 et \\2 font partie de la clef primaire de la table<primary></primary>. Ce sont des clefs étrangères qui ont \\3"
+    },
+    {
+      "search": "- Le champ (.+), (.+?) fait partie de la clef primaire de la table<primary></primary>. C'était déjà un identifiant (de l'entité .+?)",
+      "replace": "- Les champs \\1 et \\2 font partie de la clef primaire de la table<primary></primary>. C'était déjà des identifiants \\3"
+    },
+    {
+      "search": "- Le champ (.+), (.+?) fait partie de la clef primaire de la table<primary></primary>. Il a (migré .+?)",
+      "replace": "- Les champs \\1 et \\2 font partie de la clef primaire de la table<primary></primary>. Ils ont \\3"
+    },
+    {
+      "search": "$",
+      "replace": "<primary_count></primary_count>"
+    },
+    {
+      "search": "(?s)<primary></primary>(.+)</primary_count>",
+      "replace": "\\1I</primary_count>",
+      "iterated": true
+    },
+    {
+      "search": "(?s)fait partie de( la clef primaire de la table.+)<primary_count>I</primary_count>",
+      "replace": "constitue\\1"
+    },
+    {
+      "search": "(?s)font partie de( la clef primaire de la table.+)<primary_count>I</primary_count>",
+      "replace": "constituent\\1"
+    },
+    {
+      "search": "<primary_count>I+</primary_count>",
+      "replace": ""
+    },
+    {
+      "search": "$",
+      "replace": "\n"
+    }
+  ],
+  "transform_relational_schema": [
+    {
+      "search": "\\s+$",
+      "replace": ""
+    }
+  ]
+}

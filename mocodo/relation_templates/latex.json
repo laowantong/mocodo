@@ -1,0 +1,35 @@
+{
+  "extension": ".tex",
+  "transform_attribute": [
+    {
+      "search": "_",
+      "replace": "\\_"
+    },
+    {
+      "search": "\\$",
+      "replace": "\\$"
+    }
+  ],
+  "transform_relation_name": [
+    {
+      "search": "_",
+      "replace": "\\_"
+    },
+    {
+      "search": "\\$",
+      "replace": "\\$"
+    }
+  ],
+  "compose_primary_key": "\\prim{{{label}}}",
+  "compose_normal_attribute": "\\attr{{{label}}}",
+  "compose_foreign_key": "\\foreign{{{label}}}",
+  "compose_foreign_primary_key": "\\foreign{{\\prim{{{label}}}}}",
+  "compose_relation": "  {this_relation_name_titlecase} & ({columns})\\\\",
+  "transform_single_column_relation": [
+    {
+      "search": "  (.+)",
+      "replace": "% \\1"
+    }
+  ],
+  "compose_relational_schema": "% Copy this before \\begin{{document}}\n\n\\usepackage[normalem]{{ulem}}\n\\newenvironment{{mld}}\n  {{\\par\\begin{{minipage}}{{\\linewidth}}\\begin{{tabular}}{{rp{{0.7\\linewidth}}}}}}\n  {{\\end{{tabular}}\\end{{minipage}}\\par}}\n\\newcommand{{\\relat}}[1]{{\\textsc{{#1}}}}\n\\newcommand{{\\attr}}[1]{{\\emph{{#1}}}}\n\\newcommand{{\\prim}}[1]{{\\uline{{#1}}}}\n\\newcommand{{\\foreign}}[1]{{\\#\\textsl{{#1}}}}\n\n% Copy that after \\begin{{document}}\n\n\\begin{{mld}}\n{relations}\n\\end{{mld}}"
+}

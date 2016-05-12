@@ -1,0 +1,18 @@
+{
+  "entity_attribute_text_color": "#000000", 
+  "entity_stroke_color": "#66c2a5", 
+  "entity_cartouche_text_color": "#000000", 
+  "entity_cartouche_color": "#abdda4", 
+  "annotation_color": "#d53e4f", 
+  "association_stroke_color": "#f46d43", 
+  "association_cartouche_text_color": "#000000", 
+  "entity_color": "#e6f598", 
+  "annotation_opacity": 0.9, 
+  "card_text_color": "#3288bd", 
+  "annotation_text_color": "#ffffbf", 
+  "association_color": "#fee08b", 
+  "leg_stroke_color": "#f46d43", 
+  "background_color": "#ffffbf", 
+  "association_attribute_text_color": "#000000", 
+  "association_cartouche_color": "#fdae61"
+}

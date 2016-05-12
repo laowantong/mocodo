@@ -1,0 +1,44 @@
+{
+  "extension": "_data_dict.md",
+  "compose_primary_key": "| {label} | _{data_type}_ |\n",
+  "compose_normal_attribute": "| {label} | _{data_type}_ |\n",
+  "compose_foreign_key": "",
+  "compose_foreign_attribute": "| {label} | _{data_type}_ |\n",
+  "compose_foreign_primary_key": "",
+  "column_separator": "",
+  "compose_relation": "{columns}",
+  "relation_separator": "",
+  "compose_relational_schema": "| Attribut | Informations |\n|----------|-------------|\n{relations}",
+  "transform_relational_schema": [
+    {
+      "search": "\\|  *(\\.\\d+)? \\|.+\n",
+      "replace": ""
+    },
+    {
+      "search": "(?s)\\| Attribut \\| Informations \\|\n\\|----------\\|-------------\\|\n(.+ \\| _None_ \\|\n)",
+      "replace": "\\1"
+    },
+    {
+      "search": "(\\| .+ \\| _None_ \\|\n)((?:.+\n)*)\\| (.+) \\| (.+) \\|\n",
+      "replace": "\\1\\2- \\3 : \\4\n",
+      "iterated": true
+    },
+    {
+      "search": "\\| (.+) \\| (.+) \\|\n((?:.+\n)*)(\\| .+ \\| _None_ \\|\n)",
+      "replace": "- \\1 : \\2\n\\3\\4",
+      "iterated": true
+    },
+    {
+      "search": "\\| (.+) \\| _None_ \\|\n",
+      "replace": "- \\1\n"
+    },
+    {
+      "search": "- (.+) : _None_\n",
+      "replace": "- \\1\n"
+    },
+    {
+      "search": "\n+$",
+      "replace": ""
+    }
+  ]
+}

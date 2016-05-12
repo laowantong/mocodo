@@ -1,0 +1,127 @@
+{
+  "extension": "_sqlite.sql",
+  "transform_attribute": [
+    {
+      "search": " ",
+      "replace": "_"
+    },
+    {
+      "search": "\\.",
+      "replace": ""
+    }
+  ],
+  "compose_label_disambiguated_by_number": "{label}_{disambiguation_number}",
+  "transform_title": [
+    {
+      "search": " ",
+      "replace": "_"
+    },
+    {
+      "search": "\\.",
+      "replace": ""
+    }
+  ],
+  "transform_relation_name": [
+    {
+      "search": " ",
+      "replace": "_"
+    },
+    {
+      "search": "\\.",
+      "replace": ""
+    }
+  ],
+  "compose_primary_key": "\"{label_lowercase}\" {data_type},\nADD_PRIMARY_KEY \"{label_lowercase}\"",
+  "compose_normal_attribute": "\"{label_lowercase}\" {data_type}",
+  "compose_foreign_key": "\"{label_lowercase}\" {data_type},\nADD_FOREIGN_KEY (\"{label_lowercase}\") REFERENCES \"{primary_relation_name_uppercase}\" (\"{raw_label_lowercase}\")",
+  "compose_foreign_primary_key": "\"{label_lowercase}\" {data_type},\nADD_PRIMARY_KEY \"{label_lowercase}\",\nADD_FOREIGN_KEY (\"{label_lowercase}\") REFERENCES \"{primary_relation_name_uppercase}\" (\"{raw_label_lowercase}\")",
+  "column_separator": ",\n  ",
+  "compose_relation": "CREATE TABLE \"{this_relation_name_uppercase}\" (\n  {columns},\n  PRIMARY KEY (),\n);",
+  "transform_single_column_relation": [
+    {
+      "search": "(?s)(.+)",
+      "replace": "/*\n\\1\n*/"
+    }
+  ],
+  "transform_relation": [
+    {
+      "comment": "Replace the missing data types with an arbitrary default.",
+      "search": " None,\n",
+      "replace": " VARCHAR(42),\n"
+    },
+    {
+      "comment": "Concatenate the primary keys and move them to the end of the table.",
+      "search": "(?sm)ADD_PRIMARY_KEY ([^\n]+)\n(.+?PRIMARY KEY[^\n]+?)\\)",
+      "replace": "\\2\\1 )",
+      "iterated": true
+    },
+    {
+      "search": ", \\)",
+      "replace": ")"
+    },
+    {
+      "comment": "Move the foreign keys to the end of the table.",
+      "search": "(?sm)ADD_FOREIGN_KEY ([^\n]+)\n(.+)^\\)",
+      "replace": "\\2  FOREIGN KEY \\1\n)",
+      "iterated": true
+    },
+    {
+      "comment": "Prefix any 'FOREIGN KEY fk1 REFERENCES T (fk1) \n FOREIGN KEY fk2 REFERENCES T (fk2)' with 'FOREIGN KEY (fk1, fk2) REFERENCES T (fk1, fk2)'",
+      "search": "FOREIGN KEY \\((.+?)\\) REFERENCES (.+?) \\((.+?)\\),\n((?:.+\n)*?)  FOREIGN KEY \\((.+?)\\) REFERENCES \\2 \\((.+?)\\),\n",
+      "replace": "FOREIGN KEY (\\1, \\5) REFERENCES \\2 (\\3, \\6),\n- FOREIGN KEY (\\1) REFERENCES \\2 (\\3),\n- FOREIGN KEY (\\5) REFERENCES \\2 (\\6),\n\\4",
+      "iterated": true
+    },
+    {
+      "comment": "Prefix any FOREIGN KEY with a minus sign = mark it as unprotected.",
+      "search": "(?m)^  FOREIGN KEY",
+      "replace": "- FOREIGN KEY"
+    }
+  ],
+  "relation_separator": "\n\n",
+  "compose_relational_schema": ".open \"{title_uppercase}\";\n\n{relations}",
+  "transform_relational_schema": [
+    {
+      "comment": "Suppress the minus sign before any FOREIGN KEY line which references an actual PRIMARY KEY declared before this line.",
+      "search": "(?m)^(CREATE TABLE (.+) \\(\n((?:.+\n)*)^  PRIMARY KEY (.+),\n((?:.*\n)*))-( FOREIGN KEY .+ REFERENCES \\2 \\4,)",
+      "replace": "\\1 \\6",
+      "iterated": true
+    },
+    {
+      "comment": "Suppress the minus sign before any FOREIGN KEY line which references an actual PRIMARY KEY declared after this line = protect it.",
+      "search": "(?m)^-( FOREIGN KEY .+ REFERENCES ([^\\(]+?) (.+),\n(?:.*\n)*CREATE TABLE \\2 \\(\n(?:.+\n)*^  PRIMARY KEY \\3,\n)",
+      "replace": " \\1",
+      "iterated": true
+    },
+    {
+      "comment": "Suppress any unprotected line = still starting with a minus sign.",
+      "search": "(?m)^-.+\n",
+      "replace": ""
+    },
+    {
+      "comment": "Comment out foreign keys referencing commented tables above.",
+      "search": "(?sm)(/\\*\nCREATE TABLE (.+?) \\(\n.*^  )(FOREIGN KEY [^\n]+ REFERENCES \\2)",
+      "replace": "\\1-- \\3",
+      "iterated": true
+    },
+    {
+      "comment": "Comment out foreign keys referencing commented tables below.",
+      "search": "(?m)^  (FOREIGN KEY .+ REFERENCES (.+?) \\(.+\n(?:.*\n)*/\\*\nCREATE TABLE \\2 \\()",
+      "replace": "  -- \\1",
+      "iterated": true
+    },
+    {
+      "search": ",\n\\)",
+      "replace": "\n)"
+    },
+    {
+      "comment": "Ensure commented out foreign keys don't leave any orphan comma on the previous line.",
+      "search": ",\n  --(.+\\)\n)",
+      "replace": "\n  --,\\1",
+      "iterated": true
+    },
+    {
+      "search": "\n+$",
+      "replace": ""
+    }
+  ]
+}

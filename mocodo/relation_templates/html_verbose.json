@@ -1,0 +1,126 @@
+{
+  "extension": "_verbose.html",
+  "transform_attribute": [
+    {
+      "search": "&",
+      "replace": "&amp;"
+    },
+    {
+      "search": ">",
+      "replace": "&gt;"
+    },
+    {
+      "search": "<",
+      "replace": "&lt;"
+    }
+  ],
+  "transform_relation_name": [
+    {
+      "search": "&",
+      "replace": "&amp;"
+    },
+    {
+      "search": ">",
+      "replace": "&gt;"
+    },
+    {
+      "search": "<",
+      "replace": "&lt;"
+    }
+  ],
+  "compose_primary_key": "<span class='primary'>{label}</span><item>Le champ <i>{label}</i> fait partie de la clef primaire de la table<primary></primary>. C'était déjà un identifiant de l'entité <i>{this_relation_name}</i>.</item>",
+  "compose_normal_attribute": "<span class='normal'>{label}</span><item>Le champ <i>{label}</i> était déjà un simple attribut de l'entité <i>{this_relation_name}</i>.</item>",
+  "compose_foreign_key": "<span class='foreign'>{label}</span><item>Le champ <i>{label}</i> est une clef étrangère. Il a migré à partir de l'entité <i>{primary_relation_name}</i> par l'association de dépendance fonctionnelle <i>{association_name}</i> en perdant son caractère identifiant.</item>",
+  "compose_foreign_attribute": "<span class='normal'>{label}</span><item>Le champ <i>{label}</i> a migré à partir de l'association de dépendance fonctionnelle <i>{association_name}</i>.</item>",
+  "compose_foreign_primary_key": "<span class='foreign primary'>{label}</span><item>Le champ <i>{label}</i> fait partie de la clef primaire de la table<primary></primary>. C'est une clef étrangère qui a migré directement à partir de l'entité <i>{primary_relation_name}</i>.</item>",
+  "compose_association_attribute": "<span class='normal'>{label}</span><item>Le champ <i>{label}</i> était déjà un simple attribut de l'association <i>{this_relation_name}</i>.</item>",
+  "compose_strengthening_primary_key": "<span class='foreign primary'>{label}</span><item>Le champ <i>{label}</i> fait partie de la clef primaire de la table<primary></primary>. Il a migré à partir de l'entité <i>{primary_relation_name}</i> pour renforcer l'identifiant.</item>",
+  "compose_demoted_foreign_key": "<span class='foreign'>{label}</span><item>Le champ <i>{label}</i> est une clef étrangère issue de l'entité <i>{primary_relation_name}</i>. Il devrait normalement faire partie de l'identifiant de <i>{this_relation_name}</i>, mais a été rétrogradé explicitement au rang de simple attribut.</item>",
+  "compose_promoting_foreign_key": "<span class='foreign'>{label}</span><item>Le champ <i>{label}</i> est une clef étrangère issue de l'entité <i>{primary_relation_name}</i>. Il devrait normalement migrer à travers l'association <i>{this_relation_name}</i>, mais celle-ci a été explicitement promue au rang de table.</item>",
+  "column_separator": ",\n    ",
+  "compose_relation": "<div>\n  <span class='relation'>{this_relation_name}</span> (\n    {columns}\n  )\n</div>",
+  "transform_single_column_relation": [
+    {
+      "search": "(?s)(.+)$",
+      "replace": "\\1\n    <li><strong>Avertissement.</strong> Cette table ne comportant qu'un seul champ, on peut envisager de la supprimer.</li>"
+    }
+  ],
+  "transform_relation": [
+    {
+      "search": "(?s)<item>(.+?)</item>(.+)",
+      "replace": "\\2\n    <li>\\1</li>",
+      "iterated": true
+    },
+    {
+      "search": "(    <li>Le champ )(.+?)( était déjà un simple attribut de .+?.)\n\\1(.+?)\\3",
+      "replace": "\\1\\2, \\4\\3",
+      "iterated": true
+    },
+    {
+      "search": "    <li>Le champ (.+), (.+?) était déjà un simple attribut( de .+?.)",
+      "replace": "    <li>Les champs \\1 et \\2 étaient déjà de simples attributs\\3"
+    },
+    {
+      "search": "(    <li>Le champ )(.+?)( est une clef étrangère\\. Il a migré à partir de l'entité .+? par l'association de dépendance fonctionnelle .+? en perdant son caractère identifiant.)\n\\1(.+?)\\3",
+      "replace": "\\1\\2, \\4\\3",
+      "iterated": true
+    },
+    {
+      "search": "    <li>Le champ (.+), (.+?) est une clef étrangère\\. Il a (migré à partir de l'entité .+? par l'association de dépendance fonctionnelle .+? en perdant) son (caractère identifiant.)",
+      "replace": "    <li>Les champs \\1 et \\2 sont des clefs étrangères. Ils ont \\3 leur \\4"
+    },
+    {
+      "search": "(    <li>Le champ )(.+?)( fait partie de la clef primaire de la table<primary></primary>.+?)\n\\1(.+?)\\3",
+      "replace": "\\1\\2, \\4\\3",
+      "iterated": true
+    },
+    {
+      "search": "    <li>Le champ (.+), (.+?) fait partie de la clef primaire de la table<primary></primary>. C'est une clef étrangère qui a (migré directement à partir de l'entité .+?)",
+      "replace": "    <li>Les champs \\1 et \\2 font partie de la clef primaire de la table<primary></primary>. Ce sont des clefs étrangères qui ont \\3"
+    },
+    {
+      "search": "    <li>Le champ (.+), (.+?) fait partie de la clef primaire de la table<primary></primary>. C'était déjà un identifiant (de l'entité .+?)",
+      "replace": "    <li>Les champs \\1 et \\2 font partie de la clef primaire de la table<primary></primary>. C'était déjà des identifiants \\3"
+    },
+    {
+      "search": "    <li>Le champ (.+), (.+?) fait partie de la clef primaire de la table<primary></primary>. Il a (migré .+?)",
+      "replace": "    <li>Les champs \\1 et \\2 font partie de la clef primaire de la table<primary></primary>. Ils ont \\3"
+    },
+    {
+      "search": "$",
+      "replace": "<primary_count></primary_count>"
+    },
+    {
+      "search": "(?s)<primary></primary>(.+)</primary_count>",
+      "replace": "\\1I</primary_count>",
+      "iterated": true
+    },
+    {
+      "search": "(?s)fait partie de( la clef primaire de la table.+)<primary_count>I</primary_count>",
+      "replace": "constitue\\1"
+    },
+    {
+      "search": "(?s)font partie de( la clef primaire de la table.+)<primary_count>I</primary_count>",
+      "replace": "constituent\\1"
+    },
+    {
+      "search": "<primary_count>I+</primary_count>",
+      "replace": ""
+    },
+    {
+      "search": "(?s)</div>(\n    <li>.+)",
+      "replace": "  <ul>\\1\n  </ul>\n</div>"
+    },
+    {
+      "search": "$",
+      "replace": "\n"
+    }
+  ],
+  "compose_relational_schema": "<html>\n<head>\n<meta charset='utf-8'>\n<style>\n  #mld .relation {{ font-variant: small-caps; font-weight: bold }}\n  #mld .primary {{ text-decoration: underline }}\n  #mld .foreign {{ font-style: oblique }}\n  #mld .normal {{ }}\n  #mld strong {{ font-weight: bold }}\n  #mld i {{ font-style: italic }}\n  #mld ul {{ list-style-type:square; margin: 0 0 1em 2em }}\n</style>\n</head>\n<body>\n<div id='mld'>\n{relations}\n</div>\n</body>\n</html>",
+  "transform_relational_schema": [
+    {
+      "search": "\\s+$",
+      "replace": ""
+    }
+  ]
+}
