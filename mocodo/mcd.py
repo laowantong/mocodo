@@ -281,7 +281,7 @@ class Mcd:
         compress_horizontally()
         make_vertical_layout()
         compress_vertically()
-        adjust_with_cardinalities()
+        # adjust_with_cardinalities()
     
     def description(self):
         result = []

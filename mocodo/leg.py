@@ -50,24 +50,6 @@ class Leg:
         self.w = font.get_pixel_width(self.cardinalities)
         self.style = style
 
-    def get_cardinality_bounding_box(self):
-        ex = self.entity.x + self.entity.w / 2
-        ey = self.entity.y + self.entity.h / 2
-        ew = self.entity.w / 2
-        eh = self.entity.h / 2
-        ax = self.association.x + self.association.w / 2
-        ay = self.association.y + self.association.h / 2
-        k = self.value()
-        if ax != ex and abs(float(ay - ey) / (ax - ex)) < float(eh) / ew:
-            (x0, x1) = (ex + cmp(ax, ex) * (ew + self.style["card_margin"]), ex + cmp(ax, ex) * (ew + self.style["card_margin"] + self.style["card_max_width"]))
-            (y0, y1) = sorted([ey + (x0 - ex) * (ay - ey) / (ax - ex), ey + (x1 - ex) * (ay - ey) / (ax - ex)])
-            (x, y) = (min(x0, x1), (y0 + y1 - self.style["card_max_height"] + k * abs(y1 - y0 + self.style["card_max_height"])) / 2 + cmp(k, 0) * self.style["card_margin"])
-        else:
-            (y0, y1) = (ey + cmp(ay, ey) * (eh + self.style["card_margin"]), ey + cmp(ay, ey) * (eh + self.style["card_margin"] + self.style["card_max_height"]))
-            (x0, x1) = sorted([ex + (y0 - ey) * (ax - ex) / (ay - ey), ex + (y1 - ey) * (ax - ex) / (ay - ey)])
-            (x, y) = ((x0 + x1 - self.style["card_max_width"] + k * abs(x1 - x0 + self.style["card_max_width"])) / 2 + cmp(k, 0) * self.style["card_margin"], min(y0, y1))
-        return (int(x), int(y), int(x + self.w), int(y + self.h))
-
     def set_card_sep(self, card_sep):
         self.cardinalities = (u"" if self.cards.startswith("XX") else self.cards[0] + card_sep + self.cards[1])
 
@@ -105,8 +87,8 @@ class StraightLeg(Leg):
             "text_color": "card_text_color",
             "ex": "ex",
             "ey": "%s+ey" % (self.style["card_text_height_ratio"] * self.h),
-            "ew": self.entity.w / 2,
-            "eh": self.entity.h / 2,
+            "ew": self.entity.w,
+            "eh": self.entity.h,
             "ax": "x",
             "ay": "%s+y" % (self.style["card_text_height_ratio"] * self.h),
             "leg_identifier": "%s,%s" % (self.association.name, self.entity_name),

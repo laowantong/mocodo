@@ -2,31 +2,48 @@
 from math import hypot
 
 def card_pos(ex, ey, ew, eh, ax, ay, k):
-    if ax != ex and abs(float(ay - ey) / (ax - ex)) < float(eh) / ew:
-        (x0, x1) = (ex + cmp(ax, ex) * (ew + card_margin), ex + cmp(ax, ex) * (ew + card_margin + card_max_width))
-        (y0, y1) = sorted([ey + (x0 - ex) * (ay - ey) / (ax - ex), ey + (x1 - ex) * (ay - ey) / (ax - ex)])
-        return (min(x0, x1), (y0 + y1 - card_max_height + k * abs(y1 - y0 + card_max_height)) / 2 + cmp(k, 0) * card_margin)
+    (qx, qy) = quadrants(1.0, 1.0, ax-ex, ay-ey)
+    (qxr, qyr) = quadrants(ew/2, eh/2, ax-ex, ay-ey)
+    if qxr == 0:
+        aex = (k if ax == ex else cmp(ax, ex))
+        return line_box_intersection(
+            ex - aex * qyr * qy * card_margin - (aex + 1) * card_max_width / 2,
+            ey + aex * qyr * qx * card_margin + (qyr - 1) * card_max_height / 2,
+            ew,
+            eh/2 + qyr * qy * card_margin,
+            ax-ex,
+            ay-ey
+        )
     else:
-        (y0, y1) = (ey + cmp(ay, ey) * (eh + card_margin), ey + cmp(ay, ey) * (eh + card_margin + card_max_height))
-        (x0, x1) = sorted([ex + (y0 - ey) * (ax - ex) / (ay - ey), ex + (y1 - ey) * (ax - ex) / (ay - ey)])
-        return ((x0 + x1 - card_max_width + k * abs(x1 - x0 + card_max_width)) / 2 + cmp(k, 0) * card_margin, min(y0, y1))
+        aey = (k if ay == ey else cmp(ay, ey))
+        return line_box_intersection(
+            ex + aey * qxr * qy * card_margin + (qxr - 1) * card_max_width / 2,
+            ey - aey * qxr * qx * card_margin - (aey + 1) * card_max_height / 2,
+            ew/2 + qxr * qx * card_margin,
+            eh,
+            ax-ex,
+            ay-ey
+        )
 
-def visible_end(x0, y0, w0, h0, x1, y1):
-    (x, y) = (x1 - x0, y1 - y0)
-    (a, b) = (h0 * x, w0 * y)
+def line_box_intersection(x, y, w, h, dx, dy):
+    (qx, qy) = quadrants(w, h, dx, dy)
+    return (x + qx * w + (qy * dx * h / dy if qy else 0), y + qy * h + (qx * dy * w / dx if qx else 0))
+
+def quadrants(w, h, dx, dy):
+    (a, b) = (h * dx, w * dy)
     if a > b:
         if a > -b:
-            return (x0 + w0, y0 + y*w0/x)
+            return (1, 0)
         else:
-            return (x0 - x*h0/y, y0 - h0)
+            return (0, -1)
     else:
         if a > -b:
-            return (x0 + x*h0/y, y0 + h0)
+            return (0, 1)
         else:
-            return (x0 - w0, y0 - y*w0/x)
+            return (-1, 0)
 
 def line_arrow(x0, y0, w0, h0, x1, y1, w1, h1, t):
-    ((x0, y0), (x1,y1)) = (visible_end(x0, y0, w0, h0, x1, y1), visible_end(x1, y1, w1, h1, x0, y0))
+    ((x0, y0), (x1,y1)) = (line_box_intersection(x0, y0, w0, h0, x1-x0, y1-y0), line_box_intersection(x1, y1, w1, h1, x0-x1, y0-y1))
     (x, y) = (t * x0 + (1 - t) * x1, t * y0 + (1 - t) * y1)
     return arrow(x, y, x1 - x0, y0 - y1)
 
