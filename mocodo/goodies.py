@@ -5,7 +5,7 @@ def card_pos(ex, ey, ew, eh, ax, ay, k):
     (qx, qy) = quadrants(1.0, 1.0, ax-ex, ay-ey)
     (qxr, qyr) = quadrants(ew/2, eh/2, ax-ex, ay-ey)
     if qxr == 0:
-        aex = (k if ax == ex else cmp(ax, ex))
+        aex = (k if ax > ex else -k)
         return line_box_intersection(
             ex - aex * qyr * qy * card_margin - (aex + 1) * card_max_width / 2,
             ey + aex * qyr * qx * card_margin + (qyr - 1) * card_max_height / 2,
@@ -15,7 +15,7 @@ def card_pos(ex, ey, ew, eh, ax, ay, k):
             ay-ey
         )
     else:
-        aey = (k if ay == ey else cmp(ay, ey))
+        aey = (k if ay > ey else -k)
         return line_box_intersection(
             ex + aey * qxr * qy * card_margin + (qxr - 1) * card_max_width / 2,
             ey - aey * qxr * qx * card_margin - (aey + 1) * card_max_height / 2,
