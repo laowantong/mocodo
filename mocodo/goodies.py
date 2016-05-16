@@ -3,7 +3,7 @@ from math import hypot
 
 def card_pos(ex, ey, ew, eh, ax, ay, k):
     (qx, qy) = quadrants(1.0, 1.0, ax-ex, ay-ey)
-    (qxr, qyr) = quadrants(ew/2, eh/2, ax-ex, ay-ey)
+    (qxr, qyr) = quadrants(ew, eh, ax-ex, ay-ey)
     if qxr == 0:
         aex = (k if ax > ex else -k)
         return line_box_intersection(
@@ -26,8 +26,8 @@ def card_pos(ex, ey, ew, eh, ax, ay, k):
         )
 
 def line_box_intersection(x, y, w, h, dx, dy):
-    (qx, qy) = quadrants(w, h, dx, dy)
-    return (x + qx * w + (qy * dx * h / dy if qy else 0), y + qy * h + (qx * dy * w / dx if qx else 0))
+    (qxr, qyr) = quadrants(w, h, dx, dy)
+    return (x + qxr * w + (qyr * dx * h / dy if qyr else 0), y + qyr * h + (qxr * dy * w / dx if qxr else 0))
 
 def quadrants(w, h, dx, dy):
     (a, b) = (h * dx, w * dy)
