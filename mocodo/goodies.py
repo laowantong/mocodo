@@ -80,6 +80,8 @@ def curved_leg(ex, ey, ew, eh, ax, ay, aw, ah, spin):
        return (int(round(x)), int(round(y)))
     
     def card_pos(cw, ch, k):
+        diagonal = hypot(ax-ex, ay-ey)
+        correction = card_margin * (1 - abs(abs(ax-ex) - abs(ay-ey)) / diagonal) - k
         (top, bot) = (ey - eh, ey + eh)
         (TOP, BOT) = (top - ch, bot + ch)
         (lef, rig) = (ex - ew, ex + ew)
@@ -89,22 +91,22 @@ def curved_leg(ex, ey, ew, eh, ax, ay, aw, ah, spin):
         (xb, yb) = intersection(LEF, top, RIG, bot)
         if spin == 1:
             if (yr == BOT and xr <= rig) or (xr == LEF and yr >= bot):
-                (y, x) = (bot, max(x for (x, y) in ((xr, yr), (xg, yg), (xb, yb)) if y >= bot))
+                (y, x) = (bot, max(x for (x, y) in ((xr, yr), (xg, yg), (xb, yb)) if y >= bot) - correction)
             elif (xr == RIG and yr >= top) or yr == BOT:
-                (x, y) = (rig, min(y for (x, y) in ((xr, yr), (xg, yg), (xb, yb)) if x >= rig) - ch)
+                (x, y) = (rig, min(y for (x, y) in ((xr, yr), (xg, yg), (xb, yb)) if x >= rig) - correction - ch)
             elif (yr == TOP and xr >= lef) or xr == RIG:
-                (y, x) = (TOP, min(x for (x, y) in ((xr, yr), (xg, yg), (xb, yb)) if y <= top) - cw)
+                (y, x) = (TOP, min(x for (x, y) in ((xr, yr), (xg, yg), (xb, yb)) if y <= top) - correction - cw)
             else:
-                (x, y) = (LEF, max(y for (x, y) in ((xr, yr), (xg, yg), (xb, yb)) if x <= lef))
+                (x, y) = (LEF, max(y for (x, y) in ((xr, yr), (xg, yg), (xb, yb)) if x <= lef) - correction)
         else:
             if (yr == BOT and xr >= lef) or (xr == RIG and yr >= bot):
-                (y, x) = (bot, min(x for (x, y) in ((xr, yr), (xg, yg), (xb, yb)) if y >= bot) - cw)
+                (y, x) = (bot, min(x for (x, y) in ((xr, yr), (xg, yg), (xb, yb)) if y >= bot) - correction - cw)
             elif xr == RIG or (yr == TOP and xr >= rig):
-                (x, y) = (rig, max(y for (x, y) in ((xr, yr), (xg, yg), (xb, yb)) if x >= rig))
+                (x, y) = (rig, max(y for (x, y) in ((xr, yr), (xg, yg), (xb, yb)) if x >= rig) - correction)
             elif yr == TOP or (xr == RIG and yr <= top):
-                (y, x) = (TOP, max(x for (x, y) in ((xr, yr), (xg, yg), (xb, yb)) if y <= top))
+                (y, x) = (TOP, max(x for (x, y) in ((xr, yr), (xg, yg), (xb, yb)) if y <= top) - correction)
             else:
-                (x, y) = (LEF, min(y for (x, y) in ((xr, yr), (xg, yg), (xb, yb)) if x <= lef) - ch)
+                (x, y) = (LEF, min(y for (x, y) in ((xr, yr), (xg, yg), (xb, yb)) if x <= lef) - correction - ch)
         return (x, y + ch + card_underline_skip_height)
     
     def arrow_pos(direction, t):
