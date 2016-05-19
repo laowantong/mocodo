@@ -29,18 +29,28 @@ def html_escape(text):
 
 class Leg:
 
-    def __init__(self, association, card, entity_name):
+    def __init__(self, association, card, entity_name, params):
         self.association = association
         self.may_identify = not entity_name.startswith("/")
         if not self.may_identify:
             entity_name = entity_name[1:]
         self.entity_name = entity_name
         (self.cards, self.arrow, self.annotation) = match_card(card).groups()
+        self.underlined_card = False
         self.strengthen = self.cards == "_11"
         if self.strengthen:
             self.cards = "11"
+            if params["strengthen_card"].startswith("_") and params["strengthen_card"].endswith("_"):
+                self.underlined_card = True
+                self.cardinalities = params["strengthen_card"][1:-1]
+            else:
+                self.cardinalities = params["strengthen_card"]
         else:
             self.cards = auto_correction.get(self.cards, self.cards)
+            if self.cards.startswith("XX"):
+                self.cardinalities = u""
+            else:
+                self.cardinalities = params["card_format"].format(min_card=self.cards[0], max_card=self.cards[1])
         if self.annotation:
             self.annotation = html_escape(self.annotation.replace("<<<protected-comma>>>", ",").replace("<<<protected-colon>>>", ":"))
 
@@ -50,14 +60,29 @@ class Leg:
         self.w = font.get_pixel_width(self.cardinalities)
         self.style = style
 
-    def set_card_sep(self, card_sep):
-        self.cardinalities = (u"" if self.cards.startswith("XX") else self.cards[0] + card_sep + self.cards[1])
+    def get_cardinality_bounding_box(self):
+        ex = self.entity.x + self.entity.w / 2
+        ey = self.entity.y + self.entity.h / 2
+        ew = self.entity.w / 2
+        eh = self.entity.h / 2
+        ax = self.association.x + self.association.w / 2
+        ay = self.association.y + self.association.h / 2
+        k = self.value()
+        if ax != ex and abs(float(ay - ey) / (ax - ex)) < float(eh) / ew:
+            (x0, x1) = (ex + cmp(ax, ex) * (ew + self.style["card_margin"]), ex + cmp(ax, ex) * (ew + self.style["card_margin"] + self.style["card_max_width"]))
+            (y0, y1) = sorted([ey + (x0 - ex) * (ay - ey) / (ax - ex), ey + (x1 - ex) * (ay - ey) / (ax - ex)])
+            (x, y) = (min(x0, x1), (y0 + y1 - self.style["card_max_height"] + k * abs(y1 - y0 + self.style["card_max_height"])) / 2 + cmp(k, 0) * self.style["card_margin"])
+        else:
+            (y0, y1) = (ey + cmp(ay, ey) * (eh + self.style["card_margin"]), ey + cmp(ay, ey) * (eh + self.style["card_margin"] + self.style["card_max_height"]))
+            (x0, x1) = sorted([ex + (y0 - ey) * (ax - ex) / (ay - ey), ex + (y1 - ey) * (ax - ex) / (ay - ey)])
+            (x, y) = ((x0 + x1 - self.style["card_max_width"] + k * abs(x1 - x0 + self.style["card_max_width"])) / 2 + cmp(k, 0) * self.style["card_margin"], min(y0, y1))
+        return (int(x), int(y), int(x + self.w), int(y + self.h))
 
 
 class StraightLeg(Leg):
 
-    def __init__(self, association, card, entity_name):
-        Leg.__init__(self, association, card, entity_name)
+    def __init__(self, association, card, entity_name, params):
+        Leg.__init__(self, association, card, entity_name, params)
         self.num = 0
     
     def description(self):
@@ -100,7 +125,7 @@ class StraightLeg(Leg):
                 "key": u"note_straight_card",
                 "annotation": self.annotation,
             })
-        if self.strengthen:
+        if self.underlined_card:
             result.append({
                     "key": u"stroke_depth",
                     "stroke_depth": self.style["card_underline_depth"],
@@ -140,8 +165,8 @@ class StraightLeg(Leg):
 
 class CurvedLeg(Leg):
 
-    def __init__(self, association, card, entity_name, count, num):
-        Leg.__init__(self, association, card, entity_name)
+    def __init__(self, association, card, entity_name, count, num, params):
+        Leg.__init__(self, association, card, entity_name, params)
         self.count = count
         self.num = num
         self.spin = float(2 * self.num) / (self.count - 1) - 1
