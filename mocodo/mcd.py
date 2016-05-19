@@ -257,25 +257,6 @@ class Mcd:
                     box.y -= dy
             self.h -= dy
         #
-        def adjust_with_cardinalities():
-            (left_most, top_most, right_most, bottom_most) = (0, 0, self.w, self.h)
-            for association in self.associations.values():
-                for leg in association.legs:
-                    (left, top, right, bottom) = leg.get_cardinality_bounding_box()
-                    left_most = min(left_most, left - style["margin_size"])
-                    top_most = min(top_most, top - style["margin_size"])
-                    right_most = max(right_most, right + style["margin_size"])
-                    bottom_most = max(bottom_most, bottom + style["margin_size"])
-            if left_most < 0:
-                for box in self.boxes:
-                    box.x -= left_most
-                self.w -= left_most
-            if top_most < 0:
-                for box in self.boxes:
-                    box.y -= top_most
-                self.h -= top_most
-            self.w = right_most - left_most
-            self.h = bottom_most - top_most
 
         style["card_max_width"] = card_max_width()
         style["card_max_height"] = font_metrics.FontMetrics(style["card_font"]).get_pixel_height()
@@ -287,7 +268,6 @@ class Mcd:
         compress_horizontally()
         make_vertical_layout()
         compress_vertically()
-        # adjust_with_cardinalities()
     
     def description(self):
         result = []
