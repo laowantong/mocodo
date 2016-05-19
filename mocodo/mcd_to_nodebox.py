@@ -13,7 +13,7 @@ def main(mcd, common):
     result.append("from __future__ import division\nfrom math import hypot\n")
     result.extend(common.process_geometry(mcd, style))
     result.append("""\nfor c in colors: colors[c] = (color(*[int((colors[c]+"FF")[i:i+2],16)/255.0 for i in range(1,9,2)]) if colors[c] else None)""")
-    for name in ["card_max_width", "card_max_height", "card_margin", "arrow_width", "arrow_half_height", "arrow_axis", "curvature_ratio", "curvature_length"]:
+    for name in ["card_max_width", "card_max_height", "card_margin", "arrow_width", "arrow_half_height", "arrow_axis", "curvature_ratio", "curvature_length", "card_underline_skip_height"]:
         result.append("%s = %s" % (name, style[name]))
     result.append("")
     result.append(read_contents(os.path.join(params["script_directory"], "goodies.py")))
@@ -41,7 +41,8 @@ def main(mcd, common):
         "curved_leg": """(card_pos,arrow_pos)=curved_leg(%(ex)s,%(ey)s,%(ew)s,%(eh)s,%(ax)s,%(ay)s,%(aw)s,%(ah)s,%(spin)s)""",
         "curved_card": """(tx,ty)=card_pos(%(cw)s+2*card_margin,%(ch)s+2*card_margin,k[u"%(leg_identifier)s"])\nfill(colors["%(text_color)s"])\nfont("%(family)s",%(size)s)\ntext(u"%(text)s",tx+card_margin,ty-card_margin)""",
         "note_curved_card": """(tx,ty)=card_pos(%(cw)s+2*card_margin,%(ch)s+2*card_margin,k[u"%(leg_identifier)s"])\nfill(colors["%(text_color)s"])\nfont("%(family)s",%(size)s)\ntext(u"%(text)s",tx+card_margin,ty-card_margin)""",
-        "curved_arrow": """arrow(*card_arrow("%(direction)s",t[u"%(leg_identifier)s"]))""",
+        "curved_arrow": """arrow(*arrow_pos("%(direction)s",t[u"%(leg_identifier)s"]))""",
+        "card_underline": """line(tx+card_margin,ty-card_margin-card_underline_skip_height,tx+%(w)s,ty-card_margin-card_underline_skip_height)""",
     }
     for d in mcd.description():
         try:

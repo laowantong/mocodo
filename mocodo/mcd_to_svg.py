@@ -51,7 +51,6 @@ def main(mcd, common):
         "begin":            """<g id="%(id)s">""",
         "end":              """</g>""",
     }
-    legs = dict((leg.identifier(), leg.value()) for row in mcd.rows for box in row for leg in box.legs)
     others = {}
     tabs = 0
     rex = re.compile(r"(?<=%\().+?(?=\)s)")

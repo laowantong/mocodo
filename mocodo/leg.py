@@ -111,9 +111,7 @@ class StraightLeg(Leg):
                 })
             result.append({
                     "key": u"card_underline",
-                    "x1": "tx",
-                    "x2": "tx+%s" % font_metrics.FontMetrics(self.style["card_font"]).get_pixel_width(self.cardinalities),
-                    "y1": "ty-%s" % self.style["card_underline_skip_height"],
+                    "w": "%s" % font_metrics.FontMetrics(self.style["card_font"]).get_pixel_width(self.cardinalities),
                 })
         if self.arrow:
             result.extend([
@@ -137,7 +135,7 @@ class StraightLeg(Leg):
         return "%s,%s" % (self.association.name, self.entity_name)
 
     def value(self):
-        return 1.0
+        return 0
 
 
 class CurvedLeg(Leg):

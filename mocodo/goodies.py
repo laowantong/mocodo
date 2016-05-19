@@ -13,31 +13,33 @@ def straight_leg(ex, ey, ew, eh, ax, ay, aw, ah):
         return (x, y)
     
     def card_pos(cw, ch, k):
+        diagonal = hypot(ax-ex, ay-ey)
+        correction = card_margin * (1 - abs(abs(ax-ex) - abs(ay-ey)) / diagonal) - k
         (xg, yg) = intersection(ex, ey, ew, eh + ch, ax, ay)
         (xb, yb) = intersection(ex, ey, ew + cw, eh, ax, ay)
         if xg <= xb:
             if xg <= ex:
                 if yb <= ey:
-                    (x, y) = (xb, yb)
+                    (x, y) = (xb - correction, yb)
                 else:
-                    (x, y) = (xb, yb + ch)
+                    (x, y) = (xb - correction, yb + ch)
             else:
                 if yb <= ey:
-                    (x, y) = (xg, yg + ch)
+                    (x, y) = (xg, yg + ch - correction)
                 else:
-                    (x, y) = (xg, yg)
+                    (x, y) = (xg, yg + correction)
         else:
             if xb <= ex:
                 if yb <= ey:
-                    (x, y) = (xg - cw, yg + ch)
+                    (x, y) = (xg - cw, yg + ch - correction)
                 else:
-                    (x, y) = (xg - cw, yg)
+                    (x, y) = (xg - cw, yg + correction)
             else:
                 if yb <= ey:
-                    (x, y) = (xb - cw, yb)
+                    (x, y) = (xb - cw + correction, yb)
                 else:
-                    (x, y) = (xb - cw, yb + ch)
-        return (x, y)
+                    (x, y) = (xb - cw + correction, yb + ch)
+        return (x, y + card_underline_skip_height)
     
     def arrow_pos(direction, t):
         (x0, y0) = intersection(ex, ey, ew, eh, ax, ay)
@@ -103,7 +105,7 @@ def curved_leg(ex, ey, ew, eh, ax, ay, aw, ah, spin):
                 (y, x) = (TOP, max(x for (x, y) in ((xr, yr), (xg, yg), (xb, yb)) if y <= top))
             else:
                 (x, y) = (LEF, min(y for (x, y) in ((xr, yr), (xg, yg), (xb, yb)) if x <= lef) - ch)
-        return (x, y + ch)
+        return (x, y + ch + card_underline_skip_height)
     
     def arrow_pos(direction, t):
         t0 = bisection(lambda x, y: abs(x - ax) > aw or abs(y - ay) > ah)
