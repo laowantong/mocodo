@@ -59,9 +59,13 @@ class StraightLeg(Leg):
     def __init__(self, association, card, entity_name):
         Leg.__init__(self, association, card, entity_name)
         self.num = 0
-
+    
     def description(self):
         result = []
+        result.append({
+                "key": u"env",
+                "env": [("ex", """cx[u"%s"]""" % self.entity.name), ("ey", """cy[u"%s"]""" % self.entity.name)],
+            })
         result.append({
                 "key": u"stroke_color",
                 "stroke_color": "leg_stroke_color",
@@ -71,33 +75,29 @@ class StraightLeg(Leg):
                 "stroke_depth": self.style["leg_stroke_depth"],
             })
         result.append({
-                "key": u"env",
-                "env": [("ex", """cx[u"%s"]""" % self.entity.name), ("ey", """cy[u"%s"]""" % self.entity.name)],
+                "key": u"straight_leg",
+                "ex": "ex",
+                "ey": "ey",
+                "ew": self.entity.w / 2,
+                "eh": self.entity.h / 2,
+                "ax": "x",
+                "ay": "y",
+                "aw": self.association.w / 2,
+                "ah": self.association.h / 2,
             })
         result.append({
-                "key": u"line",
-                "x0": "ex",
-                "y0": "ey",
-                "x1": "x",
-                "y1": "y",
-            })
-        result.append({
-            "key": u"card",
+            "key": u"straight_card",
             "text": self.cardinalities,
             "text_color": "card_text_color",
-            "ex": "ex",
-            "ey": "%s+ey" % (self.style["card_text_height_ratio"] * self.h),
-            "ew": self.entity.w,
-            "eh": self.entity.h,
-            "ax": "x",
-            "ay": "%s+y" % (self.style["card_text_height_ratio"] * self.h),
             "leg_identifier": "%s,%s" % (self.association.name, self.entity_name),
             "family": self.style["card_font"]["family"],
             "size": self.style["card_font"]["size"],
+            "cw": self.w,
+            "ch": self.h,
         })
         if self.annotation:
             result[-1].update({
-                "key": u"annotated_card",
+                "key": u"note_straight_card",
                 "annotation": self.annotation,
             })
         if self.strengthen:
@@ -115,7 +115,7 @@ class StraightLeg(Leg):
                     "x2": "tx+%s" % font_metrics.FontMetrics(self.style["card_font"]).get_pixel_width(self.cardinalities),
                     "y1": "ty-%s" % self.style["card_underline_skip_height"],
                 })
-        if self.arrow == ">":
+        if self.arrow:
             result.extend([
                 {
                     "key": u"color",
@@ -126,38 +126,8 @@ class StraightLeg(Leg):
                     "stroke_depth": 0,
                 },
                 {
-                    "key": u"line_arrow",
-                    "x0": "ex",
-                    "y0": "ey",
-                    "w0": self.entity.w / 2,
-                    "h0": self.entity.h / 2,
-                    "x1": "x",
-                    "y1": "y",
-                    "w1": self.association.w / 2,
-                    "h1": self.association.h / 2,
-                    "leg_identifier": "%s,%s" % (self.association.name, self.entity_name),
-                }
-            ])
-        elif self.arrow == "<":
-            result.extend([
-                {
-                    "key": u"color",
-                    "color": "leg_stroke_color",
-                },
-                {
-                    "key": u"stroke_depth",
-                    "stroke_depth": 0,
-                },
-                {
-                    "key": u"line_arrow",
-                    "x1": "ex",
-                    "y1": "ey",
-                    "w1": self.entity.w / 2,
-                    "h1": self.entity.h / 2,
-                    "x0": "x",
-                    "y0": "y",
-                    "w0": self.association.w / 2,
-                    "h0": self.association.h / 2,
+                    "key": u"straight_arrow",
+                    "direction": self.arrow,
                     "leg_identifier": "%s,%s" % (self.association.name, self.entity_name),
                 }
             ])
@@ -179,9 +149,11 @@ class CurvedLeg(Leg):
         self.spin = float(2 * self.num) / (self.count - 1) - 1
 
     def description(self):
-        (x0, y0) = (self.entity.x + self.entity.w / 2, self.entity.y + self.entity.h / 2)
-        (x3, y3) = (self.association.x + self.association.w / 2, self.association.y + self.association.h / 2)
         result = []
+        result.append({
+                "key": u"env",
+                "env": [("ex", """cx[u"%s"]""" % self.entity.name), ("ey", """cy[u"%s"]""" % self.entity.name)],
+            })
         result.append({
                 "key": u"stroke_depth",
                 "stroke_depth": self.style["leg_stroke_depth"],
@@ -191,43 +163,33 @@ class CurvedLeg(Leg):
                 "stroke_color": "leg_stroke_color",
             })
         result.append({
-                "key": u"env",
-                "env": [("ex", """cx[u"%s"]""" % self.entity.name), ("ey", """cy[u"%s"]""" % self.entity.name)],
+                "key": u"curved_leg",
+                "ex": "ex",
+                "ey": "ey",
+                "ew": self.entity.w / 2,
+                "eh": self.entity.h / 2,
+                "ax": "x",
+                "ay": "y",
+                "aw": self.association.w / 2,
+                "ah": self.association.h / 2,
+                "spin": self.spin,
             })
         result.append({
-                "key": u"env",
-                "env": [("d", "hypot(x-ex,y-ey)")],
+                "key": u"curved_card",
+                "text": self.cardinalities,
+                "text_color": "card_text_color",
+                "spin": self.spin,
+                "leg_identifier": self.identifier(),
+                "family": self.style["card_font"]["family"],
+                "size": self.style["card_font"]["size"],
+                "cw": self.w,
+                "ch": self.h,
             })
-        result.append({
-                "key": u"curve",
-                "x0": "ex",
-                "y0": "ey",
-                "x1": "ex+(x-ex)*%s-%s*(%s*(y-ey)/d)" % (self.style["curvature_ratio"], self.spin, self.style["curvature_length"]),
-                "y1": "ey+(y-ey)*%s+%s*(%s*(x-ex)/d)" % (self.style["curvature_ratio"], self.spin, self.style["curvature_length"]),
-                "x2": "x+(ex-x)*%s-%s*(%s*(y-ey)/d)" % (self.style["curvature_ratio"], self.spin, self.style["curvature_length"]),
-                "y2": "y+(ey-y)*%s+%s*(%s*(x-ex)/d)" % (self.style["curvature_ratio"], self.spin, self.style["curvature_length"]),
-                "x3": "x",
-                "y3": "y",
-            })
-        result.append({
-            "key": u"card",
-            "text": self.cardinalities,
-            "text_color": "card_text_color",
-            "ex": "ex",
-            "ey": "%s+ey" % (self.style["card_text_height_ratio"] * self.h),
-            "ew": self.entity.w / 2,
-            "eh": self.entity.h / 2,
-            "ax": "x",
-            "ay": "%s+y" % (self.style["card_text_height_ratio"] * self.h),
-            "leg_identifier": self.identifier(),
-            "family": self.style["card_font"]["family"],
-            "size": self.style["card_font"]["size"],
-        })
         if self.annotation:
             result[-1].update({
-                "key": u"annotated_card",
-                "annotation": self.annotation,
-            })
+                    "key": u"note_curved_card",
+                    "annotation": self.annotation,
+                })
         if self.strengthen:
             result.append({
                     "key": u"stroke_depth",
@@ -243,7 +205,7 @@ class CurvedLeg(Leg):
                     "x2": "tx+%s" % font_metrics.FontMetrics(self.style["card_font"]).get_pixel_width(self.cardinalities),
                     "y1": "ty-%s" % self.style["card_underline_skip_height"],
                 })
-        if self.arrow == ">":
+        if self.arrow:
             result.extend([
                 {
                     "key": u"color",
@@ -254,46 +216,8 @@ class CurvedLeg(Leg):
                     "stroke_depth": 0,
                 },
                 {
-                    "key": u"curve_arrow",
-                    "x0": "ex",
-                    "y0": "ey",
-                    "w0": self.entity.w / 2,
-                    "h0": self.entity.h / 2,
-                    "x1": "ex+(x-ex)*%s-%s*(%s*(y-ey)/d)" % (self.style["curvature_ratio"], self.spin, self.style["curvature_length"]),
-                    "y1": "ey+(y-ey)*%s+%s*(%s*(x-ex)/d)" % (self.style["curvature_ratio"], self.spin, self.style["curvature_length"]),
-                    "x2": "x+(ex-x)*%s-%s*(%s*(y-ey)/d)" % (self.style["curvature_ratio"], self.spin, self.style["curvature_length"]),
-                    "y2": "y+(ey-y)*%s+%s*(%s*(x-ex)/d)" % (self.style["curvature_ratio"], self.spin, self.style["curvature_length"]),
-                    "x3": "x",
-                    "y3": "y",
-                    "w3": self.association.w / 2,
-                    "h3": self.association.h / 2,
-                    "leg_identifier": self.identifier(),
-                }
-            ])
-        elif self.arrow == "<":
-            result.extend([
-                {
-                    "key": u"color",
-                    "color": "leg_stroke_color",
-                },
-                {
-                    "key": u"stroke_depth",
-                    "stroke_depth": 0,
-                },
-                {
-                    "key": u"curve_arrow",
-                    "x3": "ex",
-                    "y3": "ey",
-                    "w3": self.entity.w / 2,
-                    "h3": self.entity.h / 2,
-                    "x2": "ex+(x-ex)*%s-%s*(%s*(y-ey)/d)" % (self.style["curvature_ratio"], self.spin, self.style["curvature_length"]),
-                    "y2": "ey+(y-ey)*%s+%s*(%s*(x-ex)/d)" % (self.style["curvature_ratio"], self.spin, self.style["curvature_length"]),
-                    "x1": "x+(ex-x)*%s-%s*(%s*(y-ey)/d)" % (self.style["curvature_ratio"], self.spin, self.style["curvature_length"]),
-                    "y1": "y+(ey-y)*%s+%s*(%s*(x-ex)/d)" % (self.style["curvature_ratio"], self.spin, self.style["curvature_length"]),
-                    "x0": "x",
-                    "y0": "y",
-                    "w0": self.association.w / 2,
-                    "h0": self.association.h / 2,
+                    "key": u"curved_arrow",
+                    "direction": self.arrow,
                     "leg_identifier": self.identifier(),
                 }
             ])

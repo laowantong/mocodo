@@ -19,9 +19,10 @@ def main(mcd, common):
     result.append("#!/usr/bin/env python")
     result.append("# encoding: utf-8")
     result.append("# %s\n" % common.timestamp())
+    result.append("from __future__ import division\nfrom math import hypot\n")
     result.append("import time, codecs\n")
     result.extend(common.process_geometry(mcd, style))
-    result.append("card_max_width = %(card_max_width)s\ncard_max_height = %(card_max_height)s\ncard_margin = %(card_margin)s\narrow_width = %(arrow_width)s\narrow_half_height = %(arrow_half_height)s\narrow_axis = %(arrow_axis)s\n" % style)
+    result.append("card_max_width = %(card_max_width)s\ncard_max_height = %(card_max_height)s\ncard_margin = %(card_margin)s\narrow_width = %(arrow_width)s\narrow_half_height = %(arrow_half_height)s\narrow_axis = %(arrow_axis)s\n\n" % style)
     result.append(read_contents(os.path.join(params["script_directory"], "goodies.py")))
     result.append(read_contents(os.path.join(params["script_directory"], "svg_goodies.py")))
     result.append("""\nlines = '<?xml version="1.0" standalone="no"?>\\n<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"\\n"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">'""")
@@ -40,8 +41,10 @@ def main(mcd, common):
         "rect":             """<rect x="%(x)s" y="%(y)s" width="%(w)s" height="%(h)s" fill="%(color)s" stroke="%(stroke_color)s" stroke-width="%(stroke_depth)s"/>""",
         "circle":           """<circle cx="%(cx)s" cy="%(cy)s" r="%(r)s" stroke="%(stroke_color)s" stroke-width="%(stroke_depth)s" fill="%(color)s"/>""",
         "text":             """<text x="%(x)s" y="%(y)s" fill="%(text_color)s" font-family="%(family)s" font-size="%(size)s">%(text)s</text>""",
-        "card":             """<text x="%(tx)s" y="%(ty)s" fill="%(text_color)s" font-family="%(family)s" font-size="%(size)s">%(text)s</text>""",
-        "annotated_card":   """<text x="%(tx)s" y="%(ty)s" fill="%(text_color)s" font-family="%(family)s" font-size="%(size)s" onmouseover="show(evt,'%(annotation)s')" onmouseout="hide(evt)" style="cursor: pointer;">%(text)s</text>""",
+        "straight_card":        """<text x="%(tx)s" y="%(ty)s" fill="%(text_color)s" font-family="%(family)s" font-size="%(size)s">%(text)s</text>""",
+        "curve_card":       """<text x="%(tx)s" y="%(ty)s" fill="%(text_color)s" font-family="%(family)s" font-size="%(size)s">%(text)s</text>""",
+        "note_straight_card":   """<text x="%(tx)s" y="%(ty)s" fill="%(text_color)s" font-family="%(family)s" font-size="%(size)s" onmouseover="show(evt,'%(annotation)s')" onmouseout="hide(evt)" style="cursor: pointer;">%(text)s</text>""",
+        "note_curve_card":  """<text x="%(tx)s" y="%(ty)s" fill="%(text_color)s" font-family="%(family)s" font-size="%(size)s" onmouseover="show(evt,'%(annotation)s')" onmouseout="hide(evt)" style="cursor: pointer;">%(text)s</text>""",
         "card_underline":   """<line x1="%(x1)s" y1="%(y1)s" x2="%(x2)s" y2="%(y1)s" stroke="%(stroke_color)s" stroke-width="%(stroke_depth)s"/>""",
         "circle":           """<circle cx="%(cx)s" cy="%(cy)s" r="%(r)s" stroke="%(stroke_color)s" stroke-width="%(stroke_depth)s" fill="%(color)s"/>""",
         "curve":            """<path d="M%(x0)s %(y0)s C %(x1)s %(y1)s %(x2)s %(y2)s %(x3)s %(y3)s" fill="none" stroke="%(stroke_color)s" stroke-width="%(stroke_depth)s"/>""",
@@ -52,17 +55,22 @@ def main(mcd, common):
     others = {}
     tabs = 0
     rex = re.compile(r"(?<=%\().+?(?=\)s)")
-    has_annotated_card = False
+    has_note_card = False
     for d in mcd.description():
         if type(d) is dict:
             if d["key"] == "env":
                 result.append("(%s) = (%s)" % (",".join(zip(*d["env"])[0]), ",".join(zip(*d["env"])[1])))
             else:
-                if d["key"] == "card":
-                    result.append('(tx,ty) = card_pos(%(ex)s,%(ey)s,%(ew)s,%(eh)s,%(ax)s,%(ay)s,k[u"%(leg_identifier)s"])' % d)
-                elif d["key"] == "annotated_card":
-                    result.append('(tx,ty) = card_pos(%(ex)s,%(ey)s,%(ew)s,%(eh)s,%(ax)s,%(ay)s,k[u"%(leg_identifier)s"])' % d)
-                    has_annotated_card = True
+                if d["key"] == "straight_card":
+                    result.append('(tx,ty) = straight_card_pos(%(ex)s,%(ey)s,%(ew)s,%(eh)s,%(ax)s,%(ay)s,k[u"%(leg_identifier)s"])' % d)
+                elif d["key"] == "curve_card":
+                    result.append('(tx,ty) = curve_card_pos(%(ex)s,%(ey)s,%(ew)s,%(eh)s,%(ax)s,%(ay)s,k[u"%(leg_identifier)s"])' % d)
+                elif d["key"] == "note_straight_card":
+                    result.append('(tx,ty) = straight_card_pos(%(ex)s,%(ey)s,%(ew)s,%(eh)s,%(ax)s,%(ay)s,k[u"%(leg_identifier)s"])' % d)
+                    has_note_card = True
+                elif d["key"] == "note_curve_card":
+                    result.append('(tx,ty) = card_curve_pos(%(ex)s,%(ey)s,%(ew)s,%(eh)s,%(ax)s,%(ay)s,k[u"%(leg_identifier)s"])' % d)
+                    has_note_card = True
                 elif d["key"] == "upper_round_rect":
                     result.append('path = upper_round_rect(%(x)s,%(y)s,%(w)s,%(h)s,%(radius)s)' % d)
                 elif d["key"] == "lower_round_rect":
@@ -94,7 +102,7 @@ def main(mcd, common):
                 tabs = tabs + (1 if d["key"] == "begin" else 0)
         else:
             result.append("\nlines += u\"\"\"\\n\\n<!-- %s -->\"\"\"" % d)
-    if has_annotated_card and not params["hide_annotations"]:
+    if has_note_card and not params["hide_annotations"]:
         salt = ''.join(random.SystemRandom().choice(string.ascii_letters + string.digits) for _ in range(8)) # prevent the same identifiers to appear in several figures of the same notebook
         result.append("""annotation_overlay_height = %(annotation_overlay_height)s\nannotation_baseline = %(annotation_baseline)s\nannotation_font = %(annotation_font)s\nannotation_text_color = "%(annotation_text_color)s"\nannotation_color = "%(annotation_color)s"\nannotation_opacity = %(annotation_opacity)s\n""" % style)
         result.append("""lines += '\\n\\n<!-- Annotations -->'""")

@@ -57,10 +57,8 @@ def arrow(x, y, a, b):
     c = hypot(a, b)
     (cos, sin) = (a / c, b / c)
     beginpath(x, y)
-    lineto(x + arrow_width * cos - arrow_half_height * sin,
-           y - arrow_half_height * cos - arrow_width * sin)
+    lineto(x + arrow_width * cos - arrow_half_height * sin, y - arrow_half_height * cos - arrow_width * sin)
     lineto(x + arrow_axis * cos, y - arrow_axis * sin)
-    lineto(x + arrow_width * cos + arrow_half_height * sin,
-           y + arrow_half_height * cos - arrow_width * sin)
+    lineto(x + arrow_width * cos + arrow_half_height * sin, y + arrow_half_height * cos - arrow_width * sin)
     lineto(x, y)
     endpath()

@@ -10,9 +10,11 @@ def main(mcd, common):
     style["transparent_color"] = None
     mcd.calculate_size(style)
     result = ["# %s\n" % common.timestamp()]
+    result.append("from __future__ import division\nfrom math import hypot\n")
     result.extend(common.process_geometry(mcd, style))
     result.append("""\nfor c in colors: colors[c] = (color(*[int((colors[c]+"FF")[i:i+2],16)/255.0 for i in range(1,9,2)]) if colors[c] else None)""")
-    result.append("card_max_width = %(card_max_width)s\ncard_max_height = %(card_max_height)s\ncard_margin = %(card_margin)s\narrow_width = %(arrow_width)s\narrow_half_height = %(arrow_half_height)s\narrow_axis = %(arrow_axis)s" % style)
+    for name in ["card_max_width", "card_max_height", "card_margin", "arrow_width", "arrow_half_height", "arrow_axis", "curvature_ratio", "curvature_length"]:
+        result.append("%s = %s" % (name, style[name]))
     result.append(read_contents(os.path.join(params["script_directory"], "goodies.py")))
     result.append(read_contents(os.path.join(params["script_directory"], "nodebox_goodies.py")))
     result.append("\nsize(width,height)")
@@ -29,13 +31,18 @@ def main(mcd, common):
         "round_rect": "round_rect(%(x)s,%(y)s,%(w)s,%(h)s,%(radius)s)",
         "line": "line(%(x0)s,%(y0)s,%(x1)s,%(y1)s)",
         "arrow": """arrow(%(x)s,%(y)s,%(a)s,%(b)s)""",
-        "line_arrow": """line_arrow(%(x0)s,%(y0)s,%(w0)s,%(h0)s,%(x1)s,%(y1)s,%(w1)s,%(h1)s,t[u"%(leg_identifier)s"])""",
         "dash_line": "dash_line(%(x0)s,%(x1)s,%(y)s,%(dash_width)s)",
         "curve": "curve(%(x0)s,%(y0)s,%(x1)s,%(y1)s,%(x2)s,%(y2)s,%(x3)s,%(y3)s)",
-        "curve_arrow": """curve_arrow(%(x0)s,%(y0)s,%(w0)s,%(h0)s,%(x1)s,%(y1)s,%(x2)s,%(y2)s,%(x3)s,%(y3)s,%(w3)s,%(h3)s,1-t[u"%(leg_identifier)s"])""",
-        "text": """fill(colors["%(text_color)s"]);font("%(family)s",%(size)s);text(u"%(text)s",%(x)s,%(y)s)""",
-        "card": """(tx,ty)=card_pos(%(ex)s,%(ey)s,%(ew)s,%(eh)s,%(ax)s,%(ay)s,k[u"%(leg_identifier)s"]);fill(colors["%(text_color)s"]);font("%(family)s",%(size)s);text(u"%(text)s",tx,ty)""",
-        "annotated_card": """(tx,ty)=card_pos(%(ex)s,%(ey)s,%(ew)s,%(eh)s,%(ax)s,%(ay)s,k[u"%(leg_identifier)s"]);fill(colors["%(text_color)s"]);font("%(family)s",%(size)s);text(u"%(text)s",tx,ty)""",
+        # "curve_arrow": """curve_arrow(%(x0)s,%(y0)s,%(w0)s,%(h0)s,%(x1)s,%(y1)s,%(x2)s,%(y2)s,%(x3)s,%(y3)s,%(w3)s,%(h3)s,1-t[u"%(leg_identifier)s"])""",
+        "text": """fill(colors["%(text_color)s"])\nfont("%(family)s",%(size)s)\ntext(u"%(text)s",%(x)s,%(y)s)""",
+        "straight_leg": """leg=StraightLeg(%(ex)s,%(ey)s,%(ew)s,%(eh)s,%(ax)s,%(ay)s,%(aw)s,%(ah)s)""",
+        "straight_card": """(tx,ty)=leg.card_pos(%(cw)s+2*card_margin,%(ch)s+2*card_margin,k[u"%(leg_identifier)s"])\nfill(colors["%(text_color)s"])\nfont("%(family)s",%(size)s)\ntext(u"%(text)s",tx+card_margin,ty-card_margin)""",
+        "note_straight_card": """(tx,ty)=leg.card_pos(%(cw)s+2*card_margin,%(ch)s+2*card_margin,k[u"%(leg_identifier)s"])\nfill(colors["%(text_color)s"])\nfont("%(family)s",%(size)s)\ntext(u"%(text)s",tx+card_margin,ty-card_margin)""",
+        "straight_arrow": """leg.arrow("%(direction)s",t[u"%(leg_identifier)s"])""",
+        "curved_leg": """leg=CurvedLeg(%(ex)s,%(ey)s,%(ew)s,%(eh)s,%(ax)s,%(ay)s,%(aw)s,%(ah)s,%(spin)s)""",
+        "curved_card": """(tx,ty)=leg.card_pos(%(cw)s+2*card_margin,%(ch)s+2*card_margin,k[u"%(leg_identifier)s"])\nfill(colors["%(text_color)s"])\nfont("%(family)s",%(size)s)\ntext(u"%(text)s",tx+card_margin,ty-card_margin)""",
+        "note_curved_card": """(tx,ty)=leg.card_pos(%(cw)s+2*card_margin,%(ch)s+2*card_margin,k[u"%(leg_identifier)s"])\nfill(colors["%(text_color)s"])\nfont("%(family)s",%(size)s)\ntext(u"%(text)s",tx+card_margin,ty-card_margin)""",
+        "curved_arrow": """leg.arrow("%(direction)s",t[u"%(leg_identifier)s"])""",
     }
     for d in mcd.description():
         try:
