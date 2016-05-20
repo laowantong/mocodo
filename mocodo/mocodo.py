@@ -53,14 +53,13 @@ def main():
         relations = Relations(mcd, params)
         common.dump_mld_files(relations)
         if params["image_format"] == "svg":
-            from mcd_to_svg import main
-            import runpy
-            main(mcd, common)
+            import mcd_to_svg, runpy
+            mcd_to_svg.main(mcd, common)
             runpy.run_path(u"%(output_name)s_svg.py" % params)
             return
         if params["image_format"] == "nodebox":
-            from mcd_to_nodebox import main
-            main(mcd, common)
+            import mcd_to_nodebox
+            mcd_to_nodebox.main(mcd, common)
             return os.system(u"""open -a NodeBox "%(output_name)s_nodebox.py" """ % params)
         raise RuntimeError(("Mocodo Err.13 - " + _('Should never happen.')).encode("utf8"))
     except RuntimeError, err:

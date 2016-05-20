@@ -1,4 +1,4 @@
-def straight_leg(ex, ey, ew, eh, ax, ay, aw, ah):
+def straight_leg_factory(ex, ey, ew, eh, ax, ay, aw, ah):
     
     def intersection(ex, ey, w, h, ax, ay):
         if ax == ex:
@@ -39,7 +39,7 @@ def straight_leg(ex, ey, ew, eh, ax, ay, aw, ah):
                     (x, y) = (xb - cw + correction, yb)
                 else:
                     (x, y) = (xb - cw + correction, yb + ch)
-        return (x, y + card_underline_skip_height)
+        return (x + card_margin, y + card_underline_skip_height - card_margin)
     
     def arrow_pos(direction, t):
         (x0, y0) = intersection(ex, ey, ew, eh, ax, ay)
@@ -50,19 +50,12 @@ def straight_leg(ex, ey, ew, eh, ax, ay, aw, ah):
         else:
             return (x + x1 - x0, y + y0 - y1, x0 - x1, y1 - y0)
     
-    line(ex, ey, ax, ay)
-    return (card_pos, arrow_pos)
+    straight_leg_factory.card_pos = card_pos
+    straight_leg_factory.arrow_pos = arrow_pos
+    return straight_leg_factory
 
 
-def curved_leg(ex, ey, ew, eh, ax, ay, aw, ah, spin):
-    
-    def function_factory():
-        (cx, cy) = (3 * (x1 - x0), 3 * (y1 - y0))
-        (bx, by) = (3 * (x2 - x1) - cx, 3 * (y2 - y1) - cy)
-        (ax, ay) = (x3 - x0 - cx - bx, y3 - y0 - cy - by)
-        bezier = lambda t: (ax*t*t*t + bx*t*t + cx*t + x0, ay*t*t*t + by*t*t + cy*t + y0)
-        derivate = lambda t: (3*ax*t*t + 2*bx*t + cx, 3*ay*t*t + 2*by*t + cy)
-        return (bezier, derivate)
+def curved_leg_factory(ex, ey, ew, eh, ax, ay, aw, ah, spin):
     
     def bisection(predicate):
         (a, b) = (0, 1)
@@ -107,7 +100,7 @@ def curved_leg(ex, ey, ew, eh, ax, ay, aw, ah, spin):
                 (y, x) = (TOP, max(x for (x, y) in ((xr, yr), (xg, yg), (xb, yb)) if y <= top) - correction)
             else:
                 (x, y) = (LEF, min(y for (x, y) in ((xr, yr), (xg, yg), (xb, yb)) if x <= lef) - correction - ch)
-        return (x, y + ch + card_underline_skip_height)
+        return (x + card_margin, y + ch + card_underline_skip_height - card_margin)
     
     def arrow_pos(direction, t):
         t0 = bisection(lambda x, y: abs(x - ax) > aw or abs(y - ay) > ah)
@@ -122,14 +115,16 @@ def curved_leg(ex, ey, ew, eh, ax, ay, aw, ah, spin):
         return (xc, yc, x, -y)
     
     diagonal = hypot(ax-ex, ay-ey)
-    x0 = ex
-    y0 = ey
     x1 = ex + (ax-ex) * curvature_ratio - spin * curvature_gap * (ay-ey) / diagonal
     y1 = ey + (ay-ey) * curvature_ratio + spin * curvature_gap * (ax-ex) / diagonal
     x2 = ax + (ex-ax) * curvature_ratio - spin * curvature_gap * (ay-ey) / diagonal
     y2 = ay + (ey-ay) * curvature_ratio + spin * curvature_gap * (ax-ex) / diagonal
-    x3 = ax
-    y3 = ay
-    (bezier, derivate) = function_factory()
-    curve(x0, y0, x1, y1, x2, y2, x3, y3)
-    return card_pos, arrow_pos
+    curved_leg_factory.points = (ex, ey, x1, y1, x2, y2, ax, ay)
+    (kcx, kcy) = (3 * (x1 - ex), 3 * (y1 - ey))
+    (kbx, kby) = (3 * (x2 - x1) - kcx, 3 * (y2 - y1) - kcy)
+    (kax, kay) = (ax - ex - kcx - kbx, ay - ey - kcy - kby)
+    bezier = lambda t: (kax*t*t*t + kbx*t*t + kcx*t + ex, kay*t*t*t + kby*t*t + kcy*t + ey)
+    derivate = lambda t: (3*kax*t*t + 2*kbx*t + kcx, 3*kay*t*t + 2*kby*t + kcy)
+    curved_leg_factory.card_pos = card_pos
+    curved_leg_factory.arrow_pos = arrow_pos
+    return curved_leg_factory

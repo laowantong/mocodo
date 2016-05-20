@@ -91,20 +91,22 @@ class StraightLeg(Leg):
                 "ay": "y",
                 "aw": self.association.w / 2,
                 "ah": self.association.h / 2,
+                "stroke_depth": self.style["leg_stroke_depth"],
+                "stroke_color": "leg_stroke_color",
             })
         result.append({
-            "key": u"straight_card",
-            "text": self.cardinalities,
-            "text_color": "card_text_color",
-            "leg_identifier": "%s,%s" % (self.association.name, self.entity_name),
-            "family": self.style["card_font"]["family"],
-            "size": self.style["card_font"]["size"],
-            "cw": self.w,
-            "ch": self.h,
+                "key": u"straight_card",
+                "text": self.cardinalities,
+                "text_color": "card_text_color",
+                "leg_identifier": "%s,%s" % (self.association.name, self.entity_name),
+                "family": self.style["card_font"]["family"],
+                "size": self.style["card_font"]["size"],
+                "cw": self.w,
+                "ch": self.h,
         })
         if self.annotation:
             result[-1].update({
-                "key": u"note_straight_card",
+                "key": u"straight_card_note",
                 "annotation": self.annotation,
             })
         if self.underlined_card:
@@ -178,6 +180,8 @@ class CurvedLeg(Leg):
                 "aw": self.association.w / 2,
                 "ah": self.association.h / 2,
                 "spin": self.spin,
+                "stroke_depth": self.style["leg_stroke_depth"],
+                "stroke_color": "leg_stroke_color",
             })
         result.append({
                 "key": u"curved_card",
@@ -192,7 +196,7 @@ class CurvedLeg(Leg):
             })
         if self.annotation:
             result[-1].update({
-                    "key": u"note_curved_card",
+                    "key": u"curved_card_note",
                     "annotation": self.annotation,
                 })
         if self.strengthen:
@@ -206,9 +210,7 @@ class CurvedLeg(Leg):
                 })
             result.append({
                     "key": u"card_underline",
-                    "x1": "tx",
-                    "x2": "tx+%s" % font_metrics.FontMetrics(self.style["card_font"]).get_pixel_width(self.cardinalities),
-                    "y1": "ty-%s" % self.style["card_underline_skip_height"],
+                    "w": font_metrics.FontMetrics(self.style["card_font"]).get_pixel_width(self.cardinalities),
                 })
         if self.arrow:
             result.extend([
