@@ -16,9 +16,9 @@ def main(mcd, common):
     for name in ["card_max_width", "card_max_height", "card_margin", "arrow_width", "arrow_half_height", "arrow_axis", "curvature_ratio", "curvature_gap", "card_underline_skip_height"]:
         result.append("%s = %s" % (name, style[name]))
     result.append("")
-    result.append(read_contents(os.path.join(params["script_directory"], "goodies.py")))
+    result.append(read_contents(os.path.join(params["script_directory"], "drawing_helpers.py")))
+    result.append(read_contents(os.path.join(params["script_directory"], "drawing_helpers_nodebox.py")))
     result.append("")
-    result.append(read_contents(os.path.join(params["script_directory"], "nodebox_goodies.py")))
     result.append("\nsize(width,height)")
     result.append("autoclosepath(False)")
     result.append("background(colors['background_color'])")
