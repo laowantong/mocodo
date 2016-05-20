@@ -124,10 +124,10 @@ def curved_leg(ex, ey, ew, eh, ax, ay, aw, ah, spin):
     diagonal = hypot(ax-ex, ay-ey)
     x0 = ex
     y0 = ey
-    x1 = ex + (ax-ex) * curvature_ratio - spin * curvature_length * (ay-ey) / diagonal
-    y1 = ey + (ay-ey) * curvature_ratio + spin * curvature_length * (ax-ex) / diagonal
-    x2 = ax + (ex-ax) * curvature_ratio - spin * curvature_length * (ay-ey) / diagonal
-    y2 = ay + (ey-ay) * curvature_ratio + spin * curvature_length * (ax-ex) / diagonal
+    x1 = ex + (ax-ex) * curvature_ratio - spin * curvature_gap * (ay-ey) / diagonal
+    y1 = ey + (ay-ey) * curvature_ratio + spin * curvature_gap * (ax-ex) / diagonal
+    x2 = ax + (ex-ax) * curvature_ratio - spin * curvature_gap * (ay-ey) / diagonal
+    y2 = ay + (ey-ay) * curvature_ratio + spin * curvature_gap * (ax-ex) / diagonal
     x3 = ax
     y3 = ay
     (bezier, derivate) = function_factory()

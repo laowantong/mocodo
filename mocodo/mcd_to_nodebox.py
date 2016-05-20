@@ -13,7 +13,7 @@ def main(mcd, common):
     result.append("from __future__ import division\nfrom math import hypot\n")
     result.extend(common.process_geometry(mcd, style))
     result.append("""\nfor c in colors: colors[c] = (color(*[int((colors[c]+"FF")[i:i+2],16)/255.0 for i in range(1,9,2)]) if colors[c] else None)""")
-    for name in ["card_max_width", "card_max_height", "card_margin", "arrow_width", "arrow_half_height", "arrow_axis", "curvature_ratio", "curvature_length", "card_underline_skip_height"]:
+    for name in ["card_max_width", "card_max_height", "card_margin", "arrow_width", "arrow_half_height", "arrow_axis", "curvature_ratio", "curvature_gap", "card_underline_skip_height"]:
         result.append("%s = %s" % (name, style[name]))
     result.append("")
     result.append(read_contents(os.path.join(params["script_directory"], "goodies.py")))
