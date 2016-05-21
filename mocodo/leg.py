@@ -211,6 +211,7 @@ class CurvedLeg(Leg):
             result.append({
                     "key": u"card_underline",
                     "w": font_metrics.FontMetrics(self.style["card_font"]).get_pixel_width(self.cardinalities),
+                    "skip": self.style["card_underline_skip_height"],
                 })
         if self.arrow:
             result.extend([

@@ -10,6 +10,7 @@
 "df_text_height_ratio"        : 1.00,
 "attribute_text_height_ratio" : 0.85,
 "line_skip_height"            : 2,
+"card_baseline"               : 3,
 "card_underline_skip_height"  : 1,
 "underline_skip_height"       : 0.0,
 "underline_depth"             : 1,
