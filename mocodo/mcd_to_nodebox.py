@@ -10,11 +10,15 @@ def main(mcd, common):
     style["transparent_color"] = None
     mcd.calculate_size(style)
     result = ["# %s\n" % common.timestamp()]
+    result.append("from __future__ import division\nfrom math import hypot\n")
     result.extend(common.process_geometry(mcd, style))
     result.append("""\nfor c in colors: colors[c] = (color(*[int((colors[c]+"FF")[i:i+2],16)/255.0 for i in range(1,9,2)]) if colors[c] else None)""")
-    result.append("card_max_width = %(card_max_width)s\ncard_max_height = %(card_max_height)s\ncard_margin = %(card_margin)s\narrow_width = %(arrow_width)s\narrow_half_height = %(arrow_half_height)s\narrow_axis = %(arrow_axis)s" % style)
-    result.append(read_contents(os.path.join(params["script_directory"], "goodies.py")))
-    result.append(read_contents(os.path.join(params["script_directory"], "nodebox_goodies.py")))
+    for name in ["card_max_width", "card_max_height", "card_margin", "arrow_width", "arrow_half_height", "arrow_axis", "curvature_ratio", "curvature_gap", "card_baseline"]:
+        result.append("%s = %s" % (name, style[name]))
+    result.append("")
+    result.append(read_contents(os.path.join(params["script_directory"], "drawing_helpers.py")))
+    result.append(read_contents(os.path.join(params["script_directory"], "drawing_helpers_nodebox.py")))
+    result.append("")
     result.append("\nsize(width,height)")
     result.append("autoclosepath(False)")
     result.append("background(colors['background_color'])")
@@ -28,15 +32,19 @@ def main(mcd, common):
         "upper_round_rect": "upper_round_rect(%(x)s,%(y)s,%(w)s,%(h)s,%(radius)s)",
         "round_rect": "round_rect(%(x)s,%(y)s,%(w)s,%(h)s,%(radius)s)",
         "line": "line(%(x0)s,%(y0)s,%(x1)s,%(y1)s)",
-        "arrow": """arrow(%(x)s,%(y)s,%(a)s,%(b)s)""",
-        "line_arrow": """line_arrow(%(x0)s,%(y0)s,%(x1)s,%(y1)s,t[u"%(leg_identifier)s"])""",
         "dash_line": "dash_line(%(x0)s,%(x1)s,%(y)s,%(dash_width)s)",
+        "text": """fill(colors["%(text_color)s"])\nfont("%(family)s",%(size)s)\ntext(u"%(text)s",%(x)s,%(y)s)""",
+        "straight_leg": """leg=straight_leg_factory(%(ex)s,%(ey)s,%(ew)s,%(eh)s,%(ax)s,%(ay)s,%(aw)s,%(ah)s)\nline(%(ex)s,%(ey)s,%(ax)s,%(ay)s)""",
+        "straight_card": """(tx,ty)=offset(*leg.card_pos(%(cw)s+2*card_margin,%(ch)s+2*card_margin,%(twist)s,shift[u"%(leg_identifier)s"]))\nfill(colors["%(text_color)s"])\nfont("%(family)s",%(size)s)\ntext(u"%(text)s",tx,ty)""",
+        "straight_card_note": """(tx,ty)=offset(*leg.card_pos(%(cw)s+2*card_margin,%(ch)s+2*card_margin,%(twist)s,shift[u"%(leg_identifier)s"]))\nfill(colors["%(text_color)s"])\nfont("%(family)s",%(size)s)\ntext(u"%(text)s",tx,ty)""",
+        "straight_arrow": """arrow(*leg.arrow_pos("%(direction)s",ratio[u"%(leg_identifier)s"]))""",
+        "curved_leg": """leg=curved_leg_factory(%(ex)s,%(ey)s,%(ew)s,%(eh)s,%(ax)s,%(ay)s,%(aw)s,%(ah)s,%(spin)s)\ncurve(*leg.points)""",
+        "curved_card": """(tx,ty)=offset(*leg.card_pos(%(cw)s+2*card_margin,%(ch)s+2*card_margin,shift[u"%(leg_identifier)s"]))\nfill(colors["%(text_color)s"])\nfont("%(family)s",%(size)s)\ntext(u"%(text)s",tx,ty)""",
+        "curved_card_note": """(tx,ty)=offset(*leg.card_pos(%(cw)s+2*card_margin,%(ch)s+2*card_margin,shift[u"%(leg_identifier)s"]))\nfill(colors["%(text_color)s"])\nfont("%(family)s",%(size)s)\ntext(u"%(text)s",tx,ty)""",
+        "curved_arrow": """arrow(*leg.arrow_pos("%(direction)s",ratio[u"%(leg_identifier)s"]))""",
+        "card_underline": """line(tx,ty-%(skip)s,tx+%(w)s,ty-%(skip)s)""",
         "curve": "curve(%(x0)s,%(y0)s,%(x1)s,%(y1)s,%(x2)s,%(y2)s,%(x3)s,%(y3)s)",
-        "curve_arrow": """curve_arrow(%(x0)s,%(y0)s,%(x1)s,%(y1)s,%(x2)s,%(y2)s,%(x3)s,%(y3)s,1-t[u"%(leg_identifier)s"])""",
-        "text": """fill(colors["%(text_color)s"]);font("%(family)s",%(size)s);text(u"%(text)s",%(x)s,%(y)s)""",
-        "card": """(tx,ty)=card_pos(%(ex)s,%(ey)s,%(ew)s,%(eh)s,%(ax)s,%(ay)s,k[u"%(leg_identifier)s"]);fill(colors["%(text_color)s"]);font("%(family)s",%(size)s);text(u"%(text)s",tx,ty)""",
-        "annotated_card": """(tx,ty)=card_pos(%(ex)s,%(ey)s,%(ew)s,%(eh)s,%(ax)s,%(ay)s,k[u"%(leg_identifier)s"]);fill(colors["%(text_color)s"]);font("%(family)s",%(size)s);text(u"%(text)s",tx,ty)""",
-        "card_underline": """line(%(x1)s,%(y1)s,%(x2)s,%(y1)s)""",
+        "arrow": """arrow(%(x)s,%(y)s,%(a)s,%(b)s)""",
     }
     for d in mcd.description():
         try:

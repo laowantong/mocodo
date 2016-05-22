@@ -30,7 +30,7 @@ def font_metrics_factory(params):
                 def get_pixel_width(self, string):
                     return self.font.measure(string)
             return FontMetricsWithTk
-            
+        
         sys.stderr.write(u"Warning: Tkinter is not correctly installed or Mocodo is run on server side with no display. Option 'tkinter' ignored.\n")
     path = os.path.join(params["script_directory"], "font_metrics.json")
     text = read_contents(path)
@@ -43,9 +43,8 @@ def font_metrics_factory(params):
                 font["family"] = u"Courier New"
             ref_size = self.static_data["size"]
             metrics = self.static_data["fonts"][font["family"]]
-            self.font_height = int((metrics["height"] * font["size"] + 0.5) / ref_size)
-            self.width = dict((c, ord(x)) for (c, x) in zip(
-                self.static_data["alphabet"], metrics.get("widths", [])))
+            self.font_height = int(round(metrics["height"] * font["size"] / ref_size))
+            self.width = dict((c, ord(x)) for (c, x) in zip(self.static_data["alphabet"], metrics.get("widths", [])))
             self.ratio = font["size"] * metrics.get("correction", 1.0) / ref_size
             self.default_width = metrics["default"]
 
@@ -53,7 +52,7 @@ def font_metrics_factory(params):
             return self.font_height
 
         def get_pixel_width(self, string):
-            return int(self.ratio * sum(self.width.get(c, self.default_width) for c in string) + 0.5)
+            return int(round(self.ratio * sum(self.width.get(c, self.default_width) for c in string))) + 1
     
     FontMetricsWithoutTk.static_data = json.loads(text)
     return FontMetricsWithoutTk
