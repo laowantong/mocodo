@@ -9,3 +9,6 @@ README.rst
 web/*
 sandbox/*
 meta/*
+doc/mocodo_notebook
+doc/.ipynb*
+sandbox*.*

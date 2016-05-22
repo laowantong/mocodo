@@ -101,7 +101,6 @@ class Mcd:
                     directions[leg.entity].add(direction)
                     twistable_legs[(leg.entity, direction)] = leg
             for (entity, d) in directions.items():
-                # print (entity.name, d)
                 for neighbors in [((0,1),(1,1)), ((1,0),(1,1)), ((0,-1),(1,-1)), ((-1,0),(-1,1))]:
                     if d.issuperset(neighbors):
                         twistable_legs[(entity, neighbors[0])].twist = True
@@ -157,7 +156,6 @@ class Mcd:
                     successors[leg.entity.identifier].add(association.identifier)
                     multiplicity[(association.identifier, leg.entity.identifier)] += 1
                     multiplicity[(leg.entity.identifier, association.identifier)] += 1
-            print successors
         else:
             for diagram_link in self.diagram_links:
                 fei = diagram_link.foreign_entity.identifier
