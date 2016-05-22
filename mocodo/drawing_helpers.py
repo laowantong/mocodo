@@ -15,35 +15,35 @@ def straight_leg_factory(ex, ey, ew, eh, ax, ay, aw, ah):
             x = ex + (ax-ex) * (y-ey) / (ay-ey)
         return (x, y)
     
-    def card_pos(cw, ch, shift):
+    def card_pos(cw, ch, twist, shift):
+        compare = (lambda x1, y1: x1 < y1) if twist else (lambda x1, y1: x1 <= y1)
         diagonal = hypot(ax-ex, ay-ey)
         correction = card_margin * (1 - abs(abs(ax-ex) - abs(ay-ey)) / diagonal) - shift
         (xg, yg) = intersection(ex, ey, ew, eh + ch, ax, ay)
         (xb, yb) = intersection(ex, ey, ew + cw, eh, ax, ay)
-        if xg <= xb:
-            if xg <= ex:
-                if yb <= ey:
+        if compare(xg, xb):
+            if compare(xg, ex):
+                if compare(yb, ey):
                     return (xb - correction, yb)
                 return (xb - correction, yb + ch)
-            if yb <= ey:
+            if compare(yb, ey):
                 return (xg, yg + ch - correction)
             return (xg, yg + correction)
-        if xb <= ex:
-            if yb <= ey:
+        if compare(xb, ex):
+            if compare(yb, ey):
                 return (xg - cw, yg + ch - correction)
             return (xg - cw, yg + correction)
-        if yb <= ey:
+        if compare(yb, ey):
             return (xb - cw + correction, yb)
         return (xb - cw + correction, yb + ch)
     
     def arrow_pos(direction, ratio):
         (x0, y0) = intersection(ex, ey, ew, eh, ax, ay)
         (x1, y1) = intersection(ax, ay, aw, ah, ex, ey)
+        if direction == "<":
+            (x0, y0, x1, y1) = (x1, y1, x0, y0)
         (x, y) = (ratio * x0 + (1 - ratio) * x1, ratio * y0 + (1 - ratio) * y1)
-        if direction == ">":
-            return (x, y, x1 - x0, y0 - y1)
-        else:
-            return (x + x1 - x0, y + y0 - y1, x0 - x1, y1 - y0)
+        return (x, y, x1 - x0, y0 - y1)
     
     straight_leg_factory.card_pos = card_pos
     straight_leg_factory.arrow_pos = arrow_pos

@@ -53,7 +53,8 @@ class Leg:
                 self.cardinalities = params["card_format"].format(min_card=self.cards[0], max_card=self.cards[1])
         if self.annotation:
             self.annotation = html_escape(self.annotation.replace("<<<protected-comma>>>", ",").replace("<<<protected-colon>>>", ":"))
-
+        self.twist = False
+    
     def calculate_size(self, style):
         font = font_metrics.FontMetrics(style["card_font"])
         self.h = font.get_pixel_height()
@@ -103,6 +104,7 @@ class StraightLeg(Leg):
                 "size": self.style["card_font"]["size"],
                 "cw": self.w,
                 "ch": self.h,
+                "twist": self.twist,
         })
         if self.annotation:
             result[-1].update({
@@ -120,7 +122,8 @@ class StraightLeg(Leg):
                 })
             result.append({
                     "key": u"card_underline",
-                    "w": "%s" % font_metrics.FontMetrics(self.style["card_font"]).get_pixel_width(self.cardinalities),
+                    "w": self.w,
+                    "skip": self.style["card_underline_skip_height"],
                 })
         if self.arrow:
             result.extend([
@@ -210,7 +213,7 @@ class CurvedLeg(Leg):
                 })
             result.append({
                     "key": u"card_underline",
-                    "w": font_metrics.FontMetrics(self.style["card_font"]).get_pixel_width(self.cardinalities),
+                    "w": self.w,
                     "skip": self.style["card_underline_skip_height"],
                 })
         if self.arrow:

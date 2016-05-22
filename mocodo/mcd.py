@@ -81,6 +81,34 @@ class Mcd:
             for (entity_name, legs) in strengthen_legs.items():
                 self.entities[entity_name].set_strengthen_legs(legs)
         
+        def add_straight_card_twists():
+            """
+            When an entity has both a vertical or horizontal leg and a oblique leg
+            whose angle is 45°, the cardinalities of the former should be placed
+            on the opposite side of the leg, in an attempt to prevent collision.
+            """
+            coordinates = {}
+            for (j, row) in enumerate(self.rows):
+                for (i, box) in enumerate(row):
+                    coordinates[box] = (i, j)
+            directions = defaultdict(set)
+            twistable_legs = {}
+            for association in self.associations.values():
+                for leg in association.legs:
+                    (ei, ej) = coordinates[leg.entity]
+                    (ai, aj) = coordinates[leg.association]
+                    direction = (cmp(ai, ei), cmp(aj, ej))
+                    directions[leg.entity].add(direction)
+                    twistable_legs[(leg.entity, direction)] = leg
+            for (entity, d) in directions.items():
+                # print (entity.name, d)
+                for neighbors in [((0,1),(1,1)), ((1,0),(1,1)), ((0,-1),(1,-1)), ((-1,0),(-1,1))]:
+                    if d.issuperset(neighbors):
+                        twistable_legs[(entity, neighbors[0])].twist = True
+                for neighbors in [((0,1),(-1,1)), ((1,0),(1,-1)), ((0,-1),(-1,-1)), ((-1,0),(-1,-1))]:
+                    if d.issuperset(neighbors):
+                        twistable_legs[(entity, neighbors[0])].twist = False
+        
         def add_diagram_links():
             self.diagram_links = []
             for (entity_name, entity) in self.entities.items():
@@ -116,6 +144,7 @@ class Mcd:
         add_diagram_links()
         may_center()
         make_boxes()
+        add_straight_card_twists()
         self.title = params["title"]
     
     def get_layout_data(self):
@@ -128,6 +157,7 @@ class Mcd:
                     successors[leg.entity.identifier].add(association.identifier)
                     multiplicity[(association.identifier, leg.entity.identifier)] += 1
                     multiplicity[(leg.entity.identifier, association.identifier)] += 1
+            print successors
         else:
             for diagram_link in self.diagram_links:
                 fei = diagram_link.foreign_entity.identifier
@@ -195,11 +225,11 @@ class Mcd:
     
     def calculate_size(self, style):
         def card_max_width():
-            cardinalities = set()
+            get_pixel_width = font_metrics.FontMetrics(style["card_font"]).get_pixel_width
+            cardinalities = set(["0,N"]) # default value, in case there is no cardinalities at all
             for association in self.associations.values():
                 for leg in association.legs:
                     cardinalities.add(leg.cardinalities)
-            get_pixel_width = font_metrics.FontMetrics(style["card_font"]).get_pixel_width
             return max(map(get_pixel_width, cardinalities))
         #
         def calculate_sizes():

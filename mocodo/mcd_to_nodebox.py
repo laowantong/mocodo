@@ -35,14 +35,16 @@ def main(mcd, common):
         "dash_line": "dash_line(%(x0)s,%(x1)s,%(y)s,%(dash_width)s)",
         "text": """fill(colors["%(text_color)s"])\nfont("%(family)s",%(size)s)\ntext(u"%(text)s",%(x)s,%(y)s)""",
         "straight_leg": """leg=straight_leg_factory(%(ex)s,%(ey)s,%(ew)s,%(eh)s,%(ax)s,%(ay)s,%(aw)s,%(ah)s)\nline(%(ex)s,%(ey)s,%(ax)s,%(ay)s)""",
-        "straight_card": """(tx,ty)=offset(*leg.card_pos(%(cw)s+2*card_margin,%(ch)s+2*card_margin,shift[u"%(leg_identifier)s"]))\nfill(colors["%(text_color)s"])\nfont("%(family)s",%(size)s)\ntext(u"%(text)s",tx,ty)""",
-        "straight_card_note": """(tx,ty)=offset(*leg.card_pos(%(cw)s+2*card_margin,%(ch)s+2*card_margin,shift[u"%(leg_identifier)s"]))\nfill(colors["%(text_color)s"])\nfont("%(family)s",%(size)s)\ntext(u"%(text)s",tx,ty)""",
+        "straight_card": """(tx,ty)=offset(*leg.card_pos(%(cw)s+2*card_margin,%(ch)s+2*card_margin,%(twist)s,shift[u"%(leg_identifier)s"]))\nfill(colors["%(text_color)s"])\nfont("%(family)s",%(size)s)\ntext(u"%(text)s",tx,ty)""",
+        "straight_card_note": """(tx,ty)=offset(*leg.card_pos(%(cw)s+2*card_margin,%(ch)s+2*card_margin,%(twist)s,shift[u"%(leg_identifier)s"]))\nfill(colors["%(text_color)s"])\nfont("%(family)s",%(size)s)\ntext(u"%(text)s",tx,ty)""",
         "straight_arrow": """arrow(*leg.arrow_pos("%(direction)s",ratio[u"%(leg_identifier)s"]))""",
         "curved_leg": """leg=curved_leg_factory(%(ex)s,%(ey)s,%(ew)s,%(eh)s,%(ax)s,%(ay)s,%(aw)s,%(ah)s,%(spin)s)\ncurve(*leg.points)""",
         "curved_card": """(tx,ty)=offset(*leg.card_pos(%(cw)s+2*card_margin,%(ch)s+2*card_margin,shift[u"%(leg_identifier)s"]))\nfill(colors["%(text_color)s"])\nfont("%(family)s",%(size)s)\ntext(u"%(text)s",tx,ty)""",
         "curved_card_note": """(tx,ty)=offset(*leg.card_pos(%(cw)s+2*card_margin,%(ch)s+2*card_margin,shift[u"%(leg_identifier)s"]))\nfill(colors["%(text_color)s"])\nfont("%(family)s",%(size)s)\ntext(u"%(text)s",tx,ty)""",
         "curved_arrow": """arrow(*leg.arrow_pos("%(direction)s",ratio[u"%(leg_identifier)s"]))""",
         "card_underline": """line(tx,ty-%(skip)s,tx+%(w)s,ty-%(skip)s)""",
+        "curve": "curve(%(x0)s,%(y0)s,%(x1)s,%(y1)s,%(x2)s,%(y2)s,%(x3)s,%(y3)s)",
+        "arrow": """arrow(%(x)s,%(y)s,%(a)s,%(b)s)""",
     }
     for d in mcd.description():
         try:

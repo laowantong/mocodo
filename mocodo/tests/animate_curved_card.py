@@ -112,7 +112,7 @@ def draw():
         # Intersection points
         strokewidth(2)
         stroke(color(1,0,0)) # red
-        oval(xr-1,yr-1, 2, 2)
+        oval(xr-3,yr-3, 6, 6)
         stroke(color(0,1,0)) # green
         oval(xg-1, yg-1, 2, 2)
         stroke(color(0,0,1)) # blue
@@ -120,6 +120,7 @@ def draw():
 
 
 def curve(x0, y0, x1, y1, x2, y2, x3, y3):
+    autoclosepath(False)
     nofill()
     beginpath(x0, y0)
     curveto(x1, y1, x2, y2, x3, y3)
@@ -128,7 +129,7 @@ def curve(x0, y0, x1, y1, x2, y2, x3, y3):
 size(width,height)
 (ex,ey) = (width/2, height/2)
 card_margin = 0
-autoclosepath(False)
+
 
 if ANIMATE:
     speed(50)

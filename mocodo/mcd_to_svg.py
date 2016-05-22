@@ -34,6 +34,8 @@ def main(mcd, common):
         "round_rect":         """'<rect x="%(x)s" y="%(y)s" width="%(w)s" height="%(h)s" fill="%(color)s" rx="%(radius)s" stroke="%(stroke_color)s" stroke-width="%(stroke_depth)s"/>""",
         "lower_round_rect":   """<path d="%(path)s" fill="%(color)s" stroke="%(stroke_color)s" stroke-width="%(stroke_depth)s"/>""",
         "upper_round_rect":   """<path d="%(path)s" fill="%(color)s" stroke="%(stroke_color)s" stroke-width="%(stroke_depth)s"/>""",
+        "arrow":              """<path d="%(path)s" fill="%(stroke_color)s" stroke-width="0"/>""",
+        "curve":              """<path d="M%(x0)s %(y0)s C %(x1)s %(y1)s %(x2)s %(y2)s %(x3)s %(y3)s" fill="none" stroke="%(stroke_color)s" stroke-width="%(stroke_depth)s"/>""",
         "line":               """<line x1="%(x0)s" y1="%(y0)s" x2="%(x1)s" y2="%(y1)s" stroke="%(stroke_color)s" stroke-width="%(stroke_depth)s"/>""",
         "dash_line":          """<line x1="%(x0)s" y1="%(y)s" x2="%(x1)s" y2="%(y)s" style="fill:none;stroke:%(stroke_color)s;stroke-width:%(stroke_depth)s;stroke-dasharray:%(dash_width)s;"/>""",
         "rect":               """<rect x="%(x)s" y="%(y)s" width="%(w)s" height="%(h)s" fill="%(color)s" stroke="%(stroke_color)s" stroke-width="%(stroke_depth)s"/>""",
@@ -47,7 +49,7 @@ def main(mcd, common):
         "curved_card":        """<text x="%(tx)s" y="%(ty)s" fill="%(text_color)s" font-family="%(family)s" font-size="%(size)s">%(text)s</text>""",
         "curved_arrow":       """<path d="%(path)s" fill="%(stroke_color)s" stroke-width="0"/>""",
         "curved_card_note":   """<text x="%(tx)s" y="%(ty)s" fill="%(text_color)s" font-family="%(family)s" font-size="%(size)s" onmouseover="show(evt,'%(annotation)s')" onmouseout="hide(evt)" style="cursor: pointer;">%(text)s</text>""",
-        "card_underline":     """<line x1="%(tx)s" y1="%(y)s" x2="%(x)s" y2="%(y)s" stroke="%(stroke_color)s" stroke-width="%(stroke_depth)s"/>""",
+        "card_underline":     """<line x1="%(tx)s" y1="%(uy)s" x2="%(ux)s" y2="%(uy)s" stroke="%(stroke_color)s" stroke-width="%(stroke_depth)s"/>""",
         "begin":              """<g id="%(id)s">""",
         "end":                """</g>""",
     }
@@ -63,20 +65,22 @@ def main(mcd, common):
                 if d["key"] == "straight_leg":
                     result.append('leg=straight_leg_factory(%(ex)s,%(ey)s,%(ew)s,%(eh)s,%(ax)s,%(ay)s,%(aw)s,%(ah)s)' % d)
                 elif d["key"] in ("straight_card", "straight_card_note"):
-                    result.append('(tx,ty)=leg.card_pos(%(cw)s+2*card_margin,%(ch)s+2*card_margin,shift[u"%(leg_identifier)s"])' % d)
+                    result.append('(tx,ty)=offset(*leg.card_pos(%(cw)s+2*card_margin,%(ch)s+2*card_margin,%(twist)s,shift[u"%(leg_identifier)s"]))' % d)
+                elif d["key"] in ("curved_card", "curved_card_note"):
+                    result.append('(tx,ty)=offset(*leg.card_pos(%(cw)s+2*card_margin,%(ch)s+2*card_margin,shift[u"%(leg_identifier)s"]))' % d)
                 elif d["key"] == "curved_leg":
                     result.append('leg=curved_leg_factory(%(ex)s,%(ey)s,%(ew)s,%(eh)s,%(ax)s,%(ay)s,%(aw)s,%(ah)s,%(spin)s)' % d)
                     result.append('(x0, y0, x1, y1, x2, y2, x3, y3)=leg.points')
-                elif d["key"] in ("curved_card", "curved_card_note"):
-                    result.append('(tx,ty)=leg.card_pos(%(cw)s+2*card_margin,%(ch)s+2*card_margin,shift[u"%(leg_identifier)s"])' % d)
                 elif d["key"] in ("straight_arrow", "curved_arrow"):
                     result.append('path=arrow(*leg.arrow_pos("%(direction)s",ratio[u"%(leg_identifier)s"]))' % d)
                 elif d["key"] == "card_underline":
-                    result.append('(x,y)=(tx+%(w)s,ty-%(skip)s)' % d)
+                    result.append('(ux,uy)=(tx+%(w)s,ty-%(skip)s)' % d)
                 elif d["key"] == "upper_round_rect":
                     result.append('path = upper_round_rect(%(x)s,%(y)s,%(w)s,%(h)s,%(radius)s)' % d)
                 elif d["key"] == "lower_round_rect":
                     result.append('path = lower_round_rect(%(x)s,%(y)s,%(w)s,%(h)s,%(radius)s)' % d)
+                elif d["key"] == "arrow":
+                    result.append('path = arrow(%(x)s,%(y)s,%(a)s,%(b)s)' % d)
                 elif d["key"] in ("color", "stroke_color"):
                     others[d["key"]] = "colors['%s']" % d[d["key"]]
                 elif d["key"] == "stroke_depth":
