@@ -18,7 +18,7 @@ def straight_leg_factory(ex, ey, ew, eh, ax, ay, aw, ah):
     def card_pos(cw, ch, twist, shift):
         compare = (lambda x1, y1: x1 < y1) if twist else (lambda x1, y1: x1 <= y1)
         diagonal = hypot(ax-ex, ay-ey)
-        correction = card_margin * (1 - abs(abs(ax-ex) - abs(ay-ey)) / diagonal) - shift
+        correction = card_margin * 1.4142 * (1 - abs(abs(ax-ex) - abs(ay-ey)) / diagonal) - shift
         (xg, yg) = intersection(ex, ey, ew, eh + ch, ax, ay)
         (xb, yb) = intersection(ex, ey, ew + cw, eh, ax, ay)
         if compare(xg, xb):
@@ -69,7 +69,7 @@ def curved_leg_factory(ex, ey, ew, eh, ax, ay, aw, ah, spin):
     
     def card_pos(cw, ch, shift):
         diagonal = hypot(ax-ex, ay-ey)
-        correction = card_margin * (1 - abs(abs(ax-ex) - abs(ay-ey)) / diagonal) - shift
+        correction = card_margin * 1.4142 * (1 - abs(abs(ax-ex) - abs(ay-ey)) / diagonal)
         (top, bot) = (ey - eh, ey + eh)
         (TOP, BOT) = (top - ch, bot + ch)
         (lef, rig) = (ex - ew, ex + ew)
@@ -79,19 +79,19 @@ def curved_leg_factory(ex, ey, ew, eh, ax, ay, aw, ah, spin):
         (xb, yb) = intersection(LEF, top, RIG, bot)
         if spin == 1:
             if (yr == BOT and xr <= rig) or (xr == LEF and yr >= bot):
-                return (max(x for (x, y) in ((xr, yr), (xg, yg), (xb, yb)) if y >= bot) - correction, bot + ch)
+                return (max(x for (x, y) in ((xr, yr), (xg, yg), (xb, yb)) if y >= bot) - correction + shift, bot + ch)
             if (xr == RIG and yr >= top) or yr == BOT:
-                return (rig, min(y for (x, y) in ((xr, yr), (xg, yg), (xb, yb)) if x >= rig) - correction)
+                return (rig, min(y for (x, y) in ((xr, yr), (xg, yg), (xb, yb)) if x >= rig) + correction + shift)
             if (yr == TOP and xr >= lef) or xr == RIG:
-                return (min(x for (x, y) in ((xr, yr), (xg, yg), (xb, yb)) if y <= top) - correction - cw, TOP + ch)
-            return (LEF, max(y for (x, y) in ((xr, yr), (xg, yg), (xb, yb)) if x <= lef) - correction + ch)
+                return (min(x for (x, y) in ((xr, yr), (xg, yg), (xb, yb)) if y <= top) + correction + shift - cw, TOP + ch)
+            return (LEF, max(y for (x, y) in ((xr, yr), (xg, yg), (xb, yb)) if x <= lef) - correction + shift + ch)
         if (yr == BOT and xr >= lef) or (xr == RIG and yr >= bot):
-            return (min(x for (x, y) in ((xr, yr), (xg, yg), (xb, yb)) if y >= bot) - correction - cw, bot + ch)
+            return (min(x for (x, y) in ((xr, yr), (xg, yg), (xb, yb)) if y >= bot) + correction + shift - cw, bot + ch)
         if xr == RIG or (yr == TOP and xr >= rig):
-            return (rig, max(y for (x, y) in ((xr, yr), (xg, yg), (xb, yb)) if x >= rig) - correction + ch)
+            return (rig, max(y for (x, y) in ((xr, yr), (xg, yg), (xb, yb)) if x >= rig) - correction + shift + ch)
         if yr == TOP or (xr == LEF and yr <= top):
-            return (max(x for (x, y) in ((xr, yr), (xg, yg), (xb, yb)) if y <= top) - correction, TOP + ch)
-        return (LEF, min(y for (x, y) in ((xr, yr), (xg, yg), (xb, yb)) if x <= lef) - correction)
+            return (max(x for (x, y) in ((xr, yr), (xg, yg), (xb, yb)) if y <= top) - correction + shift, TOP + ch)
+        return (LEF, min(y for (x, y) in ((xr, yr), (xg, yg), (xb, yb)) if x <= lef) + correction + shift)
     
     def arrow_pos(direction, ratio):
         t0 = bisection(lambda x, y: abs(x - ax) > aw or abs(y - ay) > ah)
