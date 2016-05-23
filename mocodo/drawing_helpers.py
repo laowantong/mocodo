@@ -77,7 +77,7 @@ def curved_leg_factory(ex, ey, ew, eh, ax, ay, aw, ah, spin):
         (xr, yr) = intersection(LEF, TOP, RIG, BOT)
         (xg, yg) = intersection(lef, TOP, rig, BOT)
         (xb, yb) = intersection(LEF, top, RIG, bot)
-        if spin == 1:
+        if spin > 0:
             if (yr == BOT and xr <= rig) or (xr == LEF and yr >= bot):
                 return (max(x for (x, y) in ((xr, yr), (xg, yg), (xb, yb)) if y >= bot) - correction + shift, bot + ch)
             if (xr == RIG and yr >= top) or yr == BOT:

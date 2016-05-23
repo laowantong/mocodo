@@ -81,32 +81,61 @@ class Mcd:
             for (entity_name, legs) in strengthen_legs.items():
                 self.entities[entity_name].set_strengthen_legs(legs)
         
-        def add_straight_card_twists():
-            """
-            When an entity has both a vertical or horizontal leg and a oblique leg
-            whose angle is 45°, the cardinalities of the former should be placed
-            on the opposite side of the leg, in an attempt to prevent collision.
-            """
+        def tweak_straight_cards():
             coordinates = {}
             for (j, row) in enumerate(self.rows):
                 for (i, box) in enumerate(row):
                     coordinates[box] = (i, j)
-            directions = defaultdict(set)
-            twistable_legs = {}
+            d = defaultdict(list)
+            tweakable_legs = {}
             for association in self.associations.values():
                 for leg in association.legs:
                     (ei, ej) = coordinates[leg.entity]
                     (ai, aj) = coordinates[leg.association]
-                    direction = (cmp(ai, ei), cmp(aj, ej))
-                    directions[leg.entity].add(direction)
-                    twistable_legs[(leg.entity, direction)] = leg
-            for (entity, d) in directions.items():
-                for neighbors in [((0,1),(1,1)), ((1,0),(1,1)), ((0,-1),(1,-1)), ((-1,0),(-1,1))]:
-                    if d.issuperset(neighbors):
-                        twistable_legs[(entity, neighbors[0])].twist = True
-                for neighbors in [((0,1),(-1,1)), ((1,0),(1,-1)), ((0,-1),(-1,-1)), ((-1,0),(-1,-1))]:
-                    if d.issuperset(neighbors):
-                        twistable_legs[(entity, neighbors[0])].twist = False
+                    vector = (cmp(ai, ei), cmp(aj, ej))
+                    vector = (" SN"[cmp(aj, ej)] + " EW"[cmp(ai, ei)]).strip()
+                    d[leg.entity].append(vector)
+                    tweakable_legs[(leg.entity, vector)] = leg
+            flex = params.get("flex", 0)
+            for (entity, vectors) in d.items():
+                for vector in vectors:
+                    leg = tweakable_legs[(entity, vector)]
+                    if leg.cardinalities == "":
+                        continue
+                    elif vector == "E":
+                        if vectors.count("E") == 1 and "SE" in vectors and "NE" not in vectors:
+                            leg.twist = True
+                    elif vector == "S":
+                        if vectors.count("S") == 1 and "SE" in vectors and "SW" not in vectors:
+                            leg.twist = True
+                    elif vector == "W":
+                        if vectors.count("W") == 1 and "SW" in vectors and "NW" not in vectors:
+                            leg.twist = True
+                    elif vector == "N":
+                        if vectors.count("N") == 1 and "NE" in vectors and "NW" not in vectors:
+                            leg.twist = True
+                    elif flex == 0:
+                        continue
+                    elif vector == "SE":
+                        if vectors.count("E") > 1:
+                            leg.set_spin_strategy(flex)
+                        elif vectors.count("S") > 1:
+                            leg.set_spin_strategy(-flex)
+                    elif vector == "SW":
+                        if vectors.count("S") > 1:
+                            leg.set_spin_strategy(flex)
+                        elif vectors.count("W") > 1:
+                            leg.set_spin_strategy(-flex)
+                    elif vector == "NW":
+                        if vectors.count("W") > 1:
+                            leg.set_spin_strategy(flex)
+                        elif vectors.count("N") > 1:
+                            leg.set_spin_strategy(-flex)
+                    elif vector == "NE":
+                        if vectors.count("N") > 1:
+                            leg.set_spin_strategy(flex)
+                        elif vectors.count("E") > 1:
+                            leg.set_spin_strategy(-flex)
         
         def add_diagram_links():
             self.diagram_links = []
@@ -143,7 +172,7 @@ class Mcd:
         add_diagram_links()
         may_center()
         make_boxes()
-        add_straight_card_twists()
+        tweak_straight_cards()
         self.title = params["title"]
     
     def get_layout_data(self):

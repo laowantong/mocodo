@@ -54,6 +54,7 @@ class Leg:
         if self.annotation:
             self.annotation = html_escape(self.annotation.replace("<<<protected-comma>>>", ",").replace("<<<protected-colon>>>", ":"))
         self.twist = False
+        self.identifier = None
     
     def calculate_size(self, style):
         font = font_metrics.FontMetrics(style["card_font"])
@@ -63,12 +64,9 @@ class Leg:
     
     def set_spin_strategy(self, spin):
         self.spin = spin
-        if spin == 0:
-            self.description = self._straight_description
-            self.identifier = "%s,%s" % (self.association.name, self.entity_name)
-        else:
-            self.description = self._curved_description
-            self.identifier = "%s,%s,%s" % (self.association.name, self.entity_name, self.spin)
+        self.description = (self._curved_description if spin else self._straight_description)
+        if self.identifier is None:
+            self.identifier = ("%s,%s,%s" % (self.association.name, self.entity_name, self.spin) if spin else "%s,%s" % (self.association.name, self.entity_name))
     
     def _straight_description(self):
         result = []

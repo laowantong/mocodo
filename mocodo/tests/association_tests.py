@@ -20,7 +20,6 @@ class parse_test(unittest.TestCase):
             self.assertEqual(leg.entity_name, "BANDIT")
             self.assertEqual(leg.arrow, "")
             self.assertEqual(leg.annotation, None)
-            self.assertEqual(leg.__class__, CurvedLeg)
 
     def test_double(self):
         l = [
@@ -37,12 +36,10 @@ class parse_test(unittest.TestCase):
             self.assertEqual(a.legs[0].entity_name, "PARTICIPANT")
             self.assertEqual(a.legs[0].arrow, "")
             self.assertEqual(a.legs[0].annotation, None)
-            self.assertEqual(a.legs[0].__class__, StraightLeg)
             self.assertEqual(a.legs[1].cardinalities, "0,N")
             self.assertEqual(a.legs[1].entity_name, "ENTREPRISE")
             self.assertEqual(a.legs[1].arrow, "")
             self.assertEqual(a.legs[1].annotation, None)
-            self.assertEqual(a.legs[1].__class__, StraightLeg)
 
     def test_triple(self):
         a = Association("SUIVRE, 0N DATE, 11 ÉTUDIANT, 0N ENSEIGNANT")
@@ -53,17 +50,14 @@ class parse_test(unittest.TestCase):
         self.assertEqual(a.legs[0].entity_name, "DATE")
         self.assertEqual(a.legs[0].arrow, "")
         self.assertEqual(a.legs[0].annotation, None)
-        self.assertEqual(a.legs[0].__class__, StraightLeg)
         self.assertEqual(a.legs[1].cardinalities, "1,1")
         self.assertEqual(a.legs[1].entity_name, "ÉTUDIANT")
         self.assertEqual(a.legs[1].arrow, "")
         self.assertEqual(a.legs[1].annotation, None)
-        self.assertEqual(a.legs[1].__class__, StraightLeg)
         self.assertEqual(a.legs[2].cardinalities, "0,N")
         self.assertEqual(a.legs[2].entity_name, "ENSEIGNANT")
         self.assertEqual(a.legs[2].arrow, "")
         self.assertEqual(a.legs[2].annotation, None)
-        self.assertEqual(a.legs[2].__class__, StraightLeg)
 
     def test_arrow(self):
         a = Association("EMPLOYER, 01> PARTICIPANT, 0N< ENTREPRISE")
