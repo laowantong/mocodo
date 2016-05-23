@@ -21,8 +21,6 @@ class parse_test(unittest.TestCase):
             self.assertEqual(leg.arrow, "")
             self.assertEqual(leg.annotation, None)
             self.assertEqual(leg.__class__, CurvedLeg)
-            self.assertEqual(leg.count, 2)
-            self.assertEqual(leg.num, i)
 
     def test_double(self):
         l = [

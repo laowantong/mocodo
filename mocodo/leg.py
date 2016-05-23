@@ -60,15 +60,17 @@ class Leg:
         self.h = font.get_pixel_height()
         self.w = font.get_pixel_width(self.cardinalities)
         self.style = style
-
-
-class StraightLeg(Leg):
-
-    def __init__(self, association, card, entity_name, params):
-        Leg.__init__(self, association, card, entity_name, params)
-        self.num = 0
     
-    def description(self):
+    def set_spin_strategy(self, spin):
+        self.spin = spin
+        if spin == 0:
+            self.description = self._straight_description
+            self.identifier = "%s,%s" % (self.association.name, self.entity_name)
+        else:
+            self.description = self._curved_description
+            self.identifier = "%s,%s,%s" % (self.association.name, self.entity_name, self.spin)
+    
+    def _straight_description(self):
         result = []
         result.append({
                 "key": u"env",
@@ -143,22 +145,7 @@ class StraightLeg(Leg):
             ])
         return result
 
-    def identifier(self):
-        return "%s,%s" % (self.association.name, self.entity_name)
-
-    def value(self):
-        return 0
-
-
-class CurvedLeg(Leg):
-
-    def __init__(self, association, card, entity_name, count, num, params):
-        Leg.__init__(self, association, card, entity_name, params)
-        self.count = count
-        self.num = num
-        self.spin = float(2 * self.num) / (self.count - 1) - 1
-
-    def description(self):
+    def _curved_description(self):
         result = []
         result.append({
                 "key": u"env",
@@ -191,7 +178,7 @@ class CurvedLeg(Leg):
                 "text": self.cardinalities,
                 "text_color": "card_text_color",
                 "spin": self.spin,
-                "leg_identifier": self.identifier(),
+                "leg_identifier": self.identifier,
                 "family": self.style["card_font"]["family"],
                 "size": self.style["card_font"]["size"],
                 "cw": self.w,
@@ -229,13 +216,8 @@ class CurvedLeg(Leg):
                 {
                     "key": u"curved_arrow",
                     "direction": self.arrow,
-                    "leg_identifier": self.identifier(),
+                    "leg_identifier": self.identifier,
                 }
             ])
         return result
 
-    def identifier(self):
-        return "%s,%s,%s" % (self.association.name, self.entity_name, self.spin)
-
-    def value(self):
-        return 2 * self.spin * self.count

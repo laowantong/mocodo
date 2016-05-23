@@ -32,7 +32,11 @@ class Association:
         (self.name, self.cartouche, cards, entities, attributes) = clean_up(name, legs, attributes)
         self.attributes = [SimpleAssociationAttribute(attribute, i) for (i, attribute) in enumerate(attributes)]
         entities = [(e.strip(" \n\t"), entities.count(e), entities[:i].count(e)) for (i, e) in enumerate(entities)]
-        self.legs = [(StraightLeg(self, card, entity, params) if count == 1 else CurvedLeg(self, card, entity, count, num, params)) for (card, (entity, count, num)) in zip(cards, entities)]
+        self.legs = []
+        for (card, (entity, count, num)) in zip(cards, entities):
+            leg = Leg(self, card, entity, params)
+            leg.set_spin_strategy(0 if count == 1 else (2.0 * num) / (count - 1) - 1)
+            self.legs.append(leg)
         self.df_label = params["df"]
         self.check_df_strategy(self.cartouche == self.df_label)
         self.kind = "association"
@@ -225,4 +229,4 @@ class Association:
 
     def leg_identifiers(self):
         for leg in self.legs:
-            yield leg.identifier()
+            yield leg.identifier
