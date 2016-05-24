@@ -1,26 +1,26 @@
 def offset(x, y):
     return (x + card_margin, y - card_baseline - card_margin)
 
-def straight_leg_factory(ex, ey, ew, eh, ax, ay, aw, ah):
+def line_intersection(ex, ey, w, h, ax, ay):
+    if ax == ex:
+        return (ax, ey + cmp(ay, ey) * h)
+    if ay == ey:
+        return (ex + cmp(ax, ex) * w, ay)
+    x = ex + cmp(ax, ex) * w
+    y = ey + (ay-ey) * (x-ex) / (ax-ex)
+    if abs(y-ey) > h:
+        y = ey + cmp(ay, ey) * h
+        x = ex + (ax-ex) * (y-ey) / (ay-ey)
+    return (x, y)
+
+def straight_leg_factory(ex, ey, ew, eh, ax, ay, aw, ah, cw, ch):
     
-    def intersection(ex, ey, w, h, ax, ay):
-        if ax == ex:
-            return (ax, ey + cmp(ay, ey) * h)
-        if ay == ey:
-            return (ex + cmp(ax, ex) * w, ay)
-        x = ex + cmp(ax, ex) * w
-        y = ey + (ay-ey) * (x-ex) / (ax-ex)
-        if abs(y-ey) > h:
-            y = ey + cmp(ay, ey) * h
-            x = ex + (ax-ex) * (y-ey) / (ay-ey)
-        return (x, y)
-    
-    def card_pos(cw, ch, twist, shift):
+    def card_pos(twist, shift):
         compare = (lambda x1, y1: x1 < y1) if twist else (lambda x1, y1: x1 <= y1)
         diagonal = hypot(ax-ex, ay-ey)
         correction = card_margin * 1.4142 * (1 - abs(abs(ax-ex) - abs(ay-ey)) / diagonal) - shift
-        (xg, yg) = intersection(ex, ey, ew, eh + ch, ax, ay)
-        (xb, yb) = intersection(ex, ey, ew + cw, eh, ax, ay)
+        (xg, yg) = line_intersection(ex, ey, ew, eh + ch, ax, ay)
+        (xb, yb) = line_intersection(ex, ey, ew + cw, eh, ax, ay)
         if compare(xg, xb):
             if compare(xg, ex):
                 if compare(yb, ey):
@@ -38,8 +38,8 @@ def straight_leg_factory(ex, ey, ew, eh, ax, ay, aw, ah):
         return (xb - cw + correction, yb + ch)
     
     def arrow_pos(direction, ratio):
-        (x0, y0) = intersection(ex, ey, ew, eh, ax, ay)
-        (x1, y1) = intersection(ax, ay, aw, ah, ex, ey)
+        (x0, y0) = line_intersection(ex, ey, ew, eh, ax, ay)
+        (x1, y1) = line_intersection(ax, ay, aw, ah, ex, ey)
         if direction == "<":
             (x0, y0, x1, y1) = (x1, y1, x0, y0)
         (x, y) = (ratio * x0 + (1 - ratio) * x1, ratio * y0 + (1 - ratio) * y1)
@@ -50,7 +50,7 @@ def straight_leg_factory(ex, ey, ew, eh, ax, ay, aw, ah):
     return straight_leg_factory
 
 
-def curved_leg_factory(ex, ey, ew, eh, ax, ay, aw, ah, spin):
+def curved_leg_factory(ex, ey, ew, eh, ax, ay, aw, ah, cw, ch, spin):
     
     def bisection(predicate):
         (a, b) = (0, 1)
@@ -67,7 +67,7 @@ def curved_leg_factory(ex, ey, ew, eh, ax, ay, aw, ah, spin):
        (x, y) = bezier(bisection(lambda x, y: left <= x <= right and top <= y <= bottom))
        return (int(round(x)), int(round(y)))
     
-    def card_pos(cw, ch, shift):
+    def card_pos(shift):
         diagonal = hypot(ax-ex, ay-ey)
         correction = card_margin * 1.4142 * (1 - abs(abs(ax-ex) - abs(ay-ey)) / diagonal)
         (top, bot) = (ey - eh, ey + eh)
@@ -105,16 +105,17 @@ def curved_leg_factory(ex, ey, ew, eh, ax, ay, aw, ah, spin):
             (x, y) = (-x, -y)
         return (xc, yc, x, -y)
     
-    diagonal = hypot(ax-ex, ay-ey)
-    x1 = ex + (ax-ex) * curvature_ratio - spin * curvature_gap * (ay-ey) / diagonal
-    y1 = ey + (ay-ey) * curvature_ratio + spin * curvature_gap * (ax-ex) / diagonal
-    x2 = ax + (ex-ax) * curvature_ratio - spin * curvature_gap * (ay-ey) / diagonal
-    y2 = ay + (ey-ay) * curvature_ratio + spin * curvature_gap * (ax-ex) / diagonal
-    (kcx, kcy) = (3 * (x1 - ex), 3 * (y1 - ey))
-    (kbx, kby) = (3 * (x2 - x1) - kcx, 3 * (y2 - y1) - kcy)
-    (kax, kay) = (ax - ex - kcx - kbx, ay - ey - kcy - kby)
-    bezier = lambda t: (kax*t*t*t + kbx*t*t + kcx*t + ex, kay*t*t*t + kby*t*t + kcy*t + ey)
-    derivate = lambda t: (3*kax*t*t + 2*kbx*t + kcx, 3*kay*t*t + 2*kby*t + kcy)
+    diagonal = hypot(ax - ex, ay - ey)
+    (x, y) = line_intersection(ex, ey, ew + cw / 2, eh + ch / 2, ax, ay)
+    k = (cw *  abs((ay - ey) / diagonal) + ch * abs((ax - ex) / diagonal))
+    (x, y) = (x - spin * k * (ay - ey) / diagonal, y + spin * k * (ax - ex) / diagonal)
+    (hx, hy) = (2 * x - (ex + ax) / 2, 2 * y - (ey + ay) / 2)
+    (x1, y1) = (ex + (hx - ex) * 2 / 3, ey + (hy - ey) * 2 / 3)
+    (x2, y2) = (ax + (hx - ax) * 2 / 3, ay + (hy - ay) * 2 / 3)
+    (kax, kay) = (ex - 2 * hx + ax, ey - 2 * hy + ay)
+    (kbx, kby) = (2 * hx - 2 * ex, 2 * hy - 2 * ey)
+    bezier = lambda t: (kax*t*t + kbx*t + ex, kay*t*t + kby*t + ey)
+    derivate = lambda t: (2*kax*t + kbx, 2*kay*t + kby)
     
     curved_leg_factory.points = (ex, ey, x1, y1, x2, y2, ax, ay)
     curved_leg_factory.card_pos = card_pos

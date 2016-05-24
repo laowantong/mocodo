@@ -22,7 +22,7 @@ def main(mcd, common):
     result.append("from __future__ import division\nfrom math import hypot\n")
     result.append("import time, codecs\n")
     result.extend(common.process_geometry(mcd, style))
-    for name in ["card_max_width", "card_max_height", "card_margin", "arrow_width", "arrow_half_height", "arrow_axis", "curvature_ratio", "curvature_gap", "card_baseline"]:
+    for name in ["card_max_width", "card_max_height", "card_margin", "arrow_width", "arrow_half_height", "arrow_axis", "card_baseline"]:
         result.append("%s = %s" % (name, style[name]))
     result.append(read_contents(os.path.join(params["script_directory"], "drawing_helpers.py")))
     result.append(read_contents(os.path.join(params["script_directory"], "drawing_helpers_svg.py")))
@@ -63,13 +63,13 @@ def main(mcd, common):
                 result.append("(%s) = (%s)" % (",".join(zip(*d["env"])[0]), ",".join(zip(*d["env"])[1])))
             else:
                 if d["key"] == "straight_leg":
-                    result.append('leg=straight_leg_factory(%(ex)s,%(ey)s,%(ew)s,%(eh)s,%(ax)s,%(ay)s,%(aw)s,%(ah)s)' % d)
+                    result.append('leg=straight_leg_factory(%(ex)s,%(ey)s,%(ew)s,%(eh)s,%(ax)s,%(ay)s,%(aw)s,%(ah)s,%(cw)s+2*card_margin,%(ch)s+2*card_margin)' % d)
                 elif d["key"] in ("straight_card", "straight_card_note"):
-                    result.append('(tx,ty)=offset(*leg.card_pos(%(cw)s+2*card_margin,%(ch)s+2*card_margin,%(twist)s,shift[u"%(leg_identifier)s"]))' % d)
+                    result.append('(tx,ty)=offset(*leg.card_pos(%(twist)s,shift[u"%(leg_identifier)s"]))' % d)
                 elif d["key"] in ("curved_card", "curved_card_note"):
-                    result.append('(tx,ty)=offset(*leg.card_pos(%(cw)s+2*card_margin,%(ch)s+2*card_margin,shift[u"%(leg_identifier)s"]))' % d)
+                    result.append('(tx,ty)=offset(*leg.card_pos(shift[u"%(leg_identifier)s"]))' % d)
                 elif d["key"] == "curved_leg":
-                    result.append('leg=curved_leg_factory(%(ex)s,%(ey)s,%(ew)s,%(eh)s,%(ax)s,%(ay)s,%(aw)s,%(ah)s,%(spin)s)' % d)
+                    result.append('leg=curved_leg_factory(%(ex)s,%(ey)s,%(ew)s,%(eh)s,%(ax)s,%(ay)s,%(aw)s,%(ah)s,%(cw)s+2*card_margin,%(ch)s+2*card_margin,%(spin)s)' % d)
                     result.append('(x0, y0, x1, y1, x2, y2, x3, y3)=leg.points')
                 elif d["key"] in ("straight_arrow", "curved_arrow"):
                     result.append('path=arrow(*leg.arrow_pos("%(direction)s",ratio[u"%(leg_identifier)s"]))' % d)

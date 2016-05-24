@@ -13,7 +13,7 @@ def main(mcd, common):
     result.append("from __future__ import division\nfrom math import hypot\n")
     result.extend(common.process_geometry(mcd, style))
     result.append("""\nfor c in colors: colors[c] = (color(*[int((colors[c]+"FF")[i:i+2],16)/255.0 for i in range(1,9,2)]) if colors[c] else None)""")
-    for name in ["card_max_width", "card_max_height", "card_margin", "arrow_width", "arrow_half_height", "arrow_axis", "curvature_ratio", "curvature_gap", "card_baseline"]:
+    for name in ["card_max_width", "card_max_height", "card_margin", "arrow_width", "arrow_half_height", "arrow_axis", "card_baseline"]:
         result.append("%s = %s" % (name, style[name]))
     result.append("")
     result.append(read_contents(os.path.join(params["script_directory"], "drawing_helpers.py")))
@@ -34,13 +34,13 @@ def main(mcd, common):
         "line": "line(%(x0)s,%(y0)s,%(x1)s,%(y1)s)",
         "dash_line": "dash_line(%(x0)s,%(x1)s,%(y)s,%(dash_width)s)",
         "text": """fill(colors["%(text_color)s"])\nfont("%(family)s",%(size)s)\ntext(u"%(text)s",%(x)s,%(y)s)""",
-        "straight_leg": """leg=straight_leg_factory(%(ex)s,%(ey)s,%(ew)s,%(eh)s,%(ax)s,%(ay)s,%(aw)s,%(ah)s)\nline(%(ex)s,%(ey)s,%(ax)s,%(ay)s)""",
-        "straight_card": """(tx,ty)=offset(*leg.card_pos(%(cw)s+2*card_margin,%(ch)s+2*card_margin,%(twist)s,shift[u"%(leg_identifier)s"]))\nfill(colors["%(text_color)s"])\nfont("%(family)s",%(size)s)\ntext(u"%(text)s",tx,ty)""",
-        "straight_card_note": """(tx,ty)=offset(*leg.card_pos(%(cw)s+2*card_margin,%(ch)s+2*card_margin,%(twist)s,shift[u"%(leg_identifier)s"]))\nfill(colors["%(text_color)s"])\nfont("%(family)s",%(size)s)\ntext(u"%(text)s",tx,ty)""",
+        "straight_leg": """leg=straight_leg_factory(%(ex)s,%(ey)s,%(ew)s,%(eh)s,%(ax)s,%(ay)s,%(aw)s,%(ah)s,%(cw)s+2*card_margin,%(ch)s+2*card_margin)\nline(%(ex)s,%(ey)s,%(ax)s,%(ay)s)""",
+        "straight_card": """(tx,ty)=offset(*leg.card_pos(%(twist)s,shift[u"%(leg_identifier)s"]))\nfill(colors["%(text_color)s"])\nfont("%(family)s",%(size)s)\ntext(u"%(text)s",tx,ty)""",
+        "straight_card_note": """(tx,ty)=offset(*leg.card_pos(%(twist)s,shift[u"%(leg_identifier)s"]))\nfill(colors["%(text_color)s"])\nfont("%(family)s",%(size)s)\ntext(u"%(text)s",tx,ty)""",
         "straight_arrow": """arrow(*leg.arrow_pos("%(direction)s",ratio[u"%(leg_identifier)s"]))""",
-        "curved_leg": """leg=curved_leg_factory(%(ex)s,%(ey)s,%(ew)s,%(eh)s,%(ax)s,%(ay)s,%(aw)s,%(ah)s,%(spin)s)\ncurve(*leg.points)""",
-        "curved_card": """(tx,ty)=offset(*leg.card_pos(%(cw)s+2*card_margin,%(ch)s+2*card_margin,shift[u"%(leg_identifier)s"]))\nfill(colors["%(text_color)s"])\nfont("%(family)s",%(size)s)\ntext(u"%(text)s",tx,ty)""",
-        "curved_card_note": """(tx,ty)=offset(*leg.card_pos(%(cw)s+2*card_margin,%(ch)s+2*card_margin,shift[u"%(leg_identifier)s"]))\nfill(colors["%(text_color)s"])\nfont("%(family)s",%(size)s)\ntext(u"%(text)s",tx,ty)""",
+        "curved_leg": """leg=curved_leg_factory(%(ex)s,%(ey)s,%(ew)s,%(eh)s,%(ax)s,%(ay)s,%(aw)s,%(ah)s,%(cw)s+2*card_margin,%(ch)s+2*card_margin,%(spin)s)\ncurve(*leg.points)""",
+        "curved_card": """(tx,ty)=offset(*leg.card_pos(shift[u"%(leg_identifier)s"]))\nfill(colors["%(text_color)s"])\nfont("%(family)s",%(size)s)\ntext(u"%(text)s",tx,ty)""",
+        "curved_card_note": """(tx,ty)=offset(*leg.card_pos(shift[u"%(leg_identifier)s"]))\nfill(colors["%(text_color)s"])\nfont("%(family)s",%(size)s)\ntext(u"%(text)s",tx,ty)""",
         "curved_arrow": """arrow(*leg.arrow_pos("%(direction)s",ratio[u"%(leg_identifier)s"]))""",
         "card_underline": """line(tx,ty-%(skip)s,tx+%(w)s,ty-%(skip)s)""",
         "curve": "curve(%(x0)s,%(y0)s,%(x1)s,%(y1)s,%(x2)s,%(y2)s,%(x3)s,%(y3)s)",

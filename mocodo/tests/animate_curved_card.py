@@ -7,8 +7,18 @@ from math import hypot, cos, sin, radians
 (ew,eh) = (40, 50)
 (cw,ch) = (32, 20)
 ANIMATE = True
-curvature_ratio = 0.3
-curvature_gap = 60
+
+def line_intersection(ex, ey, w, h, ax, ay):
+    if ax == ex:
+        return (ax, ey + cmp(ay, ey) * h)
+    if ay == ey:
+        return (ex + cmp(ax, ex) * w, ay)
+    x = ex + cmp(ax, ex) * w
+    y = ey + (ay-ey) * (x-ex) / (ax-ex)
+    if abs(y-ey) > h:
+        y = ey + cmp(ay, ey) * h
+        x = ex + (ax-ex) * (y-ey) / (ay-ey)
+    return (x, y)
 
 def setup():
     global frame
@@ -48,12 +58,12 @@ def draw():
         return m
     
     def intersection(left, top, right, bottom):
-        (x, y) = bezier(bisection(lambda x, y: left <= x <= right and top <= y <= bottom))
-        return (int(round(x)), int(round(y)))
+       (x, y) = bezier(bisection(lambda x, y: left <= x <= right and top <= y <= bottom))
+       return (int(round(x)), int(round(y)))
     
-    def card_pos(cw, ch, shift):
+    def card_pos(shift):
         diagonal = hypot(ax-ex, ay-ey)
-        correction = card_margin * (1 - abs(abs(ax-ex) - abs(ay-ey)) / diagonal) - shift
+        correction = card_margin * 1.4142 * (1 - abs(abs(ax-ex) - abs(ay-ey)) / diagonal)
         (top, bot) = (ey - eh, ey + eh)
         (TOP, BOT) = (top - ch, bot + ch)
         (lef, rig) = (ex - ew, ex + ew)
@@ -61,33 +71,35 @@ def draw():
         (xr, yr) = intersection(LEF, TOP, RIG, BOT)
         (xg, yg) = intersection(lef, TOP, rig, BOT)
         (xb, yb) = intersection(LEF, top, RIG, bot)
-        if spin == 1:
+        if spin > 0:
             if (yr == BOT and xr <= rig) or (xr == LEF and yr >= bot):
-                return (max(x for (x, y) in ((xr, yr), (xg, yg), (xb, yb)) if y >= bot) - correction, bot + ch)
+                return (max(x for (x, y) in ((xr, yr), (xg, yg), (xb, yb)) if y >= bot) - correction + shift, bot + ch)
             if (xr == RIG and yr >= top) or yr == BOT:
-                return (rig, min(y for (x, y) in ((xr, yr), (xg, yg), (xb, yb)) if x >= rig) - correction)
+                return (rig, min(y for (x, y) in ((xr, yr), (xg, yg), (xb, yb)) if x >= rig) + correction + shift)
             if (yr == TOP and xr >= lef) or xr == RIG:
-                return (min(x for (x, y) in ((xr, yr), (xg, yg), (xb, yb)) if y <= top) - correction - cw, TOP + ch)
-            return (LEF, max(y for (x, y) in ((xr, yr), (xg, yg), (xb, yb)) if x <= lef) - correction + ch)
+                return (min(x for (x, y) in ((xr, yr), (xg, yg), (xb, yb)) if y <= top) + correction + shift - cw, TOP + ch)
+            return (LEF, max(y for (x, y) in ((xr, yr), (xg, yg), (xb, yb)) if x <= lef) - correction + shift + ch)
         if (yr == BOT and xr >= lef) or (xr == RIG and yr >= bot):
-            return (min(x for (x, y) in ((xr, yr), (xg, yg), (xb, yb)) if y >= bot) - correction - cw, bot + ch)
+            return (min(x for (x, y) in ((xr, yr), (xg, yg), (xb, yb)) if y >= bot) + correction + shift - cw, bot + ch)
         if xr == RIG or (yr == TOP and xr >= rig):
-            return (rig, max(y for (x, y) in ((xr, yr), (xg, yg), (xb, yb)) if x >= rig) - correction + ch)
+            return (rig, max(y for (x, y) in ((xr, yr), (xg, yg), (xb, yb)) if x >= rig) - correction + shift + ch)
         if yr == TOP or (xr == LEF and yr <= top):
-            return (max(x for (x, y) in ((xr, yr), (xg, yg), (xb, yb)) if y <= top) - correction, TOP + ch)
-        return (LEF, min(y for (x, y) in ((xr, yr), (xg, yg), (xb, yb)) if x <= lef) - correction)
+            return (max(x for (x, y) in ((xr, yr), (xg, yg), (xb, yb)) if y <= top) - correction + shift, TOP + ch)
+        return (LEF, min(y for (x, y) in ((xr, yr), (xg, yg), (xb, yb)) if x <= lef) + correction + shift)
+    
     
     for spin in (-1, 1):
-        diagonal = hypot(ax-ex, ay-ey)
-        x1 = ex + (ax-ex) * curvature_ratio - spin * curvature_gap * (ay-ey) / diagonal
-        y1 = ey + (ay-ey) * curvature_ratio + spin * curvature_gap * (ax-ex) / diagonal
-        x2 = ax + (ex-ax) * curvature_ratio - spin * curvature_gap * (ay-ey) / diagonal
-        y2 = ay + (ey-ay) * curvature_ratio + spin * curvature_gap * (ax-ex) / diagonal
-        (kcx, kcy) = (3 * (x1 - ex), 3 * (y1 - ey))
-        (kbx, kby) = (3 * (x2 - x1) - kcx, 3 * (y2 - y1) - kcy)
-        (kax, kay) = (ax - ex - kcx - kbx, ay - ey - kcy - kby)
-        bezier = lambda t: (kax*t*t*t + kbx*t*t + kcx*t + ex, kay*t*t*t + kby*t*t + kcy*t + ey)
-        derivate = lambda t: (3*kax*t*t + 2*kbx*t + kcx, 3*kay*t*t + 2*kby*t + kcy)
+        diagonal = hypot(ax - ex, ay - ey)
+        (x, y) = line_intersection(ex, ey, ew + cw / 2, eh + ch / 2, ax, ay)
+        k = ((cw + card_margin) *  abs((ay - ey) / diagonal) + (ch + card_margin) * abs((ax - ex) / diagonal))
+        (x, y) = (x - spin * k * (ay - ey) / diagonal, y + spin * k * (ax - ex) / diagonal)
+        (hx, hy) = (2 * x - (ex + ax) / 2, 2 * y - (ey + ay) / 2)
+        (x1, y1) = (ex + (hx - ex) * 2 / 3, ey + (hy - ey) * 2 / 3)
+        (x2, y2) = (ax + (hx - ax) * 2 / 3, ay + (hy - ay) * 2 / 3)
+        (kax, kay) = (ex - 2 * hx + ax, ey - 2 * hy + ay)
+        (kbx, kby) = (2 * hx - 2 * ex, 2 * hy - 2 * ey)
+        bezier = lambda t: (kax*t*t + kbx*t + ex, kay*t*t + kby*t + ey)
+        derivate = lambda t: (2*kax*t + kbx, 2*kay*t + kby)
 
         (top, bot) = (ey - eh, ey + eh)
         (TOP, BOT) = (top - ch, bot + ch)
@@ -96,7 +108,7 @@ def draw():
         (xr, yr) = intersection(LEF, TOP, RIG, BOT)
         (xg, yg) = intersection(lef, TOP, rig, BOT)
         (xb, yb) = intersection(LEF, top, RIG, bot)
-        (x, y) = card_pos(cw, ch, 0)
+        (x, y) = card_pos(0)
     
         # Leg
         strokewidth(2)

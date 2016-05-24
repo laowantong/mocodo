@@ -85,8 +85,8 @@ class parse_test(unittest.TestCase):
 
     def test_other_card(self):
         a = Association("SOUTENIR, XX ÉTUDIANT, XX DATE: note stage")
-        self.assertEqual(a.legs[0].cardinalities, "")
-        self.assertEqual(a.legs[1].cardinalities, "")
+        self.assert_(not a.legs[0].cardinalities.strip())
+        self.assert_(not a.legs[1].cardinalities.strip())
         a = Association("SOUTENIR, XY ÉTUDIANT, XY DATE: note stage")
         self.assertEqual(a.legs[0].cardinalities, "X,Y")
         self.assertEqual(a.legs[1].cardinalities, "X,Y")

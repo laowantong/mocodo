@@ -100,7 +100,7 @@ class Mcd:
             for (entity, vectors) in d.items():
                 for vector in vectors:
                     leg = tweakable_legs[(entity, vector)]
-                    if leg.cardinalities == "":
+                    if not leg.cardinalities.strip():
                         continue
                     elif vector == "E":
                         if vectors.count("E") == 1 and "SE" in vectors and "NE" not in vectors:

@@ -48,7 +48,7 @@ class Leg:
         else:
             self.cards = auto_correction.get(self.cards, self.cards)
             if self.cards.startswith("XX"):
-                self.cardinalities = u""
+                self.cardinalities = u"     "
             else:
                 self.cardinalities = params["card_format"].format(min_card=self.cards[0], max_card=self.cards[1])
         if self.annotation:
@@ -92,6 +92,8 @@ class Leg:
                 "ay": "y",
                 "aw": self.association.w / 2,
                 "ah": self.association.h / 2,
+                "cw": self.w,
+                "ch": self.h,
                 "stroke_depth": self.style["leg_stroke_depth"],
                 "stroke_color": "leg_stroke_color",
             })
@@ -102,8 +104,6 @@ class Leg:
                 "leg_identifier": "%s,%s" % (self.association.name, self.entity_name),
                 "family": self.style["card_font"]["family"],
                 "size": self.style["card_font"]["size"],
-                "cw": self.w,
-                "ch": self.h,
                 "twist": self.twist,
         })
         if self.annotation:
@@ -168,6 +168,8 @@ class Leg:
                 "aw": self.association.w / 2,
                 "ah": self.association.h / 2,
                 "spin": self.spin,
+                "cw": self.w,
+                "ch": self.h,
                 "stroke_depth": self.style["leg_stroke_depth"],
                 "stroke_color": "leg_stroke_color",
             })
@@ -175,12 +177,9 @@ class Leg:
                 "key": u"curved_card",
                 "text": self.cardinalities,
                 "text_color": "card_text_color",
-                "spin": self.spin,
                 "leg_identifier": self.identifier,
                 "family": self.style["card_font"]["family"],
                 "size": self.style["card_font"]["size"],
-                "cw": self.w,
-                "ch": self.h,
             })
         if self.annotation:
             result[-1].update({
