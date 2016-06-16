@@ -9,7 +9,7 @@ import itertools
 import os
 from damerau_levenshtein import damerau_levenshtein
 
-def random_chunks_of(lorem_text, obfuscation_max_length):
+def random_chunks_of(lorem_text, obfuscation_max_length, params):
     words = list(set(word.lower() for word in re.findall(r"(?u)[^\W\d]+", lorem_text)))
     random.shuffle(words)
     if obfuscation_max_length is None:
@@ -20,7 +20,7 @@ def random_chunks_of(lorem_text, obfuscation_max_length):
     previous_chunks = set()
     for chunk in raw_chunks:
         for previous_chunk in previous_chunks:
-            if damerau_levenshtein(chunk, previous_chunk) <= 2:
+            if damerau_levenshtein(chunk, previous_chunk) < params["obfuscation_min_distance"]:
                 # print "_%s_ (possible confusion with _%s_)," % (chunk, previous_chunk)
                 break
         else:
@@ -35,10 +35,7 @@ def obfuscate(clauses, params):
             try:
                 new_label = random_chunk.next()
             except StopIteration:
-                if params["obfuscation_max_length"] is None:
-                    raise RuntimeError(("Mocodo Err.11 - " + _('Obfuscation failed. You may increase the `obfuscation_max_length` option value.')).encode("utf8"))
-                else:
-                    raise RuntimeError(("Mocodo Err.12 - " + _('Obfuscation failed. Not enough substitution words in "{filename}".').format(filename=lorem_filename)).encode("utf8"))
+                raise RuntimeError(("Mocodo Err.12 - " + _('Obfuscation failed. Not enough substitution words in "{filename}". You may either increase the `obfuscation_max_length` or decrease the `obfuscation_min_distance` option values.').format(filename=lorem_filename)).encode("utf8"))
             if label.isupper():
                 new_label = new_label.upper()
             elif label == label.capitalize():
@@ -56,7 +53,7 @@ def obfuscate(clauses, params):
             lorem_text = read_contents("%s/lorem/%s.txt" % (params["script_directory"], os.path.basename(lorem_filename)))
         except IOError:
             lorem_text = read_contents("%s/lorem/lorem_ipsum.txt" % params["script_directory"])
-    random_chunk = random_chunks_of(lorem_text, params["obfuscation_max_length"])
+    random_chunk = random_chunks_of(lorem_text, params["obfuscation_max_length"], params)
     header = map(lambda comment: comment + "\n", itertools.takewhile(lambda line: line.startswith("%"), clauses))
     clauses = "\n".join(clauses[len(header):])
     elements = re.split(r"(?u)([:,\n]+ *(?:_?(?:01|0N|11|1N|XX|\?\?)\S*(?: +\[.+?\])? +/?)?)", clauses) + ['']

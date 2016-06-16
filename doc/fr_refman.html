@@ -216,7 +216,7 @@ div#notebook {
 <li><a href="#invocation">3.3.1. Invocation</a></li>
 <li><a href="#principes_de_fonctionnement">3.3.2. Principes de fonctionnement</a></li>
 <li><a href="#exemples_d_invocation">3.3.3. Exemples d'invocation</a></li>
-<li><a href="#option_replace">3.3.4. Modification <em>in situ</em> d'une cellule avec l'option <code>--replace</code></a></li>
+<li><a href="#modification__in_situ__d_une_cellule">3.3.4. Modification <em>in situ</em> d'une cellule</a></li>
 <li><a href="#magic_long_term_settings">3.3.5. Paramétrage à long terme</a></li>
 </ul>
 </li>
@@ -1165,6 +1165,8 @@ Affiche une version retournée horizontalement / verticalement / diagonalement d
 Affiche une version du texte d'entrée vidée de sa sémantique, puis termine. Cf. répertoire <code>lorem</code> (défaut: <code>None</code>).</li>
 <li><a href="#obfuscation"><strong><code>--obfuscation_max_length INT</code></strong></a>.<br>
 Longueur maximale des mots de substitution (défaut: <code>None</code>).</li>
+<li><a href="#obfuscation"><strong><code>--obfuscation_min_distance INT</code></strong></a>.<br>
+Distance de Damerau Levenshtein minimale entre deux mots de substitution (défaut: 3).</li>
 <li><a href="#non_organic"><strong><code>--seed FLOAT</code></strong></a>.<br>
 Valeur du germe du générateur aléatoire (défaut: <code>None</code>).</li>
 </ul>
@@ -1375,7 +1377,7 @@ Remplace le contenu de la cellule par le résultat de son évaluation (défaut: 
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="3.3.4.-Modification-in-situ-d'une-cellule-avec-l'option---replace-">3.3.4. Modification <em>in situ</em> d'une cellule avec l'option <code>--replace</code> <a id="option_replace" /><a class="anchor-link" href="#3.3.4.-Modification-in-situ-d'une-cellule-avec-l'option---replace-">&#182;</a></h3>
+<h3 id="3.3.4.-Modification-in-situ-d'une-cellule-">3.3.4. Modification <em>in situ</em> d'une cellule <a id="modification__in_situ__d_une_cellule" /><a class="anchor-link" href="#3.3.4.-Modification-in-situ-d'une-cellule-">&#182;</a></h3>
 </div>
 </div>
 </div>
@@ -4615,7 +4617,7 @@ PROPOSER: Grille, Insécables, Bien emph
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>L'option <code>obfuscation_max_length</code> permet de limiter la longueur des libellés de substitution (par défaut, c'est la longueur du plus long mot du faux-texte).</p>
-<p>Notez enfin que l'algorithme s'assure que la <a href="https://fr.wikipedia.org/wiki/Distance_de_Damerau-Levenshtein">distance de Damerau-Levenshtein</a> entre deux libellés de substitution quelconques est d'au moins 3. En clair, cela signifie que, si vous donnez en examen un exercice de conversion en relationnel basé sur un tel MCD, les erreurs de transcription d'un étudiant stressé, inattentif, illettré, dyslexique, roublard, ou tout cela à la fois, ne vous empêcheront pas de retrouver son intention première. Par exemple, au cours du processus d'obfuscation suivant:</p>
+<p>Notez enfin que l'algorithme s'assure que la <a href="https://fr.wikipedia.org/wiki/Distance_de_Damerau-Levenshtein">distance de Damerau-Levenshtein</a> entre deux libellés de substitution quelconques est d'au moins 3 (valeur par défaut du paramètre <code>obfuscation_min_distance</code>). En clair, cela signifie que, si vous donnez en examen un exercice de conversion en relationnel basé sur un tel MCD, les erreurs de transcription d'un étudiant stressé, inattentif, illettré, dyslexique, roublard, ou tout cela à la fois, ne vous empêcheront pas de retrouver son intention première. Par exemple, au cours du processus d'obfuscation suivant:</p>
 
 </div>
 </div>
