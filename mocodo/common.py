@@ -33,7 +33,7 @@ class Common:
         for encoding in self.params["encodings"]:
             try:
                 self.encoding = encoding
-                return read_contents(self.params["input"], encoding=encoding).replace('"', '').split("\n")
+                return read_contents(self.params["input"], encoding=encoding).replace('"', '').splitlines()
             except UnicodeError:
                 pass
         raise RuntimeError(("Mocodo Err.5 - " + _('Unable to read "{filename}" with any of the following encodings: "{encodings}".').format(filename=self.params["input"], encodings= ", ".join(self.params["encodings"])).encode("utf8")))
