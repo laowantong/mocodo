@@ -12,3 +12,4 @@ meta/*
 doc/mocodo_notebook
 doc/.ipynb*
 sandbox*.*
+paper/*
