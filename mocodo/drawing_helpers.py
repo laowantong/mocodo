@@ -54,7 +54,7 @@ def curved_leg_factory(ex, ey, ew, eh, ax, ay, aw, ah, cw, ch, spin):
     
     def bisection(predicate):
         (a, b) = (0, 1)
-        while abs(b - a) > 0.001:
+        while abs(b - a) > 0.0001:
             m = (a + b) / 2
             (x, y) = bezier(m)
             if predicate(x, y):
