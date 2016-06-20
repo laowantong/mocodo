@@ -56,9 +56,26 @@ def obfuscate(clauses, params):
     random_chunk = random_chunks_of(lorem_text, params["obfuscation_max_length"], params)
     header = map(lambda comment: comment + "\n", itertools.takewhile(lambda line: line.startswith("%"), clauses))
     clauses = "\n".join(clauses[len(header):])
-    elements = re.split(r"(?u)([:,\n]+ *(?:_?(?:01|0N|11|1N|XX|\?\?)\S*(?: +\[.+?\])? +/?)?)", clauses) + ['']
-    for i in range(0,len(elements),2):
-        elements[i] = obfuscate_label(elements[i])
+    clauses = re.sub(r"\[.+?\]", "", clauses)
+    clauses = re.sub(r"(?m)^%.*\n?", "", clauses)
+    elements = re.split(r"([ \t]*[:,\n]+[ \t]*)", clauses) + ['']
+    after_first_comma = False
+    before_colon = True
+    for (i, element) in enumerate(elements):
+        if i % 2:
+            if "\n" in element:
+                after_first_comma = False
+                before_colon = True
+            elif "," in element:
+                after_first_comma = True
+            elif ":" in element:
+                before_colon = False
+        else:
+            if after_first_comma and before_colon:
+                (card, entity_name) = element.split(" ", 1)
+                elements[i-1] += card + " "
+                elements[i] = entity_name.strip()
+            elements[i] = obfuscate_label(elements[i])
     return "".join(header + elements).strip()
 
 
