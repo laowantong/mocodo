@@ -55,6 +55,7 @@ class Relations:
             params["output_name"] = os.path.join(params["output_dir"], title)
         
         self.mcd = mcd
+        self.ensure_no_reciprocical_relative_entities()
         self.freeze_strengthening_foreign_key_migration = set()
         self.relations_from_entities()
         self.strengthen_weak_identifiers()
@@ -206,6 +207,16 @@ class Relations:
 
 
     # private
+
+    def ensure_no_reciprocical_relative_entities(self):
+        for association in self.mcd.associations.itervalues():
+            weak_count = 0
+            for leg in association.legs:
+                if leg.strengthen:
+                    weak_count += 1
+                    if weak_count == 2:
+                        raise RuntimeError(("Mocodo Err.22 - " + _('Reciprocal relative identification around {association}.').format(association=association.name)).encode("utf8"))
+                    other_leg = leg
 
     def relations_from_entities(self):
         self.relations = {}

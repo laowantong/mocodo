@@ -5,7 +5,7 @@ import unittest
 from mocodo.relations import *
 from mocodo.mcd import Mcd
 import json
-from file_helpers import read_contents
+from mocodo.file_helpers import read_contents
 from copy import deepcopy
 from mocodo.argument_parser import parsed_arguments
 
@@ -467,6 +467,81 @@ class relationsTest(unittest.TestCase):
         self.assertEquals(d["relations"][3]["columns"][4]["association_name"], None)
         self.assertEquals(d["relations"][3]["columns"][4]["primary_relation_name"], None)
         self.assertEquals(d["title"], u"Untitled")
+    
+    def test_reciprocical_relative_entities(self):
+        clauses = u"""
+            Aids: Norm, Free, Soon, Pack, Face, Seem, Teen
+            Yard, 0N Unit, ON Aids
+            Ever, 1N Unit, 1N Item
+            Item: Norm, Wash, Haul, Milk, Draw, Lady, Face, Soon, Dish
+            :
+
+            Amid, 1n Aids, 1n Disk, _11 Flip: Gold
+            Same, _11 Unit, 0N Flip
+            Unit: Folk, Peer, Tour, Hall
+            Fold, _11 Unit, 1N Baby, _11 Item
+            Baby: Soon
+
+            Disk: Soon, Ride, Folk, Call, Gear, Tent, Lean
+            Flip: Lend
+            Pump, _11 Flip, 1N Unit: Both, Raid
+            Gene: Soon
+            Bind, _11 Baby, 1n Gene
+        """
+        mcd = Mcd(clauses.split("\n"), params)
+        self.assertRaisesRegexp(RuntimeError, "Err\.22", Relations, mcd, params)
+        clauses = u"""
+            Disk: Soon, Ride, Folk, Call, Gear, Tent, Lean
+            Flip: Lend
+            Pump, _11 Flip, 1N Unit: Both, Raid
+            Gene: Soon
+            Bind, _11 Baby, 1n Gene
+
+            Amid, 1n Aids, 1n Disk, _11 Flip: Gold
+            Same, _11 Unit, 0N Flip
+            Unit: Folk, Peer, Tour, Hall
+            Fold, _11 Unit, 1N Baby, _11 Item
+            Baby: Soon
+
+            Aids: Norm, Free, Soon, Pack, Face, Seem, Teen
+            Yard, 0N Unit, ON Aids
+            Ever, 1N Unit, 1N Item
+            Item: Norm, Wash, Haul, Milk, Draw, Lady, Face, Soon, Dish
+            :
+        """
+        mcd = Mcd(clauses.split("\n"), params)
+        self.assertRaisesRegexp(RuntimeError, "Err\.22", Relations, mcd, params)
+        mcd = Mcd(clauses.split("\n"), params)
+        self.assertRaisesRegexp(RuntimeError, "Err\.22", Relations, mcd, params)
+        clauses = u"""
+            ITEM, 1N NORM, 1N WASH
+            NORM: haul
+            
+            WASH: soon
+            BABY, 1N WASH, 1N FACE
+            FACE: gene
+            
+            AAA, _11 FLIP, 1N WASH
+            FLIP: soona
+            GEAR, _11 FLIP, _11 FACE
+        """
+        mcd = Mcd(clauses.split("\n"), params)
+        self.assertRaisesRegexp(RuntimeError, "Err\.22", Relations, mcd, params)
+        clauses = u"""
+            ITEM, 1N NORM, 1N WASH
+            NORM: haul
+            
+            WASH: soon
+            BABY, 1N WASH, 1N FACE
+            FACE: gene
+            
+            CCC, _11 FLIP, 1N WASH
+            FLIP: soona
+            GEAR, _11 FLIP, _11 FACE
+        """
+        mcd = Mcd(clauses.split("\n"), params)
+        self.assertRaisesRegexp(RuntimeError, "Err\.22", Relations, mcd, params)
+
     
     def test_weak_entities_strengthened_by_itself(self):
         clauses = u"""
