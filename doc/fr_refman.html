@@ -2319,6 +2319,46 @@ EXEMPLAIRE: Num. exemplaire, État du livre, Date d&#39;achat
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p>Une association ne peut renforcer plus d'une entité faible. Ainsi, une erreur se produit si l'on remplace le <code>1N</code> par <code>_11</code>:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="o">%%</span><span class="k">mocodo</span>
+ŒUVRE: Cote œuvre, Titre, Date parution
+DF, _11 ŒUVRE, _11 EXEMPLAIRE
+EXEMPLAIRE: Num. exemplaire, État du livre, Date d&#39;achat
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>ERROR: Mocodo Err.22 - Identification relative réciproque autour de DF.
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="4.2.3.-Fl&#232;ches-sur-les-pattes-">4.2.3. Fl&#232;ches sur les pattes <a id="fleches_sur_les_pattes" /><a class="anchor-link" href="#4.2.3.-Fl&#232;ches-sur-les-pattes-">&#182;</a></h3>
 </div>
 </div>
