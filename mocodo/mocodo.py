@@ -48,7 +48,8 @@ def main():
                 from arrange_bb import arrange
             result = arrange(**params)
             if result:
-                return safe_print_for_PHP(mcd.get_clauses_from_layout(**result))
+                mcd.set_layout(**result)
+                return safe_print_for_PHP(mcd.get_clauses())
             raise RuntimeError(("Mocodo Err.9 - " + _('Failed to calculate a planar layout.')).encode("utf8"))
         relations = Relations(mcd, params)
         common.dump_mld_files(relations)

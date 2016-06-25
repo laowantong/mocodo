@@ -163,7 +163,6 @@ class Mcd:
         def substitute_forbidden_symbols_between_brackets(text):
             return text.group().replace(",", "<<<protected-comma>>>").replace(":", "<<<protected-colon>>>")
         
-        
         font_metrics.FontMetrics = font_metrics.font_metrics_factory(params)
         phantom_counter = itertools.count()
         parse_clauses()
@@ -208,34 +207,39 @@ class Mcd:
     def get_row_text(self, row):
         return "\n".join(box.clause.replace("<<<protected-comma>>>", ",").replace("<<<protected-colon>>>", ":") for box in row)
     
-    def get_clauses_from_layout(self, layout, col_count=None, row_count=None, **kwargs):
-        col_count = col_count if col_count else self.col_count
-        row_count = row_count if row_count else self.row_count
+    def set_layout(self, layout, col_count=None, row_count=None, **kwargs):
+        if col_count and row_count:
+            (self.col_count, self.row_count) = (col_count, row_count)
         def get_or_create_box(index):
             return Phantom() if layout[index] is None else self.boxes[layout[index]]
         i = itertools.count()
-        rows = [[get_or_create_box(i.next()) for x in range(col_count)] for y in range(row_count)]
+        self.rows = [[get_or_create_box(i.next()) for x in range(self.col_count)] for y in range(self.row_count)]
         def suppress_empty_rows(y):
-            while rows: # there's at least one row
-                for box in rows[y]:
+            while self.rows: # there's at least one row
+                for box in self.rows[y]:
                     if box.kind != "phantom":
                         return
-                del rows[y]
+                del self.rows[y]
+                self.row_count -= 1
         suppress_empty_rows(0)
         suppress_empty_rows(-1)
         def suppress_empty_cols(x):
-            while rows[0]: # there's at least one column
-                for row in rows:
+            while self.rows[0]: # there's at least one column
+                for row in self.rows:
                     if row[x].kind != "phantom":
                         return
-                for row in rows:
+                for row in self.rows:
                     del row[x]
+                self.col_count -= 1
         suppress_empty_cols(0)
         suppress_empty_cols(-1)
+    
+    def get_clauses(self):
+        result = self.header
         if self.associations:
-            result = self.header + "\n\n".join(self.get_row_text(row) for row in rows)
+            result += "\n\n".join(self.get_row_text(row) for row in self.rows)
         else:
-            result = self.header + "\n\n".join(":\n" + "\n:\n".join(self.get_row_text(row).split("\n")) + "\n:" for row in rows)
+            result += "\n\n".join(":\n" + "\n:\n".join(self.get_row_text(row).split("\n")) + "\n:" for row in self.rows)
         return compress_colons(":", result)
     
     def get_clauses_horizontal_mirror(self):

@@ -74,7 +74,8 @@ class ArrangeBB(unittest.TestCase):
             },
             'layout': [11, 3, 0, 4, 10, 7, 1, 5, 8, 6, 2, 9]
         })
-        result = mcd.get_clauses_from_layout(**rearrangement)
+        mcd.set_layout(**rearrangement)
+        result = mcd.get_clauses()
         self.assertEquals(expected, result)
     
     def test_non_connected_graph(self):
@@ -139,7 +140,8 @@ class ArrangeBB(unittest.TestCase):
             },
             'layout': [3, 7, 2, 9, 6, 11, 1, 5, 8, 10, 0, 4]
         })
-        result = mcd.get_clauses_from_layout(**rearrangement)
+        mcd.set_layout(**rearrangement)
+        result = mcd.get_clauses()
         self.assertEquals(expected, result)
 
     def test_no_links(self):
@@ -185,7 +187,8 @@ class ArrangeBB(unittest.TestCase):
             'layout': [1, 2, 5, 3, 4, 0],
             'crossings': 0,
         })
-        result = mcd.get_clauses_from_layout(**rearrangement)
+        mcd.set_layout(**rearrangement)
+        result = mcd.get_clauses()
         self.assertEquals(expected, result)
     
     def test_organic_rearrangement(self):
@@ -260,7 +263,8 @@ class ArrangeBB(unittest.TestCase):
                 11: (3, 3)
             }
         })
-        result = mcd.get_clauses_from_layout(**rearrangement)
+        mcd.set_layout(**rearrangement)
+        result = mcd.get_clauses()
         self.assertEquals(expected, result)
 
 

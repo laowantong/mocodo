@@ -166,7 +166,8 @@ class McdTest(unittest.TestCase):
             FLÉAU: battadère, van, mesure
             ::
         """.strip().replace("  ", "")
-        self.assertEquals(mcd.get_clauses_from_layout(range(16)), expected)
+        mcd.set_layout(range(16))
+        self.assertEquals(mcd.get_clauses(), expected)
 
 
     def test_input_errors(self):

@@ -12,6 +12,7 @@ class Phantom:
         self.legs = [] # iterating over box's legs does nothing if it is not an association
         self.kind = "phantom"
         self.clause = ":"
+        self.identifier = None
 
     def calculate_size(self, style):
         self.w = 0

@@ -62,7 +62,8 @@ class ArrangeGA(unittest.TestCase):
             'crossings': 1,
             'layout': [10, 11, 7, 3, 6, 2, 1, 8, 9, 5, 4, 0]
         })
-        result = mcd.get_clauses_from_layout(**rearrangement)
+        mcd.set_layout(**rearrangement)
+        result = mcd.get_clauses()
         self.assertEquals(expected, result)
 
 if __name__ == '__main__':
