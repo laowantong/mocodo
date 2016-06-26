@@ -116,22 +116,22 @@ class Mcd:
                             leg.twist = True
                     elif flex == 0:
                         continue
-                    elif vector == "SE":
+                    elif vector == "SE" and vectors.count("SE") == 1:
                         if vectors.count("E") > 1:
                             leg.set_spin_strategy(flex)
                         elif vectors.count("S") > 1:
                             leg.set_spin_strategy(-flex)
-                    elif vector == "SW":
+                    elif vector == "SW" and vectors.count("SW") == 1:
                         if vectors.count("S") > 1:
                             leg.set_spin_strategy(flex)
                         elif vectors.count("W") > 1:
                             leg.set_spin_strategy(-flex)
-                    elif vector == "NW":
+                    elif vector == "NW" and vectors.count("NW") == 1:
                         if vectors.count("W") > 1:
                             leg.set_spin_strategy(flex)
                         elif vectors.count("N") > 1:
                             leg.set_spin_strategy(-flex)
-                    elif vector == "NE":
+                    elif vector == "NE" and vectors.count("NE") == 1:
                         if vectors.count("N") > 1:
                             leg.set_spin_strategy(flex)
                         elif vectors.count("E") > 1:
