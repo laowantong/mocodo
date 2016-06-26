@@ -6,7 +6,7 @@ from random import randrange, choice, random, sample, shuffle
 from collections import namedtuple
 
 
-def arrange(links, successors, col_count, row_count, verbose, has_expired,
+def arrange(links, successors, multiplicity, col_count, row_count, verbose, has_expired,
             population_size, max_generations, plateau, crossover_rate, mutation_rate, sample_size,
             **kwargs):
     
@@ -61,7 +61,7 @@ def arrange(links, successors, col_count, row_count, verbose, has_expired,
         """ Return a COPY of the best chromosome selected among a random sample. """
         return min(sample(population, sample_size)).chromosome[:]
     
-    evaluate = fitness(links, col_count, row_count)
+    evaluate = fitness(links, multiplicity, col_count, row_count)
     Individual = namedtuple("Individual", ["score", "chromosome"])
     box_count = col_count * row_count
     patience = plateau

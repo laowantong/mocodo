@@ -41,26 +41,26 @@ class ArrangeGA(unittest.TestCase):
         params["verbose"] = False
         seed(1)
         expected = u"""
-            RISUS: ultricies, _cras, elementum
-            SEMPER, 0N RISUS, 1N DIGNISSIM
-            DIGNISSIM: ligula, massa, varius
-            MAECENAS, 1N DIGNISSIM, 1N DIGNISSIM
-
-            TORTOR, 0N RISUS, 11 DIGNISSIM, 1N CONSECTETUER: nec
-            CONSECTETUER: elit, sed
-            SOLLICITUDIN, 0N SUSPENDISSE, 0N CONSECTETUER, 0N LOREM: lectus
-            DF, 11 RISUS, 0N RISUS
-
             AMET, 11> LOREM, 01 CONSECTETUER: adipiscing
             LOREM: ipsum, dolor, sit
             DF1, 11 LOREM, 1N SUSPENDISSE
             SUSPENDISSE: diam
+
+            CONSECTETUER: elit, sed
+            SOLLICITUDIN, 0N SUSPENDISSE, 0N CONSECTETUER, 0N LOREM: lectus
+            SEMPER, 0N RISUS, 1N DIGNISSIM
+            DF, 11 RISUS, 0N RISUS
+
+            MAECENAS, 1N DIGNISSIM, 1N DIGNISSIM
+            DIGNISSIM: ligula, massa, varius
+            TORTOR, 0N RISUS, 11 DIGNISSIM, 1N CONSECTETUER: nec
+            RISUS: ultricies, _cras, elementum
         """.strip().replace("  ", "")
         rearrangement = arrange(**params)
         self.assertEquals(rearrangement, {
-            'distances': 4.640986324787455,
+            'distances': 3.3005630797457695,
             'crossings': 1,
-            'layout': [10, 11, 7, 3, 6, 2, 1, 8, 9, 5, 4, 0]
+            'layout': [9, 5, 4, 0, 2, 1, 11, 8, 3, 7, 6, 10]
         })
         mcd.set_layout(**rearrangement)
         result = mcd.get_clauses()

@@ -22,7 +22,7 @@ class ArrangeBB(unittest.TestCase):
         mcd = Mcd(clauses.split("\n"), params)
         params.update(mcd.get_layout_data())
         d = mcd.get_layout_data()
-        evaluate = fitness(d["links"], d["col_count"], d["row_count"])
+        evaluate = fitness(d["links"], d["multiplicity"], d["col_count"], d["row_count"])
         size = d["col_count"] * d["row_count"]
         (crossing_count, total_distances) = evaluate(range(size))
         self.assertEquals(crossing_count, 0)
@@ -43,11 +43,29 @@ class ArrangeBB(unittest.TestCase):
         mcd = Mcd(clauses.split("\n"), params)
         params.update(mcd.get_layout_data())
         d = mcd.get_layout_data()
-        evaluate = fitness(d["links"], d["col_count"], d["row_count"])
+        evaluate = fitness(d["links"], d["multiplicity"], d["col_count"], d["row_count"])
         size = d["col_count"] * d["row_count"]
         (crossing_count, total_distances) = evaluate(range(size))
         self.assertEquals(crossing_count, 0)
         self.assertEquals(total_distances, 0.0)
+
+    def test_diagonal_reflexive_association(self):
+        clauses = u"""
+            Norm : Draw, Unit, Folk, Peer, Tour, Hall
+            :
+
+            :
+            Baby, 1N Norm, 0N> Norm
+        """.replace("  ", "")
+        params = parsed_arguments()
+        mcd = Mcd(clauses.split("\n"), params)
+        params.update(mcd.get_layout_data())
+        d = mcd.get_layout_data()
+        evaluate = fitness(d["links"], d["multiplicity"], d["col_count"], d["row_count"])
+        size = d["col_count"] * d["row_count"]
+        (crossing_count, total_distances) = evaluate(range(size))
+        self.assertEquals(crossing_count, 0)
+        self.assertEquals(round(total_distances, 4), 0.8284)
 
     def test_2_0_link(self):
         clauses = u"""
@@ -60,7 +78,7 @@ class ArrangeBB(unittest.TestCase):
         mcd = Mcd(clauses.split("\n"), params)
         params.update(mcd.get_layout_data())
         d = mcd.get_layout_data()
-        evaluate = fitness(d["links"], d["col_count"], d["row_count"])
+        evaluate = fitness(d["links"], d["multiplicity"], d["col_count"], d["row_count"])
         size = d["col_count"] * d["row_count"]
         (crossing_count, total_distances) = evaluate(range(size))
         self.assertEquals(crossing_count, 0)
@@ -78,7 +96,7 @@ class ArrangeBB(unittest.TestCase):
         mcd = Mcd(clauses.split("\n"), params)
         params.update(mcd.get_layout_data())
         d = mcd.get_layout_data()
-        evaluate = fitness(d["links"], d["col_count"], d["row_count"])
+        evaluate = fitness(d["links"], d["multiplicity"], d["col_count"], d["row_count"])
         size = d["col_count"] * d["row_count"]
         (crossing_count, total_distances) = evaluate(range(size))
         self.assertEquals(crossing_count, 0)
@@ -98,7 +116,7 @@ class ArrangeBB(unittest.TestCase):
         mcd = Mcd(clauses.split("\n"), params)
         params.update(mcd.get_layout_data())
         d = mcd.get_layout_data()
-        evaluate = fitness(d["links"], d["col_count"], d["row_count"])
+        evaluate = fitness(d["links"], d["multiplicity"], d["col_count"], d["row_count"])
         size = d["col_count"] * d["row_count"]
         (crossing_count, total_distances) = evaluate(range(size))
         self.assertEquals(crossing_count, 0)
@@ -118,7 +136,7 @@ class ArrangeBB(unittest.TestCase):
         mcd = Mcd(clauses.split("\n"), params)
         params.update(mcd.get_layout_data())
         d = mcd.get_layout_data()
-        evaluate = fitness(d["links"], d["col_count"], d["row_count"])
+        evaluate = fitness(d["links"], d["multiplicity"], d["col_count"], d["row_count"])
         size = d["col_count"] * d["row_count"]
         (crossing_count, total_distances) = evaluate(range(size))
         self.assertEquals(crossing_count, 9)
@@ -137,12 +155,11 @@ class ArrangeBB(unittest.TestCase):
         mcd = Mcd(clauses.split("\n"), params)
         params.update(mcd.get_layout_data())
         d = mcd.get_layout_data()
-        evaluate = fitness(d["links"], d["col_count"], d["row_count"])
+        evaluate = fitness(d["links"], d["multiplicity"], d["col_count"], d["row_count"])
         size = d["col_count"] * d["row_count"]
         (crossing_count, total_distances) = evaluate(range(size))
         self.assertEquals(crossing_count, 3)
-        
-
+    
 
 if __name__ == '__main__':
     unittest.main()
