@@ -103,6 +103,28 @@ def scale(string):
         raise argparse.ArgumentTypeError(msg)
     return value
 
+def non_negative_integer(string):
+    try:
+        value = int(string)
+    except ValueError:
+        msg = "The value %r cannot be coerced to an integer" % string
+        raise argparse.ArgumentTypeError(msg)
+    if value < 0:
+        msg = "The integer %r is negative" % string
+        raise argparse.ArgumentTypeError(msg)
+    return value
+
+def positive_integer(string):
+    try:
+        value = int(string)
+    except ValueError:
+        msg = "The value %r cannot be coerced to an integer" % string
+        raise argparse.ArgumentTypeError(msg)
+    if value <= 0:
+        msg = "The integer %r is negative or zero" % string
+        raise argparse.ArgumentTypeError(msg)
+    return value
+
 def parsed_arguments():
     
     def add_key(key, value):
@@ -169,8 +191,8 @@ def parsed_arguments():
     mocodo_group.add_argument("--restore", action="store_true", help="recreate a pristine version of the files 'sandbox.mcd' and 'params.json' in the input directory, then exit")
     
     aspect_group.add_argument("--df", metavar="STR", type=unicode, default=u"DF", help="the acronym to be circled in a functional dependency")
-    aspect_group.add_argument("--card_format", metavar="STR", type=unicode, nargs="?", default=u"{min_card},{max_card}", help="format string for minimal and maximal cardinalities")
-    aspect_group.add_argument("--strengthen_card", metavar="STR", type=unicode, nargs="?", default=u"_1,1_", help="string for relative cardinalities")
+    aspect_group.add_argument("--card_format", metavar="STR", type=unicode, default=u"{min_card},{max_card}", help="format string for minimal and maximal cardinalities")
+    aspect_group.add_argument("--strengthen_card", metavar="STR", type=unicode, default=u"_1,1_", help="string for relative cardinalities")
     source_group.add_argument("--flex", metavar="FLOAT", type=float, default=0.75, help="flex straight legs whose cardinalities may collide")
     aspect_group.add_argument("--tkinter", action="store_true", help="use Tkinter to calculate the pixel-dimensions of the labels")
     aspect_group.add_argument("--colors", metavar="PATH", default="bw", help="the color palette to use when generating the drawing. Name (without extension) of a file located in the directory 'colors', or path to a personal file")
@@ -192,23 +214,24 @@ def parsed_arguments():
     source_group.add_argument("--arrange", nargs="?", const="bb", choices=["bb", "ga"], help="rearrange the layout with either a Branch & Bound or a Genetic Algorithm, then exit")
     source_group.add_argument("--timeout", metavar="SECONDS", type=int, help="limit the duration of the layout rearrangement")
     source_group.add_argument("--verbose", action="store_true", help="display some gory details during the layout rearrangement")
+    source_group.add_argument("--fit", metavar="INT", type=int, const=0, nargs="?", help="fit the layout in the nth smallest grid")
     source_group.add_argument("--flip", choices=["h", "v", "d"], help="display an horizontal / vertical / diagonal flip of the input file, then exit")
     source_group.add_argument("--obfuscate", metavar="PATH", type=os.path.abspath, nargs="?", const="lorem_ipsum.txt", help="display an obfuscated version of the input file, then exit. Cf. directory 'lorem'")
-    source_group.add_argument("--obfuscation_max_length", metavar="INT", type=int, help="maximal length of obfuscated labels")
-    source_group.add_argument("--obfuscation_min_distance", metavar="INT", type=int, default=3, help="minimal Damerau-Levenshtein's distance between any two obfuscated labels")
+    source_group.add_argument("--obfuscation_max_length", metavar="NAT*", type=positive_integer, help="maximal length of obfuscated labels")
+    source_group.add_argument("--obfuscation_min_distance", metavar="NAT*", type=positive_integer, default=3, help="minimal Damerau-Levenshtein's distance between any two obfuscated labels")
     source_group.add_argument("--seed", metavar="FLOAT", type=float, help="initial value for the random number generator")
 
-    bb_group.add_argument("--call_limit", metavar="INT", type=int, default=10000, help="maximal number of calls for a given starting box")
-    bb_group.add_argument("--min_objective", metavar="INT", type=int, default=0, help="best acceptable fitness for a layout")
-    bb_group.add_argument("--max_objective", metavar="INT", type=int, default=15, help="worst acceptable fitness for a layout")
+    bb_group.add_argument("--call_limit", metavar="NAT*", type=positive_integer, default=10000, help="maximal number of calls for a given starting box")
+    bb_group.add_argument("--min_objective", metavar="NAT*", type=positive_integer, default=0, help="best acceptable fitness for a layout")
+    bb_group.add_argument("--max_objective", metavar="NAT*", type=positive_integer, default=15, help="worst acceptable fitness for a layout")
     bb_group.add_argument("--organic", action="store_true", help="unconstrained Branch & Bound")
     
-    ga_group.add_argument("--population_size", metavar="INT", type=int, default=1000, help="number of individuals to evolve")
+    ga_group.add_argument("--population_size", metavar="NAT*", type=positive_integer, default=1000, help="number of individuals to evolve")
     ga_group.add_argument("--crossover_rate", metavar="RATE", type=rate, default=0.9, help="crossover rate, between 0 and 1")
     ga_group.add_argument("--mutation_rate", metavar="RATE", type=rate, default=0.06, help="mutation rate, between 0 and 1")
-    ga_group.add_argument("--sample_size", metavar="INT", type=int, default=7, help="the sample size in tournaments")
-    ga_group.add_argument("--max_generations", metavar="INT", type=int, default=300, help="maximal number of generations")
-    ga_group.add_argument("--plateau", metavar="INT", type=int, default=30, help="maximal number of consecutive generations without improvement")
+    ga_group.add_argument("--sample_size", metavar="NAT*", type=positive_integer, default=7, help="the sample size in tournaments")
+    ga_group.add_argument("--max_generations", metavar="NAT*", type=positive_integer, default=300, help="maximal number of generations")
+    ga_group.add_argument("--plateau", metavar="NAT*", type=positive_integer, default=30, help="maximal number of consecutive generations without improvement")
     
     nb_group.add_argument("--mld", action="store_true", help="display the HTML relational model in the cell output")
     nb_group.add_argument("--no_mcd", action="store_true", help="do not display the conceptual diagram in the cell output")
