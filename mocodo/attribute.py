@@ -4,7 +4,7 @@
 import font_metrics
 
 import re
-from symbol import Symbol
+from dynamic import Dynamic
 
 findall_outer_commas = re.compile(r'[^,]+\[.*?\][^,]*|[^,]+').findall
 
@@ -41,9 +41,9 @@ class Attribute:
             {
                 "key": u"text",
                 "text": self.label,
-                "text_color": Symbol("colors['%s']" % (self.box_type + "_attribute_text_color")),
-                "x": Symbol("%s+x" % (dx)),
-                "y": Symbol("%s+y" % (dy + self.style["attribute_text_height_ratio"] * self.h)),
+                "text_color": Dynamic("colors['%s']" % (self.box_type + "_attribute_text_color")),
+                "x": Dynamic("%s+x" % (dx)),
+                "y": Dynamic("%s+y" % (dy + self.style["attribute_text_height_ratio"] * self.h)),
                 "family": self.attribute_font["family"],
                 "size": self.attribute_font["size"],
             }
@@ -83,14 +83,14 @@ class StrongAttribute(Attribute):
             },
             {
                 "key": u"stroke_color",
-                "stroke_color": Symbol("colors['entity_attribute_text_color']"),
+                "stroke_color": Dynamic("colors['entity_attribute_text_color']"),
             },
             {
                 "key": u"line",
-                "x0": Symbol("%s+x" % (dx)),
-                "y0": Symbol("%s+y" % (dy + self.h + self.style["underline_skip_height"])),
-                "x1": Symbol("%s+x" % (dx + self.w)),
-                "y1": Symbol("%s+y" % (dy + self.h + self.style["underline_skip_height"])),
+                "x0": Dynamic("%s+x" % (dx)),
+                "y0": Dynamic("%s+y" % (dy + self.h + self.style["underline_skip_height"])),
+                "x1": Dynamic("%s+x" % (dx + self.w)),
+                "y1": Dynamic("%s+y" % (dy + self.h + self.style["underline_skip_height"])),
             }
         ]
 
@@ -111,13 +111,13 @@ class WeakAttribute(Attribute):
             },
             {
                 "key": u"stroke_color",
-                "stroke_color": Symbol("colors['entity_attribute_text_color']"),
+                "stroke_color": Dynamic("colors['entity_attribute_text_color']"),
             },
             {
                 "key": u"dash_line",
-                "x0": Symbol("%s+x" % (dx)),
-                "x1": Symbol("%s+x" % (dx + self.w)),
-                "y": Symbol("%s+y" % (dy + self.h + self.style["underline_skip_height"])),
+                "x0": Dynamic("%s+x" % (dx)),
+                "x1": Dynamic("%s+x" % (dx + self.w)),
+                "y": Dynamic("%s+y" % (dy + self.h + self.style["underline_skip_height"])),
                 "dash_width": self.style["dash_width"],
             }
         ]

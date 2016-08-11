@@ -4,7 +4,7 @@
 import font_metrics
 import sys
 import re
-from symbol import Symbol
+from dynamic import Dynamic
 
 class DiagramLink:
 
@@ -34,7 +34,7 @@ class DiagramLink:
         result = []
         result.append({
                 "key": u"stroke_color",
-                "stroke_color": Symbol("colors['leg_stroke_color']"),
+                "stroke_color": Dynamic("colors['leg_stroke_color']"),
             })
         result.append({
                 "key": u"stroke_depth",
@@ -69,7 +69,7 @@ class DiagramLink:
             })
         result.append({
                 "key": u"color",
-                "color": Symbol("colors['leg_stroke_color']"),
+                "color": Dynamic("colors['leg_stroke_color']"),
             })
         result.append({
                 "key": u"arrow",

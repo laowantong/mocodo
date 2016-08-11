@@ -7,7 +7,7 @@ import random
 import re
 import os
 from file_helpers import read_contents
-from symbol import Symbol
+from dynamic import Dynamic
 
 def main(mcd, common):
     params = common.params
@@ -83,7 +83,7 @@ def main(mcd, common):
                 elif d["key"] == "arrow":
                     result.append('path = arrow(%(x)s,%(y)s,%(a)s,%(b)s)' % d)
                 elif d["key"] in ("color", "stroke_color"):
-                    others[d["key"]] = Symbol(d[d["key"]])
+                    others[d["key"]] = Dynamic(d[d["key"]])
                 elif d["key"] == "stroke_depth":
                     others["stroke_depth"] = d["stroke_depth"]
                 if d["key"].endswith("note"):
@@ -95,7 +95,7 @@ def main(mcd, common):
                     sub_dict = dict((key, "%(" + key + ")s") for key in rex.findall(line))
                     for k in sub_dict:
                         if k in d:
-                            if not isinstance(d[k], Symbol):
+                            if not isinstance(d[k], Dynamic):
                                 sub_dict[k] = d[k]
                     line = line % sub_dict
                     sub_dict = "{%s}" % ", ".join("'%s': %s" % (k, (d[k] if k in d else k)) for k in rex.findall(line))
