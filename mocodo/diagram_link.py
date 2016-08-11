@@ -58,14 +58,14 @@ class DiagramLink:
             })
         result.append({
                 "key": "curve",
-                "x0": "xf",
-                "y0": "yf",
-                "x1": "xf+(xp-xf)/2 if fs != ps else xf+%s*fs" % self.offset,
-                "y1": "yf+(yp-yf)/2",
-                "x2": "xf+(xp-xf)/3 if fs != ps else xp+%s*ps" % self.offset,
-                "y2": "yp",
-                "x3": "xp",
-                "y3": "yp",
+                "x0": Dynamic("xf"),
+                "y0": Dynamic("yf"),
+                "x1": Dynamic("xf+(xp-xf)/2 if fs != ps else xf+%s*fs" % self.offset),
+                "y1": Dynamic("yf+(yp-yf)/2"),
+                "x2": Dynamic("xf+(xp-xf)/3 if fs != ps else xp+%s*ps" % self.offset),
+                "y2": Dynamic("yp"),
+                "x3": Dynamic("xp"),
+                "y3": Dynamic("yp"),
             })
         result.append({
                 "key": "color",
@@ -73,9 +73,9 @@ class DiagramLink:
             })
         result.append({
                 "key": "arrow",
-                "x": "xp",
-                "y": "yp",
-                "a": "ps",
+                "x": Dynamic("xp"),
+                "y": Dynamic("yp"),
+                "a": Dynamic("ps"),
                 "b": 0,
             })
         result.append({
@@ -84,8 +84,8 @@ class DiagramLink:
             })
         result.append({
                 "key": "circle",
-                "cx": "xf",
-                "cy": "yf",
+                "cx": Dynamic("xf"),
+                "cy": Dynamic("yf"),
                 "r": self.style["box_stroke_depth"],
             })
         return result
