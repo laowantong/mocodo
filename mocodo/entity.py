@@ -56,86 +56,86 @@ class Entity:
         result = ["Entity %s" % self.name]
         result.extend([
             {
-                "key": u"env",
+                "key": "env",
                 "env": [("x", """cx[u"%s"]""" % self.name), ("y", """cy[u"%s"]""" % self.name)],
             },
             {
-                "key": u"begin",
+                "key": "begin",
                 "id": u"entity-%s" % self.name,
             },
             {
-                "key": u"begin",
+                "key": "begin",
                 "id": u"frame-%s" % self.name,
             },
             {
-                "key": u"stroke_depth",
+                "key": "stroke_depth",
                 "stroke_depth": 0,
             },
             {
-                "key": u"stroke_color",
+                "key": "stroke_color",
                 "stroke_color": Dynamic("colors['entity_cartouche_color']"),
             },
             {
-                "key": u"color",
+                "key": "color",
                 "color": Dynamic("colors['entity_cartouche_color']"),
             },
             {
-                "key": u"rect",
+                "key": "rect",
                 "x": Dynamic("%s+x" % (-self.w / 2)),
                 "y": Dynamic("%s+y" % (-self.h / 2)),
                 "w": self.w,
                 "h": self.cartouche_height + 2 * self.style["rect_margin_height"],
             },
             {
-                "key": u"stroke_color",
+                "key": "stroke_color",
                 "stroke_color": Dynamic("colors['entity_color']"),
             },
             {
-                "key": u"color",
+                "key": "color",
                 "color": Dynamic("colors['entity_color']"),
             },
             {
-                "key": u"rect",
+                "key": "rect",
                 "x": Dynamic("%s+x" % (-self.w / 2)),
                 "y": Dynamic("%s+y" % (-self.h / 2 + self.cartouche_height + 2 * self.style["rect_margin_height"])),
                 "w": self.w,
                 "h": self.h - self.cartouche_height - 2 * self.style["rect_margin_height"],
             },
             {
-                "key": u"stroke_color",
+                "key": "stroke_color",
                 "stroke_color": Dynamic("colors['entity_stroke_color']"),
             },
             {
-                "key": u"stroke_depth",
+                "key": "stroke_depth",
                 "stroke_depth": self.style["box_stroke_depth"],
             },
             {
-                "key": u"color",
+                "key": "color",
                 "color": Dynamic("colors['transparent_color']"),
             },
             {
-                "key": u"rect",
+                "key": "rect",
                 "x": Dynamic("%s+x" % (-self.w / 2)),
                 "y": Dynamic("%s+y" % (-self.h / 2)),
                 "w": self.w,
                 "h": self.h,
             },
             {
-                "key": u"stroke_depth",
+                "key": "stroke_depth",
                 "stroke_depth": self.style["inner_stroke_depth"],
             },
             {
-                "key": u"line",
+                "key": "line",
                 "x0": Dynamic("%s+x" % (-self.w / 2)),
                 "y0": Dynamic("%s+y" % (-self.h / 2 + self.cartouche_height + 2 * self.style["rect_margin_height"])),
                 "x1": Dynamic("%s+x" % (self.w / 2)),
                 "y1": Dynamic("%s+y" % (-self.h / 2 + self.cartouche_height + 2 * self.style["rect_margin_height"])),
             },
             {
-                "key": u"end",
+                "key": "end",
             },
             {
-                "key": u"text",
+                "key": "text",
                 "family": self.style["entity_cartouche_font"]["family"],
                 "size": self.style["entity_cartouche_font"]["size"],
                 "text": self.cartouche,
@@ -152,7 +152,7 @@ class Entity:
             dy += self.attribute_height + self.style["line_skip_height"]
         result.extend([
             {
-                "key": u"end",
+                "key": "end",
             },
         ])
         return result

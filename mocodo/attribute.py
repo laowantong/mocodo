@@ -39,7 +39,7 @@ class Attribute:
     def description(self, dx, dy):
         return [
             {
-                "key": u"text",
+                "key": "text",
                 "text": self.label,
                 "text_color": Dynamic("colors['%s']" % (self.box_type + "_attribute_text_color")),
                 "x": Dynamic("%s+x" % (dx)),
@@ -78,15 +78,15 @@ class StrongAttribute(Attribute):
     def description(self, dx, dy):
         return Attribute.description(self, dx, dy) + [
             {
-                "key": u"stroke_depth",
+                "key": "stroke_depth",
                 "stroke_depth": self.style["underline_depth"],
             },
             {
-                "key": u"stroke_color",
+                "key": "stroke_color",
                 "stroke_color": Dynamic("colors['entity_attribute_text_color']"),
             },
             {
-                "key": u"line",
+                "key": "line",
                 "x0": Dynamic("%s+x" % (dx)),
                 "y0": Dynamic("%s+y" % (dy + self.h + self.style["underline_skip_height"])),
                 "x1": Dynamic("%s+x" % (dx + self.w)),
@@ -106,15 +106,15 @@ class WeakAttribute(Attribute):
     def description(self, dx, dy):
         return Attribute.description(self, dx, dy) + [
             {
-                "key": u"stroke_depth",
+                "key": "stroke_depth",
                 "stroke_depth": self.style["underline_depth"],
             },
             {
-                "key": u"stroke_color",
+                "key": "stroke_color",
                 "stroke_color": Dynamic("colors['entity_attribute_text_color']"),
             },
             {
-                "key": u"dash_line",
+                "key": "dash_line",
                 "x0": Dynamic("%s+x" % (dx)),
                 "x1": Dynamic("%s+x" % (dx + self.w)),
                 "y": Dynamic("%s+y" % (dy + self.h + self.style["underline_skip_height"])),

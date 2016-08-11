@@ -33,22 +33,22 @@ class DiagramLink:
     def description(self):
         result = []
         result.append({
-                "key": u"stroke_color",
+                "key": "stroke_color",
                 "stroke_color": Dynamic("colors['leg_stroke_color']"),
             })
         result.append({
-                "key": u"stroke_depth",
+                "key": "stroke_depth",
                 "stroke_depth": self.style["leg_stroke_depth"],
             })
         spins = [(-1,-1),(1,-1),(-1,1),(1,1)] if self.foreign_key.rank % 2 else [(1,1),(-1,1),(1,-1),(-1,-1)]
         result.append({
-                "key": u"env",
+                "key": "env",
                 "env": [
                     ("fs,ps", """min(%s, key=lambda (fs,ps): abs(cx[u"%s"]+%s*fs - cx[u"%s"]-%s*ps))""" % (spins, self.foreign_entity.name, self.fdx, self.primary_entity.name, self.pdx)),
                 ],
             })
         result.append({
-                "key": u"env",
+                "key": "env",
                 "env": [
                     ("xf", """cx[u"%s"]+%s*fs""" % (self.foreign_entity.name, self.fdx)),
                     ("yf", """cy[u"%s"]+%s""" % (self.foreign_entity.name, self.fdy)),
@@ -57,7 +57,7 @@ class DiagramLink:
                 ],
             })
         result.append({
-                "key": u"curve",
+                "key": "curve",
                 "x0": "xf",
                 "y0": "yf",
                 "x1": "xf+(xp-xf)/2 if fs != ps else xf+%s*fs" % self.offset,
@@ -68,22 +68,22 @@ class DiagramLink:
                 "y3": "yp",
             })
         result.append({
-                "key": u"color",
+                "key": "color",
                 "color": Dynamic("colors['leg_stroke_color']"),
             })
         result.append({
-                "key": u"arrow",
+                "key": "arrow",
                 "x": "xp",
                 "y": "yp",
                 "a": "ps",
                 "b": 0,
             })
         result.append({
-                "key": u"stroke_depth",
+                "key": "stroke_depth",
                 "stroke_depth": self.style["box_stroke_depth"],
             })
         result.append({
-                "key": u"circle",
+                "key": "circle",
                 "cx": "xf",
                 "cy": "yf",
                 "r": self.style["box_stroke_depth"],
