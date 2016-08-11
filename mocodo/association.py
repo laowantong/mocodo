@@ -6,6 +6,7 @@ import re
 
 from attribute import *
 from leg import *
+from symbol import Symbol
 
 match_leg = re.compile(r"((?:_11|..)[<>]?\s+(?:\[.+?\]\s+)?)(.+)").match
 
@@ -80,25 +81,24 @@ class Association:
                 },
                 {
                     "key": u"stroke_color",
-                    "stroke_color": "association_stroke_color",
+                    "stroke_color": Symbol("colors['association_stroke_color']"),
                 },
                 {
                     "key": u"color",
-                    "color": "association_cartouche_color",
+                    "color": Symbol("colors['association_cartouche_color']"),
                 },
                 {
                     "key": u"circle",
-                    "cx": "x",
-                    "cy": "y",
+                    "cx": Symbol("x"),
+                    "cy": Symbol("y"),
                     "r": self.w / 2.0,
                 },
                 {
                     "key": u"text",
                     "text": self.df_label,
-                    "text_color": "association_cartouche_text_color",
-                    "x": "%s+x" % (self.style["round_rect_margin_width"] - self.w / 2),
-                    "y": "%s+y" % (self.style["round_rect_margin_height"] - self.h / 2 + 
-                                   self.style["df_text_height_ratio"] * self.cartouche_height),
+                    "text_color": Symbol("colors['association_cartouche_text_color']"),
+                    "x": Symbol("%s+x" % (self.style["round_rect_margin_width"] - self.w / 2)),
+                    "y": Symbol("%s+y" % (self.style["round_rect_margin_height"] - self.h / 2 + self.style["df_text_height_ratio"] * self.cartouche_height)),
                     "family": self.style["association_cartouche_font"]["family"],
                     "size": self.style["association_cartouche_font"]["size"],
                 },
@@ -112,45 +112,43 @@ class Association:
                 },
                 {
                     "key": u"stroke_color",
-                    "stroke_color": "association_cartouche_color",
+                    "stroke_color": Symbol("colors['association_cartouche_color']"),
                 },
                 {
                     "key": u"color",
-                    "color": "association_cartouche_color",
+                    "color": Symbol("colors['association_cartouche_color']"),
                 },
                 {
                     "key": u"upper_round_rect",
                     "radius": self.style["round_corner_radius"],
-                    "x": "%s+x" % (-self.w / 2),
-                    "y": "%s+y" % (-self.h / 2),
+                    "x": Symbol("%s+x" % (-self.w / 2)),
+                    "y": Symbol("%s+y" % (-self.h / 2)),
                     "w": self.w,
-                    "h": self.attribute_height +
-                         self.style["round_rect_margin_height"] +
-                         self.style["rect_margin_height"],
+                    "h": self.attribute_height + self.style["round_rect_margin_height"] + self.style["rect_margin_height"],
                 },
                 {
                     "key": u"stroke_color",
-                    "stroke_color": "association_color",
+                    "stroke_color": Symbol("colors['association_color']"),
                 },
                 {
                     "key": u"color",
-                    "color": "association_color",
+                    "color": Symbol("colors['association_color']"),
                 },
                 {
                     "key": u"lower_round_rect",
                     "radius": self.style["round_corner_radius"],
-                    "x": "%s+x" % (-self.w / 2),
-                    "y": "%s+y" % (self.attribute_height + self.style["round_rect_margin_height"] + self.style["rect_margin_height"] - self.h / 2),
+                    "x": Symbol("%s+x" % (-self.w / 2)),
+                    "y": Symbol("%s+y" % (self.attribute_height + self.style["round_rect_margin_height"] + self.style["rect_margin_height"] - self.h / 2)),
                     "w": self.w,
                     "h": self.h - (self.attribute_height + self.style["round_rect_margin_height"] + self.style["rect_margin_height"]),
                 },
                 {
                     "key": u"color",
-                    "color": "transparent_color",
+                    "color": Symbol("colors['transparent_color']"),
                 },
                 {
                     "key": u"stroke_color",
-                    "stroke_color": "association_stroke_color",
+                    "stroke_color": Symbol("colors['association_stroke_color']"),
                 },
                 {
                     "key": u"stroke_depth",
@@ -159,8 +157,8 @@ class Association:
                 {
                     "key": u"round_rect",
                     "radius": self.style["round_corner_radius"],
-                    "x": "%s+x" % (-self.w / 2),
-                    "y": "%s+y" % (-self.h / 2),
+                    "x": Symbol("%s+x" % (-self.w / 2)),
+                    "y": Symbol("%s+y" % (-self.h / 2)),
                     "w": self.w,
                     "h": self.h,
                 },
@@ -170,17 +168,17 @@ class Association:
                 },
                 {
                     "key": u"line",
-                    "x0": "%s+x" % (-self.w / 2),
-                    "y0": "%s+y" % (self.attribute_height + self.style["round_rect_margin_height"] + self.style["rect_margin_height"] - self.h / 2),
-                    "x1": "%s+x" % (self.w / 2),
-                    "y1": "%s+y" % (self.attribute_height + self.style["round_rect_margin_height"] + self.style["rect_margin_height"] - self.h / 2),
+                    "x0": Symbol("%s+x" % (-self.w / 2)),
+                    "y0": Symbol("%s+y" % (self.attribute_height + self.style["round_rect_margin_height"] + self.style["rect_margin_height"] - self.h / 2)),
+                    "x1": Symbol("%s+x" % (self.w / 2)),
+                    "y1": Symbol("%s+y" % (self.attribute_height + self.style["round_rect_margin_height"] + self.style["rect_margin_height"] - self.h / 2)),
                 },
                 {
                     "key": u"text",
                     "text": self.cartouche,
-                    "text_color": "association_cartouche_text_color",
-                    "x": "%s+x" % (-self.get_cartouche_string_width(self.cartouche) / 2),
-                    "y": "%s+y" % (-self.h / 2 + self.style["rect_margin_height"] + self.style["cartouche_text_height_ratio"] * self.cartouche_height),
+                    "text_color": Symbol("colors['association_cartouche_text_color']"),
+                    "x": Symbol("%s+x" % (-self.get_cartouche_string_width(self.cartouche) / 2)),
+                    "y": Symbol("%s+y" % (-self.h / 2 + self.style["rect_margin_height"] + self.style["cartouche_text_height_ratio"] * self.cartouche_height)),
                     "family": self.style["association_cartouche_font"]["family"],
                     "size": self.style["association_cartouche_font"]["size"],
                 }

@@ -4,6 +4,7 @@
 import font_metrics
 
 import re
+from symbol import Symbol
 
 findall_outer_commas = re.compile(r'[^,]+\[.*?\][^,]*|[^,]+').findall
 
@@ -40,9 +41,9 @@ class Attribute:
             {
                 "key": u"text",
                 "text": self.label,
-                "text_color": self.box_type + "_attribute_text_color",
-                "x": "%s+x" % (dx),
-                "y": "%s+y" % (dy + self.style["attribute_text_height_ratio"] * self.h),
+                "text_color": Symbol("colors['%s']" % (self.box_type + "_attribute_text_color")),
+                "x": Symbol("%s+x" % (dx)),
+                "y": Symbol("%s+y" % (dy + self.style["attribute_text_height_ratio"] * self.h)),
                 "family": self.attribute_font["family"],
                 "size": self.attribute_font["size"],
             }
@@ -82,14 +83,14 @@ class StrongAttribute(Attribute):
             },
             {
                 "key": u"stroke_color",
-                "stroke_color": "entity_attribute_text_color",
+                "stroke_color": Symbol("colors['entity_attribute_text_color']"),
             },
             {
                 "key": u"line",
-                "x0": "%s+x" % (dx),
-                "y0": "%s+y" % (dy + self.h + self.style["underline_skip_height"]),
-                "x1": "%s+x" % (dx + self.w),
-                "y1": "%s+y" % (dy + self.h + self.style["underline_skip_height"]),
+                "x0": Symbol("%s+x" % (dx)),
+                "y0": Symbol("%s+y" % (dy + self.h + self.style["underline_skip_height"])),
+                "x1": Symbol("%s+x" % (dx + self.w)),
+                "y1": Symbol("%s+y" % (dy + self.h + self.style["underline_skip_height"])),
             }
         ]
 
@@ -110,13 +111,13 @@ class WeakAttribute(Attribute):
             },
             {
                 "key": u"stroke_color",
-                "stroke_color": "entity_attribute_text_color",
+                "stroke_color": Symbol("colors['entity_attribute_text_color']"),
             },
             {
                 "key": u"dash_line",
-                "x0": "%s+x" % (dx),
-                "x1": "%s+x" % (dx + self.w),
-                "y": "%s+y" % (dy + self.h + self.style["underline_skip_height"]),
+                "x0": Symbol("%s+x" % (dx)),
+                "x1": Symbol("%s+x" % (dx + self.w)),
+                "y": Symbol("%s+y" % (dy + self.h + self.style["underline_skip_height"])),
                 "dash_width": self.style["dash_width"],
             }
         ]

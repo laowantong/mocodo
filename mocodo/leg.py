@@ -4,6 +4,7 @@
 import font_metrics
 import sys
 import re
+from symbol import Symbol
 
 match_card = re.compile(r"(_11|..)([<>]?)\s*(?:\[(.+?)\])?").match
 
@@ -76,7 +77,7 @@ class Leg:
             })
         result.append({
                 "key": u"stroke_color",
-                "stroke_color": "leg_stroke_color",
+                "stroke_color": Symbol("colors['leg_stroke_color']"),
             })
         result.append({
                 "key": u"stroke_depth",
@@ -84,23 +85,23 @@ class Leg:
             })
         result.append({
                 "key": u"straight_leg",
-                "ex": "ex",
-                "ey": "ey",
+                "ex": Symbol("ex"),
+                "ey": Symbol("ey"),
                 "ew": self.entity.w / 2,
                 "eh": self.entity.h / 2,
-                "ax": "x",
-                "ay": "y",
+                "ax": Symbol("x"),
+                "ay": Symbol("y"),
                 "aw": self.association.w / 2,
                 "ah": self.association.h / 2,
                 "cw": self.w,
                 "ch": self.h,
                 "stroke_depth": self.style["leg_stroke_depth"],
-                "stroke_color": "leg_stroke_color",
+                "stroke_color": Symbol("colors['leg_stroke_color']"),
             })
         result.append({
                 "key": u"straight_card",
                 "text": self.cardinalities,
-                "text_color": "card_text_color",
+                "text_color": Symbol("colors['card_text_color']"),
                 "leg_identifier": "%s,%s" % (self.association.name, self.entity_name),
                 "family": self.style["card_font"]["family"],
                 "size": self.style["card_font"]["size"],
@@ -118,7 +119,7 @@ class Leg:
                 })
             result.append({
                     "key": u"stroke_color",
-                    "stroke_color": "card_text_color",
+                    "stroke_color": Symbol("colors['card_text_color']"),
                 })
             result.append({
                     "key": u"card_underline",
@@ -129,7 +130,7 @@ class Leg:
             result.extend([
                 {
                     "key": u"color",
-                    "color": "leg_stroke_color",
+                    "color": Symbol("colors['leg_stroke_color']"),
                 },
                 {
                     "key": u"stroke_depth",
@@ -155,28 +156,28 @@ class Leg:
             })
         result.append({
                 "key": u"stroke_color",
-                "stroke_color": "leg_stroke_color",
+                "stroke_color": Symbol("colors['leg_stroke_color']"),
             })
         result.append({
                 "key": u"curved_leg",
-                "ex": "ex",
-                "ey": "ey",
+                "ex": Symbol("ex"),
+                "ey": Symbol("ey"),
                 "ew": self.entity.w / 2,
                 "eh": self.entity.h / 2,
-                "ax": "x",
-                "ay": "y",
+                "ax": Symbol("x"),
+                "ay": Symbol("y"),
                 "aw": self.association.w / 2,
                 "ah": self.association.h / 2,
                 "spin": self.spin,
                 "cw": self.w,
                 "ch": self.h,
                 "stroke_depth": self.style["leg_stroke_depth"],
-                "stroke_color": "leg_stroke_color",
+                "stroke_color": Symbol("colors['leg_stroke_color']"),
             })
         result.append({
                 "key": u"curved_card",
                 "text": self.cardinalities,
-                "text_color": "card_text_color",
+                "text_color": Symbol("colors['card_text_color']"),
                 "leg_identifier": self.identifier,
                 "family": self.style["card_font"]["family"],
                 "size": self.style["card_font"]["size"],
@@ -193,7 +194,7 @@ class Leg:
                 })
             result.append({
                     "key": u"stroke_color",
-                    "stroke_color": "card_text_color",
+                    "stroke_color": Symbol("colors['card_text_color']"),
                 })
             result.append({
                     "key": u"card_underline",
@@ -204,7 +205,7 @@ class Leg:
             result.extend([
                 {
                     "key": u"color",
-                    "color": "leg_stroke_color",
+                    "color": Symbol("colors['leg_stroke_color']"),
                 },
                 {
                     "key": u"stroke_depth",

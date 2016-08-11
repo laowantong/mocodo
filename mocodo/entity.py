@@ -4,7 +4,7 @@
 import font_metrics
 
 from attribute import *
-
+from symbol import Symbol
 
 class Entity:
 
@@ -73,37 +73,37 @@ class Entity:
             },
             {
                 "key": u"stroke_color",
-                "stroke_color": "entity_cartouche_color",
+                "stroke_color": Symbol("colors['entity_cartouche_color']"),
             },
             {
                 "key": u"color",
-                "color": "entity_cartouche_color",
+                "color": Symbol("colors['entity_cartouche_color']"),
             },
             {
                 "key": u"rect",
-                "x": "%s+x" % (-self.w / 2),
-                "y": "%s+y" % (-self.h / 2),
+                "x": Symbol("%s+x" % (-self.w / 2)),
+                "y": Symbol("%s+y" % (-self.h / 2)),
                 "w": self.w,
                 "h": self.cartouche_height + 2 * self.style["rect_margin_height"],
             },
             {
                 "key": u"stroke_color",
-                "stroke_color": "entity_color",
+                "stroke_color": Symbol("colors['entity_color']"),
             },
             {
                 "key": u"color",
-                "color": "entity_color",
+                "color": Symbol("colors['entity_color']"),
             },
             {
                 "key": u"rect",
-                "x": "%s+x" % (-self.w / 2),
-                "y": "%s+y" % (-self.h / 2 + self.cartouche_height + 2 * self.style["rect_margin_height"]),
+                "x": Symbol("%s+x" % (-self.w / 2)),
+                "y": Symbol("%s+y" % (-self.h / 2 + self.cartouche_height + 2 * self.style["rect_margin_height"])),
                 "w": self.w,
                 "h": self.h - self.cartouche_height - 2 * self.style["rect_margin_height"],
             },
             {
                 "key": u"stroke_color",
-                "stroke_color": "entity_stroke_color",
+                "stroke_color": Symbol("colors['entity_stroke_color']"),
             },
             {
                 "key": u"stroke_depth",
@@ -111,12 +111,12 @@ class Entity:
             },
             {
                 "key": u"color",
-                "color": "transparent_color",
+                "color": Symbol("colors['transparent_color']"),
             },
             {
                 "key": u"rect",
-                "x": "%s+x" % (-self.w / 2),
-                "y": "%s+y" % (-self.h / 2),
+                "x": Symbol("%s+x" % (-self.w / 2)),
+                "y": Symbol("%s+y" % (-self.h / 2)),
                 "w": self.w,
                 "h": self.h,
             },
@@ -126,10 +126,10 @@ class Entity:
             },
             {
                 "key": u"line",
-                "x0": "%s+x" % (-self.w / 2),
-                "y0": "%s+y" % (-self.h / 2 + self.cartouche_height + 2 * self.style["rect_margin_height"]),
-                "x1": "%s+x" % (self.w / 2),
-                "y1": "%s+y" % (-self.h / 2 + self.cartouche_height + 2 * self.style["rect_margin_height"]),
+                "x0": Symbol("%s+x" % (-self.w / 2)),
+                "y0": Symbol("%s+y" % (-self.h / 2 + self.cartouche_height + 2 * self.style["rect_margin_height"])),
+                "x1": Symbol("%s+x" % (self.w / 2)),
+                "y1": Symbol("%s+y" % (-self.h / 2 + self.cartouche_height + 2 * self.style["rect_margin_height"])),
             },
             {
                 "key": u"end",
@@ -139,9 +139,9 @@ class Entity:
                 "family": self.style["entity_cartouche_font"]["family"],
                 "size": self.style["entity_cartouche_font"]["size"],
                 "text": self.cartouche,
-                "text_color": "entity_cartouche_text_color",
-                "x": "%s+x" % (-self.get_cartouche_string_width(self.cartouche) / 2),
-                "y": "%s+y" % (-self.h / 2 + self.style["rect_margin_height"] + self.style["cartouche_text_height_ratio"] * self.cartouche_height),
+                "text_color": Symbol("colors['entity_cartouche_text_color']"),
+                "x": Symbol("%s+x" % (-self.get_cartouche_string_width(self.cartouche) / 2)),
+                "y": Symbol("%s+y" % (-self.h / 2 + self.style["rect_margin_height"] + self.style["cartouche_text_height_ratio"] * self.cartouche_height)),
             },
         ])
         dx = self.style["rect_margin_width"] - self.w / 2
