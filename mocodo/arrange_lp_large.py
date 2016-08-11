@@ -4,10 +4,11 @@
 from cross import cross
 from math import hypot
 import itertools
+import cplex
 
 MAX_LENGTH = 2
 
-def dump_lp(filename, col_count, row_count, links, multiplicity, **kwargs):
+def arrange(col_count, row_count, links, multiplicity, **kwargs):
     
     def push(constraint):
         result.append("c%s: %s" % (counter.next(), constraint))
@@ -27,7 +28,7 @@ def dump_lp(filename, col_count, row_count, links, multiplicity, **kwargs):
     # pprint(P)
 
     print "Admissible segments"
-    S = [((i1, j1), (i2, j2)) for ((i1, j1), (i2, j2)) in itertools.combinations(P, 2) if hypot(abs(i1-i2), abs(j1-j2)) <= MAX_LENGTH]
+    S = [((i1, j1), (i2, j2)) for ((i1, j1), (i2, j2)) in itertools.combinations(P, 2) if hypot(abs(i1-i2), abs(j1-j2))-1 <= MAX_LENGTH]
     # pprint(S)
 
     print "Crossing segments"
@@ -41,10 +42,10 @@ def dump_lp(filename, col_count, row_count, links, multiplicity, **kwargs):
     print "Adjacent segments"
     S2V = []
     for ((p1, p2), (p3, p4)) in itertools.combinations(S, 2):
-        if len(set((p1, p2, p3, p4))) == 3:
+        if ((p1, p2), (p3, p4)) not in S2X and len(set((p1, p2, p3, p4))) == 3:
             S2V.append(((p1, p2), (p3, p4)))
     S2V = set(S2V)
-    pprint(S2V)
+    # pprint(S2V)
 
     print "Adjacent edges"
     E2V = []
@@ -52,7 +53,7 @@ def dump_lp(filename, col_count, row_count, links, multiplicity, **kwargs):
         if len(set((v1, v2, v3, v4))) == 3:
             E2V.append(((v1, v2), (v3, v4)))
     E2V = set(E2V)
-    pprint(E2V)
+    # pprint(E2V)
     
     lengths = [str(round(hypot(abs(i1-i2), abs(j1-j2)),4) - 1) for ((i1, j1), (i2, j2)) in S]
     lengths = ["" if s == "1.0" else (s[:-2] + "" if s.endswith(".0") else s + "") for s in lengths]
@@ -75,11 +76,17 @@ def dump_lp(filename, col_count, row_count, links, multiplicity, **kwargs):
     
     result.append(u"\\ The non adjacent edges are not placed on adjacent segments, and vice versa")
     for (s1, s2) in itertools.combinations(S, 2):
-        if (s1, s2) not in S2X:
-            for (e1, e2) in itertools.combinations(E, 2):
-                if ((s1, s2) in S2V) != ((e1, e2) in E2V):
-                    push("y_{e1[0]}_{e1[1]}_{s1[0][0]}_{s1[0][1]}_{s1[1][0]}_{s1[1][1]} + y_{e2[0]}_{e2[1]}_{s2[0][0]}_{s2[0][1]}_{s2[1][0]}_{s2[1][1]} <= 1".format(e1=e1, e2=e2, s1=s1, s2=s2))
-                    push("y_{e1[0]}_{e1[1]}_{s2[0][0]}_{s2[0][1]}_{s2[1][0]}_{s2[1][1]} + y_{e2[0]}_{e2[1]}_{s1[0][0]}_{s1[0][1]}_{s1[1][0]}_{s1[1][1]} <= 1".format(e1=e1, e2=e2, s1=s1, s2=s2))
+        for (e1, e2) in itertools.combinations(E, 2):
+            if ((s1, s2) in S2V) != ((e1, e2) in E2V):
+                push("y_{e1[0]}_{e1[1]}_{s1[0][0]}_{s1[0][1]}_{s1[1][0]}_{s1[1][1]} + y_{e2[0]}_{e2[1]}_{s2[0][0]}_{s2[0][1]}_{s2[1][0]}_{s2[1][1]} <= 1".format(e1=e1, e2=e2, s1=s1, s2=s2))
+                push("y_{e1[0]}_{e1[1]}_{s2[0][0]}_{s2[0][1]}_{s2[1][0]}_{s2[1][1]} + y_{e2[0]}_{e2[1]}_{s1[0][0]}_{s1[0][1]}_{s1[1][0]}_{s1[1][1]} <= 1".format(e1=e1, e2=e2, s1=s1, s2=s2))
+
+    # result.append(u"\\ Each extremity of an placed edge is placed")
+    # for (s1, s2) in itertools.combinations(S, 2):
+    #     for (e1, e2) in itertools.combinations(E, 2):
+    # for e in E:
+    #     push("y_{e1[0]}_{e1[1]}_{s1[0][0]}_{s1[0][1]}_{s1[1][0]}_{s1[1][1]} + y_{e2[0]}_{e2[1]}_{s2[0][0]}_{s2[0][1]}_{s2[1][0]}_{s2[1][1]} <= 1".format(e1=e1, e2=e2, s1=s1, s2=s2))
+
 
     result.append("Binary")
     result.append(" ".join("x_{s[0][0]}_{s[0][1]}_{s[1][0]}_{s[1][1]}".format(s=s) for s in S))
@@ -87,7 +94,21 @@ def dump_lp(filename, col_count, row_count, links, multiplicity, **kwargs):
     
     result.append("\nEnd\noptimize\ndisplay solution variables -\n")
     
-    open("%s.lp" % filename, "w").write("\n".join(result))
+    open("a.lp" % filename, "w").write("\n".join(result))
+    
+    problem = cplex.Cplex()
+    problem.parameters.read.datacheck.set(0)
+    problem.set_results_stream("cplex_python.log")
+    problem.read("mocodo/a.lp")
+    problem.solve()
+    result = [None] * len(params["successors"])
+    for (ep, assigned) in zip(problem.variables.get_names(),problem.solution.get_values()):
+        if assigned and ep.startswith("x"):
+            (v, x, y) = map(int,ep.split("_")[1:])
+            result[v] = (x, y)
+    print result
+    print "Cumulated distances:", problem.solution.get_objective_value()
+    
 
 if __name__ == "__main__":
     from mcd import Mcd
@@ -110,13 +131,21 @@ if __name__ == "__main__":
         RISUS: ultricies, _cras, elementum
         SEMPER, 0N RISUS, 1N DIGNISSIM
     """.replace("  ", "").split("\n")
-    # clauses = u"""
-    #     enim: ipsum
-    #     sem, 0N enim, 0N faucibus
-    #
-    #     faucibus: tempus,rhoncus,rutrum
-    #     sap, 0N enim, 0N faucibus
-    # """.replace("  ", "").split("\n")
+    clauses = u"""
+Item : Norm, Wash, Haul, Milk, Draw, Lady, Face, Soon, Dish, Ever, Unit
+Folk :
+Peer, XX> Tour, XX Folk, XX Item
+Hall, 0n Tour, 11 Fold
+
+Tour : Baby
+Bind, 0n Tour, 11 Fold
+Gene, 11 Fold, 1n Fold
+Fold : Aids,Free, Pack
+
+Seem, 11 Fold, 1n Fold
+Teen, 11 Fold, 1n Amid
+Amid : Disk, Flip, Gold
+    """.replace("  ", "").split("\n")
     params = parsed_arguments()
     mcd = Mcd(clauses, params)
     params.update(mcd.get_layout_data())
