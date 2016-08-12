@@ -133,22 +133,22 @@ class McdTest(unittest.TestCase):
                 (13, 10): 2
             },
             'successors': [
-                set([1, 4]), # BARATTE has MARTEAU and DF as successors
-                set([0, 2]),
-                set([1, 5, 6]),
-                set([6, 7]),
-                set([0, 9]),
-                set([2, 9]),
-                set([2, 3, 13]),
-                set([3]), # reflexive association PORTE: no multiple edges
-                set([]), # phantom
-                set([4, 5]),
-                set([13]),
-                set([]),
-                set([]),
-                set([6, 10]),
-                set([]),
-                set([])]
+                {1, 4}, # BARATTE has MARTEAU and DF as successors
+                {0, 2},
+                {1, 5, 6},
+                {6, 7},
+                {0, 9},
+                {2, 9},
+                {2, 3, 13},
+                {3}, # reflexive association PORTE: no multiple edges
+                set(), # phantom
+                {4, 5},
+                {13},
+                set(),
+                set(),
+                {6, 10},
+                set(),
+                set()]
             }
         )
         expected = u"""

@@ -260,7 +260,7 @@ class Mcd:
     def calculate_size(self, style):
         def card_max_width():
             get_pixel_width = font_metrics.FontMetrics(style["card_font"]).get_pixel_width
-            cardinalities = set(["0,N"]) # default value, in case there is no cardinalities at all
+            cardinalities = {"0,N"} # default value, in case there is no cardinalities at all
             for association in self.associations.values():
                 for leg in association.legs:
                     cardinalities.add(leg.cardinalities)
