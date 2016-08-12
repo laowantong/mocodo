@@ -4,7 +4,6 @@
 from __future__ import division
 
 from __future__ import absolute_import
-import sys
 import re
 from .association import Association
 from .entity import Entity
@@ -15,6 +14,11 @@ import itertools
 from collections import defaultdict
 
 compress_colons = re.compile(r"(?m)^:\n(?=:$)").sub
+
+def cmp(x, y):
+    return (x > y) - (x < y)
+
+SYS_MAXINT = 9223372036854775807 # an integer larger than any practical list or string index
 
 class Mcd:
 
@@ -287,7 +291,7 @@ class Mcd:
         def compress_horizontally():
             dx = 0
             for i in range(1, self.col_count):
-                dx = sys.maxint
+                dx = SYS_MAXINT
                 for row in self.rows:
                     b1 = row[i-1]
                     b2 = row[i]
@@ -309,7 +313,7 @@ class Mcd:
         def compress_vertically():
             dy = 0
             for j in range(1, self.row_count):
-                dy = sys.maxint
+                dy = SYS_MAXINT
                 for (i2, b2) in enumerate(self.rows[j]):
                     y1_max = 0
                     for (i1, b1) in enumerate(self.rows[j-1]):
