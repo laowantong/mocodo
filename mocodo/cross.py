@@ -17,7 +17,7 @@ class memoize(dict):
 crossed_strings = frozenset(["-++-","-++0","-+0-","-0+-","0++-","+--+","0--+","+0-+","+-0+","+--0"])
 
 @memoize
-def cross((x1, y1, x2, y2, x3, y3, x4, y4)):
+def cross(x1, y1, x2, y2, x3, y3, x4, y4):
     """ Tests whether the segments ((x1,y1), (x2,y2)) and ((x3,y3), (x4,y4)) intersect.
         Two segments sharing exactly one extremity are NOT considered as intersecting. """
     a = (x4-x3)*(y1-y3) - (y4-y3)*(x1-x3)

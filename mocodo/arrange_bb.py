@@ -14,7 +14,7 @@ import sys
 def arrange(col_count, row_count, successors, multiplicity, organic, min_objective, max_objective, call_limit, verbose, has_expired, **kwargs):
     
     @memoize
-    def bounded_neighborhood((x1, y1)):
+    def bounded_neighborhood(x1, y1):
         result = set()
         for x2 in range(max(0, x1 - radius), min(col_count, x1 + radius + 1)):
             for y2 in range(max(0, y1 - radius + abs(x1 - x2)), min(row_count, y1 + radius - abs(x1 - x2) + 1)):
@@ -23,7 +23,7 @@ def arrange(col_count, row_count, successors, multiplicity, organic, min_objecti
         return result
     
     @memoize
-    def organic_neighborhood((x1, y1)):
+    def organic_neighborhood(x1, y1):
         result = set()
         for x2 in range(x1 - radius, x1 + radius + 1):
             for y2 in range(y1 - radius + abs(x1 - x2), y1 + radius - abs(x1 - x2) + 1):
@@ -78,10 +78,11 @@ def arrange(col_count, row_count, successors, multiplicity, organic, min_objecti
         already_placed_successors = {box_coords[box]: box for box in successors[box_to_place] if box in box_coords}
         if already_placed_successors:
             already_placed_successor_coords = iter(already_placed_successors)
-            possible_coords = neighborhood(next(already_placed_successor_coords)).copy()
+            (x1, y1) = next(already_placed_successor_coords)
+            possible_coords = neighborhood(x1, y1).copy()
             # print already_placed_successors[0], possible_coords
-            for coord in already_placed_successor_coords:
-                possible_coords.intersection_update(neighborhood(coord))
+            for (x1, y1) in already_placed_successor_coords:
+                possible_coords.intersection_update(neighborhood(x1, y1))
                 if not possible_coords:
                     # print "neighborhood intersection is empty"
                     return None
@@ -95,7 +96,7 @@ def arrange(col_count, row_count, successors, multiplicity, organic, min_objecti
         non_crossing_possible_coords = []
         for (x1,y1) in possible_coords:
             for ((x2, y2), (x3, y3, x4, y4)) in product(already_placed_successors, already_placed_segments):
-                if cross((x1, y1, x2, y2, x3, y3, x4, y4)):
+                if cross(x1, y1, x2, y2, x3, y3, x4, y4):
                     break
             else:
                 non_crossing_possible_coords.append((x1, y1))
