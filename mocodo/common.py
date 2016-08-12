@@ -126,5 +126,5 @@ class Common:
             for (identifier, items) in l:
                 if items: # pretty print the dictionnary
                     s = "%%-%ss" % (max(len(k) for (k, _) in items) + 3)
-                    result.append("%s = {\n    %s\n}" % (identifier, "\n    ".join(["%s: %s," % (s % ('u"%s"' % k), ("%4d" % v if type(v) is int else ("% .2f" % v if type(v) is float else repr(v)))) for (k, v) in items])))
+                    result.append("%s = {\n    %s\n}" % (identifier, "\n    ".join(["%s: %s," % (s % ('u"%s"' % k), ("%4d" % v if isinstance(v, int) else ("% .2f" % v if isinstance(v, float) else repr(v)))) for (k, v) in items])))
         return result

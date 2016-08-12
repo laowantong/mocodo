@@ -62,7 +62,7 @@ def main(mcd, common):
     rex = re.compile(r"(?<=%\().+?(?=\)s)")
     has_note_card = False
     for d in mcd.description():
-        if type(d) is dict:
+        if isinstance(d, dict):
             if d["key"] == "env":
                 zipped_env = list(zip(*d["env"]))
                 result.append("(%s) = (%s)" % (",".join(zipped_env[0]), ",".join(zipped_env[1])))
