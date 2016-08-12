@@ -5,9 +5,9 @@ from __future__ import division
 from __future__ import absolute_import
 from math import hypot, cos, sin, radians
 
-(width,height) = (256, 256)
-(ew,eh) = (40, 50)
-(cw,ch) = (32, 20)
+(width, height) = (256, 256)
+(ew, eh) = (40, 50)
+(cw, ch) = (32, 20)
 ANIMATE = False
 
 def setup():
@@ -65,7 +65,7 @@ def draw():
     # Outer frame
     fill(None)
     strokewidth(1)
-    stroke(color(1,0,0))
+    stroke(color(1, 0, 0))
     rect(ex-ew-cw, ey-eh-ch, 2*ew+2*cw, 2*eh+2*ch)
 
     # Inner frame
@@ -81,21 +81,21 @@ def draw():
     # Cardinality bounding box
     stroke(0)
     strokewidth(1)
-    fill(color(1,1,0,0.5))
+    fill(color(1, 1, 0, 0.5))
     rect(x, y-ch, cw, ch)
 
     # Intersection points
     strokewidth(2)
-    stroke(color(1,0,0)) # red
-    oval(ex-1,ey-1, 2, 2)
-    stroke(color(0,1,0)) # green
+    stroke(color(1, 0, 0)) # red
+    oval(ex-1, ey-1, 2, 2)
+    stroke(color(0, 1, 0)) # green
     oval(xg-1, yg-1, 2, 2)
-    stroke(color(0,0,1)) # blue
+    stroke(color(0, 0, 1)) # blue
     oval(xb-1, yb-1, 2, 2)
 
 
-size(width,height)
-(ex,ey) = (width/2, height/2)
+size(width, height)
+(ex, ey) = (width/2, height/2)
 card_margin = 0
 
 if ANIMATE:

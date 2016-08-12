@@ -94,7 +94,7 @@ def arrange(col_count, row_count, successors, multiplicity, organic, min_objecti
             # print "neighborhood intersection is not free"
             return None
         non_crossing_possible_coords = []
-        for (x1,y1) in possible_coords:
+        for (x1, y1) in possible_coords:
             for ((x2, y2), (x3, y3, x4, y4)) in product(already_placed_successors, already_placed_segments):
                 if cross(x1, y1, x2, y2, x3, y3, x4, y4):
                     break
@@ -104,7 +104,7 @@ def arrange(col_count, row_count, successors, multiplicity, organic, min_objecti
             # print "all possible coords result in a crossing with existing segment"
             return None
         weighted_possible_coords = []
-        for (x1,y1) in non_crossing_possible_coords:
+        for (x1, y1) in non_crossing_possible_coords:
             cumulated_distance = 0
             for ((x2, y2), placed_box) in already_placed_successors.items():
                 cumulated_distance += distances[abs(x1-x2)][abs(y1-y2)] * multiplicity[(box_to_place, placed_box)]

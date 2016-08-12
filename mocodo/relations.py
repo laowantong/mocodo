@@ -45,7 +45,7 @@ class Relations:
                 return
             title = counter.most_common(1)[0][0][0]
             title = title.lower().replace(u"œ", "oe").replace(u"æ", "ae")
-            title = unicodedata.normalize('NFKD', title).encode('ascii','ignore')
+            title = unicodedata.normalize('NFKD', title).encode('ascii', 'ignore')
             title = re.sub("[^-A-Za-z0-9 _]", "", title)
             if params["language"].startswith("fr"):
                 from .pluralize_fr import pluralize

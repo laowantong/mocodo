@@ -14,7 +14,7 @@ class memoize(dict):
         result = self[key] = self.func(*key)
         return result
 
-crossed_strings = frozenset(["-++-","-++0","-+0-","-0+-","0++-","+--+","0--+","+0-+","+-0+","+--0"])
+crossed_strings = frozenset(["-++-", "-++0", "-+0-", "-0+-", "0++-", "+--+", "0--+", "+0-+", "+-0+", "+--0"])
 
 @memoize
 def cross(x1, y1, x2, y2, x3, y3, x4, y4):
@@ -25,7 +25,7 @@ def cross(x1, y1, x2, y2, x3, y3, x4, y4):
     c = (x2-x1)*(y3-y1) - (y2-y1)*(x3-x1)
     d = (x2-x1)*(y4-y1) - (y2-y1)*(x4-x1)
     if a or b or c or d:
-        return "".join("+" if x>0 else ("-" if x<0 else "0") for x in (a,b,c,d)) in crossed_strings
+        return "".join("+" if x>0 else ("-" if x<0 else "0") for x in (a, b, c, d)) in crossed_strings
     else: # the segments are collinear
         if x1 == x2:  # both segments are vertical
             if y1 < y2:

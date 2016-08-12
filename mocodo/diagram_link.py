@@ -43,7 +43,7 @@ class DiagramLink:
                 "key": "stroke_depth",
                 "stroke_depth": self.style["leg_stroke_depth"],
             })
-        spins = [(-1,-1),(1,-1),(-1,1),(1,1)] if self.foreign_key.rank % 2 else [(1,1),(-1,1),(1,-1),(-1,-1)]
+        spins = [(-1, -1), (1, -1), (-1, 1), (1, 1)] if self.foreign_key.rank % 2 else [(1, 1), (-1, 1), (1, -1), (-1, -1)]
         result.append({
                 "key": "env",
                 "env": [

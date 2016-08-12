@@ -26,10 +26,10 @@ auto_correction = {
     "1N": ["N1"],
     "1n": ["n1"]
 }
-auto_correction = dict((v,k) for k in auto_correction for v in auto_correction[k])
+auto_correction = dict((v, k) for k in auto_correction for v in auto_correction[k])
 
 def html_escape(text):
-    return "".join(html_escape_table.get(c,c) for c in text)
+    return "".join(html_escape_table.get(c, c) for c in text)
 
 class Leg:
 

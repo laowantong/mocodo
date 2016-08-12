@@ -92,7 +92,7 @@ class McdTest(unittest.TestCase):
         ]
         mcd = Mcd(clauses, params)
         self.assertEquals(mcd.get_layout(), range(16))
-        self.assertEquals(mcd.get_layout_data(),{
+        self.assertEquals(mcd.get_layout_data(), {
             'col_count': 4,
             'row_count': 4,
             'links': (
