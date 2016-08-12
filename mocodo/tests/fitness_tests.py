@@ -30,8 +30,8 @@ class ArrangeBB(unittest.TestCase):
         evaluate = fitness(d["links"], d["multiplicity"], d["col_count"], d["row_count"])
         size = d["col_count"] * d["row_count"]
         (crossing_count, total_distances) = evaluate(list(range(size)))
-        self.assertEquals(crossing_count, 0)
-        self.assertEquals(total_distances, 0.0)
+        self.assertEqual(crossing_count, 0)
+        self.assertEqual(total_distances, 0.0)
 
     def test_optimal_layout_with_reflexive_association(self):
         clauses = u"""
@@ -51,8 +51,8 @@ class ArrangeBB(unittest.TestCase):
         evaluate = fitness(d["links"], d["multiplicity"], d["col_count"], d["row_count"])
         size = d["col_count"] * d["row_count"]
         (crossing_count, total_distances) = evaluate(list(range(size)))
-        self.assertEquals(crossing_count, 0)
-        self.assertEquals(total_distances, 0.0)
+        self.assertEqual(crossing_count, 0)
+        self.assertEqual(total_distances, 0.0)
 
     def test_diagonal_reflexive_association(self):
         clauses = u"""
@@ -69,8 +69,8 @@ class ArrangeBB(unittest.TestCase):
         evaluate = fitness(d["links"], d["multiplicity"], d["col_count"], d["row_count"])
         size = d["col_count"] * d["row_count"]
         (crossing_count, total_distances) = evaluate(list(range(size)))
-        self.assertEquals(crossing_count, 0)
-        self.assertEquals(round(total_distances, 4), 0.8284)
+        self.assertEqual(crossing_count, 0)
+        self.assertEqual(round(total_distances, 4), 0.8284)
 
     def test_2_0_link(self):
         clauses = u"""
@@ -86,8 +86,8 @@ class ArrangeBB(unittest.TestCase):
         evaluate = fitness(d["links"], d["multiplicity"], d["col_count"], d["row_count"])
         size = d["col_count"] * d["row_count"]
         (crossing_count, total_distances) = evaluate(list(range(size)))
-        self.assertEquals(crossing_count, 0)
-        self.assertEquals(total_distances, 1.0)
+        self.assertEqual(crossing_count, 0)
+        self.assertEqual(total_distances, 1.0)
 
     def test_1_1_link(self):
         clauses = u"""
@@ -104,8 +104,8 @@ class ArrangeBB(unittest.TestCase):
         evaluate = fitness(d["links"], d["multiplicity"], d["col_count"], d["row_count"])
         size = d["col_count"] * d["row_count"]
         (crossing_count, total_distances) = evaluate(list(range(size)))
-        self.assertEquals(crossing_count, 0)
-        self.assertEquals(total_distances, hypot(1, 1) - 1)
+        self.assertEqual(crossing_count, 0)
+        self.assertEqual(total_distances, hypot(1, 1) - 1)
 
     def test_2_1_link(self):
         clauses = u"""
@@ -124,8 +124,8 @@ class ArrangeBB(unittest.TestCase):
         evaluate = fitness(d["links"], d["multiplicity"], d["col_count"], d["row_count"])
         size = d["col_count"] * d["row_count"]
         (crossing_count, total_distances) = evaluate(list(range(size)))
-        self.assertEquals(crossing_count, 0)
-        self.assertEquals(total_distances, hypot(2, 1) - 1)
+        self.assertEqual(crossing_count, 0)
+        self.assertEqual(total_distances, hypot(2, 1) - 1)
 
     def test_k33(self):
         clauses = u"""
@@ -144,7 +144,7 @@ class ArrangeBB(unittest.TestCase):
         evaluate = fitness(d["links"], d["multiplicity"], d["col_count"], d["row_count"])
         size = d["col_count"] * d["row_count"]
         (crossing_count, total_distances) = evaluate(list(range(size)))
-        self.assertEquals(crossing_count, 9)
+        self.assertEqual(crossing_count, 9)
 
     def test_k33_better(self):
         clauses = u"""
@@ -163,7 +163,7 @@ class ArrangeBB(unittest.TestCase):
         evaluate = fitness(d["links"], d["multiplicity"], d["col_count"], d["row_count"])
         size = d["col_count"] * d["row_count"]
         (crossing_count, total_distances) = evaluate(list(range(size)))
-        self.assertEquals(crossing_count, 3)
+        self.assertEqual(crossing_count, 3)
     
 
 if __name__ == '__main__':

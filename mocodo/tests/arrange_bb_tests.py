@@ -60,7 +60,7 @@ class ArrangeBB(unittest.TestCase):
             AMET, 11> LOREM, 01 CONSECTETUER: adipiscing
         """.strip().replace("  ", "")
         rearrangement = arrange(**params)
-        self.assertEquals(rearrangement, {
+        self.assertEqual(rearrangement, {
             'distances': 0.8284271247461903,
             'crossings': 0,
             'coords': {
@@ -81,7 +81,7 @@ class ArrangeBB(unittest.TestCase):
         })
         mcd.set_layout(**rearrangement)
         result = mcd.get_clauses()
-        self.assertEquals(expected, result)
+        self.assertEqual(expected, result)
     
     def test_non_connected_graph(self):
         clauses = u"""
@@ -126,7 +126,7 @@ class ArrangeBB(unittest.TestCase):
             DF1, 11 LOREM, 1N SUSPENDISSE
         """.strip().replace("  ", "")
         rearrangement = arrange(**params)
-        self.assertEquals(rearrangement, {
+        self.assertEqual(rearrangement, {
             'distances': 0.0,
             'crossings': 0,
             'coords': {
@@ -147,7 +147,7 @@ class ArrangeBB(unittest.TestCase):
         })
         mcd.set_layout(**rearrangement)
         result = mcd.get_clauses()
-        self.assertEquals(expected, result)
+        self.assertEqual(expected, result)
 
     def test_no_links(self):
         clauses = u"""
@@ -187,14 +187,14 @@ class ArrangeBB(unittest.TestCase):
             :
         """.strip().replace("  ", "")
         rearrangement = arrange(**params)
-        self.assertEquals(rearrangement, {
+        self.assertEqual(rearrangement, {
             'distances': 0.0,
             'layout': [1, 2, 5, 3, 4, 0],
             'crossings': 0,
         })
         mcd.set_layout(**rearrangement)
         result = mcd.get_clauses()
-        self.assertEquals(expected, result)
+        self.assertEqual(expected, result)
     
     def test_organic_rearrangement(self):
         clauses = u"""
@@ -247,7 +247,7 @@ class ArrangeBB(unittest.TestCase):
             :
         """.strip().replace("  ", "")
         rearrangement = arrange(**params)
-        self.assertEquals(rearrangement, {
+        self.assertEqual(rearrangement, {
             'distances': 0.0,
             'layout': [4, 5, 9, None, 0, 1, 2, 3, None, None, 6, 7, None, None, 10, 11, None, None, 8, None],
             'crossings': 0,
@@ -270,7 +270,7 @@ class ArrangeBB(unittest.TestCase):
         })
         mcd.set_layout(**rearrangement)
         result = mcd.get_clauses()
-        self.assertEquals(expected, result)
+        self.assertEqual(expected, result)
 
 
 if __name__ == '__main__':

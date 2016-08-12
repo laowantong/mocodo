@@ -12,9 +12,12 @@ from mocodo.association import *
 import gettext
 gettext.NullTranslations().install()
 
+# Python 2.7 compatibility
+if not hasattr(unittest.TestCase, "assertRaisesRegex"):
+    unittest.TestCase.assertRaisesRegex = unittest.TestCase.assertRaisesRegexp
 
 class parse_test(unittest.TestCase):
-
+    
     def test_reflexive(self):
         a = Association(u"ÊTRE AMI, 0N BANDIT, 0N BANDIT")
         self.assertEqual(a.name, u"ÊTRE AMI")
@@ -90,8 +93,8 @@ class parse_test(unittest.TestCase):
 
     def test_other_card(self):
         a = Association("SOUTENIR, XX ÉTUDIANT, XX DATE: note stage")
-        self.assert_(not a.legs[0].cardinalities.strip())
-        self.assert_(not a.legs[1].cardinalities.strip())
+        self.assertTrue(not a.legs[0].cardinalities.strip())
+        self.assertTrue(not a.legs[1].cardinalities.strip())
         a = Association("SOUTENIR, XY ÉTUDIANT, XY DATE: note stage")
         self.assertEqual(a.legs[0].cardinalities, "X,Y")
         self.assertEqual(a.legs[1].cardinalities, "X,Y")
@@ -119,10 +122,8 @@ class parse_test(unittest.TestCase):
         self.assertEqual(a.legs[2].may_identify, True)
 
     def test_input_errors(self):
-        self.assertRaisesRegexp(RuntimeError, r"Mocodo Err.2",
-                                Association, "EMPLOYER, PARTICIPANT, 0N ENTREPRISE",)
-        self.assertRaisesRegexp(RuntimeError, r"Mocodo Err.2",
-                                Association, "EMPLOYER, 1 PARTICIPANT, 0N ENTREPRISE",)
+        self.assertRaisesRegex(RuntimeError, r"Mocodo Err.2", Association, "EMPLOYER, PARTICIPANT, 0N ENTREPRISE",)
+        self.assertRaisesRegex(RuntimeError, r"Mocodo Err.2", Association, "EMPLOYER, 1 PARTICIPANT, 0N ENTREPRISE",)
 
 if __name__ == '__main__':
     unittest.main()

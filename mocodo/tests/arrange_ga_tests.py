@@ -62,14 +62,14 @@ class ArrangeGA(unittest.TestCase):
             RISUS: ultricies, _cras, elementum
         """.strip().replace("  ", "")
         rearrangement = arrange(**params)
-        self.assertEquals(rearrangement, {
+        self.assertEqual(rearrangement, {
             'distances': 3.3005630797457695,
             'crossings': 1,
             'layout': [9, 5, 4, 0, 2, 1, 11, 8, 3, 7, 6, 10]
         })
         mcd.set_layout(**rearrangement)
         result = mcd.get_clauses()
-        self.assertEquals(expected, result)
+        self.assertEqual(expected, result)
 
 if __name__ == '__main__':
     unittest.main()
