@@ -4,9 +4,9 @@
 from __future__ import division, print_function
 
 import sys
-if sys.version < "2.6" or sys.version >= "3":
-    print("Mocodo requires Python 2.7 to run.\nThis version is {version}.".format(version=sys.version))
-    sys.exit()
+# if sys.version < "2.6" or sys.version >= "3":
+#     print("Mocodo requires Python 2.7 to run.\nThis version is {version}.".format(version=sys.version))
+#     sys.exit()
 
 import os
 from common import Common, safe_print_for_PHP
@@ -65,7 +65,7 @@ def main():
             mcd_to_nodebox.main(mcd, common)
             return os.system(u"""open -a NodeBox "%(output_name)s_nodebox.py" """ % params)
         raise RuntimeError(("Mocodo Err.13 - " + _('Should never happen.')).encode("utf8"))
-    except RuntimeError, err:
+    except RuntimeError as err:
         msg = str(err)
         if msg.startswith("Mocodo Err."):
             print(msg, file=sys.stderr)
