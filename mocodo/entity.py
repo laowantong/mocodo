@@ -100,7 +100,7 @@ class Entity:
             {
                 "key": "rect",
                 "x": Dynamic("%s+x" % (-self.w // 2)),
-                "y": Dynamic("%s+y" % (-self.h // 2 + self.cartouche_height + 2 * self.style["rect_margin_height"])),
+                "y": Dynamic("%s+y" % round(-self.h / 2 + self.cartouche_height + 2 * self.style["rect_margin_height"], 1)),
                 "w": self.w,
                 "h": self.h - self.cartouche_height - 2 * self.style["rect_margin_height"],
             },
@@ -144,7 +144,7 @@ class Entity:
                 "text": self.cartouche,
                 "text_color": Dynamic("colors['entity_cartouche_text_color']"),
                 "x": Dynamic("%s+x" % (-self.get_cartouche_string_width(self.cartouche) // 2)),
-                "y": Dynamic("%s+y" % (-self.h // 2 + self.style["rect_margin_height"] + self.style["cartouche_text_height_ratio"] * self.cartouche_height)),
+                "y": Dynamic("%s+y" % round(-self.h / 2 + self.style["rect_margin_height"] + self.style["cartouche_text_height_ratio"] * self.cartouche_height, 1)),
             },
         ])
         dx = self.style["rect_margin_width"] - self.w // 2

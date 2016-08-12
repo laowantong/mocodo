@@ -46,7 +46,7 @@ class Attribute:
                 "text": self.label,
                 "text_color": Dynamic("colors['%s']" % (self.box_type + "_attribute_text_color")),
                 "x": Dynamic("%s+x" % (dx)),
-                "y": Dynamic("%s+y" % (dy + self.style["attribute_text_height_ratio"] * self.h)),
+                "y": Dynamic("%s+y" % round(dy + self.style["attribute_text_height_ratio"] * self.h, 1)),
                 "family": self.attribute_font["family"],
                 "size": self.attribute_font["size"],
             }
