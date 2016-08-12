@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
+from __future__ import division
+
 from itertools import product, count
 from random import random, shuffle, randrange, choice
 from cross import cross, memoize

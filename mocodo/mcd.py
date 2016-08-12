@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
+from __future__ import division
+
 import sys
 import re
 from association import Association
@@ -148,8 +150,8 @@ class Mcd:
             for row in self.rows:
                 n = self.col_count - len(row)
                 if n:
-                    row[0:0] = [Phantom(phantom_counter.next()) for i in range(n / 2)]
-                    row.extend(Phantom(phantom_counter.next()) for i in range(n / 2 + n % 2))
+                    row[0:0] = [Phantom(phantom_counter.next()) for i in range(n // 2)]
+                    row.extend(Phantom(phantom_counter.next()) for i in range(n // 2 + n % 2))
         
         def make_boxes():
             i = itertools.count()
@@ -276,7 +278,7 @@ class Mcd:
             for row in self.rows:
                 horizontal_offset = style["margin_size"]
                 for (i, box) in enumerate(row):
-                    box.x = horizontal_offset + (max_box_width_per_column[i] - box.w) / 2
+                    box.x = horizontal_offset + (max_box_width_per_column[i] - box.w) // 2
                     horizontal_offset += max_box_width_per_column[i] + join_width
                 self.w = max(self.w, horizontal_offset)
             self.w += style["margin_size"] - join_width
@@ -299,7 +301,7 @@ class Mcd:
             for row in self.rows:
                 max_box_height = max(box.h for box in row)
                 for box in row:
-                    box.y = vertical_offset + (max_box_height - box.h) / 2
+                    box.y = vertical_offset + (max_box_height - box.h) // 2
                 vertical_offset += max_box_height + join_height
             self.h = vertical_offset + style["margin_size"] - join_height
         #

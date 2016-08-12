@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
+from __future__ import division
+
 import sys
 if sys.version < "2.6" or sys.version >= "3":
     print "Mocodo requires Python 2.7 to run.\nThis version is {version}.".format(version=sys.version)

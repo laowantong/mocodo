@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
+from __future__ import division
+
 import font_metrics
 
 from attribute import *
@@ -81,8 +83,8 @@ class Entity:
             },
             {
                 "key": "rect",
-                "x": Dynamic("%s+x" % (-self.w / 2)),
-                "y": Dynamic("%s+y" % (-self.h / 2)),
+                "x": Dynamic("%s+x" % (-self.w // 2)),
+                "y": Dynamic("%s+y" % (-self.h // 2)),
                 "w": self.w,
                 "h": self.cartouche_height + 2 * self.style["rect_margin_height"],
             },
@@ -96,8 +98,8 @@ class Entity:
             },
             {
                 "key": "rect",
-                "x": Dynamic("%s+x" % (-self.w / 2)),
-                "y": Dynamic("%s+y" % (-self.h / 2 + self.cartouche_height + 2 * self.style["rect_margin_height"])),
+                "x": Dynamic("%s+x" % (-self.w // 2)),
+                "y": Dynamic("%s+y" % (-self.h // 2 + self.cartouche_height + 2 * self.style["rect_margin_height"])),
                 "w": self.w,
                 "h": self.h - self.cartouche_height - 2 * self.style["rect_margin_height"],
             },
@@ -115,8 +117,8 @@ class Entity:
             },
             {
                 "key": "rect",
-                "x": Dynamic("%s+x" % (-self.w / 2)),
-                "y": Dynamic("%s+y" % (-self.h / 2)),
+                "x": Dynamic("%s+x" % (-self.w // 2)),
+                "y": Dynamic("%s+y" % (-self.h // 2)),
                 "w": self.w,
                 "h": self.h,
             },
@@ -126,10 +128,10 @@ class Entity:
             },
             {
                 "key": "line",
-                "x0": Dynamic("%s+x" % (-self.w / 2)),
-                "y0": Dynamic("%s+y" % (-self.h / 2 + self.cartouche_height + 2 * self.style["rect_margin_height"])),
-                "x1": Dynamic("%s+x" % (self.w / 2)),
-                "y1": Dynamic("%s+y" % (-self.h / 2 + self.cartouche_height + 2 * self.style["rect_margin_height"])),
+                "x0": Dynamic("%s+x" % (-self.w // 2)),
+                "y0": Dynamic("%s+y" % (-self.h // 2 + self.cartouche_height + 2 * self.style["rect_margin_height"])),
+                "x1": Dynamic("%s+x" % (self.w // 2)),
+                "y1": Dynamic("%s+y" % (-self.h // 2 + self.cartouche_height + 2 * self.style["rect_margin_height"])),
             },
             {
                 "key": "end",
@@ -140,12 +142,12 @@ class Entity:
                 "size": self.style["entity_cartouche_font"]["size"],
                 "text": self.cartouche,
                 "text_color": Dynamic("colors['entity_cartouche_text_color']"),
-                "x": Dynamic("%s+x" % (-self.get_cartouche_string_width(self.cartouche) / 2)),
-                "y": Dynamic("%s+y" % (-self.h / 2 + self.style["rect_margin_height"] + self.style["cartouche_text_height_ratio"] * self.cartouche_height)),
+                "x": Dynamic("%s+x" % (-self.get_cartouche_string_width(self.cartouche) // 2)),
+                "y": Dynamic("%s+y" % (-self.h // 2 + self.style["rect_margin_height"] + self.style["cartouche_text_height_ratio"] * self.cartouche_height)),
             },
         ])
-        dx = self.style["rect_margin_width"] - self.w / 2
-        dy = self.cartouche_height + 3 * self.style["rect_margin_height"] - self.h / 2
+        dx = self.style["rect_margin_width"] - self.w // 2
+        dy = self.cartouche_height + 3 * self.style["rect_margin_height"] - self.h // 2
         for attribute in self.attributes:
             attribute.name = self.name
             result.extend(attribute.description(dx, dy))

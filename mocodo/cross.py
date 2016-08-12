@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
+from __future__ import division
+
 class memoize(dict):
     def __init__(self, func):
         self.func = func

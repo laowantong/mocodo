@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
+from __future__ import division
 import argparse
 import random
 import os
@@ -87,8 +88,8 @@ def rate(string):
     except ValueError:
         msg = "The rate %r cannot be coerced to float" % string
         raise argparse.ArgumentTypeError(msg)
-    if not (0.0 <= value <= 1.0):
-        msg = "The rate %r is not between 0.0 and 1.1" % string
+    if not (0 <= value <= 1):
+        msg = "The rate %r is not between 0 and 1" % string
         raise argparse.ArgumentTypeError(msg)
     return value
 
@@ -175,7 +176,7 @@ def parsed_arguments():
     aspect_group.add_argument("--tkinter", action="store_true", help="use Tkinter to calculate the pixel-dimensions of the labels")
     aspect_group.add_argument("--colors", metavar="PATH", default="bw", help="the color palette to use when generating the drawing. Name (without extension) of a file located in the directory 'colors', or path to a personal file")
     aspect_group.add_argument("--shapes", metavar="PATH", help="specification of the fonts, dimensions, etc. Name (without extension) of a file located in the directory 'shapes', or path to a personal file")
-    aspect_group.add_argument("--scale", metavar="RATE", type=scale, default=1.0, help="scale the diagram by the given factor")
+    aspect_group.add_argument("--scale", metavar="RATE", type=scale, default=1, help="scale the diagram by the given factor")
     aspect_group.add_argument("--hide_annotations", action="store_true", help="ignore the hovering of annotated elements")
     
     relational_group.add_argument("--relations", metavar="NAME", nargs="*", default=["html", "text"], help="one or several templates for the generated relational schemas. Cf. directory 'relation_templates'")

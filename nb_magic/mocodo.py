@@ -1,3 +1,8 @@
+#!/usr/bin/env python
+# encoding: utf-8
+
+from __future__ import division
+
 from IPython.core.display import HTML
 from IPython.core.display import SVG
 from IPython.core.display import display

@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
+from __future__ import division
+
 import font_metrics
 import sys
 import re
@@ -87,12 +89,12 @@ class Leg:
                 "key": "straight_leg",
                 "ex": Dynamic("ex"),
                 "ey": Dynamic("ey"),
-                "ew": self.entity.w / 2,
-                "eh": self.entity.h / 2,
+                "ew": self.entity.w // 2,
+                "eh": self.entity.h // 2,
                 "ax": Dynamic("x"),
                 "ay": Dynamic("y"),
-                "aw": self.association.w / 2,
-                "ah": self.association.h / 2,
+                "aw": self.association.w // 2,
+                "ah": self.association.h // 2,
                 "cw": self.w,
                 "ch": self.h,
                 "stroke_depth": self.style["leg_stroke_depth"],
@@ -162,12 +164,12 @@ class Leg:
                 "key": "curved_leg",
                 "ex": Dynamic("ex"),
                 "ey": Dynamic("ey"),
-                "ew": self.entity.w / 2,
-                "eh": self.entity.h / 2,
+                "ew": self.entity.w // 2,
+                "eh": self.entity.h // 2,
                 "ax": Dynamic("x"),
                 "ay": Dynamic("y"),
-                "aw": self.association.w / 2,
-                "ah": self.association.h / 2,
+                "aw": self.association.w // 2,
+                "ah": self.association.h // 2,
                 "spin": self.spin,
                 "cw": self.w,
                 "ch": self.h,

@@ -1,5 +1,7 @@
 # http://mwh.geek.nz/2009/04/26/python-damerau-levenshtein-distance/
 
+from __future__ import division
+
 def damerau_levenshtein(seq1, seq2):
     """Calculate the Damerau-Levenshtein distance between sequences.
 

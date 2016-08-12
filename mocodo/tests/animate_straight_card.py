@@ -1,5 +1,7 @@
 # Run this under NodeBox 1.9 (Mac OS X)
 
+from __future__ import division
+
 from math import hypot, cos, sin, radians
 
 (width,height) = (256, 256)

@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
+from __future__ import division
+
 import font_metrics
 import re
 
@@ -36,7 +38,7 @@ class Association:
         self.legs = []
         for (card, (entity, count, num)) in zip(cards, entities):
             leg = Leg(self, card, entity, params)
-            leg.set_spin_strategy(0 if count == 1 else (2.0 * num) / (count - 1) - 1)
+            leg.set_spin_strategy(0 if count == 1 else 2 * num / (count - 1) - 1)
             self.legs.append(leg)
         self.df_label = params["df"]
         self.check_df_strategy(self.cartouche == self.df_label)
@@ -59,8 +61,10 @@ class Association:
     def check_df_strategy(self, is_df):
 
         def calculate_size_when_df():
-            self.w = self.h = max(self.style["round_rect_margin_width"] * 2 + self.get_cartouche_string_width(
-                self.df_label), self.style["round_rect_margin_width"] * 2 + self.cartouche_height)
+            self.w = self.h = max(
+                self.style["round_rect_margin_width"] * 2 + self.get_cartouche_string_width(self.df_label),
+                self.style["round_rect_margin_width"] * 2 + self.cartouche_height
+            )
 
         def calculate_size_when_not_df():
             for attribute in self.attributes:
@@ -91,14 +95,14 @@ class Association:
                     "key": "circle",
                     "cx": Dynamic("x"),
                     "cy": Dynamic("y"),
-                    "r": self.w / 2.0,
+                    "r": self.w // 2,
                 },
                 {
                     "key": "text",
                     "text": self.df_label,
                     "text_color": Dynamic("colors['association_cartouche_text_color']"),
-                    "x": Dynamic("%s+x" % (self.style["round_rect_margin_width"] - self.w / 2)),
-                    "y": Dynamic("%s+y" % (self.style["round_rect_margin_height"] - self.h / 2 + self.style["df_text_height_ratio"] * self.cartouche_height)),
+                    "x": Dynamic("%s+x" % (self.style["round_rect_margin_width"] - self.w // 2)),
+                    "y": Dynamic("%s+y" % (self.style["round_rect_margin_height"] - self.h // 2 + self.style["df_text_height_ratio"] * self.cartouche_height)),
                     "family": self.style["association_cartouche_font"]["family"],
                     "size": self.style["association_cartouche_font"]["size"],
                 },
@@ -121,8 +125,8 @@ class Association:
                 {
                     "key": "upper_round_rect",
                     "radius": self.style["round_corner_radius"],
-                    "x": Dynamic("%s+x" % (-self.w / 2)),
-                    "y": Dynamic("%s+y" % (-self.h / 2)),
+                    "x": Dynamic("%s+x" % (-self.w // 2)),
+                    "y": Dynamic("%s+y" % (-self.h // 2)),
                     "w": self.w,
                     "h": self.attribute_height + self.style["round_rect_margin_height"] + self.style["rect_margin_height"],
                 },
@@ -137,8 +141,8 @@ class Association:
                 {
                     "key": "lower_round_rect",
                     "radius": self.style["round_corner_radius"],
-                    "x": Dynamic("%s+x" % (-self.w / 2)),
-                    "y": Dynamic("%s+y" % (self.attribute_height + self.style["round_rect_margin_height"] + self.style["rect_margin_height"] - self.h / 2)),
+                    "x": Dynamic("%s+x" % (-self.w // 2)),
+                    "y": Dynamic("%s+y" % (self.attribute_height + self.style["round_rect_margin_height"] + self.style["rect_margin_height"] - self.h // 2)),
                     "w": self.w,
                     "h": self.h - (self.attribute_height + self.style["round_rect_margin_height"] + self.style["rect_margin_height"]),
                 },
@@ -157,8 +161,8 @@ class Association:
                 {
                     "key": "round_rect",
                     "radius": self.style["round_corner_radius"],
-                    "x": Dynamic("%s+x" % (-self.w / 2)),
-                    "y": Dynamic("%s+y" % (-self.h / 2)),
+                    "x": Dynamic("%s+x" % (-self.w // 2)),
+                    "y": Dynamic("%s+y" % (-self.h // 2)),
                     "w": self.w,
                     "h": self.h,
                 },
@@ -168,23 +172,23 @@ class Association:
                 },
                 {
                     "key": "line",
-                    "x0": Dynamic("%s+x" % (-self.w / 2)),
-                    "y0": Dynamic("%s+y" % (self.attribute_height + self.style["round_rect_margin_height"] + self.style["rect_margin_height"] - self.h / 2)),
-                    "x1": Dynamic("%s+x" % (self.w / 2)),
-                    "y1": Dynamic("%s+y" % (self.attribute_height + self.style["round_rect_margin_height"] + self.style["rect_margin_height"] - self.h / 2)),
+                    "x0": Dynamic("%s+x" % (-self.w // 2)),
+                    "y0": Dynamic("%s+y" % (self.attribute_height + self.style["round_rect_margin_height"] + self.style["rect_margin_height"] - self.h // 2)),
+                    "x1": Dynamic("%s+x" % (self.w // 2)),
+                    "y1": Dynamic("%s+y" % (self.attribute_height + self.style["round_rect_margin_height"] + self.style["rect_margin_height"] - self.h // 2)),
                 },
                 {
                     "key": "text",
                     "text": self.cartouche,
                     "text_color": Dynamic("colors['association_cartouche_text_color']"),
-                    "x": Dynamic("%s+x" % (-self.get_cartouche_string_width(self.cartouche) / 2)),
-                    "y": Dynamic("%s+y" % (-self.h / 2 + self.style["rect_margin_height"] + self.style["cartouche_text_height_ratio"] * self.cartouche_height)),
+                    "x": Dynamic("%s+x" % (-self.get_cartouche_string_width(self.cartouche) // 2)),
+                    "y": Dynamic("%s+y" % (-self.h // 2 + self.style["rect_margin_height"] + self.style["cartouche_text_height_ratio"] * self.cartouche_height)),
                     "family": self.style["association_cartouche_font"]["family"],
                     "size": self.style["association_cartouche_font"]["size"],
                 }
             ]
-            dx = self.style["round_rect_margin_width"] - self.w / 2
-            dy = self.style["round_rect_margin_height"] + self.cartouche_height + 2 * self.style["rect_margin_height"] - self.h / 2
+            dx = self.style["round_rect_margin_width"] - self.w // 2
+            dy = self.style["round_rect_margin_height"] + self.cartouche_height + 2 * self.style["rect_margin_height"] - self.h // 2
             for attribute in self.attributes:
                 attribute.name = self.name
                 result.extend(attribute.description(dx, dy))

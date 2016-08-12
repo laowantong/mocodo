@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
+from __future__ import division
+
 from fitness import fitness
 from random import randrange, choice, random, sample, shuffle
 from collections import namedtuple

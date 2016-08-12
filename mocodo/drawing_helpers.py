@@ -1,3 +1,4 @@
+
 def offset(x, y):
     return (x + card_margin, y - card_baseline - card_margin)
 

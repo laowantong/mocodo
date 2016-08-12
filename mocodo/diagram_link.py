@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
+from __future__ import division
+
 import font_metrics
 import sys
 import re
@@ -23,8 +25,8 @@ class DiagramLink:
             raise RuntimeError(("Mocodo Err.15 - " + _('Attribute "{foreign_key}" in entity "{foreign_entity}" references an unknown attribute "{primary_key}" in entity "{primary_entity}".').format(foreign_key.label, foreign_entity.name, foreign_key.primary_key_label, foreign_key.primary_entity_name)).encode("utf8"))
     
     def calculate_size(self, style):
-        self.fdx = self.foreign_entity.w / 2
-        self.pdx = self.primary_entity.w / 2
+        self.fdx = self.foreign_entity.w // 2
+        self.pdx = self.primary_entity.w // 2
         self.fdy = - self.foreign_entity.h / 2 + 3 * style["rect_margin_height"] + self.foreign_entity.cartouche_height + (self.foreign_key.rank + 0.5) * (self.foreign_entity.attribute_height + style["line_skip_height"])
         self.pdy = - self.primary_entity.h / 2 + 3 * style["rect_margin_height"] + self.primary_entity.cartouche_height + (self.primary_key.rank + 0.5) * (self.primary_entity.attribute_height + style["line_skip_height"])
         self.style = style

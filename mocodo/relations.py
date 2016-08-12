@@ -1,6 +1,8 @@
 #!/usr/bin/python
 # encoding: utf-8
 
+from __future__ import division
+
 import re
 import collections
 import itertools
