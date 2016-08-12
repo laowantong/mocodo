@@ -57,7 +57,7 @@ def obfuscate(clauses, params):
         except IOError:
             lorem_text = read_contents("%s/lorem/lorem_ipsum.txt" % params["script_directory"])
     random_chunk = random_chunks_of(lorem_text, params["obfuscation_max_length"], params)
-    header = map(lambda comment: comment + "\n", itertools.takewhile(lambda line: line.startswith("%"), clauses))
+    header = [comment + "\n" for comment in itertools.takewhile(lambda line: line.startswith("%"), clauses)]
     clauses = "\n".join(clauses[len(header):])
     clauses = re.sub(r"\[.+?\]", "", clauses)
     clauses = re.sub(r"(?m)^%.*\n?", "", clauses)
