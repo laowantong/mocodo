@@ -11,6 +11,7 @@ import os
 import sys
 import json
 import re
+import numbers
 from .file_helpers import read_contents, write_contents
 
 def safe_print_for_PHP(s):
@@ -63,7 +64,7 @@ class Common:
             for key in shapes:
                 if key.endswith("font"):
                     shapes[key]["size"] *= self.params["scale"]
-                elif not key.endswith("ratio") and isinstance(shapes[key], (int, long, float, complex)):
+                elif not key.endswith("ratio") and isinstance(shapes[key], numbers.Number):
                     shapes[key] *= self.params["scale"]
         style.update(shapes)
         style["transparent_color"] = None
