@@ -2,12 +2,13 @@
 # encoding: utf-8
 
 from __future__ import division
+from __future__ import absolute_import
 import argparse
 import random
 import os
 import json
-from file_helpers import read_contents
-from common import version
+from .file_helpers import read_contents
+from .common import version
 import sys
 import re
 import gettext

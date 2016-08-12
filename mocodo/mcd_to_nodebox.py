@@ -3,8 +3,9 @@
 
 from __future__ import division
 
+from __future__ import absolute_import
 import os
-from file_helpers import read_contents
+from .file_helpers import read_contents
 
 def main(mcd, common):
     params = common.params
@@ -60,9 +61,9 @@ def main(mcd, common):
     common.dump_output_file("\n".join(result))
 
 if __name__ == "__main__":
-    from argument_parser import parsed_arguments
-    from mcd import Mcd
-    from common import Common
+    from .argument_parser import parsed_arguments
+    from .mcd import Mcd
+    from .common import Common
     clauses = u"""
         CLIENT: Réf. client, Nom, Prénom, Adresse
         PASSER, 0N CLIENT, 11 COMMANDE

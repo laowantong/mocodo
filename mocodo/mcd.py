@@ -3,13 +3,14 @@
 
 from __future__ import division
 
+from __future__ import absolute_import
 import sys
 import re
-from association import Association
-from entity import Entity
-from phantom import Phantom
-from diagram_link import DiagramLink
-import font_metrics
+from .association import Association
+from .entity import Entity
+from .phantom import Phantom
+from .diagram_link import DiagramLink
+from . import font_metrics
 import itertools
 from collections import defaultdict
 
@@ -343,7 +344,7 @@ class Mcd:
         return result
 
 if __name__=="__main__":
-    from argument_parser import parsed_arguments
+    from .argument_parser import parsed_arguments
     clauses = u"""
         CLIENT: Réf. client, Nom, Prénom, Adresse
         PASSER, 0N CLIENT, 11 COMMANDE

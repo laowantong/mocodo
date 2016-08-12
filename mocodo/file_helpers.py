@@ -2,6 +2,7 @@
 # encoding: utf-8
 
 from __future__ import division
+from __future__ import absolute_import
 import codecs
 
 def read_contents(filename, encoding="utf8"):

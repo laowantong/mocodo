@@ -3,7 +3,8 @@
 
 from __future__ import division
 
-from fitness import fitness
+from __future__ import absolute_import
+from .fitness import fitness
 from random import randrange, choice, random, sample, shuffle
 from collections import namedtuple
 
@@ -90,8 +91,8 @@ def arrange(links, successors, multiplicity, col_count, row_count, verbose, has_
     }
     
 if __name__ == "__main__":
-    from mcd import Mcd
-    from argument_parser import parsed_arguments
+    from .mcd import Mcd
+    from .argument_parser import parsed_arguments
     from time import time
     from random import seed
     clauses = u"""

@@ -3,9 +3,10 @@
 
 from __future__ import division
 
+from __future__ import absolute_import
 from itertools import product, count
 from random import random, shuffle, randrange, choice
-from cross import cross, memoize
+from .cross import cross, memoize
 from math import hypot, sqrt
 
 import sys
@@ -181,8 +182,8 @@ def arrange(col_count, row_count, successors, multiplicity, organic, min_objecti
 
     
 if __name__ == "__main__":
-    from mcd import Mcd
-    from argument_parser import parsed_arguments
+    from .mcd import Mcd
+    from .argument_parser import parsed_arguments
     from time import time
     from random import seed
     clauses = u"""

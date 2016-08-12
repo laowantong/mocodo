@@ -3,12 +3,13 @@
 
 from __future__ import division
 
-import font_metrics
+from __future__ import absolute_import
+from . import font_metrics
 import re
 
-from attribute import *
-from leg import *
-from dynamic import Dynamic
+from .attribute import *
+from .leg import *
+from .dynamic import Dynamic
 
 match_leg = re.compile(r"((?:_11|..)[<>]?\s+(?:\[.+?\]\s+)?)(.+)").match
 

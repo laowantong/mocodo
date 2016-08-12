@@ -3,10 +3,11 @@
 
 from __future__ import division
 
-import font_metrics
+from __future__ import absolute_import
+from . import font_metrics
 import sys
 import re
-from dynamic import Dynamic
+from .dynamic import Dynamic
 
 class DiagramLink:
 

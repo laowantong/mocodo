@@ -3,6 +3,8 @@
 
 from __future__ import division
 
+from __future__ import absolute_import
+from __future__ import print_function
 from IPython.core.display import HTML
 from IPython.core.display import SVG
 from IPython.core.display import display
@@ -111,13 +113,13 @@ class MocodoMagics(Magics):
                     get_ipython().set_next_input(form % (stdoutdata, output_dir), replace = True)
                     return
                 if "--help" in options:
-                    print stdoutdata
+                    print(stdoutdata)
                     return
                 if "--replace" in options:
                     get_ipython().set_next_input("%%mocodo\n" + stdoutdata.rstrip(), replace = True)
                     return
-                print "%%mocodo"
-                print stdoutdata.rstrip()
+                print("%%mocodo")
+                print(stdoutdata.rstrip())
                 if not notebook_options.no_mcd or notebook_options.mld:
                     parser.add_argument("--arrange", nargs="?")
                     parser.add_argument("--obfuscate", nargs="?")
