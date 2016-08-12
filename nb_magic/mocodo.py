@@ -47,9 +47,9 @@ class MocodoMagics(Magics):
             process = Popen(["mocodo"] + options, stdin=PIPE, stdout=PIPE, stderr=PIPE)
             stdoutdata, stderrdata = process.communicate()
             status = process.wait()
-            if status == 0 and stderrdata == "":
+            if status == 0 and not stderrdata:
                 return True
-            error(stderrdata.strip())
+            error(stderrdata.strip().decode("utf8"))
         
         def display_diagrams():
             if os.path.isfile(output_name + ".svg") and os.path.getmtime(input_path) <= os.path.getmtime(output_name + ".svg"):
