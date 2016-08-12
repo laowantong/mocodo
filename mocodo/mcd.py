@@ -353,4 +353,4 @@ if __name__=="__main__":
     """.replace("  ", "").split("\n")
     params = parsed_arguments()
     mcd = Mcd(clauses, params)
-    print mcd.get_clauses_vertical_mirror()
+    print(mcd.get_clauses_vertical_mirror())

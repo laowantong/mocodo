@@ -75,7 +75,7 @@ def arrange(links, successors, multiplicity, col_count, row_count, verbose, has_
             patience -= 1
         else:
             if verbose:
-                print "% 3d: %s" % (generation, best.score)
+                print("% 3d: %s" % (generation, best.score))
             previous_best_score = best.score
             patience = plateau
         if best.score == (0, 0) or patience == 0 or has_expired():
@@ -118,9 +118,9 @@ if __name__ == "__main__":
     seed(42)
     result = arrange(**params)
     if result:
-        print
-        print mcd.get_clauses_from_layout(**result)
-        print
-        print "Cumulated distances:", result["distances"]
-        print "Duration:", time() - starting_time
-        print 
+        print()
+        print(mcd.get_clauses_from_layout(**result))
+        print()
+        print("Cumulated distances:", result["distances"])
+        print("Duration:", time() - starting_time)
+        print() 

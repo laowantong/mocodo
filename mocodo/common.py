@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
-from __future__ import division
+from __future__ import division, print_function
 
 import time
 from relations import Relations
@@ -16,9 +16,9 @@ def safe_print_for_PHP(s):
     """ It seems that when called from PHP, Python is unable to guess correctly
         the encoding of the standard output. """
     try:
-        print >> sys.stdout, s
+        print(s, file=sys.stdout)
     except UnicodeEncodeError:
-        print >> sys.stdout, s.encode("utf8")
+        print(s.encode("utf8"), file=sys.stdout)
 
 class Common:
 

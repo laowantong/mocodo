@@ -12,6 +12,6 @@ def arrow(x, y, a, b):
 
 def safe_print_for_PHP(s):
     try:
-        print s
+        print(s)
     except UnicodeEncodeError:
-        print s.encode("utf8")
+        print(s.encode("utf8"))

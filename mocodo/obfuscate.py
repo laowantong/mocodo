@@ -93,4 +93,4 @@ if __name__=="__main__":
     params = parsed_arguments()
     params["seed"] = 42
     params["obfuscate"] = "four_letter_words.txt"
-    print obfuscate(clauses, params)
+    print(obfuscate(clauses, params))

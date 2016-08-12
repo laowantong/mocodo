@@ -146,14 +146,14 @@ def arrange(col_count, row_count, successors, multiplicity, organic, min_objecti
         }
     for objective in range(min_objective, max_objective + 1):
         if verbose:
-            print "Objective %s." % objective
+            print("Objective %s." % objective)
         boxes = range(box_count)
         shuffle(boxes)
         for first_box in boxes:
             iteration = count()
             if successors[first_box]:
                 if verbose:
-                    print "  Starting from box %s." % first_box
+                    print("  Starting from box %s." % first_box)
                 result = recurs(
                     {first_box: (0, 0)},
                     list(successors[first_box]),
@@ -208,9 +208,9 @@ if __name__ == "__main__":
     seed(42)
     result = arrange(**params)
     if result:
-        print
-        print mcd.get_clauses_from_layout(**result)
-        print
-        print "Cumulated distances:", result["distances"]
-        print "Duration:", time() - starting_time
-        print 
+        print()
+        print(mcd.get_clauses_from_layout(**result))
+        print()
+        print("Cumulated distances:", result["distances"])
+        print("Duration:", time() - starting_time)
+        print() 

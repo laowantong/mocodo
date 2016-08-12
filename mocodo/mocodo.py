@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
-from __future__ import division
+from __future__ import division, print_function
 
 import sys
 if sys.version < "2.6" or sys.version >= "3":
-    print "Mocodo requires Python 2.7 to run.\nThis version is {version}.".format(version=sys.version)
+    print("Mocodo requires Python 2.7 to run.\nThis version is {version}.".format(version=sys.version))
     sys.exit()
 
 import os
@@ -68,7 +68,7 @@ def main():
     except RuntimeError, err:
         msg = str(err)
         if msg.startswith("Mocodo Err."):
-            print >> sys.stderr, msg
+            print(msg, file=sys.stderr)
         else:
             raise
 
