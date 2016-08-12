@@ -72,7 +72,10 @@ def init_localization(script_directory, language):
             trans = gettext.GNUTranslations(mo_contents)
     except IOError:
         trans = gettext.NullTranslations()
-    trans.install(unicode=True)
+    if sys.version < "3":
+        trans.install(unicode=True)
+    else:
+        trans.install()
     return language
 
 def has_expired(timeout):
