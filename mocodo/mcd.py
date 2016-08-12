@@ -59,7 +59,7 @@ class Mcd:
                 self.rows[-1].append(element)
             if not seen:
                 raise RuntimeError(("Mocodo Err.4 - " + _('The ERD is empty.')).encode("utf8"))
-            self.rows = filter(None, self.rows)
+            self.rows = [row for row in self.rows if row]
             self.col_count = max(len(row) for row in self.rows)
             self.row_count = len(self.rows)
         
