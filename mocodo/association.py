@@ -27,7 +27,7 @@ class Association:
                 if m:
                     l.append(m.groups())
                 else:
-                    raise RuntimeError(("Mocodo Err.2 - " + _('Missing cardinalities in leg "{leg}" of association "{association}".').format(leg=leg, association=name).encode("utf8")))
+                    raise RuntimeError("Mocodo Err.2 - " + _('Missing cardinalities in leg "{leg}" of association "{association}".').format(leg=leg, association=name))
             (cards, entities) = zip(*l)
             return (name, cartouche, cards, list(entities), outer_split(attributes))
 

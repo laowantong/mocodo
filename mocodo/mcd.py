@@ -44,26 +44,26 @@ class Mcd:
                     self.rows[-1].extend(Phantom(next(phantom_counter)) for colon in clause)
                     continue
                 if clause.startswith(":"):
-                    raise RuntimeError(("Mocodo Err.19 - " + _('The clause "{clause}" starts with a colon.').format(clause=clause)).encode("utf8"))
+                    raise RuntimeError("Mocodo Err.19 - " + _('The clause "{clause}" starts with a colon.').format(clause=clause))
                 clause = re.sub("\[.+?\]", substitute_forbidden_symbols_between_brackets, clause)
                 if "," in clause.split(":", 1)[0]:
                     element = Association(clause, params)
                     if element.name in self.associations:
-                        raise RuntimeError(("Mocodo Err.7 - " + _('Duplicate association "{association}". If you want to make two associations appear with the same name, you must suffix it with a number.').format(association=element.name)).encode("utf8"))
+                        raise RuntimeError("Mocodo Err.7 - " + _('Duplicate association "{association}". If you want to make two associations appear with the same name, you must suffix it with a number.').format(association=element.name))
                     self.associations[element.name] = element
                 elif ":" in clause:
                     element = Entity(clause)
                     if element.name in self.entities:
-                        raise RuntimeError(("Mocodo Err.6 - " + _('Duplicate entity "{entity}". If you want to make two entities appear with the same name, you must suffix it with a number.').format(entity=element.name)).encode("utf8"))
+                        raise RuntimeError("Mocodo Err.6 - " + _('Duplicate entity "{entity}". If you want to make two entities appear with the same name, you must suffix it with a number.').format(entity=element.name))
                     self.entities[element.name] = element
                 else:
-                    raise RuntimeError(("Mocodo Err.21 - " + _('"{clause}" does not constitute a valid declaration of an entity or association.').format(clause=clause)).encode("utf8"))
+                    raise RuntimeError("Mocodo Err.21 - " + _('"{clause}" does not constitute a valid declaration of an entity or association.').format(clause=clause))
                 if element.name in seen:
-                    raise RuntimeError(("Mocodo Err.8 - " + _('One entity and one association share the same name "{name}".').format(name=element.name)).encode("utf8"))
+                    raise RuntimeError("Mocodo Err.8 - " + _('One entity and one association share the same name "{name}".').format(name=element.name))
                 seen.add(element.name)
                 self.rows[-1].append(element)
             if not seen:
-                raise RuntimeError(("Mocodo Err.4 - " + _('The ERD is empty.')).encode("utf8"))
+                raise RuntimeError("Mocodo Err.4 - " + _('The ERD is empty.'))
             self.rows = [row for row in self.rows if row]
             self.col_count = max(len(row) for row in self.rows)
             self.row_count = len(self.rows)
@@ -75,9 +75,9 @@ class Mcd:
                         leg.entity = self.entities[leg.entity_name]
                     except KeyError:
                         if leg.entity_name in self.associations:
-                            raise RuntimeError(("Mocodo Err.20 - " + _(u'Association "{association_1}" linked to another association "{association_2}"!').format(association_1=association.name, association_2=leg.entity_name)).encode("utf8"))
+                            raise RuntimeError("Mocodo Err.20 - " + _(u'Association "{association_1}" linked to another association "{association_2}"!').format(association_1=association.name, association_2=leg.entity_name))
                         else:
-                            raise RuntimeError(("Mocodo Err.1 - " + _(u'Association "{association}" linked to an unknown entity "{entity}"!').format(association=association.name, entity=leg.entity_name)).encode("utf8"))
+                            raise RuntimeError("Mocodo Err.1 - " + _(u'Association "{association}" linked to an unknown entity "{entity}"!').format(association=association.name, entity=leg.entity_name))
         
         def add_attributes_and_strength():
             strengthen_legs = dict((entity_name, []) for entity_name in self.entities)

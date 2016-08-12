@@ -70,7 +70,7 @@ def arrange(col_count, row_count, successors, multiplicity, organic, min_objecti
             # print "Lower bound cut"
             return None
         if has_expired():
-            raise RuntimeError(("Mocodo Err.10 - " + _('Layout calculation time exceeded.')).encode("utf8"))
+            raise RuntimeError("Mocodo Err.10 - " + _('Layout calculation time exceeded.'))
         if next(iteration) > call_limit:
             # print "call limit exceeded"
             return None

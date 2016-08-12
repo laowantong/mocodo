@@ -218,7 +218,7 @@ class Relations:
                 if leg.strengthen:
                     weak_count += 1
                     if weak_count == 2:
-                        raise RuntimeError(("Mocodo Err.22 - " + _('Reciprocal relative identification around {association}.').format(association=association.name)).encode("utf8"))
+                        raise RuntimeError("Mocodo Err.22 - " + _('Reciprocal relative identification around {association}.').format(association=association.name))
                     other_leg = leg
 
     def relations_from_entities(self):
@@ -277,10 +277,10 @@ class Relations:
                     break
             else:
                 if len(remaining_entities) == 1:
-                    raise RuntimeError(("Mocodo Err.16 - " + _('A weak entity (here, {entity}) cannot be strengthened by itself.').format(entity=remaining_entities[0].name)).encode("utf8"))
+                    raise RuntimeError("Mocodo Err.16 - " + _('A weak entity (here, {entity}) cannot be strengthened by itself.').format(entity=remaining_entities[0].name))
                 else:
                     remaining_entity_names = u", ".join('"%s"' % entity.name for entity in remaining_entities)
-                    raise RuntimeError(("Mocodo Err.17 - " + _('Cycle of weak entities in {entities}.').format(entities=remaining_entity_names)).encode("utf8"))
+                    raise RuntimeError("Mocodo Err.17 - " + _('Cycle of weak entities in {entities}.').format(entities=remaining_entity_names))
 
     def process_associations(self):
         for association in self.mcd.associations.values():

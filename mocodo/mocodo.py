@@ -2,12 +2,13 @@
 # encoding: utf-8
 
 from __future__ import division, print_function
-
 from __future__ import absolute_import
+
 import sys
-# if sys.version < "2.6" or sys.version >= "3":
-#     print("Mocodo requires Python 2.7 to run.\nThis version is {version}.".format(version=sys.version))
-#     sys.exit()
+
+if sys.version < "2.7":
+    print("Mocodo requires Python 2.7 or later to run.\nThis version is {version}.".format(version=sys.version))
+    sys.exit()
 
 from .common import Common, safe_print_for_PHP
 from .file_helpers import write_contents
@@ -52,7 +53,7 @@ def main():
             if result:
                 mcd.set_layout(**result)
                 return safe_print_for_PHP(mcd.get_clauses())
-            raise RuntimeError(("Mocodo Err.9 - " + _('Failed to calculate a planar layout.')).encode("utf8"))
+            raise RuntimeError("Mocodo Err.9 - " + _('Failed to calculate a planar layout.'))
         relations = Relations(mcd, params)
         common.dump_mld_files(relations)
         if params["image_format"] == "svg":
@@ -65,7 +66,7 @@ def main():
             from . import mcd_to_nodebox
             mcd_to_nodebox.main(mcd, common)
             return os.system(u"""open -a NodeBox "%(output_name)s_nodebox.py" """ % params)
-        raise RuntimeError(("Mocodo Err.13 - " + _('Should never happen.')).encode("utf8"))
+        raise RuntimeError("Mocodo Err.13 - " + _('Should never happen.'))
     except RuntimeError as err:
         msg = str(err)
         if msg.startswith("Mocodo Err."):

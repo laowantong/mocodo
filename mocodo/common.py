@@ -40,7 +40,7 @@ class Common:
                 return read_contents(self.params["input"], encoding=encoding).replace('"', '').splitlines()
             except UnicodeError:
                 pass
-        raise RuntimeError(("Mocodo Err.5 - " + _('Unable to read "{filename}" with any of the following encodings: "{encodings}".').format(filename=self.params["input"], encodings= ", ".join(self.params["encodings"])).encode("utf8")))
+        raise RuntimeError("Mocodo Err.5 - " + _('Unable to read "{filename}" with any of the following encodings: "{encodings}".').format(filename=self.params["input"], encodings= ", ".join(self.params["encodings"])))
 
     def load_style(self):
         
@@ -50,12 +50,12 @@ class Common:
                 try:
                     return json.loads(read_contents(path))
                 except:
-                    raise RuntimeError(("Mocodo Err.3 - " + _('Problem with "{name}" file "{path}.json".').format(name=name, path=path)).encode("utf8"))
+                    raise RuntimeError("Mocodo Err.3 - " + _('Problem with "{name}" file "{path}.json".').format(name=name, path=path))
             path = os.path.join(self.params["script_directory"], name, path)
             try:
                 return json.loads(read_contents(path))
             except:
-                raise RuntimeError(("Mocodo Err.3 - " + _('Problem with "{name}" file "{path}.json".').format(name=name, path=path)).encode("utf8"))
+                raise RuntimeError("Mocodo Err.3 - " + _('Problem with "{name}" file "{path}.json".').format(name=name, path=path))
         
         style = {}
         style.update(load_by_name("colors"))
