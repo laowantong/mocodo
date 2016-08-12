@@ -34,7 +34,7 @@ class Relations:
             if not params["guess_title"]:
                 return
             counter = collections.Counter()
-            for d in self.relations.itervalues():
+            for d in self.relations.values():
                 for column in d["columns"]:
                     if column["foreign"] and column["primary_relation_name"] and column["nature"] != "strengthening_primary_key":
                         counter[(column["primary_relation_name"], column["attribute"])] += 1
@@ -131,7 +131,7 @@ class Relations:
             self.may_disambiguate_with_leg_annotations(template)
             for relation in self.relations.values():
                 occurrences = collections.Counter(column["label"] for column in relation["columns"])
-                occurrences = dict(c for c in occurrences.iteritems() if c[1] > 1)
+                occurrences = dict(c for c in occurrences.items() if c[1] > 1)
                 for column in reversed(relation["columns"]):
                     if column["label"] in occurrences:
                         occurrences[column["label"]] -= 1
@@ -211,7 +211,7 @@ class Relations:
     # private
 
     def ensure_no_reciprocical_relative_entities(self):
-        for association in self.mcd.associations.itervalues():
+        for association in self.mcd.associations.values():
             weak_count = 0
             for leg in association.legs:
                 if leg.strengthen:
@@ -222,7 +222,7 @@ class Relations:
 
     def relations_from_entities(self):
         self.relations = {}
-        for (name, entity) in self.mcd.entities.iteritems():
+        for (name, entity) in self.mcd.entities.items():
             self.relations[name] = {
                 "this_relation_name": entity.cartouche,
                 "columns": []
@@ -282,7 +282,7 @@ class Relations:
                     raise RuntimeError(("Mocodo Err.17 - " + _('Cycle of weak entities in {entities}.').format(entities=remaining_entity_names)).encode("utf8"))
 
     def process_associations(self):
-        for association in self.mcd.associations.itervalues():
+        for association in self.mcd.associations.values():
             (entity_name, entity_priority) = (None, 0)
             may_identify = True
             for leg in association.legs:

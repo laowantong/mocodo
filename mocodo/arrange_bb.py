@@ -104,7 +104,7 @@ def arrange(col_count, row_count, successors, multiplicity, organic, min_objecti
         weighted_possible_coords = []
         for (x1,y1) in non_crossing_possible_coords:
             cumulated_distance = 0
-            for ((x2, y2), placed_box) in already_placed_successors.iteritems():
+            for ((x2, y2), placed_box) in already_placed_successors.items():
                 cumulated_distance += distances[abs(x1-x2)][abs(y1-y2)] * multiplicity[(box_to_place, placed_box)]
             weighted_possible_coords.append((cumulated_distance, random(), x1, y1))
         weighted_possible_coords.sort()

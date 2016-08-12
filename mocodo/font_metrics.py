@@ -22,7 +22,7 @@ def font_metrics_factory(params):
             class FontMetricsWithTk():
 
                 def __init__(self, font):
-                    kargs = dict((str(k), v) for (k, v) in font.iteritems())
+                    kargs = dict((str(k), v) for (k, v) in font.items())
                     kargs["size"] = -font["size"]
                     self.font = tkFont.Font(**kargs)
 

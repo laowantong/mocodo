@@ -53,7 +53,8 @@ def main(mcd, common):
             result.append(commands[d["key"]] % d)
         except KeyError:
             if d["key"] == "env":
-                result.append("(%s) = (%s)" % (",".join(zip(*d["env"])[0]), ",".join(zip(*d["env"])[1])))
+                zipped_env = list(zip(*d["env"]))
+                result.append("(%s) = (%s)" % (",".join(zipped_env[0]), ",".join(zipped_env[1])))
         except TypeError:
             result.append("\n# %s" % d)
     common.dump_output_file("\n".join(result))

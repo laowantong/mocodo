@@ -119,7 +119,7 @@ class Common:
             result.append("with codecs.open('%(output_name)s_geo.json') as f:" % self.params)
             result.append("    geo = json.loads(f.read())")
             result.append("(width,height) = geo.pop('size')")
-            result.append("for (name, l) in geo.iteritems(): globals()[name] = dict(l)")
+            result.append("for (name, l) in geo.items(): globals()[name] = dict(l)")
         else: # include the geometry at the beginning of the generated Python file
             result = ["(width,height) = (%s,%s)" % l.pop(0)[1]]
             for (identifier, items) in l:
