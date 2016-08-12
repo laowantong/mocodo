@@ -349,7 +349,7 @@ class Relations:
         for row in self.mcd.rows:
             for box in row:
                 if box.name in self.relations:
-                    self.relations[box.name]["this_relation_number"] = this_relation_number.next()
+                    self.relations[box.name]["this_relation_number"] = next(this_relation_number)
     
         
     

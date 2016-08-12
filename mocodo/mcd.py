@@ -37,7 +37,7 @@ class Mcd:
                         self.header += "%s\n" % clause
                     continue
                 if clause == ":" * len(clause):
-                    self.rows[-1].extend(Phantom(phantom_counter.next()) for colon in clause)
+                    self.rows[-1].extend(Phantom(next(phantom_counter)) for colon in clause)
                     continue
                 if clause.startswith(":"):
                     raise RuntimeError(("Mocodo Err.19 - " + _('The clause "{clause}" starts with a colon.').format(clause=clause)).encode("utf8"))
@@ -151,15 +151,15 @@ class Mcd:
             for row in self.rows:
                 n = self.col_count - len(row)
                 if n:
-                    row[0:0] = [Phantom(phantom_counter.next()) for i in range(n // 2)]
-                    row.extend(Phantom(phantom_counter.next()) for i in range(n // 2 + n % 2))
+                    row[0:0] = [Phantom(next(phantom_counter)) for i in range(n // 2)]
+                    row.extend(Phantom(next(phantom_counter)) for i in range(n // 2 + n % 2))
         
         def make_boxes():
             i = itertools.count()
             self.boxes = []
             for row in self.rows:
                 for box in row:
-                    box.identifier = i.next()
+                    box.identifier = next(i)
                     self.boxes.append(box)
             self.box_count = len(self.boxes)
         
@@ -216,7 +216,7 @@ class Mcd:
         def get_or_create_box(index):
             return Phantom() if layout[index] is None else self.boxes[layout[index]]
         i = itertools.count()
-        self.rows = [[get_or_create_box(i.next()) for x in range(self.col_count)] for y in range(self.row_count)]
+        self.rows = [[get_or_create_box(next(i)) for x in range(self.col_count)] for y in range(self.row_count)]
         def suppress_empty_rows(y):
             while self.rows: # there's at least one row
                 for box in self.rows[y]:

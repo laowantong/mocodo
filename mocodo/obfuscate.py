@@ -36,7 +36,7 @@ def obfuscate(clauses, params):
     def obfuscate_label(label):
         if label not in cache:
             try:
-                new_label = random_chunk.next()
+                new_label = next(random_chunk)
             except StopIteration:
                 raise RuntimeError(("Mocodo Err.12 - " + _('Obfuscation failed. Not enough substitution words in "{filename}". You may either increase the `obfuscation_max_length` or decrease the `obfuscation_min_distance` option values.').format(filename=lorem_filename)).encode("utf8"))
             if label.isupper():

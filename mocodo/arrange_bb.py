@@ -71,14 +71,14 @@ def arrange(col_count, row_count, successors, multiplicity, organic, min_objecti
             return None
         if has_expired():
             raise RuntimeError(("Mocodo Err.10 - " + _('Layout calculation time exceeded.')).encode("utf8"))
-        if iteration.next() > call_limit:
+        if next(iteration) > call_limit:
             # print "call limit exceeded"
             return None
         box_to_place = next_boxes[0]
         already_placed_successors = {box_coords[box]: box for box in successors[box_to_place] if box in box_coords}
         if already_placed_successors:
             already_placed_successor_coords = iter(already_placed_successors)
-            possible_coords = neighborhood(already_placed_successor_coords.next()).copy()
+            possible_coords = neighborhood(next(already_placed_successor_coords)).copy()
             # print already_placed_successors[0], possible_coords
             for coord in already_placed_successor_coords:
                 possible_coords.intersection_update(neighborhood(coord))
