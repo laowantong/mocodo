@@ -14,6 +14,7 @@ import re
 import gettext
 import locale
 from time import time
+from io import open
 
 DESCRIPTION = """
 NAME:
