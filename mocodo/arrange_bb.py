@@ -139,7 +139,7 @@ def arrange(col_count, row_count, successors, multiplicity, organic, min_objecti
     outside_hull_minimal_distance = distances[1][2]
     if all(not successor for successor in successors):
         # print "no link: return a random layout"
-        layout = range(box_count)
+        layout = list(range(box_count))
         shuffle(layout)
         return {
             "layout": layout,
@@ -149,7 +149,7 @@ def arrange(col_count, row_count, successors, multiplicity, organic, min_objecti
     for objective in range(min_objective, max_objective + 1):
         if verbose:
             print("Objective %s." % objective)
-        boxes = range(box_count)
+        boxes = list(range(box_count))
         shuffle(boxes)
         for first_box in boxes:
             iteration = count()

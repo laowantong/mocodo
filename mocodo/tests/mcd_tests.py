@@ -91,7 +91,7 @@ class McdTest(unittest.TestCase):
             u"FLÉAU: battadère, van, mesure",
         ]
         mcd = Mcd(clauses, params)
-        self.assertEquals(mcd.get_layout(), range(16))
+        self.assertEquals(mcd.get_layout(), list(range(16)))
         self.assertEquals(mcd.get_layout_data(), {
             'col_count': 4,
             'row_count': 4,
@@ -171,7 +171,7 @@ class McdTest(unittest.TestCase):
             FLÉAU: battadère, van, mesure
             ::
         """.strip().replace("  ", "")
-        mcd.set_layout(range(16))
+        mcd.set_layout(list(range(16)))
         self.assertEquals(mcd.get_clauses(), expected)
 
 

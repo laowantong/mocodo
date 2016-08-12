@@ -18,7 +18,7 @@ def arrange(links, successors, multiplicity, col_count, row_count, verbose, has_
             sequentially. When a gene has another gene to the west, the corresponding node is preferably
             selected among the successors of the latter. NB: Applying the same technic for the north and
             nortwest directions produces better individual, but worse final results. """
-        pool = range(box_count)
+        pool = list(range(box_count))
         chromosome = [pool.pop(randrange(box_count))]
         (x, y) = (0, 0)
         for i in range(1, box_count):

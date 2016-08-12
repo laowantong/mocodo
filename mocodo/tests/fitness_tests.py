@@ -29,7 +29,7 @@ class ArrangeBB(unittest.TestCase):
         d = mcd.get_layout_data()
         evaluate = fitness(d["links"], d["multiplicity"], d["col_count"], d["row_count"])
         size = d["col_count"] * d["row_count"]
-        (crossing_count, total_distances) = evaluate(range(size))
+        (crossing_count, total_distances) = evaluate(list(range(size)))
         self.assertEquals(crossing_count, 0)
         self.assertEquals(total_distances, 0.0)
 
@@ -50,7 +50,7 @@ class ArrangeBB(unittest.TestCase):
         d = mcd.get_layout_data()
         evaluate = fitness(d["links"], d["multiplicity"], d["col_count"], d["row_count"])
         size = d["col_count"] * d["row_count"]
-        (crossing_count, total_distances) = evaluate(range(size))
+        (crossing_count, total_distances) = evaluate(list(range(size)))
         self.assertEquals(crossing_count, 0)
         self.assertEquals(total_distances, 0.0)
 
@@ -68,7 +68,7 @@ class ArrangeBB(unittest.TestCase):
         d = mcd.get_layout_data()
         evaluate = fitness(d["links"], d["multiplicity"], d["col_count"], d["row_count"])
         size = d["col_count"] * d["row_count"]
-        (crossing_count, total_distances) = evaluate(range(size))
+        (crossing_count, total_distances) = evaluate(list(range(size)))
         self.assertEquals(crossing_count, 0)
         self.assertEquals(round(total_distances, 4), 0.8284)
 
@@ -85,7 +85,7 @@ class ArrangeBB(unittest.TestCase):
         d = mcd.get_layout_data()
         evaluate = fitness(d["links"], d["multiplicity"], d["col_count"], d["row_count"])
         size = d["col_count"] * d["row_count"]
-        (crossing_count, total_distances) = evaluate(range(size))
+        (crossing_count, total_distances) = evaluate(list(range(size)))
         self.assertEquals(crossing_count, 0)
         self.assertEquals(total_distances, 1.0)
 
@@ -103,7 +103,7 @@ class ArrangeBB(unittest.TestCase):
         d = mcd.get_layout_data()
         evaluate = fitness(d["links"], d["multiplicity"], d["col_count"], d["row_count"])
         size = d["col_count"] * d["row_count"]
-        (crossing_count, total_distances) = evaluate(range(size))
+        (crossing_count, total_distances) = evaluate(list(range(size)))
         self.assertEquals(crossing_count, 0)
         self.assertEquals(total_distances, hypot(1, 1) - 1)
 
@@ -123,7 +123,7 @@ class ArrangeBB(unittest.TestCase):
         d = mcd.get_layout_data()
         evaluate = fitness(d["links"], d["multiplicity"], d["col_count"], d["row_count"])
         size = d["col_count"] * d["row_count"]
-        (crossing_count, total_distances) = evaluate(range(size))
+        (crossing_count, total_distances) = evaluate(list(range(size)))
         self.assertEquals(crossing_count, 0)
         self.assertEquals(total_distances, hypot(2, 1) - 1)
 
@@ -143,7 +143,7 @@ class ArrangeBB(unittest.TestCase):
         d = mcd.get_layout_data()
         evaluate = fitness(d["links"], d["multiplicity"], d["col_count"], d["row_count"])
         size = d["col_count"] * d["row_count"]
-        (crossing_count, total_distances) = evaluate(range(size))
+        (crossing_count, total_distances) = evaluate(list(range(size)))
         self.assertEquals(crossing_count, 9)
 
     def test_k33_better(self):
@@ -162,7 +162,7 @@ class ArrangeBB(unittest.TestCase):
         d = mcd.get_layout_data()
         evaluate = fitness(d["links"], d["multiplicity"], d["col_count"], d["row_count"])
         size = d["col_count"] * d["row_count"]
-        (crossing_count, total_distances) = evaluate(range(size))
+        (crossing_count, total_distances) = evaluate(list(range(size)))
         self.assertEquals(crossing_count, 3)
     
 
