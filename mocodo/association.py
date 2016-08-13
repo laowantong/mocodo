@@ -70,13 +70,15 @@ class Association:
         def calculate_size_when_not_df():
             for attribute in self.attributes:
                 attribute.calculate_size(self.style)
-            self.w = 2 * self.style["round_rect_margin_width"] + \
-                max([a.w for a in self.attributes] + [self.get_cartouche_string_width(self.cartouche)])
-            self.h = max(1, len(self.attributes)) * (self.attribute_height + self.style["line_skip_height"]) - \
-                self.style["line_skip_height"] + \
-                2 * self.style["rect_margin_height"] + \
-                2 * self.style["round_rect_margin_height"] + \
-                self.cartouche_height
+            cartouche_and_attribute_widths = [a.w for a in self.attributes] + [self.get_cartouche_string_width(self.cartouche)]
+            self.w = 2 * self.style["round_rect_margin_width"] + max(cartouche_and_attribute_widths)
+            self.h = max(1, len(self.attributes)) * (self.attribute_height + self.style["line_skip_height"]) \
+                - self.style["line_skip_height"] \
+                + 2 * self.style["rect_margin_height"] \
+                + 2 * self.style["round_rect_margin_height"] \
+                + self.cartouche_height
+            self.w += self.w % 2
+            self.h += self.h % 2
 
         def description_when_df():
             return [
