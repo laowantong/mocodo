@@ -57,15 +57,27 @@ class Common:
             except:
                 raise RuntimeError("Mocodo Err.3 - " + _('Problem with "{name}" file "{path}.json".').format(name=name, path=path))
         
+        def may_apply_scaling(shapes):
+            if self.params["scale"] == 1:
+                return
+            scale = self.params["scale"]
+            for key in shapes:
+                if key.endswith("font"):
+                    shapes[key]["size"] = shapes[key]["size"] * scale
+                elif not key.endswith("ratio") and isinstance(shapes[key], numbers.Number):
+                    shapes[key] *= scale
+        
+        def ensure_margin_sizes_are_integer(shapes):
+            # Some nasty failures are known to occur otherwise.
+            for key in shapes:
+                if "margin" in key:
+                    shapes[key] = int(shapes[key] + 0.5)
+            
         style = {}
         style.update(load_by_name("colors"))
         shapes = load_by_name("shapes")
-        if self.params["scale"] != 1:
-            for key in shapes:
-                if key.endswith("font"):
-                    shapes[key]["size"] *= self.params["scale"]
-                elif not key.endswith("ratio") and isinstance(shapes[key], numbers.Number):
-                    shapes[key] *= self.params["scale"]
+        may_apply_scaling(shapes)
+        ensure_margin_sizes_are_integer(shapes)
         style.update(shapes)
         style["transparent_color"] = None
         return style
