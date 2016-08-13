@@ -49,7 +49,8 @@ class Entity:
         self.attribute_height = attribute_font.get_pixel_height()
         for attribute in self.attributes:
             attribute.calculate_size(style)
-        self.w = 2 * style["rect_margin_width"] + max([a.w for a in self.attributes] + [self.get_cartouche_string_width(self.cartouche)])
+        cartouche_and_attribute_lengths = [self.get_cartouche_string_width(self.cartouche)] + [a.w for a in self.attributes]
+        self.w = 2 * style["rect_margin_width"] + max(cartouche_and_attribute_lengths)
         self.h = len(self.attributes) * (self.attribute_height + style["line_skip_height"]) - style["line_skip_height"] + 4 * style["rect_margin_height"] + self.cartouche_height
         self.w += self.w % 2
         self.h += self.h % 2
