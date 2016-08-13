@@ -21,7 +21,7 @@ SYS_MAXINT = 9223372036854775807 # an integer larger than any practical list or 
 
 class Mcd:
 
-    def __init__(self, clauses, params, get_font_metrics):
+    def __init__(self, clauses, params, get_font_metrics=None):
         
         def parse_clauses():
             self.entities = {}

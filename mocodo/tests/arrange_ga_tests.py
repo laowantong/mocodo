@@ -4,7 +4,7 @@
 from __future__ import division
 from __future__ import absolute_import
 import sys
-sys.path.append('.')
+sys.path[0:0] = '.'
 
 from mocodo.arrange_ga import *
 
