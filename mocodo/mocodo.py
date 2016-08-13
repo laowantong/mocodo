@@ -15,12 +15,14 @@ from .file_helpers import write_contents
 from .argument_parser import parsed_arguments
 from .mcd import Mcd
 from .relations import Relations
+from . import font_metrics
 
 def main():
     try:
         params = parsed_arguments()
         common = Common(params)
         clauses = common.load_input_file()
+        get_font_metrics = font_metrics.font_metrics_factory(params)
         if params["restore"]:
             import shutil
             shutil.copyfile(os.path.join(params["script_directory"], "pristine_sandbox.mcd"), "sandbox.mcd")
@@ -35,7 +37,7 @@ def main():
         if params["obfuscate"]:
             from .obfuscate import obfuscate
             return safe_print_for_PHP(obfuscate(clauses, params))
-        mcd = Mcd(clauses, params)
+        mcd = Mcd(clauses, params, get_font_metrics)
         if params["flip"]:
             return safe_print_for_PHP({
                     "v": mcd.get_clauses_vertical_mirror,

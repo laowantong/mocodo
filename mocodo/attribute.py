@@ -4,7 +4,6 @@
 from __future__ import division
 
 from __future__ import absolute_import
-from . import font_metrics
 
 import re
 from .dynamic import Dynamic
@@ -32,9 +31,9 @@ class Attribute:
         self.font_type = "entity_attribute_font"
         self.rank = rank
 
-    def calculate_size(self, style):
+    def calculate_size(self, style, get_font_metrics):
         self.attribute_font = style[self.font_type]
-        font = font_metrics.FontMetrics(self.attribute_font)
+        font = get_font_metrics(self.attribute_font)
         self.w = font.get_pixel_width(self.label)
         self.h = font.get_pixel_height()
         self.style = style

@@ -4,7 +4,6 @@
 from __future__ import division
 
 from __future__ import absolute_import
-from . import font_metrics
 import re
 
 from .attribute import *
@@ -46,30 +45,30 @@ class Association:
         self.kind = "association"
         self.clause = clause
 
-    def calculate_size(self, style):
+    def calculate_size(self, style, get_font_metrics):
         self.style = style
-        cartouche_font = font_metrics.FontMetrics(style["association_cartouche_font"])
+        cartouche_font = get_font_metrics(style["association_cartouche_font"])
         self.get_cartouche_string_width = cartouche_font.get_pixel_width
         self.cartouche_height = cartouche_font.get_pixel_height()
-        attribute_font = font_metrics.FontMetrics(style["association_attribute_font"])
+        attribute_font = get_font_metrics(style["association_attribute_font"])
         self.attribute_height = attribute_font.get_pixel_height()
-        self.calculate_size_depending_on_df()
+        self.calculate_size_depending_on_df(get_font_metrics)
         self.w += self.w % 2
         self.h += self.h % 2
         for leg in self.legs:
-            leg.calculate_size(style)
+            leg.calculate_size(style, get_font_metrics)
 
     def check_df_strategy(self, is_df):
 
-        def calculate_size_when_df():
+        def calculate_size_when_df(get_font_metrics):
             self.w = self.h = max(
                 self.style["round_rect_margin_width"] * 2 + self.get_cartouche_string_width(self.df_label),
                 self.style["round_rect_margin_width"] * 2 + self.cartouche_height
             )
 
-        def calculate_size_when_not_df():
+        def calculate_size_when_not_df(get_font_metrics):
             for attribute in self.attributes:
-                attribute.calculate_size(self.style)
+                attribute.calculate_size(self.style, get_font_metrics)
             cartouche_and_attribute_widths = [a.w for a in self.attributes] + [self.get_cartouche_string_width(self.cartouche)]
             self.w = 2 * self.style["round_rect_margin_width"] + max(cartouche_and_attribute_widths)
             self.h = max(1, len(self.attributes)) * (self.attribute_height + self.style["line_skip_height"]) \

@@ -4,7 +4,6 @@
 from __future__ import division
 
 from __future__ import absolute_import
-from . import font_metrics
 import sys
 import re
 from .dynamic import Dynamic
@@ -60,8 +59,8 @@ class Leg:
         self.twist = False
         self.identifier = None
     
-    def calculate_size(self, style):
-        font = font_metrics.FontMetrics(style["card_font"])
+    def calculate_size(self, style, get_font_metrics):
+        font = get_font_metrics(style["card_font"])
         self.h = font.get_pixel_height()
         self.w = font.get_pixel_width(self.cardinalities)
         self.style = style
