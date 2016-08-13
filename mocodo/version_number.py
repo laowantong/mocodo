@@ -1,3 +1,1 @@
-
-from __future__ import division
-version = u"2.1.4"
+version = u"2.3"

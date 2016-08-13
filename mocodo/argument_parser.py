@@ -36,7 +36,7 @@ NOTE:
 
 EPILOG = u"""
 SEE ALSO:
-  Online version        http://mocodo.wingi.net
+  Online version        http://mocodo.net
   Source code           https://github.com/laowantong/mocodo
   Localization          https://www.transifex.com/aristide/mocodo/
 
