@@ -3,9 +3,8 @@
 
 from __future__ import division
 
-from __future__ import absolute_import
-from .fitness import fitness
-from random import randrange, choice, random, sample, shuffle
+from fitness import fitness
+from random import randrange, choice, random, sample
 from collections import namedtuple
 
 
@@ -41,8 +40,8 @@ def arrange(links, successors, multiplicity, col_count, row_count, verbose, has_
         (x2, y2) = (randrange(x1+1, col_count+1), randrange(y1+1, row_count+1))
         def mate(chromosome_1, chromosome_2):
             used = set(chromosome_1[x+y*col_count] for x in range(x1, x2) for y in range(y1, y2))
-            not_used_next = (allele for allele in chromosome_2 if allele not in used).next
-            return [chromosome_1[x+y*col_count] if x1 <= x < x2 and y1 <= y < y2 else not_used_next() for y in range(row_count) for x in range(col_count)]
+            not_used = (allele for allele in chromosome_2 if allele not in used)
+            return [chromosome_1[x+y*col_count] if x1 <= x < x2 and y1 <= y < y2 else next(not_used) for y in range(row_count) for x in range(col_count)]
         return (mate(chromosome_1, chromosome_2), mate(chromosome_2, chromosome_1))
 
     def next_population():
