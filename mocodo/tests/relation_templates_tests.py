@@ -2,16 +2,15 @@
 # encoding: utf-8
 
 from __future__ import division
-from __future__ import absolute_import
 import sys
-sys.path.append('.')
+sys.path[0:0] = ["./mocodo/"]
 
 import unittest
-from mocodo.relations import *
-from mocodo.mcd import Mcd
+from relations import *
+from mcd import Mcd
 import json
-from mocodo.file_helpers import read_contents
-from mocodo.argument_parser import parsed_arguments
+from file_helpers import read_contents
+from argument_parser import parsed_arguments
 
 clauses = """
 PASS, 11 PEAK, 01 GAME: rain

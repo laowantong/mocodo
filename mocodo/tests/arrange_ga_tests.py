@@ -2,17 +2,20 @@
 # encoding: utf-8
 
 from __future__ import division
-from __future__ import absolute_import
 import sys
-sys.path.append('.')
+sys.path[0:0] = ["./mocodo/"]
 
-from mocodo.arrange_ga import *
+from arrange_ga import *
 
 import unittest
-from mocodo.mcd import Mcd
-from mocodo.argument_parser import parsed_arguments
+from mcd import Mcd
+from argument_parser import parsed_arguments
 from time import time
 from random import seed
+
+# WARNING: by default, this should fail for Python 3.
+# Set PYTHONHASHSEED to 0 before launching the tests.
+# cf. http://stackoverflow.com/questions/38943038/difference-between-python-2-and-3-for-shuffle-with-a-given-seed/
 
 class ArrangeGA(unittest.TestCase):
     
@@ -44,7 +47,13 @@ class ArrangeGA(unittest.TestCase):
         params["sample_size"] = 7
         params["timeout"] = None
         params["verbose"] = False
-        seed(1)
+        seed(1 if sys.version.startswith("2") else 67)
+        rearrangement = arrange(**params)
+        self.assertEqual(rearrangement, {
+            'distances': 3.3005630797457695,
+            'crossings': 1,
+            'layout': [9, 5, 4, 0, 2, 1, 11, 8, 3, 7, 6, 10]
+        })
         expected = u"""
             AMET, 11> LOREM, 01 CONSECTETUER: adipiscing
             LOREM: ipsum, dolor, sit
@@ -61,12 +70,6 @@ class ArrangeGA(unittest.TestCase):
             TORTOR, 0N RISUS, 11 DIGNISSIM, 1N CONSECTETUER: nec
             RISUS: ultricies, _cras, elementum
         """.strip().replace("  ", "")
-        rearrangement = arrange(**params)
-        self.assertEqual(rearrangement, {
-            'distances': 3.3005630797457695,
-            'crossings': 1,
-            'layout': [9, 5, 4, 0, 2, 1, 11, 8, 3, 7, 6, 10]
-        })
         mcd.set_layout(**rearrangement)
         result = mcd.get_clauses()
         self.assertEqual(expected, result)

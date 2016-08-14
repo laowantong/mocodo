@@ -3,11 +3,9 @@
 
 from __future__ import division
 
-from __future__ import absolute_import
-from . import font_metrics
 import sys
 import re
-from .dynamic import Dynamic
+from dynamic import Dynamic
 
 class DiagramLink:
 
@@ -25,7 +23,7 @@ class DiagramLink:
         else:
             raise RuntimeError("Mocodo Err.15 - " + _('Attribute "{foreign_key}" in entity "{foreign_entity}" references an unknown attribute "{primary_key}" in entity "{primary_entity}".').format(foreign_key.label, foreign_entity.name, foreign_key.primary_key_label, foreign_key.primary_entity_name))
     
-    def calculate_size(self, style):
+    def calculate_size(self, style, *ignored):
         self.fdx = self.foreign_entity.w // 2
         self.pdx = self.primary_entity.w // 2
         self.fdy = - self.foreign_entity.h / 2 + 3 * style["rect_margin_height"] + self.foreign_entity.cartouche_height + (self.foreign_key.rank + 0.5) * (self.foreign_entity.attribute_height + style["line_skip_height"])

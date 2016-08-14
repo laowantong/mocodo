@@ -3,13 +3,11 @@
 
 from __future__ import division
 
-from __future__ import absolute_import
 import re
-from .association import Association
-from .entity import Entity
-from .phantom import Phantom
-from .diagram_link import DiagramLink
-from . import font_metrics
+from association import Association
+from entity import Entity
+from phantom import Phantom
+from diagram_link import DiagramLink
 import itertools
 from collections import defaultdict
 
@@ -22,7 +20,7 @@ SYS_MAXINT = 9223372036854775807 # an integer larger than any practical list or 
 
 class Mcd:
 
-    def __init__(self, clauses, params):
+    def __init__(self, clauses, params, get_font_metrics=None):
         
         def parse_clauses():
             self.entities = {}
@@ -170,7 +168,7 @@ class Mcd:
         def substitute_forbidden_symbols_between_brackets(text):
             return text.group().replace(",", "<<<protected-comma>>>").replace(":", "<<<protected-colon>>>")
         
-        font_metrics.FontMetrics = font_metrics.font_metrics_factory(params)
+        self.get_font_metrics = get_font_metrics
         phantom_counter = itertools.count()
         parse_clauses()
         add_legs()
@@ -263,7 +261,7 @@ class Mcd:
     
     def calculate_size(self, style):
         def card_max_width():
-            get_pixel_width = font_metrics.FontMetrics(style["card_font"]).get_pixel_width
+            get_pixel_width = self.get_font_metrics(style["card_font"]).get_pixel_width
             cardinalities = {"0,N"} # default value, in case there is no cardinalities at all
             for association in self.associations.values():
                 for leg in association.legs:
@@ -273,10 +271,10 @@ class Mcd:
         def calculate_sizes():
             for row in self.rows:
                 for (i, box) in enumerate(row):
-                    box.calculate_size(style)
+                    box.calculate_size(style, self.get_font_metrics)
                     max_box_width_per_column[i] = max(box.w, max_box_width_per_column[i])
             for diagram_link in self.diagram_links:
-                diagram_link.calculate_size(style)
+                diagram_link.calculate_size(style, self.get_font_metrics)
         #
         def make_horizontal_layout():
             self.w = style["margin_size"]
@@ -327,7 +325,7 @@ class Mcd:
         #
 
         style["card_max_width"] = card_max_width()
-        style["card_max_height"] = font_metrics.FontMetrics(style["card_font"]).get_pixel_height()
+        style["card_max_height"] = self.get_font_metrics(style["card_font"]).get_pixel_height()
         join_width  = 2 * style["card_margin"] + style["card_max_width"]
         join_height = 2 * style["card_margin"] + style["card_max_height"]
         max_box_width_per_column = [0] * self.col_count

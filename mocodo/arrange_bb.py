@@ -3,10 +3,9 @@
 
 from __future__ import division
 
-from __future__ import absolute_import
 from itertools import product, count
 from random import random, shuffle, randrange, choice
-from .cross import cross, memoize
+from cross import cross, memoize
 from math import hypot, sqrt
 
 import sys

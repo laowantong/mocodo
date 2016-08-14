@@ -2,17 +2,16 @@
 # encoding: utf-8
 
 from __future__ import division
-from __future__ import absolute_import
 import sys
-sys.path.append('.')
+sys.path[0:0] = ["./mocodo/"]
 
 import unittest
-from mocodo.relations import *
-from mocodo.mcd import Mcd
+from relations import *
+from mcd import Mcd
 import json
-from mocodo.file_helpers import read_contents
+from file_helpers import read_contents
 from copy import deepcopy
-from mocodo.argument_parser import parsed_arguments
+from argument_parser import parsed_arguments
 
 minimal_template = json.loads(read_contents("mocodo/relation_templates/text.json"))
 json_template = json.loads(read_contents("mocodo/relation_templates/json.json"))

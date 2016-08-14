@@ -3,11 +3,9 @@
 
 from __future__ import division
 
-from __future__ import absolute_import
-from . import font_metrics
 
-from .attribute import *
-from .dynamic import Dynamic
+from attribute import *
+from dynamic import Dynamic
 
 class Entity:
 
@@ -41,14 +39,14 @@ class Entity:
             else:
                 self.attributes.append(SimpleEntityAttribute(attribute_label, i))
     
-    def calculate_size(self, style):
-        cartouche_font = font_metrics.FontMetrics(style["entity_cartouche_font"])
+    def calculate_size(self, style, get_font_metrics):
+        cartouche_font = get_font_metrics(style["entity_cartouche_font"])
         self.get_cartouche_string_width = cartouche_font.get_pixel_width
         self.cartouche_height = cartouche_font.get_pixel_height()
-        attribute_font = font_metrics.FontMetrics(style["entity_attribute_font"])
+        attribute_font = get_font_metrics(style["entity_attribute_font"])
         self.attribute_height = attribute_font.get_pixel_height()
         for attribute in self.attributes:
-            attribute.calculate_size(style)
+            attribute.calculate_size(style, get_font_metrics)
         cartouche_and_attribute_widths = [self.get_cartouche_string_width(self.cartouche)] + [a.w for a in self.attributes]
         self.w = 2 * style["rect_margin_width"] + max(cartouche_and_attribute_widths)
         self.h = len(self.attributes) * (self.attribute_height + style["line_skip_height"]) \

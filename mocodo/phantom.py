@@ -3,8 +3,6 @@
 
 from __future__ import division
 
-from __future__ import absolute_import
-from . import font_metrics
 
 
 class Phantom:
@@ -17,6 +15,6 @@ class Phantom:
         self.clause = ":"
         self.identifier = None
 
-    def calculate_size(self, style):
+    def calculate_size(self, *ignored):
         self.w = 0
         self.h = 0

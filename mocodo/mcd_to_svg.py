@@ -3,14 +3,13 @@
 
 from __future__ import division
 
-from __future__ import absolute_import
-from .common import version
+from common import version
 import string
 import random
 import re
 import os
-from .file_helpers import read_contents
-from .dynamic import Dynamic
+from file_helpers import read_contents
+from dynamic import Dynamic
 
 def main(mcd, common):
     params = common.params
