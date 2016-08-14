@@ -65,6 +65,6 @@ La devise de Mocodo, « nickel, ni souris », en synthétise les points forts:
 
 Mocodo est libre, gratuit et multiplateforme. Si vous l'aimez, répandez la bonne nouvelle en incluant l'un de ses logos dans votre support: cela multipliera ses chances d'attirer des contributeurs qui le feront évoluer.
 
-Pour vous familiariser avec Mocodo, le mieux est d'utiliser [sa version en ligne](http://mocodo.wingi.net).
+Pour vous familiariser avec Mocodo, le mieux est d'utiliser [sa version en ligne](http://mocodo.net).
 
 Pour en savoir plus, lisez la documentation [au format HTML](https://rawgit.com/laowantong/mocodo/master/doc/fr_refman.html) ou téléchargez-la [au format Jupyter Notebook](doc/fr_refman.ipynb).
