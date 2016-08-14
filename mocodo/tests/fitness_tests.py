@@ -2,15 +2,14 @@
 # encoding: utf-8
 
 from __future__ import division
-from __future__ import absolute_import
 import sys
-sys.path[0:0] = '.'
+sys.path[0:0] = ["./mocodo/"]
 
-from mocodo.fitness import *
+from fitness import *
 
 import unittest
-from mocodo.mcd import Mcd
-from mocodo.argument_parser import parsed_arguments
+from mcd import Mcd
+from argument_parser import parsed_arguments
 from math import hypot
 
 class ArrangeBB(unittest.TestCase):

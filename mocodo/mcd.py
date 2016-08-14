@@ -3,12 +3,11 @@
 
 from __future__ import division
 
-from __future__ import absolute_import
 import re
-from .association import Association
-from .entity import Entity
-from .phantom import Phantom
-from .diagram_link import DiagramLink
+from association import Association
+from entity import Entity
+from phantom import Phantom
+from diagram_link import DiagramLink
 import itertools
 from collections import defaultdict
 

@@ -3,10 +3,9 @@
 
 from __future__ import division
 
-from __future__ import absolute_import
 
 import re
-from .dynamic import Dynamic
+from dynamic import Dynamic
 
 findall_outer_commas = re.compile(r'[^,]+\[.*?\][^,]*|[^,]+').findall
 

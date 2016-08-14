@@ -3,11 +3,10 @@
 
 from __future__ import division
 
-from __future__ import absolute_import
 from itertools import product
 from math import hypot
 from collections import Counter
-from .cross import cross
+from cross import cross
 
 def fitness(links, multiplicity, col_count, row_count, max_distance = 4):
     """ Return (by closure) a function evaluating the aesthetic quality of a given layout. """

@@ -3,14 +3,13 @@
 
 from __future__ import division
 
-from __future__ import absolute_import
 import re
 import textwrap
 import random
-from .file_helpers import read_contents
+from file_helpers import read_contents
 import itertools
 import os
-from .damerau_levenshtein import damerau_levenshtein
+from damerau_levenshtein import damerau_levenshtein
 
 def random_chunks_of(lorem_text, obfuscation_max_length, params):
     words = list(set(word.lower() for word in re.findall(r"(?u)[^\W\d]+", lorem_text)))

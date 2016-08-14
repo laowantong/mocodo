@@ -3,8 +3,7 @@
 
 from __future__ import division
 
-from __future__ import absolute_import
-from . import mocodo
+import mocodo
 
 def main():
     mocodo.main()

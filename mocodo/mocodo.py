@@ -2,20 +2,19 @@
 # encoding: utf-8
 
 from __future__ import division, print_function
-from __future__ import absolute_import
 
 import sys
-
 if sys.version < "2.7":
     print("Mocodo requires Python 2.7 or later to run.\nThis version is {version}.".format(version=sys.version))
     sys.exit()
 
-from .common import Common, safe_print_for_PHP
-from .file_helpers import write_contents
-from .argument_parser import parsed_arguments
-from .mcd import Mcd
-from .relations import Relations
-from . import font_metrics
+import os
+from common import Common, safe_print_for_PHP
+from file_helpers import write_contents
+from argument_parser import parsed_arguments
+from mcd import Mcd
+from relations import Relations
+import font_metrics
 
 def main():
     try:
@@ -48,9 +47,9 @@ def main():
         if params["arrange"]:
             params.update(mcd.get_layout_data())
             if params["arrange"] == "ga":
-                from .arrange_ga import arrange
+                from arrange_ga import arrange
             elif params["arrange"] == "bb":
-                from .arrange_bb import arrange
+                from arrange_bb import arrange
             result = arrange(**params)
             if result:
                 mcd.set_layout(**result)
@@ -59,13 +58,13 @@ def main():
         relations = Relations(mcd, params)
         common.dump_mld_files(relations)
         if params["image_format"] == "svg":
-            from . import mcd_to_svg
+            import mcd_to_svg
             import runpy
             mcd_to_svg.main(mcd, common)
             runpy.run_path(u"%(output_name)s_svg.py" % params)
             return
         if params["image_format"] == "nodebox":
-            from . import mcd_to_nodebox
+            import mcd_to_nodebox
             mcd_to_nodebox.main(mcd, common)
             return os.system(u"""open -a NodeBox "%(output_name)s_nodebox.py" """ % params)
         raise RuntimeError("Mocodo Err.13 - " + _('Should never happen.'))

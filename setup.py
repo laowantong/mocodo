@@ -8,7 +8,6 @@ https://github.com/pypa/sampleproject
 """
 
 # Always prefer setuptools over distutils
-from __future__ import absolute_import
 from setuptools import setup
 # To use a consistent encoding
 from codecs import open

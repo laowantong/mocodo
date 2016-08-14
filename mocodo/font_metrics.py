@@ -3,9 +3,8 @@
 
 from __future__ import division
 
-from __future__ import absolute_import
 import sys
-from .file_helpers import read_contents
+from file_helpers import read_contents
 import os
 import json
 

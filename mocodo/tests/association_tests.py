@@ -2,12 +2,11 @@
 # encoding: utf-8
 
 from __future__ import division
-from __future__ import absolute_import
 import sys
-sys.path[0:0] = '.'
+sys.path[0:0] = ["./mocodo/"]
 
 import unittest
-from mocodo.association import *
+from association import *
 
 import gettext
 gettext.NullTranslations().install()

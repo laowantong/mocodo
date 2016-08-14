@@ -3,10 +3,9 @@
 
 from __future__ import division
 
-from __future__ import absolute_import
 
-from .attribute import *
-from .dynamic import Dynamic
+from attribute import *
+from dynamic import Dynamic
 
 class Entity:
 

@@ -3,13 +3,12 @@
 
 from __future__ import division
 
-from __future__ import absolute_import
 import re
 import collections
 import itertools
 import unicodedata
 import os
-from .file_helpers import write_contents
+from file_helpers import write_contents
 # import pprint
 
 class Relations:

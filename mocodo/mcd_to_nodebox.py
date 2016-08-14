@@ -3,9 +3,8 @@
 
 from __future__ import division
 
-from __future__ import absolute_import
 import os
-from .file_helpers import read_contents
+from file_helpers import read_contents
 
 def main(mcd, common):
     params = common.params
