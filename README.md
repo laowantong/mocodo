@@ -57,7 +57,7 @@ Ainsi que le diagramme relationnel, qui peut être visualisé par un nouvel appe
 ![](https://cdn.rawgit.com/laowantong/mocodo/master/doc/readme_2.svg)
 
 
-La devise de Mocodo, « nickel, ni souris », en synthétise les points forts:
+La devise de Mocodo, « nickel, ni souris », en résume les principaux points forts:
 
 - description textuelle des données. L'utilisateur n'a pas à renseigner, placer et déplacer des éléments comme avec une lessive ordinaire. Il ne fournit rien de plus que les informations définissant son MCD. L'outil s'occupe tout seul du plongement;
 - propreté du rendu. La sortie se fait en vectoriel, prête à être affichée, imprimée, agrandie, exportée dans une multitude de formats sans perte de qualité;
