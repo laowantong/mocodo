@@ -33,6 +33,8 @@ def main():
             from obfuscate import obfuscate
             return safe_print_for_PHP(obfuscate(clauses, params))
         mcd = Mcd(clauses, params)
+        if params["fit"] is not None:
+            return safe_print_for_PHP(mcd.get_reformatted_clauses(params["fit"]))
         if params["flip"]:
             return safe_print_for_PHP({
                     "v": mcd.get_clauses_vertical_mirror,
