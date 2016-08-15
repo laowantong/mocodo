@@ -224,7 +224,7 @@ def parsed_arguments():
     io_group.add_argument("--image_format", choices=["svg", "nodebox"], help="override the automatic selection (depending on your installation) of the image format produced by the generated script")
     io_group.add_argument("--print_params", action="store_true", help="display the contents of the parameter file, then exit")
     
-    source_group.add_argument("--arrange", nargs="?", const="bb", choices=["bb", "ga", "lp"], help="rearrange the layout with either a Branch & Bound, a Genetic Algorithm, or a constraint solver, then exit")
+    source_group.add_argument("--arrange", nargs="?", const="bb", choices=["bb", "ga", "lp"], help="rearrange the layout with either a Branch & Bound, a Genetic Algorithm, or a Linear Program solver, then exit")
     source_group.add_argument("--timeout", metavar="SECONDS", type=int, help="limit the duration of the layout rearrangement")
     source_group.add_argument("--verbose", action="store_true", help="display some gory details during the layout rearrangement")
     source_group.add_argument("--fit", metavar="INT", type=int, const=0, nargs="?", help="fit the layout in the nth smallest grid")

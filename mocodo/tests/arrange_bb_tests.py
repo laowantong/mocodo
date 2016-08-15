@@ -45,7 +45,6 @@ class ArrangeBB(unittest.TestCase):
         params["min_objective"] = 0
         params["timeout"] = None
         params["verbose"] = False
-        from random import randrange
         seed(42 if sys.version.startswith("2") else 1)
         rearrangement = arrange(**params)
         mcd.set_layout(**rearrangement)
