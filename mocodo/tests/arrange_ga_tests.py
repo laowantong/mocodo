@@ -1,6 +1,9 @@
 #!/usr/bin/python
 # encoding: utf-8
 
+import sys
+sys.path.append('.')
+
 from mocodo.arrange_ga import *
 
 import unittest

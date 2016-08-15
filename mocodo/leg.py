@@ -4,6 +4,7 @@
 import font_metrics
 import sys
 import re
+from dynamic import Dynamic
 
 match_card = re.compile(r"(_11|..)([<>]?)\s*(?:\[(.+?)\])?").match
 
@@ -71,36 +72,36 @@ class Leg:
     def _straight_description(self):
         result = []
         result.append({
-                "key": u"env",
+                "key": "env",
                 "env": [("ex", """cx[u"%s"]""" % self.entity.name), ("ey", """cy[u"%s"]""" % self.entity.name)],
             })
         result.append({
-                "key": u"stroke_color",
-                "stroke_color": "leg_stroke_color",
+                "key": "stroke_color",
+                "stroke_color": Dynamic("colors['leg_stroke_color']"),
             })
         result.append({
-                "key": u"stroke_depth",
+                "key": "stroke_depth",
                 "stroke_depth": self.style["leg_stroke_depth"],
             })
         result.append({
-                "key": u"straight_leg",
-                "ex": "ex",
-                "ey": "ey",
+                "key": "straight_leg",
+                "ex": Dynamic("ex"),
+                "ey": Dynamic("ey"),
                 "ew": self.entity.w / 2,
                 "eh": self.entity.h / 2,
-                "ax": "x",
-                "ay": "y",
+                "ax": Dynamic("x"),
+                "ay": Dynamic("y"),
                 "aw": self.association.w / 2,
                 "ah": self.association.h / 2,
                 "cw": self.w,
                 "ch": self.h,
                 "stroke_depth": self.style["leg_stroke_depth"],
-                "stroke_color": "leg_stroke_color",
+                "stroke_color": Dynamic("colors['leg_stroke_color']"),
             })
         result.append({
-                "key": u"straight_card",
+                "key": "straight_card",
                 "text": self.cardinalities,
-                "text_color": "card_text_color",
+                "text_color": Dynamic("colors['card_text_color']"),
                 "leg_identifier": "%s,%s" % (self.association.name, self.entity_name),
                 "family": self.style["card_font"]["family"],
                 "size": self.style["card_font"]["size"],
@@ -108,35 +109,35 @@ class Leg:
         })
         if self.annotation:
             result[-1].update({
-                "key": u"straight_card_note",
+                "key": "straight_card_note",
                 "annotation": self.annotation,
             })
         if self.underlined_card:
             result.append({
-                    "key": u"stroke_depth",
+                    "key": "stroke_depth",
                     "stroke_depth": self.style["card_underline_depth"],
                 })
             result.append({
-                    "key": u"stroke_color",
-                    "stroke_color": "card_text_color",
+                    "key": "stroke_color",
+                    "stroke_color": Dynamic("colors['card_text_color']"),
                 })
             result.append({
-                    "key": u"card_underline",
+                    "key": "card_underline",
                     "w": self.w,
                     "skip": self.style["card_underline_skip_height"],
                 })
         if self.arrow:
             result.extend([
                 {
-                    "key": u"color",
-                    "color": "leg_stroke_color",
+                    "key": "color",
+                    "color": Dynamic("colors['leg_stroke_color']"),
                 },
                 {
-                    "key": u"stroke_depth",
+                    "key": "stroke_depth",
                     "stroke_depth": 0,
                 },
                 {
-                    "key": u"straight_arrow",
+                    "key": "straight_arrow",
                     "direction": self.arrow,
                     "leg_identifier": "%s,%s" % (self.association.name, self.entity_name),
                 }
@@ -146,72 +147,72 @@ class Leg:
     def _curved_description(self):
         result = []
         result.append({
-                "key": u"env",
+                "key": "env",
                 "env": [("ex", """cx[u"%s"]""" % self.entity.name), ("ey", """cy[u"%s"]""" % self.entity.name)],
             })
         result.append({
-                "key": u"stroke_depth",
+                "key": "stroke_depth",
                 "stroke_depth": self.style["leg_stroke_depth"],
             })
         result.append({
-                "key": u"stroke_color",
-                "stroke_color": "leg_stroke_color",
+                "key": "stroke_color",
+                "stroke_color": Dynamic("colors['leg_stroke_color']"),
             })
         result.append({
-                "key": u"curved_leg",
-                "ex": "ex",
-                "ey": "ey",
+                "key": "curved_leg",
+                "ex": Dynamic("ex"),
+                "ey": Dynamic("ey"),
                 "ew": self.entity.w / 2,
                 "eh": self.entity.h / 2,
-                "ax": "x",
-                "ay": "y",
+                "ax": Dynamic("x"),
+                "ay": Dynamic("y"),
                 "aw": self.association.w / 2,
                 "ah": self.association.h / 2,
                 "spin": self.spin,
                 "cw": self.w,
                 "ch": self.h,
                 "stroke_depth": self.style["leg_stroke_depth"],
-                "stroke_color": "leg_stroke_color",
+                "stroke_color": Dynamic("colors['leg_stroke_color']"),
             })
         result.append({
-                "key": u"curved_card",
+                "key": "curved_card",
                 "text": self.cardinalities,
-                "text_color": "card_text_color",
+                "text_color": Dynamic("colors['card_text_color']"),
                 "leg_identifier": self.identifier,
                 "family": self.style["card_font"]["family"],
                 "size": self.style["card_font"]["size"],
             })
         if self.annotation:
             result[-1].update({
-                    "key": u"curved_card_note",
+                    "key": "curved_card_note",
                     "annotation": self.annotation,
                 })
         if self.strengthen:
             result.append({
-                    "key": u"stroke_depth",
+                    "key": "stroke_depth",
                     "stroke_depth": self.style["card_underline_depth"],
                 })
             result.append({
-                    "key": u"stroke_color",
-                    "stroke_color": "card_text_color",
+                    "key": "stroke_color",
+                    "stroke_color": Dynamic("colors['card_text_color']"),
                 })
             result.append({
-                    "key": u"card_underline",
+                    "key": "card_underline",
                     "w": self.w,
                     "skip": self.style["card_underline_skip_height"],
                 })
         if self.arrow:
             result.extend([
                 {
-                    "key": u"color",
-                    "color": "leg_stroke_color",
+                    "key": "color",
+                    "color": Dynamic("colors['leg_stroke_color']"),
                 },
                 {
-                    "key": u"stroke_depth",
+                    "key": "stroke_depth",
                     "stroke_depth": 0,
                 },
                 {
-                    "key": u"curved_arrow",
+                    "key": "curved_arrow",
                     "direction": self.arrow,
                     "leg_identifier": self.identifier,
                 }
