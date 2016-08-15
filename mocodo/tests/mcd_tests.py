@@ -299,5 +299,163 @@ class McdTest(unittest.TestCase):
         """.strip().replace("  ", "")
         self.assertEqual(mcd.get_clauses_diagonal_mirror(), expected)
 
+    def test_explicit_fit(self):
+        # initially: (5, 4) for 11 nodes
+        clauses = u"""
+            Item: Norm, Wash, Haul
+            Milk, 0N Item, 0N Draw
+
+            Draw: Lady, Face, Soon, Dish, Ever
+            Unit, 1N Draw, 11 Folk: Peer, Tour, 
+
+            Folk: Hall, Fold, Baby, Bind, Gene, Aids, Free
+            Pack, 1N Folk, 1N Seem 
+            Seem: Teen, Amid
+            Disk, 0N Flip, 1N Seem
+            Flip : Gold, Ride
+
+            Call: Ride, Soon
+            Gear , 1N Call, 1N Folk
+        """.split("\n")
+        mcd = Mcd(clauses, params)
+        # minimal fit: (4, 3)
+        expected = u"""
+            Item: Norm, Wash, Haul
+            Milk, 0N Item, 0N Draw
+            Draw: Lady, Face, Soon, Dish, Ever
+            Unit, 1N Draw, 11 Folk: Peer, Tour,
+
+            Folk: Hall, Fold, Baby, Bind, Gene, Aids, Free
+            Pack, 1N Folk, 1N Seem
+            Seem: Teen, Amid
+            Disk, 0N Flip, 1N Seem
+
+            Flip : Gold, Ride
+            Call: Ride, Soon
+            Gear , 1N Call, 1N Folk
+            :
+        """.strip().replace("  ", "")
+        self.assertEquals(mcd.get_reformatted_clauses(0), expected)
+        # 1st next fit: (5, 3)
+        expected = u"""
+            Item: Norm, Wash, Haul
+            Milk, 0N Item, 0N Draw
+            Draw: Lady, Face, Soon, Dish, Ever
+            Unit, 1N Draw, 11 Folk: Peer, Tour,
+            Folk: Hall, Fold, Baby, Bind, Gene, Aids, Free
+
+            Pack, 1N Folk, 1N Seem
+            Seem: Teen, Amid
+            Disk, 0N Flip, 1N Seem
+            Flip : Gold, Ride
+            Call: Ride, Soon
+
+            Gear , 1N Call, 1N Folk
+            ::::
+        """.strip().replace("  ", "")
+        self.assertEquals(mcd.get_reformatted_clauses(1), expected)
+        # 2nd next fit: (4, 4)
+        expected = u"""
+            Item: Norm, Wash, Haul
+            Milk, 0N Item, 0N Draw
+            Draw: Lady, Face, Soon, Dish, Ever
+            Unit, 1N Draw, 11 Folk: Peer, Tour,
+
+            Folk: Hall, Fold, Baby, Bind, Gene, Aids, Free
+            Pack, 1N Folk, 1N Seem
+            Seem: Teen, Amid
+            Disk, 0N Flip, 1N Seem
+
+            Flip : Gold, Ride
+            Call: Ride, Soon
+            Gear , 1N Call, 1N Folk
+            :
+
+            ::::
+        """.strip().replace("  ", "")
+        self.assertEquals(mcd.get_reformatted_clauses(2), expected)
+        
+    def test_automatic_fit_produces_next_grid(self):
+        # initially: (5, 4) for 11 nodes
+        clauses = u"""
+            Item: Norm, Wash, Haul
+            Milk, 0N Item, 0N Draw
+
+            Draw: Lady, Face, Soon, Dish, Ever
+            Unit, 1N Draw, 11 Folk: Peer, Tour, 
+
+            Folk: Hall, Fold, Baby, Bind, Gene, Aids, Free
+            Pack, 1N Folk, 1N Seem 
+            Seem: Teen, Amid
+            Disk, 0N Flip, 1N Seem
+            Flip : Gold, Ride
+
+            Call: Ride, Soon
+            Gear , 1N Call, 1N Folk
+        """.split("\n")
+        mcd = Mcd(clauses, params)
+        # (5, 4) being a preferred grid, the next one (6, 4) is generated
+        expected = u"""
+            Item: Norm, Wash, Haul
+            Milk, 0N Item, 0N Draw
+            Draw: Lady, Face, Soon, Dish, Ever
+            Unit, 1N Draw, 11 Folk: Peer, Tour,
+            Folk: Hall, Fold, Baby, Bind, Gene, Aids, Free
+            Pack, 1N Folk, 1N Seem
+
+            Seem: Teen, Amid
+            Disk, 0N Flip, 1N Seem
+            Flip : Gold, Ride
+            Call: Ride, Soon
+            Gear , 1N Call, 1N Folk
+            :
+
+            ::::::
+
+            ::::::
+        """.strip().replace("  ", "")
+        self.assertEquals(mcd.get_reformatted_clauses(-1), expected)
+
+    def test_implicit_fit_produces_min_grid_next(self):
+        # initially: (4, 5) for 11 nodes
+        clauses = u"""
+            Item: Norm, Wash, Haul
+            Milk, 0N Item, 0N Draw
+
+            Draw: Lady, Face, Soon, Dish, Ever
+            Unit, 1N Draw, 11 Folk: Peer, Tour, 
+
+            Folk: Hall, Fold, Baby, Bind, Gene, Aids, Free
+
+            Pack, 1N Folk, 1N Seem
+            Seem: Teen, Amid
+            Disk, 0N Flip, 1N Seem
+            Flip : Gold, Ride
+
+            Call: Ride, Soon
+            Gear , 1N Call, 1N Folk
+        """.split("\n")
+        mcd = Mcd(clauses, params)
+        # (4, 5) not being a preferred grid, it is equivalent to nth_fit == 1
+        expected = u"""
+            Item: Norm, Wash, Haul
+            Milk, 0N Item, 0N Draw
+            Draw: Lady, Face, Soon, Dish, Ever
+            Unit, 1N Draw, 11 Folk: Peer, Tour,
+            Folk: Hall, Fold, Baby, Bind, Gene, Aids, Free
+
+            Pack, 1N Folk, 1N Seem
+            Seem: Teen, Amid
+            Disk, 0N Flip, 1N Seem
+            Flip : Gold, Ride
+            Call: Ride, Soon
+
+            Gear , 1N Call, 1N Folk
+            ::::
+        """.strip().replace("  ", "")
+        self.assertEquals(mcd.get_reformatted_clauses(-1), expected)
+        self.assertEquals(mcd.get_reformatted_clauses(1), expected)
+
+
 if __name__ == '__main__':
     unittest.main()

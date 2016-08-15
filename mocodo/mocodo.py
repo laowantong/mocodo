@@ -34,7 +34,7 @@ def main():
             params_contents = json.dumps(params, ensure_ascii=False, indent=2, sort_keys=True)
             return safe_print_for_PHP(params_contents)
         if params["obfuscate"]:
-            from .obfuscate import obfuscate
+            from obfuscate import obfuscate
             return safe_print_for_PHP(obfuscate(clauses, params))
         mcd = Mcd(clauses, params, get_font_metrics)
         if params["flip"]:
