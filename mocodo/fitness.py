@@ -6,7 +6,7 @@ from math import hypot
 from collections import Counter
 from cross import cross
 
-def fitness(links, multiplicity, col_count, row_count, max_crossing = 4):
+def fitness(links, multiplicity, col_count, row_count, max_distance = 4):
     """ Return (by closure) a function evaluating the aesthetic quality of a given layout. """
     
     def evaluate(layout):
@@ -17,7 +17,7 @@ def fitness(links, multiplicity, col_count, row_count, max_crossing = 4):
         short_segments = []
         for  ((y1, x1), (y2, x2), m) in segments:
             distance = distances[abs(x1-x2)][abs(y1-y2)] * m
-            if distance <= max_crossing:
+            if distance <= max_distance:
                 short_segments.append((x1, y1, x2, y2))
             total_distances += distance
         crossing_count = (link_count - len(short_segments)) * link_count

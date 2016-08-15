@@ -1,6 +1,9 @@
 #!/usr/bin/python
 # encoding: utf-8
 
+import sys
+sys.path.append('.')
+
 from mocodo.fitness import *
 
 import unittest
