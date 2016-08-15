@@ -10,6 +10,7 @@ from diagram_link import DiagramLink
 import font_metrics
 import itertools
 from collections import defaultdict
+from grid import Grid
 
 compress_colons = re.compile(r"(?m)^:\n(?=:$)").sub
 
@@ -20,7 +21,6 @@ class Mcd:
         def parse_clauses():
             self.entities = {}
             self.associations = {}
-            self.phantoms = {}
             seen = set()
             self.rows = [[]]
             self.header = ""
@@ -253,6 +253,28 @@ class Mcd:
     def get_clauses_diagonal_mirror(self):
         result = self.header + "\n\n".join(self.get_row_text(row) for row in zip(*self.rows))
         return compress_colons(":", result)
+    
+    def get_reformatted_clauses(self, nth_fit):
+        grid = Grid(len(self.boxes) + 100) # make sure there are enough precalculated grids
+        start = len(self.entities) + len(self.associations) # number of nonempty boxes
+        if nth_fit < 0:
+            if (self.col_count, self.row_count) in grid: # the current grid is among precalculated ones
+                start = self.col_count * self.row_count # start from the completed grid
+            nth_fit = 1 # and calculate the next one
+        (col_count, row_count) = grid.get_nth_next(start, nth_fit)
+        result = []
+        i = 0
+        for box in self.boxes:
+            if box.kind != "phantom":
+                if i % col_count == 0 and i:
+                    result.append("")
+                result.append(box.clause.replace("<<<protected-comma>>>", ",").replace("<<<protected-colon>>>", ":"))
+                i += 1
+        for i in range(i, col_count * row_count):
+            if i % col_count == 0 and i:
+                result.append("")
+            result.append(":")
+        return self.header + compress_colons(":", "\n".join(result))
     
     def calculate_size(self, style):
         def card_max_width():
