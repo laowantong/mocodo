@@ -13,5 +13,10 @@ doc/mocodo_notebook
 doc/.ipynb*
 sandbox*.*
 paper/*
+<<<<<<< HEAD
+*.log
+*.lp
+=======
 *.lp
 *.log
+>>>>>>> master
