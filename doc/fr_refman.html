@@ -11785,7 +11785,18 @@ div#notebook {
 <li><a href="#utiliser_mocodo__online_">3.1. Utiliser Mocodo <em>online</em></a></li>
 <li><a href="#utiliser_mocodo_en_ligne_de_commande">3.2. Utiliser Mocodo en ligne de commande</a><ul>
 <li><a href="#au_plus_simple">3.2.1. Au plus simple</a></li>
-<li><a href="#parametrage_occasionnel">3.2.2. Liste des arguments</a></li>
+<li><a href="#parametrage_occasionnel">3.2.2. Liste des arguments</a><ul>
+<li><a href="#options_sur_mocodo_lui_meme">3.2.2.1. Options sur Mocodo lui-même</a></li>
+<li><a href="#entree_sortie">3.2.2.2. Entrée-sortie</a></li>
+<li><a href="#aspect_de_la_sortie_graphique">3.2.2.3. Aspect de la sortie graphique</a></li>
+<li><a href="#sortie_relationnelle">3.2.2.4. Sortie relationnelle</a></li>
+<li><a href="#modifications_du_texte_d_entree">3.2.2.5. Modifications du texte d'entrée</a></li>
+<li><a href="#rearrangement_par_separation_et_evaluation">3.2.2.6. Réarrangement par séparation et évaluation</a></li>
+<li><a href="#rearrangement_par_algorithme_genetique">3.2.2.7. Réarrangement par algorithme génétique</a></li>
+<li><a href="#rearrangement_par_resolution_d_un_programme_lineaire">3.2.2.8. Réarrangement par résolution d'un programme linéaire</a></li>
+<li><a href="#options_specifiques_aux_notebooks">3.2.2.9. Options spécifiques aux Notebooks</a></li>
+</ul>
+</li>
 <li><a href="#parametrage_a_long_terme">3.2.3. Paramétrage à long terme</a></li>
 </ul>
 </li>
@@ -11853,12 +11864,13 @@ div#notebook {
 </ul>
 </li>
 <li><a href="#rearrangement_automatique">5.6. Réarrangement automatique</a><ul>
-<li><a href="#methode_exacte">5.6.1. Méthode exacte</a><ul>
+<li><a href="#methode_exacte">5.6.1. Méthode exacte spécialisée</a><ul>
 <li><a href="#non_organic">5.6.1.1. À l'intérieur d'une grille prédéfinie</a></li>
 <li><a href="#organic">5.6.1.2. Par croissance organique</a></li>
 </ul>
 </li>
 <li><a href="#methode_heuristique">5.6.2. Méthode heuristique</a></li>
+<li><a href="#methode_exacte_generique">5.6.3. Méthode exacte générique</a></li>
 </ul>
 </li>
 <li><a href="#conversion_dans_d_autres_formats_graphiques">5.7. Conversion dans d'autres formats graphiques</a></li>
@@ -12443,7 +12455,7 @@ Enseigner, 11 Prof, 1N Matière
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>La devise de Mocodo, « nickel, ni souris », en synthétise les points forts:</p>
+<p>La devise de Mocodo, « nickel, ni souris », en résume les principaux points forts:</p>
 <ul>
 <li>description textuelle des données. L'utilisateur n'a pas à renseigner, placer et déplacer des éléments comme avec une lessive ordinaire. Il ne fournit rien de plus que les informations définissant son MCD. L'outil s'occupe tout seul du plongement;</li>
 <li>propreté du rendu. La sortie se fait en vectoriel, prête à être affichée, imprimée, agrandie, exportée dans une multitude de formats sans perte de qualité;</li>
@@ -12477,8 +12489,9 @@ Enseigner, 11 Prof, 1N Matière
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Mocodo 2 requiert le langage Python 2.7. Si vous êtes sous Mac OS X ou Linux, vous l'avez probablement déjà. Dans le cas contraire, vous devrez l'installer. Nous recommandons la <a href="http://continuum.io/downloads">distribution Anaconda</a>, qui contient tout ce qu'il faut et bien plus encore. C'est en particulier la condition <em>sine qua non</em> pour utiliser Mocodo à l'intérieur de documents comme celui-ci (il s'agit d'un <em>Jupyter notebook</em>).</p>
-<p>Une fois Python 2.7 installé, vous n'avez normalement plus qu'à taper en ligne de commande:</p>
+<p><strong>Nouveauté de la version 2.3.</strong> Mocodo tourne aussi bien sous Python 2 que 3 (testé sous 2.7 et 3.5).</p>
+<p>Si vous êtes sous Mac OS X ou Linux, vous avez probablement déjà l'un des deux. Dans le cas contraire, vous devrez l'installer. Nous recommandons la <a href="http://continuum.io/downloads">distribution Anaconda</a>, qui contient tout ce qu'il faut et bien plus encore. C'est en particulier la condition <em>sine qua non</em> pour pouvoir utiliser Mocodo à l'intérieur de documents comme celui-ci (il s'agit d'un <em>Jupyter notebook</em>).</p>
+<p>Une fois Python installé, vous n'avez normalement plus qu'à taper en ligne de commande:</p>
 
 <pre><code>pip install mocodo
 
@@ -12542,7 +12555,7 @@ Enseigner, 11 Prof, 1N Matière
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Vous pouvez utiliser Mocodo:</p>
 <ul>
-<li>dans un navigateur récent, sans rien installer, avec <a href="http://mocodo.wingi.net">Mocodo <em>online</em></a>;</li>
+<li>dans un navigateur récent, sans rien installer, avec <a href="http://mocodo.net">Mocodo <em>online</em></a>;</li>
 <li>sur votre machine, comme n'importe quel programme Python;</li>
 <li>dans un document Jupyter Notebook (à l'instar de cette documentation).</li>
 </ul>
@@ -12564,7 +12577,7 @@ Enseigner, 11 Prof, 1N Matière
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Faites pointer votre navigateur sur <a href="http://mocodo.wingi.net">http://mocodo.wingi.net</a>: vous pouvez commencer à taper votre MCD. Appuyez à tout moment sur le bouton de génération pour visualiser le diagramme conceptuel et en déduire les relations. Une fois que le résultat vous convient, appuyez sur le bouton de téléchargement pour récupérer une archive ZIP contenant tous les fichiers d'entrée et de sortie désirés.</p>
+<p>Faites pointer votre navigateur sur <a href="http://mocodo.net">http://mocodo.net</a>: vous pouvez commencer à taper votre MCD. Appuyez à tout moment sur le bouton de génération pour visualiser le diagramme conceptuel et en déduire les relations. Une fois que le résultat vous convient, appuyez sur le bouton de téléchargement pour récupérer une archive ZIP contenant tous les fichiers d'entrée et de sortie désirés.</p>
 <p>Mocodo <em>online</em> est conçu pour une utilisation occasionnelle et/ou interactive, et son interface vise avant tout à la simplicité. Vous n'avez donc accès qu'aux options essentielles du programme. Si vous en voulez davantage, tant en termes de paramétrage, que de calcul ou de fonctionnalités, vous pouvez installer Mocodo sur votre machine.</p>
 
 </div>
@@ -12625,7 +12638,16 @@ Enseigner, 11 Prof, 1N Matière
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Options-sur-Mocodo-lui-m&#234;me">Options sur Mocodo lui-m&#234;me<a class="anchor-link" href="#Options-sur-Mocodo-lui-m&#234;me">&#182;</a></h4><ul>
+<h4 id="3.2.2.1.-Options-sur-Mocodo-lui-m&#234;me-">3.2.2.1. Options sur Mocodo lui-m&#234;me <a id="options_sur_mocodo_lui_meme" /><a class="anchor-link" href="#3.2.2.1.-Options-sur-Mocodo-lui-m&#234;me-">&#182;</a></h4>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
 <li><strong><code>--help</code></strong>.<br>
 Affiche un message d'aide, puis termine.</li>
 <li><strong><code>--version</code></strong>.<br>
@@ -12644,7 +12666,16 @@ Recrée une version originelle des fichiers <code>sandbox.mcd</code> et <code>pa
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Entr&#233;e-sortie">Entr&#233;e-sortie<a class="anchor-link" href="#Entr&#233;e-sortie">&#182;</a></h4><ul>
+<h4 id="3.2.2.2.-Entr&#233;e-sortie-">3.2.2.2. Entr&#233;e-sortie <a id="entree_sortie" /><a class="anchor-link" href="#3.2.2.2.-Entr&#233;e-sortie-">&#182;</a></h4>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
 <li><strong><code>--params_path PATH</code></strong>.<br>
 Le chemin du fichier de paramètres. S'il est omis, utilise <code>params.json</code> dans le répertoire d'entrée. Si ce fichier n'existe pas, utilise les paramètres par défaut (défaut: <code>params.json</code>).</li>
 <li><a href="#relational_diagram"><strong><code>--input PATH</code></strong></a>.<br>
@@ -12669,7 +12700,16 @@ Affiche le contenu du fichier de paramètres, puis termine (défaut: <code>False
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Aspect-de-la-sortie-graphique">Aspect de la sortie graphique<a class="anchor-link" href="#Aspect-de-la-sortie-graphique">&#182;</a></h4><ul>
+<h4 id="3.2.2.3.-Aspect-de-la-sortie-graphique-">3.2.2.3. Aspect de la sortie graphique <a id="aspect_de_la_sortie_graphique" /><a class="anchor-link" href="#3.2.2.3.-Aspect-de-la-sortie-graphique-">&#182;</a></h4>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
 <li><a href="#df_symbol"><strong><code>--df STR</code></strong></a>.<br>
 Acronyme à encercler dans une dépendance fonctionnelle (défaut: <code>DF</code>).</li>
 <li><a href="#card_format"><strong><code>--card_format STR</code></strong></a>.<br>
@@ -12698,7 +12738,16 @@ Ignore le survol des éléments annotés (défaut: <code>False</code>).</li>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Sortie-relationnelle">Sortie relationnelle<a class="anchor-link" href="#Sortie-relationnelle">&#182;</a></h4><ul>
+<h4 id="3.2.2.4.-Sortie-relationnelle-">3.2.2.4. Sortie relationnelle <a id="sortie_relationnelle" /><a class="anchor-link" href="#3.2.2.4.-Sortie-relationnelle-">&#182;</a></h4>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
 <li><a href="#external_representations"><strong><code>--relations [NAME [NAME ...]]</code></strong></a>.<br>
 Un ou plusieurs gabarits pour les schémas relationnels générés. Cf. répertoire <code>relation_templates</code> (défaut: <code>html text</code>).</li>
 <li><a href="#retablissement_semantique_df"><strong><code>--disambiguation {numbers_only,annotations}</code></strong></a>.<br>
@@ -12717,9 +12766,18 @@ Utiliser le nom de l'entité la plus référencée comme titre (défaut: <code>F
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Modifications-du-texte-d'entr&#233;e">Modifications du texte d'entr&#233;e<a class="anchor-link" href="#Modifications-du-texte-d'entr&#233;e">&#182;</a></h4><ul>
-<li><a href="#rearrangement_automatique"><strong><code>--arrange [{bb,ga}]</code></strong></a>.<br>
-Met en page le diagramme, soit par séparation et évaluation, soit avec un algorithme génétique, puis termine (défaut: <code>None</code>).</li>
+<h4 id="3.2.2.5.-Modifications-du-texte-d'entr&#233;e-">3.2.2.5. Modifications du texte d'entr&#233;e <a id="modifications_du_texte_d_entree" /><a class="anchor-link" href="#3.2.2.5.-Modifications-du-texte-d'entr&#233;e-">&#182;</a></h4>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li><a href="#rearrangement_automatique"><strong><code>--arrange [{bb,ga,lp}]</code></strong></a>.<br>
+Met en page le diagramme, soit par séparation et évaluation, soit avec un algorithme génétique, soit avec un solveur de programmes linéaires, puis termine (défaut: <code>None</code>).</li>
 <li><strong><code>--timeout SECONDS</code></strong>.<br>
 Limite la durée du calcul de la mise en page (défaut: <code>None</code>).</li>
 <li><strong><code>--verbose</code></strong>.<br>
@@ -12746,7 +12804,16 @@ Valeur du germe du générateur aléatoire (défaut: <code>None</code>).</li>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="R&#233;arrangement-par-s&#233;paration-et-&#233;valuation">R&#233;arrangement par s&#233;paration et &#233;valuation<a class="anchor-link" href="#R&#233;arrangement-par-s&#233;paration-et-&#233;valuation">&#182;</a></h4><p>Sous-options accessibles avec l'option <code>--arrange=bb</code>.</p>
+<h4 id="3.2.2.6.-R&#233;arrangement-par-s&#233;paration-et-&#233;valuation-">3.2.2.6. R&#233;arrangement par s&#233;paration et &#233;valuation <a id="rearrangement_par_separation_et_evaluation" /><a class="anchor-link" href="#3.2.2.6.-R&#233;arrangement-par-s&#233;paration-et-&#233;valuation-">&#182;</a></h4>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Sous-options accessibles avec l'option <code>--arrange=bb</code>.</p>
 <ul>
 <li><strong><code>--call_limit INT</code></strong>.<br>
 Nombre maximal d'appels pour une boîte de départ donnée (défaut: <code>10000</code>).</li>
@@ -12766,7 +12833,16 @@ Réarrangement non limité à la grille originelle (défaut: <code>False</code>)
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="R&#233;arrangement-par-algorithme-g&#233;n&#233;tique">R&#233;arrangement par algorithme g&#233;n&#233;tique<a class="anchor-link" href="#R&#233;arrangement-par-algorithme-g&#233;n&#233;tique">&#182;</a></h4><p>Sous-options accessibles avec l'option <code>--arrange=ga</code>.</p>
+<h4 id="3.2.2.7.-R&#233;arrangement-par-algorithme-g&#233;n&#233;tique-">3.2.2.7. R&#233;arrangement par algorithme g&#233;n&#233;tique <a id="rearrangement_par_algorithme_genetique" /><a class="anchor-link" href="#3.2.2.7.-R&#233;arrangement-par-algorithme-g&#233;n&#233;tique-">&#182;</a></h4>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Sous-options accessibles avec l'option <code>--arrange=ga</code>.</p>
 <ul>
 <li><strong><code>--population_size INT</code></strong>.<br>
 Nombre d'individus à faire évoluer (défaut: <code>1000</code>).</li>
@@ -12790,7 +12866,39 @@ Nombre maximal de générations consécutives sans amélioration (défaut: <code
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Options-sp&#233;cifiques-aux-Notebooks">Options sp&#233;cifiques aux Notebooks<a class="anchor-link" href="#Options-sp&#233;cifiques-aux-Notebooks">&#182;</a></h4><p>Ignorées lors de l'appel en ligne de commande.</p>
+<h4 id="3.2.2.8.-R&#233;arrangement-par-r&#233;solution-d'un-programme-lin&#233;aire-">3.2.2.8. R&#233;arrangement par r&#233;solution d'un programme lin&#233;aire <a id="rearrangement_par_resolution_d_un_programme_lineaire" /><a class="anchor-link" href="#3.2.2.8.-R&#233;arrangement-par-r&#233;solution-d'un-programme-lin&#233;aire-">&#182;</a></h4>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Sous-options accessibles avec l'option <code>--arrange=lp</code>.</p>
+<ul>
+<li><a href="#methode_exacte_generique"><strong><code>--engine [{cplex,gurobi}]</code></strong></a>.<br>
+Solveur de programmes linéaires (défaut: <code>None</code>).</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="3.2.2.9.-Options-sp&#233;cifiques-aux-Notebooks-">3.2.2.9. Options sp&#233;cifiques aux Notebooks <a id="options_specifiques_aux_notebooks" /><a class="anchor-link" href="#3.2.2.9.-Options-sp&#233;cifiques-aux-Notebooks-">&#182;</a></h4>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Ignorées lors de l'appel en ligne de commande.</p>
 <ul>
 <li><a href="regular_mld_conversion"><strong><code>--mld</code></strong></a>.<br>
 Affiche le schéma relationnel en HTML dans la sortie de la cellule (défaut: <code>False</code>).</li>
@@ -18953,7 +19061,7 @@ Puni, 11 Lappa, 0N Lappa
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>La transposition peut être utilisée pour réaliser plus facilement certaines opérations d'édition en colonne, en particulier sous <a href="http://mocodo.wingi.net">Mocodo online</a>. Par exemple, supposons que l'on souhaite décaler vers le haut la dernière colonne du MCD ci-dessous:</p>
+<p>La transposition peut être utilisée pour réaliser plus facilement certaines opérations d'édition en colonne, en particulier sous <a href="http://mocodo.net">Mocodo online</a>. Par exemple, supposons que l'on souhaite décaler vers le haut la dernière colonne du MCD ci-dessous:</p>
 
 </div>
 </div>
@@ -19514,10 +19622,11 @@ MAECENAS, 1N DIGNISSIM, 1N DIGNISSIM
 <li>les liens ne doivent pas se couper;</li>
 <li>leur longueur cumulée doit être minimale.</li>
 </ol>
-<p>Deux types d'algorithmes sont fournis:</p>
+<p>Trois algorithmes sont fournis:</p>
 <ul>
 <li>un algorithme exact (<code>bb</code>, pour <em>Branch &amp; Bound</em>), qui ne trouve que des solutions satisfaisant aux deux critères;</li>
-<li>un algorithme approché (<code>ga</code>, pour <em>Genetic Algorithm</em>), réservé aux cas où il est impossible de satisfaire au premier critère. L'algorithme va alors chercher des solutions où les liens se coupent seulement le moins possible.</li>
+<li>un algorithme approché (<code>ga</code>, pour <em>Genetic Algorithm</em>), réservé aux cas où il est impossible de satisfaire au premier critère. L'algorithme va alors chercher des solutions où les liens se coupent seulement le moins possible;</li>
+<li>un autre algorithme exact (<code>lp</code>, pour <em>Linear Programming</em>), mais reposant sur un solveur générique (actuellement, <a href="https://www-01.ibm.com/software/commerce/optimization/cplex-optimizer/">CPLEX</a> ou <a href="http://gurobi.com">Gurobi</a>).</li>
 </ul>
 
 </div>
@@ -19538,7 +19647,7 @@ MAECENAS, 1N DIGNISSIM, 1N DIGNISSIM
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="5.6.1.-M&#233;thode-exacte-">5.6.1. M&#233;thode exacte <a id="methode_exacte" /><a class="anchor-link" href="#5.6.1.-M&#233;thode-exacte-">&#182;</a></h3>
+<h3 id="5.6.1.-M&#233;thode-exacte-sp&#233;cialis&#233;e-">5.6.1. M&#233;thode exacte sp&#233;cialis&#233;e <a id="methode_exacte" /><a class="anchor-link" href="#5.6.1.-M&#233;thode-exacte-sp&#233;cialis&#233;e-">&#182;</a></h3>
 </div>
 </div>
 </div>
@@ -20606,6 +20715,9 @@ Posuere: pede
 <p>Pour permettre au programme de rendre plus rapidement de bonnes solutions, on a borné arbitrairement le nombre d'appels à la fonction chargée de construire une permutation à partir du placement de la première boîte. De ce fait, l'algorithme n'est plus exact, en ce sens que la meilleure solution peut occasionnellement lui échapper. Si vous soupçonnez que c'est le cas, faites un autre essai, éventuellement en augmentant la borne (par défaut 10000):</p>
 <div class="highlight"><pre><span></span>mocodo --arrange --call_limit<span class="o">=</span>100000
 </pre></div>
+<p>Et pour en avoir complètement le cœur net, lancez le solveur de programmes linéaires:</p>
+<div class="highlight"><pre><span></span>mocodo --arrange<span class="o">=</span>lp
+</pre></div>
 
 </div>
 </div>
@@ -21099,6 +21211,548 @@ TINCIDUNT: faucibus, orci, cursus
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="5.6.3.-M&#233;thode-exacte-g&#233;n&#233;rique-">5.6.3. M&#233;thode exacte g&#233;n&#233;rique <a id="methode_exacte_generique" /><a class="anchor-link" href="#5.6.3.-M&#233;thode-exacte-g&#233;n&#233;rique-">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Nouveauté de la version 2.2.</strong> Cette méthode, invoquée avec le paramètre <code>arrange=lp</code>, trouvera nécessairement l'une des meilleures solutions, pour peu que celle-ci existe et que vous ayez du temps devant vous.</p>
+<p>L'idée est de convertir le problème en <a href="https://fr.wikipedia.org/wiki/Optimisation_linéaire">programme linaire</a>, de l'envoyer à un solveur externe, et de récupérer le résultat à la fin.</p>
+<p>Actuellement, le solveur peut être <a href="http://www-01.ibm.com/software/commerce/optimization/cplex-optimizer/">CPLEX</a>:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="k">mocodo</span> --arrange=lp --engine=cplex
+Lacus, 01 Blandit, 1N Elit
+Elit: ligula, tellus
+Metus, 1N Elit, 0N Congue: nibh
+Bibendum, 01 Blandit, 0N Blandit
+Blandit: consequat, ligula, nibh, consequat
+
+Ipsum, 1N Blandit, 0N Congue
+Congue: ligula, tellus
+Augue, 0N Congue, 0N Congue
+Velit, 0N Blandit, 0N Nonummy: sollicitudin
+DF, 11 Nonummy, 0N Congue
+
+Posuere: pede
+Vivamus, 0N Posuere, 0N Nonummy, 0N Blandit: eleifend, iaculis
+Nonummy: consequat, ligula
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>%%mocodo
+Bibendum, 01 Blandit, 0N Blandit
+Blandit: consequat, ligula, nibh, consequat
+Lacus, 01 Blandit, 1N Elit
+Elit: ligula, tellus
+:
+
+Vivamus, 0N Posuere, 0N Nonummy, 0N Blandit: eleifend, iaculis
+Velit, 0N Blandit, 0N Nonummy: sollicitudin
+Ipsum, 1N Blandit, 0N Congue
+Metus, 1N Elit, 0N Congue: nibh
+:
+
+Posuere: pede
+Nonummy: consequat, ligula
+DF, 11 Nonummy, 0N Congue
+Congue: ligula, tellus
+Augue, 0N Congue, 0N Congue
+</pre>
+</div>
+</div>
+
+<div class="output_area"><div class="prompt"></div>
+
+<div class="output_svg output_subarea ">
+<svg height="310" view_box="0 0 546 310" width="546" xmlns="http://www.w3.org/2000/svg" xmlns:link="http://www.w3.org/1999/xlink">\n\n<desc>Généré par Mocodo 2.3 le Mon, 15 Aug 2016 19:35:40</desc>
+
+<rect fill="none" height="310" id="frame" stroke="none" stroke-width="0" width="546" x="0" y="0"/>
+
+<!-- Association Ipsum -->
+<line stroke="#000000" stroke-width="1" x1="188" x2="295" y1="64" y2="172"/>
+<text fill="#000000" font-family="Futura" font-size="11" x="237" y="107.435704275">1,N</text>
+<line stroke="#000000" stroke-width="1" x1="393" x2="295" y1="263" y2="172"/>
+<text fill="#000000" font-family="Futura" font-size="11" x="350.376036133" y="217">0,N</text>
+<g id="association-Ipsum">
+	<path d="M 314 143 a 14 14 90 0 1 14 14 V 171 h -66 V 157 a 14 14 90 0 1 14 -14" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+	<path d="M 328 171.0 v 16 a 14 14 90 0 1 -14 14 H 276 a 14 14 90 0 1 -14 -14 V 171.0 H 66" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+	<rect fill="none" height="58" rx="14" stroke="#000000" stroke-width="1.5" width="66" x="262" y="143"/>
+	<line stroke="#000000" stroke-width="1.5" x1="262" x2="328" y1="171" y2="171"/>
+	<text fill="#000000" font-family="Copperplate" font-size="18" x="269" y="164.3">Ipsum</text>
+</g>
+
+<!-- Association Lacus -->
+<line stroke="#000000" stroke-width="1" x1="188" x2="295" y1="64" y2="64"/>
+<text fill="#000000" font-family="Futura" font-size="11" x="237" y="56.0">0,1</text>
+<line stroke="#000000" stroke-width="1" x1="393" x2="295" y1="64" y2="64"/>
+<text fill="#000000" font-family="Futura" font-size="11" x="342" y="80.0">1,N</text>
+<g id="association-Lacus">
+	<path d="M 315 35 a 14 14 90 0 1 14 14 V 63 h -68 V 49 a 14 14 90 0 1 14 -14" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+	<path d="M 329 63.0 v 16 a 14 14 90 0 1 -14 14 H 275 a 14 14 90 0 1 -14 -14 V 63.0 H 68" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+	<rect fill="none" height="58" rx="14" stroke="#000000" stroke-width="1.5" width="68" x="261" y="35"/>
+	<line stroke="#000000" stroke-width="1.5" x1="261" x2="329" y1="63" y2="63"/>
+	<text fill="#000000" font-family="Copperplate" font-size="18" x="268" y="56.3">Lacus</text>
+</g>
+
+<!-- Association DF -->
+<line stroke="#000000" stroke-width="1" x1="188" x2="295" y1="263" y2="263"/>
+<text fill="#000000" font-family="Futura" font-size="11" x="244" y="279.0">1,1</text>
+<line stroke="#000000" stroke-width="1" x1="393" x2="295" y1="263" y2="263"/>
+<text fill="#000000" font-family="Futura" font-size="11" x="326" y="279.0">0,N</text>
+<g id="association-DF">
+	<circle cx="295" cy="263" fill="#FFFFFF" r="20" stroke="#000000" stroke-width="1.5"/>
+	<text fill="#000000" font-family="Copperplate" font-size="18" x="282" y="267.8">DF</text>
+</g>
+
+<!-- Association Augue -->
+<path d="M393 263 C 433.666666667 231.0 469.666666667 231.0 501 263" fill="none" stroke="#000000" stroke-width="1"/>
+<text fill="#000000" font-family="Futura" font-size="11" x="441" y="257.0">0,N</text>
+<path d="M393 263 C 433.666666667 295.0 469.666666667 295.0 501 263" fill="none" stroke="#000000" stroke-width="1"/>
+<text fill="#000000" font-family="Futura" font-size="11" x="441" y="277.0">0,N</text>
+<g id="association-Augue">
+	<path d="M 523 234 a 14 14 90 0 1 14 14 V 262 h -72 V 248 a 14 14 90 0 1 14 -14" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+	<path d="M 537 262.0 v 16 a 14 14 90 0 1 -14 14 H 479 a 14 14 90 0 1 -14 -14 V 262.0 H 72" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+	<rect fill="none" height="58" rx="14" stroke="#000000" stroke-width="1.5" width="72" x="465" y="234"/>
+	<line stroke="#000000" stroke-width="1.5" x1="465" x2="537" y1="262" y2="262"/>
+	<text fill="#000000" font-family="Copperplate" font-size="18" x="472" y="255.3">Augue</text>
+</g>
+
+<!-- Association Bibendum -->
+<path d="M188 64 C 153.0 96.0 110.666666667 96.0 61 64" fill="none" stroke="#000000" stroke-width="1"/>
+<text fill="#000000" font-family="Futura" font-size="11" x="121" y="79.0">0,1</text>
+<path d="M188 64 C 152.333333333 32.0 110.0 32.0 61 64" fill="none" stroke="#000000" stroke-width="1"/>
+<text fill="#000000" font-family="Futura" font-size="11" x="120" y="57.0">0,N</text>
+<g id="association-Bibendum">
+	<path d="M 99 35 a 14 14 90 0 1 14 14 V 63 h -104 V 49 a 14 14 90 0 1 14 -14" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+	<path d="M 113 63.0 v 16 a 14 14 90 0 1 -14 14 H 23 a 14 14 90 0 1 -14 -14 V 63.0 H 104" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+	<rect fill="none" height="58" rx="14" stroke="#000000" stroke-width="1.5" width="104" x="9" y="35"/>
+	<line stroke="#000000" stroke-width="1.5" x1="9" x2="113" y1="63" y2="63"/>
+	<text fill="#000000" font-family="Copperplate" font-size="18" x="16" y="56.3">Bibendum</text>
+</g>
+
+<!-- Association Vivamus -->
+<line stroke="#000000" stroke-width="1" x1="61" x2="61" y1="263" y2="172"/>
+<text fill="#000000" font-family="Futura" font-size="11" x="66.0" y="225">0,N</text>
+<line stroke="#000000" stroke-width="1" x1="188" x2="61" y1="263" y2="172"/>
+<text fill="#000000" font-family="Futura" font-size="11" x="113" y="237.014986876">0,N</text>
+<path d="M188 64 C 176.348013289 122.570193424 134.014679955 158.570193424 61 172" fill="none" stroke="#000000" stroke-width="1"/>
+<text fill="#000000" font-family="Futura" font-size="11" x="120" y="136.265126779">0,N</text>
+<g id="association-Vivamus">
+	<path d="M 91 135 a 14 14 90 0 1 14 14 V 163 h -88 V 149 a 14 14 90 0 1 14 -14" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+	<path d="M 105 163.0 v 32 a 14 14 90 0 1 -14 14 H 31 a 14 14 90 0 1 -14 -14 V 163.0 H 88" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+	<rect fill="none" height="74" rx="14" stroke="#000000" stroke-width="1.5" width="88" x="17" y="135"/>
+	<line stroke="#000000" stroke-width="1.5" x1="17" x2="105" y1="163" y2="163"/>
+	<text fill="#000000" font-family="Copperplate" font-size="18" x="24" y="156.3">Vivamus</text>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="24" y="181.1">eleifend</text>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="24" y="198.1">iaculis</text>
+</g>
+
+<!-- Association Velit -->
+<line stroke="#000000" stroke-width="1" x1="188" x2="188" y1="64" y2="172"/>
+<text fill="#000000" font-family="Futura" font-size="11" x="193.0" y="135">0,N</text>
+<line stroke="#000000" stroke-width="1" x1="188" x2="188" y1="263" y2="172"/>
+<text fill="#000000" font-family="Futura" font-size="11" x="193.0" y="217">0,N</text>
+<g id="association-Velit">
+	<path d="M 215 143 a 14 14 90 0 1 14 14 V 171 h -82 V 157 a 14 14 90 0 1 14 -14" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+	<path d="M 229 171.0 v 16 a 14 14 90 0 1 -14 14 H 161 a 14 14 90 0 1 -14 -14 V 171.0 H 82" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+	<rect fill="none" height="58" rx="14" stroke="#000000" stroke-width="1.5" width="82" x="147" y="143"/>
+	<line stroke="#000000" stroke-width="1.5" x1="147" x2="229" y1="171" y2="171"/>
+	<text fill="#000000" font-family="Copperplate" font-size="18" x="164" y="164.3">Velit</text>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="154" y="189.1">sollicitudin</text>
+</g>
+
+<!-- Association Metus -->
+<line stroke="#000000" stroke-width="1" x1="393" x2="393" y1="64" y2="172"/>
+<text fill="#000000" font-family="Futura" font-size="11" x="398.0" y="118">1,N</text>
+<line stroke="#000000" stroke-width="1" x1="393" x2="393" y1="263" y2="172"/>
+<text fill="#000000" font-family="Futura" font-size="11" x="398.0" y="217">0,N</text>
+<g id="association-Metus">
+	<path d="M 415 143 a 14 14 90 0 1 14 14 V 171 h -72 V 157 a 14 14 90 0 1 14 -14" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+	<path d="M 429 171.0 v 16 a 14 14 90 0 1 -14 14 H 371 a 14 14 90 0 1 -14 -14 V 171.0 H 72" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+	<rect fill="none" height="58" rx="14" stroke="#000000" stroke-width="1.5" width="72" x="357" y="143"/>
+	<line stroke="#000000" stroke-width="1.5" x1="357" x2="429" y1="171" y2="171"/>
+	<text fill="#000000" font-family="Copperplate" font-size="18" x="364" y="164.3">Metus</text>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="364" y="189.1">nibh</text>
+</g>
+
+<!-- Entity Elit -->
+<g id="entity-Elit">
+	<g id="frame-Elit">
+		<rect fill="#FFFFFF" height="30" stroke="#FFFFFF" stroke-width="0" width="54" x="366" y="26"/>
+		<rect fill="#FFFFFF" height="46" stroke="#FFFFFF" stroke-width="0" width="54" x="366" y="56.0"/>
+		<rect fill="none" height="76" stroke="#000000" stroke-width="1.5" width="54" x="366" y="26"/>
+		<line stroke="#000000" stroke-width="1.5" x1="366" x2="420" y1="56" y2="56"/>
+	</g>
+	<text fill="#000000" font-family="Copperplate" font-size="18" x="374" y="47.3">Elit</text>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="374" y="73.1">ligula</text>
+	<line stroke="#000000" stroke-width="1" x1="374" x2="406" y1="76" y2="76"/>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="374" y="90.1">tellus</text>
+</g>
+
+<!-- Entity Blandit -->
+<g id="entity-Blandit">
+	<g id="frame-Blandit">
+		<rect fill="#FFFFFF" height="30" stroke="#FFFFFF" stroke-width="0" width="88" x="144" y="9"/>
+		<rect fill="#FFFFFF" height="80" stroke="#FFFFFF" stroke-width="0" width="88" x="144" y="39.0"/>
+		<rect fill="none" height="110" stroke="#000000" stroke-width="1.5" width="88" x="144" y="9"/>
+		<line stroke="#000000" stroke-width="1.5" x1="144" x2="232" y1="39" y2="39"/>
+	</g>
+	<text fill="#000000" font-family="Copperplate" font-size="18" x="152" y="30.3">Blandit</text>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="152" y="56.1">consequat</text>
+	<line stroke="#000000" stroke-width="1" x1="152" x2="216" y1="59" y2="59"/>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="152" y="73.1">ligula</text>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="152" y="90.1">nibh</text>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="152" y="107.0">consequat</text>
+</g>
+
+<!-- Entity Posuere -->
+<g id="entity-Posuere">
+	<g id="frame-Posuere">
+		<rect fill="#FFFFFF" height="30" stroke="#FFFFFF" stroke-width="0" width="94" x="14" y="233"/>
+		<rect fill="#FFFFFF" height="30" stroke="#FFFFFF" stroke-width="0" width="94" x="14" y="263.0"/>
+		<rect fill="none" height="60" stroke="#000000" stroke-width="1.5" width="94" x="14" y="233"/>
+		<line stroke="#000000" stroke-width="1.5" x1="14" x2="108" y1="263" y2="263"/>
+	</g>
+	<text fill="#000000" font-family="Copperplate" font-size="18" x="22" y="254.3">Posuere</text>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="22" y="280.1">pede</text>
+	<line stroke="#000000" stroke-width="1" x1="22" x2="53" y1="283" y2="283"/>
+</g>
+
+<!-- Entity Nonummy -->
+<g id="entity-Nonummy">
+	<g id="frame-Nonummy">
+		<rect fill="#FFFFFF" height="30" stroke="#FFFFFF" stroke-width="0" width="102" x="137" y="225"/>
+		<rect fill="#FFFFFF" height="46" stroke="#FFFFFF" stroke-width="0" width="102" x="137" y="255.0"/>
+		<rect fill="none" height="76" stroke="#000000" stroke-width="1.5" width="102" x="137" y="225"/>
+		<line stroke="#000000" stroke-width="1.5" x1="137" x2="239" y1="255" y2="255"/>
+	</g>
+	<text fill="#000000" font-family="Copperplate" font-size="18" x="145" y="246.3">Nonummy</text>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="145" y="272.1">consequat</text>
+	<line stroke="#000000" stroke-width="1" x1="145" x2="209" y1="275" y2="275"/>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="145" y="289.1">ligula</text>
+</g>
+
+<!-- Entity Congue -->
+<g id="entity-Congue">
+	<g id="frame-Congue">
+		<rect fill="#FFFFFF" height="30" stroke="#FFFFFF" stroke-width="0" width="86" x="350" y="225"/>
+		<rect fill="#FFFFFF" height="46" stroke="#FFFFFF" stroke-width="0" width="86" x="350" y="255.0"/>
+		<rect fill="none" height="76" stroke="#000000" stroke-width="1.5" width="86" x="350" y="225"/>
+		<line stroke="#000000" stroke-width="1.5" x1="350" x2="436" y1="255" y2="255"/>
+	</g>
+	<text fill="#000000" font-family="Copperplate" font-size="18" x="358" y="246.3">Congue</text>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="358" y="272.1">ligula</text>
+	<line stroke="#000000" stroke-width="1" x1="358" x2="390" y1="275" y2="275"/>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="358" y="289.1">tellus</text>
+</g>
+</svg>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>... Ou <a href="http://gurobi.com">Gurobi</a>:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="k">mocodo</span> --arrange=lp --engine=gurobi
+Lacus, 01 Blandit, 1N Elit
+Elit: ligula, tellus
+Metus, 1N Elit, 0N Congue: nibh
+Bibendum, 01 Blandit, 0N Blandit
+Blandit: consequat, ligula, nibh, consequat
+
+Ipsum, 1N Blandit, 0N Congue
+Congue: ligula, tellus
+Augue, 0N Congue, 0N Congue
+Velit, 0N Blandit, 0N Nonummy: sollicitudin
+DF, 11 Nonummy, 0N Congue
+
+Posuere: pede
+Vivamus, 0N Posuere, 0N Nonummy, 0N Blandit: eleifend, iaculis
+Nonummy: consequat, ligula
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>%%mocodo
+Augue, 0N Congue, 0N Congue
+Congue: ligula, tellus
+DF, 11 Nonummy, 0N Congue
+Nonummy: consequat, ligula
+:
+
+Metus, 1N Elit, 0N Congue: nibh
+Ipsum, 1N Blandit, 0N Congue
+Velit, 0N Blandit, 0N Nonummy: sollicitudin
+Vivamus, 0N Posuere, 0N Nonummy, 0N Blandit: eleifend, iaculis
+Posuere: pede
+
+Elit: ligula, tellus
+Lacus, 01 Blandit, 1N Elit
+Blandit: consequat, ligula, nibh, consequat
+Bibendum, 01 Blandit, 0N Blandit
+:
+</pre>
+</div>
+</div>
+
+<div class="output_area"><div class="prompt"></div>
+
+<div class="output_svg output_subarea ">
+<svg height="318" view_box="0 0 561 318" width="561" xmlns="http://www.w3.org/2000/svg" xmlns:link="http://www.w3.org/1999/xlink">\n\n<desc>Généré par Mocodo 2.3 le Mon, 15 Aug 2016 19:42:50</desc>
+
+<rect fill="none" height="318" id="frame" stroke="none" stroke-width="0" width="561" x="0" y="0"/>
+
+<!-- Association Ipsum -->
+<line stroke="#000000" stroke-width="1" x1="260" x2="153" y1="254" y2="146"/>
+<text fill="#000000" font-family="Futura" font-size="11" x="192" y="218.564295725">1,N</text>
+<line stroke="#000000" stroke-width="1" x1="153" x2="153" y1="47" y2="146"/>
+<text fill="#000000" font-family="Futura" font-size="11" x="158.0" y="101">0,N</text>
+<g id="association-Ipsum">
+	<path d="M 172 117 a 14 14 90 0 1 14 14 V 145 h -66 V 131 a 14 14 90 0 1 14 -14" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+	<path d="M 186 145.0 v 16 a 14 14 90 0 1 -14 14 H 134 a 14 14 90 0 1 -14 -14 V 145.0 H 66" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+	<rect fill="none" height="58" rx="14" stroke="#000000" stroke-width="1.5" width="66" x="120" y="117"/>
+	<line stroke="#000000" stroke-width="1.5" x1="120" x2="186" y1="145" y2="145"/>
+	<text fill="#000000" font-family="Copperplate" font-size="18" x="127" y="138.3">Ipsum</text>
+</g>
+
+<!-- Association Lacus -->
+<line stroke="#000000" stroke-width="1" x1="260" x2="153" y1="254" y2="254"/>
+<text fill="#000000" font-family="Futura" font-size="11" x="193" y="270.0">0,1</text>
+<line stroke="#000000" stroke-width="1" x1="45" x2="153" y1="254" y2="254"/>
+<text fill="#000000" font-family="Futura" font-size="11" x="77" y="270.0">1,N</text>
+<g id="association-Lacus">
+	<path d="M 173 225 a 14 14 90 0 1 14 14 V 253 h -68 V 239 a 14 14 90 0 1 14 -14" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+	<path d="M 187 253.0 v 16 a 14 14 90 0 1 -14 14 H 133 a 14 14 90 0 1 -14 -14 V 253.0 H 68" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+	<rect fill="none" height="58" rx="14" stroke="#000000" stroke-width="1.5" width="68" x="119" y="225"/>
+	<line stroke="#000000" stroke-width="1.5" x1="119" x2="187" y1="253" y2="253"/>
+	<text fill="#000000" font-family="Copperplate" font-size="18" x="126" y="246.3">Lacus</text>
+</g>
+
+<!-- Association DF -->
+<line stroke="#000000" stroke-width="1" x1="385" x2="260" y1="47" y2="47"/>
+<text fill="#000000" font-family="Futura" font-size="11" x="311" y="39.0">1,1</text>
+<line stroke="#000000" stroke-width="1" x1="153" x2="260" y1="47" y2="47"/>
+<text fill="#000000" font-family="Futura" font-size="11" x="201" y="63.0">0,N</text>
+<g id="association-DF">
+	<circle cx="260" cy="47" fill="#FFFFFF" r="20" stroke="#000000" stroke-width="1.5"/>
+	<text fill="#000000" font-family="Copperplate" font-size="18" x="247" y="51.8">DF</text>
+</g>
+
+<!-- Association Augue -->
+<path d="M153 47 C 112.333333333 79.0 76.3333333333 79.0 45 47" fill="none" stroke="#000000" stroke-width="1"/>
+<text fill="#000000" font-family="Futura" font-size="11" x="86" y="61.0">0,N</text>
+<path d="M153 47 C 112.333333333 15.0 76.3333333333 15.0 45 47" fill="none" stroke="#000000" stroke-width="1"/>
+<text fill="#000000" font-family="Futura" font-size="11" x="86" y="41.0">0,N</text>
+<g id="association-Augue">
+	<path d="M 67 18 a 14 14 90 0 1 14 14 V 46 h -72 V 32 a 14 14 90 0 1 14 -14" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+	<path d="M 81 46.0 v 16 a 14 14 90 0 1 -14 14 H 23 a 14 14 90 0 1 -14 -14 V 46.0 H 72" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+	<rect fill="none" height="58" rx="14" stroke="#000000" stroke-width="1.5" width="72" x="9" y="18"/>
+	<line stroke="#000000" stroke-width="1.5" x1="9" x2="81" y1="46" y2="46"/>
+	<text fill="#000000" font-family="Copperplate" font-size="18" x="16" y="39.3">Augue</text>
+</g>
+
+<!-- Association Bibendum -->
+<path d="M260 254 C 295.666666667 222.0 337.333333333 222.0 385 254" fill="none" stroke="#000000" stroke-width="1"/>
+<text fill="#000000" font-family="Futura" font-size="11" x="309" y="247.0">0,1</text>
+<path d="M260 254 C 296.333333333 286.0 338.0 286.0 385 254" fill="none" stroke="#000000" stroke-width="1"/>
+<text fill="#000000" font-family="Futura" font-size="11" x="309" y="269.0">0,N</text>
+<g id="association-Bibendum">
+	<path d="M 423 225 a 14 14 90 0 1 14 14 V 253 h -104 V 239 a 14 14 90 0 1 14 -14" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+	<path d="M 437 253.0 v 16 a 14 14 90 0 1 -14 14 H 347 a 14 14 90 0 1 -14 -14 V 253.0 H 104" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+	<rect fill="none" height="58" rx="14" stroke="#000000" stroke-width="1.5" width="104" x="333" y="225"/>
+	<line stroke="#000000" stroke-width="1.5" x1="333" x2="437" y1="253" y2="253"/>
+	<text fill="#000000" font-family="Copperplate" font-size="18" x="340" y="246.3">Bibendum</text>
+</g>
+
+<!-- Association Vivamus -->
+<line stroke="#000000" stroke-width="1" x1="505" x2="385" y1="146" y2="146"/>
+<text fill="#000000" font-family="Futura" font-size="11" x="434" y="162.0">0,N</text>
+<line stroke="#000000" stroke-width="1" x1="385" x2="385" y1="47" y2="146"/>
+<text fill="#000000" font-family="Futura" font-size="11" x="390.0" y="101">0,N</text>
+<path d="M260 254 C 272.065093383 194.519759317 313.73176005 158.519759317 385 146" fill="none" stroke="#000000" stroke-width="1"/>
+<text fill="#000000" font-family="Futura" font-size="11" x="309" y="188.656672476">0,N</text>
+<g id="association-Vivamus">
+	<path d="M 415 109 a 14 14 90 0 1 14 14 V 137 h -88 V 123 a 14 14 90 0 1 14 -14" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+	<path d="M 429 137.0 v 32 a 14 14 90 0 1 -14 14 H 355 a 14 14 90 0 1 -14 -14 V 137.0 H 88" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+	<rect fill="none" height="74" rx="14" stroke="#000000" stroke-width="1.5" width="88" x="341" y="109"/>
+	<line stroke="#000000" stroke-width="1.5" x1="341" x2="429" y1="137" y2="137"/>
+	<text fill="#000000" font-family="Copperplate" font-size="18" x="348" y="130.3">Vivamus</text>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="348" y="155.1">eleifend</text>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="348" y="172.1">iaculis</text>
+</g>
+
+<!-- Association Velit -->
+<line stroke="#000000" stroke-width="1" x1="260" x2="260" y1="254" y2="146"/>
+<text fill="#000000" font-family="Futura" font-size="11" x="265.0" y="191">0,N</text>
+<line stroke="#000000" stroke-width="1" x1="385" x2="260" y1="47" y2="146"/>
+<text fill="#000000" font-family="Futura" font-size="11" x="336.102164472" y="101">0,N</text>
+<g id="association-Velit">
+	<path d="M 287 117 a 14 14 90 0 1 14 14 V 145 h -82 V 131 a 14 14 90 0 1 14 -14" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+	<path d="M 301 145.0 v 16 a 14 14 90 0 1 -14 14 H 233 a 14 14 90 0 1 -14 -14 V 145.0 H 82" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+	<rect fill="none" height="58" rx="14" stroke="#000000" stroke-width="1.5" width="82" x="219" y="117"/>
+	<line stroke="#000000" stroke-width="1.5" x1="219" x2="301" y1="145" y2="145"/>
+	<text fill="#000000" font-family="Copperplate" font-size="18" x="236" y="138.3">Velit</text>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="226" y="163.1">sollicitudin</text>
+</g>
+
+<!-- Association Metus -->
+<line stroke="#000000" stroke-width="1" x1="45" x2="45" y1="254" y2="146"/>
+<text fill="#000000" font-family="Futura" font-size="11" x="50.0" y="208">1,N</text>
+<path d="M153 47 C 141.468953688 108.153459119 105.468953688 141.153459119 45 146" fill="none" stroke="#000000" stroke-width="1"/>
+<text fill="#000000" font-family="Futura" font-size="11" x="108.636631923" y="101">0,N</text>
+<g id="association-Metus">
+	<path d="M 67 117 a 14 14 90 0 1 14 14 V 145 h -72 V 131 a 14 14 90 0 1 14 -14" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+	<path d="M 81 145.0 v 16 a 14 14 90 0 1 -14 14 H 23 a 14 14 90 0 1 -14 -14 V 145.0 H 72" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+	<rect fill="none" height="58" rx="14" stroke="#000000" stroke-width="1.5" width="72" x="9" y="117"/>
+	<line stroke="#000000" stroke-width="1.5" x1="9" x2="81" y1="145" y2="145"/>
+	<text fill="#000000" font-family="Copperplate" font-size="18" x="16" y="138.3">Metus</text>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="16" y="163.1">nibh</text>
+</g>
+
+<!-- Entity Elit -->
+<g id="entity-Elit">
+	<g id="frame-Elit">
+		<rect fill="#FFFFFF" height="30" stroke="#FFFFFF" stroke-width="0" width="54" x="18" y="216"/>
+		<rect fill="#FFFFFF" height="46" stroke="#FFFFFF" stroke-width="0" width="54" x="18" y="246.0"/>
+		<rect fill="none" height="76" stroke="#000000" stroke-width="1.5" width="54" x="18" y="216"/>
+		<line stroke="#000000" stroke-width="1.5" x1="18" x2="72" y1="246" y2="246"/>
+	</g>
+	<text fill="#000000" font-family="Copperplate" font-size="18" x="26" y="237.3">Elit</text>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="26" y="263.1">ligula</text>
+	<line stroke="#000000" stroke-width="1" x1="26" x2="58" y1="266" y2="266"/>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="26" y="280.1">tellus</text>
+</g>
+
+<!-- Entity Blandit -->
+<g id="entity-Blandit">
+	<g id="frame-Blandit">
+		<rect fill="#FFFFFF" height="30" stroke="#FFFFFF" stroke-width="0" width="88" x="216" y="199"/>
+		<rect fill="#FFFFFF" height="80" stroke="#FFFFFF" stroke-width="0" width="88" x="216" y="229.0"/>
+		<rect fill="none" height="110" stroke="#000000" stroke-width="1.5" width="88" x="216" y="199"/>
+		<line stroke="#000000" stroke-width="1.5" x1="216" x2="304" y1="229" y2="229"/>
+	</g>
+	<text fill="#000000" font-family="Copperplate" font-size="18" x="224" y="220.3">Blandit</text>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="224" y="246.1">consequat</text>
+	<line stroke="#000000" stroke-width="1" x1="224" x2="288" y1="249" y2="249"/>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="224" y="263.1">ligula</text>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="224" y="280.1">nibh</text>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="224" y="297.0">consequat</text>
+</g>
+
+<!-- Entity Posuere -->
+<g id="entity-Posuere">
+	<g id="frame-Posuere">
+		<rect fill="#FFFFFF" height="30" stroke="#FFFFFF" stroke-width="0" width="94" x="458" y="116"/>
+		<rect fill="#FFFFFF" height="30" stroke="#FFFFFF" stroke-width="0" width="94" x="458" y="146.0"/>
+		<rect fill="none" height="60" stroke="#000000" stroke-width="1.5" width="94" x="458" y="116"/>
+		<line stroke="#000000" stroke-width="1.5" x1="458" x2="552" y1="146" y2="146"/>
+	</g>
+	<text fill="#000000" font-family="Copperplate" font-size="18" x="466" y="137.3">Posuere</text>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="466" y="163.1">pede</text>
+	<line stroke="#000000" stroke-width="1" x1="466" x2="497" y1="166" y2="166"/>
+</g>
+
+<!-- Entity Nonummy -->
+<g id="entity-Nonummy">
+	<g id="frame-Nonummy">
+		<rect fill="#FFFFFF" height="30" stroke="#FFFFFF" stroke-width="0" width="102" x="334" y="9"/>
+		<rect fill="#FFFFFF" height="46" stroke="#FFFFFF" stroke-width="0" width="102" x="334" y="39.0"/>
+		<rect fill="none" height="76" stroke="#000000" stroke-width="1.5" width="102" x="334" y="9"/>
+		<line stroke="#000000" stroke-width="1.5" x1="334" x2="436" y1="39" y2="39"/>
+	</g>
+	<text fill="#000000" font-family="Copperplate" font-size="18" x="342" y="30.3">Nonummy</text>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="342" y="56.1">consequat</text>
+	<line stroke="#000000" stroke-width="1" x1="342" x2="406" y1="59" y2="59"/>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="342" y="73.1">ligula</text>
+</g>
+
+<!-- Entity Congue -->
+<g id="entity-Congue">
+	<g id="frame-Congue">
+		<rect fill="#FFFFFF" height="30" stroke="#FFFFFF" stroke-width="0" width="86" x="110" y="9"/>
+		<rect fill="#FFFFFF" height="46" stroke="#FFFFFF" stroke-width="0" width="86" x="110" y="39.0"/>
+		<rect fill="none" height="76" stroke="#000000" stroke-width="1.5" width="86" x="110" y="9"/>
+		<line stroke="#000000" stroke-width="1.5" x1="110" x2="196" y1="39" y2="39"/>
+	</g>
+	<text fill="#000000" font-family="Copperplate" font-size="18" x="118" y="30.3">Congue</text>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="118" y="56.1">ligula</text>
+	<line stroke="#000000" stroke-width="1" x1="118" x2="150" y1="59" y2="59"/>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="118" y="73.1">tellus</text>
+</g>
+</svg>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Remarques.</strong></p>
+<ul>
+<li>Ces résultats, même s'ils semblent différents, sont exactement équivalents en termes de longueur cumulée des liens.</li>
+<li>Les deux solveurs sont des logiciels commerciaux, qui ne sont donc pas livrés avec Mocodo. Toutefois, si vous êtes étudiant ou chercheur en université, vous pouvez faire une demande de licence académique gratuite auprès de leurs éditeurs respectifs.</li>
+<li>Actuellement, le temps de résolution par solveur générique est souvent rédhibitoire. L'option n'a été introduite qu'à des fins de recherche, et ne présente pas d'intérêt pratique pour l'utilisateur final.</li>
+</ul>
+
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -24369,13 +25023,13 @@ PRODUIT: Réf. produit, Libellé, Prix unitaire
 <td>Transformation</td>
 <td><code>"transform_..."</code></td>
 <td>objet</td>
-<td>Opère une recherche-remplacement, éventuellement itérée (jusqu'à ce qu'aucun remplacement ne soit plus possible), sur une partie du texte déjà généré. Les champs <code>"search"</code> et <code>"replace</code>" sont obligatoires, le champ <code>"iterated"</code> (booléen) est facultatif. La syntaxe est celle des <a href="https://docs.python.org/2/library/re.html#regular-expression-syntax">expressions régulières de Python 2.7</a>.</td>
+<td>Opère une recherche-remplacement, éventuellement itérée (jusqu'à ce qu'aucun remplacement ne soit plus possible), sur une partie du texte déjà généré. Les champs <code>"search"</code> et <code>"replace</code>" sont obligatoires, le champ <code>"iterated"</code> (booléen) est facultatif. La syntaxe est celle des <a href="https://docs.python.org/2/library/re.html#regular-expression-syntax">expressions régulières de Python</a>.</td>
 </tr>
 <tr>
 <td>Composition</td>
 <td><code>"compose_..."</code></td>
 <td>chaîne de format</td>
-<td>Interpole dans une chaîne certains identificateurs prédéfinis par une valeur dépendant du contexte en cours. La syntaxe est celle utilisée par la <a href="https://docs.python.org/2/library/string.html#format-string-syntax">méthode <code>.format</code> de Python 2.7</a>.</td>
+<td>Interpole dans une chaîne certains identificateurs prédéfinis par une valeur dépendant du contexte en cours. La syntaxe est celle utilisée par la <a href="https://docs.python.org/2/library/string.html#format-string-syntax">méthode <code>.format</code> de Python</a>.</td>
 </tr>
 <tr>
 <td>Concaténation</td>

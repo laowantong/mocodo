@@ -1,12 +1,13 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
+from __future__ import division
 import sys
-sys.path.append('.')
+sys.path[0:0] = ["./mocodo/"]
 
 import unittest
-from mocodo.mcd import *
-from mocodo.argument_parser import parsed_arguments
+from mcd import *
+from argument_parser import parsed_arguments
 
 import gettext
 gettext.NullTranslations().install()
@@ -15,6 +16,9 @@ params = parsed_arguments()
 
 import os
 
+# Python 2.7 compatibility
+if not hasattr(unittest.TestCase, "assertRaisesRegex"):
+    unittest.TestCase.assertRaisesRegex = unittest.TestCase.assertRaisesRegexp
 
 class McdTest(unittest.TestCase):
 
@@ -89,8 +93,8 @@ class McdTest(unittest.TestCase):
             u"FLÉAU: battadère, van, mesure",
         ]
         mcd = Mcd(clauses, params)
-        self.assertEquals(mcd.get_layout(), range(16))
-        self.assertEquals(mcd.get_layout_data(),{
+        self.assertEqual(mcd.get_layout(), list(range(16)))
+        self.assertEqual(mcd.get_layout_data(), {
             'col_count': 4,
             'row_count': 4,
             'links': (
@@ -131,22 +135,22 @@ class McdTest(unittest.TestCase):
                 (13, 10): 2
             },
             'successors': [
-                set([1, 4]), # BARATTE has MARTEAU and DF as successors
-                set([0, 2]),
-                set([1, 5, 6]),
-                set([6, 7]),
-                set([0, 9]),
-                set([2, 9]),
-                set([2, 3, 13]),
-                set([3]), # reflexive association PORTE: no multiple edges
-                set([]), # phantom
-                set([4, 5]),
-                set([13]),
-                set([]),
-                set([]),
-                set([6, 10]),
-                set([]),
-                set([])]
+                {1, 4}, # BARATTE has MARTEAU and DF as successors
+                {0, 2},
+                {1, 5, 6},
+                {6, 7},
+                {0, 9},
+                {2, 9},
+                {2, 3, 13},
+                {3}, # reflexive association PORTE: no multiple edges
+                set(), # phantom
+                {4, 5},
+                {13},
+                set(),
+                set(),
+                {6, 10},
+                set(),
+                set()]
             }
         )
         expected = u"""
@@ -169,8 +173,8 @@ class McdTest(unittest.TestCase):
             FLÉAU: battadère, van, mesure
             ::
         """.strip().replace("  ", "")
-        mcd.set_layout(range(16))
-        self.assertEquals(mcd.get_clauses(), expected)
+        mcd.set_layout(list(range(16)))
+        self.assertEqual(mcd.get_clauses(), expected)
 
 
     def test_input_errors(self):
@@ -178,7 +182,7 @@ class McdTest(unittest.TestCase):
             u"PROJET: num. projet, nom projet, budget projet",
             u"ASSUMER, 1N PROJET, 1N INDIVIDU",
         ]
-        self.assertRaisesRegexp(RuntimeError, "Mocodo Err.1", Mcd, clauses, params)
+        self.assertRaisesRegex(RuntimeError, "Mocodo Err.1", Mcd, clauses, params)
 
     def test_duplicate_errors(self):
         clauses = [
@@ -188,7 +192,7 @@ class McdTest(unittest.TestCase):
             u"BALANCE, 0N ROULEAU, 0N TINET: charrue",
             u"BARATTE: tribulum",
         ]
-        self.assertRaisesRegexp(RuntimeError, "Mocodo Err.6", Mcd, clauses, params)
+        self.assertRaisesRegex(RuntimeError, "Mocodo Err.6", Mcd, clauses, params)
         clauses = [
             u"DF, 11 BARATTE, 1N ROULEAU",
             u"BARATTE: piston, racloir, fusil",
@@ -196,7 +200,7 @@ class McdTest(unittest.TestCase):
             u"DF, 0N ROULEAU, 0N TINET: charrue",
             u"ROULEAU: tribulum",
         ]
-        self.assertRaisesRegexp(RuntimeError, "Mocodo Err.7", Mcd, clauses, params)
+        self.assertRaisesRegex(RuntimeError, "Mocodo Err.7", Mcd, clauses, params)
         clauses = [
             u"BARATTE, 11 BARATTE, 1N ROULEAU",
             u"BARATTE: piston, racloir, fusil",
@@ -204,7 +208,7 @@ class McdTest(unittest.TestCase):
             u"BALANCE, 0N ROULEAU, 0N TINET: charrue",
             u"ROULEAU: tribulum",
         ]
-        self.assertRaisesRegexp(RuntimeError, "Mocodo Err.8", Mcd, clauses, params)
+        self.assertRaisesRegex(RuntimeError, "Mocodo Err.8", Mcd, clauses, params)
         clauses = [
             u"BARATTE: piston, racloir, fusil",
             u"BARATTE, 11 BARATTE, 1N ROULEAU",
@@ -212,7 +216,7 @@ class McdTest(unittest.TestCase):
             u"BALANCE, 0N ROULEAU, 0N TINET: charrue",
             u"ROULEAU: tribulum",
         ]
-        self.assertRaisesRegexp(RuntimeError, "Mocodo Err.8", Mcd, clauses, params)
+        self.assertRaisesRegex(RuntimeError, "Mocodo Err.8", Mcd, clauses, params)
 
     def test_flip(self):
         clauses = u"""
@@ -252,7 +256,7 @@ class McdTest(unittest.TestCase):
             TINET: fendoir, grattoir
             CROCHET: égrenoir, _gorgeoir, bouillie
         """.strip().replace("  ", "")
-        self.assertEquals(mcd.get_clauses_horizontal_mirror(), expected)
+        self.assertEqual(mcd.get_clauses_horizontal_mirror(), expected)
         expected = u"""
             CROCHET: égrenoir, _gorgeoir, bouillie
             TINET: fendoir, grattoir
@@ -273,7 +277,7 @@ class McdTest(unittest.TestCase):
             FLÉAU: battadère, van, mesure
             :
         """.strip().replace("  ", "")
-        self.assertEquals(mcd.get_clauses_vertical_mirror(), expected)
+        self.assertEqual(mcd.get_clauses_vertical_mirror(), expected)
         expected = u"""
             BARATTE: piston, racloir, fusil
             DF, 11 BARATTE, 1N ROULEAU
@@ -293,7 +297,7 @@ class McdTest(unittest.TestCase):
             PORTE, 11 CROCHET, 0N CROCHET
             ::
         """.strip().replace("  ", "")
-        self.assertEquals(mcd.get_clauses_diagonal_mirror(), expected)
+        self.assertEqual(mcd.get_clauses_diagonal_mirror(), expected)
 
     def test_explicit_fit(self):
         # initially: (5, 4) for 11 nodes
@@ -331,7 +335,7 @@ class McdTest(unittest.TestCase):
             Gear , 1N Call, 1N Folk
             :
         """.strip().replace("  ", "")
-        self.assertEquals(mcd.get_reformatted_clauses(0), expected)
+        self.assertEqual(mcd.get_reformatted_clauses(0), expected)
         # 1st next fit: (5, 3)
         expected = u"""
             Item: Norm, Wash, Haul
@@ -349,7 +353,7 @@ class McdTest(unittest.TestCase):
             Gear , 1N Call, 1N Folk
             ::::
         """.strip().replace("  ", "")
-        self.assertEquals(mcd.get_reformatted_clauses(1), expected)
+        self.assertEqual(mcd.get_reformatted_clauses(1), expected)
         # 2nd next fit: (4, 4)
         expected = u"""
             Item: Norm, Wash, Haul
@@ -369,7 +373,7 @@ class McdTest(unittest.TestCase):
 
             ::::
         """.strip().replace("  ", "")
-        self.assertEquals(mcd.get_reformatted_clauses(2), expected)
+        self.assertEqual(mcd.get_reformatted_clauses(2), expected)
         
     def test_automatic_fit_produces_next_grid(self):
         # initially: (5, 4) for 11 nodes
@@ -410,7 +414,7 @@ class McdTest(unittest.TestCase):
 
             ::::::
         """.strip().replace("  ", "")
-        self.assertEquals(mcd.get_reformatted_clauses(-1), expected)
+        self.assertEqual(mcd.get_reformatted_clauses(-1), expected)
 
     def test_implicit_fit_produces_min_grid_next(self):
         # initially: (4, 5) for 11 nodes
@@ -449,8 +453,8 @@ class McdTest(unittest.TestCase):
             Gear , 1N Call, 1N Folk
             ::::
         """.strip().replace("  ", "")
-        self.assertEquals(mcd.get_reformatted_clauses(-1), expected)
-        self.assertEquals(mcd.get_reformatted_clauses(1), expected)
+        self.assertEqual(mcd.get_reformatted_clauses(-1), expected)
+        self.assertEqual(mcd.get_reformatted_clauses(1), expected)
 
 
 if __name__ == '__main__':

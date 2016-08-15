@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
-import font_metrics
+from __future__ import division
+
 
 import re
 from dynamic import Dynamic
@@ -29,9 +30,9 @@ class Attribute:
         self.font_type = "entity_attribute_font"
         self.rank = rank
 
-    def calculate_size(self, style):
+    def calculate_size(self, style, get_font_metrics):
         self.attribute_font = style[self.font_type]
-        font = font_metrics.FontMetrics(self.attribute_font)
+        font = get_font_metrics(self.attribute_font)
         self.w = font.get_pixel_width(self.label)
         self.h = font.get_pixel_height()
         self.style = style
@@ -43,7 +44,7 @@ class Attribute:
                 "text": self.label,
                 "text_color": Dynamic("colors['%s']" % (self.box_type + "_attribute_text_color")),
                 "x": Dynamic("%s+x" % (dx)),
-                "y": Dynamic("%s+y" % (dy + self.style["attribute_text_height_ratio"] * self.h)),
+                "y": Dynamic("%s+y" % round(dy + self.style["attribute_text_height_ratio"] * self.h, 1)),
                 "family": self.attribute_font["family"],
                 "size": self.attribute_font["size"],
             }

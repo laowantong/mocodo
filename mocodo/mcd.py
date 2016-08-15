@@ -1,22 +1,27 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
-import sys
+from __future__ import division
+
 import re
 from association import Association
 from entity import Entity
 from phantom import Phantom
 from diagram_link import DiagramLink
-import font_metrics
 import itertools
 from collections import defaultdict
 from grid import Grid
 
 compress_colons = re.compile(r"(?m)^:\n(?=:$)").sub
 
+def cmp(x, y):
+    return (x > y) - (x < y)
+
+SYS_MAXINT = 9223372036854775807 # an integer larger than any practical list or string index
+
 class Mcd:
 
-    def __init__(self, clauses, params):
+    def __init__(self, clauses, params, get_font_metrics=None):
         
         def parse_clauses():
             self.entities = {}
@@ -34,30 +39,30 @@ class Mcd:
                         self.header += "%s\n" % clause
                     continue
                 if clause == ":" * len(clause):
-                    self.rows[-1].extend(Phantom(phantom_counter.next()) for colon in clause)
+                    self.rows[-1].extend(Phantom(next(phantom_counter)) for colon in clause)
                     continue
                 if clause.startswith(":"):
-                    raise RuntimeError(("Mocodo Err.19 - " + _('The clause "{clause}" starts with a colon.').format(clause=clause)).encode("utf8"))
+                    raise RuntimeError("Mocodo Err.19 - " + _('The clause "{clause}" starts with a colon.').format(clause=clause))
                 clause = re.sub("\[.+?\]", substitute_forbidden_symbols_between_brackets, clause)
                 if "," in clause.split(":", 1)[0]:
                     element = Association(clause, params)
                     if element.name in self.associations:
-                        raise RuntimeError(("Mocodo Err.7 - " + _('Duplicate association "{association}". If you want to make two associations appear with the same name, you must suffix it with a number.').format(association=element.name)).encode("utf8"))
+                        raise RuntimeError("Mocodo Err.7 - " + _('Duplicate association "{association}". If you want to make two associations appear with the same name, you must suffix it with a number.').format(association=element.name))
                     self.associations[element.name] = element
                 elif ":" in clause:
                     element = Entity(clause)
                     if element.name in self.entities:
-                        raise RuntimeError(("Mocodo Err.6 - " + _('Duplicate entity "{entity}". If you want to make two entities appear with the same name, you must suffix it with a number.').format(entity=element.name)).encode("utf8"))
+                        raise RuntimeError("Mocodo Err.6 - " + _('Duplicate entity "{entity}". If you want to make two entities appear with the same name, you must suffix it with a number.').format(entity=element.name))
                     self.entities[element.name] = element
                 else:
-                    raise RuntimeError(("Mocodo Err.21 - " + _('"{clause}" does not constitute a valid declaration of an entity or association.').format(clause=clause)).encode("utf8"))
+                    raise RuntimeError("Mocodo Err.21 - " + _('"{clause}" does not constitute a valid declaration of an entity or association.').format(clause=clause))
                 if element.name in seen:
-                    raise RuntimeError(("Mocodo Err.8 - " + _('One entity and one association share the same name "{name}".').format(name=element.name)).encode("utf8"))
+                    raise RuntimeError("Mocodo Err.8 - " + _('One entity and one association share the same name "{name}".').format(name=element.name))
                 seen.add(element.name)
                 self.rows[-1].append(element)
             if not seen:
-                raise RuntimeError(("Mocodo Err.4 - " + _('The ERD is empty.')).encode("utf8"))
-            self.rows = filter(None, self.rows)
+                raise RuntimeError("Mocodo Err.4 - " + _('The ERD is empty.'))
+            self.rows = [row for row in self.rows if row]
             self.col_count = max(len(row) for row in self.rows)
             self.row_count = len(self.rows)
         
@@ -68,9 +73,9 @@ class Mcd:
                         leg.entity = self.entities[leg.entity_name]
                     except KeyError:
                         if leg.entity_name in self.associations:
-                            raise RuntimeError(("Mocodo Err.20 - " + _(u'Association "{association_1}" linked to another association "{association_2}"!').format(association_1=association.name, association_2=leg.entity_name)).encode("utf8"))
+                            raise RuntimeError("Mocodo Err.20 - " + _(u'Association "{association_1}" linked to another association "{association_2}"!').format(association_1=association.name, association_2=leg.entity_name))
                         else:
-                            raise RuntimeError(("Mocodo Err.1 - " + _(u'Association "{association}" linked to an unknown entity "{entity}"!').format(association=association.name, entity=leg.entity_name)).encode("utf8"))
+                            raise RuntimeError("Mocodo Err.1 - " + _(u'Association "{association}" linked to an unknown entity "{entity}"!').format(association=association.name, entity=leg.entity_name))
         
         def add_attributes_and_strength():
             strengthen_legs = dict((entity_name, []) for entity_name in self.entities)
@@ -148,22 +153,22 @@ class Mcd:
             for row in self.rows:
                 n = self.col_count - len(row)
                 if n:
-                    row[0:0] = [Phantom(phantom_counter.next()) for i in range(n / 2)]
-                    row.extend(Phantom(phantom_counter.next()) for i in range(n / 2 + n % 2))
+                    row[0:0] = [Phantom(next(phantom_counter)) for i in range(n // 2)]
+                    row.extend(Phantom(next(phantom_counter)) for i in range(n // 2 + n % 2))
         
         def make_boxes():
             i = itertools.count()
             self.boxes = []
             for row in self.rows:
                 for box in row:
-                    box.identifier = i.next()
+                    box.identifier = next(i)
                     self.boxes.append(box)
             self.box_count = len(self.boxes)
         
         def substitute_forbidden_symbols_between_brackets(text):
             return text.group().replace(",", "<<<protected-comma>>>").replace(":", "<<<protected-colon>>>")
         
-        font_metrics.FontMetrics = font_metrics.font_metrics_factory(params)
+        self.get_font_metrics = get_font_metrics
         phantom_counter = itertools.count()
         parse_clauses()
         add_legs()
@@ -213,7 +218,7 @@ class Mcd:
         def get_or_create_box(index):
             return Phantom() if layout[index] is None else self.boxes[layout[index]]
         i = itertools.count()
-        self.rows = [[get_or_create_box(i.next()) for x in range(self.col_count)] for y in range(self.row_count)]
+        self.rows = [[get_or_create_box(next(i)) for x in range(self.col_count)] for y in range(self.row_count)]
         def suppress_empty_rows(y):
             while self.rows: # there's at least one row
                 for box in self.rows[y]:
@@ -278,8 +283,8 @@ class Mcd:
     
     def calculate_size(self, style):
         def card_max_width():
-            get_pixel_width = font_metrics.FontMetrics(style["card_font"]).get_pixel_width
-            cardinalities = set(["0,N"]) # default value, in case there is no cardinalities at all
+            get_pixel_width = self.get_font_metrics(style["card_font"]).get_pixel_width
+            cardinalities = {"0,N"} # default value, in case there is no cardinalities at all
             for association in self.associations.values():
                 for leg in association.legs:
                     cardinalities.add(leg.cardinalities)
@@ -288,17 +293,17 @@ class Mcd:
         def calculate_sizes():
             for row in self.rows:
                 for (i, box) in enumerate(row):
-                    box.calculate_size(style)
+                    box.calculate_size(style, self.get_font_metrics)
                     max_box_width_per_column[i] = max(box.w, max_box_width_per_column[i])
             for diagram_link in self.diagram_links:
-                diagram_link.calculate_size(style)
+                diagram_link.calculate_size(style, self.get_font_metrics)
         #
         def make_horizontal_layout():
             self.w = style["margin_size"]
             for row in self.rows:
                 horizontal_offset = style["margin_size"]
                 for (i, box) in enumerate(row):
-                    box.x = horizontal_offset + (max_box_width_per_column[i] - box.w) / 2
+                    box.x = horizontal_offset + (max_box_width_per_column[i] - box.w) // 2
                     horizontal_offset += max_box_width_per_column[i] + join_width
                 self.w = max(self.w, horizontal_offset)
             self.w += style["margin_size"] - join_width
@@ -306,7 +311,7 @@ class Mcd:
         def compress_horizontally():
             dx = 0
             for i in range(1, self.col_count):
-                dx = sys.maxint
+                dx = SYS_MAXINT
                 for row in self.rows:
                     b1 = row[i-1]
                     b2 = row[i]
@@ -321,14 +326,14 @@ class Mcd:
             for row in self.rows:
                 max_box_height = max(box.h for box in row)
                 for box in row:
-                    box.y = vertical_offset + (max_box_height - box.h) / 2
+                    box.y = vertical_offset + (max_box_height - box.h) // 2
                 vertical_offset += max_box_height + join_height
             self.h = vertical_offset + style["margin_size"] - join_height
         #
         def compress_vertically():
             dy = 0
             for j in range(1, self.row_count):
-                dy = sys.maxint
+                dy = SYS_MAXINT
                 for (i2, b2) in enumerate(self.rows[j]):
                     y1_max = 0
                     for (i1, b1) in enumerate(self.rows[j-1]):
@@ -342,7 +347,7 @@ class Mcd:
         #
 
         style["card_max_width"] = card_max_width()
-        style["card_max_height"] = font_metrics.FontMetrics(style["card_font"]).get_pixel_height()
+        style["card_max_height"] = self.get_font_metrics(style["card_font"]).get_pixel_height()
         join_width  = 2 * style["card_margin"] + style["card_max_width"]
         join_height = 2 * style["card_margin"] + style["card_max_height"]
         max_box_width_per_column = [0] * self.col_count
@@ -363,7 +368,7 @@ class Mcd:
         return result
 
 if __name__=="__main__":
-    from argument_parser import parsed_arguments
+    from .argument_parser import parsed_arguments
     clauses = u"""
         CLIENT: Réf. client, Nom, Prénom, Adresse
         PASSER, 0N CLIENT, 11 COMMANDE
@@ -373,4 +378,4 @@ if __name__=="__main__":
     """.replace("  ", "").split("\n")
     params = parsed_arguments()
     mcd = Mcd(clauses, params)
-    print mcd.get_clauses_vertical_mirror()
+    print(mcd.get_clauses_vertical_mirror())

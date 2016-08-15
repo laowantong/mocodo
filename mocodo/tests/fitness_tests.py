@@ -1,14 +1,15 @@
 #!/usr/bin/python
 # encoding: utf-8
 
+from __future__ import division
 import sys
-sys.path.append('.')
+sys.path[0:0] = ["./mocodo/"]
 
-from mocodo.fitness import *
+from fitness import *
 
 import unittest
-from mocodo.mcd import Mcd
-from mocodo.argument_parser import parsed_arguments
+from mcd import Mcd
+from argument_parser import parsed_arguments
 from math import hypot
 
 class ArrangeBB(unittest.TestCase):
@@ -27,9 +28,9 @@ class ArrangeBB(unittest.TestCase):
         d = mcd.get_layout_data()
         evaluate = fitness(d["links"], d["multiplicity"], d["col_count"], d["row_count"])
         size = d["col_count"] * d["row_count"]
-        (crossing_count, total_distances) = evaluate(range(size))
-        self.assertEquals(crossing_count, 0)
-        self.assertEquals(total_distances, 0.0)
+        (crossing_count, total_distances) = evaluate(list(range(size)))
+        self.assertEqual(crossing_count, 0)
+        self.assertEqual(total_distances, 0.0)
 
     def test_optimal_layout_with_reflexive_association(self):
         clauses = u"""
@@ -48,9 +49,9 @@ class ArrangeBB(unittest.TestCase):
         d = mcd.get_layout_data()
         evaluate = fitness(d["links"], d["multiplicity"], d["col_count"], d["row_count"])
         size = d["col_count"] * d["row_count"]
-        (crossing_count, total_distances) = evaluate(range(size))
-        self.assertEquals(crossing_count, 0)
-        self.assertEquals(total_distances, 0.0)
+        (crossing_count, total_distances) = evaluate(list(range(size)))
+        self.assertEqual(crossing_count, 0)
+        self.assertEqual(total_distances, 0.0)
 
     def test_diagonal_reflexive_association(self):
         clauses = u"""
@@ -66,9 +67,9 @@ class ArrangeBB(unittest.TestCase):
         d = mcd.get_layout_data()
         evaluate = fitness(d["links"], d["multiplicity"], d["col_count"], d["row_count"])
         size = d["col_count"] * d["row_count"]
-        (crossing_count, total_distances) = evaluate(range(size))
-        self.assertEquals(crossing_count, 0)
-        self.assertEquals(round(total_distances, 4), 0.8284)
+        (crossing_count, total_distances) = evaluate(list(range(size)))
+        self.assertEqual(crossing_count, 0)
+        self.assertEqual(round(total_distances, 4), 0.8284)
 
     def test_2_0_link(self):
         clauses = u"""
@@ -83,9 +84,9 @@ class ArrangeBB(unittest.TestCase):
         d = mcd.get_layout_data()
         evaluate = fitness(d["links"], d["multiplicity"], d["col_count"], d["row_count"])
         size = d["col_count"] * d["row_count"]
-        (crossing_count, total_distances) = evaluate(range(size))
-        self.assertEquals(crossing_count, 0)
-        self.assertEquals(total_distances, 1.0)
+        (crossing_count, total_distances) = evaluate(list(range(size)))
+        self.assertEqual(crossing_count, 0)
+        self.assertEqual(total_distances, 1.0)
 
     def test_1_1_link(self):
         clauses = u"""
@@ -101,9 +102,9 @@ class ArrangeBB(unittest.TestCase):
         d = mcd.get_layout_data()
         evaluate = fitness(d["links"], d["multiplicity"], d["col_count"], d["row_count"])
         size = d["col_count"] * d["row_count"]
-        (crossing_count, total_distances) = evaluate(range(size))
-        self.assertEquals(crossing_count, 0)
-        self.assertEquals(total_distances, hypot(1, 1) - 1)
+        (crossing_count, total_distances) = evaluate(list(range(size)))
+        self.assertEqual(crossing_count, 0)
+        self.assertEqual(total_distances, hypot(1, 1) - 1)
 
     def test_2_1_link(self):
         clauses = u"""
@@ -121,9 +122,9 @@ class ArrangeBB(unittest.TestCase):
         d = mcd.get_layout_data()
         evaluate = fitness(d["links"], d["multiplicity"], d["col_count"], d["row_count"])
         size = d["col_count"] * d["row_count"]
-        (crossing_count, total_distances) = evaluate(range(size))
-        self.assertEquals(crossing_count, 0)
-        self.assertEquals(total_distances, hypot(2, 1) - 1)
+        (crossing_count, total_distances) = evaluate(list(range(size)))
+        self.assertEqual(crossing_count, 0)
+        self.assertEqual(total_distances, hypot(2, 1) - 1)
 
     def test_k33(self):
         clauses = u"""
@@ -141,8 +142,8 @@ class ArrangeBB(unittest.TestCase):
         d = mcd.get_layout_data()
         evaluate = fitness(d["links"], d["multiplicity"], d["col_count"], d["row_count"])
         size = d["col_count"] * d["row_count"]
-        (crossing_count, total_distances) = evaluate(range(size))
-        self.assertEquals(crossing_count, 9)
+        (crossing_count, total_distances) = evaluate(list(range(size)))
+        self.assertEqual(crossing_count, 9)
 
     def test_k33_better(self):
         clauses = u"""
@@ -160,8 +161,8 @@ class ArrangeBB(unittest.TestCase):
         d = mcd.get_layout_data()
         evaluate = fitness(d["links"], d["multiplicity"], d["col_count"], d["row_count"])
         size = d["col_count"] * d["row_count"]
-        (crossing_count, total_distances) = evaluate(range(size))
-        self.assertEquals(crossing_count, 3)
+        (crossing_count, total_distances) = evaluate(list(range(size)))
+        self.assertEqual(crossing_count, 3)
     
 
 if __name__ == '__main__':

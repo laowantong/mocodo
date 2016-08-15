@@ -1,6 +1,8 @@
 #!/usr/bin/python
 # encoding: utf-8
 
+from __future__ import division
+
 import re
 import collections
 import itertools
@@ -32,7 +34,7 @@ class Relations:
             if not params["guess_title"]:
                 return
             counter = collections.Counter()
-            for d in self.relations.itervalues():
+            for d in self.relations.values():
                 for column in d["columns"]:
                     if column["foreign"] and column["primary_relation_name"] and column["nature"] != "strengthening_primary_key":
                         counter[(column["primary_relation_name"], column["attribute"])] += 1
@@ -42,10 +44,10 @@ class Relations:
                 return
             title = counter.most_common(1)[0][0][0]
             title = title.lower().replace(u"œ", "oe").replace(u"æ", "ae")
-            title = unicodedata.normalize('NFKD', title).encode('ascii','ignore')
+            title = unicodedata.normalize('NFKD', title).encode('ascii', 'ignore')
             title = re.sub("[^-A-Za-z0-9 _]", "", title)
             if params["language"].startswith("fr"):
-                from pluralize_fr import pluralize
+                from .pluralize_fr import pluralize
                 title = " ".join(map(pluralize, title.split()))
             title = title.capitalize()
             if not title:
@@ -129,7 +131,7 @@ class Relations:
             self.may_disambiguate_with_leg_annotations(template)
             for relation in self.relations.values():
                 occurrences = collections.Counter(column["label"] for column in relation["columns"])
-                occurrences = dict(c for c in occurrences.iteritems() if c[1] > 1)
+                occurrences = dict(c for c in occurrences.items() if c[1] > 1)
                 for column in reversed(relation["columns"]):
                     if column["label"] in occurrences:
                         occurrences[column["label"]] -= 1
@@ -209,18 +211,18 @@ class Relations:
     # private
 
     def ensure_no_reciprocical_relative_entities(self):
-        for association in self.mcd.associations.itervalues():
+        for association in self.mcd.associations.values():
             weak_count = 0
             for leg in association.legs:
                 if leg.strengthen:
                     weak_count += 1
                     if weak_count == 2:
-                        raise RuntimeError(("Mocodo Err.22 - " + _('Reciprocal relative identification around {association}.').format(association=association.name)).encode("utf8"))
+                        raise RuntimeError("Mocodo Err.22 - " + _('Reciprocal relative identification around {association}.').format(association=association.name))
                     other_leg = leg
 
     def relations_from_entities(self):
         self.relations = {}
-        for (name, entity) in self.mcd.entities.iteritems():
+        for (name, entity) in self.mcd.entities.items():
             self.relations[name] = {
                 "this_relation_name": entity.cartouche,
                 "columns": []
@@ -274,13 +276,13 @@ class Relations:
                     break
             else:
                 if len(remaining_entities) == 1:
-                    raise RuntimeError(("Mocodo Err.16 - " + _('A weak entity (here, {entity}) cannot be strengthened by itself.').format(entity=remaining_entities[0].name)).encode("utf8"))
+                    raise RuntimeError("Mocodo Err.16 - " + _('A weak entity (here, {entity}) cannot be strengthened by itself.').format(entity=remaining_entities[0].name))
                 else:
                     remaining_entity_names = u", ".join('"%s"' % entity.name for entity in remaining_entities)
-                    raise RuntimeError(("Mocodo Err.17 - " + _('Cycle of weak entities in {entities}.').format(entities=remaining_entity_names)).encode("utf8"))
+                    raise RuntimeError("Mocodo Err.17 - " + _('Cycle of weak entities in {entities}.').format(entities=remaining_entity_names))
 
     def process_associations(self):
-        for association in self.mcd.associations.itervalues():
+        for association in self.mcd.associations.values():
             (entity_name, entity_priority) = (None, 0)
             may_identify = True
             for leg in association.legs:
@@ -346,7 +348,7 @@ class Relations:
         for row in self.mcd.rows:
             for box in row:
                 if box.name in self.relations:
-                    self.relations[box.name]["this_relation_number"] = this_relation_number.next()
+                    self.relations[box.name]["this_relation_number"] = next(this_relation_number)
     
         
     
@@ -354,5 +356,5 @@ class Relations:
 if __name__=="__main__":
     import sys
     sys.path.append("/Users/aristide/Dropbox/Sites/mocodo_online/mocodo")
-    from mocodo import main
+    from .mocodo import main
     main()

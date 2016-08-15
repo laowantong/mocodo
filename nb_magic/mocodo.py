@@ -1,3 +1,9 @@
+#!/usr/bin/env python
+# encoding: utf-8
+
+from __future__ import division
+
+from __future__ import print_function
 from IPython.core.display import HTML
 from IPython.core.display import SVG
 from IPython.core.display import display
@@ -39,10 +45,12 @@ class MocodoMagics(Magics):
             global stdoutdata
             process = Popen(["mocodo"] + options, stdin=PIPE, stdout=PIPE, stderr=PIPE)
             stdoutdata, stderrdata = process.communicate()
+            stdoutdata = stdoutdata.strip().decode("utf8")
+            stderrdata = stderrdata.strip().decode("utf8")
             status = process.wait()
-            if status == 0 and stderrdata == "":
+            if status == 0 and not stderrdata:
                 return True
-            error(stderrdata.strip())
+            error(stderrdata)
         
         def display_diagrams():
             if os.path.isfile(output_name + ".svg") and os.path.getmtime(input_path) <= os.path.getmtime(output_name + ".svg"):
@@ -106,19 +114,19 @@ class MocodoMagics(Magics):
                     get_ipython().set_next_input(form % (stdoutdata, output_dir), replace = True)
                     return
                 if "--help" in options:
-                    print stdoutdata
+                    print(stdoutdata)
                     return
                 if "--replace" in options:
                     get_ipython().set_next_input("%%mocodo\n" + stdoutdata.rstrip(), replace = True)
                     return
-                print "%%mocodo"
-                print stdoutdata.rstrip()
+                print("%%mocodo")
+                print(stdoutdata.rstrip())
                 if not notebook_options.no_mcd or notebook_options.mld:
                     parser.add_argument("--arrange", nargs="?")
                     parser.add_argument("--obfuscate", nargs="?")
                     parser.add_argument("--flip", nargs="?")
                     (_, options) = parser.parse_known_args(options)
-                    write_contents(input_path, stdoutdata.decode("utf8"))
+                    write_contents(input_path, stdoutdata)
                     options.extend(["--input", input_path, "--output_dir", output_dir, "--image_format", "svg"])
                     if execute_command(options):
                         display_diagrams()
@@ -126,4 +134,3 @@ class MocodoMagics(Magics):
 def load_ipython_extension(ipython):
     """Load the extension in IPython."""
     ipython.register_magics(MocodoMagics)
-

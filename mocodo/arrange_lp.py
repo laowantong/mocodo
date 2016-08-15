@@ -17,8 +17,6 @@ def dump_lp(path, col_count, row_count, links, successors, multiplicity, **kwarg
     result = []
     counter = itertools.count()
     
-    from pprint import pprint
-    
     V = range(len(successors)) #
     
     # print "Edges"
@@ -36,7 +34,7 @@ def dump_lp(path, col_count, row_count, links, successors, multiplicity, **kwarg
     # print "Crossing segments"
     S2X = []
     for (((i1, j1), (i2, j2)), ((i3, j3), (i4, j4))) in itertools.combinations(S, 2):
-        if cross((i1, j1, i2, j2, i3, j3, i4, j4)):
+        if cross(i1, j1, i2, j2, i3, j3, i4, j4):
             S2X.append((((i1, j1), (i2, j2)), ((i3, j3), (i4, j4))))
     S2X = set(S2X)
     # pprint(S2X)
@@ -140,6 +138,7 @@ def arrange(**params):
         os.mkdir(folder)
     path = os.path.join(folder, filename)
     dump_lp(path, **params)
+    solution = None
     if params["engine"] == "cplex":
         solution = solve_with_cplex(path)
     elif params["engine"] == "gurobi":

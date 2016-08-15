@@ -1,9 +1,11 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
+from __future__ import division, print_function
+
 import sys
-if sys.version < "2.6" or sys.version >= "3":
-    print "Mocodo requires Python 2.7 to run.\nThis version is {version}.".format(version=sys.version)
+if sys.version < "2.7":
+    print("Mocodo requires Python 2.7 or later to run.\nThis version is {version}.".format(version=sys.version))
     sys.exit()
 
 import os
@@ -12,12 +14,14 @@ from file_helpers import write_contents
 from argument_parser import parsed_arguments
 from mcd import Mcd
 from relations import Relations
+import font_metrics
 
 def main():
     try:
         params = parsed_arguments()
         common = Common(params)
         clauses = common.load_input_file()
+        get_font_metrics = font_metrics.font_metrics_factory(params)
         if params["restore"]:
             import shutil
             shutil.copyfile(os.path.join(params["script_directory"], "pristine_sandbox.mcd"), "sandbox.mcd")
@@ -32,9 +36,7 @@ def main():
         if params["obfuscate"]:
             from obfuscate import obfuscate
             return safe_print_for_PHP(obfuscate(clauses, params))
-        mcd = Mcd(clauses, params)
-        if params["fit"] is not None:
-            return safe_print_for_PHP(mcd.get_reformatted_clauses(params["fit"]))
+        mcd = Mcd(clauses, params, get_font_metrics)
         if params["flip"]:
             return safe_print_for_PHP({
                     "v": mcd.get_clauses_vertical_mirror,
@@ -54,11 +56,12 @@ def main():
             if result:
                 mcd.set_layout(**result)
                 return safe_print_for_PHP(mcd.get_clauses())
-            raise RuntimeError(("Mocodo Err.9 - " + _('Failed to calculate a planar layout.')).encode("utf8"))
+            raise RuntimeError("Mocodo Err.9 - " + _('Failed to calculate a planar layout.'))
         relations = Relations(mcd, params)
         common.dump_mld_files(relations)
         if params["image_format"] == "svg":
-            import mcd_to_svg, runpy
+            import mcd_to_svg
+            import runpy
             mcd_to_svg.main(mcd, common)
             runpy.run_path(u"%(output_name)s_svg.py" % params)
             return
@@ -66,14 +69,14 @@ def main():
             import mcd_to_nodebox
             mcd_to_nodebox.main(mcd, common)
             return os.system(u"""open -a NodeBox "%(output_name)s_nodebox.py" """ % params)
-        raise RuntimeError(("Mocodo Err.13 - " + _('Should never happen.')).encode("utf8"))
-    except RuntimeError, err:
+        raise RuntimeError("Mocodo Err.13 - " + _('Should never happen.'))
+    except RuntimeError as err:
         msg = str(err)
         if msg.startswith("Mocodo Err."):
-            print >> sys.stderr, msg
+            print(msg, file=sys.stderr)
         else:
             raise
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     sys.exit(main())

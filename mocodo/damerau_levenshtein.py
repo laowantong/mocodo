@@ -1,5 +1,7 @@
 # http://mwh.geek.nz/2009/04/26/python-damerau-levenshtein-distance/
 
+from __future__ import division
+
 def damerau_levenshtein(seq1, seq2):
     """Calculate the Damerau-Levenshtein distance between sequences.
 
@@ -28,13 +30,13 @@ def damerau_levenshtein(seq1, seq2):
     # However, only the current and two previous rows are needed at once,
     # so we only store those.
     one_ago = None
-    this_row = range(1, len(seq2) + 1) + [0]
-    for x in xrange(len(seq1)):
+    this_row = list(range(1, len(seq2) + 1)) + [0]
+    for x in range(len(seq1)):
         # Python lists wrap around for negative indices, so put the
         # leftmost column at the *end* of the list. This matches with
         # the zero-indexed strings and saves extra calculation.
         two_ago, one_ago, this_row = one_ago, this_row, [0] * len(seq2) + [x + 1]
-        for y in xrange(len(seq2)):
+        for y in range(len(seq2)):
             del_cost = one_ago[y] + 1
             add_cost = this_row[y - 1] + 1
             sub_cost = one_ago[y - 1] + (seq1[x] != seq2[y])

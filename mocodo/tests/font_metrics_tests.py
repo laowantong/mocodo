@@ -1,11 +1,12 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
+from __future__ import division
 import sys
-sys.path.append('.')
+sys.path[0:0] = ["./mocodo/"]
 
 import unittest
-from mocodo.font_metrics import *
+from font_metrics import *
 
 import tkFont
 

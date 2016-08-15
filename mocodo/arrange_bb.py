@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
+from __future__ import division
+
 from itertools import product, count
 from random import random, shuffle, randrange, choice
 from cross import cross, memoize
@@ -11,7 +13,7 @@ import sys
 def arrange(col_count, row_count, successors, multiplicity, organic, min_objective, max_objective, call_limit, verbose, has_expired, **kwargs):
     
     @memoize
-    def bounded_neighborhood((x1, y1)):
+    def bounded_neighborhood(x1, y1):
         result = set()
         for x2 in range(max(0, x1 - radius), min(col_count, x1 + radius + 1)):
             for y2 in range(max(0, y1 - radius + abs(x1 - x2)), min(row_count, y1 + radius - abs(x1 - x2) + 1)):
@@ -20,7 +22,7 @@ def arrange(col_count, row_count, successors, multiplicity, organic, min_objecti
         return result
     
     @memoize
-    def organic_neighborhood((x1, y1)):
+    def organic_neighborhood(x1, y1):
         result = set()
         for x2 in range(x1 - radius, x1 + radius + 1):
             for y2 in range(y1 - radius + abs(x1 - x2), y1 + radius - abs(x1 - x2) + 1):
@@ -67,18 +69,19 @@ def arrange(col_count, row_count, successors, multiplicity, organic, min_objecti
             # print "Lower bound cut"
             return None
         if has_expired():
-            raise RuntimeError(("Mocodo Err.10 - " + _('Layout calculation time exceeded.')).encode("utf8"))
-        if iteration.next() > call_limit:
+            raise RuntimeError("Mocodo Err.10 - " + _('Layout calculation time exceeded.'))
+        if next(iteration) > call_limit:
             # print "call limit exceeded"
             return None
         box_to_place = next_boxes[0]
         already_placed_successors = {box_coords[box]: box for box in successors[box_to_place] if box in box_coords}
         if already_placed_successors:
             already_placed_successor_coords = iter(already_placed_successors)
-            possible_coords = neighborhood(already_placed_successor_coords.next()).copy()
+            (x1, y1) = next(already_placed_successor_coords)
+            possible_coords = neighborhood(x1, y1).copy()
             # print already_placed_successors[0], possible_coords
-            for coord in already_placed_successor_coords:
-                possible_coords.intersection_update(neighborhood(coord))
+            for (x1, y1) in already_placed_successor_coords:
+                possible_coords.intersection_update(neighborhood(x1, y1))
                 if not possible_coords:
                     # print "neighborhood intersection is empty"
                     return None
@@ -90,9 +93,9 @@ def arrange(col_count, row_count, successors, multiplicity, organic, min_objecti
             # print "neighborhood intersection is not free"
             return None
         non_crossing_possible_coords = []
-        for (x1,y1) in possible_coords:
+        for (x1, y1) in possible_coords:
             for ((x2, y2), (x3, y3, x4, y4)) in product(already_placed_successors, already_placed_segments):
-                if cross((x1, y1, x2, y2, x3, y3, x4, y4)):
+                if cross(x1, y1, x2, y2, x3, y3, x4, y4):
                     break
             else:
                 non_crossing_possible_coords.append((x1, y1))
@@ -100,9 +103,9 @@ def arrange(col_count, row_count, successors, multiplicity, organic, min_objecti
             # print "all possible coords result in a crossing with existing segment"
             return None
         weighted_possible_coords = []
-        for (x1,y1) in non_crossing_possible_coords:
+        for (x1, y1) in non_crossing_possible_coords:
             cumulated_distance = 0
-            for ((x2, y2), placed_box) in already_placed_successors.iteritems():
+            for ((x2, y2), placed_box) in already_placed_successors.items():
                 cumulated_distance += distances[abs(x1-x2)][abs(y1-y2)] * multiplicity[(box_to_place, placed_box)]
             weighted_possible_coords.append((cumulated_distance, random(), x1, y1))
         weighted_possible_coords.sort()
@@ -135,7 +138,7 @@ def arrange(col_count, row_count, successors, multiplicity, organic, min_objecti
     outside_hull_minimal_distance = distances[1][2]
     if all(not successor for successor in successors):
         # print "no link: return a random layout"
-        layout = range(box_count)
+        layout = list(range(box_count))
         shuffle(layout)
         return {
             "layout": layout,
@@ -144,14 +147,14 @@ def arrange(col_count, row_count, successors, multiplicity, organic, min_objecti
         }
     for objective in range(min_objective, max_objective + 1):
         if verbose:
-            print "Objective %s." % objective
-        boxes = range(box_count)
+            print("Objective %s." % objective)
+        boxes = list(range(box_count))
         shuffle(boxes)
         for first_box in boxes:
             iteration = count()
             if successors[first_box]:
                 if verbose:
-                    print "  Starting from box %s." % first_box
+                    print("  Starting from box %s." % first_box)
                 result = recurs(
                     {first_box: (0, 0)},
                     list(successors[first_box]),
@@ -179,8 +182,8 @@ def arrange(col_count, row_count, successors, multiplicity, organic, min_objecti
 
     
 if __name__ == "__main__":
-    from mcd import Mcd
-    from argument_parser import parsed_arguments
+    from .mcd import Mcd
+    from .argument_parser import parsed_arguments
     from time import time
     from random import seed
     clauses = u"""
@@ -206,9 +209,9 @@ if __name__ == "__main__":
     seed(42)
     result = arrange(**params)
     if result:
-        print
-        print mcd.get_clauses_from_layout(**result)
-        print
-        print "Cumulated distances:", result["distances"]
-        print "Duration:", time() - starting_time
-        print 
+        print()
+        print(mcd.get_clauses_from_layout(**result))
+        print()
+        print("Cumulated distances:", result["distances"])
+        print("Duration:", time() - starting_time)
+        print() 

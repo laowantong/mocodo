@@ -1,3 +1,7 @@
+#!/usr/bin/env python
+# encoding: utf-8
+
+from __future__ import division
 import codecs
 
 def read_contents(filename, encoding="utf8"):

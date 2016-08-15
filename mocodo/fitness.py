@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
+from __future__ import division
+
 from itertools import product
 from math import hypot
 from collections import Counter
@@ -23,7 +25,7 @@ def fitness(links, multiplicity, col_count, row_count, max_distance = 4):
         crossing_count = (link_count - len(short_segments)) * link_count
         for (i, (x1, y1, x2, y2)) in enumerate(short_segments):
              for (x3, y3, x4, y4) in short_segments[i+1:]:
-                 crossing_count += cross((x1, y1, x2, y2, x3, y3, x4, y4))
+                 crossing_count += cross(x1, y1, x2, y2, x3, y3, x4, y4)
         return (crossing_count, total_distances)
     
     distances = [[hypot(i, j) - 1 for j in range(row_count)] for i in range(col_count)]

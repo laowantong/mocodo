@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
-import font_metrics
+from __future__ import division
+
 
 
 class Phantom:
@@ -14,6 +15,6 @@ class Phantom:
         self.clause = ":"
         self.identifier = None
 
-    def calculate_size(self, style):
+    def calculate_size(self, *ignored):
         self.w = 0
         self.h = 0

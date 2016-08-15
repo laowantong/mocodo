@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
-import font_metrics
+from __future__ import division
+
 import sys
 import re
 from dynamic import Dynamic
@@ -14,17 +15,17 @@ class DiagramLink:
         try:
             self.primary_entity = entities[foreign_key.primary_entity_name]
         except KeyError:
-            raise RuntimeError(("Mocodo Err.14 - " + _('Attribute "{foreign_key}" in entity "{foreign_entity}" references an unknown entity "{primary_entity}".').format(foreign_key=foreign_key.label, foreign_entity=foreign_entity.name, primary_entity=foreign_key.primary_entity_name)).encode("utf8"))
+            raise RuntimeError("Mocodo Err.14 - " + _('Attribute "{foreign_key}" in entity "{foreign_entity}" references an unknown entity "{primary_entity}".').format(foreign_key=foreign_key.label, foreign_entity=foreign_entity.name, primary_entity=foreign_key.primary_entity_name))
         for candidate in self.primary_entity.attributes:
             if candidate.label.lstrip("#") == foreign_key.primary_key_label.lstrip("#"):
                 self.primary_key = candidate
                 break
         else:
-            raise RuntimeError(("Mocodo Err.15 - " + _('Attribute "{foreign_key}" in entity "{foreign_entity}" references an unknown attribute "{primary_key}" in entity "{primary_entity}".').format(foreign_key.label, foreign_entity.name, foreign_key.primary_key_label, foreign_key.primary_entity_name)).encode("utf8"))
+            raise RuntimeError("Mocodo Err.15 - " + _('Attribute "{foreign_key}" in entity "{foreign_entity}" references an unknown attribute "{primary_key}" in entity "{primary_entity}".').format(foreign_key.label, foreign_entity.name, foreign_key.primary_key_label, foreign_key.primary_entity_name))
     
-    def calculate_size(self, style):
-        self.fdx = self.foreign_entity.w / 2
-        self.pdx = self.primary_entity.w / 2
+    def calculate_size(self, style, *ignored):
+        self.fdx = self.foreign_entity.w // 2
+        self.pdx = self.primary_entity.w // 2
         self.fdy = - self.foreign_entity.h / 2 + 3 * style["rect_margin_height"] + self.foreign_entity.cartouche_height + (self.foreign_key.rank + 0.5) * (self.foreign_entity.attribute_height + style["line_skip_height"])
         self.pdy = - self.primary_entity.h / 2 + 3 * style["rect_margin_height"] + self.primary_entity.cartouche_height + (self.primary_key.rank + 0.5) * (self.primary_entity.attribute_height + style["line_skip_height"])
         self.style = style
@@ -40,7 +41,7 @@ class DiagramLink:
                 "key": "stroke_depth",
                 "stroke_depth": self.style["leg_stroke_depth"],
             })
-        spins = [(-1,-1),(1,-1),(-1,1),(1,1)] if self.foreign_key.rank % 2 else [(1,1),(-1,1),(1,-1),(-1,-1)]
+        spins = [(-1, -1), (1, -1), (-1, 1), (1, 1)] if self.foreign_key.rank % 2 else [(1, 1), (-1, 1), (1, -1), (-1, -1)]
         result.append({
                 "key": "env",
                 "env": [

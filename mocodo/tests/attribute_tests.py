@@ -1,11 +1,12 @@
 #!/usr/bin/python
 # encoding: utf-8
 
+from __future__ import division
 import sys
-sys.path.append('.')
+sys.path[0:0] = ["./mocodo/"]
 
 import unittest
-from mocodo.attribute import *
+from attribute import *
 
 
 class OuterSplitTest(unittest.TestCase):

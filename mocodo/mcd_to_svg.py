@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
+from __future__ import division
+
 from common import version
 import string
 import random
@@ -12,7 +14,7 @@ from dynamic import Dynamic
 def main(mcd, common):
     params = common.params
     style = common.load_style()
-    for (k, v) in style.iteritems():
+    for (k, v) in style.items():
         if k.endswith("_color") and v is None:
             style[k] = "none"
     mcd.calculate_size(style)
@@ -59,9 +61,10 @@ def main(mcd, common):
     rex = re.compile(r"(?<=%\().+?(?=\)s)")
     has_note_card = False
     for d in mcd.description():
-        if type(d) is dict:
+        if isinstance(d, dict):
             if d["key"] == "env":
-                result.append("(%s) = (%s)" % (",".join(zip(*d["env"])[0]), ",".join(zip(*d["env"])[1])))
+                zipped_env = list(zip(*d["env"]))
+                result.append("(%s) = (%s)" % (",".join(zipped_env[0]), ",".join(zipped_env[1])))
             else:
                 if d["key"] == "straight_leg":
                     result.append('leg=straight_leg_factory(%(ex)s,%(ey)s,%(ew)s,%(eh)s,%(ax)s,%(ay)s,%(aw)s,%(ah)s,%(cw)s+2*card_margin,%(ch)s+2*card_margin)' % d)
@@ -135,9 +138,9 @@ def main(mcd, common):
 
 
 if __name__ == "__main__":
-    from argument_parser import parsed_arguments
-    from mcd import Mcd
-    from common import Common
+    from .argument_parser import parsed_arguments
+    from .mcd import Mcd
+    from .common import Common
     clauses = u"""
         CLIENT: Réf. client, Nom, Prénom, Adresse
         PASSER, 0N CLIENT, 11 COMMANDE

@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
+from __future__ import division
+
 import re
 import textwrap
 import random
@@ -33,9 +35,9 @@ def obfuscate(clauses, params):
     def obfuscate_label(label):
         if label not in cache:
             try:
-                new_label = random_chunk.next()
+                new_label = next(random_chunk)
             except StopIteration:
-                raise RuntimeError(("Mocodo Err.12 - " + _('Obfuscation failed. Not enough substitution words in "{filename}". You may either increase the `obfuscation_max_length` or decrease the `obfuscation_min_distance` option values.').format(filename=lorem_filename)).encode("utf8"))
+                raise RuntimeError("Mocodo Err.12 - " + _('Obfuscation failed. Not enough substitution words in "{filename}". You may either increase the `obfuscation_max_length` or decrease the `obfuscation_min_distance` option values.').format(filename=lorem_filename))
             if label.isupper():
                 new_label = new_label.upper()
             elif label == label.capitalize():
@@ -54,7 +56,7 @@ def obfuscate(clauses, params):
         except IOError:
             lorem_text = read_contents("%s/lorem/lorem_ipsum.txt" % params["script_directory"])
     random_chunk = random_chunks_of(lorem_text, params["obfuscation_max_length"], params)
-    header = map(lambda comment: comment + "\n", itertools.takewhile(lambda line: line.startswith("%"), clauses))
+    header = [comment + "\n" for comment in itertools.takewhile(lambda line: line.startswith("%"), clauses)]
     clauses = "\n".join(clauses[len(header):])
     clauses = re.sub(r"\[.+?\]", "", clauses)
     clauses = re.sub(r"(?m)^%.*\n?", "", clauses)
@@ -80,7 +82,7 @@ def obfuscate(clauses, params):
 
 
 if __name__=="__main__":
-    from argument_parser import parsed_arguments
+    from .argument_parser import parsed_arguments
     clauses = u"""
         CLIENT: Réf. client, Nom, Prénom, Adresse
         PASSER, 0N CLIENT, 11 COMMANDE
@@ -91,4 +93,4 @@ if __name__=="__main__":
     params = parsed_arguments()
     params["seed"] = 42
     params["obfuscate"] = "four_letter_words.txt"
-    print obfuscate(clauses, params)
+    print(obfuscate(clauses, params))

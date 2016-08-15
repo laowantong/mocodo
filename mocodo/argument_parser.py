@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
+from __future__ import division
 import argparse
 import random
 import os
@@ -12,6 +13,7 @@ import re
 import gettext
 import locale
 from time import time
+from io import open
 
 DESCRIPTION = """
 NAME:
@@ -33,7 +35,7 @@ NOTE:
 
 EPILOG = u"""
 SEE ALSO:
-  Online version        http://mocodo.wingi.net
+  Online version        http://mocodo.net
   Source code           https://github.com/laowantong/mocodo
   Localization          https://www.transifex.com/aristide/mocodo/
 
@@ -68,7 +70,15 @@ def init_localization(script_directory, language):
             trans = gettext.GNUTranslations(mo_contents)
     except IOError:
         trans = gettext.NullTranslations()
-    trans.install(unicode=True)
+    if sys.version < "3":
+        trans.install(unicode=True)
+        import __builtin__
+        class UnicodeRuntimeError(Exception):
+            def __init__(self, message):
+                super(UnicodeRuntimeError, self).__init__(message.encode("utf-8"))
+        __builtin__.RuntimeError = UnicodeRuntimeError
+    else:
+        trans.install()
     return language
 
 def has_expired(timeout):
@@ -87,8 +97,8 @@ def rate(string):
     except ValueError:
         msg = "The rate %r cannot be coerced to float" % string
         raise argparse.ArgumentTypeError(msg)
-    if not (0.0 <= value <= 1.0):
-        msg = "The rate %r is not between 0.0 and 1.1" % string
+    if not (0 <= value <= 1):
+        msg = "The rate %r is not between 0 and 1" % string
         raise argparse.ArgumentTypeError(msg)
     return value
 
@@ -173,12 +183,14 @@ def parsed_arguments():
     io_group.add_argument("--input", metavar="PATH", help="the path of the input file. By default, the output files will be generated in the same directory")
     (args, remaining_args) = parser.parse_known_args()
     
+    text_type = (unicode if sys.version < "3" else str)
+    
     if args.input and not os.path.exists(args.input):
         if os.path.exists(args.input + ".mcd"):
             args.input += ".mcd"
         else:  # the user has explicitely specified a non existent input file
             init_localization(script_directory, default_params.get("language", args.language))
-            raise RuntimeError(("Mocodo Err.18 - " + _('The file "{input}" doesn\'t exist.').format(input=args.input)).encode("utf8"))
+            raise RuntimeError("Mocodo Err.18 - " + _('The file "{input}" doesn\'t exist.').format(input=args.input))
     default_params["input"] = args.input
     if os.path.exists(args.params_path):
         default_params.update(json.loads(read_contents(args.params_path)))
@@ -191,14 +203,14 @@ def parsed_arguments():
     mocodo_group.add_argument("--version", action="version", version="%(prog)s " + version, help="display the version number, then exit")
     mocodo_group.add_argument("--restore", action="store_true", help="recreate a pristine version of the files 'sandbox.mcd' and 'params.json' in the input directory, then exit")
     
-    aspect_group.add_argument("--df", metavar="STR", type=unicode, default=u"DF", help="the acronym to be circled in a functional dependency")
-    aspect_group.add_argument("--card_format", metavar="STR", type=unicode, default=u"{min_card},{max_card}", help="format string for minimal and maximal cardinalities")
-    aspect_group.add_argument("--strengthen_card", metavar="STR", type=unicode, default=u"_1,1_", help="string for relative cardinalities")
+    aspect_group.add_argument("--df", metavar="STR", type=text_type, default=u"DF", help="the acronym to be circled in a functional dependency")
+    aspect_group.add_argument("--card_format", metavar="STR", type=text_type, nargs="?", default=u"{min_card},{max_card}", help="format string for minimal and maximal cardinalities")
+    aspect_group.add_argument("--strengthen_card", metavar="STR", type=text_type, nargs="?", default=u"_1,1_", help="string for relative cardinalities")
     source_group.add_argument("--flex", metavar="FLOAT", type=float, default=0.75, help="flex straight legs whose cardinalities may collide")
     aspect_group.add_argument("--tkinter", action="store_true", help="use Tkinter to calculate the pixel-dimensions of the labels")
     aspect_group.add_argument("--colors", metavar="PATH", default="bw", help="the color palette to use when generating the drawing. Name (without extension) of a file located in the directory 'colors', or path to a personal file")
     aspect_group.add_argument("--shapes", metavar="PATH", help="specification of the fonts, dimensions, etc. Name (without extension) of a file located in the directory 'shapes', or path to a personal file")
-    aspect_group.add_argument("--scale", metavar="RATE", type=scale, default=1.0, help="scale the diagram by the given factor")
+    aspect_group.add_argument("--scale", metavar="RATE", type=scale, default=1, help="scale the diagram by the given factor")
     aspect_group.add_argument("--hide_annotations", action="store_true", help="ignore the hovering of annotated elements")
     
     relational_group.add_argument("--relations", metavar="NAME", nargs="*", default=["html", "text"], help="one or several templates for the generated relational schemas. Cf. directory 'relation_templates'")
@@ -212,7 +224,7 @@ def parsed_arguments():
     io_group.add_argument("--image_format", choices=["svg", "nodebox"], help="override the automatic selection (depending on your installation) of the image format produced by the generated script")
     io_group.add_argument("--print_params", action="store_true", help="display the contents of the parameter file, then exit")
     
-    source_group.add_argument("--arrange", nargs="?", const="bb", choices=["bb", "ga", "lp"], help="rearrange the layout with either a Branch & Bound, a Genetic Algorithm, or a constraint solver, then exit")
+    source_group.add_argument("--arrange", nargs="?", const="bb", choices=["bb", "ga", "lp"], help="rearrange the layout with either a Branch & Bound, a Genetic Algorithm, or a Linear Program solver, then exit")
     source_group.add_argument("--timeout", metavar="SECONDS", type=int, help="limit the duration of the layout rearrangement")
     source_group.add_argument("--verbose", action="store_true", help="display some gory details during the layout rearrangement")
     source_group.add_argument("--fit", metavar="INT", type=int, const=0, nargs="?", help="fit the layout in the nth smallest grid")

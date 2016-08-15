@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
+from __future__ import division, print_function
+
 import time
 from relations import Relations
 from version_number import version
@@ -8,15 +10,16 @@ import os
 import sys
 import json
 import re
+import numbers
 from file_helpers import read_contents, write_contents
 
 def safe_print_for_PHP(s):
     """ It seems that when called from PHP, Python is unable to guess correctly
         the encoding of the standard output. """
     try:
-        print >> sys.stdout, s
+        print(s, file=sys.stdout)
     except UnicodeEncodeError:
-        print >> sys.stdout, s.encode("utf8")
+        print(s.encode("utf8"), file=sys.stdout)
 
 class Common:
 
@@ -36,7 +39,7 @@ class Common:
                 return read_contents(self.params["input"], encoding=encoding).replace('"', '').splitlines()
             except UnicodeError:
                 pass
-        raise RuntimeError(("Mocodo Err.5 - " + _('Unable to read "{filename}" with any of the following encodings: "{encodings}".').format(filename=self.params["input"], encodings= ", ".join(self.params["encodings"])).encode("utf8")))
+        raise RuntimeError("Mocodo Err.5 - " + _('Unable to read "{filename}" with any of the following encodings: "{encodings}".').format(filename=self.params["input"], encodings= ", ".join(self.params["encodings"])))
 
     def load_style(self):
         
@@ -46,22 +49,34 @@ class Common:
                 try:
                     return json.loads(read_contents(path))
                 except:
-                    raise RuntimeError(("Mocodo Err.3 - " + _('Problem with "{name}" file "{path}.json".').format(name=name, path=path)).encode("utf8"))
+                    raise RuntimeError("Mocodo Err.3 - " + _('Problem with "{name}" file "{path}.json".').format(name=name, path=path))
             path = os.path.join(self.params["script_directory"], name, path)
             try:
                 return json.loads(read_contents(path))
             except:
-                raise RuntimeError(("Mocodo Err.3 - " + _('Problem with "{name}" file "{path}.json".').format(name=name, path=path)).encode("utf8"))
+                raise RuntimeError("Mocodo Err.3 - " + _('Problem with "{name}" file "{path}.json".').format(name=name, path=path))
         
+        def may_apply_scaling(shapes):
+            if self.params["scale"] == 1:
+                return
+            scale = self.params["scale"]
+            for key in shapes:
+                if key.endswith("font"):
+                    shapes[key]["size"] = shapes[key]["size"] * scale
+                elif not key.endswith("ratio") and isinstance(shapes[key], numbers.Number):
+                    shapes[key] *= scale
+        
+        def ensure_margin_sizes_are_integer(shapes):
+            # Some nasty failures are known to occur otherwise.
+            for key in shapes:
+                if "margin" in key:
+                    shapes[key] = int(shapes[key] + 0.5)
+            
         style = {}
         style.update(load_by_name("colors"))
         shapes = load_by_name("shapes")
-        if self.params["scale"] != 1:
-            for key in shapes:
-                if key.endswith("font"):
-                    shapes[key]["size"] *= self.params["scale"]
-                elif not key.endswith("ratio") and isinstance(shapes[key], (int, long, float, complex)):
-                    shapes[key] *= self.params["scale"]
+        may_apply_scaling(shapes)
+        ensure_margin_sizes_are_integer(shapes)
         style.update(shapes)
         style["transparent_color"] = None
         return style
@@ -103,8 +118,8 @@ class Common:
         
         l = [
             ("size", (mcd.w, mcd.h)),
-            ("cx", [(box.name, box.x + box.w / 2) for row in mcd.rows for box in row if box.kind != "phantom"]),
-            ("cy", [(box.name, box.y + box.h / 2) for row in mcd.rows for box in row if box.kind != "phantom"]),
+            ("cx", [(box.name, box.x + box.w // 2) for row in mcd.rows for box in row if box.kind != "phantom"]),
+            ("cy", [(box.name, box.y + box.h // 2) for row in mcd.rows for box in row if box.kind != "phantom"]),
             ("shift", [(leg.identifier, 0) for row in mcd.rows for box in row for leg in box.legs]),
             ("ratio", [(leg.identifier, 1.0) for row in mcd.rows for box in row for leg in box.legs if leg.arrow]),
             ("colors", [((c, style[c]) if style[c] else (c, None)) for c in sorted(style.keys()) if c.endswith("_color")]),
@@ -117,11 +132,11 @@ class Common:
             result.append("with codecs.open('%(output_name)s_geo.json') as f:" % self.params)
             result.append("    geo = json.loads(f.read())")
             result.append("(width,height) = geo.pop('size')")
-            result.append("for (name, l) in geo.iteritems(): globals()[name] = dict(l)")
+            result.append("for (name, l) in geo.items(): globals()[name] = dict(l)")
         else: # include the geometry at the beginning of the generated Python file
             result = ["(width,height) = (%s,%s)" % l.pop(0)[1]]
             for (identifier, items) in l:
                 if items: # pretty print the dictionnary
                     s = "%%-%ss" % (max(len(k) for (k, _) in items) + 3)
-                    result.append("%s = {\n    %s\n}" % (identifier, "\n    ".join(["%s: %s," % (s % ('u"%s"' % k), ("%4d" % v if type(v) is int else ("% .2f" % v if type(v) is float else repr(v)))) for (k, v) in items])))
+                    result.append("%s = {\n    %s\n}" % (identifier, "\n    ".join(["%s: %s," % (s % ('u"%s"' % k), ("%4d" % v if isinstance(v, int) else ("% .2f" % v if isinstance(v, float) else repr(v)))) for (k, v) in items])))
         return result

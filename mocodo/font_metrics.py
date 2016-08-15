@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
+from __future__ import division
+
 import sys
 from file_helpers import read_contents
 import os
@@ -20,7 +22,7 @@ def font_metrics_factory(params):
             class FontMetricsWithTk():
 
                 def __init__(self, font):
-                    kargs = dict((str(k), v) for (k, v) in font.iteritems())
+                    kargs = dict((str(k), v) for (k, v) in font.items())
                     kargs["size"] = -font["size"]
                     self.font = tkFont.Font(**kargs)
 
@@ -45,7 +47,7 @@ def font_metrics_factory(params):
             metrics = self.static_data["fonts"][font["family"]]
             self.font_height = int(round(metrics["height"] * font["size"] / ref_size))
             self.width = dict((c, ord(x)) for (c, x) in zip(self.static_data["alphabet"], metrics.get("widths", [])))
-            self.ratio = font["size"] * metrics.get("correction", 1.0) / ref_size
+            self.ratio = font["size"] * metrics.get("correction", 1) / ref_size
             self.default_width = metrics["default"]
 
         def get_pixel_height(self):

@@ -1,15 +1,16 @@
 #!/usr/bin/python
 # encoding: utf-8
 
+from __future__ import division
 import sys
-sys.path.append('.')
+sys.path[0:0] = ["./mocodo/"]
 
 import unittest
-from mocodo.relations import *
-from mocodo.mcd import Mcd
+from relations import *
+from mcd import Mcd
 import json
-from mocodo.file_helpers import read_contents
-from mocodo.argument_parser import parsed_arguments
+from file_helpers import read_contents
+from argument_parser import parsed_arguments
 
 clauses = """
 PASS, 11 PEAK, 01 GAME: rain
@@ -91,7 +92,7 @@ class RelationTemplatesTest(unittest.TestCase):
         """.strip().replace("    ", "").split()
         result = t.get_text(template).split()
         for (result_line, expected_line) in zip(result, expected):
-            self.assertEquals(result_line, expected_line)
+            self.assertEqual(result_line, expected_line)
 
     def test_html(self):
         template = json.loads(read_contents("mocodo/relation_templates/html.json"))
@@ -210,7 +211,7 @@ class RelationTemplatesTest(unittest.TestCase):
         """.strip().replace("    ", "").split()
         result = t.get_text(template).split()
         for (result_line, expected_line) in zip(result, expected):
-            self.assertEquals(result_line, expected_line)
+            self.assertEqual(result_line, expected_line)
 
     def test_html_verbose(self):
         template = json.loads(read_contents("mocodo/relation_templates/html_verbose.json"))
@@ -411,7 +412,7 @@ class RelationTemplatesTest(unittest.TestCase):
         """.strip().replace("    ", "").split()
         result = t.get_text(template).split()
         for (result_line, expected_line) in zip(result, expected):
-            self.assertEquals(result_line, expected_line)
+            self.assertEqual(result_line, expected_line)
 
     def test_latex(self):
         template = json.loads(read_contents("mocodo/relation_templates/latex.json"))
@@ -447,7 +448,7 @@ class RelationTemplatesTest(unittest.TestCase):
         """.strip().replace("    ", "").split()
         result = t.get_text(template).split()
         for (result_line, expected_line) in zip(result, expected):
-            self.assertEquals(result_line, expected_line)
+            self.assertEqual(result_line, expected_line)
 
     def test_markdown(self):
         template = json.loads(read_contents("mocodo/relation_templates/markdown.json"))
@@ -470,7 +471,7 @@ class RelationTemplatesTest(unittest.TestCase):
         """.strip().replace("    ", "").split()
         result = t.get_text(template).split()
         for (result_line, expected_line) in zip(result, expected):
-            self.assertEquals(result_line, expected_line)
+            self.assertEqual(result_line, expected_line)
 
     def test_markdown_verbose(self):
         template = json.loads(read_contents("mocodo/relation_templates/markdown_verbose.json"))
@@ -545,7 +546,7 @@ class RelationTemplatesTest(unittest.TestCase):
         """.strip().replace("    ", "").split()
         result = t.get_text(template).split()
         for (result_line, expected_line) in zip(result, expected):
-            self.assertEquals(result_line, expected_line)
+            self.assertEqual(result_line, expected_line)
 
     def test_mysql(self):
         template = json.loads(read_contents("mocodo/relation_templates/mysql.json"))
@@ -668,7 +669,7 @@ class RelationTemplatesTest(unittest.TestCase):
         """.strip().replace("    ", "").split()
         result = t.get_text(template).split()
         for (result_line, expected_line) in zip(result, expected):
-            self.assertEquals(result_line, expected_line)
+            self.assertEqual(result_line, expected_line)
 
     def test_oracle(self):
         template = json.loads(read_contents("mocodo/relation_templates/oracle.json"))
@@ -788,7 +789,7 @@ class RelationTemplatesTest(unittest.TestCase):
         """.strip().replace("    ", "").split()
         result = t.get_text(template).split()
         for (result_line, expected_line) in zip(result, expected):
-            self.assertEquals(result_line, expected_line)
+            self.assertEqual(result_line, expected_line)
 
     def test_postgresql(self):
         template = json.loads(read_contents("mocodo/relation_templates/postgresql.json"))
@@ -911,7 +912,7 @@ class RelationTemplatesTest(unittest.TestCase):
         """.strip().replace("    ", "").split()
         result = t.get_text(template).split()
         for (result_line, expected_line) in zip(result, expected):
-            self.assertEquals(result_line, expected_line)
+            self.assertEqual(result_line, expected_line)
 
     def test_sqlite(self):
         template = json.loads(read_contents("mocodo/relation_templates/sqlite.json"))
@@ -1032,7 +1033,7 @@ class RelationTemplatesTest(unittest.TestCase):
         """.strip().replace("    ", "").split()
         result = t.get_text(template).split()
         for (result_line, expected_line) in zip(result, expected):
-            self.assertEquals(result_line, expected_line)
+            self.assertEqual(result_line, expected_line)
 
     def test_text(self):
         template = json.loads(read_contents("mocodo/relation_templates/text.json"))
@@ -1053,7 +1054,7 @@ class RelationTemplatesTest(unittest.TestCase):
         """.strip().replace("    ", "").split()
         result = t.get_text(template).split()
         for (result_line, expected_line) in zip(result, expected):
-            self.assertEquals(result_line, expected_line)
+            self.assertEqual(result_line, expected_line)
 
     def test_txt2tags(self):
         template = json.loads(read_contents("mocodo/relation_templates/txt2tags.json"))
@@ -1078,7 +1079,7 @@ class RelationTemplatesTest(unittest.TestCase):
         """.strip().replace("    ", "").split()
         result = t.get_text(template).split()
         for (result_line, expected_line) in zip(result, expected):
-            self.assertEquals(result_line, expected_line)
+            self.assertEqual(result_line, expected_line)
 
 clauses_with_composite_foreign_keys = u"""
 PEUT VIVRE DANS, 1N ESPÈCE, 1N ENCLOS: nb. max. congénères
@@ -1223,7 +1224,7 @@ class MoreRelationTemplatesTest(unittest.TestCase):
         """.strip().replace("    ", "").split()
         result = u.get_text(template).split()
         for (result_line, expected_line) in zip(result, expected):
-            self.assertEquals(result_line, expected_line)
+            self.assertEqual(result_line, expected_line)
 
     def test_oracle(self):
         template = json.loads(read_contents("mocodo/relation_templates/oracle.json"))
@@ -1336,7 +1337,7 @@ class MoreRelationTemplatesTest(unittest.TestCase):
         """.strip().replace("    ", "").split()
         result = u.get_text(template).split()
         for (result_line, expected_line) in zip(result, expected):
-            self.assertEquals(result_line, expected_line)
+            self.assertEqual(result_line, expected_line)
 
     def test_postgresql(self):
         template = json.loads(read_contents("mocodo/relation_templates/postgresql.json"))
@@ -1452,7 +1453,7 @@ class MoreRelationTemplatesTest(unittest.TestCase):
         """.strip().replace("    ", "").split()
         result = u.get_text(template).split()
         for (result_line, expected_line) in zip(result, expected):
-            self.assertEquals(result_line, expected_line)
+            self.assertEqual(result_line, expected_line)
 
     def test_sqlite(self):
         template = json.loads(read_contents("mocodo/relation_templates/sqlite.json"))
@@ -1566,7 +1567,7 @@ class MoreRelationTemplatesTest(unittest.TestCase):
         """.strip().replace("    ", "").split()
         result = u.get_text(template).split()
         for (result_line, expected_line) in zip(result, expected):
-            self.assertEquals(result_line, expected_line)
+            self.assertEqual(result_line, expected_line)
 
 if __name__ == '__main__':
     unittest.main()

@@ -1,3 +1,7 @@
+
+def cmp(x, y):
+    return (x > y) - (x < y)
+
 def offset(x, y):
     return (x + card_margin, y - card_baseline - card_margin)
 

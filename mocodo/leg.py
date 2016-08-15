@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
-import font_metrics
+from __future__ import division
+
 import sys
 import re
 from dynamic import Dynamic
@@ -23,10 +24,10 @@ auto_correction = {
     "1N": ["N1"],
     "1n": ["n1"]
 }
-auto_correction = dict((v,k) for k in auto_correction for v in auto_correction[k])
+auto_correction = dict((v, k) for k in auto_correction for v in auto_correction[k])
 
 def html_escape(text):
-    return "".join(html_escape_table.get(c,c) for c in text)
+    return "".join(html_escape_table.get(c, c) for c in text)
 
 class Leg:
 
@@ -57,8 +58,8 @@ class Leg:
         self.twist = False
         self.identifier = None
     
-    def calculate_size(self, style):
-        font = font_metrics.FontMetrics(style["card_font"])
+    def calculate_size(self, style, get_font_metrics):
+        font = get_font_metrics(style["card_font"])
         self.h = font.get_pixel_height()
         self.w = font.get_pixel_width(self.cardinalities)
         self.style = style
@@ -87,12 +88,12 @@ class Leg:
                 "key": "straight_leg",
                 "ex": Dynamic("ex"),
                 "ey": Dynamic("ey"),
-                "ew": self.entity.w / 2,
-                "eh": self.entity.h / 2,
+                "ew": self.entity.w // 2,
+                "eh": self.entity.h // 2,
                 "ax": Dynamic("x"),
                 "ay": Dynamic("y"),
-                "aw": self.association.w / 2,
-                "ah": self.association.h / 2,
+                "aw": self.association.w // 2,
+                "ah": self.association.h // 2,
                 "cw": self.w,
                 "ch": self.h,
                 "stroke_depth": self.style["leg_stroke_depth"],
@@ -162,12 +163,12 @@ class Leg:
                 "key": "curved_leg",
                 "ex": Dynamic("ex"),
                 "ey": Dynamic("ey"),
-                "ew": self.entity.w / 2,
-                "eh": self.entity.h / 2,
+                "ew": self.entity.w // 2,
+                "eh": self.entity.h // 2,
                 "ax": Dynamic("x"),
                 "ay": Dynamic("y"),
-                "aw": self.association.w / 2,
-                "ah": self.association.h / 2,
+                "aw": self.association.w // 2,
+                "ah": self.association.h // 2,
                 "spin": self.spin,
                 "cw": self.w,
                 "ch": self.h,

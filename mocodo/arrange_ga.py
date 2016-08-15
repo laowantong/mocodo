@@ -1,8 +1,10 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
+from __future__ import division
+
 from fitness import fitness
-from random import randrange, choice, random, sample, shuffle
+from random import randrange, choice, random, sample
 from collections import namedtuple
 
 
@@ -15,7 +17,7 @@ def arrange(links, successors, multiplicity, col_count, row_count, verbose, has_
             sequentially. When a gene has another gene to the west, the corresponding node is preferably
             selected among the successors of the latter. NB: Applying the same technic for the north and
             nortwest directions produces better individual, but worse final results. """
-        pool = range(box_count)
+        pool = list(range(box_count))
         chromosome = [pool.pop(randrange(box_count))]
         (x, y) = (0, 0)
         for i in range(1, box_count):
@@ -38,8 +40,8 @@ def arrange(links, successors, multiplicity, col_count, row_count, verbose, has_
         (x2, y2) = (randrange(x1+1, col_count+1), randrange(y1+1, row_count+1))
         def mate(chromosome_1, chromosome_2):
             used = set(chromosome_1[x+y*col_count] for x in range(x1, x2) for y in range(y1, y2))
-            not_used_next = (allele for allele in chromosome_2 if allele not in used).next
-            return [chromosome_1[x+y*col_count] if x1 <= x < x2 and y1 <= y < y2 else not_used_next() for y in range(row_count) for x in range(col_count)]
+            not_used = (allele for allele in chromosome_2 if allele not in used)
+            return [chromosome_1[x+y*col_count] if x1 <= x < x2 and y1 <= y < y2 else next(not_used) for y in range(row_count) for x in range(col_count)]
         return (mate(chromosome_1, chromosome_2), mate(chromosome_2, chromosome_1))
 
     def next_population():
@@ -73,7 +75,7 @@ def arrange(links, successors, multiplicity, col_count, row_count, verbose, has_
             patience -= 1
         else:
             if verbose:
-                print "% 3d: %s" % (generation, best.score)
+                print("% 3d: %s" % (generation, best.score))
             previous_best_score = best.score
             patience = plateau
         if best.score == (0, 0) or patience == 0 or has_expired():
@@ -88,8 +90,8 @@ def arrange(links, successors, multiplicity, col_count, row_count, verbose, has_
     }
     
 if __name__ == "__main__":
-    from mcd import Mcd
-    from argument_parser import parsed_arguments
+    from .mcd import Mcd
+    from .argument_parser import parsed_arguments
     from time import time
     from random import seed
     clauses = u"""
@@ -116,9 +118,9 @@ if __name__ == "__main__":
     seed(42)
     result = arrange(**params)
     if result:
-        print
-        print mcd.get_clauses_from_layout(**result)
-        print
-        print "Cumulated distances:", result["distances"]
-        print "Duration:", time() - starting_time
-        print 
+        print()
+        print(mcd.get_clauses_from_layout(**result))
+        print()
+        print("Cumulated distances:", result["distances"])
+        print("Duration:", time() - starting_time)
+        print() 
