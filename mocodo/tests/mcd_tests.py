@@ -335,7 +335,7 @@ class McdTest(unittest.TestCase):
             Gear , 1N Call, 1N Folk
             :
         """.strip().replace("  ", "")
-        self.assertEquals(mcd.get_reformatted_clauses(0), expected)
+        self.assertEqual(mcd.get_reformatted_clauses(0), expected)
         # 1st next fit: (5, 3)
         expected = u"""
             Item: Norm, Wash, Haul
@@ -353,7 +353,7 @@ class McdTest(unittest.TestCase):
             Gear , 1N Call, 1N Folk
             ::::
         """.strip().replace("  ", "")
-        self.assertEquals(mcd.get_reformatted_clauses(1), expected)
+        self.assertEqual(mcd.get_reformatted_clauses(1), expected)
         # 2nd next fit: (4, 4)
         expected = u"""
             Item: Norm, Wash, Haul
@@ -373,7 +373,7 @@ class McdTest(unittest.TestCase):
 
             ::::
         """.strip().replace("  ", "")
-        self.assertEquals(mcd.get_reformatted_clauses(2), expected)
+        self.assertEqual(mcd.get_reformatted_clauses(2), expected)
         
     def test_automatic_fit_produces_next_grid(self):
         # initially: (5, 4) for 11 nodes
@@ -414,7 +414,7 @@ class McdTest(unittest.TestCase):
 
             ::::::
         """.strip().replace("  ", "")
-        self.assertEquals(mcd.get_reformatted_clauses(-1), expected)
+        self.assertEqual(mcd.get_reformatted_clauses(-1), expected)
 
     def test_implicit_fit_produces_min_grid_next(self):
         # initially: (4, 5) for 11 nodes
@@ -453,8 +453,8 @@ class McdTest(unittest.TestCase):
             Gear , 1N Call, 1N Folk
             ::::
         """.strip().replace("  ", "")
-        self.assertEquals(mcd.get_reformatted_clauses(-1), expected)
-        self.assertEquals(mcd.get_reformatted_clauses(1), expected)
+        self.assertEqual(mcd.get_reformatted_clauses(-1), expected)
+        self.assertEqual(mcd.get_reformatted_clauses(1), expected)
 
 
 if __name__ == '__main__':

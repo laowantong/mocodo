@@ -1,8 +1,11 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
+import sys
+sys.path[0:0] = ["./mocodo/"]
+
 import unittest
-from mocodo.grid import Grid
+from grid import Grid
 
 class GridTests(unittest.TestCase):
     
