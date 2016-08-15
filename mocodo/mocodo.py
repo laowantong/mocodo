@@ -50,6 +50,8 @@ def main():
                 from arrange_ga import arrange
             elif params["arrange"] == "bb":
                 from arrange_bb import arrange
+            elif params["arrange"] == "lp":
+                from arrange_lp import arrange
             result = arrange(**params)
             if result:
                 mcd.set_layout(**result)
