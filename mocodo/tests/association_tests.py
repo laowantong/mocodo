@@ -121,8 +121,8 @@ class parse_test(unittest.TestCase):
         self.assertEqual(a.legs[2].may_identify, True)
 
     def test_input_errors(self):
-        self.assertRaisesRegex(RuntimeError, r"Mocodo Err.2", Association, "EMPLOYER, PARTICIPANT, 0N ENTREPRISE",)
-        self.assertRaisesRegex(RuntimeError, r"Mocodo Err.2", Association, "EMPLOYER, 1 PARTICIPANT, 0N ENTREPRISE",)
+        self.assertRaisesRegex(MocodoError, r"Mocodo Err\.2", Association, "EMPLOYER, PARTICIPANT, 0N ENTREPRISE",)
+        self.assertRaisesRegex(MocodoError, r"Mocodo Err\.2", Association, "EMPLOYER, 1 PARTICIPANT, 0N ENTREPRISE",)
 
 if __name__ == '__main__':
     unittest.main()

@@ -7,8 +7,7 @@ from itertools import product, count
 from random import random, shuffle, randrange, choice
 from cross import cross, memoize
 from math import hypot, sqrt
-
-import sys
+from mocodo_error import MocodoError
 
 def arrange(col_count, row_count, successors, multiplicity, organic, min_objective, max_objective, call_limit, verbose, has_expired, **kwargs):
     
@@ -69,7 +68,7 @@ def arrange(col_count, row_count, successors, multiplicity, organic, min_objecti
             # print "Lower bound cut"
             return None
         if has_expired():
-            raise RuntimeError("Mocodo Err.10 - " + _('Layout calculation time exceeded.'))
+            raise MocodoError(10, _('Layout calculation time exceeded.'))
         if next(iteration) > call_limit:
             # print "call limit exceeded"
             return None

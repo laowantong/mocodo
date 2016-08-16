@@ -12,6 +12,7 @@ import json
 import re
 import numbers
 from file_helpers import read_contents, write_contents
+from mocodo_error import MocodoError
 
 def safe_print_for_PHP(s):
     """ It seems that when called from PHP, Python is unable to guess correctly
@@ -39,7 +40,7 @@ class Common:
                 return read_contents(self.params["input"], encoding=encoding).replace('"', '').splitlines()
             except UnicodeError:
                 pass
-        raise RuntimeError("Mocodo Err.5 - " + _('Unable to read "{filename}" with any of the following encodings: "{encodings}".').format(filename=self.params["input"], encodings= ", ".join(self.params["encodings"])))
+        raise MocodoError(5, _('Unable to read "{filename}" with any of the following encodings: "{encodings}".').format(filename=self.params["input"], encodings= ", ".join(self.params["encodings"])))
 
     def load_style(self):
         
@@ -49,12 +50,12 @@ class Common:
                 try:
                     return json.loads(read_contents(path))
                 except:
-                    raise RuntimeError("Mocodo Err.3 - " + _('Problem with "{name}" file "{path}.json".').format(name=name, path=path))
+                    raise MocodoError(3, _('Problem with "{name}" file "{path}.json".').format(name=name, path=path))
             path = os.path.join(self.params["script_directory"], name, path)
             try:
                 return json.loads(read_contents(path))
             except:
-                raise RuntimeError("Mocodo Err.3 - " + _('Problem with "{name}" file "{path}.json".').format(name=name, path=path))
+                raise MocodoError(3, _('Problem with "{name}" file "{path}.json".').format(name=name, path=path))
         
         def may_apply_scaling(shapes):
             if self.params["scale"] == 1:

@@ -14,6 +14,7 @@ import gettext
 import locale
 from time import time
 from io import open
+from mocodo_error import MocodoError
 
 DESCRIPTION = """
 NAME:
@@ -70,13 +71,9 @@ def init_localization(script_directory, language):
             trans = gettext.GNUTranslations(mo_contents)
     except IOError:
         trans = gettext.NullTranslations()
+    
     if sys.version_info.major == 2:
         trans.install(unicode=True)
-        import __builtin__
-        class UnicodeRuntimeError(Exception):
-            def __init__(self, message):
-                super(UnicodeRuntimeError, self).__init__(message.encode("utf-8"))
-        __builtin__.RuntimeError = UnicodeRuntimeError
     else:
         trans.install()
     return language
@@ -190,7 +187,7 @@ def parsed_arguments():
             args.input += ".mcd"
         else:  # the user has explicitely specified a non existent input file
             init_localization(script_directory, default_params.get("language", args.language))
-            raise RuntimeError("Mocodo Err.18 - " + _('The file "{input}" doesn\'t exist.').format(input=args.input))
+            raise MocodoError(18, _('The file "{input}" doesn\'t exist.').format(input=args.input))
     default_params["input"] = args.input
     if os.path.exists(args.params_path):
         default_params.update(json.loads(read_contents(args.params_path)))

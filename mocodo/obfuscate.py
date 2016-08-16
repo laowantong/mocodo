@@ -10,6 +10,7 @@ from file_helpers import read_contents
 import itertools
 import os
 from damerau_levenshtein import damerau_levenshtein
+from mocodo_error import MocodoError
 
 def random_chunks_of(lorem_text, obfuscation_max_length, params):
     words = list(set(word.lower() for word in re.findall(r"(?u)[^\W\d]+", lorem_text)))
@@ -37,7 +38,7 @@ def obfuscate(clauses, params):
             try:
                 new_label = next(random_chunk)
             except StopIteration:
-                raise RuntimeError("Mocodo Err.12 - " + _('Obfuscation failed. Not enough substitution words in "{filename}". You may either increase the `obfuscation_max_length` or decrease the `obfuscation_min_distance` option values.').format(filename=lorem_filename))
+                raise MocodoError(12, _('Obfuscation failed. Not enough substitution words in "{filename}". You may either increase the `obfuscation_max_length` or decrease the `obfuscation_min_distance` option values.').format(filename=lorem_filename))
             if label.isupper():
                 new_label = new_label.upper()
             elif label == label.capitalize():

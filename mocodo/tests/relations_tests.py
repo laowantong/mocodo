@@ -497,7 +497,7 @@ class relationsTest(unittest.TestCase):
             Bind, _11 Baby, 1n Gene
         """
         mcd = Mcd(clauses.split("\n"), params)
-        self.assertRaisesRegex(RuntimeError, "Err\.22", Relations, mcd, params)
+        self.assertRaisesRegex(MocodoError, "Mocodo Err\.22", Relations, mcd, params)
         clauses = u"""
             Disk: Soon, Ride, Folk, Call, Gear, Tent, Lean
             Flip: Lend
@@ -518,9 +518,9 @@ class relationsTest(unittest.TestCase):
             :
         """
         mcd = Mcd(clauses.split("\n"), params)
-        self.assertRaisesRegex(RuntimeError, "Err\.22", Relations, mcd, params)
+        self.assertRaisesRegex(MocodoError, "Mocodo Err\.22", Relations, mcd, params)
         mcd = Mcd(clauses.split("\n"), params)
-        self.assertRaisesRegex(RuntimeError, "Err\.22", Relations, mcd, params)
+        self.assertRaisesRegex(MocodoError, "Mocodo Err\.22", Relations, mcd, params)
         clauses = u"""
             ITEM, 1N NORM, 1N WASH
             NORM: haul
@@ -534,7 +534,7 @@ class relationsTest(unittest.TestCase):
             GEAR, _11 FLIP, _11 FACE
         """
         mcd = Mcd(clauses.split("\n"), params)
-        self.assertRaisesRegex(RuntimeError, "Err\.22", Relations, mcd, params)
+        self.assertRaisesRegex(MocodoError, "Mocodo Err\.22", Relations, mcd, params)
         clauses = u"""
             ITEM, 1N NORM, 1N WASH
             NORM: haul
@@ -548,7 +548,7 @@ class relationsTest(unittest.TestCase):
             GEAR, _11 FLIP, _11 FACE
         """
         mcd = Mcd(clauses.split("\n"), params)
-        self.assertRaisesRegex(RuntimeError, "Err\.22", Relations, mcd, params)
+        self.assertRaisesRegex(MocodoError, "Mocodo Err\.22", Relations, mcd, params)
 
     
     def test_weak_entities_strengthened_by_itself(self):
@@ -557,7 +557,7 @@ class relationsTest(unittest.TestCase):
             DF, _11 SCELERISQUE, 1N SCELERISQUE
         """
         mcd = Mcd(clauses.split("\n"), params)
-        self.assertRaisesRegex(RuntimeError, "Err\.16", Relations, mcd, params)
+        self.assertRaisesRegex(MocodoError, "Mocodo Err\.16", Relations, mcd, params)
     
     def test_weak_entities_with_cycle(self):
         clauses = u"""
@@ -568,7 +568,7 @@ class relationsTest(unittest.TestCase):
             DRAW: ever, unit, tour, fold
         """
         mcd = Mcd(clauses.split("\n"), params)
-        self.assertRaisesRegex(RuntimeError, "Err\.17", Relations, mcd, params)
+        self.assertRaisesRegex(MocodoError, "Mocodo Err\.17", Relations, mcd, params)
     
     def test_difference_between_attribute_raw_label_and_label_with_annotations(self):
         template = {

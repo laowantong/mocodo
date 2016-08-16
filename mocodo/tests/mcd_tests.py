@@ -182,7 +182,7 @@ class McdTest(unittest.TestCase):
             u"PROJET: num. projet, nom projet, budget projet",
             u"ASSUMER, 1N PROJET, 1N INDIVIDU",
         ]
-        self.assertRaisesRegex(RuntimeError, "Mocodo Err.1", Mcd, clauses, params)
+        self.assertRaisesRegex(MocodoError, "Mocodo Err\.1", Mcd, clauses, params)
 
     def test_duplicate_errors(self):
         clauses = [
@@ -192,7 +192,7 @@ class McdTest(unittest.TestCase):
             u"BALANCE, 0N ROULEAU, 0N TINET: charrue",
             u"BARATTE: tribulum",
         ]
-        self.assertRaisesRegex(RuntimeError, "Mocodo Err.6", Mcd, clauses, params)
+        self.assertRaisesRegex(MocodoError, "Mocodo Err\.6", Mcd, clauses, params)
         clauses = [
             u"DF, 11 BARATTE, 1N ROULEAU",
             u"BARATTE: piston, racloir, fusil",
@@ -200,7 +200,7 @@ class McdTest(unittest.TestCase):
             u"DF, 0N ROULEAU, 0N TINET: charrue",
             u"ROULEAU: tribulum",
         ]
-        self.assertRaisesRegex(RuntimeError, "Mocodo Err.7", Mcd, clauses, params)
+        self.assertRaisesRegex(MocodoError, "Mocodo Err\.7", Mcd, clauses, params)
         clauses = [
             u"BARATTE, 11 BARATTE, 1N ROULEAU",
             u"BARATTE: piston, racloir, fusil",
@@ -208,7 +208,7 @@ class McdTest(unittest.TestCase):
             u"BALANCE, 0N ROULEAU, 0N TINET: charrue",
             u"ROULEAU: tribulum",
         ]
-        self.assertRaisesRegex(RuntimeError, "Mocodo Err.8", Mcd, clauses, params)
+        self.assertRaisesRegex(MocodoError, "Mocodo Err\.8", Mcd, clauses, params)
         clauses = [
             u"BARATTE: piston, racloir, fusil",
             u"BARATTE, 11 BARATTE, 1N ROULEAU",
@@ -216,7 +216,7 @@ class McdTest(unittest.TestCase):
             u"BALANCE, 0N ROULEAU, 0N TINET: charrue",
             u"ROULEAU: tribulum",
         ]
-        self.assertRaisesRegex(RuntimeError, "Mocodo Err.8", Mcd, clauses, params)
+        self.assertRaisesRegex(MocodoError, "Mocodo Err\.8", Mcd, clauses, params)
 
     def test_flip(self):
         clauses = u"""

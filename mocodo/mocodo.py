@@ -15,6 +15,7 @@ from argument_parser import parsed_arguments
 from mcd import Mcd
 from relations import Relations
 import font_metrics
+from mocodo_error import MocodoError
 
 def main():
     try:
@@ -56,7 +57,7 @@ def main():
             if result:
                 mcd.set_layout(**result)
                 return safe_print_for_PHP(mcd.get_clauses())
-            raise RuntimeError("Mocodo Err.9 - " + _('Failed to calculate a planar layout.'))
+            raise MocodoError(9, _('Failed to calculate a planar layout.'))
         relations = Relations(mcd, params)
         common.dump_mld_files(relations)
         if params["image_format"] == "svg":
@@ -69,13 +70,9 @@ def main():
             import mcd_to_nodebox
             mcd_to_nodebox.main(mcd, common)
             return os.system(u"""open -a NodeBox "%(output_name)s_nodebox.py" """ % params)
-        raise RuntimeError("Mocodo Err.13 - " + _('Should never happen.'))
-    except RuntimeError as err:
-        msg = str(err)
-        if msg.startswith("Mocodo Err."):
-            print(msg, file=sys.stderr)
-        else:
-            raise
+        raise MocodoError(13, _('Should never happen.'))
+    except MocodoError as err:
+        print(str(err), file=sys.stderr)
 
 
 if __name__ == '__main__':

@@ -8,6 +8,7 @@ import re
 from attribute import *
 from leg import *
 from dynamic import Dynamic
+from mocodo_error import MocodoError
 
 match_leg = re.compile(r"((?:_11|..)[<>]?\s+(?:\[.+?\]\s+)?)(.+)").match
 
@@ -25,7 +26,7 @@ class Association:
                 if m:
                     l.append(m.groups())
                 else:
-                    raise RuntimeError("Mocodo Err.2 - " + _('Missing cardinalities in leg "{leg}" of association "{association}".').format(leg=leg, association=name))
+                    raise MocodoError(2, _('Missing cardinalities in leg "{leg}" of association "{association}".').format(leg=leg, association=name))
             (cards, entities) = zip(*l)
             return (name, cartouche, cards, list(entities), outer_split(attributes))
 
