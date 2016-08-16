@@ -90,8 +90,8 @@ def arrange(links, successors, multiplicity, col_count, row_count, verbose, has_
     }
     
 if __name__ == "__main__":
-    from .mcd import Mcd
-    from .argument_parser import parsed_arguments
+    from mcd import Mcd
+    from argument_parser import parsed_arguments
     from time import time
     from random import seed
     clauses = u"""

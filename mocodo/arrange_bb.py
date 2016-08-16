@@ -182,8 +182,8 @@ def arrange(col_count, row_count, successors, multiplicity, organic, min_objecti
 
     
 if __name__ == "__main__":
-    from .mcd import Mcd
-    from .argument_parser import parsed_arguments
+    from mcd import Mcd
+    from argument_parser import parsed_arguments
     from time import time
     from random import seed
     clauses = u"""

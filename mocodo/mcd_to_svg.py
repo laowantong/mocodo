@@ -138,9 +138,9 @@ def main(mcd, common):
 
 
 if __name__ == "__main__":
-    from .argument_parser import parsed_arguments
-    from .mcd import Mcd
-    from .common import Common
+    from argument_parser import parsed_arguments
+    from mcd import Mcd
+    from common import Common
     clauses = u"""
         CLIENT: Réf. client, Nom, Prénom, Adresse
         PASSER, 0N CLIENT, 11 COMMANDE

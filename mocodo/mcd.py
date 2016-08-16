@@ -368,7 +368,7 @@ class Mcd:
         return result
 
 if __name__=="__main__":
-    from .argument_parser import parsed_arguments
+    from argument_parser import parsed_arguments
     clauses = u"""
         CLIENT: Réf. client, Nom, Prénom, Adresse
         PASSER, 0N CLIENT, 11 COMMANDE
