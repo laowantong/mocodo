@@ -45,7 +45,7 @@ class ArrangeBB(unittest.TestCase):
         params["min_objective"] = 0
         params["timeout"] = None
         params["verbose"] = False
-        seed(42 if sys.version.startswith("2") else 1)
+        seed(42 if sys.version_info.major == 2 else 1)
         rearrangement = arrange(**params)
         mcd.set_layout(**rearrangement)
         result = mcd.get_clauses()
@@ -110,7 +110,7 @@ class ArrangeBB(unittest.TestCase):
         params["min_objective"] = 0
         params["timeout"] = None
         params["verbose"] = False
-        seed(42 if sys.version.startswith("2") else 129)
+        seed(42 if sys.version_info.major == 2 else 129)
         rearrangement = arrange(**params)
         mcd.set_layout(**rearrangement)
         self.assertEqual(rearrangement, {
@@ -170,7 +170,7 @@ class ArrangeBB(unittest.TestCase):
         params["min_objective"] = 0
         params["timeout"] = None
         params["verbose"] = False
-        seed(1 if sys.version.startswith("2") else 458)
+        seed(1 if sys.version_info.major == 2 else 458)
         expected = u"""
             :
             CONSECTETUER: elit, sed
@@ -224,7 +224,7 @@ class ArrangeBB(unittest.TestCase):
         params["min_objective"] = 0
         params["timeout"] = None
         params["verbose"] = False
-        seed(1 if sys.version.startswith("2") else 299)
+        seed(1 if sys.version_info.major == 2 else 299)
         expected = u"""
             DF1, 11 LOREM, 1N SUSPENDISSE
             LOREM: ipsum, dolor, sit

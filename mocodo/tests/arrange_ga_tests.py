@@ -47,7 +47,7 @@ class ArrangeGA(unittest.TestCase):
         params["sample_size"] = 7
         params["timeout"] = None
         params["verbose"] = False
-        seed(1 if sys.version.startswith("2") else 67)
+        seed(1 if sys.version_info.major == 2 else 67)
         rearrangement = arrange(**params)
         self.assertEqual(rearrangement, {
             'distances': 3.3005630797457695,

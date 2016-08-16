@@ -70,7 +70,7 @@ def init_localization(script_directory, language):
             trans = gettext.GNUTranslations(mo_contents)
     except IOError:
         trans = gettext.NullTranslations()
-    if sys.version < "3":
+    if sys.version_info.major == 2:
         trans.install(unicode=True)
         import __builtin__
         class UnicodeRuntimeError(Exception):
@@ -183,7 +183,7 @@ def parsed_arguments():
     io_group.add_argument("--input", metavar="PATH", help="the path of the input file. By default, the output files will be generated in the same directory")
     (args, remaining_args) = parser.parse_known_args()
     
-    text_type = (unicode if sys.version < "3" else str)
+    text_type = (unicode if sys.version_info.major == 2 else str)
     
     if args.input and not os.path.exists(args.input):
         if os.path.exists(args.input + ".mcd"):
