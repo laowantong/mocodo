@@ -43,7 +43,7 @@ def dump_lp(path, col_count, row_count, links, successors, multiplicity, **kwarg
     lengths = ["" if s == "1.0" else (s[:-2] + " " if s.endswith(".0") else s + " ") for s in lengths]
     
     result.append("Minimize")
-    result.append(" obj: " + summation("{length}y_{s[0][0]}_{s[0][1]}_{s[1][0]}_{s[1][1]}".format(length=length, s=s) for (length, s) in itertools.izip(lengths, S) if length != "0"))
+    result.append(" obj: " + summation("{length}y_{s[0][0]}_{s[0][1]}_{s[1][0]}_{s[1][1]}".format(length=length, s=s) for (length, s) in zip(lengths, S) if length != "0"))
     result.append("Subject To")
     
     result.append(u"\\ constraint:each_vertex_is_placed_at_exactly_one_position")
