@@ -15,3 +15,4 @@ sandbox*.*
 paper/*
 *.lp
 *.log
+.DS_Store
