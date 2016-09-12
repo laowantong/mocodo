@@ -794,121 +794,121 @@ class RelationTemplatesTest(unittest.TestCase):
     def test_postgresql(self):
         template = json.loads(read_contents("mocodo/relation_templates/postgresql.json"))
         expected = u"""
-            CREATE DATABASE "UNTITLED";
-            \\c "UNTITLED;
+            CREATE DATABASE UNTITLED;
+            \\c UNTITLED;
             
-            CREATE TABLE "GAME" (
-              "glad" VARCHAR(42),
-              "oven" VARCHAR(42),
-              "glad_1" VARCHAR(42),
-              "snap" VARCHAR(42),
-              PRIMARY KEY ("glad")
+            CREATE TABLE GAME (
+              glad VARCHAR(42),
+              oven VARCHAR(42),
+              glad_1 VARCHAR(42),
+              snap VARCHAR(42),
+              PRIMARY KEY (glad)
             );
             
-            CREATE TABLE "SHED" (
-              "else" VARCHAR(42),
-              "glad" VARCHAR(42),
-              "iron" VARCHAR(42),
-              "free" VARCHAR(42),
-              PRIMARY KEY ("else", "glad", "iron")
+            CREATE TABLE SHED (
+              else VARCHAR(42),
+              glad VARCHAR(42),
+              iron VARCHAR(42),
+              free VARCHAR(42),
+              PRIMARY KEY (else, glad, iron)
             );
             
-            CREATE TABLE "SLOW" (
-              "else" VARCHAR(42),
-              "line" VARCHAR(42),
-              "cute" VARCHAR(42),
-              "echo" VARCHAR(42),
-              "whom" VARCHAR(42),
-              PRIMARY KEY ("else")
+            CREATE TABLE SLOW (
+              else VARCHAR(42),
+              line VARCHAR(42),
+              cute VARCHAR(42),
+              echo VARCHAR(42),
+              whom VARCHAR(42),
+              PRIMARY KEY (else)
             );
             
-            CREATE TABLE "CORD" (
-              "else" VARCHAR(42),
-              "bury" VARCHAR(42),
-              "left" VARCHAR(42),
-              PRIMARY KEY ("bury")
+            CREATE TABLE CORD (
+              else VARCHAR(42),
+              bury VARCHAR(42),
+              left VARCHAR(42),
+              PRIMARY KEY (bury)
             );
             
             /*
-            CREATE TABLE "LOCK" (
-              "bury" VARCHAR(42),
-              PRIMARY KEY ("bury")
+            CREATE TABLE LOCK (
+              bury VARCHAR(42),
+              PRIMARY KEY (bury)
             );
             */
             
-            CREATE TABLE "PEAK" (
-              "amid" VARCHAR(42),
-              "salt" VARCHAR(42),
-              "glad" VARCHAR(42),
-              "rain" VARCHAR(42),
-              PRIMARY KEY ("amid")
+            CREATE TABLE PEAK (
+              amid VARCHAR(42),
+              salt VARCHAR(42),
+              glad VARCHAR(42),
+              rain VARCHAR(42),
+              PRIMARY KEY (amid)
             );
             
-            CREATE TABLE "DIET" (
-              "iron" VARCHAR(42),
-              "cell" VARCHAR(42),
-              "rich" VARCHAR(42),
-              "clip" VARCHAR(42),
-              PRIMARY KEY ("iron")
+            CREATE TABLE DIET (
+              iron VARCHAR(42),
+              cell VARCHAR(42),
+              rich VARCHAR(42),
+              clip VARCHAR(42),
+              PRIMARY KEY (iron)
             );
             
-            CREATE TABLE "SOUL" (
-              "iron" VARCHAR(42),
-              "else" VARCHAR(42),
-              "joke" VARCHAR(42),
-              PRIMARY KEY ("iron", "else")
+            CREATE TABLE SOUL (
+              iron VARCHAR(42),
+              else VARCHAR(42),
+              joke VARCHAR(42),
+              PRIMARY KEY (iron, else)
             );
             
-            CREATE TABLE "FUND" (
-              "bury" VARCHAR(42),
-              "cute" VARCHAR(42),
-              "echo" VARCHAR(42),
-              "dump" VARCHAR(42),
-              PRIMARY KEY ("bury")
+            CREATE TABLE FUND (
+              bury VARCHAR(42),
+              cute VARCHAR(42),
+              echo VARCHAR(42),
+              dump VARCHAR(42),
+              PRIMARY KEY (bury)
             );
             
-            CREATE TABLE "DENY" (
-              "rich" VARCHAR(42),
-              "rich_1" VARCHAR(42),
-              "hers" VARCHAR(42),
-              PRIMARY KEY ("rich", "rich_1")
+            CREATE TABLE DENY (
+              rich VARCHAR(42),
+              rich_1 VARCHAR(42),
+              hers VARCHAR(42),
+              PRIMARY KEY (rich, rich_1)
             );
             
-            CREATE TABLE "QUIT" (
-              "rich" VARCHAR(42),
-              "milk" VARCHAR(42),
-              PRIMARY KEY ("rich")
+            CREATE TABLE QUIT (
+              rich VARCHAR(42),
+              milk VARCHAR(42),
+              PRIMARY KEY (rich)
             );
             
-            CREATE TABLE "POEM" (
-              "cute" VARCHAR(42),
-              "farm" VARCHAR(42),
-              PRIMARY KEY ("cute")
+            CREATE TABLE POEM (
+              cute VARCHAR(42),
+              farm VARCHAR(42),
+              PRIMARY KEY (cute)
             );
             
-            CREATE TABLE "ODDS" (
-              "cute" VARCHAR(42),
-              "echo" VARCHAR(42),
-              "golf" VARCHAR(42),
-              PRIMARY KEY ("cute", "echo")
+            CREATE TABLE ODDS (
+              cute VARCHAR(42),
+              echo VARCHAR(42),
+              golf VARCHAR(42),
+              PRIMARY KEY (cute, echo)
             );
             
-            ALTER TABLE "GAME" ADD FOREIGN KEY ("glad_1") REFERENCES "GAME" ("glad");
-            ALTER TABLE "SHED" ADD FOREIGN KEY ("iron") REFERENCES "DIET" ("iron");
-            ALTER TABLE "SHED" ADD FOREIGN KEY ("glad") REFERENCES "GAME" ("glad");
-            ALTER TABLE "SHED" ADD FOREIGN KEY ("else") REFERENCES "SLOW" ("else");
-            ALTER TABLE "SLOW" ADD FOREIGN KEY ("cute", "echo") REFERENCES "ODDS" ("cute", "echo");
-            -- ALTER TABLE "CORD" ADD FOREIGN KEY ("bury") REFERENCES "LOCK" ("bury");
-            ALTER TABLE "CORD" ADD FOREIGN KEY ("else") REFERENCES "SLOW" ("else");
-            ALTER TABLE "PEAK" ADD FOREIGN KEY ("glad") REFERENCES "GAME" ("glad");
-            ALTER TABLE "DIET" ADD FOREIGN KEY ("rich") REFERENCES "QUIT" ("rich");
-            ALTER TABLE "SOUL" ADD FOREIGN KEY ("else") REFERENCES "SLOW" ("else");
-            ALTER TABLE "SOUL" ADD FOREIGN KEY ("iron") REFERENCES "DIET" ("iron");
-            ALTER TABLE "FUND" ADD FOREIGN KEY ("cute", "echo") REFERENCES "ODDS" ("cute", "echo");
-            -- ALTER TABLE "FUND" ADD FOREIGN KEY ("bury") REFERENCES "LOCK" ("bury");
-            ALTER TABLE "DENY" ADD FOREIGN KEY ("rich_1") REFERENCES "QUIT" ("rich");
-            ALTER TABLE "DENY" ADD FOREIGN KEY ("rich") REFERENCES "QUIT" ("rich");
-            ALTER TABLE "ODDS" ADD FOREIGN KEY ("cute") REFERENCES "POEM" ("cute");
+            ALTER TABLE GAME ADD FOREIGN KEY (glad_1) REFERENCES GAME (glad);
+            ALTER TABLE SHED ADD FOREIGN KEY (iron) REFERENCES DIET (iron);
+            ALTER TABLE SHED ADD FOREIGN KEY (glad) REFERENCES GAME (glad);
+            ALTER TABLE SHED ADD FOREIGN KEY (else) REFERENCES SLOW (else);
+            ALTER TABLE SLOW ADD FOREIGN KEY (cute, echo) REFERENCES ODDS (cute, echo);
+            -- ALTER TABLE CORD ADD FOREIGN KEY (bury) REFERENCES LOCK (bury);
+            ALTER TABLE CORD ADD FOREIGN KEY (else) REFERENCES SLOW (else);
+            ALTER TABLE PEAK ADD FOREIGN KEY (glad) REFERENCES GAME (glad);
+            ALTER TABLE DIET ADD FOREIGN KEY (rich) REFERENCES QUIT (rich);
+            ALTER TABLE SOUL ADD FOREIGN KEY (else) REFERENCES SLOW (else);
+            ALTER TABLE SOUL ADD FOREIGN KEY (iron) REFERENCES DIET (iron);
+            ALTER TABLE FUND ADD FOREIGN KEY (cute, echo) REFERENCES ODDS (cute, echo);
+            -- ALTER TABLE FUND ADD FOREIGN KEY (bury) REFERENCES LOCK (bury);
+            ALTER TABLE DENY ADD FOREIGN KEY (rich_1) REFERENCES QUIT (rich);
+            ALTER TABLE DENY ADD FOREIGN KEY (rich) REFERENCES QUIT (rich);
+            ALTER TABLE ODDS ADD FOREIGN KEY (cute) REFERENCES POEM (cute);
         """.strip().replace("    ", "").split()
         result = t.get_text(template).split()
         for (result_line, expected_line) in zip(result, expected):
@@ -1342,114 +1342,114 @@ class MoreRelationTemplatesTest(unittest.TestCase):
     def test_postgresql(self):
         template = json.loads(read_contents("mocodo/relation_templates/postgresql.json"))
         expected = u"""
-            CREATE DATABASE "UNTITLED";
-            \c "UNTITLED;
+            CREATE DATABASE UNTITLED;
+            \c UNTITLED;
 
-            CREATE TABLE "PEUT_VIVRE_DANS" (
-              "code_espèce" VARCHAR(42),
-              "num_enclos" VARCHAR(42),
-              "nb_max_congénères" VARCHAR(42),
-              PRIMARY KEY ("code_espèce", "num_enclos")
+            CREATE TABLE PEUT_VIVRE_DANS (
+              code_espèce VARCHAR(42),
+              num_enclos VARCHAR(42),
+              nb_max_congénères VARCHAR(42),
+              PRIMARY KEY (code_espèce, num_enclos)
             );
 
             /*
-            CREATE TABLE "ENCLOS" (
-              "num_enclos" VARCHAR(42),
-              PRIMARY KEY ("num_enclos")
+            CREATE TABLE ENCLOS (
+              num_enclos VARCHAR(42),
+              PRIMARY KEY (num_enclos)
             );
             */
 
-            CREATE TABLE "OCCUPE" (
-              "code_espèce" VARCHAR(42),
-              "nom" VARCHAR(42),
-              "date_début" VARCHAR(42),
-              "date_fin" VARCHAR(42),
-              "num_enclos" VARCHAR(42),
-              PRIMARY KEY ("code_espèce", "nom", "date_début", "date_fin", "num_enclos")
+            CREATE TABLE OCCUPE (
+              code_espèce VARCHAR(42),
+              nom VARCHAR(42),
+              date_début VARCHAR(42),
+              date_fin VARCHAR(42),
+              num_enclos VARCHAR(42),
+              PRIMARY KEY (code_espèce, nom, date_début, date_fin, num_enclos)
             );
 
-            CREATE TABLE "PÉRIODE" (
-              "date_début" VARCHAR(42),
-              "date_fin" VARCHAR(42),
-              PRIMARY KEY ("date_début", "date_fin")
+            CREATE TABLE PÉRIODE (
+              date_début VARCHAR(42),
+              date_fin VARCHAR(42),
+              PRIMARY KEY (date_début, date_fin)
             );
 
-            CREATE TABLE "ESPÈCE" (
-              "code_espèce" VARCHAR(42),
-              "libellé" VARCHAR(42),
-              PRIMARY KEY ("code_espèce")
+            CREATE TABLE ESPÈCE (
+              code_espèce VARCHAR(42),
+              libellé VARCHAR(42),
+              PRIMARY KEY (code_espèce)
             );
 
-            CREATE TABLE "ANIMAL" (
-              "code_espèce" VARCHAR(42),
-              "nom" VARCHAR(42),
-              "sexe" VARCHAR(42),
-              "date_naissance" VARCHAR(42),
-              "date_décès" VARCHAR(42),
-              "code_espèce mère" VARCHAR(42),
-              "nom mère" VARCHAR(42),
-              PRIMARY KEY ("code_espèce", "nom")
+            CREATE TABLE ANIMAL (
+              code_espèce VARCHAR(42),
+              nom VARCHAR(42),
+              sexe VARCHAR(42),
+              date_naissance VARCHAR(42),
+              date_décès VARCHAR(42),
+              code_espèce mère VARCHAR(42),
+              nom mère VARCHAR(42),
+              PRIMARY KEY (code_espèce, nom)
             );
 
-            CREATE TABLE "PEUT_COHABITER_AVEC" (
-              "code_espèce" VARCHAR(42),
-              "code_espèce commensale" VARCHAR(42),
-              "nb_max_commensaux" VARCHAR(42),
-              PRIMARY KEY ("code_espèce", "code_espèce commensale")
+            CREATE TABLE PEUT_COHABITER_AVEC (
+              code_espèce VARCHAR(42),
+              code_espèce commensale VARCHAR(42),
+              nb_max_commensaux VARCHAR(42),
+              PRIMARY KEY (code_espèce, code_espèce commensale)
             );
 
-            CREATE TABLE "A_PÈRE" (
-              "code_espèce" VARCHAR(42),
-              "nom" VARCHAR(42),
-              "code_espèce père présumé" VARCHAR(42),
-              "nom père présumé" VARCHAR(42),
-              PRIMARY KEY ("code_espèce", "nom", "code_espèce père présumé", "nom père présumé")
+            CREATE TABLE A_PÈRE (
+              code_espèce VARCHAR(42),
+              nom VARCHAR(42),
+              code_espèce père présumé VARCHAR(42),
+              nom père présumé VARCHAR(42),
+              PRIMARY KEY (code_espèce, nom, code_espèce père présumé, nom père présumé)
             );
 
-            CREATE TABLE "APPARTEMENT" (
-              "code_rue" VARCHAR(42),
-              "num_immeuble" VARCHAR(42),
-              "num_étage" VARCHAR(42),
-              "num_appart" VARCHAR(42),
-              "nb_pièces_appart" VARCHAR(42),
-              PRIMARY KEY ("code_rue", "num_immeuble", "num_étage", "num_appart")
+            CREATE TABLE APPARTEMENT (
+              code_rue VARCHAR(42),
+              num_immeuble VARCHAR(42),
+              num_étage VARCHAR(42),
+              num_appart VARCHAR(42),
+              nb_pièces_appart VARCHAR(42),
+              PRIMARY KEY (code_rue, num_immeuble, num_étage, num_appart)
             );
 
-            CREATE TABLE "ÉTAGE" (
-              "code_rue" VARCHAR(42),
-              "num_immeuble" VARCHAR(42),
-              "num_étage" VARCHAR(42),
-              "nb_appart_étage" VARCHAR(42),
-              PRIMARY KEY ("code_rue", "num_immeuble", "num_étage")
+            CREATE TABLE ÉTAGE (
+              code_rue VARCHAR(42),
+              num_immeuble VARCHAR(42),
+              num_étage VARCHAR(42),
+              nb_appart_étage VARCHAR(42),
+              PRIMARY KEY (code_rue, num_immeuble, num_étage)
             );
 
-            CREATE TABLE "IMMEUBLE" (
-              "code_rue" VARCHAR(42),
-              "num_immeuble" VARCHAR(42),
-              "nb_étages_immeuble" VARCHAR(42),
-              PRIMARY KEY ("code_rue", "num_immeuble")
+            CREATE TABLE IMMEUBLE (
+              code_rue VARCHAR(42),
+              num_immeuble VARCHAR(42),
+              nb_étages_immeuble VARCHAR(42),
+              PRIMARY KEY (code_rue, num_immeuble)
             );
 
-            CREATE TABLE "RUE" (
-              "code_rue" VARCHAR(42),
-              "nom_rue" VARCHAR(42),
-              PRIMARY KEY ("code_rue")
+            CREATE TABLE RUE (
+              code_rue VARCHAR(42),
+              nom_rue VARCHAR(42),
+              PRIMARY KEY (code_rue)
             );
 
-            -- ALTER TABLE "PEUT_VIVRE_DANS" ADD FOREIGN KEY ("num_enclos") REFERENCES "ENCLOS" ("num_enclos");
-            ALTER TABLE "PEUT_VIVRE_DANS" ADD FOREIGN KEY ("code_espèce") REFERENCES "ESPÈCE" ("code_espèce");
-            -- ALTER TABLE "OCCUPE" ADD FOREIGN KEY ("num_enclos") REFERENCES "ENCLOS" ("num_enclos");
-            ALTER TABLE "OCCUPE" ADD FOREIGN KEY ("date_début", "date_fin") REFERENCES "PÉRIODE" ("date_début", "date_fin");
-            ALTER TABLE "OCCUPE" ADD FOREIGN KEY ("code_espèce", "nom") REFERENCES "ANIMAL" ("code_espèce", "nom");
-            ALTER TABLE "ANIMAL" ADD FOREIGN KEY ("code_espèce mère", "nom mère") REFERENCES "ANIMAL" ("code_espèce", "nom");
-            ALTER TABLE "ANIMAL" ADD FOREIGN KEY ("code_espèce") REFERENCES "ESPÈCE" ("code_espèce");
-            ALTER TABLE "PEUT_COHABITER_AVEC" ADD FOREIGN KEY ("code_espèce commensale") REFERENCES "ESPÈCE" ("code_espèce");
-            ALTER TABLE "PEUT_COHABITER_AVEC" ADD FOREIGN KEY ("code_espèce") REFERENCES "ESPÈCE" ("code_espèce");
-            ALTER TABLE "A_PÈRE" ADD FOREIGN KEY ("code_espèce père présumé", "nom père présumé") REFERENCES "ANIMAL" ("code_espèce", "nom");
-            ALTER TABLE "A_PÈRE" ADD FOREIGN KEY ("code_espèce", "nom") REFERENCES "ANIMAL" ("code_espèce", "nom");
-            ALTER TABLE "APPARTEMENT" ADD FOREIGN KEY ("code_rue", "num_immeuble", "num_étage") REFERENCES "ÉTAGE" ("code_rue", "num_immeuble", "num_étage");
-            ALTER TABLE "ÉTAGE" ADD FOREIGN KEY ("code_rue", "num_immeuble") REFERENCES "IMMEUBLE" ("code_rue", "num_immeuble");
-            ALTER TABLE "IMMEUBLE" ADD FOREIGN KEY ("code_rue") REFERENCES "RUE" ("code_rue");
+            -- ALTER TABLE PEUT_VIVRE_DANS ADD FOREIGN KEY (num_enclos) REFERENCES ENCLOS (num_enclos);
+            ALTER TABLE PEUT_VIVRE_DANS ADD FOREIGN KEY (code_espèce) REFERENCES ESPÈCE (code_espèce);
+            -- ALTER TABLE OCCUPE ADD FOREIGN KEY (num_enclos) REFERENCES ENCLOS (num_enclos);
+            ALTER TABLE OCCUPE ADD FOREIGN KEY (date_début, date_fin) REFERENCES PÉRIODE (date_début, date_fin);
+            ALTER TABLE OCCUPE ADD FOREIGN KEY (code_espèce, nom) REFERENCES ANIMAL (code_espèce, nom);
+            ALTER TABLE ANIMAL ADD FOREIGN KEY (code_espèce mère, nom mère) REFERENCES ANIMAL (code_espèce, nom);
+            ALTER TABLE ANIMAL ADD FOREIGN KEY (code_espèce) REFERENCES ESPÈCE (code_espèce);
+            ALTER TABLE PEUT_COHABITER_AVEC ADD FOREIGN KEY (code_espèce commensale) REFERENCES ESPÈCE (code_espèce);
+            ALTER TABLE PEUT_COHABITER_AVEC ADD FOREIGN KEY (code_espèce) REFERENCES ESPÈCE (code_espèce);
+            ALTER TABLE A_PÈRE ADD FOREIGN KEY (code_espèce père présumé, nom père présumé) REFERENCES ANIMAL (code_espèce, nom);
+            ALTER TABLE A_PÈRE ADD FOREIGN KEY (code_espèce, nom) REFERENCES ANIMAL (code_espèce, nom);
+            ALTER TABLE APPARTEMENT ADD FOREIGN KEY (code_rue, num_immeuble, num_étage) REFERENCES ÉTAGE (code_rue, num_immeuble, num_étage);
+            ALTER TABLE ÉTAGE ADD FOREIGN KEY (code_rue, num_immeuble) REFERENCES IMMEUBLE (code_rue, num_immeuble);
+            ALTER TABLE IMMEUBLE ADD FOREIGN KEY (code_rue) REFERENCES RUE (code_rue);
         """.strip().replace("    ", "").split()
         result = u.get_text(template).split()
         for (result_line, expected_line) in zip(result, expected):
