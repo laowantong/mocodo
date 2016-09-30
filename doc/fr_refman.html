@@ -12455,7 +12455,7 @@ Enseigner, 11 Prof, 1N Matière
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>La devise de Mocodo, « nickel, ni souris », en résume les principaux points forts:</p>
+<p>La devise de Mocodo, « nickel, ni souris », en résume les principaux points forts:</p>
 <ul>
 <li>description textuelle des données. L'utilisateur n'a pas à renseigner, placer et déplacer des éléments comme avec une lessive ordinaire. Il ne fournit rien de plus que les informations définissant son MCD. L'outil s'occupe tout seul du plongement;</li>
 <li>propreté du rendu. La sortie se fait en vectoriel, prête à être affichée, imprimée, agrandie, exportée dans une multitude de formats sans perte de qualité;</li>
@@ -12529,7 +12529,7 @@ Enseigner, 11 Prof, 1N Matière
 <pre><code>%install_ext https://raw.github.com/laowantong/mocodo/master/nb_magic/mocodo.py
 
 </code></pre>
-<p>Par la suite, vous mettrez la « commande magique » <code>mocodo</code> à disposition d'un <em>notebook</em> donné en évaluant la cellule suivante:</p>
+<p>Par la suite, vous mettrez la « commande magique » <code>mocodo</code> à disposition d'un <em>notebook</em> donné en évaluant la cellule suivante:</p>
 
 <pre><code>%reload_ext mocodo
 
@@ -12628,7 +12628,7 @@ Enseigner, 11 Prof, 1N Matière
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>La commande <code>mocodo</code> admet de nombreux arguments optionnels. Voici la traduction en français de la liste affichée par l'argument <code>--help</code>. Destinée à servir de référence, elle peut être <a href="#erd_description">sautée</a> sans inconvénient à la première lecture. Nous avons ajouté des liens vers des exemples d'utilisation dans ce document; notez cependant que les <code>%%</code> ou <code>%</code> qui préfixent la « commande magique » <code>mocodo</code> doivent être omis de la ligne de commande.</p>
+<p>La commande <code>mocodo</code> admet de nombreux arguments optionnels. Voici la traduction en français de la liste affichée par l'argument <code>--help</code>. Destinée à servir de référence, elle peut être <a href="#erd_description">sautée</a> sans inconvénient à la première lecture. Nous avons ajouté des liens vers des exemples d'utilisation dans ce document; notez cependant que les <code>%%</code> ou <code>%</code> qui préfixent la « commande magique » <code>mocodo</code> doivent être omis de la ligne de commande.</p>
 
 </div>
 </div>
@@ -12965,7 +12965,7 @@ Remplace le contenu de la cellule par le résultat de son évaluation (défaut: 
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Elle nécessite l'installation de l'extension notebook <code>mocodo</code>, laquelle doit en outre être rechargée à chaque ouverture (cf. première cellule de ce document). On a ainsi déclaré une « commande magique » <code>mocodo</code> qui sera invoquée en la préfixant:</p>
+<p>Elle nécessite l'installation de l'extension notebook <code>mocodo</code>, laquelle doit en outre être rechargée à chaque ouverture (cf. première cellule de ce document). On a ainsi déclaré une « commande magique » <code>mocodo</code> qui sera invoquée en la préfixant:</p>
 <ul>
 <li>de <code>%%</code> pour prendre toutes les lignes suivantes de la cellule comme texte d'entrée du MCD;</li>
 <li>de <code>%</code> si l'on récupère l'entrée ailleurs (avec <code>--input</code>), ou qu'on n'en a pas besoin (p. ex., <code>--help</code> ou <code>--print_params</code>).</li>
@@ -13375,14 +13375,14 @@ PRODUIT: Réf. produit, Libellé, Prix unitaire
 <li>une entité est définie par son nom, deux-points, sa liste d'attributs séparés par des virgules;</li>
 <li>une association est définie par son nom, virgule, les cardinalités et l'entité de sa première patte, virgule, les cardinalités et l'entité de sa deuxième patte, etc., deux-points, sa liste d'attributs séparés par des virgules.</li>
 </ul>
-<p>À noter :</p>
+<p>À noter :</p>
 <ul>
 <li>le premier attribut d'une entité est considéré par défaut comme son identifiant, et donc souligné;</li>
 <li>pour les associations sans attributs, le deux-points est facultatif;</li>
 <li>la première ligne:
 <pre><code>  %%mocodo
 </code></pre>
-... ne fait pas partie de la description. Dans ce document, elle permet de faire appel à une « commande magique », qui lance Mocodo sur les lignes qui la suivent. Sauf sous Jupyter Notebook, vous pouvez l'omettre dans votre texte d'entrée.<br>
+... ne fait pas partie de la description. Dans ce document, elle permet de faire appel à une « commande magique », qui lance Mocodo sur les lignes qui la suivent. Sauf sous Jupyter Notebook, vous pouvez l'omettre dans votre texte d'entrée.<br>
 De façon générale, la ou les premières lignes d'un MCD qui commencent par le symbole de pourcentage (<code>%</code>) sont ignorées. Cela permet de placer en en-tête un commentaire qui pourra être préservé lors des éventuels réarrangements ultérieurs.</li>
 <li>Les accents présents dans votre fichier d'entrée sont correctement gérés pourvu que vous ayez enregistré celui-ci dans l'encodage attendu par Mocodo en entrée: c'est par défaut Unicode UTF-8. Une tolérance existe: si Mocodo échoue à décoder votre fichier avec <code>utf8</code>, il se rabattra sur le codec d'Europe de l'Ouest associé historiquement à votre plateforme: <code>iso-8859-15</code> pour Windows et Linux, <code>mac-roman</code> pour Mac OS X. Si les accents n'apparaissent pas correctement, vous aurez encore trois solutions:<ol>
 <li>soit (fortement conseillé), ré-enregistrer votre fichier en UTF-8 au lieu d'un encodage historique;</li>
@@ -13714,7 +13714,7 @@ PELLENTESQUE IPSUM: tincidunt, bibendum, consequat, integer
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Les boîtes sont placées aux intersections d'une grille invisible assurant que leurs centres soient alignés aussi bien horizontalement que verticalement. C'est ce qui en général est le plus satisfaisant esthétiquement, mais d'autres retouches peuvent être opérées manuellement dans le fichier de sortie.</p>
-<p>Le plongement fait l'objet d'une « compression » horizontale et verticale. Par exemple, ci-dessus, il y a un espace horizontal négatif entre le bord droit de l'entité de gauche et le bord gauche de l'entité de droite.</p>
+<p>Le plongement fait l'objet d'une « compression » horizontale et verticale. Par exemple, ci-dessus, il y a un espace horizontal négatif entre le bord droit de l'entité de gauche et le bord gauche de l'entité de droite.</p>
 
 </div>
 </div>
@@ -14335,7 +14335,7 @@ PRODUIT: Réf. produit, Libellé, Prix unitaire
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Certaines fautes de frappe fréquentes (inversion des cardinalités minimale et maximale, lettre « O » au lieu du chiffre « 0 ») sont silencieusement rectifiées:</p>
+<p>Certaines fautes de frappe fréquentes (inversion des cardinalités minimale et maximale, lettre « O » au lieu du chiffre « 0 ») sont silencieusement rectifiées:</p>
 <table>
 <thead><tr>
 <th>formes erronées</th>
@@ -14631,7 +14631,7 @@ PRODUIT: Réf. produit, Libellé, Prix unitaire
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Normalement on doit choisir des noms différents pour toutes les boîtes (entités et associations) du MCD, à l'exception des associations de dépendance fonctionnelle figurées par un sigle. On a vu que dans ce cas, il suffisait d'ajouter à leur nom un suffixe numérique: celui-ci n'apparaîtra pas en sortie. Cette possibilité vaut pour n'importe quelle boîte.</p>
-<p>Elle servira typiquement à « distribuer » une entité DATE réduite à son identifiant <em>date</em>, mais associée à de nombreuses entités qui n'ont rien à voir entre elles. Sachant qu'une telle entité est amenée à disparaître lors du passage au relationnel, il n'y a aucun inconvénient à en créer plusieurs, et cela peut avoir l'avantage de faciliter (ou même de rendre possible) l'obtention d'une bonne mise en page.</p>
+<p>Elle servira typiquement à « distribuer » une entité DATE réduite à son identifiant <em>date</em>, mais associée à de nombreuses entités qui n'ont rien à voir entre elles. Sachant qu'une telle entité est amenée à disparaître lors du passage au relationnel, il n'y a aucun inconvénient à en créer plusieurs, et cela peut avoir l'avantage de faciliter (ou même de rendre possible) l'obtention d'une bonne mise en page.</p>
 <p>Par exemple, la mise en page du MCD suivant est indûment complexifiée par le haut degré de l'entité DATE.</p>
 
 </div>
@@ -15620,7 +15620,7 @@ PRODUIT: _Réf. produit, Libellé, Prix unitaire
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Vous pouvez masquer n'importe quelles cardinalités en les remplaçant pas <code>XX</code> (ci-dessous à gauche) :</p>
+<p>Vous pouvez masquer n'importe quelles cardinalités en les remplaçant pas <code>XX</code> (ci-dessous à gauche) :</p>
 
 </div>
 </div>
@@ -16112,7 +16112,7 @@ PRODUIT: ,            ,
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>L'obfuscation d'un MCD consiste à vider celui-ci de sa sémantique de surface, en substituant à tous les libellés des chaînes aléatoires. Le résultat sera par exemple utilisé pour montrer que les principales règles de passage du schéma conceptuel au schéma relationnel peuvent être appliquées « bêtement », c'est-à-dire sans comprendre le fonctionnement de l'organisme modélisé.</p>
+<p>L'obfuscation d'un MCD consiste à vider celui-ci de sa sémantique de surface, en substituant à tous les libellés des chaînes aléatoires. Le résultat sera par exemple utilisé pour montrer que les principales règles de passage du schéma conceptuel au schéma relationnel peuvent être appliquées « bêtement », c'est-à-dire sans comprendre le fonctionnement de l'organisme modélisé.</p>
 <p>Ainsi, dans l'exemple ci-dessous, les libellés du MCD <em>CLIENT-COMMANDE-PRODUIT</em> sont remplacés par des mots tirés au hasard:</p>
 
 </div>
@@ -16393,7 +16393,7 @@ TOUR: Bind, Gene, Aids
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Le tracé réalisé par Mocodo pour des MCD de plusieurs rangées laisse parfois à désirer :</p>
+<p>Le tracé réalisé par Mocodo pour des MCD de plusieurs rangées laisse parfois à désirer :</p>
 
 </div>
 </div>
@@ -16632,7 +16632,7 @@ Tellus: domus, tempero
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>On voit que, par défaut, Mocodo centre les rangées qui contiennent moins de boîtes que les autres. Cela donne un bon résultat pour la première rangée, mais pas pour la troisième.</p>
-<p>L'utilisateur peut cependant spécifier les espacements qu'il désire en complétant les rangées les moins fournies, par des boîtes invisibles dont le seul rôle est de « pousser » les autres à l'emplacement voulu. Ainsi, il va préciser que l'association <em>Curae</em> doit commencer sur la troisième colonne en insérant des lignes réduites au caractère deux-points, et en profiter pour insérer un espace entre <em>Lorem</em> et <em>Tellus</em> :</p>
+<p>L'utilisateur peut cependant spécifier les espacements qu'il désire en complétant les rangées les moins fournies, par des boîtes invisibles dont le seul rôle est de « pousser » les autres à l'emplacement voulu. Ainsi, il va préciser que l'association <em>Curae</em> doit commencer sur la troisième colonne en insérant des lignes réduites au caractère deux-points, et en profiter pour insérer un espace entre <em>Lorem</em> et <em>Tellus</em> :</p>
 
 </div>
 </div>
@@ -16874,7 +16874,7 @@ Tellus: domus, tempero
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Il est possible de « compresser » les suites de deux-points en supprimant les retours-chariots, autrement dit, de remplacer $n$ lignes réduites à deux-points par une ligne réduite à une séquence de $n$ deux-points. Ce raccourci est illustré dans le prochain exemple.</p>
+<p>Il est possible de « compresser » les suites de deux-points en supprimant les retours-chariots, autrement dit, de remplacer $n$ lignes réduites à deux-points par une ligne réduite à une séquence de $n$ deux-points. Ce raccourci est illustré dans le prochain exemple.</p>
 
 </div>
 </div>
@@ -16893,7 +16893,7 @@ Tellus: domus, tempero
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Nouveauté de la version 2.2.</strong> On cherche en général à faire tenir le MCD dans la plus petite grille possible, tout en maintenant un rapport « équilibré » entre hauteur et largeur. Par exemple, un MCD de 13 boîtes (entités ou associations) peut tenir dans les grilles:</p>
+<p><strong>Nouveauté de la version 2.2.</strong> On cherche en général à faire tenir le MCD dans la plus petite grille possible, tout en maintenant un rapport « équilibré » entre hauteur et largeur. Par exemple, un MCD de 13 boîtes (entités ou associations) peut tenir dans les grilles:</p>
 <ul>
 <li>$13\times1$;</li>
 <li>$7\times2$, ce qui laisse 1 case vide;</li>
@@ -18035,7 +18035,7 @@ Bibendum, 01 Blandit, 0N Blandit
 <p>Mocodo, au lieu de générer directement un dessin statique, génère d'abord un script Python, qui lui-même générera le dessin attendu. Cela se fait de façon transparente, sans intervention de l'utilisateur. L'avantage de cette couche supplémentaire est que le script intermédiaire exprime la plupart des positions, non en absolu, mais en relation à d'autres positions, peu nombreuses et qui constituent de fait les véritables paramètres du dessin. Sa capacité à évaluer des formules le rend beaucoup plus souple et puissant que si les valeurs résultantes étaient stockées en dur.</p>
 <p>Le script intermédiaire s'appelle par défaut:</p>
 <ul>
-<li><code>sandbox_nodebox.py</code> sur Mac OS X avec NodeBox 1.x installé ;</li>
+<li><code>sandbox_nodebox.py</code> sur Mac OS X avec NodeBox 1.x installé ;</li>
 <li><code>sandbox_svg.py</code> dans toutes les autres configurations.</li>
 </ul>
 <p>Montrons comment retoucher le MCD suivant:</p>
@@ -19616,7 +19616,7 @@ MAECENAS, 1N DIGNISSIM, 1N DIGNISSIM
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Il est possible de demander à Mocodo de chercher tout seul une « bonne » permutation des boîtes, ce qui à la main deviendrait vite difficile.</p>
+<p>Il est possible de demander à Mocodo de chercher tout seul une « bonne » permutation des boîtes, ce qui à la main deviendrait vite difficile.</p>
 <p>Le critère que nous avons retenu pour évaluer la qualité d'une permutation est double:</p>
 <ol>
 <li>les liens ne doivent pas se couper;</li>
@@ -24094,7 +24094,7 @@ PRODUIT: Réf. produit, Libellé, Prix unitaire
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Si l'on ouvre le fichier généré (<em>cf.</em> ci-dessus), on constate que la syntaxe d'un MLD est la même que celle d'un MCD, à ceci près que les associations sont remplacées par des liens allant de l'attribut <code>a1</code> de l'entité <code>E1</code> à l'attribut <code>a2</code> de l'entité <code>E2</code>, et qui se notent: <code>E1: ... a1-&gt;E2-&gt;a2</code>.</p>
 <p>Les boîtes invisibles automatiquement insérées une colonne sur deux aèrent le résultat de façon à laisser de la place aux flèches.</p>
-<p>Remarquons que ce pseudo-MCD est un « point fixe » de l'opération de passage au relationnel, c'est-à-dire qu'il redonne le même MLD que le MCD de départ:</p>
+<p>Remarquons que ce pseudo-MCD est un « point fixe » de l'opération de passage au relationnel, c'est-à-dire qu'il redonne le même MLD que le MCD de départ:</p>
 
 </div>
 </div>
@@ -24216,7 +24216,7 @@ PRODUIT: Réf. produit, Libellé, Prix unitaire
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Mais cette fois, comme le « MCD » d'entrée ne comporte aucune association, le diagramme relationnel généré ne comporte aucune flèche.</p>
+<p>Mais cette fois, comme le « MCD » d'entrée ne comporte aucune association, le diagramme relationnel généré ne comporte aucune flèche.</p>
 
 </div>
 </div>
@@ -24332,8 +24332,8 @@ PRODUIT: Réf. produit, Libellé, Prix unitaire
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Sous <em>Mocodo online</em>, vous obtiendrez le premier diagramme relationnel en trois étapes:</p>
 <ol>
-<li>générez les relations correspondant au MCD de départ (vous aurez coché « diagramme relationnel » dans le menu « Options »);</li>
-<li>copiez-collez la sortie « diagramme relationnel » à la place du texte d'entrée;</li>
+<li>générez les relations correspondant au MCD de départ (vous aurez coché « diagramme relationnel » dans le menu « Options »);</li>
+<li>copiez-collez la sortie « diagramme relationnel » à la place du texte d'entrée;</li>
 <li>regénérez les relations.</li>
 </ol>
 <p>Les relations sont placées dans le même ordre que les boîtes du MCD d'origine, mais vous devrez souvent les réorganiser (automatiquement ou manuellement) pour obtenir un résultat plus esthétique.</p>
@@ -24550,36 +24550,36 @@ PRODUIT: Réf. produit [varchar(8)], Libellé [varchar(20)], Prix unitaire [deci
 <span class="n">USE</span> <span class="o">`</span><span class="n">CLIENT_COMMANDE_PRODUIT</span><span class="o">`</span><span class="p">;</span>
 
 <span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">CLIENT</span><span class="o">`</span> <span class="p">(</span>
-  <span class="o">`</span><span class="n">r</span><span class="err">é</span><span class="n">f_client</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span>
+  <span class="o">`</span><span class="n">réf_client</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span>
   <span class="o">`</span><span class="n">nom</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span>
   <span class="o">`</span><span class="n">adresse</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">40</span><span class="p">),</span>
-  <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="o">`</span><span class="n">r</span><span class="err">é</span><span class="n">f_client</span><span class="o">`</span><span class="p">)</span>
+  <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="o">`</span><span class="n">réf_client</span><span class="o">`</span><span class="p">)</span>
 <span class="p">)</span> <span class="n">ENGINE</span><span class="o">=</span><span class="n">InnoDB</span> <span class="k">DEFAULT</span> <span class="n">CHARSET</span><span class="o">=</span><span class="n">utf8</span><span class="p">;</span>
 
 <span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">COMMANDE</span><span class="o">`</span> <span class="p">(</span>
   <span class="o">`</span><span class="n">num_commande</span><span class="o">`</span> <span class="n">tinyint</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span>
   <span class="o">`</span><span class="nb">date</span><span class="o">`</span> <span class="nb">date</span><span class="p">,</span>
   <span class="o">`</span><span class="n">montant</span><span class="o">`</span> <span class="nb">decimal</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="s1">&#39;0.00&#39;</span><span class="p">,</span>
-  <span class="o">`</span><span class="n">r</span><span class="err">é</span><span class="n">f_client</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span>
+  <span class="o">`</span><span class="n">réf_client</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span>
   <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="o">`</span><span class="n">num_commande</span><span class="o">`</span><span class="p">)</span>
 <span class="p">)</span> <span class="n">ENGINE</span><span class="o">=</span><span class="n">InnoDB</span> <span class="k">DEFAULT</span> <span class="n">CHARSET</span><span class="o">=</span><span class="n">utf8</span><span class="p">;</span>
 
 <span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">INCLURE</span><span class="o">`</span> <span class="p">(</span>
   <span class="o">`</span><span class="n">num_commande</span><span class="o">`</span> <span class="n">tinyint</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span>
-  <span class="o">`</span><span class="n">r</span><span class="err">é</span><span class="n">f_produit</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span>
-  <span class="o">`</span><span class="n">quantit</span><span class="err">é</span><span class="o">`</span> <span class="n">tinyint</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span>
-  <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="o">`</span><span class="n">num_commande</span><span class="o">`</span><span class="p">,</span> <span class="o">`</span><span class="n">r</span><span class="err">é</span><span class="n">f_produit</span><span class="o">`</span><span class="p">)</span>
+  <span class="o">`</span><span class="n">réf_produit</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span>
+  <span class="o">`</span><span class="n">quantité</span><span class="o">`</span> <span class="n">tinyint</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span>
+  <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="o">`</span><span class="n">num_commande</span><span class="o">`</span><span class="p">,</span> <span class="o">`</span><span class="n">réf_produit</span><span class="o">`</span><span class="p">)</span>
 <span class="p">)</span> <span class="n">ENGINE</span><span class="o">=</span><span class="n">InnoDB</span> <span class="k">DEFAULT</span> <span class="n">CHARSET</span><span class="o">=</span><span class="n">utf8</span><span class="p">;</span>
 
 <span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">PRODUIT</span><span class="o">`</span> <span class="p">(</span>
-  <span class="o">`</span><span class="n">r</span><span class="err">é</span><span class="n">f_produit</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span>
-  <span class="o">`</span><span class="n">libell</span><span class="err">é</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span>
+  <span class="o">`</span><span class="n">réf_produit</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span>
+  <span class="o">`</span><span class="n">libellé</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span>
   <span class="o">`</span><span class="n">prix_unitaire</span><span class="o">`</span> <span class="nb">decimal</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span>
-  <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="o">`</span><span class="n">r</span><span class="err">é</span><span class="n">f_produit</span><span class="o">`</span><span class="p">)</span>
+  <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="o">`</span><span class="n">réf_produit</span><span class="o">`</span><span class="p">)</span>
 <span class="p">)</span> <span class="n">ENGINE</span><span class="o">=</span><span class="n">InnoDB</span> <span class="k">DEFAULT</span> <span class="n">CHARSET</span><span class="o">=</span><span class="n">utf8</span><span class="p">;</span>
 
-<span class="k">ALTER</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">COMMANDE</span><span class="o">`</span> <span class="k">ADD</span> <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="p">(</span><span class="o">`</span><span class="n">r</span><span class="err">é</span><span class="n">f_client</span><span class="o">`</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="o">`</span><span class="n">CLIENT</span><span class="o">`</span> <span class="p">(</span><span class="o">`</span><span class="n">r</span><span class="err">é</span><span class="n">f_client</span><span class="o">`</span><span class="p">);</span>
-<span class="k">ALTER</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">INCLURE</span><span class="o">`</span> <span class="k">ADD</span> <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="p">(</span><span class="o">`</span><span class="n">r</span><span class="err">é</span><span class="n">f_produit</span><span class="o">`</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="o">`</span><span class="n">PRODUIT</span><span class="o">`</span> <span class="p">(</span><span class="o">`</span><span class="n">r</span><span class="err">é</span><span class="n">f_produit</span><span class="o">`</span><span class="p">);</span>
+<span class="k">ALTER</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">COMMANDE</span><span class="o">`</span> <span class="k">ADD</span> <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="p">(</span><span class="o">`</span><span class="n">réf_client</span><span class="o">`</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="o">`</span><span class="n">CLIENT</span><span class="o">`</span> <span class="p">(</span><span class="o">`</span><span class="n">réf_client</span><span class="o">`</span><span class="p">);</span>
+<span class="k">ALTER</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">INCLURE</span><span class="o">`</span> <span class="k">ADD</span> <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="p">(</span><span class="o">`</span><span class="n">réf_produit</span><span class="o">`</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="o">`</span><span class="n">PRODUIT</span><span class="o">`</span> <span class="p">(</span><span class="o">`</span><span class="n">réf_produit</span><span class="o">`</span><span class="p">);</span>
 <span class="k">ALTER</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">INCLURE</span><span class="o">`</span> <span class="k">ADD</span> <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="p">(</span><span class="o">`</span><span class="n">num_commande</span><span class="o">`</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="o">`</span><span class="n">COMMANDE</span><span class="o">`</span> <span class="p">(</span><span class="o">`</span><span class="n">num_commande</span><span class="o">`</span><span class="p">);</span>
 </pre></div>
 
@@ -24951,7 +24951,7 @@ PRODUIT: Réf. produit, Libellé, Prix unitaire
 <li>Num commande</li>
 <li>Date</li>
 <li>Montant</li>
-<li>Quantité : <em>nombre d'unités d'un produit donné dans une commande donnée</em></li>
+<li>Quantité : <em>nombre d'unités d'un produit donné dans une commande donnée</em></li>
 <li>Réf. produit</li>
 <li>Libellé</li>
 <li>Prix unitaire</li>
@@ -24994,7 +24994,7 @@ PRODUIT: Réf. produit, Libellé, Prix unitaire
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pour apprendre à spécifier un format, le mieux est d'étudier les gabarits livrés dans le dossier <code>relation_templates</code>. Les quelques indications données ici devraient suffire à vous épargner la lecture du code proprement dit.</p>
-<p>Chaque gabarit est un fichier JSON associant des clefs prédéfinies à des valeurs librement modifiables. Dans sa forme la plus simple, à savoir le format « texte brut », le fichier (<code>text.json</code>) se réduit à trois lignes:</p>
+<p>Chaque gabarit est un fichier JSON associant des clefs prédéfinies à des valeurs librement modifiables. Dans sa forme la plus simple, à savoir le format « texte brut », le fichier (<code>text.json</code>) se réduit à trois lignes:</p>
 <div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="nt">&quot;extension&quot;</span><span class="p">:</span> <span class="s2">&quot;.txt&quot;</span>
 <span class="p">}</span>

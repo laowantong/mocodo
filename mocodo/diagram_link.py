@@ -5,7 +5,7 @@ from __future__ import division
 
 import sys
 import re
-from dynamic import Dynamic
+from .dynamic import Dynamic
 
 class DiagramLink:
 

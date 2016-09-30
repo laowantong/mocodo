@@ -6,15 +6,15 @@ import argparse
 import random
 import os
 import json
-from file_helpers import read_contents
-from common import version
+from .file_helpers import read_contents
+from .common import version
 import sys
 import re
 import gettext
 import locale
 from time import time
 from io import open
-from mocodo_error import MocodoError
+from .mocodo_error import MocodoError
 
 DESCRIPTION = """
 NAME:
@@ -262,5 +262,5 @@ def parsed_arguments():
         import shutil
         shutil.copyfile(os.path.join(params["script_directory"], "pristine_sandbox.mcd"), params["input"])
     random.seed(params["seed"])
-    params["title"] = params["title"].decode("utf8")
+    # params["title"] = params["title"].decode("utf8")
     return params

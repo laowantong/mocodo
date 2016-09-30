@@ -50,8 +50,7 @@ def draw():
         (a, b) = (0, 1)
         while abs(b - a) > 0.001:
             m = (a + b) / 2
-            (x, y) = bezier(m)
-            if predicate(x, y):
+            if predicate(bezier(m)):
                 a = m
             else:
                 b = m

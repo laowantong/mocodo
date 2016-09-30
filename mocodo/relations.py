@@ -8,8 +8,8 @@ import collections
 import itertools
 import unicodedata
 import os
-from file_helpers import write_contents
-from mocodo_error import MocodoError
+from .file_helpers import write_contents
+from .mocodo_error import MocodoError
 
 class Relations:
 
@@ -47,7 +47,7 @@ class Relations:
             title = unicodedata.normalize('NFKD', title).encode('ascii', 'ignore')
             title = re.sub("[^-A-Za-z0-9 _]", "", title)
             if params["language"].startswith("fr"):
-                from pluralize_fr import pluralize
+                from .pluralize_fr import pluralize
                 title = " ".join(map(pluralize, title.split()))
             title = title.capitalize()
             if not title:
@@ -356,5 +356,5 @@ class Relations:
 if __name__=="__main__":
     import sys
     sys.path.append("/Users/aristide/Dropbox/Sites/mocodo_online/mocodo")
-    from mocodo import main
+    from .mocodo import main
     main()

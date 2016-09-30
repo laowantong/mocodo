@@ -9,13 +9,13 @@ if sys.version < "2.7":
     sys.exit()
 
 import os
-from common import Common, safe_print_for_PHP
-from file_helpers import write_contents
-from argument_parser import parsed_arguments
-from mcd import Mcd
-from relations import Relations
-from font_metrics import font_metrics
-from mocodo_error import MocodoError
+from .common import Common, safe_print_for_PHP
+from .file_helpers import write_contents
+from .argument_parser import parsed_arguments
+from .mcd import Mcd
+from .relations import Relations
+from .font_metrics import font_metrics_factory
+from .mocodo_error import MocodoError
 
 def main():
     try:
@@ -35,7 +35,7 @@ def main():
             params_contents = json.dumps(params, ensure_ascii=False, indent=2, sort_keys=True)
             return safe_print_for_PHP(params_contents)
         if params["obfuscate"]:
-            from obfuscate import obfuscate
+            from .obfuscate import obfuscate
             return safe_print_for_PHP(obfuscate(clauses, params))
         mcd = Mcd(clauses, params, get_font_metrics)
         if params["fit"] is not None:
@@ -50,11 +50,11 @@ def main():
         if params["arrange"]:
             params.update(mcd.get_layout_data())
             if params["arrange"] == "ga":
-                from arrange_ga import arrange
+                from .arrange_ga import arrange
             elif params["arrange"] == "bb":
-                from arrange_bb import arrange
+                from .arrange_bb import arrange
             elif params["arrange"] == "lp":
-                from arrange_lp import arrange
+                from .arrange_lp import arrange
             result = arrange(**params)
             if result:
                 mcd.set_layout(**result)
@@ -63,13 +63,13 @@ def main():
         relations = Relations(mcd, params)
         common.dump_mld_files(relations)
         if params["image_format"] == "svg":
-            from mcd_to_svg import main
+            from .mcd_to_svg import main
             import runpy
             main(mcd, common)
             runpy.run_path(u"%(output_name)s_svg.py" % params)
             return
         if params["image_format"] == "nodebox":
-            from mcd_to_nodebox import main
+            from .mcd_to_nodebox import main
             main(mcd, common)
             return os.system(u"""open -a NodeBox "%(output_name)s_nodebox.py" """ % params)
         raise MocodoError(13, _('Should never happen.'))

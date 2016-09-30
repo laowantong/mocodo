@@ -5,10 +5,10 @@ from __future__ import division
 
 import re
 
-from attribute import *
-from leg import *
-from dynamic import Dynamic
-from mocodo_error import MocodoError
+from .attribute import *
+from .leg import *
+from .dynamic import Dynamic
+from .mocodo_error import MocodoError
 
 match_leg = re.compile(r"((?:_11|..)[<>]?\s+(?:\[.+?\]\s+)?)(.+)").match
 

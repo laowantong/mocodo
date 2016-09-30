@@ -4,8 +4,8 @@
 from __future__ import division
 
 
-from attribute import *
-from dynamic import Dynamic
+from .attribute import *
+from .dynamic import Dynamic
 
 class Entity:
 

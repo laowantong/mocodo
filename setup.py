@@ -26,7 +26,7 @@ The recommended way to install Mocodo is to use pip:
 
     pip install mocodo
 
-If this fails, ensure first you have a working Python 2.7 installation.
+If this fails, ensure first you have a working Python installation (tested under 2.7 and 3.5).
 
 Usage
 -------
@@ -108,8 +108,7 @@ setup(
 
     # You can just specify the packages manually here if your project is
     # simple. Or you can use find_packages().
-    packages=['mocodo'],
-
+    packages=["mocodo"],
     # List run-time dependencies here.  These will be installed by pip when
     # your project is installed. For an analysis of "install_requires" vs pip's
     # requirements files see:
@@ -150,7 +149,7 @@ setup(
     # "scripts" keyword. Entry points provide cross-platform support and allow
     # pip to create the appropriate form of executable for the target platform.
     entry_points={
-        'console_scripts': ['mocodo=mocodo.command_line:main'],
+        'console_scripts': ['mocodo=mocodo.__main__:main'],
     },
     
     # Not all packages, however, are capable of running in compressed form,

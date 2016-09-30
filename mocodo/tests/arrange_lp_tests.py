@@ -3,13 +3,13 @@
 
 from __future__ import division
 import sys
-sys.path[0:0] = ["./mocodo/"]
+sys.path[0:0] = ["."]
 
 from arrange_lp import *
 
 import unittest
-from mcd import Mcd
-from argument_parser import parsed_arguments
+from mocodo.mcd import Mcd
+from mocodo.argument_parser import parsed_arguments
 from time import time
 from random import seed
 

@@ -2,10 +2,10 @@
 # encoding: utf-8
 
 import sys
-sys.path[0:0] = ["./mocodo/"]
+sys.path[0:0] = ["."]
 
 import unittest
-from grid import Grid
+from mocodo.grid import Grid
 
 class GridTests(unittest.TestCase):
     

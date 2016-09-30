@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
-from cross import cross
+from .cross import cross
 from math import hypot
 import itertools
 import cplex
@@ -111,8 +111,8 @@ def arrange(col_count, row_count, links, multiplicity, **kwargs):
     
 
 if __name__ == "__main__":
-    from mcd import Mcd
-    from argument_parser import parsed_arguments
+    from .mcd import Mcd
+    from .argument_parser import parsed_arguments
     from time import time
     from random import seed
     clauses = u"""

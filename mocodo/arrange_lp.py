@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
-from cross import cross
+from .cross import cross
 from math import hypot
 import os
 import itertools

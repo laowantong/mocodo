@@ -25,19 +25,19 @@ def straight_leg_factory(ex, ey, ew, eh, ax, ay, aw, ah, cw, ch):
         correction = card_margin * 1.4142 * (1 - abs(abs(ax-ex) - abs(ay-ey)) / diagonal) - shift
         (xg, yg) = line_intersection(ex, ey, ew, eh + ch, ax, ay)
         (xb, yb) = line_intersection(ex, ey, ew + cw, eh, ax, ay)
-        if compare(xg, xb):
-            if compare(xg, ex):
-                if compare(yb, ey):
+        if compare((xg, xb)):
+            if compare((xg, ex)):
+                if compare((yb, ey)):
                     return (xb - correction, yb)
                 return (xb - correction, yb + ch)
-            if compare(yb, ey):
+            if compare((yb, ey)):
                 return (xg, yg + ch - correction)
             return (xg, yg + correction)
-        if compare(xb, ex):
-            if compare(yb, ey):
+        if compare((xb, ex)):
+            if compare((yb, ey)):
                 return (xg - cw, yg + ch - correction)
             return (xg - cw, yg + correction)
-        if compare(yb, ey):
+        if compare((yb, ey)):
             return (xb - cw + correction, yb)
         return (xb - cw + correction, yb + ch)
     
@@ -60,8 +60,7 @@ def curved_leg_factory(ex, ey, ew, eh, ax, ay, aw, ah, cw, ch, spin):
         (a, b) = (0, 1)
         while abs(b - a) > 0.0001:
             m = (a + b) / 2
-            (x, y) = bezier(m)
-            if predicate(x, y):
+            if predicate(bezier(m)):
                 a = m
             else:
                 b = m

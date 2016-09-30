@@ -4,7 +4,7 @@
 from __future__ import division
 
 import sys
-from file_helpers import read_contents
+from .file_helpers import read_contents
 import os
 import json
 

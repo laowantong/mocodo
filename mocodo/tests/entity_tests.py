@@ -3,10 +3,10 @@
 
 from __future__ import division
 import sys
-sys.path[0:0] = ["./mocodo/"]
+sys.path[0:0] = ["."]
 
 import unittest
-from entity import *
+from mocodo.entity import *
 
 class EntityTest(unittest.TestCase):
 

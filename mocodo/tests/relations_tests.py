@@ -3,15 +3,15 @@
 
 from __future__ import division
 import sys
-sys.path[0:0] = ["./mocodo/"]
+sys.path[0:0] = ["."]
 
 import unittest
-from relations import *
-from mcd import Mcd
+from mocodo.relations import *
+from mocodo.mcd import Mcd
 import json
-from file_helpers import read_contents
+from mocodo.file_helpers import read_contents
 from copy import deepcopy
-from argument_parser import parsed_arguments
+from mocodo.argument_parser import parsed_arguments
 
 minimal_template = json.loads(read_contents("mocodo/relation_templates/text.json"))
 json_template = json.loads(read_contents("mocodo/relation_templates/json.json"))

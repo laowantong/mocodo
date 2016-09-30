@@ -4,14 +4,14 @@
 from __future__ import division
 
 import re
-from association import Association
-from entity import Entity
-from phantom import Phantom
-from diagram_link import DiagramLink
+from .association import Association
+from .entity import Entity
+from .phantom import Phantom
+from .diagram_link import DiagramLink
 import itertools
 from collections import defaultdict
-from grid import Grid
-from mocodo_error import MocodoError
+from .grid import Grid
+from .mocodo_error import MocodoError
 
 compress_colons = re.compile(r"(?m)^:\n(?=:$)").sub
 
@@ -369,7 +369,7 @@ class Mcd:
         return result
 
 if __name__=="__main__":
-    from argument_parser import parsed_arguments
+    from .argument_parser import parsed_arguments
     clauses = u"""
         CLIENT: Réf. client, Nom, Prénom, Adresse
         PASSER, 0N CLIENT, 11 COMMANDE

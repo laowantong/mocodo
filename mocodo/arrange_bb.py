@@ -5,9 +5,9 @@ from __future__ import division
 
 from itertools import product, count
 from random import random, shuffle, randrange, choice
-from cross import cross, memoize
+from .cross import cross, memoize
 from math import hypot, sqrt
-from mocodo_error import MocodoError
+from .mocodo_error import MocodoError
 
 def arrange(col_count, row_count, successors, multiplicity, organic, min_objective, max_objective, call_limit, verbose, has_expired, **kwargs):
     
@@ -181,8 +181,8 @@ def arrange(col_count, row_count, successors, multiplicity, organic, min_objecti
 
     
 if __name__ == "__main__":
-    from mcd import Mcd
-    from argument_parser import parsed_arguments
+    from .mcd import Mcd
+    from .argument_parser import parsed_arguments
     from time import time
     from random import seed
     clauses = u"""

@@ -3,14 +3,14 @@
 
 from __future__ import division
 import sys
-sys.path[0:0] = ["./mocodo/"]
+sys.path[0:0] = ["."]
 
 import unittest
-from relations import *
-from mcd import Mcd
+from mocodo.relations import *
+from mocodo.mcd import Mcd
 import json
-from file_helpers import read_contents
-from argument_parser import parsed_arguments
+from mocodo.file_helpers import read_contents
+from mocodo.argument_parser import parsed_arguments
 
 clauses = """
 PASS, 11 PEAK, 01 GAME: rain

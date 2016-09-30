@@ -4,11 +4,11 @@
 from __future__ import division
 from __future__ import print_function
 import sys
-sys.path[0:0] = ["./mocodo/"]
+sys.path[0:0] = ["."]
 
 import unittest
-from mcd import *
-from argument_parser import parsed_arguments
+from mocodo.mcd import *
+from mocodo.argument_parser import parsed_arguments
 
 import gettext
 gettext.NullTranslations().install()
