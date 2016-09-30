@@ -45,7 +45,7 @@ class DiagramLink:
         result.append({
                 "key": "env",
                 "env": [
-                    ("fs,ps", """min(%s, key=lambda (fs,ps): abs(cx[u"%s"]+%s*fs - cx[u"%s"]-%s*ps))""" % (spins, self.foreign_entity.name, self.fdx, self.primary_entity.name, self.pdx)),
+                    ("fs,ps", """min(%s, key=lambda fs_ps: abs(cx[u"%s"]+%s*fs_ps[0] - cx[u"%s"]-%s*fs_ps[1]))""" % (spins, self.foreign_entity.name, self.fdx, self.primary_entity.name, self.pdx)),
                 ],
             })
         result.append({

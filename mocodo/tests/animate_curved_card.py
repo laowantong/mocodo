@@ -58,7 +58,7 @@ def draw():
         return m
     
     def intersection(left, top, right, bottom):
-       (x, y) = bezier(bisection(lambda x, y: left <= x <= right and top <= y <= bottom))
+       (x, y) = bezier(bisection(lambda p: left <= p[0] <= right and top <= p[1] <= bottom))
        return (int(round(x)), int(round(y)))
     
     def card_pos(shift):

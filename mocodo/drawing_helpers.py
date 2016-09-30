@@ -20,7 +20,7 @@ def line_intersection(ex, ey, w, h, ax, ay):
 def straight_leg_factory(ex, ey, ew, eh, ax, ay, aw, ah, cw, ch):
     
     def card_pos(twist, shift):
-        compare = (lambda x1, y1: x1 < y1) if twist else (lambda x1, y1: x1 <= y1)
+        compare = (lambda x1_y1: x1_y1[0] < x1_y1[1]) if twist else (lambda x1_y1: x1_y1[0] <= x1_y1[1])
         diagonal = hypot(ax-ex, ay-ey)
         correction = card_margin * 1.4142 * (1 - abs(abs(ax-ex) - abs(ay-ey)) / diagonal) - shift
         (xg, yg) = line_intersection(ex, ey, ew, eh + ch, ax, ay)
@@ -68,7 +68,7 @@ def curved_leg_factory(ex, ey, ew, eh, ax, ay, aw, ah, cw, ch, spin):
         return m
     
     def intersection(left, top, right, bottom):
-       (x, y) = bezier(bisection(lambda x, y: left <= x <= right and top <= y <= bottom))
+       (x, y) = bezier(bisection(lambda p: left <= p[0] <= right and top <= p[1] <= bottom))
        return (int(round(x)), int(round(y)))
     
     def card_pos(shift):
@@ -98,8 +98,8 @@ def curved_leg_factory(ex, ey, ew, eh, ax, ay, aw, ah, cw, ch, spin):
         return (LEF, min(y for (x, y) in ((xr, yr), (xg, yg), (xb, yb)) if x <= lef) + correction + shift)
     
     def arrow_pos(direction, ratio):
-        t0 = bisection(lambda x, y: abs(x - ax) > aw or abs(y - ay) > ah)
-        t3 = bisection(lambda x, y: abs(x - ex) < ew and abs(y - ey) < eh)
+        t0 = bisection(lambda p: abs(p[0] - ax) > aw or abs(p[1] - ay) > ah)
+        t3 = bisection(lambda p: abs(p[0] - ex) < ew and abs(p[1] - ey) < eh)
         if direction == "<":
             (t0, t3) = (t3, t0)
         tc = t0 + (t3 - t0) * ratio
