@@ -14,7 +14,7 @@ from file_helpers import write_contents
 from argument_parser import parsed_arguments
 from mcd import Mcd
 from relations import Relations
-import font_metrics
+from font_metrics import font_metrics
 from mocodo_error import MocodoError
 
 def main():
@@ -22,7 +22,7 @@ def main():
         params = parsed_arguments()
         common = Common(params)
         clauses = common.load_input_file()
-        get_font_metrics = font_metrics.font_metrics_factory(params)
+        get_font_metrics = font_metrics_factory(params)
         if params["restore"]:
             import shutil
             shutil.copyfile(os.path.join(params["script_directory"], "pristine_sandbox.mcd"), "sandbox.mcd")
@@ -63,14 +63,14 @@ def main():
         relations = Relations(mcd, params)
         common.dump_mld_files(relations)
         if params["image_format"] == "svg":
-            import mcd_to_svg
+            from mcd_to_svg import main
             import runpy
-            mcd_to_svg.main(mcd, common)
+            main(mcd, common)
             runpy.run_path(u"%(output_name)s_svg.py" % params)
             return
         if params["image_format"] == "nodebox":
-            import mcd_to_nodebox
-            mcd_to_nodebox.main(mcd, common)
+            from mcd_to_nodebox import main
+            main(mcd, common)
             return os.system(u"""open -a NodeBox "%(output_name)s_nodebox.py" """ % params)
         raise MocodoError(13, _('Should never happen.'))
     except MocodoError as err:

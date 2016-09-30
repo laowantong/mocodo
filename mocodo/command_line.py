@@ -1,9 +1,7 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
-from __future__ import division
-
-import mocodo
+from mocodo import main
 
 def main():
-    mocodo.main()
+    main()
