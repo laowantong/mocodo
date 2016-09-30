@@ -19,19 +19,19 @@ def arrange(col_count, row_count, links, multiplicity, **kwargs):
     
     from pprint import pprint
     
-    print "Edges"
+    print("Edges")
     E = list(links) # + [(n2, n1) for (n1, n2) in links]
     # pprint(E)
 
-    print "Positions"
+    print("Positions")
     P = list(itertools.product(range(col_count), range(row_count)))
     # pprint(P)
 
-    print "Admissible segments"
+    print("Admissible segments")
     S = [((i1, j1), (i2, j2)) for ((i1, j1), (i2, j2)) in itertools.combinations(P, 2) if hypot(abs(i1-i2), abs(j1-j2))-1 <= MAX_LENGTH]
     # pprint(S)
 
-    print "Crossing segments"
+    print("Crossing segments")
     S2X = []
     for (((i1, j1), (i2, j2)), ((i3, j3), (i4, j4))) in itertools.combinations(S, 2):
         if cross((i1, j1, i2, j2, i3, j3, i4, j4)):
@@ -39,7 +39,7 @@ def arrange(col_count, row_count, links, multiplicity, **kwargs):
     S2X = set(S2X)
     # pprint(S2X)
     
-    print "Adjacent segments"
+    print("Adjacent segments")
     S2V = []
     for ((p1, p2), (p3, p4)) in itertools.combinations(S, 2):
         if ((p1, p2), (p3, p4)) not in S2X and len(set((p1, p2, p3, p4))) == 3:
@@ -47,7 +47,7 @@ def arrange(col_count, row_count, links, multiplicity, **kwargs):
     S2V = set(S2V)
     # pprint(S2V)
 
-    print "Adjacent edges"
+    print("Adjacent edges")
     E2V = []
     for ((v1, v2), (v3, v4)) in itertools.combinations(E, 2):
         if len(set((v1, v2, v3, v4))) == 3:
@@ -106,8 +106,8 @@ def arrange(col_count, row_count, links, multiplicity, **kwargs):
         if assigned and ep.startswith("x"):
             (v, x, y) = map(int,ep.split("_")[1:])
             result[v] = (x, y)
-    print result
-    print "Cumulated distances:", problem.solution.get_objective_value()
+    print(result)
+    print("Cumulated distances:", problem.solution.get_objective_value())
     
 
 if __name__ == "__main__":
@@ -153,9 +153,9 @@ Amid : Disk, Flip, Gold
     seed(42)
     result = dump_lp("mocodo/a", **params)
     if result:
-        print
-        print mcd.get_clauses_from_layout(**result)
-        print
-        print "Cumulated distances:", result["distances"]
-        print "Duration:", time() - starting_time
-        print 
+        print()
+        print(mcd.get_clauses_from_layout(**result))
+        print()
+        print("Cumulated distances:", result["distances"])
+        print("Duration:", time() - starting_time)
+        print()
