@@ -260,12 +260,20 @@ class Relations:
                     break
                 if strengthening_entities:
                     for strengthening_entity in strengthening_entities:
+                        # find the potential annotation on the strenghening leg
+                        for leg in association.legs:
+                            if leg.entity_name == strengthening_entity.name:
+                                leg_annotation = leg.annotation
+                                break
+                        else:
+                            leg_annotation = None
+                        # migrate the whole primary key of the strengthening entity into the weak one
                         self.relations[entity.name]["columns"][0:0] = [{
                                 "attribute": attribute["attribute"],
                                 "data_type": attribute["data_type"],
                                 "primary_relation_name": strengthening_entity.name,
                                 "association_name": association.cartouche,
-                                "leg_annotation": None,
+                                "leg_annotation": leg_annotation,
                                 "primary": True,
                                 "foreign": True,
                                 "nature": "strengthening_primary_key"
