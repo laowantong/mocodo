@@ -491,8 +491,7 @@ class RelationTemplatesTest(unittest.TestCase):
             **SLOW** (<ins>else</ins>, line, _cute_, _echo_, whom)  
             - Le champ _else_ constitue la clef primaire de la table. C'était déjà un identifiant de l'entité _SLOW_.  
             - Le champ _line_ était déjà un simple attribut de l'entité _SLOW_.  
-            - Le champ _cute_ est une clef étrangère. Il a migré à partir de l'entité _ODDS_ par l'association de dépendance fonctionnelle _ALLY_ en perdant son caractère identifiant.  
-            - Le champ _echo_ est une clef étrangère. Il a migré à partir de l'entité _ODDS_ par l'association de dépendance fonctionnelle _ALLY_ en perdant son caractère identifiant.  
+            - Les champs _cute_ et _echo_ sont des clefs étrangères. Ils ont migré à partir de l'entité _ODDS_ par l'association de dépendance fonctionnelle _ALLY_ en perdant leur caractère identifiant.  
             - Le champ _whom_ a migré à partir de l'association de dépendance fonctionnelle _ALLY_.  
             
             **CORD** (_else_, <ins>_bury_</ins>, left)  
@@ -540,7 +539,7 @@ class RelationTemplatesTest(unittest.TestCase):
             - Le champ _farm_ était déjà un simple attribut de l'entité _POEM_.  
             
             **ODDS** (<ins>_cute_</ins>, <ins>echo</ins>, golf)  
-            - Le champ _cute_ fait partie de la clef primaire de la table. Il a migré à partir de l'entité _POEM_ pour renforcer l'identifiant.  
+            - Le champ _cute_ fait partie de la clef primaire de la table. Il a migré à partir de l'entité _POEM_ pour renforcer l'identifiant faible.  
             - Le champ _echo_ fait partie de la clef primaire de la table. C'était déjà un identifiant de l'entité _ODDS_.  
             - Le champ _golf_ a migré à partir de l'association de dépendance fonctionnelle _HANG_.
         """.strip().replace("    ", "").split()
