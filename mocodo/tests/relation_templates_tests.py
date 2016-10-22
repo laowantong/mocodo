@@ -46,33 +46,25 @@ class RelationTemplatesTest(unittest.TestCase):
         template = json.loads(read_contents("mocodo/relation_templates/diagram.json"))
         expected = u"""
             %%mocodo
-            :
-            :
-            :
+            :::
             GAME: glad, oven, #glad.1->GAME->glad, snap
             :
             SHED: #else->SLOW->else, _#glad->GAME->glad, _#iron->DIET->iron, free
             :
             SLOW: else, line, #cute->ODDS->cute, #echo->ODDS->echo, whom
             :
-            CORD: #else->SLOW->else, _#bury->LOCK->bury, left
-            :
-            LOCK: bury
-            :
+            CORD: #else->SLOW->else, _bury, left
+            ::
             
             
             :
             PEAK: amid, salt, #glad->GAME->glad, rain
-            :
-            :
-            :
+            :::
             DIET: iron, cell, #rich->QUIT->rich, clip
             :
             SOUL: #iron->DIET->iron, _#else->SLOW->else, joke
-            :
-            :
-            :
-            FUND: #bury->LOCK->bury, #cute->ODDS->cute, #echo->ODDS->echo, dump
+            :::
+            FUND: bury, #cute->ODDS->cute, #echo->ODDS->echo, dump
             :
             
             
@@ -80,13 +72,9 @@ class RelationTemplatesTest(unittest.TestCase):
             DENY: #rich->QUIT->rich, _#rich.1->QUIT->rich, hers
             :
             QUIT: rich, milk
-            :
-            :
-            :
+            :::
             POEM: cute, farm
-            :
-            :
-            :
+            :::
             ODDS: #cute->POEM->cute, _echo, golf
             :
         """.strip().replace("    ", "").split()
