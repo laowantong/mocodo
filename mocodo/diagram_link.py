@@ -6,6 +6,7 @@ from __future__ import division
 import sys
 import re
 from .dynamic import Dynamic
+from .mocodo_error import MocodoError
 
 class DiagramLink:
 
@@ -15,13 +16,13 @@ class DiagramLink:
         try:
             self.primary_entity = entities[foreign_key.primary_entity_name]
         except KeyError:
-            raise RuntimeError("Mocodo Err.14 - " + _('Attribute "{foreign_key}" in entity "{foreign_entity}" references an unknown entity "{primary_entity}".').format(foreign_key=foreign_key.label, foreign_entity=foreign_entity.name, primary_entity=foreign_key.primary_entity_name))
+            raise MocodoError(14, _('Attribute "{foreign_key}" in entity "{foreign_entity}" references an unknown entity "{primary_entity}".').format(foreign_key=foreign_key.label, foreign_entity=foreign_entity.name, primary_entity=foreign_key.primary_entity_name))
         for candidate in self.primary_entity.attributes:
             if candidate.label.lstrip("#") == foreign_key.primary_key_label.lstrip("#"):
                 self.primary_key = candidate
                 break
         else:
-            raise RuntimeError("Mocodo Err.15 - " + _('Attribute "{foreign_key}" in entity "{foreign_entity}" references an unknown attribute "{primary_key}" in entity "{primary_entity}".').format(foreign_key.label, foreign_entity.name, foreign_key.primary_key_label, foreign_key.primary_entity_name))
+            raise MocodoError(15, _('Attribute "{foreign_key}" in entity "{foreign_entity}" references an unknown attribute "{primary_key}" in entity "{primary_entity}".').format(foreign_key.label, foreign_entity.name, foreign_key.primary_key_label, foreign_key.primary_entity_name))
     
     def calculate_size(self, style, *ignored):
         self.fdx = self.foreign_entity.w // 2
