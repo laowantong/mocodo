@@ -13,7 +13,7 @@ class Entity:
         
         def clean_up(name, attributes):
             name = name.strip(" \n\t")
-            cartouche = (name[:-1] if name[-1].isdigit() else name)
+            cartouche = (name[:-1] if name[-1].isdigit() else name) # get rid of digit suffix, if any
             return (name, cartouche, outer_split(attributes))
         
         (self.name, self.attribute_labels) = clause.split(":", 1)
