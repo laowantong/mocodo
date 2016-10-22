@@ -23,21 +23,21 @@
       "iterated": true
     },
     {
-      "search": "(- Le champ )(.+?)( était déjà un simple attribut de .+?.)\n\\1(.+?)\\3",
+      "search": "(- Le champ )(.+?)( était déjà un simple attribut de .+)\n\\1(.+?)\\3",
       "replace": "\\1\\2, \\4\\3",
       "iterated": true
     },
     {
-      "search": "- Le champ (.+), (.+?) était déjà un simple attribut( de .+?.)",
+      "search": "- Le champ (.+), (.+?) était déjà un simple attribut( de .+)",
       "replace": "- Les champs \\1 et \\2 étaient déjà de simples attributs\\3"
     },
     {
-      "search": "(- Le champ )(.+?)( est une clef étrangère\\. Il a migré à partir de l'entité .+? par l'association de dépendance fonctionnelle .+? en perdant son caractère identifiant\\.)  \n\\1(.+?)\\3",
+      "search": "(- Le champ )(.+?)( est une clef étrangère\\. Il a .+)\n\\1(.+?)\\3",
       "replace": "\\1\\2, \\4\\3",
       "iterated": true
     },
     {
-      "search": "- Le champ (.+), (.+?) est une clef étrangère\\. Il a (migré à partir de l'entité .+? par l'association de dépendance fonctionnelle .+? en perdant) son (caractère identifiant.)",
+      "search": "- Le champ (.+), (.+?) est une clef étrangère\\. Il a (migré .+ en perdant) son (caractère identifiant\\.)",
       "replace": "- Les champs \\1 et \\2 sont des clefs étrangères. Ils ont \\3 leur \\4"
     },
     {
