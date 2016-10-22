@@ -183,7 +183,7 @@ class Relations:
             for row in self.mcd.rows:
                 for (i, box) in enumerate(row):
                     for line in lines:
-                        if line.startswith(box.name + ":"):
+                        if line.startswith(box.cartouche + ":"):
                             rows[-1].append(line)
                             all_commas[i] = False
                             break
@@ -271,7 +271,7 @@ class Relations:
                         self.relations[entity.name]["columns"][0:0] = [{
                                 "attribute": attribute["attribute"],
                                 "data_type": attribute["data_type"],
-                                "primary_relation_name": strengthening_entity.name,
+                                "primary_relation_name": strengthening_entity.cartouche,
                                 "association_name": association.cartouche,
                                 "leg_annotation": leg_annotation,
                                 "primary": True,
