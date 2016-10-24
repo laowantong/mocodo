@@ -54,8 +54,7 @@ Ainsi que le diagramme relationnel, qui peut être visualisé par un nouvel appe
     %mocodo --input mocodo_notebook/sandbox.mld --colors brewer+1
 
 
-![](https://cdn.rawgit.com/laowantong/mocodo/master/doc/readme_2.svg)
-
+![](https://cdn.rawgit.com/laowantong/mocodo/f06f70a/doc/readme_2.svg)
 
 La devise de Mocodo, « nickel, ni souris », en résume les principaux points forts:
 
