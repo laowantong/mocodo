@@ -65,7 +65,7 @@ class Relations:
         self.add_sorting_this_relation_number()
         self.may_disambiguate_with_leg_annotations = set_disambiguation_strategy(params["disambiguation"])
         may_update_params_with_guessed_title()
-        
+
     
     def get_text(self, template):
         
@@ -245,7 +245,7 @@ class Relations:
         remaining_entities = [entity for entity in self.mcd.entities.values() if not entity.is_strong_or_strengthened]
         while remaining_entities:
             for entity in remaining_entities:
-                strengthening_entities = []
+                strengthening_entities_via_associations = []
                 for strengthen_leg in entity.strengthen_legs:
                     association = strengthen_leg.association
                     for other_leg in association.legs:
@@ -254,12 +254,12 @@ class Relations:
                             continue
                         if not other_entity.is_strong_or_strengthened:
                             break # weak entity linked to a weak entity
-                        strengthening_entities.append(other_entity)
+                        strengthening_entities_via_associations.append((other_entity, association))
                     else:
                         continue
                     break
-                if strengthening_entities:
-                    for strengthening_entity in strengthening_entities:
+                if strengthening_entities_via_associations:
+                    for (strengthening_entity, association) in strengthening_entities_via_associations:
                         # find the potential annotation on the strenghening leg
                         for leg in association.legs:
                             if leg.entity_name == strengthening_entity.name:

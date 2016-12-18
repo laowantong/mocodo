@@ -559,6 +559,32 @@ class relationsTest(unittest.TestCase):
         mcd = Mcd(clauses.split("\n"), params)
         self.assertRaisesRegex(MocodoError, "Mocodo Err\.16", Relations, mcd, params)
     
+    def test_weak_entities_strengthened_by_several_entities(self):
+        clauses = u"""
+            Baby: Soon
+            Yard, _11 Unit, ON Baby: Hall
+            
+            :
+            Unit: Folk, Peer
+            
+            
+            Item: Norm, Wash
+            Ever, _11 Unit, 1N Item: Tour
+        """
+        # the actual order of the result depends on Python's version
+        possible_text_1 = u"""
+            Baby (_Soon_)
+            Unit (_#Norm_, _#Soon_, _Folk_, Peer, Hall, Tour)
+            Item (_Norm_, Wash)
+        """.strip().replace("    ", "")
+        possible_text_2 = u"""
+            Baby (_Soon_)
+            Unit (_#Soon_, _#Norm_, _Folk_, Peer, Tour, Hall)
+            Item (_Norm_, Wash)
+        """.strip().replace("    ", "")
+        t = Relations(Mcd(clauses.split("\n"), params), params)
+        self.assertTrue(t.get_text(minimal_template) in (possible_text_1, possible_text_2))
+    
     def test_weak_entities_with_cycle(self):
         clauses = u"""
             ITEM: norm, wash, haul
