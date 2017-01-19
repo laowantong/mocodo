@@ -16,3 +16,8 @@ paper/*
 *.lp
 *.log
 .DS_Store
+
+magic/build/*
+magic/dist/*
+magic/mocodo_magic.egg-info/*
+magic/README.rst

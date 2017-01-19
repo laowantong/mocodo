@@ -38,7 +38,7 @@ class MocodoMagics(Magics):
             < MCD ... >
 
         Usage:
-            %load_ext mocodo
+            %load_ext mocodo_magic
         """
         
         def execute_command(options):
