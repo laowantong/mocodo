@@ -11751,7 +11751,7 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">reload_ext</span> mocodo
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">reload_ext</span> mocodo_magic
 </pre></div>
 
 </div>
@@ -11776,9 +11776,10 @@ div#notebook {
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Table-des-mati&#232;res">Table des mati&#232;res<a class="anchor-link" href="#Table-des-mati&#232;res">&#182;</a></h1><ul>
 <li><a href="#introduction">1. Introduction</a></li>
-<li><a href="#installation">2. Installation</a><ul>
-<li><a href="#installation_du_programme">2.1. Installation du programme</a></li>
-<li><a href="#installation_de_l_extension_jupyter_ipython_notebook">2.2. Installation de l'extension Jupyter Notebook</a></li>
+<li><a href="#installation_du_programme">2. Installation du programme</a><ul>
+<li><a href="#installation_complete_recommande">2.1. Installation complète (recommandé)</a></li>
+<li><a href="#verification">2.2. Vérification</a></li>
+<li><a href="#installation_minimale">2.3. Installation minimale</a></li>
 </ul>
 </li>
 <li><a href="#using_mocodo">3. Utilisation</a><ul>
@@ -12436,7 +12437,7 @@ Enseigner, 11 Prof, 1N Matière
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="2.-Installation-">2. Installation <a id="installation" /><a class="anchor-link" href="#2.-Installation-">&#182;</a></h1>
+<h1 id="2.-Installation-du-programme-">2. Installation du programme <a id="installation_du_programme" /><a class="anchor-link" href="#2.-Installation-du-programme-">&#182;</a></h1>
 </div>
 </div>
 </div>
@@ -12445,7 +12446,7 @@ Enseigner, 11 Prof, 1N Matière
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="2.1.-Installation-du-programme-">2.1. Installation du programme <a id="installation_du_programme" /><a class="anchor-link" href="#2.1.-Installation-du-programme-">&#182;</a></h2>
+<h2 id="2.1.-Installation-compl&#232;te-(recommand&#233;)-">2.1. Installation compl&#232;te (recommand&#233;) <a id="installation_complete_recommande" /><a class="anchor-link" href="#2.1.-Installation-compl&#232;te-(recommand&#233;)-">&#182;</a></h2>
 </div>
 </div>
 </div>
@@ -12454,14 +12455,33 @@ Enseigner, 11 Prof, 1N Matière
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Nouveauté de la version 2.3.</strong> Mocodo tourne aussi bien sous Python 2 que 3 (testé sous 2.7 et 3.5).</p>
-<p>Si vous êtes sous Mac OS X ou Linux, vous avez probablement déjà l'un des deux. Dans le cas contraire, vous devrez l'installer. Nous recommandons la <a href="http://continuum.io/downloads">distribution Anaconda</a>, qui contient tout ce qu'il faut et bien plus encore. C'est en particulier la condition <em>sine qua non</em> pour pouvoir utiliser Mocodo à l'intérieur de documents comme celui-ci (il s'agit d'un <em>Jupyter notebook</em>).</p>
-<p>Une fois Python installé, vous n'avez normalement plus qu'à taper en ligne de commande:</p>
+<ul>
+<li>Installez la <a href="http://continuum.io/downloads">distribution Anaconda</a>, qui contient Python (2 ou 3), IPython et bien plus encore.</li>
+<li><p>Tapez ensuite sous un terminal la ligne de commande:</p>
 
-<pre><code>pip install mocodo
+<pre><code>  pip install mocodo_magic</code></pre>
+</li>
+</ul>
+<p>Cette commande installera Mocodo, ainsi que l'extension IPython qui permettra de l'utiliser dans un document comme celui-ci (il s'agit d'un <em>Jupyter notebook</em>).</p>
 
-</code></pre>
-<p>Vérifiez que l'installation s'est bien passée en lançant le programme:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="2.2.-V&#233;rification-">2.2. V&#233;rification <a id="verification" /><a class="anchor-link" href="#2.2.-V&#233;rification-">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Toujours sous un terminal, tapez:</p>
 
 <pre><code>mocodo
 
@@ -12471,7 +12491,67 @@ Enseigner, 11 Prof, 1N Matière
 <li><a href="http://www.commentcamarche.net/faq/3585-bash-la-variable-d-environnement-path#v-ajouter-un-repertoire-a-la-variable-path">sous Linux ou Mac OS X</a>;</li>
 <li><a href="http://sametmax.com/ajouter-un-chemin-a-la-variable-denvironnement-path-sous-windows/">sous Windows</a>.</li>
 </ul>
+<p>Pour mettre la « commande magique » <code>mocodo</code> à disposition d'un <em>notebook</em> donné, évaluez dans celui-ci la cellule suivante:</p>
 
+<pre><code>%reload_ext mocodo_magic
+
+</code></pre>
+<p>Techniquement, <code>%load_ext mocodo_magic</code> suffit, mais cette forme vous épargnera un message d'erreur si vous réévaluez ultérieurement la cellule. Pour tester, évaluez une cellule avec:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">mocodo</span>
+MISSION: accomplie
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+
+<div class="output_svg output_subarea ">
+<svg height="78" view_box="0 0 114 78" width="114" xmlns="http://www.w3.org/2000/svg" xmlns:link="http://www.w3.org/1999/xlink">\n\n<desc>Généré par Mocodo 2.3.5 le Thu, 19 Jan 2017 19:33:52</desc>
+
+<rect fill="none" height="78" id="frame" stroke="none" stroke-width="0" width="114" x="0" y="0"/>
+
+<!-- Entity MISSION -->
+<g id="entity-MISSION">
+	<g id="frame-MISSION">
+		<rect fill="#FFFFFF" height="30" stroke="#FFFFFF" stroke-width="0" width="96" x="9" y="9"/>
+		<rect fill="#FFFFFF" height="30" stroke="#FFFFFF" stroke-width="0" width="96" x="9" y="39.0"/>
+		<rect fill="none" height="60" stroke="#000000" stroke-width="1.5" width="96" x="9" y="9"/>
+		<line stroke="#000000" stroke-width="1.5" x1="9" x2="105" y1="39" y2="39"/>
+	</g>
+	<text fill="#000000" font-family="Copperplate" font-size="18" x="17" y="30.3">MISSION</text>
+	<text fill="#000000" font-family="Gill Sans" font-size="15" x="17" y="56.1">accomplie</text>
+	<line stroke="#000000" stroke-width="1" x1="17" x2="80" y1="59" y2="59"/>
+</g>
+</svg>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="2.3.-Installation-minimale-">2.3. Installation minimale <a id="installation_minimale" /><a class="anchor-link" href="#2.3.-Installation-minimale-">&#182;</a></h2>
 </div>
 </div>
 </div>
@@ -12480,26 +12560,14 @@ Enseigner, 11 Prof, 1N Matière
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="2.2.-Installation-de-l'extension-Jupyter-Notebook-">2.2. Installation de l'extension Jupyter Notebook <a id="installation_de_l_extension_jupyter_ipython_notebook" /><a class="anchor-link" href="#2.2.-Installation-de-l'extension-Jupyter-Notebook-">&#182;</a></h2>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>L'installation de l'extension <code>mocodo</code> se fait directement depuis un notebook ouvert en collant dans une cellule:</p>
+<ul>
+<li>Si vous êtes sous Mac OS X ou Linux, vous avez déjà Python. Dans le cas contraire, vous devrez probablement <a href="https://www.python.org/downloads/">l'installer</a>.</li>
+<li><p>Une fois Python installé, tapez sous un terminal:</p>
 
-<pre><code>%install_ext https://raw.github.com/laowantong/mocodo/master/nb_magic/mocodo.py
-
-</code></pre>
-<p>Par la suite, vous mettrez la « commande magique » <code>mocodo</code> à disposition d'un <em>notebook</em> donné en évaluant la cellule suivante:</p>
-
-<pre><code>%reload_ext mocodo
-
-</code></pre>
-<p>Techniquement, <code>%load_ext mocodo</code> suffit, mais cette forme vous épargnera un message d'erreur si vous réévaluez ultérieurement la cellule.</p>
+<pre><code>pip install mocodo</code></pre>
+</li>
+</ul>
+<p>Vous ne bénéficierez pas de Jupyter Notebook, mais vous pourrez utiliser Mocodo en ligne de commande.</p>
 
 </div>
 </div>
@@ -17705,7 +17773,7 @@ Augue, 0N Congue, 0N Congue
 <p><strong>Remarques.</strong></p>
 <ul>
 <li>Quand le paramètre de <code>--fit</code> définit une grille trop grande, le réarrangement automatique retombe fréquemment sur une sous-grille de celle-ci.</li>
-<li>Dans <a href="http://mocodo.net">Mocodo online</a>, appuyer sur Shift en cliquant sur le bouton de réarrangement automatique pour enchaîner les opérations <code>--fit</code> et <code>--arrange</code>.</li>
+<li>Dans <a href="http://mocodo.net">Mocodo online</a>, cliquer sur le bouton de réarrangement automatique enchaîne directement les opérations <code>--fit</code> et <code>--arrange</code>.</li>
 </ul>
 
 </div>
