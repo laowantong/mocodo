@@ -1,5 +1,5 @@
 # IPython magic extension to use Mocodo in a Jupyter Notebook.
-# Author: Aristide Grange <smocodo@wingi.net>
+# Author: Aristide Grange <mocodo@wingi.net>
 # License: MIT
 
 from setuptools import setup, find_packages
