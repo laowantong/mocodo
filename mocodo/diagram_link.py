@@ -33,7 +33,7 @@ class DiagramLink:
         self.offset = 2 * (style["card_margin"] + style["card_max_width"])
     
     def description(self):
-        result = []
+        result = ["""Link from "%s" (%s) to "%s" (%s)""" % (self.foreign_key.primary_key_label, self.foreign_entity.name, self.primary_key.label, self.primary_entity.name)]
         result.append({
                 "key": "stroke_color",
                 "stroke_color": Dynamic("colors['leg_stroke_color']"),
