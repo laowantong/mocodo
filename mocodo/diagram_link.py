@@ -22,7 +22,7 @@ class DiagramLink:
                 self.primary_key = candidate
                 break
         else:
-            raise MocodoError(15, _('Attribute "{foreign_key}" in entity "{foreign_entity}" references an unknown attribute "{primary_key}" in entity "{primary_entity}".').format(foreign_key.label, foreign_entity.name, foreign_key.primary_key_label, foreign_key.primary_entity_name))
+            raise MocodoError(15, _('Attribute "{foreign_key}" in entity "{foreign_entity}" references an unknown attribute "{primary_key}" in entity "{primary_entity}".').format(foreign_key=foreign_key.label, foreign_entity=foreign_entity.name, primary_key=foreign_key.primary_key_label, primary_entity=foreign_key.primary_entity_name))
     
     def calculate_size(self, style, *ignored):
         self.fdx = self.foreign_entity.w // 2
