@@ -8,7 +8,7 @@ from IPython.core.display import HTML
 from IPython.core.display import SVG
 from IPython.core.display import display
 from IPython.core.magic import (Magics, magics_class, line_cell_magic)
-from IPython.utils.warn import error
+import warnings
 
 import os.path
 import argparse
@@ -50,7 +50,8 @@ class MocodoMagics(Magics):
             status = process.wait()
             if status == 0 and not stderrdata:
                 return True
-            error(stderrdata)
+            warnings.formatwarning = lambda x, *args, **kargs : str(x)
+            warnings.warn(stderrdata)
         
         def display_diagrams():
             if os.path.isfile(output_name + ".svg") and os.path.getmtime(input_path) <= os.path.getmtime(output_name + ".svg"):
