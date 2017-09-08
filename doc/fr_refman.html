@@ -12551,6 +12551,35 @@ MISSION: accomplie
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p>Pour charger automatiquement <code>mocodo_magic</code> à chaque ouverture d'un notebook (ce qui dispense d'évaluer <code>%load_ext mocodo_magic</code>) :</p>
+<ul>
+<li><p>exécuter sous un terminal :</p>
+
+<pre><code>      ipython profile create</code></pre>
+</li>
+<li><p>éditer le fichier créé (p. ex.: <code>~/.ipython/profile_default/ipython_config.py</code>) pour remplacer les lignes suivantes :</p>
+
+<pre><code>      ## A list of dotted module names of IPython extensions to load.
+      #c.InteractiveShellApp.extensions = []
+
+</code></pre>
+<p>par celles-ci :</p>
+
+<pre><code>      ## A list of dotted module names of IPython extensions to load.
+      c.InteractiveShellApp.extensions = [
+          "mocodo_magic",
+      ]</code></pre>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="2.3.-Installation-minimale-">2.3. Installation minimale <a id="installation_minimale" /><a class="anchor-link" href="#2.3.-Installation-minimale-">&#182;</a></h2>
 </div>
 </div>
