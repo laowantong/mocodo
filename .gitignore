@@ -1,12 +1,10 @@
 *.pyc
 build/*
 dist/*
-index.html
 MANIFEST.in
 mocodo.egg-info/*
 params.json
 README.rst
-web/*
 sandbox/*
 meta/*
 doc/mocodo_notebook
@@ -16,8 +14,8 @@ paper/*
 *.lp
 *.log
 .DS_Store
-
 magic/build/*
 magic/dist/*
 magic/mocodo_magic.egg-info/*
 magic/README.rst
+web/sessions/*

@@ -1,0 +1,190 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="fr">
+<head>
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-1925109-8']);
+		_gaq.push(['_trackPageview']);
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+<a href="https://github.com/laowantong/mocodo"><img style="position: absolute; top: 0; right: 0; border: 0; width: 149px; height: 149px;" src="http://aral.github.com/fork-me-on-github-retina-ribbons/right-white@2x.png" alt="Fork me on GitHub"></a>
+<title>Mocodo online</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="web/reset.css" />
+<link rel="stylesheet" href="web/style.css" />
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
+<link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Source+Code+Pro:400&subset=latin,latin-ext' type='text/css'>
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#0d42ff">
+<meta name="apple-mobile-web-app-title" content="Mocodo">
+<meta name="application-name" content="Mocodo">
+<meta name="theme-color" content="#ffffff">
+</head>
+
+<body>
+
+<div id="wrap">
+	<div id="banner">
+	    <img src="web/mocodonline.svg" />
+	</div>​
+	<form method="post" id="mainForm" action="web/download.php" autocomplete="off">
+		<input type="hidden" name="state" id="state" value="dirty"/>
+		<input type="hidden" name="archiveName" id="archiveName"/>
+		<input type="hidden" name="path" id="path"/>
+		<input type="hidden" name="guess_title" id="guess_title" value="true"/>
+		<div id="inputZone">
+			<div class="line"></div>
+			<ul class='tabs'>
+				<li><a href='#aboutContents' class="first_tab"><span class="fa fa-info-circle"></span></a></li>
+				<li><a href='#inputContents' class="active"><span>Entrée</span></a></li>
+				<li><a href='#paramContents'><span>Options</span></a></li>
+				<li><a href='#geoContents' id="geoTab"><span>Retouches</span></a></li>
+			</ul>
+			<div class="pane">
+				<div id="inputButtons" class='buttons'>
+					<span class="fa fa-arrows-v fa-2x customButton" id="flipHorizontallyButton" onclick="arrange(event, 'flip=h')" title="Inverser les rangées."></span>
+					<span class="fa fa-arrows-h fa-2x customButton" id="flipVerticallyButton" onclick="arrange(event, 'flip=v')" title="Inverser les colonnes."></span>
+					<span class="fa fa-arrows-v fa-2x fa-rotate-45 customButton" id="flipDiagonallyButton" onclick="arrange(event, 'flip=d')" title="Transposer colonnes et rangées."></span>
+					<span class="fa fa-random fa-2x customButton" id="arrangeButton" onclick="arrange(event, 'arrange=bb')" title="Réarranger automatiquement les boîtes (sur la grille actuelle avec SHIFT, sans contraintes avec ALT)."></span>
+				</div>
+				<div id="aboutContents" class="contents">
+<p>
+	Mocodo est un logiciel d'aide à l'enseignement et à la conception de <a href="https://fr.wikipedia.org/wiki/Base_de_données_relationnelle">bases de données relationnelles</a>.
+	En entrée, il prend une description textuelle des entités et associations du modèle conceptuel de données (<a href="https://fr.wikipedia.org/wiki/Modèle_entité-association">MCD</a>).
+	En sortie, il produit son diagramme entité-association en <a href="https://fr.wikipedia.org/wiki/Scalable_Vector_Graphics">SVG</a> et son schéma relationnel (<a href="https://fr.wikipedia.org/wiki/Merise_&amp;# 40;informatique&amp;# 41;#Le_MLD_mod.C3.A8le_logique_des_donn.C3.A9es">MLD</a>) en <a href="https://fr.wikipedia.org/wiki/Structured_Query_Language">SQL</a>, <a href="https://fr.wikipedia.org/wiki/LaTeX"><span style="font-family: serif; font-style: normal; margin-right: -.7em;">L<span style="font-size: 0.9em; position: relative; top: -.1em; left: -0.4em;">A</span><span style="position: relative; left: -.5em;">T</span><span style="position: relative; top: .2em; left: -.6em;">E</span><span style="position: relative; left: -.7em;">X</span></span></a>, <a href="https://fr.wikipedia.org/wiki/Markdown">Markdown</a>, etc.
+</p>
+<h1>Syntaxe du texte d'entrée</h1>
+
+<h2>Principe</h2>
+<ul>
+<li>Chaque ligne constitue la définition d'une entité ou d'une association (« boîte » dans la suite).</li>
+</ul>
+
+<h2>Définir une entité</h2>
+
+<pre><code>nom entité: attribut 1, attribut 2, attribut 3, ...
+</code></pre>
+
+<ul>
+<li>Un nom d'entité est séparé de ses attributs par un deux-points.</li>
+<li>Les attributs sont séparés par des virgules.</li>
+<li>Le premier attribut est par défaut l'identifiant de l'entité.</li>
+</ul>
+
+<h2>Définir une association</h2>
+
+<pre><code>nom association, 01 nom entité 1, 1N nom entité 2, ... : attribut 1, attribut 2, ...
+</code></pre>
+
+<ul>
+<li>Un nom d'association est séparé de sa première patte par une virgule.</li>
+<li>Les pattes d'une association sont séparées par des virgules.</li>
+<li>Une patte consiste en un couple de cardinalités (<code>01</code>, <code>11</code>, <code>0N</code>, <code>1N</code>) suivi du nom d'une entité.</li>
+<li>La dernière patte d'une association est séparée de ses éventuels attributs par un deux-points.</li>
+<li>Les attributs sont séparés par des virgules.</li>
+<li>Deux pattes d'une même association peuvent aboutir à une même entité (association réflexive).</li>
+</ul>
+
+<h2>Spécifier une mise en page</h2>
+
+<ul>
+<li>Les boîtes définies sur des lignes <em>consécutives</em> sont tracées sur une même rangée.</li>
+<li>Un saut de ligne commence une nouvelle rangée.</li>
+<li>Toutes les boîtes d'une même colonne sont alignées verticalement.</li>
+<li>Une ligne réduite à un deux-points insère une boîte invisible.</li>
+</ul>
+
+<h1>Principales opérations</h1>
+
+<h2>Réarranger les boîtes</h2>
+
+<ul>
+<li><i class="fa fa-arrows-v"></i> [<em>resp.</em>, <i class="fa fa-arrows-h"></i> et&nbsp; <i class="fa fa-arrows-v fa-rotate-45"></i>&nbsp;] : inverse le MCD verticalement [<em>resp.</em>, horizontalement et par transposition].</li>
+<li><i class="fa fa-random"></i> : recherche une mise en page sans croisement et minimisant la longueur des liens sur la plus petite grille «&nbsp;équilibrée&nbsp;» possible.</li>
+	<ul>
+		<li>Avec <kbd>SHIFT</kbd> : recherche contrainte par les dimensions de la grille courante.</li>
+		<li>Avec <kbd>ALT</kbd> : recherche non contrainte.</li>
+	</ul>
+</ul>
+
+<h2>Manipuler les schémas</h2>
+
+<ul>
+<li><i class="fa fa-refresh"></i> : dessine le MCD et génère le MLD à partir du texte d'entrée.</li>
+<li>Onglet « Retouches » : permet de modifier la position de certains éléments.</li>
+<li><i class="fa fa-download"></i> : récupère une archive de votre travail (entrée et sortie).</li>
+</ul>
+				</div>
+				<div id="inputContents" class="contents">
+					<div id=inputPane>
+						<div><input type="text" onchange="markAsDirty();freezeTitle();reveal()" onfocus="onFocus(this)" name="title" id="title" value="Sans Titre" onblur="onBlur(this)" autocomplete="off" title="Si vous ne donnez pas de titre à votre MCD, Mocodo essaiera d'en trouver un pour vous." /></div>
+						<span id="gear" class="fa fa-cog fa-2x"></span>
+						<div><textarea onchange="markAsDirty()" name="text" id="text" wrap="off"></textarea></div>
+					</div>
+				</div>
+				<div id="paramContents" class="contents">
+					<div><label class="fixedWidth" for="colors">Palette de couleurs</label><select onchange="markAsDirty();writeCookie()" name="colors" id="colors"></select></div>
+					<div><label class="fixedWidth" for="shapes">Police et proportions</label><select onchange="markAsDirty();writeCookie()" name="shapes" id="shapes"></select></div>
+					<div><label class="fixedWidth" for="flex">Inflexion des pattes trop rapprochées</label><select onchange="writeCookie()" name="flex" id="flex"></select></div>
+					<div><label class="fixedWidth" for="delays">Temps de calcul limité à </label><select onchange="writeCookie()" name="delays" id="delays"></select></div>
+					<div><label class="fixedWidth" for="disambiguation">Désambiguïsation des attributs migrants </label><select onchange="writeCookie()" name="disambiguation" id="disambiguation"></select></div>
+					<div><label class="fixedWidth" for="SQL_dialect" title="Pour générer un code SQL valide, faites suivre chaque attribut de son type entre crochets.">Dialecte SQL en sortie</label><select onchange="writeCookie()" name="SQL_dialect" id="SQL_dialect"></select></div>
+					<div><label class="fixedWidth" for="relation_formats" title="Les formats cochés seront affichés sous l'onglet Relations et inclus dans l'archive téléchargée.">Format des relations en sortie</label> <ul name="relation_formats" id="relation_formats" ></ul></div>
+				</div>
+				<div id="geoContents" class="contents">
+					<fieldset><legend>Coordonnées du centre des boîtes</legend><div id="coords"></div></fieldset>
+					<fieldset><legend>Décalage des cardinalités</legend><div id="cards"></div></fieldset>
+					<fieldset><legend>Zone de rognage</legend><div id="size"></div></fieldset>
+					<fieldset><legend>Position des flèches des associations</legend><div id="arrows"></div></fieldset>
+				</div>
+			</div>
+		</div>
+		<div id="outputZone">
+			<div class="line"></div>
+			<ul class='tabs'>
+				<li><a href='#diagramAndSupplementOutput' id="diagramTab" class="first_tab active"><span>Diagramme</span></a></li>
+				<li><a href='#relationalOutput'><span>Relations</span></a></li>
+				<li><a href='#errorOutput' id="errorTab"><span>Erreurs</span></a></li>
+			</ul>
+			<div class="pane">
+				<div id="outputButtons" class='buttons'>
+						<span class="fa fa-refresh fa-2x customButton" id="generateButton" onclick="generate()" title="Générer le MCD et les relations à partir du texte d'entrée."></span>
+						<span class="fa fa-download fa-2x customButton" id="downloadButton" onclick="mainForm.submit()" title="Télécharger l'ensemble des données et des résultats."></span>
+				</div>
+				<div id="diagramAndSupplementOutput">
+					<div id="diagramOutput" class="contents active initial"><img src="web/generate_tip.svg"/></div>
+					<div id="diagramOutputSupplement" class="contents"></div>
+				</div>
+				<div id="relationalOutput" class="contents initial"><img src="web/generate_tip.svg"/></div>
+				<div id="errorOutput" class="contents"></div>
+			</div>
+		</div>
+	</form>
+</div>
+<div id="navigation">
+	<a target="_blank" href="https://github.com/laowantong/mocodo">Mocodo</a>
+	&nbsp;∙&nbsp;
+	<a target="_blank" href="https://rawgit.com/laowantong/mocodo/master/doc/fr_refman.html">Documentation</a>
+	&nbsp;∙&nbsp;
+	<a target="_blank" href="https://www.transifex.com/aristide/mocodo">Localisation</a>
+	&nbsp;∙&nbsp;
+	<a target="_blank" href="https://github.com/laowantong/mocodo/issues">Récriminations</a>
+	&nbsp;∙&nbsp;
+	<span id="contact"></span>
+</div>
+
+<script type="text/javascript" charset="utf8" src="web/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" charset="utf8" src="web/js.cookie.js"></script>
+<script type="text/javascript" charset="utf8" src="web/mocodo.js"></script>
+
+</body>
+</html>
