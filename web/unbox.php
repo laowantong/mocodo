@@ -12,8 +12,9 @@ file_exists($path) or mkdir($path) or die('{"err": "PHP: Failed to create user f
 chdir($path);
 
 // Retrieve the MCD text file
-$title = preg_replace("/[^- _a-zA-Z0-9]/","",$_POST['title']); # double-check js validation
+$title = preg_replace("/[^- _a-zA-Z0-9.]/","",$_POST['title']); # double-check js validation
 $title = preg_replace("/^ *$/","Sans titre",$title); # double-check js validation
+$title = preg_replace("/\.mcd$/","",$title); # suppress optional .mcd extension
 $filename = "../../box/{$title}.mcd";
 if (file_exists($filename)) {
 	$contents = file_get_contents("../../box/{$title}.mcd") or die('');

@@ -202,16 +202,8 @@ function preconditions() {
   if (request_lock) {
     return false
   }
-  if (/[^- _a-zA-Z0-9]/i.test($("#title").val())) {
-    alert("Le titre du MCD ne peut contenir que des lettres non accentuées, des chiffres, des espaces et des tirets haut et bas.");
-    return false
-  }
-  if (/"/i.test($("#text").val())) {
-    alert("Le texte d'entrée ne peut contenir de guillemets droits (\").");
-    return false
-  }
-  if (/`/i.test($("#text").val())) {
-    alert("Le texte d'entrée ne peut contenir d'antiquotes (`).");
+  if (/[^- _a-zA-Z0-9.]/i.test($("#title").val())) {
+    alert("Le titre du MCD ne peut contenir que des lettres non accentuées, des chiffres, des espaces, des points et des tirets haut et bas.");
     return false
   }
   return true

@@ -12,7 +12,7 @@ file_exists($path) or mkdir($path) or die('{"err": "PHP: Failed to create user f
 chdir($path);
 
 // Create the MCD text file
-$title = preg_replace("/[^- _a-zA-Z0-9]/","",$_POST['title']); # double-check js validation
+$title = preg_replace("/[^- _a-zA-Z0-9.]/","",$_POST['title']); # double-check js validation
 $title = preg_replace("/^ *$/","Sans titre",$title); # double-check js validation
 $_POST['input'] = "{$title}.mcd";
 $chan = fopen($_POST['input'], 'w') or die('{"err": "PHP: Can\'t open MCD file."}');

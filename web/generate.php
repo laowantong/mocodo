@@ -41,7 +41,7 @@ $postId = md5(serialize($_POST));
 // fwrite($php_log,$_POST['state']);
 // fwrite($php_log,$trace++);
 
-$title = preg_replace("/[^- _a-zA-Z0-9]/","",$_POST['title']); # double-check js validation
+$title = preg_replace("/[^- _a-zA-Z0-9.]/","",$_POST['title']); # double-check js validation
 $title = preg_replace("/^ *$/","Sans titre",$title); # double-check js validation
 $_POST['input'] = "{$title}.mcd";
 $_POST['relations'] = array_key_exists('relations', $_POST) ? $_POST['relations'] : array();
