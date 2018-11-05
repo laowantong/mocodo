@@ -202,7 +202,7 @@ function preconditions() {
   if (request_lock) {
     return false
   }
-  if (/[^- _a-zA-Z0-9]/i.test($("#title").val())) {
+  if (/[^- _a-zA-Z0-9.]/i.test($("#title").val())) {
     alert("Le titre du MCD ne peut contenir que des lettres non accentuées, des chiffres, des espaces, des points et des tirets haut et bas.");
     return false
   }
