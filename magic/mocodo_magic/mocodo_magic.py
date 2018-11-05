@@ -73,13 +73,13 @@ class MocodoMagics(Magics):
         parser.add_argument("--image_format")
         (notebook_options, options) = parser.parse_known_args(line.split())
         
+        try:
+            os.makedirs("mocodo_notebook")
+        except OSError:
+            if not os.path.isdir("mocodo_notebook"):
+                raise
         input_path = notebook_options.input
         if not input_path:
-            try:
-                os.makedirs("mocodo_notebook")
-            except OSError:
-                if not os.path.isdir("mocodo_notebook"):
-                    raise
             input_path = "mocodo_notebook/sandbox.mcd"
             write_contents(input_path, cell)
         elif not os.path.isfile(input_path) and os.path.isfile(input_path + ".mcd"):
