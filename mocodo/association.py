@@ -17,7 +17,11 @@ class Association:
     def __init__(self, clause, params={"df": u"DF", "card_format": u"{min_card},{max_card}"}):
         def clean_up(name, legs, attributes):
             name = name.strip(" \n\t")
-            cartouche = (name[:-1] if name[-1].isdigit() else name)
+            index = 0
+            while(name[index-1].isdigit()):
+                index -= 1
+            cartouche = (name[:index] if name[index].isdigit() else name)
+            
             (cards, entities) = ([], [])
             l = []
             for leg in legs.split(","):
