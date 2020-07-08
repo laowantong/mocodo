@@ -27,7 +27,7 @@ DESCRIPTION:
   and a relational schema in various formats (SQL, LaTeX, Markdown, etc.).
 
 NOTE:
-  Each one of the following value is:
+  Each one of the following values is:
   - explicitely specified by the user as a command line option;
   - otherwise, retrieved from a file located at --params_path;
   - otherwise, retrieved from a file named 'params.json' in the input directory;

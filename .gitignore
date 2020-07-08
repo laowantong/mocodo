@@ -20,3 +20,4 @@ magic/mocodo_magic.egg-info/*
 magic/README.rst
 web/sessions/*
 web/box/*
+.pytest_cache/*
