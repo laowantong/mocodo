@@ -30,6 +30,7 @@ def main(mcd, common):
         "stroke_color": """stroke(%(stroke_color)s)""",
         "rect": "rect(%(x)s,%(y)s,%(w)s,%(h)s)",
         "circle": "oval(%(cx)s-%(r)s,%(cy)s-%(r)s,2*%(r)s,2*%(r)s)",
+        "triangle": "triangle(%(x1)s,%(y1)s,%(x2)s,%(y2)s,%(x3)s,%(y3)s)",
         "lower_round_rect": "lower_round_rect(%(x)s,%(y)s,%(w)s,%(h)s,%(radius)s)",
         "upper_round_rect": "upper_round_rect(%(x)s,%(y)s,%(w)s,%(h)s,%(radius)s)",
         "round_rect": "round_rect(%(x)s,%(y)s,%(w)s,%(h)s,%(radius)s)",

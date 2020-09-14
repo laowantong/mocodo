@@ -34,6 +34,14 @@ def lower_round_rect(x, y, w, h, r):
     lineto(x + w, y)
     endpath()
 
+def triangle(x1, y1, x2, y2, x3, y3):
+    beginpath()
+    moveto(x1, y1)
+    lineto(x2, y2)
+    lineto(x3, y3)
+    lineto(x1, y1)
+    endpath()
+
 def dash_line(x0, x1, y, w):
     nofill()
     beginpath(x0, y)

@@ -39,7 +39,7 @@ class Leg:
         self.entity_name = entity_name
         (self.cards, self.arrow, self.annotation) = match_card(card).groups()
         self.underlined_card = False
-        self.strengthen = self.cards == "_11"
+        self.strengthen = (self.cards == "_11")
         if self.strengthen:
             self.cards = "11"
             if params["strengthen_card"].startswith("_") and params["strengthen_card"].endswith("_"):
@@ -49,7 +49,7 @@ class Leg:
                 self.cardinalities = params["strengthen_card"]
         else:
             self.cards = auto_correction.get(self.cards, self.cards)
-            if self.cards.startswith("XX"):
+            if self.cards.startswith("XX") or association.kind == "inheritance":
                 self.cardinalities = u"     "
             else:
                 self.cardinalities = params["card_format"].format(min_card=self.cards[0], max_card=self.cards[1])

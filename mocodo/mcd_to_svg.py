@@ -43,6 +43,7 @@ def main(mcd, common):
         "dash_line":          """<line x1="%(x0)s" y1="%(y)s" x2="%(x1)s" y2="%(y)s" style="fill:none;stroke:%(stroke_color)s;stroke-width:%(stroke_depth)s;stroke-dasharray:%(dash_width)s;"/>""",
         "rect":               """<rect x="%(x)s" y="%(y)s" width="%(w)s" height="%(h)s" fill="%(color)s" stroke="%(stroke_color)s" stroke-width="%(stroke_depth)s"/>""",
         "circle":             """<circle cx="%(cx)s" cy="%(cy)s" r="%(r)s" stroke="%(stroke_color)s" stroke-width="%(stroke_depth)s" fill="%(color)s"/>""",
+        "triangle":           """<polygon points="%(x1)s,%(y1)s %(x2)s,%(y2)s %(x3)s,%(y3)s" stroke="%(stroke_color)s" stroke-width="%(stroke_depth)s" fill="%(color)s"/>""",
         "text":               """<text x="%(x)s" y="%(y)s" fill="%(text_color)s" font-family="%(family)s" font-size="%(size)s">%(text)s</text>""",
         "straight_leg":       """<line x1="%(ex)s" y1="%(ey)s" x2="%(ax)s" y2="%(ay)s" stroke="%(stroke_color)s" stroke-width="%(stroke_depth)s"/>""",
         "straight_card":      """<text x="%(tx)s" y="%(ty)s" fill="%(text_color)s" font-family="%(family)s" font-size="%(size)s">%(text)s</text>""",
