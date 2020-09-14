@@ -262,5 +262,8 @@ def parsed_arguments():
         import shutil
         shutil.copyfile(os.path.join(params["script_directory"], "pristine_sandbox.mcd"), params["input"])
     random.seed(params["seed"])
-    # params["title"] = params["title"].decode("utf8")
+    try:
+        params["title"] = params["title"].decode("utf8")
+    except:
+        pass
     return params
