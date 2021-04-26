@@ -11,7 +11,7 @@ MAX_LENGTH = 2
 def arrange(col_count, row_count, links, multiplicity, **kwargs):
     
     def push(constraint):
-        result.append("c%s: %s" % (counter.next(), constraint))
+        result.append("c%s: %s" % (next(counter), constraint))
     
     summation = " + ".join
     result = ["enter %s" % filename]
