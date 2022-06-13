@@ -50,7 +50,7 @@ var relation_formats = {
     "latex": {
       "default": false,
       "highlighting": "latex",
-      "name": '<span style="font-family: serif; font-style: normal; margin-right: -.7em;">L<span style="font-size: 0.9em; position: relative; top: -.1em; left: -0.4em;">A</span><span style="position: relative; left: -.5em;">T</span><span style="position: relative; top: .2em; left: -.6em;">E</span><span style="position: relative; left: -.7em;">X</span></span>',
+      "name": 'LaTeX',
     },
     "markdown": {
       "default": false,
@@ -189,15 +189,50 @@ function refreshDiagram(result) {
 function refreshRelations(result) {
   var s = '';
   var supplement = '';
+  var name = '';
+  var highlighting = '';
   $.each(result["mld"],function (i, item) {
-    s += '<fieldset class="listing"><legend>' + relation_formats[item[0]]["name"] + '<\/legend><pre><code class="language-' + relation_formats[item[0]]["highlighting"] + '">' + item[1] + '</code><\/pre><\/fieldset>';
+    name = relation_formats[item[0]]["name"];
+    highlighting = relation_formats[item[0]]["highlighting"];
+    s += `<fieldset class="listing">`;
+    s += `<legend data-index=${i}>⧉ ${name}</legend>`;
+    s += `<pre><code class="language-${highlighting}" id="code-${i}">`
+    s += item[1];
+    s += `</code></pre></fieldset>`;
     if ((item[0]=="html" && !supplement) || item[0]=="html_verbose") {
       supplement = item[1].replace(new RegExp("&lt;","g"),"<")
     };
   })
   $("#relationalOutput").html(s);
   $("#diagramOutputSupplement").html(supplement);
+  var legends = document.getElementsByTagName("legend");
+  for (var i = 0; i < legends.length; i++) {
+    legends[i].addEventListener("click", function(event) {
+      var index = event.target.dataset.index;
+      var code = document.getElementById(`code-${index}`);
+      navigator.clipboard.writeText(code.innerText);
+      $(`#code-${index}`).highlight();
+    })
+  }
 }
+
+// stolen from https://stackoverflow.com/a/11589350/173003
+jQuery.fn.highlight = function() {
+  $(this).each(function() {
+       var el = $(this);
+       el.before("<div/>")
+       el.prev()
+           .width(el.width())
+           .height(el.height())
+           .css({
+               "position": "absolute",
+               "background-color": "#0000ff",
+               "opacity": ".1"   
+           })
+           .fadeOut(500);
+   });
+}
+
 function preconditions() {
   if (request_lock) {
     return false

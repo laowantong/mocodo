@@ -181,11 +181,12 @@ fieldset.listing {
   float:none;
 }
 
-legend {
+fieldset.listing legend {
   padding: 0.2em 0.5em;
   background: #fff;
   color:#666;
   text-align:left;
+  cursor:pointer;
 }
 
 #errorTab {
