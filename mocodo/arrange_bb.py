@@ -4,9 +4,9 @@
 from __future__ import division
 
 from itertools import product, count
-from random import random, shuffle, randrange, choice
+from random import random, shuffle, choice
 from .cross import cross, memoize
-from math import hypot, sqrt
+from math import hypot
 from .mocodo_error import MocodoError
 
 def arrange(col_count, row_count, successors, multiplicity, organic, min_objective, max_objective, call_limit, verbose, has_expired, **kwargs):
@@ -131,7 +131,6 @@ def arrange(col_count, row_count, successors, multiplicity, organic, min_objecti
     box_count = col_count * row_count
     neighborhood = organic_neighborhood if organic else bounded_neighborhood
     hull = organic_hull if organic else bounded_hull
-    neighborhood_cache = {}
     radius = 3
     distances = [[hypot(i, j) - 1 for j in range(radius + 1)] for i in range(radius + 1)]
     outside_hull_minimal_distance = distances[1][2]
