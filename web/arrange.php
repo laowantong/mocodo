@@ -38,13 +38,15 @@ fwrite($chan, json_encode($_POST));
 fclose($chan);
 
 // Launch the script
-$command_line = "python ../../../mocodo.py --timeout=" . $_POST['timeout'] . " --" . $_POST['algo'];
+$command_line = "python3 ../../../mocodo.py --timeout=" . $_POST['timeout'] . " --" . $_POST['algo'] . " 2>&1";
 // fwrite($php_log, $command_line . "\n");
 // fwrite($php_log,$_POST['text']);
-// fclose($php_log);
 $out = array();
-exec($command_line, $out);
+exec($command_line, $out, $exitCode);
+// fwrite($php_log, "out:" . $out . "\n");
+// fwrite($php_log, "exitCode:" . $exitCode . "\n");
+// fclose($php_log);
 
-// return the response
-echo implode("\n", $out);
+$key = $exitCode ? "err" : "text";
+echo json_encode(array($key => implode("\n", $out)));
 ?>

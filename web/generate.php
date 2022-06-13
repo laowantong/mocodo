@@ -70,7 +70,7 @@ if ($_POST['state']=="moved") {
     fwrite($chan, json_encode($geo));
     fclose($chan);
     unlink("{$title}.svg");
-    $command_line = 'python "' . $title . '_svg.py" 2>&1 >/dev/null';
+    $command_line = 'python3 "' . $title . '_svg.py" 2>&1 >/dev/null';
 }
 else {
   // Clean the directory up
@@ -105,7 +105,7 @@ else {
     $chan = fopen("params.json", 'w') or die('{"err": "PHP: Can\'t open \'params.json\' file."}');
     fwrite($chan, json_encode($_POST));
     fclose($chan);
-    $command_line = "python ../../../mocodo.py 2>&1 >/dev/null";
+    $command_line = "python3 ../../../mocodo.py 2>&1 >/dev/null";
 };
 // Launch the script
 $out = array();

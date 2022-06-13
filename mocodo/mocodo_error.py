@@ -10,4 +10,5 @@ class MocodoError(Exception):
         if sys.version_info.major == 2:
             message = message.encode("utf-8")
         message = textwrap.fill("Mocodo Err.%s - %s" % (errno, message), 80)
+        self.errno = errno
         super(MocodoError, self).__init__(message)

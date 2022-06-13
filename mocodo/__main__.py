@@ -75,7 +75,7 @@ def main():
         raise MocodoError(13, _('Should never happen.'))
     except MocodoError as err:
         print(str(err), file=sys.stderr)
-
+        sys.exit(err.errno)
 
 if __name__ == '__main__':
-    sys.exit(main())
+    main()
