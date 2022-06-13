@@ -9,44 +9,57 @@ https://fr.wikipedia.org/wiki/Merise_%28informatique%29#MLD_:_mod.C3.A8le_logiqu
 Ci-dessous, un exemple sous [Jupyter Notebook](https://jupyter.org). L'appel du programme se fait en première ligne, sur un texte d'entrée donné lignes suivantes.
 
     %%mocodo --mld --colors brewer+1 --shapes copperplate --relations diagram markdown_data_dict
-    DF, 11 Élève, 1N Classe
+    :
     Classe: Num. classe, Num. salle
+    ::
+
+    DF, 11 Élève, 1N Classe
+    Personne: Nom, Prénom, Contact
     Faire Cours, 1N Classe, 1N Prof: Vol. horaire
     Catégorie: Code catégorie, Nom catégorie
-    
-    Élève: Num. élève, Nom élève
-    Noter, 1N Élève, 0N Prof, 0N Matière, 1N Date: Note
-    Prof: Num. prof, Nom prof
+
+    Élève: Num. élève, Date naissance
+    /XT\, 1N Personne, 10 Élève, 10 Prof
+    Prof: Num. prof, Num. bureau
     Relever, 0N Catégorie, 11 Prof
-    
+
     Date: Date
+    Noter, 1N Élève, 0N Prof, 0N Matière, 1N Date: Note
     Matière: Libellé matière
     Enseigner, 11 Prof, 1N Matière
-
-En sortie, le MCD (diagramme conceptuel) et le MLD (schéma relationnel) correspondants:
+    En sortie, le MCD (diagramme conceptuel) et le MLD (schéma relationnel) correspondants:
 
 ![](https://cdn.rawgit.com/laowantong/mocodo/master/doc/readme_1.svg)
 
 **Classe** (<ins>Num. classe</ins>, Num. salle)  
 **Faire Cours** (<ins>_Num. classe_</ins>, <ins>_Num. prof_</ins>, Vol. horaire)  
 **Catégorie** (<ins>Code catégorie</ins>, Nom catégorie)  
-**Élève** (<ins>Num. élève</ins>, Nom élève, _Num. classe_)  
+**Élève** (Nom, Prénom, Contact, <ins>Num. élève</ins>, Date naissance, _Num. classe_)  
+**Prof** (Nom, Prénom, Contact, <ins>Num. prof</ins>, Num. bureau, _Code catégorie_, _Libellé matière_)  
 **Noter** (<ins>_Num. élève_</ins>, <ins>_Num. prof_</ins>, <ins>_Libellé matière_</ins>, <ins>_Date_</ins>, Note)  
-**Prof** (<ins>Num. prof</ins>, Nom prof, _Libellé matière_, _Code catégorie_)  
 
 L'appel ci-dessus a également construit le dictionnaire des données:
 
 - Num. classe
 - Num. salle
+- Nom
+- Prénom
+- Contact
 - Vol. horaire
 - Code catégorie
 - Nom catégorie
+- Nom
+- Prénom
+- Contact
 - Num. élève
-- Nom élève
-- Note
+- Date naissance
+- Nom
+- Prénom
+- Contact
 - Num. prof
-- Nom prof
+- Num. bureau
 - Date
+- Note
 - Libellé matière
 
 Ainsi que le diagramme relationnel, qui peut être visualisé par un nouvel appel:
