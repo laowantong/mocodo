@@ -260,7 +260,7 @@ class relationsTest(unittest.TestCase):
         self.assertEqual(d["relations"][0]["columns"][3]["leg_annotation"], None)
         self.assertEqual(d["relations"][0]["columns"][3]["label"], u"Sexe")
         self.assertEqual(d["relations"][1]["this_relation_name"], u"Engendrer")
-        self.assertEqual(d["relations"][1]["columns"][0]["leg_annotation"], u"Une personne peut avoir un nombre quelconque d\\'enfants.")
+        self.assertEqual(d["relations"][1]["columns"][0]["leg_annotation"], u"Une personne peut avoir un nombre quelconque d'enfants.")
         self.assertEqual(d["relations"][1]["columns"][0]["label"], u"Num. SS")
         self.assertEqual(d["relations"][1]["columns"][1]["leg_annotation"], u"Une personne peut avoir un nombre quelconque de parents dans la base. Remarque : vous avez peut-être envie de remplacer la cardinalité maximale N par sa valeur réelle, à savoir 2. Cette précision disparaissant lors du passage au relationnel, elle est en général jugée inutile.")
         self.assertEqual(d["relations"][1]["columns"][1]["label"], u"Num. SS.1")

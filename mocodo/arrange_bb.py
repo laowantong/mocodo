@@ -200,7 +200,7 @@ if __name__ == "__main__":
         SEMPER, 0N RISUS, 1N DIGNISSIM
     """.replace("  ", "").split("\n")
     params = parsed_arguments()
-    mcd = Mcd(clauses, params)
+    mcd = Mcd(clauses, **params)
     params.update(mcd.get_layout_data())
     starting_time = time()
     seed(42)

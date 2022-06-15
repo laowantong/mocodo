@@ -18,7 +18,7 @@ class McdTest(unittest.TestCase):
             u"PROJET ABC: num. projet, nom projet, budget projet",
             u"PROJET CDE:",
         ]
-        mcd = Mcd(clauses, params)
+        mcd = Mcd(clauses, **params)
         self.assertEqual(mcd.box_count, len(clauses))
         for box in mcd.boxes:
             self.assertEqual(box.kind, "entity")
@@ -37,7 +37,7 @@ class McdTest(unittest.TestCase):
             u"ASSURER2, 1N EMPLOYÉ ABC, 1N FONCTION: date début, date fin",
         ]
         clauses = entities + associations
-        mcd = Mcd(clauses, params)
+        mcd = Mcd(clauses, **params)
         self.assertEqual(mcd.box_count, len(clauses))
         for box in mcd.boxes:
             self.assertEqual(box.kind, "entity" if box.name + ":" in entities else "association")
@@ -59,7 +59,7 @@ class McdTest(unittest.TestCase):
 
             FLÉAU: battadère, van, mesure
         """.split("\n")
-        mcd = Mcd(clauses, params)
+        mcd = Mcd(clauses, **params)
         self.assertEqual([element.name for element in mcd.rows[0]], [u"BARATTE", u"MARTEAU", u"TINET", u"CROCHET"])
         self.assertEqual([element.name for element in mcd.rows[1]], [u"DF", u"BALANCE", u"BANNETON", u"PORTE"])
         self.assertEqual([element.name for element in mcd.rows[2]], [u" 0", u"ROULEAU", u"HERSE", u" 1"])
@@ -82,7 +82,7 @@ class McdTest(unittest.TestCase):
             u"",
             u"FLÉAU: battadère, van, mesure",
         ]
-        mcd = Mcd(clauses, params)
+        mcd = Mcd(clauses, **params)
         self.assertEqual(mcd.get_layout(), list(range(16)))
         self.assertEqual(mcd.get_layout_data(), {
             'col_count': 4,
@@ -225,7 +225,7 @@ class McdTest(unittest.TestCase):
 
             FLÉAU: battadère, van, mesure
         """.split("\n")
-        mcd = Mcd(clauses, params)
+        mcd = Mcd(clauses, **params)
         expected = u"""
             :
             FLÉAU: battadère, van, mesure
@@ -307,7 +307,7 @@ class McdTest(unittest.TestCase):
             Call: Ride, Soon
             Gear , 1N Call, 1N Folk
         """.split("\n")
-        mcd = Mcd(clauses, params)
+        mcd = Mcd(clauses, **params)
         # minimal fit: (4, 3)
         expected = u"""
             Item: Norm, Wash, Haul
@@ -383,7 +383,7 @@ class McdTest(unittest.TestCase):
             Call: Ride, Soon
             Gear , 1N Call, 1N Folk
         """.split("\n")
-        mcd = Mcd(clauses, params)
+        mcd = Mcd(clauses, **params)
         # (5, 4) being a preferred grid, the next one (6, 4) is generated
         expected = u"""
             Item: Norm, Wash, Haul
@@ -425,7 +425,7 @@ class McdTest(unittest.TestCase):
             Call: Ride, Soon
             Gear , 1N Call, 1N Folk
         """.split("\n")
-        mcd = Mcd(clauses, params)
+        mcd = Mcd(clauses, **params)
         # (4, 5) not being a preferred grid, it is equivalent to nth_fit == 1
         expected = u"""
             Item: Norm, Wash, Haul

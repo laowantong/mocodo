@@ -54,7 +54,8 @@ if ($_POST['SQL_dialect']) {
 // fwrite($php_log, "state:" . $_POST['state'] . "\n");
 if ($_POST['state']=="moved") {
     $geo = json_decode(file_get_contents("{$title}_geo.json"),true);
-    $geo['size'] = array(intval($_POST['size_x']),intval($_POST['size_y']));
+    $geo['width'] = intval($_POST['width']);
+    $geo['height'] = intval($_POST['height']);
     foreach ($geo["cx"] as $i => $value) {
         $geo["cx"][$i] = array($value[0],intval($_POST["cx".$i]));
         $geo["cy"][$i] = array($value[0],intval($_POST["cy".$i]));
@@ -65,13 +66,10 @@ if ($_POST['state']=="moved") {
     foreach ($geo["ratio"] as $i => $value) {
         $geo["ratio"][$i] = array($value[0],floatval($_POST["ratio".$i]));
     };
-    unlink("{$title}_geo.json");
     $chan = fopen("{$title}_geo.json", 'w') or die('{"err": "PHP: Can\'t open geo file."}');
-    fwrite($chan, json_encode($geo));
+    fwrite($chan, json_encode($geo, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
     fclose($chan);
-    unlink("{$title}.svg");
-    $command_line = 'python3 "' . $title . '_svg.py" 2>&1 >/dev/null';
-}
+  }
 else {
   // Clean the directory up
   foreach (glob("*.*") as $filename) {
@@ -90,7 +88,6 @@ else {
     unset($_POST['state']);
   $_POST["guess_title"] = ($_POST["guess_title"] == "true");
     $_POST['extract'] = TRUE;
-    $_POST['image_format'] = 'svg';
     $_POST['language'] = 'fr';
     $_POST['encodings'] = array("utf8");
     if ($_POST['disambiguation'] == "annotations et numéros") {
@@ -99,16 +96,17 @@ else {
         $_POST['disambiguation'] = "numbers_only";
     }
     $_POST['flex'] = $flex[$_POST['flex']];
-    
 
     // Write it
     $chan = fopen("params.json", 'w') or die('{"err": "PHP: Can\'t open \'params.json\' file."}');
     fwrite($chan, json_encode($_POST));
     fclose($chan);
-    $command_line = "python3 ../../../mocodo.py 2>&1 >/dev/null";
-};
-// Launch the script
+  };
+
+  // Launch the script
+$command_line = "python3 ../../../mocodo.py 2>&1 >/dev/null";
 $out = array();
+// die('{"err": "' . $command_line . '"}');
 
 // fwrite($php_log, "command line" . $command_line . "\n");
 // fclose($php_log);

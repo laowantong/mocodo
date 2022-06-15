@@ -27,7 +27,6 @@ unset($_POST['text']);
 unset($_POST['state']);
 $_POST["guess_title"] = ($_POST["guess_title"] == "true");
 $_POST['extract'] = TRUE;
-$_POST['image_format'] = 'svg';
 $_POST['language'] = 'fr';
 $_POST['encodings'] = array("utf8");
 $_POST['title'] = $title;

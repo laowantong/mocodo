@@ -147,7 +147,7 @@ Teen, 11 Fold, 1n Amid
 Amid : Disk, Flip, Gold
     """.replace("  ", "").split("\n")
     params = parsed_arguments()
-    mcd = Mcd(clauses, params)
+    mcd = Mcd(clauses, **params)
     params.update(mcd.get_layout_data())
     starting_time = time()
     seed(42)

@@ -1,7 +1,5 @@
 import re
 
-from .dynamic import Dynamic
-
 
 def outer_split(s, findall_outer_commas = re.compile(r'[^,]+\[.*?\][^,]*|[^,]+').findall):
     return [s.replace(", ", ",").strip().replace("\\", "") for s in findall_outer_commas(s.replace(",", ", "))]
@@ -12,7 +10,9 @@ class Attribute:
 
     def __init__(self, attribute, rank, search_label_and_type = re.compile(r"^(.*?)(?: *\[(.*)\])?$").search):
         (label, self.data_type) = search_label_and_type(attribute).groups()
-        self.data_type = None if self.data_type is None else self.data_type.replace("<<<protected-comma>>>", ",").replace("<<<protected-colon>>>", ":")
+        if self.data_type:
+            self.data_type = self.data_type.replace("<<<protected-comma>>>", ",")
+            self.data_type = self.data_type.replace("<<<protected-colon>>>", ":")
         components = label.split("->")
         if len(components) == 3:
             (self.label, self.primary_entity_name, self.primary_key_label) = components
@@ -27,19 +27,20 @@ class Attribute:
         font = get_font_metrics(self.attribute_font)
         self.w = font.get_pixel_width(self.label)
         self.h = font.get_pixel_height()
-        self.style = style
 
-    def description(self, dx, dy):
+    def description(self, style, x, y, dx, dy):
         return [
-            {
-                "key": "text",
-                "text": self.label,
-                "text_color": Dynamic("colors['%s']" % (self.box_type + "_attribute_text_color")),
-                "x": Dynamic("%s+x" % (dx)),
-                "y": Dynamic("%s+y" % round(dy + self.style["attribute_text_height_ratio"] * self.h, 1)),
-                "family": self.attribute_font["family"],
-                "size": self.attribute_font["size"],
-            }
+            (
+                "text",
+                {
+                    "x": x + dx,
+                    "y": y + round(dy + style["attribute_text_height_ratio"] * self.h, 1),
+                    "text": self.label,
+                    "text_color": style[f"{self.box_type}_attribute_text_color"],
+                    "family": self.attribute_font["family"],
+                    "size": self.attribute_font["size"],
+                }
+            )
         ]
 
 
@@ -68,23 +69,19 @@ class StrongAttribute(Attribute):
     def get_category(self):
         return "strong"
 
-    def description(self, dx, dy):
-        return Attribute.description(self, dx, dy) + [
-            {
-                "key": "stroke_depth",
-                "stroke_depth": self.style["underline_depth"],
-            },
-            {
-                "key": "stroke_color",
-                "stroke_color": Dynamic("colors['entity_attribute_text_color']"),
-            },
-            {
-                "key": "line",
-                "x0": Dynamic("%s+x" % (dx)),
-                "y0": Dynamic("%s+y" % (dy + self.h + self.style["underline_skip_height"])),
-                "x1": Dynamic("%s+x" % (dx + self.w)),
-                "y1": Dynamic("%s+y" % (dy + self.h + self.style["underline_skip_height"])),
-            }
+    def description(self, style, x, y, dx, dy):
+        return Attribute.description(self, style, x, y, dx, dy) + [
+            (
+                "line",
+                {
+                    "x0": x + dx,
+                    "y0": y + dy + self.h + style["underline_skip_height"],
+                    "x1": x + dx + self.w,
+                    "y1": y + dy + self.h + style["underline_skip_height"],
+                    "stroke_depth": style["underline_depth"],
+                    "stroke_color": style['entity_attribute_text_color'],
+                }
+            )
         ]
 
 
@@ -96,23 +93,19 @@ class WeakAttribute(Attribute):
     def get_category(self):
         return "weak"
 
-    def description(self, dx, dy):
-        return Attribute.description(self, dx, dy) + [
-            {
-                "key": "stroke_depth",
-                "stroke_depth": self.style["underline_depth"],
-            },
-            {
-                "key": "stroke_color",
-                "stroke_color": Dynamic("colors['entity_attribute_text_color']"),
-            },
-            {
-                "key": "dash_line",
-                "x0": Dynamic("%s+x" % (dx)),
-                "x1": Dynamic("%s+x" % (dx + self.w)),
-                "y": Dynamic("%s+y" % (dy + self.h + self.style["underline_skip_height"])),
-                "dash_width": self.style["dash_width"],
-            }
+    def description(self, style, x, y, dx, dy):
+        return Attribute.description(self, style, x, y, dx, dy) + [
+            (
+                "dash_line",
+                {
+                    "x0": x + dx,
+                    "x1": x + dx + self.w,
+                    "y": y + dy + self.h + style["underline_skip_height"],
+                    "dash_width": style["dash_width"],
+                    "stroke_depth": style["underline_depth"],
+                    "stroke_color": style['entity_attribute_text_color'],
+                }
+            )
         ]
 
 
@@ -124,5 +117,5 @@ class PhantomAttribute(Attribute):
     def get_category(self):
         return "phantom"
 
-    def description(self, dx, dy):
+    def description(self, style, x, y, dx, dy):
         return []

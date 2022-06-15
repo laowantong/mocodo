@@ -109,7 +109,7 @@ if __name__ == "__main__":
     """.replace("  ", "").split("\n")
     params = parsed_arguments()
     params["verbose"] = True
-    mcd = Mcd(clauses, params)
+    mcd = Mcd(clauses, **params)
     params.update(mcd.get_layout_data())
     starting_time = time()
     seed(42)

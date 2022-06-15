@@ -34,7 +34,7 @@ ODDS: echo
 params = parsed_arguments()
 params["title"] = "Untitled"
 params["guess_title"] = False
-t = Relations(Mcd(clauses, params), params)
+t = Relations(Mcd(clauses, **params), params)
 
 class RelationTemplatesTest(unittest.TestCase):
 

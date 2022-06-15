@@ -151,8 +151,8 @@ function createFormatCheckboxes() {
 }
 function refreshSize(geo) {
   var s = '<div><label>&nbsp;<\/label> ' +
-    '<input value="' + geo.size[0] + '" type="text" onfocus="markAsMoved()" name="size_x" id="size_x" min="0"\/> ' +
-    '<input value="' + geo.size[1] + '" type="text" onfocus="markAsMoved()" name="size_y" id="size_y" min="0"\/> ' +
+    '<input value="' + geo.width + '" type="text" onfocus="markAsMoved()" name="width" id="width" min="0"\/> ' +
+    '<input value="' + geo.height + '" type="text" onfocus="markAsMoved()" name="height" id="height" min="0"\/> ' +
     '<\/div>';
   $("#size").html(s);
 }

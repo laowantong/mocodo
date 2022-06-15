@@ -99,7 +99,7 @@ class parse_test(unittest.TestCase):
         a = Association("DF, 0N CLIENT, 11 COMMANDE")
         self.assertEqual(a.name, "DF")
         self.assertEqual(a.cartouche, "DF")
-        a = Association("CIF, 0N CLIENT, 11 COMMANDE", {"df": u"CIF", "card_format": u"{min_card},{max_card}"})
+        a = Association("CIF, 0N CLIENT, 11 COMMANDE", df_label="CIF")
         self.assertEqual(a.name, "CIF")
         self.assertEqual(a.cartouche, "CIF")
 

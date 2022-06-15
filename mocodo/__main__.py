@@ -10,6 +10,7 @@ from .argument_parser import parsed_arguments
 from .mcd import Mcd
 from .relations import Relations
 from .font_metrics import font_metrics_factory
+from .mcd_to_svg import main as mcd_to_svg
 from .mocodo_error import MocodoError
 
 def main():
@@ -32,7 +33,7 @@ def main():
         if params["obfuscate"]:
             from .obfuscate import obfuscate
             return safe_print_for_PHP(obfuscate(clauses, params))
-        mcd = Mcd(clauses, params, get_font_metrics)
+        mcd = Mcd(clauses, get_font_metrics, **params)
         if params["fit"] is not None:
             return safe_print_for_PHP(mcd.get_reformatted_clauses(params["fit"]))
         if params["flip"]:
@@ -57,17 +58,7 @@ def main():
             raise MocodoError(9, _('Failed to calculate a planar layout.'))
         relations = Relations(mcd, params)
         common.dump_mld_files(relations)
-        if params["image_format"] == "svg":
-            from .mcd_to_svg import main
-            import runpy
-            main(mcd, common)
-            runpy.run_path(u"%(output_name)s_svg.py" % params)
-            return
-        if params["image_format"] == "nodebox":
-            from .mcd_to_nodebox import main
-            main(mcd, common)
-            return os.system(u"""open -a NodeBox "%(output_name)s_nodebox.py" """ % params)
-        raise MocodoError(13, _('Should never happen.'))
+        mcd_to_svg(mcd, common)
     except MocodoError as err:
         print(str(err), file=sys.stderr)
         sys.exit(err.errno)

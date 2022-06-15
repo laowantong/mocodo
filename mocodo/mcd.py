@@ -1,5 +1,7 @@
 import itertools
+import random
 import re
+import string
 from collections import defaultdict
 
 from .association import Association
@@ -15,10 +17,11 @@ def cmp(x, y):
     return (x > y) - (x < y)
 
 SYS_MAXINT = 9223372036854775807 # an integer larger than any practical list or string index
+SALT_CHARACTERS = string.ascii_letters + string.digits
 
 class Mcd:
 
-    def __init__(self, clauses, params, get_font_metrics=None):
+    def __init__(self, clauses, get_font_metrics=None, **params):
         
         def parse_clauses():
             self.entities = {}
@@ -42,7 +45,7 @@ class Mcd:
                     raise MocodoError(19, _('The clause "{clause}" starts with a colon.').format(clause=clause))
                 clause = re.sub("\[.+?\]", substitute_forbidden_symbols_between_brackets, clause)
                 if "," in clause.split(":", 1)[0]:
-                    element = Association(clause, params)
+                    element = Association(clause, **params)
                     if element.name in self.associations:
                         raise MocodoError(7, _('Duplicate association "{association}". If you want to make two associations appear with the same name, you must suffix it with a number.').format(association=element.name))
                     self.associations[element.name] = element
@@ -67,12 +70,13 @@ class Mcd:
             for association in self.associations.values():
                 for leg in association.legs:
                     try:
-                        leg.entity = self.entities[leg.entity_name]
+                        entity = self.entities[leg.entity_name]
                     except KeyError:
                         if leg.entity_name in self.associations:
                             raise MocodoError(20, _(u'Association "{association_1}" linked to another association "{association_2}"!').format(association_1=association.name, association_2=leg.entity_name))
                         else:
                             raise MocodoError(1, _(u'Association "{association}" linked to an unknown entity "{entity}"!').format(association=association.name, entity=leg.entity_name))
+                    leg.register_entity(entity)
         
         def add_attributes_and_strength():
             strengthen_legs = dict((entity_name, []) for entity_name in self.entities)
@@ -141,7 +145,7 @@ class Mcd:
         
         def add_diagram_links():
             self.diagram_links = []
-            for (entity_name, entity) in self.entities.items():
+            for entity in self.entities.values():
                 for attribute in entity.attributes:
                     if attribute.primary_entity_name:
                         self.diagram_links.append(DiagramLink(self.entities, entity, attribute))
@@ -163,7 +167,11 @@ class Mcd:
             self.box_count = len(self.boxes)
         
         def substitute_forbidden_symbols_between_brackets(text):
-            return text.group().replace(",", "<<<protected-comma>>>").replace(":", "<<<protected-colon>>>")
+            """Neutralize Mocodo syntax separators in the text between brackets."""
+            result = text.group()
+            result = result.replace(",", "<<<protected-comma>>>")
+            result = result.replace(":", "<<<protected-colon>>>")
+            return result
         
         self.get_font_metrics = get_font_metrics
         phantom_counter = itertools.count()
@@ -174,7 +182,7 @@ class Mcd:
         may_center()
         make_boxes()
         tweak_straight_cards()
-        self.title = params["title"]
+        self.title = params.get("title", "Untitled")
     
     def get_layout_data(self):
         successors = [set() for i in range(self.box_count)] # use `set` to deduplicate reflexive associations
@@ -207,7 +215,13 @@ class Mcd:
         return [box.identifier for row in self.rows for box in row]
     
     def get_row_text(self, row):
-        return "\n".join(box.clause.replace("<<<protected-comma>>>", ",").replace("<<<protected-colon>>>", ":") for box in row)
+        result = []
+        for box in row:
+            clause = box.clause
+            clause = clause.replace("<<<protected-comma>>>", ",")
+            clause = clause.replace("<<<protected-colon>>>", ":")
+            result.append(clause)
+        return "\n".join(result)
     
     def set_layout(self, layout, col_count=None, row_count=None, **kwargs):
         if col_count and row_count:
@@ -270,7 +284,8 @@ class Mcd:
             if box.kind != "phantom":
                 if i % col_count == 0 and i:
                     result.append("")
-                result.append(box.clause.replace("<<<protected-comma>>>", ",").replace("<<<protected-colon>>>", ":"))
+                result.append(box.clause)
+                # result.append(box.clause.replace("<<<protected-comma>>>", ",").replace("<<<protected-colon>>>", ":"))
                 i += 1
         for i in range(i, col_count * row_count):
             if i % col_count == 0 and i:
@@ -354,15 +369,37 @@ class Mcd:
         make_vertical_layout()
         compress_vertically()
     
-    def description(self):
+    def description(self, style, geo):
         result = []
-        for element in self.associations.values():
-            result.extend(element.description())
         for element in self.entities.values():
-            result.extend(element.description())
+            result.extend(element.description(style, geo))
+        for element in self.associations.values():
+            result.extend(element.description(style, geo))
         for element in self.diagram_links:
-            result.extend(element.description())
+            result.extend(element.description(style, geo))
+        result.append(("comment", {"comment": "Annotations"}))
+        result.append(
+            (
+                "annotations",
+                {
+                    "salt": ''.join(random.choice(SALT_CHARACTERS) for _ in range(8)),
+                    "height_threshold": geo["height"] - style["annotation_overlay_height"] - style["card_margin"],
+                    "overlay_height": style["annotation_overlay_height"],
+                    "x": geo["width"] // 2,
+                    "y_top": style["annotation_baseline"],
+                    "y_bottom": geo["height"] - style["annotation_overlay_height"] + style["annotation_baseline"],
+                    "y": geo["height"] - style["annotation_overlay_height"],
+                    "color": style["annotation_color"],
+                    "text_color": style["annotation_text_color"],
+                    "opacity": style["annotation_opacity"],
+                    "font_family": style["annotation_font"]["family"],
+                    "font_size": style["annotation_font"]["size"],
+                }
+            )
+        )
         return result
+
+
 
 if __name__=="__main__":
     from .argument_parser import parsed_arguments
@@ -374,5 +411,5 @@ if __name__=="__main__":
         PRODUIT: Réf. produit, Libellé, Prix unitaire
     """.replace("  ", "").split("\n")
     params = parsed_arguments()
-    mcd = Mcd(clauses, params)
+    mcd = Mcd(clauses, **params)
     print(mcd.get_clauses_vertical_mirror())

@@ -63,7 +63,6 @@ class MocodoMagics(Magics):
         parser.add_argument("--mld", action="store_true")
         parser.add_argument("--input")
         parser.add_argument("--output_dir")
-        parser.add_argument("--image_format")
         (notebook_options, options) = parser.parse_known_args(line.split())
         
         try:
@@ -89,7 +88,7 @@ class MocodoMagics(Magics):
                     raise
         output_name = os.path.join(output_dir, os.path.splitext(os.path.split(input_path)[1])[0])
         
-        options.extend(["--input", input_path, "--output_dir", output_dir, "--image_format", "svg"]) # may override user's provided options
+        options.extend(["--input", input_path, "--output_dir", output_dir]) # may override user's provided options
         try: # prevent explicit option --relations to override HTML generation
             options.insert(options.index("--relations") + 1, "html")
         except ValueError:
@@ -124,7 +123,7 @@ class MocodoMagics(Magics):
                     parser.add_argument("--flip", nargs="?")
                     (_, options) = parser.parse_known_args(options)
                     write_contents(input_path, stdoutdata)
-                    options.extend(["--input", input_path, "--output_dir", output_dir, "--image_format", "svg"])
+                    options.extend(["--input", input_path, "--output_dir", output_dir])
                     if execute_command(options):
                         display_diagrams()
 

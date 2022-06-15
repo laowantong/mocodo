@@ -3,6 +3,7 @@ import numbers
 import os
 import sys
 import time
+from pathlib import Path
 
 from .file_helpers import read_contents, write_contents
 from .mocodo_error import MocodoError
@@ -77,11 +78,6 @@ class Common:
         style["transparent_color"] = None
         return style
 
-    def dump_output_file(self, result):
-        path = "%(output_name)s_%(image_format)s.py" % self.params
-        write_contents(path, result)
-        safe_print_for_PHP(self.output_success_message(path))
-
     def dump_mld_files(self, relations):
         relation_templates = []
         for relation_template in self.params["relations"]:
@@ -102,37 +98,45 @@ class Common:
                 raise
             write_contents(path, text)
 
-    def process_geometry(self, mcd, style):
-        
-        def dump_geo_file(d):
+    def calculate_or_retrieve_geo(self, mcd):
+        geo_path = Path(f"{self.params['output_name']}_geo.json")
+        mcd_path = Path(f"{self.params['output_name']}.mcd")
+        if geo_path.is_file() and mcd_path.stat().st_mtime < geo_path.stat().st_mtime:
             try:
-                path = "%(output_name)s_geo.json" % self.params
-                write_contents(path, json.dumps(d, ensure_ascii=False))
-                safe_print_for_PHP(self.output_success_message(path))
-            except IOError:
-                safe_print_for_PHP(_('Unable to generate file "{filename}"!').format(filename=os.path.basename(path)))
-        
-        l = [
-            ("size", (mcd.w, mcd.h)),
-            ("cx", [(box.name, box.x + box.w // 2) for row in mcd.rows for box in row if box.kind != "phantom"]),
-            ("cy", [(box.name, box.y + box.h // 2) for row in mcd.rows for box in row if box.kind != "phantom"]),
-            ("shift", [(leg.identifier, 0) for row in mcd.rows for box in row for leg in box.legs]),
-            ("ratio", [(leg.identifier, 1.0) for row in mcd.rows for box in row for leg in box.legs if leg.arrow]),
-            ("colors", [((c, style[c]) if style[c] else (c, None)) for c in sorted(style.keys()) if c.endswith("_color")]),
-        ]
-        if self.params.get("extract"): # Generate a separated JSON file for the geometry
-            dump_geo_file(dict(l))
-            result = []
-            result.append("import json")
-            result.append("")
-            result.append("with codecs.open('%(output_name)s_geo.json') as f:" % self.params)
-            result.append("    geo = json.loads(f.read())")
-            result.append("(width,height) = geo.pop('size')")
-            result.append("for (name, l) in geo.items(): globals()[name] = dict(l)")
-        else: # include the geometry at the beginning of the generated Python file
-            result = ["(width,height) = (%s,%s)" % l.pop(0)[1]]
-            for (identifier, items) in l:
-                if items: # pretty print the dictionnary
-                    s = "%%-%ss" % (max(len(k) for (k, _) in items) + 3)
-                    result.append("%s = {\n    %s\n}" % (identifier, "\n    ".join(["%s: %s," % (s % ('u"%s"' % k), ("%4d" % v if isinstance(v, int) else ("% .2f" % v if isinstance(v, float) else repr(v)))) for (k, v) in items])))
-        return result
+                web_geo = json.loads(geo_path.read_text())
+                geo = {k: dict(v) if isinstance(v, list) else v for (k, v) in web_geo.items()}
+                return geo
+            except: # in case a problem occurs with the geo file, fallback to silently regenerate it
+                pass
+        geo = {
+            "width": mcd.w,
+            "height": mcd.h,
+            "cx": {
+                box.name: box.x + box.w // 2
+                for row in mcd.rows
+                for box in row
+                if box.kind != "phantom"
+            },
+            "cy": {
+                box.name: box.y + box.h // 2
+                for row in mcd.rows
+                for box in row
+                if box.kind != "phantom"
+            },
+            "shift": {leg.identifier: 0 for row in mcd.rows for box in row for leg in box.legs},
+            "ratio": {
+                leg.identifier: 1.0
+                for row in mcd.rows
+                for box in row
+                for leg in box.legs
+                if leg.arrow
+            },
+        }
+        try:
+            path = f"{self.params['output_name']}_geo.json"
+            web_geo = {k: list(v.items()) if isinstance(v, dict) else v for (k, v) in geo.items()}
+            write_contents(path, json.dumps(web_geo, indent=2, ensure_ascii=False))
+            safe_print_for_PHP(self.output_success_message(path))
+        except IOError:
+            safe_print_for_PHP(_('Unable to generate file "{filename}"!').format(filename=os.path.basename(path)))
+        return geo

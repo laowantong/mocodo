@@ -153,19 +153,16 @@ def parsed_arguments():
     if sys.platform.lower().startswith("darwin"):
         default_params = {
           "encodings": ["utf8", "macroman"],
-          "image_format": "nodebox" if os.path.exists("/Applications/NodeBox/NodeBox.app") or os.path.exists("/Applications/NodeBox.app") else "svg",
           "shapes": "copperplate",
         }
     elif sys.platform.lower().startswith("win"):
         default_params = {
           "encodings": ["utf8", "ISO_8859-15"],
-          "image_format": "svg",
           "shapes": "trebuchet",
         }
     else: # linux
         default_params = {
           "encodings": ["utf8", "ISO_8859-15"],
-          "image_format": "svg",
           "shapes": "serif",
         }
     
@@ -210,7 +207,6 @@ def parsed_arguments():
     io_group.add_argument("--output_dir", metavar="PATH", help="the directory of the output files")
     io_group.add_argument("--encodings", metavar="STR", nargs="*", help="one or several encodings to be tried successively when reading the input file")
     io_group.add_argument("--extract", action="store_true", help="create a separated JSON file for the geometric parameters")
-    io_group.add_argument("--image_format", choices=["svg", "nodebox"], help="override the automatic selection (depending on your installation) of the image format produced by the generated script")
     io_group.add_argument("--print_params", action="store_true", help="display the contents of the parameter file, then exit")
     
     source_group.add_argument("--arrange", nargs="?", const="bb", choices=["bb", "ga", "lp"], help="rearrange the layout with either a Branch & Bound, a Genetic Algorithm, or a Linear Program solver, then exit")
