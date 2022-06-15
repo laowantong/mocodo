@@ -1,7 +1,3 @@
-#!/usr/bin/env python
-# encoding: utf-8
-
-from __future__ import division
 import sys
 sys.path[0:0] = ["."]
 
@@ -18,10 +14,6 @@ json_template = json.loads(read_contents("mocodo/relation_templates/json.json"))
 params = parsed_arguments()
 params["title"] = "Untitled"
 params["guess_title"] = False
-
-# Python 2.7 compatibility
-if not hasattr(unittest.TestCase, "assertRaisesRegex"):
-    unittest.TestCase.assertRaisesRegex = unittest.TestCase.assertRaisesRegexp
 
 class relationsTest(unittest.TestCase):
     

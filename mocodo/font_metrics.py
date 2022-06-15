@@ -1,19 +1,15 @@
-#!/usr/bin/env python
-# encoding: utf-8
-
-from __future__ import division
-
-import sys
-from .file_helpers import read_contents
-import os
 import json
+import os
+import sys
+
+from .file_helpers import read_contents
 
 
 def font_metrics_factory(params):
     if params["tkinter"]:
         try:
-            import Tkinter as tk
             import tkFont
+            import Tkinter as tk
             root = tk.Tk()
         except:
             root = None

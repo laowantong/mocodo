@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# encoding: utf-8
-
-from __future__ import division
-
-
 from .attribute import *
 from .dynamic import Dynamic
 

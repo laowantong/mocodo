@@ -1,6 +1,3 @@
-#!/usr/bin/env python
-# encoding: utf-8
-
 """A setuptools based setup module.
 See:
 https://packaging.python.org/en/latest/distributing.html
@@ -26,7 +23,7 @@ The recommended way to install Mocodo is to use pip:
 
     pip install mocodo
 
-If this fails, ensure first you have a working Python installation (tested under 2.7 and 3.5).
+If this fails, ensure first you have a working Python 3 installation.
 
 Usage
 -------
@@ -97,10 +94,8 @@ setup(
 
         # Specify the Python versions you support here. In particular, ensure
         # that you indicate whether you support Python 2, Python 3 or both.
-        'Programming Language :: Python :: 2',
-        'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
     ],
 
     # What does your project relate to?

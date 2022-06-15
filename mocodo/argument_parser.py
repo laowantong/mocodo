@@ -1,19 +1,16 @@
-#!/usr/bin/env python
-# encoding: utf-8
-
-from __future__ import division
 import argparse
-import random
-import os
-import json
-from .file_helpers import read_contents
-from .common import version
-import sys
-import re
 import gettext
+import json
 import locale
-from time import time
+import os
+import random
+import re
+import sys
 from io import open
+from time import time
+
+from .common import version
+from .file_helpers import read_contents
 from .mocodo_error import MocodoError
 
 DESCRIPTION = """
@@ -72,10 +69,7 @@ def init_localization(script_directory, language):
     except IOError:
         trans = gettext.NullTranslations()
     
-    if sys.version_info.major == 2:
-        trans.install(unicode=True)
-    else:
-        trans.install()
+    trans.install()
     return language
 
 def has_expired(timeout):
@@ -92,10 +86,10 @@ def rate(string):
     try:
         value = float(string)
     except ValueError:
-        msg = "The rate %r cannot be coerced to float" % string
+        msg = f"The rate {repr(string)} cannot be coerced to float"
         raise argparse.ArgumentTypeError(msg)
     if not (0 <= value <= 1):
-        msg = "The rate %r is not between 0 and 1" % string
+        msg = f"The rate {repr(string)} is not between 0 and 1"
         raise argparse.ArgumentTypeError(msg)
     return value
 
@@ -103,10 +97,10 @@ def scale(string):
     try:
         value = float(string)
     except ValueError:
-        msg = "The scale %r cannot be coerced to float" % string
+        msg = f"The scale {repr(string)} cannot be coerced to float"
         raise argparse.ArgumentTypeError(msg)
     if value <= 0:
-        msg = "The scale %r is not strictly positive" % string
+        msg = f"The scale {repr(string)} is not strictly positive"
         raise argparse.ArgumentTypeError(msg)
     return value
 
@@ -114,10 +108,10 @@ def non_negative_integer(string):
     try:
         value = int(string)
     except ValueError:
-        msg = "The value %r cannot be coerced to an integer" % string
+        msg = f"The value {repr(string)} cannot be coerced to an integer"
         raise argparse.ArgumentTypeError(msg)
     if value < 0:
-        msg = "The integer %r is negative" % string
+        msg = f"The integer {repr(string)} is negative"
         raise argparse.ArgumentTypeError(msg)
     return value
 
@@ -125,10 +119,10 @@ def positive_integer(string):
     try:
         value = int(string)
     except ValueError:
-        msg = "The value %r cannot be coerced to an integer" % string
+        msg = f"The value {repr(string)} cannot be coerced to an integer"
         raise argparse.ArgumentTypeError(msg)
     if value <= 0:
-        msg = "The integer %r is negative or zero" % string
+        msg = f"The integer {repr(string)} is negative or zero"
         raise argparse.ArgumentTypeError(msg)
     return value
 
@@ -180,8 +174,6 @@ def parsed_arguments():
     io_group.add_argument("--input", metavar="PATH", help="the path of the input file. By default, the output files will be generated in the same directory")
     (args, remaining_args) = parser.parse_known_args()
     
-    text_type = (unicode if sys.version_info.major == 2 else str)
-    
     if args.input and not os.path.exists(args.input):
         if os.path.exists(args.input + ".mcd"):
             args.input += ".mcd"
@@ -200,9 +192,9 @@ def parsed_arguments():
     mocodo_group.add_argument("--version", action="version", version="%(prog)s " + version, help="display the version number, then exit")
     mocodo_group.add_argument("--restore", action="store_true", help="recreate a pristine version of the files 'sandbox.mcd' and 'params.json' in the input directory, then exit")
     
-    aspect_group.add_argument("--df", metavar="STR", type=text_type, default=u"DF", help="the acronym to be circled in a functional dependency")
-    aspect_group.add_argument("--card_format", metavar="STR", type=text_type, nargs="?", default=u"{min_card},{max_card}", help="format string for minimal and maximal cardinalities")
-    aspect_group.add_argument("--strengthen_card", metavar="STR", type=text_type, nargs="?", default=u"_1,1_", help="string for relative cardinalities")
+    aspect_group.add_argument("--df", metavar="STR", type=str, default=u"DF", help="the acronym to be circled in a functional dependency")
+    aspect_group.add_argument("--card_format", metavar="STR", type=str, nargs="?", default=u"{min_card},{max_card}", help="format string for minimal and maximal cardinalities")
+    aspect_group.add_argument("--strengthen_card", metavar="STR", type=str, nargs="?", default=u"_1,1_", help="string for relative cardinalities")
     source_group.add_argument("--flex", metavar="FLOAT", type=float, default=0.75, help="flex straight legs whose cardinalities may collide")
     aspect_group.add_argument("--tkinter", action="store_true", help="use Tkinter to calculate the pixel-dimensions of the labels")
     aspect_group.add_argument("--colors", metavar="PATH", default="bw", help="the color palette to use when generating the drawing. Name (without extension) of a file located in the directory 'colors', or path to a personal file")

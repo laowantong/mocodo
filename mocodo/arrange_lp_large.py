@@ -1,10 +1,9 @@
-#!/usr/bin/env python
-# encoding: utf-8
+import itertools
+from math import hypot
+
+import cplex
 
 from .cross import cross
-from math import hypot
-import itertools
-import cplex
 
 MAX_LENGTH = 2
 
@@ -59,38 +58,38 @@ def arrange(col_count, row_count, links, multiplicity, **kwargs):
     lengths = ["" if s == "1.0" else (s[:-2] + "" if s.endswith(".0") else s + "") for s in lengths]
     
     result.append("Minimize")
-    result.append(" obj: " + summation("{length}x_{s[0][0]}_{s[0][1]}_{s[1][0]}_{s[1][1]}".format(length=length, s=s) for (length, s) in itertools.izip(lengths, S) if length != "0"))
+    result.append(" obj: " + summation(f"{length}x_{s[0][0]}_{s[0][1]}_{s[1][0]}_{s[1][1]}" for (length, s) in itertools.izip(lengths, S) if length != "0"))
     result.append("Subject To")
     
     result.append(u"\\ Each edge is assigned to exactly one segment")
     for e in E:
-        push("%s = 1" % summation("y_{e[0]}_{e[1]}_{s[0][0]}_{s[0][1]}_{s[1][0]}_{s[1][1]}".format(e=e, s=s) for s in S))
+        push("%s = 1" % summation(f"y_{e[0]}_{e[1]}_{s[0][0]}_{s[0][1]}_{s[1][0]}_{s[1][1]}" for s in S))
     
     result.append(u"\\ Each segment is occupied by 1 segment if it is active, 0 otherwise")
     for s in S:
-        push("{sigma} - x_{s[0][0]}_{s[0][1]}_{s[1][0]}_{s[1][1]} = 0".format(sigma=summation("y_{e[0]}_{e[1]}_{s[0][0]}_{s[0][1]}_{s[1][0]}_{s[1][1]}".format(e=e, s=s) for e in E), s=s))
+        push("{sigma} - x_{s[0][0]}_{s[0][1]}_{s[1][0]}_{s[1][1]} = 0".format(sigma=summation(f"y_{e[0]}_{e[1]}_{s[0][0]}_{s[0][1]}_{s[1][0]}_{s[1][1]}" for e in E), s=s))
     
     result.append(u"\\ The active segments do not cross each other")
     for (s1, s2) in S2X:
-        push("x_{s1[0][0]}_{s1[0][1]}_{s1[1][0]}_{s1[1][1]} + x_{s2[0][0]}_{s2[0][1]}_{s2[1][0]}_{s2[1][1]} <= 1".format(s1=s1, s2=s2))
+        push(f"x_{s1[0][0]}_{s1[0][1]}_{s1[1][0]}_{s1[1][1]} + x_{s2[0][0]}_{s2[0][1]}_{s2[1][0]}_{s2[1][1]} <= 1")
     
     result.append(u"\\ The non adjacent edges are not placed on adjacent segments, and vice versa")
     for (s1, s2) in itertools.combinations(S, 2):
         for (e1, e2) in itertools.combinations(E, 2):
             if ((s1, s2) in S2V) != ((e1, e2) in E2V):
-                push("y_{e1[0]}_{e1[1]}_{s1[0][0]}_{s1[0][1]}_{s1[1][0]}_{s1[1][1]} + y_{e2[0]}_{e2[1]}_{s2[0][0]}_{s2[0][1]}_{s2[1][0]}_{s2[1][1]} <= 1".format(e1=e1, e2=e2, s1=s1, s2=s2))
-                push("y_{e1[0]}_{e1[1]}_{s2[0][0]}_{s2[0][1]}_{s2[1][0]}_{s2[1][1]} + y_{e2[0]}_{e2[1]}_{s1[0][0]}_{s1[0][1]}_{s1[1][0]}_{s1[1][1]} <= 1".format(e1=e1, e2=e2, s1=s1, s2=s2))
+                push(f"y_{e1[0]}_{e1[1]}_{s1[0][0]}_{s1[0][1]}_{s1[1][0]}_{s1[1][1]} + y_{e2[0]}_{e2[1]}_{s2[0][0]}_{s2[0][1]}_{s2[1][0]}_{s2[1][1]} <= 1")
+                push(f"y_{e1[0]}_{e1[1]}_{s2[0][0]}_{s2[0][1]}_{s2[1][0]}_{s2[1][1]} + y_{e2[0]}_{e2[1]}_{s1[0][0]}_{s1[0][1]}_{s1[1][0]}_{s1[1][1]} <= 1")
 
     # result.append(u"\\ Each extremity of an placed edge is placed")
     # for (s1, s2) in itertools.combinations(S, 2):
     #     for (e1, e2) in itertools.combinations(E, 2):
     # for e in E:
-    #     push("y_{e1[0]}_{e1[1]}_{s1[0][0]}_{s1[0][1]}_{s1[1][0]}_{s1[1][1]} + y_{e2[0]}_{e2[1]}_{s2[0][0]}_{s2[0][1]}_{s2[1][0]}_{s2[1][1]} <= 1".format(e1=e1, e2=e2, s1=s1, s2=s2))
+    #     push(f"y_{e1[0]}_{e1[1]}_{s1[0][0]}_{s1[0][1]}_{s1[1][0]}_{s1[1][1]} + y_{e2[0]}_{e2[1]}_{s2[0][0]}_{s2[0][1]}_{s2[1][0]}_{s2[1][1]} <= 1")
 
 
     result.append("Binary")
-    result.append(" ".join("x_{s[0][0]}_{s[0][1]}_{s[1][0]}_{s[1][1]}".format(s=s) for s in S))
-    result.append(" ".join("y_{e[0]}_{e[1]}_{s[0][0]}_{s[0][1]}_{s[1][0]}_{s[1][1]}".format(e=e, s=s) for s in S for e in E))
+    result.append(" ".join(f"x_{s[0][0]}_{s[0][1]}_{s[1][0]}_{s[1][1]}" for s in S))
+    result.append(" ".join(f"y_{e[0]}_{e[1]}_{s[0][0]}_{s[0][1]}_{s[1][0]}_{s[1][1]}" for s in S for e in E))
     
     result.append("\nEnd\noptimize\ndisplay solution variables -\n")
     
@@ -111,10 +110,11 @@ def arrange(col_count, row_count, links, multiplicity, **kwargs):
     
 
 if __name__ == "__main__":
-    from .mcd import Mcd
-    from .argument_parser import parsed_arguments
-    from time import time
     from random import seed
+    from time import time
+
+    from .argument_parser import parsed_arguments
+    from .mcd import Mcd
     clauses = u"""
         SUSPENDISSE: diam
         SOLLICITUDIN, 0N SUSPENDISSE, 0N CONSECTETUER, 0N LOREM: lectus

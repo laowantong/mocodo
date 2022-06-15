@@ -1,14 +1,9 @@
-#!/usr/bin/env python
-# encoding: utf-8
-
-from __future__ import division
-
 import re
 from math import sqrt
 
 from .attribute import *
-from .leg import *
 from .dynamic import Dynamic
+from .leg import *
 from .mocodo_error import MocodoError
 
 match_leg = re.compile(r"((?:_11|..)[<>]?\s+(?:\[.+?\]\s+)?)(.+)").match

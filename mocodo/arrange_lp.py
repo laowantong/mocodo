@@ -1,10 +1,8 @@
-#!/usr/bin/env python
-# encoding: utf-8
+import itertools
+import os
+from math import hypot
 
 from .cross import cross
-from math import hypot
-import os
-import itertools
 
 MAX_LENGTH = 2
 
@@ -43,60 +41,60 @@ def dump_lp(path, col_count, row_count, links, successors, multiplicity, **kwarg
     lengths = ["" if s == "1.0" else (s[:-2] + " " if s.endswith(".0") else s + " ") for s in lengths]
     
     result.append("Minimize")
-    result.append(" obj: " + summation("{length}y_{s[0][0]}_{s[0][1]}_{s[1][0]}_{s[1][1]}".format(length=length, s=s) for (length, s) in zip(lengths, S) if length != "0"))
+    result.append(" obj: " + summation(f"{length}y_{s[0][0]}_{s[0][1]}_{s[1][0]}_{s[1][1]}" for (length, s) in zip(lengths, S) if length != "0"))
     result.append("Subject To")
     
     result.append(u"\\ constraint:each_vertex_is_placed_at_exactly_one_position")
     for v in V:
-        push("%s = 1" % summation("x_{v}_{p[0]}_{p[1]}".format(v=v, p=p) for p in P))
+        push("%s = 1" % summation(f"x_{v}_{p[0]}_{p[1]}" for p in P))
     
     result.append(u"\\ constraint:at_most_one_vertex_per_position")
     for p in P:
-        push("%s <= 1" % summation("x_{v}_{p[0]}_{p[1]}".format(v=v, p=p) for v in V))
+        push("%s <= 1" % summation(f"x_{v}_{p[0]}_{p[1]}" for v in V))
     
     result.append(u"\\ constraint:as_much_active_segments_around_a_point_as_successors_of_the_vertex_placed_on_this_point")
     for p in P:
         for v in V:
             push("%s - %s >= 0" % (
-                summation("y_{s[0][0]}_{s[0][1]}_{s[1][0]}_{s[1][1]}".format(s=s) for s in S if s[0]==p or s[1]==p),
-                "{n}x_{v}_{p[0]}_{p[1]}".format(v=v, p=p, n=len(successors[v]))
+                summation(f"y_{s[0][0]}_{s[0][1]}_{s[1][0]}_{s[1][1]}" for s in S if s[0]==p or s[1]==p),
+                f"{n}x_{v}_{p[0]}_{p[1]}")
                 )
             )
     
     result.append(u"\\ constraint:if_two_adjacent_vertices_are_placed_then_the_corresponding_segment_is_active")
     for (v1, v2) in E:
         for (p1, p2) in S:
-            push("x_{v1}_{p1[0]}_{p1[1]} + x_{v2}_{p2[0]}_{p2[1]} + x_{v2}_{p1[0]}_{p1[1]} + x_{v1}_{p2[0]}_{p2[1]} - y_{p1[0]}_{p1[1]}_{p2[0]}_{p2[1]} <= 1".format(v1=v1, p1=p1, v2=v2, p2=p2))
+            push(f"x_{v1}_{p1[0]}_{p1[1]} + x_{v2}_{p2[0]}_{p2[1]} + x_{v2}_{p1[0]}_{p1[1]} + x_{v1}_{p2[0]}_{p2[1]} - y_{p1[0]}_{p1[1]}_{p2[0]}_{p2[1]} <= 1")
     
     result.append(u"\\ constraint:two_adjacent_vertices_cannot_be_placed_on_points_too_far_away")
     for (v1, v2) in E:
         for (p1, p2) in set(itertools.combinations(P, 2)).difference(S):
-            push("x_{v1}_{p1[0]}_{p1[1]} + x_{v2}_{p2[0]}_{p2[1]} + x_{v2}_{p1[0]}_{p1[1]} + x_{v1}_{p2[0]}_{p2[1]} <= 1".format(v1=v1, p1=p1, v2=v2, p2=p2))
+            push(f"x_{v1}_{p1[0]}_{p1[1]} + x_{v2}_{p2[0]}_{p2[1]} + x_{v2}_{p1[0]}_{p1[1]} + x_{v1}_{p2[0]}_{p2[1]} <= 1")
     
     result.append(u"\\ as much active segments as edges")
     push("%s = %s" % (
-        summation("y_{p1[0]}_{p1[1]}_{p2[0]}_{p2[1]}".format(p1=p1, p2=p2) for (p1, p2) in S),
+        summation(f"y_{p1[0]}_{p1[1]}_{p2[0]}_{p2[1]}" for (p1, p2) in S),
         len(E)
         )
     )
     
     result.append(u"\\ The active segments do not cross each other")
     for (s1, s2) in S2X:
-        push("y_{s1[0][0]}_{s1[0][1]}_{s1[1][0]}_{s1[1][1]} + y_{s2[0][0]}_{s2[0][1]}_{s2[1][0]}_{s2[1][1]} <= 1".format(s1=s1, s2=s2))
+        push(f"y_{s1[0][0]}_{s1[0][1]}_{s1[1][0]}_{s1[1][1]} + y_{s2[0][0]}_{s2[0][1]}_{s2[1][0]}_{s2[1][1]} <= 1")
     
     result.append(u"\\ symmetry static cuts")
     push("%s - %s <= 0" % (
-        summation("{order}x_0_{i}_{j}".format(order=i+j*col_count, i=i, j=j) for (i, j) in P),
-        " - ".join("{order}x_1_{i}_{j}".format(order=i+j*col_count, i=i, j=j) for (i, j) in P),
+        summation(f"{order}x_0_{i}_{j}" for (i, j) in P),
+        " - ".join(f"{order}x_1_{i}_{j}" for (i, j) in P),
     ))
     push("%s - %s <= 0" % (
-        summation("{order}x_0_{i}_{j}".format(order=i+j*col_count, i=i, j=j) for (i, j) in P),
-        " - ".join("{order}x_2_{i}_{j}".format(order=i+j*col_count, i=i, j=j) for (i, j) in P),
+        summation(f"{order}x_0_{i}_{j}" for (i, j) in P),
+        " - ".join(f"{order}x_2_{i}_{j}" for (i, j) in P),
     ))
 
     result.append("Binary")
-    result.append(" ".join("x_{v}_{p[0]}_{p[1]}".format(v=v, p=p) for v in V for p in P))
-    result.append(" ".join("y_{s[0][0]}_{s[0][1]}_{s[1][0]}_{s[1][1]}".format(s=s) for s in S))
+    result.append(" ".join(f"x_{v}_{p[0]}_{p[1]}" for v in V for p in P))
+    result.append(" ".join(f"y_{s[0][0]}_{s[0][1]}_{s[1][0]}_{s[1][1]}" for s in S))
     
     result.append("\nEnd")
     # result.append("\noptimize\ndisplay solution variables -\n")

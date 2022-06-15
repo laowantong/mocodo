@@ -1,16 +1,13 @@
-#!/usr/bin/env python
-# encoding: utf-8
-
-from __future__ import division
-
-import re
-import textwrap
-import random
-from .file_helpers import read_contents
 import itertools
 import os
+import random
+import re
+import textwrap
+
 from .damerau_levenshtein import damerau_levenshtein
+from .file_helpers import read_contents
 from .mocodo_error import MocodoError
+
 
 def random_chunks_of(lorem_text, obfuscation_max_length, params):
     words = list(set(word.lower() for word in re.findall(r"(?u)[^\W\d]+", lorem_text)))

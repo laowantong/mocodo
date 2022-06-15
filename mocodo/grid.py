@@ -1,12 +1,6 @@
-#!/usr/bin/env python
-# encoding: utf-8
-
-from __future__ import division
-from __future__ import print_function
-
-import math
 import itertools
-from collections import defaultdict
+import math
+
 
 class Grid(list):
     

@@ -1,20 +1,13 @@
-#!/usr/bin/env python
-# encoding: utf-8
-
-from __future__ import division
-
-from __future__ import print_function
-from IPython.core.display import HTML
-from IPython.core.display import SVG
-from IPython.core.display import display
-from IPython.core.magic import (Magics, magics_class, line_cell_magic)
-import warnings
-
-import os.path
 import argparse
+import codecs
+import os
+import os.path
+import warnings
+from subprocess import PIPE, Popen
 
-from subprocess import Popen, PIPE
-import os, codecs
+from IPython.core.display import HTML, SVG, display
+from IPython.core.magic import Magics, line_cell_magic, magics_class
+
 
 def read_contents(filename, encoding="utf8"):
     with codecs.open(filename, encoding=encoding) as f:

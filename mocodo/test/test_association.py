@@ -1,7 +1,3 @@
-#!/usr/bin/env python
-# encoding: utf-8
-
-from __future__ import division
 import sys
 sys.path[0:0] = ["."]
 
@@ -10,10 +6,6 @@ from mocodo.association import *
 
 import gettext
 gettext.NullTranslations().install()
-
-# Python 2.7 compatibility
-if not hasattr(unittest.TestCase, "assertRaisesRegex"):
-    unittest.TestCase.assertRaisesRegex = unittest.TestCase.assertRaisesRegexp
 
 class parse_test(unittest.TestCase):
     

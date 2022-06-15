@@ -1,11 +1,7 @@
-#!/usr/bin/env python
-# encoding: utf-8
-
-from __future__ import division
+from collections import namedtuple
+from random import choice, random, randrange, sample
 
 from .fitness import fitness
-from random import randrange, choice, random, sample
-from collections import namedtuple
 
 
 def arrange(links, successors, multiplicity, col_count, row_count, verbose, has_expired,
@@ -90,10 +86,11 @@ def arrange(links, successors, multiplicity, col_count, row_count, verbose, has_
     }
     
 if __name__ == "__main__":
-    from .mcd import Mcd
-    from .argument_parser import parsed_arguments
-    from time import time
     from random import seed
+    from time import time
+
+    from .argument_parser import parsed_arguments
+    from .mcd import Mcd
     clauses = u"""
         SUSPENDISSE: diam
         SOLLICITUDIN, 0N SUSPENDISSE, 0N CONSECTETUER, 0N LOREM: lectus

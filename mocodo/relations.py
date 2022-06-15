@@ -1,15 +1,12 @@
-#!/usr/bin/env python
-# encoding: utf-8
-
-from __future__ import division
-
-import re
 import collections
 import itertools
-import unicodedata
 import os
+import re
+import unicodedata
+
 from .file_helpers import write_contents
 from .mocodo_error import MocodoError
+
 
 class Relations:
 

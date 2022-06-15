@@ -1,6 +1,3 @@
-#!/usr/bin/env python
-# encoding: utf-8
-
 import sys
 sys.path[0:0] = ["."]
 

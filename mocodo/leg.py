@@ -1,10 +1,5 @@
-#!/usr/bin/env python
-# encoding: utf-8
-
-from __future__ import division
-
-import sys
 import re
+
 from .dynamic import Dynamic
 
 match_card = re.compile(r"(_11|..)([<>]?)\s*(?:\[(.+?)\])?").match

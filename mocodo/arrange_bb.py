@@ -1,17 +1,15 @@
-#!/usr/bin/env python
-# encoding: utf-8
-
-from __future__ import division
-
-from itertools import product, count
-from random import random, shuffle, choice
-from .cross import cross, memoize
+from functools import lru_cache
+from itertools import count, product
 from math import hypot
+from random import choice, random, shuffle
+
+from .cross import cross
 from .mocodo_error import MocodoError
+
 
 def arrange(col_count, row_count, successors, multiplicity, organic, min_objective, max_objective, call_limit, verbose, has_expired, **kwargs):
     
-    @memoize
+    @lru_cache
     def bounded_neighborhood(x1, y1):
         result = set()
         for x2 in range(max(0, x1 - radius), min(col_count, x1 + radius + 1)):
@@ -20,7 +18,7 @@ def arrange(col_count, row_count, successors, multiplicity, organic, min_objecti
                     result.add((x2, y2))
         return result
     
-    @memoize
+    @lru_cache
     def organic_neighborhood(x1, y1):
         result = set()
         for x2 in range(x1 - radius, x1 + radius + 1):
@@ -29,7 +27,7 @@ def arrange(col_count, row_count, successors, multiplicity, organic, min_objecti
                     result.add((x2, y2))
         return result
     
-    @memoize
+    @lru_cache
     def bounded_hull(coords):
         result = set()
         for (x, y) in coords:
@@ -43,7 +41,7 @@ def arrange(col_count, row_count, successors, multiplicity, organic, min_objecti
                 result.add((x, y + 1))
         return result.difference(coords)
     
-    @memoize
+    @lru_cache
     def organic_hull(coords):
         result = set()
         for (x, y) in coords:
@@ -180,10 +178,11 @@ def arrange(col_count, row_count, successors, multiplicity, organic, min_objecti
 
     
 if __name__ == "__main__":
-    from .mcd import Mcd
-    from .argument_parser import parsed_arguments
-    from time import time
     from random import seed
+    from time import time
+
+    from .argument_parser import parsed_arguments
+    from .mcd import Mcd
     clauses = u"""
         SUSPENDISSE: diam
         SOLLICITUDIN, 0N SUSPENDISSE, 0N CONSECTETUER, 0N LOREM: lectus

@@ -1,13 +1,7 @@
-#!/usr/bin/env python
-# encoding: utf-8
+from pathlib import Path
 
-from __future__ import division
-import codecs
+def read_contents(path, encoding="utf8"):
+    return Path(path).read_text(encoding=encoding)
 
-def read_contents(filename, encoding="utf8"):
-    with codecs.open(filename, encoding=encoding) as f:
-        return f.read()
-
-def write_contents(filename, contents, encoding="utf8"):
-    with codecs.open(filename, encoding=encoding, mode="w") as f:
-        f.write(contents)
+def write_contents(path, contents, encoding="utf8"):
+    Path(path).write_text(contents, encoding=encoding)

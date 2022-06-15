@@ -1,15 +1,12 @@
-#!/usr/bin/env python
-# encoding: utf-8
-
-from __future__ import division
-
-from .common import version
-import string
+import os
 import random
 import re
-import os
-from .file_helpers import read_contents
+import string
+
+from .common import version
 from .dynamic import Dynamic
+from .file_helpers import read_contents
+
 
 def main(mcd, common):
     params = common.params
@@ -140,8 +137,8 @@ def main(mcd, common):
 
 if __name__ == "__main__":
     from .argument_parser import parsed_arguments
-    from .mcd import Mcd
     from .common import Common
+    from .mcd import Mcd
     clauses = u"""
         CLIENT: Réf. client, Nom, Prénom, Adresse
         PASSER, 0N CLIENT, 11 COMMANDE

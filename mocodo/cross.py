@@ -1,22 +1,8 @@
-#!/usr/bin/env python
-# encoding: utf-8
-
-from __future__ import division
-
-class memoize(dict):
-    def __init__(self, func):
-        self.func = func
- 
-    def __call__(self, *args):
-        return self[args]
- 
-    def __missing__(self, key):
-        result = self[key] = self.func(*key)
-        return result
+from functools import lru_cache
 
 crossed_strings = frozenset(["-++-", "-++0", "-+0-", "-0+-", "0++-", "+--+", "0--+", "+0-+", "+-0+", "+--0"])
 
-@memoize
+@lru_cache
 def cross(x1, y1, x2, y2, x3, y3, x4, y4):
     """ Tests whether the segments ((x1,y1), (x2,y2)) and ((x3,y3), (x4,y4)) intersect.
         Two segments sharing exactly one extremity are NOT considered as intersecting. """

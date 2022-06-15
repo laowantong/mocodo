@@ -1,10 +1,5 @@
-#!/usr/bin/env python
-# encoding: utf-8
-
-from __future__ import division
-
-
 import re
+
 from .dynamic import Dynamic
 
 findall_outer_commas = re.compile(r'[^,]+\[.*?\][^,]*|[^,]+').findall

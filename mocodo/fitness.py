@@ -1,12 +1,7 @@
-#!/usr/bin/env python
-# encoding: utf-8
-
-from __future__ import division
-
-from itertools import product
 from math import hypot
-from collections import Counter
+
 from .cross import cross
+
 
 def fitness(links, multiplicity, col_count, row_count, max_distance = 4):
     """ Return (by closure) a function evaluating the aesthetic quality of a given layout. """

@@ -1,7 +1,3 @@
-#!/usr/bin/env python
-# encoding: utf-8
-
-from __future__ import division
 import sys
 sys.path[0:0] = ["."]
 
@@ -13,12 +9,6 @@ import gettext
 gettext.NullTranslations().install()
 
 params = parsed_arguments()
-
-import os
-
-# Python 2.7 compatibility
-if not hasattr(unittest.TestCase, "assertRaisesRegex"):
-    unittest.TestCase.assertRaisesRegex = unittest.TestCase.assertRaisesRegexp
 
 class McdTest(unittest.TestCase):
 

@@ -20,7 +20,7 @@ The recommended way to install the Mocodo magic extension is to use pip:
 
     pip install mocodo_magic
 
-If this fails, ensure first you have a working Python installation (tested under 2.7 and 3.5).
+If this fails, ensure first you have a working Python 3 installation.
 
 Usage
 -------
@@ -62,8 +62,6 @@ setup(
         'Intended Audience :: Information Technology',
         'Topic :: Database',
         'License :: OSI Approved :: MIT License',
-        'Programming Language :: Python :: 2',
-        'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.5',
         'Framework :: IPython'

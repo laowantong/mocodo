@@ -1,10 +1,3 @@
-#!/usr/bin/env python
-# encoding: utf-8
-
-from __future__ import division
-
-import sys
-import re
 from .dynamic import Dynamic
 from .mocodo_error import MocodoError
 

@@ -1,7 +1,3 @@
-#!/usr/bin/env python
-# encoding: utf-8
-
-from __future__ import division
 import sys
 
 sys.path[0:0] = ["."]
@@ -172,7 +168,7 @@ class ArrangeBB(unittest.TestCase):
         params["min_objective"] = 0
         params["timeout"] = None
         params["verbose"] = False
-        seed(1 if sys.version_info.major == 2 else 458)
+        seed(458)
         expected = """
             :
             CONSECTETUER: elit, sed

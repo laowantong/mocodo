@@ -1,17 +1,13 @@
-#!/usr/bin/env python
-# encoding: utf-8
-
-from __future__ import division
-
-import re
-from .association import Association
-from .entity import Entity
-from .phantom import Phantom
-from .diagram_link import DiagramLink
 import itertools
+import re
 from collections import defaultdict
+
+from .association import Association
+from .diagram_link import DiagramLink
+from .entity import Entity
 from .grid import Grid
 from .mocodo_error import MocodoError
+from .phantom import Phantom
 
 compress_colons = re.compile(r"(?m)^:\n(?=:$)").sub
 
