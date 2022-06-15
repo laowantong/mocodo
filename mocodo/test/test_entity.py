@@ -77,5 +77,12 @@ class EntityTest(unittest.TestCase):
         self.assertEqual([a.label for a in e.attributes], ["abscisse", "ordonnee", "foobar"])
         self.assertEqual([a.get_category() for a in e.attributes], ["weak", "weak", "simple"])
 
+    def test_backslash_suppression(self):
+        e = Entity("PARTICIPANT\: numero\, \tnom\t, ad\\resse")
+        e.set_strengthen_legs([])
+        self.assertEqual(e.name, "PARTICIPANT")
+        self.assertEqual(e.cartouche, "PARTICIPANT")
+        self.assertEqual([a.label for a in e.attributes], ["numero", "nom", "adresse"])
+
 if __name__ == '__main__':
     unittest.main()

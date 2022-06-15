@@ -6,7 +6,7 @@ class Entity:
     def __init__(self, clause):
         
         def clean_up(name, attributes):
-            name = name.strip(" \n\t")
+            name = name.strip().replace("\\", "")
             cartouche = (name[:-1] if name[-1].isdigit() else name) # get rid of digit suffix, if any
             return (name, cartouche, outer_split(attributes))
         

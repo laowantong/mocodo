@@ -2,18 +2,15 @@ import re
 
 from .dynamic import Dynamic
 
-findall_outer_commas = re.compile(r'[^,]+\[.*?\][^,]*|[^,]+').findall
 
+def outer_split(s, findall_outer_commas = re.compile(r'[^,]+\[.*?\][^,]*|[^,]+').findall):
+    return [s.replace(", ", ",").strip().replace("\\", "") for s in findall_outer_commas(s.replace(",", ", "))]
 
-def outer_split(s):
-    return [s.replace(", ", ",").strip(" \n\t") for s in findall_outer_commas(s.replace(",", ", "))]
-
-search_label_and_type = re.compile(r"^(.*?)(?: *\[(.*)\])?$").search
 
 
 class Attribute:
 
-    def __init__(self, attribute, rank):
+    def __init__(self, attribute, rank, search_label_and_type = re.compile(r"^(.*?)(?: *\[(.*)\])?$").search):
         (label, self.data_type) = search_label_and_type(attribute).groups()
         self.data_type = None if self.data_type is None else self.data_type.replace("<<<protected-comma>>>", ",").replace("<<<protected-colon>>>", ":")
         components = label.split("->")

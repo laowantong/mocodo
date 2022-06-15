@@ -6,36 +6,38 @@ from .dynamic import Dynamic
 from .leg import *
 from .mocodo_error import MocodoError
 
-match_leg = re.compile(r"((?:_11|..)[<>]?\s+(?:\[.+?\]\s+)?)(.+)").match
-
 TRIANGLE_ALTITUDE = sqrt(3) / 2
 INCIRCLE_RADIUS = 1 / sqrt(12)
 
 class Association:
 
     def __init__(self, clause, params={"df": u"DF", "card_format": u"{min_card},{max_card}"}):
-        def clean_up(name, legs, attributes):
+        def clean_up_name(name):
             name = name.strip()
             is_inheritance = False
             if name.startswith("/") and name.endswith("\\"):
                 name = name[1:-1]
                 is_inheritance = True
+            name = name.replace("\\", "")
             cartouche = (name[:-1] if name[-1:].isdigit() else name)
+            return (name, cartouche, is_inheritance)
+        
+        def clean_up_legs_and_attributes(legs_and_attributes, match_leg = re.compile(r"((?:_11|..)[<>]?\s+(?:\[.+?\]\s+)?)(.+)").match):
+            (legs, attributes) = (legs_and_attributes.split(":", 1) + [""])[:2]
             (cards, entities) = ([], [])
-            l = []
             for leg in legs.split(","):
-                leg = leg.strip()
+                leg = leg.strip().replace("\\", "")
                 m = match_leg(leg)
                 if m:
-                    l.append(m.groups())
+                    cards.append(m[1])
+                    entities.append(m[2])
                 else:
-                    raise MocodoError(2, _('Missing cardinalities in leg "{leg}" of association "{association}".').format(leg=leg, association=name))
-            (cards, entities) = zip(*l)
-            return (name, cartouche, list(cards), list(entities), outer_split(attributes), is_inheritance)
+                    raise MocodoError(2, _(f'Missing cardinalities in leg "{leg}" of association "{self.name}".'))
+            return (cards, entities, outer_split(attributes))
 
         (name, legs_and_attributes) = clause.split(",", 1)
-        (legs, attributes) = (legs_and_attributes.split(":", 1) + [""])[:2]
-        (self.name, self.cartouche, cards, entities, attributes, is_inheritance) = clean_up(name, legs, attributes)
+        (self.name, self.cartouche, is_inheritance) = clean_up_name(name)
+        (cards, entities, attributes) = clean_up_legs_and_attributes(legs_and_attributes)
         self.attributes = [SimpleAssociationAttribute(attribute, i) for (i, attribute) in enumerate(attributes)]
         entities = [(e.strip(), entities.count(e), entities[:i].count(e)) for (i, e) in enumerate(entities)]
         self.df_label = params["df"]

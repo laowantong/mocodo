@@ -116,5 +116,31 @@ class parse_test(unittest.TestCase):
         self.assertRaisesRegex(MocodoError, r"Mocodo Err\.2", Association, "EMPLOYER, PARTICIPANT, 0N ENTREPRISE",)
         self.assertRaisesRegex(MocodoError, r"Mocodo Err\.2", Association, "EMPLOYER, 1 PARTICIPANT, 0N ENTREPRISE",)
 
+    def test_backslash_suppression(self):
+        a = Association(r"BUZZ\, 01 FO\tO, 0N \tBAR\t")
+        self.assertEqual(a.name, "BUZZ")
+        self.assertEqual(a.cartouche, "BUZZ")
+        self.assertEqual(a.legs[0].entity_name, "FOtO")
+        self.assertEqual(a.legs[1].entity_name, "tBARt")
+        a = Association("BUZZ\, 01 FO\tO, 0N \tBAR\t")
+        self.assertEqual(a.name, "BUZZ")
+        self.assertEqual(a.cartouche, "BUZZ")
+        self.assertEqual(a.legs[0].entity_name, "FO\tO")
+        self.assertEqual(a.legs[1].entity_name, "BAR")
+
+    def test_backslash_conservation(self):
+        a = Association(r"/BUZZ\, 01 FOO, 0N BAR")
+        self.assertEqual(a.name, "BUZZ")
+        self.assertEqual(a.cartouche, "BUZZ")
+        self.assertEqual(a.legs[0].entity_name, "FOO")
+        self.assertEqual(a.legs[1].entity_name, "BAR")
+        self.assertEqual(a.kind, "inheritance")
+        a = Association("/BUZZ\, 01 FOO, 0N BAR")
+        self.assertEqual(a.name, "BUZZ")
+        self.assertEqual(a.cartouche, "BUZZ")
+        self.assertEqual(a.legs[0].entity_name, "FOO")
+        self.assertEqual(a.legs[1].entity_name, "BAR")
+        self.assertEqual(a.kind, "inheritance")
+
 if __name__ == '__main__':
     unittest.main()

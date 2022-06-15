@@ -239,7 +239,7 @@ class relationsTest(unittest.TestCase):
     def test_annotations_with_numbers_only_disambiguation_strategy(self):
         clauses = u"""
             Personne: Num. SS, Nom, Prénom, Sexe
-            Engendrer, 0N [Une personne peut avoir un nombre quelconque d'enfants.] Personne, 0N [Une personne peut avoir un nombre quelconque de parents dans la base.\\nRemarque : vous avez peut-être envie de remplacer la cardinalité maximale N par sa valeur réelle, à savoir 2. Cette précision disparaissant lors du passage au relationnel, elle est en général jugée inutile.] Personne
+            Engendrer, 0N [Une personne peut avoir un nombre quelconque d'enfants.] Personne, 0N [Une personne peut avoir un nombre quelconque de parents dans la base. Remarque : vous avez peut-être envie de remplacer la cardinalité maximale N par sa valeur réelle, à savoir 2. Cette précision disparaissant lors du passage au relationnel, elle est en général jugée inutile.] Personne
         """
         text = u"""
             Personne (_Num. SS_, Nom, Prénom, Sexe)
@@ -262,7 +262,7 @@ class relationsTest(unittest.TestCase):
         self.assertEqual(d["relations"][1]["this_relation_name"], u"Engendrer")
         self.assertEqual(d["relations"][1]["columns"][0]["leg_annotation"], u"Une personne peut avoir un nombre quelconque d\\'enfants.")
         self.assertEqual(d["relations"][1]["columns"][0]["label"], u"Num. SS")
-        self.assertEqual(d["relations"][1]["columns"][1]["leg_annotation"], u"Une personne peut avoir un nombre quelconque de parents dans la base.\nRemarque : vous avez peut-être envie de remplacer la cardinalité maximale N par sa valeur réelle, à savoir 2. Cette précision disparaissant lors du passage au relationnel, elle est en général jugée inutile.")
+        self.assertEqual(d["relations"][1]["columns"][1]["leg_annotation"], u"Une personne peut avoir un nombre quelconque de parents dans la base. Remarque : vous avez peut-être envie de remplacer la cardinalité maximale N par sa valeur réelle, à savoir 2. Cette précision disparaissant lors du passage au relationnel, elle est en général jugée inutile.")
         self.assertEqual(d["relations"][1]["columns"][1]["label"], u"Num. SS.1")
 
     def test_data_types(self):
