@@ -176,7 +176,9 @@ class ArrangeBB(unittest.TestCase):
             LOREM: ipsum, dolor, sit
             :
 
-            :::
+            :
+            :
+            :
             DIGNISSIM: ligula, massa, varius
             :
 
@@ -256,11 +258,15 @@ class ArrangeBB(unittest.TestCase):
         expected = """
             DF1, 11 LOREM, 1N SUSPENDISSE
             SUSPENDISSE: diam
-            :::
+            :
+            :
+            :
 
             LOREM: ipsum, dolor, sit
             SOLLICITUDIN, 0N SUSPENDISSE, 0N CONSECTETUER, 0N LOREM: lectus
-            :::
+            :
+            :
+            :
 
             AMET, 11> LOREM, 01 CONSECTETUER: adipiscing
             CONSECTETUER: elit, sed
@@ -268,14 +274,17 @@ class ArrangeBB(unittest.TestCase):
             DIGNISSIM: ligula, massa, varius
             MAECENAS, 1N DIGNISSIM, 1N DIGNISSIM
 
-            ::
+            :
+            :
             RISUS: ultricies, _cras, elementum
             SEMPER, 0N RISUS, 1N DIGNISSIM
             :
 
-            ::
+            :
+            :
             DF, 11 RISUS, 0N RISUS
-            ::
+            :
+            :
         """
         mcd.set_layout(**rearrangement)
         self.assertEqual(mcd.get_clauses(), expected.strip().replace("  ", ""))

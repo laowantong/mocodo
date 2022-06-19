@@ -161,7 +161,8 @@ class McdTest(unittest.TestCase):
 
             :
             FLÉAU: battadère, van, mesure
-            ::
+            :
+            :
         """.strip().replace("  ", "")
         mcd.set_layout(list(range(16)))
         self.assertEqual(mcd.get_clauses(), expected)
@@ -229,7 +230,8 @@ class McdTest(unittest.TestCase):
         expected = u"""
             :
             FLÉAU: battadère, van, mesure
-            ::
+            :
+            :
 
             :
             ROULEAU: tribulum
@@ -263,7 +265,8 @@ class McdTest(unittest.TestCase):
             ROULEAU: tribulum
             :
 
-            ::
+            :
+            :
             FLÉAU: battadère, van, mesure
             :
         """.strip().replace("  ", "")
@@ -271,7 +274,8 @@ class McdTest(unittest.TestCase):
         expected = u"""
             BARATTE: piston, racloir, fusil
             DF, 11 BARATTE, 1N ROULEAU
-            ::
+            :
+            :
 
             MARTEAU, 0N BARATTE, 11 TINET: ciseaux
             BALANCE, 0N ROULEAU, 0N TINET: charrue
@@ -285,7 +289,8 @@ class McdTest(unittest.TestCase):
 
             CROCHET: égrenoir, _gorgeoir, bouillie
             PORTE, 11 CROCHET, 0N CROCHET
-            ::
+            :
+            :
         """.strip().replace("  ", "")
         self.assertEqual(mcd.get_clauses_diagonal_mirror(), expected)
 
@@ -341,7 +346,10 @@ class McdTest(unittest.TestCase):
             Call: Ride, Soon
 
             Gear , 1N Call, 1N Folk
-            ::::
+            :
+            :
+            :
+            :
         """.strip().replace("  ", "")
         self.assertEqual(mcd.get_reformatted_clauses(1), expected)
         # 2nd next fit: (4, 4)
@@ -361,7 +369,10 @@ class McdTest(unittest.TestCase):
             Gear , 1N Call, 1N Folk
             :
 
-            ::::
+            :
+            :
+            :
+            :
         """.strip().replace("  ", "")
         self.assertEqual(mcd.get_reformatted_clauses(2), expected)
         
@@ -400,9 +411,19 @@ class McdTest(unittest.TestCase):
             Gear , 1N Call, 1N Folk
             :
 
-            ::::::
+            :
+            :
+            :
+            :
+            :
+            :
 
-            ::::::
+            :
+            :
+            :
+            :
+            :
+            :
         """.strip().replace("  ", "")
         self.assertEqual(mcd.get_reformatted_clauses(-1), expected)
 
@@ -441,7 +462,10 @@ class McdTest(unittest.TestCase):
             Call: Ride, Soon
 
             Gear , 1N Call, 1N Folk
-            ::::
+            :
+            :
+            :
+            :
         """.strip().replace("  ", "")
         self.assertEqual(mcd.get_reformatted_clauses(-1), expected)
         self.assertEqual(mcd.get_reformatted_clauses(1), expected)

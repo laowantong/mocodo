@@ -10,8 +10,6 @@ from .grid import Grid
 from .mocodo_error import MocodoError
 from .phantom import Phantom
 
-compress_colons = re.compile(r"(?m)^:\n(?=:$)").sub
-
 def cmp(x, y):
     return (x > y) - (x < y)
 
@@ -262,19 +260,16 @@ class Mcd:
             result += "\n\n".join(self.get_row_text(row) for row in self.rows)
         else:
             result += "\n\n".join(":\n" + "\n:\n".join(self.get_row_text(row).split("\n")) + "\n:" for row in self.rows)
-        return compress_colons(":", result)
+        return result
     
     def get_clauses_horizontal_mirror(self):
-        result = self.header + "\n\n".join(self.get_row_text(row) for row in self.rows[::-1])
-        return compress_colons(":", result)
+        return self.header + "\n\n".join(self.get_row_text(row) for row in self.rows[::-1])
     
     def get_clauses_vertical_mirror(self):
-        result = self.header + "\n\n".join(self.get_row_text(row[::-1]) for row in self.rows)
-        return compress_colons(":", result)
+        return self.header + "\n\n".join(self.get_row_text(row[::-1]) for row in self.rows)
     
     def get_clauses_diagonal_mirror(self):
-        result = self.header + "\n\n".join(self.get_row_text(row) for row in zip(*self.rows))
-        return compress_colons(":", result)
+        return self.header + "\n\n".join(self.get_row_text(row) for row in zip(*self.rows))
     
     def get_reformatted_clauses(self, nth_fit):
         grid = Grid(len(self.boxes) + 100) # make sure there are enough precalculated grids
@@ -296,7 +291,7 @@ class Mcd:
             if i % col_count == 0 and i:
                 result.append("")
             result.append(":")
-        return self.header + compress_colons(":", "\n".join(result))
+        return self.header + "\n".join(result)
     
     def calculate_size(self, style):
         def card_max_width():
