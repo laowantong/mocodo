@@ -58,9 +58,17 @@ class Entity:
         result = []
         self.cx = geo["cx"][self.name]
         self.cy = geo["cy"][self.name]
-        result.append(("comment", {"comment": f"Entity {self.name}"}))
-        result.append(("begin", {"id": f"entity-{self.name}"}))
-        result.append(("begin", {"id": f"frame-{self.name}"}))
+        result.append(("comment", {"text": f"Entity {self.name}"}))
+        result.append(
+            (
+                "begin_component",
+                {
+                    "page": self.page,
+                    "visibility": "hidden" if self.page else "visible",
+                }
+            )
+        )
+        result.append(("begin_group", {}))
         result.append(
             (
                 "rect",
@@ -116,7 +124,7 @@ class Entity:
                 },
             )
         )
-        result.append(("end", {"id": f"frame-{self.name}"}))
+        result.append(("end", {}))
         result.append(
             (
                 "text",
@@ -136,5 +144,5 @@ class Entity:
             attribute.name = self.name
             result.extend(attribute.description(style, self.cx, self.cy, dx, dy))
             dy += self.attribute_height + style["line_skip_height"]
-        result.append(("end", {"id": f"entity-{self.name}"}))
+        result.append(("end", {}))
         return result

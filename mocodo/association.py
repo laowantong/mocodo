@@ -263,17 +263,28 @@ class Association:
             self.description_depending_on_df = description_when_default
 
     def description(self, style, geo):
+        result = []
         self.cx = geo["cx"][self.name]
         self.cy = geo["cy"][self.name]
-        return (
-            self.leg_descriptions(style, geo) +
-            [("begin", {"id": f"association-{self.name}"})] +
-            self.description_depending_on_df(style) +
-            [("end", {"id": f"association-{self.name}"})]
+        result.append(("comment", {"text": f"Association {self.name}"}))
+        result.append(
+            (
+                "begin_component",
+                {
+                    "page": self.page,
+                    "visibility": "hidden" if self.page else "visible",
+                }
+            )
         )
+        result.extend(self.leg_descriptions(style, geo))
+        result.append(("begin_group", {}))
+        result.extend(self.description_depending_on_df(style))
+        result.append(("end", {}))
+        result.append(("end", {}))
+        return result
 
     def leg_descriptions(self, style, geo):
-        result = [("comment", {"comment": f"Association {self.name}"})]
+        result = []
         for leg in self.legs:
             result.extend(leg.description(style, geo))
         return result

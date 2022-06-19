@@ -7,6 +7,7 @@ class Phantom:
         self.kind = "phantom"
         self.clause = ":"
         self.identifier = None
+        self.page = 0
 
     def calculate_size(self, *ignored):
         self.w = 0

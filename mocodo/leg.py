@@ -309,7 +309,7 @@ class DiagramLink:
         self.offset = 2 * (style["card_margin"] + style["card_max_width"])
 
     def description(self, style, geo):
-        result = [("comment", {"comment": f'Link from "{self.foreign_key.primary_key_label}" ({self.foreign_entity.name}) to "{self.primary_key.label}" ({self.primary_entity.name})'})]
+        result = [("comment", {"text": f'Link from "{self.foreign_key.primary_key_label}" ({self.foreign_entity.name}) to "{self.primary_key.label}" ({self.primary_entity.name})'})]
         spins = (
             [(-1, -1), (1, -1), (-1, 1), (1, 1)]
             if self.foreign_key.rank % 2

@@ -1,7 +1,6 @@
+from email.policy import default
 import itertools
-import random
 import re
-import string
 from collections import defaultdict
 
 from .association import Association
@@ -17,7 +16,6 @@ def cmp(x, y):
     return (x > y) - (x < y)
 
 SYS_MAXINT = 9223372036854775807 # an integer larger than any practical list or string index
-SALT_CHARACTERS = string.ascii_letters + string.digits
 
 class Mcd:
 
@@ -29,7 +27,9 @@ class Mcd:
             seen = set()
             self.rows = [[]]
             self.header = ""
+            pages = defaultdict(list)
             for clause in clauses:
+                indentation = len(clause) - len(clause.lstrip())
                 clause = clause.strip(" \n\r\t")
                 if not clause:
                     self.rows.append([])
@@ -39,25 +39,27 @@ class Mcd:
                         self.header += "%s\n" % clause
                     continue
                 if clause == ":" * len(clause):
-                    self.rows[-1].extend(Phantom(next(phantom_counter)) for colon in clause)
+                    self.rows[-1].extend(Phantom(next(phantom_counter)) for _ in clause)
                     continue
                 if clause.startswith(":"):
-                    raise MocodoError(19, _('The clause "{clause}" starts with a colon.').format(clause=clause))
+                    raise MocodoError(19, _(f'The clause "{clause}" starts with a colon.'))
                 clause = re.sub("\[.+?\]", substitute_forbidden_symbols_between_brackets, clause)
                 if "," in clause.split(":", 1)[0]:
                     element = Association(clause, **params)
                     if element.name in self.associations:
-                        raise MocodoError(7, _('Duplicate association "{association}". If you want to make two associations appear with the same name, you must suffix it with a number.').format(association=element.name))
+                        raise MocodoError(7, _(f'Duplicate association "{element.name}". If you want to make two associations appear with the same name, you must suffix it with a number.'))
                     self.associations[element.name] = element
+                    pages[indentation].append(element)
                 elif ":" in clause:
                     element = Entity(clause)
                     if element.name in self.entities:
-                        raise MocodoError(6, _('Duplicate entity "{entity}". If you want to make two entities appear with the same name, you must suffix it with a number.').format(entity=element.name))
+                        raise MocodoError(6, _(f'Duplicate entity "{element.name}". If you want to make two entities appear with the same name, you must suffix it with a number.'))
                     self.entities[element.name] = element
+                    pages[indentation].append(element)
                 else:
-                    raise MocodoError(21, _('"{clause}" does not constitute a valid declaration of an entity or association.').format(clause=clause))
+                    raise MocodoError(21, _(f'"{clause}" does not constitute a valid declaration of an entity or association.'))
                 if element.name in seen:
-                    raise MocodoError(8, _('One entity and one association share the same name "{name}".').format(name=element.name))
+                    raise MocodoError(8, _(f'One entity and one association share the same name "{element.name}".'))
                 seen.add(element.name)
                 self.rows[-1].append(element)
             if not seen:
@@ -65,6 +67,10 @@ class Mcd:
             self.rows = [row for row in self.rows if row]
             self.col_count = max(len(row) for row in self.rows)
             self.row_count = len(self.rows)
+            self.page_count = len(pages)
+            for (i, (indentation, elements)) in enumerate(sorted(pages.items(), key=lambda x: x[0])):
+                for element in elements:
+                    element.page = i
         
         def add_legs():
             for association in self.associations.values():
@@ -73,9 +79,9 @@ class Mcd:
                         entity = self.entities[leg.entity_name]
                     except KeyError:
                         if leg.entity_name in self.associations:
-                            raise MocodoError(20, _(u'Association "{association_1}" linked to another association "{association_2}"!').format(association_1=association.name, association_2=leg.entity_name))
+                            raise MocodoError(20, _(f'Association "{association.name}" linked to another association "{leg.entity_name}"!'))
                         else:
-                            raise MocodoError(1, _(u'Association "{association}" linked to an unknown entity "{entity}"!').format(association=association.name, entity=leg.entity_name))
+                            raise MocodoError(1, _(f'Association "{association.name}" linked to an unknown entity "{leg.entity_name}"!'))
                     leg.register_entity(entity)
         
         def add_attributes_and_strength():
@@ -217,7 +223,7 @@ class Mcd:
     def get_row_text(self, row):
         result = []
         for box in row:
-            clause = box.clause
+            clause = "  " * box.page + box.clause
             clause = clause.replace("<<<protected-comma>>>", ",")
             clause = clause.replace("<<<protected-colon>>>", ":")
             result.append(clause)
@@ -284,8 +290,7 @@ class Mcd:
             if box.kind != "phantom":
                 if i % col_count == 0 and i:
                     result.append("")
-                result.append(box.clause)
-                # result.append(box.clause.replace("<<<protected-comma>>>", ",").replace("<<<protected-colon>>>", ":"))
+                result.append("  " * box.page + box.clause)
                 i += 1
         for i in range(i, col_count * row_count):
             if i % col_count == 0 and i:
@@ -377,12 +382,11 @@ class Mcd:
             result.extend(element.description(style, geo))
         for element in self.diagram_links:
             result.extend(element.description(style, geo))
-        result.append(("comment", {"comment": "Annotations"}))
+        result.append(("comment", {"text": "Annotations"}))
         result.append(
             (
                 "annotations",
                 {
-                    "salt": ''.join(random.choice(SALT_CHARACTERS) for _ in range(8)),
                     "height_threshold": geo["height"] - style["annotation_overlay_height"] - style["card_margin"],
                     "overlay_height": style["annotation_overlay_height"],
                     "x": geo["width"] // 2,
@@ -397,6 +401,23 @@ class Mcd:
                 }
             )
         )
+        if self.page_count > 1:
+            diameter = style["annotation_overlay_height"] / 4
+            result.append(("comment", {"text": "Pager"}))
+            for i in range(self.page_count):
+                result.append(
+                    (
+                        "pager_dot",
+                        {
+                            "cx": geo["width"] / 2 - (self.page_count - 1 - 2 * i) * diameter,
+                            "cy": geo["height"] + 2 * diameter,
+                            "r": diameter / 2,
+                            "color": "lightgray" if i else "gray",
+                            "page": i,
+                        }
+                    )
+                )
+            result.append(("pager", {"page_count": self.page_count}))
         return result
 
 
