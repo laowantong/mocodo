@@ -49,7 +49,7 @@ class RelationTemplatesTest(unittest.TestCase):
             :
             SLOW: else, line, #cute->ODDS->cute, #echo->ODDS->echo, whom
             :
-            CORD: #else->SLOW->else, _bury, left
+            CORD: bury, #else->SLOW->else, left
             ::
             
             
@@ -73,8 +73,8 @@ class RelationTemplatesTest(unittest.TestCase):
             :::
             ODDS: #cute->POEM->cute, _echo, golf
             :
-        """.strip().replace("    ", "").split()
-        result = t.get_text(template).split()
+        """.strip().replace("    ", "").split("\n")
+        result = t.get_text(template).split("\n")
         for (result_line, expected_line) in zip(result, expected):
             self.assertEqual(result_line, expected_line)
 
@@ -120,8 +120,8 @@ class RelationTemplatesTest(unittest.TestCase):
             </div>
             <div>
               <span class='relation'>CORD</span> (
-                <span class='foreign'>else</span>,
                 <span class='foreign primary'>bury</span>,
+                <span class='foreign'>else</span>,
                 <span class='normal'>left</span>
               )
             </div>
@@ -192,10 +192,10 @@ class RelationTemplatesTest(unittest.TestCase):
             </div>
             </body>
             </html>
-        """.strip().replace("    ", "").split()
-        result = t.get_text(template).split()
+        """.strip().split("\n")
+        result = t.get_text(template).split("\n")
         for (result_line, expected_line) in zip(result, expected):
-            self.assertEqual(result_line, expected_line)
+            self.assertEqual(result_line.strip(), expected_line.strip())
 
     def test_html_verbose(self):
         template = json.loads(read_contents("mocodo/relation_templates/html_verbose.json"))
@@ -264,13 +264,13 @@ class RelationTemplatesTest(unittest.TestCase):
             
             <div>
               <span class='relation'>CORD</span> (
-                <span class='foreign'>else</span>,
                 <span class='foreign primary'>bury</span>,
+                <span class='foreign'>else</span>,
                 <span class='normal'>left</span>
               )
               <ul>
-                <li>Le champ <i>else</i> est une clef étrangère issue de l'entité <i>SLOW</i>. Il devrait normalement migrer à travers l'association <i>CORD</i>, mais celle-ci a été explicitement promue au rang de table.</li>
                 <li>Le champ <i>bury</i> constitue la clef primaire de la table. C'est une clef étrangère qui a migré directement à partir de l'entité <i>LOCK</i>.</li>
+                <li>Le champ <i>else</i> est une clef étrangère issue de l'entité <i>SLOW</i>. Il devrait normalement migrer à travers l'association <i>CORD</i>, mais celle-ci a été explicitement promue au rang de table.</li>
                 <li>Le champ <i>left</i> était déjà un simple attribut de l'association <i>CORD</i>.</li>
               </ul>
             </div>
@@ -393,10 +393,10 @@ class RelationTemplatesTest(unittest.TestCase):
             </div>
             </body>
             </html>
-        """.strip().replace("    ", "").split()
-        result = t.get_text(template).split()
+        """.strip().split("\n")
+        result = t.get_text(template).split("\n")
         for (result_line, expected_line) in zip(result, expected):
-            self.assertEqual(result_line, expected_line)
+            self.assertEqual(result_line.strip(), expected_line.strip())
 
     def test_latex(self):
         template = json.loads(read_contents("mocodo/relation_templates/latex.json"))
@@ -418,7 +418,7 @@ class RelationTemplatesTest(unittest.TestCase):
               Game & (\\prim{glad}, \\attr{oven}, \\foreign{glad.1}, \\attr{snap})\\\\
               Shed & (\\foreign{\\prim{else}}, \\foreign{\\prim{glad}}, \\foreign{\\prim{iron}}, \\attr{free})\\\\
               Slow & (\\prim{else}, \\attr{line}, \\foreign{cute}, \\foreign{echo}, \\attr{whom})\\\\
-              Cord & (\\foreign{else}, \\foreign{\\prim{bury}}, \\attr{left})\\\\
+              Cord & (\\foreign{\\prim{bury}}, \\foreign{else}, \\attr{left})\\\\
             % Lock & (\\prim{bury})\\\\
               Peak & (\\prim{amid}, \\attr{salt}, \\foreign{glad}, \\attr{rain})\\\\
               Diet & (\\prim{iron}, \\attr{cell}, \\foreign{rich}, \\attr{clip})\\\\
@@ -429,8 +429,8 @@ class RelationTemplatesTest(unittest.TestCase):
               Poem & (\\prim{cute}, \\attr{farm})\\\\
               Odds & (\\foreign{\\prim{cute}}, \\prim{echo}, \\attr{golf})\\\\
             \\end{mld}
-        """.strip().replace("    ", "").split()
-        result = t.get_text(template).split()
+        """.strip().replace("    ", "").split("\n")
+        result = t.get_text(template).split("\n")
         for (result_line, expected_line) in zip(result, expected):
             self.assertEqual(result_line, expected_line)
 
@@ -440,7 +440,7 @@ class RelationTemplatesTest(unittest.TestCase):
             **GAME** (<ins>glad</ins>, oven, _glad.1_, snap)  
             **SHED** (<ins>_else_</ins>, <ins>_glad_</ins>, <ins>_iron_</ins>, free)  
             **SLOW** (<ins>else</ins>, line, _cute_, _echo_, whom)  
-            **CORD** (_else_, <ins>_bury_</ins>, left)  
+            **CORD** (<ins>_bury_</ins>, _else_, left)  
             <!--
             **LOCK** (<ins>bury</ins>)  
             -->
@@ -452,8 +452,8 @@ class RelationTemplatesTest(unittest.TestCase):
             **QUIT** (<ins>rich</ins>, milk)  
             **POEM** (<ins>cute</ins>, farm)  
             **ODDS** (<ins>_cute_</ins>, <ins>echo</ins>, golf)
-        """.strip().replace("    ", "").split()
-        result = t.get_text(template).split()
+        """.strip().replace("    ", "").split("\n")
+        result = t.get_text(template).split("\n")
         for (result_line, expected_line) in zip(result, expected):
             self.assertEqual(result_line, expected_line)
 
@@ -478,9 +478,9 @@ class RelationTemplatesTest(unittest.TestCase):
             - Les champs _cute_ et _echo_ sont des clefs étrangères. Ils ont migré à partir de l'entité _ODDS_ par l'association de dépendance fonctionnelle _ALLY_ en perdant leur caractère identifiant.  
             - Le champ _whom_ a migré à partir de l'association de dépendance fonctionnelle _ALLY_.  
             
-            **CORD** (_else_, <ins>_bury_</ins>, left)  
-            - Le champ _else_ est une clef étrangère issue de l'entité _SLOW_. Il devrait normalement migrer à travers l'association _CORD_, mais celle-ci a été explicitement promue au rang de table.  
+            **CORD** (<ins>_bury_</ins>, _else_, left)  
             - Le champ _bury_ constitue la clef primaire de la table. C'est une clef étrangère qui a migré directement à partir de l'entité _LOCK_.  
+            - Le champ _else_ est une clef étrangère issue de l'entité _SLOW_. Il devrait normalement migrer à travers l'association _CORD_, mais celle-ci a été explicitement promue au rang de table.  
             - Le champ _left_ était déjà un simple attribut de l'association _CORD_.  
             
             **LOCK** (<ins>bury</ins>)  
@@ -526,8 +526,8 @@ class RelationTemplatesTest(unittest.TestCase):
             - Le champ _cute_ fait partie de la clef primaire de la table. Il a migré à partir de l'entité _POEM_ pour renforcer l'identifiant faible.  
             - Le champ _echo_ fait partie de la clef primaire de la table. C'était déjà un identifiant de l'entité _ODDS_.  
             - Le champ _golf_ a migré à partir de l'association de dépendance fonctionnelle _HANG_.
-        """.strip().replace("    ", "").split()
-        result = t.get_text(template).split()
+        """.strip().replace("    ", "").split("\n")
+        result = t.get_text(template).split("\n")
         for (result_line, expected_line) in zip(result, expected):
             self.assertEqual(result_line, expected_line)
 
@@ -563,8 +563,8 @@ class RelationTemplatesTest(unittest.TestCase):
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
             
             CREATE TABLE `CORD` (
-              `else` VARCHAR(42),
               `bury` VARCHAR(42),
+              `else` VARCHAR(42),
               `left` VARCHAR(42),
               PRIMARY KEY (`bury`)
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -638,8 +638,8 @@ class RelationTemplatesTest(unittest.TestCase):
             ALTER TABLE `SHED` ADD FOREIGN KEY (`glad`) REFERENCES `GAME` (`glad`);
             ALTER TABLE `SHED` ADD FOREIGN KEY (`else`) REFERENCES `SLOW` (`else`);
             ALTER TABLE `SLOW` ADD FOREIGN KEY (`cute`, `echo`) REFERENCES `ODDS` (`cute`, `echo`);
-            -- ALTER TABLE `CORD` ADD FOREIGN KEY (`bury`) REFERENCES `LOCK` (`bury`);
             ALTER TABLE `CORD` ADD FOREIGN KEY (`else`) REFERENCES `SLOW` (`else`);
+            -- ALTER TABLE `CORD` ADD FOREIGN KEY (`bury`) REFERENCES `LOCK` (`bury`);
             ALTER TABLE `PEAK` ADD FOREIGN KEY (`glad`) REFERENCES `GAME` (`glad`);
             ALTER TABLE `DIET` ADD FOREIGN KEY (`rich`) REFERENCES `QUIT` (`rich`);
             ALTER TABLE `SOUL` ADD FOREIGN KEY (`else`) REFERENCES `SLOW` (`else`);
@@ -649,8 +649,8 @@ class RelationTemplatesTest(unittest.TestCase):
             ALTER TABLE `DENY` ADD FOREIGN KEY (`rich_1`) REFERENCES `QUIT` (`rich`);
             ALTER TABLE `DENY` ADD FOREIGN KEY (`rich`) REFERENCES `QUIT` (`rich`);
             ALTER TABLE `ODDS` ADD FOREIGN KEY (`cute`) REFERENCES `POEM` (`cute`);
-        """.strip().replace("    ", "").split()
-        result = t.get_text(template).split()
+        """.strip().replace("    ", "").split("\n")
+        result = t.get_text(template).split("\n")
         for (result_line, expected_line) in zip(result, expected):
             self.assertEqual(result_line, expected_line)
 
@@ -683,8 +683,8 @@ class RelationTemplatesTest(unittest.TestCase):
             );
             
             CREATE TABLE "CORD" (
-              "else" VARCHAR(42),
               "bury" VARCHAR(42),
+              "else" VARCHAR(42),
               "left" VARCHAR(42),
               PRIMARY KEY ("bury")
             );
@@ -758,8 +758,8 @@ class RelationTemplatesTest(unittest.TestCase):
             ALTER TABLE "SHED" ADD FOREIGN KEY ("glad") REFERENCES "GAME" ("glad");
             ALTER TABLE "SHED" ADD FOREIGN KEY ("else") REFERENCES "SLOW" ("else");
             ALTER TABLE "SLOW" ADD FOREIGN KEY ("cute", "echo") REFERENCES "ODDS" ("cute", "echo");
-            -- ALTER TABLE "CORD" ADD FOREIGN KEY ("bury") REFERENCES "LOCK" ("bury");
             ALTER TABLE "CORD" ADD FOREIGN KEY ("else") REFERENCES "SLOW" ("else");
+            -- ALTER TABLE "CORD" ADD FOREIGN KEY ("bury") REFERENCES "LOCK" ("bury");
             ALTER TABLE "PEAK" ADD FOREIGN KEY ("glad") REFERENCES "GAME" ("glad");
             ALTER TABLE "DIET" ADD FOREIGN KEY ("rich") REFERENCES "QUIT" ("rich");
             ALTER TABLE "SOUL" ADD FOREIGN KEY ("else") REFERENCES "SLOW" ("else");
@@ -769,8 +769,8 @@ class RelationTemplatesTest(unittest.TestCase):
             ALTER TABLE "DENY" ADD FOREIGN KEY ("rich_1") REFERENCES "QUIT" ("rich");
             ALTER TABLE "DENY" ADD FOREIGN KEY ("rich") REFERENCES "QUIT" ("rich");
             ALTER TABLE "ODDS" ADD FOREIGN KEY ("cute") REFERENCES "POEM" ("cute");
-        """.strip().replace("    ", "").split()
-        result = t.get_text(template).split()
+        """.strip().replace("    ", "").split("\n")
+        result = t.get_text(template).split("\n")
         for (result_line, expected_line) in zip(result, expected):
             self.assertEqual(result_line, expected_line)
 
@@ -806,8 +806,8 @@ class RelationTemplatesTest(unittest.TestCase):
             );
             
             CREATE TABLE CORD (
-              else VARCHAR(42),
               bury VARCHAR(42),
+              else VARCHAR(42),
               left VARCHAR(42),
               PRIMARY KEY (bury)
             );
@@ -881,8 +881,8 @@ class RelationTemplatesTest(unittest.TestCase):
             ALTER TABLE SHED ADD FOREIGN KEY (glad) REFERENCES GAME (glad);
             ALTER TABLE SHED ADD FOREIGN KEY (else) REFERENCES SLOW (else);
             ALTER TABLE SLOW ADD FOREIGN KEY (cute, echo) REFERENCES ODDS (cute, echo);
-            -- ALTER TABLE CORD ADD FOREIGN KEY (bury) REFERENCES LOCK (bury);
             ALTER TABLE CORD ADD FOREIGN KEY (else) REFERENCES SLOW (else);
+            -- ALTER TABLE CORD ADD FOREIGN KEY (bury) REFERENCES LOCK (bury);
             ALTER TABLE PEAK ADD FOREIGN KEY (glad) REFERENCES GAME (glad);
             ALTER TABLE DIET ADD FOREIGN KEY (rich) REFERENCES QUIT (rich);
             ALTER TABLE SOUL ADD FOREIGN KEY (else) REFERENCES SLOW (else);
@@ -892,8 +892,8 @@ class RelationTemplatesTest(unittest.TestCase):
             ALTER TABLE DENY ADD FOREIGN KEY (rich_1) REFERENCES QUIT (rich);
             ALTER TABLE DENY ADD FOREIGN KEY (rich) REFERENCES QUIT (rich);
             ALTER TABLE ODDS ADD FOREIGN KEY (cute) REFERENCES POEM (cute);
-        """.strip().replace("    ", "").split()
-        result = t.get_text(template).split()
+        """.strip().replace("    ", "").split("\n")
+        result = t.get_text(template).split("\n")
         for (result_line, expected_line) in zip(result, expected):
             self.assertEqual(result_line, expected_line)
 
@@ -933,12 +933,12 @@ class RelationTemplatesTest(unittest.TestCase):
             );
             
             CREATE TABLE "CORD" (
-              "else" VARCHAR(42),
               "bury" VARCHAR(42),
+              "else" VARCHAR(42),
               "left" VARCHAR(42),
               PRIMARY KEY ("bury"),
+              -- FOREIGN KEY ("bury") REFERENCES "LOCK" ("bury"),
               FOREIGN KEY ("else") REFERENCES "SLOW" ("else")
-              --, FOREIGN KEY ("bury") REFERENCES "LOCK" ("bury")
             );
             
             /*
@@ -1013,8 +1013,8 @@ class RelationTemplatesTest(unittest.TestCase):
               PRIMARY KEY ("cute", "echo"),
               FOREIGN KEY ("cute") REFERENCES "POEM" ("cute")
             );
-        """.strip().replace("    ", "").split()
-        result = t.get_text(template).split()
+        """.strip().replace("    ", "").split("\n")
+        result = t.get_text(template).split("\n")
         for (result_line, expected_line) in zip(result, expected):
             self.assertEqual(result_line, expected_line)
 
@@ -1024,7 +1024,7 @@ class RelationTemplatesTest(unittest.TestCase):
             GAME (_glad_, oven, #glad.1, snap)
             SHED (_#else_, _#glad_, _#iron_, free)
             SLOW (_else_, line, #cute, #echo, whom)
-            CORD (#else, _#bury_, left)
+            CORD (_#bury_, #else, left)
             LOCK (_bury_)
             PEAK (_amid_, salt, #glad, rain)
             DIET (_iron_, cell, #rich, clip)
@@ -1034,8 +1034,8 @@ class RelationTemplatesTest(unittest.TestCase):
             QUIT (_rich_, milk)
             POEM (_cute_, farm)
             ODDS (_#cute_, _echo_, golf)
-        """.strip().replace("    ", "").split()
-        result = t.get_text(template).split()
+        """.strip().replace("    ", "").split("\n")
+        result = t.get_text(template).split("\n")
         for (result_line, expected_line) in zip(result, expected):
             self.assertEqual(result_line, expected_line)
 
@@ -1049,7 +1049,7 @@ class RelationTemplatesTest(unittest.TestCase):
             - **GAME** (__glad__, oven, #glad.1, snap)
             - **SHED** (__#else__, __#glad__, __#iron__, free)
             - **SLOW** (__else__, line, #cute, #echo, whom)
-            - **CORD** (#else, __#bury__, left)
+            - **CORD** (__#bury__, #else, left)
             %% - **LOCK** (__bury__)
             - **PEAK** (__amid__, salt, #glad, rain)
             - **DIET** (__iron__, cell, #rich, clip)
@@ -1059,8 +1059,8 @@ class RelationTemplatesTest(unittest.TestCase):
             - **QUIT** (__rich__, milk)
             - **POEM** (__cute__, farm)
             - **ODDS** (__#cute__, __echo__, golf)
-        """.strip().replace("    ", "").split()
-        result = t.get_text(template).split()
+        """.strip().replace("    ", "").split("\n")
+        result = t.get_text(template).split("\n")
         for (result_line, expected_line) in zip(result, expected):
             self.assertEqual(result_line, expected_line)
 
@@ -1204,8 +1204,8 @@ class MoreRelationTemplatesTest(unittest.TestCase):
             ALTER TABLE `APPARTEMENT` ADD FOREIGN KEY (`code_rue`, `num_immeuble`, `num_étage`) REFERENCES `ÉTAGE` (`code_rue`, `num_immeuble`, `num_étage`);
             ALTER TABLE `ÉTAGE` ADD FOREIGN KEY (`code_rue`, `num_immeuble`) REFERENCES `IMMEUBLE` (`code_rue`, `num_immeuble`);
             ALTER TABLE `IMMEUBLE` ADD FOREIGN KEY (`code_rue`) REFERENCES `RUE` (`code_rue`);
-        """.strip().replace("    ", "").split()
-        result = u.get_text(template).split()
+        """.strip().replace("    ", "").split("\n")
+        result = u.get_text(template).split("\n")
         for (result_line, expected_line) in zip(result, expected):
             self.assertEqual(result_line, expected_line)
 
@@ -1317,8 +1317,8 @@ class MoreRelationTemplatesTest(unittest.TestCase):
             ALTER TABLE "APPARTEMENT" ADD FOREIGN KEY ("code_rue", "num_immeuble", "num_étage") REFERENCES "ÉTAGE" ("code_rue", "num_immeuble", "num_étage");
             ALTER TABLE "ÉTAGE" ADD FOREIGN KEY ("code_rue", "num_immeuble") REFERENCES "IMMEUBLE" ("code_rue", "num_immeuble");
             ALTER TABLE "IMMEUBLE" ADD FOREIGN KEY ("code_rue") REFERENCES "RUE" ("code_rue");
-        """.strip().replace("    ", "").split()
-        result = u.get_text(template).split()
+        """.strip().replace("    ", "").split("\n")
+        result = u.get_text(template).split("\n")
         for (result_line, expected_line) in zip(result, expected):
             self.assertEqual(result_line, expected_line)
 
@@ -1433,8 +1433,8 @@ class MoreRelationTemplatesTest(unittest.TestCase):
             ALTER TABLE APPARTEMENT ADD FOREIGN KEY (code_rue, num_immeuble, num_étage) REFERENCES ÉTAGE (code_rue, num_immeuble, num_étage);
             ALTER TABLE ÉTAGE ADD FOREIGN KEY (code_rue, num_immeuble) REFERENCES IMMEUBLE (code_rue, num_immeuble);
             ALTER TABLE IMMEUBLE ADD FOREIGN KEY (code_rue) REFERENCES RUE (code_rue);
-        """.strip().replace("    ", "").split()
-        result = u.get_text(template).split()
+        """.strip().replace("    ", "").split("\n")
+        result = u.get_text(template).split("\n")
         for (result_line, expected_line) in zip(result, expected):
             self.assertEqual(result_line, expected_line)
 
@@ -1547,8 +1547,8 @@ class MoreRelationTemplatesTest(unittest.TestCase):
               "nom_rue" VARCHAR(42),
               PRIMARY KEY ("code_rue")
             );
-        """.strip().replace("    ", "").split()
-        result = u.get_text(template).split()
+        """.strip().replace("    ", "").split("\n")
+        result = u.get_text(template).split("\n")
         for (result_line, expected_line) in zip(result, expected):
             self.assertEqual(result_line, expected_line)
 

@@ -63,7 +63,7 @@ class Common:
                 elif not key.endswith("ratio") and isinstance(shapes[key], numbers.Number):
                     shapes[key] *= scale
         
-        def ensure_margin_sizes_are_integer(shapes):
+        def ensure_margins_are_integer(shapes):
             # Some nasty failures are known to occur otherwise.
             for key in shapes:
                 if "margin" in key:
@@ -73,7 +73,7 @@ class Common:
         style.update(load_by_name("colors"))
         shapes = load_by_name("shapes")
         may_apply_scaling(shapes)
-        ensure_margin_sizes_are_integer(shapes)
+        ensure_margins_are_integer(shapes)
         style.update(shapes)
         style["transparent_color"] = None
         return style

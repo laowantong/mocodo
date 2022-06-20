@@ -40,7 +40,10 @@ class McdTest(unittest.TestCase):
         mcd = Mcd(clauses, **params)
         self.assertEqual(mcd.box_count, len(clauses))
         for box in mcd.boxes:
-            self.assertEqual(box.kind, "entity" if box.name + ":" in entities else "association")
+            if box.name + ":" in entities:
+                self.assertEqual(box.kind, "entity")
+            else:
+                self.assertIn(box.kind, ["association", "df", "cluster", "inheritance"])
 
     def test_rows(self):
         clauses = u"""

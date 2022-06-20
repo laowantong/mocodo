@@ -12,3 +12,9 @@ class Phantom:
     def calculate_size(self, *ignored):
         self.w = 0
         self.h = 0
+
+    def register_center(self, geo):
+        pass
+
+    def register_boxes(self, boxes):
+        self.boxes = boxes

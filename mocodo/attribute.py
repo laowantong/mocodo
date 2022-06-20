@@ -9,10 +9,8 @@ def outer_split(s, findall_outer_commas = re.compile(r'[^,]+\[.*?\][^,]*|[^,]+')
 class Attribute:
 
     def __init__(self, attribute, rank, search_label_and_type = re.compile(r"^(.*?)(?: *\[(.*)\])?$").search):
-        (label, self.data_type) = search_label_and_type(attribute).groups()
-        if self.data_type:
-            self.data_type = self.data_type.replace("<<<protected-comma>>>", ",")
-            self.data_type = self.data_type.replace("<<<protected-colon>>>", ":")
+        (label, dt) = search_label_and_type(attribute).groups()
+        self.data_type = dt and dt.replace("<<<safe-comma>>>", ",").replace("<<<safe-colon>>>", ":")
         components = label.split("->")
         if len(components) == 3:
             (self.label, self.primary_entity_name, self.primary_key_label) = components
@@ -100,7 +98,8 @@ class WeakAttribute(Attribute):
                 {
                     "x0": x + dx,
                     "x1": x + dx + self.w,
-                    "y": y + dy + self.h + style["underline_skip_height"],
+                    "y0": y + dy + self.h + style["underline_skip_height"],
+                    "y1": y + dy + self.h + style["underline_skip_height"],
                     "dash_width": style["dash_width"],
                     "stroke_depth": style["underline_depth"],
                     "stroke_color": style['entity_attribute_text_color'],

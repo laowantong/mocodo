@@ -14,7 +14,7 @@ class Association:
         def clean_up_name(name):
             name = name.strip()
             is_inheritance = False
-            if name.startswith("/") and name.endswith("\\"):
+            if name[:1] + name[-1:] == "/\\":
                 name = name[1:-1]
                 is_inheritance = True
             name = name.replace("\\", "")
@@ -32,7 +32,7 @@ class Association:
                 m = match_leg(leg)
                 if m:
                     cards.append(m[1])
-                    entity_names.append(m[2])
+                    entity_names.append(m[2].lstrip())
                 elif leg:
                     raise MocodoError(2, _(f'Missing cardinalities on leg "{leg}" of association "{self.name}".'))
                 else:
@@ -43,30 +43,30 @@ class Association:
         (self.name, self.cartouche, is_inheritance) = clean_up_name(name)
         (cards, entity_names, attributes) = clean_up_legs_and_attributes(legs_and_attributes)
         self.attributes = [SimpleAssociationAttribute(attribute, i) for (i, attribute) in enumerate(attributes)]
-        entity_names = [(e.strip(), entity_names.count(e), entity_names[:i].count(e)) for (i, e) in enumerate(entity_names)]
         self.df_label = params.get("df", "DF")
         if self.cartouche == self.df_label:
-            association_type = "df"
-            self.kind = "association"
+            self.kind = "df"
         elif is_inheritance:
-            association_type = "inheritance"
             self.kind = "inheritance"
             if cards and cards[0][2:3] not in [">", "<"]:
                 cards[0] = cards[0][:2] + ">" + cards[0][2:]
+        elif any(name.startswith("/") for name in entity_names):
+            self.kind = "cluster"
         else:
-            association_type = "default"
             self.kind = "association"
-        self.set_association_type_strategy(association_type)
         self.clause = clause
+        self.set_view_strategies()
         self.legs = []
-        for (card, (entity_name, count, num)) in zip(cards, entity_names):
-            leg = Leg(self, card, entity_name, **params)
-            leg.set_spin_strategy(0 if count == 1 else 2 * num / (count - 1) - 1)
+        for (i, (card, name)) in enumerate(zip(cards, entity_names)):
+            leg = Leg(self, card, name, **params)
+            mutiplicity = entity_names.count(name)
+            rank = entity_names[:i].count(name)
+            leg.set_spin_strategy(0 if mutiplicity == 1 else 2 * rank / (mutiplicity - 1) - 1)
             self.legs.append(leg)
 
-    def leg_identifiers(self):
-        for leg in self.legs:
-            yield leg.identifier
+
+    def register_boxes(self, boxes):
+        self.boxes = boxes
 
     def calculate_size(self, style, get_font_metrics):
         cartouche_font = get_font_metrics(style["association_cartouche_font"])
@@ -80,7 +80,11 @@ class Association:
         for leg in self.legs:
             leg.calculate_size(style, get_font_metrics)
 
-    def set_association_type_strategy(self, association_type):
+    def register_center(self, geo):
+        self.cx = geo["cx"][self.name]
+        self.cy = geo["cy"][self.name]
+
+    def set_view_strategies(self):
 
         def calculate_size_when_df(style, get_font_metrics):
             self.w = self.h = max(
@@ -164,6 +168,54 @@ class Association:
 
         def description_when_default(style):
             result = []
+            if self.kind == "cluster":
+                clustered_boxes = [self] + [leg.entity for leg in self.legs if leg.kind == "cluster_leg"]
+                x_min = min(b.cx - b.w // 2 for b in clustered_boxes)
+                y_min = min(b.cy - b.h // 2 for b in clustered_boxes)
+                x_max = max(b.cx + b.w // 2 for b in clustered_boxes)
+                y_max = max(b.cy + b.h // 2 for b in clustered_boxes)
+                x = x_min - style["card_margin"] // 2
+                y = y_min - style["card_margin"] // 2
+                w = x_max - x_min + style["card_margin"]
+                h = y_max - y_min + style["card_margin"]
+                for box in self.boxes:
+                    if box.kind == "phantom":
+                        continue
+                    if box in clustered_boxes:
+                        continue
+                    if x_min <= box.cx <= x_max and y_min <= box.cy <= y_max:
+                        break  # do not draw anything if this box is in the cluster
+                else:
+                    result.append(
+                        (
+                            "rect",
+                            {
+                                "x": x,
+                                "y": y,
+                                "w": w,
+                                "h": h,
+                                "stroke_color": None,
+                                "stroke_depth": 0,
+                                "color": style["entity_color"],
+                                "opacity": 0.2,
+                            },
+                        )
+                    )
+                    result.append(
+                        (
+                            "dash_rect",
+                            {
+                                "x": x,
+                                "y": y,
+                                "w": w,
+                                "h": h,
+                                "stroke_color": style['entity_stroke_color'],
+                                "stroke_depth": style["box_stroke_depth"] / 2,
+                                "color": None,
+                                "dash_width": style["dash_width"],
+                            },
+                        )
+                    )
             x = self.cx - self.w // 2
             y = self.cy - self.h // 2
             w = self.w
@@ -252,10 +304,10 @@ class Association:
                 dy += self.attribute_height + style["line_skip_height"]
             return result
 
-        if association_type == "df":
+        if self.kind == "df":
             self.calculate_size_depending_on_df = calculate_size_when_df
             self.description_depending_on_df = description_when_df
-        elif association_type == "inheritance":
+        elif self.kind == "inheritance":
             self.calculate_size_depending_on_df = calculate_size_when_inheritance
             self.description_depending_on_df = description_when_inheritance
         else:
@@ -264,8 +316,6 @@ class Association:
 
     def description(self, style, geo):
         result = []
-        self.cx = geo["cx"][self.name]
-        self.cy = geo["cy"][self.name]
         result.append(("comment", {"text": f"Association {self.name}"}))
         result.append(
             (

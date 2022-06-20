@@ -5,7 +5,7 @@ class Entity:
     def __init__(self, clause):
         def clean_up(name, attributes):
             name = name.strip().replace("\\", "")
-            cartouche = name[:-1] if name[-1].isdigit() else name  # get rid of digit suffix, if any
+            cartouche = name[:-1] if name[-1].isdigit() else name  # get rid of single digit suffix, if any
             return (name, cartouche, outer_split(attributes))
 
         (self.name, self.attribute_labels) = clause.split(":", 1)
@@ -33,6 +33,9 @@ class Entity:
             else:
                 self.attributes.append(SimpleEntityAttribute(attribute_label, i))
 
+    def register_boxes(self, boxes):
+        self.boxes = boxes
+    
     def calculate_size(self, style, get_font_metrics):
         cartouche_font = get_font_metrics(style["entity_cartouche_font"])
         self.get_cartouche_string_width = cartouche_font.get_pixel_width
@@ -54,10 +57,12 @@ class Entity:
         self.w += self.w % 2
         self.h += self.h % 2
 
-    def description(self, style, geo):
-        result = []
+    def register_center(self, geo):
         self.cx = geo["cx"][self.name]
         self.cy = geo["cy"][self.name]
+
+    def description(self, style, geo):
+        result = []
         result.append(("comment", {"text": f"Entity {self.name}"}))
         result.append(
             (
@@ -80,6 +85,7 @@ class Entity:
                     "color": style["entity_cartouche_color"],
                     "stroke_color": style["entity_cartouche_color"],
                     "stroke_depth": 0,
+                    "opacity": 1,
                 },
             )
         )
@@ -94,6 +100,7 @@ class Entity:
                     "stroke_color": style["entity_color"],
                     "color": style["entity_color"],
                     "stroke_depth": 0,
+                    "opacity": 1,
                 },
             )
         )
@@ -108,6 +115,7 @@ class Entity:
                     "stroke_color": style["entity_stroke_color"],
                     "color": style["transparent_color"],
                     "stroke_depth": style["box_stroke_depth"],
+                    "opacity": 1,
                 },
             )
         )

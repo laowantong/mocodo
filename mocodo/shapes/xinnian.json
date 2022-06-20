@@ -17,7 +17,7 @@
     "family": "Comic Sans MS",
     "size": 14
   },
-  "card_margin": 10,
+  "card_margin": 20,
   "card_text_height_ratio": 0.85,
   "card_underline_depth": 1,
   "card_underline_skip_height": -4.0,
@@ -39,7 +39,7 @@
   },
   "leg_stroke_depth": 2,
   "line_skip_height": 2,
-  "margin_size": 20,
+  "margin": 40,
   "note_baseline": 24,
   "note_font": {
     "family": "Arial Black",

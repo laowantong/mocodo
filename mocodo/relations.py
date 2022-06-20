@@ -60,6 +60,7 @@ class Relations:
         self.strengthen_weak_identifiers()
         self.process_associations()
         self.add_sorting_this_relation_number()
+        self.make_primary_keys_first()
         self.may_disambiguate_with_leg_notes = set_disambiguation_strategy(params["disambiguation"])
         may_update_params_with_guessed_title()
 
@@ -211,7 +212,7 @@ class Relations:
         for association in self.mcd.associations.values():
             weak_count = 0
             for leg in association.legs:
-                if leg.strengthen:
+                if leg.kind == "strengthening":
                     weak_count += 1
                     if weak_count == 2:
                         raise MocodoError(22, _('Reciprocal relative identification around {association}.').format(association=association.name))
@@ -291,9 +292,9 @@ class Relations:
         for association in self.mcd.associations.values():
             if association.kind == "inheritance":
                 for leg in association.legs:
-                    self.relations[leg.entity_name]["to_comment_out"] = (leg.cards[0] == "0") # when the leg's card starts with "0", the entity must be discarded
+                    self.relations[leg.entity_name]["to_comment_out"] = (leg.card[0] == "0") # when the leg's card starts with "0", the entity must be discarded
                 parent_leg = association.legs[0]
-                if parent_leg.cards[1] != "0":
+                if parent_leg.card[1] != "0":
                     for child_leg in association.legs[1:]: 
                         # export the association attributes into ALL children
                         self.relations[child_leg.entity_name]["columns"][0:0] = [{ 
@@ -316,10 +317,10 @@ class Relations:
                             "primary": attribute["primary"],
                             "foreign": True,
                             "nature": "foreign_primary_key" if attribute["primary"] else "foreign_attribute"
-                        } for attribute in self.relations[parent_leg.entity_name]["columns"] if attribute["primary"] or parent_leg.cards[1] == "N"]
+                        } for attribute in self.relations[parent_leg.entity_name]["columns"] if attribute["primary"] or parent_leg.card[1] == "N"]
                 association_attributes_already_exported = False
                 for child_leg in association.legs[1:]:
-                    if child_leg.cards[1] == "0":
+                    if child_leg.card[1] == "0":
                         continue
                     if not association_attributes_already_exported:
                         # export (once) into its parent the attributes already existing in the association
@@ -344,12 +345,12 @@ class Relations:
                         "primary": attribute["primary"],
                         "foreign": True,
                         "nature": "foreign_key" if attribute["primary"] else "foreign_attribute"
-                    } for attribute in self.relations[child_leg.entity_name]["columns"] if attribute["primary"] or child_leg.cards[1] == "N")
+                    } for attribute in self.relations[child_leg.entity_name]["columns"] if attribute["primary"] or child_leg.card[1] == "N")
                 continue
             (entity_name, entity_priority) = (None, 0)
             may_identify = True
             for leg in association.legs:
-                current_entity_priority = (2 if leg.cards[:2] == "11" else (1 if leg.cards[1] == "1" else 0))
+                current_entity_priority = (2 if leg.card[:2] == "11" else (1 if leg.card[1] == "1" else 0))
                 if current_entity_priority > entity_priority:
                     entity_name = leg.entity_name
                     entity_priority = current_entity_priority
@@ -414,6 +415,9 @@ class Relations:
                 if box.name in self.relations:
                     self.relations[box.name]["this_relation_number"] = next(this_relation_number)
     
+    def make_primary_keys_first(self):
+        for relation in self.relations.values():
+            relation["columns"].sort(key=lambda column: not column["primary"])
         
     
 

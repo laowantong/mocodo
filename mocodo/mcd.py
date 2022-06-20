@@ -86,7 +86,7 @@ class Mcd:
             strengthen_legs = dict((entity_name, []) for entity_name in self.entities)
             for association in self.associations.values():
                 for leg in association.legs:
-                    if leg.strengthen:
+                    if leg.kind == "strengthening":
                         strengthen_legs[leg.entity_name].append(leg)
             for (entity_name, legs) in strengthen_legs.items():
                 self.entities[entity_name].set_strengthen_legs(legs)
@@ -110,7 +110,7 @@ class Mcd:
             for (entity, vectors) in d.items():
                 for vector in vectors:
                     leg = tweakable_legs[(entity, vector)]
-                    if not leg.cardinalities.strip():
+                    if not leg.card_view.strip():
                         continue
                     elif vector == "E":
                         if vectors.count("E") == 1 and "SE" in vectors and "NE" not in vectors:
@@ -168,14 +168,12 @@ class Mcd:
                 for box in row:
                     box.identifier = next(i)
                     self.boxes.append(box)
+                    box.register_boxes(self.boxes)
             self.box_count = len(self.boxes)
         
         def substitute_forbidden_symbols_between_brackets(text):
             """Neutralize Mocodo syntax separators in the text between brackets."""
-            result = text.group()
-            result = result.replace(",", "<<<protected-comma>>>")
-            result = result.replace(":", "<<<protected-colon>>>")
-            return result
+            return text.group().replace(",", "<<<safe-comma>>>").replace(":", "<<<safe-colon>>>")
         
         self.get_font_metrics = get_font_metrics
         phantom_counter = itertools.count()
@@ -222,8 +220,8 @@ class Mcd:
         result = []
         for box in row:
             clause = "  " * box.page + box.clause
-            clause = clause.replace("<<<protected-comma>>>", ",")
-            clause = clause.replace("<<<protected-colon>>>", ":")
+            clause = clause.replace("<<<safe-comma>>>", ",")
+            clause = clause.replace("<<<safe-colon>>>", ":")
             result.append(clause)
         return "\n".join(result)
     
@@ -299,7 +297,7 @@ class Mcd:
             cardinalities = {"0,N"} # default value, in case there is no cardinalities at all
             for association in self.associations.values():
                 for leg in association.legs:
-                    cardinalities.add(leg.cardinalities)
+                    cardinalities.add(leg.card_view)
             return max(map(get_pixel_width, cardinalities))
         #
         def calculate_sizes():
@@ -311,14 +309,14 @@ class Mcd:
                 diagram_link.calculate_size(style, self.get_font_metrics)
         #
         def make_horizontal_layout():
-            self.w = style["margin_size"]
+            self.w = style["margin"]
             for row in self.rows:
-                horizontal_offset = style["margin_size"]
+                horizontal_offset = style["margin"]
                 for (i, box) in enumerate(row):
                     box.x = horizontal_offset + (max_box_width_per_column[i] - box.w) // 2
                     horizontal_offset += max_box_width_per_column[i] + join_width
                 self.w = max(self.w, horizontal_offset)
-            self.w += style["margin_size"] - join_width
+            self.w += style["margin"] - join_width
         #
         def compress_horizontally():
             dx = 0
@@ -334,13 +332,13 @@ class Mcd:
             self.w -= dx
         #
         def make_vertical_layout():
-            vertical_offset = style["margin_size"]
+            vertical_offset = style["margin"]
             for row in self.rows:
                 max_box_height = max(box.h for box in row)
                 for box in row:
                     box.y = vertical_offset + (max_box_height - box.h) // 2
                 vertical_offset += max_box_height + join_height
-            self.h = vertical_offset + style["margin_size"] - join_height
+            self.h = vertical_offset + style["margin"] - join_height
         #
         def compress_vertically():
             dy = 0
@@ -370,6 +368,8 @@ class Mcd:
         compress_vertically()
     
     def description(self, style, geo):
+        for box in self.boxes:
+            box.register_center(geo)
         result = []
         for element in self.entities.values():
             result.extend(element.description(style, geo))

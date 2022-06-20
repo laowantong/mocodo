@@ -22,7 +22,7 @@ style = {
     "underline_depth"             : 1,
     "card_underline_depth"        : 1,
     "dash_width"                  : 4,
-    "margin_size"                 : 9,
+    "margin"                 : 9,
     "box_stroke_depth"            : 1.5,
     "inner_stroke_depth"          : 1.5,
     "rect_margin_width"           : 8,
