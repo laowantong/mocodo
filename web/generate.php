@@ -136,8 +136,8 @@ if ($zip->open("{$title}.zip", ZIPARCHIVE::CREATE)!==TRUE) {
 
 $zip->addFile("{$title}_geo.json");
 $zip->addFile("{$title}.mcd");
-$zip->addFile("{$title}_svg.py");
 $zip->addFile("{$title}.svg");
+$zip->addFile("{$title}_static.svg"); # fails silently if file doesn't exist
 foreach ($_POST['relations'] as $key) {
     $ext = $extensions[$key];
     $zip->addFile("{$title}{$ext}");

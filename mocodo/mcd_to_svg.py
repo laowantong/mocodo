@@ -1,5 +1,6 @@
 from pathlib import Path
 import random
+import re
 import string
 
 from .common import safe_print_for_PHP
@@ -55,9 +56,22 @@ def main(mcd, common):
         tabs += key.startswith("begin")
     if common.params["hide_notes"] or not has_note_card:
         del categories["Notes"]
+    text = "\n".join(sum(categories.values(), [])) + "\n</svg>"
     path = Path(f"{common.params['output_name']}.svg")
-    path.write_text("\n".join(sum(categories.values(), [])) + "\n</svg>")
+    path.write_text(text)
     safe_print_for_PHP(common.output_success_message(path))
+    if categories.pop("Notes", None) or categories.pop("Pager"):
+        text = "\n".join(sum(categories.values(), [])) + "\n</svg>"
+        text = re.sub(
+            r"(?m)^<\?xml .+\n<svg .+",
+            svg_elements["preamble"].format(total_height=geo["height"], **geo),
+            text
+        )
+        text = re.sub(r"(?m)^<g class.+", "<g>", text)
+        text = re.sub(r' (onmouseover|onmouseout|style)=".+?"', "", text)
+        path = Path(f"{common.params['output_name']}_static.svg")
+        path.write_text(text)
+        safe_print_for_PHP(common.output_success_message(path))
 
 def html_escape(
     text,
