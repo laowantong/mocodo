@@ -14,9 +14,6 @@ auto_correction = {
 auto_correction = {v: k for k in auto_correction for v in auto_correction[k]}
 
 
-
-
-
 class Leg:
     def __init__(self, association, card, entity_name, **params):
         params["strengthen_card"] = params.get("strengthen_card", "_1,1_")
@@ -27,12 +24,10 @@ class Leg:
             entity_name = entity_name[1:]
         self.entity_name = entity_name
         (self.cards, self.arrow, self.annotation) = match_card(card).groups()
-        self.underlined_card = False
         self.strengthen = self.cards == "_11"
         if self.strengthen:
             self.cards = "11"
             if params["strengthen_card"][:1] + params["strengthen_card"][-1:] == "__":
-                self.underlined_card = True
                 self.cardinalities = params["strengthen_card"][1:-1]
             else:
                 self.cardinalities = params["strengthen_card"]
@@ -125,7 +120,7 @@ class Leg:
                     },
                 )
             )
-        if self.underlined_card:
+        if self.strengthen:
             result.append(
                 (
                     "line",
