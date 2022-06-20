@@ -8,16 +8,36 @@ SALT_CHARACTERS = string.ascii_letters + string.digits
 
 def main(mcd, common):
     style = common.load_style()
-    for (k, v) in style.items():
-        if k.endswith("_color") and v is None:
-            style[k] = "none"
     mcd_uid = ''.join(random.choice(SALT_CHARACTERS) for _ in range(8))
     mcd.calculate_size(style)
     geo = common.calculate_or_retrieve_geo(mcd)
+    description = [
+        (
+            "preamble",
+            {
+                "width": geo["width"],
+                "height": geo["height"],
+                "total_height": geo["height"] + (mcd.page_count > 1 and style["annotation_overlay_height"]),
+            }
+        ),
+        (
+            "timestamp", {"timestamp": common.timestamp()}
+        ),
+        (
+            "background",
+            {
+                "width": geo["width"],
+                "height": geo["height"],
+                "background_color": style["background_color"],
+            }
+        ),
+        *mcd.description(style, geo),
+    ]
     has_note_card = False
     tabs = 0
-    categories = {"Association": [], "Entity": [], "Link": [], "Annotations": [], "Pager": []}
-    for (key, mapping) in mcd.description(style, geo):
+    categories = {"": [], "Association": [], "Entity": [], "Link": [], "Annotations": [], "Pager": []}
+    category = ""
+    for (key, mapping) in description:
         mapping["mcd_uid"] = mcd_uid
         has_note_card |= key.endswith("with_note")
         if key == "comment":
@@ -27,23 +47,16 @@ def main(mcd, common):
                 mapping[k] = int(v) if v.is_integer() else round(v, 2)
             elif isinstance(v, str):
                 mapping[k] = html_escape(v)
+            elif v is None:
+                mapping[k] = "none"
         tabs -= (key == "end")
         # print(key, mapping, end="\n")
         categories[category].append('\t' * tabs + svg_elements[key].format_map(mapping))
         tabs += key.startswith("begin")
     if common.params["hide_annotations"] or not has_note_card:
         del categories["Annotations"]
-    mapping = {
-        "width": geo["width"],
-        "height": geo["height"],
-        "total_height": geo["height"] + (mcd.page_count > 1 and style["annotation_overlay_height"]),
-        "timestamp": common.timestamp(),
-        "shapes": "\n".join(sum(categories.values(), [])),
-        "background_color": style["background_color"] or "none",
-    }
-    text = template.format_map(mapping)
     path = Path(f"{common.params['output_name']}.svg")
-    path.write_text(text)
+    path.write_text("\n".join(sum(categories.values(), [])) + "\n</svg>")
     safe_print_for_PHP(common.output_success_message(path))
 
 def html_escape(
@@ -57,16 +70,10 @@ def html_escape(
 }):
     return "".join(table.get(c, c) for c in text)
 
-template = """\
-<?xml version="1.0" encoding="utf-8"?>
-<svg width="{width}" height="{total_height}" viewBox="0 0 {width} {total_height}" xmlns="http://www.w3.org/2000/svg">
-<desc>{timestamp}</desc>
-<rect id="frame" x="0" y="0" width="{width}" height="{height}" fill="{background_color}" stroke="none" stroke-width="0"/>
-{shapes}\n
-</svg>
-"""
-
 svg_elements = {
+    "preamble":         """<?xml version="1.0" encoding="utf-8"?>\n<svg width="{width}" height="{total_height}" viewBox="0 0 {width} {total_height}" xmlns="http://www.w3.org/2000/svg">""",
+    "timestamp":        """<desc>{timestamp}</desc>""",
+    "background":       """<rect id="frame" x="0" y="0" width="{width}" height="{height}" fill="{background_color}" stroke="none" stroke-width="0"/>""",
     "comment":          """\n<!-- {text} -->""",
     "begin_component":  """<g class="page_{page}_{mcd_uid}" visibility="{visibility}">""",
     "begin_group":      """<g>""",
@@ -133,11 +140,7 @@ if __name__ == "__main__":
         COMMANDE: Num commande, Date, Montant
         INCLURE, 1N COMMANDE, 0N PRODUIT: Quantité
         PRODUIT: Réf. produit, Libellé, Prix unitaire
-    """.replace(
-        "  ", ""
-    ).split(
-        "\n"
-    )
+    """
     params = parsed_arguments()
     common = Common(params)
     mcd = Mcd(clauses, **params)
