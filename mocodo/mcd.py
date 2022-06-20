@@ -377,27 +377,27 @@ class Mcd:
             result.extend(element.description(style, geo))
         for element in self.diagram_links:
             result.extend(element.description(style, geo))
-        result.append(("comment", {"text": "Annotations"}))
+        result.append(("comment", {"text": "Notes"}))
         result.append(
             (
-                "annotations",
+                "notes",
                 {
-                    "height_threshold": geo["height"] - style["annotation_overlay_height"] - style["card_margin"],
-                    "overlay_height": style["annotation_overlay_height"],
+                    "height_threshold": geo["height"] - style["note_overlay_height"] - style["card_margin"],
+                    "overlay_height": style["note_overlay_height"],
                     "x": geo["width"] // 2,
-                    "y_top": style["annotation_baseline"],
-                    "y_bottom": geo["height"] - style["annotation_overlay_height"] + style["annotation_baseline"],
-                    "y": geo["height"] - style["annotation_overlay_height"],
-                    "color": style["annotation_color"],
-                    "text_color": style["annotation_text_color"],
-                    "opacity": style["annotation_opacity"],
-                    "font_family": style["annotation_font"]["family"],
-                    "font_size": style["annotation_font"]["size"],
+                    "y_top": style["note_baseline"],
+                    "y_bottom": geo["height"] - style["note_overlay_height"] + style["note_baseline"],
+                    "y": geo["height"] - style["note_overlay_height"],
+                    "color": style["note_color"],
+                    "text_color": style["note_text_color"],
+                    "opacity": style["note_opacity"],
+                    "font_family": style["note_font"]["family"],
+                    "font_size": style["note_font"]["size"],
                 }
             )
         )
         if self.page_count > 1:
-            diameter = style["annotation_overlay_height"] / 4
+            diameter = style["note_overlay_height"] / 4
             result.append(("comment", {"text": "Pager"}))
             for i in range(self.page_count):
                 result.append(

@@ -18,11 +18,11 @@ class Relations:
                     for relation in self.relations.values():
                         for column in relation["columns"]:
                             column["label"] = column["raw_label"]
-            elif strategy == "annotations":
+            elif strategy == "notes":
                 def inner_function(template):
                     for relation in self.relations.values():
                         for column in relation["columns"]:
-                            column["label"] = column["raw_label"] if column["leg_annotation"] is None else template["compose_label_disambiguated_by_annotation"].format(**column)
+                            column["label"] = column["raw_label"] if column["leg_note"] is None else template["compose_label_disambiguated_by_note"].format(**column)
             else:
                 raise NotImplemented
             return inner_function
@@ -60,7 +60,7 @@ class Relations:
         self.strengthen_weak_identifiers()
         self.process_associations()
         self.add_sorting_this_relation_number()
-        self.may_disambiguate_with_leg_annotations = set_disambiguation_strategy(params["disambiguation"])
+        self.may_disambiguate_with_leg_notes = set_disambiguation_strategy(params["disambiguation"])
         may_update_params_with_guessed_title()
 
     
@@ -83,7 +83,7 @@ class Relations:
               "transform_attribute": [],
               "transform_title": [],
               "transform_data_type": [],
-              "compose_label_disambiguated_by_annotation": u"{raw_label} {leg_annotation}",
+              "compose_label_disambiguated_by_note": u"{raw_label} {leg_note}",
               "compose_label_disambiguated_by_number": u"{label}.{disambiguation_number}",
               "compose_primary_key": u"_{label}_",
               "compose_normal_attribute": u"{label}",
@@ -125,7 +125,7 @@ class Relations:
         make_raw_labels_from_attributes()
         
         def make_labels_from_raw_labels():
-            self.may_disambiguate_with_leg_annotations(template)
+            self.may_disambiguate_with_leg_notes(template)
             for relation in self.relations.values():
                 occurrences = collections.Counter(column["label"] for column in relation["columns"])
                 occurrences = dict(c for c in occurrences.items() if c[1] > 1)
@@ -231,7 +231,7 @@ class Relations:
                     "data_type": attribute.data_type,
                     "primary_relation_name": None,
                     "association_name": None,
-                    "leg_annotation": None,
+                    "leg_note": None,
                     "primary": attribute.get_category() in ("strong", "weak"),
                     "foreign": False,
                     "nature": "primary_key" if attribute.get_category() in ("strong", "weak") else "normal_attribute"
@@ -258,20 +258,20 @@ class Relations:
                     break
                 if strengthening_entities_via_associations:
                     for (strengthening_entity, association) in strengthening_entities_via_associations:
-                        # find the potential annotation on the strenghening leg
+                        # find the potential note on the strenghening leg
                         for leg in association.legs:
                             if leg.entity_name == strengthening_entity.name:
-                                leg_annotation = leg.annotation
+                                leg_note = leg.note
                                 break
                         else:
-                            leg_annotation = None
+                            leg_note = None
                         # migrate the whole primary key of the strengthening entity into the weak one
                         self.relations[entity.name]["columns"][0:0] = [{
                                 "attribute": attribute["attribute"],
                                 "data_type": attribute["data_type"],
                                 "primary_relation_name": strengthening_entity.cartouche,
                                 "association_name": association.cartouche,
-                                "leg_annotation": leg_annotation,
+                                "leg_note": leg_note,
                                 "primary": True,
                                 "foreign": True,
                                 "nature": "strengthening_primary_key"
@@ -301,7 +301,7 @@ class Relations:
                             "data_type": attribute.data_type,
                             "primary_relation_name": None,
                             "association_name": association.cartouche,
-                            "leg_annotation": None,
+                            "leg_note": None,
                             "primary": False,
                             "foreign": False,
                             "nature": "association_attribute"
@@ -311,7 +311,7 @@ class Relations:
                             "attribute": attribute["attribute"],
                             "data_type": attribute["data_type"],
                             "primary_relation_name": self.mcd.entities[parent_leg.entity_name].cartouche,
-                            "leg_annotation": parent_leg.annotation,
+                            "leg_note": parent_leg.note,
                             "association_name": association.cartouche,
                             "primary": attribute["primary"],
                             "foreign": True,
@@ -328,7 +328,7 @@ class Relations:
                             "data_type": attribute.data_type,
                             "primary_relation_name": None,
                             "association_name": association.cartouche,
-                            "leg_annotation": None,
+                            "leg_note": None,
                             "primary": False,
                             "foreign": False,
                             "nature": "association_attribute"
@@ -339,7 +339,7 @@ class Relations:
                         "attribute": attribute["attribute"],
                         "data_type": attribute["data_type"],
                         "primary_relation_name": None,
-                        "leg_annotation": parent_leg.annotation,
+                        "leg_note": parent_leg.note,
                         "association_name": association.cartouche,
                         "primary": attribute["primary"],
                         "foreign": True,
@@ -362,7 +362,7 @@ class Relations:
                         "attribute": attribute["attribute"],
                         "data_type": attribute["data_type"],
                         "primary_relation_name": self.mcd.entities[leg.entity_name].cartouche,
-                        "leg_annotation": leg.annotation,
+                        "leg_note": leg.note,
                         "association_name": association.cartouche,
                         "primary": leg.may_identify,
                         "foreign": True,
@@ -373,7 +373,7 @@ class Relations:
                         "data_type": attribute.data_type,
                         "primary_relation_name": None,
                         "association_name": association.cartouche,
-                        "leg_annotation": None,
+                        "leg_note": None,
                         "primary": False,
                         "foreign": False,
                         "nature": "association_attribute"
@@ -388,7 +388,7 @@ class Relations:
                                 "attribute": attribute["attribute"],
                                 "data_type": attribute["data_type"],
                                 "primary_relation_name": self.mcd.entities[leg.entity_name].cartouche,
-                                "leg_annotation": leg.annotation,
+                                "leg_note": leg.note,
                                 "association_name": association.cartouche,
                                 "primary": False,
                                 "foreign": True,
@@ -401,7 +401,7 @@ class Relations:
                         "data_type": attribute.data_type,
                         "association_name": association.cartouche,
                         "primary_relation_name": None,
-                        "leg_annotation": None,
+                        "leg_note": None,
                         "primary": False,
                         "foreign": True,
                         "nature": "foreign_attribute",

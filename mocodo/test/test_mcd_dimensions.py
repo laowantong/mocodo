@@ -35,15 +35,15 @@ style = {
     "arrow_width"                 : 12,
     "arrow_half_height"           : 6,
     "arrow_axis"                  : 8,
-    "annotation_overlay_height"   : 40,
-    "annotation_baseline"         : 24,
+    "note_overlay_height"   : 40,
+    "note_baseline"         : 24,
     "entity_cartouche_font"       : None,
     "association_cartouche_font"  : None,
     "entity_attribute_font"       : None,
     "association_attribute_font"  : None,
     "card_font"                   : None,
     "label_font"                  : None,
-    "annotation_font"             : None
+    "note_font"             : None
 }
 
 def stub_for_get_font_metrics(s):

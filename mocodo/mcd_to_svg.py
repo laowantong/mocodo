@@ -4,11 +4,11 @@ import string
 
 from .common import safe_print_for_PHP
 
-SALT_CHARACTERS = string.ascii_letters + string.digits
+ID_CHARACTERS = string.ascii_letters + string.digits
 
 def main(mcd, common):
     style = common.load_style()
-    mcd_uid = ''.join(random.choice(SALT_CHARACTERS) for _ in range(8))
+    mcd_uid = ''.join(random.choice(ID_CHARACTERS) for _ in range(8))
     mcd.calculate_size(style)
     geo = common.calculate_or_retrieve_geo(mcd)
     description = [
@@ -17,7 +17,7 @@ def main(mcd, common):
             {
                 "width": geo["width"],
                 "height": geo["height"],
-                "total_height": geo["height"] + (mcd.page_count > 1 and style["annotation_overlay_height"]),
+                "total_height": geo["height"] + (mcd.page_count > 1 and style["note_overlay_height"]),
             }
         ),
         (
@@ -35,7 +35,7 @@ def main(mcd, common):
     ]
     has_note_card = False
     tabs = 0
-    categories = {"": [], "Association": [], "Entity": [], "Link": [], "Annotations": [], "Pager": []}
+    categories = {"": [], "Association": [], "Entity": [], "Link": [], "Notes": [], "Pager": []}
     category = ""
     for (key, mapping) in description:
         mapping["mcd_uid"] = mcd_uid
@@ -49,12 +49,12 @@ def main(mcd, common):
                 mapping[k] = html_escape(v)
             elif v is None:
                 mapping[k] = "none"
-        tabs -= (key == "end")
         # print(key, mapping, end="\n")
+        tabs -= (key == "end")
         categories[category].append('\t' * tabs + svg_elements[key].format_map(mapping))
         tabs += key.startswith("begin")
-    if common.params["hide_annotations"] or not has_note_card:
-        del categories["Annotations"]
+    if common.params["hide_notes"] or not has_note_card:
+        del categories["Notes"]
     path = Path(f"{common.params['output_name']}.svg")
     path.write_text("\n".join(sum(categories.values(), [])) + "\n</svg>")
     safe_print_for_PHP(common.output_success_message(path))
@@ -66,7 +66,7 @@ def html_escape(
         ">": "&gt;",
         "<": "&lt;",
         '"': "&quot;",
-        "'": "’",  # neither &#39; nor &apos; make the job in annotations
+        "'": "’",  # neither &#39; nor &apos; make the job in notes
 }):
     return "".join(table.get(c, c) for c in text)
 
@@ -79,7 +79,7 @@ svg_elements = {
     "begin_group":      """<g>""",
     "end":              """</g>""",
     "text":             """<text x="{x}" y="{y}" fill="{text_color}" font-family="{family}" font-size="{size}">{text}</text>""",
-    "text_with_note":   """<text x="{x}" y="{y}" fill="{text_color}" font-family="{family}" font-size="{size}" onmouseover="show(evt,'{annotation}')" onmouseout="hide(evt)" style="cursor: pointer;">{text}</text>""",
+    "text_with_note":   """<text x="{x}" y="{y}" fill="{text_color}" font-family="{family}" font-size="{size}" onmouseover="show(evt,'{note}')" onmouseout="hide(evt)" style="cursor: pointer;">{text}</text>""",
     "line":             """<line x1="{x0}" y1="{y0}" x2="{x1}" y2="{y1}" stroke="{stroke_color}" stroke-width="{stroke_depth}"/>""",
     "dash_line":        """<line x1="{x0}" y1="{y}" x2="{x1}" y2="{y}" style="fill:none;stroke:{stroke_color};stroke-width:{stroke_depth};stroke-dasharray:{dash_width};"/>""",
     "rect":             """<rect x="{x}" y="{y}" width="{w}" height="{h}" fill="{color}" stroke="{stroke_color}" stroke-width="{stroke_depth}"/>""",
@@ -91,27 +91,27 @@ svg_elements = {
     "round_rect":       """<rect x="{x}" y="{y}" width="{w}" height="{h}" fill="{color}" rx="{radius}" stroke="{stroke_color}" stroke-width="{stroke_depth}"/>""",
     "upper_round_rect": """<path d="M{x0} {y0} a{r} {r} 90 0 1 {r} {r} V{y1} h-{w} V{y2} a{r} {r} 90 0 1 {r} -{r}" fill="{color}" stroke="{stroke_color}" stroke-width="{stroke_depth}"/>""",
     "lower_round_rect": """<path d="M{x0} {y0} v{y1} a{r} {r} 90 0 1 -{r} {r} H{x1} a{r} {r} 90 0 1 -{r} -{r} V{y0} H{w}" fill="{color}" stroke="{stroke_color}" stroke-width="{stroke_depth}"/>""",
-    "annotations":      """<script type="text/ecmascript">
+    "notes":            """<script type="text/ecmascript">
                             <![CDATA[
                             	function show(evt, text) {{
                             		var pos = (evt.target.getAttribute("y") < {height_threshold}) ? "bottom" : "top";
-                            		var annotation = document.getElementById(pos + "_annotation_{mcd_uid}");
-                            		annotation.textContent = text;
-                            		annotation.setAttributeNS(null, "visibility", "visible");
+                            		var note = document.getElementById(pos + "_note_{mcd_uid}");
+                            		note.textContent = text;
+                            		note.setAttributeNS(null, "visibility", "visible");
                             		document.getElementById(pos + "_overlay_{mcd_uid}").setAttributeNS(null, "visibility", "visible");
                             	}}
                             	function hide(evt) {{
-                            		document.getElementById("top_annotation_{mcd_uid}").setAttributeNS(null, "visibility", "hidden");
+                            		document.getElementById("top_note_{mcd_uid}").setAttributeNS(null, "visibility", "hidden");
                             		document.getElementById("top_overlay_{mcd_uid}").setAttributeNS(null, "visibility", "hidden");
-                            		document.getElementById("bottom_annotation_{mcd_uid}").setAttributeNS(null, "visibility", "hidden");
+                            		document.getElementById("bottom_note_{mcd_uid}").setAttributeNS(null, "visibility", "hidden");
                             		document.getElementById("bottom_overlay_{mcd_uid}").setAttributeNS(null, "visibility", "hidden");
                             	}}
                             ]]>
                             </script>
                             <rect id="top_overlay_{mcd_uid}" x="0" y="0" width="100%" height="{overlay_height}" fill="{color}" stroke-width="0" opacity="{opacity}" visibility="hidden"/>
-                            <text id="top_annotation_{mcd_uid}" text-anchor="middle" x="{x}" y="{y_top}" fill="{text_color}" font-family="{font_family}" font-size="{font_size}" visibility="hidden"></text>
+                            <text id="top_note_{mcd_uid}" text-anchor="middle" x="{x}" y="{y_top}" fill="{text_color}" font-family="{font_family}" font-size="{font_size}" visibility="hidden"></text>
                             <rect id="bottom_overlay_{mcd_uid}" x="0" y="{y}" width="100%" height="{overlay_height}" fill="{color}" stroke-width="0" opacity="{opacity}" visibility="hidden"/>
-                            <text id="bottom_annotation_{mcd_uid}" text-anchor="middle" x="{x}" y="{y_bottom}" fill="{text_color}" font-family="{font_family}" font-size="{font_size}" visibility="hidden"></text>""".replace("    ", ""),
+                            <text id="bottom_note_{mcd_uid}" text-anchor="middle" x="{x}" y="{y_bottom}" fill="{text_color}" font-family="{font_family}" font-size="{font_size}" visibility="hidden"></text>""".replace("    ", ""),
     "pager":            """<script type="text/ecmascript">
                             <![CDATA[
                             	function switch_page_visibility(evt, page) {{

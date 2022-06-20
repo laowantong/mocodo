@@ -23,7 +23,7 @@ class Leg:
         if not self.may_identify:
             entity_name = entity_name[1:]
         self.entity_name = entity_name
-        (self.cards, self.arrow, self.annotation) = match_card(card).groups()
+        (self.cards, self.arrow, self.note) = match_card(card).groups()
         self.strengthen = self.cards == "_11"
         if self.strengthen:
             self.cards = "11"
@@ -39,9 +39,9 @@ class Leg:
                 self.cardinalities = params["card_format"].format(
                     min_card=self.cards[0], max_card=self.cards[1]
                 )
-        if self.annotation:
-            self.annotation = self.annotation.replace("<<<protected-comma>>>", ",")
-            self.annotation = self.annotation.replace("<<<protected-colon>>>", ":")
+        if self.note:
+            self.note = self.note.replace("<<<protected-comma>>>", ",")
+            self.note = self.note.replace("<<<protected-colon>>>", ":")
         self.twist = False
         self.identifier = None
 
@@ -90,7 +90,7 @@ class Leg:
         (x, y) = leg.card_pos(self.twist, geo["shift"][self.identifier])
         tx = x + card_margin
         ty = y - style["card_baseline"] - card_margin
-        if self.annotation:
+        if self.note:
             result.append(
                 (
                     "text_with_note",
@@ -100,7 +100,7 @@ class Leg:
                         "text_color": style["card_text_color"],
                         "family": style["card_font"]["family"],
                         "size": style["card_font"]["size"],
-                        "annotation": self.annotation,
+                        "note": self.note,
                         "text": self.cardinalities,
                     },
                 )
@@ -115,7 +115,7 @@ class Leg:
                         "text_color": style["card_text_color"],
                         "family": style["card_font"]["family"],
                         "size": style["card_font"]["size"],
-                        "annotation": self.annotation,
+                        "note": self.note,
                         "text": self.cardinalities,
                     },
                 )
@@ -192,7 +192,7 @@ class Leg:
         (x, y) = leg.card_pos(geo["shift"][self.identifier])
         tx = x + card_margin
         ty = y - style["card_baseline"] - card_margin
-        if self.annotation:
+        if self.note:
             result.append(
                 (
                     "text_with_note",
@@ -202,7 +202,7 @@ class Leg:
                         "text_color": style["card_text_color"],
                         "family": style["card_font"]["family"],
                         "size": style["card_font"]["size"],
-                        "annotation": self.annotation,
+                        "note": self.note,
                         "text": self.cardinalities,
                     },
                 )
@@ -217,7 +217,7 @@ class Leg:
                         "text_color": style["card_text_color"],
                         "family": style["card_font"]["family"],
                         "size": style["card_font"]["size"],
-                        "annotation": self.annotation,
+                        "note": self.note,
                         "text": self.cardinalities,
                     },
                 )

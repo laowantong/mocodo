@@ -209,7 +209,7 @@ class relationsTest(unittest.TestCase):
         d2 = json.loads(t.get_text(json_template))
         self.assertEqual(d1, d2)
     
-    def test_annotations(self):
+    def test_notes(self):
         clauses = u"""
             Personne: Num. SS, Nom, Prénom, Sexe
             Engendrer, 0N [parent] Personne, 0N [enfant] Personne
@@ -222,21 +222,21 @@ class relationsTest(unittest.TestCase):
         self.assertEqual(t.get_text(minimal_template), text)
         d = json.loads(t.get_text(json_template))
         self.assertEqual(d["relations"][0]["this_relation_name"], u"Personne")
-        self.assertEqual(d["relations"][0]["columns"][0]["leg_annotation"], None)
+        self.assertEqual(d["relations"][0]["columns"][0]["leg_note"], None)
         self.assertEqual(d["relations"][0]["columns"][0]["label"], u"Num. SS")
-        self.assertEqual(d["relations"][0]["columns"][1]["leg_annotation"], None)
+        self.assertEqual(d["relations"][0]["columns"][1]["leg_note"], None)
         self.assertEqual(d["relations"][0]["columns"][1]["label"], u"Nom")
-        self.assertEqual(d["relations"][0]["columns"][2]["leg_annotation"], None)
+        self.assertEqual(d["relations"][0]["columns"][2]["leg_note"], None)
         self.assertEqual(d["relations"][0]["columns"][2]["label"], u"Prénom")
-        self.assertEqual(d["relations"][0]["columns"][3]["leg_annotation"], None)
+        self.assertEqual(d["relations"][0]["columns"][3]["leg_note"], None)
         self.assertEqual(d["relations"][0]["columns"][3]["label"], u"Sexe")
         self.assertEqual(d["relations"][1]["this_relation_name"], u"Engendrer")
-        self.assertEqual(d["relations"][1]["columns"][0]["leg_annotation"], u"parent")
+        self.assertEqual(d["relations"][1]["columns"][0]["leg_note"], u"parent")
         self.assertEqual(d["relations"][1]["columns"][0]["label"], u"Num. SS parent")
-        self.assertEqual(d["relations"][1]["columns"][1]["leg_annotation"], u"enfant")
+        self.assertEqual(d["relations"][1]["columns"][1]["leg_note"], u"enfant")
         self.assertEqual(d["relations"][1]["columns"][1]["label"], u"Num. SS enfant")
     
-    def test_annotations_with_numbers_only_disambiguation_strategy(self):
+    def test_notes_with_numbers_only_disambiguation_strategy(self):
         clauses = u"""
             Personne: Num. SS, Nom, Prénom, Sexe
             Engendrer, 0N [Une personne peut avoir un nombre quelconque d'enfants.] Personne, 0N [Une personne peut avoir un nombre quelconque de parents dans la base. Remarque : vous avez peut-être envie de remplacer la cardinalité maximale N par sa valeur réelle, à savoir 2. Cette précision disparaissant lors du passage au relationnel, elle est en général jugée inutile.] Personne
@@ -251,18 +251,18 @@ class relationsTest(unittest.TestCase):
         self.assertEqual(t.get_text(minimal_template), text)
         d = json.loads(t.get_text(json_template))
         self.assertEqual(d["relations"][0]["this_relation_name"], u"Personne")
-        self.assertEqual(d["relations"][0]["columns"][0]["leg_annotation"], None)
+        self.assertEqual(d["relations"][0]["columns"][0]["leg_note"], None)
         self.assertEqual(d["relations"][0]["columns"][0]["label"], u"Num. SS")
-        self.assertEqual(d["relations"][0]["columns"][1]["leg_annotation"], None)
+        self.assertEqual(d["relations"][0]["columns"][1]["leg_note"], None)
         self.assertEqual(d["relations"][0]["columns"][1]["label"], u"Nom")
-        self.assertEqual(d["relations"][0]["columns"][2]["leg_annotation"], None)
+        self.assertEqual(d["relations"][0]["columns"][2]["leg_note"], None)
         self.assertEqual(d["relations"][0]["columns"][2]["label"], u"Prénom")
-        self.assertEqual(d["relations"][0]["columns"][3]["leg_annotation"], None)
+        self.assertEqual(d["relations"][0]["columns"][3]["leg_note"], None)
         self.assertEqual(d["relations"][0]["columns"][3]["label"], u"Sexe")
         self.assertEqual(d["relations"][1]["this_relation_name"], u"Engendrer")
-        self.assertEqual(d["relations"][1]["columns"][0]["leg_annotation"], u"Une personne peut avoir un nombre quelconque d'enfants.")
+        self.assertEqual(d["relations"][1]["columns"][0]["leg_note"], u"Une personne peut avoir un nombre quelconque d'enfants.")
         self.assertEqual(d["relations"][1]["columns"][0]["label"], u"Num. SS")
-        self.assertEqual(d["relations"][1]["columns"][1]["leg_annotation"], u"Une personne peut avoir un nombre quelconque de parents dans la base. Remarque : vous avez peut-être envie de remplacer la cardinalité maximale N par sa valeur réelle, à savoir 2. Cette précision disparaissant lors du passage au relationnel, elle est en général jugée inutile.")
+        self.assertEqual(d["relations"][1]["columns"][1]["leg_note"], u"Une personne peut avoir un nombre quelconque de parents dans la base. Remarque : vous avez peut-être envie de remplacer la cardinalité maximale N par sa valeur réelle, à savoir 2. Cette précision disparaissant lors du passage au relationnel, elle est en général jugée inutile.")
         self.assertEqual(d["relations"][1]["columns"][1]["label"], u"Num. SS.1")
 
     def test_data_types(self):
@@ -588,7 +588,7 @@ class relationsTest(unittest.TestCase):
         mcd = Mcd(clauses.split("\n"), params)
         self.assertRaisesRegex(MocodoError, "Mocodo Err\.17", Relations, mcd, params)
     
-    def test_difference_between_attribute_raw_label_and_label_with_annotations(self):
+    def test_difference_between_attribute_raw_label_and_label_with_notes(self):
         template = {
           "extension": ".json",
           "transform_attribute": [
@@ -601,7 +601,7 @@ class relationsTest(unittest.TestCase):
               "replace": ""
             }
           ],
-          "compose_label_disambiguated_by_annotation": u"{leg_annotation}",
+          "compose_label_disambiguated_by_note": u"{leg_note}",
         }
         clauses = u"""
             A pour mère, 01 Chien, 0N [num_mère] Chien
@@ -629,7 +629,7 @@ class relationsTest(unittest.TestCase):
         self.assertEqual(d["relations"][1]["columns"][1]["raw_label"], u"num_chien")
         self.assertEqual(d["relations"][1]["columns"][1]["label"],     u"num_père")
     
-    def test_difference_between_attribute_raw_label_and_label_without_annotations(self):
+    def test_difference_between_attribute_raw_label_and_label_without_notes(self):
         template = {
           "extension": None,
           "transform_attribute": [

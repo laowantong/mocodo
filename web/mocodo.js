@@ -418,7 +418,7 @@ $().ready(function () {
   var default_color = "brewer" + "+-"[Math.floor(Math.random() * 2)] + (Math.floor(Math.random() * 9) + 1);
   createOptions("colors", ["blank", "bw", "desert", "keepsake", "mondrian", "ocean", "pond", "wb", "xinnian", "brewer+1", "brewer-1", "brewer+2", "brewer-2", "brewer+3", "brewer-3", "brewer+4", "brewer-4", "brewer+5", "brewer-5", "brewer+6", "brewer-6", "brewer+7", "brewer-7", "brewer+8", "brewer-8", "brewer+9", "brewer-9"], default_color);
   createOptions("shapes", ["arial", "copperplate", "georgia", "mondrian", "sans", "serif", "times", "trebuchet", "verdana", "xinnian"], "verdana");
-  createOptions("disambiguation", ["annotations et numéros", "numéros seulement"], "annotations et numéros");
+  createOptions("disambiguation", ["notes et numéros", "numéros seulement"], "notes et numéros");
   var items = Object.keys(delays).map(function (key) { return { "value": delays[key], "name": key } });
   items.sort(function (a, b) { return a["value"] - b["value"] });
   createOptions("delays", items.map(function (value, index) { return value["name"] }), "1 minute");

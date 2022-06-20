@@ -90,8 +90,8 @@ else {
     $_POST['extract'] = TRUE;
     $_POST['language'] = 'fr';
     $_POST['encodings'] = array("utf8");
-    if ($_POST['disambiguation'] == "annotations et numéros") {
-        $_POST['disambiguation'] = "annotations";
+    if ($_POST['disambiguation'] == "notes et numéros") {
+        $_POST['disambiguation'] = "notes";
     } else {
         $_POST['disambiguation'] = "numbers_only";
     }
