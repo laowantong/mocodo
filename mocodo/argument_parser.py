@@ -193,7 +193,6 @@ def parsed_arguments():
     aspect_group.add_argument("--card_format", metavar="STR", type=str, nargs="?", default=u"{min_card},{max_card}", help="format string for minimal and maximal cardinalities")
     aspect_group.add_argument("--strengthen_card", metavar="STR", type=str, nargs="?", default=u"_1,1_", help="string for relative cardinalities")
     source_group.add_argument("--flex", metavar="FLOAT", type=float, default=0.75, help="flex straight legs whose cardinalities may collide")
-    aspect_group.add_argument("--tkinter", action="store_true", help="use Tkinter to calculate the pixel-dimensions of the labels")
     aspect_group.add_argument("--colors", metavar="PATH", default="bw", help="the color palette to use when generating the drawing. Name (without extension) of a file located in the directory 'colors', or path to a personal file")
     aspect_group.add_argument("--shapes", metavar="PATH", help="specification of the fonts, dimensions, etc. Name (without extension) of a file located in the directory 'shapes', or path to a personal file")
     aspect_group.add_argument("--scale", metavar="RATE", type=scale, default=1, help="scale the diagram by the given factor")

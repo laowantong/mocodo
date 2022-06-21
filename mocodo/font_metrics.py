@@ -1,60 +1,29 @@
 import json
 import os
-import sys
-
-from .file_helpers import read_contents
+from pathlib import Path
 
 
 def font_metrics_factory(params):
-    if params["tkinter"]:
-        try:
-            import tkFont
-            import Tkinter as tk
-            root = tk.Tk()
-        except:
-            root = None
-        if root:
-            
-            class FontMetricsWithTk():
+    class FontMetrics:
 
-                def __init__(self, font):
-                    kargs = dict((str(k), v) for (k, v) in font.items())
-                    kargs["size"] = -font["size"]
-                    self.font = tkFont.Font(**kargs)
-
-                def get_pixel_height(self):
-                    return self.font.metrics("linespace")
-
-                def get_pixel_width(self, string):
-                    return self.font.measure(string)
-            return FontMetricsWithTk
-        
-        sys.stderr.write(u"Warning: Tkinter is not correctly installed or Mocodo is run on server side with no display. Option 'tkinter' ignored.\n")
-    path = os.path.join(params["script_directory"], "font_metrics.json")
-    text = read_contents(path)
-    
-    class FontMetricsWithoutTk():
+        data = json.loads((Path(params["script_directory"]) / "font_metrics.json").read_text())
 
         def __init__(self, font):
-            if font["family"] not in self.static_data["fonts"]:
-                # sys.stderr.write(u"Warning: Missing metrics for font '%s'. If it is installed on your system, you may run update_font_metrics.py to add it (require Tkinter). In the meantime, I will replace it by Courier New.\n" % font["family"])
-                font["family"] = u"Courier New"
-            ref_size = self.static_data["size"]
-            metrics = self.static_data["fonts"][font["family"]]
+            if font["family"] not in self.data["fonts"]:
+                font["family"] = "Courier New"
+            ref_size = self.data["size"]
+            metrics = self.data["fonts"][font["family"]]
+            alphabet = self.data["alphabet"]
             self.font_height = int(round(metrics["height"] * font["size"] / ref_size))
-            self.width = dict((c, ord(x)) for (c, x) in zip(self.static_data["alphabet"], metrics.get("widths", [])))
+            self.width = {c: ord(x) for (c, x) in zip(alphabet, metrics.get("widths", []))}
             self.ratio = font["size"] * metrics.get("correction", 1) / ref_size
             self.default_width = metrics["default"]
 
         def get_pixel_height(self):
             return self.font_height
 
-        def get_pixel_width(self, string):
-            return int(round(self.ratio * sum(self.width.get(c, self.default_width) for c in string))) + 1
-    
-    FontMetricsWithoutTk.static_data = json.loads(text)
-    return FontMetricsWithoutTk
+        def get_pixel_width(self, s):
+            width = sum(self.width.get(c, self.default_width) for c in s)
+            return int(round(self.ratio * width)) + 1
 
-
-
-
+    return FontMetrics
