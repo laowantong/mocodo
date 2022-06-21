@@ -390,8 +390,10 @@ function readCookie() {
   if (options) {
     var objects = $.parseJSON(options);
     $("#paramContents").find(":checkbox:checked").removeAttr("checked")
+    $("#svg").prop("checked", true);
     $.each(objects, function (index, object) {
       var elt = $('[name="' + object.name + '"]');
+      if (!elt[0]) { return };
       switch (elt[0].type) {
         case 'checkbox':
           elt.each(function () {

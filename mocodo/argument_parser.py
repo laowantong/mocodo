@@ -206,7 +206,8 @@ def parsed_arguments():
 
     io_group.add_argument("--output_dir", metavar="PATH", help="the directory of the output files")
     io_group.add_argument("--encodings", metavar="STR", nargs="*", help="one or several encodings to be tried successively when reading the input file")
-    io_group.add_argument("--extract", action="store_true", help="create a separated JSON file for the geometric parameters")
+    io_group.add_argument("--png", action="store_true", help="generate a PNG version of the SVG output (requires cairosvg)")
+    io_group.add_argument("--pdf", action="store_true", help="generate a PDF version of the SVG output (requires cairosvg)")
     io_group.add_argument("--print_params", action="store_true", help="display the contents of the parameter file, then exit")
     
     source_group.add_argument("--arrange", nargs="?", const="bb", choices=["bb", "ga", "lp"], help="rearrange the layout with either a Branch & Bound, a Genetic Algorithm, or a Linear Program solver, then exit")

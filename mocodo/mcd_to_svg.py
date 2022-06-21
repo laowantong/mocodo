@@ -3,6 +3,15 @@ import random
 import re
 import string
 
+from .mocodo_error import MocodoError
+
+try:
+    from cairosvg import svg2png, svg2pdf
+except ImportError:
+    def svg2png(**kargs):
+        raise MocodoError(13, "PNG and PDF generation requires cairosvg to be installed")
+    svg2pdf = svg2png
+
 from .common import safe_print_for_PHP
 
 ID_CHARACTERS = string.ascii_letters + string.digits
@@ -72,6 +81,13 @@ def main(mcd, common):
         path = Path(f"{common.params['output_name']}_static.svg")
         path.write_text(text)
         safe_print_for_PHP(common.output_success_message(path))
+    svg = bytes(text, "utf-8")
+    for (format, function) in (("png", svg2png), ("pdf", svg2pdf)):
+        if common.params[format]:
+            path = Path(f"{common.params['output_name']}.{format}")
+            function(bytestring=svg, write_to=str(path))
+            safe_print_for_PHP(common.output_success_message(path))
+
 
 def html_escape(
     text,

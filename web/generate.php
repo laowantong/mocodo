@@ -28,6 +28,12 @@ $flex = array(
   "très prononcée" => 1.25,
 );
 
+// FIXME: on my machine, prevent PHP to use /usr/bin/python3 where cairosvg is not installed
+$python = "/Users/aristide/opt/miniconda3/bin/python";
+if (!file_exists($python)) {
+  $python = "python3";
+}
+
 // Make a folder for this user
 $path = str_replace(":", "_", "sessions/" . $_SERVER['REMOTE_ADDR'] . "-" . session_id()) ; // prevent the automatic substitution of : by / on Mac OS X (IPV6 syntax)
 file_exists($path) or mkdir($path) or die('{"err": "PHP: Failed to create user folder."}');
@@ -87,7 +93,6 @@ else {
     unset($_POST['text']);
     unset($_POST['state']);
   $_POST["guess_title"] = ($_POST["guess_title"] == "true");
-    $_POST['extract'] = TRUE;
     $_POST['language'] = 'fr';
     $_POST['encodings'] = array("utf8");
     if ($_POST['disambiguation'] == "notes et numéros") {
@@ -104,7 +109,7 @@ else {
   };
 
   // Launch the script
-$command_line = "python3 ../../../mocodo.py 2>&1 >/dev/null";
+$command_line = $python . " ../../../mocodo.py 2>&1 >/dev/null";
 $out = array();
 // die('{"err": "' . $command_line . '"}');
 
@@ -137,7 +142,10 @@ if ($zip->open("{$title}.zip", ZIPARCHIVE::CREATE)!==TRUE) {
 $zip->addFile("{$title}_geo.json");
 $zip->addFile("{$title}.mcd");
 $zip->addFile("{$title}.svg");
-$zip->addFile("{$title}_static.svg"); # fails silently if file doesn't exist
+// The following instructions fail silently if the (optional) files do not exist
+$zip->addFile("{$title}_static.svg");
+$zip->addFile("{$title}.png");
+$zip->addFile("{$title}.pdf");
 foreach ($_POST['relations'] as $key) {
     $ext = $extensions[$key];
     $zip->addFile("{$title}{$ext}");
