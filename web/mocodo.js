@@ -185,6 +185,9 @@ function refreshArrows(geo) {
 }
 function refreshDiagram(result) {
   $("#diagramOutput").html(result["svg"]);
+  // switch to last page
+  $(".diagram_page").each(function() { $(this).attr("visibility", "visible"); });
+  $(".pager_dot").each(function() { $(this).attr("fill", "gray"); });
 }
 function refreshRelations(result) {
   var s = '';
