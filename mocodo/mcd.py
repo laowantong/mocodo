@@ -82,14 +82,17 @@ class Mcd:
                             raise MocodoError(1, _(f'Association "{association.name}" linked to an unknown entity "{leg.entity_name}"!'))
                     leg.register_entity(entity)
         
-        def add_attributes_and_strength():
-            strengthen_legs = dict((entity_name, []) for entity_name in self.entities)
+        def add_attributes():
+            legs_to_strengthen = dict((entity_name, []) for entity_name in self.entities)
+            children = set()
             for association in self.associations.values():
                 for leg in association.legs:
+                    if association.kind.startswith("inheritance") and leg.card == "XX":
+                        children.add(leg.entity_name)
                     if leg.kind == "strengthening":
-                        strengthen_legs[leg.entity_name].append(leg)
-            for (entity_name, legs) in strengthen_legs.items():
-                self.entities[entity_name].set_strengthen_legs(legs)
+                        legs_to_strengthen[leg.entity_name].append(leg)
+            for (entity_name, legs) in legs_to_strengthen.items():
+                self.entities[entity_name].add_attributes(legs, entity_name in children)
         
         def tweak_straight_cards():
             coordinates = {}
@@ -179,7 +182,7 @@ class Mcd:
         phantom_counter = itertools.count()
         parse_clauses()
         add_legs()
-        add_attributes_and_strength()
+        add_attributes()
         add_diagram_links()
         may_center()
         make_boxes()

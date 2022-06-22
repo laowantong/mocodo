@@ -1,6 +1,6 @@
 import operator
 import re
-from math import hypot
+from math import hypot, sqrt
 
 from .mocodo_error import MocodoError
 
@@ -38,10 +38,15 @@ class Leg:
         else:
             if association.kind == "cluster":
                 kind = "cluster_peg" if entity_name.startswith("/") else "cluster_leg"
+            elif association.kind.startswith("inheritance") and association.prettify_inheritance:
+                if association.kind[-2:] == "=>" == card[:2]:
+                    kind = "inheritance_emphasis"
+                elif association.kind[-2:] == "<=" != card[:2]:
+                    kind = "inheritance_emphasis"
             card = auto_correction.get(card, card)
             card_view = (
                 "     "
-                if card.startswith("XX") or association.kind == "inheritance"
+                if card.startswith("XX") or association.kind[-2:] in ("<=", "<-", "->", "=>")
                 else params["card_format"].format(min_card=card[0], max_card=card[1])
             )
         self.card = card
@@ -100,6 +105,22 @@ class Leg:
                     },
                 )
             )
+        elif self.kind == "inheritance_emphasis":
+            for d in (style["leg_stroke_depth"], -style["leg_stroke_depth"]):
+                (x0, y0, x1, y1) = orthogonal_translation(ex, ey, ax, ay, d)
+                result.append(
+                    (
+                        "line",
+                        {
+                            "x0": x0,
+                            "y0": y0,
+                            "x1": x1,
+                            "y1": y1,
+                            "stroke_color": style["leg_stroke_color"],
+                            "stroke_depth": style["leg_stroke_depth"],
+                        },
+                    )
+                )
         else:
             result.append(
                 (
@@ -294,23 +315,13 @@ class DiagramLink:
         try:
             self.primary_entity = entities[foreign_key.primary_entity_name]
         except KeyError:
-            raise MocodoError(
-                14,
-                _(
-                    f'Attribute "{foreign_key.label}" in entity "{foreign_entity.name}" references an unknown entity "{foreign_key.primary_entity_name}".'
-                ),
-            )
+            raise MocodoError(14, _(f'Attribute "{foreign_key.label}" in entity "{foreign_entity.name}" references an unknown entity "{foreign_key.primary_entity_name}".')) # fmt: skip
         for candidate in self.primary_entity.attributes:
             if candidate.label.lstrip("#") == foreign_key.primary_key_label.lstrip("#"):
                 self.primary_key = candidate
                 break
         else:
-            raise MocodoError(
-                15,
-                _(
-                    f'Attribute "{foreign_key.label}" in entity "{foreign_entity.name}" references an unknown attribute "{foreign_key.primary_key_label}" in entity "{foreign_key.primary_entity_name}".'
-                ),
-            )
+            raise MocodoError(15, _(f'Attribute "{foreign_key.label}" in entity "{foreign_entity.name}" references an unknown attribute "{foreign_key.primary_key_label}" in entity "{foreign_key.primary_entity_name}".')) # fmt: skip
 
     def calculate_size(self, style, *ignored):
         self.fdx = self.foreign_entity.w // 2
@@ -568,3 +579,14 @@ def curved_leg_factory(ex, ey, ew, eh, ax, ay, aw, ah, cw, ch, card_margin, spin
     curved_leg_factory.card_pos = card_pos
     curved_leg_factory.arrow_pos = arrow_pos
     return curved_leg_factory
+
+def orthogonal_translation(x1, y1, x2, y2, d):
+    if x1 == x2:
+        return (x1+d, y1, x1+d, y2)
+    slope = (y2 - y1) / (x2 - x1)
+    dy = sqrt(d * d / (slope * slope + 1))
+    dx = -slope * dy
+    if d > 0:
+        return (x1+dx, y1+dy, x2+dx, y2+dy)
+    else:
+        return (x1-dx, y1-dy, x2-dx, y2-dy)

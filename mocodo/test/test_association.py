@@ -129,18 +129,12 @@ class parse_test(unittest.TestCase):
         self.assertEqual(a.legs[1].entity_name, "BAR")
 
     def test_backslash_conservation(self):
-        a = Association(r"/BUZZ\, 01 FOO, 0N BAR")
+        a = Association(r"/BUZZ\ FOO => BAR")
         self.assertEqual(a.name, "BUZZ")
         self.assertEqual(a.cartouche, "BUZZ")
         self.assertEqual(a.legs[0].entity_name, "FOO")
         self.assertEqual(a.legs[1].entity_name, "BAR")
-        self.assertEqual(a.kind, "inheritance")
-        a = Association("/BUZZ\, 01 FOO, 0N BAR")
-        self.assertEqual(a.name, "BUZZ")
-        self.assertEqual(a.cartouche, "BUZZ")
-        self.assertEqual(a.legs[0].entity_name, "FOO")
-        self.assertEqual(a.legs[1].entity_name, "BAR")
-        self.assertEqual(a.kind, "inheritance")
+        self.assertEqual(a.kind, "inheritance: =>")
 
 if __name__ == '__main__':
     unittest.main()

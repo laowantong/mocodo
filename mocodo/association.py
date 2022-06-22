@@ -39,22 +39,39 @@ class Association:
                     raise MocodoError(11, _(f'Missing leg in association "{self.name}".'))
             return (cards, entity_names, outer_split(attributes))
 
+        
+        self.clause = clause
+        match = re.match(r"\s*(/\w*\\)", clause)
+        if match: # If the clause startswith an inheritance symbol, start to "normalize" its syntax:
+            # e.g. change "/XT\ parent => child1, child2" into "/XT\, => parent, child1, child2"
+            (clause, n) = re.subn(r"(\s*/\w*\\)\s*([^:,]+)\s*((?:<=|<-|->|=>)[<>]?)", r"\1, \3 \2, ", clause)
+            if n == 0:
+                raise MocodoError(14, _(f'Syntax error in inheritance "{match[1]}".'))
         (name, legs_and_attributes) = clause.split(",", 1)
         (self.name, self.cartouche, is_inheritance) = clean_up_name(name)
+        if is_inheritance: # Finish syntax normalization by prefixing children names with fake cardinalities
+            # e.g. change "/XT\, => parent, child1, child2" into "/XT\, => parent, XX child1, XX child2"
+            legs_and_attributes = re.sub(r",\s*", ", XX ", legs_and_attributes)
         (cards, entity_names, attributes) = clean_up_legs_and_attributes(legs_and_attributes)
         self.attributes = [SimpleAssociationAttribute(attribute, i) for (i, attribute) in enumerate(attributes)]
         self.df_label = params.get("df", "DF")
         if self.cartouche == self.df_label:
             self.kind = "df"
         elif is_inheritance:
-            self.kind = "inheritance"
-            if cards and cards[0][2:3] not in [">", "<"]:
-                cards[0] = cards[0][:2] + ">" + cards[0][2:]
+            if cards[0][2:3] in "<>":
+                self.prettify_inheritance = False
+            else:
+                self.prettify_inheritance = True
+                if cards[0][1] == ">":
+                    for i in range(1, len(cards)):
+                        cards[i] = cards[i][:2] + ">" + cards[i][2:]
+                elif cards[0][0] == "<":
+                    cards[0] = cards[0][:2] + ">" + cards[0][2:]
+            self.kind = f"inheritance: {cards[0][:2]}"
         elif any(name.startswith("/") for name in entity_names):
             self.kind = "cluster"
         else:
             self.kind = "association"
-        self.clause = clause
         self.set_view_strategies()
         self.legs = []
         for (i, (card, name)) in enumerate(zip(cards, entity_names)):
@@ -307,7 +324,7 @@ class Association:
         if self.kind == "df":
             self.calculate_size_depending_on_df = calculate_size_when_df
             self.description_depending_on_df = description_when_df
-        elif self.kind == "inheritance":
+        elif self.kind.startswith("inheritance"):
             self.calculate_size_depending_on_df = calculate_size_when_inheritance
             self.description_depending_on_df = description_when_inheritance
         else:
