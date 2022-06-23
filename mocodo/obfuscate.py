@@ -50,9 +50,9 @@ def obfuscate(clauses, params):
         try:
             if lorem_filename.endswith(".txt"):
                 lorem_filename = lorem_filename[:-4]
-            lorem_text = read_contents("%s/lorem/%s.txt" % (params["script_directory"], os.path.basename(lorem_filename)))
+            lorem_text = read_contents("%s/resources/lorem/%s.txt" % (params["script_directory"], os.path.basename(lorem_filename)))
         except IOError:
-            lorem_text = read_contents("%s/lorem/lorem_ipsum.txt" % params["script_directory"])
+            lorem_text = read_contents("%s/resources/lorem/lorem_ipsum.txt" % params["script_directory"])
     random_chunk = random_chunks_of(lorem_text, params["obfuscation_max_length"], params)
     header = [comment + "\n" for comment in itertools.takewhile(lambda line: line.startswith("%"), clauses)]
     clauses = "\n".join(clauses[len(header):])

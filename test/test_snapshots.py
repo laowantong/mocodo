@@ -1,15 +1,15 @@
-import sys
-sys.path[0:0] = ["."]
-
-from mocodo.relations import *
-from mocodo.mcd import Mcd
-from mocodo.mcd_to_svg import main as mcd_to_svg
 import json
+import os
 from pathlib import Path
+
+__import__("sys").path[0:0] = ["mocodo"]
 from mocodo.argument_parser import parsed_arguments
 from mocodo.common import Common
 from mocodo.font_metrics import font_metrics_factory
-import os
+from mocodo.mcd import Mcd
+from mocodo.mcd_to_svg import main as mcd_to_svg
+from mocodo.relations import *
+
 
 clauses = """
 :
@@ -37,7 +37,7 @@ ENCLOS: num. enclos
   HERBIVORE: plante préférée
 """
 
-snapshot_dir = Path("mocodo/test/snapshots")
+snapshot_dir = Path("test/snapshots")
 params = parsed_arguments()
 params["title"] = "Untitled"
 params["guess_title"] = False
@@ -60,7 +60,7 @@ os.remove(snapshot_dir / "snapshot.svg")
 
 result.append(f"## Relational output\n")
 relations = Relations(mcd, params)
-for relation_path in Path("mocodo/relation_templates/").glob("*.json"):
+for relation_path in Path("mocodo/resources/relation_templates/").glob("*.json"):
     template = json.loads(relation_path.read_text())
     output = relations.get_text(template).strip()
     result.append(f"### `{relation_path.name}`\n\n```{template['highlight']}\n{output}\n```\n")

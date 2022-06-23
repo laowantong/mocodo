@@ -124,13 +124,13 @@ setup(
     # have to be included in MANIFEST.in as well.
     package_data={
         'mocodo': [
-            'colors/*.json',
-            'lorem/*.txt',
-            'relation_templates/*.json',
-            'res/*.mo',
-            'shapes/*.json',
-            'pristine_sandbox.mcd',
-            'font_metrics.json'
+            'resources/colors/*.json',
+            'resources/lorem/*.txt',
+            'resources/relation_templates/*.json',
+            'resources/res/*.mo',
+            'resources/shapes/*.json',
+            'resources/pristine_sandbox.mcd',
+            'resources/font_metrics.json'
         ],
     },
 

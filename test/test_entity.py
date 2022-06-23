@@ -1,8 +1,8 @@
-import sys
-sys.path[0:0] = ["."]
-
 import unittest
+
+__import__("sys").path[0:0] = ["mocodo"]
 from mocodo.entity import *
+
 
 class EntityTest(unittest.TestCase):
 

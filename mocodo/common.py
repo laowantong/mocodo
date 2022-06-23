@@ -46,12 +46,12 @@ class Common:
                 try:
                     return json.loads(read_contents(path))
                 except:
-                    raise MocodoError(3, _('Problem with "{name}" file "{path}.json".').format(name=name, path=path))
-            path = os.path.join(self.params["script_directory"], name, path)
+                    raise MocodoError(3, _('Problem with "{name}" file "{path}".').format(name=name, path=path))
+            path = os.path.join(self.params["script_directory"], "resources", name, path)
             try:
                 return json.loads(read_contents(path))
             except:
-                raise MocodoError(3, _('Problem with "{name}" file "{path}.json".').format(name=name, path=path))
+                raise MocodoError(3, _('Problem with "{name}" file "{path}".').format(name=name, path=path))
         
         def may_apply_scaling(shapes):
             if self.params["scale"] == 1:
@@ -82,7 +82,7 @@ class Common:
         relation_templates = []
         for relation_template in self.params["relations"]:
             try:
-                path = os.path.join(self.params["script_directory"], "relation_templates", "%s.json" % relation_template)
+                path = os.path.join(self.params["script_directory"], "resources", "relation_templates", "%s.json" % relation_template)
                 contents = json.loads(read_contents(path))
                 relation_templates.append(contents)
             except:

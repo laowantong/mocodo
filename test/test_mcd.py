@@ -1,11 +1,11 @@
-import sys
-sys.path[0:0] = ["."]
-
-import unittest
-from mocodo.mcd import *
-from mocodo.argument_parser import parsed_arguments
-
 import gettext
+import unittest
+
+__import__("sys").path[0:0] = ["mocodo"]
+from mocodo.argument_parser import parsed_arguments
+from mocodo.mcd import *
+
+
 gettext.NullTranslations().install()
 
 params = parsed_arguments()

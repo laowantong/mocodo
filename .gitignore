@@ -21,3 +21,6 @@ magic/README.rst
 web/sessions/*
 web/box/*
 .pytest_cache/*
+.ipynb_checkpoints/*
+*/.ipynb_checkpoints/*
+poetry.lock

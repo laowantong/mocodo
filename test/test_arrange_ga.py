@@ -1,13 +1,11 @@
-import sys
-sys.path[0:0] = ["."]
-
-from mocodo.arrange_ga import *
-
 import unittest
-from mocodo.mcd import Mcd
-from mocodo.argument_parser import parsed_arguments
-from time import time
 from random import seed
+
+__import__("sys").path[0:0] = ["mocodo"]
+from mocodo.argument_parser import parsed_arguments
+from mocodo.arrange_ga import *
+from mocodo.mcd import Mcd
+
 
 # WARNING: by default, this should fail for Python 3.
 # Set PYTHONHASHSEED to 0 before launching the tests.

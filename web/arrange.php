@@ -36,7 +36,7 @@ fwrite($chan, json_encode($_POST));
 fclose($chan);
 
 // Launch the script
-$command_line = "python3 ../../../mocodo.py --timeout=" . $_POST['timeout'] . " --" . $_POST['algo'] . " 2>&1";
+$command_line = "/Users/aristide/opt/miniconda3/bin/mocodo --timeout=" . $_POST['timeout'] . " --" . $_POST['algo'] . " 2>&1";
 // fwrite($php_log, $command_line . "\n");
 // fwrite($php_log,$_POST['text']);
 $out = array();

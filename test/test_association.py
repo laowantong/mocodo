@@ -1,10 +1,10 @@
-import sys
-sys.path[0:0] = ["."]
-
+import gettext
 import unittest
+
+__import__("sys").path[0:0] = ["mocodo"]
 from mocodo.association import *
 
-import gettext
+
 gettext.NullTranslations().install()
 
 class parse_test(unittest.TestCase):

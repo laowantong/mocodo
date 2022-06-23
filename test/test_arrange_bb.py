@@ -1,18 +1,15 @@
-import sys
-
-sys.path[0:0] = ["."]
-
-from mocodo.arrange_bb import *
-
 import unittest
-from mocodo.mcd import Mcd
-from mocodo.argument_parser import parsed_arguments
 from random import seed
+
+__import__("sys").path[0:0] = ["mocodo"]
+from mocodo.argument_parser import parsed_arguments
+from mocodo.arrange_bb import *
+from mocodo.mcd import Mcd
+
 
 # WARNING: by default, this should fail for Python 3.
 # Set PYTHONHASHSEED to 0 before launching the tests.
 # cf. http://stackoverflow.com/questions/38943038/difference-between-python-2-and-3-for-shuffle-with-a-given-seed/
-
 
 class ArrangeBB(unittest.TestCase):
     def test_constrained_rearrangement(self):

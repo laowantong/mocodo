@@ -1,12 +1,11 @@
-import sys
-sys.path[0:0] = ["."]
-
-from mocodo.fitness import *
-
 import unittest
-from mocodo.mcd import Mcd
-from mocodo.argument_parser import parsed_arguments
 from math import hypot
+
+__import__("sys").path[0:0] = ["mocodo"]
+from mocodo.argument_parser import parsed_arguments
+from mocodo.fitness import *
+from mocodo.mcd import Mcd
+
 
 class ArrangeBB(unittest.TestCase):
     

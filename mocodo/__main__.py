@@ -21,7 +21,7 @@ def main():
         get_font_metrics = font_metrics_factory(params)
         if params["restore"]:
             import shutil
-            shutil.copyfile(os.path.join(params["script_directory"], "pristine_sandbox.mcd"), "sandbox.mcd")
+            shutil.copyfile(os.path.join(params["script_directory"], "resources", "pristine_sandbox.mcd"), "sandbox.mcd")
             return write_contents("params.json", "{}")
         if params["print_params"]:
             import json
@@ -49,8 +49,6 @@ def main():
                 from .arrange_ga import arrange
             elif params["arrange"] == "bb":
                 from .arrange_bb import arrange
-            elif params["arrange"] == "lp":
-                from .arrange_lp import arrange
             result = arrange(**params)
             if result:
                 mcd.set_layout(**result)

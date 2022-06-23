@@ -1,16 +1,16 @@
-import sys
-sys.path[0:0] = ["."]
-
-import unittest
-from mocodo.relations import *
-from mocodo.mcd import Mcd
 import json
-from mocodo.file_helpers import read_contents
+import unittest
 from copy import deepcopy
-from mocodo.argument_parser import parsed_arguments
 
-minimal_template = json.loads(read_contents("mocodo/relation_templates/text.json"))
-json_template = json.loads(read_contents("mocodo/relation_templates/json.json"))
+__import__("sys").path[0:0] = ["mocodo"]
+from mocodo.argument_parser import parsed_arguments
+from mocodo.file_helpers import read_contents
+from mocodo.mcd import Mcd
+from mocodo.relations import *
+
+
+minimal_template = json.loads(read_contents("mocodo/resources/relation_templates/text.json"))
+json_template = json.loads(read_contents("mocodo/resources/relation_templates/json.json"))
 params = parsed_arguments()
 params["title"] = "Untitled"
 params["guess_title"] = False

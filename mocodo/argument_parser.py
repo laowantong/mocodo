@@ -249,7 +249,7 @@ def parsed_arguments():
     # pprint.pprint(params)
     if not os.path.exists(params["input"]):
         import shutil
-        shutil.copyfile(os.path.join(params["script_directory"], "pristine_sandbox.mcd"), params["input"])
+        shutil.copyfile(os.path.join(params["script_directory"], "resources", "pristine_sandbox.mcd"), params["input"])
     random.seed(params["seed"])
     try:
         params["title"] = params["title"].decode("utf8")
