@@ -59,6 +59,12 @@ class EntityTest(unittest.TestCase):
         self.assertEqual([a.label for a in e.attributes], ["abscisse", "ordonnee"])
         self.assertEqual([a.get_category() for a in e.attributes], ["simple", "simple"])
 
+    def test_no_identifier_for_children(self):
+        e = Entity("POSITION: abscisse, _ordonnee")
+        e.add_attributes([], is_child=True)
+        self.assertEqual([a.label for a in e.attributes], ["abscisse", "ordonnee"])
+        self.assertEqual([a.get_category() for a in e.attributes], ["simple", "simple"])
+
     def test_multiple_strong_identifier(self):
         e = Entity("POSITION: abscisse, _ordonnee")
         e.add_attributes([])
@@ -67,13 +73,13 @@ class EntityTest(unittest.TestCase):
 
     def test_weak_identifier(self):
         e = Entity("LIVRE: Num. exemplaire, Etat du livre, Date d'achat")
-        e.add_attributes([None])
+        e.add_attributes(["placeholder"])
         self.assertEqual([a.label for a in e.attributes], ["Num. exemplaire", "Etat du livre", "Date d'achat"])
         self.assertEqual([a.get_category() for a in e.attributes], ["weak", "simple", "simple"])
 
     def test_weak_composite_identifier(self):
         e = Entity("POSITION: abscisse, _ordonnee, foobar")
-        e.add_attributes([None])
+        e.add_attributes(["placeholder"])
         self.assertEqual([a.label for a in e.attributes], ["abscisse", "ordonnee", "foobar"])
         self.assertEqual([a.get_category() for a in e.attributes], ["weak", "weak", "simple"])
 
