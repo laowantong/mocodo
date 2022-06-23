@@ -1,5 +1,6 @@
 {
   "extension": ".tex",
+  "highlight": "latex",
   "transform_attribute": [
     {
       "search": "_",

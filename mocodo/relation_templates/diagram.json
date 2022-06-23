@@ -1,5 +1,6 @@
 {
   "extension": ".mld",
+  "highlight": "plain",
   "compose_primary_key": "_{label}",
   "compose_foreign_key": "#{label}-><MAY_BE_SUPPRESSED>{primary_relation_name}</MAY_BE_SUPPRESSED>->{raw_label}",
   "compose_foreign_attribute": "{label}",

@@ -1,5 +1,6 @@
 {
   "extension": "_data_dict.md",
+  "highlight": "markdown",
   "compose_primary_key": "| {label} | _{data_type}_ |\n",
   "compose_normal_attribute": "| {label} | _{data_type}_ |\n",
   "compose_foreign_key": "",

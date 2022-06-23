@@ -1,5 +1,6 @@
 {
   "extension": "_sqlite.sql",
+  "highlight": "sql",
   "transform_attribute": [
     {
       "search": " ",
@@ -48,6 +49,11 @@
       "comment": "Replace the missing data types with an arbitrary default.",
       "search": " None,\n",
       "replace": " VARCHAR(42),\n"
+    },
+    {
+      "comment": "Replace the boolean data type placeholders.",
+      "search": " BOOLEAN,\n",
+      "replace": " INTEGER,\n"
     },
     {
       "comment": "Concatenate the primary keys and move them to the end of the table.",

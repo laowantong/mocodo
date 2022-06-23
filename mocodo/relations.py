@@ -300,7 +300,7 @@ class Relations:
                         "association_name": association.cartouche,
                         "leg_note": None,
                         "primary": False,
-                        "foreign": False,
+                        "foreign": True,
                         "nature": "association_attribute"
                     } for attribute in association.attributes)
                 if parent_leg.card in ("->", "=>"): # migration: parent > children
@@ -322,7 +322,7 @@ class Relations:
                             # make the child's name a boolean attribute of the parent
                             self.relations[parent_leg.entity_name]["columns"].append({
                                 "attribute": child_leg.entity_name,
-                                "data_type": "boolean", # for SQL
+                                "data_type": "BOOLEAN",
                                 "primary_relation_name": None,
                                 "leg_note": parent_leg.note,
                                 "association_name": association.cartouche,

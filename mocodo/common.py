@@ -132,10 +132,13 @@ class Common:
                 if leg.arrow
             },
         }
+        path = f"{self.params['output_name']}_geo.json"
+        web_geo = {k: list(v.items()) if isinstance(v, dict) else v for (k, v) in geo.items()}
+        text = json.dumps(web_geo, indent=2, ensure_ascii=False)
+        text = text.replace("\n      ", " ")
+        text = text.replace("\n    ]", " ]")
         try:
-            path = f"{self.params['output_name']}_geo.json"
-            web_geo = {k: list(v.items()) if isinstance(v, dict) else v for (k, v) in geo.items()}
-            write_contents(path, json.dumps(web_geo, indent=2, ensure_ascii=False))
+            write_contents(path, text)
             safe_print_for_PHP(self.output_success_message(path))
         except IOError:
             safe_print_for_PHP(_('Unable to generate file "{filename}"!').format(filename=os.path.basename(path)))

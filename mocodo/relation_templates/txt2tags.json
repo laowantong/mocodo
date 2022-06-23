@@ -1,5 +1,6 @@
 {
   "extension": ".t2t",
+  "highlight": "plain",
   "compose_primary_key": "__{label}__",
   "compose_foreign_key": "#{label}",
   "compose_foreign_primary_key": "__#{label}__",

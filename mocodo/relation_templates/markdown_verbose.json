@@ -1,5 +1,6 @@
 {
   "extension": "_verbose.md",
+  "highlight": "markdown",
   "compose_primary_key": "<ins>{label}</ins><item>Le champ _{label}_ fait partie de la clef primaire de la table<primary></primary>. C'était déjà un identifiant de l'entité _{this_relation_name}_.</item>",
   "compose_normal_attribute": "{label}<item>Le champ _{label}_ était déjà un simple attribut de l'entité _{this_relation_name}_.</item>",
   "compose_foreign_key": "_{label}_<item>Le champ _{label}_ est une clef étrangère. Il a migré à partir de l'entité _{primary_relation_name}_ par l'association de dépendance fonctionnelle _{association_name}_ en perdant son caractère identifiant.</item>",

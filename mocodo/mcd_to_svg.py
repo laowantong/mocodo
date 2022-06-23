@@ -31,9 +31,6 @@ def main(mcd, common):
             }
         ),
         (
-            "timestamp", {"timestamp": common.timestamp()}
-        ),
-        (
             "background",
             {
                 "width": geo["width"],
@@ -69,7 +66,7 @@ def main(mcd, common):
     path = Path(f"{common.params['output_name']}.svg")
     path.write_text(text)
     safe_print_for_PHP(common.output_success_message(path))
-    if categories.pop("Notes", None) or categories.pop("Pager"):
+    if categories.pop("Notes", []) + categories.pop("Pager"): # don't use or to avoid short-circuit
         text = "\n".join(sum(categories.values(), [])) + "\n</svg>"
         text = re.sub(
             r"(?m)^<\?xml .+\n<svg .+",
@@ -77,7 +74,7 @@ def main(mcd, common):
             text
         )
         text = re.sub(r"(?m)^<g class.+", "<g>", text)
-        text = re.sub(r' (onmouseover|onmouseout|style)=".+?"', "", text)
+        text = re.sub(r' (onmouseover|onmouseout|style|id)=".+?"', "", text)
         path = Path(f"{common.params['output_name']}_static.svg")
         path.write_text(text)
         safe_print_for_PHP(common.output_success_message(path))
@@ -102,7 +99,6 @@ def html_escape(
 
 svg_elements = {
     "preamble":         """<?xml version="1.0" encoding="utf-8"?>\n<svg width="{width}" height="{total_height}" viewBox="0 0 {width} {total_height}" xmlns="http://www.w3.org/2000/svg">""",
-    "timestamp":        """<desc>{timestamp}</desc>""",
     "background":       """<rect id="frame" x="0" y="0" width="{width}" height="{height}" fill="{background_color}" stroke="none" stroke-width="0"/>""",
     "comment":          """\n<!-- {text} -->""",
     "begin_component":  """<g class="page_{page}_{mcd_uid} diagram_page" visibility="{visibility}">""",

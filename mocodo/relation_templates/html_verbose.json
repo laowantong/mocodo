@@ -1,5 +1,6 @@
 {
   "extension": "_verbose.html",
+  "highlight": "html",
   "transform_attribute": [
     {
       "search": "&",

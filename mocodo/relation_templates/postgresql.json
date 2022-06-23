@@ -1,5 +1,6 @@
 {
   "extension": "_postgresql.sql",
+  "highlight": "sql",
   "transform_attribute": [
     {
       "search": " ",
