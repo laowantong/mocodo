@@ -8,13 +8,13 @@ class DiagramLink:
         try:
             self.primary_entity = entities[foreign_key.primary_entity_name]
         except KeyError:
-            raise MocodoError(14, _(f'Attribute "{foreign_key.label}" in entity "{foreign_entity.name}" references an unknown entity "{foreign_key.primary_entity_name}".')) # fmt: skip
+            raise MocodoError(14, _('Attribute "{attribute}" in entity "{entity_1}" references an unknown entity "{entity_2}".').format(attribute=foreign_key.label, entity_1=foreign_entity.name, entity_2=foreign_key.primary_entity_name)) # fmt: skip
         for candidate in self.primary_entity.attributes:
             if candidate.label.lstrip("#") == foreign_key.primary_key_label.lstrip("#"):
                 self.primary_key = candidate
                 break
         else:
-            raise MocodoError(15, _(f'Attribute "{foreign_key.label}" in entity "{foreign_entity.name}" references an unknown attribute "{foreign_key.primary_key_label}" in entity "{foreign_key.primary_entity_name}".')) # fmt: skip
+            raise MocodoError(15, _('Attribute "{attribute_1}" in entity "{entity_1}" references an unknown attribute "{attribute_2}" in entity "{entity_2}".').format(attribute_1=foreign_key.label, entity_1=foreign_entity.name, attribute_2=foreign_key.primary_key_label, entity_2=foreign_key.primary_entity_name)) # fmt: skip
 
     def calculate_size(self, style, *ignored):
         self.fdx = self.foreign_entity.w // 2

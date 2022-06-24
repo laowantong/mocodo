@@ -9,7 +9,7 @@ try:
     from cairosvg import svg2png, svg2pdf
 except ImportError:
     def svg2png(**kargs):
-        raise MocodoError(13, "PNG and PDF generation requires cairosvg to be installed")
+        raise MocodoError(13, _("PNG and PDF generation requires cairosvg to be installed")) # fmt: skip
     svg2pdf = svg2png
 
 from .common import safe_print_for_PHP

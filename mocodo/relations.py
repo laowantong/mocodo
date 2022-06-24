@@ -215,7 +215,7 @@ class Relations:
                 if leg.kind == "strengthening":
                     weak_count += 1
                     if weak_count == 2:
-                        raise MocodoError(22, _('Reciprocal relative identification around {association}.').format(association=association.name))
+                        raise MocodoError(22, _('Reciprocal relative identification around {association}.').format(association=association.name)) # fmt: skip
                     other_leg = leg
 
     def relations_from_entities(self):
@@ -282,10 +282,10 @@ class Relations:
                     break
             else:
                 if len(remaining_entities) == 1:
-                    raise MocodoError(16, _('A weak entity (here, {entity}) cannot be strengthened by itself.').format(entity=remaining_entities[0].name))
+                    raise MocodoError(16, _('A weak entity (here, {entity}) cannot be strengthened by itself.').format(entity=remaining_entities[0].name)) # fmt: skip
                 else:
                     remaining_entity_names = u", ".join('"%s"' % entity.name for entity in remaining_entities)
-                    raise MocodoError(17, _('Cycle of weak entities in {entities}.').format(entities=remaining_entity_names))
+                    raise MocodoError(17, _('Cycle of weak entities in {entities}.').format(entities=remaining_entity_names)) # fmt: skip
 
     def process_associations(self):
         entities_to_delete = []

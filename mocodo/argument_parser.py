@@ -64,7 +64,7 @@ def init_localization(script_directory, language):
             except:
                 language = "en"
     try:
-        with open("%s/res/messages_%s.mo" % (script_directory, language), "rb") as mo_contents:
+        with open("%s/resources/res/messages_%s.mo" % (script_directory, language), "rb") as mo_contents:
             trans = gettext.GNUTranslations(mo_contents)
     except IOError:
         trans = gettext.NullTranslations()
@@ -176,7 +176,7 @@ def parsed_arguments():
             args.input += ".mcd"
         else:  # the user has explicitely specified a non existent input file
             init_localization(script_directory, default_params.get("language", args.language))
-            raise MocodoError(18, _('The file "{input}" doesn\'t exist.').format(input=args.input))
+            raise MocodoError(18, _('The file "{input}" doesn\'t exist.').format(input=args.input)) # fmt: skip
     default_params["input"] = args.input
     if os.path.exists(args.params_path):
         default_params.update(json.loads(read_contents(args.params_path)))

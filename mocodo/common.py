@@ -36,7 +36,7 @@ class Common:
                 return read_contents(self.params["input"], encoding=encoding).replace('"', '').splitlines()
             except UnicodeError:
                 pass
-        raise MocodoError(5, _('Unable to read "{filename}" with any of the following encodings: "{encodings}".').format(filename=self.params["input"], encodings= ", ".join(self.params["encodings"])))
+        raise MocodoError(5, _('Unable to read "{filename}" with any of the following encodings: "{encodings}".').format(filename=self.params["input"], encodings= ", ".join(self.params["encodings"]))) # fmt: skip
 
     def load_style(self):
         
@@ -46,12 +46,12 @@ class Common:
                 try:
                     return json.loads(read_contents(path))
                 except:
-                    raise MocodoError(3, _('Problem with "{name}" file "{path}".').format(name=name, path=path))
+                    raise MocodoError(3, _('Problem with "{name}" file "{path}".').format(name=name, path=path)) # fmt: skip
             path = os.path.join(self.params["script_directory"], "resources", name, path)
             try:
                 return json.loads(read_contents(path))
             except:
-                raise MocodoError(3, _('Problem with "{name}" file "{path}".').format(name=name, path=path))
+                raise MocodoError(3, _('Problem with "{name}" file "{path}".').format(name=name, path=path)) # fmt: skip
         
         def may_apply_scaling(shapes):
             if self.params["scale"] == 1:

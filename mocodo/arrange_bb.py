@@ -66,7 +66,7 @@ def arrange(col_count, row_count, successors, multiplicity, organic, min_objecti
             # print "Lower bound cut"
             return None
         if has_expired():
-            raise MocodoError(10, _('Layout calculation time exceeded.'))
+            raise MocodoError(10, _('Layout calculation time exceeded.')) # fmt: skip
         if next(iteration) > call_limit:
             # print "call limit exceeded"
             return None

@@ -40,28 +40,28 @@ class Mcd:
                     self.rows[-1].extend(Phantom(next(phantom_counter)) for _ in clause)
                     continue
                 if clause.startswith(":"):
-                    raise MocodoError(19, _(f'The clause "{clause}" starts with a colon.'))
+                    raise MocodoError(19, _('The clause "{clause}" starts with a colon.').format(clause=clause)) # fmt: skip
                 clause = re.sub("\[.+?\]", substitute_forbidden_symbols_between_brackets, clause)
                 if "," in clause.split(":", 1)[0]:
                     element = Association(clause, **params)
                     if element.name in self.associations:
-                        raise MocodoError(7, _(f'Duplicate association "{element.name}". If you want to make two associations appear with the same name, you must suffix it with a number.'))
+                        raise MocodoError(7, _('Duplicate association "{name}". If you want to make two associations appear with the same name, you must suffix it with a number.').format(name=element.name)) # fmt: skip
                     self.associations[element.name] = element
                     pages[indentation].append(element)
                 elif ":" in clause:
                     element = Entity(clause)
                     if element.name in self.entities:
-                        raise MocodoError(6, _(f'Duplicate entity "{element.name}". If you want to make two entities appear with the same name, you must suffix it with a number.'))
+                        raise MocodoError(6, _('Duplicate entity "{name}". If you want to make two entities appear with the same name, you must suffix it with a number.').format(name=element.name)) # fmt: skip
                     self.entities[element.name] = element
                     pages[indentation].append(element)
                 else:
-                    raise MocodoError(21, _(f'"{clause}" does not constitute a valid declaration of an entity or association.'))
+                    raise MocodoError(21, _('"{clause}" does not constitute a valid declaration of an entity or association.').format(clause=clause)) # fmt: skip
                 if element.name in seen:
-                    raise MocodoError(8, _(f'One entity and one association share the same name "{element.name}".'))
+                    raise MocodoError(8, _('One entity and one association share the same name "{name}".').format(name=element.name)) # fmt: skip
                 seen.add(element.name)
                 self.rows[-1].append(element)
             if not seen:
-                raise MocodoError(4, _('The ERD is empty.'))
+                raise MocodoError(4, _('The ERD is empty.')) # fmt: skip
             self.rows = [row for row in self.rows if row]
             self.col_count = max(len(row) for row in self.rows)
             self.row_count = len(self.rows)
@@ -77,9 +77,9 @@ class Mcd:
                         entity = self.entities[leg.entity_name]
                     except KeyError:
                         if leg.entity_name in self.associations:
-                            raise MocodoError(20, _(f'Association "{association.name}" linked to another association "{leg.entity_name}"!'))
+                            raise MocodoError(20, _('Association "{association}" linked to another association "{entity}"!').format(association=association.name, entity=leg.entity_name)) # fmt: skip
                         else:
-                            raise MocodoError(1, _(f'Association "{association.name}" linked to an unknown entity "{leg.entity_name}"!'))
+                            raise MocodoError(1, _('Association "{association}" linked to an unknown entity "{entity}"!').format(association=association.name, entity=leg.entity_name)) # fmt: skip
                     leg.register_entity(entity)
         
         def add_attributes():

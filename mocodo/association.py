@@ -34,9 +34,9 @@ class Association:
                     cards.append(m[1])
                     entity_names.append(m[2].lstrip())
                 elif leg:
-                    raise MocodoError(2, _(f'Missing cardinalities on leg "{leg}" of association "{self.name}".'))
+                    raise MocodoError(2, _('Missing cardinalities on leg "{leg}" of association "{name}".').format(leg=leg, name=self.name)) # fmt: skip
                 else:
-                    raise MocodoError(11, _(f'Missing leg in association "{self.name}".'))
+                    raise MocodoError(11, _('Missing leg in association "{name}".').format(name=self.name)) # fmt: skip
             return (cards, entity_names, outer_split(attributes))
 
         
@@ -46,7 +46,7 @@ class Association:
             # e.g. change "/XT\ parent => child1, child2" into "/XT\, => parent, child1, child2"
             (clause, n) = re.subn(r"(\s*/\w*\\)\s*([^:,]+)\s*((?:<=|<-|->|=>)[<>]?)", r"\1, \3 \2, ", clause)
             if n == 0:
-                raise MocodoError(14, _(f'Syntax error in inheritance "{match[1]}".'))
+                raise MocodoError(23, _('Syntax error in inheritance "{inheritance}".').format(inheritance=match[1])) # fmt: skip
         (name, legs_and_attributes) = clause.split(",", 1)
         (self.name, self.cartouche, is_inheritance) = clean_up_name(name)
         if is_inheritance: # Finish syntax normalization by prefixing children names with fake cardinalities
