@@ -686,10 +686,10 @@ class relationsTest(unittest.TestCase):
         self.assertEqual(d["relations"][0]["columns"][1]["attribute"], "CARNIVORE")
         self.assertEqual(d["relations"][0]["columns"][1]["data_type"], "BOOLEAN")
         self.assertEqual(d["relations"][0]["columns"][1]["foreign"], True)
-        self.assertEqual(d["relations"][0]["columns"][1]["nature"], "foreign_attribute")
+        self.assertEqual(d["relations"][0]["columns"][1]["nature"], "child_entity_name")
         self.assertEqual(d["relations"][0]["columns"][2]["attribute"], "quantité viande")
         self.assertEqual(d["relations"][0]["columns"][2]["foreign"], True)
-        self.assertEqual(d["relations"][0]["columns"][2]["nature"], "foreign_attribute")
+        self.assertEqual(d["relations"][0]["columns"][2]["nature"], "child_attribute")
 
     def test_inheritance_leftwards_simple_arrow(self):
         clauses = """
@@ -706,10 +706,10 @@ class relationsTest(unittest.TestCase):
         d = json.loads(t.get_text(json_template))
         self.assertEqual(d["relations"][0]["columns"][1]["attribute"], "type")
         self.assertEqual(d["relations"][0]["columns"][1]["foreign"], True)
-        self.assertEqual(d["relations"][0]["columns"][1]["nature"], "association_attribute")
+        self.assertEqual(d["relations"][0]["columns"][1]["nature"], "child_discriminant")
         self.assertEqual(d["relations"][0]["columns"][2]["attribute"], "quantité viande")
         self.assertEqual(d["relations"][0]["columns"][2]["foreign"], True)
-        self.assertEqual(d["relations"][0]["columns"][2]["nature"], "foreign_attribute")
+        self.assertEqual(d["relations"][0]["columns"][2]["nature"], "child_attribute")
 
     def test_inheritance_rightwards_simple_arrow(self):
         clauses = """
@@ -731,10 +731,10 @@ class relationsTest(unittest.TestCase):
         self.assertEqual(d["relations"][0]["columns"][1]["nature"], "normal_attribute")
         self.assertEqual(d["relations"][0]["columns"][2]["attribute"], "type")
         self.assertEqual(d["relations"][0]["columns"][2]["foreign"], True)
-        self.assertEqual(d["relations"][0]["columns"][2]["nature"], "association_attribute")
+        self.assertEqual(d["relations"][0]["columns"][2]["nature"], "child_discriminant")
         self.assertEqual(d["relations"][1]["columns"][0]["attribute"], "animal")
         self.assertEqual(d["relations"][1]["columns"][0]["foreign"], True)
-        self.assertEqual(d["relations"][1]["columns"][0]["nature"], "foreign_primary_key")
+        self.assertEqual(d["relations"][1]["columns"][0]["nature"], "parent_primary_key")
 
     def test_inheritance_rightwards_double_arrow(self):
         clauses = """
@@ -752,10 +752,10 @@ class relationsTest(unittest.TestCase):
         d = json.loads(t.get_text(json_template))
         self.assertEqual(d["relations"][0]["columns"][0]["attribute"], "animal")
         self.assertEqual(d["relations"][0]["columns"][0]["foreign"], True)
-        self.assertEqual(d["relations"][0]["columns"][0]["nature"], "foreign_primary_key")
+        self.assertEqual(d["relations"][0]["columns"][0]["nature"], "parent_primary_key")
         self.assertEqual(d["relations"][0]["columns"][1]["attribute"], "poids")
         self.assertEqual(d["relations"][0]["columns"][1]["foreign"], True)
-        self.assertEqual(d["relations"][0]["columns"][1]["nature"], "foreign_attribute")
+        self.assertEqual(d["relations"][0]["columns"][1]["nature"], "parent_attribute")
         self.assertEqual(d["relations"][0]["columns"][2]["attribute"], "quantité viande")
         self.assertEqual(d["relations"][0]["columns"][2]["foreign"], False)
         self.assertEqual(d["relations"][0]["columns"][2]["nature"], "normal_attribute")

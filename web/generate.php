@@ -109,7 +109,7 @@ else {
   };
 
   // Launch the script
-$command_line = "/Users/aristide/opt/miniconda3/bin/mocodo 2>&1 >/dev/null";
+$command_line = $python . " ../../../mocodo.py 2>&1 >/dev/null";
 $out = array();
 // die('{"err": "' . $command_line . '"}');
 

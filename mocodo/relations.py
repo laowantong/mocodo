@@ -113,6 +113,12 @@ class Relations:
             result.setdefault("compose_promoting_foreign_key", result["compose_foreign_key"])
             result.setdefault("compose_foreign_attribute", result["compose_normal_attribute"])
             result.setdefault("compose_association_attribute", result["compose_normal_attribute"])
+            result.setdefault("compose_child_discriminant", result["compose_foreign_attribute"])
+            result.setdefault("compose_parent_primary_key", result["compose_foreign_primary_key"])
+            result.setdefault("compose_parent_attribute", result["compose_foreign_attribute"])
+            result.setdefault("compose_child_entity_name", result["compose_foreign_attribute"])
+            result.setdefault("compose_child_key", result["compose_foreign_key"])
+            result.setdefault("compose_child_attribute", result["compose_foreign_attribute"])
             return result
         template = set_defaults(template)
         
@@ -301,7 +307,7 @@ class Relations:
                         "leg_note": None,
                         "primary": False,
                         "foreign": True,
-                        "nature": "association_attribute"
+                        "nature": "child_discriminant"
                     } for attribute in association.attributes)
                 if parent_leg.card in ("->", "=>"): # migration: parent > children
                     for child_leg in association.legs[1:]: 
@@ -314,7 +320,7 @@ class Relations:
                             "association_name": association.cartouche,
                             "primary": attribute["primary"],
                             "foreign": True,
-                            "nature": "foreign_primary_key" if attribute["primary"] else "foreign_attribute"
+                            "nature": "parent_primary_key" if attribute["primary"] else "parent_attribute"
                         } for attribute in self.relations[parent_leg.entity_name]["columns"] if attribute["primary"] or parent_leg.card == "=>"]
                 else: # migration: children > parent
                     for child_leg in association.legs[1:]:
@@ -323,23 +329,23 @@ class Relations:
                             self.relations[parent_leg.entity_name]["columns"].append({
                                 "attribute": child_leg.entity_name,
                                 "data_type": "BOOLEAN",
-                                "primary_relation_name": None,
+                                "primary_relation_name": child_leg.entity_name,
                                 "leg_note": parent_leg.note,
                                 "association_name": association.cartouche,
                                 "primary": False,
                                 "foreign": True,
-                                "nature": "foreign_attribute"
+                                "nature": "child_entity_name"
                             })
                         # migrate all child's attributes
                         self.relations[parent_leg.entity_name]["columns"].extend({
                             "attribute": attribute["attribute"],
                             "data_type": attribute["data_type"],
-                            "primary_relation_name": None,
+                            "primary_relation_name": child_leg.entity_name,
                             "leg_note": parent_leg.note,
                             "association_name": association.cartouche,
                             "primary": attribute["primary"],
                             "foreign": True,
-                            "nature": "foreign_key" if attribute["primary"] else "foreign_attribute"
+                            "nature": "child_key" if attribute["primary"] else "child_attribute"
                         } for attribute in self.relations[child_leg.entity_name]["columns"])
                         entities_to_delete.append(child_leg.entity_name)
                 if parent_leg.card == "=>": # suppress the parent

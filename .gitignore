@@ -24,3 +24,4 @@ web/box/*
 .ipynb_checkpoints/*
 */.ipynb_checkpoints/*
 poetry.lock
+mocodo.py

@@ -180,11 +180,11 @@ ALTER TABLE `ANIMAL` ADD FOREIGN KEY (`code_espèce`) REFERENCES `ESPÈCE` (`cod
 - Le champ _code espèce_ fait partie de la clef primaire de la table. Il a migré à partir de l'entité _ESPÈCE_ pour renforcer l'identifiant faible.  
 - Le champ _nom_ fait partie de la clef primaire de la table. C'était déjà un identifiant de l'entité _ANIMAL_.  
 - Les champs _sexe_, _date naissance_ et _date décès_ étaient déjà de simples attributs de l'entité _ANIMAL_.  
-- Le champ _type alimentation_ était déjà un simple attribut de l'association _ANIMAL_.  
-- Le champ _CARNIVORE_ a migré à partir de l'association de dépendance fonctionnelle __.  
-- Le champ _quantité viande_ a migré à partir de l'association de dépendance fonctionnelle __.  
-- Le champ _HERBIVORE_ a migré à partir de l'association de dépendance fonctionnelle __.  
-- Le champ _plante préférée_ a migré à partir de l'association de dépendance fonctionnelle __.  
+- Le champ _type alimentation_ est ajouté pour indiquer la nature de la spécialisation (i.e., laquelle des entités-filles est concernée).  
+- Un champ booléen _CARNIVORE_ est ajouté pour indiquer si on a affaire à la spécialisation de même nom.  
+- Le champ _quantité viande_ a migré à partir de l'entité-fille _CARNIVORE_.  
+- Un champ booléen _HERBIVORE_ est ajouté pour indiquer si on a affaire à la spécialisation de même nom.  
+- Le champ _plante préférée_ a migré à partir de l'entité-fille _HERBIVORE_.  
 - Les champs _code espèce mère_ et _nom mère_ sont des clefs étrangères. Ils ont migré à partir de l'entité _ANIMAL_ par l'association de dépendance fonctionnelle _A MÈRE_ en perdant leur caractère identifiant.  
 
 **PÉRIODE** (<ins>date début</ins>, <ins>date fin</ins>)  
@@ -350,11 +350,11 @@ ALTER TABLE "ANIMAL" ADD FOREIGN KEY ("code_espèce") REFERENCES "ESPÈCE" ("cod
     <span class='normal'>sexe</span>,
     <span class='normal'>date naissance</span>,
     <span class='normal'>date décès</span>,
-    <span class='normal'>type alimentation</span>,
-    <span class='normal'>CARNIVORE</span>,
-    <span class='normal'>quantité viande</span>,
-    <span class='normal'>HERBIVORE</span>,
-    <span class='normal'>plante préférée</span>,
+    <span class='foreign'>type alimentation</span>,
+    <span class='foreign'>CARNIVORE</span>,
+    <span class='foreign'>quantité viande</span>,
+    <span class='foreign'>HERBIVORE</span>,
+    <span class='foreign'>plante préférée</span>,
     <span class='foreign'>#code espèce mère</span>,
     <span class='foreign'>#nom mère</span>
   )
@@ -362,11 +362,11 @@ ALTER TABLE "ANIMAL" ADD FOREIGN KEY ("code_espèce") REFERENCES "ESPÈCE" ("cod
     <li>Le champ <i>code espèce</i> fait partie de la clef primaire de la table. Il a migré à partir de l'entité <i>ESPÈCE</i> pour renforcer l'identifiant.</li>
     <li>Le champ <i>nom</i> fait partie de la clef primaire de la table. C'était déjà un identifiant de l'entité <i>ANIMAL</i>.</li>
     <li>Les champs <i>sexe</i>, <i>date naissance</i> et <i>date décès</i> étaient déjà de simples attributs de l'entité <i>ANIMAL</i>.</li>
-    <li>Le champ <i>type alimentation</i> était déjà un simple attribut de l'association <i>ANIMAL</i>.</li>
-    <li>Le champ <i>CARNIVORE</i> a migré à partir de l'association de dépendance fonctionnelle <i></i>.</li>
-    <li>Le champ <i>quantité viande</i> a migré à partir de l'association de dépendance fonctionnelle <i></i>.</li>
-    <li>Le champ <i>HERBIVORE</i> a migré à partir de l'association de dépendance fonctionnelle <i></i>.</li>
-    <li>Le champ <i>plante préférée</i> a migré à partir de l'association de dépendance fonctionnelle <i></i>.</li>
+    <li>Le champ <i>type alimentation</i> est ajouté pour indiquer la nature de la spécialisation (i.e., laquelle des entités-filles est concernée).</li>
+    <li>Un champ booléen <i>CARNIVORE</i> est ajouté pour indiquer si on a affaire à la spécialisation de même nom.</li>
+    <li>Le champ <i>quantité viande</i> a migré à partir de l'entité-fille <i>CARNIVORE</i>.</li>
+    <li>Un champ booléen <i>HERBIVORE</i> est ajouté pour indiquer si on a affaire à la spécialisation de même nom.</li>
+    <li>Le champ <i>plante préférée</i> a migré à partir de l'entité-fille <i>HERBIVORE</i>.</li>
     <li>Le champ <i>code espèce mère</i> est une clef étrangère. Il a migré à partir de l'entité <i>ANIMAL</i> par l'association de dépendance fonctionnelle <i>A MÈRE</i> en perdant son caractère identifiant.</li>
     <li>Le champ <i>nom mère</i> est une clef étrangère. Il a migré à partir de l'entité <i>ANIMAL</i> par l'association de dépendance fonctionnelle <i>A MÈRE</i> en perdant son caractère identifiant.</li>
   </ul>
@@ -1009,7 +1009,7 @@ CREATE TABLE "PÉRIODE" (
           "label_titlecase": "Type alimentation",
           "primary": false,
           "foreign": true,
-          "nature": "association_attribute",
+          "nature": "child_discriminant",
           "data_type": null,
           "association_name": "",
           "association_name_lower_case": "",
@@ -1034,17 +1034,17 @@ CREATE TABLE "PÉRIODE" (
           "label_titlecase": "Carnivore",
           "primary": false,
           "foreign": true,
-          "nature": "foreign_attribute",
+          "nature": "child_entity_name",
           "data_type": "BOOLEAN",
           "association_name": "",
           "association_name_lower_case": "",
           "association_name_uppercase": "",
           "association_name_titlecase": "",
           "leg_note": null,
-          "primary_relation_name": null,
-          "primary_relation_name_lowercase": null,
-          "primary_relation_name_uppercase": null,
-          "primary_relation_name_titlecase": null
+          "primary_relation_name": "CARNIVORE",
+          "primary_relation_name_lowercase": "carnivore",
+          "primary_relation_name_uppercase": "CARNIVORE",
+          "primary_relation_name_titlecase": "Carnivore"
         },
         {
           "attribute": "quantité viande",
@@ -1059,17 +1059,17 @@ CREATE TABLE "PÉRIODE" (
           "label_titlecase": "Quantité viande",
           "primary": false,
           "foreign": true,
-          "nature": "foreign_attribute",
+          "nature": "child_attribute",
           "data_type": null,
           "association_name": "",
           "association_name_lower_case": "",
           "association_name_uppercase": "",
           "association_name_titlecase": "",
           "leg_note": null,
-          "primary_relation_name": null,
-          "primary_relation_name_lowercase": null,
-          "primary_relation_name_uppercase": null,
-          "primary_relation_name_titlecase": null
+          "primary_relation_name": "CARNIVORE",
+          "primary_relation_name_lowercase": "carnivore",
+          "primary_relation_name_uppercase": "CARNIVORE",
+          "primary_relation_name_titlecase": "Carnivore"
         },
         {
           "attribute": "HERBIVORE",
@@ -1084,17 +1084,17 @@ CREATE TABLE "PÉRIODE" (
           "label_titlecase": "Herbivore",
           "primary": false,
           "foreign": true,
-          "nature": "foreign_attribute",
+          "nature": "child_entity_name",
           "data_type": "BOOLEAN",
           "association_name": "",
           "association_name_lower_case": "",
           "association_name_uppercase": "",
           "association_name_titlecase": "",
           "leg_note": null,
-          "primary_relation_name": null,
-          "primary_relation_name_lowercase": null,
-          "primary_relation_name_uppercase": null,
-          "primary_relation_name_titlecase": null
+          "primary_relation_name": "HERBIVORE",
+          "primary_relation_name_lowercase": "herbivore",
+          "primary_relation_name_uppercase": "HERBIVORE",
+          "primary_relation_name_titlecase": "Herbivore"
         },
         {
           "attribute": "plante préférée",
@@ -1109,17 +1109,17 @@ CREATE TABLE "PÉRIODE" (
           "label_titlecase": "Plante préférée",
           "primary": false,
           "foreign": true,
-          "nature": "foreign_attribute",
+          "nature": "child_attribute",
           "data_type": null,
           "association_name": "",
           "association_name_lower_case": "",
           "association_name_uppercase": "",
           "association_name_titlecase": "",
           "leg_note": null,
-          "primary_relation_name": null,
-          "primary_relation_name_lowercase": null,
-          "primary_relation_name_uppercase": null,
-          "primary_relation_name_titlecase": null
+          "primary_relation_name": "HERBIVORE",
+          "primary_relation_name_lowercase": "herbivore",
+          "primary_relation_name_uppercase": "HERBIVORE",
+          "primary_relation_name_titlecase": "Herbivore"
         },
         {
           "attribute": "code espèce",
