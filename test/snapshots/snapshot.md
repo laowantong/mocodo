@@ -139,25 +139,25 @@ ALTER TABLE `ANIMAL` ADD FOREIGN KEY (`code_espèce`) REFERENCES `ESPÈCE` (`cod
 ### `markdown.json`
 
 ```markdown
-**PEUT COHABITER AVEC** (<ins>_code espèce_</ins>, <ins>_code espèce commensale_</ins>, nb. max. commensaux)  
-**PEUT VIVRE DANS** (<ins>_code espèce_</ins>, <ins>_num. enclos_</ins>, nb. max. congénères)  
+**PEUT COHABITER AVEC** (<ins>_#code espèce_</ins>, <ins>_#code espèce commensale_</ins>, nb. max. commensaux)  
+**PEUT VIVRE DANS** (<ins>_#code espèce_</ins>, <ins>_#num. enclos_</ins>, nb. max. congénères)  
 **ESPÈCE** (<ins>code espèce</ins>, libellé)  
 <!--
 **ENCLOS** (<ins>num. enclos</ins>)  
 -->
-**OCCUPE** (<ins>_code espèce_</ins>, <ins>_nom_</ins>, <ins>_num. enclos_</ins>, _date début_, _date fin_)  
-**ANIMAL** (<ins>_code espèce_</ins>, <ins>nom</ins>, sexe, date naissance, date décès, type alimentation, CARNIVORE, quantité viande, HERBIVORE, plante préférée, _code espèce mère_, _nom mère_)  
+**OCCUPE** (<ins>_#code espèce_</ins>, <ins>_#nom_</ins>, <ins>_#num. enclos_</ins>, _#date début_, _#date fin_)  
+**ANIMAL** (<ins>_#code espèce_</ins>, <ins>nom</ins>, sexe, date naissance, date décès, type alimentation, CARNIVORE, quantité viande, HERBIVORE, plante préférée, _#code espèce mère_, _#nom mère_)  
 **PÉRIODE** (<ins>date début</ins>, <ins>date fin</ins>)
 ```
 
 ### `markdown_verbose.json`
 
 ```markdown
-**PEUT COHABITER AVEC** (<ins>_code espèce_</ins>, <ins>_code espèce commensale_</ins>, nb. max. commensaux)  
+**PEUT COHABITER AVEC** (<ins>_#code espèce_</ins>, <ins>_#code espèce commensale_</ins>, nb. max. commensaux)  
 - Les champs _code espèce_ et _code espèce commensale_ constituent la clef primaire de la table. Ce sont des clefs étrangères qui ont migré directement à partir de l'entité _ESPÈCE_.  
 - Le champ _nb. max. commensaux_ était déjà un simple attribut de l'association _PEUT COHABITER AVEC_.  
 
-**PEUT VIVRE DANS** (<ins>_code espèce_</ins>, <ins>_num. enclos_</ins>, nb. max. congénères)  
+**PEUT VIVRE DANS** (<ins>_#code espèce_</ins>, <ins>_#num. enclos_</ins>, nb. max. congénères)  
 - Le champ _code espèce_ fait partie de la clef primaire de la table. C'est une clef étrangère qui a migré directement à partir de l'entité _ESPÈCE_.  
 - Le champ _num. enclos_ fait partie de la clef primaire de la table. C'est une clef étrangère qui a migré directement à partir de l'entité _ENCLOS_.  
 - Le champ _nb. max. congénères_ était déjà un simple attribut de l'association _PEUT VIVRE DANS_.  
@@ -170,13 +170,13 @@ ALTER TABLE `ANIMAL` ADD FOREIGN KEY (`code_espèce`) REFERENCES `ESPÈCE` (`cod
 - **Avertissement.** Cette table ne comportant qu'un seul champ, on peut envisager de la supprimer.
 - Le champ _num. enclos_ constitue la clef primaire de la table. C'était déjà un identifiant de l'entité _ENCLOS_.  
 
-**OCCUPE** (<ins>_code espèce_</ins>, <ins>_nom_</ins>, <ins>_num. enclos_</ins>, _date début_, _date fin_)  
+**OCCUPE** (<ins>_#code espèce_</ins>, <ins>_#nom_</ins>, <ins>_#num. enclos_</ins>, _date début_, _date fin_)  
 - Les champs _code espèce_ et _nom_ font partie de la clef primaire de la table. Ce sont des clefs étrangères qui ont migré directement à partir de l'entité _ANIMAL_.  
 - Le champ _num. enclos_ fait partie de la clef primaire de la table. C'est une clef étrangère qui a migré directement à partir de l'entité _ENCLOS_.  
 - Le champ _date début_ est une clef étrangère issue de l'entité _PÉRIODE_. Il devrait normalement faire partie de l'identifiant de _OCCUPE_, mais a été rétrogradé explicitement au rang de simple attribut.  
 - Le champ _date fin_ est une clef étrangère issue de l'entité _PÉRIODE_. Il devrait normalement faire partie de l'identifiant de _OCCUPE_, mais a été rétrogradé explicitement au rang de simple attribut.  
 
-**ANIMAL** (<ins>_code espèce_</ins>, <ins>nom</ins>, sexe, date naissance, date décès, type alimentation, CARNIVORE, quantité viande, HERBIVORE, plante préférée, _code espèce mère_, _nom mère_)  
+**ANIMAL** (<ins>_code espèce_</ins>, <ins>nom</ins>, sexe, date naissance, date décès, type alimentation, CARNIVORE, quantité viande, HERBIVORE, plante préférée, _#code espèce mère_, _#nom mère_)  
 - Le champ _code espèce_ fait partie de la clef primaire de la table. Il a migré à partir de l'entité _ESPÈCE_ pour renforcer l'identifiant faible.  
 - Le champ _nom_ fait partie de la clef primaire de la table. C'était déjà un identifiant de l'entité _ANIMAL_.  
 - Les champs _sexe_, _date naissance_ et _date décès_ étaient déjà de simples attributs de l'entité _ANIMAL_.  
@@ -283,8 +283,8 @@ ALTER TABLE "ANIMAL" ADD FOREIGN KEY ("code_espèce") REFERENCES "ESPÈCE" ("cod
 <div id='mld'>
 <div>
   <span class='relation'>PEUT COHABITER AVEC</span> (
-    <span class='foreign primary'>code espèce</span>,
-    <span class='foreign primary'>code espèce commensale</span>,
+    <span class='foreign primary'>#code espèce</span>,
+    <span class='foreign primary'>#code espèce commensale</span>,
     <span class='normal'>nb. max. commensaux</span>
   )
   <ul>
@@ -295,8 +295,8 @@ ALTER TABLE "ANIMAL" ADD FOREIGN KEY ("code_espèce") REFERENCES "ESPÈCE" ("cod
 
 <div>
   <span class='relation'>PEUT VIVRE DANS</span> (
-    <span class='foreign primary'>code espèce</span>,
-    <span class='foreign primary'>num. enclos</span>,
+    <span class='foreign primary'>#code espèce</span>,
+    <span class='foreign primary'>#num. enclos</span>,
     <span class='normal'>nb. max. congénères</span>
   )
   <ul>
@@ -329,9 +329,9 @@ ALTER TABLE "ANIMAL" ADD FOREIGN KEY ("code_espèce") REFERENCES "ESPÈCE" ("cod
 
 <div>
   <span class='relation'>OCCUPE</span> (
-    <span class='foreign primary'>code espèce</span>,
-    <span class='foreign primary'>nom</span>,
-    <span class='foreign primary'>num. enclos</span>,
+    <span class='foreign primary'>#code espèce</span>,
+    <span class='foreign primary'>#nom</span>,
+    <span class='foreign primary'>#num. enclos</span>,
     <span class='foreign'>date début</span>,
     <span class='foreign'>date fin</span>
   )
@@ -355,8 +355,8 @@ ALTER TABLE "ANIMAL" ADD FOREIGN KEY ("code_espèce") REFERENCES "ESPÈCE" ("cod
     <span class='normal'>quantité viande</span>,
     <span class='normal'>HERBIVORE</span>,
     <span class='normal'>plante préférée</span>,
-    <span class='foreign'>code espèce mère</span>,
-    <span class='foreign'>nom mère</span>
+    <span class='foreign'>#code espèce mère</span>,
+    <span class='foreign'>#nom mère</span>
   )
   <ul>
     <li>Le champ <i>code espèce</i> fait partie de la clef primaire de la table. Il a migré à partir de l'entité <i>ESPÈCE</i> pour renforcer l'identifiant.</li>
@@ -1274,15 +1274,15 @@ CREATE TABLE "PÉRIODE" (
 <div id='mld'>
 <div>
   <span class='relation'>PEUT COHABITER AVEC</span> (
-    <span class='foreign primary'>code espèce</span>,
-    <span class='foreign primary'>code espèce commensale</span>,
+    <span class='foreign primary'>#code espèce</span>,
+    <span class='foreign primary'>#code espèce commensale</span>,
     <span class='normal'>nb. max. commensaux</span>
   )
 </div>
 <div>
   <span class='relation'>PEUT VIVRE DANS</span> (
-    <span class='foreign primary'>code espèce</span>,
-    <span class='foreign primary'>num. enclos</span>,
+    <span class='foreign primary'>#code espèce</span>,
+    <span class='foreign primary'>#num. enclos</span>,
     <span class='normal'>nb. max. congénères</span>
   )
 </div>
@@ -1301,16 +1301,16 @@ CREATE TABLE "PÉRIODE" (
 -->
 <div>
   <span class='relation'>OCCUPE</span> (
-    <span class='foreign primary'>code espèce</span>,
-    <span class='foreign primary'>nom</span>,
-    <span class='foreign primary'>num. enclos</span>,
-    <span class='foreign'>date début</span>,
-    <span class='foreign'>date fin</span>
+    <span class='foreign primary'>#code espèce</span>,
+    <span class='foreign primary'>#nom</span>,
+    <span class='foreign primary'>#num. enclos</span>,
+    <span class='foreign'>#date début</span>,
+    <span class='foreign'>#date fin</span>
   )
 </div>
 <div>
   <span class='relation'>ANIMAL</span> (
-    <span class='foreign primary'>code espèce</span>,
+    <span class='foreign primary'>#code espèce</span>,
     <span class='primary'>nom</span>,
     <span class='normal'>sexe</span>,
     <span class='normal'>date naissance</span>,
@@ -1320,8 +1320,8 @@ CREATE TABLE "PÉRIODE" (
     <span class='normal'>quantité viande</span>,
     <span class='normal'>HERBIVORE</span>,
     <span class='normal'>plante préférée</span>,
-    <span class='foreign'>code espèce mère</span>,
-    <span class='foreign'>nom mère</span>
+    <span class='foreign'>#code espèce mère</span>,
+    <span class='foreign'>#nom mère</span>
   )
 </div>
 <div>

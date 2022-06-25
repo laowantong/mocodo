@@ -84,19 +84,19 @@ class Relations:
               "transform_attribute": [],
               "transform_title": [],
               "transform_data_type": [],
-              "compose_label_disambiguated_by_note": u"{raw_label} {leg_note}",
-              "compose_label_disambiguated_by_number": u"{label}.{disambiguation_number}",
-              "compose_primary_key": u"_{label}_",
-              "compose_normal_attribute": u"{label}",
-              "compose_foreign_key": u"#{label}",
-              "compose_foreign_primary_key": u"_#{label}_",
+              "compose_label_disambiguated_by_note": "{raw_label} {leg_note}",
+              "compose_label_disambiguated_by_number": "{label}.{disambiguation_number}",
+              "compose_primary_key": "_{label}_",
+              "compose_normal_attribute": "{label}",
+              "compose_foreign_key": "#{label}",
+              "compose_foreign_primary_key": "_#{label}_",
               "transform_relation_name": [],
               "column_sorting_key": {
                 "search": "(.+)",
                 "replace": "\\1"
               },
               "column_separator": ", ",
-              "compose_relation": u"{this_relation_name} ({columns})",
+              "compose_relation": "{this_relation_name} ({columns})",
               "transform_single_column_relation": [],
               "transform_relation": [],
               "relation_separator": "\n",
@@ -104,7 +104,7 @@ class Relations:
                 "search": "(.+)",
                 "replace": "\\1"
               },
-              "compose_relational_schema": u"{relations}",
+              "compose_relational_schema": "{relations}",
               "transform_relational_schema": [],
             }
             result.update(template)

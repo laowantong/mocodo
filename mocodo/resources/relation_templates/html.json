@@ -31,8 +31,8 @@
   ],
   "compose_primary_key": "<span class='primary'>{label}</span>",
   "compose_normal_attribute": "<span class='normal'>{label}</span>",
-  "compose_foreign_key": "<span class='foreign'>{label}</span>",
-  "compose_foreign_primary_key": "<span class='foreign primary'>{label}</span>",
+  "compose_foreign_key": "<span class='foreign'>#{label}</span>",
+  "compose_foreign_primary_key": "<span class='foreign primary'>#{label}</span>",
   "column_separator": ",\n    ",
   "compose_relation": "<div>\n  <span class='relation'>{this_relation_name}</span> (\n    {columns}\n  )\n</div>",
   "transform_single_column_relation": [
