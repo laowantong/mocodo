@@ -31,7 +31,7 @@ $flex = array(
 // FIXME: on my machine, prevent PHP to use /usr/bin/python3 where cairosvg is not installed
 $python = "/Users/aristide/opt/miniconda3/bin/python";
 if (!file_exists($python)) {
-  $python = "python3";
+  $python = "python3.9";
 }
 
 // Make a folder for this user

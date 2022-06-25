@@ -103,7 +103,7 @@ class Common:
         mcd_path = Path(f"{self.params['output_name']}.mcd")
         if geo_path.is_file() and mcd_path.stat().st_mtime < geo_path.stat().st_mtime:
             try:
-                web_geo = json.loads(geo_path.read_text())
+                web_geo = json.loads(geo_path.read_text("utf8"))
                 geo = {k: dict(v) if isinstance(v, list) else v for (k, v) in web_geo.items()}
                 return geo
             except: # in case a problem occurs with the geo file, fallback to silently regenerate it

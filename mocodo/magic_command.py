@@ -38,7 +38,7 @@ class MocodoMagics(Magics):
                 if not notebook_options.no_mcd:
                     display(SVG(filename=svg_path))
                 if notebook_options.mld:
-                    mld = Path(output_name).with_suffix(".html").read_text()
+                    mld = Path(output_name).with_suffix(".html").read_text("utf8")
                     display(HTML(mld))
                 return True
 
@@ -53,7 +53,7 @@ class MocodoMagics(Magics):
 
         if not notebook_options.input:
             input_path = Path("mocodo_notebook/sandbox.mcd")
-            input_path.write_text(cell)
+            input_path.write_text(cell, encoding="utf8")
         else:
             input_path = Path(notebook_options.input).with_suffix(".mcd")
 
@@ -116,7 +116,7 @@ class MocodoMagics(Magics):
                     parser.add_argument("--obfuscate", nargs="?")
                     parser.add_argument("--flip", nargs="?")
                     (_, options) = parser.parse_known_args(options)
-                    input_path.write_text(stdoutdata)
+                    input_path.write_text(stdoutdata, encoding="utf8")
                     options.extend(["--input", str(input_path), "--output_dir", str(output_dir)])
                     if execute_command(options):
                         display_diagrams()

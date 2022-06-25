@@ -64,7 +64,7 @@ def main(mcd, common):
         del categories["Notes"]
     text = "\n".join(sum(categories.values(), [])) + "\n</svg>"
     path = Path(f"{common.params['output_name']}.svg")
-    path.write_text(text)
+    path.write_text(text, encoding="utf8")
     safe_print_for_PHP(common.output_success_message(path))
     if categories.pop("Notes", []) + categories.pop("Pager"): # don't use or to avoid short-circuit
         text = "\n".join(sum(categories.values(), [])) + "\n</svg>"
@@ -76,7 +76,7 @@ def main(mcd, common):
         text = re.sub(r"(?m)^<g class.+", "<g>", text)
         text = re.sub(r' (onmouseover|onmouseout|style|id)=".+?"', "", text)
         path = Path(f"{common.params['output_name']}_static.svg")
-        path.write_text(text)
+        path.write_text(text, encoding="utf8")
         safe_print_for_PHP(common.output_success_message(path))
     svg = bytes(text, "utf-8")
     for (format, function) in (("png", svg2png), ("pdf", svg2pdf)):
