@@ -5,7 +5,7 @@ from math import hypot, sqrt
 from .mocodo_error import MocodoError
 
 auto_correction = {
-    "01": ["O1", "o1", "1O", "1o"],
+    "01": ["O1", "o1", "10", "1O", "1o"],
     "0N": ["ON", "oN", "NO", "No", "N0"],
     "0n": ["On", "on", "no", "nO", "n0"],
     "1N": ["N1"],
