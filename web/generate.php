@@ -3,6 +3,14 @@ session_start();
 if (!array_key_exists('text', $_POST)) {
     exit("Need a POST value.");
 }
+
+// FIXME: on my machine, prevent PHP to use /usr/bin/python3 where cairosvg is not installed
+$python = "/Users/aristide/opt/miniconda3/bin/python";
+if (!file_exists($python)) {
+  $python = "python3.9";
+};
+$mocodo = " ../../../mocodo_web.py";
+
 $extensions = array(
   "diagram" => ".mld",
   "markdown_data_dict" => "_data_dict.md",
@@ -27,12 +35,6 @@ $flex = array(
   "forte" => 1.0,
   "très prononcée" => 1.25,
 );
-
-// FIXME: on my machine, prevent PHP to use /usr/bin/python3 where cairosvg is not installed
-$python = "/Users/aristide/opt/miniconda3/bin/python";
-if (!file_exists($python)) {
-  $python = "python3.9";
-}
 
 // Make a folder for this user
 $path = str_replace(":", "_", "sessions/" . $_SERVER['REMOTE_ADDR'] . "-" . session_id()) ; // prevent the automatic substitution of : by / on Mac OS X (IPV6 syntax)
@@ -109,7 +111,7 @@ else {
   };
 
   // Launch the script
-$command_line = $python . " ../../../mocodo.py 2>&1 >/dev/null";
+$command_line = $python . $mocodo  . " 2>&1 >/dev/null";
 $out = array();
 // die('{"err": "' . $command_line . '"}');
 

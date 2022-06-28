@@ -1,5 +1,13 @@
 <?php
 session_start();
+
+// FIXME: on my machine, prevent PHP to use /usr/bin/python3 where cairosvg is not installed
+$python = "/Users/aristide/opt/miniconda3/bin/python";
+if (!file_exists($python)) {
+  $python = "python3.9";
+};
+$mocodo = " ../../../mocodo_web.py";
+
 // $php_log = fopen("php.log", 'w') or die("can't open file");
 // fwrite($php_log, "Log file\n");
 if (!array_key_exists('text', $_POST)) {
