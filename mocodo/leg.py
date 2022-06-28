@@ -30,11 +30,7 @@ class Leg:
         if card == "_11":
             kind = "strengthening"
             card = "11"
-            card_view = (
-                params["strengthen_card"][1:-1]
-                if params["strengthen_card"][:1] + params["strengthen_card"][-1:] == "__"
-                else params["strengthen_card"]
-            )
+            card_view = params["strengthen_card"]
         else:
             if association.kind == "cluster":
                 kind = "cluster_peg" if entity_name.startswith("/") else "cluster_leg"
@@ -66,7 +62,7 @@ class Leg:
     def calculate_size(self, style, get_font_metrics):
         font = get_font_metrics(style["card_font"])
         self.h = font.get_pixel_height()
-        self.w = font.get_pixel_width(self.card_view)
+        self.w = font.get_pixel_width(self.card_view.strip("_"))
 
     def set_spin_strategy(self, spin):
         self.spin = spin
@@ -165,11 +161,11 @@ class Leg:
                         "family": style["card_font"]["family"],
                         "size": style["card_font"]["size"],
                         "note": self.note,
-                        "text": self.card_view,
+                        "text": self.card_view.strip("_"),
                     },
                 )
             )
-        if self.kind == "strengthening":
+        if self.kind == "strengthening" and self.card_view[:1] + self.card_view[-1:] == "__":
             result.append(
                 (
                     "line",
@@ -267,11 +263,11 @@ class Leg:
                         "family": style["card_font"]["family"],
                         "size": style["card_font"]["size"],
                         "note": self.note,
-                        "text": self.card_view,
+                        "text": self.card_view.strip("_"),
                     },
                 )
             )
-        if self.kind == "strengthening":
+        if self.kind == "strengthening" and self.card_view[:1] + self.card_view[-1:] == "__":
             result.append(
                 (
                     "line",
