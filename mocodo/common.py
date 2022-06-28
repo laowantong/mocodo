@@ -98,10 +98,10 @@ class Common:
                 raise
             write_contents(path, text)
 
-    def calculate_or_retrieve_geo(self, mcd):
+    def calculate_or_retrieve_geo(self, mcd, reuse_geo=False):
         geo_path = Path(f"{self.params['output_name']}_geo.json")
         mcd_path = Path(f"{self.params['output_name']}.mcd")
-        if geo_path.is_file() and mcd_path.stat().st_mtime < geo_path.stat().st_mtime:
+        if geo_path.is_file() and (reuse_geo or mcd_path.stat().st_mtime < geo_path.stat().st_mtime):
             try:
                 web_geo = json.loads(geo_path.read_text("utf8"))
                 geo = {k: dict(v) if isinstance(v, list) else v for (k, v) in web_geo.items()}

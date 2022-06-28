@@ -16,7 +16,7 @@ def font_metrics_factory(params):
             self.width = {c: ord(x) for (c, x) in zip(alphabet, metrics.get("widths", []))}
             self.default_width = metrics["default"]
             self.ratio = font["size"] * metrics.get("correction", 1) / self.data["size"]
-            self.ratio *= 1 + params["adjust_width"] / 100
+            self.ratio *= params["adjust_width"]
 
         def get_pixel_height(self):
             return self.font_height

@@ -196,8 +196,8 @@ def parsed_arguments():
     aspect_group.add_argument("--colors", metavar="PATH", default="bw", help="the color palette to use when generating the drawing. Name (without extension) of a file located in the directory 'colors', or path to a personal file")
     aspect_group.add_argument("--shapes", metavar="PATH", help="specification of the fonts, dimensions, etc. Name (without extension) of a file located in the directory 'shapes', or path to a personal file")
     aspect_group.add_argument("--scale", metavar="RATE", type=scale, default=1, help="scale the diagram by the given factor")
+    aspect_group.add_argument("--adjust_width", metavar="RATE", type=scale, default=1, help="scale all calculated text widths by the given factor")
     aspect_group.add_argument("--hide_notes", action="store_true", help="ignore the hovering of annotated elements")
-    aspect_group.add_argument("--adjust_width", metavar="FLOAT", type=float, default=0, help="apply a relative correction to all calculated text widths")
     
     relational_group.add_argument("--relations", metavar="NAME", nargs="*", default=["html", "text"], help="one or several templates for the generated relational schemas. Cf. directory 'relation_templates'")
     relational_group.add_argument("--disambiguation", choices=["numbers_only", "notes"], default="notes", help="specify the way to disambiguate foreign attributes")
@@ -209,6 +209,7 @@ def parsed_arguments():
     io_group.add_argument("--png", action="store_true", help="generate a PNG version of the SVG output (requires CairoSVG)")
     io_group.add_argument("--pdf", action="store_true", help="generate a PDF version of the SVG output (requires CairoSVG)")
     io_group.add_argument("--print_params", action="store_true", help="display the contents of the parameter file, then exit")
+    io_group.add_argument("--reuse_geo", action="store_true", help="reuse the geometry file of the previous execution")
     
     source_group.add_argument("--arrange", nargs="?", const="bb", choices=["bb", "ga", "lp"], help="rearrange the layout with either a Branch & Bound, a Genetic Algorithm, or a Linear Program solver, then exit")
     source_group.add_argument("--timeout", metavar="SECONDS", type=int, help="limit the duration of the layout rearrangement")
