@@ -92,17 +92,19 @@ class MocodoMagics(Magics):
         if execute_command(options):
             if not display_diagrams():
                 if "--print_params" in options:
-                    form = '# You may edit and run the following lines\n'\
-                        'import codecs, json\n'\
-                        'params = u"""\n'\
-                        '%s"""\n'\
-                        'try:\n'\
-                        '    json.loads(params)\n'\
-                        'except:\n'\
-                        '    raise RuntimeError("Invalid JSON. Find out why on http://jsonlint.com")\n'\
-                        'with codecs.open("%s/params.json", "w", "utf8") as f:\n'\
-                        '    f.write(params.strip())'
-                    get_ipython().set_next_input(form % (stdoutdata, output_dir), replace = True)
+                    form = [
+                        f'# You may edit and run the following lines',
+                        f'import json, pathlib',
+                        f'params = """',
+                        f'{stdoutdata}',
+                        f'"""',
+                        f'try:',
+                        f'    json.loads(params)',
+                        f'except:',
+                        f'    raise RuntimeError("Invalid JSON. Check your syntax on https://jsonlint.com.")',
+                        f'pathlib.Path("{output_dir}/params.json").write_text(params.strip(), encoding="utf8")',
+                    ]
+                    get_ipython().set_next_input("\n".join(form), replace = True)
                     return
                 if "--help" in options:
                     print(stdoutdata)
