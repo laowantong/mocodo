@@ -295,12 +295,20 @@ class Mcd:
         return self.header + "\n".join(result)
     
     def calculate_size(self, style):
+
+        def increase_margins_in_presence_of_clusters():
+            for association in self.associations.values():
+                if association.kind == "cluster":
+                    style["margin"] *= 2
+                    style["card_margin"] *= 2
+                    break
+
         def card_max_width():
             get_pixel_width = self.get_font_metrics(style["card_font"]).get_pixel_width
             cardinalities = {"0,N"} # default value, in case there is no cardinalities at all
             for association in self.associations.values():
                 for leg in association.legs:
-                    cardinalities.add(leg.card_view)
+                    cardinalities.add(leg.card_view.strip("_"))
             return max(map(get_pixel_width, cardinalities))
         #
         def calculate_sizes():
@@ -359,6 +367,7 @@ class Mcd:
             self.h -= dy
         #
 
+        increase_margins_in_presence_of_clusters()
         style["card_max_width"] = card_max_width()
         style["card_max_height"] = self.get_font_metrics(style["card_font"]).get_pixel_height()
         join_width  = 2 * style["card_margin"] + style["card_max_width"]

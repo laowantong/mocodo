@@ -20,7 +20,7 @@
     "size": 12,
     "weight": "bold"
   },
-  "card_margin": 10,
+  "card_margin": 5,
   "card_text_height_ratio": 0.85,
   "card_underline_depth": 1,
   "card_underline_skip_height": -2,
@@ -45,7 +45,7 @@
   },
   "leg_stroke_depth": 2,
   "line_skip_height": 2,
-  "margin": 18,
+  "margin": 9,
   "note_baseline": 24,
   "note_font": {
     "family": "Verdana",

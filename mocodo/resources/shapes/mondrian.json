@@ -20,7 +20,7 @@
     "size": 18,
     "weight": "bold"
   },
-  "card_margin": 16,
+  "card_margin": 8,
   "card_text_height_ratio": 0.85,
   "card_underline_depth": 1.2,
   "card_underline_skip_height": -3,
@@ -45,7 +45,7 @@
   },
   "leg_stroke_depth": 5,
   "line_skip_height": 1,
-  "margin": 50,
+  "margin": 25,
   "note_baseline": 32,
   "note_font": {
     "family": "Skia",
