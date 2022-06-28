@@ -20,6 +20,10 @@ class OuterSplitTest(unittest.TestCase):
             outer_split("aaa , bbb , ccc"),
             ["aaa", "bbb", "ccc"]
         )
+        self.assertEqual( # non-breaking spaces are not stripped out
+            outer_split("aaa , bbb  ,  ccc"),
+            ["aaa ", "bbb  ", " ccc"]
+        )
         self.assertEqual(
             outer_split("aaa [ddd, eee],bbb,ccc"),
             ["aaa [ddd, eee]", "bbb", "ccc"]

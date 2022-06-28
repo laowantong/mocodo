@@ -2,7 +2,7 @@ import re
 
 
 def outer_split(s, findall_outer_commas = re.compile(r'[^,]+\[.*?\][^,]*|[^,]+').findall):
-    return [s.replace(", ", ",").strip().replace("\\", "") for s in findall_outer_commas(s.replace(",", ", "))]
+    return [s.replace(", ", ",").strip(" \t").replace("\\", "") for s in findall_outer_commas(s.replace(",", ", "))]
 
 
 
