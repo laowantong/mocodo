@@ -1,3 +1,4 @@
+__import__("sys").path[0:0] =  ["."]
 import itertools
 import os
 import random
@@ -73,8 +74,11 @@ def obfuscate(clauses, params):
         else:
             if after_first_comma and before_colon:
                 (card, entity_name) = element.split(" ", 1)
+                entity_name = entity_name.strip()
                 elements[i-1] += card + " "
-                elements[i] = entity_name.strip()
+                if entity_name.startswith("/"):
+                    elements[i-1] += "/"
+                elements[i] = entity_name.strip(" /")
             elements[i] = obfuscate_label(elements[i])
     return "".join(header + elements).strip()
 
@@ -83,7 +87,7 @@ if __name__=="__main__":
     from .argument_parser import parsed_arguments
     clauses = u"""
         CLIENT: Réf. client, Nom, Prénom, Adresse
-        PASSER, 0N CLIENT, 11 COMMANDE
+        PASSER, 0N CLIENT, 11 /COMMANDE
         COMMANDE: Num commande, Date, Montant
         INCLURE, 1N [foobar] COMMANDE, 0N PRODUIT: Quantité
         PRODUIT: Réf. produit, Libellé, Prix unitaire
