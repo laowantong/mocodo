@@ -100,7 +100,7 @@ class Common:
 
     def calculate_or_retrieve_geo(self, mcd, reuse_geo=False):
         geo_path = Path(f"{self.params['output_name']}_geo.json")
-        mcd_path = Path(f"{self.params['output_name']}.mcd")
+        mcd_path = Path(f"{self.params['input']}")
         if geo_path.is_file() and (reuse_geo or mcd_path.stat().st_mtime < geo_path.stat().st_mtime):
             try:
                 web_geo = json.loads(geo_path.read_text("utf8"))

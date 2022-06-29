@@ -6,7 +6,6 @@ import warnings
 from subprocess import PIPE, Popen
 from pathlib import Path
 
-# from mocodo.cli import main
 import pkg_resources
 
 try:
@@ -55,7 +54,9 @@ class MocodoMagics(Magics):
             input_path = Path("mocodo_notebook/sandbox.mcd")
             input_path.write_text(cell, encoding="utf8")
         else:
-            input_path = Path(notebook_options.input).with_suffix(".mcd")
+            input_path = Path(notebook_options.input)
+            if not input_path.suffix:
+                input_path = input_path.with_suffix(".mcd")
 
         if not notebook_options.output_dir:
             output_dir = Path("mocodo_notebook")

@@ -55,8 +55,11 @@ def main():
                 return safe_print_for_PHP(mcd.get_clauses())
             raise MocodoError(9, _('Failed to calculate a planar layout.')) # fmt: skip
         relations = Relations(mcd, params)
-        common.dump_mld_files(relations)
-        mcd_to_svg(mcd, common)
+        # The order of the following two lines ensures that the relational diagram is dumped after
+        # the geometry of the MCD. Later on, when drawing this relational diagram, the geometry
+        # file is found to be older, and thus regenerated.
+        mcd_to_svg(mcd, common) # potential side-effect: update *_geo.json
+        common.dump_mld_files(relations) # potential side-effect: generate relation diagram
     except MocodoError as err:
         print(str(err), file=sys.stderr)
         sys.exit(err.errno)
