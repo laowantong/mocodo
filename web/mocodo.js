@@ -220,7 +220,7 @@ function refreshRelations(result) {
 }
 
 // stolen from https://stackoverflow.com/a/11589350/173003
-jQuery.fn.highlight = function () {
+$.fn.highlight = function () {
   $(this).each(function () {
     var el = $(this);
     el.before("<div/>")
@@ -229,7 +229,7 @@ jQuery.fn.highlight = function () {
       .height(el.height())
       .css({
         "position": "absolute",
-        "background-color": "#0000ff",
+        "backgroundColor": "#0000ff",
         "opacity": ".1"
       })
       .fadeOut(500);
@@ -255,14 +255,14 @@ function generate() {
     url: "web/generate.php",
     data: $("#mainForm").serialize(),
     success: function (result) {
-      result = jQuery.parseJSON(result);
+      result = $.parseJSON(result);
       if (result.hasOwnProperty("err")) {
         var error_message = result["err"].replace("<", "&lt;")
         $("#errorOutput").html("<pre>" + error_message + "</pre>");
         $("#errorTab").css("display", "inline");
         return;
       }
-      var geo = jQuery.parseJSON(result["geo"]);
+      var geo = $.parseJSON(result["geo"]);
       refreshSize(geo);
       refreshCoordinates(geo);
       refreshCardinalities(geo);
@@ -287,55 +287,52 @@ function generate() {
     }
   });
 };
-function arrange(event, algo) {
-  if (!preconditions()) return;
-  var request_lock = true
-  if (algo == "fit=0") {
-    algo = "arrange=bb"
-  }
-  else if (algo == "arrange=bb") {
-    if (event.altKey) {
-      algo = 'arrange=bb --organic';
-    }
-    else if (!event.shiftKey) {
-      algo = 'fit=0'
-    }
-  }
-  $("#gear").addClass("fa-spin");
-  $("#text").addClass("flash");
-  $.ajax({
-    type: "POST",
-    url: "web/arrange.php",
-    data: {
-      algo: algo,
-      text: $("#text").attr("value"),
-      timeout: delays[$("#delays").attr("value")]
-    },
-    success: function (result) {
-      result = jQuery.parseJSON(result);
-      if (result.hasOwnProperty("err")) {
-        var error_message = result["err"].replace("<", "&lt;")
-        $("#errorOutput").html("<pre>" + error_message + "</pre>");
-        $("#errorTab").css("display", "inline");
-        return;
-      }
-      $("#text").val(result["text"]);
-      $("#text").scrollTop(0);
-      markAsDirty();
-      if (algo == 'fit=0') {
-        arrange(event, algo);
-      }
-      else if (!$("#diagramOutput").hasClass('initial')) {
+function reorganize(algo) {
+    var request_lock = true
+    $("#gear").addClass("fa-spin");
+    $("#text").addClass("flash");
+    return $.ajax({
+      type: "POST",
+      url: "web/arrange.php",
+      data: {
+        algo: algo,
+        text: $("#text").attr("value"),
+        timeout: delays[$("#delays").attr("value")]
+      },
+      success: function (result) {
+        result = $.parseJSON(result);
+        if (result.hasOwnProperty("err")) {
+          var error_message = result["err"].replace("<", "&lt;")
+          $("#errorOutput").html("<pre>" + error_message + "</pre>");
+          $("#errorTab").css("display", "inline");
+          return;
+        }
+        $("#text").val(result["text"]);
+        $("#text").scrollTop(0);
+        markAsDirty();
+        if (!$("#diagramOutput").hasClass('initial') & algo!="fit=0") {
+          request_lock = false;
+          generate();
+        }
+      },
+      complete: function (data) {
+        $("#gear").removeClass("fa-spin");
+        $("#text").removeClass("flash");
         request_lock = false;
-        generate();
       }
-    },
-    complete: function (data) {
-      $("#gear").removeClass("fa-spin");
-      $("#text").removeClass("flash");
-      request_lock = false;
-    }
-  });
+    });
+  };
+function arrange(event) {
+  if (!preconditions()) return;
+  if (event.altKey) {
+    reorganize("fit=0").then(function () {reorganize("arrange=bb")});
+  }
+  else if (event.shiftKey) {
+    reorganize("arrange=bb");
+  }
+  else {
+    reorganize("arrange=bb --organic");
+  }
 };
 function reveal(event) {
   if (!preconditions()) return;

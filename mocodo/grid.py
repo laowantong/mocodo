@@ -21,6 +21,7 @@ class Grid(list):
             else:
                 self.insert(0, self[0])
         self.insert(0, None)
+        self[2:4] = [(2, 1), (3, 1)] # tweak the 2- and 3-box grids
     
     def get_nth_next(self, index, nth):
         """Return the nth next distinct rectangle after the index-th one."""
@@ -36,7 +37,7 @@ class Grid(list):
         result = \
             [
                 [""] + 
-                map(lambda i: "**%s**" % i, range(1, w + 1))
+                list(map(lambda i: "**%s**" % i, range(1, w + 1)))
             ] + \
             [["---"] * (w + 1)] + \
             [

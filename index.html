@@ -51,10 +51,10 @@
 			</ul>
 			<div class="pane">
 				<div id="inputButtons" class='buttons'>
-					<span class="fa fa-arrows-v fa-2x customButton" id="flipHorizontallyButton" onclick="arrange(event, 'flip=h')" title="Inverser les rangées."></span>
-					<span class="fa fa-arrows-h fa-2x customButton" id="flipVerticallyButton" onclick="arrange(event, 'flip=v')" title="Inverser les colonnes."></span>
-					<span class="fa fa-arrows-v fa-2x fa-rotate-45 customButton" id="flipDiagonallyButton" onclick="arrange(event, 'flip=d')" title="Transposer colonnes et rangées."></span>
-					<span class="fa fa-random fa-2x customButton" id="arrangeButton" onclick="arrange(event, 'arrange=bb')" title="Réarranger automatiquement les boîtes (sur la grille actuelle avec SHIFT, sans contraintes avec ALT)."></span>
+					<span class="fa fa-arrows-v fa-2x customButton" id="flipHorizontallyButton" onclick="reorganize('flip=h')" title="Inverser les rangées."></span>
+					<span class="fa fa-arrows-h fa-2x customButton" id="flipVerticallyButton" onclick="reorganize('flip=v')" title="Inverser les colonnes."></span>
+					<span class="fa fa-arrows-v fa-2x fa-rotate-45 customButton" id="flipDiagonallyButton" onclick="reorganize('flip=d')" title="Transposer colonnes et rangées."></span>
+					<span class="fa fa-random fa-2x customButton" id="arrangeButton" onclick="arrange(event)" title="Réarranger automatiquement les boîtes (sur la grille actuelle avec SHIFT, sur la plus petite grille « équilibrée » possible avec ALT)."></span>
 				</div>
 				<div id="aboutContents" class="contents">
 <p>
@@ -105,14 +105,14 @@
 
 <h1>Principales opérations</h1>
 
-<h2>Réarranger les boîtes</h2>
+<h2>Réorganiser les boîtes</h2>
 
 <ul>
 <li><i class="fa fa-arrows-v"></i> [<em>resp.</em>, <i class="fa fa-arrows-h"></i> et&nbsp; <i class="fa fa-arrows-v fa-rotate-45"></i>&nbsp;] : inverse le MCD verticalement [<em>resp.</em>, horizontalement et par transposition].</li>
-<li><i class="fa fa-random"></i> : recherche une mise en page sans croisement et minimisant la longueur des liens sur la plus petite grille «&nbsp;équilibrée&nbsp;» possible.</li>
+<li><i class="fa fa-random"></i> : recherche une mise en page sans croisements et minimisant la longueur des liens.</li>
 	<ul>
 		<li>Avec <kbd>SHIFT</kbd> : recherche contrainte par les dimensions de la grille courante.</li>
-		<li>Avec <kbd>ALT</kbd> : recherche non contrainte.</li>
+		<li>Avec <kbd>ALT</kbd> : recherche contrainte par les dimensions de la plus petite grille «&nbsp;équilibrée&nbsp;» possible.</li>
 	</ul>
 </ul>
 
