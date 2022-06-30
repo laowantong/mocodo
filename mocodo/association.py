@@ -91,7 +91,7 @@ class Association:
         self.cartouche_height = cartouche_font.get_pixel_height()
         attribute_font = get_font_metrics(style["association_attribute_font"])
         self.attribute_height = attribute_font.get_pixel_height()
-        self.calculate_size_depending_on_df(style, get_font_metrics)
+        self.calculate_size_depending_on_kind(style, get_font_metrics)
         self.w += self.w % 2
         self.h += self.h % 2
         for leg in self.legs:
@@ -186,57 +186,113 @@ class Association:
                     },
                 ),
             ]
+        
+        def optional_description_for_cluster(style):
+            clustered_entities = [leg.entity for leg in self.legs if leg.kind == "cluster_leg"]
+            if len(clustered_entities) != 2:
+                return []
+            (e1, e2) = clustered_entities
+
+            x_min = min(box.l for box in (self, e1, e2))
+            y_min = min(box.t for box in (self, e1, e2))
+            x_max = max(box.r for box in (self, e1, e2))
+            y_max = max(box.b for box in (self, e1, e2))
+            x = x_min - style["card_margin"] // 2
+            y = y_min - style["card_margin"] // 2
+            w = x_max - x_min + style["card_margin"]
+            h = y_max - y_min + style["card_margin"]
+
+            x1_min = min(box.l for box in (self, e1))
+            y1_min = min(box.t for box in (self, e1))
+            x1_max = max(box.r for box in (self, e1))
+            y1_max = max(box.b for box in (self, e1))
+            x1 = x1_min - style["card_margin"] // 2
+            y1 = y1_min - style["card_margin"] // 2
+            w1 = x1_max - x1_min + style["card_margin"]
+            h1 = y1_max - y1_min + style["card_margin"]
+            
+            x2_min = min(box.l for box in (self, e2))
+            y2_min = min(box.t for box in (self, e2))
+            x2_max = max(box.r for box in (self, e2))
+            y2_max = max(box.b for box in (self, e2))
+            x2 = x2_min - style["card_margin"] // 2
+            y2 = y2_min - style["card_margin"] // 2
+            w2 = x2_max - x2_min + style["card_margin"]
+            h2 = y2_max - y2_min + style["card_margin"]
+
+            e1_same_row = e1.t <= self.t < self.b <= e1.b or self.t <= e1.t < e1.b <= self.b
+            e2_same_row = e2.t <= self.t < self.b <= e2.b or self.t <= e2.t < e2.b <= self.b
+            e1_same_col = e1.l <= self.l < self.r <= e1.r or self.l <= e1.l < e1.r <= self.r
+            e2_same_col = e2.l <= self.l < self.r <= e2.r or self.l <= e2.l < e2.r <= self.r
+            if e1_same_row and e2_same_row or e1_same_col and e2_same_col:
+                points = (x, y, x+w, y, x+w, y+h, x, y+h)
+            elif e1_same_row and e2_same_col:
+                if e1.cx < self.cx:
+                    if e2.cy < self.cy:
+                        #   2
+                        # 1 a
+                        points = (x, y1, x2, y1, x2, y, x+w, y, x+w, y+h, x, y+h)
+                    else:
+                        # 1 a
+                        #   2
+                        points = (x, y, x+w, y, x+w, y+h, x2, y+h, x2, y1+h1, x, y1+h1)
+                else:
+                    if e2.cy < self.cy:
+                        # 2
+                        # a 1
+                        points = (x, y, x2+w2, y, x2+w2, y1, x+w, y1, x+w, y+h, x, y+h)
+                    else:
+                        # a 1
+                        # 2
+                        points = (x, y, x+w, y, x+w, y1+h1, x2+w2, y1+h1, x2+w2, y+h, x, y+h)
+            elif e2_same_row and e1_same_col:
+                if e2.cx < self.cx:
+                    if e1.cy < self.cy:
+                        #   1
+                        # 2 a
+                        points = (x, y2, x1, y2, x1, y, x+w, y, x+w, y+h, x, y+h)
+                    else:
+                        # 2 a
+                        #   1
+                        points = (x, y, x+w, y, x+w, y+h, x1, y+h, x1, y2+h2, x, y2+h2)
+                else:
+                    if e1.cy < self.cy:
+                        # 1
+                        # a 2
+                        points = (x, y, x1+w1, y, x1+w1, y2, x+w, y2, x+w, y+h, x, y+h)
+                    else:
+                        # a 2
+                        # 1
+                        points = (x, y, x+w, y, x+w, y2+h2, x1+w1, y2+h2, x1+w1, y+h, x, y+h)
+            else:
+                return []
+            points = ",".join(map(str, points))
+            return [
+                (
+                    "polygon",
+                    {
+                        "points": points,
+                        "stroke_color": None,
+                        "stroke_depth": 0,
+                        "color": style["entity_color"],
+                        "opacity": 0.2,
+                    },
+                ),
+                (
+                    "dash_polygon",
+                    {
+                        "points": points,
+                        "stroke_color": style['entity_stroke_color'],
+                        "stroke_depth": style["box_stroke_depth"] / 2,
+                        "color": None,
+                        "dash_width": style["dash_width"],
+                    },
+                )
+            ]
 
         def description_when_default(style):
             result = []
-            if self.kind == "cluster":
-                clustered_boxes = [self] + [leg.entity for leg in self.legs if leg.kind == "cluster_leg"]
-                x_min = min(box.l for box in clustered_boxes)
-                y_min = min(box.t for box in clustered_boxes)
-                x_max = max(box.r for box in clustered_boxes)
-                y_max = max(box.b for box in clustered_boxes)
-                x = x_min - style["card_margin"] // 2
-                y = y_min - style["card_margin"] // 2
-                w = x_max - x_min + style["card_margin"]
-                h = y_max - y_min + style["card_margin"]
-                for box in self.boxes:
-                    if box.kind == "phantom":
-                        continue
-                    if box in clustered_boxes:
-                        continue
-                    if x_min <= box.cx <= x_max and y_min <= box.cy <= y_max:
-                        break  # do not draw anything if this box is in the cluster
-                else:
-                    result.append(
-                        (
-                            "rect",
-                            {
-                                "x": x,
-                                "y": y,
-                                "w": w,
-                                "h": h,
-                                "stroke_color": None,
-                                "stroke_depth": 0,
-                                "color": style["entity_color"],
-                                "opacity": 0.2,
-                            },
-                        )
-                    )
-                    result.append(
-                        (
-                            "dash_rect",
-                            {
-                                "x": x,
-                                "y": y,
-                                "w": w,
-                                "h": h,
-                                "stroke_color": style['entity_stroke_color'],
-                                "stroke_depth": style["box_stroke_depth"] / 2,
-                                "color": None,
-                                "dash_width": style["dash_width"],
-                            },
-                        )
-                    )
+            result.extend(optional_description_for_cluster(style))
             x = self.l
             y = self.t
             w = self.w
@@ -326,14 +382,14 @@ class Association:
             return result
 
         if self.kind == "df":
-            self.calculate_size_depending_on_df = calculate_size_when_df
-            self.description_depending_on_df = description_when_df
+            self.calculate_size_depending_on_kind = calculate_size_when_df
+            self.description_depending_on_kind = description_when_df
         elif self.kind.startswith("inheritance"):
-            self.calculate_size_depending_on_df = calculate_size_when_inheritance
-            self.description_depending_on_df = description_when_inheritance
+            self.calculate_size_depending_on_kind = calculate_size_when_inheritance
+            self.description_depending_on_kind = description_when_inheritance
         else:
-            self.calculate_size_depending_on_df = calculate_size_when_default
-            self.description_depending_on_df = description_when_default
+            self.calculate_size_depending_on_kind = calculate_size_when_default
+            self.description_depending_on_kind = description_when_default
 
     def description(self, style, geo):
         result = []
@@ -349,7 +405,7 @@ class Association:
         )
         result.extend(self.leg_descriptions(style, geo))
         result.append(("begin_group", {}))
-        result.extend(self.description_depending_on_df(style))
+        result.extend(self.description_depending_on_kind(style))
         result.append(("end", {}))
         result.append(("end", {}))
         return result

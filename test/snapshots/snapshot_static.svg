@@ -56,8 +56,8 @@
 	<line x1="108" y1="257" x2="284" y2="257" stroke="#000" stroke-width="1"/>
 	<text x="165" y="278" fill="#000" font-family="Futura" font-size="11">1,N</text>
 	<g>
-		<rect x="56" y="197" width="441" height="120" fill="#FFF" stroke="none" stroke-width="0" opacity="0.2"/>
-		<rect x="56" y="197" width="441" height="120" fill="none" stroke="#000" stroke-width="0.75" stroke-dasharray="4"/>
+		<polygon points="56,197,497,197,497,317,56,317" fill="#FFF" stroke="none" stroke-width="0" opacity="0.2"/>
+		<polygon points="56,197,497,197,497,317,56,317" fill="none" stroke="#000" stroke-width="0.75" stroke-dasharray="4"/>
 		<path d="M316 228 a14 14 90 0 1 14 14 V256 h-92 V242 a14 14 90 0 1 14 -14" fill="#FFF" stroke="#FFF" stroke-width="0"/>
 		<path d="M330 256 v16 a14 14 90 0 1 -14 14 H252 a14 14 90 0 1 -14 -14 V256 H92" fill="#FFF" stroke="#FFF" stroke-width="0"/>
 		<rect x="238" y="228" width="92" height="58" fill="none" rx="14" stroke="#000" stroke-width="1.5"/>
