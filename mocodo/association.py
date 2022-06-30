@@ -100,6 +100,10 @@ class Association:
     def register_center(self, geo):
         self.cx = geo["cx"][self.name]
         self.cy = geo["cy"][self.name]
+        self.l = self.cx - self.w // 2
+        self.r = self.cx + self.w // 2
+        self.t = self.cy - self.h // 2
+        self.b = self.cy + self.h // 2
 
     def set_view_strategies(self):
 
@@ -146,8 +150,8 @@ class Association:
                     {
                         "text": self.df_label,
                         "text_color": style['association_cartouche_text_color'],
-                        "x": self.cx + style["round_rect_margin_width"] - self.w // 2,
-                        "y": self.cy + round(style["round_rect_margin_height"] - self.h / 2 + style["df_text_height_ratio"] * self.cartouche_height, 1),
+                        "x": self.l + style["round_rect_margin_width"],
+                        "y": self.t + style["round_rect_margin_height"] + style["df_text_height_ratio"] * self.cartouche_height,
                         "family": style["association_cartouche_font"]["family"],
                         "size": style["association_cartouche_font"]["size"],
                     },
@@ -163,8 +167,8 @@ class Association:
                         "stroke_color": style['association_stroke_color'],
                         "color": style['association_cartouche_color'],
                         "x1": self.cx,
-                        "x2": self.cx - self.w // 2,
-                        "x3": self.cx + self.w // 2,
+                        "x2": self.l,
+                        "x3": self.r,
                         "y1": self.cy - (TRIANGLE_ALTITUDE - INCIRCLE_RADIUS) * self.w,
                         "y2": self.cy + INCIRCLE_RADIUS * self.w,
                         "y3": self.cy + INCIRCLE_RADIUS * self.w,
@@ -187,10 +191,10 @@ class Association:
             result = []
             if self.kind == "cluster":
                 clustered_boxes = [self] + [leg.entity for leg in self.legs if leg.kind == "cluster_leg"]
-                x_min = min(b.cx - b.w // 2 for b in clustered_boxes)
-                y_min = min(b.cy - b.h // 2 for b in clustered_boxes)
-                x_max = max(b.cx + b.w // 2 for b in clustered_boxes)
-                y_max = max(b.cy + b.h // 2 for b in clustered_boxes)
+                x_min = min(box.l for box in clustered_boxes)
+                y_min = min(box.t for box in clustered_boxes)
+                x_max = max(box.r for box in clustered_boxes)
+                y_max = max(box.b for box in clustered_boxes)
                 x = x_min - style["card_margin"] // 2
                 y = y_min - style["card_margin"] // 2
                 w = x_max - x_min + style["card_margin"]
@@ -233,8 +237,8 @@ class Association:
                             },
                         )
                     )
-            x = self.cx - self.w // 2
-            y = self.cy - self.h // 2
+            x = self.l
+            y = self.t
             w = self.w
             h = self.attribute_height + style["round_rect_margin_height"] + style["rect_margin_height"]
             r = style["round_corner_radius"]
@@ -254,8 +258,8 @@ class Association:
                     },
                 )
             )
-            y = self.cy + round(self.attribute_height + style["round_rect_margin_height"] + style["rect_margin_height"] - self.h / 2, 1)
-            h = self.h - (self.attribute_height + style["round_rect_margin_height"] + style["rect_margin_height"])
+            y = self.t + self.attribute_height + style["round_rect_margin_height"] + style["rect_margin_height"]
+            h = self.h - self.attribute_height - style["round_rect_margin_height"] - style["rect_margin_height"]
             result.append(
                 (
                     "lower_round_rect",
@@ -276,8 +280,8 @@ class Association:
                 (
                     "round_rect",
                     {
-                        "x": self.cx - self.w // 2,
-                        "y": self.cy - self.h // 2,
+                        "x": self.l,
+                        "y": self.t,
                         "w": self.w,
                         "h": self.h,
                         "radius": r,
@@ -291,10 +295,10 @@ class Association:
                 (
                     "line",
                     {
-                        "x0": self.cx - self.w // 2,
-                        "y0": self.cy + self.attribute_height + style["round_rect_margin_height"] + style["rect_margin_height"] - self.h // 2,
-                        "x1": self.cx + self.w // 2,
-                        "y1": self.cy + self.attribute_height + style["round_rect_margin_height"] + style["rect_margin_height"] - self.h // 2,
+                        "x0": self.l,
+                        "y0": self.t + self.attribute_height + style["round_rect_margin_height"] + style["rect_margin_height"],
+                        "x1": self.r,
+                        "y1": self.t + self.attribute_height + style["round_rect_margin_height"] + style["rect_margin_height"],
                         "stroke_color": style['association_stroke_color'],
                         "stroke_depth": style["inner_stroke_depth"],
                     },
@@ -307,7 +311,7 @@ class Association:
                         "text": self.cartouche,
                         "text_color": style['association_cartouche_text_color'],
                         "x": self.cx - self.get_cartouche_string_width(self.cartouche) // 2,
-                        "y": self.cy + round(-self.h / 2 + style["rect_margin_height"] + style["cartouche_text_height_ratio"] * self.cartouche_height, 1),
+                        "y": self.t + style["rect_margin_height"] + style["cartouche_text_height_ratio"] * self.cartouche_height,
                         "family": style["association_cartouche_font"]["family"],
                         "size": style["association_cartouche_font"]["size"],
                     },

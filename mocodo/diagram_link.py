@@ -20,14 +20,14 @@ class DiagramLink:
         self.fdx = self.foreign_entity.w // 2
         self.pdx = self.primary_entity.w // 2
         self.fdy = (
-            -self.foreign_entity.h / 2
+            -self.foreign_entity.h // 2
             + 3 * style["rect_margin_height"]
             + self.foreign_entity.cartouche_height
             + (self.foreign_key.rank + 0.5)
             * (self.foreign_entity.attribute_height + style["line_skip_height"])
         )
         self.pdy = (
-            -self.primary_entity.h / 2
+            -self.primary_entity.h // 2
             + 3 * style["rect_margin_height"]
             + self.primary_entity.cartouche_height
             + (self.primary_key.rank + 0.5)

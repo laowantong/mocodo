@@ -60,6 +60,10 @@ class Entity:
     def register_center(self, geo):
         self.cx = geo["cx"][self.name]
         self.cy = geo["cy"][self.name]
+        self.l = self.cx - self.w // 2
+        self.r = self.cx + self.w // 2
+        self.t = self.cy - self.h // 2
+        self.b = self.cy + self.h // 2
 
     def description(self, style, geo):
         result = []
@@ -78,8 +82,8 @@ class Entity:
             (
                 "rect",
                 {
-                    "x": self.cx - self.w // 2,
-                    "y": self.cy - self.h // 2,
+                    "x": self.l,
+                    "y": self.t,
                     "w": self.w,
                     "h": self.cartouche_height + 2 * style["rect_margin_height"],
                     "color": style["entity_cartouche_color"],
@@ -93,8 +97,8 @@ class Entity:
             (
                 "rect",
                 {
-                    "x": self.cx - self.w // 2,
-                    "y": self.cy + round(-self.h / 2 + self.cartouche_height + 2 * style["rect_margin_height"], 1),
+                    "x": self.l,
+                    "y": self.t + self.cartouche_height + 2 * style["rect_margin_height"],
                     "w": self.w,
                     "h": self.h - self.cartouche_height - 2 * style["rect_margin_height"],
                     "stroke_color": style["entity_color"],
@@ -108,8 +112,8 @@ class Entity:
             (
                 "rect",
                 {
-                    "x": self.cx - self.w // 2,
-                    "y": self.cy - self.h // 2,
+                    "x": self.l,
+                    "y": self.t,
                     "w": self.w,
                     "h": self.h,
                     "stroke_color": style["entity_stroke_color"],
@@ -123,10 +127,10 @@ class Entity:
             (
                 "line",
                 {
-                    "x0": self.cx - self.w // 2,
-                    "y0": self.cy - self.h // 2 + self.cartouche_height + 2 * style["rect_margin_height"],
-                    "x1": self.cx + self.w // 2,
-                    "y1": self.cy - self.h // 2 + self.cartouche_height + 2 * style["rect_margin_height"],
+                    "x0": self.l,
+                    "y0": self.t + self.cartouche_height + 2 * style["rect_margin_height"],
+                    "x1": self.r,
+                    "y1": self.t + self.cartouche_height + 2 * style["rect_margin_height"],
                     "stroke_color": style["entity_stroke_color"],
                     "stroke_depth": style["inner_stroke_depth"],
                 },
@@ -138,7 +142,7 @@ class Entity:
                 "text",
                 {
                     "x": self.cx - self.get_cartouche_string_width(self.cartouche) // 2,
-                    "y": self.cy + round(-self.h / 2 + style["rect_margin_height"] + style["cartouche_text_height_ratio"] * self.cartouche_height, 1),
+                    "y": self.t + style["rect_margin_height"] + style["cartouche_text_height_ratio"] * self.cartouche_height,
                     "text_color": style["entity_cartouche_text_color"],
                     "family": style["entity_cartouche_font"]["family"],
                     "size": style["entity_cartouche_font"]["size"],
