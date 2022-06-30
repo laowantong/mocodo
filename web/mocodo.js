@@ -310,7 +310,7 @@ function reorganize(algo) {
         $("#text").val(result["text"]);
         $("#text").scrollTop(0);
         markAsDirty();
-        if (!$("#diagramOutput").hasClass('initial') & algo!="fit=0") {
+        if (!$("#diagramOutput").hasClass('initial') & algo!="fit=0" & algo!="fit=1") {
           request_lock = false;
           generate();
         }
@@ -324,7 +324,10 @@ function reorganize(algo) {
   };
 function arrange(event) {
   if (!preconditions()) return;
-  if (event.altKey) {
+  if (event.shiftKey & event.altKey) {
+    reorganize("fit=1").then(function () {reorganize("arrange=bb")});
+  }
+  else if (event.altKey) {
     reorganize("fit=0").then(function () {reorganize("arrange=bb")});
   }
   else if (event.shiftKey) {

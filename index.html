@@ -54,13 +54,13 @@
 					<span class="fa fa-arrows-v fa-2x customButton" id="flipHorizontallyButton" onclick="reorganize('flip=h')" title="Inverser les rangées."></span>
 					<span class="fa fa-arrows-h fa-2x customButton" id="flipVerticallyButton" onclick="reorganize('flip=v')" title="Inverser les colonnes."></span>
 					<span class="fa fa-arrows-v fa-2x fa-rotate-45 customButton" id="flipDiagonallyButton" onclick="reorganize('flip=d')" title="Transposer colonnes et rangées."></span>
-					<span class="fa fa-random fa-2x customButton" id="arrangeButton" onclick="arrange(event)" title="Réarranger automatiquement les boîtes (sur la grille actuelle avec SHIFT, sur la plus petite grille « équilibrée » possible avec ALT)."></span>
+					<span class="fa fa-random fa-2x customButton" id="arrangeButton" onclick="arrange(event)" title="Réarranger automatiquement les boîtes (sur la grille actuelle avec SHIFT, sur la plus petite grille « équilibrée » possible avec ALT, sur la suivante avec SHIFT+ALT)."></span>
 				</div>
 				<div id="aboutContents" class="contents">
 <p>
 	Mocodo est un logiciel d'aide à l'enseignement et à la conception de <a href="https://fr.wikipedia.org/wiki/Base_de_données_relationnelle">bases de données relationnelles</a>.
 	En entrée, il prend une description textuelle des entités et associations du modèle conceptuel de données (<a href="https://fr.wikipedia.org/wiki/Modèle_entité-association">MCD</a>).
-	En sortie, il produit son diagramme entité-association en <a href="https://fr.wikipedia.org/wiki/Scalable_Vector_Graphics">SVG</a> et son schéma relationnel (<a href="https://fr.wikipedia.org/wiki/Merise_&amp;# 40;informatique&amp;# 41;#Le_MLD_mod.C3.A8le_logique_des_donn.C3.A9es">MLD</a>) en <a href="https://fr.wikipedia.org/wiki/Structured_Query_Language">SQL</a>, <a href="https://fr.wikipedia.org/wiki/LaTeX"><span style="font-family: serif; font-style: normal; margin-right: -.7em;">L<span style="font-size: 0.9em; position: relative; top: -.1em; left: -0.4em;">A</span><span style="position: relative; left: -.5em;">T</span><span style="position: relative; top: .2em; left: -.6em;">E</span><span style="position: relative; left: -.7em;">X</span></span></a>, <a href="https://fr.wikipedia.org/wiki/Markdown">Markdown</a>, etc.
+	En sortie, il produit son diagramme entité-association en <a href="https://fr.wikipedia.org/wiki/Scalable_Vector_Graphics">SVG</a>, <a href="https://fr.wikipedia.org/wiki/Portable_Document_Format">PDF</a> et <a href="https://fr.wikipedia.org/wiki/Portable_Network_Graphics">PNG</a> et son schéma relationnel (<a href="https://fr.wikipedia.org/wiki/Merise_&amp;# 40;informatique&amp;# 41;#Le_MLD_mod.C3.A8le_logique_des_donn.C3.A9es">MLD</a>) en <a href="https://fr.wikipedia.org/wiki/Structured_Query_Language">SQL</a>, <a href="https://fr.wikipedia.org/wiki/LaTeX"><span style="font-family: serif; font-style: normal; margin-right: -.7em;">L<span style="font-size: 0.9em; position: relative; top: -.1em; left: -0.4em;">A</span><span style="position: relative; left: -.5em;">T</span><span style="position: relative; top: .2em; left: -.6em;">E</span><span style="position: relative; left: -.7em;">X</span></span></a>, <a href="https://fr.wikipedia.org/wiki/Markdown">Markdown</a>, etc.
 </p>
 <h1>Syntaxe du texte d'entrée</h1>
 
@@ -108,20 +108,24 @@
 <h2>Réorganiser les boîtes</h2>
 
 <ul>
-<li><i class="fa fa-arrows-v"></i> [<em>resp.</em>, <i class="fa fa-arrows-h"></i> et&nbsp; <i class="fa fa-arrows-v fa-rotate-45"></i>&nbsp;] : inverse le MCD verticalement [<em>resp.</em>, horizontalement et par transposition].</li>
-<li><i class="fa fa-random"></i> : recherche une mise en page sans croisements et minimisant la longueur des liens.</li>
+<li><i class="fa fa-arrows-v"></i> : inverser verticalement.</li>
+<li><i class="fa fa-arrows-h"></i> : inverser horizontalement.</li>
+<li><i class="fa fa-arrows-v fa-rotate-45"></i> : transposer selon la première diagonale.</li>
+<li><i class="fa fa-random"></i> : mettre en page en interdisant les croisements et en minimisant la longueur des liens,
 	<ul>
-		<li>Avec <kbd>SHIFT</kbd> : recherche contrainte par les dimensions de la grille courante.</li>
-		<li>Avec <kbd>ALT</kbd> : recherche contrainte par les dimensions de la plus petite grille «&nbsp;équilibrée&nbsp;» possible.</li>
+		<li>avec <kbd>SHIFT</kbd> : sur la grille courante.</li>
+		<li>avec <kbd>ALT</kbd> : sur la plus petite grille «&nbsp;équilibrée&nbsp;» possible.</li>
+        <li>avec <kbd>ALT</kbd> et <kbd>SHIFT</kbd> : sur la deuxième plus petite grille «&nbsp;équilibrée&nbsp;» possible.</li>
 	</ul>
+</li>
 </ul>
 
 <h2>Manipuler les schémas</h2>
 
 <ul>
-<li><i class="fa fa-refresh"></i> : dessine le MCD et génère le MLD à partir du texte d'entrée.</li>
-<li>Onglet « Retouches » : permet de modifier la position de certains éléments.</li>
-<li><i class="fa fa-download"></i> : récupère une archive de votre travail (entrée et sortie).</li>
+<li><i class="fa fa-refresh"></i> : dessiner le MCD et générer le MLD à partir du texte d'entrée.</li>
+<li>Onglet « Retouches » : modifier la position de certains éléments.</li>
+<li><i class="fa fa-download"></i> : récupèrer une archive de votre travail (entrée et sortie).</li>
 </ul>
 				</div>
 				<div id="inputContents" class="contents">
