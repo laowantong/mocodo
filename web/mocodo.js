@@ -236,19 +236,9 @@ $.fn.highlight = function () {
   });
 }
 
-function preconditions() {
-  if (request_lock) {
-    return false
-  }
-  if (/[^- _a-zA-Z0-9.]/i.test($("#title").val())) {
-    alert("Le titre du MCD ne peut contenir que des lettres non accentuées, des chiffres, des espaces, des points et des tirets haut et bas.");
-    return false
-  }
-  return true
-}
 function generate() {
-  if (!preconditions()) return;
-  request_lock = true
+  if (request_lock) return;
+  request_lock = true;
   $("#generateButton").addClass("fa-spin");
   $.ajax({
     type: "POST",
@@ -288,7 +278,6 @@ function generate() {
   });
 };
 function reorganize(algo) {
-    var request_lock = true
     $("#gear").addClass("fa-spin");
     $("#text").addClass("flash");
     return $.ajax({
@@ -323,7 +312,8 @@ function reorganize(algo) {
     });
   };
 function arrange(event) {
-  if (!preconditions()) return;
+  if (request_lock) return;
+  request_lock = true;
   if (event.shiftKey & event.altKey) {
     reorganize("fit=1").then(function () {reorganize("arrange=bb")});
   }
@@ -338,7 +328,7 @@ function arrange(event) {
   }
 };
 function reveal(event) {
-  if (!preconditions()) return;
+  if (request_lock) return;
   request_lock = true
   $.ajax({
     type: "POST",
@@ -361,6 +351,7 @@ function reveal(event) {
   });
 };
 function markAsDirty() {
+  $("#title").val($("#title").attr("value").replace(/[^A-Za-zÀ-ÖØ-öø-ÿ0-9 '\._-]/g, '-'));
   $("#state").val("dirty");
   $("#geoTab").fadeOut();
   $("#downloadButton").fadeOut();

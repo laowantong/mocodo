@@ -2,7 +2,6 @@ import collections
 import itertools
 import os
 import re
-import unicodedata
 
 from .file_helpers import write_contents
 from .mocodo_error import MocodoError
@@ -40,16 +39,14 @@ class Relations:
             if not counter:
                 return
             title = counter.most_common(1)[0][0][0]
-            title = title.lower().replace(u"œ", "oe").replace(u"æ", "ae")
-            title = unicodedata.normalize('NFKD', title).encode('ascii', 'ignore')
-            title = re.sub("[^-A-Za-z0-9 _]", "", title.decode("utf8"))
+            title = re.sub("[^A-Za-zÀ-ÖØ-öø-ÿ0-9 '\._-]", "-", title)
             if params["language"].startswith("fr"):
                 from .pluralize_fr import pluralize
                 title = " ".join(map(pluralize, title.split()))
             title = title.capitalize()
             if not title:
                 return
-            write_contents("%(output_name)s_new_title.txt" % params, title)
+            write_contents(f"{params['output_name']}_new_title.txt", title)
             params["title"] = title
             params["output_name"] = os.path.join(params["output_dir"], title)
         
