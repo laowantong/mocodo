@@ -673,43 +673,43 @@ class relationsTest(unittest.TestCase):
     def test_inheritance_leftwards_double_arrow(self):
         clauses = """
             /\ ANIMAL <= CARNIVORE, HERBIVORE
-            ANIMAL: animal
+            ANIMAL: animal, poids
             CARNIVORE: quantité viande
             HERBIVORE: plante préférée
         """
         text = """
-            ANIMAL (_animal_, CARNIVORE, quantité viande, HERBIVORE, plante préférée)
+            ANIMAL (_animal_, poids, CARNIVORE, quantité viande, HERBIVORE, plante préférée)
         """.strip().replace("    ", "")
         t = Relations(Mcd(clauses.split("\n"), params), params)
         self.assertEqual(t.get_text(minimal_template), text)
         d = json.loads(t.get_text(json_template))
-        self.assertEqual(d["relations"][0]["columns"][1]["attribute"], "CARNIVORE")
-        self.assertEqual(d["relations"][0]["columns"][1]["data_type"], "BOOLEAN")
-        self.assertEqual(d["relations"][0]["columns"][1]["foreign"], True)
-        self.assertEqual(d["relations"][0]["columns"][1]["nature"], "child_entity_name")
-        self.assertEqual(d["relations"][0]["columns"][2]["attribute"], "quantité viande")
+        self.assertEqual(d["relations"][0]["columns"][2]["attribute"], "CARNIVORE")
+        self.assertEqual(d["relations"][0]["columns"][2]["data_type"], "BOOLEAN")
         self.assertEqual(d["relations"][0]["columns"][2]["foreign"], True)
-        self.assertEqual(d["relations"][0]["columns"][2]["nature"], "child_attribute")
+        self.assertEqual(d["relations"][0]["columns"][2]["nature"], "child_entity_name")
+        self.assertEqual(d["relations"][0]["columns"][3]["attribute"], "quantité viande")
+        self.assertEqual(d["relations"][0]["columns"][3]["foreign"], True)
+        self.assertEqual(d["relations"][0]["columns"][3]["nature"], "child_attribute")
 
     def test_inheritance_leftwards_simple_arrow(self):
         clauses = """
             /\ ANIMAL <- CARNIVORE, HERBIVORE: type
-            ANIMAL: animal
+            ANIMAL: animal, poids
             CARNIVORE: quantité viande
             HERBIVORE: plante préférée
         """
         text = """
-            ANIMAL (_animal_, type, quantité viande, plante préférée)
+            ANIMAL (_animal_, poids, type, quantité viande, plante préférée)
         """.strip().replace("    ", "")
         t = Relations(Mcd(clauses.split("\n"), params), params)
         self.assertEqual(t.get_text(minimal_template), text)
         d = json.loads(t.get_text(json_template))
-        self.assertEqual(d["relations"][0]["columns"][1]["attribute"], "type")
-        self.assertEqual(d["relations"][0]["columns"][1]["foreign"], True)
-        self.assertEqual(d["relations"][0]["columns"][1]["nature"], "child_discriminant")
-        self.assertEqual(d["relations"][0]["columns"][2]["attribute"], "quantité viande")
+        self.assertEqual(d["relations"][0]["columns"][2]["attribute"], "type")
         self.assertEqual(d["relations"][0]["columns"][2]["foreign"], True)
-        self.assertEqual(d["relations"][0]["columns"][2]["nature"], "child_attribute")
+        self.assertEqual(d["relations"][0]["columns"][2]["nature"], "child_discriminant")
+        self.assertEqual(d["relations"][0]["columns"][3]["attribute"], "quantité viande")
+        self.assertEqual(d["relations"][0]["columns"][3]["foreign"], True)
+        self.assertEqual(d["relations"][0]["columns"][3]["nature"], "child_attribute")
 
     def test_inheritance_rightwards_simple_arrow(self):
         clauses = """
