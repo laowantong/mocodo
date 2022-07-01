@@ -761,5 +761,22 @@ class relationsTest(unittest.TestCase):
         self.assertEqual(d["relations"][0]["columns"][2]["nature"], "normal_attribute")
 
 
+    def test_inheritance_with_unique_child(self):
+        clauses = """
+            CARNIVORE: quantité viande
+            /\ ANIMAL -> CARNIVORE: type
+            ANIMAL: animal, poids
+        """
+        text = """
+            CARNIVORE (_#animal_, quantité viande)
+            ANIMAL (_animal_, poids, type)
+        """.strip().replace("    ", "")
+        t = Relations(Mcd(clauses.split("\n"), params), params)
+        self.assertEqual(t.get_text(minimal_template), text)
+        d = json.loads(t.get_text(json_template))
+        self.assertEqual(d["relations"][0]["columns"][0]["attribute"], "animal")
+        self.assertEqual(d["relations"][0]["columns"][0]["foreign"], True)
+        self.assertEqual(d["relations"][0]["columns"][0]["nature"], "parent_primary_key")
+
 if __name__ == '__main__':
     unittest.main()

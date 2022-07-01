@@ -42,7 +42,7 @@ class Mcd:
                 if clause.startswith(":"):
                     raise MocodoError(19, _('The clause "{clause}" starts with a colon.').format(clause=clause)) # fmt: skip
                 clause = re.sub("\[.+?\]", substitute_forbidden_symbols_between_brackets, clause)
-                if "," in clause.split(":", 1)[0]:
+                if "," in clause.split(":", 1)[0] or re.match(r"\s*(/\w*\\)", clause):
                     element = Association(clause, **params)
                     if element.name in self.associations:
                         raise MocodoError(7, _('Duplicate association "{name}". If you want to make two associations appear with the same name, you must suffix it with a number.').format(name=element.name)) # fmt: skip
