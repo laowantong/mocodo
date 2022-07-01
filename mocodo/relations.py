@@ -110,8 +110,12 @@ class Relations:
             result.setdefault("compose_promoting_foreign_key", result["compose_foreign_key"])
             result.setdefault("compose_foreign_attribute", result["compose_normal_attribute"])
             result.setdefault("compose_association_attribute", result["compose_normal_attribute"])
-            result.setdefault("compose_child_discriminant", result["compose_foreign_attribute"])
+            result.setdefault("compose_child_discriminant_", result["compose_foreign_attribute"])
+            result.setdefault("compose_child_discriminant_X", result["compose_foreign_attribute"])
+            result.setdefault("compose_child_discriminant_T", result["compose_foreign_attribute"])
+            result.setdefault("compose_child_discriminant_XT", result["compose_foreign_attribute"])
             result.setdefault("compose_parent_primary_key", result["compose_foreign_primary_key"])
+            result.setdefault("compose_parent_foreign_key", result["compose_foreign_key"])
             result.setdefault("compose_parent_attribute", result["compose_foreign_attribute"])
             result.setdefault("compose_child_entity_name", result["compose_foreign_attribute"])
             result.setdefault("compose_child_key", result["compose_foreign_key"])
@@ -295,16 +299,16 @@ class Relations:
         for association in self.mcd.associations.values():
             if association.kind.startswith("inheritance"):
                 parent_leg = association.legs[0]
-                if parent_leg.card != "=>": # migration: (triangle) association > parent
+                if parent_leg.card != "=>": # migration: triangle attributes > parent
                     self.relations[parent_leg.entity_name]["columns"].extend({ 
                         "attribute": attribute.label,
-                        "data_type": attribute.data_type,
+                        "data_type": attribute.data_type or (f"INTEGER UNSIGNED{'' if 'T' in association.name else ' NOT NULL'}"),
                         "primary_relation_name": None,
                         "association_name": association.cartouche,
                         "leg_note": None,
                         "primary": False,
                         "foreign": True,
-                        "nature": "child_discriminant"
+                        "nature": f"child_discriminant_{association.name}"
                     } for attribute in association.attributes)
                 if parent_leg.card in ("->", "=>"): # migration: parent > children
                     for child_leg in association.legs[1:]: 
@@ -317,7 +321,7 @@ class Relations:
                             "association_name": association.cartouche,
                             "primary": attribute["primary"],
                             "foreign": True,
-                            "nature": "parent_primary_key" if attribute["primary"] else "parent_attribute"
+                            "nature": "parent_primary_key" if attribute["primary"] else ("parent_foreign_key" if attribute["nature"] == "foreign_key" else "parent_attribute")
                         } for attribute in self.relations[parent_leg.entity_name]["columns"] if attribute["primary"] or parent_leg.card == "=>"]
                 else: # migration: children > parent
                     for child_leg in association.legs[1:]:
@@ -345,7 +349,7 @@ class Relations:
                             "nature": "child_key" if attribute["primary"] else "child_attribute"
                         } for attribute in self.relations[child_leg.entity_name]["columns"])
                         entities_to_delete.append(child_leg.entity_name)
-                if parent_leg.card == "=>": # suppress the parent
+                if parent_leg.card == "=>" and "T" in association.name: # ensure the inheritance is total before suppressing the parent table
                     entities_to_delete.append(parent_leg.entity_name)
                 continue
             (entity_name, entity_priority) = (None, 0)

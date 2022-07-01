@@ -51,6 +51,16 @@
       "replace": " VARCHAR(42),\n"
     },
     {
+      "comment": "Replace the integer type placeholders.",
+      "search": " INTEGER UNSIGNED NOT NULL,\n",
+      "replace": " TINYINT UNSIGNED NOT NULL,\n"
+    },
+    {
+      "comment": "Replace the integer type placeholders.",
+      "search": " INTEGER UNSIGNED,\n",
+      "replace": " TINYINT UNSIGNED,\n"
+    },
+    {
       "comment": "Concatenate the primary keys and move them to the end of the table.",
       "search": "(?sm)ADD_PRIMARY_KEY ([^\n]+)\n(.+?PRIMARY KEY[^\n]+?)\\)",
       "replace": "\\2\\1 )",

@@ -706,7 +706,7 @@ class relationsTest(unittest.TestCase):
         d = json.loads(t.get_text(json_template))
         self.assertEqual(d["relations"][0]["columns"][2]["attribute"], "type")
         self.assertEqual(d["relations"][0]["columns"][2]["foreign"], True)
-        self.assertEqual(d["relations"][0]["columns"][2]["nature"], "child_discriminant")
+        self.assertEqual(d["relations"][0]["columns"][2]["nature"], "child_discriminant_")
         self.assertEqual(d["relations"][0]["columns"][3]["attribute"], "quantité viande")
         self.assertEqual(d["relations"][0]["columns"][3]["foreign"], True)
         self.assertEqual(d["relations"][0]["columns"][3]["nature"], "child_attribute")
@@ -731,14 +731,14 @@ class relationsTest(unittest.TestCase):
         self.assertEqual(d["relations"][0]["columns"][1]["nature"], "normal_attribute")
         self.assertEqual(d["relations"][0]["columns"][2]["attribute"], "type")
         self.assertEqual(d["relations"][0]["columns"][2]["foreign"], True)
-        self.assertEqual(d["relations"][0]["columns"][2]["nature"], "child_discriminant")
+        self.assertEqual(d["relations"][0]["columns"][2]["nature"], "child_discriminant_")
         self.assertEqual(d["relations"][1]["columns"][0]["attribute"], "animal")
         self.assertEqual(d["relations"][1]["columns"][0]["foreign"], True)
         self.assertEqual(d["relations"][1]["columns"][0]["nature"], "parent_primary_key")
 
-    def test_inheritance_rightwards_double_arrow(self):
+    def test_inheritance_rightwards_double_arrow_with_totality(self):
         clauses = """
-            /\ ANIMAL => CARNIVORE, HERBIVORE: type
+            /T\ ANIMAL => CARNIVORE, HERBIVORE: type
             ANIMAL: animal, poids
             CARNIVORE: quantité viande
             HERBIVORE: plante préférée
@@ -760,6 +760,77 @@ class relationsTest(unittest.TestCase):
         self.assertEqual(d["relations"][0]["columns"][2]["foreign"], False)
         self.assertEqual(d["relations"][0]["columns"][2]["nature"], "normal_attribute")
 
+    def test_inheritance_rightwards_double_arrow_without_totality(self):
+        clauses = """
+            /\ ANIMAL => CARNIVORE, HERBIVORE: type
+            ANIMAL: animal, poids
+            CARNIVORE: quantité viande
+            HERBIVORE: plante préférée
+        """
+        text = """
+            ANIMAL (_animal_, poids)
+            CARNIVORE (_#animal_, poids, quantité viande)
+            HERBIVORE (_#animal_, poids, plante préférée)
+        """.strip().replace("    ", "")
+        t = Relations(Mcd(clauses.split("\n"), params), params)
+        self.assertEqual(t.get_text(minimal_template), text)
+        d = json.loads(t.get_text(json_template))
+        self.assertEqual(d["relations"][0]["columns"][0]["attribute"], "animal")
+        self.assertEqual(d["relations"][0]["columns"][0]["foreign"], False)
+        self.assertEqual(d["relations"][0]["columns"][0]["nature"], "primary_key")
+        self.assertEqual(d["relations"][0]["columns"][1]["attribute"], "poids")
+        self.assertEqual(d["relations"][0]["columns"][1]["foreign"], False)
+        self.assertEqual(d["relations"][0]["columns"][1]["nature"], "normal_attribute")
+        self.assertEqual(d["relations"][1]["columns"][0]["attribute"], "animal")
+        self.assertEqual(d["relations"][1]["columns"][0]["foreign"], True)
+        self.assertEqual(d["relations"][1]["columns"][0]["nature"], "parent_primary_key")
+        self.assertEqual(d["relations"][1]["columns"][1]["attribute"], "poids")
+        self.assertEqual(d["relations"][1]["columns"][1]["foreign"], True)
+        self.assertEqual(d["relations"][1]["columns"][1]["nature"], "parent_attribute")
+        self.assertEqual(d["relations"][1]["columns"][2]["attribute"], "quantité viande")
+        self.assertEqual(d["relations"][1]["columns"][2]["foreign"], False)
+        self.assertEqual(d["relations"][1]["columns"][2]["nature"], "normal_attribute")
+
+    def test_inheritance_leftwards_simple_arrow_with_right_arrow(self):
+        clauses = """
+            /\ ANIMAL <-> CARNIVORE, HERBIVORE: type
+            ANIMAL: animal, poids
+            CARNIVORE: quantité viande
+            HERBIVORE: plante préférée
+        """
+        text = """
+            ANIMAL (_animal_, poids, type, quantité viande, plante préférée)
+        """.strip().replace("    ", "")
+        t = Relations(Mcd(clauses.split("\n"), params), params)
+        self.assertEqual(t.get_text(minimal_template), text)
+        d = json.loads(t.get_text(json_template))
+        self.assertEqual(d["relations"][0]["columns"][2]["attribute"], "type")
+        self.assertEqual(d["relations"][0]["columns"][2]["foreign"], True)
+        self.assertEqual(d["relations"][0]["columns"][2]["nature"], "child_discriminant_")
+        self.assertEqual(d["relations"][0]["columns"][3]["attribute"], "quantité viande")
+        self.assertEqual(d["relations"][0]["columns"][3]["foreign"], True)
+        self.assertEqual(d["relations"][0]["columns"][3]["nature"], "child_attribute")
+
+
+    def test_inheritance_leftwards_simple_arrow_with_left_arrow(self):
+        clauses = """
+            /\ ANIMAL <-< CARNIVORE, HERBIVORE: type
+            ANIMAL: animal, poids
+            CARNIVORE: quantité viande
+            HERBIVORE: plante préférée
+        """
+        text = """
+            ANIMAL (_animal_, poids, type, quantité viande, plante préférée)
+        """.strip().replace("    ", "")
+        t = Relations(Mcd(clauses.split("\n"), params), params)
+        self.assertEqual(t.get_text(minimal_template), text)
+        d = json.loads(t.get_text(json_template))
+        self.assertEqual(d["relations"][0]["columns"][2]["attribute"], "type")
+        self.assertEqual(d["relations"][0]["columns"][2]["foreign"], True)
+        self.assertEqual(d["relations"][0]["columns"][2]["nature"], "child_discriminant_")
+        self.assertEqual(d["relations"][0]["columns"][3]["attribute"], "quantité viande")
+        self.assertEqual(d["relations"][0]["columns"][3]["foreign"], True)
+        self.assertEqual(d["relations"][0]["columns"][3]["nature"], "child_attribute")
 
     def test_inheritance_with_unique_child(self):
         clauses = """

@@ -109,7 +109,7 @@ CREATE TABLE `ANIMAL` (
   `sexe` VARCHAR(42),
   `date_naissance` VARCHAR(42),
   `date_décès` VARCHAR(42),
-  `type_alimentation` VARCHAR(42),
+  `type_alimentation` TINYINT UNSIGNED NOT NULL,
   `carnivore` BOOLEAN,
   `quantité_viande` VARCHAR(42),
   `herbivore` BOOLEAN,
@@ -180,7 +180,7 @@ ALTER TABLE `ANIMAL` ADD FOREIGN KEY (`code_espèce`) REFERENCES `ESPÈCE` (`cod
 - Le champ _code espèce_ fait partie de la clef primaire de la table. Il a migré à partir de l'entité _ESPÈCE_ pour renforcer l'identifiant faible.  
 - Le champ _nom_ fait partie de la clef primaire de la table. C'était déjà un identifiant de l'entité _ANIMAL_.  
 - Les champs _sexe_, _date naissance_ et _date décès_ étaient déjà de simples attributs de l'entité _ANIMAL_.  
-- Le champ _type alimentation_ est ajouté pour indiquer la nature de la spécialisation (i.e., laquelle des entités-filles est concernée).  
+- Un champ entier _type alimentation_ est ajouté pour indiquer la nature de la spécialisation. Il est interprété comme un code binaire : bit 1 pour la première entité-fille, bit 2 pour la deuxième, etc. Peut être vide, du fait de l'absence de contrainte de totalité.  
 - Un champ booléen _CARNIVORE_ est ajouté pour indiquer si on a affaire à la spécialisation de même nom.  
 - Le champ _quantité viande_ a migré à partir de l'entité-fille _CARNIVORE_.  
 - Un champ booléen _HERBIVORE_ est ajouté pour indiquer si on a affaire à la spécialisation de même nom.  
@@ -236,7 +236,7 @@ CREATE TABLE "ANIMAL" (
   "sexe" VARCHAR(42),
   "date_naissance" VARCHAR(42),
   "date_décès" VARCHAR(42),
-  "type_alimentation" VARCHAR(42),
+  "type_alimentation" NUMBER(1) UNSIGNED NOT NULL,
   "carnivore" NUMBER(1) DEFAULT 0 NOT NULL,
   "quantité_viande" VARCHAR(42),
   "herbivore" NUMBER(1) DEFAULT 0 NOT NULL,
@@ -362,7 +362,7 @@ ALTER TABLE "ANIMAL" ADD FOREIGN KEY ("code_espèce") REFERENCES "ESPÈCE" ("cod
     <li>Le champ <i>code espèce</i> fait partie de la clef primaire de la table. Il a migré à partir de l'entité <i>ESPÈCE</i> pour renforcer l'identifiant.</li>
     <li>Le champ <i>nom</i> fait partie de la clef primaire de la table. C'était déjà un identifiant de l'entité <i>ANIMAL</i>.</li>
     <li>Les champs <i>sexe</i>, <i>date naissance</i> et <i>date décès</i> étaient déjà de simples attributs de l'entité <i>ANIMAL</i>.</li>
-    <li>Le champ <i>type alimentation</i> est ajouté pour indiquer la nature de la spécialisation (i.e., laquelle des entités-filles est concernée).</li>
+    <li>Un champ entier <i>type alimentation</i> est ajouté pour indiquer la nature de la spécialisation. Il est interprété comme un code binaire : bit 1 pour la première entité-fille, bit 2 pour la deuxième, etc. Peut être vide, du fait de l'absence de contrainte de totalité.</li>
     <li>Un champ booléen <i>CARNIVORE</i> est ajouté pour indiquer si on a affaire à la spécialisation de même nom.</li>
     <li>Le champ <i>quantité viande</i> a migré à partir de l'entité-fille <i>CARNIVORE</i>.</li>
     <li>Un champ booléen <i>HERBIVORE</i> est ajouté pour indiquer si on a affaire à la spécialisation de même nom.</li>
@@ -441,7 +441,7 @@ CREATE TABLE "ANIMAL" (
   "sexe" VARCHAR(42),
   "date_naissance" VARCHAR(42),
   "date_décès" VARCHAR(42),
-  "type_alimentation" VARCHAR(42),
+  "type_alimentation" INTEGER NOT NULL,
   "carnivore" INTEGER,
   "quantité_viande" VARCHAR(42),
   "herbivore" INTEGER,
@@ -1009,8 +1009,8 @@ CREATE TABLE "PÉRIODE" (
           "label_titlecase": "Type alimentation",
           "primary": false,
           "foreign": true,
-          "nature": "child_discriminant",
-          "data_type": null,
+          "nature": "child_discriminant_",
+          "data_type": "INTEGER UNSIGNED NOT NULL",
           "association_name": "",
           "association_name_lower_case": "",
           "association_name_uppercase": "",
@@ -1248,7 +1248,7 @@ CREATE TABLE "PÉRIODE" (
 - sexe
 - date naissance
 - date décès
-- type alimentation
+- type alimentation : _INTEGER UNSIGNED NOT NULL_
 - CARNIVORE : _BOOLEAN_
 - quantité viande
 - HERBIVORE : _BOOLEAN_
@@ -1438,7 +1438,7 @@ CREATE TABLE ANIMAL (
   sexe VARCHAR(42),
   date_naissance VARCHAR(42),
   date_décès VARCHAR(42),
-  type_alimentation VARCHAR(42),
+  type_alimentation SMALLINT NOT NULL,
   carnivore BOOLEAN,
   quantité_viande VARCHAR(42),
   herbivore BOOLEAN,

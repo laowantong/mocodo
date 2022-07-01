@@ -15,7 +15,9 @@ class Association:
             name = name.strip()
             is_inheritance = False
             if name[:1] + name[-1:] == "/\\":
-                name = name[1:-1]
+                name = name[1:-1].replace(" ", "").upper().replace("TX", "XT")
+                if name not in ("X", "T", "XT", ""):
+                    raise MocodoError(24, _('Unknown specialization "{name}".').format(name=name)) # fmt: skip
                 is_inheritance = True
             name = name.replace("\\", "")
             cartouche = (name[:-1] if name[-1:].isdigit() else name)
@@ -42,9 +44,13 @@ class Association:
         
         self.clause = clause
         match = re.match(r"\s*(/\w*\\)", clause)
-        if match: # If the clause startswith an inheritance symbol, start to "normalize" its syntax:
-            # e.g. change "/XT\ parent => child1, child2" into "/XT\, => parent, child1, child2"
-            (clause, n) = re.subn(r"(\s*/\w*\\)\s*([^:,]+)\s*((?:<=|<-|->|=>)[<>]?)", r"\1, \3 \2, ", clause)
+        if match: # If the clause starts with an inheritance symbol, begin "normalizing" its syntax:
+            # e.g. change "/XT\ parent => child1, child2" into "/XT\, => parent, child1, child2".
+            (clause, n) = re.subn(
+                r"(\s*/\w*\\)\s*([^:,]+)\s+(<=|<-|->|=>)([<>]?)",
+                r"\1, \3\4 \2, ",
+                clause,
+            )
             if n == 0:
                 raise MocodoError(23, _('Syntax error in inheritance "{inheritance}".').format(inheritance=match[1])) # fmt: skip
         (name, legs_and_attributes) = clause.split(",", 1)
