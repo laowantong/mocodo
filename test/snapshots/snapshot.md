@@ -67,42 +67,6 @@ PÉRIODE: date début, _date fin
 CREATE DATABASE IF NOT EXISTS `UNTITLED` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE `UNTITLED`;
 
-CREATE TABLE `PEUT_COHABITER_AVEC` (
-  `code_espèce` VARCHAR(42),
-  `code_espèce commensale` VARCHAR(42),
-  `nb_max_commensaux` VARCHAR(42),
-  PRIMARY KEY (`code_espèce`, `code_espèce commensale`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-CREATE TABLE `PEUT_VIVRE_DANS` (
-  `code_espèce` VARCHAR(42),
-  `num_enclos` VARCHAR(42),
-  `nb_max_congénères` VARCHAR(42),
-  PRIMARY KEY (`code_espèce`, `num_enclos`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-CREATE TABLE `ESPÈCE` (
-  `code_espèce` VARCHAR(42),
-  `libellé` VARCHAR(42),
-  PRIMARY KEY (`code_espèce`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-/*
-CREATE TABLE `ENCLOS` (
-  `num_enclos` VARCHAR(42),
-  PRIMARY KEY (`num_enclos`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-*/
-
-CREATE TABLE `OCCUPE` (
-  `code_espèce` VARCHAR(42),
-  `nom` VARCHAR(42),
-  `num_enclos` VARCHAR(42),
-  `date_début` VARCHAR(42),
-  `date_fin` VARCHAR(42),
-  PRIMARY KEY (`code_espèce`, `nom`, `num_enclos`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 CREATE TABLE `ANIMAL` (
   `code_espèce` VARCHAR(42),
   `nom` VARCHAR(42),
@@ -119,63 +83,76 @@ CREATE TABLE `ANIMAL` (
   PRIMARY KEY (`code_espèce`, `nom`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+/*
+CREATE TABLE `ENCLOS` (
+  `num_enclos` VARCHAR(42),
+  PRIMARY KEY (`num_enclos`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+*/
+
+CREATE TABLE `ESPÈCE` (
+  `code_espèce` VARCHAR(42),
+  `libellé` VARCHAR(42),
+  PRIMARY KEY (`code_espèce`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `OCCUPE` (
+  `code_espèce` VARCHAR(42),
+  `nom` VARCHAR(42),
+  `num_enclos` VARCHAR(42),
+  `date_début` VARCHAR(42),
+  `date_fin` VARCHAR(42),
+  PRIMARY KEY (`code_espèce`, `nom`, `num_enclos`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `PEUT_COHABITER_AVEC` (
+  `code_espèce` VARCHAR(42),
+  `code_espèce commensale` VARCHAR(42),
+  `nb_max_commensaux` VARCHAR(42),
+  PRIMARY KEY (`code_espèce`, `code_espèce commensale`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `PEUT_VIVRE_DANS` (
+  `code_espèce` VARCHAR(42),
+  `num_enclos` VARCHAR(42),
+  `nb_max_congénères` VARCHAR(42),
+  PRIMARY KEY (`code_espèce`, `num_enclos`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 CREATE TABLE `PÉRIODE` (
   `date_début` VARCHAR(42),
   `date_fin` VARCHAR(42),
   PRIMARY KEY (`date_début`, `date_fin`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+ALTER TABLE `ANIMAL` ADD FOREIGN KEY (`code_espèce mère`, `nom mère`) REFERENCES `ANIMAL` (`code_espèce`, `nom`);
+ALTER TABLE `ANIMAL` ADD FOREIGN KEY (`code_espèce`) REFERENCES `ESPÈCE` (`code_espèce`);
+ALTER TABLE `OCCUPE` ADD FOREIGN KEY (`date_début`, `date_fin`) REFERENCES `PÉRIODE` (`date_début`, `date_fin`);
+-- ALTER TABLE `OCCUPE` ADD FOREIGN KEY (`num_enclos`) REFERENCES `ENCLOS` (`num_enclos`);
+ALTER TABLE `OCCUPE` ADD FOREIGN KEY (`code_espèce`, `nom`) REFERENCES `ANIMAL` (`code_espèce`, `nom`);
 ALTER TABLE `PEUT_COHABITER_AVEC` ADD FOREIGN KEY (`code_espèce commensale`) REFERENCES `ESPÈCE` (`code_espèce`);
 ALTER TABLE `PEUT_COHABITER_AVEC` ADD FOREIGN KEY (`code_espèce`) REFERENCES `ESPÈCE` (`code_espèce`);
 -- ALTER TABLE `PEUT_VIVRE_DANS` ADD FOREIGN KEY (`num_enclos`) REFERENCES `ENCLOS` (`num_enclos`);
 ALTER TABLE `PEUT_VIVRE_DANS` ADD FOREIGN KEY (`code_espèce`) REFERENCES `ESPÈCE` (`code_espèce`);
-ALTER TABLE `OCCUPE` ADD FOREIGN KEY (`date_début`, `date_fin`) REFERENCES `PÉRIODE` (`date_début`, `date_fin`);
--- ALTER TABLE `OCCUPE` ADD FOREIGN KEY (`num_enclos`) REFERENCES `ENCLOS` (`num_enclos`);
-ALTER TABLE `OCCUPE` ADD FOREIGN KEY (`code_espèce`, `nom`) REFERENCES `ANIMAL` (`code_espèce`, `nom`);
-ALTER TABLE `ANIMAL` ADD FOREIGN KEY (`code_espèce mère`, `nom mère`) REFERENCES `ANIMAL` (`code_espèce`, `nom`);
-ALTER TABLE `ANIMAL` ADD FOREIGN KEY (`code_espèce`) REFERENCES `ESPÈCE` (`code_espèce`);
 ```
 
 ### `markdown.json`
 
 ```markdown
-**PEUT COHABITER AVEC** (<ins>_#code espèce_</ins>, <ins>_#code espèce commensale_</ins>, nb. max. commensaux)  
-**PEUT VIVRE DANS** (<ins>_#code espèce_</ins>, <ins>_#num. enclos_</ins>, nb. max. congénères)  
-**ESPÈCE** (<ins>code espèce</ins>, libellé)  
+**ANIMAL** (<ins>_#code espèce_</ins>, <ins>nom</ins>, sexe, date naissance, date décès, _#code espèce mère_, _#nom mère_, type alimentation, CARNIVORE, quantité viande, HERBIVORE, plante préférée)  
 <!--
 **ENCLOS** (<ins>num. enclos</ins>)  
 -->
+**ESPÈCE** (<ins>code espèce</ins>, libellé)  
 **OCCUPE** (<ins>_#code espèce_</ins>, <ins>_#nom_</ins>, <ins>_#num. enclos_</ins>, _#date début_, _#date fin_)  
-**ANIMAL** (<ins>_#code espèce_</ins>, <ins>nom</ins>, sexe, date naissance, date décès, _#code espèce mère_, _#nom mère_, type alimentation, CARNIVORE, quantité viande, HERBIVORE, plante préférée)  
+**PEUT COHABITER AVEC** (<ins>_#code espèce_</ins>, <ins>_#code espèce commensale_</ins>, nb. max. commensaux)  
+**PEUT VIVRE DANS** (<ins>_#code espèce_</ins>, <ins>_#num. enclos_</ins>, nb. max. congénères)  
 **PÉRIODE** (<ins>date début</ins>, <ins>date fin</ins>)
 ```
 
 ### `markdown_verbose.json`
 
 ```markdown
-**PEUT COHABITER AVEC** (<ins>_#code espèce_</ins>, <ins>_#code espèce commensale_</ins>, nb. max. commensaux)  
-- Les champs _code espèce_ et _code espèce commensale_ constituent la clef primaire de la table. Ce sont des clefs étrangères qui ont migré directement à partir de l'entité _ESPÈCE_.  
-- Le champ _nb. max. commensaux_ était déjà un simple attribut de l'association _PEUT COHABITER AVEC_.  
-
-**PEUT VIVRE DANS** (<ins>_#code espèce_</ins>, <ins>_#num. enclos_</ins>, nb. max. congénères)  
-- Le champ _code espèce_ fait partie de la clef primaire de la table. C'est une clef étrangère qui a migré directement à partir de l'entité _ESPÈCE_.  
-- Le champ _num. enclos_ fait partie de la clef primaire de la table. C'est une clef étrangère qui a migré directement à partir de l'entité _ENCLOS_.  
-- Le champ _nb. max. congénères_ était déjà un simple attribut de l'association _PEUT VIVRE DANS_.  
-
-**ESPÈCE** (<ins>code espèce</ins>, libellé)  
-- Le champ _code espèce_ constitue la clef primaire de la table. C'était déjà un identifiant de l'entité _ESPÈCE_.  
-- Le champ _libellé_ était déjà un simple attribut de l'entité _ESPÈCE_.  
-
-**ENCLOS** (<ins>num. enclos</ins>)  
-- **Avertissement.** Cette table ne comportant qu'un seul champ, on peut envisager de la supprimer.
-- Le champ _num. enclos_ constitue la clef primaire de la table. C'était déjà un identifiant de l'entité _ENCLOS_.  
-
-**OCCUPE** (<ins>_#code espèce_</ins>, <ins>_#nom_</ins>, <ins>_#num. enclos_</ins>, _date début_, _date fin_)  
-- Les champs _code espèce_ et _nom_ font partie de la clef primaire de la table. Ce sont des clefs étrangères qui ont migré directement à partir de l'entité _ANIMAL_.  
-- Le champ _num. enclos_ fait partie de la clef primaire de la table. C'est une clef étrangère qui a migré directement à partir de l'entité _ENCLOS_.  
-- Le champ _date début_ est une clef étrangère issue de l'entité _PÉRIODE_. Il devrait normalement faire partie de l'identifiant de _OCCUPE_, mais a été rétrogradé explicitement au rang de simple attribut.  
-- Le champ _date fin_ est une clef étrangère issue de l'entité _PÉRIODE_. Il devrait normalement faire partie de l'identifiant de _OCCUPE_, mais a été rétrogradé explicitement au rang de simple attribut.  
-
 **ANIMAL** (<ins>_code espèce_</ins>, <ins>nom</ins>, sexe, date naissance, date décès, _#code espèce mère_, _#nom mère_, type alimentation, CARNIVORE, quantité viande, HERBIVORE, plante préférée)  
 - Le champ _code espèce_ fait partie de la clef primaire de la table. Il a migré à partir de l'entité _ESPÈCE_ pour renforcer l'identifiant faible.  
 - Le champ _nom_ fait partie de la clef primaire de la table. C'était déjà un identifiant de l'entité _ANIMAL_.  
@@ -187,6 +164,29 @@ ALTER TABLE `ANIMAL` ADD FOREIGN KEY (`code_espèce`) REFERENCES `ESPÈCE` (`cod
 - Un champ booléen _HERBIVORE_ est ajouté pour indiquer si on a affaire ou pas à la spécialisation de même nom.  
 - Le champ _plante préférée_ a migré à partir de l'entité-fille _HERBIVORE_.  
 
+**ENCLOS** (<ins>num. enclos</ins>)  
+- **Avertissement.** Cette table ne comportant qu'un seul champ, on peut envisager de la supprimer.
+- Le champ _num. enclos_ constitue la clef primaire de la table. C'était déjà un identifiant de l'entité _ENCLOS_.  
+
+**ESPÈCE** (<ins>code espèce</ins>, libellé)  
+- Le champ _code espèce_ constitue la clef primaire de la table. C'était déjà un identifiant de l'entité _ESPÈCE_.  
+- Le champ _libellé_ était déjà un simple attribut de l'entité _ESPÈCE_.  
+
+**OCCUPE** (<ins>_#code espèce_</ins>, <ins>_#nom_</ins>, <ins>_#num. enclos_</ins>, _date début_, _date fin_)  
+- Les champs _code espèce_ et _nom_ font partie de la clef primaire de la table. Ce sont des clefs étrangères qui ont migré directement à partir de l'entité _ANIMAL_.  
+- Le champ _num. enclos_ fait partie de la clef primaire de la table. C'est une clef étrangère qui a migré directement à partir de l'entité _ENCLOS_.  
+- Le champ _date début_ est une clef étrangère issue de l'entité _PÉRIODE_. Il devrait normalement faire partie de l'identifiant de _OCCUPE_, mais a été rétrogradé explicitement au rang de simple attribut.  
+- Le champ _date fin_ est une clef étrangère issue de l'entité _PÉRIODE_. Il devrait normalement faire partie de l'identifiant de _OCCUPE_, mais a été rétrogradé explicitement au rang de simple attribut.  
+
+**PEUT COHABITER AVEC** (<ins>_#code espèce_</ins>, <ins>_#code espèce commensale_</ins>, nb. max. commensaux)  
+- Les champs _code espèce_ et _code espèce commensale_ constituent la clef primaire de la table. Ce sont des clefs étrangères qui ont migré directement à partir de l'entité _ESPÈCE_.  
+- Le champ _nb. max. commensaux_ était déjà un simple attribut de l'association _PEUT COHABITER AVEC_.  
+
+**PEUT VIVRE DANS** (<ins>_#code espèce_</ins>, <ins>_#num. enclos_</ins>, nb. max. congénères)  
+- Le champ _code espèce_ fait partie de la clef primaire de la table. C'est une clef étrangère qui a migré directement à partir de l'entité _ESPÈCE_.  
+- Le champ _num. enclos_ fait partie de la clef primaire de la table. C'est une clef étrangère qui a migré directement à partir de l'entité _ENCLOS_.  
+- Le champ _nb. max. congénères_ était déjà un simple attribut de l'association _PEUT VIVRE DANS_.  
+
 **PÉRIODE** (<ins>date début</ins>, <ins>date fin</ins>)  
 - Les champs _date début_ et _date fin_ constituent la clef primaire de la table. C'était déjà des identifiants de l'entité _PÉRIODE_.
 ```
@@ -194,42 +194,6 @@ ALTER TABLE `ANIMAL` ADD FOREIGN KEY (`code_espèce`) REFERENCES `ESPÈCE` (`cod
 ### `oracle.json`
 
 ```sql
-CREATE TABLE "PEUT_COHABITER_AVEC" (
-  "code_espèce" VARCHAR(42),
-  "code_espèce commensale" VARCHAR(42),
-  "nb_max_commensaux" VARCHAR(42),
-  PRIMARY KEY ("code_espèce", "code_espèce commensale")
-);
-
-CREATE TABLE "PEUT_VIVRE_DANS" (
-  "code_espèce" VARCHAR(42),
-  "num_enclos" VARCHAR(42),
-  "nb_max_congénères" VARCHAR(42),
-  PRIMARY KEY ("code_espèce", "num_enclos")
-);
-
-CREATE TABLE "ESPÈCE" (
-  "code_espèce" VARCHAR(42),
-  "libellé" VARCHAR(42),
-  PRIMARY KEY ("code_espèce")
-);
-
-/*
-CREATE TABLE "ENCLOS" (
-  "num_enclos" VARCHAR(42),
-  PRIMARY KEY ("num_enclos")
-);
-*/
-
-CREATE TABLE "OCCUPE" (
-  "code_espèce" VARCHAR(42),
-  "nom" VARCHAR(42),
-  "num_enclos" VARCHAR(42),
-  "date_début" VARCHAR(42),
-  "date_fin" VARCHAR(42),
-  PRIMARY KEY ("code_espèce", "nom", "num_enclos")
-);
-
 CREATE TABLE "ANIMAL" (
   "code_espèce" VARCHAR(42),
   "nom" VARCHAR(42),
@@ -246,21 +210,57 @@ CREATE TABLE "ANIMAL" (
   PRIMARY KEY ("code_espèce", "nom")
 );
 
+/*
+CREATE TABLE "ENCLOS" (
+  "num_enclos" VARCHAR(42),
+  PRIMARY KEY ("num_enclos")
+);
+*/
+
+CREATE TABLE "ESPÈCE" (
+  "code_espèce" VARCHAR(42),
+  "libellé" VARCHAR(42),
+  PRIMARY KEY ("code_espèce")
+);
+
+CREATE TABLE "OCCUPE" (
+  "code_espèce" VARCHAR(42),
+  "nom" VARCHAR(42),
+  "num_enclos" VARCHAR(42),
+  "date_début" VARCHAR(42),
+  "date_fin" VARCHAR(42),
+  PRIMARY KEY ("code_espèce", "nom", "num_enclos")
+);
+
+CREATE TABLE "PEUT_COHABITER_AVEC" (
+  "code_espèce" VARCHAR(42),
+  "code_espèce commensale" VARCHAR(42),
+  "nb_max_commensaux" VARCHAR(42),
+  PRIMARY KEY ("code_espèce", "code_espèce commensale")
+);
+
+CREATE TABLE "PEUT_VIVRE_DANS" (
+  "code_espèce" VARCHAR(42),
+  "num_enclos" VARCHAR(42),
+  "nb_max_congénères" VARCHAR(42),
+  PRIMARY KEY ("code_espèce", "num_enclos")
+);
+
 CREATE TABLE "PÉRIODE" (
   "date_début" VARCHAR(42),
   "date_fin" VARCHAR(42),
   PRIMARY KEY ("date_début", "date_fin")
 );
 
+ALTER TABLE "ANIMAL" ADD FOREIGN KEY ("code_espèce mère", "nom mère") REFERENCES "ANIMAL" ("code_espèce", "nom");
+ALTER TABLE "ANIMAL" ADD FOREIGN KEY ("code_espèce") REFERENCES "ESPÈCE" ("code_espèce");
+ALTER TABLE "OCCUPE" ADD FOREIGN KEY ("date_début", "date_fin") REFERENCES "PÉRIODE" ("date_début", "date_fin");
+-- ALTER TABLE "OCCUPE" ADD FOREIGN KEY ("num_enclos") REFERENCES "ENCLOS" ("num_enclos");
+ALTER TABLE "OCCUPE" ADD FOREIGN KEY ("code_espèce", "nom") REFERENCES "ANIMAL" ("code_espèce", "nom");
 ALTER TABLE "PEUT_COHABITER_AVEC" ADD FOREIGN KEY ("code_espèce commensale") REFERENCES "ESPÈCE" ("code_espèce");
 ALTER TABLE "PEUT_COHABITER_AVEC" ADD FOREIGN KEY ("code_espèce") REFERENCES "ESPÈCE" ("code_espèce");
 -- ALTER TABLE "PEUT_VIVRE_DANS" ADD FOREIGN KEY ("num_enclos") REFERENCES "ENCLOS" ("num_enclos");
 ALTER TABLE "PEUT_VIVRE_DANS" ADD FOREIGN KEY ("code_espèce") REFERENCES "ESPÈCE" ("code_espèce");
-ALTER TABLE "OCCUPE" ADD FOREIGN KEY ("date_début", "date_fin") REFERENCES "PÉRIODE" ("date_début", "date_fin");
--- ALTER TABLE "OCCUPE" ADD FOREIGN KEY ("num_enclos") REFERENCES "ENCLOS" ("num_enclos");
-ALTER TABLE "OCCUPE" ADD FOREIGN KEY ("code_espèce", "nom") REFERENCES "ANIMAL" ("code_espèce", "nom");
-ALTER TABLE "ANIMAL" ADD FOREIGN KEY ("code_espèce mère", "nom mère") REFERENCES "ANIMAL" ("code_espèce", "nom");
-ALTER TABLE "ANIMAL" ADD FOREIGN KEY ("code_espèce") REFERENCES "ESPÈCE" ("code_espèce");
 ```
 
 ### `html_verbose.json`
@@ -281,68 +281,6 @@ ALTER TABLE "ANIMAL" ADD FOREIGN KEY ("code_espèce") REFERENCES "ESPÈCE" ("cod
 </head>
 <body>
 <div id='mld'>
-<div>
-  <span class='relation'>PEUT COHABITER AVEC</span> (
-    <span class='foreign primary'>#code espèce</span>,
-    <span class='foreign primary'>#code espèce commensale</span>,
-    <span class='normal'>nb. max. commensaux</span>
-  )
-  <ul>
-    <li>Les champs <i>code espèce</i> et <i>code espèce commensale</i> constituent la clef primaire de la table. Ce sont des clefs étrangères qui ont migré directement à partir de l'entité <i>ESPÈCE</i>.</li>
-    <li>Le champ <i>nb. max. commensaux</i> était déjà un simple attribut de l'association <i>PEUT COHABITER AVEC</i>.</li>
-  </ul>
-</div>
-
-<div>
-  <span class='relation'>PEUT VIVRE DANS</span> (
-    <span class='foreign primary'>#code espèce</span>,
-    <span class='foreign primary'>#num. enclos</span>,
-    <span class='normal'>nb. max. congénères</span>
-  )
-  <ul>
-    <li>Le champ <i>code espèce</i> fait partie de la clef primaire de la table. C'est une clef étrangère qui a migré directement à partir de l'entité <i>ESPÈCE</i>.</li>
-    <li>Le champ <i>num. enclos</i> fait partie de la clef primaire de la table. C'est une clef étrangère qui a migré directement à partir de l'entité <i>ENCLOS</i>.</li>
-    <li>Le champ <i>nb. max. congénères</i> était déjà un simple attribut de l'association <i>PEUT VIVRE DANS</i>.</li>
-  </ul>
-</div>
-
-<div>
-  <span class='relation'>ESPÈCE</span> (
-    <span class='primary'>code espèce</span>,
-    <span class='normal'>libellé</span>
-  )
-  <ul>
-    <li>Le champ <i>code espèce</i> constitue la clef primaire de la table. C'était déjà un identifiant de l'entité <i>ESPÈCE</i>.</li>
-    <li>Le champ <i>libellé</i> était déjà un simple attribut de l'entité <i>ESPÈCE</i>.</li>
-  </ul>
-</div>
-
-<div>
-  <span class='relation'>ENCLOS</span> (
-    <span class='primary'>num. enclos</span>
-  )
-  <ul>
-    <li><strong>Avertissement.</strong> Cette table ne comportant qu'un seul champ, on peut envisager de la supprimer.</li>
-    <li>Le champ <i>num. enclos</i> constitue la clef primaire de la table. C'était déjà un identifiant de l'entité <i>ENCLOS</i>.</li>
-  </ul>
-</div>
-
-<div>
-  <span class='relation'>OCCUPE</span> (
-    <span class='foreign primary'>#code espèce</span>,
-    <span class='foreign primary'>#nom</span>,
-    <span class='foreign primary'>#num. enclos</span>,
-    <span class='foreign'>date début</span>,
-    <span class='foreign'>date fin</span>
-  )
-  <ul>
-    <li>Les champs <i>code espèce</i> et <i>nom</i> font partie de la clef primaire de la table. Ce sont des clefs étrangères qui ont migré directement à partir de l'entité <i>ANIMAL</i>.</li>
-    <li>Le champ <i>num. enclos</i> fait partie de la clef primaire de la table. C'est une clef étrangère qui a migré directement à partir de l'entité <i>ENCLOS</i>.</li>
-    <li>Le champ <i>date début</i> est une clef étrangère issue de l'entité <i>PÉRIODE</i>. Il devrait normalement faire partie de l'identifiant de <i>OCCUPE</i>, mais a été rétrogradé explicitement au rang de simple attribut.</li>
-    <li>Le champ <i>date fin</i> est une clef étrangère issue de l'entité <i>PÉRIODE</i>. Il devrait normalement faire partie de l'identifiant de <i>OCCUPE</i>, mais a été rétrogradé explicitement au rang de simple attribut.</li>
-  </ul>
-</div>
-
 <div>
   <span class='relation'>ANIMAL</span> (
     <span class='foreign primary'>code espèce</span>,
@@ -373,6 +311,68 @@ ALTER TABLE "ANIMAL" ADD FOREIGN KEY ("code_espèce") REFERENCES "ESPÈCE" ("cod
 </div>
 
 <div>
+  <span class='relation'>ENCLOS</span> (
+    <span class='primary'>num. enclos</span>
+  )
+  <ul>
+    <li><strong>Avertissement.</strong> Cette table ne comportant qu'un seul champ, on peut envisager de la supprimer.</li>
+    <li>Le champ <i>num. enclos</i> constitue la clef primaire de la table. C'était déjà un identifiant de l'entité <i>ENCLOS</i>.</li>
+  </ul>
+</div>
+
+<div>
+  <span class='relation'>ESPÈCE</span> (
+    <span class='primary'>code espèce</span>,
+    <span class='normal'>libellé</span>
+  )
+  <ul>
+    <li>Le champ <i>code espèce</i> constitue la clef primaire de la table. C'était déjà un identifiant de l'entité <i>ESPÈCE</i>.</li>
+    <li>Le champ <i>libellé</i> était déjà un simple attribut de l'entité <i>ESPÈCE</i>.</li>
+  </ul>
+</div>
+
+<div>
+  <span class='relation'>OCCUPE</span> (
+    <span class='foreign primary'>#code espèce</span>,
+    <span class='foreign primary'>#nom</span>,
+    <span class='foreign primary'>#num. enclos</span>,
+    <span class='foreign'>date début</span>,
+    <span class='foreign'>date fin</span>
+  )
+  <ul>
+    <li>Les champs <i>code espèce</i> et <i>nom</i> font partie de la clef primaire de la table. Ce sont des clefs étrangères qui ont migré directement à partir de l'entité <i>ANIMAL</i>.</li>
+    <li>Le champ <i>num. enclos</i> fait partie de la clef primaire de la table. C'est une clef étrangère qui a migré directement à partir de l'entité <i>ENCLOS</i>.</li>
+    <li>Le champ <i>date début</i> est une clef étrangère issue de l'entité <i>PÉRIODE</i>. Il devrait normalement faire partie de l'identifiant de <i>OCCUPE</i>, mais a été rétrogradé explicitement au rang de simple attribut.</li>
+    <li>Le champ <i>date fin</i> est une clef étrangère issue de l'entité <i>PÉRIODE</i>. Il devrait normalement faire partie de l'identifiant de <i>OCCUPE</i>, mais a été rétrogradé explicitement au rang de simple attribut.</li>
+  </ul>
+</div>
+
+<div>
+  <span class='relation'>PEUT COHABITER AVEC</span> (
+    <span class='foreign primary'>#code espèce</span>,
+    <span class='foreign primary'>#code espèce commensale</span>,
+    <span class='normal'>nb. max. commensaux</span>
+  )
+  <ul>
+    <li>Les champs <i>code espèce</i> et <i>code espèce commensale</i> constituent la clef primaire de la table. Ce sont des clefs étrangères qui ont migré directement à partir de l'entité <i>ESPÈCE</i>.</li>
+    <li>Le champ <i>nb. max. commensaux</i> était déjà un simple attribut de l'association <i>PEUT COHABITER AVEC</i>.</li>
+  </ul>
+</div>
+
+<div>
+  <span class='relation'>PEUT VIVRE DANS</span> (
+    <span class='foreign primary'>#code espèce</span>,
+    <span class='foreign primary'>#num. enclos</span>,
+    <span class='normal'>nb. max. congénères</span>
+  )
+  <ul>
+    <li>Le champ <i>code espèce</i> fait partie de la clef primaire de la table. C'est une clef étrangère qui a migré directement à partir de l'entité <i>ESPÈCE</i>.</li>
+    <li>Le champ <i>num. enclos</i> fait partie de la clef primaire de la table. C'est une clef étrangère qui a migré directement à partir de l'entité <i>ENCLOS</i>.</li>
+    <li>Le champ <i>nb. max. congénères</i> était déjà un simple attribut de l'association <i>PEUT VIVRE DANS</i>.</li>
+  </ul>
+</div>
+
+<div>
   <span class='relation'>PÉRIODE</span> (
     <span class='primary'>date début</span>,
     <span class='primary'>date fin</span>
@@ -392,49 +392,6 @@ ALTER TABLE "ANIMAL" ADD FOREIGN KEY ("code_espèce") REFERENCES "ESPÈCE" ("cod
 ```sql
 .open "UNTITLED";
 
-CREATE TABLE "PEUT_COHABITER_AVEC" (
-  "code_espèce" VARCHAR(42),
-  "code_espèce commensale" VARCHAR(42),
-  "nb_max_commensaux" VARCHAR(42),
-  PRIMARY KEY ("code_espèce", "code_espèce commensale"),
-  FOREIGN KEY ("code_espèce") REFERENCES "ESPÈCE" ("code_espèce"),
-  FOREIGN KEY ("code_espèce commensale") REFERENCES "ESPÈCE" ("code_espèce")
-);
-
-CREATE TABLE "PEUT_VIVRE_DANS" (
-  "code_espèce" VARCHAR(42),
-  "num_enclos" VARCHAR(42),
-  "nb_max_congénères" VARCHAR(42),
-  PRIMARY KEY ("code_espèce", "num_enclos"),
-  FOREIGN KEY ("code_espèce") REFERENCES "ESPÈCE" ("code_espèce")
-  --, FOREIGN KEY ("num_enclos") REFERENCES "ENCLOS" ("num_enclos")
-);
-
-CREATE TABLE "ESPÈCE" (
-  "code_espèce" VARCHAR(42),
-  "libellé" VARCHAR(42),
-  PRIMARY KEY ("code_espèce")
-);
-
-/*
-CREATE TABLE "ENCLOS" (
-  "num_enclos" VARCHAR(42),
-  PRIMARY KEY ("num_enclos")
-);
-*/
-
-CREATE TABLE "OCCUPE" (
-  "code_espèce" VARCHAR(42),
-  "nom" VARCHAR(42),
-  "num_enclos" VARCHAR(42),
-  "date_début" VARCHAR(42),
-  "date_fin" VARCHAR(42),
-  PRIMARY KEY ("code_espèce", "nom", "num_enclos"),
-  FOREIGN KEY ("code_espèce", "nom") REFERENCES "ANIMAL" ("code_espèce", "nom"),
-  -- FOREIGN KEY ("num_enclos") REFERENCES "ENCLOS" ("num_enclos"),
-  FOREIGN KEY ("date_début", "date_fin") REFERENCES "PÉRIODE" ("date_début", "date_fin")
-);
-
 CREATE TABLE "ANIMAL" (
   "code_espèce" VARCHAR(42),
   "nom" VARCHAR(42),
@@ -451,6 +408,49 @@ CREATE TABLE "ANIMAL" (
   PRIMARY KEY ("code_espèce", "nom"),
   FOREIGN KEY ("code_espèce") REFERENCES "ESPÈCE" ("code_espèce"),
   FOREIGN KEY ("code_espèce mère", "nom mère") REFERENCES "ANIMAL" ("code_espèce", "nom")
+);
+
+/*
+CREATE TABLE "ENCLOS" (
+  "num_enclos" VARCHAR(42),
+  PRIMARY KEY ("num_enclos")
+);
+*/
+
+CREATE TABLE "ESPÈCE" (
+  "code_espèce" VARCHAR(42),
+  "libellé" VARCHAR(42),
+  PRIMARY KEY ("code_espèce")
+);
+
+CREATE TABLE "OCCUPE" (
+  "code_espèce" VARCHAR(42),
+  "nom" VARCHAR(42),
+  "num_enclos" VARCHAR(42),
+  "date_début" VARCHAR(42),
+  "date_fin" VARCHAR(42),
+  PRIMARY KEY ("code_espèce", "nom", "num_enclos"),
+  FOREIGN KEY ("code_espèce", "nom") REFERENCES "ANIMAL" ("code_espèce", "nom"),
+  -- FOREIGN KEY ("num_enclos") REFERENCES "ENCLOS" ("num_enclos"),
+  FOREIGN KEY ("date_début", "date_fin") REFERENCES "PÉRIODE" ("date_début", "date_fin")
+);
+
+CREATE TABLE "PEUT_COHABITER_AVEC" (
+  "code_espèce" VARCHAR(42),
+  "code_espèce commensale" VARCHAR(42),
+  "nb_max_commensaux" VARCHAR(42),
+  PRIMARY KEY ("code_espèce", "code_espèce commensale"),
+  FOREIGN KEY ("code_espèce") REFERENCES "ESPÈCE" ("code_espèce"),
+  FOREIGN KEY ("code_espèce commensale") REFERENCES "ESPÈCE" ("code_espèce")
+);
+
+CREATE TABLE "PEUT_VIVRE_DANS" (
+  "code_espèce" VARCHAR(42),
+  "num_enclos" VARCHAR(42),
+  "nb_max_congénères" VARCHAR(42),
+  PRIMARY KEY ("code_espèce", "num_enclos"),
+  FOREIGN KEY ("code_espèce") REFERENCES "ESPÈCE" ("code_espèce")
+  --, FOREIGN KEY ("num_enclos") REFERENCES "ENCLOS" ("num_enclos")
 );
 
 CREATE TABLE "PÉRIODE" (
@@ -470,406 +470,10 @@ CREATE TABLE "PÉRIODE" (
   "title_titlecase": "Untitled",
   "relations": [
     {
-      "this_relation_name": "PEUT COHABITER AVEC",
-      "this_relation_name_lowercase": "peut cohabiter avec",
-      "this_relation_name_uppercase": "PEUT COHABITER AVEC",
-      "this_relation_name_titlecase": "Peut cohabiter avec",
-      "this_relation_number": 1,
-      "columns": [
-        {
-          "attribute": "code espèce",
-          "raw_label": "code espèce",
-          "raw_label_lowercase": "code espèce",
-          "raw_label_uppercase": "CODE ESPÈCE",
-          "raw_label_titlecase": "Code espèce",
-          "disambiguation_number": null,
-          "label": "code espèce",
-          "label_lowercase": "code espèce",
-          "label_uppercase": "CODE ESPÈCE",
-          "label_titlecase": "Code espèce",
-          "primary": true,
-          "foreign": true,
-          "nature": "foreign_primary_key",
-          "data_type": null,
-          "association_name": "PEUT COHABITER AVEC",
-          "association_name_lower_case": "peut cohabiter avec",
-          "association_name_uppercase": "PEUT COHABITER AVEC",
-          "association_name_titlecase": "Peut cohabiter avec",
-          "leg_note": null,
-          "primary_relation_name": "ESPÈCE",
-          "primary_relation_name_lowercase": "espèce",
-          "primary_relation_name_uppercase": "ESPÈCE",
-          "primary_relation_name_titlecase": "Espèce"
-        },
-        {
-          "attribute": "code espèce",
-          "raw_label": "code espèce",
-          "raw_label_lowercase": "code espèce",
-          "raw_label_uppercase": "CODE ESPÈCE",
-          "raw_label_titlecase": "Code espèce",
-          "disambiguation_number": null,
-          "label": "code espèce commensale",
-          "label_lowercase": "code espèce commensale",
-          "label_uppercase": "CODE ESPÈCE COMMENSALE",
-          "label_titlecase": "Code espèce commensale",
-          "primary": true,
-          "foreign": true,
-          "nature": "foreign_primary_key",
-          "data_type": null,
-          "association_name": "PEUT COHABITER AVEC",
-          "association_name_lower_case": "peut cohabiter avec",
-          "association_name_uppercase": "PEUT COHABITER AVEC",
-          "association_name_titlecase": "Peut cohabiter avec",
-          "leg_note": "commensale",
-          "primary_relation_name": "ESPÈCE",
-          "primary_relation_name_lowercase": "espèce",
-          "primary_relation_name_uppercase": "ESPÈCE",
-          "primary_relation_name_titlecase": "Espèce"
-        },
-        {
-          "attribute": "nb. max. commensaux",
-          "raw_label": "nb. max. commensaux",
-          "raw_label_lowercase": "nb. max. commensaux",
-          "raw_label_uppercase": "NB. MAX. COMMENSAUX",
-          "raw_label_titlecase": "Nb. max. commensaux",
-          "disambiguation_number": null,
-          "label": "nb. max. commensaux",
-          "label_lowercase": "nb. max. commensaux",
-          "label_uppercase": "NB. MAX. COMMENSAUX",
-          "label_titlecase": "Nb. max. commensaux",
-          "primary": false,
-          "foreign": false,
-          "nature": "association_attribute",
-          "data_type": null,
-          "association_name": "PEUT COHABITER AVEC",
-          "association_name_lower_case": "peut cohabiter avec",
-          "association_name_uppercase": "PEUT COHABITER AVEC",
-          "association_name_titlecase": "Peut cohabiter avec",
-          "leg_note": null,
-          "primary_relation_name": null,
-          "primary_relation_name_lowercase": null,
-          "primary_relation_name_uppercase": null,
-          "primary_relation_name_titlecase": null
-        }
-      ]
-    },
-    {
-      "this_relation_name": "PEUT VIVRE DANS",
-      "this_relation_name_lowercase": "peut vivre dans",
-      "this_relation_name_uppercase": "PEUT VIVRE DANS",
-      "this_relation_name_titlecase": "Peut vivre dans",
-      "this_relation_number": 2,
-      "columns": [
-        {
-          "attribute": "code espèce",
-          "raw_label": "code espèce",
-          "raw_label_lowercase": "code espèce",
-          "raw_label_uppercase": "CODE ESPÈCE",
-          "raw_label_titlecase": "Code espèce",
-          "disambiguation_number": null,
-          "label": "code espèce",
-          "label_lowercase": "code espèce",
-          "label_uppercase": "CODE ESPÈCE",
-          "label_titlecase": "Code espèce",
-          "primary": true,
-          "foreign": true,
-          "nature": "foreign_primary_key",
-          "data_type": null,
-          "association_name": "PEUT VIVRE DANS",
-          "association_name_lower_case": "peut vivre dans",
-          "association_name_uppercase": "PEUT VIVRE DANS",
-          "association_name_titlecase": "Peut vivre dans",
-          "leg_note": null,
-          "primary_relation_name": "ESPÈCE",
-          "primary_relation_name_lowercase": "espèce",
-          "primary_relation_name_uppercase": "ESPÈCE",
-          "primary_relation_name_titlecase": "Espèce"
-        },
-        {
-          "attribute": "num. enclos",
-          "raw_label": "num. enclos",
-          "raw_label_lowercase": "num. enclos",
-          "raw_label_uppercase": "NUM. ENCLOS",
-          "raw_label_titlecase": "Num. enclos",
-          "disambiguation_number": null,
-          "label": "num. enclos",
-          "label_lowercase": "num. enclos",
-          "label_uppercase": "NUM. ENCLOS",
-          "label_titlecase": "Num. enclos",
-          "primary": true,
-          "foreign": true,
-          "nature": "foreign_primary_key",
-          "data_type": null,
-          "association_name": "PEUT VIVRE DANS",
-          "association_name_lower_case": "peut vivre dans",
-          "association_name_uppercase": "PEUT VIVRE DANS",
-          "association_name_titlecase": "Peut vivre dans",
-          "leg_note": null,
-          "primary_relation_name": "ENCLOS",
-          "primary_relation_name_lowercase": "enclos",
-          "primary_relation_name_uppercase": "ENCLOS",
-          "primary_relation_name_titlecase": "Enclos"
-        },
-        {
-          "attribute": "nb. max. congénères",
-          "raw_label": "nb. max. congénères",
-          "raw_label_lowercase": "nb. max. congénères",
-          "raw_label_uppercase": "NB. MAX. CONGÉNÈRES",
-          "raw_label_titlecase": "Nb. max. congénères",
-          "disambiguation_number": null,
-          "label": "nb. max. congénères",
-          "label_lowercase": "nb. max. congénères",
-          "label_uppercase": "NB. MAX. CONGÉNÈRES",
-          "label_titlecase": "Nb. max. congénères",
-          "primary": false,
-          "foreign": false,
-          "nature": "association_attribute",
-          "data_type": null,
-          "association_name": "PEUT VIVRE DANS",
-          "association_name_lower_case": "peut vivre dans",
-          "association_name_uppercase": "PEUT VIVRE DANS",
-          "association_name_titlecase": "Peut vivre dans",
-          "leg_note": null,
-          "primary_relation_name": null,
-          "primary_relation_name_lowercase": null,
-          "primary_relation_name_uppercase": null,
-          "primary_relation_name_titlecase": null
-        }
-      ]
-    },
-    {
-      "this_relation_name": "ESPÈCE",
-      "this_relation_name_lowercase": "espèce",
-      "this_relation_name_uppercase": "ESPÈCE",
-      "this_relation_name_titlecase": "Espèce",
-      "this_relation_number": 3,
-      "columns": [
-        {
-          "attribute": "code espèce",
-          "raw_label": "code espèce",
-          "raw_label_lowercase": "code espèce",
-          "raw_label_uppercase": "CODE ESPÈCE",
-          "raw_label_titlecase": "Code espèce",
-          "disambiguation_number": null,
-          "label": "code espèce",
-          "label_lowercase": "code espèce",
-          "label_uppercase": "CODE ESPÈCE",
-          "label_titlecase": "Code espèce",
-          "primary": true,
-          "foreign": false,
-          "nature": "primary_key",
-          "data_type": null,
-          "association_name": null,
-          "association_name_lower_case": null,
-          "association_name_uppercase": null,
-          "association_name_titlecase": null,
-          "leg_note": null,
-          "primary_relation_name": null,
-          "primary_relation_name_lowercase": null,
-          "primary_relation_name_uppercase": null,
-          "primary_relation_name_titlecase": null
-        },
-        {
-          "attribute": "libellé",
-          "raw_label": "libellé",
-          "raw_label_lowercase": "libellé",
-          "raw_label_uppercase": "LIBELLÉ",
-          "raw_label_titlecase": "Libellé",
-          "disambiguation_number": null,
-          "label": "libellé",
-          "label_lowercase": "libellé",
-          "label_uppercase": "LIBELLÉ",
-          "label_titlecase": "Libellé",
-          "primary": false,
-          "foreign": false,
-          "nature": "normal_attribute",
-          "data_type": null,
-          "association_name": null,
-          "association_name_lower_case": null,
-          "association_name_uppercase": null,
-          "association_name_titlecase": null,
-          "leg_note": null,
-          "primary_relation_name": null,
-          "primary_relation_name_lowercase": null,
-          "primary_relation_name_uppercase": null,
-          "primary_relation_name_titlecase": null
-        }
-      ]
-    },
-    {
-      "this_relation_name": "ENCLOS",
-      "this_relation_name_lowercase": "enclos",
-      "this_relation_name_uppercase": "ENCLOS",
-      "this_relation_name_titlecase": "Enclos",
-      "this_relation_number": 4,
-      "columns": [
-        {
-          "attribute": "num. enclos",
-          "raw_label": "num. enclos",
-          "raw_label_lowercase": "num. enclos",
-          "raw_label_uppercase": "NUM. ENCLOS",
-          "raw_label_titlecase": "Num. enclos",
-          "disambiguation_number": null,
-          "label": "num. enclos",
-          "label_lowercase": "num. enclos",
-          "label_uppercase": "NUM. ENCLOS",
-          "label_titlecase": "Num. enclos",
-          "primary": true,
-          "foreign": false,
-          "nature": "primary_key",
-          "data_type": null,
-          "association_name": null,
-          "association_name_lower_case": null,
-          "association_name_uppercase": null,
-          "association_name_titlecase": null,
-          "leg_note": null,
-          "primary_relation_name": null,
-          "primary_relation_name_lowercase": null,
-          "primary_relation_name_uppercase": null,
-          "primary_relation_name_titlecase": null
-        }
-      ]
-    },
-    {
-      "this_relation_name": "OCCUPE",
-      "this_relation_name_lowercase": "occupe",
-      "this_relation_name_uppercase": "OCCUPE",
-      "this_relation_name_titlecase": "Occupe",
-      "this_relation_number": 5,
-      "columns": [
-        {
-          "attribute": "code espèce",
-          "raw_label": "code espèce",
-          "raw_label_lowercase": "code espèce",
-          "raw_label_uppercase": "CODE ESPÈCE",
-          "raw_label_titlecase": "Code espèce",
-          "disambiguation_number": null,
-          "label": "code espèce",
-          "label_lowercase": "code espèce",
-          "label_uppercase": "CODE ESPÈCE",
-          "label_titlecase": "Code espèce",
-          "primary": true,
-          "foreign": true,
-          "nature": "foreign_primary_key",
-          "data_type": null,
-          "association_name": "OCCUPE",
-          "association_name_lower_case": "occupe",
-          "association_name_uppercase": "OCCUPE",
-          "association_name_titlecase": "Occupe",
-          "leg_note": null,
-          "primary_relation_name": "ANIMAL",
-          "primary_relation_name_lowercase": "animal",
-          "primary_relation_name_uppercase": "ANIMAL",
-          "primary_relation_name_titlecase": "Animal"
-        },
-        {
-          "attribute": "nom",
-          "raw_label": "nom",
-          "raw_label_lowercase": "nom",
-          "raw_label_uppercase": "NOM",
-          "raw_label_titlecase": "Nom",
-          "disambiguation_number": null,
-          "label": "nom",
-          "label_lowercase": "nom",
-          "label_uppercase": "NOM",
-          "label_titlecase": "Nom",
-          "primary": true,
-          "foreign": true,
-          "nature": "foreign_primary_key",
-          "data_type": null,
-          "association_name": "OCCUPE",
-          "association_name_lower_case": "occupe",
-          "association_name_uppercase": "OCCUPE",
-          "association_name_titlecase": "Occupe",
-          "leg_note": null,
-          "primary_relation_name": "ANIMAL",
-          "primary_relation_name_lowercase": "animal",
-          "primary_relation_name_uppercase": "ANIMAL",
-          "primary_relation_name_titlecase": "Animal"
-        },
-        {
-          "attribute": "num. enclos",
-          "raw_label": "num. enclos",
-          "raw_label_lowercase": "num. enclos",
-          "raw_label_uppercase": "NUM. ENCLOS",
-          "raw_label_titlecase": "Num. enclos",
-          "disambiguation_number": null,
-          "label": "num. enclos",
-          "label_lowercase": "num. enclos",
-          "label_uppercase": "NUM. ENCLOS",
-          "label_titlecase": "Num. enclos",
-          "primary": true,
-          "foreign": true,
-          "nature": "foreign_primary_key",
-          "data_type": null,
-          "association_name": "OCCUPE",
-          "association_name_lower_case": "occupe",
-          "association_name_uppercase": "OCCUPE",
-          "association_name_titlecase": "Occupe",
-          "leg_note": null,
-          "primary_relation_name": "ENCLOS",
-          "primary_relation_name_lowercase": "enclos",
-          "primary_relation_name_uppercase": "ENCLOS",
-          "primary_relation_name_titlecase": "Enclos"
-        },
-        {
-          "attribute": "date début",
-          "raw_label": "date début",
-          "raw_label_lowercase": "date début",
-          "raw_label_uppercase": "DATE DÉBUT",
-          "raw_label_titlecase": "Date début",
-          "disambiguation_number": null,
-          "label": "date début",
-          "label_lowercase": "date début",
-          "label_uppercase": "DATE DÉBUT",
-          "label_titlecase": "Date début",
-          "primary": false,
-          "foreign": true,
-          "nature": "demoted_foreign_key",
-          "data_type": null,
-          "association_name": "OCCUPE",
-          "association_name_lower_case": "occupe",
-          "association_name_uppercase": "OCCUPE",
-          "association_name_titlecase": "Occupe",
-          "leg_note": null,
-          "primary_relation_name": "PÉRIODE",
-          "primary_relation_name_lowercase": "période",
-          "primary_relation_name_uppercase": "PÉRIODE",
-          "primary_relation_name_titlecase": "Période"
-        },
-        {
-          "attribute": "date fin",
-          "raw_label": "date fin",
-          "raw_label_lowercase": "date fin",
-          "raw_label_uppercase": "DATE FIN",
-          "raw_label_titlecase": "Date fin",
-          "disambiguation_number": null,
-          "label": "date fin",
-          "label_lowercase": "date fin",
-          "label_uppercase": "DATE FIN",
-          "label_titlecase": "Date fin",
-          "primary": false,
-          "foreign": true,
-          "nature": "demoted_foreign_key",
-          "data_type": null,
-          "association_name": "OCCUPE",
-          "association_name_lower_case": "occupe",
-          "association_name_uppercase": "OCCUPE",
-          "association_name_titlecase": "Occupe",
-          "leg_note": null,
-          "primary_relation_name": "PÉRIODE",
-          "primary_relation_name_lowercase": "période",
-          "primary_relation_name_uppercase": "PÉRIODE",
-          "primary_relation_name_titlecase": "Période"
-        }
-      ]
-    },
-    {
       "this_relation_name": "ANIMAL",
       "this_relation_name_lowercase": "animal",
       "this_relation_name_uppercase": "ANIMAL",
       "this_relation_name_titlecase": "Animal",
-      "this_relation_number": 6,
       "columns": [
         {
           "attribute": "code espèce",
@@ -1174,11 +778,400 @@ CREATE TABLE "PÉRIODE" (
       ]
     },
     {
+      "this_relation_name": "ENCLOS",
+      "this_relation_name_lowercase": "enclos",
+      "this_relation_name_uppercase": "ENCLOS",
+      "this_relation_name_titlecase": "Enclos",
+      "columns": [
+        {
+          "attribute": "num. enclos",
+          "raw_label": "num. enclos",
+          "raw_label_lowercase": "num. enclos",
+          "raw_label_uppercase": "NUM. ENCLOS",
+          "raw_label_titlecase": "Num. enclos",
+          "disambiguation_number": null,
+          "label": "num. enclos",
+          "label_lowercase": "num. enclos",
+          "label_uppercase": "NUM. ENCLOS",
+          "label_titlecase": "Num. enclos",
+          "primary": true,
+          "foreign": false,
+          "nature": "primary_key",
+          "data_type": null,
+          "association_name": null,
+          "association_name_lower_case": null,
+          "association_name_uppercase": null,
+          "association_name_titlecase": null,
+          "leg_note": null,
+          "primary_relation_name": null,
+          "primary_relation_name_lowercase": null,
+          "primary_relation_name_uppercase": null,
+          "primary_relation_name_titlecase": null
+        }
+      ]
+    },
+    {
+      "this_relation_name": "ESPÈCE",
+      "this_relation_name_lowercase": "espèce",
+      "this_relation_name_uppercase": "ESPÈCE",
+      "this_relation_name_titlecase": "Espèce",
+      "columns": [
+        {
+          "attribute": "code espèce",
+          "raw_label": "code espèce",
+          "raw_label_lowercase": "code espèce",
+          "raw_label_uppercase": "CODE ESPÈCE",
+          "raw_label_titlecase": "Code espèce",
+          "disambiguation_number": null,
+          "label": "code espèce",
+          "label_lowercase": "code espèce",
+          "label_uppercase": "CODE ESPÈCE",
+          "label_titlecase": "Code espèce",
+          "primary": true,
+          "foreign": false,
+          "nature": "primary_key",
+          "data_type": null,
+          "association_name": null,
+          "association_name_lower_case": null,
+          "association_name_uppercase": null,
+          "association_name_titlecase": null,
+          "leg_note": null,
+          "primary_relation_name": null,
+          "primary_relation_name_lowercase": null,
+          "primary_relation_name_uppercase": null,
+          "primary_relation_name_titlecase": null
+        },
+        {
+          "attribute": "libellé",
+          "raw_label": "libellé",
+          "raw_label_lowercase": "libellé",
+          "raw_label_uppercase": "LIBELLÉ",
+          "raw_label_titlecase": "Libellé",
+          "disambiguation_number": null,
+          "label": "libellé",
+          "label_lowercase": "libellé",
+          "label_uppercase": "LIBELLÉ",
+          "label_titlecase": "Libellé",
+          "primary": false,
+          "foreign": false,
+          "nature": "normal_attribute",
+          "data_type": null,
+          "association_name": null,
+          "association_name_lower_case": null,
+          "association_name_uppercase": null,
+          "association_name_titlecase": null,
+          "leg_note": null,
+          "primary_relation_name": null,
+          "primary_relation_name_lowercase": null,
+          "primary_relation_name_uppercase": null,
+          "primary_relation_name_titlecase": null
+        }
+      ]
+    },
+    {
+      "this_relation_name": "OCCUPE",
+      "this_relation_name_lowercase": "occupe",
+      "this_relation_name_uppercase": "OCCUPE",
+      "this_relation_name_titlecase": "Occupe",
+      "columns": [
+        {
+          "attribute": "code espèce",
+          "raw_label": "code espèce",
+          "raw_label_lowercase": "code espèce",
+          "raw_label_uppercase": "CODE ESPÈCE",
+          "raw_label_titlecase": "Code espèce",
+          "disambiguation_number": null,
+          "label": "code espèce",
+          "label_lowercase": "code espèce",
+          "label_uppercase": "CODE ESPÈCE",
+          "label_titlecase": "Code espèce",
+          "primary": true,
+          "foreign": true,
+          "nature": "foreign_primary_key",
+          "data_type": null,
+          "association_name": "OCCUPE",
+          "association_name_lower_case": "occupe",
+          "association_name_uppercase": "OCCUPE",
+          "association_name_titlecase": "Occupe",
+          "leg_note": null,
+          "primary_relation_name": "ANIMAL",
+          "primary_relation_name_lowercase": "animal",
+          "primary_relation_name_uppercase": "ANIMAL",
+          "primary_relation_name_titlecase": "Animal"
+        },
+        {
+          "attribute": "nom",
+          "raw_label": "nom",
+          "raw_label_lowercase": "nom",
+          "raw_label_uppercase": "NOM",
+          "raw_label_titlecase": "Nom",
+          "disambiguation_number": null,
+          "label": "nom",
+          "label_lowercase": "nom",
+          "label_uppercase": "NOM",
+          "label_titlecase": "Nom",
+          "primary": true,
+          "foreign": true,
+          "nature": "foreign_primary_key",
+          "data_type": null,
+          "association_name": "OCCUPE",
+          "association_name_lower_case": "occupe",
+          "association_name_uppercase": "OCCUPE",
+          "association_name_titlecase": "Occupe",
+          "leg_note": null,
+          "primary_relation_name": "ANIMAL",
+          "primary_relation_name_lowercase": "animal",
+          "primary_relation_name_uppercase": "ANIMAL",
+          "primary_relation_name_titlecase": "Animal"
+        },
+        {
+          "attribute": "num. enclos",
+          "raw_label": "num. enclos",
+          "raw_label_lowercase": "num. enclos",
+          "raw_label_uppercase": "NUM. ENCLOS",
+          "raw_label_titlecase": "Num. enclos",
+          "disambiguation_number": null,
+          "label": "num. enclos",
+          "label_lowercase": "num. enclos",
+          "label_uppercase": "NUM. ENCLOS",
+          "label_titlecase": "Num. enclos",
+          "primary": true,
+          "foreign": true,
+          "nature": "foreign_primary_key",
+          "data_type": null,
+          "association_name": "OCCUPE",
+          "association_name_lower_case": "occupe",
+          "association_name_uppercase": "OCCUPE",
+          "association_name_titlecase": "Occupe",
+          "leg_note": null,
+          "primary_relation_name": "ENCLOS",
+          "primary_relation_name_lowercase": "enclos",
+          "primary_relation_name_uppercase": "ENCLOS",
+          "primary_relation_name_titlecase": "Enclos"
+        },
+        {
+          "attribute": "date début",
+          "raw_label": "date début",
+          "raw_label_lowercase": "date début",
+          "raw_label_uppercase": "DATE DÉBUT",
+          "raw_label_titlecase": "Date début",
+          "disambiguation_number": null,
+          "label": "date début",
+          "label_lowercase": "date début",
+          "label_uppercase": "DATE DÉBUT",
+          "label_titlecase": "Date début",
+          "primary": false,
+          "foreign": true,
+          "nature": "demoted_foreign_key",
+          "data_type": null,
+          "association_name": "OCCUPE",
+          "association_name_lower_case": "occupe",
+          "association_name_uppercase": "OCCUPE",
+          "association_name_titlecase": "Occupe",
+          "leg_note": null,
+          "primary_relation_name": "PÉRIODE",
+          "primary_relation_name_lowercase": "période",
+          "primary_relation_name_uppercase": "PÉRIODE",
+          "primary_relation_name_titlecase": "Période"
+        },
+        {
+          "attribute": "date fin",
+          "raw_label": "date fin",
+          "raw_label_lowercase": "date fin",
+          "raw_label_uppercase": "DATE FIN",
+          "raw_label_titlecase": "Date fin",
+          "disambiguation_number": null,
+          "label": "date fin",
+          "label_lowercase": "date fin",
+          "label_uppercase": "DATE FIN",
+          "label_titlecase": "Date fin",
+          "primary": false,
+          "foreign": true,
+          "nature": "demoted_foreign_key",
+          "data_type": null,
+          "association_name": "OCCUPE",
+          "association_name_lower_case": "occupe",
+          "association_name_uppercase": "OCCUPE",
+          "association_name_titlecase": "Occupe",
+          "leg_note": null,
+          "primary_relation_name": "PÉRIODE",
+          "primary_relation_name_lowercase": "période",
+          "primary_relation_name_uppercase": "PÉRIODE",
+          "primary_relation_name_titlecase": "Période"
+        }
+      ]
+    },
+    {
+      "this_relation_name": "PEUT COHABITER AVEC",
+      "this_relation_name_lowercase": "peut cohabiter avec",
+      "this_relation_name_uppercase": "PEUT COHABITER AVEC",
+      "this_relation_name_titlecase": "Peut cohabiter avec",
+      "columns": [
+        {
+          "attribute": "code espèce",
+          "raw_label": "code espèce",
+          "raw_label_lowercase": "code espèce",
+          "raw_label_uppercase": "CODE ESPÈCE",
+          "raw_label_titlecase": "Code espèce",
+          "disambiguation_number": null,
+          "label": "code espèce",
+          "label_lowercase": "code espèce",
+          "label_uppercase": "CODE ESPÈCE",
+          "label_titlecase": "Code espèce",
+          "primary": true,
+          "foreign": true,
+          "nature": "foreign_primary_key",
+          "data_type": null,
+          "association_name": "PEUT COHABITER AVEC",
+          "association_name_lower_case": "peut cohabiter avec",
+          "association_name_uppercase": "PEUT COHABITER AVEC",
+          "association_name_titlecase": "Peut cohabiter avec",
+          "leg_note": null,
+          "primary_relation_name": "ESPÈCE",
+          "primary_relation_name_lowercase": "espèce",
+          "primary_relation_name_uppercase": "ESPÈCE",
+          "primary_relation_name_titlecase": "Espèce"
+        },
+        {
+          "attribute": "code espèce",
+          "raw_label": "code espèce",
+          "raw_label_lowercase": "code espèce",
+          "raw_label_uppercase": "CODE ESPÈCE",
+          "raw_label_titlecase": "Code espèce",
+          "disambiguation_number": null,
+          "label": "code espèce commensale",
+          "label_lowercase": "code espèce commensale",
+          "label_uppercase": "CODE ESPÈCE COMMENSALE",
+          "label_titlecase": "Code espèce commensale",
+          "primary": true,
+          "foreign": true,
+          "nature": "foreign_primary_key",
+          "data_type": null,
+          "association_name": "PEUT COHABITER AVEC",
+          "association_name_lower_case": "peut cohabiter avec",
+          "association_name_uppercase": "PEUT COHABITER AVEC",
+          "association_name_titlecase": "Peut cohabiter avec",
+          "leg_note": "commensale",
+          "primary_relation_name": "ESPÈCE",
+          "primary_relation_name_lowercase": "espèce",
+          "primary_relation_name_uppercase": "ESPÈCE",
+          "primary_relation_name_titlecase": "Espèce"
+        },
+        {
+          "attribute": "nb. max. commensaux",
+          "raw_label": "nb. max. commensaux",
+          "raw_label_lowercase": "nb. max. commensaux",
+          "raw_label_uppercase": "NB. MAX. COMMENSAUX",
+          "raw_label_titlecase": "Nb. max. commensaux",
+          "disambiguation_number": null,
+          "label": "nb. max. commensaux",
+          "label_lowercase": "nb. max. commensaux",
+          "label_uppercase": "NB. MAX. COMMENSAUX",
+          "label_titlecase": "Nb. max. commensaux",
+          "primary": false,
+          "foreign": false,
+          "nature": "association_attribute",
+          "data_type": null,
+          "association_name": "PEUT COHABITER AVEC",
+          "association_name_lower_case": "peut cohabiter avec",
+          "association_name_uppercase": "PEUT COHABITER AVEC",
+          "association_name_titlecase": "Peut cohabiter avec",
+          "leg_note": null,
+          "primary_relation_name": null,
+          "primary_relation_name_lowercase": null,
+          "primary_relation_name_uppercase": null,
+          "primary_relation_name_titlecase": null
+        }
+      ]
+    },
+    {
+      "this_relation_name": "PEUT VIVRE DANS",
+      "this_relation_name_lowercase": "peut vivre dans",
+      "this_relation_name_uppercase": "PEUT VIVRE DANS",
+      "this_relation_name_titlecase": "Peut vivre dans",
+      "columns": [
+        {
+          "attribute": "code espèce",
+          "raw_label": "code espèce",
+          "raw_label_lowercase": "code espèce",
+          "raw_label_uppercase": "CODE ESPÈCE",
+          "raw_label_titlecase": "Code espèce",
+          "disambiguation_number": null,
+          "label": "code espèce",
+          "label_lowercase": "code espèce",
+          "label_uppercase": "CODE ESPÈCE",
+          "label_titlecase": "Code espèce",
+          "primary": true,
+          "foreign": true,
+          "nature": "foreign_primary_key",
+          "data_type": null,
+          "association_name": "PEUT VIVRE DANS",
+          "association_name_lower_case": "peut vivre dans",
+          "association_name_uppercase": "PEUT VIVRE DANS",
+          "association_name_titlecase": "Peut vivre dans",
+          "leg_note": null,
+          "primary_relation_name": "ESPÈCE",
+          "primary_relation_name_lowercase": "espèce",
+          "primary_relation_name_uppercase": "ESPÈCE",
+          "primary_relation_name_titlecase": "Espèce"
+        },
+        {
+          "attribute": "num. enclos",
+          "raw_label": "num. enclos",
+          "raw_label_lowercase": "num. enclos",
+          "raw_label_uppercase": "NUM. ENCLOS",
+          "raw_label_titlecase": "Num. enclos",
+          "disambiguation_number": null,
+          "label": "num. enclos",
+          "label_lowercase": "num. enclos",
+          "label_uppercase": "NUM. ENCLOS",
+          "label_titlecase": "Num. enclos",
+          "primary": true,
+          "foreign": true,
+          "nature": "foreign_primary_key",
+          "data_type": null,
+          "association_name": "PEUT VIVRE DANS",
+          "association_name_lower_case": "peut vivre dans",
+          "association_name_uppercase": "PEUT VIVRE DANS",
+          "association_name_titlecase": "Peut vivre dans",
+          "leg_note": null,
+          "primary_relation_name": "ENCLOS",
+          "primary_relation_name_lowercase": "enclos",
+          "primary_relation_name_uppercase": "ENCLOS",
+          "primary_relation_name_titlecase": "Enclos"
+        },
+        {
+          "attribute": "nb. max. congénères",
+          "raw_label": "nb. max. congénères",
+          "raw_label_lowercase": "nb. max. congénères",
+          "raw_label_uppercase": "NB. MAX. CONGÉNÈRES",
+          "raw_label_titlecase": "Nb. max. congénères",
+          "disambiguation_number": null,
+          "label": "nb. max. congénères",
+          "label_lowercase": "nb. max. congénères",
+          "label_uppercase": "NB. MAX. CONGÉNÈRES",
+          "label_titlecase": "Nb. max. congénères",
+          "primary": false,
+          "foreign": false,
+          "nature": "association_attribute",
+          "data_type": null,
+          "association_name": "PEUT VIVRE DANS",
+          "association_name_lower_case": "peut vivre dans",
+          "association_name_uppercase": "PEUT VIVRE DANS",
+          "association_name_titlecase": "Peut vivre dans",
+          "leg_note": null,
+          "primary_relation_name": null,
+          "primary_relation_name_lowercase": null,
+          "primary_relation_name_uppercase": null,
+          "primary_relation_name_titlecase": null
+        }
+      ]
+    },
+    {
       "this_relation_name": "PÉRIODE",
       "this_relation_name_lowercase": "période",
       "this_relation_name_uppercase": "PÉRIODE",
       "this_relation_name_titlecase": "Période",
-      "this_relation_number": 7,
       "columns": [
         {
           "attribute": "date début",
@@ -1239,11 +1232,6 @@ CREATE TABLE "PÉRIODE" (
 ### `markdown_data_dict.json`
 
 ```markdown
-- nb. max. commensaux
-- nb. max. congénères
-- code espèce
-- libellé
-- num. enclos
 - nom
 - sexe
 - date naissance
@@ -1253,6 +1241,11 @@ CREATE TABLE "PÉRIODE" (
 - quantité viande
 - HERBIVORE : _BOOLEAN_
 - plante préférée
+- num. enclos
+- code espèce
+- libellé
+- nb. max. commensaux
+- nb. max. congénères
 - date début
 - date fin
 ```
@@ -1273,42 +1266,6 @@ CREATE TABLE "PÉRIODE" (
 <body>
 <div id='mld'>
 <div>
-  <span class='relation'>PEUT COHABITER AVEC</span> (
-    <span class='foreign primary'>#code espèce</span>,
-    <span class='foreign primary'>#code espèce commensale</span>,
-    <span class='normal'>nb. max. commensaux</span>
-  )
-</div>
-<div>
-  <span class='relation'>PEUT VIVRE DANS</span> (
-    <span class='foreign primary'>#code espèce</span>,
-    <span class='foreign primary'>#num. enclos</span>,
-    <span class='normal'>nb. max. congénères</span>
-  )
-</div>
-<div>
-  <span class='relation'>ESPÈCE</span> (
-    <span class='primary'>code espèce</span>,
-    <span class='normal'>libellé</span>
-  )
-</div>
-<!--
-<div>
-  <span class='relation'>ENCLOS</span> (
-    <span class='primary'>num. enclos</span>
-  )
-</div>
--->
-<div>
-  <span class='relation'>OCCUPE</span> (
-    <span class='foreign primary'>#code espèce</span>,
-    <span class='foreign primary'>#nom</span>,
-    <span class='foreign primary'>#num. enclos</span>,
-    <span class='foreign'>#date début</span>,
-    <span class='foreign'>#date fin</span>
-  )
-</div>
-<div>
   <span class='relation'>ANIMAL</span> (
     <span class='foreign primary'>#code espèce</span>,
     <span class='primary'>nom</span>,
@@ -1322,6 +1279,42 @@ CREATE TABLE "PÉRIODE" (
     <span class='normal'>quantité viande</span>,
     <span class='normal'>HERBIVORE</span>,
     <span class='normal'>plante préférée</span>
+  )
+</div>
+<!--
+<div>
+  <span class='relation'>ENCLOS</span> (
+    <span class='primary'>num. enclos</span>
+  )
+</div>
+-->
+<div>
+  <span class='relation'>ESPÈCE</span> (
+    <span class='primary'>code espèce</span>,
+    <span class='normal'>libellé</span>
+  )
+</div>
+<div>
+  <span class='relation'>OCCUPE</span> (
+    <span class='foreign primary'>#code espèce</span>,
+    <span class='foreign primary'>#nom</span>,
+    <span class='foreign primary'>#num. enclos</span>,
+    <span class='foreign'>#date début</span>,
+    <span class='foreign'>#date fin</span>
+  )
+</div>
+<div>
+  <span class='relation'>PEUT COHABITER AVEC</span> (
+    <span class='foreign primary'>#code espèce</span>,
+    <span class='foreign primary'>#code espèce commensale</span>,
+    <span class='normal'>nb. max. commensaux</span>
+  )
+</div>
+<div>
+  <span class='relation'>PEUT VIVRE DANS</span> (
+    <span class='foreign primary'>#code espèce</span>,
+    <span class='foreign primary'>#num. enclos</span>,
+    <span class='normal'>nb. max. congénères</span>
   )
 </div>
 <div>
@@ -1352,12 +1345,12 @@ CREATE TABLE "PÉRIODE" (
 % Copy that after \begin{document}
 
 \begin{mld}
+  Animal & (\foreign{\prim{code espèce}}, \prim{nom}, \attr{sexe}, \attr{date naissance}, \attr{date décès}, \foreign{code espèce mère}, \foreign{nom mère}, \attr{type alimentation}, \attr{CARNIVORE}, \attr{quantité viande}, \attr{HERBIVORE}, \attr{plante préférée})\\
+% Enclos & (\prim{num. enclos})\\
+  Espèce & (\prim{code espèce}, \attr{libellé})\\
+  Occupe & (\foreign{\prim{code espèce}}, \foreign{\prim{nom}}, \foreign{\prim{num. enclos}}, \foreign{date début}, \foreign{date fin})\\
   Peut cohabiter avec & (\foreign{\prim{code espèce}}, \foreign{\prim{code espèce commensale}}, \attr{nb. max. commensaux})\\
   Peut vivre dans & (\foreign{\prim{code espèce}}, \foreign{\prim{num. enclos}}, \attr{nb. max. congénères})\\
-  Espèce & (\prim{code espèce}, \attr{libellé})\\
-% Enclos & (\prim{num. enclos})\\
-  Occupe & (\foreign{\prim{code espèce}}, \foreign{\prim{nom}}, \foreign{\prim{num. enclos}}, \foreign{date début}, \foreign{date fin})\\
-  Animal & (\foreign{\prim{code espèce}}, \prim{nom}, \attr{sexe}, \attr{date naissance}, \attr{date décès}, \foreign{code espèce mère}, \foreign{nom mère}, \attr{type alimentation}, \attr{CARNIVORE}, \attr{quantité viande}, \attr{HERBIVORE}, \attr{plante préférée})\\
   Période & (\prim{date début}, \prim{date fin})\\
 \end{mld}
 ```
@@ -1365,12 +1358,12 @@ CREATE TABLE "PÉRIODE" (
 ### `text.json`
 
 ```plain
+ANIMAL (_#code espèce_, _nom_, sexe, date naissance, date décès, #code espèce mère, #nom mère, type alimentation, CARNIVORE, quantité viande, HERBIVORE, plante préférée)
+ENCLOS (_num. enclos_)
+ESPÈCE (_code espèce_, libellé)
+OCCUPE (_#code espèce_, _#nom_, _#num. enclos_, #date début, #date fin)
 PEUT COHABITER AVEC (_#code espèce_, _#code espèce commensale_, nb. max. commensaux)
 PEUT VIVRE DANS (_#code espèce_, _#num. enclos_, nb. max. congénères)
-ESPÈCE (_code espèce_, libellé)
-ENCLOS (_num. enclos_)
-OCCUPE (_#code espèce_, _#nom_, _#num. enclos_, #date début, #date fin)
-ANIMAL (_#code espèce_, _nom_, sexe, date naissance, date décès, #code espèce mère, #nom mère, type alimentation, CARNIVORE, quantité viande, HERBIVORE, plante préférée)
 PÉRIODE (_date début_, _date fin_)
 ```
 
@@ -1381,12 +1374,12 @@ Untitled
 Généré par Mocodo
 %%mtime(%c)
 %!encoding: utf8
+- **ANIMAL** (__#code espèce__, __nom__, sexe, date naissance, date décès, #code espèce mère, #nom mère, type alimentation, CARNIVORE, quantité viande, HERBIVORE, plante préférée)
+%% - **ENCLOS** (__num. enclos__)
+- **ESPÈCE** (__code espèce__, libellé)
+- **OCCUPE** (__#code espèce__, __#nom__, __#num. enclos__, #date début, #date fin)
 - **PEUT COHABITER AVEC** (__#code espèce__, __#code espèce commensale__, nb. max. commensaux)
 - **PEUT VIVRE DANS** (__#code espèce__, __#num. enclos__, nb. max. congénères)
-- **ESPÈCE** (__code espèce__, libellé)
-%% - **ENCLOS** (__num. enclos__)
-- **OCCUPE** (__#code espèce__, __#nom__, __#num. enclos__, #date début, #date fin)
-- **ANIMAL** (__#code espèce__, __nom__, sexe, date naissance, date décès, #code espèce mère, #nom mère, type alimentation, CARNIVORE, quantité viande, HERBIVORE, plante préférée)
 - **PÉRIODE** (__date début__, __date fin__)
 ```
 
@@ -1395,42 +1388,6 @@ Généré par Mocodo
 ```sql
 CREATE DATABASE UNTITLED;
 \c UNTITLED;
-
-CREATE TABLE PEUT_COHABITER_AVEC (
-  code_espèce VARCHAR(42),
-  code_espèce commensale VARCHAR(42),
-  nb_max_commensaux VARCHAR(42),
-  PRIMARY KEY (code_espèce, code_espèce commensale)
-);
-
-CREATE TABLE PEUT_VIVRE_DANS (
-  code_espèce VARCHAR(42),
-  num_enclos VARCHAR(42),
-  nb_max_congénères VARCHAR(42),
-  PRIMARY KEY (code_espèce, num_enclos)
-);
-
-CREATE TABLE ESPÈCE (
-  code_espèce VARCHAR(42),
-  libellé VARCHAR(42),
-  PRIMARY KEY (code_espèce)
-);
-
-/*
-CREATE TABLE ENCLOS (
-  num_enclos VARCHAR(42),
-  PRIMARY KEY (num_enclos)
-);
-*/
-
-CREATE TABLE OCCUPE (
-  code_espèce VARCHAR(42),
-  nom VARCHAR(42),
-  num_enclos VARCHAR(42),
-  date_début VARCHAR(42),
-  date_fin VARCHAR(42),
-  PRIMARY KEY (code_espèce, nom, num_enclos)
-);
 
 CREATE TABLE ANIMAL (
   code_espèce VARCHAR(42),
@@ -1448,21 +1405,57 @@ CREATE TABLE ANIMAL (
   PRIMARY KEY (code_espèce, nom)
 );
 
+/*
+CREATE TABLE ENCLOS (
+  num_enclos VARCHAR(42),
+  PRIMARY KEY (num_enclos)
+);
+*/
+
+CREATE TABLE ESPÈCE (
+  code_espèce VARCHAR(42),
+  libellé VARCHAR(42),
+  PRIMARY KEY (code_espèce)
+);
+
+CREATE TABLE OCCUPE (
+  code_espèce VARCHAR(42),
+  nom VARCHAR(42),
+  num_enclos VARCHAR(42),
+  date_début VARCHAR(42),
+  date_fin VARCHAR(42),
+  PRIMARY KEY (code_espèce, nom, num_enclos)
+);
+
+CREATE TABLE PEUT_COHABITER_AVEC (
+  code_espèce VARCHAR(42),
+  code_espèce commensale VARCHAR(42),
+  nb_max_commensaux VARCHAR(42),
+  PRIMARY KEY (code_espèce, code_espèce commensale)
+);
+
+CREATE TABLE PEUT_VIVRE_DANS (
+  code_espèce VARCHAR(42),
+  num_enclos VARCHAR(42),
+  nb_max_congénères VARCHAR(42),
+  PRIMARY KEY (code_espèce, num_enclos)
+);
+
 CREATE TABLE PÉRIODE (
   date_début VARCHAR(42),
   date_fin VARCHAR(42),
   PRIMARY KEY (date_début, date_fin)
 );
 
+ALTER TABLE ANIMAL ADD FOREIGN KEY (code_espèce mère, nom mère) REFERENCES ANIMAL (code_espèce, nom);
+ALTER TABLE ANIMAL ADD FOREIGN KEY (code_espèce) REFERENCES ESPÈCE (code_espèce);
+ALTER TABLE OCCUPE ADD FOREIGN KEY (date_début, date_fin) REFERENCES PÉRIODE (date_début, date_fin);
+-- ALTER TABLE OCCUPE ADD FOREIGN KEY (num_enclos) REFERENCES ENCLOS (num_enclos);
+ALTER TABLE OCCUPE ADD FOREIGN KEY (code_espèce, nom) REFERENCES ANIMAL (code_espèce, nom);
 ALTER TABLE PEUT_COHABITER_AVEC ADD FOREIGN KEY (code_espèce commensale) REFERENCES ESPÈCE (code_espèce);
 ALTER TABLE PEUT_COHABITER_AVEC ADD FOREIGN KEY (code_espèce) REFERENCES ESPÈCE (code_espèce);
 -- ALTER TABLE PEUT_VIVRE_DANS ADD FOREIGN KEY (num_enclos) REFERENCES ENCLOS (num_enclos);
 ALTER TABLE PEUT_VIVRE_DANS ADD FOREIGN KEY (code_espèce) REFERENCES ESPÈCE (code_espèce);
-ALTER TABLE OCCUPE ADD FOREIGN KEY (date_début, date_fin) REFERENCES PÉRIODE (date_début, date_fin);
--- ALTER TABLE OCCUPE ADD FOREIGN KEY (num_enclos) REFERENCES ENCLOS (num_enclos);
-ALTER TABLE OCCUPE ADD FOREIGN KEY (code_espèce, nom) REFERENCES ANIMAL (code_espèce, nom);
-ALTER TABLE ANIMAL ADD FOREIGN KEY (code_espèce mère, nom mère) REFERENCES ANIMAL (code_espèce, nom);
-ALTER TABLE ANIMAL ADD FOREIGN KEY (code_espèce) REFERENCES ESPÈCE (code_espèce);
 ```
 
 ## Inheritance stress test
@@ -1598,10 +1591,10 @@ BAR (_bar_)
 ```
 
 ```
-HERBIVORE (_#animal_, plante préférée)
-CARNIVORE (_#animal_, quantité viande, #bar)
 ANIMAL (_animal_, poids, type)
 BAR (_bar_)
+CARNIVORE (_#animal_, quantité viande, #bar)
+HERBIVORE (_#animal_, plante préférée)
 ```
 
 ### `('CARNIVORE', '11', '->', 'X')`
@@ -1615,10 +1608,10 @@ BAR (_bar_)
 ```
 
 ```
-HERBIVORE (_#animal_, plante préférée)
-CARNIVORE (_#animal_, quantité viande, #bar)
 ANIMAL (_animal_, poids, type)
 BAR (_bar_)
+CARNIVORE (_#animal_, quantité viande, #bar)
+HERBIVORE (_#animal_, plante préférée)
 ```
 
 ### `('CARNIVORE', '11', '->', 'T')`
@@ -1632,10 +1625,10 @@ BAR (_bar_)
 ```
 
 ```
-HERBIVORE (_#animal_, plante préférée)
-CARNIVORE (_#animal_, quantité viande, #bar)
 ANIMAL (_animal_, poids, type)
 BAR (_bar_)
+CARNIVORE (_#animal_, quantité viande, #bar)
+HERBIVORE (_#animal_, plante préférée)
 ```
 
 ### `('CARNIVORE', '11', '->', 'XT')`
@@ -1649,10 +1642,10 @@ BAR (_bar_)
 ```
 
 ```
-HERBIVORE (_#animal_, plante préférée)
-CARNIVORE (_#animal_, quantité viande, #bar)
 ANIMAL (_animal_, poids, type)
 BAR (_bar_)
+CARNIVORE (_#animal_, quantité viande, #bar)
+HERBIVORE (_#animal_, plante préférée)
 ```
 
 ### `('CARNIVORE', '11', '=>', '')`
@@ -1666,10 +1659,10 @@ BAR (_bar_)
 ```
 
 ```
-HERBIVORE (_#animal_, poids, plante préférée)
-CARNIVORE (_#animal_, poids, quantité viande, #bar)
 ANIMAL (_animal_, poids)
 BAR (_bar_)
+CARNIVORE (_#animal_, poids, quantité viande, #bar)
+HERBIVORE (_#animal_, poids, plante préférée)
 ```
 
 ### `('CARNIVORE', '11', '=>', 'X')`
@@ -1683,10 +1676,10 @@ BAR (_bar_)
 ```
 
 ```
-HERBIVORE (_#animal_, poids, plante préférée)
-CARNIVORE (_#animal_, poids, quantité viande, #bar)
 ANIMAL (_animal_, poids)
 BAR (_bar_)
+CARNIVORE (_#animal_, poids, quantité viande, #bar)
+HERBIVORE (_#animal_, poids, plante préférée)
 ```
 
 ### `('CARNIVORE', '11', '=>', 'T')`
@@ -1700,9 +1693,9 @@ BAR (_bar_)
 ```
 
 ```
-HERBIVORE (_#animal_, poids, plante préférée)
-CARNIVORE (_#animal_, poids, quantité viande, #bar)
 BAR (_bar_)
+CARNIVORE (_#animal_, poids, quantité viande, #bar)
+HERBIVORE (_#animal_, poids, plante préférée)
 ```
 
 ### `('CARNIVORE', '11', '=>', 'XT')`
@@ -1716,9 +1709,9 @@ BAR (_bar_)
 ```
 
 ```
-HERBIVORE (_#animal_, poids, plante préférée)
-CARNIVORE (_#animal_, poids, quantité viande, #bar)
 BAR (_bar_)
+CARNIVORE (_#animal_, poids, quantité viande, #bar)
+HERBIVORE (_#animal_, poids, plante préférée)
 ```
 
 ### `('CARNIVORE', '1N', '<=', '')`
@@ -1733,8 +1726,8 @@ BAR (_bar_)
 
 ```
 ANIMAL (_animal_, poids, type, CARNIVORE, quantité viande, HERBIVORE, plante préférée)
-FOO (_#bar_)
 BAR (_bar_)
+FOO (_#bar_)
 ```
 
 ### `('CARNIVORE', '1N', '<=', 'X')`
@@ -1749,8 +1742,8 @@ BAR (_bar_)
 
 ```
 ANIMAL (_animal_, poids, type, CARNIVORE, quantité viande, HERBIVORE, plante préférée)
-FOO (_#bar_)
 BAR (_bar_)
+FOO (_#bar_)
 ```
 
 ### `('CARNIVORE', '1N', '<=', 'T')`
@@ -1765,8 +1758,8 @@ BAR (_bar_)
 
 ```
 ANIMAL (_animal_, poids, type, CARNIVORE, quantité viande, HERBIVORE, plante préférée)
-FOO (_#bar_)
 BAR (_bar_)
+FOO (_#bar_)
 ```
 
 ### `('CARNIVORE', '1N', '<=', 'XT')`
@@ -1781,8 +1774,8 @@ BAR (_bar_)
 
 ```
 ANIMAL (_animal_, poids, type, CARNIVORE, quantité viande, HERBIVORE, plante préférée)
-FOO (_#bar_)
 BAR (_bar_)
+FOO (_#bar_)
 ```
 
 ### `('CARNIVORE', '1N', '<-', '')`
@@ -1797,8 +1790,8 @@ BAR (_bar_)
 
 ```
 ANIMAL (_animal_, poids, type, quantité viande, plante préférée)
-FOO (_#bar_)
 BAR (_bar_)
+FOO (_#bar_)
 ```
 
 ### `('CARNIVORE', '1N', '<-', 'X')`
@@ -1813,8 +1806,8 @@ BAR (_bar_)
 
 ```
 ANIMAL (_animal_, poids, type, quantité viande, plante préférée)
-FOO (_#bar_)
 BAR (_bar_)
+FOO (_#bar_)
 ```
 
 ### `('CARNIVORE', '1N', '<-', 'T')`
@@ -1829,8 +1822,8 @@ BAR (_bar_)
 
 ```
 ANIMAL (_animal_, poids, type, quantité viande, plante préférée)
-FOO (_#bar_)
 BAR (_bar_)
+FOO (_#bar_)
 ```
 
 ### `('CARNIVORE', '1N', '<-', 'XT')`
@@ -1845,8 +1838,8 @@ BAR (_bar_)
 
 ```
 ANIMAL (_animal_, poids, type, quantité viande, plante préférée)
-FOO (_#bar_)
 BAR (_bar_)
+FOO (_#bar_)
 ```
 
 ### `('CARNIVORE', '1N', '->', '')`
@@ -1860,11 +1853,11 @@ BAR (_bar_)
 ```
 
 ```
-HERBIVORE (_#animal_, plante préférée)
-CARNIVORE (_#animal_, quantité viande)
 ANIMAL (_animal_, poids, type)
-FOO (_#animal_, _#bar_)
 BAR (_bar_)
+CARNIVORE (_#animal_, quantité viande)
+FOO (_#animal_, _#bar_)
+HERBIVORE (_#animal_, plante préférée)
 ```
 
 ### `('CARNIVORE', '1N', '->', 'X')`
@@ -1878,11 +1871,11 @@ BAR (_bar_)
 ```
 
 ```
-HERBIVORE (_#animal_, plante préférée)
-CARNIVORE (_#animal_, quantité viande)
 ANIMAL (_animal_, poids, type)
-FOO (_#animal_, _#bar_)
 BAR (_bar_)
+CARNIVORE (_#animal_, quantité viande)
+FOO (_#animal_, _#bar_)
+HERBIVORE (_#animal_, plante préférée)
 ```
 
 ### `('CARNIVORE', '1N', '->', 'T')`
@@ -1896,11 +1889,11 @@ BAR (_bar_)
 ```
 
 ```
-HERBIVORE (_#animal_, plante préférée)
-CARNIVORE (_#animal_, quantité viande)
 ANIMAL (_animal_, poids, type)
-FOO (_#animal_, _#bar_)
 BAR (_bar_)
+CARNIVORE (_#animal_, quantité viande)
+FOO (_#animal_, _#bar_)
+HERBIVORE (_#animal_, plante préférée)
 ```
 
 ### `('CARNIVORE', '1N', '->', 'XT')`
@@ -1914,11 +1907,11 @@ BAR (_bar_)
 ```
 
 ```
-HERBIVORE (_#animal_, plante préférée)
-CARNIVORE (_#animal_, quantité viande)
 ANIMAL (_animal_, poids, type)
-FOO (_#animal_, _#bar_)
 BAR (_bar_)
+CARNIVORE (_#animal_, quantité viande)
+FOO (_#animal_, _#bar_)
+HERBIVORE (_#animal_, plante préférée)
 ```
 
 ### `('CARNIVORE', '1N', '=>', '')`
@@ -1932,11 +1925,11 @@ BAR (_bar_)
 ```
 
 ```
-HERBIVORE (_#animal_, poids, plante préférée)
-CARNIVORE (_#animal_, poids, quantité viande)
 ANIMAL (_animal_, poids)
-FOO (_#animal_, _#bar_)
 BAR (_bar_)
+CARNIVORE (_#animal_, poids, quantité viande)
+FOO (_#animal_, _#bar_)
+HERBIVORE (_#animal_, poids, plante préférée)
 ```
 
 ### `('CARNIVORE', '1N', '=>', 'X')`
@@ -1950,11 +1943,11 @@ BAR (_bar_)
 ```
 
 ```
-HERBIVORE (_#animal_, poids, plante préférée)
-CARNIVORE (_#animal_, poids, quantité viande)
 ANIMAL (_animal_, poids)
-FOO (_#animal_, _#bar_)
 BAR (_bar_)
+CARNIVORE (_#animal_, poids, quantité viande)
+FOO (_#animal_, _#bar_)
+HERBIVORE (_#animal_, poids, plante préférée)
 ```
 
 ### `('CARNIVORE', '1N', '=>', 'T')`
@@ -1968,10 +1961,10 @@ BAR (_bar_)
 ```
 
 ```
-HERBIVORE (_#animal_, poids, plante préférée)
+BAR (_bar_)
 CARNIVORE (_#animal_, poids, quantité viande)
 FOO (_#animal_, _#bar_)
-BAR (_bar_)
+HERBIVORE (_#animal_, poids, plante préférée)
 ```
 
 ### `('CARNIVORE', '1N', '=>', 'XT')`
@@ -1985,10 +1978,10 @@ BAR (_bar_)
 ```
 
 ```
-HERBIVORE (_#animal_, poids, plante préférée)
+BAR (_bar_)
 CARNIVORE (_#animal_, poids, quantité viande)
 FOO (_#animal_, _#bar_)
-BAR (_bar_)
+HERBIVORE (_#animal_, poids, plante préférée)
 ```
 
 ### `('ANIMAL', '11', '<=', '')`
@@ -2122,10 +2115,10 @@ BAR (_bar_)
 ```
 
 ```
-HERBIVORE (_#animal_, plante préférée)
-CARNIVORE (_#animal_, quantité viande)
 ANIMAL (_animal_, poids, #bar, type)
 BAR (_bar_)
+CARNIVORE (_#animal_, quantité viande)
+HERBIVORE (_#animal_, plante préférée)
 ```
 
 ### `('ANIMAL', '11', '->', 'X')`
@@ -2139,10 +2132,10 @@ BAR (_bar_)
 ```
 
 ```
-HERBIVORE (_#animal_, plante préférée)
-CARNIVORE (_#animal_, quantité viande)
 ANIMAL (_animal_, poids, #bar, type)
 BAR (_bar_)
+CARNIVORE (_#animal_, quantité viande)
+HERBIVORE (_#animal_, plante préférée)
 ```
 
 ### `('ANIMAL', '11', '->', 'T')`
@@ -2156,10 +2149,10 @@ BAR (_bar_)
 ```
 
 ```
-HERBIVORE (_#animal_, plante préférée)
-CARNIVORE (_#animal_, quantité viande)
 ANIMAL (_animal_, poids, #bar, type)
 BAR (_bar_)
+CARNIVORE (_#animal_, quantité viande)
+HERBIVORE (_#animal_, plante préférée)
 ```
 
 ### `('ANIMAL', '11', '->', 'XT')`
@@ -2173,10 +2166,10 @@ BAR (_bar_)
 ```
 
 ```
-HERBIVORE (_#animal_, plante préférée)
-CARNIVORE (_#animal_, quantité viande)
 ANIMAL (_animal_, poids, #bar, type)
 BAR (_bar_)
+CARNIVORE (_#animal_, quantité viande)
+HERBIVORE (_#animal_, plante préférée)
 ```
 
 ### `('ANIMAL', '11', '=>', '')`
@@ -2190,10 +2183,10 @@ BAR (_bar_)
 ```
 
 ```
-HERBIVORE (_#animal_, poids, #bar, plante préférée)
-CARNIVORE (_#animal_, poids, #bar, quantité viande)
 ANIMAL (_animal_, poids, #bar)
 BAR (_bar_)
+CARNIVORE (_#animal_, poids, #bar, quantité viande)
+HERBIVORE (_#animal_, poids, #bar, plante préférée)
 ```
 
 ### `('ANIMAL', '11', '=>', 'X')`
@@ -2207,10 +2200,10 @@ BAR (_bar_)
 ```
 
 ```
-HERBIVORE (_#animal_, poids, #bar, plante préférée)
-CARNIVORE (_#animal_, poids, #bar, quantité viande)
 ANIMAL (_animal_, poids, #bar)
 BAR (_bar_)
+CARNIVORE (_#animal_, poids, #bar, quantité viande)
+HERBIVORE (_#animal_, poids, #bar, plante préférée)
 ```
 
 ### `('ANIMAL', '11', '=>', 'T')`
@@ -2224,9 +2217,9 @@ BAR (_bar_)
 ```
 
 ```
-HERBIVORE (_#animal_, poids, #bar, plante préférée)
-CARNIVORE (_#animal_, poids, #bar, quantité viande)
 BAR (_bar_)
+CARNIVORE (_#animal_, poids, #bar, quantité viande)
+HERBIVORE (_#animal_, poids, #bar, plante préférée)
 ```
 
 ### `('ANIMAL', '11', '=>', 'XT')`
@@ -2240,9 +2233,9 @@ BAR (_bar_)
 ```
 
 ```
-HERBIVORE (_#animal_, poids, #bar, plante préférée)
-CARNIVORE (_#animal_, poids, #bar, quantité viande)
 BAR (_bar_)
+CARNIVORE (_#animal_, poids, #bar, quantité viande)
+HERBIVORE (_#animal_, poids, #bar, plante préférée)
 ```
 
 ### `('ANIMAL', '1N', '<=', '')`
@@ -2257,8 +2250,8 @@ BAR (_bar_)
 
 ```
 ANIMAL (_animal_, poids, type, CARNIVORE, quantité viande, HERBIVORE, plante préférée)
-FOO (_#animal_, _#bar_)
 BAR (_bar_)
+FOO (_#animal_, _#bar_)
 ```
 
 ### `('ANIMAL', '1N', '<=', 'X')`
@@ -2273,8 +2266,8 @@ BAR (_bar_)
 
 ```
 ANIMAL (_animal_, poids, type, CARNIVORE, quantité viande, HERBIVORE, plante préférée)
-FOO (_#animal_, _#bar_)
 BAR (_bar_)
+FOO (_#animal_, _#bar_)
 ```
 
 ### `('ANIMAL', '1N', '<=', 'T')`
@@ -2289,8 +2282,8 @@ BAR (_bar_)
 
 ```
 ANIMAL (_animal_, poids, type, CARNIVORE, quantité viande, HERBIVORE, plante préférée)
-FOO (_#animal_, _#bar_)
 BAR (_bar_)
+FOO (_#animal_, _#bar_)
 ```
 
 ### `('ANIMAL', '1N', '<=', 'XT')`
@@ -2305,8 +2298,8 @@ BAR (_bar_)
 
 ```
 ANIMAL (_animal_, poids, type, CARNIVORE, quantité viande, HERBIVORE, plante préférée)
-FOO (_#animal_, _#bar_)
 BAR (_bar_)
+FOO (_#animal_, _#bar_)
 ```
 
 ### `('ANIMAL', '1N', '<-', '')`
@@ -2321,8 +2314,8 @@ BAR (_bar_)
 
 ```
 ANIMAL (_animal_, poids, type, quantité viande, plante préférée)
-FOO (_#animal_, _#bar_)
 BAR (_bar_)
+FOO (_#animal_, _#bar_)
 ```
 
 ### `('ANIMAL', '1N', '<-', 'X')`
@@ -2337,8 +2330,8 @@ BAR (_bar_)
 
 ```
 ANIMAL (_animal_, poids, type, quantité viande, plante préférée)
-FOO (_#animal_, _#bar_)
 BAR (_bar_)
+FOO (_#animal_, _#bar_)
 ```
 
 ### `('ANIMAL', '1N', '<-', 'T')`
@@ -2353,8 +2346,8 @@ BAR (_bar_)
 
 ```
 ANIMAL (_animal_, poids, type, quantité viande, plante préférée)
-FOO (_#animal_, _#bar_)
 BAR (_bar_)
+FOO (_#animal_, _#bar_)
 ```
 
 ### `('ANIMAL', '1N', '<-', 'XT')`
@@ -2369,8 +2362,8 @@ BAR (_bar_)
 
 ```
 ANIMAL (_animal_, poids, type, quantité viande, plante préférée)
-FOO (_#animal_, _#bar_)
 BAR (_bar_)
+FOO (_#animal_, _#bar_)
 ```
 
 ### `('ANIMAL', '1N', '->', '')`
@@ -2384,11 +2377,11 @@ BAR (_bar_)
 ```
 
 ```
-HERBIVORE (_#animal_, plante préférée)
-CARNIVORE (_#animal_, quantité viande)
 ANIMAL (_animal_, poids, type)
-FOO (_#animal_, _#bar_)
 BAR (_bar_)
+CARNIVORE (_#animal_, quantité viande)
+FOO (_#animal_, _#bar_)
+HERBIVORE (_#animal_, plante préférée)
 ```
 
 ### `('ANIMAL', '1N', '->', 'X')`
@@ -2402,11 +2395,11 @@ BAR (_bar_)
 ```
 
 ```
-HERBIVORE (_#animal_, plante préférée)
-CARNIVORE (_#animal_, quantité viande)
 ANIMAL (_animal_, poids, type)
-FOO (_#animal_, _#bar_)
 BAR (_bar_)
+CARNIVORE (_#animal_, quantité viande)
+FOO (_#animal_, _#bar_)
+HERBIVORE (_#animal_, plante préférée)
 ```
 
 ### `('ANIMAL', '1N', '->', 'T')`
@@ -2420,11 +2413,11 @@ BAR (_bar_)
 ```
 
 ```
-HERBIVORE (_#animal_, plante préférée)
-CARNIVORE (_#animal_, quantité viande)
 ANIMAL (_animal_, poids, type)
-FOO (_#animal_, _#bar_)
 BAR (_bar_)
+CARNIVORE (_#animal_, quantité viande)
+FOO (_#animal_, _#bar_)
+HERBIVORE (_#animal_, plante préférée)
 ```
 
 ### `('ANIMAL', '1N', '->', 'XT')`
@@ -2438,11 +2431,11 @@ BAR (_bar_)
 ```
 
 ```
-HERBIVORE (_#animal_, plante préférée)
-CARNIVORE (_#animal_, quantité viande)
 ANIMAL (_animal_, poids, type)
-FOO (_#animal_, _#bar_)
 BAR (_bar_)
+CARNIVORE (_#animal_, quantité viande)
+FOO (_#animal_, _#bar_)
+HERBIVORE (_#animal_, plante préférée)
 ```
 
 ### `('ANIMAL', '1N', '=>', '')`
@@ -2456,11 +2449,11 @@ BAR (_bar_)
 ```
 
 ```
-HERBIVORE (_#animal_, poids, plante préférée)
-CARNIVORE (_#animal_, poids, quantité viande)
 ANIMAL (_animal_, poids)
-FOO (_#animal_, _#bar_)
 BAR (_bar_)
+CARNIVORE (_#animal_, poids, quantité viande)
+FOO (_#animal_, _#bar_)
+HERBIVORE (_#animal_, poids, plante préférée)
 ```
 
 ### `('ANIMAL', '1N', '=>', 'X')`
@@ -2474,11 +2467,11 @@ BAR (_bar_)
 ```
 
 ```
-HERBIVORE (_#animal_, poids, plante préférée)
-CARNIVORE (_#animal_, poids, quantité viande)
 ANIMAL (_animal_, poids)
-FOO (_#animal_, _#bar_)
 BAR (_bar_)
+CARNIVORE (_#animal_, poids, quantité viande)
+FOO (_#animal_, _#bar_)
+HERBIVORE (_#animal_, poids, plante préférée)
 ```
 
 ### `('ANIMAL', '1N', '=>', 'T')`
@@ -2492,10 +2485,10 @@ BAR (_bar_)
 ```
 
 ```
-HERBIVORE (_#animal_, poids, plante préférée)
+BAR (_bar_)
 CARNIVORE (_#animal_, poids, quantité viande)
 FOO (_#animal_, _#bar_)
-BAR (_bar_)
+HERBIVORE (_#animal_, poids, plante préférée)
 ```
 
 ### `('ANIMAL', '1N', '=>', 'XT')`
@@ -2509,8 +2502,8 @@ BAR (_bar_)
 ```
 
 ```
-HERBIVORE (_#animal_, poids, plante préférée)
+BAR (_bar_)
 CARNIVORE (_#animal_, poids, quantité viande)
 FOO (_#animal_, _#bar_)
-BAR (_bar_)
+HERBIVORE (_#animal_, poids, plante préférée)
 ```

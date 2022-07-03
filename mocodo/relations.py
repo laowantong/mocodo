@@ -53,15 +53,16 @@ class Relations:
         self.mcd = mcd
         self.ensure_no_reciprocical_relative_entities()
         self.freeze_strengthening_foreign_key_migration = set()
+        self.relations = {}
         self.relations_from_entities()
         self.strengthen_weak_identifiers()
         self.process_parent_identifier_migration()
         self.process_associations()
         self.process_inheritances()
-        self.add_sorting_this_relation_number()
         self.make_primary_keys_first()
         self.may_disambiguate_with_leg_notes = set_disambiguation_strategy(params["disambiguation"])
         may_update_params_with_guessed_title()
+        self.relations = dict(sorted(self.relations.items()))
 
     
     def get_text(self, template):
@@ -162,12 +163,11 @@ class Relations:
         data["title_uppercase"] = data["title"].upper()
         data["title_titlecase"] = data["title"].capitalize()
         lines = []
-        for relation in sorted(self.relations.values(), key=lambda v: v["this_relation_number"]):
+        for (_, relation) in sorted(self.relations.items()):
             data["this_relation_name"] = transform(relation["this_relation_name"], "transform_relation_name")
             data["this_relation_name_lowercase"] = data["this_relation_name"].lower()
             data["this_relation_name_uppercase"] = data["this_relation_name"].upper()
             data["this_relation_name_titlecase"] = data["this_relation_name"].capitalize()
-            data["this_relation_number"] = relation["this_relation_number"]
             fields = []
             for column in relation["columns"]:
                 data.update(column)
@@ -229,7 +229,6 @@ class Relations:
                     other_leg = leg
 
     def relations_from_entities(self):
-        self.relations = {}
         for (name, entity) in self.mcd.entities.items():
             self.relations[name] = {
                 "this_relation_name": entity.cartouche,
@@ -443,13 +442,6 @@ class Relations:
         for entity_to_delete in entities_to_delete:
             del self.relations[entity_to_delete]
 
-    def add_sorting_this_relation_number(self):
-        this_relation_number = itertools.count(1)
-        for row in self.mcd.rows:
-            for box in row:
-                if box.name in self.relations:
-                    self.relations[box.name]["this_relation_number"] = next(this_relation_number)
-    
     def make_primary_keys_first(self):
         for relation in self.relations.values():
             relation["columns"].sort(key=lambda column: not column["primary"])
