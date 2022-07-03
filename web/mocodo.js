@@ -18,35 +18,17 @@ var flex = {
   "très prononcée": 1.25,
 }
 var relation_formats = {
-  "diagram": {
-    "default": false,
-    "highlighting": "none",
-    "title": "Résultat à réinjecter sous l&#39;onglet Entrée pour tracer un diagramme sagittal des relations.",
-    "name": "Diagramme relationnel",
-  },
   "markdown_data_dict": {
     "default": false,
     "highlighting": "none",
     "title": "Option placée ici par commodité: un dictionnaire des données n&#39;a rien à voir avec un schéma relationnel.",
     "name": "Dictionnaire des données (Markdown)",
   },
-  "html_verbose": {
+  "text": {
     "default": false,
-    "highlighting": "markup",
-    "title": "S&#39;affiche également au-dessous du diagramme conceptuel.",
-    "name": "Explications du schéma relationnel",
+    "highlighting": "none",
+    "name": "Texte brut",
   },
-  "html": {
-    "default": true,
-    "highlighting": "markup",
-    "title": "S&#39;affiche également au-dessous du diagramme conceptuel.",
-    "name": "HTML",
-  },
-  // "json": {
-  //   "default": false,
-  //   "highlighting": "json",
-  //   "name": 'JSON',
-  // },
   "latex": {
     "default": false,
     "highlighting": "latex",
@@ -57,16 +39,34 @@ var relation_formats = {
     "highlighting": "markdown",
     "name": "Markdown",
   },
+  "html": {
+    "default": true,
+    "highlighting": "markup",
+    "title": "S&#39;affiche également au-dessous du diagramme conceptuel.",
+    "name": "HTML",
+  },
+  "diagram": {
+    "default": false,
+    "highlighting": "none",
+    "title": "Résultat à réinjecter sous l&#39;onglet Entrée pour tracer un diagramme sagittal des relations.",
+    "name": "Diagramme relationnel",
+  },
+  "html_verbose": {
+    "default": false,
+    "highlighting": "markup",
+    "title": "S&#39;affiche également au-dessous du diagramme conceptuel.",
+    "name": "Explications du schéma relationnel",
+  },
+  // "json": {
+  //   "default": false,
+  //   "highlighting": "json",
+  //   "name": 'JSON',
+  // },
   // "markdown_verbose": {
   //   "default": false,
   //   "highlighting": "markdown",
   //   "name": "Markdown avec explications",
   // },
-  "text": {
-    "default": false,
-    "highlighting": "none",
-    "name": "Texte brut",
-  },
   // "txt2tags": {
   //   "default": false,
   //   "highlighting": "none",
