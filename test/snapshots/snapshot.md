@@ -52,7 +52,7 @@ ESPÈCE: code espèce, libellé
 ::
 OCCUPE: #code espèce->ANIMAL->code espèce, _#nom->ANIMAL->nom, _num. enclos, #date début->PÉRIODE->date début, #date fin->PÉRIODE->date fin
 :
-ANIMAL: #code espèce->ESPÈCE->code espèce, _nom, sexe, date naissance, date décès, type alimentation, CARNIVORE, quantité viande, HERBIVORE, plante préférée, #code espèce mère->ANIMAL->code espèce, #nom mère->ANIMAL->nom
+ANIMAL: #code espèce->ESPÈCE->code espèce, _nom, sexe, date naissance, date décès, #code espèce mère->ANIMAL->code espèce, #nom mère->ANIMAL->nom, type alimentation, CARNIVORE, quantité viande, HERBIVORE, plante préférée
 :
 
 
@@ -109,13 +109,13 @@ CREATE TABLE `ANIMAL` (
   `sexe` VARCHAR(42),
   `date_naissance` VARCHAR(42),
   `date_décès` VARCHAR(42),
+  `code_espèce mère` VARCHAR(42),
+  `nom mère` VARCHAR(42),
   `type_alimentation` TINYINT UNSIGNED NOT NULL,
   `carnivore` BOOLEAN,
   `quantité_viande` VARCHAR(42),
   `herbivore` BOOLEAN,
   `plante_préférée` VARCHAR(42),
-  `code_espèce mère` VARCHAR(42),
-  `nom mère` VARCHAR(42),
   PRIMARY KEY (`code_espèce`, `nom`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -146,7 +146,7 @@ ALTER TABLE `ANIMAL` ADD FOREIGN KEY (`code_espèce`) REFERENCES `ESPÈCE` (`cod
 **ENCLOS** (<ins>num. enclos</ins>)  
 -->
 **OCCUPE** (<ins>_#code espèce_</ins>, <ins>_#nom_</ins>, <ins>_#num. enclos_</ins>, _#date début_, _#date fin_)  
-**ANIMAL** (<ins>_#code espèce_</ins>, <ins>nom</ins>, sexe, date naissance, date décès, type alimentation, CARNIVORE, quantité viande, HERBIVORE, plante préférée, _#code espèce mère_, _#nom mère_)  
+**ANIMAL** (<ins>_#code espèce_</ins>, <ins>nom</ins>, sexe, date naissance, date décès, _#code espèce mère_, _#nom mère_, type alimentation, CARNIVORE, quantité viande, HERBIVORE, plante préférée)  
 **PÉRIODE** (<ins>date début</ins>, <ins>date fin</ins>)
 ```
 
@@ -176,16 +176,16 @@ ALTER TABLE `ANIMAL` ADD FOREIGN KEY (`code_espèce`) REFERENCES `ESPÈCE` (`cod
 - Le champ _date début_ est une clef étrangère issue de l'entité _PÉRIODE_. Il devrait normalement faire partie de l'identifiant de _OCCUPE_, mais a été rétrogradé explicitement au rang de simple attribut.  
 - Le champ _date fin_ est une clef étrangère issue de l'entité _PÉRIODE_. Il devrait normalement faire partie de l'identifiant de _OCCUPE_, mais a été rétrogradé explicitement au rang de simple attribut.  
 
-**ANIMAL** (<ins>_code espèce_</ins>, <ins>nom</ins>, sexe, date naissance, date décès, type alimentation, CARNIVORE, quantité viande, HERBIVORE, plante préférée, _#code espèce mère_, _#nom mère_)  
+**ANIMAL** (<ins>_code espèce_</ins>, <ins>nom</ins>, sexe, date naissance, date décès, _#code espèce mère_, _#nom mère_, type alimentation, CARNIVORE, quantité viande, HERBIVORE, plante préférée)  
 - Le champ _code espèce_ fait partie de la clef primaire de la table. Il a migré à partir de l'entité _ESPÈCE_ pour renforcer l'identifiant faible.  
 - Le champ _nom_ fait partie de la clef primaire de la table. C'était déjà un identifiant de l'entité _ANIMAL_.  
 - Les champs _sexe_, _date naissance_ et _date décès_ étaient déjà de simples attributs de l'entité _ANIMAL_.  
-- Un champ entier _type alimentation_ est ajouté pour indiquer la nature de la spécialisation. Il est interprété comme un code binaire : bit 1 pour la première entité-fille, bit 2 pour la deuxième, etc. Peut être vide, du fait de l'absence de contrainte de totalité.  
-- Un champ booléen _CARNIVORE_ est ajouté pour indiquer si on a affaire à la spécialisation de même nom.  
-- Le champ _quantité viande_ a migré à partir de l'entité-fille _CARNIVORE_.  
-- Un champ booléen _HERBIVORE_ est ajouté pour indiquer si on a affaire à la spécialisation de même nom.  
-- Le champ _plante préférée_ a migré à partir de l'entité-fille _HERBIVORE_.  
 - Les champs _code espèce mère_ et _nom mère_ sont des clefs étrangères. Ils ont migré à partir de l'entité _ANIMAL_ par l'association de dépendance fonctionnelle _A MÈRE_ en perdant leur caractère identifiant.  
+- Un champ entier _type alimentation_ est ajouté pour indiquer la nature de la spécialisation. Il est interprété comme un code binaire : bit 1 pour la première entité-fille, bit 2 pour la deuxième, etc. Peut être vide, du fait de l'absence de contrainte de totalité.  
+- Un champ booléen _CARNIVORE_ est ajouté pour indiquer si on a affaire ou pas à la spécialisation de même nom.  
+- Le champ _quantité viande_ a migré à partir de l'entité-fille _CARNIVORE_.  
+- Un champ booléen _HERBIVORE_ est ajouté pour indiquer si on a affaire ou pas à la spécialisation de même nom.  
+- Le champ _plante préférée_ a migré à partir de l'entité-fille _HERBIVORE_.  
 
 **PÉRIODE** (<ins>date début</ins>, <ins>date fin</ins>)  
 - Les champs _date début_ et _date fin_ constituent la clef primaire de la table. C'était déjà des identifiants de l'entité _PÉRIODE_.
@@ -236,13 +236,13 @@ CREATE TABLE "ANIMAL" (
   "sexe" VARCHAR(42),
   "date_naissance" VARCHAR(42),
   "date_décès" VARCHAR(42),
+  "code_espèce mère" VARCHAR(42),
+  "nom mère" VARCHAR(42),
   "type_alimentation" NUMBER(1) UNSIGNED NOT NULL,
   "carnivore" NUMBER(1) DEFAULT 0 NOT NULL,
   "quantité_viande" VARCHAR(42),
   "herbivore" NUMBER(1) DEFAULT 0 NOT NULL,
   "plante_préférée" VARCHAR(42),
-  "code_espèce mère" VARCHAR(42),
-  "nom mère" VARCHAR(42),
   PRIMARY KEY ("code_espèce", "nom")
 );
 
@@ -350,25 +350,25 @@ ALTER TABLE "ANIMAL" ADD FOREIGN KEY ("code_espèce") REFERENCES "ESPÈCE" ("cod
     <span class='normal'>sexe</span>,
     <span class='normal'>date naissance</span>,
     <span class='normal'>date décès</span>,
+    <span class='foreign'>#code espèce mère</span>,
+    <span class='foreign'>#nom mère</span>,
     <span class='foreign'>type alimentation</span>,
     <span class='foreign'>CARNIVORE</span>,
     <span class='foreign'>quantité viande</span>,
     <span class='foreign'>HERBIVORE</span>,
-    <span class='foreign'>plante préférée</span>,
-    <span class='foreign'>#code espèce mère</span>,
-    <span class='foreign'>#nom mère</span>
+    <span class='foreign'>plante préférée</span>
   )
   <ul>
     <li>Le champ <i>code espèce</i> fait partie de la clef primaire de la table. Il a migré à partir de l'entité <i>ESPÈCE</i> pour renforcer l'identifiant.</li>
     <li>Le champ <i>nom</i> fait partie de la clef primaire de la table. C'était déjà un identifiant de l'entité <i>ANIMAL</i>.</li>
     <li>Les champs <i>sexe</i>, <i>date naissance</i> et <i>date décès</i> étaient déjà de simples attributs de l'entité <i>ANIMAL</i>.</li>
-    <li>Un champ entier <i>type alimentation</i> est ajouté pour indiquer la nature de la spécialisation. Il est interprété comme un code binaire : bit 1 pour la première entité-fille, bit 2 pour la deuxième, etc. Peut être vide, du fait de l'absence de contrainte de totalité.</li>
-    <li>Un champ booléen <i>CARNIVORE</i> est ajouté pour indiquer si on a affaire à la spécialisation de même nom.</li>
-    <li>Le champ <i>quantité viande</i> a migré à partir de l'entité-fille <i>CARNIVORE</i>.</li>
-    <li>Un champ booléen <i>HERBIVORE</i> est ajouté pour indiquer si on a affaire à la spécialisation de même nom.</li>
-    <li>Le champ <i>plante préférée</i> a migré à partir de l'entité-fille <i>HERBIVORE</i>.</li>
     <li>Le champ <i>code espèce mère</i> est une clef étrangère. Il a migré à partir de l'entité <i>ANIMAL</i> par l'association de dépendance fonctionnelle <i>A MÈRE</i> en perdant son caractère identifiant.</li>
     <li>Le champ <i>nom mère</i> est une clef étrangère. Il a migré à partir de l'entité <i>ANIMAL</i> par l'association de dépendance fonctionnelle <i>A MÈRE</i> en perdant son caractère identifiant.</li>
+    <li>Un champ entier <i>type alimentation</i> est ajouté pour indiquer la nature de la spécialisation. Il est interprété comme un code binaire : bit 1 pour la première entité-fille, bit 2 pour la deuxième, etc. Peut être vide, du fait de l'absence de contrainte de totalité.</li>
+    <li>Un champ booléen <i>CARNIVORE</i> est ajouté pour indiquer si on a affaire ou pas à la spécialisation de même nom.</li>
+    <li>Le champ <i>quantité viande</i> a migré à partir de l'entité-fille <i>CARNIVORE</i>.</li>
+    <li>Un champ booléen <i>HERBIVORE</i> est ajouté pour indiquer si on a affaire ou pas à la spécialisation de même nom.</li>
+    <li>Le champ <i>plante préférée</i> a migré à partir de l'entité-fille <i>HERBIVORE</i>.</li>
   </ul>
 </div>
 
@@ -441,13 +441,13 @@ CREATE TABLE "ANIMAL" (
   "sexe" VARCHAR(42),
   "date_naissance" VARCHAR(42),
   "date_décès" VARCHAR(42),
+  "code_espèce mère" VARCHAR(42),
+  "nom mère" VARCHAR(42),
   "type_alimentation" INTEGER NOT NULL,
   "carnivore" INTEGER,
   "quantité_viande" VARCHAR(42),
   "herbivore" INTEGER,
   "plante_préférée" VARCHAR(42),
-  "code_espèce mère" VARCHAR(42),
-  "nom mère" VARCHAR(42),
   PRIMARY KEY ("code_espèce", "nom"),
   FOREIGN KEY ("code_espèce") REFERENCES "ESPÈCE" ("code_espèce"),
   FOREIGN KEY ("code_espèce mère", "nom mère") REFERENCES "ANIMAL" ("code_espèce", "nom")
@@ -997,6 +997,56 @@ CREATE TABLE "PÉRIODE" (
           "primary_relation_name_titlecase": null
         },
         {
+          "attribute": "code espèce",
+          "raw_label": "code espèce",
+          "raw_label_lowercase": "code espèce",
+          "raw_label_uppercase": "CODE ESPÈCE",
+          "raw_label_titlecase": "Code espèce",
+          "disambiguation_number": null,
+          "label": "code espèce mère",
+          "label_lowercase": "code espèce mère",
+          "label_uppercase": "CODE ESPÈCE MÈRE",
+          "label_titlecase": "Code espèce mère",
+          "primary": false,
+          "foreign": true,
+          "nature": "foreign_key",
+          "data_type": null,
+          "association_name": "A MÈRE",
+          "association_name_lower_case": "a mère",
+          "association_name_uppercase": "A MÈRE",
+          "association_name_titlecase": "A mère",
+          "leg_note": "mère",
+          "primary_relation_name": "ANIMAL",
+          "primary_relation_name_lowercase": "animal",
+          "primary_relation_name_uppercase": "ANIMAL",
+          "primary_relation_name_titlecase": "Animal"
+        },
+        {
+          "attribute": "nom",
+          "raw_label": "nom",
+          "raw_label_lowercase": "nom",
+          "raw_label_uppercase": "NOM",
+          "raw_label_titlecase": "Nom",
+          "disambiguation_number": null,
+          "label": "nom mère",
+          "label_lowercase": "nom mère",
+          "label_uppercase": "NOM MÈRE",
+          "label_titlecase": "Nom mère",
+          "primary": false,
+          "foreign": true,
+          "nature": "foreign_key",
+          "data_type": null,
+          "association_name": "A MÈRE",
+          "association_name_lower_case": "a mère",
+          "association_name_uppercase": "A MÈRE",
+          "association_name_titlecase": "A mère",
+          "leg_note": "mère",
+          "primary_relation_name": "ANIMAL",
+          "primary_relation_name_lowercase": "animal",
+          "primary_relation_name_uppercase": "ANIMAL",
+          "primary_relation_name_titlecase": "Animal"
+        },
+        {
           "attribute": "type alimentation",
           "raw_label": "type alimentation",
           "raw_label_lowercase": "type alimentation",
@@ -1120,56 +1170,6 @@ CREATE TABLE "PÉRIODE" (
           "primary_relation_name_lowercase": "herbivore",
           "primary_relation_name_uppercase": "HERBIVORE",
           "primary_relation_name_titlecase": "Herbivore"
-        },
-        {
-          "attribute": "code espèce",
-          "raw_label": "code espèce",
-          "raw_label_lowercase": "code espèce",
-          "raw_label_uppercase": "CODE ESPÈCE",
-          "raw_label_titlecase": "Code espèce",
-          "disambiguation_number": null,
-          "label": "code espèce mère",
-          "label_lowercase": "code espèce mère",
-          "label_uppercase": "CODE ESPÈCE MÈRE",
-          "label_titlecase": "Code espèce mère",
-          "primary": false,
-          "foreign": true,
-          "nature": "foreign_key",
-          "data_type": null,
-          "association_name": "A MÈRE",
-          "association_name_lower_case": "a mère",
-          "association_name_uppercase": "A MÈRE",
-          "association_name_titlecase": "A mère",
-          "leg_note": "mère",
-          "primary_relation_name": "ANIMAL",
-          "primary_relation_name_lowercase": "animal",
-          "primary_relation_name_uppercase": "ANIMAL",
-          "primary_relation_name_titlecase": "Animal"
-        },
-        {
-          "attribute": "nom",
-          "raw_label": "nom",
-          "raw_label_lowercase": "nom",
-          "raw_label_uppercase": "NOM",
-          "raw_label_titlecase": "Nom",
-          "disambiguation_number": null,
-          "label": "nom mère",
-          "label_lowercase": "nom mère",
-          "label_uppercase": "NOM MÈRE",
-          "label_titlecase": "Nom mère",
-          "primary": false,
-          "foreign": true,
-          "nature": "foreign_key",
-          "data_type": null,
-          "association_name": "A MÈRE",
-          "association_name_lower_case": "a mère",
-          "association_name_uppercase": "A MÈRE",
-          "association_name_titlecase": "A mère",
-          "leg_note": "mère",
-          "primary_relation_name": "ANIMAL",
-          "primary_relation_name_lowercase": "animal",
-          "primary_relation_name_uppercase": "ANIMAL",
-          "primary_relation_name_titlecase": "Animal"
         }
       ]
     },
@@ -1315,13 +1315,13 @@ CREATE TABLE "PÉRIODE" (
     <span class='normal'>sexe</span>,
     <span class='normal'>date naissance</span>,
     <span class='normal'>date décès</span>,
+    <span class='foreign'>#code espèce mère</span>,
+    <span class='foreign'>#nom mère</span>,
     <span class='normal'>type alimentation</span>,
     <span class='normal'>CARNIVORE</span>,
     <span class='normal'>quantité viande</span>,
     <span class='normal'>HERBIVORE</span>,
-    <span class='normal'>plante préférée</span>,
-    <span class='foreign'>#code espèce mère</span>,
-    <span class='foreign'>#nom mère</span>
+    <span class='normal'>plante préférée</span>
   )
 </div>
 <div>
@@ -1357,7 +1357,7 @@ CREATE TABLE "PÉRIODE" (
   Espèce & (\prim{code espèce}, \attr{libellé})\\
 % Enclos & (\prim{num. enclos})\\
   Occupe & (\foreign{\prim{code espèce}}, \foreign{\prim{nom}}, \foreign{\prim{num. enclos}}, \foreign{date début}, \foreign{date fin})\\
-  Animal & (\foreign{\prim{code espèce}}, \prim{nom}, \attr{sexe}, \attr{date naissance}, \attr{date décès}, \attr{type alimentation}, \attr{CARNIVORE}, \attr{quantité viande}, \attr{HERBIVORE}, \attr{plante préférée}, \foreign{code espèce mère}, \foreign{nom mère})\\
+  Animal & (\foreign{\prim{code espèce}}, \prim{nom}, \attr{sexe}, \attr{date naissance}, \attr{date décès}, \foreign{code espèce mère}, \foreign{nom mère}, \attr{type alimentation}, \attr{CARNIVORE}, \attr{quantité viande}, \attr{HERBIVORE}, \attr{plante préférée})\\
   Période & (\prim{date début}, \prim{date fin})\\
 \end{mld}
 ```
@@ -1370,7 +1370,7 @@ PEUT VIVRE DANS (_#code espèce_, _#num. enclos_, nb. max. congénères)
 ESPÈCE (_code espèce_, libellé)
 ENCLOS (_num. enclos_)
 OCCUPE (_#code espèce_, _#nom_, _#num. enclos_, #date début, #date fin)
-ANIMAL (_#code espèce_, _nom_, sexe, date naissance, date décès, type alimentation, CARNIVORE, quantité viande, HERBIVORE, plante préférée, #code espèce mère, #nom mère)
+ANIMAL (_#code espèce_, _nom_, sexe, date naissance, date décès, #code espèce mère, #nom mère, type alimentation, CARNIVORE, quantité viande, HERBIVORE, plante préférée)
 PÉRIODE (_date début_, _date fin_)
 ```
 
@@ -1386,7 +1386,7 @@ Généré par Mocodo
 - **ESPÈCE** (__code espèce__, libellé)
 %% - **ENCLOS** (__num. enclos__)
 - **OCCUPE** (__#code espèce__, __#nom__, __#num. enclos__, #date début, #date fin)
-- **ANIMAL** (__#code espèce__, __nom__, sexe, date naissance, date décès, type alimentation, CARNIVORE, quantité viande, HERBIVORE, plante préférée, #code espèce mère, #nom mère)
+- **ANIMAL** (__#code espèce__, __nom__, sexe, date naissance, date décès, #code espèce mère, #nom mère, type alimentation, CARNIVORE, quantité viande, HERBIVORE, plante préférée)
 - **PÉRIODE** (__date début__, __date fin__)
 ```
 
@@ -1438,13 +1438,13 @@ CREATE TABLE ANIMAL (
   sexe VARCHAR(42),
   date_naissance VARCHAR(42),
   date_décès VARCHAR(42),
+  code_espèce mère VARCHAR(42),
+  nom mère VARCHAR(42),
   type_alimentation SMALLINT NOT NULL,
   carnivore BOOLEAN,
   quantité_viande VARCHAR(42),
   herbivore BOOLEAN,
   plante_préférée VARCHAR(42),
-  code_espèce mère VARCHAR(42),
-  nom mère VARCHAR(42),
   PRIMARY KEY (code_espèce, nom)
 );
 
@@ -1463,4 +1463,1054 @@ ALTER TABLE OCCUPE ADD FOREIGN KEY (date_début, date_fin) REFERENCES PÉRIODE (
 ALTER TABLE OCCUPE ADD FOREIGN KEY (code_espèce, nom) REFERENCES ANIMAL (code_espèce, nom);
 ALTER TABLE ANIMAL ADD FOREIGN KEY (code_espèce mère, nom mère) REFERENCES ANIMAL (code_espèce, nom);
 ALTER TABLE ANIMAL ADD FOREIGN KEY (code_espèce) REFERENCES ESPÈCE (code_espèce);
+```
+
+## Inheritance stress test
+
+### `('CARNIVORE', '11', '<=', '')`
+```
+    HERBIVORE: plante préférée
+    CARNIVORE: quantité viande
+    /\ ANIMAL <= CARNIVORE, HERBIVORE: type
+    ANIMAL: animal, poids
+    FOO, 11 CARNIVORE, 1N BAR
+    BAR: bar
+```
+
+```
+ANIMAL (_animal_, poids, type, CARNIVORE, quantité viande, #bar, HERBIVORE, plante préférée)
+BAR (_bar_)
+```
+
+### `('CARNIVORE', '11', '<=', 'X')`
+```
+    HERBIVORE: plante préférée
+    CARNIVORE: quantité viande
+    /X\ ANIMAL <= CARNIVORE, HERBIVORE: type
+    ANIMAL: animal, poids
+    FOO, 11 CARNIVORE, 1N BAR
+    BAR: bar
+```
+
+```
+ANIMAL (_animal_, poids, type, CARNIVORE, quantité viande, #bar, HERBIVORE, plante préférée)
+BAR (_bar_)
+```
+
+### `('CARNIVORE', '11', '<=', 'T')`
+```
+    HERBIVORE: plante préférée
+    CARNIVORE: quantité viande
+    /T\ ANIMAL <= CARNIVORE, HERBIVORE: type
+    ANIMAL: animal, poids
+    FOO, 11 CARNIVORE, 1N BAR
+    BAR: bar
+```
+
+```
+ANIMAL (_animal_, poids, type, CARNIVORE, quantité viande, #bar, HERBIVORE, plante préférée)
+BAR (_bar_)
+```
+
+### `('CARNIVORE', '11', '<=', 'XT')`
+```
+    HERBIVORE: plante préférée
+    CARNIVORE: quantité viande
+    /XT\ ANIMAL <= CARNIVORE, HERBIVORE: type
+    ANIMAL: animal, poids
+    FOO, 11 CARNIVORE, 1N BAR
+    BAR: bar
+```
+
+```
+ANIMAL (_animal_, poids, type, CARNIVORE, quantité viande, #bar, HERBIVORE, plante préférée)
+BAR (_bar_)
+```
+
+### `('CARNIVORE', '11', '<-', '')`
+```
+    HERBIVORE: plante préférée
+    CARNIVORE: quantité viande
+    /\ ANIMAL <- CARNIVORE, HERBIVORE: type
+    ANIMAL: animal, poids
+    FOO, 11 CARNIVORE, 1N BAR
+    BAR: bar
+```
+
+```
+ANIMAL (_animal_, poids, type, quantité viande, #bar, plante préférée)
+BAR (_bar_)
+```
+
+### `('CARNIVORE', '11', '<-', 'X')`
+```
+    HERBIVORE: plante préférée
+    CARNIVORE: quantité viande
+    /X\ ANIMAL <- CARNIVORE, HERBIVORE: type
+    ANIMAL: animal, poids
+    FOO, 11 CARNIVORE, 1N BAR
+    BAR: bar
+```
+
+```
+ANIMAL (_animal_, poids, type, quantité viande, #bar, plante préférée)
+BAR (_bar_)
+```
+
+### `('CARNIVORE', '11', '<-', 'T')`
+```
+    HERBIVORE: plante préférée
+    CARNIVORE: quantité viande
+    /T\ ANIMAL <- CARNIVORE, HERBIVORE: type
+    ANIMAL: animal, poids
+    FOO, 11 CARNIVORE, 1N BAR
+    BAR: bar
+```
+
+```
+ANIMAL (_animal_, poids, type, quantité viande, #bar, plante préférée)
+BAR (_bar_)
+```
+
+### `('CARNIVORE', '11', '<-', 'XT')`
+```
+    HERBIVORE: plante préférée
+    CARNIVORE: quantité viande
+    /XT\ ANIMAL <- CARNIVORE, HERBIVORE: type
+    ANIMAL: animal, poids
+    FOO, 11 CARNIVORE, 1N BAR
+    BAR: bar
+```
+
+```
+ANIMAL (_animal_, poids, type, quantité viande, #bar, plante préférée)
+BAR (_bar_)
+```
+
+### `('CARNIVORE', '11', '->', '')`
+```
+    HERBIVORE: plante préférée
+    CARNIVORE: quantité viande
+    /\ ANIMAL -> CARNIVORE, HERBIVORE: type
+    ANIMAL: animal, poids
+    FOO, 11 CARNIVORE, 1N BAR
+    BAR: bar
+```
+
+```
+HERBIVORE (_#animal_, plante préférée)
+CARNIVORE (_#animal_, quantité viande, #bar)
+ANIMAL (_animal_, poids, type)
+BAR (_bar_)
+```
+
+### `('CARNIVORE', '11', '->', 'X')`
+```
+    HERBIVORE: plante préférée
+    CARNIVORE: quantité viande
+    /X\ ANIMAL -> CARNIVORE, HERBIVORE: type
+    ANIMAL: animal, poids
+    FOO, 11 CARNIVORE, 1N BAR
+    BAR: bar
+```
+
+```
+HERBIVORE (_#animal_, plante préférée)
+CARNIVORE (_#animal_, quantité viande, #bar)
+ANIMAL (_animal_, poids, type)
+BAR (_bar_)
+```
+
+### `('CARNIVORE', '11', '->', 'T')`
+```
+    HERBIVORE: plante préférée
+    CARNIVORE: quantité viande
+    /T\ ANIMAL -> CARNIVORE, HERBIVORE: type
+    ANIMAL: animal, poids
+    FOO, 11 CARNIVORE, 1N BAR
+    BAR: bar
+```
+
+```
+HERBIVORE (_#animal_, plante préférée)
+CARNIVORE (_#animal_, quantité viande, #bar)
+ANIMAL (_animal_, poids, type)
+BAR (_bar_)
+```
+
+### `('CARNIVORE', '11', '->', 'XT')`
+```
+    HERBIVORE: plante préférée
+    CARNIVORE: quantité viande
+    /XT\ ANIMAL -> CARNIVORE, HERBIVORE: type
+    ANIMAL: animal, poids
+    FOO, 11 CARNIVORE, 1N BAR
+    BAR: bar
+```
+
+```
+HERBIVORE (_#animal_, plante préférée)
+CARNIVORE (_#animal_, quantité viande, #bar)
+ANIMAL (_animal_, poids, type)
+BAR (_bar_)
+```
+
+### `('CARNIVORE', '11', '=>', '')`
+```
+    HERBIVORE: plante préférée
+    CARNIVORE: quantité viande
+    /\ ANIMAL => CARNIVORE, HERBIVORE: type
+    ANIMAL: animal, poids
+    FOO, 11 CARNIVORE, 1N BAR
+    BAR: bar
+```
+
+```
+HERBIVORE (_#animal_, poids, plante préférée)
+CARNIVORE (_#animal_, poids, quantité viande, #bar)
+ANIMAL (_animal_, poids)
+BAR (_bar_)
+```
+
+### `('CARNIVORE', '11', '=>', 'X')`
+```
+    HERBIVORE: plante préférée
+    CARNIVORE: quantité viande
+    /X\ ANIMAL => CARNIVORE, HERBIVORE: type
+    ANIMAL: animal, poids
+    FOO, 11 CARNIVORE, 1N BAR
+    BAR: bar
+```
+
+```
+HERBIVORE (_#animal_, poids, plante préférée)
+CARNIVORE (_#animal_, poids, quantité viande, #bar)
+ANIMAL (_animal_, poids)
+BAR (_bar_)
+```
+
+### `('CARNIVORE', '11', '=>', 'T')`
+```
+    HERBIVORE: plante préférée
+    CARNIVORE: quantité viande
+    /T\ ANIMAL => CARNIVORE, HERBIVORE: type
+    ANIMAL: animal, poids
+    FOO, 11 CARNIVORE, 1N BAR
+    BAR: bar
+```
+
+```
+HERBIVORE (_#animal_, poids, plante préférée)
+CARNIVORE (_#animal_, poids, quantité viande, #bar)
+BAR (_bar_)
+```
+
+### `('CARNIVORE', '11', '=>', 'XT')`
+```
+    HERBIVORE: plante préférée
+    CARNIVORE: quantité viande
+    /XT\ ANIMAL => CARNIVORE, HERBIVORE: type
+    ANIMAL: animal, poids
+    FOO, 11 CARNIVORE, 1N BAR
+    BAR: bar
+```
+
+```
+HERBIVORE (_#animal_, poids, plante préférée)
+CARNIVORE (_#animal_, poids, quantité viande, #bar)
+BAR (_bar_)
+```
+
+### `('CARNIVORE', '1N', '<=', '')`
+```
+    HERBIVORE: plante préférée
+    CARNIVORE: quantité viande
+    /\ ANIMAL <= CARNIVORE, HERBIVORE: type
+    ANIMAL: animal, poids
+    FOO, 1N CARNIVORE, 1N BAR
+    BAR: bar
+```
+
+```
+ANIMAL (_animal_, poids, type, CARNIVORE, quantité viande, HERBIVORE, plante préférée)
+FOO (_#bar_)
+BAR (_bar_)
+```
+
+### `('CARNIVORE', '1N', '<=', 'X')`
+```
+    HERBIVORE: plante préférée
+    CARNIVORE: quantité viande
+    /X\ ANIMAL <= CARNIVORE, HERBIVORE: type
+    ANIMAL: animal, poids
+    FOO, 1N CARNIVORE, 1N BAR
+    BAR: bar
+```
+
+```
+ANIMAL (_animal_, poids, type, CARNIVORE, quantité viande, HERBIVORE, plante préférée)
+FOO (_#bar_)
+BAR (_bar_)
+```
+
+### `('CARNIVORE', '1N', '<=', 'T')`
+```
+    HERBIVORE: plante préférée
+    CARNIVORE: quantité viande
+    /T\ ANIMAL <= CARNIVORE, HERBIVORE: type
+    ANIMAL: animal, poids
+    FOO, 1N CARNIVORE, 1N BAR
+    BAR: bar
+```
+
+```
+ANIMAL (_animal_, poids, type, CARNIVORE, quantité viande, HERBIVORE, plante préférée)
+FOO (_#bar_)
+BAR (_bar_)
+```
+
+### `('CARNIVORE', '1N', '<=', 'XT')`
+```
+    HERBIVORE: plante préférée
+    CARNIVORE: quantité viande
+    /XT\ ANIMAL <= CARNIVORE, HERBIVORE: type
+    ANIMAL: animal, poids
+    FOO, 1N CARNIVORE, 1N BAR
+    BAR: bar
+```
+
+```
+ANIMAL (_animal_, poids, type, CARNIVORE, quantité viande, HERBIVORE, plante préférée)
+FOO (_#bar_)
+BAR (_bar_)
+```
+
+### `('CARNIVORE', '1N', '<-', '')`
+```
+    HERBIVORE: plante préférée
+    CARNIVORE: quantité viande
+    /\ ANIMAL <- CARNIVORE, HERBIVORE: type
+    ANIMAL: animal, poids
+    FOO, 1N CARNIVORE, 1N BAR
+    BAR: bar
+```
+
+```
+ANIMAL (_animal_, poids, type, quantité viande, plante préférée)
+FOO (_#bar_)
+BAR (_bar_)
+```
+
+### `('CARNIVORE', '1N', '<-', 'X')`
+```
+    HERBIVORE: plante préférée
+    CARNIVORE: quantité viande
+    /X\ ANIMAL <- CARNIVORE, HERBIVORE: type
+    ANIMAL: animal, poids
+    FOO, 1N CARNIVORE, 1N BAR
+    BAR: bar
+```
+
+```
+ANIMAL (_animal_, poids, type, quantité viande, plante préférée)
+FOO (_#bar_)
+BAR (_bar_)
+```
+
+### `('CARNIVORE', '1N', '<-', 'T')`
+```
+    HERBIVORE: plante préférée
+    CARNIVORE: quantité viande
+    /T\ ANIMAL <- CARNIVORE, HERBIVORE: type
+    ANIMAL: animal, poids
+    FOO, 1N CARNIVORE, 1N BAR
+    BAR: bar
+```
+
+```
+ANIMAL (_animal_, poids, type, quantité viande, plante préférée)
+FOO (_#bar_)
+BAR (_bar_)
+```
+
+### `('CARNIVORE', '1N', '<-', 'XT')`
+```
+    HERBIVORE: plante préférée
+    CARNIVORE: quantité viande
+    /XT\ ANIMAL <- CARNIVORE, HERBIVORE: type
+    ANIMAL: animal, poids
+    FOO, 1N CARNIVORE, 1N BAR
+    BAR: bar
+```
+
+```
+ANIMAL (_animal_, poids, type, quantité viande, plante préférée)
+FOO (_#bar_)
+BAR (_bar_)
+```
+
+### `('CARNIVORE', '1N', '->', '')`
+```
+    HERBIVORE: plante préférée
+    CARNIVORE: quantité viande
+    /\ ANIMAL -> CARNIVORE, HERBIVORE: type
+    ANIMAL: animal, poids
+    FOO, 1N CARNIVORE, 1N BAR
+    BAR: bar
+```
+
+```
+HERBIVORE (_#animal_, plante préférée)
+CARNIVORE (_#animal_, quantité viande)
+ANIMAL (_animal_, poids, type)
+FOO (_#animal_, _#bar_)
+BAR (_bar_)
+```
+
+### `('CARNIVORE', '1N', '->', 'X')`
+```
+    HERBIVORE: plante préférée
+    CARNIVORE: quantité viande
+    /X\ ANIMAL -> CARNIVORE, HERBIVORE: type
+    ANIMAL: animal, poids
+    FOO, 1N CARNIVORE, 1N BAR
+    BAR: bar
+```
+
+```
+HERBIVORE (_#animal_, plante préférée)
+CARNIVORE (_#animal_, quantité viande)
+ANIMAL (_animal_, poids, type)
+FOO (_#animal_, _#bar_)
+BAR (_bar_)
+```
+
+### `('CARNIVORE', '1N', '->', 'T')`
+```
+    HERBIVORE: plante préférée
+    CARNIVORE: quantité viande
+    /T\ ANIMAL -> CARNIVORE, HERBIVORE: type
+    ANIMAL: animal, poids
+    FOO, 1N CARNIVORE, 1N BAR
+    BAR: bar
+```
+
+```
+HERBIVORE (_#animal_, plante préférée)
+CARNIVORE (_#animal_, quantité viande)
+ANIMAL (_animal_, poids, type)
+FOO (_#animal_, _#bar_)
+BAR (_bar_)
+```
+
+### `('CARNIVORE', '1N', '->', 'XT')`
+```
+    HERBIVORE: plante préférée
+    CARNIVORE: quantité viande
+    /XT\ ANIMAL -> CARNIVORE, HERBIVORE: type
+    ANIMAL: animal, poids
+    FOO, 1N CARNIVORE, 1N BAR
+    BAR: bar
+```
+
+```
+HERBIVORE (_#animal_, plante préférée)
+CARNIVORE (_#animal_, quantité viande)
+ANIMAL (_animal_, poids, type)
+FOO (_#animal_, _#bar_)
+BAR (_bar_)
+```
+
+### `('CARNIVORE', '1N', '=>', '')`
+```
+    HERBIVORE: plante préférée
+    CARNIVORE: quantité viande
+    /\ ANIMAL => CARNIVORE, HERBIVORE: type
+    ANIMAL: animal, poids
+    FOO, 1N CARNIVORE, 1N BAR
+    BAR: bar
+```
+
+```
+HERBIVORE (_#animal_, poids, plante préférée)
+CARNIVORE (_#animal_, poids, quantité viande)
+ANIMAL (_animal_, poids)
+FOO (_#animal_, _#bar_)
+BAR (_bar_)
+```
+
+### `('CARNIVORE', '1N', '=>', 'X')`
+```
+    HERBIVORE: plante préférée
+    CARNIVORE: quantité viande
+    /X\ ANIMAL => CARNIVORE, HERBIVORE: type
+    ANIMAL: animal, poids
+    FOO, 1N CARNIVORE, 1N BAR
+    BAR: bar
+```
+
+```
+HERBIVORE (_#animal_, poids, plante préférée)
+CARNIVORE (_#animal_, poids, quantité viande)
+ANIMAL (_animal_, poids)
+FOO (_#animal_, _#bar_)
+BAR (_bar_)
+```
+
+### `('CARNIVORE', '1N', '=>', 'T')`
+```
+    HERBIVORE: plante préférée
+    CARNIVORE: quantité viande
+    /T\ ANIMAL => CARNIVORE, HERBIVORE: type
+    ANIMAL: animal, poids
+    FOO, 1N CARNIVORE, 1N BAR
+    BAR: bar
+```
+
+```
+HERBIVORE (_#animal_, poids, plante préférée)
+CARNIVORE (_#animal_, poids, quantité viande)
+FOO (_#animal_, _#bar_)
+BAR (_bar_)
+```
+
+### `('CARNIVORE', '1N', '=>', 'XT')`
+```
+    HERBIVORE: plante préférée
+    CARNIVORE: quantité viande
+    /XT\ ANIMAL => CARNIVORE, HERBIVORE: type
+    ANIMAL: animal, poids
+    FOO, 1N CARNIVORE, 1N BAR
+    BAR: bar
+```
+
+```
+HERBIVORE (_#animal_, poids, plante préférée)
+CARNIVORE (_#animal_, poids, quantité viande)
+FOO (_#animal_, _#bar_)
+BAR (_bar_)
+```
+
+### `('ANIMAL', '11', '<=', '')`
+```
+    HERBIVORE: plante préférée
+    CARNIVORE: quantité viande
+    /\ ANIMAL <= CARNIVORE, HERBIVORE: type
+    ANIMAL: animal, poids
+    FOO, 11 ANIMAL, 1N BAR
+    BAR: bar
+```
+
+```
+ANIMAL (_animal_, poids, #bar, type, CARNIVORE, quantité viande, HERBIVORE, plante préférée)
+BAR (_bar_)
+```
+
+### `('ANIMAL', '11', '<=', 'X')`
+```
+    HERBIVORE: plante préférée
+    CARNIVORE: quantité viande
+    /X\ ANIMAL <= CARNIVORE, HERBIVORE: type
+    ANIMAL: animal, poids
+    FOO, 11 ANIMAL, 1N BAR
+    BAR: bar
+```
+
+```
+ANIMAL (_animal_, poids, #bar, type, CARNIVORE, quantité viande, HERBIVORE, plante préférée)
+BAR (_bar_)
+```
+
+### `('ANIMAL', '11', '<=', 'T')`
+```
+    HERBIVORE: plante préférée
+    CARNIVORE: quantité viande
+    /T\ ANIMAL <= CARNIVORE, HERBIVORE: type
+    ANIMAL: animal, poids
+    FOO, 11 ANIMAL, 1N BAR
+    BAR: bar
+```
+
+```
+ANIMAL (_animal_, poids, #bar, type, CARNIVORE, quantité viande, HERBIVORE, plante préférée)
+BAR (_bar_)
+```
+
+### `('ANIMAL', '11', '<=', 'XT')`
+```
+    HERBIVORE: plante préférée
+    CARNIVORE: quantité viande
+    /XT\ ANIMAL <= CARNIVORE, HERBIVORE: type
+    ANIMAL: animal, poids
+    FOO, 11 ANIMAL, 1N BAR
+    BAR: bar
+```
+
+```
+ANIMAL (_animal_, poids, #bar, type, CARNIVORE, quantité viande, HERBIVORE, plante préférée)
+BAR (_bar_)
+```
+
+### `('ANIMAL', '11', '<-', '')`
+```
+    HERBIVORE: plante préférée
+    CARNIVORE: quantité viande
+    /\ ANIMAL <- CARNIVORE, HERBIVORE: type
+    ANIMAL: animal, poids
+    FOO, 11 ANIMAL, 1N BAR
+    BAR: bar
+```
+
+```
+ANIMAL (_animal_, poids, #bar, type, quantité viande, plante préférée)
+BAR (_bar_)
+```
+
+### `('ANIMAL', '11', '<-', 'X')`
+```
+    HERBIVORE: plante préférée
+    CARNIVORE: quantité viande
+    /X\ ANIMAL <- CARNIVORE, HERBIVORE: type
+    ANIMAL: animal, poids
+    FOO, 11 ANIMAL, 1N BAR
+    BAR: bar
+```
+
+```
+ANIMAL (_animal_, poids, #bar, type, quantité viande, plante préférée)
+BAR (_bar_)
+```
+
+### `('ANIMAL', '11', '<-', 'T')`
+```
+    HERBIVORE: plante préférée
+    CARNIVORE: quantité viande
+    /T\ ANIMAL <- CARNIVORE, HERBIVORE: type
+    ANIMAL: animal, poids
+    FOO, 11 ANIMAL, 1N BAR
+    BAR: bar
+```
+
+```
+ANIMAL (_animal_, poids, #bar, type, quantité viande, plante préférée)
+BAR (_bar_)
+```
+
+### `('ANIMAL', '11', '<-', 'XT')`
+```
+    HERBIVORE: plante préférée
+    CARNIVORE: quantité viande
+    /XT\ ANIMAL <- CARNIVORE, HERBIVORE: type
+    ANIMAL: animal, poids
+    FOO, 11 ANIMAL, 1N BAR
+    BAR: bar
+```
+
+```
+ANIMAL (_animal_, poids, #bar, type, quantité viande, plante préférée)
+BAR (_bar_)
+```
+
+### `('ANIMAL', '11', '->', '')`
+```
+    HERBIVORE: plante préférée
+    CARNIVORE: quantité viande
+    /\ ANIMAL -> CARNIVORE, HERBIVORE: type
+    ANIMAL: animal, poids
+    FOO, 11 ANIMAL, 1N BAR
+    BAR: bar
+```
+
+```
+HERBIVORE (_#animal_, plante préférée)
+CARNIVORE (_#animal_, quantité viande)
+ANIMAL (_animal_, poids, #bar, type)
+BAR (_bar_)
+```
+
+### `('ANIMAL', '11', '->', 'X')`
+```
+    HERBIVORE: plante préférée
+    CARNIVORE: quantité viande
+    /X\ ANIMAL -> CARNIVORE, HERBIVORE: type
+    ANIMAL: animal, poids
+    FOO, 11 ANIMAL, 1N BAR
+    BAR: bar
+```
+
+```
+HERBIVORE (_#animal_, plante préférée)
+CARNIVORE (_#animal_, quantité viande)
+ANIMAL (_animal_, poids, #bar, type)
+BAR (_bar_)
+```
+
+### `('ANIMAL', '11', '->', 'T')`
+```
+    HERBIVORE: plante préférée
+    CARNIVORE: quantité viande
+    /T\ ANIMAL -> CARNIVORE, HERBIVORE: type
+    ANIMAL: animal, poids
+    FOO, 11 ANIMAL, 1N BAR
+    BAR: bar
+```
+
+```
+HERBIVORE (_#animal_, plante préférée)
+CARNIVORE (_#animal_, quantité viande)
+ANIMAL (_animal_, poids, #bar, type)
+BAR (_bar_)
+```
+
+### `('ANIMAL', '11', '->', 'XT')`
+```
+    HERBIVORE: plante préférée
+    CARNIVORE: quantité viande
+    /XT\ ANIMAL -> CARNIVORE, HERBIVORE: type
+    ANIMAL: animal, poids
+    FOO, 11 ANIMAL, 1N BAR
+    BAR: bar
+```
+
+```
+HERBIVORE (_#animal_, plante préférée)
+CARNIVORE (_#animal_, quantité viande)
+ANIMAL (_animal_, poids, #bar, type)
+BAR (_bar_)
+```
+
+### `('ANIMAL', '11', '=>', '')`
+```
+    HERBIVORE: plante préférée
+    CARNIVORE: quantité viande
+    /\ ANIMAL => CARNIVORE, HERBIVORE: type
+    ANIMAL: animal, poids
+    FOO, 11 ANIMAL, 1N BAR
+    BAR: bar
+```
+
+```
+HERBIVORE (_#animal_, poids, #bar, plante préférée)
+CARNIVORE (_#animal_, poids, #bar, quantité viande)
+ANIMAL (_animal_, poids, #bar)
+BAR (_bar_)
+```
+
+### `('ANIMAL', '11', '=>', 'X')`
+```
+    HERBIVORE: plante préférée
+    CARNIVORE: quantité viande
+    /X\ ANIMAL => CARNIVORE, HERBIVORE: type
+    ANIMAL: animal, poids
+    FOO, 11 ANIMAL, 1N BAR
+    BAR: bar
+```
+
+```
+HERBIVORE (_#animal_, poids, #bar, plante préférée)
+CARNIVORE (_#animal_, poids, #bar, quantité viande)
+ANIMAL (_animal_, poids, #bar)
+BAR (_bar_)
+```
+
+### `('ANIMAL', '11', '=>', 'T')`
+```
+    HERBIVORE: plante préférée
+    CARNIVORE: quantité viande
+    /T\ ANIMAL => CARNIVORE, HERBIVORE: type
+    ANIMAL: animal, poids
+    FOO, 11 ANIMAL, 1N BAR
+    BAR: bar
+```
+
+```
+HERBIVORE (_#animal_, poids, #bar, plante préférée)
+CARNIVORE (_#animal_, poids, #bar, quantité viande)
+BAR (_bar_)
+```
+
+### `('ANIMAL', '11', '=>', 'XT')`
+```
+    HERBIVORE: plante préférée
+    CARNIVORE: quantité viande
+    /XT\ ANIMAL => CARNIVORE, HERBIVORE: type
+    ANIMAL: animal, poids
+    FOO, 11 ANIMAL, 1N BAR
+    BAR: bar
+```
+
+```
+HERBIVORE (_#animal_, poids, #bar, plante préférée)
+CARNIVORE (_#animal_, poids, #bar, quantité viande)
+BAR (_bar_)
+```
+
+### `('ANIMAL', '1N', '<=', '')`
+```
+    HERBIVORE: plante préférée
+    CARNIVORE: quantité viande
+    /\ ANIMAL <= CARNIVORE, HERBIVORE: type
+    ANIMAL: animal, poids
+    FOO, 1N ANIMAL, 1N BAR
+    BAR: bar
+```
+
+```
+ANIMAL (_animal_, poids, type, CARNIVORE, quantité viande, HERBIVORE, plante préférée)
+FOO (_#animal_, _#bar_)
+BAR (_bar_)
+```
+
+### `('ANIMAL', '1N', '<=', 'X')`
+```
+    HERBIVORE: plante préférée
+    CARNIVORE: quantité viande
+    /X\ ANIMAL <= CARNIVORE, HERBIVORE: type
+    ANIMAL: animal, poids
+    FOO, 1N ANIMAL, 1N BAR
+    BAR: bar
+```
+
+```
+ANIMAL (_animal_, poids, type, CARNIVORE, quantité viande, HERBIVORE, plante préférée)
+FOO (_#animal_, _#bar_)
+BAR (_bar_)
+```
+
+### `('ANIMAL', '1N', '<=', 'T')`
+```
+    HERBIVORE: plante préférée
+    CARNIVORE: quantité viande
+    /T\ ANIMAL <= CARNIVORE, HERBIVORE: type
+    ANIMAL: animal, poids
+    FOO, 1N ANIMAL, 1N BAR
+    BAR: bar
+```
+
+```
+ANIMAL (_animal_, poids, type, CARNIVORE, quantité viande, HERBIVORE, plante préférée)
+FOO (_#animal_, _#bar_)
+BAR (_bar_)
+```
+
+### `('ANIMAL', '1N', '<=', 'XT')`
+```
+    HERBIVORE: plante préférée
+    CARNIVORE: quantité viande
+    /XT\ ANIMAL <= CARNIVORE, HERBIVORE: type
+    ANIMAL: animal, poids
+    FOO, 1N ANIMAL, 1N BAR
+    BAR: bar
+```
+
+```
+ANIMAL (_animal_, poids, type, CARNIVORE, quantité viande, HERBIVORE, plante préférée)
+FOO (_#animal_, _#bar_)
+BAR (_bar_)
+```
+
+### `('ANIMAL', '1N', '<-', '')`
+```
+    HERBIVORE: plante préférée
+    CARNIVORE: quantité viande
+    /\ ANIMAL <- CARNIVORE, HERBIVORE: type
+    ANIMAL: animal, poids
+    FOO, 1N ANIMAL, 1N BAR
+    BAR: bar
+```
+
+```
+ANIMAL (_animal_, poids, type, quantité viande, plante préférée)
+FOO (_#animal_, _#bar_)
+BAR (_bar_)
+```
+
+### `('ANIMAL', '1N', '<-', 'X')`
+```
+    HERBIVORE: plante préférée
+    CARNIVORE: quantité viande
+    /X\ ANIMAL <- CARNIVORE, HERBIVORE: type
+    ANIMAL: animal, poids
+    FOO, 1N ANIMAL, 1N BAR
+    BAR: bar
+```
+
+```
+ANIMAL (_animal_, poids, type, quantité viande, plante préférée)
+FOO (_#animal_, _#bar_)
+BAR (_bar_)
+```
+
+### `('ANIMAL', '1N', '<-', 'T')`
+```
+    HERBIVORE: plante préférée
+    CARNIVORE: quantité viande
+    /T\ ANIMAL <- CARNIVORE, HERBIVORE: type
+    ANIMAL: animal, poids
+    FOO, 1N ANIMAL, 1N BAR
+    BAR: bar
+```
+
+```
+ANIMAL (_animal_, poids, type, quantité viande, plante préférée)
+FOO (_#animal_, _#bar_)
+BAR (_bar_)
+```
+
+### `('ANIMAL', '1N', '<-', 'XT')`
+```
+    HERBIVORE: plante préférée
+    CARNIVORE: quantité viande
+    /XT\ ANIMAL <- CARNIVORE, HERBIVORE: type
+    ANIMAL: animal, poids
+    FOO, 1N ANIMAL, 1N BAR
+    BAR: bar
+```
+
+```
+ANIMAL (_animal_, poids, type, quantité viande, plante préférée)
+FOO (_#animal_, _#bar_)
+BAR (_bar_)
+```
+
+### `('ANIMAL', '1N', '->', '')`
+```
+    HERBIVORE: plante préférée
+    CARNIVORE: quantité viande
+    /\ ANIMAL -> CARNIVORE, HERBIVORE: type
+    ANIMAL: animal, poids
+    FOO, 1N ANIMAL, 1N BAR
+    BAR: bar
+```
+
+```
+HERBIVORE (_#animal_, plante préférée)
+CARNIVORE (_#animal_, quantité viande)
+ANIMAL (_animal_, poids, type)
+FOO (_#animal_, _#bar_)
+BAR (_bar_)
+```
+
+### `('ANIMAL', '1N', '->', 'X')`
+```
+    HERBIVORE: plante préférée
+    CARNIVORE: quantité viande
+    /X\ ANIMAL -> CARNIVORE, HERBIVORE: type
+    ANIMAL: animal, poids
+    FOO, 1N ANIMAL, 1N BAR
+    BAR: bar
+```
+
+```
+HERBIVORE (_#animal_, plante préférée)
+CARNIVORE (_#animal_, quantité viande)
+ANIMAL (_animal_, poids, type)
+FOO (_#animal_, _#bar_)
+BAR (_bar_)
+```
+
+### `('ANIMAL', '1N', '->', 'T')`
+```
+    HERBIVORE: plante préférée
+    CARNIVORE: quantité viande
+    /T\ ANIMAL -> CARNIVORE, HERBIVORE: type
+    ANIMAL: animal, poids
+    FOO, 1N ANIMAL, 1N BAR
+    BAR: bar
+```
+
+```
+HERBIVORE (_#animal_, plante préférée)
+CARNIVORE (_#animal_, quantité viande)
+ANIMAL (_animal_, poids, type)
+FOO (_#animal_, _#bar_)
+BAR (_bar_)
+```
+
+### `('ANIMAL', '1N', '->', 'XT')`
+```
+    HERBIVORE: plante préférée
+    CARNIVORE: quantité viande
+    /XT\ ANIMAL -> CARNIVORE, HERBIVORE: type
+    ANIMAL: animal, poids
+    FOO, 1N ANIMAL, 1N BAR
+    BAR: bar
+```
+
+```
+HERBIVORE (_#animal_, plante préférée)
+CARNIVORE (_#animal_, quantité viande)
+ANIMAL (_animal_, poids, type)
+FOO (_#animal_, _#bar_)
+BAR (_bar_)
+```
+
+### `('ANIMAL', '1N', '=>', '')`
+```
+    HERBIVORE: plante préférée
+    CARNIVORE: quantité viande
+    /\ ANIMAL => CARNIVORE, HERBIVORE: type
+    ANIMAL: animal, poids
+    FOO, 1N ANIMAL, 1N BAR
+    BAR: bar
+```
+
+```
+HERBIVORE (_#animal_, poids, plante préférée)
+CARNIVORE (_#animal_, poids, quantité viande)
+ANIMAL (_animal_, poids)
+FOO (_#animal_, _#bar_)
+BAR (_bar_)
+```
+
+### `('ANIMAL', '1N', '=>', 'X')`
+```
+    HERBIVORE: plante préférée
+    CARNIVORE: quantité viande
+    /X\ ANIMAL => CARNIVORE, HERBIVORE: type
+    ANIMAL: animal, poids
+    FOO, 1N ANIMAL, 1N BAR
+    BAR: bar
+```
+
+```
+HERBIVORE (_#animal_, poids, plante préférée)
+CARNIVORE (_#animal_, poids, quantité viande)
+ANIMAL (_animal_, poids)
+FOO (_#animal_, _#bar_)
+BAR (_bar_)
+```
+
+### `('ANIMAL', '1N', '=>', 'T')`
+```
+    HERBIVORE: plante préférée
+    CARNIVORE: quantité viande
+    /T\ ANIMAL => CARNIVORE, HERBIVORE: type
+    ANIMAL: animal, poids
+    FOO, 1N ANIMAL, 1N BAR
+    BAR: bar
+```
+
+```
+HERBIVORE (_#animal_, poids, plante préférée)
+CARNIVORE (_#animal_, poids, quantité viande)
+FOO (_#animal_, _#bar_)
+BAR (_bar_)
+```
+
+### `('ANIMAL', '1N', '=>', 'XT')`
+```
+    HERBIVORE: plante préférée
+    CARNIVORE: quantité viande
+    /XT\ ANIMAL => CARNIVORE, HERBIVORE: type
+    ANIMAL: animal, poids
+    FOO, 1N ANIMAL, 1N BAR
+    BAR: bar
+```
+
+```
+HERBIVORE (_#animal_, poids, plante préférée)
+CARNIVORE (_#animal_, poids, quantité viande)
+FOO (_#animal_, _#bar_)
+BAR (_bar_)
 ```

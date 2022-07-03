@@ -17,8 +17,8 @@
   "compose_child_discriminant_XT": "{label}<item>Un champ entier _{label}_ est ajouté pour indiquer la nature de la spécialisation : 1 pour la première entité-fille, 2 pour la deuxième, etc. Jamais vide, du fait de la contrainte de totalité.</item>",
   "compose_parent_primary_key": "<ins>_#{label}_</ins><item>Le champ _{label}_ fait partie de la clef primaire de la table<primary></primary>. C'est une clef étrangère qui a migré directement à partir de l'entité-mère _{primary_relation_name}_.</item>",
   "compose_parent_attribute": "{label}<item>Le champ _{label}_ est un simple attribut. Il a migré à partir de l'entité-mère _{primary_relation_name}_ de façon à prévenir toute perte d'information lors de la suppression de celle-ci.</item>",
-  "compose_child_entity_name": "{label}<item>Un champ booléen _{label}_ est ajouté pour indiquer si on a affaire à la spécialisation de même nom.</item>",
-  "compose_child_key": "_#{label}_<item>Le champ _{label}_ est une clef étrangère. Il a migré à partir de l'entité-fille _{primary_relation_name}_ en perdant son caractère identifiant.</item>",
+  "compose_child_entity_name": "{label}<item>Un champ booléen _{label}_ est ajouté pour indiquer si on a affaire ou pas à la spécialisation de même nom.</item>",
+  "compose_child_foreign_key": "_#{label}_<item>Le champ _{label}_ est une clef étrangère. Il a migré à partir de l'entité-fille _{primary_relation_name}_, dans laquelle il avait déjà migré à travers une association de dépendance fonctionnelle.</item>",
   "compose_child_attribute": "{label}<item>Le champ _{label}_ a migré à partir de l'entité-fille _{primary_relation_name}_.</item>",
   "compose_relation": "**{this_relation_name}** ({columns})  ",
   "transform_single_column_relation": [

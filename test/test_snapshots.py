@@ -5,11 +5,13 @@ from pathlib import Path
 __import__("sys").path[0:0] = ["mocodo"]
 from mocodo.argument_parser import parsed_arguments
 from mocodo.common import Common
+from mocodo.file_helpers import read_contents
 from mocodo.font_metrics import font_metrics_factory
 from mocodo.mcd import Mcd
 from mocodo.mcd_to_svg import main as mcd_to_svg
 from mocodo.relations import *
 
+minimal_template = json.loads(read_contents("mocodo/resources/relation_templates/text.json"))
 
 clauses = """
 :
@@ -50,9 +52,9 @@ result.append("# Snapshots")
 result.append(f"## Source\n\n```{clauses}```\n")
 mcd = Mcd(clauses.split("\n"), get_font_metrics, **params)
 try:
-  os.remove(snapshot_dir / "snapshot_geo.json")
+    os.remove(snapshot_dir / "snapshot_geo.json")
 except:
-  pass
+    pass
 result.append(f"## SVG output\n")
 mcd_to_svg(mcd, common)
 result.append("![](snapshot_static.svg)\n")
@@ -64,5 +66,34 @@ for relation_path in Path("mocodo/resources/relation_templates/").glob("*.json")
     template = json.loads(relation_path.read_text("utf8"))
     output = relations.get_text(template).strip()
     result.append(f"### `{relation_path.name}`\n\n```{template['highlight']}\n{output}\n```\n")
+
+result.append("## Inheritance stress test\n")
+clauses = """
+    HERBIVORE: plante préférée
+    CARNIVORE: quantité viande
+    /\ ANIMAL -> CARNIVORE, HERBIVORE: type
+    ANIMAL: animal, poids
+    FOO, XX ENTITY, 1N BAR
+    BAR: bar
+"""
+for (entity, card, arrow, constraints) in itertools.product(
+    ("CARNIVORE", "ANIMAL"),
+    ("11", "1N"),
+    ("<=", "<-", "->", "=>"),
+    ("", "X", "T", "XT"),
+):
+    c = (
+        clauses.replace("XX", card)
+        .replace("/\\", f"/{constraints}\\")
+        .replace("->", arrow)
+        .replace("ENTITY", entity)
+    )
+    result.append(f"### `{(entity, card, arrow, constraints)}`")
+    result.append(f"```{c}```\n")
+    try:
+        t = Relations(Mcd(c.split("\n"), params), params)
+        result.append(f"```\n{t.get_text(minimal_template)}\n```\n")
+    except KeyError as e:
+        print(e)
 
 Path(f"{snapshot_dir}/snapshot.md").write_text("\n".join(result))

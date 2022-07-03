@@ -55,7 +55,9 @@ class Relations:
         self.freeze_strengthening_foreign_key_migration = set()
         self.relations_from_entities()
         self.strengthen_weak_identifiers()
+        self.process_parent_identifier_migration()
         self.process_associations()
+        self.process_inheritances()
         self.add_sorting_this_relation_number()
         self.make_primary_keys_first()
         self.may_disambiguate_with_leg_notes = set_disambiguation_strategy(params["disambiguation"])
@@ -120,6 +122,7 @@ class Relations:
             result.setdefault("compose_child_entity_name", result["compose_foreign_attribute"])
             result.setdefault("compose_child_key", result["compose_foreign_key"])
             result.setdefault("compose_child_attribute", result["compose_foreign_attribute"])
+            result.setdefault("compose_child_foreign_key", result["compose_foreign_key"])
             return result
         template = set_defaults(template)
         
@@ -293,73 +296,40 @@ class Relations:
                 else:
                     remaining_entity_names = u", ".join('"%s"' % entity.name for entity in remaining_entities)
                     raise MocodoError(17, _('Cycle of weak entities in {entities}.').format(entities=remaining_entity_names)) # fmt: skip
+    
+    def process_parent_identifier_migration(self):
+        for association in self.mcd.associations.values():
+            if not association.kind.startswith("inheritance"):
+                continue
+            parent_leg = association.legs[0]
+            if parent_leg.card in ("->", "=>"): # migration: parent > children
+                for child_leg in association.legs[1:]: 
+                    # migrate the parent's identifier
+                    self.relations[child_leg.entity_name]["columns"][0:0] = [{
+                        "attribute": attribute["attribute"],
+                        "data_type": attribute["data_type"],
+                        "primary_relation_name": self.mcd.entities[parent_leg.entity_name].cartouche,
+                        "leg_note": parent_leg.note,
+                        "association_name": association.cartouche,
+                        "primary": True,
+                        "foreign": True,
+                        "nature": "parent_primary_key"
+                    } for attribute in self.relations[parent_leg.entity_name]["columns"] if attribute["primary"]]
 
     def process_associations(self):
-        entities_to_delete = []
         for association in self.mcd.associations.values():
             if association.kind.startswith("inheritance"):
-                parent_leg = association.legs[0]
-                if parent_leg.card != "=>": # migration: triangle attributes > parent
-                    self.relations[parent_leg.entity_name]["columns"].extend({ 
-                        "attribute": attribute.label,
-                        "data_type": attribute.data_type or (f"INTEGER UNSIGNED{'' if 'T' in association.name else ' NOT NULL'}"),
-                        "primary_relation_name": None,
-                        "association_name": association.cartouche,
-                        "leg_note": None,
-                        "primary": False,
-                        "foreign": True,
-                        "nature": f"child_discriminant_{association.name}"
-                    } for attribute in association.attributes)
-                if parent_leg.card in ("->", "=>"): # migration: parent > children
-                    for child_leg in association.legs[1:]: 
-                        # migrate the parent's identifier (and possibly its attributes)
-                        self.relations[child_leg.entity_name]["columns"][0:0] = [{
-                            "attribute": attribute["attribute"],
-                            "data_type": attribute["data_type"],
-                            "primary_relation_name": self.mcd.entities[parent_leg.entity_name].cartouche,
-                            "leg_note": parent_leg.note,
-                            "association_name": association.cartouche,
-                            "primary": attribute["primary"],
-                            "foreign": True,
-                            "nature": "parent_primary_key" if attribute["primary"] else ("parent_foreign_key" if attribute["nature"] == "foreign_key" else "parent_attribute")
-                        } for attribute in self.relations[parent_leg.entity_name]["columns"] if attribute["primary"] or parent_leg.card == "=>"]
-                else: # migration: children > parent
-                    for child_leg in association.legs[1:]:
-                        if parent_leg.card == "<=":
-                            # make the child's name a boolean attribute of the parent
-                            self.relations[parent_leg.entity_name]["columns"].append({
-                                "attribute": child_leg.entity_name,
-                                "data_type": "BOOLEAN",
-                                "primary_relation_name": child_leg.entity_name,
-                                "leg_note": parent_leg.note,
-                                "association_name": association.cartouche,
-                                "primary": False,
-                                "foreign": True,
-                                "nature": "child_entity_name"
-                            })
-                        # migrate all child's attributes
-                        self.relations[parent_leg.entity_name]["columns"].extend({
-                            "attribute": attribute["attribute"],
-                            "data_type": attribute["data_type"],
-                            "primary_relation_name": child_leg.entity_name,
-                            "leg_note": parent_leg.note,
-                            "association_name": association.cartouche,
-                            "primary": attribute["primary"],
-                            "foreign": True,
-                            "nature": "child_key" if attribute["primary"] else "child_attribute"
-                        } for attribute in self.relations[child_leg.entity_name]["columns"])
-                        entities_to_delete.append(child_leg.entity_name)
-                if parent_leg.card == "=>" and "T" in association.name: # ensure the inheritance is total before suppressing the parent table
-                    entities_to_delete.append(parent_leg.entity_name)
                 continue
             (entity_name, entity_priority) = (None, 0)
-            may_identify = True
             for leg in association.legs:
-                current_entity_priority = (2 if leg.card[:2] == "11" else (1 if leg.card[1] == "1" else 0))
-                if current_entity_priority > entity_priority:
+                if leg.card[:2] == "11":
+                    entity_priority = 2
                     entity_name = leg.entity_name
-                    entity_priority = current_entity_priority
-                may_identify = may_identify and leg.may_identify
+                    break
+                if leg.card[1] == "1":
+                    entity_priority = 1
+                    entity_name = leg.entity_name
+            may_identify = all(leg.may_identify for leg in association.legs)
             if entity_name is None or (entity_priority == 1 and not may_identify):
                 self.relations[association.name] = { # make a relation of this association
                     "this_relation_name": association.cartouche,
@@ -411,6 +381,65 @@ class Relations:
                         "foreign": True,
                         "nature": "foreign_attribute",
                     } for attribute in association.attributes])
+    
+    def process_inheritances(self):
+        entities_to_delete = []
+        for association in self.mcd.associations.values():
+            if not association.kind.startswith("inheritance"):
+                continue
+            parent_leg = association.legs[0]
+            if parent_leg.card != "=>": # migration: triangle attributes > parent
+                self.relations[parent_leg.entity_name]["columns"].extend({ 
+                    "attribute": attribute.label,
+                    "data_type": attribute.data_type or (f"INTEGER UNSIGNED{'' if 'T' in association.name else ' NOT NULL'}"),
+                    "primary_relation_name": None,
+                    "association_name": association.cartouche,
+                    "leg_note": None,
+                    "primary": False,
+                    "foreign": True,
+                    "nature": f"child_discriminant_{association.name}"
+                } for attribute in association.attributes)
+            if parent_leg.card == "=>": # total migration: parent > children
+                for child_leg in association.legs[1:]: 
+                    # migrate the parent's attributes
+                    self.relations[child_leg.entity_name]["columns"][0:0] = [{
+                        "attribute": attribute["attribute"],
+                        "data_type": attribute["data_type"],
+                        "primary_relation_name": self.mcd.entities[parent_leg.entity_name].cartouche,
+                        "leg_note": parent_leg.note,
+                        "association_name": association.cartouche,
+                        "primary": False,
+                        "foreign": True,
+                        "nature": "parent_foreign_key" if attribute["nature"] == "foreign_key" else "parent_attribute"
+                    } for attribute in self.relations[parent_leg.entity_name]["columns"] if not attribute["primary"]]
+            elif parent_leg.card in ("<-", "<="): # migration: children > parent
+                for child_leg in association.legs[1:]:
+                    if parent_leg.card == "<=":
+                        # make the child's name a boolean attribute of the parent
+                        self.relations[parent_leg.entity_name]["columns"].append({
+                            "attribute": child_leg.entity_name,
+                            "data_type": "BOOLEAN",
+                            "primary_relation_name": child_leg.entity_name,
+                            "leg_note": parent_leg.note,
+                            "association_name": association.cartouche,
+                            "primary": False,
+                            "foreign": True,
+                            "nature": "child_entity_name"
+                        })
+                    # migrate all child's attributes
+                    self.relations[parent_leg.entity_name]["columns"].extend({
+                        "attribute": attribute["attribute"],
+                        "data_type": attribute["data_type"],
+                        "primary_relation_name": child_leg.entity_name,
+                        "leg_note": parent_leg.note,
+                        "association_name": association.cartouche,
+                        "primary": False,
+                        "foreign": True,
+                        "nature": "child_foreign_key" if attribute["nature"] == "foreign_key" else "child_attribute"
+                    } for attribute in self.relations[child_leg.entity_name]["columns"])
+                    entities_to_delete.append(child_leg.entity_name)
+            if parent_leg.card == "=>" and "T" in association.name: # ensure the inheritance is total before suppressing the parent table
+                entities_to_delete.append(parent_leg.entity_name)
         for entity_to_delete in entities_to_delete:
             del self.relations[entity_to_delete]
 
