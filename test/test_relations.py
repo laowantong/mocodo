@@ -41,10 +41,10 @@ class relationsTest(unittest.TestCase):
         self.assertEqual(d["relations"][0]["columns"][2]["association_name_titlecase"], u"Into")
         self.assertEqual(d["relations"][0]["columns"][2]["association_name_uppercase"], u"INTO")
         self.assertEqual(d["relations"][0]["columns"][2]["association_name"], u"Into")
-        self.assertEqual(d["relations"][0]["columns"][2]["primary_relation_name_lowercase"], u"riot")
-        self.assertEqual(d["relations"][0]["columns"][2]["primary_relation_name_titlecase"], u"Riot")
-        self.assertEqual(d["relations"][0]["columns"][2]["primary_relation_name_uppercase"], u"RIOT")
-        self.assertEqual(d["relations"][0]["columns"][2]["primary_relation_name"], u"Riot")
+        self.assertEqual(d["relations"][0]["columns"][2]["outer_source_lowercase"], u"riot")
+        self.assertEqual(d["relations"][0]["columns"][2]["outer_source_titlecase"], u"Riot")
+        self.assertEqual(d["relations"][0]["columns"][2]["outer_source_uppercase"], u"RIOT")
+        self.assertEqual(d["relations"][0]["columns"][2]["outer_source"], u"Riot")
         self.assertEqual(d["relations"][0]["columns"][3]["association_name_lower_case"], u"into")
         self.assertEqual(d["relations"][2]["this_relation_name_lowercase"], u"riot")
         self.assertEqual(d["relations"][2]["this_relation_name_titlecase"], u"Riot")
@@ -59,10 +59,10 @@ class relationsTest(unittest.TestCase):
         self.assertEqual(d["relations"][2]["columns"][0]["label_titlecase"], u"Clue")
         self.assertEqual(d["relations"][2]["columns"][0]["label_uppercase"], u"CLUE")
         self.assertEqual(d["relations"][2]["columns"][0]["label"], u"clue")
-        self.assertEqual(d["relations"][2]["columns"][0]["primary_relation_name_lowercase"], None)
-        self.assertEqual(d["relations"][2]["columns"][0]["primary_relation_name_titlecase"], None)
-        self.assertEqual(d["relations"][2]["columns"][0]["primary_relation_name_uppercase"], None)
-        self.assertEqual(d["relations"][2]["columns"][0]["primary_relation_name"], None)
+        self.assertEqual(d["relations"][2]["columns"][0]["outer_source_lowercase"], None)
+        self.assertEqual(d["relations"][2]["columns"][0]["outer_source_titlecase"], None)
+        self.assertEqual(d["relations"][2]["columns"][0]["outer_source_uppercase"], None)
+        self.assertEqual(d["relations"][2]["columns"][0]["outer_source"], None)
         self.assertEqual(d["relations"][2]["columns"][0]["raw_label_lowercase"], u"clue")
         self.assertEqual(d["relations"][2]["columns"][0]["raw_label_titlecase"], u"Clue")
         self.assertEqual(d["relations"][2]["columns"][0]["raw_label_uppercase"], u"CLUE")
@@ -93,7 +93,7 @@ class relationsTest(unittest.TestCase):
         self.assertEqual(d["relations"][0]["columns"][2]["label"], u"clue")
         self.assertEqual(d["relations"][0]["columns"][2]["nature"], u"foreign_key")
         self.assertEqual(d["relations"][0]["columns"][3]["label"], u"goat")
-        self.assertEqual(d["relations"][0]["columns"][3]["nature"], u"foreign_attribute")
+        self.assertEqual(d["relations"][0]["columns"][3]["nature"], u"outer_attribute")
         self.assertEqual(d["relations"][1]["this_relation_name"], u"Read")
         self.assertEqual(d["relations"][1]["columns"][0]["label"], u"wage")
         self.assertEqual(d["relations"][1]["columns"][0]["nature"], u"primary_key")
@@ -102,9 +102,9 @@ class relationsTest(unittest.TestCase):
         self.assertEqual(d["relations"][2]["columns"][0]["nature"], u"primary_key")
         self.assertEqual(d["relations"][3]["this_relation_name"], u"Tuck")
         self.assertEqual(d["relations"][3]["columns"][0]["label"], u"wage")
-        self.assertEqual(d["relations"][3]["columns"][0]["nature"], u"foreign_primary_key")
+        self.assertEqual(d["relations"][3]["columns"][0]["nature"], u"primary_foreign_key")
         self.assertEqual(d["relations"][3]["columns"][1]["label"], u"land")
-        self.assertEqual(d["relations"][3]["columns"][1]["nature"], u"foreign_primary_key")
+        self.assertEqual(d["relations"][3]["columns"][1]["nature"], u"primary_foreign_key")
         self.assertEqual(d["relations"][3]["columns"][2]["label"], u"thin")
         self.assertEqual(d["relations"][3]["columns"][2]["nature"], u"association_attribute")
 
@@ -131,7 +131,7 @@ class relationsTest(unittest.TestCase):
         d = json.loads(t.get_text(json_template))
         self.assertEqual(d["relations"][0]["this_relation_name"], u"Army")
         self.assertEqual(d["relations"][0]["columns"][0]["label"], u"mere")
-        self.assertEqual(d["relations"][0]["columns"][0]["nature"], u"foreign_primary_key")
+        self.assertEqual(d["relations"][0]["columns"][0]["nature"], u"primary_foreign_key")
         self.assertEqual(d["relations"][0]["columns"][1]["label"], u"fail")
         self.assertEqual(d["relations"][0]["columns"][1]["nature"], u"promoting_foreign_key")
         self.assertEqual(d["relations"][1]["this_relation_name"], u"Busy")
@@ -147,7 +147,7 @@ class relationsTest(unittest.TestCase):
         self.assertEqual(d["relations"][3]["columns"][1]["nature"], u"primary_key")
         self.assertEqual(d["relations"][4]["this_relation_name"], u"Poll")
         self.assertEqual(d["relations"][4]["columns"][0]["label"], u"mere")
-        self.assertEqual(d["relations"][4]["columns"][0]["nature"], u"foreign_primary_key")
+        self.assertEqual(d["relations"][4]["columns"][0]["nature"], u"primary_foreign_key")
         self.assertEqual(d["relations"][4]["columns"][1]["label"], u"clue")
         self.assertEqual(d["relations"][4]["columns"][1]["nature"], u"demoted_foreign_key")
         self.assertEqual(d["relations"][4]["columns"][2]["label"], u"book")
@@ -182,7 +182,6 @@ class relationsTest(unittest.TestCase):
         t = Relations(Mcd(clauses.split("\n"), params), params)
         self.assertEqual(t.get_text(minimal_template), text)
         d = json.loads(t.get_text(json_template))
-        self.assertEqual(d["relations"][0]["columns"][3]["foreign"], True)
         self.assertEqual(d["relations"][0]["columns"][3]["data_type"], None)
         self.assertEqual(d["relations"][0]["columns"][3]["nature"], u"foreign_key")
         self.assertEqual(d["relations"][0]["columns"][3]["attribute"], u"Num. SS")
@@ -191,7 +190,7 @@ class relationsTest(unittest.TestCase):
         self.assertEqual(d["relations"][0]["columns"][3]["raw_label"], u"Num. SS")
         self.assertEqual(d["relations"][0]["columns"][3]["association_name"], u"ENGENDRER")
         self.assertEqual(d["relations"][0]["columns"][3]["disambiguation_number"], 1)
-        self.assertEqual(d["relations"][0]["columns"][3]["primary_relation_name"], u"HOMME")
+        self.assertEqual(d["relations"][0]["columns"][3]["outer_source"], u"HOMME")
         self.assertEqual(d["title"], u"Untitled")
 
     def test_arrows_are_ignored(self):
@@ -371,14 +370,14 @@ class relationsTest(unittest.TestCase):
         self.assertEqual(t.get_text(minimal_template), text)
         d = json.loads(t.get_text(json_template))
         self.assertEqual(d["relations"][2]["this_relation_name"], u"LIGULA")
-        self.assertEqual(d["relations"][2]["columns"][0]["nature"], u"foreign_primary_key")
-        self.assertEqual(d["relations"][2]["columns"][0]["primary_relation_name"], u"LACUS")
-        self.assertEqual(d["relations"][2]["columns"][1]["nature"], u"foreign_primary_key")
-        self.assertEqual(d["relations"][2]["columns"][1]["primary_relation_name"], u"TELLUS")
+        self.assertEqual(d["relations"][2]["columns"][0]["nature"], u"primary_foreign_key")
+        self.assertEqual(d["relations"][2]["columns"][0]["outer_source"], u"LACUS")
+        self.assertEqual(d["relations"][2]["columns"][1]["nature"], u"primary_foreign_key")
+        self.assertEqual(d["relations"][2]["columns"][1]["outer_source"], u"TELLUS")
         self.assertEqual(d["relations"][2]["columns"][2]["nature"], u"demoted_foreign_key")
-        self.assertEqual(d["relations"][2]["columns"][2]["primary_relation_name"], u"EROS")
+        self.assertEqual(d["relations"][2]["columns"][2]["outer_source"], u"EROS")
         self.assertEqual(d["relations"][2]["columns"][3]["nature"], u"association_attribute")
-        self.assertEqual(d["relations"][2]["columns"][3]["primary_relation_name"], None)
+        self.assertEqual(d["relations"][2]["columns"][3]["outer_source"], None)
 
     def test_promoting_foreign_key(self):
         clauses = u"""
@@ -395,12 +394,12 @@ class relationsTest(unittest.TestCase):
         self.assertEqual(t.get_text(minimal_template), text)
         d = json.loads(t.get_text(json_template))
         self.assertEqual(d["relations"][2]["this_relation_name"], u"LIGULA")
-        self.assertEqual(d["relations"][2]["columns"][0]["nature"], u"foreign_primary_key")
-        self.assertEqual(d["relations"][2]["columns"][0]["primary_relation_name"], u"LACUS")
+        self.assertEqual(d["relations"][2]["columns"][0]["nature"], u"primary_foreign_key")
+        self.assertEqual(d["relations"][2]["columns"][0]["outer_source"], u"LACUS")
         self.assertEqual(d["relations"][2]["columns"][1]["nature"], u"promoting_foreign_key")
-        self.assertEqual(d["relations"][2]["columns"][1]["primary_relation_name"], u"EROS")
+        self.assertEqual(d["relations"][2]["columns"][1]["outer_source"], u"EROS")
         self.assertEqual(d["relations"][2]["columns"][2]["nature"], u"association_attribute")
-        self.assertEqual(d["relations"][2]["columns"][2]["primary_relation_name"], None)
+        self.assertEqual(d["relations"][2]["columns"][2]["outer_source"], None)
     
     def test_weak_entities(self):
         clauses = u"""
@@ -425,47 +424,42 @@ class relationsTest(unittest.TestCase):
         self.assertEqual(d["relations"][0]["columns"][0]["attribute"], u"code rue")
         self.assertEqual(d["relations"][0]["columns"][0]["label"], u"code rue")
         self.assertEqual(d["relations"][0]["columns"][0]["raw_label"], u"code rue")
-        self.assertEqual(d["relations"][0]["columns"][0]["foreign"], True)
         self.assertEqual(d["relations"][0]["columns"][0]["primary"], True)
         self.assertEqual(d["relations"][0]["columns"][0]["nature"], u"strengthening_primary_key")
         self.assertEqual(d["relations"][0]["columns"][0]["association_name"], u"Composer")
-        self.assertEqual(d["relations"][0]["columns"][0]["primary_relation_name"], u"Étage")
+        self.assertEqual(d["relations"][0]["columns"][0]["outer_source"], u"Étage")
         
         self.assertEqual(d["relations"][0]["columns"][1]["attribute"], u"num immeuble")
         self.assertEqual(d["relations"][0]["columns"][1]["label"], u"num immeuble")
         self.assertEqual(d["relations"][0]["columns"][1]["raw_label"], u"num immeuble")
-        self.assertEqual(d["relations"][0]["columns"][1]["foreign"], True)
         self.assertEqual(d["relations"][0]["columns"][1]["primary"], True)
         self.assertEqual(d["relations"][0]["columns"][1]["nature"], u"strengthening_primary_key")
         self.assertEqual(d["relations"][0]["columns"][1]["association_name"], u"Composer")
-        self.assertEqual(d["relations"][0]["columns"][1]["primary_relation_name"], u"Étage")
+        self.assertEqual(d["relations"][0]["columns"][1]["outer_source"], u"Étage")
         
         self.assertEqual(d["relations"][0]["columns"][2]["attribute"], u"num étage")
         self.assertEqual(d["relations"][0]["columns"][2]["label"], u"num étage")
         self.assertEqual(d["relations"][0]["columns"][2]["raw_label"], u"num étage")
-        self.assertEqual(d["relations"][0]["columns"][2]["foreign"], True)
         self.assertEqual(d["relations"][0]["columns"][2]["primary"], True)
         self.assertEqual(d["relations"][0]["columns"][2]["nature"], u"strengthening_primary_key")
         self.assertEqual(d["relations"][0]["columns"][2]["association_name"], u"Composer")
-        self.assertEqual(d["relations"][0]["columns"][2]["primary_relation_name"], u"Étage")
+        self.assertEqual(d["relations"][0]["columns"][2]["outer_source"], u"Étage")
         
         self.assertEqual(d["relations"][0]["columns"][3]["attribute"], u"num appart.")
         self.assertEqual(d["relations"][0]["columns"][3]["label"], u"num appart.")
         self.assertEqual(d["relations"][0]["columns"][3]["raw_label"], u"num appart.")
-        self.assertEqual(d["relations"][0]["columns"][3]["foreign"], False)
         self.assertEqual(d["relations"][0]["columns"][3]["primary"], True)
         self.assertEqual(d["relations"][0]["columns"][3]["nature"], u"primary_key")
         self.assertEqual(d["relations"][0]["columns"][3]["association_name"], None)
-        self.assertEqual(d["relations"][0]["columns"][3]["primary_relation_name"], None)
+        self.assertEqual(d["relations"][0]["columns"][3]["outer_source"], None)
         
         self.assertEqual(d["relations"][0]["columns"][4]["attribute"], u"nb pièces appart.")
         self.assertEqual(d["relations"][0]["columns"][4]["label"], u"nb pièces appart.")
         self.assertEqual(d["relations"][0]["columns"][4]["raw_label"], u"nb pièces appart.")
-        self.assertEqual(d["relations"][0]["columns"][4]["foreign"], False)
         self.assertEqual(d["relations"][0]["columns"][4]["primary"], False)
         self.assertEqual(d["relations"][0]["columns"][4]["nature"], u"normal_attribute")
         self.assertEqual(d["relations"][0]["columns"][4]["association_name"], None)
-        self.assertEqual(d["relations"][0]["columns"][4]["primary_relation_name"], None)
+        self.assertEqual(d["relations"][0]["columns"][4]["outer_source"], None)
         self.assertEqual(d["title"], u"Untitled")
     
     def test_reciprocical_relative_entities(self):
@@ -679,11 +673,9 @@ class relationsTest(unittest.TestCase):
         d = json.loads(t.get_text(json_template))
         self.assertEqual(d["relations"][0]["columns"][2]["attribute"], "CARNIVORE")
         self.assertEqual(d["relations"][0]["columns"][2]["data_type"], "BOOLEAN")
-        self.assertEqual(d["relations"][0]["columns"][2]["foreign"], True)
-        self.assertEqual(d["relations"][0]["columns"][2]["nature"], "child_entity_name")
+        self.assertEqual(d["relations"][0]["columns"][2]["nature"], "deleted_child_entity_name")
         self.assertEqual(d["relations"][0]["columns"][3]["attribute"], "quantité viande")
-        self.assertEqual(d["relations"][0]["columns"][3]["foreign"], True)
-        self.assertEqual(d["relations"][0]["columns"][3]["nature"], "child_attribute")
+        self.assertEqual(d["relations"][0]["columns"][3]["nature"], "deleted_child_attribute")
 
     def test_inheritance_leftwards_simple_arrow(self):
         clauses = """
@@ -699,11 +691,9 @@ class relationsTest(unittest.TestCase):
         self.assertEqual(t.get_text(minimal_template), text)
         d = json.loads(t.get_text(json_template))
         self.assertEqual(d["relations"][0]["columns"][2]["attribute"], "type")
-        self.assertEqual(d["relations"][0]["columns"][2]["foreign"], True)
         self.assertEqual(d["relations"][0]["columns"][2]["nature"], "child_discriminant_")
         self.assertEqual(d["relations"][0]["columns"][3]["attribute"], "quantité viande")
-        self.assertEqual(d["relations"][0]["columns"][3]["foreign"], True)
-        self.assertEqual(d["relations"][0]["columns"][3]["nature"], "child_attribute")
+        self.assertEqual(d["relations"][0]["columns"][3]["nature"], "deleted_child_attribute")
 
     def test_inheritance_rightwards_simple_arrow(self):
         clauses = """
@@ -721,13 +711,10 @@ class relationsTest(unittest.TestCase):
         self.assertEqual(t.get_text(minimal_template), text)
         d = json.loads(t.get_text(json_template))
         self.assertEqual(d["relations"][0]["columns"][1]["attribute"], "poids")
-        self.assertEqual(d["relations"][0]["columns"][1]["foreign"], False)
         self.assertEqual(d["relations"][0]["columns"][1]["nature"], "normal_attribute")
         self.assertEqual(d["relations"][0]["columns"][2]["attribute"], "type")
-        self.assertEqual(d["relations"][0]["columns"][2]["foreign"], True)
         self.assertEqual(d["relations"][0]["columns"][2]["nature"], "child_discriminant_")
         self.assertEqual(d["relations"][1]["columns"][0]["attribute"], "animal")
-        self.assertEqual(d["relations"][1]["columns"][0]["foreign"], True)
         self.assertEqual(d["relations"][1]["columns"][0]["nature"], "parent_primary_key")
 
     def test_inheritance_rightwards_double_arrow_with_totality(self):
@@ -738,20 +725,17 @@ class relationsTest(unittest.TestCase):
             HERBIVORE: plante préférée
         """
         text = """
-            CARNIVORE (_#animal_, poids, quantité viande)
-            HERBIVORE (_#animal_, poids, plante préférée)
+            CARNIVORE (_animal_, poids, quantité viande)
+            HERBIVORE (_animal_, poids, plante préférée)
         """.strip().replace("    ", "")
         t = Relations(Mcd(clauses.split("\n"), params), params)
         self.assertEqual(t.get_text(minimal_template), text)
         d = json.loads(t.get_text(json_template))
         self.assertEqual(d["relations"][0]["columns"][0]["attribute"], "animal")
-        self.assertEqual(d["relations"][0]["columns"][0]["foreign"], True)
-        self.assertEqual(d["relations"][0]["columns"][0]["nature"], "parent_primary_key")
+        self.assertEqual(d["relations"][0]["columns"][0]["nature"], "deleted_parent_primary_key")
         self.assertEqual(d["relations"][0]["columns"][1]["attribute"], "poids")
-        self.assertEqual(d["relations"][0]["columns"][1]["foreign"], True)
-        self.assertEqual(d["relations"][0]["columns"][1]["nature"], "parent_attribute")
+        self.assertEqual(d["relations"][0]["columns"][1]["nature"], "deleted_parent_attribute")
         self.assertEqual(d["relations"][0]["columns"][2]["attribute"], "quantité viande")
-        self.assertEqual(d["relations"][0]["columns"][2]["foreign"], False)
         self.assertEqual(d["relations"][0]["columns"][2]["nature"], "normal_attribute")
 
     def test_inheritance_rightwards_double_arrow_without_totality(self):
@@ -770,19 +754,14 @@ class relationsTest(unittest.TestCase):
         self.assertEqual(t.get_text(minimal_template), text)
         d = json.loads(t.get_text(json_template))
         self.assertEqual(d["relations"][0]["columns"][0]["attribute"], "animal")
-        self.assertEqual(d["relations"][0]["columns"][0]["foreign"], False)
         self.assertEqual(d["relations"][0]["columns"][0]["nature"], "primary_key")
         self.assertEqual(d["relations"][0]["columns"][1]["attribute"], "poids")
-        self.assertEqual(d["relations"][0]["columns"][1]["foreign"], False)
         self.assertEqual(d["relations"][0]["columns"][1]["nature"], "normal_attribute")
         self.assertEqual(d["relations"][1]["columns"][0]["attribute"], "animal")
-        self.assertEqual(d["relations"][1]["columns"][0]["foreign"], True)
         self.assertEqual(d["relations"][1]["columns"][0]["nature"], "parent_primary_key")
         self.assertEqual(d["relations"][1]["columns"][1]["attribute"], "poids")
-        self.assertEqual(d["relations"][1]["columns"][1]["foreign"], True)
         self.assertEqual(d["relations"][1]["columns"][1]["nature"], "parent_attribute")
         self.assertEqual(d["relations"][1]["columns"][2]["attribute"], "quantité viande")
-        self.assertEqual(d["relations"][1]["columns"][2]["foreign"], False)
         self.assertEqual(d["relations"][1]["columns"][2]["nature"], "normal_attribute")
 
     def test_inheritance_leftwards_simple_arrow_with_right_arrow(self):
@@ -799,11 +778,9 @@ class relationsTest(unittest.TestCase):
         self.assertEqual(t.get_text(minimal_template), text)
         d = json.loads(t.get_text(json_template))
         self.assertEqual(d["relations"][0]["columns"][2]["attribute"], "type")
-        self.assertEqual(d["relations"][0]["columns"][2]["foreign"], True)
         self.assertEqual(d["relations"][0]["columns"][2]["nature"], "child_discriminant_")
         self.assertEqual(d["relations"][0]["columns"][3]["attribute"], "quantité viande")
-        self.assertEqual(d["relations"][0]["columns"][3]["foreign"], True)
-        self.assertEqual(d["relations"][0]["columns"][3]["nature"], "child_attribute")
+        self.assertEqual(d["relations"][0]["columns"][3]["nature"], "deleted_child_attribute")
 
 
     def test_inheritance_leftwards_simple_arrow_with_left_arrow(self):
@@ -820,11 +797,9 @@ class relationsTest(unittest.TestCase):
         self.assertEqual(t.get_text(minimal_template), text)
         d = json.loads(t.get_text(json_template))
         self.assertEqual(d["relations"][0]["columns"][2]["attribute"], "type")
-        self.assertEqual(d["relations"][0]["columns"][2]["foreign"], True)
         self.assertEqual(d["relations"][0]["columns"][2]["nature"], "child_discriminant_")
         self.assertEqual(d["relations"][0]["columns"][3]["attribute"], "quantité viande")
-        self.assertEqual(d["relations"][0]["columns"][3]["foreign"], True)
-        self.assertEqual(d["relations"][0]["columns"][3]["nature"], "child_attribute")
+        self.assertEqual(d["relations"][0]["columns"][3]["nature"], "deleted_child_attribute")
 
     def test_inheritance_with_unique_child(self):
         clauses = """
@@ -840,8 +815,28 @@ class relationsTest(unittest.TestCase):
         self.assertEqual(t.get_text(minimal_template), text)
         d = json.loads(t.get_text(json_template))
         self.assertEqual(d["relations"][1]["columns"][0]["attribute"], "animal")
-        self.assertEqual(d["relations"][1]["columns"][0]["foreign"], True)
         self.assertEqual(d["relations"][1]["columns"][0]["nature"], "parent_primary_key")
+
+    def test_inheritance_with_distant_leg_note(self):
+        clauses = """
+            HERBIVORE: plante préférée
+            :
+            :
+
+            /XT\ ANIMAL => CARNIVORE, HERBIVORE: type alimentation
+            ANIMAL: nom, sexe, date naissance, date décès
+            A MÈRE, 01 ANIMAL, 0N> [mère] ANIMAL
+
+            CARNIVORE: quantité viande
+            :
+            :        
+        """
+        text = """
+            CARNIVORE (_nom_, sexe, date naissance, date décès, #nom mère, quantité viande)
+            HERBIVORE (_nom_, sexe, date naissance, date décès, #nom mère, plante préférée)
+        """.strip().replace("    ", "")
+        t = Relations(Mcd(clauses.split("\n"), params), params)
+        self.assertEqual(t.get_text(minimal_template), text)
 
 if __name__ == '__main__':
     unittest.main()

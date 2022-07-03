@@ -24,7 +24,7 @@
   "compose_primary_key": "\\prim{{{label}}}",
   "compose_normal_attribute": "\\attr{{{label}}}",
   "compose_foreign_key": "\\foreign{{{label}}}",
-  "compose_foreign_primary_key": "\\foreign{{\\prim{{{label}}}}}",
+  "compose_primary_foreign_key": "\\foreign{{\\prim{{{label}}}}}",
   "compose_relation": "  {this_relation_name_titlecase} & ({columns})\\\\",
   "transform_single_column_relation": [
     {

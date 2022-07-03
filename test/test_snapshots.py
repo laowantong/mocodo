@@ -12,6 +12,7 @@ from mocodo.mcd_to_svg import main as mcd_to_svg
 from mocodo.relations import *
 
 minimal_template = json.loads(read_contents("mocodo/resources/relation_templates/text.json"))
+debug_template = json.loads(read_contents("mocodo/resources/relation_templates/debug.json"))
 
 clauses = """
 :
@@ -69,30 +70,41 @@ for relation_path in Path("mocodo/resources/relation_templates/").glob("*.json")
 
 result.append("## Inheritance stress test\n")
 clauses = """
-    HERBIVORE: plante préférée
-    CARNIVORE: quantité viande
-    /\ ANIMAL -> CARNIVORE, HERBIVORE: type
-    ANIMAL: animal, poids
-    FOO, XX ENTITY, 1N BAR
-    BAR: bar
+    SUSCIPIT: orci, lorem
+    RHONCUS, 1N TRISTIS, 11 SUSCIPIT
+    :
+    :
+    SODALES: convallis, ipsum
+    VITAE, 11 QUAM, 1N SODALES
+    QUAM: cras, sed
+
+    CONSEQUAT: fermentum, dederit
+    ELIT, 11 TRISTIS, 1N CONSEQUAT
+    TRISTIS: magna, vestibulum
+    /\ TRISTIS -> SODALES, NEC, LACUS: type
+    NEC: pulvinar, audis
+    MOLLIS, 1N CURABITUR, 11 NEC
+    CURABITUR: gravida, amor
+
+    DIGNISSIM: tellus, terra
+    ALIQUET, 1N TRISTIS, 1N DIGNISSIM
+    :
+    :
+    LACUS: tempor, fugit
+    ULTRICES, 1N LIBERO, 1N LACUS
+    LIBERO: posuere, lacrima
 """
-for (entity, card, arrow, constraints) in itertools.product(
-    ("CARNIVORE", "ANIMAL"),
-    ("11", "1N"),
+for (arrow, constraints) in itertools.product(
     ("<=", "<-", "->", "=>"),
-    ("", "X", "T", "XT"),
+    ("", "XT"),
 ):
-    c = (
-        clauses.replace("XX", card)
-        .replace("/\\", f"/{constraints}\\")
-        .replace("->", arrow)
-        .replace("ENTITY", entity)
-    )
-    result.append(f"### `{(entity, card, arrow, constraints)}`")
+    c = clauses.replace("/\\", f"/{constraints}\\").replace("->", arrow)
+    result.append(f"### `{(arrow, constraints)}`")
     result.append(f"```{c}```\n")
     try:
         t = Relations(Mcd(c.split("\n"), params), params)
         result.append(f"```\n{t.get_text(minimal_template)}\n```\n")
+        result.append(t.get_text(debug_template))
     except KeyError as e:
         print(e)
 

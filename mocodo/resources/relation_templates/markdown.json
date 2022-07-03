@@ -3,7 +3,7 @@
   "highlight": "markdown",
   "compose_primary_key": "<ins>{label}</ins>",
   "compose_foreign_key": "_#{label}_",
-  "compose_foreign_primary_key": "<ins>_#{label}_</ins>",
+  "compose_primary_foreign_key": "<ins>_#{label}_</ins>",
   "compose_relation": "**{this_relation_name}** ({columns})",
   "transform_single_column_relation": [
     {

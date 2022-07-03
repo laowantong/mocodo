@@ -61,6 +61,41 @@ PÉRIODE: date début, _date fin
 :::
 ```
 
+### `debug.json`
+
+```markdown
+| Relation | Attribute | Nature | Source |
+|---|---|---|---|
+| ANIMAL | code espèce | `strengthening_primary_key` | ESPÈCE |
+| ANIMAL | nom | `primary_key` | None |
+| ANIMAL | sexe | `normal_attribute` | None |
+| ANIMAL | date naissance | `normal_attribute` | None |
+| ANIMAL | date décès | `normal_attribute` | None |
+| ANIMAL | code espèce mère | `foreign_key` | ANIMAL |
+| ANIMAL | nom mère | `foreign_key` | ANIMAL |
+| ANIMAL | type alimentation | `child_discriminant_` | None |
+| ANIMAL | CARNIVORE | `deleted_child_entity_name` | CARNIVORE |
+| ANIMAL | quantité viande | `deleted_child_attribute` | CARNIVORE |
+| ANIMAL | HERBIVORE | `deleted_child_entity_name` | HERBIVORE |
+| ANIMAL | plante préférée | `deleted_child_attribute` | HERBIVORE |
+| ENCLOS | num. enclos | `primary_key` | None |
+| ESPÈCE | code espèce | `primary_key` | None |
+| ESPÈCE | libellé | `normal_attribute` | None |
+| OCCUPE | code espèce | `primary_foreign_key` | ANIMAL |
+| OCCUPE | nom | `primary_foreign_key` | ANIMAL |
+| OCCUPE | num. enclos | `primary_foreign_key` | ENCLOS |
+| OCCUPE | date début | `demoted_foreign_key` | PÉRIODE |
+| OCCUPE | date fin | `demoted_foreign_key` | PÉRIODE |
+| PEUT COHABITER AVEC | code espèce | `primary_foreign_key` | ESPÈCE |
+| PEUT COHABITER AVEC | code espèce commensale | `primary_foreign_key` | ESPÈCE |
+| PEUT COHABITER AVEC | nb. max. commensaux | `association_attribute` | None |
+| PEUT VIVRE DANS | code espèce | `primary_foreign_key` | ESPÈCE |
+| PEUT VIVRE DANS | num. enclos | `primary_foreign_key` | ENCLOS |
+| PEUT VIVRE DANS | nb. max. congénères | `association_attribute` | None |
+| PÉRIODE | date début | `primary_key` | None |
+| PÉRIODE | date fin | `primary_key` | None |
+```
+
 ### `mysql.json`
 
 ```sql
@@ -160,9 +195,9 @@ ALTER TABLE `PEUT_VIVRE_DANS` ADD FOREIGN KEY (`code_espèce`) REFERENCES `ESPÈ
 - Les champs _code espèce mère_ et _nom mère_ sont des clefs étrangères. Ils ont migré à partir de l'entité _ANIMAL_ par l'association de dépendance fonctionnelle _A MÈRE_ en perdant leur caractère identifiant.  
 - Un champ entier _type alimentation_ est ajouté pour indiquer la nature de la spécialisation. Il est interprété comme un code binaire : bit 1 pour la première entité-fille, bit 2 pour la deuxième, etc. Peut être vide, du fait de l'absence de contrainte de totalité.  
 - Un champ booléen _CARNIVORE_ est ajouté pour indiquer si on a affaire ou pas à la spécialisation de même nom.  
-- Le champ _quantité viande_ a migré à partir de l'entité-fille _CARNIVORE_.  
+- Le champ _quantité viande_ était déjà un simple attribut de l'entité _ANIMAL_.  
 - Un champ booléen _HERBIVORE_ est ajouté pour indiquer si on a affaire ou pas à la spécialisation de même nom.  
-- Le champ _plante préférée_ a migré à partir de l'entité-fille _HERBIVORE_.  
+- Le champ _plante préférée_ était déjà un simple attribut de l'entité _ANIMAL_.  
 
 **ENCLOS** (<ins>num. enclos</ins>)  
 - **Avertissement.** Cette table ne comportant qu'un seul champ, on peut envisager de la supprimer.
@@ -290,11 +325,11 @@ ALTER TABLE "PEUT_VIVRE_DANS" ADD FOREIGN KEY ("code_espèce") REFERENCES "ESPÈ
     <span class='normal'>date décès</span>,
     <span class='foreign'>#code espèce mère</span>,
     <span class='foreign'>#nom mère</span>,
-    <span class='foreign'>type alimentation</span>,
-    <span class='foreign'>CARNIVORE</span>,
-    <span class='foreign'>quantité viande</span>,
-    <span class='foreign'>HERBIVORE</span>,
-    <span class='foreign'>plante préférée</span>
+    <span class='normal'>type alimentation</span>,
+    <span class='normal'>CARNIVORE</span>,
+    <span class='normal'>quantité viande</span>,
+    <span class='normal'>HERBIVORE</span>,
+    <span class='normal'>plante préférée</span>
   )
   <ul>
     <li>Le champ <i>code espèce</i> fait partie de la clef primaire de la table. Il a migré à partir de l'entité <i>ESPÈCE</i> pour renforcer l'identifiant.</li>
@@ -304,9 +339,9 @@ ALTER TABLE "PEUT_VIVRE_DANS" ADD FOREIGN KEY ("code_espèce") REFERENCES "ESPÈ
     <li>Le champ <i>nom mère</i> est une clef étrangère. Il a migré à partir de l'entité <i>ANIMAL</i> par l'association de dépendance fonctionnelle <i>A MÈRE</i> en perdant son caractère identifiant.</li>
     <li>Un champ entier <i>type alimentation</i> est ajouté pour indiquer la nature de la spécialisation. Il est interprété comme un code binaire : bit 1 pour la première entité-fille, bit 2 pour la deuxième, etc. Peut être vide, du fait de l'absence de contrainte de totalité.</li>
     <li>Un champ booléen <i>CARNIVORE</i> est ajouté pour indiquer si on a affaire ou pas à la spécialisation de même nom.</li>
-    <li>Le champ <i>quantité viande</i> a migré à partir de l'entité-fille <i>CARNIVORE</i>.</li>
+    <li>Le champ <i>quantité viande</i> a migré à partir de l'entité-fille <i>CARNIVORE</i> (non transformée en relation).</li>
     <li>Un champ booléen <i>HERBIVORE</i> est ajouté pour indiquer si on a affaire ou pas à la spécialisation de même nom.</li>
-    <li>Le champ <i>plante préférée</i> a migré à partir de l'entité-fille <i>HERBIVORE</i>.</li>
+    <li>Le champ <i>plante préférée</i> a migré à partir de l'entité-fille <i>HERBIVORE</i> (non transformée en relation).</li>
   </ul>
 </div>
 
@@ -487,7 +522,6 @@ CREATE TABLE "PÉRIODE" (
           "label_uppercase": "CODE ESPÈCE",
           "label_titlecase": "Code espèce",
           "primary": true,
-          "foreign": true,
           "nature": "strengthening_primary_key",
           "data_type": null,
           "association_name": "DF",
@@ -495,10 +529,10 @@ CREATE TABLE "PÉRIODE" (
           "association_name_uppercase": "DF",
           "association_name_titlecase": "Df",
           "leg_note": null,
-          "primary_relation_name": "ESPÈCE",
-          "primary_relation_name_lowercase": "espèce",
-          "primary_relation_name_uppercase": "ESPÈCE",
-          "primary_relation_name_titlecase": "Espèce"
+          "outer_source": "ESPÈCE",
+          "outer_source_lowercase": "espèce",
+          "outer_source_uppercase": "ESPÈCE",
+          "outer_source_titlecase": "Espèce"
         },
         {
           "attribute": "nom",
@@ -512,7 +546,6 @@ CREATE TABLE "PÉRIODE" (
           "label_uppercase": "NOM",
           "label_titlecase": "Nom",
           "primary": true,
-          "foreign": false,
           "nature": "primary_key",
           "data_type": null,
           "association_name": null,
@@ -520,10 +553,10 @@ CREATE TABLE "PÉRIODE" (
           "association_name_uppercase": null,
           "association_name_titlecase": null,
           "leg_note": null,
-          "primary_relation_name": null,
-          "primary_relation_name_lowercase": null,
-          "primary_relation_name_uppercase": null,
-          "primary_relation_name_titlecase": null
+          "outer_source": null,
+          "outer_source_lowercase": null,
+          "outer_source_uppercase": null,
+          "outer_source_titlecase": null
         },
         {
           "attribute": "sexe",
@@ -537,7 +570,6 @@ CREATE TABLE "PÉRIODE" (
           "label_uppercase": "SEXE",
           "label_titlecase": "Sexe",
           "primary": false,
-          "foreign": false,
           "nature": "normal_attribute",
           "data_type": null,
           "association_name": null,
@@ -545,10 +577,10 @@ CREATE TABLE "PÉRIODE" (
           "association_name_uppercase": null,
           "association_name_titlecase": null,
           "leg_note": null,
-          "primary_relation_name": null,
-          "primary_relation_name_lowercase": null,
-          "primary_relation_name_uppercase": null,
-          "primary_relation_name_titlecase": null
+          "outer_source": null,
+          "outer_source_lowercase": null,
+          "outer_source_uppercase": null,
+          "outer_source_titlecase": null
         },
         {
           "attribute": "date naissance",
@@ -562,7 +594,6 @@ CREATE TABLE "PÉRIODE" (
           "label_uppercase": "DATE NAISSANCE",
           "label_titlecase": "Date naissance",
           "primary": false,
-          "foreign": false,
           "nature": "normal_attribute",
           "data_type": null,
           "association_name": null,
@@ -570,10 +601,10 @@ CREATE TABLE "PÉRIODE" (
           "association_name_uppercase": null,
           "association_name_titlecase": null,
           "leg_note": null,
-          "primary_relation_name": null,
-          "primary_relation_name_lowercase": null,
-          "primary_relation_name_uppercase": null,
-          "primary_relation_name_titlecase": null
+          "outer_source": null,
+          "outer_source_lowercase": null,
+          "outer_source_uppercase": null,
+          "outer_source_titlecase": null
         },
         {
           "attribute": "date décès",
@@ -587,7 +618,6 @@ CREATE TABLE "PÉRIODE" (
           "label_uppercase": "DATE DÉCÈS",
           "label_titlecase": "Date décès",
           "primary": false,
-          "foreign": false,
           "nature": "normal_attribute",
           "data_type": null,
           "association_name": null,
@@ -595,10 +625,10 @@ CREATE TABLE "PÉRIODE" (
           "association_name_uppercase": null,
           "association_name_titlecase": null,
           "leg_note": null,
-          "primary_relation_name": null,
-          "primary_relation_name_lowercase": null,
-          "primary_relation_name_uppercase": null,
-          "primary_relation_name_titlecase": null
+          "outer_source": null,
+          "outer_source_lowercase": null,
+          "outer_source_uppercase": null,
+          "outer_source_titlecase": null
         },
         {
           "attribute": "code espèce",
@@ -612,7 +642,6 @@ CREATE TABLE "PÉRIODE" (
           "label_uppercase": "CODE ESPÈCE MÈRE",
           "label_titlecase": "Code espèce mère",
           "primary": false,
-          "foreign": true,
           "nature": "foreign_key",
           "data_type": null,
           "association_name": "A MÈRE",
@@ -620,10 +649,10 @@ CREATE TABLE "PÉRIODE" (
           "association_name_uppercase": "A MÈRE",
           "association_name_titlecase": "A mère",
           "leg_note": "mère",
-          "primary_relation_name": "ANIMAL",
-          "primary_relation_name_lowercase": "animal",
-          "primary_relation_name_uppercase": "ANIMAL",
-          "primary_relation_name_titlecase": "Animal"
+          "outer_source": "ANIMAL",
+          "outer_source_lowercase": "animal",
+          "outer_source_uppercase": "ANIMAL",
+          "outer_source_titlecase": "Animal"
         },
         {
           "attribute": "nom",
@@ -637,7 +666,6 @@ CREATE TABLE "PÉRIODE" (
           "label_uppercase": "NOM MÈRE",
           "label_titlecase": "Nom mère",
           "primary": false,
-          "foreign": true,
           "nature": "foreign_key",
           "data_type": null,
           "association_name": "A MÈRE",
@@ -645,10 +673,10 @@ CREATE TABLE "PÉRIODE" (
           "association_name_uppercase": "A MÈRE",
           "association_name_titlecase": "A mère",
           "leg_note": "mère",
-          "primary_relation_name": "ANIMAL",
-          "primary_relation_name_lowercase": "animal",
-          "primary_relation_name_uppercase": "ANIMAL",
-          "primary_relation_name_titlecase": "Animal"
+          "outer_source": "ANIMAL",
+          "outer_source_lowercase": "animal",
+          "outer_source_uppercase": "ANIMAL",
+          "outer_source_titlecase": "Animal"
         },
         {
           "attribute": "type alimentation",
@@ -662,7 +690,6 @@ CREATE TABLE "PÉRIODE" (
           "label_uppercase": "TYPE ALIMENTATION",
           "label_titlecase": "Type alimentation",
           "primary": false,
-          "foreign": true,
           "nature": "child_discriminant_",
           "data_type": "INTEGER UNSIGNED NOT NULL",
           "association_name": "",
@@ -670,10 +697,10 @@ CREATE TABLE "PÉRIODE" (
           "association_name_uppercase": "",
           "association_name_titlecase": "",
           "leg_note": null,
-          "primary_relation_name": null,
-          "primary_relation_name_lowercase": null,
-          "primary_relation_name_uppercase": null,
-          "primary_relation_name_titlecase": null
+          "outer_source": null,
+          "outer_source_lowercase": null,
+          "outer_source_uppercase": null,
+          "outer_source_titlecase": null
         },
         {
           "attribute": "CARNIVORE",
@@ -687,18 +714,17 @@ CREATE TABLE "PÉRIODE" (
           "label_uppercase": "CARNIVORE",
           "label_titlecase": "Carnivore",
           "primary": false,
-          "foreign": true,
-          "nature": "child_entity_name",
+          "nature": "deleted_child_entity_name",
           "data_type": "BOOLEAN",
           "association_name": "",
           "association_name_lower_case": "",
           "association_name_uppercase": "",
           "association_name_titlecase": "",
           "leg_note": null,
-          "primary_relation_name": "CARNIVORE",
-          "primary_relation_name_lowercase": "carnivore",
-          "primary_relation_name_uppercase": "CARNIVORE",
-          "primary_relation_name_titlecase": "Carnivore"
+          "outer_source": "CARNIVORE",
+          "outer_source_lowercase": "carnivore",
+          "outer_source_uppercase": "CARNIVORE",
+          "outer_source_titlecase": "Carnivore"
         },
         {
           "attribute": "quantité viande",
@@ -712,18 +738,17 @@ CREATE TABLE "PÉRIODE" (
           "label_uppercase": "QUANTITÉ VIANDE",
           "label_titlecase": "Quantité viande",
           "primary": false,
-          "foreign": true,
-          "nature": "child_attribute",
+          "nature": "deleted_child_attribute",
           "data_type": null,
           "association_name": "",
           "association_name_lower_case": "",
           "association_name_uppercase": "",
           "association_name_titlecase": "",
           "leg_note": null,
-          "primary_relation_name": "CARNIVORE",
-          "primary_relation_name_lowercase": "carnivore",
-          "primary_relation_name_uppercase": "CARNIVORE",
-          "primary_relation_name_titlecase": "Carnivore"
+          "outer_source": "CARNIVORE",
+          "outer_source_lowercase": "carnivore",
+          "outer_source_uppercase": "CARNIVORE",
+          "outer_source_titlecase": "Carnivore"
         },
         {
           "attribute": "HERBIVORE",
@@ -737,18 +762,17 @@ CREATE TABLE "PÉRIODE" (
           "label_uppercase": "HERBIVORE",
           "label_titlecase": "Herbivore",
           "primary": false,
-          "foreign": true,
-          "nature": "child_entity_name",
+          "nature": "deleted_child_entity_name",
           "data_type": "BOOLEAN",
           "association_name": "",
           "association_name_lower_case": "",
           "association_name_uppercase": "",
           "association_name_titlecase": "",
           "leg_note": null,
-          "primary_relation_name": "HERBIVORE",
-          "primary_relation_name_lowercase": "herbivore",
-          "primary_relation_name_uppercase": "HERBIVORE",
-          "primary_relation_name_titlecase": "Herbivore"
+          "outer_source": "HERBIVORE",
+          "outer_source_lowercase": "herbivore",
+          "outer_source_uppercase": "HERBIVORE",
+          "outer_source_titlecase": "Herbivore"
         },
         {
           "attribute": "plante préférée",
@@ -762,18 +786,17 @@ CREATE TABLE "PÉRIODE" (
           "label_uppercase": "PLANTE PRÉFÉRÉE",
           "label_titlecase": "Plante préférée",
           "primary": false,
-          "foreign": true,
-          "nature": "child_attribute",
+          "nature": "deleted_child_attribute",
           "data_type": null,
           "association_name": "",
           "association_name_lower_case": "",
           "association_name_uppercase": "",
           "association_name_titlecase": "",
           "leg_note": null,
-          "primary_relation_name": "HERBIVORE",
-          "primary_relation_name_lowercase": "herbivore",
-          "primary_relation_name_uppercase": "HERBIVORE",
-          "primary_relation_name_titlecase": "Herbivore"
+          "outer_source": "HERBIVORE",
+          "outer_source_lowercase": "herbivore",
+          "outer_source_uppercase": "HERBIVORE",
+          "outer_source_titlecase": "Herbivore"
         }
       ]
     },
@@ -795,7 +818,6 @@ CREATE TABLE "PÉRIODE" (
           "label_uppercase": "NUM. ENCLOS",
           "label_titlecase": "Num. enclos",
           "primary": true,
-          "foreign": false,
           "nature": "primary_key",
           "data_type": null,
           "association_name": null,
@@ -803,10 +825,10 @@ CREATE TABLE "PÉRIODE" (
           "association_name_uppercase": null,
           "association_name_titlecase": null,
           "leg_note": null,
-          "primary_relation_name": null,
-          "primary_relation_name_lowercase": null,
-          "primary_relation_name_uppercase": null,
-          "primary_relation_name_titlecase": null
+          "outer_source": null,
+          "outer_source_lowercase": null,
+          "outer_source_uppercase": null,
+          "outer_source_titlecase": null
         }
       ]
     },
@@ -828,7 +850,6 @@ CREATE TABLE "PÉRIODE" (
           "label_uppercase": "CODE ESPÈCE",
           "label_titlecase": "Code espèce",
           "primary": true,
-          "foreign": false,
           "nature": "primary_key",
           "data_type": null,
           "association_name": null,
@@ -836,10 +857,10 @@ CREATE TABLE "PÉRIODE" (
           "association_name_uppercase": null,
           "association_name_titlecase": null,
           "leg_note": null,
-          "primary_relation_name": null,
-          "primary_relation_name_lowercase": null,
-          "primary_relation_name_uppercase": null,
-          "primary_relation_name_titlecase": null
+          "outer_source": null,
+          "outer_source_lowercase": null,
+          "outer_source_uppercase": null,
+          "outer_source_titlecase": null
         },
         {
           "attribute": "libellé",
@@ -853,7 +874,6 @@ CREATE TABLE "PÉRIODE" (
           "label_uppercase": "LIBELLÉ",
           "label_titlecase": "Libellé",
           "primary": false,
-          "foreign": false,
           "nature": "normal_attribute",
           "data_type": null,
           "association_name": null,
@@ -861,10 +881,10 @@ CREATE TABLE "PÉRIODE" (
           "association_name_uppercase": null,
           "association_name_titlecase": null,
           "leg_note": null,
-          "primary_relation_name": null,
-          "primary_relation_name_lowercase": null,
-          "primary_relation_name_uppercase": null,
-          "primary_relation_name_titlecase": null
+          "outer_source": null,
+          "outer_source_lowercase": null,
+          "outer_source_uppercase": null,
+          "outer_source_titlecase": null
         }
       ]
     },
@@ -886,18 +906,17 @@ CREATE TABLE "PÉRIODE" (
           "label_uppercase": "CODE ESPÈCE",
           "label_titlecase": "Code espèce",
           "primary": true,
-          "foreign": true,
-          "nature": "foreign_primary_key",
+          "nature": "primary_foreign_key",
           "data_type": null,
           "association_name": "OCCUPE",
           "association_name_lower_case": "occupe",
           "association_name_uppercase": "OCCUPE",
           "association_name_titlecase": "Occupe",
           "leg_note": null,
-          "primary_relation_name": "ANIMAL",
-          "primary_relation_name_lowercase": "animal",
-          "primary_relation_name_uppercase": "ANIMAL",
-          "primary_relation_name_titlecase": "Animal"
+          "outer_source": "ANIMAL",
+          "outer_source_lowercase": "animal",
+          "outer_source_uppercase": "ANIMAL",
+          "outer_source_titlecase": "Animal"
         },
         {
           "attribute": "nom",
@@ -911,18 +930,17 @@ CREATE TABLE "PÉRIODE" (
           "label_uppercase": "NOM",
           "label_titlecase": "Nom",
           "primary": true,
-          "foreign": true,
-          "nature": "foreign_primary_key",
+          "nature": "primary_foreign_key",
           "data_type": null,
           "association_name": "OCCUPE",
           "association_name_lower_case": "occupe",
           "association_name_uppercase": "OCCUPE",
           "association_name_titlecase": "Occupe",
           "leg_note": null,
-          "primary_relation_name": "ANIMAL",
-          "primary_relation_name_lowercase": "animal",
-          "primary_relation_name_uppercase": "ANIMAL",
-          "primary_relation_name_titlecase": "Animal"
+          "outer_source": "ANIMAL",
+          "outer_source_lowercase": "animal",
+          "outer_source_uppercase": "ANIMAL",
+          "outer_source_titlecase": "Animal"
         },
         {
           "attribute": "num. enclos",
@@ -936,18 +954,17 @@ CREATE TABLE "PÉRIODE" (
           "label_uppercase": "NUM. ENCLOS",
           "label_titlecase": "Num. enclos",
           "primary": true,
-          "foreign": true,
-          "nature": "foreign_primary_key",
+          "nature": "primary_foreign_key",
           "data_type": null,
           "association_name": "OCCUPE",
           "association_name_lower_case": "occupe",
           "association_name_uppercase": "OCCUPE",
           "association_name_titlecase": "Occupe",
           "leg_note": null,
-          "primary_relation_name": "ENCLOS",
-          "primary_relation_name_lowercase": "enclos",
-          "primary_relation_name_uppercase": "ENCLOS",
-          "primary_relation_name_titlecase": "Enclos"
+          "outer_source": "ENCLOS",
+          "outer_source_lowercase": "enclos",
+          "outer_source_uppercase": "ENCLOS",
+          "outer_source_titlecase": "Enclos"
         },
         {
           "attribute": "date début",
@@ -961,7 +978,6 @@ CREATE TABLE "PÉRIODE" (
           "label_uppercase": "DATE DÉBUT",
           "label_titlecase": "Date début",
           "primary": false,
-          "foreign": true,
           "nature": "demoted_foreign_key",
           "data_type": null,
           "association_name": "OCCUPE",
@@ -969,10 +985,10 @@ CREATE TABLE "PÉRIODE" (
           "association_name_uppercase": "OCCUPE",
           "association_name_titlecase": "Occupe",
           "leg_note": null,
-          "primary_relation_name": "PÉRIODE",
-          "primary_relation_name_lowercase": "période",
-          "primary_relation_name_uppercase": "PÉRIODE",
-          "primary_relation_name_titlecase": "Période"
+          "outer_source": "PÉRIODE",
+          "outer_source_lowercase": "période",
+          "outer_source_uppercase": "PÉRIODE",
+          "outer_source_titlecase": "Période"
         },
         {
           "attribute": "date fin",
@@ -986,7 +1002,6 @@ CREATE TABLE "PÉRIODE" (
           "label_uppercase": "DATE FIN",
           "label_titlecase": "Date fin",
           "primary": false,
-          "foreign": true,
           "nature": "demoted_foreign_key",
           "data_type": null,
           "association_name": "OCCUPE",
@@ -994,10 +1009,10 @@ CREATE TABLE "PÉRIODE" (
           "association_name_uppercase": "OCCUPE",
           "association_name_titlecase": "Occupe",
           "leg_note": null,
-          "primary_relation_name": "PÉRIODE",
-          "primary_relation_name_lowercase": "période",
-          "primary_relation_name_uppercase": "PÉRIODE",
-          "primary_relation_name_titlecase": "Période"
+          "outer_source": "PÉRIODE",
+          "outer_source_lowercase": "période",
+          "outer_source_uppercase": "PÉRIODE",
+          "outer_source_titlecase": "Période"
         }
       ]
     },
@@ -1019,18 +1034,17 @@ CREATE TABLE "PÉRIODE" (
           "label_uppercase": "CODE ESPÈCE",
           "label_titlecase": "Code espèce",
           "primary": true,
-          "foreign": true,
-          "nature": "foreign_primary_key",
+          "nature": "primary_foreign_key",
           "data_type": null,
           "association_name": "PEUT COHABITER AVEC",
           "association_name_lower_case": "peut cohabiter avec",
           "association_name_uppercase": "PEUT COHABITER AVEC",
           "association_name_titlecase": "Peut cohabiter avec",
           "leg_note": null,
-          "primary_relation_name": "ESPÈCE",
-          "primary_relation_name_lowercase": "espèce",
-          "primary_relation_name_uppercase": "ESPÈCE",
-          "primary_relation_name_titlecase": "Espèce"
+          "outer_source": "ESPÈCE",
+          "outer_source_lowercase": "espèce",
+          "outer_source_uppercase": "ESPÈCE",
+          "outer_source_titlecase": "Espèce"
         },
         {
           "attribute": "code espèce",
@@ -1044,18 +1058,17 @@ CREATE TABLE "PÉRIODE" (
           "label_uppercase": "CODE ESPÈCE COMMENSALE",
           "label_titlecase": "Code espèce commensale",
           "primary": true,
-          "foreign": true,
-          "nature": "foreign_primary_key",
+          "nature": "primary_foreign_key",
           "data_type": null,
           "association_name": "PEUT COHABITER AVEC",
           "association_name_lower_case": "peut cohabiter avec",
           "association_name_uppercase": "PEUT COHABITER AVEC",
           "association_name_titlecase": "Peut cohabiter avec",
           "leg_note": "commensale",
-          "primary_relation_name": "ESPÈCE",
-          "primary_relation_name_lowercase": "espèce",
-          "primary_relation_name_uppercase": "ESPÈCE",
-          "primary_relation_name_titlecase": "Espèce"
+          "outer_source": "ESPÈCE",
+          "outer_source_lowercase": "espèce",
+          "outer_source_uppercase": "ESPÈCE",
+          "outer_source_titlecase": "Espèce"
         },
         {
           "attribute": "nb. max. commensaux",
@@ -1069,7 +1082,6 @@ CREATE TABLE "PÉRIODE" (
           "label_uppercase": "NB. MAX. COMMENSAUX",
           "label_titlecase": "Nb. max. commensaux",
           "primary": false,
-          "foreign": false,
           "nature": "association_attribute",
           "data_type": null,
           "association_name": "PEUT COHABITER AVEC",
@@ -1077,10 +1089,10 @@ CREATE TABLE "PÉRIODE" (
           "association_name_uppercase": "PEUT COHABITER AVEC",
           "association_name_titlecase": "Peut cohabiter avec",
           "leg_note": null,
-          "primary_relation_name": null,
-          "primary_relation_name_lowercase": null,
-          "primary_relation_name_uppercase": null,
-          "primary_relation_name_titlecase": null
+          "outer_source": null,
+          "outer_source_lowercase": null,
+          "outer_source_uppercase": null,
+          "outer_source_titlecase": null
         }
       ]
     },
@@ -1102,18 +1114,17 @@ CREATE TABLE "PÉRIODE" (
           "label_uppercase": "CODE ESPÈCE",
           "label_titlecase": "Code espèce",
           "primary": true,
-          "foreign": true,
-          "nature": "foreign_primary_key",
+          "nature": "primary_foreign_key",
           "data_type": null,
           "association_name": "PEUT VIVRE DANS",
           "association_name_lower_case": "peut vivre dans",
           "association_name_uppercase": "PEUT VIVRE DANS",
           "association_name_titlecase": "Peut vivre dans",
           "leg_note": null,
-          "primary_relation_name": "ESPÈCE",
-          "primary_relation_name_lowercase": "espèce",
-          "primary_relation_name_uppercase": "ESPÈCE",
-          "primary_relation_name_titlecase": "Espèce"
+          "outer_source": "ESPÈCE",
+          "outer_source_lowercase": "espèce",
+          "outer_source_uppercase": "ESPÈCE",
+          "outer_source_titlecase": "Espèce"
         },
         {
           "attribute": "num. enclos",
@@ -1127,18 +1138,17 @@ CREATE TABLE "PÉRIODE" (
           "label_uppercase": "NUM. ENCLOS",
           "label_titlecase": "Num. enclos",
           "primary": true,
-          "foreign": true,
-          "nature": "foreign_primary_key",
+          "nature": "primary_foreign_key",
           "data_type": null,
           "association_name": "PEUT VIVRE DANS",
           "association_name_lower_case": "peut vivre dans",
           "association_name_uppercase": "PEUT VIVRE DANS",
           "association_name_titlecase": "Peut vivre dans",
           "leg_note": null,
-          "primary_relation_name": "ENCLOS",
-          "primary_relation_name_lowercase": "enclos",
-          "primary_relation_name_uppercase": "ENCLOS",
-          "primary_relation_name_titlecase": "Enclos"
+          "outer_source": "ENCLOS",
+          "outer_source_lowercase": "enclos",
+          "outer_source_uppercase": "ENCLOS",
+          "outer_source_titlecase": "Enclos"
         },
         {
           "attribute": "nb. max. congénères",
@@ -1152,7 +1162,6 @@ CREATE TABLE "PÉRIODE" (
           "label_uppercase": "NB. MAX. CONGÉNÈRES",
           "label_titlecase": "Nb. max. congénères",
           "primary": false,
-          "foreign": false,
           "nature": "association_attribute",
           "data_type": null,
           "association_name": "PEUT VIVRE DANS",
@@ -1160,10 +1169,10 @@ CREATE TABLE "PÉRIODE" (
           "association_name_uppercase": "PEUT VIVRE DANS",
           "association_name_titlecase": "Peut vivre dans",
           "leg_note": null,
-          "primary_relation_name": null,
-          "primary_relation_name_lowercase": null,
-          "primary_relation_name_uppercase": null,
-          "primary_relation_name_titlecase": null
+          "outer_source": null,
+          "outer_source_lowercase": null,
+          "outer_source_uppercase": null,
+          "outer_source_titlecase": null
         }
       ]
     },
@@ -1185,7 +1194,6 @@ CREATE TABLE "PÉRIODE" (
           "label_uppercase": "DATE DÉBUT",
           "label_titlecase": "Date début",
           "primary": true,
-          "foreign": false,
           "nature": "primary_key",
           "data_type": null,
           "association_name": null,
@@ -1193,10 +1201,10 @@ CREATE TABLE "PÉRIODE" (
           "association_name_uppercase": null,
           "association_name_titlecase": null,
           "leg_note": null,
-          "primary_relation_name": null,
-          "primary_relation_name_lowercase": null,
-          "primary_relation_name_uppercase": null,
-          "primary_relation_name_titlecase": null
+          "outer_source": null,
+          "outer_source_lowercase": null,
+          "outer_source_uppercase": null,
+          "outer_source_titlecase": null
         },
         {
           "attribute": "date fin",
@@ -1210,7 +1218,6 @@ CREATE TABLE "PÉRIODE" (
           "label_uppercase": "DATE FIN",
           "label_titlecase": "Date fin",
           "primary": true,
-          "foreign": false,
           "nature": "primary_key",
           "data_type": null,
           "association_name": null,
@@ -1218,10 +1225,10 @@ CREATE TABLE "PÉRIODE" (
           "association_name_uppercase": null,
           "association_name_titlecase": null,
           "leg_note": null,
-          "primary_relation_name": null,
-          "primary_relation_name_lowercase": null,
-          "primary_relation_name_uppercase": null,
-          "primary_relation_name_titlecase": null
+          "outer_source": null,
+          "outer_source_lowercase": null,
+          "outer_source_uppercase": null,
+          "outer_source_titlecase": null
         }
       ]
     }
@@ -1460,1050 +1467,606 @@ ALTER TABLE PEUT_VIVRE_DANS ADD FOREIGN KEY (code_espèce) REFERENCES ESPÈCE (c
 
 ## Inheritance stress test
 
-### `('CARNIVORE', '11', '<=', '')`
+### `('<=', '')`
+```
+    SUSCIPIT: orci, lorem
+    RHONCUS, 1N TRISTIS, 11 SUSCIPIT
+    :
+    :
+    SODALES: convallis, ipsum
+    VITAE, 11 QUAM, 1N SODALES
+    QUAM: cras, sed
+
+    CONSEQUAT: fermentum, dederit
+    ELIT, 11 TRISTIS, 1N CONSEQUAT
+    TRISTIS: magna, vestibulum
+    /\ TRISTIS <= SODALES, NEC, LACUS: type
+    NEC: pulvinar, audis
+    MOLLIS, 1N CURABITUR, 11 NEC
+    CURABITUR: gravida, amor
+
+    DIGNISSIM: tellus, terra
+    ALIQUET, 1N TRISTIS, 1N DIGNISSIM
+    :
+    :
+    LACUS: tempor, fugit
+    ULTRICES, 1N LIBERO, 1N LACUS
+    LIBERO: posuere, lacrima
+```
+
+```
+ALIQUET (_#magna_, _#tellus_)
+CONSEQUAT (_fermentum_, dederit)
+CURABITUR (_gravida_, amor)
+DIGNISSIM (_tellus_, terra)
+LIBERO (_posuere_, lacrima)
+QUAM (_cras_, sed, #magna)
+SUSCIPIT (_orci_, lorem, #magna)
+TRISTIS (_magna_, vestibulum, #fermentum, type, SODALES, convallis, ipsum, NEC, pulvinar, audis, #gravida, LACUS, tempor, fugit)
+ULTRICES (_#posuere_, _magna_)
+```
+
+| Relation | Attribute | Nature | Source |
+|---|---|---|---|
+| ALIQUET | magna | `primary_foreign_key` | TRISTIS |
+| ALIQUET | tellus | `primary_foreign_key` | DIGNISSIM |
+| CONSEQUAT | fermentum | `primary_key` | None |
+| CONSEQUAT | dederit | `normal_attribute` | None |
+| CURABITUR | gravida | `primary_key` | None |
+| CURABITUR | amor | `normal_attribute` | None |
+| DIGNISSIM | tellus | `primary_key` | None |
+| DIGNISSIM | terra | `normal_attribute` | None |
+| LIBERO | posuere | `primary_key` | None |
+| LIBERO | lacrima | `normal_attribute` | None |
+| QUAM | cras | `primary_key` | None |
+| QUAM | sed | `normal_attribute` | None |
+| QUAM | magna | `foreign_key` | SODALES |
+| SUSCIPIT | orci | `primary_key` | None |
+| SUSCIPIT | lorem | `normal_attribute` | None |
+| SUSCIPIT | magna | `foreign_key` | TRISTIS |
+| TRISTIS | magna | `primary_key` | None |
+| TRISTIS | vestibulum | `normal_attribute` | None |
+| TRISTIS | fermentum | `foreign_key` | CONSEQUAT |
+| TRISTIS | type | `child_discriminant_` | None |
+| TRISTIS | SODALES | `deleted_child_entity_name` | SODALES |
+| TRISTIS | convallis | `deleted_child_attribute` | SODALES |
+| TRISTIS | ipsum | `deleted_child_attribute` | SODALES |
+| TRISTIS | NEC | `deleted_child_entity_name` | NEC |
+| TRISTIS | pulvinar | `deleted_child_attribute` | NEC |
+| TRISTIS | audis | `deleted_child_attribute` | NEC |
+| TRISTIS | gravida | `deleted_child_foreign_key` | CURABITUR |
+| TRISTIS | LACUS | `deleted_child_entity_name` | LACUS |
+| TRISTIS | tempor | `deleted_child_attribute` | LACUS |
+| TRISTIS | fugit | `deleted_child_attribute` | LACUS |
+| ULTRICES | posuere | `primary_foreign_key` | LIBERO |
+| ULTRICES | magna | `primary_key` | LACUS |
+
+### `('<=', 'XT')`
+```
+    SUSCIPIT: orci, lorem
+    RHONCUS, 1N TRISTIS, 11 SUSCIPIT
+    :
+    :
+    SODALES: convallis, ipsum
+    VITAE, 11 QUAM, 1N SODALES
+    QUAM: cras, sed
+
+    CONSEQUAT: fermentum, dederit
+    ELIT, 11 TRISTIS, 1N CONSEQUAT
+    TRISTIS: magna, vestibulum
+    /XT\ TRISTIS <= SODALES, NEC, LACUS: type
+    NEC: pulvinar, audis
+    MOLLIS, 1N CURABITUR, 11 NEC
+    CURABITUR: gravida, amor
+
+    DIGNISSIM: tellus, terra
+    ALIQUET, 1N TRISTIS, 1N DIGNISSIM
+    :
+    :
+    LACUS: tempor, fugit
+    ULTRICES, 1N LIBERO, 1N LACUS
+    LIBERO: posuere, lacrima
+```
+
 ```
-    HERBIVORE: plante préférée
-    CARNIVORE: quantité viande
-    /\ ANIMAL <= CARNIVORE, HERBIVORE: type
-    ANIMAL: animal, poids
-    FOO, 11 CARNIVORE, 1N BAR
-    BAR: bar
-```
-
-```
-ANIMAL (_animal_, poids, type, CARNIVORE, quantité viande, #bar, HERBIVORE, plante préférée)
-BAR (_bar_)
-```
-
-### `('CARNIVORE', '11', '<=', 'X')`
-```
-    HERBIVORE: plante préférée
-    CARNIVORE: quantité viande
-    /X\ ANIMAL <= CARNIVORE, HERBIVORE: type
-    ANIMAL: animal, poids
-    FOO, 11 CARNIVORE, 1N BAR
-    BAR: bar
-```
-
-```
-ANIMAL (_animal_, poids, type, CARNIVORE, quantité viande, #bar, HERBIVORE, plante préférée)
-BAR (_bar_)
-```
-
-### `('CARNIVORE', '11', '<=', 'T')`
-```
-    HERBIVORE: plante préférée
-    CARNIVORE: quantité viande
-    /T\ ANIMAL <= CARNIVORE, HERBIVORE: type
-    ANIMAL: animal, poids
-    FOO, 11 CARNIVORE, 1N BAR
-    BAR: bar
-```
-
-```
-ANIMAL (_animal_, poids, type, CARNIVORE, quantité viande, #bar, HERBIVORE, plante préférée)
-BAR (_bar_)
-```
-
-### `('CARNIVORE', '11', '<=', 'XT')`
-```
-    HERBIVORE: plante préférée
-    CARNIVORE: quantité viande
-    /XT\ ANIMAL <= CARNIVORE, HERBIVORE: type
-    ANIMAL: animal, poids
-    FOO, 11 CARNIVORE, 1N BAR
-    BAR: bar
-```
-
-```
-ANIMAL (_animal_, poids, type, CARNIVORE, quantité viande, #bar, HERBIVORE, plante préférée)
-BAR (_bar_)
-```
-
-### `('CARNIVORE', '11', '<-', '')`
-```
-    HERBIVORE: plante préférée
-    CARNIVORE: quantité viande
-    /\ ANIMAL <- CARNIVORE, HERBIVORE: type
-    ANIMAL: animal, poids
-    FOO, 11 CARNIVORE, 1N BAR
-    BAR: bar
-```
-
-```
-ANIMAL (_animal_, poids, type, quantité viande, #bar, plante préférée)
-BAR (_bar_)
-```
-
-### `('CARNIVORE', '11', '<-', 'X')`
-```
-    HERBIVORE: plante préférée
-    CARNIVORE: quantité viande
-    /X\ ANIMAL <- CARNIVORE, HERBIVORE: type
-    ANIMAL: animal, poids
-    FOO, 11 CARNIVORE, 1N BAR
-    BAR: bar
-```
-
-```
-ANIMAL (_animal_, poids, type, quantité viande, #bar, plante préférée)
-BAR (_bar_)
-```
-
-### `('CARNIVORE', '11', '<-', 'T')`
-```
-    HERBIVORE: plante préférée
-    CARNIVORE: quantité viande
-    /T\ ANIMAL <- CARNIVORE, HERBIVORE: type
-    ANIMAL: animal, poids
-    FOO, 11 CARNIVORE, 1N BAR
-    BAR: bar
-```
-
-```
-ANIMAL (_animal_, poids, type, quantité viande, #bar, plante préférée)
-BAR (_bar_)
-```
-
-### `('CARNIVORE', '11', '<-', 'XT')`
-```
-    HERBIVORE: plante préférée
-    CARNIVORE: quantité viande
-    /XT\ ANIMAL <- CARNIVORE, HERBIVORE: type
-    ANIMAL: animal, poids
-    FOO, 11 CARNIVORE, 1N BAR
-    BAR: bar
-```
-
-```
-ANIMAL (_animal_, poids, type, quantité viande, #bar, plante préférée)
-BAR (_bar_)
-```
-
-### `('CARNIVORE', '11', '->', '')`
-```
-    HERBIVORE: plante préférée
-    CARNIVORE: quantité viande
-    /\ ANIMAL -> CARNIVORE, HERBIVORE: type
-    ANIMAL: animal, poids
-    FOO, 11 CARNIVORE, 1N BAR
-    BAR: bar
-```
-
-```
-ANIMAL (_animal_, poids, type)
-BAR (_bar_)
-CARNIVORE (_#animal_, quantité viande, #bar)
-HERBIVORE (_#animal_, plante préférée)
-```
-
-### `('CARNIVORE', '11', '->', 'X')`
-```
-    HERBIVORE: plante préférée
-    CARNIVORE: quantité viande
-    /X\ ANIMAL -> CARNIVORE, HERBIVORE: type
-    ANIMAL: animal, poids
-    FOO, 11 CARNIVORE, 1N BAR
-    BAR: bar
-```
-
-```
-ANIMAL (_animal_, poids, type)
-BAR (_bar_)
-CARNIVORE (_#animal_, quantité viande, #bar)
-HERBIVORE (_#animal_, plante préférée)
-```
-
-### `('CARNIVORE', '11', '->', 'T')`
-```
-    HERBIVORE: plante préférée
-    CARNIVORE: quantité viande
-    /T\ ANIMAL -> CARNIVORE, HERBIVORE: type
-    ANIMAL: animal, poids
-    FOO, 11 CARNIVORE, 1N BAR
-    BAR: bar
-```
-
-```
-ANIMAL (_animal_, poids, type)
-BAR (_bar_)
-CARNIVORE (_#animal_, quantité viande, #bar)
-HERBIVORE (_#animal_, plante préférée)
-```
-
-### `('CARNIVORE', '11', '->', 'XT')`
-```
-    HERBIVORE: plante préférée
-    CARNIVORE: quantité viande
-    /XT\ ANIMAL -> CARNIVORE, HERBIVORE: type
-    ANIMAL: animal, poids
-    FOO, 11 CARNIVORE, 1N BAR
-    BAR: bar
-```
-
-```
-ANIMAL (_animal_, poids, type)
-BAR (_bar_)
-CARNIVORE (_#animal_, quantité viande, #bar)
-HERBIVORE (_#animal_, plante préférée)
-```
-
-### `('CARNIVORE', '11', '=>', '')`
-```
-    HERBIVORE: plante préférée
-    CARNIVORE: quantité viande
-    /\ ANIMAL => CARNIVORE, HERBIVORE: type
-    ANIMAL: animal, poids
-    FOO, 11 CARNIVORE, 1N BAR
-    BAR: bar
-```
-
-```
-ANIMAL (_animal_, poids)
-BAR (_bar_)
-CARNIVORE (_#animal_, poids, quantité viande, #bar)
-HERBIVORE (_#animal_, poids, plante préférée)
-```
-
-### `('CARNIVORE', '11', '=>', 'X')`
-```
-    HERBIVORE: plante préférée
-    CARNIVORE: quantité viande
-    /X\ ANIMAL => CARNIVORE, HERBIVORE: type
-    ANIMAL: animal, poids
-    FOO, 11 CARNIVORE, 1N BAR
-    BAR: bar
-```
-
-```
-ANIMAL (_animal_, poids)
-BAR (_bar_)
-CARNIVORE (_#animal_, poids, quantité viande, #bar)
-HERBIVORE (_#animal_, poids, plante préférée)
-```
-
-### `('CARNIVORE', '11', '=>', 'T')`
-```
-    HERBIVORE: plante préférée
-    CARNIVORE: quantité viande
-    /T\ ANIMAL => CARNIVORE, HERBIVORE: type
-    ANIMAL: animal, poids
-    FOO, 11 CARNIVORE, 1N BAR
-    BAR: bar
-```
-
-```
-BAR (_bar_)
-CARNIVORE (_#animal_, poids, quantité viande, #bar)
-HERBIVORE (_#animal_, poids, plante préférée)
-```
-
-### `('CARNIVORE', '11', '=>', 'XT')`
-```
-    HERBIVORE: plante préférée
-    CARNIVORE: quantité viande
-    /XT\ ANIMAL => CARNIVORE, HERBIVORE: type
-    ANIMAL: animal, poids
-    FOO, 11 CARNIVORE, 1N BAR
-    BAR: bar
-```
-
-```
-BAR (_bar_)
-CARNIVORE (_#animal_, poids, quantité viande, #bar)
-HERBIVORE (_#animal_, poids, plante préférée)
-```
-
-### `('CARNIVORE', '1N', '<=', '')`
-```
-    HERBIVORE: plante préférée
-    CARNIVORE: quantité viande
-    /\ ANIMAL <= CARNIVORE, HERBIVORE: type
-    ANIMAL: animal, poids
-    FOO, 1N CARNIVORE, 1N BAR
-    BAR: bar
-```
-
-```
-ANIMAL (_animal_, poids, type, CARNIVORE, quantité viande, HERBIVORE, plante préférée)
-BAR (_bar_)
-FOO (_#bar_)
-```
-
-### `('CARNIVORE', '1N', '<=', 'X')`
-```
-    HERBIVORE: plante préférée
-    CARNIVORE: quantité viande
-    /X\ ANIMAL <= CARNIVORE, HERBIVORE: type
-    ANIMAL: animal, poids
-    FOO, 1N CARNIVORE, 1N BAR
-    BAR: bar
-```
-
-```
-ANIMAL (_animal_, poids, type, CARNIVORE, quantité viande, HERBIVORE, plante préférée)
-BAR (_bar_)
-FOO (_#bar_)
-```
-
-### `('CARNIVORE', '1N', '<=', 'T')`
-```
-    HERBIVORE: plante préférée
-    CARNIVORE: quantité viande
-    /T\ ANIMAL <= CARNIVORE, HERBIVORE: type
-    ANIMAL: animal, poids
-    FOO, 1N CARNIVORE, 1N BAR
-    BAR: bar
-```
-
-```
-ANIMAL (_animal_, poids, type, CARNIVORE, quantité viande, HERBIVORE, plante préférée)
-BAR (_bar_)
-FOO (_#bar_)
-```
-
-### `('CARNIVORE', '1N', '<=', 'XT')`
-```
-    HERBIVORE: plante préférée
-    CARNIVORE: quantité viande
-    /XT\ ANIMAL <= CARNIVORE, HERBIVORE: type
-    ANIMAL: animal, poids
-    FOO, 1N CARNIVORE, 1N BAR
-    BAR: bar
-```
-
-```
-ANIMAL (_animal_, poids, type, CARNIVORE, quantité viande, HERBIVORE, plante préférée)
-BAR (_bar_)
-FOO (_#bar_)
-```
-
-### `('CARNIVORE', '1N', '<-', '')`
-```
-    HERBIVORE: plante préférée
-    CARNIVORE: quantité viande
-    /\ ANIMAL <- CARNIVORE, HERBIVORE: type
-    ANIMAL: animal, poids
-    FOO, 1N CARNIVORE, 1N BAR
-    BAR: bar
-```
-
-```
-ANIMAL (_animal_, poids, type, quantité viande, plante préférée)
-BAR (_bar_)
-FOO (_#bar_)
-```
-
-### `('CARNIVORE', '1N', '<-', 'X')`
-```
-    HERBIVORE: plante préférée
-    CARNIVORE: quantité viande
-    /X\ ANIMAL <- CARNIVORE, HERBIVORE: type
-    ANIMAL: animal, poids
-    FOO, 1N CARNIVORE, 1N BAR
-    BAR: bar
-```
-
-```
-ANIMAL (_animal_, poids, type, quantité viande, plante préférée)
-BAR (_bar_)
-FOO (_#bar_)
-```
-
-### `('CARNIVORE', '1N', '<-', 'T')`
-```
-    HERBIVORE: plante préférée
-    CARNIVORE: quantité viande
-    /T\ ANIMAL <- CARNIVORE, HERBIVORE: type
-    ANIMAL: animal, poids
-    FOO, 1N CARNIVORE, 1N BAR
-    BAR: bar
-```
-
-```
-ANIMAL (_animal_, poids, type, quantité viande, plante préférée)
-BAR (_bar_)
-FOO (_#bar_)
-```
-
-### `('CARNIVORE', '1N', '<-', 'XT')`
-```
-    HERBIVORE: plante préférée
-    CARNIVORE: quantité viande
-    /XT\ ANIMAL <- CARNIVORE, HERBIVORE: type
-    ANIMAL: animal, poids
-    FOO, 1N CARNIVORE, 1N BAR
-    BAR: bar
-```
-
-```
-ANIMAL (_animal_, poids, type, quantité viande, plante préférée)
-BAR (_bar_)
-FOO (_#bar_)
-```
-
-### `('CARNIVORE', '1N', '->', '')`
-```
-    HERBIVORE: plante préférée
-    CARNIVORE: quantité viande
-    /\ ANIMAL -> CARNIVORE, HERBIVORE: type
-    ANIMAL: animal, poids
-    FOO, 1N CARNIVORE, 1N BAR
-    BAR: bar
-```
-
-```
-ANIMAL (_animal_, poids, type)
-BAR (_bar_)
-CARNIVORE (_#animal_, quantité viande)
-FOO (_#animal_, _#bar_)
-HERBIVORE (_#animal_, plante préférée)
-```
-
-### `('CARNIVORE', '1N', '->', 'X')`
-```
-    HERBIVORE: plante préférée
-    CARNIVORE: quantité viande
-    /X\ ANIMAL -> CARNIVORE, HERBIVORE: type
-    ANIMAL: animal, poids
-    FOO, 1N CARNIVORE, 1N BAR
-    BAR: bar
-```
-
-```
-ANIMAL (_animal_, poids, type)
-BAR (_bar_)
-CARNIVORE (_#animal_, quantité viande)
-FOO (_#animal_, _#bar_)
-HERBIVORE (_#animal_, plante préférée)
-```
-
-### `('CARNIVORE', '1N', '->', 'T')`
-```
-    HERBIVORE: plante préférée
-    CARNIVORE: quantité viande
-    /T\ ANIMAL -> CARNIVORE, HERBIVORE: type
-    ANIMAL: animal, poids
-    FOO, 1N CARNIVORE, 1N BAR
-    BAR: bar
-```
-
-```
-ANIMAL (_animal_, poids, type)
-BAR (_bar_)
-CARNIVORE (_#animal_, quantité viande)
-FOO (_#animal_, _#bar_)
-HERBIVORE (_#animal_, plante préférée)
-```
-
-### `('CARNIVORE', '1N', '->', 'XT')`
-```
-    HERBIVORE: plante préférée
-    CARNIVORE: quantité viande
-    /XT\ ANIMAL -> CARNIVORE, HERBIVORE: type
-    ANIMAL: animal, poids
-    FOO, 1N CARNIVORE, 1N BAR
-    BAR: bar
-```
-
-```
-ANIMAL (_animal_, poids, type)
-BAR (_bar_)
-CARNIVORE (_#animal_, quantité viande)
-FOO (_#animal_, _#bar_)
-HERBIVORE (_#animal_, plante préférée)
-```
-
-### `('CARNIVORE', '1N', '=>', '')`
-```
-    HERBIVORE: plante préférée
-    CARNIVORE: quantité viande
-    /\ ANIMAL => CARNIVORE, HERBIVORE: type
-    ANIMAL: animal, poids
-    FOO, 1N CARNIVORE, 1N BAR
-    BAR: bar
-```
-
-```
-ANIMAL (_animal_, poids)
-BAR (_bar_)
-CARNIVORE (_#animal_, poids, quantité viande)
-FOO (_#animal_, _#bar_)
-HERBIVORE (_#animal_, poids, plante préférée)
-```
-
-### `('CARNIVORE', '1N', '=>', 'X')`
-```
-    HERBIVORE: plante préférée
-    CARNIVORE: quantité viande
-    /X\ ANIMAL => CARNIVORE, HERBIVORE: type
-    ANIMAL: animal, poids
-    FOO, 1N CARNIVORE, 1N BAR
-    BAR: bar
-```
-
-```
-ANIMAL (_animal_, poids)
-BAR (_bar_)
-CARNIVORE (_#animal_, poids, quantité viande)
-FOO (_#animal_, _#bar_)
-HERBIVORE (_#animal_, poids, plante préférée)
-```
-
-### `('CARNIVORE', '1N', '=>', 'T')`
-```
-    HERBIVORE: plante préférée
-    CARNIVORE: quantité viande
-    /T\ ANIMAL => CARNIVORE, HERBIVORE: type
-    ANIMAL: animal, poids
-    FOO, 1N CARNIVORE, 1N BAR
-    BAR: bar
-```
-
-```
-BAR (_bar_)
-CARNIVORE (_#animal_, poids, quantité viande)
-FOO (_#animal_, _#bar_)
-HERBIVORE (_#animal_, poids, plante préférée)
-```
-
-### `('CARNIVORE', '1N', '=>', 'XT')`
-```
-    HERBIVORE: plante préférée
-    CARNIVORE: quantité viande
-    /XT\ ANIMAL => CARNIVORE, HERBIVORE: type
-    ANIMAL: animal, poids
-    FOO, 1N CARNIVORE, 1N BAR
-    BAR: bar
-```
-
-```
-BAR (_bar_)
-CARNIVORE (_#animal_, poids, quantité viande)
-FOO (_#animal_, _#bar_)
-HERBIVORE (_#animal_, poids, plante préférée)
-```
-
-### `('ANIMAL', '11', '<=', '')`
-```
-    HERBIVORE: plante préférée
-    CARNIVORE: quantité viande
-    /\ ANIMAL <= CARNIVORE, HERBIVORE: type
-    ANIMAL: animal, poids
-    FOO, 11 ANIMAL, 1N BAR
-    BAR: bar
-```
-
-```
-ANIMAL (_animal_, poids, #bar, type, CARNIVORE, quantité viande, HERBIVORE, plante préférée)
-BAR (_bar_)
-```
-
-### `('ANIMAL', '11', '<=', 'X')`
-```
-    HERBIVORE: plante préférée
-    CARNIVORE: quantité viande
-    /X\ ANIMAL <= CARNIVORE, HERBIVORE: type
-    ANIMAL: animal, poids
-    FOO, 11 ANIMAL, 1N BAR
-    BAR: bar
-```
-
-```
-ANIMAL (_animal_, poids, #bar, type, CARNIVORE, quantité viande, HERBIVORE, plante préférée)
-BAR (_bar_)
-```
-
-### `('ANIMAL', '11', '<=', 'T')`
-```
-    HERBIVORE: plante préférée
-    CARNIVORE: quantité viande
-    /T\ ANIMAL <= CARNIVORE, HERBIVORE: type
-    ANIMAL: animal, poids
-    FOO, 11 ANIMAL, 1N BAR
-    BAR: bar
-```
-
-```
-ANIMAL (_animal_, poids, #bar, type, CARNIVORE, quantité viande, HERBIVORE, plante préférée)
-BAR (_bar_)
-```
-
-### `('ANIMAL', '11', '<=', 'XT')`
-```
-    HERBIVORE: plante préférée
-    CARNIVORE: quantité viande
-    /XT\ ANIMAL <= CARNIVORE, HERBIVORE: type
-    ANIMAL: animal, poids
-    FOO, 11 ANIMAL, 1N BAR
-    BAR: bar
-```
-
-```
-ANIMAL (_animal_, poids, #bar, type, CARNIVORE, quantité viande, HERBIVORE, plante préférée)
-BAR (_bar_)
-```
-
-### `('ANIMAL', '11', '<-', '')`
-```
-    HERBIVORE: plante préférée
-    CARNIVORE: quantité viande
-    /\ ANIMAL <- CARNIVORE, HERBIVORE: type
-    ANIMAL: animal, poids
-    FOO, 11 ANIMAL, 1N BAR
-    BAR: bar
-```
-
-```
-ANIMAL (_animal_, poids, #bar, type, quantité viande, plante préférée)
-BAR (_bar_)
-```
-
-### `('ANIMAL', '11', '<-', 'X')`
-```
-    HERBIVORE: plante préférée
-    CARNIVORE: quantité viande
-    /X\ ANIMAL <- CARNIVORE, HERBIVORE: type
-    ANIMAL: animal, poids
-    FOO, 11 ANIMAL, 1N BAR
-    BAR: bar
-```
-
-```
-ANIMAL (_animal_, poids, #bar, type, quantité viande, plante préférée)
-BAR (_bar_)
-```
-
-### `('ANIMAL', '11', '<-', 'T')`
-```
-    HERBIVORE: plante préférée
-    CARNIVORE: quantité viande
-    /T\ ANIMAL <- CARNIVORE, HERBIVORE: type
-    ANIMAL: animal, poids
-    FOO, 11 ANIMAL, 1N BAR
-    BAR: bar
-```
-
-```
-ANIMAL (_animal_, poids, #bar, type, quantité viande, plante préférée)
-BAR (_bar_)
-```
-
-### `('ANIMAL', '11', '<-', 'XT')`
-```
-    HERBIVORE: plante préférée
-    CARNIVORE: quantité viande
-    /XT\ ANIMAL <- CARNIVORE, HERBIVORE: type
-    ANIMAL: animal, poids
-    FOO, 11 ANIMAL, 1N BAR
-    BAR: bar
-```
-
-```
-ANIMAL (_animal_, poids, #bar, type, quantité viande, plante préférée)
-BAR (_bar_)
-```
-
-### `('ANIMAL', '11', '->', '')`
-```
-    HERBIVORE: plante préférée
-    CARNIVORE: quantité viande
-    /\ ANIMAL -> CARNIVORE, HERBIVORE: type
-    ANIMAL: animal, poids
-    FOO, 11 ANIMAL, 1N BAR
-    BAR: bar
-```
-
-```
-ANIMAL (_animal_, poids, #bar, type)
-BAR (_bar_)
-CARNIVORE (_#animal_, quantité viande)
-HERBIVORE (_#animal_, plante préférée)
-```
-
-### `('ANIMAL', '11', '->', 'X')`
-```
-    HERBIVORE: plante préférée
-    CARNIVORE: quantité viande
-    /X\ ANIMAL -> CARNIVORE, HERBIVORE: type
-    ANIMAL: animal, poids
-    FOO, 11 ANIMAL, 1N BAR
-    BAR: bar
-```
-
-```
-ANIMAL (_animal_, poids, #bar, type)
-BAR (_bar_)
-CARNIVORE (_#animal_, quantité viande)
-HERBIVORE (_#animal_, plante préférée)
-```
-
-### `('ANIMAL', '11', '->', 'T')`
-```
-    HERBIVORE: plante préférée
-    CARNIVORE: quantité viande
-    /T\ ANIMAL -> CARNIVORE, HERBIVORE: type
-    ANIMAL: animal, poids
-    FOO, 11 ANIMAL, 1N BAR
-    BAR: bar
-```
-
-```
-ANIMAL (_animal_, poids, #bar, type)
-BAR (_bar_)
-CARNIVORE (_#animal_, quantité viande)
-HERBIVORE (_#animal_, plante préférée)
-```
-
-### `('ANIMAL', '11', '->', 'XT')`
-```
-    HERBIVORE: plante préférée
-    CARNIVORE: quantité viande
-    /XT\ ANIMAL -> CARNIVORE, HERBIVORE: type
-    ANIMAL: animal, poids
-    FOO, 11 ANIMAL, 1N BAR
-    BAR: bar
-```
-
-```
-ANIMAL (_animal_, poids, #bar, type)
-BAR (_bar_)
-CARNIVORE (_#animal_, quantité viande)
-HERBIVORE (_#animal_, plante préférée)
-```
-
-### `('ANIMAL', '11', '=>', '')`
-```
-    HERBIVORE: plante préférée
-    CARNIVORE: quantité viande
-    /\ ANIMAL => CARNIVORE, HERBIVORE: type
-    ANIMAL: animal, poids
-    FOO, 11 ANIMAL, 1N BAR
-    BAR: bar
-```
-
-```
-ANIMAL (_animal_, poids, #bar)
-BAR (_bar_)
-CARNIVORE (_#animal_, poids, #bar, quantité viande)
-HERBIVORE (_#animal_, poids, #bar, plante préférée)
-```
-
-### `('ANIMAL', '11', '=>', 'X')`
-```
-    HERBIVORE: plante préférée
-    CARNIVORE: quantité viande
-    /X\ ANIMAL => CARNIVORE, HERBIVORE: type
-    ANIMAL: animal, poids
-    FOO, 11 ANIMAL, 1N BAR
-    BAR: bar
-```
-
-```
-ANIMAL (_animal_, poids, #bar)
-BAR (_bar_)
-CARNIVORE (_#animal_, poids, #bar, quantité viande)
-HERBIVORE (_#animal_, poids, #bar, plante préférée)
-```
-
-### `('ANIMAL', '11', '=>', 'T')`
-```
-    HERBIVORE: plante préférée
-    CARNIVORE: quantité viande
-    /T\ ANIMAL => CARNIVORE, HERBIVORE: type
-    ANIMAL: animal, poids
-    FOO, 11 ANIMAL, 1N BAR
-    BAR: bar
-```
-
-```
-BAR (_bar_)
-CARNIVORE (_#animal_, poids, #bar, quantité viande)
-HERBIVORE (_#animal_, poids, #bar, plante préférée)
-```
-
-### `('ANIMAL', '11', '=>', 'XT')`
-```
-    HERBIVORE: plante préférée
-    CARNIVORE: quantité viande
-    /XT\ ANIMAL => CARNIVORE, HERBIVORE: type
-    ANIMAL: animal, poids
-    FOO, 11 ANIMAL, 1N BAR
-    BAR: bar
-```
-
-```
-BAR (_bar_)
-CARNIVORE (_#animal_, poids, #bar, quantité viande)
-HERBIVORE (_#animal_, poids, #bar, plante préférée)
-```
-
-### `('ANIMAL', '1N', '<=', '')`
-```
-    HERBIVORE: plante préférée
-    CARNIVORE: quantité viande
-    /\ ANIMAL <= CARNIVORE, HERBIVORE: type
-    ANIMAL: animal, poids
-    FOO, 1N ANIMAL, 1N BAR
-    BAR: bar
-```
-
-```
-ANIMAL (_animal_, poids, type, CARNIVORE, quantité viande, HERBIVORE, plante préférée)
-BAR (_bar_)
-FOO (_#animal_, _#bar_)
-```
-
-### `('ANIMAL', '1N', '<=', 'X')`
-```
-    HERBIVORE: plante préférée
-    CARNIVORE: quantité viande
-    /X\ ANIMAL <= CARNIVORE, HERBIVORE: type
-    ANIMAL: animal, poids
-    FOO, 1N ANIMAL, 1N BAR
-    BAR: bar
-```
-
-```
-ANIMAL (_animal_, poids, type, CARNIVORE, quantité viande, HERBIVORE, plante préférée)
-BAR (_bar_)
-FOO (_#animal_, _#bar_)
-```
-
-### `('ANIMAL', '1N', '<=', 'T')`
-```
-    HERBIVORE: plante préférée
-    CARNIVORE: quantité viande
-    /T\ ANIMAL <= CARNIVORE, HERBIVORE: type
-    ANIMAL: animal, poids
-    FOO, 1N ANIMAL, 1N BAR
-    BAR: bar
-```
-
-```
-ANIMAL (_animal_, poids, type, CARNIVORE, quantité viande, HERBIVORE, plante préférée)
-BAR (_bar_)
-FOO (_#animal_, _#bar_)
-```
-
-### `('ANIMAL', '1N', '<=', 'XT')`
-```
-    HERBIVORE: plante préférée
-    CARNIVORE: quantité viande
-    /XT\ ANIMAL <= CARNIVORE, HERBIVORE: type
-    ANIMAL: animal, poids
-    FOO, 1N ANIMAL, 1N BAR
-    BAR: bar
-```
-
-```
-ANIMAL (_animal_, poids, type, CARNIVORE, quantité viande, HERBIVORE, plante préférée)
-BAR (_bar_)
-FOO (_#animal_, _#bar_)
-```
-
-### `('ANIMAL', '1N', '<-', '')`
-```
-    HERBIVORE: plante préférée
-    CARNIVORE: quantité viande
-    /\ ANIMAL <- CARNIVORE, HERBIVORE: type
-    ANIMAL: animal, poids
-    FOO, 1N ANIMAL, 1N BAR
-    BAR: bar
-```
-
-```
-ANIMAL (_animal_, poids, type, quantité viande, plante préférée)
-BAR (_bar_)
-FOO (_#animal_, _#bar_)
-```
-
-### `('ANIMAL', '1N', '<-', 'X')`
-```
-    HERBIVORE: plante préférée
-    CARNIVORE: quantité viande
-    /X\ ANIMAL <- CARNIVORE, HERBIVORE: type
-    ANIMAL: animal, poids
-    FOO, 1N ANIMAL, 1N BAR
-    BAR: bar
-```
-
-```
-ANIMAL (_animal_, poids, type, quantité viande, plante préférée)
-BAR (_bar_)
-FOO (_#animal_, _#bar_)
-```
-
-### `('ANIMAL', '1N', '<-', 'T')`
-```
-    HERBIVORE: plante préférée
-    CARNIVORE: quantité viande
-    /T\ ANIMAL <- CARNIVORE, HERBIVORE: type
-    ANIMAL: animal, poids
-    FOO, 1N ANIMAL, 1N BAR
-    BAR: bar
-```
-
-```
-ANIMAL (_animal_, poids, type, quantité viande, plante préférée)
-BAR (_bar_)
-FOO (_#animal_, _#bar_)
-```
-
-### `('ANIMAL', '1N', '<-', 'XT')`
-```
-    HERBIVORE: plante préférée
-    CARNIVORE: quantité viande
-    /XT\ ANIMAL <- CARNIVORE, HERBIVORE: type
-    ANIMAL: animal, poids
-    FOO, 1N ANIMAL, 1N BAR
-    BAR: bar
-```
-
-```
-ANIMAL (_animal_, poids, type, quantité viande, plante préférée)
-BAR (_bar_)
-FOO (_#animal_, _#bar_)
-```
-
-### `('ANIMAL', '1N', '->', '')`
-```
-    HERBIVORE: plante préférée
-    CARNIVORE: quantité viande
-    /\ ANIMAL -> CARNIVORE, HERBIVORE: type
-    ANIMAL: animal, poids
-    FOO, 1N ANIMAL, 1N BAR
-    BAR: bar
-```
-
-```
-ANIMAL (_animal_, poids, type)
-BAR (_bar_)
-CARNIVORE (_#animal_, quantité viande)
-FOO (_#animal_, _#bar_)
-HERBIVORE (_#animal_, plante préférée)
-```
-
-### `('ANIMAL', '1N', '->', 'X')`
-```
-    HERBIVORE: plante préférée
-    CARNIVORE: quantité viande
-    /X\ ANIMAL -> CARNIVORE, HERBIVORE: type
-    ANIMAL: animal, poids
-    FOO, 1N ANIMAL, 1N BAR
-    BAR: bar
-```
-
-```
-ANIMAL (_animal_, poids, type)
-BAR (_bar_)
-CARNIVORE (_#animal_, quantité viande)
-FOO (_#animal_, _#bar_)
-HERBIVORE (_#animal_, plante préférée)
-```
-
-### `('ANIMAL', '1N', '->', 'T')`
-```
-    HERBIVORE: plante préférée
-    CARNIVORE: quantité viande
-    /T\ ANIMAL -> CARNIVORE, HERBIVORE: type
-    ANIMAL: animal, poids
-    FOO, 1N ANIMAL, 1N BAR
-    BAR: bar
-```
-
-```
-ANIMAL (_animal_, poids, type)
-BAR (_bar_)
-CARNIVORE (_#animal_, quantité viande)
-FOO (_#animal_, _#bar_)
-HERBIVORE (_#animal_, plante préférée)
-```
-
-### `('ANIMAL', '1N', '->', 'XT')`
-```
-    HERBIVORE: plante préférée
-    CARNIVORE: quantité viande
-    /XT\ ANIMAL -> CARNIVORE, HERBIVORE: type
-    ANIMAL: animal, poids
-    FOO, 1N ANIMAL, 1N BAR
-    BAR: bar
-```
-
-```
-ANIMAL (_animal_, poids, type)
-BAR (_bar_)
-CARNIVORE (_#animal_, quantité viande)
-FOO (_#animal_, _#bar_)
-HERBIVORE (_#animal_, plante préférée)
-```
-
-### `('ANIMAL', '1N', '=>', '')`
-```
-    HERBIVORE: plante préférée
-    CARNIVORE: quantité viande
-    /\ ANIMAL => CARNIVORE, HERBIVORE: type
-    ANIMAL: animal, poids
-    FOO, 1N ANIMAL, 1N BAR
-    BAR: bar
-```
-
-```
-ANIMAL (_animal_, poids)
-BAR (_bar_)
-CARNIVORE (_#animal_, poids, quantité viande)
-FOO (_#animal_, _#bar_)
-HERBIVORE (_#animal_, poids, plante préférée)
-```
-
-### `('ANIMAL', '1N', '=>', 'X')`
-```
-    HERBIVORE: plante préférée
-    CARNIVORE: quantité viande
-    /X\ ANIMAL => CARNIVORE, HERBIVORE: type
-    ANIMAL: animal, poids
-    FOO, 1N ANIMAL, 1N BAR
-    BAR: bar
-```
-
-```
-ANIMAL (_animal_, poids)
-BAR (_bar_)
-CARNIVORE (_#animal_, poids, quantité viande)
-FOO (_#animal_, _#bar_)
-HERBIVORE (_#animal_, poids, plante préférée)
-```
-
-### `('ANIMAL', '1N', '=>', 'T')`
-```
-    HERBIVORE: plante préférée
-    CARNIVORE: quantité viande
-    /T\ ANIMAL => CARNIVORE, HERBIVORE: type
-    ANIMAL: animal, poids
-    FOO, 1N ANIMAL, 1N BAR
-    BAR: bar
-```
-
-```
-BAR (_bar_)
-CARNIVORE (_#animal_, poids, quantité viande)
-FOO (_#animal_, _#bar_)
-HERBIVORE (_#animal_, poids, plante préférée)
-```
-
-### `('ANIMAL', '1N', '=>', 'XT')`
-```
-    HERBIVORE: plante préférée
-    CARNIVORE: quantité viande
-    /XT\ ANIMAL => CARNIVORE, HERBIVORE: type
-    ANIMAL: animal, poids
-    FOO, 1N ANIMAL, 1N BAR
-    BAR: bar
-```
-
-```
-BAR (_bar_)
-CARNIVORE (_#animal_, poids, quantité viande)
-FOO (_#animal_, _#bar_)
-HERBIVORE (_#animal_, poids, plante préférée)
-```
+ALIQUET (_#magna_, _#tellus_)
+CONSEQUAT (_fermentum_, dederit)
+CURABITUR (_gravida_, amor)
+DIGNISSIM (_tellus_, terra)
+LIBERO (_posuere_, lacrima)
+QUAM (_cras_, sed, #magna)
+SUSCIPIT (_orci_, lorem, #magna)
+TRISTIS (_magna_, vestibulum, #fermentum, type, SODALES, convallis, ipsum, NEC, pulvinar, audis, #gravida, LACUS, tempor, fugit)
+ULTRICES (_#posuere_, _magna_)
+```
+
+| Relation | Attribute | Nature | Source |
+|---|---|---|---|
+| ALIQUET | magna | `primary_foreign_key` | TRISTIS |
+| ALIQUET | tellus | `primary_foreign_key` | DIGNISSIM |
+| CONSEQUAT | fermentum | `primary_key` | None |
+| CONSEQUAT | dederit | `normal_attribute` | None |
+| CURABITUR | gravida | `primary_key` | None |
+| CURABITUR | amor | `normal_attribute` | None |
+| DIGNISSIM | tellus | `primary_key` | None |
+| DIGNISSIM | terra | `normal_attribute` | None |
+| LIBERO | posuere | `primary_key` | None |
+| LIBERO | lacrima | `normal_attribute` | None |
+| QUAM | cras | `primary_key` | None |
+| QUAM | sed | `normal_attribute` | None |
+| QUAM | magna | `foreign_key` | SODALES |
+| SUSCIPIT | orci | `primary_key` | None |
+| SUSCIPIT | lorem | `normal_attribute` | None |
+| SUSCIPIT | magna | `foreign_key` | TRISTIS |
+| TRISTIS | magna | `primary_key` | None |
+| TRISTIS | vestibulum | `normal_attribute` | None |
+| TRISTIS | fermentum | `foreign_key` | CONSEQUAT |
+| TRISTIS | type | `child_discriminant_XT` | None |
+| TRISTIS | SODALES | `deleted_child_entity_name` | SODALES |
+| TRISTIS | convallis | `deleted_child_attribute` | SODALES |
+| TRISTIS | ipsum | `deleted_child_attribute` | SODALES |
+| TRISTIS | NEC | `deleted_child_entity_name` | NEC |
+| TRISTIS | pulvinar | `deleted_child_attribute` | NEC |
+| TRISTIS | audis | `deleted_child_attribute` | NEC |
+| TRISTIS | gravida | `deleted_child_foreign_key` | CURABITUR |
+| TRISTIS | LACUS | `deleted_child_entity_name` | LACUS |
+| TRISTIS | tempor | `deleted_child_attribute` | LACUS |
+| TRISTIS | fugit | `deleted_child_attribute` | LACUS |
+| ULTRICES | posuere | `primary_foreign_key` | LIBERO |
+| ULTRICES | magna | `primary_key` | LACUS |
+
+### `('<-', '')`
+```
+    SUSCIPIT: orci, lorem
+    RHONCUS, 1N TRISTIS, 11 SUSCIPIT
+    :
+    :
+    SODALES: convallis, ipsum
+    VITAE, 11 QUAM, 1N SODALES
+    QUAM: cras, sed
+
+    CONSEQUAT: fermentum, dederit
+    ELIT, 11 TRISTIS, 1N CONSEQUAT
+    TRISTIS: magna, vestibulum
+    /\ TRISTIS <- SODALES, NEC, LACUS: type
+    NEC: pulvinar, audis
+    MOLLIS, 1N CURABITUR, 11 NEC
+    CURABITUR: gravida, amor
+
+    DIGNISSIM: tellus, terra
+    ALIQUET, 1N TRISTIS, 1N DIGNISSIM
+    :
+    :
+    LACUS: tempor, fugit
+    ULTRICES, 1N LIBERO, 1N LACUS
+    LIBERO: posuere, lacrima
+```
+
+```
+ALIQUET (_#magna_, _#tellus_)
+CONSEQUAT (_fermentum_, dederit)
+CURABITUR (_gravida_, amor)
+DIGNISSIM (_tellus_, terra)
+LIBERO (_posuere_, lacrima)
+QUAM (_cras_, sed, #magna)
+SUSCIPIT (_orci_, lorem, #magna)
+TRISTIS (_magna_, vestibulum, #fermentum, type, convallis, ipsum, pulvinar, audis, #gravida, tempor, fugit)
+ULTRICES (_#posuere_, _magna_)
+```
+
+| Relation | Attribute | Nature | Source |
+|---|---|---|---|
+| ALIQUET | magna | `primary_foreign_key` | TRISTIS |
+| ALIQUET | tellus | `primary_foreign_key` | DIGNISSIM |
+| CONSEQUAT | fermentum | `primary_key` | None |
+| CONSEQUAT | dederit | `normal_attribute` | None |
+| CURABITUR | gravida | `primary_key` | None |
+| CURABITUR | amor | `normal_attribute` | None |
+| DIGNISSIM | tellus | `primary_key` | None |
+| DIGNISSIM | terra | `normal_attribute` | None |
+| LIBERO | posuere | `primary_key` | None |
+| LIBERO | lacrima | `normal_attribute` | None |
+| QUAM | cras | `primary_key` | None |
+| QUAM | sed | `normal_attribute` | None |
+| QUAM | magna | `foreign_key` | SODALES |
+| SUSCIPIT | orci | `primary_key` | None |
+| SUSCIPIT | lorem | `normal_attribute` | None |
+| SUSCIPIT | magna | `foreign_key` | TRISTIS |
+| TRISTIS | magna | `primary_key` | None |
+| TRISTIS | vestibulum | `normal_attribute` | None |
+| TRISTIS | fermentum | `foreign_key` | CONSEQUAT |
+| TRISTIS | type | `child_discriminant_` | None |
+| TRISTIS | convallis | `deleted_child_attribute` | SODALES |
+| TRISTIS | ipsum | `deleted_child_attribute` | SODALES |
+| TRISTIS | pulvinar | `deleted_child_attribute` | NEC |
+| TRISTIS | audis | `deleted_child_attribute` | NEC |
+| TRISTIS | gravida | `deleted_child_foreign_key` | CURABITUR |
+| TRISTIS | tempor | `deleted_child_attribute` | LACUS |
+| TRISTIS | fugit | `deleted_child_attribute` | LACUS |
+| ULTRICES | posuere | `primary_foreign_key` | LIBERO |
+| ULTRICES | magna | `primary_key` | LACUS |
+
+### `('<-', 'XT')`
+```
+    SUSCIPIT: orci, lorem
+    RHONCUS, 1N TRISTIS, 11 SUSCIPIT
+    :
+    :
+    SODALES: convallis, ipsum
+    VITAE, 11 QUAM, 1N SODALES
+    QUAM: cras, sed
+
+    CONSEQUAT: fermentum, dederit
+    ELIT, 11 TRISTIS, 1N CONSEQUAT
+    TRISTIS: magna, vestibulum
+    /XT\ TRISTIS <- SODALES, NEC, LACUS: type
+    NEC: pulvinar, audis
+    MOLLIS, 1N CURABITUR, 11 NEC
+    CURABITUR: gravida, amor
+
+    DIGNISSIM: tellus, terra
+    ALIQUET, 1N TRISTIS, 1N DIGNISSIM
+    :
+    :
+    LACUS: tempor, fugit
+    ULTRICES, 1N LIBERO, 1N LACUS
+    LIBERO: posuere, lacrima
+```
+
+```
+ALIQUET (_#magna_, _#tellus_)
+CONSEQUAT (_fermentum_, dederit)
+CURABITUR (_gravida_, amor)
+DIGNISSIM (_tellus_, terra)
+LIBERO (_posuere_, lacrima)
+QUAM (_cras_, sed, #magna)
+SUSCIPIT (_orci_, lorem, #magna)
+TRISTIS (_magna_, vestibulum, #fermentum, type, convallis, ipsum, pulvinar, audis, #gravida, tempor, fugit)
+ULTRICES (_#posuere_, _magna_)
+```
+
+| Relation | Attribute | Nature | Source |
+|---|---|---|---|
+| ALIQUET | magna | `primary_foreign_key` | TRISTIS |
+| ALIQUET | tellus | `primary_foreign_key` | DIGNISSIM |
+| CONSEQUAT | fermentum | `primary_key` | None |
+| CONSEQUAT | dederit | `normal_attribute` | None |
+| CURABITUR | gravida | `primary_key` | None |
+| CURABITUR | amor | `normal_attribute` | None |
+| DIGNISSIM | tellus | `primary_key` | None |
+| DIGNISSIM | terra | `normal_attribute` | None |
+| LIBERO | posuere | `primary_key` | None |
+| LIBERO | lacrima | `normal_attribute` | None |
+| QUAM | cras | `primary_key` | None |
+| QUAM | sed | `normal_attribute` | None |
+| QUAM | magna | `foreign_key` | SODALES |
+| SUSCIPIT | orci | `primary_key` | None |
+| SUSCIPIT | lorem | `normal_attribute` | None |
+| SUSCIPIT | magna | `foreign_key` | TRISTIS |
+| TRISTIS | magna | `primary_key` | None |
+| TRISTIS | vestibulum | `normal_attribute` | None |
+| TRISTIS | fermentum | `foreign_key` | CONSEQUAT |
+| TRISTIS | type | `child_discriminant_XT` | None |
+| TRISTIS | convallis | `deleted_child_attribute` | SODALES |
+| TRISTIS | ipsum | `deleted_child_attribute` | SODALES |
+| TRISTIS | pulvinar | `deleted_child_attribute` | NEC |
+| TRISTIS | audis | `deleted_child_attribute` | NEC |
+| TRISTIS | gravida | `deleted_child_foreign_key` | CURABITUR |
+| TRISTIS | tempor | `deleted_child_attribute` | LACUS |
+| TRISTIS | fugit | `deleted_child_attribute` | LACUS |
+| ULTRICES | posuere | `primary_foreign_key` | LIBERO |
+| ULTRICES | magna | `primary_key` | LACUS |
+
+### `('->', '')`
+```
+    SUSCIPIT: orci, lorem
+    RHONCUS, 1N TRISTIS, 11 SUSCIPIT
+    :
+    :
+    SODALES: convallis, ipsum
+    VITAE, 11 QUAM, 1N SODALES
+    QUAM: cras, sed
+
+    CONSEQUAT: fermentum, dederit
+    ELIT, 11 TRISTIS, 1N CONSEQUAT
+    TRISTIS: magna, vestibulum
+    /\ TRISTIS -> SODALES, NEC, LACUS: type
+    NEC: pulvinar, audis
+    MOLLIS, 1N CURABITUR, 11 NEC
+    CURABITUR: gravida, amor
+
+    DIGNISSIM: tellus, terra
+    ALIQUET, 1N TRISTIS, 1N DIGNISSIM
+    :
+    :
+    LACUS: tempor, fugit
+    ULTRICES, 1N LIBERO, 1N LACUS
+    LIBERO: posuere, lacrima
+```
+
+```
+ALIQUET (_#magna_, _#tellus_)
+CONSEQUAT (_fermentum_, dederit)
+CURABITUR (_gravida_, amor)
+DIGNISSIM (_tellus_, terra)
+LACUS (_#magna_, tempor, fugit)
+LIBERO (_posuere_, lacrima)
+NEC (_#magna_, pulvinar, audis, #gravida)
+QUAM (_cras_, sed, #magna)
+SODALES (_#magna_, convallis, ipsum)
+SUSCIPIT (_orci_, lorem, #magna)
+TRISTIS (_magna_, vestibulum, #fermentum, type)
+ULTRICES (_#posuere_, _#magna_)
+```
+
+| Relation | Attribute | Nature | Source |
+|---|---|---|---|
+| ALIQUET | magna | `primary_foreign_key` | TRISTIS |
+| ALIQUET | tellus | `primary_foreign_key` | DIGNISSIM |
+| CONSEQUAT | fermentum | `primary_key` | None |
+| CONSEQUAT | dederit | `normal_attribute` | None |
+| CURABITUR | gravida | `primary_key` | None |
+| CURABITUR | amor | `normal_attribute` | None |
+| DIGNISSIM | tellus | `primary_key` | None |
+| DIGNISSIM | terra | `normal_attribute` | None |
+| LACUS | magna | `parent_primary_key` | TRISTIS |
+| LACUS | tempor | `normal_attribute` | None |
+| LACUS | fugit | `normal_attribute` | None |
+| LIBERO | posuere | `primary_key` | None |
+| LIBERO | lacrima | `normal_attribute` | None |
+| NEC | magna | `parent_primary_key` | TRISTIS |
+| NEC | pulvinar | `normal_attribute` | None |
+| NEC | audis | `normal_attribute` | None |
+| NEC | gravida | `foreign_key` | CURABITUR |
+| QUAM | cras | `primary_key` | None |
+| QUAM | sed | `normal_attribute` | None |
+| QUAM | magna | `foreign_key` | SODALES |
+| SODALES | magna | `parent_primary_key` | TRISTIS |
+| SODALES | convallis | `normal_attribute` | None |
+| SODALES | ipsum | `normal_attribute` | None |
+| SUSCIPIT | orci | `primary_key` | None |
+| SUSCIPIT | lorem | `normal_attribute` | None |
+| SUSCIPIT | magna | `foreign_key` | TRISTIS |
+| TRISTIS | magna | `primary_key` | None |
+| TRISTIS | vestibulum | `normal_attribute` | None |
+| TRISTIS | fermentum | `foreign_key` | CONSEQUAT |
+| TRISTIS | type | `child_discriminant_` | None |
+| ULTRICES | posuere | `primary_foreign_key` | LIBERO |
+| ULTRICES | magna | `primary_foreign_key` | LACUS |
+
+### `('->', 'XT')`
+```
+    SUSCIPIT: orci, lorem
+    RHONCUS, 1N TRISTIS, 11 SUSCIPIT
+    :
+    :
+    SODALES: convallis, ipsum
+    VITAE, 11 QUAM, 1N SODALES
+    QUAM: cras, sed
+
+    CONSEQUAT: fermentum, dederit
+    ELIT, 11 TRISTIS, 1N CONSEQUAT
+    TRISTIS: magna, vestibulum
+    /XT\ TRISTIS -> SODALES, NEC, LACUS: type
+    NEC: pulvinar, audis
+    MOLLIS, 1N CURABITUR, 11 NEC
+    CURABITUR: gravida, amor
+
+    DIGNISSIM: tellus, terra
+    ALIQUET, 1N TRISTIS, 1N DIGNISSIM
+    :
+    :
+    LACUS: tempor, fugit
+    ULTRICES, 1N LIBERO, 1N LACUS
+    LIBERO: posuere, lacrima
+```
+
+```
+ALIQUET (_#magna_, _#tellus_)
+CONSEQUAT (_fermentum_, dederit)
+CURABITUR (_gravida_, amor)
+DIGNISSIM (_tellus_, terra)
+LACUS (_#magna_, tempor, fugit)
+LIBERO (_posuere_, lacrima)
+NEC (_#magna_, pulvinar, audis, #gravida)
+QUAM (_cras_, sed, #magna)
+SODALES (_#magna_, convallis, ipsum)
+SUSCIPIT (_orci_, lorem, #magna)
+TRISTIS (_magna_, vestibulum, #fermentum, type)
+ULTRICES (_#posuere_, _#magna_)
+```
+
+| Relation | Attribute | Nature | Source |
+|---|---|---|---|
+| ALIQUET | magna | `primary_foreign_key` | TRISTIS |
+| ALIQUET | tellus | `primary_foreign_key` | DIGNISSIM |
+| CONSEQUAT | fermentum | `primary_key` | None |
+| CONSEQUAT | dederit | `normal_attribute` | None |
+| CURABITUR | gravida | `primary_key` | None |
+| CURABITUR | amor | `normal_attribute` | None |
+| DIGNISSIM | tellus | `primary_key` | None |
+| DIGNISSIM | terra | `normal_attribute` | None |
+| LACUS | magna | `parent_primary_key` | TRISTIS |
+| LACUS | tempor | `normal_attribute` | None |
+| LACUS | fugit | `normal_attribute` | None |
+| LIBERO | posuere | `primary_key` | None |
+| LIBERO | lacrima | `normal_attribute` | None |
+| NEC | magna | `parent_primary_key` | TRISTIS |
+| NEC | pulvinar | `normal_attribute` | None |
+| NEC | audis | `normal_attribute` | None |
+| NEC | gravida | `foreign_key` | CURABITUR |
+| QUAM | cras | `primary_key` | None |
+| QUAM | sed | `normal_attribute` | None |
+| QUAM | magna | `foreign_key` | SODALES |
+| SODALES | magna | `parent_primary_key` | TRISTIS |
+| SODALES | convallis | `normal_attribute` | None |
+| SODALES | ipsum | `normal_attribute` | None |
+| SUSCIPIT | orci | `primary_key` | None |
+| SUSCIPIT | lorem | `normal_attribute` | None |
+| SUSCIPIT | magna | `foreign_key` | TRISTIS |
+| TRISTIS | magna | `primary_key` | None |
+| TRISTIS | vestibulum | `normal_attribute` | None |
+| TRISTIS | fermentum | `foreign_key` | CONSEQUAT |
+| TRISTIS | type | `child_discriminant_XT` | None |
+| ULTRICES | posuere | `primary_foreign_key` | LIBERO |
+| ULTRICES | magna | `primary_foreign_key` | LACUS |
+
+### `('=>', '')`
+```
+    SUSCIPIT: orci, lorem
+    RHONCUS, 1N TRISTIS, 11 SUSCIPIT
+    :
+    :
+    SODALES: convallis, ipsum
+    VITAE, 11 QUAM, 1N SODALES
+    QUAM: cras, sed
+
+    CONSEQUAT: fermentum, dederit
+    ELIT, 11 TRISTIS, 1N CONSEQUAT
+    TRISTIS: magna, vestibulum
+    /\ TRISTIS => SODALES, NEC, LACUS: type
+    NEC: pulvinar, audis
+    MOLLIS, 1N CURABITUR, 11 NEC
+    CURABITUR: gravida, amor
+
+    DIGNISSIM: tellus, terra
+    ALIQUET, 1N TRISTIS, 1N DIGNISSIM
+    :
+    :
+    LACUS: tempor, fugit
+    ULTRICES, 1N LIBERO, 1N LACUS
+    LIBERO: posuere, lacrima
+```
+
+```
+ALIQUET (_#magna_, _#tellus_)
+CONSEQUAT (_fermentum_, dederit)
+CURABITUR (_gravida_, amor)
+DIGNISSIM (_tellus_, terra)
+LACUS (_#magna_, vestibulum, #fermentum, tempor, fugit)
+LIBERO (_posuere_, lacrima)
+NEC (_#magna_, vestibulum, #fermentum, pulvinar, audis, #gravida)
+QUAM (_cras_, sed, #magna)
+SODALES (_#magna_, vestibulum, #fermentum, convallis, ipsum)
+SUSCIPIT (_orci_, lorem, #magna)
+TRISTIS (_magna_, vestibulum, #fermentum)
+ULTRICES (_#posuere_, _#magna_)
+```
+
+| Relation | Attribute | Nature | Source |
+|---|---|---|---|
+| ALIQUET | magna | `primary_foreign_key` | TRISTIS |
+| ALIQUET | tellus | `primary_foreign_key` | DIGNISSIM |
+| CONSEQUAT | fermentum | `primary_key` | None |
+| CONSEQUAT | dederit | `normal_attribute` | None |
+| CURABITUR | gravida | `primary_key` | None |
+| CURABITUR | amor | `normal_attribute` | None |
+| DIGNISSIM | tellus | `primary_key` | None |
+| DIGNISSIM | terra | `normal_attribute` | None |
+| LACUS | magna | `parent_primary_key` | TRISTIS |
+| LACUS | vestibulum | `parent_attribute` | TRISTIS |
+| LACUS | fermentum | `parent_foreign_key` | CONSEQUAT |
+| LACUS | tempor | `normal_attribute` | None |
+| LACUS | fugit | `normal_attribute` | None |
+| LIBERO | posuere | `primary_key` | None |
+| LIBERO | lacrima | `normal_attribute` | None |
+| NEC | magna | `parent_primary_key` | TRISTIS |
+| NEC | vestibulum | `parent_attribute` | TRISTIS |
+| NEC | fermentum | `parent_foreign_key` | CONSEQUAT |
+| NEC | pulvinar | `normal_attribute` | None |
+| NEC | audis | `normal_attribute` | None |
+| NEC | gravida | `foreign_key` | CURABITUR |
+| QUAM | cras | `primary_key` | None |
+| QUAM | sed | `normal_attribute` | None |
+| QUAM | magna | `foreign_key` | SODALES |
+| SODALES | magna | `parent_primary_key` | TRISTIS |
+| SODALES | vestibulum | `parent_attribute` | TRISTIS |
+| SODALES | fermentum | `parent_foreign_key` | CONSEQUAT |
+| SODALES | convallis | `normal_attribute` | None |
+| SODALES | ipsum | `normal_attribute` | None |
+| SUSCIPIT | orci | `primary_key` | None |
+| SUSCIPIT | lorem | `normal_attribute` | None |
+| SUSCIPIT | magna | `foreign_key` | TRISTIS |
+| TRISTIS | magna | `primary_key` | None |
+| TRISTIS | vestibulum | `normal_attribute` | None |
+| TRISTIS | fermentum | `foreign_key` | CONSEQUAT |
+| ULTRICES | posuere | `primary_foreign_key` | LIBERO |
+| ULTRICES | magna | `primary_foreign_key` | LACUS |
+
+### `('=>', 'XT')`
+```
+    SUSCIPIT: orci, lorem
+    RHONCUS, 1N TRISTIS, 11 SUSCIPIT
+    :
+    :
+    SODALES: convallis, ipsum
+    VITAE, 11 QUAM, 1N SODALES
+    QUAM: cras, sed
+
+    CONSEQUAT: fermentum, dederit
+    ELIT, 11 TRISTIS, 1N CONSEQUAT
+    TRISTIS: magna, vestibulum
+    /XT\ TRISTIS => SODALES, NEC, LACUS: type
+    NEC: pulvinar, audis
+    MOLLIS, 1N CURABITUR, 11 NEC
+    CURABITUR: gravida, amor
+
+    DIGNISSIM: tellus, terra
+    ALIQUET, 1N TRISTIS, 1N DIGNISSIM
+    :
+    :
+    LACUS: tempor, fugit
+    ULTRICES, 1N LIBERO, 1N LACUS
+    LIBERO: posuere, lacrima
+```
+
+```
+ALIQUET (_magna_, _#tellus_)
+CONSEQUAT (_fermentum_, dederit)
+CURABITUR (_gravida_, amor)
+DIGNISSIM (_tellus_, terra)
+LACUS (_magna_, vestibulum, #fermentum, tempor, fugit)
+LIBERO (_posuere_, lacrima)
+NEC (_magna_, vestibulum, #fermentum, pulvinar, audis, #gravida)
+QUAM (_cras_, sed, #magna)
+SODALES (_magna_, vestibulum, #fermentum, convallis, ipsum)
+SUSCIPIT (_orci_, lorem, #magna)
+ULTRICES (_#posuere_, _#magna_)
+```
+
+| Relation | Attribute | Nature | Source |
+|---|---|---|---|
+| ALIQUET | magna | `primary_key` | TRISTIS |
+| ALIQUET | tellus | `primary_foreign_key` | DIGNISSIM |
+| CONSEQUAT | fermentum | `primary_key` | None |
+| CONSEQUAT | dederit | `normal_attribute` | None |
+| CURABITUR | gravida | `primary_key` | None |
+| CURABITUR | amor | `normal_attribute` | None |
+| DIGNISSIM | tellus | `primary_key` | None |
+| DIGNISSIM | terra | `normal_attribute` | None |
+| LACUS | magna | `deleted_parent_primary_key` | TRISTIS |
+| LACUS | vestibulum | `deleted_parent_attribute` | TRISTIS |
+| LACUS | fermentum | `parent_foreign_key` | CONSEQUAT |
+| LACUS | tempor | `normal_attribute` | None |
+| LACUS | fugit | `normal_attribute` | None |
+| LIBERO | posuere | `primary_key` | None |
+| LIBERO | lacrima | `normal_attribute` | None |
+| NEC | magna | `deleted_parent_primary_key` | TRISTIS |
+| NEC | vestibulum | `deleted_parent_attribute` | TRISTIS |
+| NEC | fermentum | `parent_foreign_key` | CONSEQUAT |
+| NEC | pulvinar | `normal_attribute` | None |
+| NEC | audis | `normal_attribute` | None |
+| NEC | gravida | `foreign_key` | CURABITUR |
+| QUAM | cras | `primary_key` | None |
+| QUAM | sed | `normal_attribute` | None |
+| QUAM | magna | `foreign_key` | SODALES |
+| SODALES | magna | `deleted_parent_primary_key` | TRISTIS |
+| SODALES | vestibulum | `deleted_parent_attribute` | TRISTIS |
+| SODALES | fermentum | `parent_foreign_key` | CONSEQUAT |
+| SODALES | convallis | `normal_attribute` | None |
+| SODALES | ipsum | `normal_attribute` | None |
+| SUSCIPIT | orci | `primary_key` | None |
+| SUSCIPIT | lorem | `normal_attribute` | None |
+| SUSCIPIT | magna | `foreign_key` | TRISTIS |
+| ULTRICES | posuere | `primary_foreign_key` | LIBERO |
+| ULTRICES | magna | `primary_foreign_key` | LACUS |

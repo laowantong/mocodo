@@ -34,8 +34,8 @@
   ],
   "compose_primary_key": "`{label_lowercase}` {data_type},\nADD_PRIMARY_KEY `{label_lowercase}`",
   "compose_normal_attribute": "`{label_lowercase}` {data_type}",
-  "compose_foreign_key": "`{label_lowercase}` {data_type},\nADD_FOREIGN_KEY (`{label_lowercase}`) REFERENCES `{primary_relation_name_uppercase}` (`{raw_label_lowercase}`)",
-  "compose_foreign_primary_key": "`{label_lowercase}` {data_type},\nADD_PRIMARY_KEY `{label_lowercase}`,\nADD_FOREIGN_KEY (`{label_lowercase}`) REFERENCES `{primary_relation_name_uppercase}` (`{raw_label_lowercase}`)",
+  "compose_foreign_key": "`{label_lowercase}` {data_type},\nADD_FOREIGN_KEY (`{label_lowercase}`) REFERENCES `{outer_source_uppercase}` (`{raw_label_lowercase}`)",
+  "compose_primary_foreign_key": "`{label_lowercase}` {data_type},\nADD_PRIMARY_KEY `{label_lowercase}`,\nADD_FOREIGN_KEY (`{label_lowercase}`) REFERENCES `{outer_source_uppercase}` (`{raw_label_lowercase}`)",
   "column_separator": ",\n  ",
   "compose_relation": "CREATE TABLE `{this_relation_name_uppercase}` (\n  {columns},\n  PRIMARY KEY (),\n) ENGINE=InnoDB DEFAULT CHARSET=utf8;",
   "transform_single_column_relation": [
