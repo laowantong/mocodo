@@ -9,7 +9,6 @@
   "compose_strengthening_primary_key": "| {this_relation_name} | {label} | `strengthening_primary_key` | {outer_source} |\n",
   "compose_demoted_foreign_key": "| {this_relation_name} | {label} | `demoted_foreign_key` | {outer_source} |\n",
   "compose_promoting_foreign_key": "| {this_relation_name} | {label} | `promoting_foreign_key` | {outer_source} |\n",
-  "compose_outer_attribute": "| {this_relation_name} | {label} | `outer_attribute` | {outer_source} |\n",
   "compose_association_attribute": "| {this_relation_name} | {label} | `association_attribute` | {outer_source} |\n",
   "compose_parent_primary_key": "| {this_relation_name} | {label} | `parent_primary_key` | {outer_source} |\n",
   "compose_deleted_parent_primary_key": "| {this_relation_name} | {label} | `deleted_parent_primary_key` | {outer_source} |\n",

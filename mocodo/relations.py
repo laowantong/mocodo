@@ -197,7 +197,7 @@ class Relations:
             for row in self.mcd.rows:
                 for (i, box) in enumerate(row):
                     for line in lines:
-                        if line.startswith(box.cartouche + ":"):
+                        if line.startswith(box.name + ":"):
                             rows[-1].append(line)
                             all_commas[i] = False
                             break
@@ -237,7 +237,7 @@ class Relations:
     def relations_from_entities(self):
         for (name, entity) in self.mcd.entities.items():
             self.relations[name] = {
-                "this_relation_name": entity.cartouche,
+                "this_relation_name": entity.name,
                 "columns": []
             }
             for attribute in entity.attributes:
@@ -283,8 +283,8 @@ class Relations:
                         self.relations[entity.name]["columns"][0:0] = [{
                                 "attribute": attribute["attribute"],
                                 "data_type": attribute["data_type"],
-                                "outer_source": strengthening_entity.cartouche,
-                                "association_name": association.cartouche,
+                                "outer_source": strengthening_entity.name,
+                                "association_name": association.name,
                                 "leg_note": leg_note,
                                 "primary": True,
                                 "nature": "strengthening_primary_key"
@@ -315,9 +315,9 @@ class Relations:
                 self.relations[child_leg.entity_name]["columns"][0:0] = [{
                     "attribute": attribute["attribute"],
                     "data_type": attribute["data_type"],
-                    "outer_source": self.mcd.entities[parent_leg.entity_name].cartouche,
+                    "outer_source": self.mcd.entities[parent_leg.entity_name].name,
                     "leg_note": parent_leg.note,
-                    "association_name": association.cartouche,
+                    "association_name": association.name,
                     "primary": True,
                     "nature": "parent_primary_key"
                 } for attribute in self.relations[parent_leg.entity_name]["columns"] if attribute["primary"]]
@@ -338,13 +338,13 @@ class Relations:
             may_identify = all(leg.may_identify for leg in association.legs)
             if entity_name is None or (entity_priority == 1 and not may_identify):
                 self.relations[association.name] = { # make a relation of this association
-                    "this_relation_name": association.cartouche,
+                    "this_relation_name": association.name,
                     "columns": [{ # gather all migrant attributes
                         "attribute": attribute["attribute"],
                         "data_type": attribute["data_type"],
-                        "outer_source": self.mcd.entities[leg.entity_name].cartouche,
+                        "outer_source": self.mcd.entities[leg.entity_name].name,
                         "leg_note": leg.note,
-                        "association_name": association.cartouche,
+                        "association_name": association.name,
                         "primary": leg.may_identify,
                         "nature": "primary_foreign_key" if leg.may_identify else ("promoting_foreign_key" if entity_priority else "demoted_foreign_key")
                     } for leg in association.legs for attribute in self.relations[leg.entity_name]["columns"] if attribute["primary"]
@@ -352,7 +352,7 @@ class Relations:
                         "attribute": attribute.label,
                         "data_type": attribute.data_type,
                         "outer_source": None,
-                        "association_name": association.cartouche,
+                        "association_name": association.name,
                         "leg_note": None,
                         "primary": False,
                         "nature": "association_attribute"
@@ -366,9 +366,9 @@ class Relations:
                             self.relations[entity_name]["columns"].extend({
                                 "attribute": attribute["attribute"],
                                 "data_type": attribute["data_type"],
-                                "outer_source": self.mcd.entities[leg.entity_name].cartouche,
+                                "outer_source": self.mcd.entities[leg.entity_name].name,
                                 "leg_note": leg.note,
-                                "association_name": association.cartouche,
+                                "association_name": association.name,
                                 "primary": False,
                                 "nature": "foreign_key"
                             } for attribute in self.relations[leg.entity_name]["columns"] if attribute["primary"])
@@ -377,7 +377,7 @@ class Relations:
                 self.relations[entity_name]["columns"].extend([{
                         "attribute": attribute.label,
                         "data_type": attribute.data_type,
-                        "association_name": association.cartouche,
+                        "association_name": association.name,
                         "outer_source": None,
                         "leg_note": None,
                         "primary": False,
@@ -398,7 +398,7 @@ class Relations:
                 for d in self.relations[parent_leg.entity.name]["columns"]:
                     if d["attribute"] == attribute["attribute"] and d["nature"] == "foreign_key":
                         return d["outer_source"]
-            return self.mcd.entities[parent_leg.entity_name].cartouche
+            return self.mcd.entities[parent_leg.entity_name].name
 
         entities_to_delete = set()
         for association in self.mcd.associations.values():
@@ -415,7 +415,7 @@ class Relations:
                         "data_type": attribute["data_type"],
                         "outer_source": may_retrieve_distant_outer_source(parent_leg,  attribute),
                         "leg_note": may_retrieve_distant_leg_note(parent_leg, attribute),
-                        "association_name": association.cartouche,
+                        "association_name": association.name,
                         "primary": False,
                         "nature": "parent_foreign_key" if attribute["nature"] == "foreign_key" else "parent_attribute"
                     } for attribute in self.relations[parent_leg.entity_name]["columns"] if not attribute["primary"]]
@@ -424,7 +424,7 @@ class Relations:
                     "attribute": attribute.label,
                     "data_type": attribute.data_type or (f"INTEGER UNSIGNED{'' if 'T' in association.name else ' NOT NULL'}"),
                     "outer_source": None,
-                    "association_name": association.cartouche,
+                    "association_name": association.name,
                     "leg_note": None,
                     "primary": False,
                     "nature": f"child_discriminant_{association.name}" # "", "X", "T" or "XT"
@@ -439,7 +439,7 @@ class Relations:
                                 "data_type": "BOOLEAN",
                                 "outer_source": child_leg.entity_name,
                                 "leg_note": parent_leg.note,
-                                "association_name": association.cartouche,
+                                "association_name": association.name,
                                 "primary": False,
                                 "nature": "deleted_child_entity_name"
                             })
@@ -449,7 +449,7 @@ class Relations:
                             "data_type": attribute["data_type"],
                             "outer_source": may_retrieve_distant_outer_source(child_leg,  attribute),
                             "leg_note": parent_leg.note,
-                            "association_name": association.cartouche,
+                            "association_name": association.name,
                             "primary": False,
                             "nature": "deleted_child_foreign_key" if attribute["nature"] == "foreign_key" else "deleted_child_attribute"
                         } for attribute in self.relations[child_leg.entity_name]["columns"] if attribute["nature"] != "parent_primary_key")
