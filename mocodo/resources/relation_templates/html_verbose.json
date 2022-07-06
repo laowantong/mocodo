@@ -55,7 +55,7 @@
   "compose_child_discriminant_XT": "<span class='normal'>{label}</span><item>Un champ entier <i>{label}</i> est ajouté pour indiquer la nature de la spécialisation : 1 pour la première entité-fille, 2 pour la deuxième, etc. Jamais vide, du fait de la contrainte de totalité.</item>",
 
   "column_separator": ",\n    ",
-  "compose_relation": "<div>\n  <span class='relation'>{this_relation_name}</span> (\n    {columns}\n  )\n</div>",
+  "compose_relation": "<div>\n  <details><summary><span class='relation'>{this_relation_name}</span> (\n    {columns}\n  )</summary>\n</div>",
   "transform_single_column_relation": [
     {
       "search": "(?s)(.+)$",
@@ -130,7 +130,7 @@
     },
     {
       "search": "(?s)</div>(\n    <li>.+)",
-      "replace": "  <ul>\\1\n  </ul>\n</div>"
+      "replace": "  <ul>\\1\n  </ul></details>\n</div>"
     },
     {
       "search": "$",

@@ -39,12 +39,6 @@ var relation_formats = {
     "highlighting": "markdown",
     "name": "Markdown",
   },
-  "html": {
-    "default": true,
-    "highlighting": "markup",
-    "title": "S&#39;affiche également au-dessous du diagramme conceptuel.",
-    "name": "HTML",
-  },
   "diagram": {
     "default": false,
     "highlighting": "none",
@@ -52,7 +46,7 @@ var relation_formats = {
     "name": "Diagramme relationnel",
   },
   "html_verbose": {
-    "default": false,
+    "default": true,
     "highlighting": "markup",
     "title": "S&#39;affiche également au-dessous du diagramme conceptuel.",
     "name": "Explications du schéma relationnel",
@@ -202,7 +196,7 @@ function refreshRelations(result) {
     s += `<pre><code class="language-${highlighting}" id="code-${i}">`
     s += item[1];
     s += `</code></pre></fieldset>`;
-    if ((item[0] == "html" && !supplement) || item[0] == "html_verbose") {
+    if (item[0] == "html_verbose") {
       supplement = item[1].replace(new RegExp("&lt;", "g"), "<")
     };
   })
