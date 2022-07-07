@@ -1,25 +1,31 @@
 {
   "extension": "_verbose.md",
   "highlight": "markdown",
-  "compose_primary_key": "<ins>{label}</ins><item>Le champ _{label}_ fait partie de la clef primaire de la table<primary></primary>. C'était déjà un identifiant de l'entité _{this_relation_name}_.</item>",
-  "compose_normal_attribute": "{label}<item>Le champ _{label}_ était déjà un simple attribut de l'entité _{this_relation_name}_.</item>",
-  "compose_foreign_key": "_#{label}_<item>Le champ _{label}_ est une clef étrangère. Il a migré à partir de l'entité _{outer_source}_ par l'association de dépendance fonctionnelle _{association_name}_ en perdant son caractère identifiant.</item>",
-  "compose_parent_foreign_key": "_#{label}_<item>Le champ _{label}_ est une clef étrangère. Il a migré à travers l'entité-mère _{outer_source}_ de façon à prévenir toute perte d'information lors de la suppression de celle-ci.</item>",
-  "compose_outer_attribute": "{label}<item>Le champ _{label}_ a migré à partir de l'association de dépendance fonctionnelle _{association_name}_.</item>",
-  "compose_primary_foreign_key": "<ins>_#{label}_</ins><item>Le champ _{label}_ fait partie de la clef primaire de la table<primary></primary>. C'est une clef étrangère qui a migré directement à partir de l'entité _{outer_source}_.</item>",
+
   "compose_association_attribute": "{label}<item>Le champ _{label}_ était déjà un simple attribut de l'association _{this_relation_name}_.</item>",
-  "compose_strengthening_primary_key": "<ins>_{label}_</ins><item>Le champ _{label}_ fait partie de la clef primaire de la table<primary></primary>. Il a migré à partir de l'entité _{outer_source}_ pour renforcer l'identifiant faible.</item>",
-  "compose_demoted_foreign_key": "_{label}_<item>Le champ _{label}_ est une clef étrangère issue de l'entité _{outer_source}_. Il devrait normalement faire partie de l'identifiant de _{this_relation_name}_, mais a été rétrogradé explicitement au rang de simple attribut.</item>",
-  "compose_promoting_foreign_key": "_{label}_<item>Le champ _{label}_ est une clef étrangère issue de l'entité _{outer_source}_. Il devrait normalement migrer à travers l'association _{this_relation_name}_, mais celle-ci a été explicitement promue au rang de table.</item>",
-  "compose_child_discriminant_": "{label}<item>Un champ entier _{label}_ est ajouté pour indiquer la nature de la spécialisation. Il est interprété comme un code binaire : bit 1 pour la première entité-fille, bit 2 pour la deuxième, etc. Peut être vide, du fait de l'absence de contrainte de totalité.</item>",
-  "compose_child_discriminant_T": "{label}<item>Un champ entier _{label}_ est ajouté pour indiquer la nature de la spécialisation. Il est interprété comme un code binaire : bit 1 pour la première entité-fille, bit 2 pour la deuxième, etc. Jamais vide, du fait de la contrainte de totalité.</item>",
-  "compose_child_discriminant_X": "{label}<item>Un champ entier _{label}_ est ajouté pour indiquer la nature de la spécialisation : 1 pour la première entité-fille, 2 pour la deuxième, etc. Peut être vide, du fait de l'absence de contrainte de totalité.</item>",
-  "compose_child_discriminant_XT": "{label}<item>Un champ entier _{label}_ est ajouté pour indiquer la nature de la spécialisation : 1 pour la première entité-fille, 2 pour la deuxième, etc. Jamais vide, du fait de la contrainte de totalité.</item>",
-  "compose_parent_primary_key": "<ins>_#{label}_</ins><item>Le champ _{label}_ fait partie de la clef primaire de la table<primary></primary>. C'est une clef étrangère qui a migré à partir de l'entité-mère _{outer_source}_.</item>",
-  "compose_parent_attribute": "{label}<item>Le champ _{label}_ est un simple attribut. Il a migré à partir de l'entité-mère _{outer_source}_ de façon à prévenir toute perte d'information lors de la suppression de celle-ci.</item>",
+  "compose_deleted_child_attribute": "{label}<item>Le champ _{label}_ a migré à partir de l'entité-fille _{adjacent_source}_ (supprimée).</item>",
+  "compose_deleted_child_discriminant_": "{label}<item>Un champ entier _{label}_ est ajouté pour indiquer la nature de la spécialisation. Il est interprété comme un code binaire : bit 1 pour la première entité-fille, bit 2 pour la deuxième, etc. Peut être vide, du fait de l'absence de contrainte de totalité.</item>",
+  "compose_deleted_child_discriminant_T": "{label}<item>Un champ entier _{label}_ est ajouté pour indiquer la nature de la spécialisation. Il est interprété comme un code binaire : bit 1 pour la première entité-fille, bit 2 pour la deuxième, etc. Jamais vide, du fait de la contrainte de totalité.</item>",
+  "compose_deleted_child_discriminant_X": "{label}<item>Un champ entier _{label}_ est ajouté pour indiquer la nature de la spécialisation : 1 pour la première entité-fille, 2 pour la deuxième, etc. Peut être vide, du fait de l'absence de contrainte de totalité.</item>",
+  "compose_deleted_child_discriminant_XT": "{label}<item>Un champ entier _{label}_ est ajouté pour indiquer la nature de la spécialisation : 1 pour la première entité-fille, 2 pour la deuxième, etc. Jamais vide, du fait de la contrainte de totalité.</item>",
   "compose_deleted_child_entity_name": "{label}<item>Un champ booléen _{label}_ est ajouté pour indiquer si on a affaire ou pas à la spécialisation de même nom.</item>",
-  "compose_child_foreign_key": "_#{label}_<item>Le champ _{label}_ est une clef étrangère. Il a migré à partir de l'entité-fille _{outer_source}_, dans laquelle il avait déjà migré à travers une association de dépendance fonctionnelle.</item>",
-  "compose_child_attribute": "{label}<item>Le champ _{label}_ a migré à partir de l'entité-fille _{outer_source}_.</item>",
+  "compose_deleted_child_foreign_key": "_#{label}_<item>Le champ _{label}_ est une clé étrangère. Il a migré à partir de l'entité-fille _{adjacent_source}_ (supprimée) dans laquelle il avait déjà migré à partir de l'entité _{outer_source}_.</item>",
+  "compose_deleted_parent_attribute": "{label}<item>Le champ _{label}_ est un simple attribut. Il était simple attribut de lentité-mère _{adjacent_source}_ (supprimée).</item>",
+  "compose_deleted_parent_foreign_key": "_#{label}_<item>Le champ _{label}_ est une clé étrangère. Il a migré à travers l'entité-mère _{adjacent_source}_ (supprimée), et réfère maintenant directement à l'entité _{outer_source}_.</item>",
+  "compose_deleted_parent_primary_key": "<ins>{label}</ins><item>Le champ _{label}_ fait partie de la clé primaire de la table<primary></primary>. Il était clé primaire de l'entité-mère _{adjacent_source}_ (supprimée).</item>",
+  "compose_demoted_foreign_key": "_#{label}_<item>Le champ _{label}_ est une clé étrangère issue de l'entité _{outer_source}_. Il devrait normalement faire partie de l'identifiant de _{this_relation_name}_, mais a été rétrogradé explicitement au rang de simple attribut.</item>",
+  "compose_foreign_key": "_#{label}_<item>Le champ _{label}_ est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle _{association_name}_ à partir de l'entité _{outer_source}_ en perdant son caractère identifiant.</item>",
+  "compose_normal_attribute": "{label}<item>Le champ _{label}_ était déjà un simple attribut de l'entité _{this_relation_name}_.</item>",
+  "compose_outer_attribute": "{label}<item>Le champ _{label}_ a migré à partir de l'association de dépendance fonctionnelle _{association_name}_.</item>",
+  "compose_parent_attribute": "{label}<item>Le champ _{label}_ est un simple attribut. Il a migré à partir de l'entité-mère _{outer_source}_.</item>",
+  "compose_parent_foreign_key": "_#{label}_<item>Le champ _{label}_ est une clé étrangère. Il a migré à travers l'entité-mère _{outer_source}_. CHECKME</item>",
+  "compose_parent_primary_key": "<ins>_#{label}_</ins><item>Le champ _{label}_ fait partie de la clé primaire de la table<primary></primary>. C'est une clé étrangère qui a migré à partir de l'entité-mère _{outer_source}_.</item>",
+  "compose_primary_foreign_key": "<ins>_#{label}_</ins><item>Le champ _{label}_ fait partie de la clé primaire de la table<primary></primary>. C'est une clé étrangère qui a migré directement à partir de l'entité _{outer_source}_.</item>",
+  "compose_primary_key": "<ins>{label}</ins><item>Le champ _{label}_ fait partie de la clé primaire de la table<primary></primary>. C'était déjà un identifiant de l'entité _{this_relation_name}_.</item>",
+  "compose_promoting_foreign_key": "_#{label}_<item>Le champ _{label}_ est une clé étrangère issue de l'entité _{outer_source}_. Il devrait normalement migrer à travers l'association _{this_relation_name}_, mais celle-ci a été explicitement promue au rang de table.</item>",
+  "compose_strengthening_primary_key": "<ins>_#{label}_</ins><item>Le champ _{label}_ fait partie de la clé primaire de la table<primary></primary>. Il a migré à partir de l'entité _{outer_source}_ pour renforcer l'identifiant.</item>",
+  "compose_unsourced_foreign_key": "{label}<item>Le champ _{label}_ a migré par l'association de dépendance fonctionnelle _{association_name}_ à partir de l'entité _{adjacent_source}_. Cette entité ayant été supprimée, il n'est pas considéré comme clé étrangère.</item>",
+  "compose_unsourced_primary_foreign_key": "<ins>{label}</ins><item>Le champ _{label}_ fait partie de la clé primaire de la table<primary></primary>. Il a migré par l'association de dépendance fonctionnelle _{association_name}_ à partir de l'entité _{adjacent_source}_. Cette entité ayant été supprimée, il n'est pas considéré comme clé étrangère.</item>",
   "compose_relation": "**{this_relation_name}** ({columns})  ",
   "transform_single_column_relation": [
     {
@@ -43,34 +49,34 @@
       "replace": "- Les champs \\1 et \\2 étaient déjà de simples attributs\\3"
     },
     {
-      "search": "(- Le champ )(.+?)( est une clef étrangère\\. Il a .+)\n\\1(.+?)\\3",
+      "search": "(- Le champ )(.+?)( est une clé étrangère\\. Il a .+)\n\\1(.+?)\\3",
       "replace": "\\1\\2, \\4\\3",
       "iterated": true
     },
     {
-      "search": "- Le champ (.+), (.+?) est une clef étrangère\\. Il a (migré .+ en perdant) son (caractère identifiant\\.)",
-      "replace": "- Les champs \\1 et \\2 sont des clefs étrangères. Ils ont \\3 leur \\4"
+      "search": "- Le champ (.+), (.+?) est une clé étrangère\\. Il a (migré .+ en perdant) son (caractère identifiant\\.)",
+      "replace": "- Les champs \\1 et \\2 sont des clés étrangères. Ils ont \\3 leur \\4"
     },
     {
-      "search": "(- Le champ )(.+?)( fait partie de la clef primaire de la table<primary></primary>.+?)\n\\1(.+?)\\3",
+      "search": "(- Le champ )(.+?)( fait partie de la clé primaire de la table<primary></primary>.+?)\n\\1(.+?)\\3",
       "replace": "\\1\\2, \\4\\3",
       "iterated": true
     },
     {
-      "search": "- Le champ (.+), (.+?) fait partie de la clef primaire de la table<primary></primary>. C'est une clef étrangère qui a (migré directement à partir de l'entité .+?)",
-      "replace": "- Les champs \\1 et \\2 font partie de la clef primaire de la table<primary></primary>. Ce sont des clefs étrangères qui ont \\3"
+      "search": "- Le champ (.+), (.+?) fait partie de la clé primaire de la table<primary></primary>. C'est une clé étrangère qui a (migré directement à partir de l'entité .+?)",
+      "replace": "- Les champs \\1 et \\2 font partie de la clé primaire de la table<primary></primary>. Ce sont des clés étrangères qui ont \\3"
     },
     {
-      "search": "- Le champ (.+), (.+?) fait partie de la clef primaire de la table<primary></primary>. C'est une clef étrangère qui a (migré directement à partir de l'entité-mère .+?)",
-      "replace": "- Les champs \\1 et \\2 font partie de la clef primaire de la table<primary></primary>. Ce sont des clefs étrangères qui ont \\3"
+      "search": "- Le champ (.+), (.+?) fait partie de la clé primaire de la table<primary></primary>. C'est une clé étrangère qui a (migré directement à partir de l'entité-mère .+?)",
+      "replace": "- Les champs \\1 et \\2 font partie de la clé primaire de la table<primary></primary>. Ce sont des clés étrangères qui ont \\3"
     },
     {
-      "search": "- Le champ (.+), (.+?) fait partie de la clef primaire de la table<primary></primary>. C'était déjà un identifiant (de l'entité .+?)",
-      "replace": "- Les champs \\1 et \\2 font partie de la clef primaire de la table<primary></primary>. C'était déjà des identifiants \\3"
+      "search": "- Le champ (.+), (.+?) fait partie de la clé primaire de la table<primary></primary>. C'était déjà un identifiant (de l'entité .+?)",
+      "replace": "- Les champs \\1 et \\2 font partie de la clé primaire de la table<primary></primary>. C'était déjà des identifiants \\3"
     },
     {
-      "search": "- Le champ (.+), (.+?) fait partie de la clef primaire de la table<primary></primary>. Il a (migré .+?)",
-      "replace": "- Les champs \\1 et \\2 font partie de la clef primaire de la table<primary></primary>. Ils ont \\3"
+      "search": "- Le champ (.+), (.+?) fait partie de la clé primaire de la table<primary></primary>. Il a (migré .+?)",
+      "replace": "- Les champs \\1 et \\2 font partie de la clé primaire de la table<primary></primary>. Ils ont \\3"
     },
     {
       "search": "$",
@@ -82,11 +88,11 @@
       "iterated": true
     },
     {
-      "search": "(?s)fait partie de( la clef primaire de la table.+)<primary_count>I</primary_count>",
+      "search": "(?s)fait partie de( la clé primaire de la table.+)<primary_count>I</primary_count>",
       "replace": "constitue\\1"
     },
     {
-      "search": "(?s)font partie de( la clef primaire de la table.+)<primary_count>I</primary_count>",
+      "search": "(?s)font partie de( la clé primaire de la table.+)<primary_count>I</primary_count>",
       "replace": "constituent\\1"
     },
     {

@@ -1,7 +1,7 @@
 class Phantom:
 
     def __init__(self, phantom_count = 0):
-        self.cartouche = self.name = " %s" % phantom_count
+        self.name_view = self.name = " %s" % phantom_count
         self.attributes = []
         self.legs = [] # iterating over box's legs does nothing if it is not an association
         self.kind = "phantom"

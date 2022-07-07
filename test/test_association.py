@@ -12,7 +12,7 @@ class parse_test(unittest.TestCase):
     def test_reflexive(self):
         a = Association(u"ÊTRE AMI, 0N BANDIT, 0N BANDIT")
         self.assertEqual(a.name, u"ÊTRE AMI")
-        self.assertEqual(a.cartouche, u"ÊTRE AMI")
+        self.assertEqual(a.name_view, u"ÊTRE AMI")
         self.assertEqual(a.attributes, [])
         for (i, leg) in enumerate(a.legs):
             self.assertEqual(leg.card_view, "0,N")
@@ -29,7 +29,7 @@ class parse_test(unittest.TestCase):
         ]
         for a in l:
             self.assertEqual(a.name, "EMPLOYER")
-            self.assertEqual(a.cartouche, "EMPLOYER")
+            self.assertEqual(a.name_view, "EMPLOYER")
             self.assertEqual(a.attributes, [])
             self.assertEqual(a.legs[0].card_view, "0,1")
             self.assertEqual(a.legs[0].entity_name, "PARTICIPANT")
@@ -43,7 +43,7 @@ class parse_test(unittest.TestCase):
     def test_triple(self):
         a = Association("SUIVRE, 0N DATE, 11 ÉTUDIANT, 0N ENSEIGNANT")
         self.assertEqual(a.name, "SUIVRE")
-        self.assertEqual(a.cartouche, "SUIVRE")
+        self.assertEqual(a.name_view, "SUIVRE")
         self.assertEqual(a.attributes, [])
         self.assertEqual(a.legs[0].card_view, "0,N")
         self.assertEqual(a.legs[0].entity_name, "DATE")
@@ -93,15 +93,15 @@ class parse_test(unittest.TestCase):
     def test_numbered_association(self):
         a = Association("SOUTENIR1, 01 ÉTUDIANT, 0N DATE: note stage")
         self.assertEqual(a.name, "SOUTENIR1")
-        self.assertEqual(a.cartouche, "SOUTENIR")
+        self.assertEqual(a.name_view, "SOUTENIR")
 
     def test_df(self):
         a = Association("DF, 0N CLIENT, 11 COMMANDE")
         self.assertEqual(a.name, "DF")
-        self.assertEqual(a.cartouche, "DF")
+        self.assertEqual(a.name_view, "DF")
         a = Association("CIF, 0N CLIENT, 11 COMMANDE", df_label="CIF")
         self.assertEqual(a.name, "CIF")
-        self.assertEqual(a.cartouche, "CIF")
+        self.assertEqual(a.name_view, "CIF")
 
     def test_included_in_foreign_key(self):
         a = Association("SUIVRE, 0N DATE, 11 /ÉTUDIANT, 0N ENSEIGNANT")
@@ -119,19 +119,19 @@ class parse_test(unittest.TestCase):
     def test_backslash_suppression(self):
         a = Association(r"BUZZ\, 01 FO\tO, 0N \tBAR\t")
         self.assertEqual(a.name, "BUZZ")
-        self.assertEqual(a.cartouche, "BUZZ")
+        self.assertEqual(a.name_view, "BUZZ")
         self.assertEqual(a.legs[0].entity_name, "FOtO")
         self.assertEqual(a.legs[1].entity_name, "tBARt")
         a = Association("BUZZ\, 01 FO\tO, 0N \tBAR\t")
         self.assertEqual(a.name, "BUZZ")
-        self.assertEqual(a.cartouche, "BUZZ")
+        self.assertEqual(a.name_view, "BUZZ")
         self.assertEqual(a.legs[0].entity_name, "FO\tO")
         self.assertEqual(a.legs[1].entity_name, "BAR")
 
     def test_backslash_conservation(self):
         a = Association(r"/XT\ FOO => BAR")
         self.assertEqual(a.name, "XT")
-        self.assertEqual(a.cartouche, "XT")
+        self.assertEqual(a.name_view, "XT")
         self.assertEqual(a.legs[0].entity_name, "FOO")
         self.assertEqual(a.legs[1].entity_name, "BAR")
         self.assertEqual(a.kind, "inheritance: =>")

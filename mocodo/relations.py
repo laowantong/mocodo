@@ -1,5 +1,4 @@
 import collections
-import itertools
 import os
 import re
 
@@ -58,9 +57,12 @@ class Relations:
         self.relations = {}
         self.relations_from_entities()
         self.strengthen_weak_identifiers()
+        self.inheritance_parent_or_children_to_delete = self.find_inheritance_parent_or_children_to_delete()
         self.strengthen_children()
+        self.strengthen_parents()
         self.process_associations()
         self.process_inheritances()
+        self.delete_inheritance_parent_or_children_to_delete()
         self.make_primary_keys_first()
         self.may_disambiguate_with_leg_notes = set_disambiguation_strategy(params["disambiguation"])
         may_update_params_with_guessed_title()
@@ -110,26 +112,28 @@ class Relations:
               "transform_relational_schema": [],
             }
             result.update(template)
-            result.setdefault("compose_strengthening_primary_key", result["compose_primary_foreign_key"])
-            result.setdefault("compose_demoted_foreign_key", result["compose_foreign_key"])
-            result.setdefault("compose_promoting_foreign_key", result["compose_foreign_key"])
-            result.setdefault("compose_outer_attribute", result["compose_normal_attribute"])
             result.setdefault("compose_association_attribute", result["compose_normal_attribute"])
-            # Inheritance parents
-            result.setdefault("compose_parent_primary_key", result["compose_primary_foreign_key"])
-            result.setdefault("compose_deleted_parent_primary_key", result["compose_primary_key"])
-            result.setdefault("compose_parent_foreign_key", result["compose_foreign_key"])
-            result.setdefault("compose_deleted_parent_foreign_key", result["compose_foreign_key"])
-            result.setdefault("compose_parent_attribute", result["compose_outer_attribute"])
-            result.setdefault("compose_deleted_parent_attribute", result["compose_outer_attribute"])
-            # Inheritance children
-            result.setdefault("compose_deleted_child_entity_name", result["compose_outer_attribute"])
             result.setdefault("compose_deleted_child_attribute", result["compose_normal_attribute"])
+            result.setdefault("compose_deleted_child_discriminant_", result["compose_normal_attribute"])
+            result.setdefault("compose_deleted_child_discriminant_T", result["compose_normal_attribute"])
+            result.setdefault("compose_deleted_child_discriminant_X", result["compose_normal_attribute"])
+            result.setdefault("compose_deleted_child_discriminant_XT", result["compose_normal_attribute"])
+            result.setdefault("compose_deleted_child_entity_name", result["compose_normal_attribute"])
             result.setdefault("compose_deleted_child_foreign_key", result["compose_foreign_key"])
-            result.setdefault("compose_child_discriminant_", result["compose_outer_attribute"])
-            result.setdefault("compose_child_discriminant_X", result["compose_outer_attribute"])
-            result.setdefault("compose_child_discriminant_T", result["compose_outer_attribute"])
-            result.setdefault("compose_child_discriminant_XT", result["compose_outer_attribute"])
+            result.setdefault("compose_deleted_parent_discriminant_", result["compose_normal_attribute"])
+            result.setdefault("compose_deleted_parent_discriminant_T", result["compose_normal_attribute"])
+            result.setdefault("compose_deleted_parent_discriminant_X", result["compose_normal_attribute"])
+            result.setdefault("compose_deleted_parent_discriminant_XT", result["compose_normal_attribute"])
+            result.setdefault("compose_deleted_parent_attribute", result["compose_normal_attribute"])
+            result.setdefault("compose_deleted_parent_foreign_key", result["compose_foreign_key"])
+            result.setdefault("compose_deleted_parent_primary_key", result["compose_primary_key"])
+            result.setdefault("compose_demoted_foreign_key", result["compose_foreign_key"])
+            result.setdefault("compose_outer_attribute", result["compose_normal_attribute"])
+            result.setdefault("compose_parent_primary_key", result["compose_primary_foreign_key"])
+            result.setdefault("compose_promoting_foreign_key", result["compose_foreign_key"])
+            result.setdefault("compose_strengthening_primary_key", result["compose_primary_foreign_key"])
+            result.setdefault("compose_unsourced_foreign_key", result["compose_normal_attribute"])
+            result.setdefault("compose_unsourced_primary_foreign_key", result["compose_primary_key"])
             return result
         template = set_defaults(template)
         
@@ -224,6 +228,20 @@ class Relations:
 
     # private
 
+    def may_retrieve_distant_leg_note(self, leg, attribute):
+        if leg.entity_name in self.inheritance_parent_or_children_to_delete:
+            for d in self.relations[leg.entity.name]["columns"]:
+                if d["attribute"] == attribute["attribute"] and d["adjacent_source"] == attribute["adjacent_source"]:
+                    return d["leg_note"]
+        return leg.note
+
+    def may_retrieve_distant_outer_source(self, leg, attribute):
+        if leg.entity_name in self.inheritance_parent_or_children_to_delete:
+            for d in self.relations[leg.entity_name]["columns"]:
+                if d["attribute"] == attribute["attribute"] and d["adjacent_source"] == attribute["adjacent_source"]:
+                    return d["outer_source"]
+        return leg.entity_name
+
     def ensure_no_reciprocical_relative_entities(self):
         for association in self.mcd.associations.values():
             weak_count = 0
@@ -232,7 +250,6 @@ class Relations:
                     weak_count += 1
                     if weak_count == 2:
                         raise MocodoError(22, _('Reciprocal relative identification around {association}.').format(association=association.name)) # fmt: skip
-                    other_leg = leg
 
     def relations_from_entities(self):
         for (name, entity) in self.mcd.entities.items():
@@ -244,6 +261,7 @@ class Relations:
                 self.relations[name]["columns"].append({
                     "attribute": attribute.label,
                     "data_type": attribute.data_type,
+                    "adjacent_source": None,
                     "outer_source": None,
                     "association_name": None,
                     "leg_note": None,
@@ -283,6 +301,7 @@ class Relations:
                         self.relations[entity.name]["columns"][0:0] = [{
                                 "attribute": attribute["attribute"],
                                 "data_type": attribute["data_type"],
+                                "adjacent_source": strengthening_entity.name,
                                 "outer_source": strengthening_entity.name,
                                 "association_name": association.name,
                                 "leg_note": leg_note,
@@ -299,7 +318,22 @@ class Relations:
                 else:
                     remaining_entity_names = u", ".join('"%s"' % entity.name for entity in remaining_entities)
                     raise MocodoError(17, _('Cycle of weak entities in {entities}.').format(entities=remaining_entity_names)) # fmt: skip
-    
+
+    def find_inheritance_parent_or_children_to_delete(self):
+        result = set()
+        for association in self.mcd.associations.values():
+            if not association.kind.startswith("inheritance"):
+                continue
+            parent_leg = association.legs[0]
+            if association.kind[-2:] in ("<-", "<="):
+                for child_leg in association.legs[1:]:
+                    result.add(child_leg.entity_name)
+            elif association.kind[-2:] == "=>":
+                if "T" not in association.name:
+                    raise MocodoError(25, _('Totality (/T\\ or /XT\\) is mandatory for "=>" inheritance of parent {name}.').format(name=parent_leg.entity_name)) # fmt: skip
+                result.add(parent_leg.entity_name)
+        return result
+
     def strengthen_children(self):
         """
         Migrate the parent's identifier in the children. This is obviously necessary if the parent
@@ -311,16 +345,37 @@ class Relations:
             if not association.kind.startswith("inheritance"):
                 continue
             parent_leg = association.legs[0]
+            to_be_deleted = parent_leg.entity_name in self.inheritance_parent_or_children_to_delete
             for child_leg in association.legs[1:]: 
                 self.relations[child_leg.entity_name]["columns"][0:0] = [{
                     "attribute": attribute["attribute"],
                     "data_type": attribute["data_type"],
-                    "outer_source": self.mcd.entities[parent_leg.entity_name].name,
+                    "adjacent_source": parent_leg.entity_name,
+                    "outer_source": parent_leg.entity_name,
                     "leg_note": parent_leg.note,
                     "association_name": association.name,
                     "primary": True,
-                    "nature": "parent_primary_key"
+                    "nature": "deleted_parent_primary_key" if to_be_deleted else "parent_primary_key"
                 } for attribute in self.relations[parent_leg.entity_name]["columns"] if attribute["primary"]]
+
+    def strengthen_parents(self):
+        """
+        Migrate the optional children's discriminants in their parent when it disappears (totality + =>).
+        In this case, this discriminant should further migrate with the identifier of the parent.
+        """
+        for association in self.mcd.associations.values():
+            if association.kind == "inheritance: =>":
+                parent_leg = association.legs[0]
+                self.relations[parent_leg.entity_name]["columns"].extend({ 
+                    "attribute": attribute.label,
+                    "data_type": attribute.data_type or (f"INTEGER UNSIGNED{'' if 'T' in association.name else ' NOT NULL'}"),
+                    "adjacent_source": None,
+                    "outer_source": None,
+                    "association_name": association.name, # "", "X", "T" or "XT"
+                    "leg_note": None,
+                    "primary": False,
+                    "nature": f"deleted_parent_discriminant_{association.name}"
+                } for attribute in association.attributes)
 
     def process_associations(self):
         for association in self.mcd.associations.values():
@@ -337,133 +392,166 @@ class Relations:
                     entity_name = leg.entity_name
             may_identify = all(leg.may_identify for leg in association.legs)
             if entity_name is None or (entity_priority == 1 and not may_identify):
-                self.relations[association.name] = { # make a relation of this association
+                # make a relation of this association
+                self.relations[association.name] = {
                     "this_relation_name": association.name,
-                    "columns": [{ # gather all migrant attributes
-                        "attribute": attribute["attribute"],
-                        "data_type": attribute["data_type"],
-                        "outer_source": self.mcd.entities[leg.entity_name].name,
-                        "leg_note": leg.note,
-                        "association_name": association.name,
-                        "primary": leg.may_identify,
-                        "nature": "primary_foreign_key" if leg.may_identify else ("promoting_foreign_key" if entity_priority else "demoted_foreign_key")
-                    } for leg in association.legs for attribute in self.relations[leg.entity_name]["columns"] if attribute["primary"]
-                    ] + [{ # and the attributes already existing in the association
+                    "columns": []
+                }
+                for leg in association.legs:
+                    for attribute in self.relations[leg.entity_name]["columns"]:
+                        if attribute["primary"]:
+                            outer_source = self.may_retrieve_distant_outer_source(leg, attribute)
+                            if leg.may_identify:
+                                if outer_source is None:
+                                    nature = "unsourced_primary_foreign_key"
+                                    # NB: technically, an unsourced primary foreign key is not foreign anymore
+                                else:
+                                    nature = "primary_foreign_key"
+                            elif entity_priority:
+                                nature = "promoting_foreign_key"
+                            else:
+                                nature = "demoted_foreign_key"
+                            self.relations[association.name]["columns"].append({ # gather all migrant attributes
+                                "attribute": attribute["attribute"],
+                                "data_type": attribute["data_type"],
+                                "adjacent_source": leg.entity_name,
+                                "outer_source": outer_source,
+                                "leg_note": leg.note,
+                                "association_name": association.name,
+                                "primary": leg.may_identify,
+                                "nature": nature
+                            })
+                        elif attribute["nature"].startswith("deleted_parent_discriminant"):
+                            self.relations[association.name]["columns"].append({
+                                "attribute": attribute["attribute"],
+                                "data_type": attribute["data_type"],
+                                "adjacent_source": leg.entity_name,
+                                "outer_source": None,
+                                "leg_note": leg.note,
+                                "association_name": association.name,
+                                "primary": False,
+                                "nature": attribute["nature"]
+                            })
+                self.relations[association.name]["columns"].extend({ # and the attributes already existing in the association
                         "attribute": attribute.label,
                         "data_type": attribute.data_type,
+                        "adjacent_source": None,
                         "outer_source": None,
                         "association_name": association.name,
                         "leg_note": None,
                         "primary": False,
                         "nature": "association_attribute"
-                    } for attribute in association.attributes]
-                }
+                    } for attribute in association.attributes
+                )
             else: # this association is a DF
+                # The entity named `entity_name` is distinguished by the *1 cardinality
                 already_rejected = False
                 for leg in association.legs:
                     if leg.entity_name != entity_name or already_rejected:
+                        # This leg distinguishes one of the other entities.
                         if (entity_name, association.name, leg.entity_name) not in self.freeze_strengthening_foreign_key_migration:
-                            self.relations[entity_name]["columns"].extend({
-                                "attribute": attribute["attribute"],
-                                "data_type": attribute["data_type"],
-                                "outer_source": self.mcd.entities[leg.entity_name].name,
-                                "leg_note": leg.note,
-                                "association_name": association.name,
-                                "primary": False,
-                                "nature": "foreign_key"
-                            } for attribute in self.relations[leg.entity_name]["columns"] if attribute["primary"])
+                            for attribute in list(self.relations[leg.entity_name]["columns"]): # traverse a copy...
+                                # ... to prevent an infinite migration of the child discriminant
+                                if attribute["primary"]:
+                                    # Their primary keys must migrate in `entity_name`.
+                                    outer_source = self.may_retrieve_distant_outer_source(leg, attribute)
+                                    self.relations[entity_name]["columns"].append({
+                                        "attribute": attribute["attribute"],
+                                        "data_type": attribute["data_type"],
+                                        "adjacent_source": leg.entity_name,
+                                        "outer_source": outer_source,
+                                        "leg_note": leg.note,
+                                        "association_name": association.name,
+                                        "primary": False,
+                                        "nature": "unsourced_foreign_key" if outer_source is None else "foreign_key"
+                                        # NB: technically, an unsourced foreign key is not foreign anymore
+                                    })
+                                elif attribute["nature"].startswith("deleted_parent_discriminant"):
+                                    self.relations[entity_name]["columns"].append({
+                                        "attribute": attribute["attribute"],
+                                        "data_type": attribute["data_type"],
+                                        "adjacent_source": leg.entity_name,
+                                        "outer_source": None,
+                                        "leg_note": leg.note,
+                                        "association_name": association.name,
+                                        "primary": False,
+                                        "nature": attribute["nature"]
+                                    })
                     else:
                         already_rejected = True
                 self.relations[entity_name]["columns"].extend([{
                         "attribute": attribute.label,
                         "data_type": attribute.data_type,
                         "association_name": association.name,
+                        "adjacent_source": None,
                         "outer_source": None,
                         "leg_note": None,
                         "primary": False,
                         "nature": "outer_attribute",
                     } for attribute in association.attributes])
 
+
     def process_inheritances(self):
-
-        def may_retrieve_distant_leg_note(parent_leg, attribute):
-            if attribute["nature"] == "foreign_key":
-                for d in self.relations[parent_leg.entity.name]["columns"]:
-                    if d["attribute"] == attribute["attribute"] and d["nature"] == "foreign_key":
-                        return d["leg_note"]
-            return parent_leg.note
-        
-        def may_retrieve_distant_outer_source(parent_leg, attribute):
-            if attribute["nature"] == "foreign_key":
-                for d in self.relations[parent_leg.entity.name]["columns"]:
-                    if d["attribute"] == attribute["attribute"] and d["nature"] == "foreign_key":
-                        return d["outer_source"]
-            return self.mcd.entities[parent_leg.entity_name].name
-
-        entities_to_delete = set()
         for association in self.mcd.associations.values():
             if not association.kind.startswith("inheritance"):
                 continue
             parent_leg = association.legs[0]
-            if parent_leg.card == "=>": # total migration: parent > children
-                if "T" in association.name: # ensure the inheritance is total before suppressing the parent table
-                    entities_to_delete.add(parent_leg.entity_name)
+            if association.kind[-2:] == "=>": # total migration: parent > children
                 for child_leg in association.legs[1:]: 
-                    # migrate the parent's attributes
+                    # migrate the parent's attributes, except those of nature "deleted_parent_discriminant"
                     self.relations[child_leg.entity_name]["columns"][0:0] = [{
                         "attribute": attribute["attribute"],
                         "data_type": attribute["data_type"],
-                        "outer_source": may_retrieve_distant_outer_source(parent_leg,  attribute),
-                        "leg_note": may_retrieve_distant_leg_note(parent_leg, attribute),
+                        "adjacent_source": parent_leg.entity_name,
+                        "outer_source": self.may_retrieve_distant_outer_source(parent_leg, attribute),
+                        "leg_note": self.may_retrieve_distant_leg_note(parent_leg, attribute),
                         "association_name": association.name,
                         "primary": False,
-                        "nature": "parent_foreign_key" if attribute["nature"] == "foreign_key" else "parent_attribute"
-                    } for attribute in self.relations[parent_leg.entity_name]["columns"] if not attribute["primary"]]
+                        "nature": "deleted_parent_foreign_key" if attribute["nature"] == "foreign_key" else "deleted_parent_attribute"
+                    } for attribute in self.relations[parent_leg.entity_name]["columns"] if not attribute["primary"] and not attribute["nature"].startswith("deleted_parent_discriminant")]
             else: # migration: triangle attributes > parent
                 self.relations[parent_leg.entity_name]["columns"].extend({ 
                     "attribute": attribute.label,
                     "data_type": attribute.data_type or (f"INTEGER UNSIGNED{'' if 'T' in association.name else ' NOT NULL'}"),
+                    "adjacent_source": None,
                     "outer_source": None,
                     "association_name": association.name,
                     "leg_note": None,
                     "primary": False,
-                    "nature": f"child_discriminant_{association.name}" # "", "X", "T" or "XT"
+                    "nature": f"deleted_child_discriminant_{association.name}" # "", "X", "T" or "XT"
                 } for attribute in association.attributes)
-                if parent_leg.card in ("<-", "<="): # migration: children > parent, and suppress children
+                if association.kind[-2:] in ("<-", "<="): # migration: children > parent, and suppress children
                     for child_leg in association.legs[1:]:
-                        entities_to_delete.add(child_leg.entity_name)
-                        if parent_leg.card == "<=":
+                        if association.kind[-2:] == "<=":
                             # make the child's name a boolean attribute of the parent
                             self.relations[parent_leg.entity_name]["columns"].append({
                                 "attribute": child_leg.entity_name,
                                 "data_type": "BOOLEAN",
+                                "adjacent_source": child_leg.entity_name,
                                 "outer_source": child_leg.entity_name,
                                 "leg_note": parent_leg.note,
                                 "association_name": association.name,
                                 "primary": False,
                                 "nature": "deleted_child_entity_name"
                             })
-                        # migrate all child's attributes (except the strenghtening parent identifier)
-                        self.relations[parent_leg.entity_name]["columns"].extend({
-                            "attribute": attribute["attribute"],
-                            "data_type": attribute["data_type"],
-                            "outer_source": may_retrieve_distant_outer_source(child_leg,  attribute),
-                            "leg_note": parent_leg.note,
-                            "association_name": association.name,
-                            "primary": False,
-                            "nature": "deleted_child_foreign_key" if attribute["nature"] == "foreign_key" else "deleted_child_attribute"
-                        } for attribute in self.relations[child_leg.entity_name]["columns"] if attribute["nature"] != "parent_primary_key")
-        for entity_to_delete in entities_to_delete:
+                        # migrate all child's attributes
+                        for attribute in self.relations[child_leg.entity_name]["columns"]:
+                            if attribute["nature"].endswith("parent_primary_key"):
+                                continue # except the "strenghtening" parent identifier
+                            self.relations[parent_leg.entity_name]["columns"].append({
+                                "attribute": attribute["attribute"],
+                                "data_type": attribute["data_type"],
+                                "adjacent_source": child_leg.entity_name,
+                                "outer_source": self.may_retrieve_distant_outer_source(child_leg, attribute),
+                                "leg_note": self.may_retrieve_distant_leg_note(child_leg, attribute),
+                                "association_name": association.name,
+                                "primary": False,
+                                "nature": "deleted_child_foreign_key" if attribute["nature"] == "foreign_key" else "deleted_child_attribute"
+                            })
+    
+    def delete_inheritance_parent_or_children_to_delete(self):
+        for entity_to_delete in self.inheritance_parent_or_children_to_delete:
             del self.relations[entity_to_delete]
-        for relation in self.relations.values():
-            for column in relation["columns"]:
-                if column["outer_source"] in entities_to_delete:
-                    if column["nature"].startswith("parent_"):
-                        column["nature"] = "deleted_" + column["nature"]
-                    elif column["nature"] == "primary_foreign_key":
-                        column["nature"] = "primary_key"
-                    # elif column["nature"] == "foreign_key":
-                    #     column["nature"] = "normal_attribute"
 
 
 

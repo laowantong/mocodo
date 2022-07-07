@@ -16,7 +16,7 @@ class EntityTest(unittest.TestCase):
         for e in entities:
             e.add_attributes([])
             self.assertEqual(e.name, "PARTICIPANT")
-            self.assertEqual(e.cartouche, "PARTICIPANT")
+            self.assertEqual(e.name_view, "PARTICIPANT")
             self.assertEqual([a.label for a in e.attributes], ["numero", "nom", "adresse"])
             self.assertEqual([a.get_category() for a in e.attributes], ["strong", "simple", "simple"])
 
@@ -39,12 +39,12 @@ class EntityTest(unittest.TestCase):
         e = Entity("PARTICIPANT5: numero, nom, adresse")
         e.add_attributes([])
         self.assertEqual(e.name, "PARTICIPANT5")
-        self.assertEqual(e.cartouche, "PARTICIPANT")
+        self.assertEqual(e.name_view, "PARTICIPANT")
 
     def test_blank(self):
-        e = Entity("MOT-CLEF: mot-clef, ,")
+        e = Entity("MOT-CLEF: mot-clé, ,")
         e.add_attributes([])
-        self.assertEqual([a.label for a in e.attributes], ["mot-clef", "", ""])
+        self.assertEqual([a.label for a in e.attributes], ["mot-clé", "", ""])
         self.assertEqual([a.get_category() for a in e.attributes], ["strong", "phantom", "phantom"])
 
     def test_all_blank(self):
@@ -87,7 +87,7 @@ class EntityTest(unittest.TestCase):
         e = Entity("PARTICIPANT\: numero\, \tnom\t, ad\\resse")
         e.add_attributes([])
         self.assertEqual(e.name, "PARTICIPANT")
-        self.assertEqual(e.cartouche, "PARTICIPANT")
+        self.assertEqual(e.name_view, "PARTICIPANT")
         self.assertEqual([a.label for a in e.attributes], ["numero", "nom", "adresse"])
 
 if __name__ == '__main__':

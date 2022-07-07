@@ -20,8 +20,8 @@ class Association:
                     raise MocodoError(24, _('Unknown specialization "{name}".').format(name=name)) # fmt: skip
                 is_inheritance = True
             name = name.replace("\\", "")
-            cartouche = (name[:-1] if name[-1:].isdigit() else name)
-            return (name, cartouche, is_inheritance)
+            name_view = (name[:-1] if name[-1:].isdigit() else name)
+            return (name, name_view, is_inheritance)
         
         def clean_up_legs_and_attributes(
             legs_and_attributes,
@@ -44,27 +44,28 @@ class Association:
         
         self.clause = clause
         match = re.match(r"\s*(/\w*\\)", clause)
-        if match: # If the clause starts with an inheritance symbol, begin "normalizing" its syntax:
+        if match: # If the clause starts with an inheritance symbol, start "normalizing" its syntax:
             # e.g. change "/XT\ parent => child1, child2" into "/XT\, => parent, child1, child2".
             (clause, n) = re.subn(
-                r"(\s*/\w*\\)\s*([^:,]+)\s+(<=|<-|->|=>)([<>]?)",
+                r"(\s*/\w*\\)\s*([^:,]+)\s+(<=|<-|->|=>)([<=->]?)",
                 r"\1, \3\4 \2, ",
                 clause,
             )
             if n == 0:
                 raise MocodoError(23, _('Syntax error in inheritance "{inheritance}".').format(inheritance=match[1])) # fmt: skip
         (name, legs_and_attributes) = clause.split(",", 1)
-        (self.name, self.cartouche, is_inheritance) = clean_up_name(name)
+        (self.name, self.name_view, is_inheritance) = clean_up_name(name)
         if is_inheritance: # Finish syntax normalization by prefixing children names with fake cardinalities
             # e.g. change "/XT\, => parent, child1, child2" into "/XT\, => parent, XX child1, XX child2"
             legs_and_attributes = re.sub(r",\s*", ", XX ", legs_and_attributes)
         (cards, entity_names, attributes) = clean_up_legs_and_attributes(legs_and_attributes)
         self.attributes = [SimpleAssociationAttribute(attribute, i) for (i, attribute) in enumerate(attributes)]
         self.df_label = params.get("df", "DF")
-        if self.cartouche == self.df_label:
+        if self.name_view == self.df_label:
             self.kind = "df"
         elif is_inheritance:
-            if cards[0][2:3] in "<>":
+            if cards[0][2:3] == cards[0][1]: # the last symbol of the arrow is repeated
+                cards[0] = cards[0][:2] + ">" # replace it by the "standard" arrow
                 self.prettify_inheritance = False
             else:
                 self.prettify_inheritance = True
@@ -128,7 +129,7 @@ class Association:
         def calculate_size_when_default(style, get_font_metrics):
             for attribute in self.attributes:
                 attribute.calculate_size(style, get_font_metrics)
-            cartouche_and_attribute_widths = [a.w for a in self.attributes] + [self.get_cartouche_string_width(self.cartouche)]
+            cartouche_and_attribute_widths = [a.w for a in self.attributes] + [self.get_cartouche_string_width(self.name_view)]
             self.w = 2 * style["round_rect_margin_width"] + max(cartouche_and_attribute_widths)
             self.h = max(1, len(self.attributes)) * (self.attribute_height + style["line_skip_height"]) \
                 - style["line_skip_height"] \
@@ -183,9 +184,9 @@ class Association:
                 (
                     "text",
                     {
-                        "text": self.cartouche,
+                        "text": self.name_view,
                         "text_color": style['association_cartouche_text_color'],
-                        "x": self.cx - self.get_cartouche_string_width(self.cartouche) // 2,
+                        "x": self.cx - self.get_cartouche_string_width(self.name_view) // 2,
                         "y": self.cy + self.cartouche_height // 3,
                         "family": style["association_cartouche_font"]["family"],
                         "size": style["association_cartouche_font"]["size"],
@@ -370,9 +371,9 @@ class Association:
                 (
                     "text",
                     {
-                        "text": self.cartouche,
+                        "text": self.name_view,
                         "text_color": style['association_cartouche_text_color'],
-                        "x": self.cx - self.get_cartouche_string_width(self.cartouche) // 2,
+                        "x": self.cx - self.get_cartouche_string_width(self.name_view) // 2,
                         "y": self.t + style["rect_margin_height"] + style["cartouche_text_height_ratio"] * self.cartouche_height,
                         "family": style["association_cartouche_font"]["family"],
                         "size": style["association_cartouche_font"]["size"],

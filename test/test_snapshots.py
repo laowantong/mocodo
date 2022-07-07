@@ -69,6 +69,9 @@ for relation_path in Path("mocodo/resources/relation_templates/").glob("*.json")
     result.append(f"### `{relation_path.name}`\n\n```{template['highlight']}\n{output}\n```\n")
 
 result.append("## Inheritance stress test\n")
+
+result.append("### External associations\n")
+
 clauses = """
     SUSCIPIT: orci, lorem
     RHONCUS, 1N TRISTIS, 11 SUSCIPIT
@@ -81,7 +84,7 @@ clauses = """
     CONSEQUAT: fermentum, dederit
     ELIT, 11 TRISTIS, 1N CONSEQUAT
     TRISTIS: magna, vestibulum
-    /\ TRISTIS -> SODALES, NEC, LACUS: type
+    /T\ TRISTIS {arrow} SODALES, NEC, LACUS: type
     NEC: pulvinar, audis
     MOLLIS, 1N CURABITUR, 11 NEC
     CURABITUR: gravida, amor
@@ -94,13 +97,39 @@ clauses = """
     ULTRICES, 1N LIBERO, 1N LACUS
     LIBERO: posuere, lacrima
 """
-for (arrow, constraints) in itertools.product(
-    ("<=", "<-", "->", "=>"),
-    ("", "XT"),
-):
-    c = clauses.replace("/\\", f"/{constraints}\\").replace("->", arrow)
-    result.append(f"### `{(arrow, constraints)}`")
-    result.append(f"```{c}```\n")
+result.append(f"```{clauses}```\n")
+for arrow in ("<=", "<-", "->", "=>"):
+    c = clauses.format(arrow=arrow)
+    result.append(f"#### Arrow `{arrow}`")
+    try:
+        t = Relations(Mcd(c.split("\n"), params), params)
+        result.append(f"```\n{t.get_text(minimal_template)}\n```\n")
+        result.append(t.get_text(debug_template))
+    except KeyError as e:
+        print(e)
+
+result.append("### Internal associations\n")
+
+clauses = """
+:
+MOLLIS, 1N [via mollis] LACUS, 11 NEC
+NEC: pulvinar, audis
+:
+
+LACUS: tempor, fugit
+/XT\ TRISTIS {arrow} SODALES, NEC, LACUS: type
+TRISTIS: magna, vestibulum
+VITAE, 11 NEC, 1N [via vitae] SODALES
+
+:
+ULTRICES, 1N [sodales] SODALES, 1N [lacus] LACUS
+SODALES: convallis, ipsum
+:
+"""
+result.append(f"```{clauses}```\n")
+for arrow in ("<=", "<-", "->", "=>"):
+    c = clauses.format(arrow=arrow)
+    result.append(f"#### Arrow `{arrow}`")
     try:
         t = Relations(Mcd(c.split("\n"), params), params)
         result.append(f"```\n{t.get_text(minimal_template)}\n```\n")

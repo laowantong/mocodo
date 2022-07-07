@@ -6,7 +6,7 @@ class Entity:
         (name, attribute_labels) = clause.split(":", 1)
         self.name = name.strip().replace("\\", "")
         self.attribute_labels = outer_split(attribute_labels)
-        self.cartouche = self.name[:-1] if self.name[-1].isdigit() else self.name  # get rid of single digit suffix, if any
+        self.name_view = self.name[:-1] if self.name[-1].isdigit() else self.name  # get rid of single digit suffix, if any
         self.legs = []  # iterating over box's legs does nothing if it is not an association
         self.kind = "entity"
         self.clause = clause
@@ -44,7 +44,7 @@ class Entity:
         self.attribute_height = attribute_font.get_pixel_height()
         for attribute in self.attributes:
             attribute.calculate_size(style, get_font_metrics)
-        cartouche_and_attribute_widths = [self.get_cartouche_string_width(self.cartouche)] + [
+        cartouche_and_attribute_widths = [self.get_cartouche_string_width(self.name_view)] + [
             a.w for a in self.attributes
         ]
         self.w = 2 * style["rect_margin_width"] + max(cartouche_and_attribute_widths)
@@ -141,12 +141,12 @@ class Entity:
             (
                 "text",
                 {
-                    "x": self.cx - self.get_cartouche_string_width(self.cartouche) // 2,
+                    "x": self.cx - self.get_cartouche_string_width(self.name_view) // 2,
                     "y": self.t + style["rect_margin_height"] + style["cartouche_text_height_ratio"] * self.cartouche_height,
                     "text_color": style["entity_cartouche_text_color"],
                     "family": style["entity_cartouche_font"]["family"],
                     "size": style["entity_cartouche_font"]["size"],
-                    "text": self.cartouche,
+                    "text": self.name_view,
                 },
             )
         )
