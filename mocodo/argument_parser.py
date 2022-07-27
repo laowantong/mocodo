@@ -217,7 +217,6 @@ def parsed_arguments():
     source_group.add_argument("--fit", metavar="INT", type=int, const=0, nargs="?", help="fit the layout in the nth smallest grid")
     source_group.add_argument("--flip", choices=["h", "v", "d"], help="display an horizontal / vertical / diagonal flip of the input file, then exit")
     source_group.add_argument("--obfuscate", metavar="PATH", type=os.path.abspath, nargs="?", const="lorem_ipsum.txt", help="display an obfuscated version of the input file, then exit. Cf. directory 'lorem'")
-    source_group.add_argument("--obfuscation_max_length", metavar="NAT*", type=positive_integer, help="maximal length of obfuscated labels")
     source_group.add_argument("--obfuscation_min_distance", metavar="NAT*", type=positive_integer, default=3, help="minimal Damerau-Levenshtein's distance between any two obfuscated labels")
     source_group.add_argument("--seed", metavar="FLOAT", type=float, help="initial value for the random number generator")
 

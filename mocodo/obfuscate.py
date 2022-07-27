@@ -3,30 +3,24 @@ import itertools
 import os
 import random
 import re
-import textwrap
 
 from .damerau_levenshtein import damerau_levenshtein
 from .file_helpers import read_contents
 from .mocodo_error import MocodoError
 
 
-def random_chunks_of(lorem_text, obfuscation_max_length, params):
-    words = list(set(word.lower() for word in re.findall(r"(?u)[^\W\d]+", lorem_text)))
+def random_words_of(lorem_text, params):
+    words = list(dict.fromkeys(word.lower() for word in re.findall(r"(?u)[^\W\d_]{3,}", lorem_text))) # use dict.fromkeys instead of set for preserving order
     random.shuffle(words)
-    if obfuscation_max_length is None:
-        obfuscation_max_length = max(map(len, words))
-        raw_chunks = iter(textwrap.wrap(" ".join(words), width=obfuscation_max_length))
-    else:
-        raw_chunks = iter(label for label in textwrap.wrap(" ".join(words), width=obfuscation_max_length, break_long_words=False) if len(label) <= obfuscation_max_length)
-    previous_chunks = set()
-    for chunk in raw_chunks:
-        for previous_chunk in previous_chunks:
-            if damerau_levenshtein(chunk, previous_chunk) < params["obfuscation_min_distance"]:
-                # print "_%s_ (possible confusion with _%s_)," % (chunk, previous_chunk)
+    previous_words = set()
+    for word in words:
+        for previous_word in previous_words:
+            if damerau_levenshtein(word, previous_word) < params["obfuscation_min_distance"]:
+                # print "_%s_ (possible confusion with _%s_)," % (word, previous_word)
                 break
         else:
-            yield chunk
-            previous_chunks.add(chunk)
+            yield word
+            previous_words.add(word)
 
 def obfuscate(clauses, params):
     
@@ -34,9 +28,9 @@ def obfuscate(clauses, params):
     def obfuscate_label(label):
         if label not in cache:
             try:
-                new_label = next(random_chunk)
+                new_label = next(random_word)
             except StopIteration:
-                raise MocodoError(12, _('Obfuscation failed. Not enough substitution words in "{filename}". You may either increase the `obfuscation_max_length` or decrease the `obfuscation_min_distance` option values.').format(filename=lorem_filename)) # fmt: skip
+                raise MocodoError(12, _('Obfuscation failed. Not enough substitution words in "{filename}". You may decrease the `obfuscation_min_distance` option values.').format(filename=lorem_filename)) # fmt: skip
             if label.isupper():
                 new_label = new_label.upper()
             elif label == label.capitalize():
@@ -44,6 +38,7 @@ def obfuscate(clauses, params):
             cache[label] = new_label
         return cache[label]
 
+    random.seed(params["seed"])
     lorem_filename = params["obfuscate"] or ""
     try:
         lorem_text = read_contents(lorem_filename)
@@ -54,7 +49,7 @@ def obfuscate(clauses, params):
             lorem_text = read_contents("%s/resources/lorem/%s.txt" % (params["script_directory"], os.path.basename(lorem_filename)))
         except IOError:
             lorem_text = read_contents("%s/resources/lorem/lorem_ipsum.txt" % params["script_directory"])
-    random_chunk = random_chunks_of(lorem_text, params["obfuscation_max_length"], params)
+    random_word = random_words_of(lorem_text, params)
     header = [comment + "\n" for comment in itertools.takewhile(lambda line: line.startswith("%"), clauses)]
     clauses = "\n".join(clauses[len(header):])
     clauses = re.sub(r"\[.+?\]", "", clauses)
@@ -93,6 +88,5 @@ if __name__=="__main__":
         PRODUIT: Réf. produit, Libellé, Prix unitaire
     """.replace("  ", "").split("\n")
     params = parsed_arguments()
-    params["seed"] = 42
     params["obfuscate"] = "four_letter_words.txt"
     print(obfuscate(clauses, params))
