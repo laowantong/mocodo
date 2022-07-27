@@ -76,6 +76,8 @@ class Association:
                     cards[0] = cards[0][:2] + ">" + cards[0][2:]
             self.kind = f"inheritance: {cards[0][:2]}"
         elif any(name.startswith("/") for name in entity_names):
+            if all(name.startswith("/") for name in entity_names):
+                raise MocodoError(11, _('At least one cardinality of cluster "{name}" must TODO.').format(name=self.name)) # fmt: skip
             self.kind = "cluster"
         else:
             self.kind = "association"
@@ -196,9 +198,12 @@ class Association:
         
         def optional_description_for_cluster(style):
             clustered_entities = [leg.entity for leg in self.legs if leg.kind == "cluster_leg"]
-            if len(clustered_entities) != 2:
+            if len(clustered_entities) == 2:
+                (e1, e2) = clustered_entities
+            elif len(clustered_entities) == 1:
+                e1 = e2 = clustered_entities[0]
+            else:
                 return []
-            (e1, e2) = clustered_entities
 
             x_min = min(box.l for box in (self, e1, e2))
             y_min = min(box.t for box in (self, e1, e2))

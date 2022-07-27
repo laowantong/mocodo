@@ -1465,6 +1465,34 @@ ALTER TABLE PEUT_COHABITER_AVEC ADD FOREIGN KEY (code_espèce) REFERENCES ESPÈC
 ALTER TABLE PEUT_VIVRE_DANS ADD FOREIGN KEY (code_espèce) REFERENCES ESPÈCE (code_espèce);
 ```
 
+## Obfuscation
+
+```
+:
+    FEEL, 0N TURN, 0N TURN: grin
+:
+:
+:
+
+LAND, 1N TURN, 1N NEAR: silk
+TURN: debt, shoe
+  LOSS, 0N TURN, _11 POET
+:
+  STIR: auto
+
+NEAR: slew
+      TAPE, 1N POET, 1N /KNEE, 1N NEAR
+  POET: code, they, bath, unit
+  /\ POET <= STIR, HAUL: draw
+:
+
+:
+      KNEE: four, _duck
+    ICON, 01 POET, 0N> POET
+:
+  HAUL: golf
+```
+
 ## Inheritance stress test
 
 ### External associations

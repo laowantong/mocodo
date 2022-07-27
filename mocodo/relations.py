@@ -381,17 +381,13 @@ class Relations:
         for association in self.mcd.associations.values():
             if association.kind.startswith("inheritance"):
                 continue
-            (entity_name, entity_priority) = (None, 0)
+            df_leg = None
             for leg in association.legs:
-                if leg.card[:2] == "11":
-                    entity_priority = 2
-                    entity_name = leg.entity_name
-                    break
                 if leg.card[1] == "1":
-                    entity_priority = 1
-                    entity_name = leg.entity_name
-            may_identify = all(leg.may_identify for leg in association.legs)
-            if entity_name is None or (entity_priority == 1 and not may_identify):
+                    df_leg = leg
+                    if leg.card[0] == "1":
+                        break # elect the first leg with cardinality 11
+            if df_leg is None or (df_leg.card[:2] == "01" and association.kind == "cluster"):
                 # make a relation of this association
                 self.relations[association.name] = {
                     "this_relation_name": association.name,
@@ -401,26 +397,28 @@ class Relations:
                     for attribute in self.relations[leg.entity_name]["columns"]:
                         if attribute["primary"]:
                             outer_source = self.may_retrieve_distant_outer_source(leg, attribute)
-                            if leg.may_identify:
-                                if outer_source is None:
-                                    nature = "unsourced_primary_foreign_key"
-                                    # NB: technically, an unsourced primary foreign key is not foreign anymore
-                                else:
-                                    nature = "primary_foreign_key"
-                            elif entity_priority:
-                                nature = "promoting_foreign_key"
+                            if leg.kind == "cluster_peg":
+                                self.relations[association.name]["columns"].append({ # gather all migrant attributes
+                                    "attribute": attribute["attribute"],
+                                    "data_type": attribute["data_type"],
+                                    "adjacent_source": leg.entity_name,
+                                    "outer_source": outer_source,
+                                    "leg_note": leg.note,
+                                    "association_name": association.name,
+                                    "primary": False,
+                                    "nature": "promoting_foreign_key" if df_leg else "demoted_foreign_key"
+                                })
                             else:
-                                nature = "demoted_foreign_key"
-                            self.relations[association.name]["columns"].append({ # gather all migrant attributes
-                                "attribute": attribute["attribute"],
-                                "data_type": attribute["data_type"],
-                                "adjacent_source": leg.entity_name,
-                                "outer_source": outer_source,
-                                "leg_note": leg.note,
-                                "association_name": association.name,
-                                "primary": leg.may_identify,
-                                "nature": nature
-                            })
+                                self.relations[association.name]["columns"].append({ # gather all migrant attributes
+                                    "attribute": attribute["attribute"],
+                                    "data_type": attribute["data_type"],
+                                    "adjacent_source": leg.entity_name,
+                                    "outer_source": outer_source,
+                                    "leg_note": leg.note,
+                                    "association_name": association.name,
+                                    "primary": True,
+                                    "nature": "unsourced_primary_foreign_key" if outer_source is None else "primary_foreign_key"
+                                })
                         elif attribute["nature"].startswith("deleted_parent_discriminant"):
                             self.relations[association.name]["columns"].append({
                                 "attribute": attribute["attribute"],
@@ -447,15 +445,15 @@ class Relations:
                 # The entity named `entity_name` is distinguished by the *1 cardinality
                 already_rejected = False
                 for leg in association.legs:
-                    if leg.entity_name != entity_name or already_rejected:
+                    if leg.entity_name != df_leg.entity_name or already_rejected:
                         # This leg distinguishes one of the other entities.
-                        if (entity_name, association.name, leg.entity_name) not in self.freeze_strengthening_foreign_key_migration:
+                        if (df_leg.entity_name, association.name, leg.entity_name) not in self.freeze_strengthening_foreign_key_migration:
                             for attribute in list(self.relations[leg.entity_name]["columns"]): # traverse a copy...
                                 # ... to prevent an infinite migration of the child discriminant
                                 if attribute["primary"]:
                                     # Their primary keys must migrate in `entity_name`.
                                     outer_source = self.may_retrieve_distant_outer_source(leg, attribute)
-                                    self.relations[entity_name]["columns"].append({
+                                    self.relations[df_leg.entity_name]["columns"].append({
                                         "attribute": attribute["attribute"],
                                         "data_type": attribute["data_type"],
                                         "adjacent_source": leg.entity_name,
@@ -467,7 +465,7 @@ class Relations:
                                         # NB: technically, an unsourced foreign key is not foreign anymore
                                     })
                                 elif attribute["nature"].startswith("deleted_parent_discriminant"):
-                                    self.relations[entity_name]["columns"].append({
+                                    self.relations[df_leg.entity_name]["columns"].append({
                                         "attribute": attribute["attribute"],
                                         "data_type": attribute["data_type"],
                                         "adjacent_source": leg.entity_name,
@@ -479,7 +477,7 @@ class Relations:
                                     })
                     else:
                         already_rejected = True
-                self.relations[entity_name]["columns"].extend([{
+                self.relations[df_leg.entity_name]["columns"].extend([{
                         "attribute": attribute.label,
                         "data_type": attribute.data_type,
                         "association_name": association.name,

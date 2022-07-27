@@ -51,7 +51,6 @@ class Leg:
         self.card_view = card_view
         self.note = note and note.replace("<<<safe-comma>>>", ",").replace("<<<safe-colon>>>", ":")
         self.association = association
-        self.may_identify = (kind != "cluster_peg")
         self.entity_name = entity_name.lstrip("/")
         self.twist = False
         self.identifier = None

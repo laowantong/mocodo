@@ -54,7 +54,7 @@ def obfuscate(clauses, params):
     clauses = "\n".join(clauses[len(header):])
     clauses = re.sub(r"\[.+?\]", "", clauses)
     clauses = re.sub(r"(?m)^%.*\n?", "", clauses)
-    elements = re.split(r"([ \t]*[:,\n]+[ \t]*)", clauses) + ['']
+    elements = re.split(r"([ \t]*(?:[:,\n]+|/[XT]*\\|=>|<=|->|<-)[ \t_]*)", clauses) + ['']
     after_first_comma = False
     before_colon = True
     for (i, element) in enumerate(elements):
@@ -62,12 +62,15 @@ def obfuscate(clauses, params):
             if "\n" in element:
                 after_first_comma = False
                 before_colon = True
+                inheritance = False
+            elif element.startswith("/"):
+                inheritance = True
             elif "," in element:
                 after_first_comma = True
             elif ":" in element:
                 before_colon = False
         else:
-            if after_first_comma and before_colon:
+            if after_first_comma and before_colon and not inheritance:
                 (card, entity_name) = element.split(" ", 1)
                 entity_name = entity_name.strip()
                 elements[i-1] += card + " "
@@ -79,6 +82,8 @@ def obfuscate(clauses, params):
 
 
 if __name__=="__main__":
+    # launch with:
+    # python -m mocodo.obfuscate
     from .argument_parser import parsed_arguments
     clauses = u"""
         CLIENT: Réf. client, Nom, Prénom, Adresse

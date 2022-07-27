@@ -2,6 +2,8 @@ import json
 import os
 from pathlib import Path
 
+from mocodo.obfuscate import obfuscate
+
 __import__("sys").path[0:0] = ["mocodo"]
 from mocodo.argument_parser import parsed_arguments
 from mocodo.common import Common
@@ -67,6 +69,13 @@ for relation_path in Path("mocodo/resources/relation_templates/").glob("*.json")
     template = json.loads(relation_path.read_text("utf8"))
     output = relations.get_text(template).strip()
     result.append(f"### `{relation_path.name}`\n\n```{template['highlight']}\n{output}\n```\n")
+
+result.append("## Obfuscation\n")
+
+params["seed"] = 42
+params["obfuscate"] = "four_letter_words.txt"
+text = obfuscate(clauses.split("\n"), params)
+result.append(f"```\n{text}\n```\n")
 
 result.append("## Inheritance stress test\n")
 

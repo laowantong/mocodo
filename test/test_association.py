@@ -106,11 +106,11 @@ class parse_test(unittest.TestCase):
     def test_included_in_foreign_key(self):
         a = Association("SUIVRE, 0N DATE, 11 /ÉTUDIANT, 0N ENSEIGNANT")
         self.assertEqual(a.legs[0].entity_name, "DATE")
-        self.assertEqual(a.legs[0].may_identify, True)
-        self.assertEqual(a.legs[2].entity_name, "ENSEIGNANT")
-        self.assertEqual(a.legs[2].may_identify, True)
+        self.assertEqual(a.legs[0].kind, "cluster_leg")
         self.assertEqual(a.legs[1].entity_name, "ÉTUDIANT")
-        self.assertEqual(a.legs[1].may_identify, False)
+        self.assertEqual(a.legs[1].kind, "cluster_peg")
+        self.assertEqual(a.legs[2].entity_name, "ENSEIGNANT")
+        self.assertEqual(a.legs[2].kind, "cluster_leg")
 
     def test_input_errors(self):
         self.assertRaisesRegex(MocodoError, r"Mocodo Err\.2", Association, "EMPLOYER, PARTICIPANT, 0N ENTREPRISE",)
