@@ -110,6 +110,7 @@ svg_elements = {
     "dash_line":        """<line x1="{x0}" y1="{y0}" x2="{x1}" y2="{y1}" stroke="{stroke_color}" stroke-width="{stroke_depth}" stroke-dasharray="{dash_width}"/>""",
     "dot_line":         """<line x1="{x0}" y1="{y0}" x2="{x1}" y2="{y1}" stroke="{stroke_color}" stroke-width="{dash_width}" stroke-dasharray="0,{dash_gap}" stroke-linecap="round"/>""",
     "rect":             """<rect x="{x}" y="{y}" width="{w}" height="{h}" fill="{color}" stroke="{stroke_color}" stroke-width="{stroke_depth}" opacity="{opacity}"/>""",
+    "dash_rect":        """<rect x="{x}" y="{y}" width="{w}" height="{h}" fill="{color}" stroke="{stroke_color}" stroke-width="{stroke_depth}" stroke-dasharray="{dash_width}"/>""",
     "polygon":          """<polygon points="{points}" fill="{color}" stroke="{stroke_color}" stroke-width="{stroke_depth}" opacity="{opacity}"/>""",
     "dash_polygon":     """<polygon points="{points}" fill="{color}" stroke="{stroke_color}" stroke-width="{stroke_depth}" stroke-dasharray="{dash_width}"/>""",
     "circle":           """<circle cx="{cx}" cy="{cy}" r="{r}" stroke="{stroke_color}" stroke-width="{stroke_depth}" fill="{color}"/>""",

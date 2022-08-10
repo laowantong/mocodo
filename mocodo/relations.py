@@ -387,7 +387,7 @@ class Relations:
                     df_leg = leg
                     if leg.card[0] == "1":
                         break # elect the first leg with cardinality 11
-            if df_leg is None or (df_leg.card[:2] == "01" and association.kind == "cluster"):
+            if df_leg is None or association.kind == "forced_table":
                 # make a relation of this association
                 self.relations[association.name] = {
                     "this_relation_name": association.name,

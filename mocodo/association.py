@@ -13,15 +13,19 @@ class Association:
     def __init__(self, clause, **params):
         def clean_up_name(name):
             name = name.strip()
-            is_inheritance = False
-            if name[:1] + name[-1:] == "/\\":
+            kind = "association"
+            ends = name[:1] + name[-1:]
+            if ends == "/\\":
                 name = name[1:-1].replace(" ", "").upper().replace("TX", "XT")
                 if name not in ("X", "T", "XT", ""):
                     raise MocodoError(24, _('Unknown specialization "{name}".').format(name=name)) # fmt: skip
-                is_inheritance = True
+                kind = "inheritance"
+            elif ends == "[]":
+                name = name[1:-1]
+                kind = "forced_table"
             name = name.replace("\\", "")
             name_view = (name[:-1] if name[-1:].isdigit() else name)
-            return (name, name_view, is_inheritance)
+            return (name, name_view, kind)
         
         def clean_up_legs_and_attributes(
             legs_and_attributes,
@@ -54,8 +58,8 @@ class Association:
             if n == 0:
                 raise MocodoError(23, _('Syntax error in inheritance "{inheritance}".').format(inheritance=match[1])) # fmt: skip
         (name, legs_and_attributes) = clause.split(",", 1)
-        (self.name, self.name_view, is_inheritance) = clean_up_name(name)
-        if is_inheritance: # Finish syntax normalization by prefixing children names with fake cardinalities
+        (self.name, self.name_view, kind) = clean_up_name(name)
+        if kind == "inheritance": # Finish syntax normalization by prefixing children names with fake cardinalities
             # e.g. change "/XT\, => parent, child1, child2" into "/XT\, => parent, XX child1, XX child2"
             legs_and_attributes = re.sub(r",\s*", ", XX ", legs_and_attributes)
         (cards, entity_names, attributes) = clean_up_legs_and_attributes(legs_and_attributes)
@@ -63,7 +67,7 @@ class Association:
         self.df_label = params.get("df", "DF")
         if self.name_view == self.df_label:
             self.kind = "df"
-        elif is_inheritance:
+        elif kind == "inheritance":
             if cards[0][2:3] == cards[0][1]: # the last symbol of the arrow is repeated
                 cards[0] = cards[0][:2] + ">" # replace it by the "standard" arrow
                 self.prettify_inheritance = False
@@ -75,6 +79,8 @@ class Association:
                 elif cards[0][0] == "<":
                     cards[0] = cards[0][:2] + ">" + cards[0][2:]
             self.kind = f"inheritance: {cards[0][:2]}"
+        elif kind == "forced_table":
+            self.kind = kind
         elif any(name.startswith("/") for name in entity_names):
             if all(name.startswith("/") for name in entity_names):
                 raise MocodoError(11, _('At least one cardinality of cluster "{name}" must TODO.').format(name=self.name)) # fmt: skip
@@ -359,6 +365,22 @@ class Association:
                     },
                 )
             )
+            if self.kind == "forced_table":
+                result.append(
+                    (
+                        "dash_rect",
+                        {
+                            "x": self.l - 2 * style["box_stroke_depth"],
+                            "y": self.t - 2 * style["box_stroke_depth"],
+                            "w": self.w + 4 * style["box_stroke_depth"],
+                            "h": self.h + 4 * style["box_stroke_depth"],
+                            "color": style['transparent_color'],
+                            "stroke_color": style['association_stroke_color'],
+                            "stroke_depth": style["box_stroke_depth"],
+                            "dash_width": style["dash_width"],
+                        },
+                    )
+                )
             result.append(
                 (
                     "line",
