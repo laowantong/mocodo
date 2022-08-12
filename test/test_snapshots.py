@@ -30,7 +30,7 @@ ESPÈCE: code espèce, libellé
   CARNIVORE: quantité viande
 
 ENCLOS: num. enclos
-      OCCUPE, 1N ANIMAL, 1N /PÉRIODE, 1N ENCLOS
+      OCCUPE, 1N ANIMAL, /1N PÉRIODE, 1N ENCLOS
   ANIMAL: nom, sexe, date naissance, date décès
   /\ ANIMAL <= CARNIVORE, HERBIVORE: type alimentation
 :

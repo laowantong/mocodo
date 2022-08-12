@@ -29,7 +29,7 @@ class Association:
         
         def clean_up_legs_and_attributes(
             legs_and_attributes,
-            match_leg = re.compile(r"((?:_11|..)[<>]?\s+(?:\[.+?\]\s+)?)(.+)").match,
+            match_leg = re.compile(r"((?:_11|/..|..)[<>]?\s+(?:\[.+?\]\s+)?)(.+)").match,
         ):
             (legs, attributes) = (legs_and_attributes.split(":", 1) + [""])[:2]
             (cards, entity_names) = ([], [])
@@ -37,7 +37,7 @@ class Association:
                 leg = leg.strip().replace("\\", "")
                 m = match_leg(leg)
                 if m:
-                    cards.append(m[1])
+                    cards.append(m[1].strip())
                     entity_names.append(m[2].lstrip())
                 elif leg:
                     raise MocodoError(2, _('Missing cardinalities on leg "{leg}" of association "{name}".').format(leg=leg, name=self.name)) # fmt: skip
@@ -81,12 +81,20 @@ class Association:
             self.kind = f"inheritance: {cards[0][:2]}"
         elif kind == "forced_table":
             self.kind = kind
-        elif any(name.startswith("/") for name in entity_names):
-            if all(name.startswith("/") for name in entity_names):
-                raise MocodoError(11, _('At least one cardinality of cluster "{name}" must TODO.').format(name=self.name)) # fmt: skip
-            self.kind = "cluster"
         else:
-            self.kind = "association"
+            candidate_peg_count = sum(card.startswith("/") for card in cards)
+            valid_peg_count = sum(card in ("/0N", "/1N") for card in cards)
+            if candidate_peg_count > valid_peg_count:
+                raise MocodoError(26, _('Only cardinalities "/0N" or "/1N" are permitted to start with a "/" character.').format(name=self.name)) # fmt: skip
+            if valid_peg_count > 0:
+                valid_leg_count = sum(card in ("0N", "1N") for card in cards)
+                if valid_leg_count < 1:
+                    raise MocodoError(27, _('To become a cluster, association "{name}" must have at least one cardinality "0N" or "1N".').format(name=self.name)) # fmt: skip
+                if valid_leg_count + valid_peg_count < len(cards):
+                    raise MocodoError(28, _('''To become a cluster, association "{name}"'s cardinalities must all be "0N", "1N", "/0N" or "/1N".''').format(name=self.name)) # fmt: skip
+                self.kind = "cluster"
+            else:
+                self.kind = "association"
         self.set_view_strategies()
         self.legs = []
         for (i, (card, name)) in enumerate(zip(cards, entity_names)):
@@ -297,13 +305,13 @@ class Association:
                     },
                 ),
                 (
-                    "dash_polygon",
+                    "dot_polygon",
                     {
                         "points": points,
                         "stroke_color": style['entity_stroke_color'],
-                        "stroke_depth": style["box_stroke_depth"] / 2,
+                        "stroke_depth": style["box_stroke_depth"],
                         "color": None,
-                        "dash_width": style["dash_width"],
+                        "dash_gap": style["dash_width"],
                     },
                 )
             ]

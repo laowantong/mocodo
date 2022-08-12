@@ -113,13 +113,13 @@ class relationsTest(unittest.TestCase):
             Riot: clue
             Walk, 1N Riot, _11 Hour
             Hour: book
-            Poll, 1N Cast, 1N /Hour
+            Poll, 1N Cast, /1N Hour
             Cast: mere
-            Army, 1N /Busy, 01 Cast
+            [Army], 1N Busy, 01 Cast
             Busy: fail
         """
         text = u"""
-            Army (_#mere_, #fail)
+            Army (_#fail_, _#mere_)
             Busy (_fail_)
             Cast (_mere_)
             Hour (_#clue_, _book_)
@@ -130,10 +130,10 @@ class relationsTest(unittest.TestCase):
         self.assertEqual(t.get_text(minimal_template), text)
         d = json.loads(t.get_text(json_template))
         self.assertEqual(d["relations"][0]["this_relation_name"], u"Army")
-        self.assertEqual(d["relations"][0]["columns"][0]["label"], u"mere")
+        self.assertEqual(d["relations"][0]["columns"][0]["label"], u"fail")
         self.assertEqual(d["relations"][0]["columns"][0]["nature"], u"primary_foreign_key")
-        self.assertEqual(d["relations"][0]["columns"][1]["label"], u"fail")
-        self.assertEqual(d["relations"][0]["columns"][1]["nature"], u"promoting_foreign_key")
+        self.assertEqual(d["relations"][0]["columns"][1]["label"], u"mere")
+        self.assertEqual(d["relations"][0]["columns"][1]["nature"], u"primary_foreign_key")
         self.assertEqual(d["relations"][1]["this_relation_name"], u"Busy")
         self.assertEqual(d["relations"][1]["columns"][0]["label"], u"fail")
         self.assertEqual(d["relations"][1]["columns"][0]["nature"], u"primary_key")
@@ -355,7 +355,7 @@ class relationsTest(unittest.TestCase):
     def test_demoted_foreign_key(self):
         clauses = u"""
             LACUS: blandit, elit
-            LIGULA, 0N LACUS, 1N /EROS, 0N TELLUS: metus
+            LIGULA, 0N LACUS, /1N EROS, 0N TELLUS: metus
             EROS: congue, nibh, tincidunt
             
             TELLUS: integer, odio
@@ -379,16 +379,16 @@ class relationsTest(unittest.TestCase):
         self.assertEqual(d["relations"][2]["columns"][3]["nature"], u"association_attribute")
         self.assertEqual(d["relations"][2]["columns"][3]["outer_source"], None)
 
-    def test_promoting_foreign_key(self):
+    def test_forced_table(self):
         clauses = u"""
             LACUS: blandit, elit
-            LIGULA, 01 LACUS, 1N /EROS: metus
+            [LIGULA], 01 LACUS, 1N EROS: metus
             EROS: congue, nibh, tincidunt
         """
         text = u"""
             EROS (_congue_, nibh, tincidunt)
             LACUS (_blandit_, elit)
-            LIGULA (_#blandit_, #congue, metus)
+            LIGULA (_#blandit_, _#congue_, metus)
         """.strip().replace("    ", "")
         t = Relations(Mcd(clauses.split("\n"), params), params)
         self.assertEqual(t.get_text(minimal_template), text)
@@ -396,7 +396,7 @@ class relationsTest(unittest.TestCase):
         self.assertEqual(d["relations"][2]["this_relation_name"], u"LIGULA")
         self.assertEqual(d["relations"][2]["columns"][0]["nature"], u"primary_foreign_key")
         self.assertEqual(d["relations"][2]["columns"][0]["outer_source"], u"LACUS")
-        self.assertEqual(d["relations"][2]["columns"][1]["nature"], u"promoting_foreign_key")
+        self.assertEqual(d["relations"][2]["columns"][1]["nature"], u"primary_foreign_key")
         self.assertEqual(d["relations"][2]["columns"][1]["outer_source"], u"EROS")
         self.assertEqual(d["relations"][2]["columns"][2]["nature"], u"association_attribute")
         self.assertEqual(d["relations"][2]["columns"][2]["outer_source"], None)

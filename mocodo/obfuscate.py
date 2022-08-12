@@ -52,9 +52,12 @@ def obfuscate(clauses, params):
     random_word = random_words_of(lorem_text, params)
     header = [comment + "\n" for comment in itertools.takewhile(lambda line: line.startswith("%"), clauses)]
     clauses = "\n".join(clauses[len(header):])
+    clauses = re.sub(r"(?m)^([ \t]*)\[(.+?)\]", r"\1<<<safe-left-bracket>>>\2<<<safe-right-bracket>>>", clauses)
     clauses = re.sub(r"\[.+?\]", "", clauses)
+    clauses = clauses.replace("<<<safe-left-bracket>>>", "[")
+    clauses = clauses.replace("<<<safe-right-bracket>>>", "]")
     clauses = re.sub(r"(?m)^%.*\n?", "", clauses)
-    elements = re.split(r"([ \t]*(?:[:,\n]+|/[XT]*\\|=>|<=|->|<-)[ \t_]*)", clauses) + ['']
+    elements = re.split(r"([ \t\]]*(?:[:,\n]+|/[XT]*\\|=>|<=|->|<-)[ \t_\[]*)", clauses) + ['']
     after_first_comma = False
     before_colon = True
     for (i, element) in enumerate(elements):
@@ -74,9 +77,7 @@ def obfuscate(clauses, params):
                 (card, entity_name) = element.split(" ", 1)
                 entity_name = entity_name.strip()
                 elements[i-1] += card + " "
-                if entity_name.startswith("/"):
-                    elements[i-1] += "/"
-                elements[i] = entity_name.strip(" /")
+                elements[i] = entity_name
             elements[i] = obfuscate_label(elements[i])
     return "".join(header + elements).strip()
 
@@ -87,10 +88,12 @@ if __name__=="__main__":
     from .argument_parser import parsed_arguments
     clauses = u"""
         CLIENT: Réf. client, Nom, Prénom, Adresse
-        PASSER, 0N CLIENT, 11 /COMMANDE
+        PASSER, 0N CLIENT, /11 COMMANDE
         COMMANDE: Num commande, Date, Montant
         INCLURE, 1N [foobar] COMMANDE, 0N PRODUIT: Quantité
         PRODUIT: Réf. produit, Libellé, Prix unitaire
+        [AVOIR COLORIS], 01 PRODUIT, 0N COLORIS
+        COLORIS: coloris
     """.replace("  ", "").split("\n")
     params = parsed_arguments()
     params["obfuscate"] = "four_letter_words.txt"

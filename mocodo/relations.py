@@ -102,6 +102,7 @@ class Relations:
               "column_separator": ", ",
               "compose_relation": "{this_relation_name} ({columns})",
               "transform_single_column_relation": [],
+              "transform_forced_relation": [],
               "transform_relation": [],
               "relation_separator": "\n",
               "relation_sorting_key": {
@@ -130,7 +131,6 @@ class Relations:
             result.setdefault("compose_demoted_foreign_key", result["compose_foreign_key"])
             result.setdefault("compose_outer_attribute", result["compose_normal_attribute"])
             result.setdefault("compose_parent_primary_key", result["compose_primary_foreign_key"])
-            result.setdefault("compose_promoting_foreign_key", result["compose_foreign_key"])
             result.setdefault("compose_strengthening_primary_key", result["compose_primary_foreign_key"])
             result.setdefault("compose_unsourced_foreign_key", result["compose_normal_attribute"])
             result.setdefault("compose_unsourced_primary_foreign_key", result["compose_primary_key"])
@@ -178,6 +178,7 @@ class Relations:
             data["this_relation_name_lowercase"] = data["this_relation_name"].lower()
             data["this_relation_name_uppercase"] = data["this_relation_name"].upper()
             data["this_relation_name_titlecase"] = data["this_relation_name"].capitalize()
+            data["is_forced"] = relation["is_forced"]
             fields = []
             for column in relation["columns"]:
                 data.update(column)
@@ -193,6 +194,8 @@ class Relations:
             line = template["compose_relation"].format(**data)
             if len(relation["columns"]) == 1:
                 line = transform(line, "transform_single_column_relation")
+            if relation["is_forced"]:
+                line = transform(line, "transform_forced_relation")
             line = transform(line, "transform_relation")
             lines.append(line)
         if template["extension"] == ".mld":
@@ -255,6 +258,7 @@ class Relations:
         for (name, entity) in self.mcd.entities.items():
             self.relations[name] = {
                 "this_relation_name": entity.name,
+                "is_forced": False,
                 "columns": []
             }
             for attribute in entity.attributes:
@@ -391,6 +395,7 @@ class Relations:
                 # make a relation of this association
                 self.relations[association.name] = {
                     "this_relation_name": association.name,
+                    "is_forced": bool(df_leg),
                     "columns": []
                 }
                 for leg in association.legs:
@@ -406,7 +411,7 @@ class Relations:
                                     "leg_note": leg.note,
                                     "association_name": association.name,
                                     "primary": False,
-                                    "nature": "promoting_foreign_key" if df_leg else "demoted_foreign_key"
+                                    "nature": "demoted_foreign_key"
                                 })
                             else:
                                 self.relations[association.name]["columns"].append({ # gather all migrant attributes

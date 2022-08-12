@@ -10,7 +10,7 @@
 
     PEUT COHABITER AVEC, 0N ESPÈCE, 0N [commensale] ESPÈCE: nb. max. commensaux
 ESPÈCE: code espèce, libellé
-      OCCUPE, 1N ANIMAL, 1N /PÉRIODE, 1N ENCLOS
+      OCCUPE, 1N ANIMAL, /1N PÉRIODE, 1N ENCLOS
       PÉRIODE: date début, _date fin
 
 :

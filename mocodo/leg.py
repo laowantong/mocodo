@@ -20,7 +20,7 @@ class Leg:
         association,
         card,
         entity_name,
-        match_card=re.compile(r"(_11|..)([<>]?)\s*(?:\[(.+?)\])?").match,
+        match_card=re.compile(r"(_11|/0N|/1N|..)([<>]?)\s*(?:\[(.+?)\])?").match,
         **params,
     ):
         params["strengthen_card"] = params.get("strengthen_card", "_1,1_")
@@ -31,27 +31,31 @@ class Leg:
             kind = "strengthening"
             card = "11"
             card_view = params["strengthen_card"]
+        elif association.kind == "cluster":
+            if card.startswith("/"):
+                kind = "cluster_peg"
+                card = card[1:]
+            else:
+                kind = "cluster_leg"
+            card_view = params["card_format"].format(min_card=card[0], max_card=card[1])
+        elif association.kind.startswith("inheritance") and association.prettify_inheritance:
+            if association.kind[-2:] == "=>" == card[:2]:
+                kind = "inheritance_emphasis"
+            elif association.kind[-2:] == "<=" != card[:2]:
+                kind = "inheritance_emphasis"
+            card_view = "     "
+        elif card.startswith("XX"):
+            card_view = "     "
         else:
-            if association.kind == "cluster":
-                kind = "cluster_peg" if entity_name.startswith("/") else "cluster_leg"
-            elif association.kind.startswith("inheritance") and association.prettify_inheritance:
-                if association.kind[-2:] == "=>" == card[:2]:
-                    kind = "inheritance_emphasis"
-                elif association.kind[-2:] == "<=" != card[:2]:
-                    kind = "inheritance_emphasis"
             card = auto_correction.get(card, card)
-            card_view = (
-                "     "
-                if card.startswith("XX") or association.kind[-2:] in ("<=", "<-", "->", "=>")
-                else params["card_format"].format(min_card=card[0], max_card=card[1])
-            )
+            card_view = params["card_format"].format(min_card=card[0], max_card=card[1])
         self.card = card
         self.arrow = arrow
         self.kind = kind
         self.card_view = card_view
         self.note = note and note.replace("<<<safe-comma>>>", ",").replace("<<<safe-colon>>>", ":")
         self.association = association
-        self.entity_name = entity_name.lstrip("/")
+        self.entity_name = entity_name
         self.twist = False
         self.identifier = None
 
@@ -87,7 +91,7 @@ class Leg:
         if self.kind == "cluster_peg":
             result.append(
                 (
-                    "dot_line",
+                    "dash_line",
                     {
                         "x0": ex,
                         "y0": ey,
@@ -96,7 +100,6 @@ class Leg:
                         "stroke_color": style["leg_stroke_color"],
                         "stroke_depth": style["leg_stroke_depth"],
                         "dash_width": style["dash_width"],
-                        "dash_gap": 2 * style["dash_width"],
                     },
                 )
             )

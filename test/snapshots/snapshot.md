@@ -15,7 +15,7 @@ ESPÈCE: code espèce, libellé
   CARNIVORE: quantité viande
 
 ENCLOS: num. enclos
-      OCCUPE, 1N ANIMAL, 1N /PÉRIODE, 1N ENCLOS
+      OCCUPE, 1N ANIMAL, /1N PÉRIODE, 1N ENCLOS
   ANIMAL: nom, sexe, date naissance, date décès
   /\ ANIMAL <= CARNIVORE, HERBIVORE: type alimentation
 :
@@ -509,6 +509,7 @@ CREATE TABLE "PÉRIODE" (
       "this_relation_name_lowercase": "animal",
       "this_relation_name_uppercase": "ANIMAL",
       "this_relation_name_titlecase": "Animal",
+      "is_forced": "False",
       "columns": [
         {
           "attribute": "code espèce",
@@ -805,6 +806,7 @@ CREATE TABLE "PÉRIODE" (
       "this_relation_name_lowercase": "enclos",
       "this_relation_name_uppercase": "ENCLOS",
       "this_relation_name_titlecase": "Enclos",
+      "is_forced": "False",
       "columns": [
         {
           "attribute": "num. enclos",
@@ -837,6 +839,7 @@ CREATE TABLE "PÉRIODE" (
       "this_relation_name_lowercase": "espèce",
       "this_relation_name_uppercase": "ESPÈCE",
       "this_relation_name_titlecase": "Espèce",
+      "is_forced": "False",
       "columns": [
         {
           "attribute": "code espèce",
@@ -893,6 +896,7 @@ CREATE TABLE "PÉRIODE" (
       "this_relation_name_lowercase": "occupe",
       "this_relation_name_uppercase": "OCCUPE",
       "this_relation_name_titlecase": "Occupe",
+      "is_forced": "False",
       "columns": [
         {
           "attribute": "code espèce",
@@ -1021,6 +1025,7 @@ CREATE TABLE "PÉRIODE" (
       "this_relation_name_lowercase": "peut cohabiter avec",
       "this_relation_name_uppercase": "PEUT COHABITER AVEC",
       "this_relation_name_titlecase": "Peut cohabiter avec",
+      "is_forced": "False",
       "columns": [
         {
           "attribute": "code espèce",
@@ -1101,6 +1106,7 @@ CREATE TABLE "PÉRIODE" (
       "this_relation_name_lowercase": "peut vivre dans",
       "this_relation_name_uppercase": "PEUT VIVRE DANS",
       "this_relation_name_titlecase": "Peut vivre dans",
+      "is_forced": "False",
       "columns": [
         {
           "attribute": "code espèce",
@@ -1181,6 +1187,7 @@ CREATE TABLE "PÉRIODE" (
       "this_relation_name_lowercase": "période",
       "this_relation_name_uppercase": "PÉRIODE",
       "this_relation_name_titlecase": "Période",
+      "is_forced": "False",
       "columns": [
         {
           "attribute": "date début",
@@ -1481,7 +1488,7 @@ TURN: debt, shoe
   STIR: auto
 
 NEAR: slew
-      TAPE, 1N POET, 1N /KNEE, 1N NEAR
+      TAPE, 1N POET, /1N KNEE, 1N NEAR
   POET: code, they, bath, unit
   /\ POET <= STIR, HAUL: draw
 :

@@ -103,8 +103,15 @@ class parse_test(unittest.TestCase):
         self.assertEqual(a.name, "CIF")
         self.assertEqual(a.name_view, "CIF")
 
-    def test_included_in_foreign_key(self):
-        a = Association("SUIVRE, 0N DATE, 11 /ÉTUDIANT, 0N ENSEIGNANT")
+    def test_cluster_of_one_entity(self):
+        a = Association("SUIVRE, 0N DATE, /1N ÉTUDIANT")
+        self.assertEqual(a.legs[0].entity_name, "DATE")
+        self.assertEqual(a.legs[0].kind, "cluster_leg")
+        self.assertEqual(a.legs[1].entity_name, "ÉTUDIANT")
+        self.assertEqual(a.legs[1].kind, "cluster_peg")
+
+    def test_cluster_of_two_entities(self):
+        a = Association("SUIVRE, 0N DATE, /1N ÉTUDIANT, 0N ENSEIGNANT")
         self.assertEqual(a.legs[0].entity_name, "DATE")
         self.assertEqual(a.legs[0].kind, "cluster_leg")
         self.assertEqual(a.legs[1].entity_name, "ÉTUDIANT")
@@ -112,9 +119,19 @@ class parse_test(unittest.TestCase):
         self.assertEqual(a.legs[2].entity_name, "ENSEIGNANT")
         self.assertEqual(a.legs[2].kind, "cluster_leg")
 
+    def test_cluster_with_forbidden_cardinality(self):
+        self.assertRaisesRegex(MocodoError, r"Mocodo Err\.26", Association, "SUIVRE, 0N DATE, /11 ÉTUDIANT, 0N ENSEIGNANT")
+
+    def test_cluster_without_valid_leg(self):
+        self.assertRaisesRegex(MocodoError, r"Mocodo Err\.27", Association, "SUIVRE, /0N DATE, /1N ÉTUDIANT, /0N ENSEIGNANT")
+        self.assertRaisesRegex(MocodoError, r"Mocodo Err\.27", Association, "SUIVRE, 11 DATE, /1N ÉTUDIANT, /0N ENSEIGNANT")
+
+    def test_cluster_with_df(self):
+        self.assertRaisesRegex(MocodoError, r"Mocodo Err\.28", Association, "SUIVRE, 0N DATE, /1N ÉTUDIANT, 11 ENSEIGNANT")
+
     def test_input_errors(self):
-        self.assertRaisesRegex(MocodoError, r"Mocodo Err\.2", Association, "EMPLOYER, PARTICIPANT, 0N ENTREPRISE",)
-        self.assertRaisesRegex(MocodoError, r"Mocodo Err\.2", Association, "EMPLOYER, 1 PARTICIPANT, 0N ENTREPRISE",)
+        self.assertRaisesRegex(MocodoError, r"Mocodo Err\.2", Association, "EMPLOYER, PARTICIPANT, 0N ENTREPRISE")
+        self.assertRaisesRegex(MocodoError, r"Mocodo Err\.2", Association, "EMPLOYER, 1 PARTICIPANT, 0N ENTREPRISE")
 
     def test_backslash_suppression(self):
         a = Association(r"BUZZ\, 01 FO\tO, 0N \tBAR\t")
