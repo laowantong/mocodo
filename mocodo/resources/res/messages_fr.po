@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: mocodo\n"
-"POT-Creation-Date: 2022-06-24 09:25+0200\n"
+"POT-Creation-Date: 2022-09-05 13:30+0200\n"
 "PO-Revision-Date: 2015-08-16 07:00+0000\n"
 "Last-Translator: Aristide Grange <chewingword@wingi.net>, 2015-2016,2022\n"
 "Language-Team: French (http://www.transifex.com/aristide/mocodo/language/fr/)\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Language: fr\n"
 "Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
-#: mocodo/__main__.py:56 mocodo/cli.py:58
+#: mocodo/__main__.py:56
 msgid "Failed to calculate a planar layout."
 msgstr "Impossible de calculer une mise en page planaire sur la grille impartie."
 
@@ -33,17 +33,39 @@ msgstr "Sans titre"
 msgid "Layout calculation time exceeded."
 msgstr "Dépassement du temps maximum alloué pour le calcul de la mise en page."
 
-#: mocodo/association.py:37
+#: mocodo/association.py:21
+msgid "Unknown specialization \"{name}\"."
+msgstr "Spécialisation inconnue « {name} »."
+
+#: mocodo/association.py:43
 msgid "Missing cardinalities on leg \"{leg}\" of association \"{name}\"."
 msgstr "Cardinalités manquantes sur la patte « {leg} » de l'association « {name} »."
 
-#: mocodo/association.py:39
+#: mocodo/association.py:45
 msgid "Missing leg in association \"{name}\"."
 msgstr "Patte manquante dans  association « {name} »."
 
-#: mocodo/association.py:49
+#: mocodo/association.py:59
 msgid "Syntax error in inheritance \"{inheritance}\"."
 msgstr "Erreur dans la syntaxe de l'héritage « {inheritance} »."
+
+#: mocodo/association.py:88
+msgid ""
+"Only cardinalities \"/0N\" or \"/1N\" are permitted to start with a \"/\" "
+"character."
+msgstr "Seules les cardinalités 0N ou 1N peuvent être préfixée d'une barre oblique."
+
+#: mocodo/association.py:92
+msgid ""
+"To become a cluster, association \"{name}\" must have at least one "
+"cardinality \"0N\" or \"1N\" (without \"/\")."
+msgstr "Pour devenir une pseudo-entité (ou agrégation), l'association « {name} » doit avoir au moins une cardinalité 0N ou 1N (sans barre oblique)."
+
+#: mocodo/association.py:94
+msgid ""
+"To become a cluster, association \"{name}\"'s cardinalities must all be "
+"\"0N\", \"1N\", \"/0N\" or \"/1N\"."
+msgstr "Pour devenir une pseudo-entité (ou agrégation), l'association « {name} » ne peut avoir d'autres cardinalités que 0N, 1N, /ON ou /1N."
 
 #: mocodo/common.py:27
 msgid "Output file \"{filename}\" successfully generated."
@@ -75,13 +97,13 @@ msgstr "Problème lors de la génération du schéma relationnel."
 msgid "Unable to generate file \"{filename}\"!"
 msgstr "Impossible de générer le fichier « {filename} »."
 
-#: mocodo/diagram_link.py:11 mocodo/leg.py:318
+#: mocodo/diagram_link.py:11 mocodo/leg.py:319
 msgid ""
 "Attribute \"{attribute}\" in entity \"{entity_1}\" references an unknown "
 "entity \"{entity_2}\"."
 msgstr "L'attribut « {attribute} » de l'entité « {entity_1} » fait référence à une entité « {entity_2} » inconnue."
 
-#: mocodo/diagram_link.py:17 mocodo/leg.py:324
+#: mocodo/diagram_link.py:17 mocodo/leg.py:325
 msgid ""
 "Attribute \"{attribute_1}\" in entity \"{entity_1}\" references an unknown "
 "attribute \"{attribute_2}\" in entity \"{entity_2}\"."
@@ -129,21 +151,24 @@ msgstr "Association « {association} » liée à une entité inconnue « {ent
 msgid "PNG and PDF generation requires cairosvg to be installed"
 msgstr "Générer un PNG ou un PDF requiert une installation fonctionnelle de CairoSVG."
 
-#: mocodo/obfuscate.py:38
+#: mocodo/obfuscate.py:33
 msgid ""
 "Obfuscation failed. Not enough substitution words in \"{filename}\". You may"
-" either increase the `obfuscation_max_length` or decrease the "
-"`obfuscation_min_distance` option values."
-msgstr "Échec de l'obfuscation. Il n'y a pas assez de mots de substitution dans « {filename} ». Vous devriez soit augmenter la valeur de l'option `obfuscation_max_length` ou diminuer celle de `obfuscation_min_distance`."
+" decrease the `obfuscation_min_distance` option values."
+msgstr "Échec de l'obfuscation. Il n'y a pas assez de mots de substitution dans « {filename} ». Vous devriez diminuer la valeur de l'option `obfuscation_min_distance`."
 
-#: mocodo/relations.py:218
+#: mocodo/relations.py:255
 msgid "Reciprocal relative identification around {association}."
 msgstr "Identification relative réciproque autour de « {association} »."
 
-#: mocodo/relations.py:285
+#: mocodo/relations.py:321
 msgid "A weak entity (here, {entity}) cannot be strengthened by itself."
 msgstr "Une entité faible (ici, « {entity} ») ne peut être renforcée par elle-même."
 
-#: mocodo/relations.py:288
+#: mocodo/relations.py:324
 msgid "Cycle of weak entities in {entities}."
 msgstr "Cycle d'entités faibles dans {entities}."
+
+#: mocodo/relations.py:337
+msgid "Totality (/T\\ or /XT\\) is mandatory for \"=>\" inheritance of parent {name}."
+msgstr "La totalité (/T\\ or /XT\\) est requise pour définir l'héritage « => » sur l'entité-mère « {name} »."

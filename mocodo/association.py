@@ -89,7 +89,7 @@ class Association:
             if valid_peg_count > 0:
                 valid_leg_count = sum(card in ("0N", "1N") for card in cards)
                 if valid_leg_count < 1:
-                    raise MocodoError(27, _('To become a cluster, association "{name}" must have at least one cardinality "0N" or "1N".').format(name=self.name)) # fmt: skip
+                    raise MocodoError(27, _('To become a cluster, association "{name}" must have at least one cardinality "0N" or "1N" (without "/").').format(name=self.name)) # fmt: skip
                 if valid_leg_count + valid_peg_count < len(cards):
                     raise MocodoError(28, _('''To become a cluster, association "{name}"'s cardinalities must all be "0N", "1N", "/0N" or "/1N".''').format(name=self.name)) # fmt: skip
                 self.kind = "cluster"
