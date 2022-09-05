@@ -37,7 +37,7 @@
   "compose_foreign_key": "`{label_lowercase}` {data_type},\nADD_FOREIGN_KEY (`{label_lowercase}`) REFERENCES `{outer_source_uppercase}` (`{raw_label_lowercase}`)",
   "compose_primary_foreign_key": "`{label_lowercase}` {data_type},\nADD_PRIMARY_KEY `{label_lowercase}`,\nADD_FOREIGN_KEY (`{label_lowercase}`) REFERENCES `{outer_source_uppercase}` (`{raw_label_lowercase}`)",
   "column_separator": ",\n  ",
-  "compose_relation": "CREATE TABLE `{this_relation_name_uppercase}` (\n  {columns},\n  PRIMARY KEY (),\n) ENGINE=InnoDB DEFAULT CHARSET=utf8;",
+  "compose_relation": "CREATE TABLE `{this_relation_name_uppercase}` (\n  {columns},\n  PRIMARY KEY (),\n) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;",
   "transform_single_column_relation": [
     {
       "search": "(?s)(.+)",
@@ -89,7 +89,7 @@
     }
   ],
   "relation_separator": "\n\n",
-  "compose_relational_schema": "CREATE DATABASE IF NOT EXISTS `{title_uppercase}` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;\nUSE `{title_uppercase}`;\n\n{relations}\n",
+  "compose_relational_schema": "CREATE DATABASE IF NOT EXISTS `{title_uppercase}` DEFAULT CHARACTER SET UTF8MB4 COLLATE utf8_general_ci;\nUSE `{title_uppercase}`;\n\n{relations}\n",
   "transform_relational_schema": [
     {
       "comment": "Suppress the minus sign before any FOREIGN KEY line which references an actual PRIMARY KEY declared before this line.",

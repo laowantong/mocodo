@@ -99,7 +99,7 @@ PÉRIODE: date début, _date fin
 ### `mysql.json`
 
 ```sql
-CREATE DATABASE IF NOT EXISTS `UNTITLED` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+CREATE DATABASE IF NOT EXISTS `UNTITLED` DEFAULT CHARACTER SET UTF8MB4 COLLATE utf8_general_ci;
 USE `UNTITLED`;
 
 CREATE TABLE `ANIMAL` (
@@ -116,20 +116,20 @@ CREATE TABLE `ANIMAL` (
   `herbivore` BOOLEAN,
   `plante_préférée` VARCHAR(42),
   PRIMARY KEY (`code_espèce`, `nom`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 /*
 CREATE TABLE `ENCLOS` (
   `num_enclos` VARCHAR(42),
   PRIMARY KEY (`num_enclos`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 */
 
 CREATE TABLE `ESPÈCE` (
   `code_espèce` VARCHAR(42),
   `libellé` VARCHAR(42),
   PRIMARY KEY (`code_espèce`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 CREATE TABLE `OCCUPE` (
   `code_espèce` VARCHAR(42),
@@ -138,27 +138,27 @@ CREATE TABLE `OCCUPE` (
   `date_début` VARCHAR(42),
   `date_fin` VARCHAR(42),
   PRIMARY KEY (`code_espèce`, `nom`, `num_enclos`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 CREATE TABLE `PEUT_COHABITER_AVEC` (
   `code_espèce` VARCHAR(42),
   `code_espèce commensale` VARCHAR(42),
   `nb_max_commensaux` VARCHAR(42),
   PRIMARY KEY (`code_espèce`, `code_espèce commensale`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 CREATE TABLE `PEUT_VIVRE_DANS` (
   `code_espèce` VARCHAR(42),
   `num_enclos` VARCHAR(42),
   `nb_max_congénères` VARCHAR(42),
   PRIMARY KEY (`code_espèce`, `num_enclos`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 CREATE TABLE `PÉRIODE` (
   `date_début` VARCHAR(42),
   `date_fin` VARCHAR(42),
   PRIMARY KEY (`date_début`, `date_fin`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 ALTER TABLE `ANIMAL` ADD FOREIGN KEY (`code_espèce mère`, `nom mère`) REFERENCES `ANIMAL` (`code_espèce`, `nom`);
 ALTER TABLE `ANIMAL` ADD FOREIGN KEY (`code_espèce`) REFERENCES `ESPÈCE` (`code_espèce`);
