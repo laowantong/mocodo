@@ -38,12 +38,15 @@ class Leg:
             else:
                 kind = "cluster_leg"
             card_view = params["card_format"].format(min_card=card[0], max_card=card[1])
-        elif association.kind.startswith("inheritance") and association.prettify_inheritance:
-            if association.kind[-2:] == "=>" == card[:2]:
-                kind = "inheritance_emphasis"
-            elif association.kind[-2:] == "<=" != card[:2]:
-                kind = "inheritance_emphasis"
-            card_view = "     "
+        elif association.kind.startswith("inheritance"):
+            if association.prettify_inheritance:
+                if association.kind[-2:] == "=>" == card[:2]:
+                    kind = "inheritance_emphasis"
+                elif association.kind[-2:] == "<=" != card[:2]:
+                    kind = "inheritance_emphasis"
+                card_view = "     "
+            else:
+                card_view = "     "
         elif card.startswith("XX"):
             card_view = "     "
         else:
