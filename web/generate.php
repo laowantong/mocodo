@@ -4,11 +4,7 @@ if (!array_key_exists('text', $_POST)) {
     exit("Need a POST value.");
 }
 
-// FIXME: on my machine, prevent PHP to use /usr/bin/python3 where cairosvg is not installed
-$python = "/Users/aristide/opt/miniconda3/bin/python";
-if (!file_exists($python)) {
-  $python = "python3.9";
-};
+$python = "/usr/bin/python3";
 $mocodo = " ../../../mocodo_web.py";
 
 $extensions = array(
