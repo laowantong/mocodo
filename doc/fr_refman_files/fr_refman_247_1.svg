@@ -1,0 +1,197 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="451" height="474" viewBox="0 0 451 474">
+<rect id="frame" x="0" y="0" width="451" height="474" fill="none" stroke="none" stroke-width="0"/>
+
+<!-- Association Bibendum -->
+<g class="page_0_u8jzPde0 diagram_page" visibility="visible">
+	<path d="M153 146 C115.67 92.67 115.67 56.67 153 38" fill="none" stroke="#000" stroke-width="1"/>
+	<text x="132" y="83" fill="#000" font-family="Futura" font-size="11">0,1</text>
+	<path d="M153 146 C191.67 92.67 191.67 56.67 153 38" fill="none" stroke="#000" stroke-width="1"/>
+	<text x="156" y="83" fill="#000" font-family="Futura" font-size="11">0,N</text>
+	<g>
+		<path d="M191 9 a14 14 90 0 1 14 14 V37 h-104 V23 a14 14 90 0 1 14 -14" fill="#FFF" stroke="#FFF" stroke-width="0"/>
+		<path d="M205 37 v16 a14 14 90 0 1 -14 14 H115 a14 14 90 0 1 -14 -14 V37 H104" fill="#FFF" stroke="#FFF" stroke-width="0"/>
+		<rect x="101" y="9" width="104" height="58" fill="none" rx="14" stroke="#000" stroke-width="1.5"/>
+		<line x1="101" y1="37" x2="205" y2="37" stroke="#000" stroke-width="1.5"/>
+		<text x="109" y="30.3" fill="#000" font-family="Copperplate" font-size="18">Bibendum</text>
+	</g>
+</g>
+
+<!-- Association Lacus -->
+<g class="page_0_u8jzPde0 diagram_page" visibility="visible">
+	<line x1="153" y1="146" x2="45" y2="146" stroke="#000" stroke-width="1"/>
+	<text x="86" y="162" fill="#000" font-family="Futura" font-size="11">0,1</text>
+	<line x1="45" y1="254" x2="45" y2="146" stroke="#000" stroke-width="1"/>
+	<text x="50" y="208" fill="#000" font-family="Futura" font-size="11">1,N</text>
+	<g>
+		<path d="M65 117 a14 14 90 0 1 14 14 V145 h-68 V131 a14 14 90 0 1 14 -14" fill="#FFF" stroke="#FFF" stroke-width="0"/>
+		<path d="M79 145 v16 a14 14 90 0 1 -14 14 H25 a14 14 90 0 1 -14 -14 V145 H68" fill="#FFF" stroke="#FFF" stroke-width="0"/>
+		<rect x="11" y="117" width="68" height="58" fill="none" rx="14" stroke="#000" stroke-width="1.5"/>
+		<line x1="11" y1="145" x2="79" y2="145" stroke="#000" stroke-width="1.5"/>
+		<text x="18" y="138.3" fill="#000" font-family="Copperplate" font-size="18">Lacus</text>
+	</g>
+</g>
+
+<!-- Association Vivamus -->
+<g class="page_0_u8jzPde0 diagram_page" visibility="visible">
+	<line x1="391" y1="146" x2="270" y2="146" stroke="#000" stroke-width="1"/>
+	<text x="320" y="162" fill="#000" font-family="Futura" font-size="11">0,N</text>
+	<line x1="391" y1="254" x2="270" y2="146" stroke="#000" stroke-width="1"/>
+	<text x="346.92" y="208" fill="#000" font-family="Futura" font-size="11">0,N</text>
+	<line x1="153" y1="146" x2="270" y2="146" stroke="#000" stroke-width="1"/>
+	<text x="202" y="138" fill="#000" font-family="Futura" font-size="11">0,N</text>
+	<g>
+		<path d="M300 109 a14 14 90 0 1 14 14 V137 h-88 V123 a14 14 90 0 1 14 -14" fill="#FFF" stroke="#FFF" stroke-width="0"/>
+		<path d="M314 137 v32 a14 14 90 0 1 -14 14 H240 a14 14 90 0 1 -14 -14 V137 H88" fill="#FFF" stroke="#FFF" stroke-width="0"/>
+		<rect x="226" y="109" width="88" height="74" fill="none" rx="14" stroke="#000" stroke-width="1.5"/>
+		<line x1="226" y1="137" x2="314" y2="137" stroke="#000" stroke-width="1.5"/>
+		<text x="233" y="130.3" fill="#000" font-family="Copperplate" font-size="18">Vivamus</text>
+		<text x="233" y="155.1" fill="#000" font-family="Gill Sans" font-size="15">eleifend</text>
+		<text x="233" y="172.1" fill="#000" font-family="Gill Sans" font-size="15">iaculis</text>
+	</g>
+</g>
+
+<!-- Association Ipsum -->
+<g class="page_0_u8jzPde0 diagram_page" visibility="visible">
+	<line x1="153" y1="146" x2="153" y2="254" stroke="#000" stroke-width="1"/>
+	<text x="129" y="217" fill="#000" font-family="Futura" font-size="11">1,N</text>
+	<line x1="153" y1="345" x2="153" y2="254" stroke="#000" stroke-width="1"/>
+	<text x="158" y="299" fill="#000" font-family="Futura" font-size="11">0,N</text>
+	<g>
+		<path d="M172 225 a14 14 90 0 1 14 14 V253 h-66 V239 a14 14 90 0 1 14 -14" fill="#FFF" stroke="#FFF" stroke-width="0"/>
+		<path d="M186 253 v16 a14 14 90 0 1 -14 14 H134 a14 14 90 0 1 -14 -14 V253 H66" fill="#FFF" stroke="#FFF" stroke-width="0"/>
+		<rect x="120" y="225" width="66" height="58" fill="none" rx="14" stroke="#000" stroke-width="1.5"/>
+		<line x1="120" y1="253" x2="186" y2="253" stroke="#000" stroke-width="1.5"/>
+		<text x="127" y="246.3" fill="#000" font-family="Copperplate" font-size="18">Ipsum</text>
+	</g>
+</g>
+
+<!-- Association Velit -->
+<g class="page_0_u8jzPde0 diagram_page" visibility="visible">
+	<line x1="153" y1="146" x2="270" y2="254" stroke="#000" stroke-width="1"/>
+	<text x="202" y="185.29" fill="#000" font-family="Futura" font-size="11">0,N</text>
+	<line x1="391" y1="254" x2="270" y2="254" stroke="#000" stroke-width="1"/>
+	<text x="316" y="270" fill="#000" font-family="Futura" font-size="11">0,N</text>
+	<g>
+		<path d="M297 225 a14 14 90 0 1 14 14 V253 h-82 V239 a14 14 90 0 1 14 -14" fill="#FFF" stroke="#FFF" stroke-width="0"/>
+		<path d="M311 253 v16 a14 14 90 0 1 -14 14 H243 a14 14 90 0 1 -14 -14 V253 H82" fill="#FFF" stroke="#FFF" stroke-width="0"/>
+		<rect x="229" y="225" width="82" height="58" fill="none" rx="14" stroke="#000" stroke-width="1.5"/>
+		<line x1="229" y1="253" x2="311" y2="253" stroke="#000" stroke-width="1.5"/>
+		<text x="246" y="246.3" fill="#000" font-family="Copperplate" font-size="18">Velit</text>
+		<text x="236" y="271.1" fill="#000" font-family="Gill Sans" font-size="15">sollicitudin</text>
+	</g>
+</g>
+
+<!-- Association Metus -->
+<g class="page_0_u8jzPde0 diagram_page" visibility="visible">
+	<line x1="45" y1="254" x2="45" y2="345" stroke="#000" stroke-width="1"/>
+	<text x="50" y="308" fill="#000" font-family="Futura" font-size="11">1,N</text>
+	<line x1="153" y1="345" x2="45" y2="345" stroke="#000" stroke-width="1"/>
+	<text x="86" y="361" fill="#000" font-family="Futura" font-size="11">0,N</text>
+	<g>
+		<path d="M67 316 a14 14 90 0 1 14 14 V344 h-72 V330 a14 14 90 0 1 14 -14" fill="#FFF" stroke="#FFF" stroke-width="0"/>
+		<path d="M81 344 v16 a14 14 90 0 1 -14 14 H23 a14 14 90 0 1 -14 -14 V344 H72" fill="#FFF" stroke="#FFF" stroke-width="0"/>
+		<rect x="9" y="316" width="72" height="58" fill="none" rx="14" stroke="#000" stroke-width="1.5"/>
+		<line x1="9" y1="344" x2="81" y2="344" stroke="#000" stroke-width="1.5"/>
+		<text x="17" y="337.3" fill="#000" font-family="Copperplate" font-size="18">Metus</text>
+		<text x="16" y="362.1" fill="#000" font-family="Gill Sans" font-size="15">nibh</text>
+	</g>
+</g>
+
+<!-- Association DF -->
+<g class="page_0_u8jzPde0 diagram_page" visibility="visible">
+	<line x1="391" y1="254" x2="270" y2="345" stroke="#000" stroke-width="1"/>
+	<text x="339.8" y="308" fill="#000" font-family="Futura" font-size="11">1,1</text>
+	<line x1="153" y1="345" x2="270" y2="345" stroke="#000" stroke-width="1"/>
+	<text x="201" y="361" fill="#000" font-family="Futura" font-size="11">0,N</text>
+	<g>
+		<circle cx="270" cy="345" r="20" stroke="#000" stroke-width="1.5" fill="#FFF"/>
+		<text x="257" y="349.8" fill="#000" font-family="Copperplate" font-size="18">DF</text>
+	</g>
+</g>
+
+<!-- Association Augue -->
+<g class="page_0_u8jzPde0 diagram_page" visibility="visible">
+	<path d="M153 345 C191.67 381.33 191.67 411.67 153 436" fill="none" stroke="#000" stroke-width="1"/>
+	<text x="156" y="399" fill="#000" font-family="Futura" font-size="11">0,N</text>
+	<path d="M153 345 C114.33 381.33 114.33 411.67 153 436" fill="none" stroke="#000" stroke-width="1"/>
+	<text x="131" y="399" fill="#000" font-family="Futura" font-size="11">0,N</text>
+	<g>
+		<path d="M175 407 a14 14 90 0 1 14 14 V435 h-72 V421 a14 14 90 0 1 14 -14" fill="#FFF" stroke="#FFF" stroke-width="0"/>
+		<path d="M189 435 v16 a14 14 90 0 1 -14 14 H131 a14 14 90 0 1 -14 -14 V435 H72" fill="#FFF" stroke="#FFF" stroke-width="0"/>
+		<rect x="117" y="407" width="72" height="58" fill="none" rx="14" stroke="#000" stroke-width="1.5"/>
+		<line x1="117" y1="435" x2="189" y2="435" stroke="#000" stroke-width="1.5"/>
+		<text x="124" y="428.3" fill="#000" font-family="Copperplate" font-size="18">Augue</text>
+	</g>
+</g>
+
+<!-- Entity Blandit -->
+<g class="page_0_u8jzPde0 diagram_page" visibility="visible">
+	<g>
+		<rect x="109" y="91" width="88" height="30" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="109" y="121" width="88" height="80" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="109" y="91" width="88" height="110" fill="none" stroke="#000" stroke-width="1.5" opacity="1"/>
+		<line x1="109" y1="121" x2="197" y2="121" stroke="#000" stroke-width="1.5"/>
+	</g>
+	<text x="117" y="112.3" fill="#000" font-family="Copperplate" font-size="18">Blandit</text>
+	<text x="117" y="138.1" fill="#000" font-family="Gill Sans" font-size="15">consequat</text>
+	<line x1="117" y1="141" x2="181" y2="141" stroke="#000" stroke-width="1"/>
+	<text x="117" y="155.1" fill="#000" font-family="Gill Sans" font-size="15">ligula</text>
+	<text x="117" y="172.1" fill="#000" font-family="Gill Sans" font-size="15">nibh</text>
+	<text x="117" y="189" fill="#000" font-family="Gill Sans" font-size="15">consequat</text>
+</g>
+
+<!-- Entity Posuere -->
+<g class="page_0_u8jzPde0 diagram_page" visibility="visible">
+	<g>
+		<rect x="344" y="116" width="94" height="30" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="344" y="146" width="94" height="30" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="344" y="116" width="94" height="60" fill="none" stroke="#000" stroke-width="1.5" opacity="1"/>
+		<line x1="344" y1="146" x2="438" y2="146" stroke="#000" stroke-width="1.5"/>
+	</g>
+	<text x="353" y="137.3" fill="#000" font-family="Copperplate" font-size="18">Posuere</text>
+	<text x="352" y="163.1" fill="#000" font-family="Gill Sans" font-size="15">pede</text>
+	<line x1="352" y1="166" x2="383" y2="166" stroke="#000" stroke-width="1"/>
+</g>
+
+<!-- Entity Elit -->
+<g class="page_0_u8jzPde0 diagram_page" visibility="visible">
+	<g>
+		<rect x="18" y="216" width="54" height="30" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="18" y="246" width="54" height="46" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="18" y="216" width="54" height="76" fill="none" stroke="#000" stroke-width="1.5" opacity="1"/>
+		<line x1="18" y1="246" x2="72" y2="246" stroke="#000" stroke-width="1.5"/>
+	</g>
+	<text x="26" y="237.3" fill="#000" font-family="Copperplate" font-size="18">Elit</text>
+	<text x="26" y="263.1" fill="#000" font-family="Gill Sans" font-size="15">ligula</text>
+	<line x1="26" y1="266" x2="58" y2="266" stroke="#000" stroke-width="1"/>
+	<text x="26" y="280.1" fill="#000" font-family="Gill Sans" font-size="15">tellus</text>
+</g>
+
+<!-- Entity Nonummy -->
+<g class="page_0_u8jzPde0 diagram_page" visibility="visible">
+	<g>
+		<rect x="340" y="216" width="102" height="30" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="340" y="246" width="102" height="46" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="340" y="216" width="102" height="76" fill="none" stroke="#000" stroke-width="1.5" opacity="1"/>
+		<line x1="340" y1="246" x2="442" y2="246" stroke="#000" stroke-width="1.5"/>
+	</g>
+	<text x="348" y="237.3" fill="#000" font-family="Copperplate" font-size="18">Nonummy</text>
+	<text x="348" y="263.1" fill="#000" font-family="Gill Sans" font-size="15">consequat</text>
+	<line x1="348" y1="266" x2="412" y2="266" stroke="#000" stroke-width="1"/>
+	<text x="348" y="280.1" fill="#000" font-family="Gill Sans" font-size="15">ligula</text>
+</g>
+
+<!-- Entity Congue -->
+<g class="page_0_u8jzPde0 diagram_page" visibility="visible">
+	<g>
+		<rect x="110" y="307" width="86" height="30" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="110" y="337" width="86" height="46" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="110" y="307" width="86" height="76" fill="none" stroke="#000" stroke-width="1.5" opacity="1"/>
+		<line x1="110" y1="337" x2="196" y2="337" stroke="#000" stroke-width="1.5"/>
+	</g>
+	<text x="118" y="328.3" fill="#000" font-family="Copperplate" font-size="18">Congue</text>
+	<text x="118" y="354.1" fill="#000" font-family="Gill Sans" font-size="15">ligula</text>
+	<line x1="118" y1="357" x2="150" y2="357" stroke="#000" stroke-width="1"/>
+	<text x="118" y="371.1" fill="#000" font-family="Gill Sans" font-size="15">tellus</text>
+</g>
+</svg>

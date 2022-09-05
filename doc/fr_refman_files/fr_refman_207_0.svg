@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="384" height="235" viewBox="0 0 384 235">
+<rect id="frame" x="0" y="0" width="384" height="235" fill="#f5f5f5" stroke="none" stroke-width="0"/>
+
+<!-- Association Velit -->
+<g class="page_0_JW1LhL3c diagram_page" visibility="visible">
+	<line x1="47" y1="113" x2="192" y2="35" stroke="#bf812d" stroke-width="1"/>
+	<text x="90" y="105.37" fill="#01665e" font-family="Verdana" font-size="12">0,N</text>
+	<line x1="337" y1="113" x2="192" y2="35" stroke="#bf812d" stroke-width="1"/>
+	<text x="272" y="105.37" fill="#01665e" font-family="Verdana" font-size="12">0,N</text>
+	<g>
+		<path d="M221 9 a14 14 90 0 1 14 14 V35 h-86 V23 a14 14 90 0 1 14 -14" fill="#dfc27d" stroke="#dfc27d" stroke-width="0"/>
+		<path d="M235 35 v12 a14 14 90 0 1 -14 14 H163 a14 14 90 0 1 -14 -14 V35 H86" fill="#f6e8c3" stroke="#f6e8c3" stroke-width="0"/>
+		<rect x="149" y="9" width="86" height="52" fill="none" rx="14" stroke="#bf812d" stroke-width="1.5"/>
+		<line x1="149" y1="35" x2="235" y2="35" stroke="#bf812d" stroke-width="1"/>
+		<text x="177" y="27.6" fill="#000" font-family="Trebuchet MS" font-size="14">Velit</text>
+		<text x="156" y="53.6" fill="#000" font-family="Trebuchet MS" font-size="14">sollicitudin</text>
+	</g>
+</g>
+
+<!-- Association Vivamus -->
+<g class="page_0_JW1LhL3c diagram_page" visibility="visible">
+	<line x1="337" y1="113" x2="192" y2="191" stroke="#bf812d" stroke-width="1"/>
+	<text x="272" y="129.63" fill="#01665e" font-family="Verdana" font-size="12">0,N</text>
+	<line x1="47" y1="113" x2="192" y2="191" stroke="#bf812d" stroke-width="1"/>
+	<text x="90" y="129.63" fill="#01665e" font-family="Verdana" font-size="12">0,N</text>
+	<g>
+		<path d="M212 156 a14 14 90 0 1 14 14 V182 h-68 V170 a14 14 90 0 1 14 -14" fill="#dfc27d" stroke="#dfc27d" stroke-width="0"/>
+		<path d="M226 182 v30 a14 14 90 0 1 -14 14 H172 a14 14 90 0 1 -14 -14 V182 H68" fill="#f6e8c3" stroke="#f6e8c3" stroke-width="0"/>
+		<rect x="158" y="156" width="68" height="70" fill="none" rx="14" stroke="#bf812d" stroke-width="1.5"/>
+		<line x1="158" y1="182" x2="226" y2="182" stroke="#bf812d" stroke-width="1"/>
+		<text x="165" y="174.6" fill="#000" font-family="Trebuchet MS" font-size="14">Vivamus</text>
+		<text x="165" y="200.6" fill="#000" font-family="Trebuchet MS" font-size="14">eleifend</text>
+		<text x="165" y="218.6" fill="#000" font-family="Trebuchet MS" font-size="14">iaculis</text>
+	</g>
+</g>
+
+<!-- Entity Blandit -->
+<g class="page_0_JW1LhL3c diagram_page" visibility="visible">
+	<g>
+		<rect x="9" y="60" width="76" height="26" fill="#80cdc1" stroke="#80cdc1" stroke-width="0" opacity="1"/>
+		<rect x="9" y="86" width="76" height="80" fill="#c7eae5" stroke="#c7eae5" stroke-width="0" opacity="1"/>
+		<rect x="9" y="60" width="76" height="106" fill="none" stroke="#35978f" stroke-width="1.5" opacity="1"/>
+		<line x1="9" y1="86" x2="85" y2="86" stroke="#35978f" stroke-width="1"/>
+	</g>
+	<text x="24" y="78.6" fill="#000" font-family="Trebuchet MS" font-size="14">Blandit</text>
+	<text x="14" y="104.6" fill="#000" font-family="Trebuchet MS" font-size="14">consequat</text>
+	<line x1="14" y1="107" x2="80" y2="107" stroke="#000" stroke-width="1"/>
+	<text x="14" y="122.6" fill="#000" font-family="Trebuchet MS" font-size="14">ligula</text>
+	<text x="14" y="140.6" fill="#000" font-family="Trebuchet MS" font-size="14">nibh</text>
+	<text x="14" y="158.6" fill="#000" font-family="Trebuchet MS" font-size="14">consequat</text>
+</g>
+
+<!-- Entity Nonummy -->
+<g class="page_0_JW1LhL3c diagram_page" visibility="visible">
+	<g>
+		<rect x="299" y="78" width="76" height="26" fill="#80cdc1" stroke="#80cdc1" stroke-width="0" opacity="1"/>
+		<rect x="299" y="104" width="76" height="44" fill="#c7eae5" stroke="#c7eae5" stroke-width="0" opacity="1"/>
+		<rect x="299" y="78" width="76" height="70" fill="none" stroke="#35978f" stroke-width="1.5" opacity="1"/>
+		<line x1="299" y1="104" x2="375" y2="104" stroke="#35978f" stroke-width="1"/>
+	</g>
+	<text x="305" y="96.6" fill="#000" font-family="Trebuchet MS" font-size="14">Nonummy</text>
+	<text x="304" y="122.6" fill="#000" font-family="Trebuchet MS" font-size="14">consequat</text>
+	<line x1="304" y1="125" x2="370" y2="125" stroke="#000" stroke-width="1"/>
+	<text x="304" y="140.6" fill="#000" font-family="Trebuchet MS" font-size="14">ligula</text>
+</g>
+</svg>

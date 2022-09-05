@@ -1,0 +1,142 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="715" height="294" viewBox="0 0 715 294">
+<rect id="frame" x="0" y="0" width="715" height="294" fill="none" stroke="none" stroke-width="0"/>
+
+<!-- Association DF1 -->
+<g class="page_0_LKjjxGeQ diagram_page" visibility="visible">
+	<line x1="84" y1="56" x2="84" y2="147" stroke="#000" stroke-width="1"/>
+	<text x="89" y="119" fill="#000" font-family="Futura" font-size="11">1,N</text>
+	<line x1="84" y1="238" x2="84" y2="147" stroke="#000" stroke-width="1"/>
+	<text x="89" y="183" fill="#000" font-family="Futura" font-size="11">1,1</text>
+	<line x1="89" y1="185" x2="107" y2="185" stroke="#000" stroke-width="1"/>
+	<g>
+		<circle cx="84" cy="147" r="20" stroke="#000" stroke-width="1.5" fill="#FFF"/>
+		<text x="71" y="151.8" fill="#000" font-family="Copperplate" font-size="18">DF</text>
+	</g>
+</g>
+
+<!-- Association DF2 -->
+<g class="page_0_LKjjxGeQ diagram_page" visibility="visible">
+	<line x1="476" y1="56" x2="313" y2="147" stroke="#000" stroke-width="1"/>
+	<text x="392.47" y="119" fill="#000" font-family="Futura" font-size="11">     </text>
+	<line x1="313" y1="238" x2="313" y2="147" stroke="#000" stroke-width="1"/>
+	<text x="318" y="183" fill="#000" font-family="Futura" font-size="11">     </text>
+	<g>
+		<circle cx="313" cy="147" r="20" stroke="#000" stroke-width="1.5" fill="#FFF"/>
+		<text x="300" y="151.8" fill="#000" font-family="Copperplate" font-size="18">DF</text>
+	</g>
+</g>
+
+<!-- Association DF3 -->
+<g class="page_0_LKjjxGeQ diagram_page" visibility="visible">
+	<line x1="476" y1="56" x2="476" y2="147" stroke="#000" stroke-width="1"/>
+	<text x="481" y="119" fill="#000" font-family="Futura" font-size="11">     </text>
+	<line x1="476" y1="238" x2="476" y2="147" stroke="#000" stroke-width="1"/>
+	<text x="481" y="183" fill="#000" font-family="Futura" font-size="11">     </text>
+	<g>
+		<circle cx="476" cy="147" r="20" stroke="#000" stroke-width="1.5" fill="#FFF"/>
+		<text x="463" y="151.8" fill="#000" font-family="Copperplate" font-size="18">DF</text>
+	</g>
+</g>
+
+<!-- Association DF4 -->
+<g class="page_0_LKjjxGeQ diagram_page" visibility="visible">
+	<line x1="476" y1="56" x2="639" y2="147" stroke="#000" stroke-width="1"/>
+	<text x="541.53" y="119" fill="#000" font-family="Futura" font-size="11">     </text>
+	<line x1="639" y1="238" x2="639" y2="147" stroke="#000" stroke-width="1"/>
+	<text x="644" y="183" fill="#000" font-family="Futura" font-size="11">     </text>
+	<g>
+		<circle cx="639" cy="147" r="20" stroke="#000" stroke-width="1.5" fill="#FFF"/>
+		<text x="626" y="151.8" fill="#000" font-family="Copperplate" font-size="18">DF</text>
+	</g>
+</g>
+
+<!-- Entity ŒUVRE1 -->
+<g class="page_0_LKjjxGeQ diagram_page" visibility="visible">
+	<g>
+		<rect x="16" y="9" width="136" height="30" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="16" y="39" width="136" height="64" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="16" y="9" width="136" height="94" fill="none" stroke="#000" stroke-width="1.5" opacity="1"/>
+		<line x1="16" y1="39" x2="152" y2="39" stroke="#000" stroke-width="1.5"/>
+	</g>
+	<text x="50" y="30.3" fill="#000" font-family="Copperplate" font-size="18">ŒUVRE</text>
+	<text x="24" y="56.1" fill="#000" font-family="Gill Sans" font-size="15">cote</text>
+	<line x1="24" y1="59" x2="53" y2="59" stroke="#000" stroke-width="1"/>
+	<text x="24" y="73.1" fill="#000" font-family="Gill Sans" font-size="15">titre</text>
+	<text x="24" y="90" fill="#000" font-family="Gill Sans" font-size="15">date de publication</text>
+</g>
+
+<!-- Entity ŒUVRE2 -->
+<g class="page_0_LKjjxGeQ diagram_page" visibility="visible">
+	<g>
+		<rect x="349" y="9" width="254" height="30" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="349" y="39" width="254" height="64" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="349" y="9" width="254" height="94" fill="none" stroke="#000" stroke-width="1.5" opacity="1"/>
+		<line x1="349" y1="39" x2="603" y2="39" stroke="#000" stroke-width="1.5"/>
+	</g>
+	<text x="442" y="30.3" fill="#000" font-family="Copperplate" font-size="18">ŒUVRE</text>
+	<text x="357" y="56.1" fill="#000" font-family="Gill Sans" font-size="15">612.NAT.34</text>
+	<line x1="357" y1="59" x2="434" y2="59" stroke="#000" stroke-width="1"/>
+	<text x="357" y="73.1" fill="#000" font-family="Gill Sans" font-size="15">J’apprends à lire à mes souris blanches</text>
+	<text x="357" y="90" fill="#000" font-family="Gill Sans" font-size="15">mai 1975</text>
+</g>
+
+<!-- Entity EXEMPLAIRE1 -->
+<g class="page_0_LKjjxGeQ diagram_page" visibility="visible">
+	<g>
+		<rect x="9" y="191" width="150" height="30" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="9" y="221" width="150" height="64" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="9" y="191" width="150" height="94" fill="none" stroke="#000" stroke-width="1.5" opacity="1"/>
+		<line x1="9" y1="221" x2="159" y2="221" stroke="#000" stroke-width="1.5"/>
+	</g>
+	<text x="25" y="212.3" fill="#000" font-family="Copperplate" font-size="18">EXEMPLAIRE</text>
+	<text x="17" y="238.1" fill="#000" font-family="Gill Sans" font-size="15">numéro d’exemplaire</text>
+	<line x1="17" y1="241" x2="150" y2="241" stroke="#000" stroke-width="1" stroke-dasharray="4"/>
+	<text x="17" y="255.1" fill="#000" font-family="Gill Sans" font-size="15">état</text>
+	<text x="17" y="272" fill="#000" font-family="Gill Sans" font-size="15">date d’achat</text>
+</g>
+
+<!-- Entity EXEMPLAIRE2 -->
+<g class="page_0_LKjjxGeQ diagram_page" visibility="visible">
+	<g>
+		<rect x="246" y="191" width="134" height="30" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="246" y="221" width="134" height="64" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="246" y="191" width="134" height="94" fill="none" stroke="#000" stroke-width="1.5" opacity="1"/>
+		<line x1="246" y1="221" x2="380" y2="221" stroke="#000" stroke-width="1.5"/>
+	</g>
+	<text x="254" y="212.3" fill="#000" font-family="Copperplate" font-size="18">EXEMPLAIRE</text>
+	<text x="254" y="238.1" fill="#000" font-family="Gill Sans" font-size="15">1</text>
+	<line x1="254" y1="241" x2="263" y2="241" stroke="#000" stroke-width="1"/>
+	<text x="254" y="255.1" fill="#000" font-family="Gill Sans" font-size="15">bon état</text>
+	<text x="254" y="272" fill="#000" font-family="Gill Sans" font-size="15">12/6/1975</text>
+</g>
+
+<!-- Entity EXEMPLAIRE3 -->
+<g class="page_0_LKjjxGeQ diagram_page" visibility="visible">
+	<g>
+		<rect x="409" y="191" width="134" height="30" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="409" y="221" width="134" height="64" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="409" y="191" width="134" height="94" fill="none" stroke="#000" stroke-width="1.5" opacity="1"/>
+		<line x1="409" y1="221" x2="543" y2="221" stroke="#000" stroke-width="1.5"/>
+	</g>
+	<text x="417" y="212.3" fill="#000" font-family="Copperplate" font-size="18">EXEMPLAIRE</text>
+	<text x="417" y="238.1" fill="#000" font-family="Gill Sans" font-size="15">2</text>
+	<line x1="417" y1="241" x2="426" y2="241" stroke="#000" stroke-width="1"/>
+	<text x="417" y="255.1" fill="#000" font-family="Gill Sans" font-size="15">bon état</text>
+	<text x="417" y="272" fill="#000" font-family="Gill Sans" font-size="15">1/8/1977</text>
+</g>
+
+<!-- Entity EXEMPLAIRE4 -->
+<g class="page_0_LKjjxGeQ diagram_page" visibility="visible">
+	<g>
+		<rect x="572" y="191" width="134" height="30" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="572" y="221" width="134" height="64" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="572" y="191" width="134" height="94" fill="none" stroke="#000" stroke-width="1.5" opacity="1"/>
+		<line x1="572" y1="221" x2="706" y2="221" stroke="#000" stroke-width="1.5"/>
+	</g>
+	<text x="580" y="212.3" fill="#000" font-family="Copperplate" font-size="18">EXEMPLAIRE</text>
+	<text x="580" y="238.1" fill="#000" font-family="Gill Sans" font-size="15">3</text>
+	<line x1="580" y1="241" x2="589" y2="241" stroke="#000" stroke-width="1"/>
+	<text x="580" y="255.1" fill="#000" font-family="Gill Sans" font-size="15">reliure rongée</text>
+	<text x="580" y="272" fill="#000" font-family="Gill Sans" font-size="15">3/4/2005</text>
+</g>
+</svg>

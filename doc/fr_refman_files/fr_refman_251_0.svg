@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="426" height="194" viewBox="0 0 426 194">
+<rect id="frame" x="0" y="0" width="426" height="194" fill="none" stroke="none" stroke-width="0"/>
+
+<!-- Association RHONCUS -->
+<g class="page_0_9vvvUVDA diagram_page" visibility="visible">
+	<line x1="66" y1="56" x2="66" y2="156" stroke="#000" stroke-width="1"/>
+	<text x="42" y="119" fill="#000" font-family="Futura" font-size="11">1,N</text>
+	<line x1="211" y1="56" x2="66" y2="156" stroke="#000" stroke-width="1"/>
+	<text x="128" y="93.95" fill="#000" font-family="Futura" font-size="11">1,N</text>
+	<line x1="358" y1="56" x2="66" y2="156" stroke="#000" stroke-width="1"/>
+	<text x="275" y="70.88" fill="#000" font-family="Futura" font-size="11">1,N</text>
+	<g>
+		<path d="M106 127 a14 14 90 0 1 14 14 V155 h-108 V141 a14 14 90 0 1 14 -14" fill="#FFF" stroke="#FFF" stroke-width="0"/>
+		<path d="M120 155 v16 a14 14 90 0 1 -14 14 H26 a14 14 90 0 1 -14 -14 V155 H108" fill="#FFF" stroke="#FFF" stroke-width="0"/>
+		<rect x="12" y="127" width="108" height="58" fill="none" rx="14" stroke="#000" stroke-width="1.5"/>
+		<line x1="12" y1="155" x2="120" y2="155" stroke="#000" stroke-width="1.5"/>
+		<text x="19" y="148.3" fill="#000" font-family="Copperplate" font-size="18">RHONCUS</text>
+	</g>
+</g>
+
+<!-- Association SODALES -->
+<g class="page_0_9vvvUVDA diagram_page" visibility="visible">
+	<line x1="66" y1="56" x2="211" y2="156" stroke="#000" stroke-width="1"/>
+	<text x="128" y="92.57" fill="#000" font-family="Futura" font-size="11">1,N</text>
+	<line x1="211" y1="56" x2="211" y2="156" stroke="#000" stroke-width="1"/>
+	<text x="216" y="119" fill="#000" font-family="Futura" font-size="11">1,N</text>
+	<line x1="358" y1="56" x2="211" y2="156" stroke="#000" stroke-width="1"/>
+	<text x="275" y="93.34" fill="#000" font-family="Futura" font-size="11">1,N</text>
+	<g>
+		<path d="M248 127 a14 14 90 0 1 14 14 V155 h-102 V141 a14 14 90 0 1 14 -14" fill="#FFF" stroke="#FFF" stroke-width="0"/>
+		<path d="M262 155 v16 a14 14 90 0 1 -14 14 H174 a14 14 90 0 1 -14 -14 V155 H102" fill="#FFF" stroke="#FFF" stroke-width="0"/>
+		<rect x="160" y="127" width="102" height="58" fill="none" rx="14" stroke="#000" stroke-width="1.5"/>
+		<line x1="160" y1="155" x2="262" y2="155" stroke="#000" stroke-width="1.5"/>
+		<text x="168" y="148.3" fill="#000" font-family="Copperplate" font-size="18">SODALES</text>
+	</g>
+</g>
+
+<!-- Association QUIS ENIM -->
+<g class="page_0_9vvvUVDA diagram_page" visibility="visible">
+	<line x1="66" y1="56" x2="358" y2="156" stroke="#000" stroke-width="1"/>
+	<text x="128" y="70.19" fill="#000" font-family="Futura" font-size="11">1,N</text>
+	<line x1="211" y1="56" x2="358" y2="156" stroke="#000" stroke-width="1"/>
+	<text x="275" y="93.34" fill="#000" font-family="Futura" font-size="11">1,N</text>
+	<line x1="358" y1="56" x2="358" y2="156" stroke="#000" stroke-width="1"/>
+	<text x="363" y="119" fill="#000" font-family="Futura" font-size="11">1,N</text>
+	<g>
+		<path d="M400 127 a14 14 90 0 1 14 14 V155 h-112 V141 a14 14 90 0 1 14 -14" fill="#FFF" stroke="#FFF" stroke-width="0"/>
+		<path d="M414 155 v16 a14 14 90 0 1 -14 14 H316 a14 14 90 0 1 -14 -14 V155 H112" fill="#FFF" stroke="#FFF" stroke-width="0"/>
+		<rect x="302" y="127" width="112" height="58" fill="none" rx="14" stroke="#000" stroke-width="1.5"/>
+		<line x1="302" y1="155" x2="414" y2="155" stroke="#000" stroke-width="1.5"/>
+		<text x="309" y="148.3" fill="#000" font-family="Copperplate" font-size="18">QUIS ENIM</text>
+	</g>
+</g>
+
+<!-- Entity DIGNISSIM -->
+<g class="page_0_9vvvUVDA diagram_page" visibility="visible">
+	<g>
+		<rect x="9" y="9" width="114" height="30" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="9" y="39" width="114" height="64" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="9" y="9" width="114" height="94" fill="none" stroke="#000" stroke-width="1.5" opacity="1"/>
+		<line x1="9" y1="39" x2="123" y2="39" stroke="#000" stroke-width="1.5"/>
+	</g>
+	<text x="17" y="30.3" fill="#000" font-family="Copperplate" font-size="18">DIGNISSIM</text>
+	<text x="17" y="56.1" fill="#000" font-family="Gill Sans" font-size="15">nec sem</text>
+	<line x1="17" y1="59" x2="69" y2="59" stroke="#000" stroke-width="1"/>
+	<text x="17" y="73.1" fill="#000" font-family="Gill Sans" font-size="15">nunc</text>
+	<text x="17" y="90" fill="#000" font-family="Gill Sans" font-size="15">vulputate</text>
+</g>
+
+<!-- Entity IMPERDIET -->
+<g class="page_0_9vvvUVDA diagram_page" visibility="visible">
+	<g>
+		<rect x="152" y="9" width="118" height="30" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="152" y="39" width="118" height="64" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="152" y="9" width="118" height="94" fill="none" stroke="#000" stroke-width="1.5" opacity="1"/>
+		<line x1="152" y1="39" x2="270" y2="39" stroke="#000" stroke-width="1.5"/>
+	</g>
+	<text x="161" y="30.3" fill="#000" font-family="Copperplate" font-size="18">IMPERDIET</text>
+	<text x="160" y="56.1" fill="#000" font-family="Gill Sans" font-size="15">a praesent</text>
+	<line x1="160" y1="59" x2="225" y2="59" stroke="#000" stroke-width="1"/>
+	<text x="160" y="73.1" fill="#000" font-family="Gill Sans" font-size="15">nibh</text>
+	<text x="160" y="90" fill="#000" font-family="Gill Sans" font-size="15">semper</text>
+</g>
+
+<!-- Entity TINCIDUNT -->
+<g class="page_0_9vvvUVDA diagram_page" visibility="visible">
+	<g>
+		<rect x="299" y="9" width="118" height="30" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="299" y="39" width="118" height="64" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="299" y="9" width="118" height="94" fill="none" stroke="#000" stroke-width="1.5" opacity="1"/>
+		<line x1="299" y1="39" x2="417" y2="39" stroke="#000" stroke-width="1.5"/>
+	</g>
+	<text x="307" y="30.3" fill="#000" font-family="Copperplate" font-size="18">TINCIDUNT</text>
+	<text x="307" y="56.1" fill="#000" font-family="Gill Sans" font-size="15">faucibus</text>
+	<line x1="307" y1="59" x2="357" y2="59" stroke="#000" stroke-width="1"/>
+	<text x="307" y="73.1" fill="#000" font-family="Gill Sans" font-size="15">orci</text>
+	<text x="307" y="90" fill="#000" font-family="Gill Sans" font-size="15">cursus</text>
+</g>
+</svg>

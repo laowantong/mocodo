@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="249" height="384" viewBox="0 0 249 384">
+<rect id="frame" x="0" y="0" width="249" height="384" fill="none" stroke="none" stroke-width="0"/>
+
+<!-- Association Assistas -->
+<g class="page_0_PTG21X6Y diagram_page" visibility="visible">
+	<path d="M63 147 C25.67 93.67 25.67 57.67 63 39" fill="none" stroke="#000" stroke-width="1"/>
+	<text x="42" y="84" fill="#000" font-family="Futura" font-size="11">0,1</text>
+	<path d="M63 147 C101.67 93.67 101.67 57.67 63 39" fill="none" stroke="#000" stroke-width="1"/>
+	<text x="66" y="84" fill="#000" font-family="Futura" font-size="11">0,N</text>
+	<g>
+		<path d="M95 10 a14 14 90 0 1 14 14 V38 h-92 V24 a14 14 90 0 1 14 -14" fill="#FFF" stroke="#FFF" stroke-width="0"/>
+		<path d="M109 38 v16 a14 14 90 0 1 -14 14 H31 a14 14 90 0 1 -14 -14 V38 H92" fill="#FFF" stroke="#FFF" stroke-width="0"/>
+		<rect x="17" y="10" width="92" height="58" fill="none" rx="14" stroke="#000" stroke-width="1.5"/>
+		<line x1="17" y1="38" x2="109" y2="38" stroke="#000" stroke-width="1.5"/>
+		<text x="24" y="31.3" fill="#000" font-family="Copperplate" font-size="18">Assistas</text>
+	</g>
+</g>
+
+<!-- Association Pillards -->
+<g class="page_0_PTG21X6Y diagram_page" visibility="visible">
+	<line x1="192" y1="39" x2="192" y2="147" stroke="#000" stroke-width="1"/>
+	<text x="197" y="85" fill="#000" font-family="Futura" font-size="11">0,N</text>
+	<line x1="192" y1="255" x2="192" y2="147" stroke="#000" stroke-width="1"/>
+	<text x="197" y="209" fill="#000" font-family="Futura" font-size="11">0,N</text>
+	<line x1="63" y1="147" x2="192" y2="147" stroke="#000" stroke-width="1"/>
+	<text x="119" y="163" fill="#000" font-family="Futura" font-size="11">0,N</text>
+	<g>
+		<path d="M226 110 a14 14 90 0 1 14 14 V138 h-96 V124 a14 14 90 0 1 14 -14" fill="#FFF" stroke="#FFF" stroke-width="0"/>
+		<path d="M240 138 v32 a14 14 90 0 1 -14 14 H158 a14 14 90 0 1 -14 -14 V138 H96" fill="#FFF" stroke="#FFF" stroke-width="0"/>
+		<rect x="144" y="110" width="96" height="74" fill="none" rx="14" stroke="#000" stroke-width="1.5"/>
+		<line x1="144" y1="138" x2="240" y2="138" stroke="#000" stroke-width="1.5"/>
+		<text x="152" y="131.3" fill="#000" font-family="Copperplate" font-size="18">Pillards</text>
+		<text x="151" y="156.1" fill="#000" font-family="Gill Sans" font-size="15">disions</text>
+		<text x="151" y="173.1" fill="#000" font-family="Gill Sans" font-size="15">lascar</text>
+	</g>
+</g>
+
+<!-- Association Rayonnait -->
+<g class="page_0_PTG21X6Y diagram_page" visibility="visible">
+	<line x1="63" y1="147" x2="63" y2="255" stroke="#000" stroke-width="1"/>
+	<text x="68" y="218" fill="#000" font-family="Futura" font-size="11">0,N</text>
+	<line x1="192" y1="255" x2="63" y2="255" stroke="#000" stroke-width="1"/>
+	<text x="122" y="271" fill="#000" font-family="Futura" font-size="11">0,N</text>
+	<g>
+		<path d="M103 226 a14 14 90 0 1 14 14 V254 h-108 V240 a14 14 90 0 1 14 -14" fill="#FFF" stroke="#FFF" stroke-width="0"/>
+		<path d="M117 254 v16 a14 14 90 0 1 -14 14 H23 a14 14 90 0 1 -14 -14 V254 H108" fill="#FFF" stroke="#FFF" stroke-width="0"/>
+		<rect x="9" y="226" width="108" height="58" fill="none" rx="14" stroke="#000" stroke-width="1.5"/>
+		<line x1="9" y1="254" x2="117" y2="254" stroke="#000" stroke-width="1.5"/>
+		<text x="16" y="247.3" fill="#000" font-family="Copperplate" font-size="18">Rayonnait</text>
+		<text x="16" y="272.1" fill="#000" font-family="Gill Sans" font-size="15">monobloc</text>
+	</g>
+</g>
+
+<!-- Association Puni -->
+<g class="page_0_PTG21X6Y diagram_page" visibility="visible">
+	<path d="M192 255 C229.33 291.33 229.33 321.67 192 346" fill="none" stroke="#000" stroke-width="1"/>
+	<text x="195" y="309" fill="#000" font-family="Futura" font-size="11">1,1</text>
+	<path d="M192 255 C153.33 291.33 153.33 321.67 192 346" fill="none" stroke="#000" stroke-width="1"/>
+	<text x="170" y="309" fill="#000" font-family="Futura" font-size="11">0,N</text>
+	<g>
+		<path d="M207 317 a14 14 90 0 1 14 14 V345 h-58 V331 a14 14 90 0 1 14 -14" fill="#FFF" stroke="#FFF" stroke-width="0"/>
+		<path d="M221 345 v16 a14 14 90 0 1 -14 14 H177 a14 14 90 0 1 -14 -14 V345 H58" fill="#FFF" stroke="#FFF" stroke-width="0"/>
+		<rect x="163" y="317" width="58" height="58" fill="none" rx="14" stroke="#000" stroke-width="1.5"/>
+		<line x1="163" y1="345" x2="221" y2="345" stroke="#000" stroke-width="1.5"/>
+		<text x="171" y="338.3" fill="#000" font-family="Copperplate" font-size="18">Puni</text>
+	</g>
+</g>
+
+<!-- Entity Brisa -->
+<g class="page_0_PTG21X6Y diagram_page" visibility="visible">
+	<g>
+		<rect x="158" y="9" width="68" height="30" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="158" y="39" width="68" height="30" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="158" y="9" width="68" height="60" fill="none" stroke="#000" stroke-width="1.5" opacity="1"/>
+		<line x1="158" y1="39" x2="226" y2="39" stroke="#000" stroke-width="1.5"/>
+	</g>
+	<text x="167" y="30.3" fill="#000" font-family="Copperplate" font-size="18">Brisa</text>
+	<text x="166" y="56.1" fill="#000" font-family="Gill Sans" font-size="15">souffrait</text>
+	<line x1="166" y1="59" x2="218" y2="59" stroke="#000" stroke-width="1"/>
+</g>
+
+<!-- Entity Hci poilu -->
+<g class="page_0_PTG21X6Y diagram_page" visibility="visible">
+	<g>
+		<rect x="12" y="92" width="102" height="30" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="12" y="122" width="102" height="80" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="12" y="92" width="102" height="110" fill="none" stroke="#000" stroke-width="1.5" opacity="1"/>
+		<line x1="12" y1="122" x2="114" y2="122" stroke="#000" stroke-width="1.5"/>
+	</g>
+	<text x="21" y="113.3" fill="#000" font-family="Copperplate" font-size="18">Hci poilu</text>
+	<text x="20" y="139.1" fill="#000" font-family="Gill Sans" font-size="15">graffiti</text>
+	<line x1="20" y1="142" x2="59" y2="142" stroke="#000" stroke-width="1"/>
+	<text x="20" y="156.1" fill="#000" font-family="Gill Sans" font-size="15">champignon</text>
+	<text x="20" y="173.1" fill="#000" font-family="Gill Sans" font-size="15">troussa</text>
+	<text x="20" y="190" fill="#000" font-family="Gill Sans" font-size="15">graffiti</text>
+</g>
+
+<!-- Entity Lappa -->
+<g class="page_0_PTG21X6Y diagram_page" visibility="visible">
+	<g>
+		<rect x="146" y="217" width="92" height="30" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="146" y="247" width="92" height="46" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="146" y="217" width="92" height="76" fill="none" stroke="#000" stroke-width="1.5" opacity="1"/>
+		<line x1="146" y1="247" x2="238" y2="247" stroke="#000" stroke-width="1.5"/>
+	</g>
+	<text x="166" y="238.3" fill="#000" font-family="Copperplate" font-size="18">Lappa</text>
+	<text x="154" y="264.1" fill="#000" font-family="Gill Sans" font-size="15">graffiti</text>
+	<line x1="154" y1="267" x2="193" y2="267" stroke="#000" stroke-width="1"/>
+	<text x="154" y="281.1" fill="#000" font-family="Gill Sans" font-size="15">champignon</text>
+</g>
+</svg>

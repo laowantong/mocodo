@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="412" height="212" viewBox="0 0 412 212">
+<rect id="frame" x="0" y="0" width="412" height="212" fill="none" stroke="none" stroke-width="0"/>
+
+<!-- Association Soutenir -->
+<g class="page_0_pWQ5TS3Y diagram_page" visibility="visible">
+	<line x1="187" y1="56" x2="58" y2="56" stroke="#000" stroke-width="1"/>
+	<text x="113" y="72" fill="#000" font-family="Futura" font-size="11">0,1</text>
+	<line x1="58" y1="156" x2="58" y2="56" stroke="#000" stroke-width="1"/>
+	<text x="63" y="118" fill="#000" font-family="Futura" font-size="11">0,N</text>
+	<g>
+		<path d="M93 27 a14 14 90 0 1 14 14 V55 h-98 V41 a14 14 90 0 1 14 -14" fill="#FFF" stroke="#FFF" stroke-width="0"/>
+		<path d="M107 55 v16 a14 14 90 0 1 -14 14 H23 a14 14 90 0 1 -14 -14 V55 H98" fill="#FFF" stroke="#FFF" stroke-width="0"/>
+		<rect x="9" y="27" width="98" height="58" fill="none" rx="14" stroke="#000" stroke-width="1.5"/>
+		<line x1="9" y1="55" x2="107" y2="55" stroke="#000" stroke-width="1.5"/>
+		<text x="16" y="48.3" fill="#000" font-family="Copperplate" font-size="18">Soutenir</text>
+		<text x="16" y="73.1" fill="#000" font-family="Gill Sans" font-size="15">note stage</text>
+	</g>
+</g>
+
+<!-- Association Répondre de -->
+<g class="page_0_pWQ5TS3Y diagram_page" visibility="visible">
+	<line x1="58" y1="156" x2="187" y2="156" stroke="#000" stroke-width="1"/>
+	<text x="93" y="172" fill="#000" font-family="Futura" font-size="11">0,N</text>
+	<line x1="187" y1="56" x2="187" y2="156" stroke="#000" stroke-width="1"/>
+	<text x="192" y="119" fill="#000" font-family="Futura" font-size="11">1,1</text>
+	<line x1="342" y1="156" x2="187" y2="156" stroke="#000" stroke-width="1"/>
+	<text x="257" y="172" fill="#000" font-family="Futura" font-size="11">0,N</text>
+	<g>
+		<path d="M238 127 a14 14 90 0 1 14 14 V155 h-130 V141 a14 14 90 0 1 14 -14" fill="#FFF" stroke="#FFF" stroke-width="0"/>
+		<path d="M252 155 v16 a14 14 90 0 1 -14 14 H136 a14 14 90 0 1 -14 -14 V155 H130" fill="#FFF" stroke="#FFF" stroke-width="0"/>
+		<rect x="122" y="127" width="130" height="58" fill="none" rx="14" stroke="#000" stroke-width="1.5"/>
+		<line x1="122" y1="155" x2="252" y2="155" stroke="#000" stroke-width="1.5"/>
+		<text x="130" y="148.3" fill="#000" font-family="Copperplate" font-size="18">Répondre de</text>
+	</g>
+</g>
+
+<!-- Entity Étudiant -->
+<g class="page_0_pWQ5TS3Y diagram_page" visibility="visible">
+	<g>
+		<rect x="136" y="9" width="102" height="30" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="136" y="39" width="102" height="64" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="136" y="9" width="102" height="94" fill="none" stroke="#000" stroke-width="1.5" opacity="1"/>
+		<line x1="136" y1="39" x2="238" y2="39" stroke="#000" stroke-width="1.5"/>
+	</g>
+	<text x="146" y="30.3" fill="#000" font-family="Copperplate" font-size="18">Étudiant</text>
+	<text x="144" y="56.1" fill="#000" font-family="Gill Sans" font-size="15">num. étudiant</text>
+	<line x1="144" y1="59" x2="230" y2="59" stroke="#000" stroke-width="1"/>
+	<text x="144" y="73.1" fill="#000" font-family="Gill Sans" font-size="15">nom</text>
+	<text x="144" y="90" fill="#000" font-family="Gill Sans" font-size="15">coordonnées</text>
+</g>
+
+<!-- Entity Date -->
+<g class="page_0_pWQ5TS3Y diagram_page" visibility="visible">
+	<g>
+		<rect x="28" y="126" width="60" height="30" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="28" y="156" width="60" height="30" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="28" y="126" width="60" height="60" fill="none" stroke="#000" stroke-width="1.5" opacity="1"/>
+		<line x1="28" y1="156" x2="88" y2="156" stroke="#000" stroke-width="1.5"/>
+	</g>
+	<text x="37" y="147.3" fill="#000" font-family="Copperplate" font-size="18">Date</text>
+	<text x="36" y="173.1" fill="#000" font-family="Gill Sans" font-size="15">date</text>
+	<line x1="36" y1="176" x2="64" y2="176" stroke="#000" stroke-width="1"/>
+</g>
+
+<!-- Entity Enseignant -->
+<g class="page_0_pWQ5TS3Y diagram_page" visibility="visible">
+	<g>
+		<rect x="281" y="109" width="122" height="30" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="281" y="139" width="122" height="64" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="281" y="109" width="122" height="94" fill="none" stroke="#000" stroke-width="1.5" opacity="1"/>
+		<line x1="281" y1="139" x2="403" y2="139" stroke="#000" stroke-width="1.5"/>
+	</g>
+	<text x="290" y="130.3" fill="#000" font-family="Copperplate" font-size="18">Enseignant</text>
+	<text x="289" y="156.1" fill="#000" font-family="Gill Sans" font-size="15">num. enseignant</text>
+	<line x1="289" y1="159" x2="390" y2="159" stroke="#000" stroke-width="1"/>
+	<text x="289" y="173.1" fill="#000" font-family="Gill Sans" font-size="15">nom</text>
+	<text x="289" y="190" fill="#000" font-family="Gill Sans" font-size="15">coordonnées</text>
+</g>
+</svg>

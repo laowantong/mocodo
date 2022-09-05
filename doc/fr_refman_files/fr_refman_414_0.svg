@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="696" height="96" viewBox="0 0 696 96">
+<rect id="frame" x="0" y="0" width="696" height="96" fill="none" stroke="none" stroke-width="0"/>
+
+<!-- Association Walk -->
+<g class="page_0_ks1OL5TD diagram_page" visibility="visible">
+	<line x1="46" y1="48" x2="144" y2="48" stroke="#000" stroke-width="1"/>
+	<text x="84" y="69" fill="#000" font-family="Futura" font-size="11">1,N</text>
+	<line x1="247" y1="48" x2="144" y2="48" stroke="#000" stroke-width="1"/>
+	<text x="186" y="69" fill="#000" font-family="Futura" font-size="11">1,1</text>
+	<line x1="186" y1="71" x2="204" y2="71" stroke="#000" stroke-width="1"/>
+	<g>
+		<path d="M161 19 a14 14 90 0 1 14 14 V47 h-62 V33 a14 14 90 0 1 14 -14" fill="#FFF" stroke="#FFF" stroke-width="0"/>
+		<path d="M175 47 v16 a14 14 90 0 1 -14 14 H127 a14 14 90 0 1 -14 -14 V47 H62" fill="#FFF" stroke="#FFF" stroke-width="0"/>
+		<rect x="113" y="19" width="62" height="58" fill="none" rx="14" stroke="#000" stroke-width="1.5"/>
+		<line x1="113" y1="47" x2="175" y2="47" stroke="#000" stroke-width="1.5"/>
+		<text x="120" y="40.3" fill="#000" font-family="Copperplate" font-size="18">Walk</text>
+	</g>
+</g>
+
+<!-- Association Poll -->
+<g class="page_0_ks1OL5TD diagram_page" visibility="visible">
+	<line x1="446" y1="48" x2="348" y2="48" stroke="#000" stroke-width="1"/>
+	<text x="387" y="69" fill="#000" font-family="Futura" font-size="11">1,N</text>
+	<line x1="247" y1="48" x2="348" y2="48" stroke="#000" stroke-width="1" stroke-dasharray="4"/>
+	<text x="290" y="69" fill="#000" font-family="Futura" font-size="11">1,N</text>
+	<g>
+		<polygon points="314,13,481,13,481,83,314,83" fill="#FFF" stroke="none" stroke-width="0" opacity="0.2"/>
+		<polygon points="314,13,481,13,481,83,314,83" fill="none" stroke="#000" stroke-width="1.5" stroke-dasharray="0,4" stroke-linecap="round"/>
+		<path d="M363 19 a14 14 90 0 1 14 14 V47 h-58 V33 a14 14 90 0 1 14 -14" fill="#FFF" stroke="#FFF" stroke-width="0"/>
+		<path d="M377 47 v16 a14 14 90 0 1 -14 14 H333 a14 14 90 0 1 -14 -14 V47 H58" fill="#FFF" stroke="#FFF" stroke-width="0"/>
+		<rect x="319" y="19" width="58" height="58" fill="none" rx="14" stroke="#000" stroke-width="1.5"/>
+		<line x1="319" y1="47" x2="377" y2="47" stroke="#000" stroke-width="1.5"/>
+		<text x="326" y="40.3" fill="#000" font-family="Copperplate" font-size="18">Poll</text>
+	</g>
+</g>
+
+<!-- Association Army -->
+<g class="page_0_ks1OL5TD diagram_page" visibility="visible">
+	<line x1="647" y1="48" x2="546" y2="48" stroke="#000" stroke-width="1"/>
+	<text x="588" y="69" fill="#000" font-family="Futura" font-size="11">1,1</text>
+	<line x1="446" y1="48" x2="546" y2="48" stroke="#000" stroke-width="1"/>
+	<text x="486" y="69" fill="#000" font-family="Futura" font-size="11">0,1</text>
+	<g>
+		<path d="M563 19 a14 14 90 0 1 14 14 V47 h-62 V33 a14 14 90 0 1 14 -14" fill="#FFF" stroke="#FFF" stroke-width="0"/>
+		<path d="M577 47 v16 a14 14 90 0 1 -14 14 H529 a14 14 90 0 1 -14 -14 V47 H62" fill="#FFF" stroke="#FFF" stroke-width="0"/>
+		<rect x="515" y="19" width="62" height="58" fill="none" rx="14" stroke="#000" stroke-width="1.5"/>
+		<rect x="512" y="16" width="68" height="64" fill="none" stroke="#000" stroke-width="1.5" stroke-dasharray="4"/>
+		<line x1="515" y1="47" x2="577" y2="47" stroke="#000" stroke-width="1.5"/>
+		<text x="523" y="40.3" fill="#000" font-family="Copperplate" font-size="18">Army</text>
+	</g>
+</g>
+
+<!-- Entity Riot -->
+<g class="page_0_ks1OL5TD diagram_page" visibility="visible">
+	<g>
+		<rect x="18" y="18" width="56" height="30" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="18" y="48" width="56" height="30" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="18" y="18" width="56" height="60" fill="none" stroke="#000" stroke-width="1.5" opacity="1"/>
+		<line x1="18" y1="48" x2="74" y2="48" stroke="#000" stroke-width="1.5"/>
+	</g>
+	<text x="26" y="39.3" fill="#000" font-family="Copperplate" font-size="18">Riot</text>
+	<text x="26" y="65.1" fill="#000" font-family="Gill Sans" font-size="15">clue</text>
+	<line x1="26" y1="68" x2="52" y2="68" stroke="#000" stroke-width="1"/>
+</g>
+
+<!-- Entity Hour -->
+<g class="page_0_ks1OL5TD diagram_page" visibility="visible">
+	<g>
+		<rect x="214" y="18" width="66" height="30" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="214" y="48" width="66" height="30" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="214" y="18" width="66" height="60" fill="none" stroke="#000" stroke-width="1.5" opacity="1"/>
+		<line x1="214" y1="48" x2="280" y2="48" stroke="#000" stroke-width="1.5"/>
+	</g>
+	<text x="223" y="39.3" fill="#000" font-family="Copperplate" font-size="18">Hour</text>
+	<text x="222" y="65.1" fill="#000" font-family="Gill Sans" font-size="15">book</text>
+	<line x1="222" y1="68" x2="255" y2="68" stroke="#000" stroke-width="1" stroke-dasharray="4"/>
+</g>
+
+<!-- Entity Cast -->
+<g class="page_0_ks1OL5TD diagram_page" visibility="visible">
+	<g>
+		<rect x="416" y="18" width="60" height="30" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="416" y="48" width="60" height="30" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="416" y="18" width="60" height="60" fill="none" stroke="#000" stroke-width="1.5" opacity="1"/>
+		<line x1="416" y1="48" x2="476" y2="48" stroke="#000" stroke-width="1.5"/>
+	</g>
+	<text x="425" y="39.3" fill="#000" font-family="Copperplate" font-size="18">Cast</text>
+	<text x="424" y="65.1" fill="#000" font-family="Gill Sans" font-size="15">mere</text>
+	<line x1="424" y1="68" x2="458" y2="68" stroke="#000" stroke-width="1"/>
+</g>
+
+<!-- Entity Busy -->
+<g class="page_0_ks1OL5TD diagram_page" visibility="visible">
+	<g>
+		<rect x="616" y="18" width="62" height="30" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="616" y="48" width="62" height="30" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="616" y="18" width="62" height="60" fill="none" stroke="#000" stroke-width="1.5" opacity="1"/>
+		<line x1="616" y1="48" x2="678" y2="48" stroke="#000" stroke-width="1.5"/>
+	</g>
+	<text x="624" y="39.3" fill="#000" font-family="Copperplate" font-size="18">Busy</text>
+	<text x="624" y="65.1" fill="#000" font-family="Gill Sans" font-size="15">fail</text>
+	<line x1="624" y1="68" x2="642" y2="68" stroke="#000" stroke-width="1"/>
+</g>
+</svg>

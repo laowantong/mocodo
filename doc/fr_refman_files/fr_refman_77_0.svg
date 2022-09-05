@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="415" height="246" viewBox="0 0 415 246">
+<rect id="frame" x="0" y="0" width="415" height="246" fill="none" stroke="none" stroke-width="0"/>
+
+<!-- Association EROS -->
+<g class="page_0_g9oqn403 diagram_page" visibility="visible">
+	<line x1="118" y1="56" x2="292" y2="56" stroke="#000" stroke-width="1"/>
+	<text x="232" y="72" fill="#000" font-family="Futura" font-size="11">1,1</text>
+	<line x1="292" y1="182" x2="292" y2="56" stroke="#000" stroke-width="1"/>
+	<text x="297" y="119" fill="#000" font-family="Futura" font-size="11">1,N</text>
+	<g>
+		<path d="M311 19 a14 14 90 0 1 14 14 V47 h-66 V33 a14 14 90 0 1 14 -14" fill="#FFF" stroke="#FFF" stroke-width="0"/>
+		<path d="M325 47 v32 a14 14 90 0 1 -14 14 H273 a14 14 90 0 1 -14 -14 V47 H66" fill="#FFF" stroke="#FFF" stroke-width="0"/>
+		<rect x="259" y="19" width="66" height="74" fill="none" rx="14" stroke="#000" stroke-width="1.5"/>
+		<line x1="259" y1="47" x2="325" y2="47" stroke="#000" stroke-width="1.5"/>
+		<text x="266" y="40.3" fill="#000" font-family="Copperplate" font-size="18">EROS</text>
+		<text x="266" y="65.1" fill="#000" font-family="Gill Sans" font-size="15">metus</text>
+		<text x="266" y="82.1" fill="#000" font-family="Gill Sans" font-size="15">congue</text>
+	</g>
+</g>
+
+<!-- Association NIBH -->
+<g class="page_0_g9oqn403 diagram_page" visibility="visible">
+	<line x1="118" y1="56" x2="118" y2="182" stroke="#000" stroke-width="1"/>
+	<text x="123" y="119" fill="#000" font-family="Futura" font-size="11">1,N</text>
+	<line x1="292" y1="182" x2="118" y2="182" stroke="#000" stroke-width="1"/>
+	<text x="155" y="198" fill="#000" font-family="Futura" font-size="11">1,1</text>
+	<g>
+		<path d="M135 153 a14 14 90 0 1 14 14 V181 h-62 V167 a14 14 90 0 1 14 -14" fill="#FFF" stroke="#FFF" stroke-width="0"/>
+		<path d="M149 181 v16 a14 14 90 0 1 -14 14 H101 a14 14 90 0 1 -14 -14 V181 H62" fill="#FFF" stroke="#FFF" stroke-width="0"/>
+		<rect x="87" y="153" width="62" height="58" fill="none" rx="14" stroke="#000" stroke-width="1.5"/>
+		<line x1="87" y1="181" x2="149" y2="181" stroke="#000" stroke-width="1.5"/>
+		<text x="94" y="174.3" fill="#000" font-family="Copperplate" font-size="18">NIBH</text>
+	</g>
+</g>
+
+<!-- Entity SCELERISQUE LOREM -->
+<g class="page_0_g9oqn403 diagram_page" visibility="visible">
+	<g>
+		<rect x="9" y="9" width="218" height="30" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="9" y="39" width="218" height="64" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="9" y="9" width="218" height="94" fill="none" stroke="#000" stroke-width="1.5" opacity="1"/>
+		<line x1="9" y1="39" x2="227" y2="39" stroke="#000" stroke-width="1.5"/>
+	</g>
+	<text x="17" y="30.3" fill="#000" font-family="Copperplate" font-size="18">SCELERISQUE LOREM</text>
+	<text x="17" y="56.1" fill="#000" font-family="Gill Sans" font-size="15">blandit</text>
+	<line x1="17" y1="59" x2="59" y2="59" stroke="#000" stroke-width="1"/>
+	<text x="17" y="73.1" fill="#000" font-family="Gill Sans" font-size="15">elit</text>
+	<text x="17" y="90" fill="#000" font-family="Gill Sans" font-size="15">ligula</text>
+</g>
+
+<!-- Entity PELLENTESQUE IPSUM -->
+<g class="page_0_g9oqn403 diagram_page" visibility="visible">
+	<g>
+		<rect x="178" y="127" width="228" height="30" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="178" y="157" width="228" height="80" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="178" y="127" width="228" height="110" fill="none" stroke="#000" stroke-width="1.5" opacity="1"/>
+		<line x1="178" y1="157" x2="406" y2="157" stroke="#000" stroke-width="1.5"/>
+	</g>
+	<text x="187" y="148.3" fill="#000" font-family="Copperplate" font-size="18">PELLENTESQUE IPSUM</text>
+	<text x="186" y="174.1" fill="#000" font-family="Gill Sans" font-size="15">tincidunt</text>
+	<line x1="186" y1="177" x2="241" y2="177" stroke="#000" stroke-width="1"/>
+	<text x="186" y="191.1" fill="#000" font-family="Gill Sans" font-size="15">bibendum</text>
+	<text x="186" y="208.1" fill="#000" font-family="Gill Sans" font-size="15">consequat</text>
+	<text x="186" y="225" fill="#000" font-family="Gill Sans" font-size="15">integer</text>
+</g>
+</svg>

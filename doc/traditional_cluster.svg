@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="372" height="271" viewBox="0 0 372 271" xmlns="http://www.w3.org/2000/svg">
+<rect id="frame" x="0" y="0" width="372" height="271" fill="none" stroke="none" stroke-width="0"/>
+
+<!-- Association Réserver -->
+<g class="page_0_bq18g2rw diagram_page" visibility="visible">
+	<line x1="167" y1="223" x2="167" y2="56" stroke="#000" stroke-width="1"/>
+	<text x="177" y="180" fill="#000" font-family="Futura" font-size="11">1,N</text>
+	<line x1="305" y1="56" x2="167" y2="56" stroke="#000" stroke-width="1"/>
+	<text x="227" y="77" fill="#000" font-family="Futura" font-size="11">1,N</text>
+	<line x1="48" y1="56" x2="167" y2="56" stroke="#000" stroke-width="1"/>
+	<text x="88" y="77" fill="#000" font-family="Futura" font-size="11">0,N</text>
+	<text x="177" y="105" fill="#000" font-family="Futura" font-size="11">1,1</text>
+	<g>
+		<polygon points="13,13,359,13,359,99,13,99" fill="#FFF" stroke="none" stroke-width="0" opacity="0.2"/>
+		<polygon points="13,13,359,13,359,99,13,99" fill="none" stroke="#000" stroke-width="1.5" stroke-dasharray="0,4" stroke-linecap="round"/>
+		<path d="M203 27 a14 14 90 0 1 14 14 V55 h-100 V41 a14 14 90 0 1 14 -14" fill="#FFF" stroke="#FFF" stroke-width="0"/>
+		<path d="M217 55 v16 a14 14 90 0 1 -14 14 H131 a14 14 90 0 1 -14 -14 V55 H100" fill="#FFF" stroke="#FFF" stroke-width="0"/>
+		<rect x="117" y="27" width="100" height="58" fill="none" rx="14" stroke="#000" stroke-width="1.5"/>
+		<line x1="117" y1="55" x2="217" y2="55" stroke="#000" stroke-width="1.5"/>
+		<text x="124" y="48.3" fill="#000" font-family="Copperplate" font-size="18">Réserver</text>
+		<text x="124" y="73.1" fill="#000" font-family="Gill Sans" font-size="15">Durée</text>
+	</g>
+</g>
+
+<!-- Association DF -->
+<g class="page_0_bq18g2rw diagram_page" visibility="visible">
+	<text x="177" y="180" fill="#000" font-family="Futura" font-size="11">1,N</text>
+	<g>
+		<circle cx="167" cy="139" r="20" stroke="#000" stroke-width="1.5" fill="#FFF"/>
+		<text x="154" y="143.8" fill="#000" font-family="Copperplate" font-size="18">DF</text>
+	</g>
+</g>
+
+<!-- Entity Date -->
+<g class="page_0_bq18g2rw diagram_page" visibility="visible">
+	<g>
+		<rect x="18" y="26" width="60" height="30" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="18" y="56" width="60" height="30" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="18" y="26" width="60" height="60" fill="none" stroke="#000" stroke-width="1.5" opacity="1"/>
+		<line x1="18" y1="56" x2="78" y2="56" stroke="#000" stroke-width="1.5"/>
+	</g>
+	<text x="27" y="47.3" fill="#000" font-family="Copperplate" font-size="18">Date</text>
+	<text x="26" y="73.1" fill="#000" font-family="Gill Sans" font-size="15">Date</text>
+	<line x1="26" y1="76" x2="57" y2="76" stroke="#000" stroke-width="1"/>
+</g>
+
+<!-- Entity Chambre -->
+<g class="page_0_bq18g2rw diagram_page" visibility="visible">
+	<g>
+		<rect x="256" y="18" width="98" height="30" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="256" y="48" width="98" height="46" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="256" y="18" width="98" height="76" fill="none" stroke="#000" stroke-width="1.5" opacity="1"/>
+		<line x1="256" y1="48" x2="354" y2="48" stroke="#000" stroke-width="1.5"/>
+	</g>
+	<text x="265" y="39.3" fill="#000" font-family="Copperplate" font-size="18">Chambre</text>
+	<text x="264" y="65.1" fill="#000" font-family="Gill Sans" font-size="15">Numéro</text>
+	<line x1="264" y1="68" x2="318" y2="68" stroke="#000" stroke-width="1"/>
+	<text x="264" y="82.1" fill="#000" font-family="Gill Sans" font-size="15">Prix</text>
+</g>
+
+<!-- Entity Client -->
+<g class="page_0_bq18g2rw diagram_page" visibility="visible">
+	<g>
+		<rect x="128" y="193" width="78" height="30" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="128" y="223" width="78" height="30" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="128" y="193" width="78" height="60" fill="none" stroke="#000" stroke-width="1.5" opacity="1"/>
+		<line x1="128" y1="223" x2="206" y2="223" stroke="#000" stroke-width="1.5"/>
+	</g>
+	<text x="137" y="214.3" fill="#000" font-family="Copperplate" font-size="18">Client</text>
+	<text x="136" y="240.1" fill="#000" font-family="Gill Sans" font-size="15">Nom</text>
+	<line x1="136" y1="243" x2="169" y2="243" stroke="#000" stroke-width="1"/>
+</g>
+</svg>
