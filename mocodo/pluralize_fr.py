@@ -57,6 +57,7 @@ irregular_plurals = {
 }
 
 def pluralize(word):
+    word = word.lower()
     if word in irregular_plurals:
         return irregular_plurals[word]
     if word.endswith(("eau", "oeu")):
