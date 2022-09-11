@@ -1,9 +1,6 @@
 <?php
 session_start();
 
-$python = "/usr/bin/python3";
-$mocodo = " ../../../mocodo_web.py";
-
 // $php_log = fopen("php.log", 'w') or die("can't open file");
 // fwrite($php_log, "Log file\n");
 if (!array_key_exists('text', $_POST)) {
@@ -40,7 +37,7 @@ fwrite($chan, json_encode($_POST));
 fclose($chan);
 
 // Launch the script
-$command_line = "/Users/aristide/opt/miniconda3/bin/mocodo --timeout=" . $_POST['timeout'] . " --" . $_POST['algo'] . " 2>&1";
+$command_line = "~/.local/bin/mocodo --timeout=" . $_POST['timeout'] . " --" . $_POST['algo'] . " 2>&1";
 // fwrite($php_log, $command_line . "\n");
 // fwrite($php_log,$_POST['text']);
 $out = array();

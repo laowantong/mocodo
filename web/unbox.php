@@ -17,7 +17,7 @@ $title = preg_replace("/^ *$/","Sans titre",$title); # double-check js validatio
 $title = preg_replace("/\.mcd$/","",$title); # suppress optional .mcd extension
 $filename = "../../box/{$title}.mcd";
 if (file_exists($filename)) {
-	$contents = file_get_contents("../../box/{$title}.mcd") or die('');
+	$contents = file_get_contents($filename) or die('');
 } else {
 	$contents = '';
 }

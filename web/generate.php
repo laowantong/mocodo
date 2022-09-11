@@ -4,8 +4,7 @@ if (!array_key_exists('text', $_POST)) {
     exit("Need a POST value.");
 }
 
-$python = "/usr/bin/python3";
-$mocodo = " ../../../mocodo_web.py";
+$python = "/usr/local/bin/python3.9";
 
 $extensions = array(
   "diagram" => ".mld",
@@ -33,7 +32,7 @@ $flex = array(
 );
 
 // Make a folder for this user
-$path = str_replace(":", "_", "sessions/" . $_SERVER['REMOTE_ADDR'] . "-" . session_id()) ; // prevent the automatic substitution of : by / on Mac OS X (IPV6 syntax)
+$path = str_replace(":", "_", __DIR__."/sessions/" . $_SERVER['REMOTE_ADDR'] . "-" . session_id()) ; // prevent the automatic substitution of : by / on Mac OS X (IPV6 syntax)
 file_exists($path) or mkdir($path) or die('{"err": "PHP: Failed to create user folder."}');
 chdir($path);
 
@@ -107,7 +106,7 @@ else {
   };
 
   // Launch the script
-$command_line = $python . $mocodo  . " 2>&1 >/dev/null";
+$command_line = "~/.local/bin/mocodo 2>&1 >/dev/null";
 $out = array();
 // die('{"err": "' . $command_line . '"}');
 

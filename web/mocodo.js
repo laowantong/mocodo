@@ -46,7 +46,7 @@ var relation_formats = {
     "name": "Diagramme relationnel",
   },
   "html_verbose": {
-    "default": true,
+    "default": false,
     "highlighting": "markup",
     "title": "S&#39;affiche également au-dessous du diagramme conceptuel.",
     "name": "Explications du schéma relationnel",
@@ -404,7 +404,7 @@ $(document).keypress(function (e) {
 $().ready(function () {
   $("#contact").html('<a href="3ai5to:&#'.replace('3', 'm').replace('5', 'l') + Array(109, 111, 99, 111, 100, 111).join(";&#") + ';@&#' + Array(119, 105, 110, 103, 105, 46, 110, 101, 116).join(";&#") + ';">Contact<\/a>')
   createTabs();
-  $.get("mocodo/resources/pristine_sandbox.mcd", function (data) { $("#text").val(data) });
+  $.get(location.protocol + '//' + location.host + "/resources/pristine_sandbox.mcd", function (data) { $("#text").val(data) });
   var default_color = "brewer" + "+-"[Math.floor(Math.random() * 2)] + (Math.floor(Math.random() * 9) + 1);
   createOptions("colors", ["blank", "bw", "desert", "keepsake", "mondrian", "ocean", "pond", "wb", "xinnian", "brewer+1", "brewer-1", "brewer+2", "brewer-2", "brewer+3", "brewer-3", "brewer+4", "brewer-4", "brewer+5", "brewer-5", "brewer+6", "brewer-6", "brewer+7", "brewer-7", "brewer+8", "brewer-8", "brewer+9", "brewer-9"], default_color);
   createOptions("shapes", ["arial", "copperplate", "georgia", "mondrian", "sans", "serif", "times", "trebuchet", "verdana", "xinnian"], "verdana");
