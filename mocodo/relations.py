@@ -129,6 +129,7 @@ class Relations:
             result.setdefault("compose_deleted_parent_foreign_key", result["compose_foreign_key"])
             result.setdefault("compose_deleted_parent_primary_key", result["compose_primary_key"])
             result.setdefault("compose_demoted_foreign_key", result["compose_foreign_key"])
+            result.setdefault("compose_stopped_foreign_key", result["compose_foreign_key"])
             result.setdefault("compose_outer_attribute", result["compose_normal_attribute"])
             result.setdefault("compose_parent_primary_key", result["compose_primary_foreign_key"])
             result.setdefault("compose_strengthening_primary_key", result["compose_primary_foreign_key"])
@@ -412,6 +413,17 @@ class Relations:
                                     "association_name": association.name,
                                     "primary": False,
                                     "nature": "demoted_foreign_key"
+                                })
+                            elif association.kind == "forced_table" and df_leg is not None and leg is not df_leg:
+                                self.relations[association.name]["columns"].append({ # gather all migrant attributes
+                                    "attribute": attribute["attribute"],
+                                    "data_type": attribute["data_type"],
+                                    "adjacent_source": leg.entity_name,
+                                    "outer_source": outer_source,
+                                    "leg_note": leg.note,
+                                    "association_name": association.name,
+                                    "primary": False,
+                                    "nature": "stopped_foreign_key"
                                 })
                             else:
                                 self.relations[association.name]["columns"].append({ # gather all migrant attributes
