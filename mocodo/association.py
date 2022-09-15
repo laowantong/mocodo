@@ -383,7 +383,7 @@ class Association:
                             "w": self.w + 4 * style["box_stroke_depth"],
                             "h": self.h + 4 * style["box_stroke_depth"],
                             "color": style['transparent_color'],
-                            "stroke_color": style['association_stroke_color'],
+                            "stroke_color": style['entity_stroke_color'],
                             "stroke_depth": style["box_stroke_depth"],
                             "dash_width": style["dash_width"],
                         },
