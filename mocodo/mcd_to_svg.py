@@ -7,7 +7,7 @@ from .mocodo_error import MocodoError
 
 try:
     from cairosvg import svg2png, svg2pdf
-except ImportError:
+except:
     def svg2png(**kargs):
         raise MocodoError(13, _("PNG and PDF generation requires cairosvg to be installed")) # fmt: skip
     svg2pdf = svg2png
