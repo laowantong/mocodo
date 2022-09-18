@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: mocodo\n"
-"POT-Creation-Date: 2022-09-05 13:30+0200\n"
+"POT-Creation-Date: 2022-09-18 19:26+0200\n"
 "PO-Revision-Date: 2015-08-16 07:00+0000\n"
 "Last-Translator: Aristide Grange <chewingword@wingi.net>, 2015-2016,2022\n"
 "Language-Team: French (http://www.transifex.com/aristide/mocodo/language/fr/)\n"
@@ -21,11 +21,25 @@ msgstr ""
 msgid "Failed to calculate a planar layout."
 msgstr "Impossible de calculer une mise en page planaire sur la grille impartie."
 
+#: mocodo/__main__.py:63
+msgid "- Leg “{b1} — {b2}” overlaps “{b3}”."
+msgstr "- La patte « {b1} — {b2} » chevauche « {b3} »."
+
+#: mocodo/__main__.py:65
+msgid "- Legs “{b1} — {b2}” and “{b3} — {b4}” overlap."
+msgstr "- Les pattes  « {b1} — {b2} » et « {b3} — {b4} » se chevauchent."
+
+#: mocodo/__main__.py:67
+msgid ""
+"On Mocodo online, click the 🔀 button to fix the following problem(s):\n"
+"{details}"
+msgstr "Sous Mocodo online, cliquez le bouton 🔀 pour résoudre le(s) problème(s) suivant(s) :\n{details}"
+
 #: mocodo/argument_parser.py:179
 msgid "The file \"{input}\" doesn't exist."
 msgstr "Le fichier « {input} » n'existe pas."
 
-#: mocodo/argument_parser.py:204
+#: mocodo/argument_parser.py:205
 msgid "Untitled"
 msgstr "Sans titre"
 
@@ -157,18 +171,18 @@ msgid ""
 " decrease the `obfuscation_min_distance` option values."
 msgstr "Échec de l'obfuscation. Il n'y a pas assez de mots de substitution dans « {filename} ». Vous devriez diminuer la valeur de l'option `obfuscation_min_distance`."
 
-#: mocodo/relations.py:255
+#: mocodo/relations.py:256
 msgid "Reciprocal relative identification around {association}."
 msgstr "Identification relative réciproque autour de « {association} »."
 
-#: mocodo/relations.py:321
+#: mocodo/relations.py:322
 msgid "A weak entity (here, {entity}) cannot be strengthened by itself."
 msgstr "Une entité faible (ici, « {entity} ») ne peut être renforcée par elle-même."
 
-#: mocodo/relations.py:324
+#: mocodo/relations.py:325
 msgid "Cycle of weak entities in {entities}."
 msgstr "Cycle d'entités faibles dans {entities}."
 
-#: mocodo/relations.py:337
+#: mocodo/relations.py:338
 msgid "Totality (/T\\ or /XT\\) is mandatory for \"=>\" inheritance of parent {name}."
 msgstr "La totalité (/T\\ or /XT\\) est requise pour définir l'héritage « => » sur l'entité-mère « {name} »."

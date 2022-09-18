@@ -472,6 +472,92 @@ class McdTest(unittest.TestCase):
         """.strip().replace("  ", "")
         self.assertEqual(mcd.get_reformatted_clauses(-1), expected)
         self.assertEqual(mcd.get_reformatted_clauses(1), expected)
+    
+    def test_no_overlapping(self):
+        clauses = """
+            CLIENT: Réf. client, Nom, Prénom, Adresse
+            PASSER, 0N CLIENT, 11 COMMANDE
+            COMMANDE: Num commande, Date, Montant
+            INCLURE, 1N COMMANDE, 0N PRODUIT: Quantité
+            PRODUIT: Réf. produit, Libellé, Prix unitaire
+        """.replace("  ", "").split("\n")
+        mcd = Mcd(clauses, **params)
+        self.assertEqual(mcd.get_overlaps(), [])
+    
+    def test_horizontal_legs_overlap(self):
+        clauses = """
+            CLIENT: Réf. client, Nom, Prénom, Adresse
+            COMMANDE: Num commande, Date, Montant
+            PRODUIT: Réf. produit, Libellé, Prix unitaire
+            PASSER, 0N CLIENT, 11 COMMANDE
+            INCLURE, 1N COMMANDE, 0N PRODUIT: Quantité
+        """.replace(
+            "  ", ""
+        ).split("\n")
+        mcd = Mcd(clauses, **params)
+        self.assertEqual(
+            mcd.get_overlaps(),
+            [
+                ("PASSER", "CLIENT", "COMMANDE", "COMMANDE"),
+                ("PASSER", "COMMANDE", "INCLURE", "COMMANDE"),
+                ("INCLURE", "COMMANDE", "PRODUIT", "PRODUIT"),
+                ("INCLURE", "PRODUIT", "PASSER", "PASSER"),
+            ],
+        )
+
+    def test_vertical_legs_overlap(self):
+        clauses = """
+            CLIENT: Réf. client, Nom, Prénom, Adresse\n
+            COMMANDE: Num commande, Date, Montant\n
+            PRODUIT: Réf. produit, Libellé, Prix unitaire\n
+            PASSER, 0N CLIENT, 11 COMMANDE\n
+            INCLURE, 1N COMMANDE, 0N PRODUIT: Quantité
+        """.replace(
+            "  ", ""
+        ).split("\n")
+        mcd = Mcd(clauses, **params)
+        self.assertEqual(
+            mcd.get_overlaps(),
+            [
+                ("PASSER", "CLIENT", "COMMANDE", "COMMANDE"),
+                ("PASSER", "COMMANDE", "INCLURE", "COMMANDE"),
+                ("INCLURE", "COMMANDE", "PRODUIT", "PRODUIT"),
+                ("INCLURE", "PRODUIT", "PASSER", "PASSER"),
+            ],
+        )
+
+    def test_leg_overlaps_entity(self):
+        clauses = """
+            COMMANDE: Num commande, Date, Montant
+            PRODUIT: Réf. produit, Libellé, Prix unitaire
+            PASSER, 0N CLIENT, 11 COMMANDE
+            CLIENT: Réf. client, Nom, Prénom, Adresse
+
+            :
+            INCLURE, 1N COMMANDE, 0N PRODUIT: Quantité
+            :::
+        """.replace("  ", "").split("\n")
+        mcd = Mcd(clauses, **params)
+        self.assertEqual(
+            mcd.get_overlaps(),
+            [('PASSER', 'COMMANDE', 'PRODUIT', 'PRODUIT')],
+        )
+
+    def test_leg_overlaps_association(self):
+        clauses = """
+            PRODUIT: Réf. produit, Libellé, Prix unitaire
+
+            COMMANDE: Num commande, Date, Montant
+            PASSER, 0N CLIENT, 11 COMMANDE
+            CLIENT: Réf. client, Nom, Prénom, Adresse
+
+            INCLURE, 1N COMMANDE, 0N PRODUIT: Quantité
+        """.replace("  ", "").split("\n")
+        mcd = Mcd(clauses, **params)
+        self.assertEqual(
+            mcd.get_overlaps(),
+            [('INCLURE', 'PRODUIT', 'PASSER', 'PASSER')],
+        )
 
 
 if __name__ == '__main__':

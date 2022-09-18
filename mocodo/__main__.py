@@ -54,6 +54,17 @@ def main():
                 mcd.set_layout(**result)
                 return safe_print_for_PHP(mcd.get_clauses())
             raise MocodoError(9, _('Failed to calculate a planar layout.')) # fmt: skip
+        if params["detect_overlaps"]:
+            overlaps = mcd.get_overlaps()
+            if overlaps:
+                acc = []
+                for (b1, b2, b3, b4) in overlaps:
+                    if b3 == b4:
+                        acc.append(_("- Leg “{b1} — {b2}” overlaps “{b3}”.").format(b1=b1, b2=b2, b3=b3)) # fmt: skip
+                    else:
+                        acc.append(_("- Legs “{b1} — {b2}” and “{b3} — {b4}” overlap.").format(b1=b1, b2=b2, b3=b3, b4=b4)) # fmt: skip
+                details = "\n".join(acc)
+                raise MocodoError(29, _('On Mocodo online, click the 🔀 button to fix the following problem(s):\n{details}').format(details=details)) # fmt: skip
         relations = Relations(mcd, params)
         # The order of the following two lines ensures that the relational diagram is dumped after
         # the geometry of the MCD. Later on, when drawing this relational diagram, the geometry

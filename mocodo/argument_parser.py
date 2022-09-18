@@ -198,6 +198,7 @@ def parsed_arguments():
     aspect_group.add_argument("--scale", metavar="RATE", type=scale, default=1, help="scale the diagram by the given factor")
     aspect_group.add_argument("--adjust_width", metavar="RATE", type=scale, default=1, help="scale all calculated text widths by the given factor")
     aspect_group.add_argument("--hide_notes", action="store_true", help="ignore the hovering of annotated elements")
+    aspect_group.add_argument("--detect_overlaps", action="store_true", help="raise an error when horizontal or vertical legs overlap")
     
     relational_group.add_argument("--relations", metavar="NAME", nargs="*", default=["html", "text"], help="one or several templates for the generated relational schemas. Cf. directory 'relation_templates'")
     relational_group.add_argument("--disambiguation", choices=["numbers_only", "notes"], default="notes", help="specify the way to disambiguate outer attributes")

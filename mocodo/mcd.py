@@ -426,8 +426,44 @@ class Mcd:
                 )
             result.append(("pager", {"page_count": self.page_count}))
         return result
-
-
+    
+    def get_overlaps(self):
+        """
+        Detect the cases when two legs overlap each other or when a leg overlaps a box.
+        
+        The detection is based on the assumption that the boxes are arranged in a grid
+        (and doesn't take into account any tweaks that may have been applied to the box
+        centers). To unify the detection, the boxes are treated as zero-length legs.
+        Only horizontal and vertical overlaps are detected.
+        """
+        coordinates = {}
+        for (j, row) in enumerate(self.rows):
+            for (i, box) in enumerate(row):
+                coordinates[box] = (i, j)
+        segments = defaultdict(list)
+        for entity in self.entities.values():
+            (ie, je) = coordinates[entity]
+            segments["i", ie].append((je, je, entity, entity))
+            segments["j", je].append((ie, ie, entity, entity))
+        for association in self.associations.values():
+            (ia, ja) = coordinates[association]
+            segments[("i", ia)].append((ja, ja, association, association))
+            segments[("j", ja)].append((ia, ia, association, association))
+            for leg in association.legs:
+                (ie, je) = coordinates[leg.entity]
+                if (ia, ja) == (ie, je): # loop
+                    continue
+                elif ia == ie:
+                    segments[("i", ia)].append((*sorted([ja, je]), association, leg.entity))
+                elif ja == je:
+                    segments[("j", ja)].append((*sorted([ia, ie]), association, leg.entity))
+        result = []
+        for quadruples in segments.values():
+            quadruples.sort()
+            for (l1, r1, e1, a1), (l2, r2, e2, a2) in zip(quadruples, quadruples[1:]):
+                if l2 < r1:
+                    result.append((e1.name, a1.name, e2.name, a2.name))
+        return result
 
 if __name__=="__main__":
     from .argument_parser import parsed_arguments

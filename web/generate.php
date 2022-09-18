@@ -89,7 +89,7 @@ else {
     // Prepare the contents of the options file
     unset($_POST['text']);
     unset($_POST['state']);
-  $_POST["guess_title"] = ($_POST["guess_title"] == "true");
+    $_POST["guess_title"] = ($_POST["guess_title"] == "true");
     $_POST['language'] = 'fr';
     $_POST['encodings'] = array("utf8");
     if ($_POST['disambiguation'] == "notes et numéros") {

@@ -13089,7 +13089,7 @@ div#notebook {
 <script>
 $( document ).ready(function(){
 
-            var cfg = {"base_numbering": 1, "nav_menu": {}, "number_sections": true, "sideBar": true, "skip_h1_title": false, "title_cell": "Table of Contents", "title_sidebar": "Contents", "toc_cell": false, "toc_position": {"height": "calc(100% - 180px)", "left": "10px", "top": "150px", "width": "458.016px"}, "toc_section_display": true, "toc_window_display": true};
+            var cfg = {"base_numbering": 1, "nav_menu": {}, "number_sections": true, "sideBar": true, "skip_h1_title": false, "title_cell": "Mocodo", "title_sidebar": "Mocodo", "toc_cell": false, "toc_position": {"height": "calc(100% - 180px)", "left": "10px", "top": "150px", "width": "458.016px"}, "toc_section_display": true, "toc_window_display": true};
 
             // fire the main function with these parameters
             require(['nbextensions/toc2/toc2'], function (toc2) {
@@ -13123,7 +13123,7 @@ $( document ).ready(function(){
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Mocodo 3.0.3 loaded.
+<pre>Mocodo 3.0.4 loaded.
 </pre>
 </div>
 </div>
@@ -14006,6 +14006,8 @@ Facteur d'échelle multiplicatif (défaut: <code>1.0</code>).</li>
 Facteur multiplicatif appliqué à la largeur des libellés (défaut: <code>1.0</code>).</li>
 <li><strong><code>--hide_notes</code></strong>.
 Ignore le survol des éléments annotés (défaut: <code>False</code>).</li>
+<li><strong><code>--detect_overlaps</code></strong>.
+Lève une erreur en présence de chevauchement de pattes horizontales ou verticales.</li>
 </ul>
 
 </div>
@@ -19650,6 +19652,260 @@ TRAVAILLE: Lisez, Première, Enseignement
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Interdiction-des-chevauchements">Interdiction des chevauchements<a class="anchor-link" href="#Interdiction-des-chevauchements">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Les débutants ne comprennent pas toujours du premier coup que l'ordre des lignes du texte-source correspond à celui des boîtes du MCD affiché ; ou qu'il faut sauter une ligne chaque fois que l'on veut une nouvelle rangée de boîtes. Ces malheureux se retrouvent donc plus souvent qu'à leur tour avec des chevauchements pas forcément faciles à voir :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">mocodo</span>
+CLIENT: Réf. client, Nom, Prénom, Adresse
+COMMANDE: Num commande, Date, Montant
+PRODUIT: Réf. produit, Libellé, Prix unitaire
+PASSER, 0N CLIENT, 11 COMMANDE
+INCLURE, 1N COMMANDE, 0N PRODUIT: Quantité
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_svg output_subarea ">
+<svg xmlns="http://www.w3.org/2000/svg" width="630" height="128" viewBox="0 0 630 128">
+<rect id="frame" x="0" y="0" width="630" height="128" fill="none" stroke="none" stroke-width="0"/>
+
+<!-- Association PASSER -->
+<g class="page_0_hnQ3A4m3 diagram_page" visibility="visible">
+	<line x1="51" y1="64" x2="450" y2="64" stroke="#000" stroke-width="1"/>
+	<text x="98" y="80" fill="#000" font-family="Futura" font-size="11">0,N</text>
+	<line x1="185" y1="64" x2="450" y2="64" stroke="#000" stroke-width="1"/>
+	<text x="253" y="80" fill="#000" font-family="Futura" font-size="11">1,1</text>
+	<g>
+		<path d="M480 35 a14 14 90 0 1 14 14 V63 h-88 V49 a14 14 90 0 1 14 -14" fill="#FFF" stroke="#FFF" stroke-width="0"/>
+		<path d="M494 63 v16 a14 14 90 0 1 -14 14 H420 a14 14 90 0 1 -14 -14 V63 H88" fill="#FFF" stroke="#FFF" stroke-width="0"/>
+		<rect x="406" y="35" width="88" height="58" fill="none" rx="14" stroke="#000" stroke-width="1.5"/>
+		<line x1="406" y1="63" x2="494" y2="63" stroke="#000" stroke-width="1.5"/>
+		<text x="413" y="56.3" fill="#000" font-family="Copperplate" font-size="18">PASSER</text>
+	</g>
+</g>
+
+<!-- Association INCLURE -->
+<g class="page_0_hnQ3A4m3 diagram_page" visibility="visible">
+	<line x1="185" y1="64" x2="572" y2="64" stroke="#000" stroke-width="1"/>
+	<text x="253" y="80" fill="#000" font-family="Futura" font-size="11">1,N</text>
+	<line x1="327" y1="64" x2="572" y2="64" stroke="#000" stroke-width="1"/>
+	<text x="382" y="80" fill="#000" font-family="Futura" font-size="11">0,N</text>
+	<g>
+		<path d="M607 35 a14 14 90 0 1 14 14 V63 h-98 V49 a14 14 90 0 1 14 -14" fill="#FFF" stroke="#FFF" stroke-width="0"/>
+		<path d="M621 63 v16 a14 14 90 0 1 -14 14 H537 a14 14 90 0 1 -14 -14 V63 H98" fill="#FFF" stroke="#FFF" stroke-width="0"/>
+		<rect x="523" y="35" width="98" height="58" fill="none" rx="14" stroke="#000" stroke-width="1.5"/>
+		<line x1="523" y1="63" x2="621" y2="63" stroke="#000" stroke-width="1.5"/>
+		<text x="531" y="56.3" fill="#000" font-family="Copperplate" font-size="18">INCLURE</text>
+		<text x="530" y="81.1" fill="#000" font-family="Gill Sans" font-size="15">Quantité</text>
+	</g>
+</g>
+
+<!-- Entity CLIENT -->
+<g class="page_0_hnQ3A4m3 diagram_page" visibility="visible">
+	<g>
+		<rect x="9" y="9" width="84" height="30" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="9" y="39" width="84" height="80" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="9" y="9" width="84" height="110" fill="none" stroke="#000" stroke-width="1.5" opacity="1"/>
+		<line x1="9" y1="39" x2="93" y2="39" stroke="#000" stroke-width="1.5"/>
+	</g>
+	<text x="17" y="30.3" fill="#000" font-family="Copperplate" font-size="18">CLIENT</text>
+	<text x="17" y="56.1" fill="#000" font-family="Gill Sans" font-size="15">Réf. client</text>
+	<line x1="17" y1="59" x2="79" y2="59" stroke="#000" stroke-width="1"/>
+	<text x="17" y="73.1" fill="#000" font-family="Gill Sans" font-size="15">Nom</text>
+	<text x="17" y="90.1" fill="#000" font-family="Gill Sans" font-size="15">Prénom</text>
+	<text x="17" y="107" fill="#000" font-family="Gill Sans" font-size="15">Adresse</text>
+</g>
+
+<!-- Entity COMMANDE -->
+<g class="page_0_hnQ3A4m3 diagram_page" visibility="visible">
+	<g>
+		<rect x="122" y="17" width="126" height="30" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="122" y="47" width="126" height="64" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="122" y="17" width="126" height="94" fill="none" stroke="#000" stroke-width="1.5" opacity="1"/>
+		<line x1="122" y1="47" x2="248" y2="47" stroke="#000" stroke-width="1.5"/>
+	</g>
+	<text x="131" y="38.3" fill="#000" font-family="Copperplate" font-size="18">COMMANDE</text>
+	<text x="130" y="64.1" fill="#000" font-family="Gill Sans" font-size="15">Num commande</text>
+	<line x1="130" y1="67" x2="235" y2="67" stroke="#000" stroke-width="1"/>
+	<text x="130" y="81.1" fill="#000" font-family="Gill Sans" font-size="15">Date</text>
+	<text x="130" y="98" fill="#000" font-family="Gill Sans" font-size="15">Montant</text>
+</g>
+
+<!-- Entity PRODUIT -->
+<g class="page_0_hnQ3A4m3 diagram_page" visibility="visible">
+	<g>
+		<rect x="277" y="17" width="100" height="30" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="277" y="47" width="100" height="64" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="277" y="17" width="100" height="94" fill="none" stroke="#000" stroke-width="1.5" opacity="1"/>
+		<line x1="277" y1="47" x2="377" y2="47" stroke="#000" stroke-width="1.5"/>
+	</g>
+	<text x="286" y="38.3" fill="#000" font-family="Copperplate" font-size="18">PRODUIT</text>
+	<text x="285" y="64.1" fill="#000" font-family="Gill Sans" font-size="15">Réf. produit</text>
+	<line x1="285" y1="67" x2="360" y2="67" stroke="#000" stroke-width="1"/>
+	<text x="285" y="81.1" fill="#000" font-family="Gill Sans" font-size="15">Libellé</text>
+	<text x="285" y="98" fill="#000" font-family="Gill Sans" font-size="15">Prix unitaire</text>
+</g>
+</svg>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Ci-dessus, par exemple, l'association INCLURE, qui devrait se trouver entre CLIENT et COMMANDE, est déportée de telle sorte que ses pattes chevauchent COMMANDE, PRODUIT et PASSER, — ce qui ne se voit pas vraiment puisque les entités et associations sont tracées <strong>après</strong> les pattes.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Nouveauté de la version 3.0.</strong> Mocodo peut lever une erreur dans une telle situation. L'option correspondante, <code>--detect_overlaps</code> est par défaut activée sous Mocodo online, et désactivée en ligne de commande.</p>
+<p>Si cela se produit, vous pouvez :</p>
+<ul>
+<li>Modifier manuellement l'ordre des lignes du texte-source et/ou insérer des sauts de ligne.</li>
+<li><a href="Réarrangement-automatique">Réarranger automatiquement</a> le MCD (en cliquant 🔀 sous Mocodo online, ou avec l'option <code>--arrange</code> en ligne de commande).</li>
+<li>Ignorer le problème en décochant la détection des chevauchements (sous l'onglet « Options » de Mocodo online).</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Remarques.</strong></p>
+<ul>
+<li>Les calculs sont opérés, non pas à partir des coordonnées réelles des boîtes, mais de leurs indices $(i, j)$ dans la matrice correspondant à la grille qui sert de base au plongement. Les éventuelles <a href="#Retouches-fines">retouches</a> apportées à la position de leurs centres sont ignorées.</li>
+<li>Seuls les chevauchements mettant en jeu des pattes horizontales ou verticales sont détectés. Par exemple, ci-dessous, le chevauchement sera ignoré.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">mocodo</span>
+CLIENT: Réf. client, Nom, Prénom, Adresse
+::
+
+:
+COMMANDE: Num commande, Date, Montant
+:
+
+::
+PASSER, 0N CLIENT, 11 COMMANDE
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_svg output_subarea ">
+<svg xmlns="http://www.w3.org/2000/svg" width="288" height="328" viewBox="0 0 288 328">
+<rect id="frame" x="0" y="0" width="288" height="328" fill="none" stroke="none" stroke-width="0"/>
+
+<!-- Association PASSER -->
+<g class="page_0_PxpusNRh diagram_page" visibility="visible">
+	<line x1="51" y1="64" x2="235" y2="290" stroke="#000" stroke-width="1"/>
+	<text x="98" y="113.64" fill="#000" font-family="Futura" font-size="11">0,N</text>
+	<line x1="143" y1="190" x2="235" y2="290" stroke="#000" stroke-width="1"/>
+	<text x="169.89" y="253" fill="#000" font-family="Futura" font-size="11">1,1</text>
+	<g>
+		<path d="M265 261 a14 14 90 0 1 14 14 V289 h-88 V275 a14 14 90 0 1 14 -14" fill="#FFF" stroke="#FFF" stroke-width="0"/>
+		<path d="M279 289 v16 a14 14 90 0 1 -14 14 H205 a14 14 90 0 1 -14 -14 V289 H88" fill="#FFF" stroke="#FFF" stroke-width="0"/>
+		<rect x="191" y="261" width="88" height="58" fill="none" rx="14" stroke="#000" stroke-width="1.5"/>
+		<line x1="191" y1="289" x2="279" y2="289" stroke="#000" stroke-width="1.5"/>
+		<text x="198" y="282.3" fill="#000" font-family="Copperplate" font-size="18">PASSER</text>
+	</g>
+</g>
+
+<!-- Entity CLIENT -->
+<g class="page_0_PxpusNRh diagram_page" visibility="visible">
+	<g>
+		<rect x="9" y="9" width="84" height="30" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="9" y="39" width="84" height="80" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="9" y="9" width="84" height="110" fill="none" stroke="#000" stroke-width="1.5" opacity="1"/>
+		<line x1="9" y1="39" x2="93" y2="39" stroke="#000" stroke-width="1.5"/>
+	</g>
+	<text x="17" y="30.3" fill="#000" font-family="Copperplate" font-size="18">CLIENT</text>
+	<text x="17" y="56.1" fill="#000" font-family="Gill Sans" font-size="15">Réf. client</text>
+	<line x1="17" y1="59" x2="79" y2="59" stroke="#000" stroke-width="1"/>
+	<text x="17" y="73.1" fill="#000" font-family="Gill Sans" font-size="15">Nom</text>
+	<text x="17" y="90.1" fill="#000" font-family="Gill Sans" font-size="15">Prénom</text>
+	<text x="17" y="107" fill="#000" font-family="Gill Sans" font-size="15">Adresse</text>
+</g>
+
+<!-- Entity COMMANDE -->
+<g class="page_0_PxpusNRh diagram_page" visibility="visible">
+	<g>
+		<rect x="80" y="143" width="126" height="30" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="80" y="173" width="126" height="64" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="80" y="143" width="126" height="94" fill="none" stroke="#000" stroke-width="1.5" opacity="1"/>
+		<line x1="80" y1="173" x2="206" y2="173" stroke="#000" stroke-width="1.5"/>
+	</g>
+	<text x="89" y="164.3" fill="#000" font-family="Copperplate" font-size="18">COMMANDE</text>
+	<text x="88" y="190.1" fill="#000" font-family="Gill Sans" font-size="15">Num commande</text>
+	<line x1="88" y1="193" x2="193" y2="193" stroke="#000" stroke-width="1"/>
+	<text x="88" y="207.1" fill="#000" font-family="Gill Sans" font-size="15">Date</text>
+	<text x="88" y="224" fill="#000" font-family="Gill Sans" font-size="15">Montant</text>
+</g>
+</svg>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Insertion-manuelle-d'espacements">Insertion manuelle d'espacements<a class="anchor-link" href="#Insertion-manuelle-d'espacements">&#182;</a></h2>
 </div>
 </div>
@@ -24563,7 +24819,7 @@ PRODUIT: Réf. produit, Libellé, Prix unitaire
 
 
 <div class="output_png output_subarea output_execute_result">
-<img src="fr_refman_files/fr_refman_272_0.png"
+<img src="fr_refman_files/fr_refman_279_0.png"
 >
 </div>
 
