@@ -7,17 +7,34 @@ from .cross import cross
 from .mocodo_error import MocodoError
 
 
-def arrange(col_count, row_count, successors, multiplicity, organic, min_objective, max_objective, call_limit, verbose, has_expired, **kwargs):
-    
+def arrange(
+    col_count,
+    row_count,
+    successors,
+    multiplicity,
+    organic,
+    min_objective,
+    max_objective,
+    call_limit,
+    verbose,
+    has_expired,
+    **kwargs
+):
     @lru_cache
     def bounded_neighborhood(x1, y1):
         result = set()
-        for x2 in range(max(0, x1 - radius), min(col_count, x1 + radius + 1)):
-            for y2 in range(max(0, y1 - radius + abs(x1 - x2)), min(row_count, y1 + radius - abs(x1 - x2) + 1)):
+        for x2 in range(
+            max(0, x1 - radius),
+            min(col_count, x1 + radius + 1),
+        ):
+            for y2 in range(
+                max(0, y1 - radius + abs(x1 - x2)),
+                min(row_count, y1 + radius - abs(x1 - x2) + 1),
+            ):
                 if x1 != x2 or y1 != y2:
                     result.add((x2, y2))
         return result
-    
+
     @lru_cache
     def organic_neighborhood(x1, y1):
         result = set()
@@ -26,7 +43,7 @@ def arrange(col_count, row_count, successors, multiplicity, organic, min_objecti
                 if x1 != x2 or y1 != y2:
                     result.add((x2, y2))
         return result
-    
+
     @lru_cache
     def bounded_hull(coords):
         result = set()
@@ -40,7 +57,7 @@ def arrange(col_count, row_count, successors, multiplicity, organic, min_objecti
             if y + 1 < row_count:
                 result.add((x, y + 1))
         return result.difference(coords)
-    
+
     @lru_cache
     def organic_hull(coords):
         result = set()
@@ -50,10 +67,10 @@ def arrange(col_count, row_count, successors, multiplicity, organic, min_objecti
             result.add((x, y - 1))
             result.add((x, y + 1))
         return result.difference(coords)
-    
-    def recurs(box_coords, next_boxes, already_placed_segments, cumulated_distances):
+
+    def recurs(box_coords, next_boxes, placed_segments, cumulated_distances):
         if cumulated_distances > objective:
-            # print "cut"
+            # print("cut")
             return None
         if len(next_boxes) == 0:
             return {
@@ -63,55 +80,61 @@ def arrange(col_count, row_count, successors, multiplicity, organic, min_objecti
             }
         outside_hull_count = len(next_boxes) - len(hull(frozenset(box_coords.values())))
         if outside_hull_count * outside_hull_minimal_distance + cumulated_distances > objective:
-            # print "Lower bound cut"
+            # print("Lower bound cut")
             return None
         if has_expired():
-            raise MocodoError(10, _('Layout calculation time exceeded.')) # fmt: skip
+            raise MocodoError(10, _('Layout calculation time exceeded.'))  # fmt: skip
         if next(iteration) > call_limit:
-            # print "call limit exceeded"
+            # print("call limit exceeded")
             return None
         box_to_place = next_boxes[0]
-        already_placed_successors = {box_coords[box]: box for box in successors[box_to_place] if box in box_coords}
-        if already_placed_successors:
-            already_placed_successor_coords = iter(already_placed_successors)
-            (x1, y1) = next(already_placed_successor_coords)
+        placed_successors = {
+            box_coords[box]: box for box in successors[box_to_place] if box in box_coords
+        }
+        if placed_successors:
+            placed_successor_coords = iter(placed_successors)
+            (x1, y1) = next(placed_successor_coords)
             possible_coords = neighborhood(x1, y1).copy()
-            # print already_placed_successors[0], possible_coords
-            for (x1, y1) in already_placed_successor_coords:
+            # print(placed_successors[0], possible_coords)
+            for (x1, y1) in placed_successor_coords:
                 possible_coords.intersection_update(neighborhood(x1, y1))
                 if not possible_coords:
-                    # print "neighborhood intersection is empty"
+                    # print("neighborhood intersection is empty")
                     return None
         else:
-            # print "the box to place has no successors: all empty coords are possible"
+            # print("the box to place has no successors: all empty coords are possible")
             possible_coords = set(product(range(col_count), range(row_count)))
         possible_coords.difference_update(box_coords.values())
         if not possible_coords:
-            # print "neighborhood intersection is not free"
+            # print("neighborhood intersection is not free")
             return None
         non_crossing_possible_coords = []
         for (x1, y1) in possible_coords:
-            for ((x2, y2), (x3, y3, x4, y4)) in product(already_placed_successors, already_placed_segments):
+            for ((x2, y2), (x3, y3, x4, y4)) in product(placed_successors, placed_segments):
                 if cross(x1, y1, x2, y2, x3, y3, x4, y4):
                     break
             else:
                 non_crossing_possible_coords.append((x1, y1))
         if not non_crossing_possible_coords:
-            # print "all possible coords result in a crossing with existing segment"
+            # print("all possible coords result in a crossing with existing segment")
             return None
         weighted_possible_coords = []
         for (x1, y1) in non_crossing_possible_coords:
             cumulated_distance = 0
-            for ((x2, y2), placed_box) in already_placed_successors.items():
-                cumulated_distance += distances[abs(x1-x2)][abs(y1-y2)] * multiplicity[(box_to_place, placed_box)]
+            for ((x2, y2), placed_box) in placed_successors.items():
+                cumulated_distance += (
+                    distances[abs(x1 - x2)][abs(y1 - y2)] * multiplicity[(box_to_place, placed_box)]
+                )
             weighted_possible_coords.append((cumulated_distance, random(), x1, y1))
         weighted_possible_coords.sort()
         for (cumulated_distance, _, x1, y1) in weighted_possible_coords:
             box_coords[box_to_place] = (x1, y1)
-            new_segments = [(x1, y1, x2, y2) for (x2, y2) in already_placed_successors]
-            new_next_boxes = list(successors[box_to_place].difference(box_coords).difference(next_boxes))
+            new_segments = [(x1, y1, x2, y2) for (x2, y2) in placed_successors]
+            new_next_boxes = list(
+                successors[box_to_place].difference(box_coords).difference(next_boxes)
+            )
             if len(next_boxes) == 1 and len(new_next_boxes) == 0 and len(box_coords) != box_count:
-                # print "the placed boxes have no more non placed successors"
+                # print("the placed boxes have no more non placed successors")
                 new_next_boxes = list(set(range(box_count)).difference(box_coords))
                 if new_next_boxes:
                     new_next_boxes = [choice(new_next_boxes)]
@@ -119,13 +142,13 @@ def arrange(col_count, row_count, successors, multiplicity, organic, min_objecti
             result = recurs(
                 box_coords,
                 next_boxes[1:] + new_next_boxes,
-                already_placed_segments + new_segments,
-                cumulated_distances + cumulated_distance
+                placed_segments + new_segments,
+                cumulated_distances + cumulated_distance,
             )
             if result:
                 return result
             del box_coords[box_to_place]
-    
+
     box_count = col_count * row_count
     neighborhood = organic_neighborhood if organic else bounded_neighborhood
     hull = organic_hull if organic else bounded_hull
@@ -133,7 +156,7 @@ def arrange(col_count, row_count, successors, multiplicity, organic, min_objecti
     distances = [[hypot(i, j) - 1 for j in range(radius + 1)] for i in range(radius + 1)]
     outside_hull_minimal_distance = distances[1][2]
     if all(not successor for successor in successors):
-        # print "no link: return a random layout"
+        # print("no link: return a random layout")
         layout = list(range(box_count))
         shuffle(layout)
         return {
@@ -151,12 +174,7 @@ def arrange(col_count, row_count, successors, multiplicity, organic, min_objecti
             if successors[first_box]:
                 if verbose:
                     print("  Starting from box %s." % first_box)
-                result = recurs(
-                    {first_box: (0, 0)},
-                    list(successors[first_box]),
-                    [],
-                    0
-                )
+                result = recurs({first_box: (0, 0)}, list(successors[first_box]), [], 0)
                 if result:
                     coords = result["coords"]
                     if organic:
@@ -176,13 +194,14 @@ def arrange(col_count, row_count, successors, multiplicity, organic, min_objecti
                     break
         objective += 1
 
-    
+
 if __name__ == "__main__":
     from random import seed
     from time import time
 
     from .argument_parser import parsed_arguments
     from .mcd import Mcd
+
     clauses = """
         SUSPENDISSE: diam
         SOLLICITUDIN, 0N SUSPENDISSE, 0N CONSECTETUER, 0N LOREM: lectus
@@ -198,9 +217,9 @@ if __name__ == "__main__":
         AMET, 11> LOREM, 01 CONSECTETUER: adipiscing
         RISUS: ultricies, _cras, elementum
         SEMPER, 0N RISUS, 1N DIGNISSIM
-    """.replace("  ", "").split("\n")
+    """
     params = parsed_arguments()
-    mcd = Mcd(clauses, **params)
+    mcd = Mcd(clauses.replace("  ", "").split("\n"), **params)
     params.update(mcd.get_layout_data())
     starting_time = time()
     seed(42)
@@ -211,4 +230,4 @@ if __name__ == "__main__":
         print()
         print("Cumulated distances:", result["distances"])
         print("Duration:", time() - starting_time)
-        print() 
+        print()
