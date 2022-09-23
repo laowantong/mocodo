@@ -20,18 +20,18 @@ def main():
         clauses = common.load_input_file()
         get_font_metrics = font_metrics_factory(params)
         if params["restore"]:
-            import shutil
+            import shutil  # fmt: skip
             shutil.copyfile(os.path.join(params["script_directory"], "resources", "pristine_sandbox.mcd"), "sandbox.mcd")
             return write_contents("params.json", "{}")
         if params["print_params"]:
-            import json
+            import json  # fmt: skip
             for added_key in params["added_keys"][:]:
                 del params[added_key]
             params["print_params"] = False
             params_contents = json.dumps(params, ensure_ascii=False, indent=2, sort_keys=True)
             return safe_print_for_PHP(params_contents)
         if params["obfuscate"]:
-            from .obfuscate import obfuscate
+            from .obfuscate import obfuscate  # fmt: skip
             return safe_print_for_PHP(obfuscate(clauses, params))
         mcd = Mcd(clauses, get_font_metrics, **params)
         if params["fit"] is not None:
