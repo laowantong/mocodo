@@ -14,7 +14,7 @@ from mocodo.mcd import Mcd
 class ArrangeGA(unittest.TestCase):
     
     def test_run(self):
-        clauses = u"""
+        clauses = """
             SUSPENDISSE: diam
             SOLLICITUDIN, 0N SUSPENDISSE, 0N CONSECTETUER, 0N LOREM: lectus
             CONSECTETUER: elit, sed
@@ -48,7 +48,7 @@ class ArrangeGA(unittest.TestCase):
             'crossings': 1,
             'layout': [9, 5, 4, 0, 2, 1, 11, 8, 3, 7, 6, 10]
         })
-        expected = u"""
+        expected = """
             AMET, 11> LOREM, 01 CONSECTETUER: adipiscing
             LOREM: ipsum, dolor, sit
             DF1, 11 LOREM, 1N SUSPENDISSE

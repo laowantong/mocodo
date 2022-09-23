@@ -73,73 +73,73 @@ class McdGeometryTest(unittest.TestCase):
 
     def test_simplest_mcd(self):
         clauses = [
-            u"My entity: first, second",
+            "My entity: first, second",
         ]
         mcd = Mcd(clauses, stub_for_get_font_metrics, **params)
         self.assertEqual(get_dimensions(mcd), [{'name': 'My entity', 'x': 9, 'y': 9, 'w': 62, 'h': 54}])
     
     def test_read_me_mcd(self):
         clauses = [
-            u"DF, 11 Élève, 1N Classe",
-            u"Classe: Num. classe, Num. salle",
-            u"Faire Cours, 1N Classe, 1N Prof: Vol. horaire",
-            u"Catégorie: Code catégorie, Nom catégorie",
-            u"",
-            u"Élève: Num. élève, Nom élève",
-            u"Noter, 1N Élève, 0N Prof, 0N Matière, 1N Date: Note",
-            u"Prof: Num. prof, Nom prof",
-            u"Relever, 0N Catégorie, 11 Prof",
-            u"",
-            u"Date: Date",
-            u"Matière: Libellé matière",
-            u"Enseigner, 11 Prof, 1N Matière",
+            "DF, 11 Élève, 1N Classe",
+            "Classe: Num. classe, Num. salle",
+            "Faire Cours, 1N Classe, 1N Prof: Vol. horaire",
+            "Catégorie: Code catégorie, Nom catégorie",
+            "",
+            "Élève: Num. élève, Nom élève",
+            "Noter, 1N Élève, 0N Prof, 0N Matière, 1N Date: Note",
+            "Prof: Num. prof, Nom prof",
+            "Relever, 0N Catégorie, 11 Prof",
+            "",
+            "Date: Date",
+            "Matière: Libellé matière",
+            "Enseigner, 11 Prof, 1N Matière",
         ]
         mcd = Mcd(clauses, stub_for_get_font_metrics, **params)
         self.assertEqual(get_dimensions(mcd), [
-            {'name': u'DF', 'x': 30, 'y': 24, 'w': 24, 'h': 24},
-            {'name': u'Classe', 'x': 95, 'y': 9, 'w': 72, 'h': 54},
-            {'name': u'Faire Cours', 'x': 195, 'y': 15, 'w': 74, 'h': 42},
-            {'name': u'Catégorie', 'x': 294, 'y': 9, 'w': 86, 'h': 54},
-            {'name': u'Élève', 'x': 9, 'y': 83, 'w': 66, 'h': 54},
-            {'name': u'Noter', 'x': 111, 'y': 89, 'w': 40, 'h': 42},
-            {'name': u'Prof', 'x': 201, 'y': 83, 'w': 62, 'h': 54},
-            {'name': u'Relever', 'x': 312, 'y': 89, 'w': 50, 'h': 42},
-            {'name': u'Date', 'x': 24, 'y': 157, 'w': 36, 'h': 44},
-            {'name': u'Matière', 'x': 85, 'y': 157, 'w': 92, 'h': 44},
-            {'name': u'Enseigner', 'x': 202, 'y': 158, 'w': 60, 'h': 42},
-            {'name': u' 0', 'x': 337, 'y': 179, 'w': 0, 'h': 0}
+            {'name': 'DF', 'x': 30, 'y': 24, 'w': 24, 'h': 24},
+            {'name': 'Classe', 'x': 95, 'y': 9, 'w': 72, 'h': 54},
+            {'name': 'Faire Cours', 'x': 195, 'y': 15, 'w': 74, 'h': 42},
+            {'name': 'Catégorie', 'x': 294, 'y': 9, 'w': 86, 'h': 54},
+            {'name': 'Élève', 'x': 9, 'y': 83, 'w': 66, 'h': 54},
+            {'name': 'Noter', 'x': 111, 'y': 89, 'w': 40, 'h': 42},
+            {'name': 'Prof', 'x': 201, 'y': 83, 'w': 62, 'h': 54},
+            {'name': 'Relever', 'x': 312, 'y': 89, 'w': 50, 'h': 42},
+            {'name': 'Date', 'x': 24, 'y': 157, 'w': 36, 'h': 44},
+            {'name': 'Matière', 'x': 85, 'y': 157, 'w': 92, 'h': 44},
+            {'name': 'Enseigner', 'x': 202, 'y': 158, 'w': 60, 'h': 42},
+            {'name': ' 0', 'x': 337, 'y': 179, 'w': 0, 'h': 0}
         ])
     
     def test_mocodo_online_mcd(self):
         clauses = [
-            u"PEUT VIVRE DANS, 1N ESPÈCE, 1N ENCLOS: nb. max. congénères",
-            u"ENCLOS: num. enclos",
-            u"OCCUPE, 1N ANIMAL, 1N PÉRIODE, 1N ENCLOS",
-            u"PÉRIODE: date début, _date fin",
-            u"",
-            u"ESPÈCE: code espèce, libellé",
-            u"DF, 0N ESPÈCE, _11 ANIMAL",
-            u"ANIMAL: nom, sexe, date naissance, date décès",
-            u"A MÈRE, 01 ANIMAL, 0N> [mère] ANIMAL",
-            u"",
-            u"PEUT COHABITER AVEC, 0N ESPÈCE, 0N [commensale] ESPÈCE: nb. max. commensaux",
-            u":",
-            u"A PÈRE, 0N ANIMAL, 0N> [père présumé] ANIMAL",
+            "PEUT VIVRE DANS, 1N ESPÈCE, 1N ENCLOS: nb. max. congénères",
+            "ENCLOS: num. enclos",
+            "OCCUPE, 1N ANIMAL, 1N PÉRIODE, 1N ENCLOS",
+            "PÉRIODE: date début, _date fin",
+            "",
+            "ESPÈCE: code espèce, libellé",
+            "DF, 0N ESPÈCE, _11 ANIMAL",
+            "ANIMAL: nom, sexe, date naissance, date décès",
+            "A MÈRE, 01 ANIMAL, 0N> [mère] ANIMAL",
+            "",
+            "PEUT COHABITER AVEC, 0N ESPÈCE, 0N [commensale] ESPÈCE: nb. max. commensaux",
+            ":",
+            "A PÈRE, 0N ANIMAL, 0N> [père présumé] ANIMAL",
         ]
         mcd = Mcd(clauses, stub_for_get_font_metrics, **params)
         self.assertEqual(get_dimensions(mcd), [
-            {'name': u'PEUT VIVRE DANS', 'x': 9, 'y': 15, 'w': 110, 'h': 42},
-            {'name': u'ENCLOS', 'x': 144, 'y': 14, 'w': 72, 'h': 44},
-            {'name': u'OCCUPE', 'x': 241, 'y': 15, 'w': 44, 'h': 42},
-            {'name': u'PÉRIODE', 'x': 320, 'y': 9, 'w': 66, 'h': 54},
-            {'name': u'ESPÈCE', 'x': 28, 'y': 93, 'w': 72, 'h': 54},
-            {'name': u'DF', 'x': 168, 'y': 108, 'w': 24, 'h': 24},
-            {'name': u'ANIMAL', 'x': 220, 'y': 83, 'w': 86, 'h': 74},
-            {'name': u'A MÈRE', 'x': 331, 'y': 99, 'w': 44, 'h': 42},
-            {'name': u'PEUT COHABITER AVEC', 'x': 9, 'y': 177, 'w': 110, 'h': 42},
-            {'name': u' 0', 'x': 180, 'y': 198, 'w': 0, 'h': 0},
-            {'name': u'A PÈRE', 'x': 241, 'y': 177, 'w': 44, 'h': 42},
-            {'name': u' 1', 'x': 353, 'y': 198, 'w': 0, 'h': 0}
+            {'name': 'PEUT VIVRE DANS', 'x': 9, 'y': 15, 'w': 110, 'h': 42},
+            {'name': 'ENCLOS', 'x': 144, 'y': 14, 'w': 72, 'h': 44},
+            {'name': 'OCCUPE', 'x': 241, 'y': 15, 'w': 44, 'h': 42},
+            {'name': 'PÉRIODE', 'x': 320, 'y': 9, 'w': 66, 'h': 54},
+            {'name': 'ESPÈCE', 'x': 28, 'y': 93, 'w': 72, 'h': 54},
+            {'name': 'DF', 'x': 168, 'y': 108, 'w': 24, 'h': 24},
+            {'name': 'ANIMAL', 'x': 220, 'y': 83, 'w': 86, 'h': 74},
+            {'name': 'A MÈRE', 'x': 331, 'y': 99, 'w': 44, 'h': 42},
+            {'name': 'PEUT COHABITER AVEC', 'x': 9, 'y': 177, 'w': 110, 'h': 42},
+            {'name': ' 0', 'x': 180, 'y': 198, 'w': 0, 'h': 0},
+            {'name': 'A PÈRE', 'x': 241, 'y': 177, 'w': 44, 'h': 42},
+            {'name': ' 1', 'x': 353, 'y': 198, 'w': 0, 'h': 0}
         ])
     
 if __name__ == '__main__':

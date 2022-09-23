@@ -10,7 +10,7 @@ from mocodo.mcd import Mcd
 class ArrangeBB(unittest.TestCase):
     
     def test_optimal_layout(self):
-        clauses = u"""
+        clauses = """
             SCELERISQUE LOREM: blandit, elit, ligula
             EROS, 11 SCELERISQUE LOREM, 1N PELLENTESQUE IPSUM: metus, congue
 
@@ -28,7 +28,7 @@ class ArrangeBB(unittest.TestCase):
         self.assertEqual(total_distances, 0.0)
 
     def test_optimal_layout_with_reflexive_association(self):
-        clauses = u"""
+        clauses = """
             Assistas, 01 Hci poilu, 0N Hci poilu
             Hci poilu: graffiti, champignon, troussa, graffiti
             Rayonnait, 0N Hci poilu, 0N Lappa: monobloc
@@ -49,7 +49,7 @@ class ArrangeBB(unittest.TestCase):
         self.assertEqual(total_distances, 0.0)
 
     def test_diagonal_reflexive_association(self):
-        clauses = u"""
+        clauses = """
             Norm : Draw, Unit, Folk, Peer, Tour, Hall
             :
 
@@ -67,7 +67,7 @@ class ArrangeBB(unittest.TestCase):
         self.assertEqual(round(total_distances, 4), 0.8284)
 
     def test_2_0_link(self):
-        clauses = u"""
+        clauses = """
             CLIENT: Réf. client, Nom, Prénom, Adresse
             PASSER, 0N CLIENT, 11 COMMANDE
             :
@@ -84,7 +84,7 @@ class ArrangeBB(unittest.TestCase):
         self.assertEqual(total_distances, 1.0)
 
     def test_1_1_link(self):
-        clauses = u"""
+        clauses = """
             CLIENT: Réf. client, Nom, Prénom, Adresse
             PASSER, 0N CLIENT, 11 COMMANDE
             
@@ -102,7 +102,7 @@ class ArrangeBB(unittest.TestCase):
         self.assertEqual(total_distances, hypot(1, 1) - 1)
 
     def test_2_1_link(self):
-        clauses = u"""
+        clauses = """
             :
             CLIENT: Réf. client, Nom, Prénom, Adresse
             PASSER, 0N CLIENT, 11 COMMANDE
@@ -122,7 +122,7 @@ class ArrangeBB(unittest.TestCase):
         self.assertEqual(total_distances, hypot(2, 1) - 1)
 
     def test_k33(self):
-        clauses = u"""
+        clauses = """
             DIGNISSIM: nec sem, nunc, vulputate
             IMPERDIET: a praesent, nibh, semper
             TINCIDUNT: faucibus, orci, cursus
@@ -141,7 +141,7 @@ class ArrangeBB(unittest.TestCase):
         self.assertEqual(crossing_count, 9)
 
     def test_k33_better(self):
-        clauses = u"""
+        clauses = """
             DIGNISSIM: nec sem, nunc, vulputate
             RHONCUS, 1N DIGNISSIM, 1N IMPERDIET, 1N TINCIDUNT
             IMPERDIET: a praesent, nibh, semper

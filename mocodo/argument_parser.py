@@ -31,7 +31,7 @@ NOTE:
   - otherwise, calculated from a default value, possibly dependant of your system.
 """
 
-EPILOG = u"""
+EPILOG = """
 SEE ALSO:
   Online version        http://mocodo.net
   Source code           https://github.com/laowantong/mocodo
@@ -189,9 +189,9 @@ def parsed_arguments():
     mocodo_group.add_argument("--version", action="version", version="%(prog)s " + version, help="display the version number, then exit")
     mocodo_group.add_argument("--restore", action="store_true", help="recreate a pristine version of the files 'sandbox.mcd' and 'params.json' in the input directory, then exit")
     
-    aspect_group.add_argument("--df", metavar="STR", type=str, default=u"DF", help="the acronym to be circled in a functional dependency")
-    aspect_group.add_argument("--card_format", metavar="STR", type=str, nargs="?", default=u"{min_card},{max_card}", help="format string for minimal and maximal cardinalities")
-    aspect_group.add_argument("--strengthen_card", metavar="STR", type=str, nargs="?", default=u"_1,1_", help="string for relative cardinalities")
+    aspect_group.add_argument("--df", metavar="STR", type=str, default="DF", help="the acronym to be circled in a functional dependency")
+    aspect_group.add_argument("--card_format", metavar="STR", type=str, nargs="?", default="{min_card},{max_card}", help="format string for minimal and maximal cardinalities")
+    aspect_group.add_argument("--strengthen_card", metavar="STR", type=str, nargs="?", default="_1,1_", help="string for relative cardinalities")
     source_group.add_argument("--flex", metavar="FLOAT", type=float, default=0.75, help="flex straight legs whose cardinalities may collide")
     aspect_group.add_argument("--colors", metavar="PATH", default="bw", help="the color palette to use when generating the drawing. Name (without extension) of a file located in the directory 'colors', or path to a personal file")
     aspect_group.add_argument("--shapes", metavar="PATH", help="specification of the fonts, dimensions, etc. Name (without extension) of a file located in the directory 'shapes', or path to a personal file")
@@ -202,7 +202,7 @@ def parsed_arguments():
     
     relational_group.add_argument("--relations", metavar="NAME", nargs="*", default=["html", "text"], help="one or several templates for the generated relational schemas. Cf. directory 'relation_templates'")
     relational_group.add_argument("--disambiguation", choices=["numbers_only", "notes"], default="notes", help="specify the way to disambiguate outer attributes")
-    relational_group.add_argument("--title", metavar="STR", default=_(u'Untitled').encode("utf8"), type=str, help="database name (used for SQL output)")
+    relational_group.add_argument("--title", metavar="STR", default=_('Untitled').encode("utf8"), type=str, help="database name (used for SQL output)")
     relational_group.add_argument("--guess_title", action="store_true", help="use the name of the most referred entity as title")
 
     io_group.add_argument("--output_dir", metavar="PATH", help="the directory of the output files")

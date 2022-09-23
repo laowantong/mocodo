@@ -10,9 +10,9 @@ gettext.NullTranslations().install()
 class parse_test(unittest.TestCase):
     
     def test_reflexive(self):
-        a = Association(u"ÊTRE AMI, 0N BANDIT, 0N BANDIT")
-        self.assertEqual(a.name, u"ÊTRE AMI")
-        self.assertEqual(a.name_view, u"ÊTRE AMI")
+        a = Association("ÊTRE AMI, 0N BANDIT, 0N BANDIT")
+        self.assertEqual(a.name, "ÊTRE AMI")
+        self.assertEqual(a.name_view, "ÊTRE AMI")
         self.assertEqual(a.attributes, [])
         for (i, leg) in enumerate(a.legs):
             self.assertEqual(leg.card_view, "0,N")

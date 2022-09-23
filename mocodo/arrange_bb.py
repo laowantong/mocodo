@@ -183,7 +183,7 @@ if __name__ == "__main__":
 
     from .argument_parser import parsed_arguments
     from .mcd import Mcd
-    clauses = u"""
+    clauses = """
         SUSPENDISSE: diam
         SOLLICITUDIN, 0N SUSPENDISSE, 0N CONSECTETUER, 0N LOREM: lectus
         CONSECTETUER: elit, sed

@@ -321,7 +321,7 @@ class Relations:
                 if len(remaining_entities) == 1:
                     raise MocodoError(16, _('A weak entity (here, {entity}) cannot be strengthened by itself.').format(entity=remaining_entities[0].name)) # fmt: skip
                 else:
-                    remaining_entity_names = u", ".join('"%s"' % entity.name for entity in remaining_entities)
+                    remaining_entity_names = ", ".join('"%s"' % entity.name for entity in remaining_entities)
                     raise MocodoError(17, _('Cycle of weak entities in {entities}.').format(entities=remaining_entity_names)) # fmt: skip
 
     def find_inheritance_parent_or_children_to_delete(self):

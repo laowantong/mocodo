@@ -63,7 +63,7 @@ setup(
     # https://packaging.python.org/en/latest/single_source_version.html
     version=version,
 
-    description=u'Modélisation Conceptuelle de Données. Nickel. Ni souris.',
+    description='Modélisation Conceptuelle de Données. Nickel. Ni souris.',
     long_description=long_description,
 
     # The project's main homepage.
