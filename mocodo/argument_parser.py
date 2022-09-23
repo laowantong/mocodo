@@ -147,7 +147,6 @@ def parsed_arguments():
     source_group = parser.add_argument_group("MODIFICATIONS OF THE SOURCE TEXT")
     bb_group = parser.add_argument_group("BRANCH & BOUND LAYOUT REARRANGEMENT", "sub-options triggered by the option --arrange=bb")
     ga_group = parser.add_argument_group("GENETIC ALGORITHM LAYOUT REARRANGEMENT", "sub-options triggered by the option --arrange=ga")
-    lp_group = parser.add_argument_group("LINEAR PROGRAMMING LAYOUT REARRANGEMENT", "sub-options triggered by the option --arrange=lp")
     nb_group = parser.add_argument_group("NOTEBOOK SPECIFIC OPTIONS", "ignored when called from the command line")
     
     if sys.platform.lower().startswith("darwin"):
@@ -232,8 +231,6 @@ def parsed_arguments():
     ga_group.add_argument("--sample_size", metavar="NAT*", type=positive_integer, default=7, help="the sample size in tournaments")
     ga_group.add_argument("--max_generations", metavar="NAT*", type=positive_integer, default=300, help="maximal number of generations")
     ga_group.add_argument("--plateau", metavar="NAT*", type=positive_integer, default=30, help="maximal number of consecutive generations without improvement")
-    
-    lp_group.add_argument("--engine", nargs="?", const="cplex", choices=["cplex", "gurobi"], help="solver for the linear program")
     
     nb_group.add_argument("--mld", action="store_true", help="display the HTML relational model in the cell output")
     nb_group.add_argument("--no_mcd", action="store_true", help="do not display the conceptual diagram in the cell output")
