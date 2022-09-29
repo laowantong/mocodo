@@ -451,9 +451,7 @@ class Mcd:
             segments[("j", ja)].append((ia, ia, association, association))
             for leg in association.legs:
                 (ie, je) = coordinates[leg.entity]
-                if (ia, ja) == (ie, je): # loop
-                    continue
-                elif ia == ie:
+                if ia == ie:
                     segments[("i", ia)].append((*sorted([ja, je]), association, leg.entity))
                 elif ja == je:
                     segments[("j", ja)].append((*sorted([ia, ie]), association, leg.entity))
@@ -461,6 +459,8 @@ class Mcd:
         for quadruples in segments.values():
             quadruples.sort()
             for (l1, r1, e1, a1), (l2, r2, e2, a2) in zip(quadruples, quadruples[1:]):
+                if e1.name == e2.name and a1.name == a2.name: # reflexive association
+                    continue
                 if l2 < r1:
                     result.append((e1.name, a1.name, e2.name, a2.name))
         return result

@@ -484,6 +484,31 @@ class McdTest(unittest.TestCase):
         mcd = Mcd(clauses, **params)
         self.assertEqual(mcd.get_overlaps(), [])
     
+    def test_no_overlapping_with_reflexive_associations(self):
+        clauses = """
+            :
+            :
+                A MÈRE, 01 ANIMAL, 0N> [mère] ANIMAL
+            :
+
+            :
+            DF, 0N ESPÈCE, _11 ANIMAL
+            ANIMAL: nom, sexe, date naissance, date décès
+                A PÈRE, 0N ANIMAL, 0N> [père présumé] ANIMAL
+
+                PEUT COHABITER AVEC, 0N ESPÈCE, 0N [commensale] ESPÈCE: nb. max. commensaux
+            ESPÈCE: code espèce, libellé
+                OCCUPE, 1N ANIMAL, /1N PÉRIODE, 1N ENCLOS
+                PÉRIODE: date début, _date fin
+
+            :
+            PEUT VIVRE DANS, 1N ESPÈCE, 1N ENCLOS: nb. max. congénères
+            ENCLOS: num. enclos
+            :       
+        """.replace("  ", "").split("\n")
+        mcd = Mcd(clauses, **params)
+        self.assertEqual(mcd.get_overlaps(), [])
+    
     def test_horizontal_legs_overlap(self):
         clauses = """
             CLIENT: Réf. client, Nom, Prénom, Adresse
