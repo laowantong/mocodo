@@ -8,13 +8,13 @@
   "transform_single_column_relation": [
     {
       "search": "(?s)(.+)",
-      "replace": "<!--\n\\1  \n-->"
+      "replace": "<!--\n\\1<br>\n-->"
     }
   ],
-  "relation_separator": "  \n",
+  "relation_separator": "<br>\n",
   "transform_relational_schema": [
     {
-      "search": "\n-->  \n",
+      "search": "\n--><br>\n",
       "replace": "\n-->\n"
     }
   ]
