@@ -379,7 +379,7 @@ class Relations:
                     "association_name": association.name, # "", "X", "T" or "XT"
                     "leg_note": None,
                     "primary": False,
-                    "nature": f"deleted_parent_discriminant_{association.name}"
+                    "nature": f"deleted_parent_discriminant_{association.name_view}"
                 } for attribute in association.attributes)
 
     def process_associations(self):
@@ -533,7 +533,7 @@ class Relations:
                     "association_name": association.name,
                     "leg_note": None,
                     "primary": False,
-                    "nature": f"deleted_child_discriminant_{association.name}" # "", "X", "T" or "XT"
+                    "nature": f"deleted_child_discriminant_{association.name_view}" # "", "X", "T" or "XT"
                 } for attribute in association.attributes)
                 if association.kind[-2:] in ("<-", "<="): # migration: children > parent, and suppress children
                     for child_leg in association.legs[1:]:

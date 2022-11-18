@@ -40,6 +40,10 @@ class EntityTest(unittest.TestCase):
         e.add_attributes([])
         self.assertEqual(e.name, "PARTICIPANT5")
         self.assertEqual(e.name_view, "PARTICIPANT")
+        e = Entity("PARTICIPANT123: numero, nom, adresse")
+        e.add_attributes([])
+        self.assertEqual(e.name, "PARTICIPANT123")
+        self.assertEqual(e.name_view, "PARTICIPANT12")
 
     def test_blank(self):
         e = Entity("MOT-CLEF: mot-clé, ,")
