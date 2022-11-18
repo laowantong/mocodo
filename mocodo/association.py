@@ -17,7 +17,8 @@ class Association:
             ends = name[:1] + name[-1:]
             if ends == "/\\":
                 name = name[1:-1].replace(" ", "").upper().replace("TX", "XT")
-                if name not in ("X", "T", "XT", ""):
+                unnumbered_name = (name[:-1] if name[-1:].isdigit() else name)
+                if unnumbered_name not in ("X", "T", "XT", ""):
                     raise MocodoError(24, _('Unknown specialization "{name}".').format(name=name)) # fmt: skip
                 kind = "inheritance"
             elif ends == "[]":

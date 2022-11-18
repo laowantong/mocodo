@@ -843,6 +843,34 @@ class relationsTest(unittest.TestCase):
         """.strip().replace("    ", "")
         t = Relations(Mcd(clauses.split("\n"), params), params)
         self.assertEqual(t.get_text(minimal_template), text)
+    
+    def test_two_same_type_inheritances(self):
+        # example from user fduchatea on https://github.com/laowantong/mocodo/issues/64
+        clauses = """
+            :
+            :
+            Inscrites :
+            :
+
+            :
+            UtilisatricesPlus : nom, prénom
+            /XT1\ UtilisatricesPlus ->> Inscrites, Abonnées : catégorie
+            Abonnées :
+
+            Utilisatrices : idU, email
+            /XT2\ Utilisatrices ->> Invitées, UtilisatricesPlus : catégorie
+            Invitées : adresseIP
+            :
+        """
+        text = """
+            Abonnées ()
+            Inscrites ()
+            Invitées (_#idU_, adresseIP)
+            Utilisatrices (_idU_, email, catégorie)
+            UtilisatricesPlus (_#idU_, nom, prénom, catégorie)
+        """.strip().replace("    ", "")
+        t = Relations(Mcd(clauses.split("\n"), params), params)
+        self.assertEqual(t.get_text(minimal_template), text)
 
 if __name__ == '__main__':
     unittest.main()

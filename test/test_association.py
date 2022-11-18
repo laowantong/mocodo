@@ -94,6 +94,9 @@ class parse_test(unittest.TestCase):
         a = Association("SOUTENIR1, 01 ÉTUDIANT, 0N DATE: note stage")
         self.assertEqual(a.name, "SOUTENIR1")
         self.assertEqual(a.name_view, "SOUTENIR")
+        a = Association("SOUTENIR123, 01 ÉTUDIANT, 0N DATE: note stage")
+        self.assertEqual(a.name, "SOUTENIR123")
+        self.assertEqual(a.name_view, "SOUTENIR12")
 
     def test_df(self):
         a = Association("DF, 0N CLIENT, 11 COMMANDE")
@@ -149,6 +152,20 @@ class parse_test(unittest.TestCase):
         a = Association(r"/XT\ FOO => BAR")
         self.assertEqual(a.name, "XT")
         self.assertEqual(a.name_view, "XT")
+        self.assertEqual(a.legs[0].entity_name, "FOO")
+        self.assertEqual(a.legs[1].entity_name, "BAR")
+        self.assertEqual(a.kind, "inheritance: =>")
+
+    def test_numbered_inheritance(self):
+        a = Association(r"/XT1\ FOO => BAR")
+        self.assertEqual(a.name, "XT1")
+        self.assertEqual(a.name_view, "XT")
+        self.assertEqual(a.legs[0].entity_name, "FOO")
+        self.assertEqual(a.legs[1].entity_name, "BAR")
+        self.assertEqual(a.kind, "inheritance: =>")
+        a = Association(r"/1\ FOO => BAR")
+        self.assertEqual(a.name, "1")
+        self.assertEqual(a.name_view, "")
         self.assertEqual(a.legs[0].entity_name, "FOO")
         self.assertEqual(a.legs[1].entity_name, "BAR")
         self.assertEqual(a.kind, "inheritance: =>")
