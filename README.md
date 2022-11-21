@@ -33,12 +33,12 @@ En sortie, le MCD (diagramme conceptuel) et le MLD (schéma relationnel) corresp
 
 ![](https://cdn.rawgit.com/laowantong/mocodo/master/doc/readme_1.svg)
 
-**Catégorie** (<ins>Code catégorie</ins>, Nom catégorie)  
-**Classe** (<ins>Num. classe</ins>, Num. salle)  
-**Élève** (<ins>Num. élève</ins>, Nom élève, _Num. classe_)  
-**Faire Cours** (<ins>_Num. classe_</ins>, <ins>_Num. prof_</ins>, Vol. horaire)  
-**Noter** (<ins>_Num. élève_</ins>, <ins>_Num. prof_</ins>, <ins>_Libellé matière_</ins>, <ins>_Date_</ins>, Note)  
-**Prof** (<ins>Num. prof</ins>, Nom prof, _Libellé matière_, _Code catégorie_)  
+**Catégorie** (<ins>Code catégorie</ins>, Nom catégorie)<br>
+**Classe** (<ins>Num. classe</ins>, Num. salle)<br>
+**Faire Cours** (<ins>_#Num. classe_</ins>, <ins>_#Num. prof_</ins>, Vol. horaire)<br>
+**Noter** (<ins>_#Num. élève_</ins>, <ins>_#Num. prof_</ins>, <ins>_#Libellé matière_</ins>, <ins>_#Date_</ins>, Note)<br>
+**Prof** (<ins>Num. prof</ins>, Nom prof, _#Code catégorie_, _#Libellé matière_)<br>
+**Élève** (<ins>Num. élève</ins>, Nom élève, _#Num. classe_)
 
 L'appel ci-dessus a également construit le dictionnaire des données:
 
