@@ -4,7 +4,7 @@
   "association_cartouche_text_color": "#000",
   "association_color": "#FFF",
   "association_stroke_color": "#000",
-  "background_color": "#FFF",
+  "background_color": null,
   "card_text_color": "#000",
   "entity_attribute_text_color": "#000",
   "entity_cartouche_color": "#FFF",
