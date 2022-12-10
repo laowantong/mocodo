@@ -2,16 +2,10 @@
   "extension": ".mld",
   "highlight": "plain",
   "compose_primary_key": "_{label}",
-  "compose_foreign_key": "#{label}-><MAY_BE_SUPPRESSED>{outer_source}</MAY_BE_SUPPRESSED>->{raw_label}",
+  "compose_foreign_key": "#{label}->{outer_source}->{raw_label}",
   "compose_outer_attribute": "{label}",
-  "compose_primary_foreign_key": "_#{label}-><MAY_BE_SUPPRESSED>{outer_source}</MAY_BE_SUPPRESSED>->{raw_label}",
+  "compose_primary_foreign_key": "_#{label}->{outer_source}->{raw_label}",
   "compose_relation": "{this_relation_name}: {columns}",
-  "transform_single_column_relation": [
-    {
-      "search": "(?s)(.+:) .+",
-      "replace": "\\1</TO_SUPPRESS>"
-    }
-  ],
   "transform_relation": [
     {
       "comment": "By default, the first attribute is an identifier",
@@ -21,24 +15,6 @@
   ],
   "compose_relational_schema": "%%mocodo\n{relations}",
   "transform_relational_schema": [
-    {
-      "search": "(?sm)#([^,\n]+)-><MAY_BE_SUPPRESSED>(.+?)</MAY_BE_SUPPRESSED>->.+?(?=[,\n])(.+?^\\2:</TO_SUPPRESS>)",
-      "replace": "\\1\\3",
-      "iterated": true
-    },
-    {
-      "search": "(?sm)(^(.+?):</TO_SUPPRESS>.+?)#([^,\n]+)-><MAY_BE_SUPPRESSED>\\2</MAY_BE_SUPPRESSED>->(.+?)(?=[,\n])",
-      "replace": "\\1\\3",
-      "iterated": true
-    },
-    {
-      "search": "(?m)^.+?</TO_SUPPRESS>\n?",
-      "replace": ""
-    },
-    {
-      "search": "</?MAY_BE_SUPPRESSED>",
-      "replace": ""
-    },
     {
       "search": "(?m)^:\n(?=:)",
       "replace": ":"
