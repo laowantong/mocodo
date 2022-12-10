@@ -4,6 +4,10 @@ from .attribute import *
 class Entity:
     def __init__(self, clause):
         (name, attribute_labels) = clause.split(":", 1)
+        self.is_deletable = True
+        if name.startswith("+"):
+            self.is_deletable = False
+            name = name[1:]
         self.name = name.strip().replace("\\", "")
         self.attribute_labels = outer_split(attribute_labels)
         self.name_view = self.name[:-1] if self.name[-1].isdigit() else self.name  # get rid of single digit suffix, if any

@@ -19,16 +19,16 @@ class relationsTest(unittest.TestCase):
     
     def test_character_cases(self):
         clauses = """
-            Riot: clue
+            Riot: clue, protect_riot
             Into, 11 Form, 1N Riot: goat
             Form: land, hide
             Tuck, 1N Read, 1N Form: thin
-            Read: wage
+            Read: wage, protect_read
         """
         text = """
             Form (_land_, hide, #clue, goat)
-            Read (_wage_)
-            Riot (_clue_)
+            Read (_wage_, protect_read)
+            Riot (_clue_, protect_riot)
             Tuck (_#wage_, _#land_, thin)
         """.strip().replace("    ", "")
         t = Relations(Mcd(clauses.split("\n"), params), params)
@@ -70,17 +70,17 @@ class relationsTest(unittest.TestCase):
 
     def test_attribute_nature_simple(self):
         clauses = """
-            Riot: clue
+            Riot: clue, protect_riot
             Into, 11 Form, 1N Riot: goat
             Form: land, hide
             Tuck, 1N Read, 1N Form: thin
-            Read: wage
+            Read: wage, protect_read
         """
         t = Relations(Mcd(clauses.split("\n"), params), params)
         text = """
             Form (_land_, hide, #clue, goat)
-            Read (_wage_)
-            Riot (_clue_)
+            Read (_wage_, protect_read)
+            Riot (_clue_, protect_riot)
             Tuck (_#wage_, _#land_, thin)
         """.strip().replace("    ", "")
         self.assertEqual(t.get_text(minimal_template), text)
@@ -110,21 +110,21 @@ class relationsTest(unittest.TestCase):
 
     def test_attribute_nature_complex(self):
         clauses = """
-            Riot: clue
+            Riot: clue, protect_riot
             Walk, 1N Riot, _11 Hour
             Hour: book
             Poll, 1N Cast, /1N Hour
-            Cast: mere
+            Cast: mere, protect_cast
             [Army], 1N Busy, 01 Cast
-            Busy: fail
+            Busy: fail, protect_busy
         """
         text = """
             Army (_#mere_, #fail)
-            Busy (_fail_)
-            Cast (_mere_)
+            Busy (_fail_, protect_busy)
+            Cast (_mere_, protect_cast)
             Hour (_#clue_, _book_)
             Poll (_#mere_, #clue, #book)
-            Riot (_clue_)
+            Riot (_clue_, protect_riot)
         """.strip().replace("    ", "")
         t = Relations(Mcd(clauses.split("\n"), params), params)
         self.assertEqual(t.get_text(minimal_template), text)
@@ -569,7 +569,7 @@ class relationsTest(unittest.TestCase):
     
     def test_weak_entities_strengthened_by_several_entities(self):
         clauses = """
-            Baby: Soon
+            Baby: Soon, protect_baby
             Yard, _11 Unit, ON Baby: Hall
             
             :
@@ -580,7 +580,7 @@ class relationsTest(unittest.TestCase):
             Ever, _11 Unit, 1N Item: Tour
         """
         expected = """
-            Baby (_Soon_)
+            Baby (_Soon_, protect_baby)
             Item (_Norm_, Wash)
             Unit (_#Norm_, _#Soon_, _Folk_, Peer, Hall, Tour)
         """.strip().replace("    ", "")
@@ -788,7 +788,6 @@ class relationsTest(unittest.TestCase):
         self.assertEqual(d["relations"][0]["columns"][3]["attribute"], "quantité viande")
         self.assertEqual(d["relations"][0]["columns"][3]["nature"], "deleted_child_attribute")
 
-
     def test_inheritance_leftwards_simple_arrow_with_left_arrow(self):
         clauses = """
             /\ ANIMAL <-< CARNIVORE, HERBIVORE: type
@@ -863,14 +862,68 @@ class relationsTest(unittest.TestCase):
             :
         """
         text = """
-            Abonnées ()
-            Inscrites ()
             Invitées (_#idU_, adresseIP)
             Utilisatrices (_idU_, email, catégorie)
             UtilisatricesPlus (_#idU_, nom, prénom, catégorie)
         """.strip().replace("    ", "")
         t = Relations(Mcd(clauses.split("\n"), params), params)
         self.assertEqual(t.get_text(minimal_template), text)
+
+    def test_delete_deletable_tables(self):
+        clauses = """
+            Prof: Num. prof, Nom prof
+            Enseigner, 1N Prof, 1N Élève
+            Élève: Num. élève, Nom élève
+
+            Position: Latitude, _Longitude
+            Évaluer, 1N Élève, 0N Prof, 0N Position, 1N Date: Note
+            Date: Date
+            DF, 11 Élève, 0N Date
+        """
+        text = """
+            Enseigner (_#Num. prof_, _#Num. élève_)
+            Prof (_Num. prof_, Nom prof)
+            Élève (_Num. élève_, Nom élève, Date)
+            Évaluer (_#Num. élève_, _#Num. prof_, _Latitude_, _Longitude_, _Date_, Note)
+        """.strip().replace("    ", "")
+        t = Relations(Mcd(clauses.split("\n"), params), params)
+        self.assertEqual(t.get_text(minimal_template), text)
+        d = json.loads(t.get_text(json_template))
+        self.assertEqual(d["relations"][2]["columns"][2]["attribute"], "Date")
+        self.assertEqual(d["relations"][2]["columns"][2]["nature"], "naturalized_foreign_key")
+        self.assertEqual(d["relations"][3]["columns"][2]["attribute"], "Latitude")
+        self.assertEqual(d["relations"][3]["columns"][2]["nature"], "primary_naturalized_foreign_key")
+        self.assertEqual(d["relations"][3]["columns"][4]["attribute"], "Date")
+        self.assertEqual(d["relations"][3]["columns"][4]["nature"], "primary_naturalized_foreign_key")
+
+    def test_keep_deletable_tables(self):
+        clauses = """
+            +Prof: Num. prof, Nom prof
+            Enseigner, 1N Prof, 1N Élève
+            Élève: Num. élève, Nom élève
+            +Position: Latitude, _Longitude
+            Évaluer, 1N Élève, 0N Prof, 0N Position, 1N Date: Note
+            +Date: Date
+            DF, 11 Élève, 0N Date
+        """
+        text = """
+            Date (_Date_)
+            Enseigner (_#Num. prof_, _#Num. élève_)
+            Position (_Latitude_, _Longitude_)
+            Prof (_Num. prof_, Nom prof)
+            Élève (_Num. élève_, Nom élève, #Date)
+            Évaluer (_#Num. élève_, _#Num. prof_, _#Latitude_, _#Longitude_, _#Date_, Note)
+        """.strip().replace("    ", "")
+        t = Relations(Mcd(clauses.split("\n"), params), params)
+        self.assertEqual(t.get_text(minimal_template), text)
+        d = json.loads(t.get_text(json_template))
+        self.assertEqual(d["relations"][4]["columns"][2]["attribute"], "Date")
+        self.assertEqual(d["relations"][4]["columns"][2]["nature"], "foreign_key")
+        self.assertEqual(d["relations"][5]["columns"][2]["attribute"], "Latitude")
+        self.assertEqual(d["relations"][5]["columns"][2]["nature"], "primary_foreign_key")
+        self.assertEqual(d["relations"][5]["columns"][4]["attribute"], "Date")
+        self.assertEqual(d["relations"][5]["columns"][4]["nature"], "primary_foreign_key")
+    
 
 if __name__ == '__main__':
     unittest.main()

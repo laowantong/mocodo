@@ -49,16 +49,11 @@ ESPÈCE: code espèce, libellé
 :::
 
 
-::
-OCCUPE: #code espèce->ANIMAL->code espèce, _#nom->ANIMAL->nom, _num. enclos, #date début->PÉRIODE->date début, #date fin->PÉRIODE->date fin
+:::
+OCCUPE: #code espèce->ANIMAL->code espèce, _#nom->ANIMAL->nom, _num. enclos, date début, date fin
 :
 ANIMAL: #code espèce->ESPÈCE->code espèce, _nom, sexe, date naissance, date décès, #code espèce mère->ANIMAL->code espèce, #nom mère->ANIMAL->nom, type alimentation, CARNIVORE, quantité viande, HERBIVORE, plante préférée
 :
-
-
-:::
-PÉRIODE: date début, _date fin
-:::
 ```
 
 ### `debug.json`
@@ -78,22 +73,19 @@ PÉRIODE: date début, _date fin
 | ANIMAL | quantité viande | `deleted_child_attribute` | CARNIVORE | None |
 | ANIMAL | HERBIVORE | `deleted_child_entity_name` | HERBIVORE | HERBIVORE |
 | ANIMAL | plante préférée | `deleted_child_attribute` | HERBIVORE | None |
-| ENCLOS | num. enclos | `primary_key` | None | None |
 | ESPÈCE | code espèce | `primary_key` | None | None |
 | ESPÈCE | libellé | `normal_attribute` | None | None |
 | OCCUPE | code espèce | `primary_foreign_key` | ANIMAL | ANIMAL |
 | OCCUPE | nom | `primary_foreign_key` | ANIMAL | ANIMAL |
-| OCCUPE | num. enclos | `primary_foreign_key` | ENCLOS | ENCLOS |
-| OCCUPE | date début | `demoted_foreign_key` | PÉRIODE | PÉRIODE |
-| OCCUPE | date fin | `demoted_foreign_key` | PÉRIODE | PÉRIODE |
+| OCCUPE | num. enclos | `primary_key` | ENCLOS | ENCLOS |
+| OCCUPE | date début | `normal_attribute` | PÉRIODE | PÉRIODE |
+| OCCUPE | date fin | `normal_attribute` | PÉRIODE | PÉRIODE |
 | PEUT COHABITER AVEC | code espèce | `primary_foreign_key` | ESPÈCE | ESPÈCE |
 | PEUT COHABITER AVEC | code espèce commensale | `primary_foreign_key` | ESPÈCE | ESPÈCE |
 | PEUT COHABITER AVEC | nb. max. commensaux | `association_attribute` | None | None |
 | PEUT VIVRE DANS | code espèce | `primary_foreign_key` | ESPÈCE | ESPÈCE |
-| PEUT VIVRE DANS | num. enclos | `primary_foreign_key` | ENCLOS | ENCLOS |
+| PEUT VIVRE DANS | num. enclos | `primary_key` | ENCLOS | ENCLOS |
 | PEUT VIVRE DANS | nb. max. congénères | `association_attribute` | None | None |
-| PÉRIODE | date début | `primary_key` | None | None |
-| PÉRIODE | date fin | `primary_key` | None | None |
 ```
 
 ### `mysql.json`
@@ -117,13 +109,6 @@ CREATE TABLE `ANIMAL` (
   `plante_préférée` VARCHAR(42),
   PRIMARY KEY (`code_espèce`, `nom`)
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
-
-/*
-CREATE TABLE `ENCLOS` (
-  `num_enclos` VARCHAR(42),
-  PRIMARY KEY (`num_enclos`)
-) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
-*/
 
 CREATE TABLE `ESPÈCE` (
   `code_espèce` VARCHAR(42),
@@ -154,20 +139,11 @@ CREATE TABLE `PEUT_VIVRE_DANS` (
   PRIMARY KEY (`code_espèce`, `num_enclos`)
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
-CREATE TABLE `PÉRIODE` (
-  `date_début` VARCHAR(42),
-  `date_fin` VARCHAR(42),
-  PRIMARY KEY (`date_début`, `date_fin`)
-) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
-
 ALTER TABLE `ANIMAL` ADD FOREIGN KEY (`code_espèce mère`, `nom mère`) REFERENCES `ANIMAL` (`code_espèce`, `nom`);
 ALTER TABLE `ANIMAL` ADD FOREIGN KEY (`code_espèce`) REFERENCES `ESPÈCE` (`code_espèce`);
-ALTER TABLE `OCCUPE` ADD FOREIGN KEY (`date_début`, `date_fin`) REFERENCES `PÉRIODE` (`date_début`, `date_fin`);
--- ALTER TABLE `OCCUPE` ADD FOREIGN KEY (`num_enclos`) REFERENCES `ENCLOS` (`num_enclos`);
 ALTER TABLE `OCCUPE` ADD FOREIGN KEY (`code_espèce`, `nom`) REFERENCES `ANIMAL` (`code_espèce`, `nom`);
 ALTER TABLE `PEUT_COHABITER_AVEC` ADD FOREIGN KEY (`code_espèce commensale`) REFERENCES `ESPÈCE` (`code_espèce`);
 ALTER TABLE `PEUT_COHABITER_AVEC` ADD FOREIGN KEY (`code_espèce`) REFERENCES `ESPÈCE` (`code_espèce`);
--- ALTER TABLE `PEUT_VIVRE_DANS` ADD FOREIGN KEY (`num_enclos`) REFERENCES `ENCLOS` (`num_enclos`);
 ALTER TABLE `PEUT_VIVRE_DANS` ADD FOREIGN KEY (`code_espèce`) REFERENCES `ESPÈCE` (`code_espèce`);
 ```
 
@@ -175,14 +151,10 @@ ALTER TABLE `PEUT_VIVRE_DANS` ADD FOREIGN KEY (`code_espèce`) REFERENCES `ESPÈ
 
 ```markdown
 **ANIMAL** (<ins>_#code espèce_</ins>, <ins>nom</ins>, sexe, date naissance, date décès, _#code espèce mère_, _#nom mère_, type alimentation, CARNIVORE, quantité viande, HERBIVORE, plante préférée)<br>
-<!--
-**ENCLOS** (<ins>num. enclos</ins>)<br>
--->
 **ESPÈCE** (<ins>code espèce</ins>, libellé)<br>
-**OCCUPE** (<ins>_#code espèce_</ins>, <ins>_#nom_</ins>, <ins>_#num. enclos_</ins>, _#date début_, _#date fin_)<br>
+**OCCUPE** (<ins>_#code espèce_</ins>, <ins>_#nom_</ins>, <ins>num. enclos</ins>, date début, date fin)<br>
 **PEUT COHABITER AVEC** (<ins>_#code espèce_</ins>, <ins>_#code espèce commensale_</ins>, nb. max. commensaux)<br>
-**PEUT VIVRE DANS** (<ins>_#code espèce_</ins>, <ins>_#num. enclos_</ins>, nb. max. congénères)<br>
-**PÉRIODE** (<ins>date début</ins>, <ins>date fin</ins>)
+**PEUT VIVRE DANS** (<ins>_#code espèce_</ins>, <ins>num. enclos</ins>, nb. max. congénères)
 ```
 
 ### `markdown_verbose.json`
@@ -192,16 +164,13 @@ ALTER TABLE `PEUT_VIVRE_DANS` ADD FOREIGN KEY (`code_espèce`) REFERENCES `ESPÈ
 - Le champ _code espèce_ fait partie de la clé primaire de la table. Il a migré à partir de l'entité _ESPÈCE_ pour renforcer l'identifiant.  
 - Le champ _nom_ fait partie de la clé primaire de la table. C'était déjà un identifiant de l'entité _ANIMAL_.  
 - Les champs _sexe_, _date naissance_ et _date décès_ étaient déjà de simples attributs de l'entité _ANIMAL_.  
-- Les champs _code espèce mère_ et _nom mère_ sont des clés étrangères. Ils ont migré par l'association de dépendance fonctionnelle _A MÈRE_ à partir de l'entité _ANIMAL_ en perdant leur caractère identifiant.  
+- Le champ _code espèce mère_ est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle _A MÈRE_ à partir de l'entité _ANIMAL_ en perdant son caractère identifiant.  
+- Le champ _nom mère_ est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle _A MÈRE_ à partir de l'entité _ANIMAL_ en perdant son caractère identifiant.  
 - Un champ entier _type alimentation_ est ajouté pour indiquer la nature de la spécialisation. Il est interprété comme un code binaire : bit 1 pour la première entité-fille, bit 2 pour la deuxième, etc. Peut être vide, du fait de l'absence de contrainte de totalité.  
 - Un champ booléen _CARNIVORE_ est ajouté pour indiquer si on a affaire ou pas à la spécialisation de même nom.  
 - Le champ _quantité viande_ a migré à partir de l'entité-fille _CARNIVORE_ (supprimée).  
 - Un champ booléen _HERBIVORE_ est ajouté pour indiquer si on a affaire ou pas à la spécialisation de même nom.  
 - Le champ _plante préférée_ a migré à partir de l'entité-fille _HERBIVORE_ (supprimée).  
-
-**ENCLOS** (<ins>num. enclos</ins>)  
-- **Avertissement.** Cette table ne comportant qu'un seul champ, on peut envisager de la supprimer.
-- Le champ _num. enclos_ constitue la clé primaire de la table. C'était déjà un identifiant de l'entité _ENCLOS_.  
 
 **ESPÈCE** (<ins>code espèce</ins>, libellé)  
 - Le champ _code espèce_ constitue la clé primaire de la table. C'était déjà un identifiant de l'entité _ESPÈCE_.  
@@ -209,9 +178,9 @@ ALTER TABLE `PEUT_VIVRE_DANS` ADD FOREIGN KEY (`code_espèce`) REFERENCES `ESPÈ
 
 **OCCUPE** (<ins>_#code espèce_</ins>, <ins>_#nom_</ins>, <ins>_#num. enclos_</ins>, _#date début_, _#date fin_)  
 - Les champs _code espèce_ et _nom_ font partie de la clé primaire de la table. Ce sont des clés étrangères qui ont migré directement à partir de l'entité _ANIMAL_.  
-- Le champ _num. enclos_ fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité _ENCLOS_.  
-- Le champ _date début_ est une clé étrangère issue de l'entité _PÉRIODE_. Il devrait normalement faire partie de l'identifiant de _OCCUPE_, mais a été rétrogradé explicitement au rang de simple attribut.  
-- Le champ _date fin_ est une clé étrangère issue de l'entité _PÉRIODE_. Il devrait normalement faire partie de l'identifiant de _OCCUPE_, mais a été rétrogradé explicitement au rang de simple attribut.  
+- Le champ _num. enclos_ fait partie de la clé primaire de la table. Sa table d'origine (_ENCLOS_) ayant été supprimée, il n'est pas considéré comme clé étrangère.  
+- Le champ _date début_ est un simple attribut. Sa table d'origine, _PÉRIODE_, ayant été supprimée, il n'est pas considéré comme clé étrangère. Il devrait normalement faire partie de l'identifiant de _OCCUPE_, mais a été rétrogradé explicitement au rang de simple attribut.  
+- Le champ _date fin_ est un simple attribut. Sa table d'origine, _PÉRIODE_, ayant été supprimée, il n'est pas considéré comme clé étrangère. Il devrait normalement faire partie de l'identifiant de _OCCUPE_, mais a été rétrogradé explicitement au rang de simple attribut.  
 
 **PEUT COHABITER AVEC** (<ins>_#code espèce_</ins>, <ins>_#code espèce commensale_</ins>, nb. max. commensaux)  
 - Les champs _code espèce_ et _code espèce commensale_ constituent la clé primaire de la table. Ce sont des clés étrangères qui ont migré directement à partir de l'entité _ESPÈCE_.  
@@ -219,11 +188,12 @@ ALTER TABLE `PEUT_VIVRE_DANS` ADD FOREIGN KEY (`code_espèce`) REFERENCES `ESPÈ
 
 **PEUT VIVRE DANS** (<ins>_#code espèce_</ins>, <ins>_#num. enclos_</ins>, nb. max. congénères)  
 - Le champ _code espèce_ fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité _ESPÈCE_.  
-- Le champ _num. enclos_ fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité _ENCLOS_.  
+- Le champ _num. enclos_ fait partie de la clé primaire de la table. Sa table d'origine (_ENCLOS_) ayant été supprimée, il n'est pas considéré comme clé étrangère.  
 - Le champ _nb. max. congénères_ était déjà un simple attribut de l'association _PEUT VIVRE DANS_.  
 
-**PÉRIODE** (<ins>date début</ins>, <ins>date fin</ins>)  
-- Les champs _date début_ et _date fin_ constituent la clé primaire de la table. C'était déjà des identifiants de l'entité _PÉRIODE_.
+---
+
+**NB.** Les tables _ENCLOS_ et _PÉRIODE_ ont été supprimées car elles étaient réduites à la clé primaire de leur entité d'origine. Pour empêcher cette supression, préfixez d'un « + » le nom de l'entité.
 ```
 
 ### `oracle.json`
@@ -244,13 +214,6 @@ CREATE TABLE "ANIMAL" (
   "plante_préférée" VARCHAR(42),
   PRIMARY KEY ("code_espèce", "nom")
 );
-
-/*
-CREATE TABLE "ENCLOS" (
-  "num_enclos" VARCHAR(42),
-  PRIMARY KEY ("num_enclos")
-);
-*/
 
 CREATE TABLE "ESPÈCE" (
   "code_espèce" VARCHAR(42),
@@ -281,20 +244,11 @@ CREATE TABLE "PEUT_VIVRE_DANS" (
   PRIMARY KEY ("code_espèce", "num_enclos")
 );
 
-CREATE TABLE "PÉRIODE" (
-  "date_début" VARCHAR(42),
-  "date_fin" VARCHAR(42),
-  PRIMARY KEY ("date_début", "date_fin")
-);
-
 ALTER TABLE "ANIMAL" ADD FOREIGN KEY ("code_espèce mère", "nom mère") REFERENCES "ANIMAL" ("code_espèce", "nom");
 ALTER TABLE "ANIMAL" ADD FOREIGN KEY ("code_espèce") REFERENCES "ESPÈCE" ("code_espèce");
-ALTER TABLE "OCCUPE" ADD FOREIGN KEY ("date_début", "date_fin") REFERENCES "PÉRIODE" ("date_début", "date_fin");
--- ALTER TABLE "OCCUPE" ADD FOREIGN KEY ("num_enclos") REFERENCES "ENCLOS" ("num_enclos");
 ALTER TABLE "OCCUPE" ADD FOREIGN KEY ("code_espèce", "nom") REFERENCES "ANIMAL" ("code_espèce", "nom");
 ALTER TABLE "PEUT_COHABITER_AVEC" ADD FOREIGN KEY ("code_espèce commensale") REFERENCES "ESPÈCE" ("code_espèce");
 ALTER TABLE "PEUT_COHABITER_AVEC" ADD FOREIGN KEY ("code_espèce") REFERENCES "ESPÈCE" ("code_espèce");
--- ALTER TABLE "PEUT_VIVRE_DANS" ADD FOREIGN KEY ("num_enclos") REFERENCES "ENCLOS" ("num_enclos");
 ALTER TABLE "PEUT_VIVRE_DANS" ADD FOREIGN KEY ("code_espèce") REFERENCES "ESPÈCE" ("code_espèce");
 ```
 
@@ -346,16 +300,6 @@ ALTER TABLE "PEUT_VIVRE_DANS" ADD FOREIGN KEY ("code_espèce") REFERENCES "ESPÈ
 </div>
 
 <div>
-  <details><summary><span class='relation'>ENCLOS</span> (
-    <span title='primary_key (None)' class='primary'>num. enclos</span>
-  )</summary>
-  <ul>
-    <li><strong>Avertissement.</strong> Cette table ne comportant qu'un seul champ, on peut envisager de la supprimer.</li>
-    <li>Le champ <i>num. enclos</i> constitue la clé primaire de la table. C'était déjà un identifiant de l'entité <i>ENCLOS</i>.</li>
-  </ul></details>
-</div>
-
-<div>
   <details><summary><span class='relation'>ESPÈCE</span> (
     <span title='primary_key (None)' class='primary'>code espèce</span>,
     <span title='normal_attribute (None)' class='normal'>libellé</span>
@@ -370,15 +314,15 @@ ALTER TABLE "PEUT_VIVRE_DANS" ADD FOREIGN KEY ("code_espèce") REFERENCES "ESPÈ
   <details><summary><span class='relation'>OCCUPE</span> (
     <span title='primary_foreign_key (ANIMAL)' class='foreign primary'>#code espèce</span>,
     <span title='primary_foreign_key (ANIMAL)' class='foreign primary'>#nom</span>,
-    <span title='primary_foreign_key (ENCLOS)' class='foreign primary'>#num. enclos</span>,
-    <span title='demoted_foreign_key (PÉRIODE)' class='foreign'>#date début</span>,
-    <span title='demoted_foreign_key (PÉRIODE)' class='foreign'>#date fin</span>
+    <span title='primary_naturalized_foreign_key (ENCLOS)' class='primary'>num. enclos</span>,
+    <span title='demoted_naturalized_foreign_key (PÉRIODE)' class='normal'>date début</span>,
+    <span title='demoted_naturalized_foreign_key (PÉRIODE)' class='normal'>date fin</span>
   )</summary>
   <ul>
     <li>Les champs <i>code espèce</i> et <i>nom</i> font partie de la clé primaire de la table. Ce sont des clés étrangères qui ont migré directement à partir de l'entité <i>ANIMAL</i>.</li>
-    <li>Le champ <i>num. enclos</i> fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité <i>ENCLOS</i>.</li>
-    <li>Le champ <i>date début</i> est une clé étrangère issue de l'entité <i>PÉRIODE</i>. Il devrait normalement faire partie de l'identifiant de <i>OCCUPE</i>, mais a été rétrogradé explicitement au rang de simple attribut.</li>
-    <li>Le champ <i>date fin</i> est une clé étrangère issue de l'entité <i>PÉRIODE</i>. Il devrait normalement faire partie de l'identifiant de <i>OCCUPE</i>, mais a été rétrogradé explicitement au rang de simple attribut.</li>
+    <li>Le champ <i>num. enclos</i> fait partie de la clé primaire de la table. Sa table d'origine (<i>ENCLOS</i>) ayant été supprimée, il n'est pas considéré comme clé étrangère.</li>
+    <li>Le champ <i>date début</i> est un simple attribut. Sa table d'origine, <i>PÉRIODE</i>, ayant été supprimée, il n'est pas considéré comme clé étrangère. Il devrait normalement faire partie de l'identifiant de <i>OCCUPE</i>, mais a été rétrogradé explicitement au rang de simple attribut.</li>
+    <li>Le champ <i>date fin</i> est un simple attribut. Sa table d'origine, <i>PÉRIODE</i>, ayant été supprimée, il n'est pas considéré comme clé étrangère. Il devrait normalement faire partie de l'identifiant de <i>OCCUPE</i>, mais a été rétrogradé explicitement au rang de simple attribut.</li>
   </ul></details>
 </div>
 
@@ -397,26 +341,16 @@ ALTER TABLE "PEUT_VIVRE_DANS" ADD FOREIGN KEY ("code_espèce") REFERENCES "ESPÈ
 <div>
   <details><summary><span class='relation'>PEUT VIVRE DANS</span> (
     <span title='primary_foreign_key (ESPÈCE)' class='foreign primary'>#code espèce</span>,
-    <span title='primary_foreign_key (ENCLOS)' class='foreign primary'>#num. enclos</span>,
+    <span title='primary_naturalized_foreign_key (ENCLOS)' class='primary'>num. enclos</span>,
     <span title='association_attribute (None)' class='normal'>nb. max. congénères</span>
   )</summary>
   <ul>
     <li>Le champ <i>code espèce</i> fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité <i>ESPÈCE</i>.</li>
-    <li>Le champ <i>num. enclos</i> fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité <i>ENCLOS</i>.</li>
+    <li>Le champ <i>num. enclos</i> fait partie de la clé primaire de la table. Sa table d'origine (<i>ENCLOS</i>) ayant été supprimée, il n'est pas considéré comme clé étrangère.</li>
     <li>Le champ <i>nb. max. congénères</i> était déjà un simple attribut de l'association <i>PEUT VIVRE DANS</i>.</li>
   </ul></details>
 </div>
-
-<div>
-  <details><summary><span class='relation'>PÉRIODE</span> (
-    <span title='primary_key (None)' class='primary'>date début</span>,
-    <span title='primary_key (None)' class='primary'>date fin</span>
-  )</summary>
-  <ul>
-    <li>Les champs <i>date début</i> et <i>date fin</i> constituent la clé primaire de la table. C'était déjà des identifiants de l'entité <i>PÉRIODE</i>.</li>
-  </ul></details>
-</div>
-
+<br><hr><br><div><span><strong>NB.</strong> Les tables <i>ENCLOS</i> et <i>PÉRIODE</i> ont été supprimées car elles étaient réduites à la clé primaire de leur entité d'origine. Pour empêcher cette supression, préfixez d'un « + » le nom de l'entité.
 </div>
 </body>
 </html>
@@ -445,13 +379,6 @@ CREATE TABLE "ANIMAL" (
   FOREIGN KEY ("code_espèce mère", "nom mère") REFERENCES "ANIMAL" ("code_espèce", "nom")
 );
 
-/*
-CREATE TABLE "ENCLOS" (
-  "num_enclos" VARCHAR(42),
-  PRIMARY KEY ("num_enclos")
-);
-*/
-
 CREATE TABLE "ESPÈCE" (
   "code_espèce" VARCHAR(42),
   "libellé" VARCHAR(42),
@@ -465,9 +392,7 @@ CREATE TABLE "OCCUPE" (
   "date_début" VARCHAR(42),
   "date_fin" VARCHAR(42),
   PRIMARY KEY ("code_espèce", "nom", "num_enclos"),
-  FOREIGN KEY ("code_espèce", "nom") REFERENCES "ANIMAL" ("code_espèce", "nom"),
-  -- FOREIGN KEY ("num_enclos") REFERENCES "ENCLOS" ("num_enclos"),
-  FOREIGN KEY ("date_début", "date_fin") REFERENCES "PÉRIODE" ("date_début", "date_fin")
+  FOREIGN KEY ("code_espèce", "nom") REFERENCES "ANIMAL" ("code_espèce", "nom")
 );
 
 CREATE TABLE "PEUT_COHABITER_AVEC" (
@@ -485,13 +410,6 @@ CREATE TABLE "PEUT_VIVRE_DANS" (
   "nb_max_congénères" VARCHAR(42),
   PRIMARY KEY ("code_espèce", "num_enclos"),
   FOREIGN KEY ("code_espèce") REFERENCES "ESPÈCE" ("code_espèce")
-  --, FOREIGN KEY ("num_enclos") REFERENCES "ENCLOS" ("num_enclos")
-);
-
-CREATE TABLE "PÉRIODE" (
-  "date_début" VARCHAR(42),
-  "date_fin" VARCHAR(42),
-  PRIMARY KEY ("date_début", "date_fin")
 );
 ```
 
@@ -503,6 +421,7 @@ CREATE TABLE "PÉRIODE" (
   "title_lowercase": "untitled",
   "title_uppercase": "UNTITLED",
   "title_titlecase": "Untitled",
+  "deleted_relations": ["ENCLOS", "PÉRIODE"],
   "relations": [
     {
       "this_relation_name": "ANIMAL",
@@ -802,39 +721,6 @@ CREATE TABLE "PÉRIODE" (
       ]
     },
     {
-      "this_relation_name": "ENCLOS",
-      "this_relation_name_lowercase": "enclos",
-      "this_relation_name_uppercase": "ENCLOS",
-      "this_relation_name_titlecase": "Enclos",
-      "is_forced": "False",
-      "columns": [
-        {
-          "attribute": "num. enclos",
-          "raw_label": "num. enclos",
-          "raw_label_lowercase": "num. enclos",
-          "raw_label_uppercase": "NUM. ENCLOS",
-          "raw_label_titlecase": "Num. enclos",
-          "disambiguation_number": null,
-          "label": "num. enclos",
-          "label_lowercase": "num. enclos",
-          "label_uppercase": "NUM. ENCLOS",
-          "label_titlecase": "Num. enclos",
-          "primary": true,
-          "nature": "primary_key",
-          "data_type": null,
-          "association_name": null,
-          "association_name_lower_case": null,
-          "association_name_uppercase": null,
-          "association_name_titlecase": null,
-          "leg_note": null,
-          "outer_source": null,
-          "outer_source_lowercase": null,
-          "outer_source_uppercase": null,
-          "outer_source_titlecase": null
-        }
-      ]
-    },
-    {
       "this_relation_name": "ESPÈCE",
       "this_relation_name_lowercase": "espèce",
       "this_relation_name_uppercase": "ESPÈCE",
@@ -958,7 +844,7 @@ CREATE TABLE "PÉRIODE" (
           "label_uppercase": "NUM. ENCLOS",
           "label_titlecase": "Num. enclos",
           "primary": true,
-          "nature": "primary_foreign_key",
+          "nature": "primary_naturalized_foreign_key",
           "data_type": null,
           "association_name": "OCCUPE",
           "association_name_lower_case": "occupe",
@@ -982,7 +868,7 @@ CREATE TABLE "PÉRIODE" (
           "label_uppercase": "DATE DÉBUT",
           "label_titlecase": "Date début",
           "primary": false,
-          "nature": "demoted_foreign_key",
+          "nature": "demoted_naturalized_foreign_key",
           "data_type": null,
           "association_name": "OCCUPE",
           "association_name_lower_case": "occupe",
@@ -1006,7 +892,7 @@ CREATE TABLE "PÉRIODE" (
           "label_uppercase": "DATE FIN",
           "label_titlecase": "Date fin",
           "primary": false,
-          "nature": "demoted_foreign_key",
+          "nature": "demoted_naturalized_foreign_key",
           "data_type": null,
           "association_name": "OCCUPE",
           "association_name_lower_case": "occupe",
@@ -1144,7 +1030,7 @@ CREATE TABLE "PÉRIODE" (
           "label_uppercase": "NUM. ENCLOS",
           "label_titlecase": "Num. enclos",
           "primary": true,
-          "nature": "primary_foreign_key",
+          "nature": "primary_naturalized_foreign_key",
           "data_type": null,
           "association_name": "PEUT VIVRE DANS",
           "association_name_lower_case": "peut vivre dans",
@@ -1181,63 +1067,6 @@ CREATE TABLE "PÉRIODE" (
           "outer_source_titlecase": null
         }
       ]
-    },
-    {
-      "this_relation_name": "PÉRIODE",
-      "this_relation_name_lowercase": "période",
-      "this_relation_name_uppercase": "PÉRIODE",
-      "this_relation_name_titlecase": "Période",
-      "is_forced": "False",
-      "columns": [
-        {
-          "attribute": "date début",
-          "raw_label": "date début",
-          "raw_label_lowercase": "date début",
-          "raw_label_uppercase": "DATE DÉBUT",
-          "raw_label_titlecase": "Date début",
-          "disambiguation_number": null,
-          "label": "date début",
-          "label_lowercase": "date début",
-          "label_uppercase": "DATE DÉBUT",
-          "label_titlecase": "Date début",
-          "primary": true,
-          "nature": "primary_key",
-          "data_type": null,
-          "association_name": null,
-          "association_name_lower_case": null,
-          "association_name_uppercase": null,
-          "association_name_titlecase": null,
-          "leg_note": null,
-          "outer_source": null,
-          "outer_source_lowercase": null,
-          "outer_source_uppercase": null,
-          "outer_source_titlecase": null
-        },
-        {
-          "attribute": "date fin",
-          "raw_label": "date fin",
-          "raw_label_lowercase": "date fin",
-          "raw_label_uppercase": "DATE FIN",
-          "raw_label_titlecase": "Date fin",
-          "disambiguation_number": null,
-          "label": "date fin",
-          "label_lowercase": "date fin",
-          "label_uppercase": "DATE FIN",
-          "label_titlecase": "Date fin",
-          "primary": true,
-          "nature": "primary_key",
-          "data_type": null,
-          "association_name": null,
-          "association_name_lower_case": null,
-          "association_name_uppercase": null,
-          "association_name_titlecase": null,
-          "leg_note": null,
-          "outer_source": null,
-          "outer_source_lowercase": null,
-          "outer_source_uppercase": null,
-          "outer_source_titlecase": null
-        }
-      ]
     }
   ]
 }
@@ -1255,13 +1084,14 @@ CREATE TABLE "PÉRIODE" (
 - quantité viande
 - HERBIVORE : _BOOLEAN_
 - plante préférée
-- num. enclos
 - code espèce
 - libellé
-- nb. max. commensaux
-- nb. max. congénères
+- num. enclos
 - date début
 - date fin
+- nb. max. commensaux
+- num. enclos
+- nb. max. congénères
 ```
 
 ### `html.json`
@@ -1295,13 +1125,6 @@ CREATE TABLE "PÉRIODE" (
     <span class='normal'>plante préférée</span>
   )
 </div>
-<!--
-<div>
-  <span class='relation'>ENCLOS</span> (
-    <span class='primary'>num. enclos</span>
-  )
-</div>
--->
 <div>
   <span class='relation'>ESPÈCE</span> (
     <span class='primary'>code espèce</span>,
@@ -1312,9 +1135,9 @@ CREATE TABLE "PÉRIODE" (
   <span class='relation'>OCCUPE</span> (
     <span class='foreign primary'>#code espèce</span>,
     <span class='foreign primary'>#nom</span>,
-    <span class='foreign primary'>#num. enclos</span>,
-    <span class='foreign'>#date début</span>,
-    <span class='foreign'>#date fin</span>
+    <span class='primary'>num. enclos</span>,
+    <span class='normal'>date début</span>,
+    <span class='normal'>date fin</span>
   )
 </div>
 <div>
@@ -1327,14 +1150,8 @@ CREATE TABLE "PÉRIODE" (
 <div>
   <span class='relation'>PEUT VIVRE DANS</span> (
     <span class='foreign primary'>#code espèce</span>,
-    <span class='foreign primary'>#num. enclos</span>,
+    <span class='primary'>num. enclos</span>,
     <span class='normal'>nb. max. congénères</span>
-  )
-</div>
-<div>
-  <span class='relation'>PÉRIODE</span> (
-    <span class='primary'>date début</span>,
-    <span class='primary'>date fin</span>
   )
 </div>
 </div>
@@ -1360,12 +1177,10 @@ CREATE TABLE "PÉRIODE" (
 
 \begin{mld}
   Animal & (\foreign{\prim{code espèce}}, \prim{nom}, \attr{sexe}, \attr{date naissance}, \attr{date décès}, \foreign{code espèce mère}, \foreign{nom mère}, \attr{type alimentation}, \attr{CARNIVORE}, \attr{quantité viande}, \attr{HERBIVORE}, \attr{plante préférée})\\
-% Enclos & (\prim{num. enclos})\\
   Espèce & (\prim{code espèce}, \attr{libellé})\\
-  Occupe & (\foreign{\prim{code espèce}}, \foreign{\prim{nom}}, \foreign{\prim{num. enclos}}, \foreign{date début}, \foreign{date fin})\\
+  Occupe & (\foreign{\prim{code espèce}}, \foreign{\prim{nom}}, \prim{num. enclos}, \attr{date début}, \attr{date fin})\\
   Peut cohabiter avec & (\foreign{\prim{code espèce}}, \foreign{\prim{code espèce commensale}}, \attr{nb. max. commensaux})\\
-  Peut vivre dans & (\foreign{\prim{code espèce}}, \foreign{\prim{num. enclos}}, \attr{nb. max. congénères})\\
-  Période & (\prim{date début}, \prim{date fin})\\
+  Peut vivre dans & (\foreign{\prim{code espèce}}, \prim{num. enclos}, \attr{nb. max. congénères})\\
 \end{mld}
 ```
 
@@ -1373,12 +1188,10 @@ CREATE TABLE "PÉRIODE" (
 
 ```plain
 ANIMAL (_#code espèce_, _nom_, sexe, date naissance, date décès, #code espèce mère, #nom mère, type alimentation, CARNIVORE, quantité viande, HERBIVORE, plante préférée)
-ENCLOS (_num. enclos_)
 ESPÈCE (_code espèce_, libellé)
-OCCUPE (_#code espèce_, _#nom_, _#num. enclos_, #date début, #date fin)
+OCCUPE (_#code espèce_, _#nom_, _num. enclos_, date début, date fin)
 PEUT COHABITER AVEC (_#code espèce_, _#code espèce commensale_, nb. max. commensaux)
-PEUT VIVRE DANS (_#code espèce_, _#num. enclos_, nb. max. congénères)
-PÉRIODE (_date début_, _date fin_)
+PEUT VIVRE DANS (_#code espèce_, _num. enclos_, nb. max. congénères)
 ```
 
 ### `txt2tags.json`
@@ -1389,12 +1202,10 @@ Généré par Mocodo
 %%mtime(%c)
 %!encoding: utf8
 - **ANIMAL** (__#code espèce__, __nom__, sexe, date naissance, date décès, #code espèce mère, #nom mère, type alimentation, CARNIVORE, quantité viande, HERBIVORE, plante préférée)
-%% - **ENCLOS** (__num. enclos__)
 - **ESPÈCE** (__code espèce__, libellé)
-- **OCCUPE** (__#code espèce__, __#nom__, __#num. enclos__, #date début, #date fin)
+- **OCCUPE** (__#code espèce__, __#nom__, __num. enclos__, date début, date fin)
 - **PEUT COHABITER AVEC** (__#code espèce__, __#code espèce commensale__, nb. max. commensaux)
-- **PEUT VIVRE DANS** (__#code espèce__, __#num. enclos__, nb. max. congénères)
-- **PÉRIODE** (__date début__, __date fin__)
+- **PEUT VIVRE DANS** (__#code espèce__, __num. enclos__, nb. max. congénères)
 ```
 
 ### `postgresql.json`
@@ -1418,13 +1229,6 @@ CREATE TABLE ANIMAL (
   plante_préférée VARCHAR(42),
   PRIMARY KEY (code_espèce, nom)
 );
-
-/*
-CREATE TABLE ENCLOS (
-  num_enclos VARCHAR(42),
-  PRIMARY KEY (num_enclos)
-);
-*/
 
 CREATE TABLE ESPÈCE (
   code_espèce VARCHAR(42),
@@ -1455,20 +1259,11 @@ CREATE TABLE PEUT_VIVRE_DANS (
   PRIMARY KEY (code_espèce, num_enclos)
 );
 
-CREATE TABLE PÉRIODE (
-  date_début VARCHAR(42),
-  date_fin VARCHAR(42),
-  PRIMARY KEY (date_début, date_fin)
-);
-
 ALTER TABLE ANIMAL ADD FOREIGN KEY (code_espèce mère, nom mère) REFERENCES ANIMAL (code_espèce, nom);
 ALTER TABLE ANIMAL ADD FOREIGN KEY (code_espèce) REFERENCES ESPÈCE (code_espèce);
-ALTER TABLE OCCUPE ADD FOREIGN KEY (date_début, date_fin) REFERENCES PÉRIODE (date_début, date_fin);
--- ALTER TABLE OCCUPE ADD FOREIGN KEY (num_enclos) REFERENCES ENCLOS (num_enclos);
 ALTER TABLE OCCUPE ADD FOREIGN KEY (code_espèce, nom) REFERENCES ANIMAL (code_espèce, nom);
 ALTER TABLE PEUT_COHABITER_AVEC ADD FOREIGN KEY (code_espèce commensale) REFERENCES ESPÈCE (code_espèce);
 ALTER TABLE PEUT_COHABITER_AVEC ADD FOREIGN KEY (code_espèce) REFERENCES ESPÈCE (code_espèce);
--- ALTER TABLE PEUT_VIVRE_DANS ADD FOREIGN KEY (num_enclos) REFERENCES ENCLOS (num_enclos);
 ALTER TABLE PEUT_VIVRE_DANS ADD FOREIGN KEY (code_espèce) REFERENCES ESPÈCE (code_espèce);
 ```
 

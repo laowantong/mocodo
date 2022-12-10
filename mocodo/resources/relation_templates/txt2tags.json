@@ -5,11 +5,5 @@
   "compose_foreign_key": "#{label}",
   "compose_primary_foreign_key": "__#{label}__",
   "compose_relation": "- **{this_relation_name}** ({columns})",
-  "transform_single_column_relation": [
-    {
-      "search": "(.+)",
-      "replace": "%% \\1"
-    }
-  ],
   "compose_relational_schema": "{title}\nGénéré par Mocodo\n%%mtime(%c)\n%!encoding: utf8\n{relations}"
 }
