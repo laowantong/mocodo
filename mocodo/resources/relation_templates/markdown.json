@@ -8,6 +8,7 @@
   "relation_separator": "<br>\n",
   "transform_relational_schema": [
     {
+      "order": 100,
       "search": "\n--><br>\n",
       "replace": "\n-->\n"
     }

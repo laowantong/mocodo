@@ -14,22 +14,27 @@
   "compose_relational_schema": "{{\n  \"title\": \"{title}\",\n  \"title_lowercase\": \"{title_lowercase}\",\n  \"title_uppercase\": \"{title_uppercase}\",\n  \"title_titlecase\": \"{title_titlecase}\"{deleted_relations},\n  \"relations\": [\n    {relations}\n  ]\n}}",
   "transform_relational_schema": [
     {
+      "order": 100,
       "search": "MOCODO_REPLACE_True",
       "replace": "true"
     },
     {
+      "order": 200,
       "search": "MOCODO_REPLACE_False",
       "replace": "false"
     },
     {
+      "order": 300,
       "search": "MOCODO_REPLACE_None",
       "replace": "null"
     },
     {
+      "order": 400,
       "search": "MOCODO_REPLACE_\"None\"",
       "replace": "null"
     },
     {
+      "order": 500,
       "search": "MOCODO_REPLACE_",
       "replace": ""
     }

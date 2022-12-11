@@ -3,28 +3,34 @@
   "highlight": "html",
   "transform_attribute": [
     {
+      "order": 100,
       "search": "&",
       "replace": "&amp;"
     },
     {
+      "order": 200,
       "search": ">",
       "replace": "&gt;"
     },
     {
+      "order": 300,
       "search": "<",
       "replace": "&lt;"
     }
   ],
   "transform_relation_name": [
     {
+      "order": 100,
       "search": "&",
       "replace": "&amp;"
     },
     {
+      "order": 200,
       "search": ">",
       "replace": "&gt;"
     },
     {
+      "order": 300,
       "search": "<",
       "replace": "&lt;"
     }
