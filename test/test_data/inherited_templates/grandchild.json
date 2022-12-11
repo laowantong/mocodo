@@ -1,0 +1,30 @@
+{
+    "parent": "child",
+    "buzz": "reupdated_value",
+    "biz": [
+        {
+            "foo": "bar",
+            "baz": "qux"
+        },
+        {
+            "foo": "bar",
+            "baz": "qux"
+        }
+    ],
+    "baz": [
+        {
+            "order": 1,
+            "name": "foo"
+        },
+        {
+            "order": 20,
+            "name": "bar"
+        },
+        {
+            "order": 5
+        },
+        {
+            "order": 35
+        }
+    ]
+}

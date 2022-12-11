@@ -33,29 +33,6 @@ ENCLOS: num. enclos
 
 ## Relational output
 
-### `diagram.json`
-
-```plain
-%%mocodo
-:::
-PEUT COHABITER AVEC: #code espèce->ESPÈCE->code espèce, _#code espèce commensale->ESPÈCE->code espèce, nb. max. commensaux
-:::
-
-
-:
-PEUT VIVRE DANS: #code espèce->ESPÈCE->code espèce, _num. enclos, nb. max. congénères
-:
-ESPÈCE: code espèce, libellé
-:::
-
-
-:::
-OCCUPE: #code espèce->ANIMAL->code espèce, _#nom->ANIMAL->nom, _num. enclos, date début, date fin
-:
-ANIMAL: #code espèce->ESPÈCE->code espèce, _nom, sexe, date naissance, date décès, #code espèce mère->ANIMAL->code espèce, #nom mère->ANIMAL->nom, type alimentation, CARNIVORE, quantité viande, HERBIVORE, plante préférée
-:
-```
-
 ### `debug.json`
 
 ```markdown
@@ -88,168 +65,92 @@ ANIMAL: #code espèce->ESPÈCE->code espèce, _nom, sexe, date naissance, date d
 | PEUT VIVRE DANS | nb. max. congénères | `association_attribute` | None | None |
 ```
 
-### `mysql.json`
+### `diagram.json`
 
-```sql
-CREATE DATABASE IF NOT EXISTS `UNTITLED` DEFAULT CHARACTER SET UTF8MB4 COLLATE utf8_general_ci;
-USE `UNTITLED`;
+```plain
+%%mocodo
+:::
+PEUT COHABITER AVEC: #code espèce->ESPÈCE->code espèce, _#code espèce commensale->ESPÈCE->code espèce, nb. max. commensaux
+:::
 
-CREATE TABLE `ANIMAL` (
-  `code_espèce` VARCHAR(42),
-  `nom` VARCHAR(42),
-  `sexe` VARCHAR(42),
-  `date_naissance` VARCHAR(42),
-  `date_décès` VARCHAR(42),
-  `code_espèce mère` VARCHAR(42),
-  `nom mère` VARCHAR(42),
-  `type_alimentation` TINYINT UNSIGNED NOT NULL,
-  `carnivore` BOOLEAN,
-  `quantité_viande` VARCHAR(42),
-  `herbivore` BOOLEAN,
-  `plante_préférée` VARCHAR(42),
-  PRIMARY KEY (`code_espèce`, `nom`)
-) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
-CREATE TABLE `ESPÈCE` (
-  `code_espèce` VARCHAR(42),
-  `libellé` VARCHAR(42),
-  PRIMARY KEY (`code_espèce`)
-) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
+:
+PEUT VIVRE DANS: #code espèce->ESPÈCE->code espèce, _num. enclos, nb. max. congénères
+:
+ESPÈCE: code espèce, libellé
+:::
 
-CREATE TABLE `OCCUPE` (
-  `code_espèce` VARCHAR(42),
-  `nom` VARCHAR(42),
-  `num_enclos` VARCHAR(42),
-  `date_début` VARCHAR(42),
-  `date_fin` VARCHAR(42),
-  PRIMARY KEY (`code_espèce`, `nom`, `num_enclos`)
-) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
-CREATE TABLE `PEUT_COHABITER_AVEC` (
-  `code_espèce` VARCHAR(42),
-  `code_espèce commensale` VARCHAR(42),
-  `nb_max_commensaux` VARCHAR(42),
-  PRIMARY KEY (`code_espèce`, `code_espèce commensale`)
-) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
-
-CREATE TABLE `PEUT_VIVRE_DANS` (
-  `code_espèce` VARCHAR(42),
-  `num_enclos` VARCHAR(42),
-  `nb_max_congénères` VARCHAR(42),
-  PRIMARY KEY (`code_espèce`, `num_enclos`)
-) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
-
-ALTER TABLE `ANIMAL` ADD FOREIGN KEY (`code_espèce mère`, `nom mère`) REFERENCES `ANIMAL` (`code_espèce`, `nom`);
-ALTER TABLE `ANIMAL` ADD FOREIGN KEY (`code_espèce`) REFERENCES `ESPÈCE` (`code_espèce`);
-ALTER TABLE `OCCUPE` ADD FOREIGN KEY (`code_espèce`, `nom`) REFERENCES `ANIMAL` (`code_espèce`, `nom`);
-ALTER TABLE `PEUT_COHABITER_AVEC` ADD FOREIGN KEY (`code_espèce commensale`) REFERENCES `ESPÈCE` (`code_espèce`);
-ALTER TABLE `PEUT_COHABITER_AVEC` ADD FOREIGN KEY (`code_espèce`) REFERENCES `ESPÈCE` (`code_espèce`);
-ALTER TABLE `PEUT_VIVRE_DANS` ADD FOREIGN KEY (`code_espèce`) REFERENCES `ESPÈCE` (`code_espèce`);
+:::
+OCCUPE: #code espèce->ANIMAL->code espèce, _#nom->ANIMAL->nom, _num. enclos, date début, date fin
+:
+ANIMAL: #code espèce->ESPÈCE->code espèce, _nom, sexe, date naissance, date décès, #code espèce mère->ANIMAL->code espèce, #nom mère->ANIMAL->nom, type alimentation, CARNIVORE, quantité viande, HERBIVORE, plante préférée
+:
 ```
 
-### `markdown.json`
+### `html.json`
 
-```markdown
-**ANIMAL** (<ins>_#code espèce_</ins>, <ins>nom</ins>, sexe, date naissance, date décès, _#code espèce mère_, _#nom mère_, type alimentation, CARNIVORE, quantité viande, HERBIVORE, plante préférée)<br>
-**ESPÈCE** (<ins>code espèce</ins>, libellé)<br>
-**OCCUPE** (<ins>_#code espèce_</ins>, <ins>_#nom_</ins>, <ins>num. enclos</ins>, date début, date fin)<br>
-**PEUT COHABITER AVEC** (<ins>_#code espèce_</ins>, <ins>_#code espèce commensale_</ins>, nb. max. commensaux)<br>
-**PEUT VIVRE DANS** (<ins>_#code espèce_</ins>, <ins>num. enclos</ins>, nb. max. congénères)
-```
-
-### `markdown_verbose.json`
-
-```markdown
-**ANIMAL** (<ins>_#code espèce_</ins>, <ins>nom</ins>, sexe, date naissance, date décès, _#code espèce mère_, _#nom mère_, type alimentation, CARNIVORE, quantité viande, HERBIVORE, plante préférée)  
-- Le champ _code espèce_ fait partie de la clé primaire de la table. Il a migré à partir de l'entité _ESPÈCE_ pour renforcer l'identifiant.  
-- Le champ _nom_ fait partie de la clé primaire de la table. C'était déjà un identifiant de l'entité _ANIMAL_.  
-- Les champs _sexe_, _date naissance_ et _date décès_ étaient déjà de simples attributs de l'entité _ANIMAL_.  
-- Le champ _code espèce mère_ est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle _A MÈRE_ à partir de l'entité _ANIMAL_ en perdant son caractère identifiant.  
-- Le champ _nom mère_ est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle _A MÈRE_ à partir de l'entité _ANIMAL_ en perdant son caractère identifiant.  
-- Un champ entier _type alimentation_ est ajouté pour indiquer la nature de la spécialisation. Il est interprété comme un code binaire : bit 1 pour la première entité-fille, bit 2 pour la deuxième, etc. Peut être vide, du fait de l'absence de contrainte de totalité.  
-- Un champ booléen _CARNIVORE_ est ajouté pour indiquer si on a affaire ou pas à la spécialisation de même nom.  
-- Le champ _quantité viande_ a migré à partir de l'entité-fille _CARNIVORE_ (supprimée).  
-- Un champ booléen _HERBIVORE_ est ajouté pour indiquer si on a affaire ou pas à la spécialisation de même nom.  
-- Le champ _plante préférée_ a migré à partir de l'entité-fille _HERBIVORE_ (supprimée).  
-
-**ESPÈCE** (<ins>code espèce</ins>, libellé)  
-- Le champ _code espèce_ constitue la clé primaire de la table. C'était déjà un identifiant de l'entité _ESPÈCE_.  
-- Le champ _libellé_ était déjà un simple attribut de l'entité _ESPÈCE_.  
-
-**OCCUPE** (<ins>_#code espèce_</ins>, <ins>_#nom_</ins>, <ins>_#num. enclos_</ins>, _#date début_, _#date fin_)  
-- Les champs _code espèce_ et _nom_ font partie de la clé primaire de la table. Ce sont des clés étrangères qui ont migré directement à partir de l'entité _ANIMAL_.  
-- Le champ _num. enclos_ fait partie de la clé primaire de la table. Sa table d'origine (_ENCLOS_) ayant été supprimée, il n'est pas considéré comme clé étrangère.  
-- Le champ _date début_ est un simple attribut. Sa table d'origine, _PÉRIODE_, ayant été supprimée, il n'est pas considéré comme clé étrangère. Il devrait normalement faire partie de l'identifiant de _OCCUPE_, mais a été rétrogradé explicitement au rang de simple attribut.  
-- Le champ _date fin_ est un simple attribut. Sa table d'origine, _PÉRIODE_, ayant été supprimée, il n'est pas considéré comme clé étrangère. Il devrait normalement faire partie de l'identifiant de _OCCUPE_, mais a été rétrogradé explicitement au rang de simple attribut.  
-
-**PEUT COHABITER AVEC** (<ins>_#code espèce_</ins>, <ins>_#code espèce commensale_</ins>, nb. max. commensaux)  
-- Les champs _code espèce_ et _code espèce commensale_ constituent la clé primaire de la table. Ce sont des clés étrangères qui ont migré directement à partir de l'entité _ESPÈCE_.  
-- Le champ _nb. max. commensaux_ était déjà un simple attribut de l'association _PEUT COHABITER AVEC_.  
-
-**PEUT VIVRE DANS** (<ins>_#code espèce_</ins>, <ins>_#num. enclos_</ins>, nb. max. congénères)  
-- Le champ _code espèce_ fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité _ESPÈCE_.  
-- Le champ _num. enclos_ fait partie de la clé primaire de la table. Sa table d'origine (_ENCLOS_) ayant été supprimée, il n'est pas considéré comme clé étrangère.  
-- Le champ _nb. max. congénères_ était déjà un simple attribut de l'association _PEUT VIVRE DANS_.  
-
----
-
-**NB.** Les tables _ENCLOS_ et _PÉRIODE_ ont été supprimées car elles étaient réduites à la clé primaire de leur entité d'origine.
-```
-
-### `oracle.json`
-
-```sql
-CREATE TABLE "ANIMAL" (
-  "code_espèce" VARCHAR(42),
-  "nom" VARCHAR(42),
-  "sexe" VARCHAR(42),
-  "date_naissance" VARCHAR(42),
-  "date_décès" VARCHAR(42),
-  "code_espèce mère" VARCHAR(42),
-  "nom mère" VARCHAR(42),
-  "type_alimentation" NUMBER(1) UNSIGNED NOT NULL,
-  "carnivore" NUMBER(1) DEFAULT 0 NOT NULL,
-  "quantité_viande" VARCHAR(42),
-  "herbivore" NUMBER(1) DEFAULT 0 NOT NULL,
-  "plante_préférée" VARCHAR(42),
-  PRIMARY KEY ("code_espèce", "nom")
-);
-
-CREATE TABLE "ESPÈCE" (
-  "code_espèce" VARCHAR(42),
-  "libellé" VARCHAR(42),
-  PRIMARY KEY ("code_espèce")
-);
-
-CREATE TABLE "OCCUPE" (
-  "code_espèce" VARCHAR(42),
-  "nom" VARCHAR(42),
-  "num_enclos" VARCHAR(42),
-  "date_début" VARCHAR(42),
-  "date_fin" VARCHAR(42),
-  PRIMARY KEY ("code_espèce", "nom", "num_enclos")
-);
-
-CREATE TABLE "PEUT_COHABITER_AVEC" (
-  "code_espèce" VARCHAR(42),
-  "code_espèce commensale" VARCHAR(42),
-  "nb_max_commensaux" VARCHAR(42),
-  PRIMARY KEY ("code_espèce", "code_espèce commensale")
-);
-
-CREATE TABLE "PEUT_VIVRE_DANS" (
-  "code_espèce" VARCHAR(42),
-  "num_enclos" VARCHAR(42),
-  "nb_max_congénères" VARCHAR(42),
-  PRIMARY KEY ("code_espèce", "num_enclos")
-);
-
-ALTER TABLE "ANIMAL" ADD FOREIGN KEY ("code_espèce mère", "nom mère") REFERENCES "ANIMAL" ("code_espèce", "nom");
-ALTER TABLE "ANIMAL" ADD FOREIGN KEY ("code_espèce") REFERENCES "ESPÈCE" ("code_espèce");
-ALTER TABLE "OCCUPE" ADD FOREIGN KEY ("code_espèce", "nom") REFERENCES "ANIMAL" ("code_espèce", "nom");
-ALTER TABLE "PEUT_COHABITER_AVEC" ADD FOREIGN KEY ("code_espèce commensale") REFERENCES "ESPÈCE" ("code_espèce");
-ALTER TABLE "PEUT_COHABITER_AVEC" ADD FOREIGN KEY ("code_espèce") REFERENCES "ESPÈCE" ("code_espèce");
-ALTER TABLE "PEUT_VIVRE_DANS" ADD FOREIGN KEY ("code_espèce") REFERENCES "ESPÈCE" ("code_espèce");
+```html
+<html>
+<head>
+<meta charset='utf-8'>
+<style>
+  #mld .relation { font-variant: small-caps; font-weight: bold }
+  #mld .primary { text-decoration: underline }
+  #mld .foreign { font-style: oblique }
+  #mld .normal { }
+</style>
+</head>
+<body>
+<div id='mld'>
+<div>
+  <span class='relation'>ANIMAL</span> (
+    <span class='foreign primary'>#code espèce</span>,
+    <span class='primary'>nom</span>,
+    <span class='normal'>sexe</span>,
+    <span class='normal'>date naissance</span>,
+    <span class='normal'>date décès</span>,
+    <span class='foreign'>#code espèce mère</span>,
+    <span class='foreign'>#nom mère</span>,
+    <span class='normal'>type alimentation</span>,
+    <span class='normal'>CARNIVORE</span>,
+    <span class='normal'>quantité viande</span>,
+    <span class='normal'>HERBIVORE</span>,
+    <span class='normal'>plante préférée</span>
+  )
+</div>
+<div>
+  <span class='relation'>ESPÈCE</span> (
+    <span class='primary'>code espèce</span>,
+    <span class='normal'>libellé</span>
+  )
+</div>
+<div>
+  <span class='relation'>OCCUPE</span> (
+    <span class='foreign primary'>#code espèce</span>,
+    <span class='foreign primary'>#nom</span>,
+    <span class='primary'>num. enclos</span>,
+    <span class='normal'>date début</span>,
+    <span class='normal'>date fin</span>
+  )
+</div>
+<div>
+  <span class='relation'>PEUT COHABITER AVEC</span> (
+    <span class='foreign primary'>#code espèce</span>,
+    <span class='foreign primary'>#code espèce commensale</span>,
+    <span class='normal'>nb. max. commensaux</span>
+  )
+</div>
+<div>
+  <span class='relation'>PEUT VIVRE DANS</span> (
+    <span class='foreign primary'>#code espèce</span>,
+    <span class='primary'>num. enclos</span>,
+    <span class='normal'>nb. max. congénères</span>
+  )
+</div>
+</div>
+</body>
+</html>
 ```
 
 ### `html_verbose.json`
@@ -354,63 +255,6 @@ ALTER TABLE "PEUT_VIVRE_DANS" ADD FOREIGN KEY ("code_espèce") REFERENCES "ESPÈ
 </div>
 </body>
 </html>
-```
-
-### `sqlite.json`
-
-```sql
-.open "UNTITLED";
-
-CREATE TABLE "ANIMAL" (
-  "code_espèce" VARCHAR(42),
-  "nom" VARCHAR(42),
-  "sexe" VARCHAR(42),
-  "date_naissance" VARCHAR(42),
-  "date_décès" VARCHAR(42),
-  "code_espèce mère" VARCHAR(42),
-  "nom mère" VARCHAR(42),
-  "type_alimentation" INTEGER NOT NULL,
-  "carnivore" INTEGER,
-  "quantité_viande" VARCHAR(42),
-  "herbivore" INTEGER,
-  "plante_préférée" VARCHAR(42),
-  PRIMARY KEY ("code_espèce", "nom"),
-  FOREIGN KEY ("code_espèce") REFERENCES "ESPÈCE" ("code_espèce"),
-  FOREIGN KEY ("code_espèce mère", "nom mère") REFERENCES "ANIMAL" ("code_espèce", "nom")
-);
-
-CREATE TABLE "ESPÈCE" (
-  "code_espèce" VARCHAR(42),
-  "libellé" VARCHAR(42),
-  PRIMARY KEY ("code_espèce")
-);
-
-CREATE TABLE "OCCUPE" (
-  "code_espèce" VARCHAR(42),
-  "nom" VARCHAR(42),
-  "num_enclos" VARCHAR(42),
-  "date_début" VARCHAR(42),
-  "date_fin" VARCHAR(42),
-  PRIMARY KEY ("code_espèce", "nom", "num_enclos"),
-  FOREIGN KEY ("code_espèce", "nom") REFERENCES "ANIMAL" ("code_espèce", "nom")
-);
-
-CREATE TABLE "PEUT_COHABITER_AVEC" (
-  "code_espèce" VARCHAR(42),
-  "code_espèce commensale" VARCHAR(42),
-  "nb_max_commensaux" VARCHAR(42),
-  PRIMARY KEY ("code_espèce", "code_espèce commensale"),
-  FOREIGN KEY ("code_espèce") REFERENCES "ESPÈCE" ("code_espèce"),
-  FOREIGN KEY ("code_espèce commensale") REFERENCES "ESPÈCE" ("code_espèce")
-);
-
-CREATE TABLE "PEUT_VIVRE_DANS" (
-  "code_espèce" VARCHAR(42),
-  "num_enclos" VARCHAR(42),
-  "nb_max_congénères" VARCHAR(42),
-  PRIMARY KEY ("code_espèce", "num_enclos"),
-  FOREIGN KEY ("code_espèce") REFERENCES "ESPÈCE" ("code_espèce")
-);
 ```
 
 ### `json.json`
@@ -1072,93 +916,6 @@ CREATE TABLE "PEUT_VIVRE_DANS" (
 }
 ```
 
-### `markdown_data_dict.json`
-
-```markdown
-- nom
-- sexe
-- date naissance
-- date décès
-- type alimentation : _INTEGER UNSIGNED NOT NULL_
-- CARNIVORE : _BOOLEAN_
-- quantité viande
-- HERBIVORE : _BOOLEAN_
-- plante préférée
-- code espèce
-- libellé
-- num. enclos
-- date début
-- date fin
-- nb. max. commensaux
-- num. enclos
-- nb. max. congénères
-```
-
-### `html.json`
-
-```html
-<html>
-<head>
-<meta charset='utf-8'>
-<style>
-  #mld .relation { font-variant: small-caps; font-weight: bold }
-  #mld .primary { text-decoration: underline }
-  #mld .foreign { font-style: oblique }
-  #mld .normal { }
-</style>
-</head>
-<body>
-<div id='mld'>
-<div>
-  <span class='relation'>ANIMAL</span> (
-    <span class='foreign primary'>#code espèce</span>,
-    <span class='primary'>nom</span>,
-    <span class='normal'>sexe</span>,
-    <span class='normal'>date naissance</span>,
-    <span class='normal'>date décès</span>,
-    <span class='foreign'>#code espèce mère</span>,
-    <span class='foreign'>#nom mère</span>,
-    <span class='normal'>type alimentation</span>,
-    <span class='normal'>CARNIVORE</span>,
-    <span class='normal'>quantité viande</span>,
-    <span class='normal'>HERBIVORE</span>,
-    <span class='normal'>plante préférée</span>
-  )
-</div>
-<div>
-  <span class='relation'>ESPÈCE</span> (
-    <span class='primary'>code espèce</span>,
-    <span class='normal'>libellé</span>
-  )
-</div>
-<div>
-  <span class='relation'>OCCUPE</span> (
-    <span class='foreign primary'>#code espèce</span>,
-    <span class='foreign primary'>#nom</span>,
-    <span class='primary'>num. enclos</span>,
-    <span class='normal'>date début</span>,
-    <span class='normal'>date fin</span>
-  )
-</div>
-<div>
-  <span class='relation'>PEUT COHABITER AVEC</span> (
-    <span class='foreign primary'>#code espèce</span>,
-    <span class='foreign primary'>#code espèce commensale</span>,
-    <span class='normal'>nb. max. commensaux</span>
-  )
-</div>
-<div>
-  <span class='relation'>PEUT VIVRE DANS</span> (
-    <span class='foreign primary'>#code espèce</span>,
-    <span class='primary'>num. enclos</span>,
-    <span class='normal'>nb. max. congénères</span>
-  )
-</div>
-</div>
-</body>
-</html>
-```
-
 ### `latex.json`
 
 ```latex
@@ -1184,28 +941,202 @@ CREATE TABLE "PEUT_VIVRE_DANS" (
 \end{mld}
 ```
 
-### `text.json`
+### `latex_without_def.json`
 
-```plain
+```latex
+\begin{mld}
 ANIMAL (_#code espèce_, _nom_, sexe, date naissance, date décès, #code espèce mère, #nom mère, type alimentation, CARNIVORE, quantité viande, HERBIVORE, plante préférée)
 ESPÈCE (_code espèce_, libellé)
 OCCUPE (_#code espèce_, _#nom_, _num. enclos_, date début, date fin)
 PEUT COHABITER AVEC (_#code espèce_, _#code espèce commensale_, nb. max. commensaux)
 PEUT VIVRE DANS (_#code espèce_, _num. enclos_, nb. max. congénères)
+\end{mld}
 ```
 
-### `txt2tags.json`
+### `markdown.json`
 
-```plain
-Untitled
-Généré par Mocodo
-%%mtime(%c)
-%!encoding: utf8
-- **ANIMAL** (__#code espèce__, __nom__, sexe, date naissance, date décès, #code espèce mère, #nom mère, type alimentation, CARNIVORE, quantité viande, HERBIVORE, plante préférée)
-- **ESPÈCE** (__code espèce__, libellé)
-- **OCCUPE** (__#code espèce__, __#nom__, __num. enclos__, date début, date fin)
-- **PEUT COHABITER AVEC** (__#code espèce__, __#code espèce commensale__, nb. max. commensaux)
-- **PEUT VIVRE DANS** (__#code espèce__, __num. enclos__, nb. max. congénères)
+```markdown
+**ANIMAL** (<ins>_#code espèce_</ins>, <ins>nom</ins>, sexe, date naissance, date décès, _#code espèce mère_, _#nom mère_, type alimentation, CARNIVORE, quantité viande, HERBIVORE, plante préférée)<br>
+**ESPÈCE** (<ins>code espèce</ins>, libellé)<br>
+**OCCUPE** (<ins>_#code espèce_</ins>, <ins>_#nom_</ins>, <ins>num. enclos</ins>, date début, date fin)<br>
+**PEUT COHABITER AVEC** (<ins>_#code espèce_</ins>, <ins>_#code espèce commensale_</ins>, nb. max. commensaux)<br>
+**PEUT VIVRE DANS** (<ins>_#code espèce_</ins>, <ins>num. enclos</ins>, nb. max. congénères)
+```
+
+### `markdown_data_dict.json`
+
+```markdown
+- nom
+- sexe
+- date naissance
+- date décès
+- type alimentation : _INTEGER UNSIGNED NOT NULL_
+- CARNIVORE : _BOOLEAN_
+- quantité viande
+- HERBIVORE : _BOOLEAN_
+- plante préférée
+- code espèce
+- libellé
+- num. enclos
+- date début
+- date fin
+- nb. max. commensaux
+- num. enclos
+- nb. max. congénères
+```
+
+### `markdown_verbose.json`
+
+```markdown
+**ANIMAL** (<ins>_#code espèce_</ins>, <ins>nom</ins>, sexe, date naissance, date décès, _#code espèce mère_, _#nom mère_, type alimentation, CARNIVORE, quantité viande, HERBIVORE, plante préférée)  
+- Le champ _code espèce_ fait partie de la clé primaire de la table. Il a migré à partir de l'entité _ESPÈCE_ pour renforcer l'identifiant.  
+- Le champ _nom_ fait partie de la clé primaire de la table. C'était déjà un identifiant de l'entité _ANIMAL_.  
+- Les champs _sexe_, _date naissance_ et _date décès_ étaient déjà de simples attributs de l'entité _ANIMAL_.  
+- Le champ _code espèce mère_ est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle _A MÈRE_ à partir de l'entité _ANIMAL_ en perdant son caractère identifiant.  
+- Le champ _nom mère_ est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle _A MÈRE_ à partir de l'entité _ANIMAL_ en perdant son caractère identifiant.  
+- Un champ entier _type alimentation_ est ajouté pour indiquer la nature de la spécialisation. Il est interprété comme un code binaire : bit 1 pour la première entité-fille, bit 2 pour la deuxième, etc. Peut être vide, du fait de l'absence de contrainte de totalité.  
+- Un champ booléen _CARNIVORE_ est ajouté pour indiquer si on a affaire ou pas à la spécialisation de même nom.  
+- Le champ _quantité viande_ a migré à partir de l'entité-fille _CARNIVORE_ (supprimée).  
+- Un champ booléen _HERBIVORE_ est ajouté pour indiquer si on a affaire ou pas à la spécialisation de même nom.  
+- Le champ _plante préférée_ a migré à partir de l'entité-fille _HERBIVORE_ (supprimée).  
+
+**ESPÈCE** (<ins>code espèce</ins>, libellé)  
+- Le champ _code espèce_ constitue la clé primaire de la table. C'était déjà un identifiant de l'entité _ESPÈCE_.  
+- Le champ _libellé_ était déjà un simple attribut de l'entité _ESPÈCE_.  
+
+**OCCUPE** (<ins>_#code espèce_</ins>, <ins>_#nom_</ins>, <ins>_#num. enclos_</ins>, _#date début_, _#date fin_)  
+- Les champs _code espèce_ et _nom_ font partie de la clé primaire de la table. Ce sont des clés étrangères qui ont migré directement à partir de l'entité _ANIMAL_.  
+- Le champ _num. enclos_ fait partie de la clé primaire de la table. Sa table d'origine (_ENCLOS_) ayant été supprimée, il n'est pas considéré comme clé étrangère.  
+- Le champ _date début_ est un simple attribut. Sa table d'origine, _PÉRIODE_, ayant été supprimée, il n'est pas considéré comme clé étrangère. Il devrait normalement faire partie de l'identifiant de _OCCUPE_, mais a été rétrogradé explicitement au rang de simple attribut.  
+- Le champ _date fin_ est un simple attribut. Sa table d'origine, _PÉRIODE_, ayant été supprimée, il n'est pas considéré comme clé étrangère. Il devrait normalement faire partie de l'identifiant de _OCCUPE_, mais a été rétrogradé explicitement au rang de simple attribut.  
+
+**PEUT COHABITER AVEC** (<ins>_#code espèce_</ins>, <ins>_#code espèce commensale_</ins>, nb. max. commensaux)  
+- Les champs _code espèce_ et _code espèce commensale_ constituent la clé primaire de la table. Ce sont des clés étrangères qui ont migré directement à partir de l'entité _ESPÈCE_.  
+- Le champ _nb. max. commensaux_ était déjà un simple attribut de l'association _PEUT COHABITER AVEC_.  
+
+**PEUT VIVRE DANS** (<ins>_#code espèce_</ins>, <ins>_#num. enclos_</ins>, nb. max. congénères)  
+- Le champ _code espèce_ fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité _ESPÈCE_.  
+- Le champ _num. enclos_ fait partie de la clé primaire de la table. Sa table d'origine (_ENCLOS_) ayant été supprimée, il n'est pas considéré comme clé étrangère.  
+- Le champ _nb. max. congénères_ était déjà un simple attribut de l'association _PEUT VIVRE DANS_.  
+
+---
+
+**NB.** Les tables _ENCLOS_ et _PÉRIODE_ ont été supprimées car elles étaient réduites à la clé primaire de leur entité d'origine.
+```
+
+### `mysql.json`
+
+```sql
+CREATE DATABASE IF NOT EXISTS `UNTITLED` DEFAULT CHARACTER SET UTF8MB4 COLLATE utf8_general_ci;
+USE `UNTITLED`;
+
+CREATE TABLE `ANIMAL` (
+  `code_espèce` VARCHAR(42),
+  `nom` VARCHAR(42),
+  `sexe` VARCHAR(42),
+  `date_naissance` VARCHAR(42),
+  `date_décès` VARCHAR(42),
+  `code_espèce mère` VARCHAR(42),
+  `nom mère` VARCHAR(42),
+  `type_alimentation` TINYINT UNSIGNED NOT NULL,
+  `carnivore` BOOLEAN,
+  `quantité_viande` VARCHAR(42),
+  `herbivore` BOOLEAN,
+  `plante_préférée` VARCHAR(42),
+  PRIMARY KEY (`code_espèce`, `nom`)
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
+
+CREATE TABLE `ESPÈCE` (
+  `code_espèce` VARCHAR(42),
+  `libellé` VARCHAR(42),
+  PRIMARY KEY (`code_espèce`)
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
+
+CREATE TABLE `OCCUPE` (
+  `code_espèce` VARCHAR(42),
+  `nom` VARCHAR(42),
+  `num_enclos` VARCHAR(42),
+  `date_début` VARCHAR(42),
+  `date_fin` VARCHAR(42),
+  PRIMARY KEY (`code_espèce`, `nom`, `num_enclos`)
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
+
+CREATE TABLE `PEUT_COHABITER_AVEC` (
+  `code_espèce` VARCHAR(42),
+  `code_espèce commensale` VARCHAR(42),
+  `nb_max_commensaux` VARCHAR(42),
+  PRIMARY KEY (`code_espèce`, `code_espèce commensale`)
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
+
+CREATE TABLE `PEUT_VIVRE_DANS` (
+  `code_espèce` VARCHAR(42),
+  `num_enclos` VARCHAR(42),
+  `nb_max_congénères` VARCHAR(42),
+  PRIMARY KEY (`code_espèce`, `num_enclos`)
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
+
+ALTER TABLE `ANIMAL` ADD FOREIGN KEY (`code_espèce mère`, `nom mère`) REFERENCES `ANIMAL` (`code_espèce`, `nom`);
+ALTER TABLE `ANIMAL` ADD FOREIGN KEY (`code_espèce`) REFERENCES `ESPÈCE` (`code_espèce`);
+ALTER TABLE `OCCUPE` ADD FOREIGN KEY (`code_espèce`, `nom`) REFERENCES `ANIMAL` (`code_espèce`, `nom`);
+ALTER TABLE `PEUT_COHABITER_AVEC` ADD FOREIGN KEY (`code_espèce commensale`) REFERENCES `ESPÈCE` (`code_espèce`);
+ALTER TABLE `PEUT_COHABITER_AVEC` ADD FOREIGN KEY (`code_espèce`) REFERENCES `ESPÈCE` (`code_espèce`);
+ALTER TABLE `PEUT_VIVRE_DANS` ADD FOREIGN KEY (`code_espèce`) REFERENCES `ESPÈCE` (`code_espèce`);
+```
+
+### `oracle.json`
+
+```sql
+CREATE TABLE "ANIMAL" (
+  "code_espèce" VARCHAR(42),
+  "nom" VARCHAR(42),
+  "sexe" VARCHAR(42),
+  "date_naissance" VARCHAR(42),
+  "date_décès" VARCHAR(42),
+  "code_espèce mère" VARCHAR(42),
+  "nom mère" VARCHAR(42),
+  "type_alimentation" NUMBER(1) UNSIGNED NOT NULL,
+  "carnivore" NUMBER(1) DEFAULT 0 NOT NULL,
+  "quantité_viande" VARCHAR(42),
+  "herbivore" NUMBER(1) DEFAULT 0 NOT NULL,
+  "plante_préférée" VARCHAR(42),
+  PRIMARY KEY ("code_espèce", "nom")
+);
+
+CREATE TABLE "ESPÈCE" (
+  "code_espèce" VARCHAR(42),
+  "libellé" VARCHAR(42),
+  PRIMARY KEY ("code_espèce")
+);
+
+CREATE TABLE "OCCUPE" (
+  "code_espèce" VARCHAR(42),
+  "nom" VARCHAR(42),
+  "num_enclos" VARCHAR(42),
+  "date_début" VARCHAR(42),
+  "date_fin" VARCHAR(42),
+  PRIMARY KEY ("code_espèce", "nom", "num_enclos")
+);
+
+CREATE TABLE "PEUT_COHABITER_AVEC" (
+  "code_espèce" VARCHAR(42),
+  "code_espèce commensale" VARCHAR(42),
+  "nb_max_commensaux" VARCHAR(42),
+  PRIMARY KEY ("code_espèce", "code_espèce commensale")
+);
+
+CREATE TABLE "PEUT_VIVRE_DANS" (
+  "code_espèce" VARCHAR(42),
+  "num_enclos" VARCHAR(42),
+  "nb_max_congénères" VARCHAR(42),
+  PRIMARY KEY ("code_espèce", "num_enclos")
+);
+
+ALTER TABLE "ANIMAL" ADD FOREIGN KEY ("code_espèce mère", "nom mère") REFERENCES "ANIMAL" ("code_espèce", "nom");
+ALTER TABLE "ANIMAL" ADD FOREIGN KEY ("code_espèce") REFERENCES "ESPÈCE" ("code_espèce");
+ALTER TABLE "OCCUPE" ADD FOREIGN KEY ("code_espèce", "nom") REFERENCES "ANIMAL" ("code_espèce", "nom");
+ALTER TABLE "PEUT_COHABITER_AVEC" ADD FOREIGN KEY ("code_espèce commensale") REFERENCES "ESPÈCE" ("code_espèce");
+ALTER TABLE "PEUT_COHABITER_AVEC" ADD FOREIGN KEY ("code_espèce") REFERENCES "ESPÈCE" ("code_espèce");
+ALTER TABLE "PEUT_VIVRE_DANS" ADD FOREIGN KEY ("code_espèce") REFERENCES "ESPÈCE" ("code_espèce");
 ```
 
 ### `postgresql.json`
@@ -1265,6 +1196,87 @@ ALTER TABLE OCCUPE ADD FOREIGN KEY (code_espèce, nom) REFERENCES ANIMAL (code_e
 ALTER TABLE PEUT_COHABITER_AVEC ADD FOREIGN KEY (code_espèce commensale) REFERENCES ESPÈCE (code_espèce);
 ALTER TABLE PEUT_COHABITER_AVEC ADD FOREIGN KEY (code_espèce) REFERENCES ESPÈCE (code_espèce);
 ALTER TABLE PEUT_VIVRE_DANS ADD FOREIGN KEY (code_espèce) REFERENCES ESPÈCE (code_espèce);
+```
+
+### `sqlite.json`
+
+```sql
+.open "UNTITLED";
+
+CREATE TABLE "ANIMAL" (
+  "code_espèce" VARCHAR(42),
+  "nom" VARCHAR(42),
+  "sexe" VARCHAR(42),
+  "date_naissance" VARCHAR(42),
+  "date_décès" VARCHAR(42),
+  "code_espèce mère" VARCHAR(42),
+  "nom mère" VARCHAR(42),
+  "type_alimentation" INTEGER NOT NULL,
+  "carnivore" INTEGER,
+  "quantité_viande" VARCHAR(42),
+  "herbivore" INTEGER,
+  "plante_préférée" VARCHAR(42),
+  PRIMARY KEY ("code_espèce", "nom"),
+  FOREIGN KEY ("code_espèce") REFERENCES "ESPÈCE" ("code_espèce"),
+  FOREIGN KEY ("code_espèce mère", "nom mère") REFERENCES "ANIMAL" ("code_espèce", "nom")
+);
+
+CREATE TABLE "ESPÈCE" (
+  "code_espèce" VARCHAR(42),
+  "libellé" VARCHAR(42),
+  PRIMARY KEY ("code_espèce")
+);
+
+CREATE TABLE "OCCUPE" (
+  "code_espèce" VARCHAR(42),
+  "nom" VARCHAR(42),
+  "num_enclos" VARCHAR(42),
+  "date_début" VARCHAR(42),
+  "date_fin" VARCHAR(42),
+  PRIMARY KEY ("code_espèce", "nom", "num_enclos"),
+  FOREIGN KEY ("code_espèce", "nom") REFERENCES "ANIMAL" ("code_espèce", "nom")
+);
+
+CREATE TABLE "PEUT_COHABITER_AVEC" (
+  "code_espèce" VARCHAR(42),
+  "code_espèce commensale" VARCHAR(42),
+  "nb_max_commensaux" VARCHAR(42),
+  PRIMARY KEY ("code_espèce", "code_espèce commensale"),
+  FOREIGN KEY ("code_espèce") REFERENCES "ESPÈCE" ("code_espèce"),
+  FOREIGN KEY ("code_espèce commensale") REFERENCES "ESPÈCE" ("code_espèce")
+);
+
+CREATE TABLE "PEUT_VIVRE_DANS" (
+  "code_espèce" VARCHAR(42),
+  "num_enclos" VARCHAR(42),
+  "nb_max_congénères" VARCHAR(42),
+  PRIMARY KEY ("code_espèce", "num_enclos"),
+  FOREIGN KEY ("code_espèce") REFERENCES "ESPÈCE" ("code_espèce")
+);
+```
+
+### `text.json`
+
+```plain
+ANIMAL (_#code espèce_, _nom_, sexe, date naissance, date décès, #code espèce mère, #nom mère, type alimentation, CARNIVORE, quantité viande, HERBIVORE, plante préférée)
+ESPÈCE (_code espèce_, libellé)
+OCCUPE (_#code espèce_, _#nom_, _num. enclos_, date début, date fin)
+PEUT COHABITER AVEC (_#code espèce_, _#code espèce commensale_, nb. max. commensaux)
+PEUT VIVRE DANS (_#code espèce_, _num. enclos_, nb. max. congénères)
+```
+
+### `txt2tags.json`
+
+```plain
+Untitled
+Généré par Mocodo
+%%mtime(%c)
+%!encoding: utf8
+- **ANIMAL** (__#code espèce__, __nom__, sexe, date naissance, date décès, #code espèce mère, #nom mère, type alimentation, CARNIVORE, quantité viande, HERBIVORE, plante préférée)
+- **ESPÈCE** (__code espèce__, libellé)
+- **OCCUPE** (__#code espèce__, __#nom__, __num. enclos__, date début, date fin)
+- **PEUT COHABITER AVEC** (__#code espèce__, __#code espèce commensale__, nb. max. commensaux)
+- **PEUT VIVRE DANS** (__#code espèce__, __num. enclos__, nb. max. congénères)
 ```
 
 ## Obfuscation

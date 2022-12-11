@@ -1,3 +1,4 @@
+from bisect import bisect_left
 import json
 import numbers
 import os
@@ -17,6 +18,44 @@ def safe_print_for_PHP(s):
         print(s, file=sys.stdout)
     except UnicodeEncodeError:
         print(s.encode("utf8"), file=sys.stdout)
+
+def read_template(template_name, template_folder=None):
+
+    def traverse_templates(template_name, template_stack):
+        path = template_folder / f"{template_name}.json"
+        template = json.loads(read_contents(path))
+        template_stack.append(template)
+        if "parent" in template:
+            return traverse_templates(template["parent"], template_stack)
+        else:
+            return reversed(template_stack)
+    
+    result = {}
+    for template in traverse_templates(template_name, []):
+        for key in template:
+            if not isinstance(result.get(key), list):
+                # create or update a scalar value
+                result[key] = template[key]
+            else:
+                # update a list of dictionaries having an "order" key
+                
+                for new_dictionary in template[key]:
+                    order = new_dictionary["order"]
+                    orders = [d["order"] for d in result[key]] # Prior to Python 3.10, bisect_left has no `key` argument
+                    i = bisect_left(orders, order)
+                    if i < len(result[key]) and result[key][i]["order"] == order:
+                        # a dictionary with the same order already exists
+                        if len(new_dictionary) == 1:
+                            # the new dictionary is reduced to an "order" key: remove the existing dictionary
+                            del result[key][i]
+                        else:
+                            # update the existing dictionary in place
+                            result[key][i].update(new_dictionary)
+                    else:
+                        # insert the new dictionary at the right place
+                        result[key].insert(i, new_dictionary)
+    return result
+        
 
 class Common:
 
@@ -80,17 +119,17 @@ class Common:
 
     def dump_mld_files(self, relations):
         relation_templates = []
-        for relation_template in self.params["relations"]:
+        for template_name in self.params["relations"]:
             try:
-                path = os.path.join(self.params["script_directory"], "resources", "relation_templates", "%s.json" % relation_template)
-                contents = json.loads(read_contents(path))
+                template_folder = Path(self.params["script_directory"]) / "resources" / "templates"
+                contents = read_template(template_name, template_folder)
                 relation_templates.append(contents)
             except:
-                safe_print_for_PHP(_('Problem with template {template}.').format(template=relation_template + ".json"))
-        for relation_template in relation_templates:
-            path = os.path.join(self.params["output_name"] + relation_template["extension"])
+                safe_print_for_PHP(_('Problem with template {template}.').format(template=template_name + ".json"))
+        for template_name in relation_templates:
+            path = os.path.join(self.params["output_name"] + template_name["extension"])
             try:
-                text = relations.get_text(relation_template)
+                text = relations.get_text(template_name)
                 safe_print_for_PHP(self.output_success_message(path))
             except:
                 text = _("Problem during the generation of the relational schema.")
