@@ -23,11 +23,18 @@ def read_template(name, template_folder=None):
                 raise MocodoError(34, _('Template "{name}.json" of "{folder}" contains a JSON object as value of key "{key}".').format(name=name, folder=template_folder, key=key))  # fmt: skip
             if not isinstance(array, list):
                 continue
+            previous_order = None
             for d in array:
                 if not isinstance(d, dict):
                     raise MocodoError(35, _('Template "{name}.json" of "{folder}" contains a JSON array as value of key "{key}" which does not contain only JSON objects.').format(name=name, folder=template_folder, key=key))  # fmt: skip
                 if "order" not in d:
                     raise MocodoError(36, _('Template "{name}.json" of "{folder}" contains a JSON array as value of key "{key}" which does not contain only objects having an "order" key.').format(name=name, folder=template_folder, key=key))  # fmt: skip
+                order = d["order"]
+                if not isinstance(order, (int, float)):
+                    raise MocodoError(38, _('Template "{name}.json" of "{folder}" contains a JSON array as value of key "{key}" where the "order" key is not associated to a number.').format(name=name, folder=template_folder, key=key))
+                if previous_order is not None and order <= previous_order:
+                    raise MocodoError(39, _('Template "{name}.json" of "{folder}" contains a JSON array as value of key "{key}" where the "order" keys are not sorted in ascending order.').format(name=name, folder=template_folder, key=key))
+                previous_order = order
         template_stack.append(template)
         if "parent" in template:
             return traverse_templates(template["parent"], template_stack, already_seen)

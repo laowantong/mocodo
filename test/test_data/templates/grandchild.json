@@ -19,11 +19,11 @@
             "name": "foo"
         },
         {
-            "order": 20,
-            "name": "bar"
+            "order": 5
         },
         {
-            "order": 5
+            "order": 20,
+            "name": "bar"
         },
         {
             "order": 35

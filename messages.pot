@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-12-12 16:06+0100\n"
+"POT-Creation-Date: 2022-12-12 20:00+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -161,16 +161,24 @@ msgstr ""
 msgid "Template \"{name}.json\" of \"{folder}\" is not a JSON object."
 msgstr ""
 
-#: mocodo/read_template.py:23
+#: mocodo/read_template.py:24
 msgid "Template \"{name}.json\" of \"{folder}\" contains a JSON object as value of key \"{key}\"."
 msgstr ""
 
-#: mocodo/read_template.py:28
+#: mocodo/read_template.py:29
 msgid "Template \"{name}.json\" of \"{folder}\" contains a JSON array as value of key \"{key}\" which does not contain only JSON objects."
 msgstr ""
 
-#: mocodo/read_template.py:30
+#: mocodo/read_template.py:31
 msgid "Template \"{name}.json\" of \"{folder}\" contains a JSON array as value of key \"{key}\" which does not contain only objects having an \"order\" key."
+msgstr ""
+
+#: mocodo/read_template.py:34
+msgid "Template \"{name}.json\" of \"{folder}\" contains a JSON array as value of key \"{key}\" where the \"order\" key is not associated to a number."
+msgstr ""
+
+#: mocodo/read_template.py:36
+msgid "Template \"{name}.json\" of \"{folder}\" contains a JSON array as value of key \"{key}\" where the \"order\" keys are not sorted in ascending order."
 msgstr ""
 
 #: mocodo/relations.py:276

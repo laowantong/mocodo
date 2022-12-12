@@ -35,6 +35,8 @@ class TestReadTemplate(unittest.TestCase):
         self.assertRaisesRegex(MocodoError, "Mocodo Err\.34", read_template, "bad_object_value", TEMPLATE_FOLDER)
         self.assertRaisesRegex(MocodoError, "Mocodo Err\.35", read_template, "bad_array_element", TEMPLATE_FOLDER)
         self.assertRaisesRegex(MocodoError, "Mocodo Err\.36", read_template, "bad_no_order", TEMPLATE_FOLDER)
+        self.assertRaisesRegex(MocodoError, "Mocodo Err\.38", read_template, "bad_non_numeric_order", TEMPLATE_FOLDER)
+        self.assertRaisesRegex(MocodoError, "Mocodo Err\.39", read_template, "bad_non_increasing_order", TEMPLATE_FOLDER)
 
 if __name__ == '__main__':
     unittest.main()
