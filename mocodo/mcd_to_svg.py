@@ -94,6 +94,7 @@ def html_escape(
         "<": "&lt;",
         '"': "&quot;",
         "'": "’",  # neither &#39; nor &apos; make the job in notes
+        "-": "&#45;", # prevent double hyphen in SVG comments: https://stackoverflow.com/questions/10842131/xml-comments-and
 }):
     return "".join(table.get(c, c) for c in text)
 

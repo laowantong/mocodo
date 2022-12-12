@@ -25,3 +25,4 @@ web/box/*
 */.ipynb_checkpoints/*
 poetry.lock
 mocodo_web.py
+doc/Untitled.ipynb

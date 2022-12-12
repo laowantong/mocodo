@@ -8,6 +8,7 @@
   "compose_relation": "{this_relation_name}: {columns}",
   "transform_relation": [
     {
+      "order": 100,
       "comment": "By default, the first attribute is an identifier",
       "search": ": _",
       "replace": ": "
@@ -16,19 +17,23 @@
   "compose_relational_schema": "%%mocodo\n{relations}",
   "transform_relational_schema": [
     {
+      "order": 100,
       "search": "(?m)^:\n(?=:)",
       "replace": ":"
     },
     {
+      "order": 200,
       "search": "\n\n:+\n\n",
       "replace": "\n\n",
       "iterated": true
     },
     {
+      "order": 300,
       "search": "^%%mocodo\n\n?:+\n\n",
       "replace": ""
     },
     {
+      "order": 400,
       "search": "\\n\\n:+\\n?$",
       "replace": ""
     }

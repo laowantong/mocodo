@@ -65,7 +65,7 @@ os.remove(snapshot_dir / "snapshot.svg")
 
 result.append(f"## Relational output\n")
 relations = Relations(mcd, params)
-for relation_path in Path("mocodo/resources/relation_templates/").glob("*.json"):
+for relation_path in sorted(Path("mocodo/resources/relation_templates/").glob("*.json")):
     template = json.loads(relation_path.read_text("utf8"))
     output = relations.get_text(template).strip()
     result.append(f"### `{relation_path.name}`\n\n```{template['highlight']}\n{output}\n```\n")

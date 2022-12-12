@@ -1,3 +1,4 @@
+from bisect import bisect_left
 import json
 import numbers
 import os
@@ -8,6 +9,7 @@ from pathlib import Path
 from .file_helpers import read_contents, write_contents
 from .mocodo_error import MocodoError
 from .version_number import version
+from .read_template import read_template
 
 
 def safe_print_for_PHP(s):
@@ -17,6 +19,7 @@ def safe_print_for_PHP(s):
         print(s, file=sys.stdout)
     except UnicodeEncodeError:
         print(s.encode("utf8"), file=sys.stdout)
+
 
 class Common:
 
@@ -79,23 +82,15 @@ class Common:
         return style
 
     def dump_mld_files(self, relations):
-        relation_templates = []
-        for relation_template in self.params["relations"]:
+        template_folder = Path(self.params["script_directory"]) / "resources" / "relation_templates"
+        for name in self.params["relations"]:
+            template = read_template(name, template_folder)
+            path = os.path.join(self.params["output_name"] + template["extension"])
             try:
-                path = os.path.join(self.params["script_directory"], "resources", "relation_templates", "%s.json" % relation_template)
-                contents = json.loads(read_contents(path))
-                relation_templates.append(contents)
-            except:
-                safe_print_for_PHP(_('Problem with template {template}.').format(template=relation_template + ".json"))
-        for relation_template in relation_templates:
-            path = os.path.join(self.params["output_name"] + relation_template["extension"])
-            try:
-                text = relations.get_text(relation_template)
+                text = relations.get_text(template)
                 safe_print_for_PHP(self.output_success_message(path))
             except:
-                text = _("Problem during the generation of the relational schema.")
-                safe_print_for_PHP(text)
-                raise
+                raise MocodoError(37, _('Problem during the generation of the relational schema with template "{name}.json".').format(name=name))
             write_contents(path, text)
 
     def calculate_or_retrieve_geo(self, mcd, reuse_geo=False):

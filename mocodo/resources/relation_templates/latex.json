@@ -3,20 +3,24 @@
   "highlight": "latex",
   "transform_attribute": [
     {
+      "order": 100,
       "search": "_",
       "replace": "\\_"
     },
     {
+      "order": 200,
       "search": "\\$",
       "replace": "\\$"
     }
   ],
   "transform_relation_name": [
     {
+      "order": 100,
       "search": "_",
       "replace": "\\_"
     },
     {
+      "order": 200,
       "search": "\\$",
       "replace": "\\$"
     }
