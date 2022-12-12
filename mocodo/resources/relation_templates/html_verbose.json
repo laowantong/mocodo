@@ -189,7 +189,7 @@
     {
       "order": 200,
       "search": "La table (.+), (.+?) a été supprimée .+",
-      "replace": "Les tables \\1 et \\2 ont été supprimées car elles étaient réduites à la clé primaire de leur entité d'origine."
+      "replace": "Les tables \\1 et \\2 ont été supprimées car elles étaient réduites à la clé primaire de leur entité d'origine.</span></div>"
     },
     {
       "order": 300,

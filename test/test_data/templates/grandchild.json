@@ -3,10 +3,12 @@
     "buzz": "reupdated_value",
     "biz": [
         {
+            "order": 1,
             "foo": "bar",
             "baz": "qux"
         },
         {
+            "order": 2,
             "foo": "bar",
             "baz": "qux"
         }
