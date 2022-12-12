@@ -34,9 +34,9 @@
   "compose_primary_naturalized_foreign_key": "<ins>_#{label}_</ins><item>Le champ _{label}_ fait partie de la clé primaire de la table<primary></primary>. Sa table d'origine (_{outer_source}_) ayant été supprimée, il n'est pas considéré comme clé étrangère.</item>",
   "compose_stopped_naturalized_foreign_key": "_#{label}_<item>Le champ _{label}_ a migré directement de l'entité _{outer_source}_ en perdant son caractère identifiant. La table correspondante ayant été supprimée, il n'est pas considéré comme clé étrangère.</item>",
   "compose_unsourced_naturalized_foreign_key": "{label}<item>Le champ _{label}_ a migré par l'association de dépendance fonctionnelle _{association_name}_ à partir de l'entité _{adjacent_source}_ (supprimée). **Attention** : aucune contrainte d'intégrité référentielle n'est plus assurée.</item>",
-  "compose_unsourced_primary_naturalized_foreign_key": "<ins>{label}</ins><item>Le champ _{label}_ fait partie de la clé primaire de la table<primary></primary>. Il a migré par l'association de dépendance fonctionnelle _{association_name}_ à partir de l'entité _{adjacent_source}_ (supprimée). **Attention** : aucune contrainte d'intégrité référentielle n'est plus assurée.</item>",
+  "compose_unsourced_primary_naturalized_foreign_key": "<ins>{label}</ins><item>Le champ _{label}_ fait partie de la clé primaire de la table<primary></primary>. Il a migré par l'association de dépendance fonctionnelle _{association_name}_ à partir de l'entité _{adjacent_source}_ (supprimée). **Attention** : aucune contrainte d'intégrité référentielle n'est plus assurée.</item>",  
   "compose_relation": "**{this_relation_name}** ({columns})  ",
-  "compose_deleted_relation": "La table _{this_relation_name}_ a été supprimée car elle était réduite à la clé primaire de son entité d'origine.",
+  "compose_deleted_relation": "La table _{this_relation_name}_ a été supprimée car elle était réduite à la clé primaire de son entité d'origine. Pour empêcher cette supression, préfixez d'un « + » le nom de l'entité.",
   "compose_deleted_relations": "\n---\n\n**NB.** {deleted_relation_lines}",
   "compose_relational_schema": "{relations}{deleted_relations}",
   "transform_forced_relation": [
@@ -143,17 +143,17 @@
       "search": "$",
       "replace": "\n"
     }
-  ],
+    ],
   "transform_relational_schema": [
     {
       "order": 100,
-      "search": "(La table )(.+?)( a été supprimée car elle était réduite à la clé primaire de son entité d'origine.)\\1(.+?)\\3",
+      "search": "(La table )(.+?)( a été supprimée .+)\\1(.+?)\\3",
       "replace": "\\1\\2, \\4\\3",
       "iterated": true
     },
     {
       "order": 200,
-      "search": "La table (.+), (.+?) a été supprimée car elle était réduite à la clé primaire de son entité d'origine.",
+      "search": "La table (.+), (.+?) a été supprimée .+",
       "replace": "Les tables \\1 et \\2 ont été supprimées car elles étaient réduites à la clé primaire de leur entité d'origine."
     },
     {
