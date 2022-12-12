@@ -81,10 +81,6 @@ class Relations:
                         break
             return string
         
-        def extract_sorting_key(string, transformation):
-            d = template[transformation]
-            return re.sub(d["search"], d["replace"], string)
-        
         def set_defaults(template):
             result = {
               "transform_attribute": [],
@@ -97,10 +93,6 @@ class Relations:
               "compose_foreign_key": "#{label}",
               "compose_primary_foreign_key": "_#{label}_",
               "transform_relation_name": [],
-              "column_sorting_key": {
-                "search": "(.+)",
-                "replace": "\\1"
-              },
               "column_separator": ", ",
               "compose_relation": "{this_relation_name} ({columns})",
               "deleted_relation_separator": "",
@@ -109,10 +101,6 @@ class Relations:
               "transform_forced_relation": [],
               "transform_relation": [],
               "relation_separator": "\n",
-              "relation_sorting_key": {
-                "search": "(.+)",
-                "replace": "\\1"
-              },
               "compose_relational_schema": "{relations}",
               "transform_relational_schema": [],
             }
@@ -202,7 +190,6 @@ class Relations:
                 data["association_name_uppercase"] = data["association_name"] and data["association_name"].upper()
                 data["association_name_titlecase"] = data["association_name"] and data["association_name"].capitalize()
                 fields.append(template["compose_%s" % column["nature"]].format(**data))
-            data["sorted_columns"] = template["column_separator"].join(sorted(fields, key=lambda field: extract_sorting_key(field, "column_sorting_key")))
             data["columns"] = template["column_separator"].join(fields)
             line = template["compose_relation"].format(**data)
             if relation["is_forced"]:
@@ -234,7 +221,6 @@ class Relations:
                 lines.append("\n")
             lines.pop()
         data["relations"] = template["relation_separator"].join(lines)
-        data["sorted_relations"] = template["relation_separator"].join(sorted(lines, key=lambda line: extract_sorting_key(line, "relation_sorting_key")))
 
         if self.deleted_relations:
             lines = []

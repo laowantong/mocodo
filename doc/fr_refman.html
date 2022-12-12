@@ -33843,12 +33843,6 @@ PRODUIT: Réf. produit, Libellé, Prix unitaire
 <td>chaîne</td>
 <td>Concatène une liste de chaînes en les séparant par une chaîne donnée.</td>
 </tr>
-<tr>
-<td>clé de tri</td>
-<td><code>"..._sorting_key"</code></td>
-<td>objet</td>
-<td>Extrait la clé de tri pour la liste concernée. L'expression régulière <code>"search"</code> contient une ou des parenthèses capturantes qui sont ensuite rappelées dans l'expression <code>"replace"</code></td>
-</tr>
 </tbody>
 </table>
 
@@ -33875,16 +33869,16 @@ PRODUIT: Réf. produit, Libellé, Prix unitaire
 <ol>
 <li>Si l'attribut a migré depuis une entité, le nom de la relation correspondante est associé, avec ses capitalisations, aux identificateurs <code>"primary_relation_name"</code>, <code>"primary_relation_name_lowercase"</code>, <code>"primary_relation_name_uppercase"</code> et  <code>"primary_relation_name_titlecase"</code>. Dans le cas contraire, tous ces identificateurs sont associés à la chaîne vide.</li>
 <li>Si l'attribut a migré par une association, le nom de celle-ci est associé, avec ses capitalisations, aux identificateurs <code>"association_name"</code>, <code>"association_name_lowercase"</code>, <code>"association_name_uppercase"</code> et  <code>"association_name_titlecase"</code>. Dans le cas contraire, tous ces identificateurs sont associés à la chaîne vide.</li>
-<li>la composition <code>"compose_[attribute_nature]"</code> est appliquée, <em>cf.</em> le paragraphe <a href="#Composition-des-attributs-selon-leur-nature">Composition des attributs selon leur nature</a>. Le résultat est accumulé dans une liste de colonnes, en deux versions: dans l'ordre de leur énumération, ou triée selon la clé spécifiée dans <code>"column_sorting_key"</code>.</li>
+<li>la composition <code>"compose_[attribute_nature]"</code> est appliquée, <em>cf.</em> le paragraphe <a href="#Composition-des-attributs-selon-leur-nature">Composition des attributs selon leur nature</a>. Le résultat est accumulé dans une liste de colonnes dans l'ordre de leur énumération.</li>
 </ol>
 </li>
-<li><code>"column_separator"</code> joint chacune de ces listes de chaînes et associe le résultat à l'identificateur <code>"columns"</code> et <code>"sorted_columns"</code> (respectivement).</li>
+<li><code>"column_separator"</code> joint chacune de ces listes de chaînes et associe le résultat à l'identificateur <code>"columns"</code>.</li>
 <li><code>"compose_relation"</code> construit une relation complète avec tous ses attributs. Par exemple, et c'est la valeur par défaut, <code>"{this_relation_name} ({columns})"</code> est utilisé dans les <a href="#Formats-lin%C3%A9aires">formats linéaires</a>.</li>
 <li><code>"transform_forced_relation"</code> est appliqué aux associations DF dont la conversion en table a été forcée manuellement.</li>
-<li><code>"transform_relation"</code> est appliqué systématiquement, et le résultat est accumulé dans une liste de relations, en deux versions: dans l'ordre de leur énumération, ou triée selon la clé spécifiée dans <code>"relation_sorting_key"</code>.</li>
+<li><code>"transform_relation"</code> est appliqué systématiquement, et le résultat est accumulé dans une liste de relations dans l'ordre de leur énumération.</li>
 </ol>
 </li>
-<li><code>"relation_separator"</code> joint chacune de ces listes de chaînes et associe le résultat à l'identificateur <code>"relations"</code> et <code>"sorted_relations"</code> (respectivement).</li>
+<li><code>"relation_separator"</code> joint chacune de ces listes de chaînes et associe le résultat à l'identificateur <code>"relations"</code>.</li>
 <li><code>"compose_relational_schema"</code> construit un schéma relationnel complet avec son titre et toutes ses relations. La valeur par défaut est simplement <code>"{relations}"</code>.</li>
 <li><code>"transform_relational_schema"</code> applique une dernière transformation au schéma complet, et renvoie le résultat final.</li>
 </ol>
@@ -34029,7 +34023,7 @@ PRODUIT: Réf. produit, Libellé, Prix unitaire
 <li>5 spécifiques à la relation;</li>
 <li>23 spécifiques à l'attribut.</li>
 </ul>
-<p>S'y ajoutent <code>"columns"</code>, <code>"sorted_columns"</code>, et <code>"relations"</code>, <code>"sorted_relations"</code>, qui n'ont de sens que dans le contexte de <code>"compose_relation"</code> et <code>"compose_relational_schema"</code>(respectivement).</p>
+<p>S'y ajoutent <code>"columns"</code> et <code>"relations"</code>, qui n'ont de sens que dans le contexte de <code>"compose_relation"</code> et <code>"compose_relational_schema"</code>(respectivement).</p>
 <p>Le fichier JSON est trop long pour être listé dans son intégralité ici, mais en voici le début, qui concerne la clé primaire <em>Réf. client</em> de la relation <em>Client</em> de la base _client_commande<em>produit</em>.</p>
 
 </div>
@@ -34703,18 +34697,10 @@ Busy: fail
     "compose_demoted_foreign_key": "par défaut, même valeur que compose_foreign_key",
     "compose_promoting_foreign_key": "par défaut, même valeur que compose_foreign_key",
     "transform_relation_name": [],
-    "column_sorting_key": {
-        "search": "(.+)",
-        "replace": "\\1"
-    },
     "column_separator": ", ",
     "compose_relation": "{this_relation_name} ({columns})",
     "transform_forced_relation": [],
     "transform_relation": [],
-    "relation_sorting_key": {
-        "search": "(.+)",
-        "replace": "\\1"
-    },
     "relation_separator": "\n",
     "compose_relational_schema": "{relations}",
     "transform_relational_schema": []
