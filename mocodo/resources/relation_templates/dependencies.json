@@ -1,0 +1,41 @@
+{
+  "extension": "_dependencies.gv",
+  "highlight": "graphviz",
+  "compose_primary_key": "",
+  "compose_normal_attribute": "",
+  "compose_foreign_key": "<-\"{outer_source}\"",
+  "compose_primary_foreign_key": "<-\"{outer_source}\"",
+  "column_separator": "",
+  "compose_relation": "\"{this_relation_name}\"{columns}",
+  "relation_separator": "\n",
+  "transform_relation": [
+    {
+      "order": 100,
+      "comment": "Present all the dependencies of the same relation on multiple lines",
+      "search": "(\"[^\"]+\")<-(\"[^\"]+\")",
+      "replace": "  \\2 -> \\1\n\\1",
+      "iterated": true
+    }
+  ],
+  "compose_relational_schema": "digraph {{\n  node [shape=box]\n\n{relations}\n}}",
+  "transform_relational_schema": [
+    {
+      "order": 100,
+      "comment": "Remove the independant relations",
+      "search": "(?m)^\".+",
+      "replace": ""
+    },
+    {
+      "order": 200,
+      "comment": "Remove the empty lines",
+      "search": "\n+",
+      "replace": "\n"
+    },
+    {
+      "order": 300,
+      "comment": "Remove the duplicated consecutive lines",
+      "search": "(?m)^(.+\n)\\1+",
+      "replace": "\\1"
+    }
+  ]
+}

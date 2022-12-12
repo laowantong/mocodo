@@ -7,6 +7,7 @@ if (!array_key_exists('text', $_POST)) {
 $python = "/usr/local/bin/python3.9";
 
 $extensions = array(
+  "dependencies" => "_dependencies.gv",
   "diagram" => ".mld",
   "markdown_data_dict" => "_data_dict.md",
   "html" => ".html",

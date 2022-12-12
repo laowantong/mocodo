@@ -39,19 +39,24 @@ var relation_formats = {
     "highlighting": "markdown",
     "name": "Markdown",
   },
-  "diagram": {
-    "default": false,
-    "highlighting": "none",
-    "title": "Résultat à réinjecter sous l&#39;onglet Entrée pour tracer un diagramme sagittal des relations.",
-    "name": "Diagramme relationnel",
-  },
   "html_verbose": {
     "default": false,
     "highlighting": "markup",
     "title": "S&#39;affiche également au-dessous du diagramme conceptuel.",
     "name": "Explications du schéma relationnel",
   },
-  // "json": {
+  "diagram": {
+    "default": false,
+    "highlighting": "none",
+    "title": "Résultat à réinjecter sous l&#39;onglet Entrée pour tracer un diagramme sagittal des relations.",
+    "name": "Diagramme relationnel",
+  },
+  "dependencies": {
+    "default": false,
+    "highlighting": "graphviz",
+    "name": "Graphe des dépendances",
+  },
+  // "": {
   //   "default": false,
   //   "highlighting": "json",
   //   "name": 'JSON',

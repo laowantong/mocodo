@@ -65,6 +65,18 @@ ENCLOS: num. enclos
 | PEUT VIVRE DANS | nb. max. congénères | `association_attribute` | None | None |
 ```
 
+### `dependencies.json`
+
+```graphviz
+digraph {
+  node [shape=box]
+  "ESPÈCE" -> "ANIMAL"
+  "ANIMAL" -> "OCCUPE"
+  "ESPÈCE" -> "PEUT COHABITER AVEC"
+  "ESPÈCE" -> "PEUT VIVRE DANS"
+}
+```
+
 ### `diagram.json`
 
 ```plain
