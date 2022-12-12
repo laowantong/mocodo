@@ -1,5 +1,6 @@
 import collections
 import os
+import pprint
 import re
 
 from .file_helpers import write_contents
@@ -63,6 +64,7 @@ class Relations:
         self.process_associations()
         self.process_inheritances()
         self.delete_inheritance_parent_or_children_to_delete()
+        self.delete_deletable_relations()
         self.make_primary_keys_first()
         self.may_disambiguate_with_leg_notes = set_disambiguation_strategy(params["disambiguation"])
         may_update_params_with_guessed_title()
@@ -101,7 +103,9 @@ class Relations:
               },
               "column_separator": ", ",
               "compose_relation": "{this_relation_name} ({columns})",
-              "transform_single_column_relation": [],
+              "deleted_relation_separator": "",
+              "compose_deleted_relation": "",
+              "compose_deleted_relations": "",
               "transform_forced_relation": [],
               "transform_relation": [],
               "relation_separator": "\n",
@@ -135,6 +139,14 @@ class Relations:
             result.setdefault("compose_strengthening_primary_key", result["compose_primary_foreign_key"])
             result.setdefault("compose_unsourced_foreign_key", result["compose_normal_attribute"])
             result.setdefault("compose_unsourced_primary_foreign_key", result["compose_primary_key"])
+            result.setdefault("compose_naturalized_foreign_key", result["compose_normal_attribute"])
+            result.setdefault("compose_primary_naturalized_foreign_key", result["compose_primary_key"])
+            result.setdefault("compose_deleted_child_naturalized_foreign_key", result["compose_normal_attribute"])
+            result.setdefault("compose_deleted_parent_naturalized_foreign_key", result["compose_normal_attribute"])
+            result.setdefault("compose_demoted_naturalized_foreign_key", result["compose_normal_attribute"])
+            result.setdefault("compose_stopped_naturalized_foreign_key", result["compose_normal_attribute"])
+            result.setdefault("compose_unsourced_naturalized_foreign_key", result["compose_normal_attribute"])
+            result.setdefault("compose_unsourced_primary_naturalized_foreign_key", result["compose_primary_key"])
             return result
         template = set_defaults(template)
         
@@ -193,8 +205,6 @@ class Relations:
             data["sorted_columns"] = template["column_separator"].join(sorted(fields, key=lambda field: extract_sorting_key(field, "column_sorting_key")))
             data["columns"] = template["column_separator"].join(fields)
             line = template["compose_relation"].format(**data)
-            if len(relation["columns"]) == 1:
-                line = transform(line, "transform_single_column_relation")
             if relation["is_forced"]:
                 line = transform(line, "transform_forced_relation")
             line = transform(line, "transform_relation")
@@ -225,6 +235,16 @@ class Relations:
             lines.pop()
         data["relations"] = template["relation_separator"].join(lines)
         data["sorted_relations"] = template["relation_separator"].join(sorted(lines, key=lambda line: extract_sorting_key(line, "relation_sorting_key")))
+
+        if self.deleted_relations:
+            lines = []
+            for deleted_relation in self.deleted_relations:
+                lines.append(template["compose_deleted_relation"].format(this_relation_name=deleted_relation))
+            deleted_relation_lines = template["deleted_relation_separator"].join(lines)
+            data["deleted_relations"] = template["compose_deleted_relations"].format(deleted_relation_lines=deleted_relation_lines)
+        else:
+            data["deleted_relations"] = ""
+
         data["relations"] = template["compose_relational_schema"].format(**data)
         result = transform(data["relations"], "transform_relational_schema")
         return result
@@ -260,6 +280,7 @@ class Relations:
             self.relations[name] = {
                 "this_relation_name": entity.name,
                 "is_forced": False,
+                "is_deletable": entity.is_deletable,
                 "columns": []
             }
             for attribute in entity.attributes:
@@ -568,17 +589,19 @@ class Relations:
         for entity_to_delete in self.inheritance_parent_or_children_to_delete:
             del self.relations[entity_to_delete]
 
-
-
+    def delete_deletable_relations(self):
+        deleted_outer_sources = set()
+        for (name, relation) in list(self.relations.items()):
+            if relation.get("is_deletable") and all(column["nature"] == "primary_key" for column in relation["columns"]):
+                del self.relations[name]
+                deleted_outer_sources.add(name)
+        for relation in self.relations.values():
+            for column in relation["columns"]:
+                if column["outer_source"] in deleted_outer_sources:
+                    column["nature"] = column["nature"].replace("foreign", "naturalized_foreign")
+        self.deleted_relations = sorted(deleted_outer_sources)
 
     def make_primary_keys_first(self):
         for relation in self.relations.values():
             relation["columns"].sort(key=lambda column: not column["primary"])
         
-    
-
-if __name__=="__main__":
-    import sys
-    sys.path.append("/Users/aristide/Dropbox/Sites/mocodo_online/mocodo")
-    from .mocodo import main
-    main()

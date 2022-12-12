@@ -8,7 +8,10 @@
   "column_separator": ",\n        ",
   "compose_relation": "{{\n      \"this_relation_name\": \"{this_relation_name}\",\n      \"this_relation_name_lowercase\": \"{this_relation_name_lowercase}\",\n      \"this_relation_name_uppercase\": \"{this_relation_name_uppercase}\",\n      \"this_relation_name_titlecase\": \"{this_relation_name_titlecase}\",\n      \"is_forced\": \"{is_forced}\",\n      \"columns\": [\n        {columns}\n      ]\n    }}",
   "relation_separator": ",\n    ",
-  "compose_relational_schema": "{{\n  \"title\": \"{title}\",\n  \"title_lowercase\": \"{title_lowercase}\",\n  \"title_uppercase\": \"{title_uppercase}\",\n  \"title_titlecase\": \"{title_titlecase}\",\n  \"relations\": [\n    {relations}\n  ]\n}}",
+  "compose_deleted_relation": "\"{this_relation_name}\"",
+  "deleted_relation_separator": ", ",
+  "compose_deleted_relations": ",\n  \"deleted_relations\": [{deleted_relation_lines}]",
+  "compose_relational_schema": "{{\n  \"title\": \"{title}\",\n  \"title_lowercase\": \"{title_lowercase}\",\n  \"title_uppercase\": \"{title_uppercase}\",\n  \"title_titlecase\": \"{title_titlecase}\"{deleted_relations},\n  \"relations\": [\n    {relations}\n  ]\n}}",
   "transform_relational_schema": [
     {
       "search": "MOCODO_REPLACE_True",

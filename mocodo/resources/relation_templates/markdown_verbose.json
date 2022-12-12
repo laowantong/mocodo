@@ -27,13 +27,18 @@
   "compose_strengthening_primary_key": "<ins>_#{label}_</ins><item>Le champ _{label}_ fait partie de la clé primaire de la table<primary></primary>. Il a migré à partir de l'entité _{outer_source}_ pour renforcer l'identifiant.</item>",
   "compose_unsourced_foreign_key": "{label}<item>Le champ _{label}_ a migré par l'association de dépendance fonctionnelle _{association_name}_ à partir de l'entité _{adjacent_source}_ (supprimée). **Attention** : aucune contrainte d'intégrité référentielle n'est plus assurée.</item>",
   "compose_unsourced_primary_foreign_key": "<ins>{label}</ins><item>Le champ _{label}_ fait partie de la clé primaire de la table<primary></primary>. Il a migré par l'association de dépendance fonctionnelle _{association_name}_ à partir de l'entité _{adjacent_source}_ (supprimée). **Attention** : aucune contrainte d'intégrité référentielle n'est plus assurée.</item>",
+  "compose_deleted_child_naturalized_foreign_key": "_#{label}_<item>Le champ _{label}_ a migré à travers l'entité-fille _{adjacent_source}_ (supprimée) dans laquelle il avait déjà migré à partir de l'entité _{outer_source}_ (également supprimée).</item>",
+  "compose_deleted_parent_naturalized_foreign_key": "_#{label}_<item>Le champ _{label}_ a migré à travers l'entité-mère _{adjacent_source}_ (supprimée) dans laquelle il avait déjà migré à partir de l'entité _{outer_source}_ (également supprimée).</item>",
+  "compose_demoted_naturalized_foreign_key": "_#{label}_<item>Le champ _{label}_ est un simple attribut. Sa table d'origine, _{outer_source}_, ayant été supprimée, il n'est pas considéré comme clé étrangère. Il devrait normalement faire partie de l'identifiant de _{this_relation_name}_, mais a été rétrogradé explicitement au rang de simple attribut.</item>",
+  "compose_naturalized_foreign_key": "_#{label}_<item>Le champ _{label}_ a migré par l'association de dépendance fonctionnelle _{association_name}_ à partir de l'entité _{outer_source}_ en perdant son caractère identifiant. De plus, comme la table créée à partir de cette entité a été supprimée, il n'est pas considéré comme clé étrangère.</item>",
+  "compose_primary_naturalized_foreign_key": "<ins>_#{label}_</ins><item>Le champ _{label}_ fait partie de la clé primaire de la table<primary></primary>. Sa table d'origine (_{outer_source}_) ayant été supprimée, il n'est pas considéré comme clé étrangère.</item>",
+  "compose_stopped_naturalized_foreign_key": "_#{label}_<item>Le champ _{label}_ a migré directement de l'entité _{outer_source}_ en perdant son caractère identifiant. La table correspondante ayant été supprimée, il n'est pas considéré comme clé étrangère.</item>",
+  "compose_unsourced_naturalized_foreign_key": "{label}<item>Le champ _{label}_ a migré par l'association de dépendance fonctionnelle _{association_name}_ à partir de l'entité _{adjacent_source}_ (supprimée). **Attention** : aucune contrainte d'intégrité référentielle n'est plus assurée.</item>",
+  "compose_unsourced_primary_naturalized_foreign_key": "<ins>{label}</ins><item>Le champ _{label}_ fait partie de la clé primaire de la table<primary></primary>. Il a migré par l'association de dépendance fonctionnelle _{association_name}_ à partir de l'entité _{adjacent_source}_ (supprimée). **Attention** : aucune contrainte d'intégrité référentielle n'est plus assurée.</item>",  
   "compose_relation": "**{this_relation_name}** ({columns})  ",
-  "transform_single_column_relation": [
-    {
-      "search": "(?s)(.+)$",
-      "replace": "\\1\n- **Avertissement.** Cette table ne comportant qu'un seul champ, on peut envisager de la supprimer."
-    }
-  ],
+  "compose_deleted_relation": "La table _{this_relation_name}_ a été supprimée car elle était réduite à la clé primaire de son entité d'origine. Pour empêcher cette supression, préfixez d'un « + » le nom de l'entité.",
+  "compose_deleted_relations": "\n---\n\n**NB.** {deleted_relation_lines}",
+  "compose_relational_schema": "{relations}{deleted_relations}",
   "transform_forced_relation": [
     {
         "search": "(?s)(.+)$",
@@ -41,77 +46,95 @@
     }
   ],
   "transform_relation": [
-    {
-      "search": "(?s)<item>(.+?)</item>(.+)",
-      "replace": "\\2\n- \\1  ",
-      "iterated": true
+      {
+        "search": "(?s)<item>(.+?)</item>(.+)",
+        "replace": "\\2\n- \\1  ",
+        "iterated": true
+      },
+      {
+        "search": "(- Le champ )(.+?)( était déjà un simple attribut de .+?.)\n\\1(.+?)\\3",
+        "replace": "\\1\\2, \\4\\3",
+        "iterated": true
+      },
+      {
+        "search": "- Le champ (.+), (.+?) était déjà un simple attribut( de .+?.)",
+        "replace": "- Les champs \\1 et \\2 étaient déjà de simples attributs\\3"
+      },
+      {
+        "search": "(- Le champ )(.+?)( est une clé étrangère\\. Il a migré à partir de l'entité .+? par l'association de dépendance fonctionnelle .+? en perdant son caractère identifiant.)\n\\1(.+?)\\3",
+        "replace": "\\1\\2, \\4\\3",
+        "iterated": true
     },
     {
-      "search": "(- Le champ )(.+?)( était déjà un simple attribut de .+)\n\\1(.+?)\\3",
-      "replace": "\\1\\2, \\4\\3",
-      "iterated": true
+        "search": "- Le champ (.+), (.+?) est une clé étrangère\\. Il a (migré à partir de l'entité .+? par l'association de dépendance fonctionnelle .+? en perdant) son (caractère identifiant.)",
+        "replace": "- Les champs \\1 et \\2 sont des clés étrangères. Ils ont \\3 leur \\4"
     },
     {
-      "search": "- Le champ (.+), (.+?) était déjà un simple attribut( de .+)",
-      "replace": "- Les champs \\1 et \\2 étaient déjà de simples attributs\\3"
+        "search": "(- Le champ )(.+?)( fait partie de la clé primaire de la table<primary></primary>. Sa table d'origine .+?)\n\\1(.+?)\\3",
+        "replace": "\\1\\2, \\4\\3",
+        "iterated": true
     },
     {
-      "search": "(- Le champ )(.+?)( est une clé étrangère\\. Il a .+)\n\\1(.+?)\\3",
-      "replace": "\\1\\2, \\4\\3",
-      "iterated": true
+        "search": "- Le champ (.+), (.+?) fait partie de la clé primaire de la table<primary></primary>. Sa table d'origine (.+?) ayant été supprimée, il n'est pas considéré comme clé étrangère.",
+        "replace": "- Les champs \\1 et \\2 font partie de la clé primaire de la table<primary></primary>. Leur table d'origine \\3 ayant été supprimée, ils ne sont pas considérés comme clés étrangères."
     },
     {
-      "search": "- Le champ (.+), (.+?) est une clé étrangère\\. Il a (migré .+ en perdant) son (caractère identifiant\\.)",
-      "replace": "- Les champs \\1 et \\2 sont des clés étrangères. Ils ont \\3 leur \\4"
+        "search": "(- Le champ )(.+?)( fait partie de la clé primaire de la table<primary></primary>.+?)\n\\1(.+?)\\3",
+        "replace": "\\1\\2, \\4\\3",
+        "iterated": true
     },
     {
-      "search": "(- Le champ )(.+?)( fait partie de la clé primaire de la table<primary></primary>.+?)\n\\1(.+?)\\3",
-      "replace": "\\1\\2, \\4\\3",
-      "iterated": true
+        "search": "- Le champ (.+), (.+?) fait partie de la clé primaire de la table<primary></primary>. C'est une clé étrangère qui a (migré directement à partir de l'entité .+?)",
+        "replace": "- Les champs \\1 et \\2 font partie de la clé primaire de la table<primary></primary>. Ce sont des clés étrangères qui ont \\3"
     },
     {
-      "search": "- Le champ (.+), (.+?) fait partie de la clé primaire de la table<primary></primary>. C'est une clé étrangère qui a (migré directement à partir de l'entité .+?)",
-      "replace": "- Les champs \\1 et \\2 font partie de la clé primaire de la table<primary></primary>. Ce sont des clés étrangères qui ont \\3"
+        "search": "- Le champ (.+), (.+?) fait partie de la clé primaire de la table<primary></primary>. C'était déjà un identifiant (de l'entité .+?)",
+        "replace": "- Les champs \\1 et \\2 font partie de la clé primaire de la table<primary></primary>. C'était déjà des identifiants \\3"
     },
     {
-      "search": "- Le champ (.+), (.+?) fait partie de la clé primaire de la table<primary></primary>. C'est une clé étrangère qui a (migré directement à partir de l'entité-mère .+?)",
-      "replace": "- Les champs \\1 et \\2 font partie de la clé primaire de la table<primary></primary>. Ce sont des clés étrangères qui ont \\3"
+        "search": "- Le champ (.+), (.+?) fait partie de la clé primaire de la table<primary></primary>. Il a (migré .+?)",
+        "replace": "- Les champs \\1 et \\2 font partie de la clé primaire de la table<primary></primary>. Ils ont \\3"
     },
     {
-      "search": "- Le champ (.+), (.+?) fait partie de la clé primaire de la table<primary></primary>. C'était déjà un identifiant (de l'entité .+?)",
-      "replace": "- Les champs \\1 et \\2 font partie de la clé primaire de la table<primary></primary>. C'était déjà des identifiants \\3"
+        "search": "$",
+        "replace": "<primary_count></primary_count>"
     },
     {
-      "search": "- Le champ (.+), (.+?) fait partie de la clé primaire de la table<primary></primary>. Il a (migré .+?)",
-      "replace": "- Les champs \\1 et \\2 font partie de la clé primaire de la table<primary></primary>. Ils ont \\3"
+        "search": "(?s)<primary></primary>(.+)</primary_count>",
+        "replace": "\\1I</primary_count>",
+        "iterated": true
     },
     {
-      "search": "$",
-      "replace": "<primary_count></primary_count>"
+        "search": "(?s)fait partie de( la clé primaire de la table.+)<primary_count>I</primary_count>",
+        "replace": "constitue\\1"
     },
     {
-      "search": "(?s)<primary></primary>(.+)</primary_count>",
-      "replace": "\\1I</primary_count>",
-      "iterated": true
+        "search": "(?s)font partie de( la clé primaire de la table.+)<primary_count>I</primary_count>",
+        "replace": "constituent\\1"
     },
     {
-      "search": "(?s)fait partie de( la clé primaire de la table.+)<primary_count>I</primary_count>",
-      "replace": "constitue\\1"
+        "search": "<primary_count>I+</primary_count>",
+        "replace": ""
     },
     {
-      "search": "(?s)font partie de( la clé primaire de la table.+)<primary_count>I</primary_count>",
-      "replace": "constituent\\1"
+        "search": "(?s)</div>(\n- .+)",
+        "replace": "  <ul>\\1\n  </ul></details>\n</div>"
     },
     {
-      "search": "<primary_count>I+</primary_count>",
-      "replace": ""
-    },
-    {
-      "search": "$",
-      "replace": "\n"
+        "search": "$",
+        "replace": "\n"
     }
-  ],
-  "transform_relational_schema": [
+    ],
+    "transform_relational_schema": [
+    {
+        "search": "(La table )(.+?)( a été supprimée .+)\\1(.+?)\\3",
+        "replace": "\\1\\2, \\4\\3",
+        "iterated": true
+    },
+    {
+        "search": "La table (.+), (.+?) a été supprimée .+",
+        "replace": "Les tables \\1 et \\2 ont été supprimées car elles étaient réduites à la clé primaire de leur entité d'origine. Pour empêcher cette supression, préfixez d'un « + » le nom de l'entité."
+    },
     {
       "search": "\\s+$",
       "replace": ""

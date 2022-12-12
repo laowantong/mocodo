@@ -38,12 +38,6 @@
   "compose_primary_foreign_key": "\"{label_lowercase}\" {data_type},\nADD_PRIMARY_KEY \"{label_lowercase}\",\nADD_FOREIGN_KEY (\"{label_lowercase}\") REFERENCES \"{outer_source_uppercase}\" (\"{raw_label_lowercase}\")",
   "column_separator": ",\n  ",
   "compose_relation": "CREATE TABLE \"{this_relation_name_uppercase}\" (\n  {columns},\n  PRIMARY KEY (),\n);",
-  "transform_single_column_relation": [
-    {
-      "search": "(?s)(.+)",
-      "replace": "/*\n\\1\n*/"
-    }
-  ],
   "transform_relation": [
     {
       "comment": "Replace the missing data types with an arbitrary default.",
