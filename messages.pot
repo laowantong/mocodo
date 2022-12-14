@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-12-12 20:00+0100\n"
+"POT-Creation-Date: 2022-12-14 18:28+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -90,7 +90,7 @@ msgid "Problem with \"{name}\" file \"{path}\"."
 msgstr ""
 
 #: mocodo/common.py:93
-msgid "Problem during the generation of the relational schema with template \"{name}.json\"."
+msgid "Problem when generating the relational schema with template \"{stem_or_path}\": {error}"
 msgstr ""
 
 #: mocodo/common.py:139
@@ -145,55 +145,55 @@ msgstr ""
 msgid "Obfuscation failed. Not enough substitution words in \"{filename}\". You may decrease the `obfuscation_min_distance` option values."
 msgstr ""
 
-#: mocodo/read_template.py:10
+#: mocodo/read_template.py:16
 msgid "Circular inheritance in template \"{name}.json\" of \"{folder}."
 msgstr ""
 
-#: mocodo/read_template.py:14
+#: mocodo/read_template.py:19
 msgid "Template \"{name}.json\" not found in \"{folder}\"."
 msgstr ""
 
-#: mocodo/read_template.py:18
+#: mocodo/read_template.py:23
 msgid "Unable to decode template \"{name}.json\" of \"{folder}\"."
 msgstr ""
 
-#: mocodo/read_template.py:20
+#: mocodo/read_template.py:25
 msgid "Template \"{name}.json\" of \"{folder}\" is not a JSON object."
 msgstr ""
 
-#: mocodo/read_template.py:24
+#: mocodo/read_template.py:28
 msgid "Template \"{name}.json\" of \"{folder}\" contains a JSON object as value of key \"{key}\"."
 msgstr ""
 
-#: mocodo/read_template.py:29
+#: mocodo/read_template.py:34
 msgid "Template \"{name}.json\" of \"{folder}\" contains a JSON array as value of key \"{key}\" which does not contain only JSON objects."
 msgstr ""
 
-#: mocodo/read_template.py:31
+#: mocodo/read_template.py:36
 msgid "Template \"{name}.json\" of \"{folder}\" contains a JSON array as value of key \"{key}\" which does not contain only objects having an \"order\" key."
 msgstr ""
 
-#: mocodo/read_template.py:34
+#: mocodo/read_template.py:39
 msgid "Template \"{name}.json\" of \"{folder}\" contains a JSON array as value of key \"{key}\" where the \"order\" key is not associated to a number."
 msgstr ""
 
-#: mocodo/read_template.py:36
+#: mocodo/read_template.py:41
 msgid "Template \"{name}.json\" of \"{folder}\" contains a JSON array as value of key \"{key}\" where the \"order\" keys are not sorted in ascending order."
 msgstr ""
 
-#: mocodo/relations.py:276
+#: mocodo/relations.py:262
 msgid "Reciprocal relative identification around {association}."
 msgstr ""
 
-#: mocodo/relations.py:343
+#: mocodo/relations.py:329
 msgid "A weak entity (here, {entity}) cannot be strengthened by itself."
 msgstr ""
 
-#: mocodo/relations.py:346
+#: mocodo/relations.py:332
 msgid "Cycle of weak entities in {entities}."
 msgstr ""
 
-#: mocodo/relations.py:359
+#: mocodo/relations.py:345
 msgid "Totality (/T\\ or /XT\\) is mandatory for \"=>\" inheritance of parent {name}."
 msgstr ""
 

@@ -1,20 +1,20 @@
-import json
 import os
 from pathlib import Path
-
-from mocodo.obfuscate import obfuscate
 
 __import__("sys").path[0:0] = ["mocodo"]
 from mocodo.argument_parser import parsed_arguments
 from mocodo.common import Common
-from mocodo.file_helpers import read_contents
 from mocodo.font_metrics import font_metrics_factory
 from mocodo.mcd import Mcd
 from mocodo.mcd_to_svg import main as mcd_to_svg
+from mocodo.obfuscate import obfuscate
+from mocodo.read_template import read_template
 from mocodo.relations import *
 
-minimal_template = json.loads(read_contents("mocodo/resources/relation_templates/text.json"))
-debug_template = json.loads(read_contents("mocodo/resources/relation_templates/debug.json"))
+TEMPLATE_DIR = Path("mocodo") / "resources" / "relation_templates"
+
+minimal_template = read_template("text", TEMPLATE_DIR)
+debug_template = read_template("debug", TEMPLATE_DIR)
 
 clauses = """
 :
@@ -66,9 +66,9 @@ os.remove(snapshot_dir / "snapshot.svg")
 result.append(f"## Relational output\n")
 relations = Relations(mcd, params)
 for relation_path in sorted(Path("mocodo/resources/relation_templates/").glob("*.json")):
-    template = json.loads(relation_path.read_text("utf8"))
+    template = read_template(relation_path.stem, TEMPLATE_DIR)
     output = relations.get_text(template).strip()
-    result.append(f"### `{relation_path.name}`\n\n```{template['highlight']}\n{output}\n```\n")
+    result.append(f"### `{relation_path.name}`\n\n```{template.get('highlight', '')}\n{output}\n```\n")
 
 result.append("## Obfuscation\n")
 

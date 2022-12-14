@@ -196,7 +196,7 @@ class Relations:
                 line = transform(line, "transform_forced_relation")
             line = transform(line, "transform_relation")
             lines.append(line)
-        if template["extension"] == ".mld":
+        if template.get("extension") == ".mld":
             rows = [[]]
             all_commas = [True] * self.mcd.col_count
             for row in self.mcd.rows:

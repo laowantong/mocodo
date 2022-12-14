@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: mocodo\n"
-"POT-Creation-Date: 2022-12-12 20:00+0100\n"
+"POT-Creation-Date: 2022-12-14 18:28+0100\n"
 "PO-Revision-Date: 2015-08-16 07:00+0000\n"
 "Last-Translator: Aristide Grange <chewingword@wingi.net>, 2015-2016,2022\n"
 "Language-Team: French (http://www.transifex.com/aristide/mocodo/language/fr/)\n"
@@ -101,9 +101,9 @@ msgstr "Problème lors du chargement de « {name} » au bout du chemin « {pa
 
 #: mocodo/common.py:93
 msgid ""
-"Problem during the generation of the relational schema with template "
-"\"{name}.json\"."
-msgstr "Problème lors de la génération du schéma relationnel avec le gabarit « {name}.json »."
+"Problem when generating the relational schema with template "
+"\"{stem_or_path}\": {error}"
+msgstr "Problème lors de la génération du schéma relationnel avec le gabarit « {stem_or_path}.json » : {error}."
 
 #: mocodo/common.py:139
 msgid "Unable to generate file \"{filename}\"!"
@@ -169,64 +169,64 @@ msgid ""
 " decrease the `obfuscation_min_distance` option values."
 msgstr "Échec de l'obfuscation. Il n'y a pas assez de mots de substitution dans « {filename} ». Vous devriez diminuer la valeur de l'option `obfuscation_min_distance`."
 
-#: mocodo/read_template.py:10
+#: mocodo/read_template.py:16
 msgid "Circular inheritance in template \"{name}.json\" of \"{folder}."
 msgstr "Héritage circulaire dans le gabarit « {name}.json » du dossier « {folder} »."
 
-#: mocodo/read_template.py:14
+#: mocodo/read_template.py:19
 msgid "Template \"{name}.json\" not found in \"{folder}\"."
 msgstr "Le gabarit « {name}.json » n'a pas été trouvé dans le dossier « {folder} »."
 
-#: mocodo/read_template.py:18
+#: mocodo/read_template.py:23
 msgid "Unable to decode template \"{name}.json\" of \"{folder}\"."
 msgstr "Impossible de décoder le gabarit « {name}.json » du dossier « {folder} »."
 
-#: mocodo/read_template.py:20
+#: mocodo/read_template.py:25
 msgid "Template \"{name}.json\" of \"{folder}\" is not a JSON object."
 msgstr "Le gabarit « {name}.json » du dossier « {folder} » n'est pas un objet JSON."
 
-#: mocodo/read_template.py:24
+#: mocodo/read_template.py:28
 msgid ""
 "Template \"{name}.json\" of \"{folder}\" contains a JSON object as value of "
 "key \"{key}\"."
 msgstr "Le gabarit « {name}.json » du dossier « {folder} » contient un objet JSON comme valeur de la clé « {key} »."
 
-#: mocodo/read_template.py:29
+#: mocodo/read_template.py:34
 msgid ""
 "Template \"{name}.json\" of \"{folder}\" contains a JSON array as value of "
 "key \"{key}\" which does not contain only JSON objects."
 msgstr "Le gabarit « {name}.json » du dossier « {folder} » contient un tableau JSON comme valeur de la clé « {key} » qui ne contient pas uniquement des objets JSON."
 
-#: mocodo/read_template.py:31
+#: mocodo/read_template.py:36
 msgid ""
 "Template \"{name}.json\" of \"{folder}\" contains a JSON array as value of "
 "key \"{key}\" which does not contain only objects having an \"order\" key."
 msgstr "Le gabarit « {name}.json » du dossier « {folder} » contient un tableau JSON comme valeur de la clé « {key} » qui ne contient pas uniquement des objets ayant une clé « order »."
 
-#: mocodo/read_template.py:34
+#: mocodo/read_template.py:39
 msgid ""
 "Template \"{name}.json\" of \"{folder}\" contains a JSON array as value of "
 "key \"{key}\" where the \"order\" key is not associated to a number."
 msgstr "Le gabarit « {name}.json » du dossier « {folder} » contient un tableau JSON comme valeur de la clé « {key} » où la clé « order » n'est pas associée à un nombre."
 
-#: mocodo/read_template.py:36
+#: mocodo/read_template.py:41
 msgid ""
 "Template \"{name}.json\" of \"{folder}\" contains a JSON array as value of "
 "key \"{key}\" where the \"order\" keys are not sorted in ascending order."
 msgstr "Le gabarit « {name}.json » du dossier « {folder} » contient un tableau JSON comme valeur de la clé « {key} » où les clés « order » ne sont pas triées dans l'ordre croissant."
 
-#: mocodo/relations.py:276
+#: mocodo/relations.py:262
 msgid "Reciprocal relative identification around {association}."
 msgstr "Identification relative réciproque autour de « {association} »."
 
-#: mocodo/relations.py:343
+#: mocodo/relations.py:329
 msgid "A weak entity (here, {entity}) cannot be strengthened by itself."
 msgstr "Une entité faible (ici, « {entity} ») ne peut être renforcée par elle-même."
 
-#: mocodo/relations.py:346
+#: mocodo/relations.py:332
 msgid "Cycle of weak entities in {entities}."
 msgstr "Cycle d'entités faibles dans {entities}."
 
-#: mocodo/relations.py:359
+#: mocodo/relations.py:345
 msgid "Totality (/T\\ or /XT\\) is mandatory for \"=>\" inheritance of parent {name}."
 msgstr "La totalité (/T\\ or /XT\\) est requise pour définir l'héritage « => » sur l'entité-mère « {name} »."

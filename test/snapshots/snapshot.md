@@ -945,11 +945,11 @@ ANIMAL: #code espèce->ESPÈCE->code espèce, _nom, sexe, date naissance, date d
 
 ```latex
 \begin{mld}
-ANIMAL (_#code espèce_, _nom_, sexe, date naissance, date décès, #code espèce mère, #nom mère, type alimentation, CARNIVORE, quantité viande, HERBIVORE, plante préférée)
-ESPÈCE (_code espèce_, libellé)
-OCCUPE (_#code espèce_, _#nom_, _num. enclos_, date début, date fin)
-PEUT COHABITER AVEC (_#code espèce_, _#code espèce commensale_, nb. max. commensaux)
-PEUT VIVRE DANS (_#code espèce_, _num. enclos_, nb. max. congénères)
+  Animal & (\foreign{\prim{code espèce}}, \prim{nom}, \attr{sexe}, \attr{date naissance}, \attr{date décès}, \foreign{code espèce mère}, \foreign{nom mère}, \attr{type alimentation}, \attr{CARNIVORE}, \attr{quantité viande}, \attr{HERBIVORE}, \attr{plante préférée})\\
+  Espèce & (\prim{code espèce}, \attr{libellé})\\
+  Occupe & (\foreign{\prim{code espèce}}, \foreign{\prim{nom}}, \prim{num. enclos}, \attr{date début}, \attr{date fin})\\
+  Peut cohabiter avec & (\foreign{\prim{code espèce}}, \foreign{\prim{code espèce commensale}}, \attr{nb. max. commensaux})\\
+  Peut vivre dans & (\foreign{\prim{code espèce}}, \prim{num. enclos}, \attr{nb. max. congénères})\\
 \end{mld}
 ```
 
@@ -1257,7 +1257,7 @@ CREATE TABLE "PEUT_VIVRE_DANS" (
 
 ### `text.json`
 
-```plain
+```
 ANIMAL (_#code espèce_, _nom_, sexe, date naissance, date décès, #code espèce mère, #nom mère, type alimentation, CARNIVORE, quantité viande, HERBIVORE, plante préférée)
 ESPÈCE (_code espèce_, libellé)
 OCCUPE (_#code espèce_, _#nom_, _num. enclos_, date début, date fin)

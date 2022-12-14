@@ -1,5 +1,5 @@
 {
-    "parent": "child",
+    "parent": "test/test_data/templates/child.json",
     "buzz": "reupdated_value",
     "biz": [
         {

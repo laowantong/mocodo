@@ -82,15 +82,15 @@ class Common:
         return style
 
     def dump_mld_files(self, relations):
-        template_folder = Path(self.params["script_directory"]) / "resources" / "relation_templates"
-        for name in self.params["relations"]:
-            template = read_template(name, template_folder)
-            path = os.path.join(self.params["output_name"] + template["extension"])
+        official_template_dir = Path(self.params["script_directory"]) / "resources" / "relation_templates"
+        for stem_or_path in self.params["relations"]:
+            template = read_template(stem_or_path, official_template_dir)
+            path = Path(self.params["output_name"] + template.get("extension", ""))
             try:
                 text = relations.get_text(template)
                 safe_print_for_PHP(self.output_success_message(path))
-            except:
-                raise MocodoError(37, _('Problem during the generation of the relational schema with template "{name}.json".').format(name=name))
+            except Exception as error:
+                raise MocodoError(37, _('Problem when generating the relational schema with template "{stem_or_path}": {error}').format(stem_or_path=stem_or_path, error=error))  # fmt: skip
             write_contents(path, text)
 
     def calculate_or_retrieve_geo(self, mcd, reuse_geo=False):

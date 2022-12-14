@@ -269,13 +269,13 @@ def parsed_arguments():
     )
     aspect_group.add_argument(
         "--colors",
-        metavar="PATH",
+        metavar="STEM_OR_PATH",
         default="bw",
         help="the color palette to use when generating the drawing. Name (without extension) of a file located in the directory 'colors', or path to a personal file",
     )
     aspect_group.add_argument(
         "--shapes",
-        metavar="PATH",
+        metavar="STEM_OR_PATH",
         help="specification of the fonts, dimensions, etc. Name (without extension) of a file located in the directory 'shapes', or path to a personal file",
     )
     aspect_group.add_argument(
@@ -303,10 +303,10 @@ def parsed_arguments():
 
     relational_group.add_argument(
         "--relations",
-        metavar="NAME",
+        metavar="STEM_OR_PATH",
         nargs="*",
         default=["html", "text"],
-        help="one or several templates for the generated relational schemas. Cf. directory 'relation_templates'",
+        help="one or several templates for the generated relational schemas. Name (without extension) of files located in the directory 'relation_templates', or path to personal files",
     )
     relational_group.add_argument(
         "--disambiguation",
