@@ -402,7 +402,6 @@ $(document).keypress(function (e) {
   };
 });
 $().ready(function () {
-  $("#contact").html('<a href="3ai5to:&#'.replace('3', 'm').replace('5', 'l') + Array(109, 111, 99, 111, 100, 111).join(";&#") + ';@&#' + Array(119, 105, 110, 103, 105, 46, 110, 101, 116).join(";&#") + ';">Contact<\/a>')
   createTabs();
   $.get(location.protocol + '//' + location.host + "/resources/pristine_sandbox.mcd", function (data) { $("#text").val(data) });
   var default_color = "brewer" + "+-"[Math.floor(Math.random() * 2)] + (Math.floor(Math.random() * 9) + 1);
