@@ -2,6 +2,7 @@ from email.policy import default
 import itertools
 import re
 from collections import defaultdict
+from hashlib import md5
 
 from .association import Association
 from .diagram_link import DiagramLink
@@ -19,6 +20,13 @@ class Mcd:
 
     def __init__(self, clauses, get_font_metrics=None, **params):
         
+        def calculate_uid():
+            h = md5("".join(clauses).encode("utf-8")).hexdigest()
+            if params.get("uid_suffix"):
+                return f"{h[:8]}_{params['uid_suffix']}"
+            else:
+                return h[:8]
+
         def parse_clauses():
             self.entities = {}
             self.associations = {}
@@ -180,6 +188,7 @@ class Mcd:
         
         self.get_font_metrics = get_font_metrics
         phantom_counter = itertools.count()
+        self.uid = calculate_uid()
         parse_clauses()
         add_legs()
         add_attributes()

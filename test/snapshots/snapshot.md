@@ -29,7 +29,13 @@ ENCLOS: num. enclos
 
 ## SVG output
 
+### Static
+
 ![](snapshot_static.svg)
+
+### Dynamic
+
+![](snapshot.svg)
 
 ## Relational output
 

@@ -60,8 +60,10 @@ except:
     pass
 result.append(f"## SVG output\n")
 mcd_to_svg(mcd, common)
+result.append(f"### Static\n")
 result.append("![](snapshot_static.svg)\n")
-os.remove(snapshot_dir / "snapshot.svg")
+result.append(f"### Dynamic\n")
+result.append("![](snapshot.svg)\n")
 
 result.append(f"## Relational output\n")
 relations = Relations(mcd, params)

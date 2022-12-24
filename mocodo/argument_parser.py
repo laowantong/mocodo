@@ -358,6 +358,13 @@ def parsed_arguments():
         action="store_true",
         help="reuse the geometry file of the previous execution",
     )
+    io_group.add_argument(
+        "--uid_suffix",
+        metavar="INT",
+        type=non_negative_integer,
+        default=0,
+        help="discriminate between multiple SVG of the same interactive diagram",
+    )
 
     source_group.add_argument(
         "--arrange",

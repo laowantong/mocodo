@@ -14,11 +14,8 @@ except:
 
 from .common import safe_print_for_PHP
 
-ID_CHARACTERS = string.ascii_letters + string.digits
-
 def main(mcd, common):
     style = common.load_style()
-    mcd_uid = ''.join(random.choice(ID_CHARACTERS) for _ in range(8))
     mcd.calculate_size(style)
     geo = common.calculate_or_retrieve_geo(mcd, reuse_geo=common.params["reuse_geo"])
     description = [
@@ -45,7 +42,7 @@ def main(mcd, common):
     categories = {"": [], "Association": [], "Entity": [], "Link": [], "Notes": [], "Pager": []}
     category = ""
     for (key, mapping) in description:
-        mapping["mcd_uid"] = mcd_uid
+        mapping["mcd_uid"] = mcd.uid
         has_note_card |= key.endswith("with_note")
         if key == "comment":
             category = mapping["text"].partition(" ")[0]
@@ -63,10 +60,13 @@ def main(mcd, common):
     if common.params["hide_notes"] or not has_note_card:
         del categories["Notes"]
     text = "\n".join(sum(categories.values(), [])) + "\n</svg>"
+    is_interactive = categories.get("Notes") or categories.get("Pager")
+    if not is_interactive:
+        text = re.sub(r'<g class="page_0_\w{8}(_\d+)? diagram_page" visibility="visible">', "<g>", text)
     path = Path(f"{common.params['output_name']}.svg")
     path.write_text(text, encoding="utf8")
     safe_print_for_PHP(common.output_success_message(path))
-    if categories.pop("Notes", []) + categories.pop("Pager"): # don't use or to avoid short-circuit
+    if categories.pop("Notes", []) + categories.pop("Pager"): # don't use `or` to avoid short-circuit
         text = "\n".join(sum(categories.values(), [])) + "\n</svg>"
         text = re.sub(
             r"(?m)^<\?xml .+\n<svg .+",
@@ -106,7 +106,7 @@ svg_elements = {
     "begin_group":      """<g>""",
     "end":              """</g>""",
     "text":             """<text x="{x}" y="{y}" fill="{text_color}" font-family="{family}" font-size="{size}">{text}</text>""",
-    "text_with_note":   """<text x="{x}" y="{y}" fill="{text_color}" font-family="{family}" font-size="{size}" onmouseover="show(evt,'{note}')" onmouseout="hide(evt)" style="cursor: pointer;">{text}</text>""",
+    "text_with_note":   """<text x="{x}" y="{y}" fill="{text_color}" font-family="{family}" font-size="{size}" onmouseover="show_{mcd_uid}(evt,'{note}')" onmouseout="hide_{mcd_uid}(evt)" style="cursor: pointer;">{text}</text>""",
     "line":             """<line x1="{x0}" y1="{y0}" x2="{x1}" y2="{y1}" stroke="{stroke_color}" stroke-width="{stroke_depth}"/>""",
     "dash_line":        """<line x1="{x0}" y1="{y0}" x2="{x1}" y2="{y1}" stroke="{stroke_color}" stroke-width="{stroke_depth}" stroke-dasharray="{dash_width}"/>""",
     "rect":             """<rect x="{x}" y="{y}" width="{w}" height="{h}" fill="{color}" stroke="{stroke_color}" stroke-width="{stroke_depth}" opacity="{opacity}"/>""",
@@ -114,7 +114,7 @@ svg_elements = {
     "polygon":          """<polygon points="{points}" fill="{color}" stroke="{stroke_color}" stroke-width="{stroke_depth}" opacity="{opacity}"/>""",
     "dot_polygon":      """<polygon points="{points}" fill="{color}" stroke="{stroke_color}" stroke-width="{stroke_depth}" stroke-dasharray="0,{dash_gap}" stroke-linecap="round"/>""",
     "circle":           """<circle cx="{cx}" cy="{cy}" r="{r}" stroke="{stroke_color}" stroke-width="{stroke_depth}" fill="{color}"/>""",
-    "pager_dot":        """<circle cx="{cx}" cy="{cy}" r="{r}" fill="{color}" id="pager_dot_{page}_{mcd_uid}" class="pager_dot" stroke-width="0" onclick="switch_page_visibility(evt,{page})" style="cursor: pointer;"/>""",
+    "pager_dot":        """<circle cx="{cx}" cy="{cy}" r="{r}" fill="{color}" id="pager_dot_{page}_{mcd_uid}" class="pager_dot" stroke-width="0" onclick="switch_page_visibility_{mcd_uid}(evt,{page})" style="cursor: pointer;"/>""",
     "triangle":         """<polygon points="{x1} {y1} {x2} {y2} {x3} {y3}" stroke="{stroke_color}" stroke-width="{stroke_depth}" fill="{color}"/>""",
     "arrow":            """<polygon points="{x0} {y0} {x1} {y1} {x2} {y2} {x3} {y3}" fill="{stroke_color}" stroke-width="0"/>""",
     "curve":            """<path d="M{x0} {y0} C{x1} {y1} {x2} {y2} {x3} {y3}" fill="none" stroke="{stroke_color}" stroke-width="{stroke_depth}"/>""",
@@ -123,14 +123,14 @@ svg_elements = {
     "lower_round_rect": """<path d="M{x0} {y0} v{y1} a{r} {r} 90 0 1 -{r} {r} H{x1} a{r} {r} 90 0 1 -{r} -{r} V{y0} H{w}" fill="{color}" stroke="{stroke_color}" stroke-width="{stroke_depth}"/>""",
     "notes":            """<script type="text/ecmascript">
                             <![CDATA[
-                            	function show(evt, text) {{
+                            	function show_{mcd_uid}(evt, text) {{
                             		var pos = (evt.target.getAttribute("y") < {height_threshold}) ? "bottom" : "top";
                             		var note = document.getElementById(pos + "_note_{mcd_uid}");
                             		note.textContent = text;
                             		note.setAttributeNS(null, "visibility", "visible");
                             		document.getElementById(pos + "_overlay_{mcd_uid}").setAttributeNS(null, "visibility", "visible");
                             	}}
-                            	function hide(evt) {{
+                            	function hide_{mcd_uid}(evt) {{
                             		document.getElementById("top_note_{mcd_uid}").setAttributeNS(null, "visibility", "hidden");
                             		document.getElementById("top_overlay_{mcd_uid}").setAttributeNS(null, "visibility", "hidden");
                             		document.getElementById("bottom_note_{mcd_uid}").setAttributeNS(null, "visibility", "hidden");
@@ -144,7 +144,7 @@ svg_elements = {
                             <text id="bottom_note_{mcd_uid}" text-anchor="middle" x="{x}" y="{y_bottom}" fill="{text_color}" font-family="{font_family}" font-size="{font_size}" visibility="hidden"></text>""".replace("    ", ""),
     "pager":            """<script type="text/ecmascript">
                             <![CDATA[
-                            	function switch_page_visibility(evt, page) {{
+                            	function switch_page_visibility_{mcd_uid}(evt, page) {{
                             		for (var i = 0; i < {page_count}; i++) {{
                             			components = document.getElementsByClassName(`page_${{i}}_{mcd_uid}`);
                             			for (var j = 0; j < components.length; j++) {{
