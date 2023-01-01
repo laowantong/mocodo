@@ -45,8 +45,8 @@ CONTACT:
   Author                Aristide Grange
   Address               Université de Lorraine
                         Laboratoire LCOMS - UFR MIM
-                        Ile du Saulcy
-                        57000 Metz
+                        3 rue Augustin Fresnel
+                        57070 METZ Technopôle
                         France
 """  # NB: accents raise an error in Jupyter Notebook
 
