@@ -36356,8 +36356,11 @@ Busy: fail
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <ul>
-<li>La clé <code>"parent"</code> donne le nom (sans l'extension <code>.json</code>) du gabarit dont on souhaite créer une version dérivée.</li>
-<li>Les clés <code>"extension"</code> et <code>"highlight"</code> sont requises. Elles peuvent <em>a priori</em> être reprise du gabarit parent.</li>
+<li>La clé <code>"parent"</code> donne le chemin ou le nom du gabarit dont on souhaite créer une version dérivée :<ul>
+<li>une chaîne terminée par <code>.json</code> est interprétée comme un chemin ;</li>
+<li>sinon, comme le nom d'un gabarit de la distribution.</li>
+</ul>
+</li>
 <li>Les autres clés sont facultatives. Ici, on redéfinit simplement le <code>"compose_relational_schema"</code> de <code>latex.json</code>.</li>
 </ul>
 
