@@ -32,10 +32,14 @@ $flex = array(
   "très prononcée" => 1.25,
 );
 
+
 // Make a folder for this user
-$path = str_replace(":", "_", __DIR__."/sessions/" . $_SERVER['REMOTE_ADDR'] . "-" . session_id()) ; // prevent the automatic substitution of : by / on Mac OS X (IPV6 syntax)
+$app_path = __DIR__."/sessions/";
+$personal_path = $_SERVER['REMOTE_ADDR'] . "-" . session_id();
+$path =  str_replace(":", "_", $app_path . $personal_path); // prevent the automatic substitution of : by / on Mac OS X (IPV6 syntax)
+
 file_exists($path) or mkdir($path) or die('{"err": "PHP: Failed to create user folder."}');
-chdir($path);
+chdir($path); 
 
 $postId = md5(serialize($_POST));
 
@@ -157,7 +161,6 @@ $count = 1;
 $result = array(
     "svg" => str_replace('stroke="none" stroke-width="0"', 'stroke="#808080" stroke-width="1" stroke-dasharray="2,2"', $svg, $count),
     "geo" => file_get_contents("{$title}_geo.json"),
-    "path" => $path,
     "zip" => "{$title}.zip",
     "mld" => array(),
   "title" => $title,
