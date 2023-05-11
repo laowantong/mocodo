@@ -1,0 +1,21 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                                %
+%                          HÉRITAGE (OU SPÉCIALISATION)                          %
+%                                                                                %
+%  Pour spécialiser une entité E en une ou plusieurs autres entités E1, E2, ...  %
+%  écrivez « /\ E <- E1, E2, ... ».                                              %
+%                                                                                %
+%  NB. Vous pouvez insérer X (exclusion) et/ou T (totalité) entre les barres     %
+%  obliques, ajouter une liste d'attributs ou modifier la sémantique et/ou la    %
+%  représentation graphique de l'héritage en remplaçant la flèche par <=, ->,    %
+%  =>, <<=, <<-, ->> =>>. Voir la documentation.                                 %
+%                                                                                %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Personne: num SS, nom, prénom
+
+/\ Personne <- Homme, Femme
+
+Homme: 
+:
+Femme: nom de jeune fille

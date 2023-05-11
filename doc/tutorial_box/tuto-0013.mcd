@@ -1,0 +1,17 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                                %
+%                        DÉVOILEMENT PROGRESSIF DU SCHÉMA                        %
+%                                                                                %
+%  Indentez (i.e., insérez des espaces au début de) certaines définitions pour   %
+%  créer des calques. Les boîtes définies avec la même indentation sont tracées  %
+%  sur le même calque. Les calques sont ordonnés par indentation croissante.     %
+%                                                                                %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+      Parrainer, 01 Client, 0N Client : date parrainage
+Produit: Réf. produit, Libellé, Prix unitaire
+  Inclure, 1N Commande, 0N Produit: Quantité
+ 
+    Client: Réf. client, Nom, Prénom, Adresse
+    DF, 0N Client, 11 Commande
+  Commande: Num Commande, Date, Montant

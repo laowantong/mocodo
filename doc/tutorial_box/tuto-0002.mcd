@@ -1,0 +1,9 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                             %
+%                     ATTRIBUTS D'ENTITÉ                      %
+%                                                             %
+%  Si E a des attributs, écrivez « E: attr_1, attr_2, ... ».  %
+%                                                             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Produit: Réf. produit, Libellé, Prix unitaire

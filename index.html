@@ -125,14 +125,15 @@
 <ul>
 <li><i class="fa fa-refresh"></i> : dessiner le MCD et générer le MLD à partir du texte d'entrée.</li>
 <li>Onglet « Retouches » : modifier la position de certains éléments.</li>
-<li><i class="fa fa-download"></i> : récupèrer une archive de votre travail (entrée et sortie).</li>
+<li><i class="fa fa-download"></i> : récupérer une archive de votre travail (entrée et sortie).</li>
 </ul>
 				</div>
 				<div id="inputContents" class="contents">
 					<div id=inputPane>
-						<div><input type="text" onchange="markAsDirty();freezeTitle();reveal()" onfocus="onFocus(this)" name="title" id="title" value="Sans Titre" onblur="onBlur(this)" autocomplete="off" title="Si vous ne donnez pas de titre à votre MCD, Mocodo essaiera d'en trouver un pour vous." /></div>
+						<div><input type="text" oninput="markAsDirty();freezeTitle();reveal()" onfocus="onFocus(this)" name="title" id="title" value="Sans Titre" onblur="onBlur(this)" autocomplete="off" title="Si vous ne donnez pas de titre à votre MCD, Mocodo essaiera d'en trouver un pour vous." /></div>
 						<span id="gear" class="fa fa-cog fa-2x"></span>
-						<div><textarea onchange="markAsDirty()" name="text" id="text" wrap="off"></textarea></div>
+						<select onchange="changeTitleToNthTuto();reveal()" name="tutorial" id="tutorial" title="Parcourez notre galerie de MCD pour apprendre la syntaxe de Mocodo."></select>
+						<div><textarea onchange="markAsDirty();mayUnfreezeTitle()" name="text" id="text" wrap="off"></textarea></div>
 					</div>
 				</div>
 				<div id="paramContents" class="contents">
@@ -178,7 +179,7 @@
 	</form>
 </div>
 <div id="navigation">
-	<a target="_blank" href="https://github.com/laowantong/mocodo">Mocodo 3.1.1</a>
+	<a target="_blank" href="https://github.com/laowantong/mocodo">Mocodo 3.1.2</a>
 	&nbsp;∙&nbsp;
 	<a target="_blank" href="https://rawgit.com/laowantong/mocodo/master/doc/fr_refman.html">Documentation</a>
 	&nbsp;∙&nbsp;

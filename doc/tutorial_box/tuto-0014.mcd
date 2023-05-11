@@ -1,0 +1,10 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                            %
+%                          IDENTIFIANTS COMPOSITES                           %
+%                                                                            %
+%  Le premier attribut est par défaut souligné (identifiant fort). Préfixez  %
+%  d'un _ ceux des suivants que vous voulez inclure dans l'identifiant.      %
+%                                                                            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+GRATTE-CIEL: latitude, _longitude, nom, hauteur, année de construction

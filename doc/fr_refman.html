@@ -13089,7 +13089,7 @@ div#notebook {
 <script>
 $( document ).ready(function(){
 
-            var cfg = {"base_numbering": 1, "nav_menu": {}, "number_sections": true, "sideBar": true, "skip_h1_title": false, "title_cell": "Mocodo", "title_sidebar": "Mocodo", "toc_cell": false, "toc_position": {"height": "calc(100% - 180px)", "left": "10px", "top": "150px", "width": "299.008px"}, "toc_section_display": true, "toc_window_display": true};
+            var cfg = {"base_numbering": 1, "nav_menu": {}, "number_sections": true, "sideBar": true, "skip_h1_title": false, "title_cell": "Mocodo", "title_sidebar": "Mocodo", "toc_cell": false, "toc_position": {"height": "calc(100% - 180px)", "left": "10px", "top": "150px", "width": "350.185px"}, "toc_section_display": true, "toc_window_display": true};
 
             // fire the main function with these parameters
             require(['nbextensions/toc2/toc2'], function (toc2) {
@@ -13123,7 +13123,7 @@ $( document ).ready(function(){
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Mocodo 3.1.1 loaded.
+<pre>Mocodo 3.1.2 loaded.
 </pre>
 </div>
 </div>
@@ -15239,14 +15239,14 @@ PELLENTESQUE IPSUM: tincidunt, bibendum, consequat, integer
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Identifiants-multiples">Identifiants multiples<a class="anchor-link" href="#Identifiants-multiples">&#182;</a></h3>
+<h3 id="Identifiants-composites">Identifiants composites<a class="anchor-link" href="#Identifiants-composites">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Préfixer d'un tiret bas (<code>_</code>) les second, troisième, etc. attributs pour les ajouter à l'identifiant.</p>
+<p>Préfixer d'un tiret bas (<code>_</code>) les second, troisième, etc. attributs pour les inclure à l'identifiant.</p>
 
 </div>
 </div>
@@ -16495,7 +16495,7 @@ DATE2: date
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Entit&#233;s-faibles-(identification-relative)">Entit&#233;s faibles (identification relative)<a class="anchor-link" href="#Entit&#233;s-faibles-(identification-relative)">&#182;</a></h3>
+<h3 id="Entit&#233;s-faibles-(ou-identification-relative)">Entit&#233;s faibles (ou identification relative)<a class="anchor-link" href="#Entit&#233;s-faibles-(ou-identification-relative)">&#182;</a></h3>
 </div>
 </div>
 </div>
@@ -16597,10 +16597,10 @@ EXEMPLAIRE: Num. exemplaire, État du livre, Date d&#39;achat
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">mocodo</span> --strengthen_card (1,1)
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">mocodo</span> --strengthen_card (R)1,1
 ŒUVRE: Cote œuvre, Titre, Date parution
 DF, 1N ŒUVRE, _11 EXEMPLAIRE
 EXEMPLAIRE: Num. exemplaire, État du livre, Date d&#39;achat
@@ -16621,18 +16621,18 @@ EXEMPLAIRE: Num. exemplaire, État du livre, Date d&#39;achat
 
 
 <div class="output_svg output_subarea ">
-<svg xmlns="http://www.w3.org/2000/svg" width="372" height="112" viewBox="0 0 372 112">
-<rect id="frame" x="0" y="0" width="372" height="112" fill="#FFF" stroke="none" stroke-width="0"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="386" height="112" viewBox="0 0 386 112">
+<rect id="frame" x="0" y="0" width="386" height="112" fill="#FFF" stroke="none" stroke-width="0"/>
 
 <!-- Association DF -->
 <g>
-	<line x1="61" y1="56" x2="171" y2="56" stroke="#000" stroke-width="1"/>
+	<line x1="61" y1="56" x2="178" y2="56" stroke="#000" stroke-width="1"/>
 	<text x="118" y="72" fill="#000" font-family="Futura" font-size="11">1,N</text>
-	<line x1="296" y1="56" x2="171" y2="56" stroke="#000" stroke-width="1"/>
-	<text x="196" y="72" fill="#000" font-family="Futura" font-size="11">(1,1)</text>
+	<line x1="310" y1="56" x2="178" y2="56" stroke="#000" stroke-width="1"/>
+	<text x="203" y="72" fill="#000" font-family="Futura" font-size="11">(R)1,1</text>
 	<g>
-		<circle cx="171" cy="56" r="20" stroke="#000" stroke-width="1.5" fill="#FFF"/>
-		<text x="158" y="60.8" fill="#000" font-family="Copperplate" font-size="18">DF</text>
+		<circle cx="178" cy="56" r="20" stroke="#000" stroke-width="1.5" fill="#FFF"/>
+		<text x="165" y="60.8" fill="#000" font-family="Copperplate" font-size="18">DF</text>
 	</g>
 </g>
 
@@ -16654,16 +16654,16 @@ EXEMPLAIRE: Num. exemplaire, État du livre, Date d&#39;achat
 <!-- Entity EXEMPLAIRE -->
 <g>
 	<g>
-		<rect x="229" y="9" width="134" height="30" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
-		<rect x="229" y="39" width="134" height="64" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
-		<rect x="229" y="9" width="134" height="94" fill="none" stroke="#000" stroke-width="1.5" opacity="1"/>
-		<line x1="229" y1="39" x2="363" y2="39" stroke="#000" stroke-width="1.5"/>
+		<rect x="243" y="9" width="134" height="30" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="243" y="39" width="134" height="64" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="243" y="9" width="134" height="94" fill="none" stroke="#000" stroke-width="1.5" opacity="1"/>
+		<line x1="243" y1="39" x2="377" y2="39" stroke="#000" stroke-width="1.5"/>
 	</g>
-	<text x="237" y="30.3" fill="#000" font-family="Copperplate" font-size="18">EXEMPLAIRE</text>
-	<text x="237" y="56.1" fill="#000" font-family="Gill Sans" font-size="15">Num. exemplaire</text>
-	<line x1="237" y1="59" x2="345" y2="59" stroke="#000" stroke-width="1" stroke-dasharray="4"/>
-	<text x="237" y="73.1" fill="#000" font-family="Gill Sans" font-size="15">État du livre</text>
-	<text x="237" y="90" fill="#000" font-family="Gill Sans" font-size="15">Date d’achat</text>
+	<text x="251" y="30.3" fill="#000" font-family="Copperplate" font-size="18">EXEMPLAIRE</text>
+	<text x="251" y="56.1" fill="#000" font-family="Gill Sans" font-size="15">Num. exemplaire</text>
+	<line x1="251" y1="59" x2="359" y2="59" stroke="#000" stroke-width="1" stroke-dasharray="4"/>
+	<text x="251" y="73.1" fill="#000" font-family="Gill Sans" font-size="15">État du livre</text>
+	<text x="251" y="90" fill="#000" font-family="Gill Sans" font-size="15">Date d’achat</text>
 </g>
 </svg>
 </div>
@@ -24489,7 +24489,7 @@ Augue, 0N Congue, 0N Congue
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pour permettre au programme de rendre plus rapidement de bonnes solutions, on a borné arbitrairement le nombre d'appels à la fonction chargée de construire une permutation à partir du placement de la première boîte. De ce fait, l'algorithme n'est plus exact, en ce sens que la meilleure solution peut occasionnellement lui échapper. Si vous soupçonnez que c'est le cas, faites un autre essai, éventuellement en augmentant la borne (par défaut 10000):</p>
-<div class="highlight"><pre><span></span>mocodo --arrange --call_limit<span class="o">=</span><span class="m">100000</span>
+<div class="highlight"><pre><span></span>mocodo<span class="w"> </span>--arrange<span class="w"> </span>--call_limit<span class="o">=</span><span class="m">100000</span>
 </pre></div>
 
 </div>
@@ -34900,7 +34900,7 @@ DF2, 11 Session, 1N Formation
 <div class="prompt input_prompt">In&nbsp;[141]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>dot -T svg -o mocodo_notebook/sandbox_dependencies.svg mocodo_notebook/sandbox_dependencies.gv
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>dot<span class="w"> </span>-T<span class="w"> </span>svg<span class="w"> </span>-o<span class="w"> </span>mocodo_notebook/sandbox_dependencies.svg<span class="w"> </span>mocodo_notebook/sandbox_dependencies.gv
 <span class="n">display</span><span class="o">.</span><span class="n">SVG</span><span class="p">(</span><span class="s2">&quot;mocodo_notebook/sandbox_dependencies.svg&quot;</span><span class="p">)</span>
 </pre></div>
 
@@ -35291,9 +35291,9 @@ PRODUIT: Réf. produit, Libellé, Prix unitaire
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pour apprendre à spécifier un format, le mieux est d'étudier les gabarits livrés dans le dossier <code>relation_templates</code>. Les quelques indications données ici devraient suffire à vous épargner la lecture du code proprement dit.</p>
 <p>Chaque gabarit est un fichier JSON associant des clés prédéfinies à des valeurs librement modifiables. Dans sa forme la plus simple, à savoir le format « texte brut », le fichier (<code>text.json</code>) se réduit à trois lignes:</p>
-<div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="nt">&quot;extension&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;.txt&quot;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;extension&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;.txt&quot;</span>
+<span class="p">}</span>
 </pre></div>
 
 </div>
@@ -36338,10 +36338,10 @@ Busy: fail
 
 
 <div class="output_markdown rendered_html output_subarea output_execute_result">
-<div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;parent&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;latex&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;compose_relational_schema&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;\\begin{{mld}}\n{relations}\n\\end{{mld}}&quot;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;parent&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;latex&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;compose_relational_schema&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;\\begin{{mld}}\n{relations}\n\\end{{mld}}&quot;</span>
+<span class="p">}</span>
 </pre></div>
 
 </div>
@@ -36401,23 +36401,23 @@ Busy: fail
 <p>Il n'y a pas de moyen de supprimer une association clé-valeur, mais étant donné que toutes celles qui sont absentes se voient substituer une association par défaut, il est équivalent de spécifier explicitement la valeur-défaut.</p>
 <p><strong>Cas non scalaire.</strong></p>
 <p>Dans les gabarits de relations de Mocodo, une seule catégorie de valeur non scalaire est possible : la liste de dictionnaires. En voici un exemple extrait du gabarit <code>html.json</code> :</p>
-<div class="highlight"><pre><span></span><span class="nt">&quot;transform_attribute&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
-<span class="w">    </span><span class="p">{</span><span class="w"></span>
-<span class="w">      </span><span class="nt">&quot;order&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="nt">&quot;search&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&amp;&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="nt">&quot;replace&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&amp;amp;&quot;</span><span class="w"></span>
-<span class="w">    </span><span class="p">},</span><span class="w"></span>
-<span class="w">    </span><span class="p">{</span><span class="w"></span>
-<span class="w">      </span><span class="nt">&quot;order&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="nt">&quot;search&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&gt;&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="nt">&quot;replace&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&amp;gt;&quot;</span><span class="w"></span>
-<span class="w">    </span><span class="p">},</span><span class="w"></span>
-<span class="w">    </span><span class="p">{</span><span class="w"></span>
-<span class="w">      </span><span class="nt">&quot;order&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">300</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="nt">&quot;search&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="nt">&quot;replace&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&amp;lt;&quot;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="w">  </span><span class="p">],</span><span class="w"></span>
+<div class="highlight"><pre><span></span><span class="nt">&quot;transform_attribute&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;order&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;search&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&amp;&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;replace&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&amp;amp;&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;order&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;search&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&gt;&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;replace&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&amp;gt;&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;order&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">300</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;search&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;replace&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&amp;lt;&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
 </pre></div>
 <p>Dans la version 3.1, une clé <code>"order"</code> incrémentée par pas de 100 a été ajoutée systématiquement à chacun des dictionnaires de la liste. Selon la présence d'un dictionnaire de numéro d'ordre donné dans le gabarit enfant et/ou le gabarit parent, ce dictionnaire sera inséré, supprimé, mis à jour ou conservé :</p>
 <table>

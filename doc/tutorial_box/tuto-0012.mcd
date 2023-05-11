@@ -1,0 +1,17 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                             %
+%                        EXPLICATION DES CARDINALITÉS                         %
+%                                                                             %
+%  Si vous insérez quelques mots entre crochets entre les cardinalités et le  %
+%  le nom de l'entité, ceux-ci apparaîtront au survol. Essayez en survolant   %
+%  les cardinalités de l'association réflexive Parrainer.                     %
+%                                                                             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Parrainer, 01 [Un client peut avoir été parrainé ou non] Client, 0N [Un client peut parrainer d'autres clients.] Client : date parrainage
+Produit: Réf. produit, Libellé, Prix unitaire
+Inclure, 1N Commande, 0N Produit: Quantité
+
+Client: Réf. client, Nom, Prénom, Adresse
+DF, 0N Client, 11 Commande
+Commande: Num Commande, Date, Montant

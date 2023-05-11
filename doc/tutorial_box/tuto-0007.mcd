@@ -1,0 +1,15 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                              %
+%                            ASSOCIATION RÉFLEXIVE                             %
+%                                                                              %
+%  En répétant le nom d'une entité dans la définition d'une association, vous  %
+%  rendez celle-ci réflexive.                                                  %
+%                                                                              %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Produit: Réf. produit, Libellé, Prix unitaire
+Inclure, 1N Commande, 0N Produit: Quantité
+Commande: Num Commande, Date, Montant
+DF, 0N Client, 11 Commande
+Client: Réf. client, Nom, Prénom, Adresse
+Parrainer, 01 Client, 0N Client : date parrainage

@@ -1,0 +1,14 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                               %
+%                    ASSOCIATION DE DÉPENDANCE FONCTIONNELLE                    %
+%                                                                               %
+%  Si votre association a une cardinalité 11, mais aucun attribut, vous pouvez  %
+%  la nommer « DF » : Mocodo la figurera dans un cercle.                        %
+%                                                                               %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Produit: Réf. produit, Libellé, Prix unitaire
+Inclure, 1N Commande, 0N Produit: Quantité
+Commande: Num Commande, Date, Montant
+DF, 0N Client, 11 Commande
+Client: Réf. client, Nom, Prénom, Adresse

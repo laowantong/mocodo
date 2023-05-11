@@ -1,0 +1,12 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                               %
+%                                 CARDINALITÉS                                  %
+%                                                                               %
+%  Si vous connaissez le couple de cardinalités d'une patte, mettez 01, 11, 0N  %
+%  ou 1N à la place du XX de l'entité distinguée par cette patte.               %
+%                                                                               %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Produit: Réf. produit, Libellé, Prix unitaire
+Inclure, 1N Commande, 0N Produit
+Commande: Num Commande, Date, Montant

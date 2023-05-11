@@ -326,7 +326,7 @@ function arrange(event) {
     reorganize("arrange=bb --organic");
   }
 };
-function reveal(event) {
+function reveal() {
   if (request_lock) return;
   request_lock = true
   $.ajax({
@@ -358,6 +358,18 @@ function markAsDirty() {
 function freezeTitle() {
   $("#guess_title").val($("#title").attr("value") == "" || $("#title").attr("value") == "Sans Titre");
 };
+function mayUnfreezeTitle() {
+  if (/^tuto-\d\d\d\d$/.test($("#title").attr("value"))) {
+    $("#guess_title").val(true);
+  }
+};
+function changeTitleToNthTuto() {
+  var index = $("select[id='tutorial'] option:selected").index();
+  if (index > 0) {
+    $("#title").val("tuto-" + ("000" + index).slice(-4));
+    freezeTitle();
+  }
+}
 function markAsMoved() {
   $("#state").val("moved");
 };
@@ -422,4 +434,5 @@ $().ready(function () {
   createOptions("SQL_dialect", ["", "MySQL", "Oracle", "PostgreSQL", "SQLite"], "");
   createFormatCheckboxes();
   readCookie();
+  createOptions("tutorial", ["Sélectionnez un exemple de MCD", "Entité", "Attributs d'entité", "Association", "Cardinalités", "Attributs d'association", "Association de dépendance fonctionnelle", "Association réflexive", "Flèches sur les pattes", "Schéma sur plusieurs rangées", "Réarrangement des boîtes", "Ré-équilibrage du schéma", "Explication des cardinalités", "Dévoilement progressif du schéma", "Identifiants composites", "Entité faible (ou identification relative)", "Agrégation (ou pseudo-entité)", "Héritage (ou spécialisation)"])
 });

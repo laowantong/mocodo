@@ -1,0 +1,17 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                               %
+%                           RÉ-ÉQUILIBRAGE DU SCHÉMA                            %
+%                                                                               %
+%  Quand le schéma commence à prendre trop de place, maintenez ALT en cliquant  %
+%  sur les deux flèches croisées pour chercher un réarrangement sur la plus     %
+%  petite grille équilibrée possible. Essayez !                                 %
+%                                                                               %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Produit: Réf. produit, Libellé, Prix unitaire
+Inclure, 1N Commande, 0N Produit: Quantité
+Commande: Num Commande, Date, Montant
+
+DF, 0N Client, 11 Commande
+Client: Réf. client, Nom, Prénom, Adresse
+Parrainer, 01 Client, 0N Client : date parrainage

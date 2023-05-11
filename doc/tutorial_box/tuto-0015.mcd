@@ -1,0 +1,15 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                                %
+%                   ENTITÉ FAIBLE (OU IDENTIFICATION RELATIVE)                   %
+%                                                                                %
+%  Préfixez une cardinalité 11 pour « affaiblir » l'entité distinguée.           %
+%                                                                                %
+%  NB. De façon non conventionnelle, Mocodo souligne le 11 pour signifier que    %
+%  le « renforcement » de l'identifiant va passer par là. Voir la documentation  %
+%  pour des représentations alternatives.                                        %
+%                                                                                %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Œuvre: Cote œuvre, Titre, Date parution
+DF, 1N Œuvre, _11 Exemplaire
+Exemplaire: Num. exemplaire, État du livre, Date d'achat

@@ -1,0 +1,17 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                            %
+%                        SCHÉMA SUR PLUSIEURS RANGÉES                        %
+%                                                                            %
+%  Les boîtes (entités et association) définies sur des lignes consécutives  %
+%  sont alignées horizontalement sur la même rangée d'une grille invisible.  %
+%  Pour créer une nouvelle rangée, sautez une ligne entre deux définitions.  %
+%                                                                            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Produit: Réf. produit, Libellé, Prix unitaire
+Inclure, 1N Commande, 0N Produit: Quantité
+Commande: Num Commande, Date, Montant
+
+DF, 0N Client, 11 Commande
+Client: Réf. client, Nom, Prénom, Adresse
+Parrainer, 01 Client, 0N Client : date parrainage
