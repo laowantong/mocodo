@@ -1,21 +1,28 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                                                                %
-%                          HÉRITAGE (OU SPÉCIALISATION)                          %
-%                                                                                %
-%  Pour spécialiser une entité E en une ou plusieurs autres entités E1, E2, ...  %
-%  écrivez « /\ E <- E1, E2, ... ».                                              %
-%                                                                                %
-%  NB. Vous pouvez insérer X (exclusion) et/ou T (totalité) entre les barres     %
-%  obliques, ajouter une liste d'attributs ou modifier la sémantique et/ou la    %
-%  représentation graphique de l'héritage en remplaçant la flèche par <=, ->,    %
-%  =>, <<=, <<-, ->> =>>. Voir la documentation.                                 %
-%                                                                                %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                               %
+%                       BOÎTES HOMONYMES / ENTITÉS VIDES                        %
+%                                                                               %
+%  L'éventuel dernier chiffre d'un nom d'entité ou d'association n'est jamais   %
+%  affiché. C'est utile, p. ex., pour distribuer une entité DATE trop pattue.   %
+%  Notez également la technique de création d'entités vides : leur identifiant  %
+%  est une suite d'espaces insécables.                                          %
+%                                                                               %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Personne: num SS, nom, prénom
+Date1: date
 
-/\ Personne <- Homme, Femme
-
-Homme: 
 :
-Femme: nom de jeune fille
+A40, 0N E10, 0N E20, 0N Date2
+A30, 0N E30, 0N E10, 0N Date1
+E30: _         
+A60, 11 E40, 0N E30
+
+E20: _         
+Date2: date
+E10: _         
+A50, 1N E40, 1N E10
+E40: _         
+
+A10, 0N E10, 0N E20, 0N Date2         
+:
+:

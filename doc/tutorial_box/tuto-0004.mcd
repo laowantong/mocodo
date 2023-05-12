@@ -7,6 +7,6 @@
 %                                                                               %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Produit: Réf. produit, Libellé, Prix unitaire
+Produit: réf. produit, libellé, prix unitaire
 Inclure, 1N Commande, 0N Produit
-Commande: Num Commande, Date, Montant
+Commande: num commande, date, montant

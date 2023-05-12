@@ -434,5 +434,5 @@ $().ready(function () {
   createOptions("SQL_dialect", ["", "MySQL", "Oracle", "PostgreSQL", "SQLite"], "");
   createFormatCheckboxes();
   readCookie();
-  createOptions("tutorial", ["Sélectionnez un exemple de MCD", "Entité", "Attributs d'entité", "Association", "Cardinalités", "Attributs d'association", "Association de dépendance fonctionnelle", "Association réflexive", "Flèches sur les pattes", "Schéma sur plusieurs rangées", "Réarrangement des boîtes", "Ré-équilibrage du schéma", "Explication des cardinalités", "Dévoilement progressif du schéma", "Identifiants composites", "Entité faible (ou identification relative)", "Agrégation (ou pseudo-entité)", "Héritage (ou spécialisation)"])
+  createOptions("tutorial", ["Sélectionnez un exemple de MCD", "Entité", "Attributs d'entité", "Association", "Cardinalités", "Attributs d'association", "Association de dépendance fonctionnelle", "Association réflexive", "Flèches sur les pattes", "Schéma sur plusieurs rangées", "Réarrangement des boîtes", "Réarrangement avec confinement", "Explication des cardinalités", "Dévoilement progressif du schéma", "Entité faible (ou identification relative)", "Identifiants composites", "Entités sans identifiant", "Boîtes homonymes / entités vides", "Vue en extension", "Agrégation (ou pseudo-entité)", "Héritage (ou spécialisation)"])
 });
