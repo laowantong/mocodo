@@ -8,6 +8,10 @@
 
 ------
 
+Documentation [au format HTML](https://rawgit.com/laowantong/mocodo/master/doc/fr_refman.html) ou sous forme de [notebook](doc/fr_refman.ipynb) Jupyter.
+
+----
+
 ![](https://cdn.rawgit.com/laowantong/mocodo/master/logos/banner.svg)
 
 Mocodo est un logiciel d'aide à l'enseignement et à la conception des [bases de données relationnelles](https://fr.wikipedia.org/wiki/Base_de_données_relationnelle).
@@ -16,50 +20,60 @@ Mocodo est un logiciel d'aide à l'enseignement et à la conception des [bases d
 - En sortie, il produit son diagramme entité-association en [SVG](https://fr.wikipedia.org/wiki/Scalable_Vector_Graphics) et son schéma relationnel ([MLD](
 https://fr.wikipedia.org/wiki/Merise_%28informatique%29#MLD_:_mod.C3.A8le_logique_des_donn.C3.A9es)) en [SQL](https://fr.wikipedia.org/wiki/Structured_Query_Language), [LaTeX](https://fr.wikipedia.org/wiki/LaTeX), [Markdown](https://fr.wikipedia.org/wiki/Markdown), etc.
 
-Ci-dessous, un exemple sous [Jupyter Notebook](https://jupyter.org). L'appel du programme se fait en première ligne, sur un texte d'entrée donné lignes suivantes.
+Ci-dessous, un exemple d'utilisation sous [Jupyter Notebook](https://jupyter.org). L'appel du programme est en première ligne, sur un texte d'entrée donné lignes suivantes. Le cas est adapté de l'article fondateur de Peter Chen, [_The entity-relationship model—toward a unified view of data_](https://doi.org/10.1145/320434.320440) (ACM Trans. Database Syst. 1, 1, March 1976, pp. 9–36).
 
 ```
 %%mocodo --mld --colors brewer+1 --shapes copperplate --relations diagram markdown_data_dict
-DF, 11 Élève, 1N Classe
-Classe: Num. classe, Num. salle
-Faire Cours, 1N Classe, 1N Prof: Vol. horaire
-Catégorie: Code catégorie, Nom catégorie
 
-Élève: Num. élève, Nom élève
-Noter, 1N Élève, 0N Prof, 0N Matière, 1N Date: Note
-Prof: Num. prof, Nom prof
-Relever, 0N Catégorie, 11 Prof
+Département: num. département, nom département
+Employer, 11 Employé, 1N Département
+Travailler, 0N Employé, 1N Projet
+:
+Fournisseur: num. fournisseur, raison sociale
 
-Date: Date
-Matière: Libellé matière
-Enseigner, 11 Prof, 1N Matière
+Employé: matricule, nom employé
+:
+Projet: num. projet, nom projet
+Fournir, 1N Projet, 1N Pièce, 1N Fournisseur
+
+Ayant-droit: nom ayant-droit, lien
+DF1, _11 Ayant-droit, 0N Employé
+Diriger, 0N Employé, 01 Projet
+Requérir, 1N Projet, 0N Pièce: quantité
+Pièce: réf. pièce, libellé pièce
+Composer, 0N Pièce, 0N [composante] Pièce
 ```
 
 En sortie, le MCD (diagramme conceptuel) et le MLD (schéma relationnel) correspondants:
 
-![](https://cdn.rawgit.com/laowantong/mocodo/master/doc/readme_1.svg)
+![](https://cdn.rawgit.com/laowantong/mocodo/master/doc/readme_1.png)
 
-**Catégorie** (<ins>Code catégorie</ins>, Nom catégorie)<br>
-**Classe** (<ins>Num. classe</ins>, Num. salle)<br>
-**Faire Cours** (<ins>_#Num. classe_</ins>, <ins>_#Num. prof_</ins>, Vol. horaire)<br>
-**Noter** (<ins>_#Num. élève_</ins>, <ins>_#Num. prof_</ins>, <ins>_#Libellé matière_</ins>, <ins>_#Date_</ins>, Note)<br>
-**Prof** (<ins>Num. prof</ins>, Nom prof, _#Code catégorie_, _#Libellé matière_)<br>
-**Élève** (<ins>Num. élève</ins>, Nom élève, _#Num. classe_)
+**Ayant-droit** (<ins>_#matricule_</ins>, <ins>nom ayant-droit</ins>, lien)<br>
+**Composer** (<ins>_#réf. pièce_</ins>, <ins>_#réf. pièce composante_</ins>)<br>
+**Département** (<ins>num. département</ins>, nom département)<br>
+**Employé** (<ins>matricule</ins>, nom employé, _#num. département_)<br>
+**Fournir** (<ins>_#num. projet_</ins>, <ins>_#réf. pièce_</ins>, <ins>_#num. fournisseur_</ins>)<br>
+**Fournisseur** (<ins>num. fournisseur</ins>, raison sociale)<br>
+**Pièce** (<ins>réf. pièce</ins>, libellé pièce)<br>
+**Projet** (<ins>num. projet</ins>, nom projet, _#matricule_)<br>
+**Requérir** (<ins>_#num. projet_</ins>, <ins>_#réf. pièce_</ins>, quantité)<br>
+**Travailler** (<ins>_#matricule_</ins>, <ins>_#num. projet_</ins>)
 
-L'appel ci-dessus a également construit le dictionnaire des données:
+L'appel précédent a également créé un fichier `mocodo_notebook/sandbox_data_dict.md` contenant le dictionnaire des données :
 
-- Num. classe
-- Num. salle
-- Vol. horaire
-- Code catégorie
-- Nom catégorie
-- Num. élève
-- Nom élève
-- Note
-- Num. prof
-- Nom prof
-- Date
-- Libellé matière
+- nom ayant-droit
+- lien
+- num. département
+- nom département
+- matricule
+- nom employé
+- num. fournisseur
+- raison sociale
+- réf. pièce
+- libellé pièce
+- num. projet
+- nom projet
+- quantité
 
 Ainsi que le diagramme relationnel, qui peut être visualisé par un nouvel appel:
 
@@ -67,16 +81,14 @@ Ainsi que le diagramme relationnel, qui peut être visualisé par un nouvel appe
 %mocodo --input mocodo_notebook/sandbox.mld --colors brewer+1
 ```
 
-![](https://cdn.rawgit.com/laowantong/mocodo/f06f70a/doc/readme_2.svg)
+![](https://cdn.rawgit.com/laowantong/mocodo/master/doc/readme_2.png)
 
 La devise de Mocodo, « nickel, ni souris », en résume les principaux points forts:
 
-- description textuelle des données. L'utilisateur n'a pas à renseigner, placer et déplacer des éléments comme avec une lessive ordinaire. Il ne fournit rien de plus que les informations définissant son MCD. L'outil s'occupe tout seul du plongement;
-- propreté du rendu. La sortie se fait en vectoriel, prête à être affichée, imprimée, agrandie, exportée dans une multitude de formats sans perte de qualité;
-- rapidité des retouches. L'utilisateur rectifie les alignements en insérant des éléments invisibles, en dupliquant des coordonnées ou en ajustant des facteurs mutiplicatifs: là encore, il travaille sur une description textuelle, et non directement sur le dessin.
+- description textuelle des données. L'utilisateur n'a pas à renseigner, placer et déplacer des éléments comme avec une lessive ordinaire. Il ne fournit rien de plus que les informations définissant son MCD. L'outil s'occupe tout seul du plongement ;
+- propreté du rendu. La sortie se fait en vectoriel, prête à être affichée, imprimée, agrandie, exportée dans une multitude de formats sans perte de qualité ;
+- rapidité des retouches. L'utilisateur rectifie les alignements en insérant des éléments invisibles, en dupliquant des coordonnées ou en ajustant des facteurs mutiplicatifs : là encore, il travaille sur une description textuelle, et non directement sur le dessin.
 
-Mocodo est libre, gratuit et multiplateforme. Si vous l'aimez, répandez la bonne nouvelle en incluant l'un de ses logos dans votre support: cela multipliera ses chances d'attirer des contributeurs qui le feront évoluer.
+Mocodo est libre, gratuit et multiplateforme. Si vous l'aimez, répandez la bonne nouvelle en incluant l'un de ses logos dans votre support : cela augmentera ses chances d'attirer des contributeurs qui le feront évoluer.
 
 Pour vous familiariser avec Mocodo, le mieux est d'utiliser [sa version en ligne](https://www.mocodo.net).
-
-Pour en savoir plus, lisez la documentation [au format HTML](https://rawgit.com/laowantong/mocodo/master/doc/fr_refman.html) ou téléchargez-la [au format Jupyter Notebook](doc/fr_refman.ipynb).
