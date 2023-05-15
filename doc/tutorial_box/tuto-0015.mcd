@@ -4,17 +4,17 @@
 %                                                                               %
 %  Si vous avez coché la case « diagramme relationnel » sous l'onglet Options,  %
 %  vous pouvez copier le texte généré sous l'onglet Relations, puis le coller   %
-%  sous l'onglet Entrée visualiser son équivalent graphique.                    %
+%  sous l'onglet Entrée pour visualiser son équivalent graphique.               %
 %                                                                               %
 %  NB. Ce type d'entrée n'est pas censé être écrit à la main, mais généré.      %
 %                                                                               %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 ::
 Produit: réf. produit, libellé, prix unitaire
 :
 Inclure: #num commande->Commande->num commande, _#réf. produit->Produit->réf. produit, quantité
 :
-
 
 :
 Client: réf. client, nom, prénom, adresse, #réf. client parrain->Client->réf. client, date parrainage

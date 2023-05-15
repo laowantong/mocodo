@@ -1,17 +1,17 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                                                                %
-%                                VUE EN EXTENSION                                %
-%                                                                                %
-%  L'ajout d'un dernier chiffre permet également de créer une vue en extension.  %
-%                                                                                %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                          %
+%                      AGRÉGATION (OU PSEUDO-ENTITÉ)                       %
+%                                                                          %
+%  Préfixez de « / » une cardinalité pour créer une pseudo-entité avec     %
+%  l'association et les autres entités que celle-ci met en jeu.            %
+%                                                                          %
+%  NB. La représentation conventionnelle (non prise en charge par Mocodo)  %
+%  insérerait une association entre Client et Réserver.                    %
+%                                                                          %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-ŒUVRE: 612.NAT.34, J'apprends à lire à mes souris blanches, mai 1975
+Date: date
+Réserver, /1N Client, 1N Chambre, 0N Date: durée
+Chambre: numéro, prix
 
-DF1, XX ŒUVRE, XX EXEMPLAIRE1
-DF2, XX ŒUVRE, XX EXEMPLAIRE2
-DF3, XX ŒUVRE, XX EXEMPLAIRE3
-
-EXEMPLAIRE1: 1, bon état, 12/6/1975
-EXEMPLAIRE2: 2, bon état, 1/8/1977
-EXEMPLAIRE3: 3, reliure rongée, 3/4/2005
+Client: id. client

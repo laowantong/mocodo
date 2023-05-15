@@ -8,25 +8,22 @@ from .mocodo_error import MocodoError
 class Constraint:
 
     def __init__(self, clause):
-        (self.name, note, legs) = re.match(r"\s*\((.{0,3})\)\s*(?:\[(.+?)\])?\s*(.+)", clause).groups() # already checked by the caller
+        (self.name, note, legs) = re.match(r"\s*\((.{0,3})\)\s*(?:\[(.+?)\])?\s*(.*)$", clause).groups()
         (legs, self.ratios) = re.match(r"^\s*(.*?)\s*(?::\s*(.+))?$", legs).groups()
         if self.ratios:
             try:
                 self.ratios = [int(ratio) for ratio in self.ratios.split(",")]
             except ValueError:
-                raise MocodoError(104, _('Malformed constraint ratios "{ratios}".').format(ratios=self.ratios))
+                raise MocodoError(42, _('Malformed constraint ratios "{ratios}".').format(ratios=self.ratios))
             if len(self.ratios) == 1:
                 self.ratios += self.ratios # if only one ratio is given, it is used for both width and height
-            self.ratios = self.ratios[:2] # the subsequent ratios are ignored
+            self.ratios = tuple(self.ratios[:2]) # the subsequent ratios are ignored
         self.legs = []
         for leg in legs.split(","):
             leg = leg.strip()
             if not leg:
                 continue
-            try:
-                kind_and_box_name = re.match(r"(<?[-.=]{1,2}>?|)\s*(.+)", leg).groups()
-            except AttributeError:
-                raise MocodoError(102, _('Malformed constraint leg "{leg}".').format(leg=leg))
+            kind_and_box_name = re.match(r"(<?[-.]{1,2}>?|)\s*(.+)", leg).groups()
             self.legs.append(ConstraintLeg(self, *kind_and_box_name))
         self.note = note and note.replace("<<<safe-comma>>>", ",").replace("<<<safe-colon>>>", ":")
         self.kind= "constraint"
@@ -64,8 +61,8 @@ class Constraint:
                 "circle_with_note" if self.note else "circle",
                 {
                     "stroke_depth": style["constraint_stroke_depth"],
-                    "stroke_color": style["association_stroke_color"],
-                    "color": style["background_color"],
+                    "stroke_color": style["constraint_stroke_color"],
+                    "color": style["constraint_background_color"],
                     "cx": self.cx,
                     "cy": self.cy,
                     "r": self.w // 2,
@@ -73,14 +70,14 @@ class Constraint:
                 },
             ),
             (
-                "text_pass_click",
+                "text_above_note",
                 {
                     "text": self.name,
-                    "text_color": style['card_text_color'],
+                    "text_color": style['constraint_text_color'],
                     "x": self.cx - self.get_constraint_string_width(self.name) / 2,
-                    "y": self.cy + self.constraint_height * 0.3, # TODO: suppress magic number
-                    "family": style["constraint_font"]["family"],
-                    "size": style["constraint_font"]["size"],
+                    "y": self.cy + self.constraint_height * style["constraint_text_height_tweak"],
+                    "family": style["card_font"]["family"],
+                    "size": style["card_font"]["size"],
                 },
             ),
         ]

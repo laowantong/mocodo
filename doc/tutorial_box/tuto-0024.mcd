@@ -1,14 +1,14 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                                                                %
-%                   CONTRAINTE D'INTÉGRITÉ FONCTIONNELLE (CIF)                   %
-%                                                                                %
-%  Le même cas de figure peut aussi être rendu visuellement par une CIF.         %
-%                                                                                %
-%  NB. Le paragraphe réduit à un deux-points permet d'ajouter une rangée vide à  %
-%  la grille sous-jacente, de façon à aérer verticalement le MCD. Les nombres    %
-%  représentent des pourcentages de la largeur et de la hauteur totales.         %
-%                                                                                %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                           %
+%                CONTRAINTE D'INTÉGRITÉ FONCTIONNELLE (CIF)                 %
+%                                                                           %
+%  Le même cas de figure peut aussi être rendu visuellement par une CIF.    %
+%                                                                           %
+%  NB. Le paragraphe réduit à « : » permet d'ajouter une rangée vide à la   %
+%  grille sous-jacente, de façon à aérer verticalement le MCD. Les nombres  %
+%  représentent des pourcentages de la largeur et de la hauteur totales.    %
+%                                                                           %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Date: date
 Réserver, /1N Client, 1N Chambre, 0N Date: durée

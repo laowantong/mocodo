@@ -53,8 +53,8 @@ class Mcd:
                     continue
                 if clause.startswith(":"):
                     raise MocodoError(19, _('The clause "{clause}" starts with a colon.').format(clause=clause)) # fmt: skip
-                clause = re.sub("\[.+?\]", substitute_forbidden_symbols_between_brackets, clause)
-                if re.match(r"\s*\(.{0,3}\)\s*(\[.+?\])?\s*.+", clause):
+                clause = re.sub(r"\[.+?\]", substitute_forbidden_symbols_between_brackets, clause)
+                if re.match(r"\s*\(.{0,3}\)", clause):
                     element = Constraint(clause)
                     if element.name == "CIF":
                         mcd_has_cif = True
@@ -111,7 +111,7 @@ class Mcd:
                     elif leg.box_name in self.entities:
                         box = self.entities[leg.box_name]
                     else:
-                        raise MocodoError(101, _('Constraint "{constraint}" linked to an unknown entity or association "{box}"!').format(constraint=constraint.name, box=leg.box_name)) # fmt: skip
+                        raise MocodoError(40, _('Constraint "{constraint}" linked to an unknown entity or association "{box}"!').format(constraint=constraint.name, box=leg.box_name)) # fmt: skip
                     leg.register_box(box)
         
         def add_attributes():

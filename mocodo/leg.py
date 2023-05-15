@@ -325,7 +325,6 @@ class ConstraintLeg:
         self.kind = kind
         self.box_name = box_name
         self.identifier = None
-        self.arrow = None
     
     def register_box(self, box):
         self.box = box
@@ -333,8 +332,6 @@ class ConstraintLeg:
     def description(self, style, geo):
         if self.kind == "": # a phantom leg, useful to tweak the barycenter
             return []
-        style["constraint_leg_stroke_color"] = style["association_stroke_color"]
-        style["constraint_leg_stroke_depth"] = style["box_stroke_depth"]
         result = []
         bx = self.box.cx
         by = self.box.cy
@@ -363,7 +360,7 @@ class ConstraintLeg:
                             "y2": y - style["arrow_axis"] * sin,
                             "x3": x + style["arrow_width"] * cos + style["arrow_half_height"] * sin,
                             "y3": y + style["arrow_half_height"] * cos - style["arrow_width"] * sin,
-                            "stroke_color": style["leg_stroke_color"],
+                            "stroke_color": style["constraint_stroke_color"],
                         },
                     ),
                 )
@@ -377,8 +374,8 @@ class ConstraintLeg:
                         "y0": by,
                         "x1": cx,
                         "y1": cy,
-                        "stroke_color": style["constraint_leg_stroke_color"],
-                        "stroke_depth": style["constraint_leg_stroke_depth"],
+                        "stroke_color": style["constraint_stroke_color"],
+                        "stroke_depth": style["constraint_stroke_depth"],
                     }
                 )
             )
@@ -391,28 +388,12 @@ class ConstraintLeg:
                         "y0": by,
                         "x1": cx,
                         "y1": cy,
-                        "stroke_color": style["constraint_leg_stroke_color"],
-                        "stroke_depth": style["constraint_leg_stroke_depth"],
-                        "dash_gap": style["dash_width"],
+                        "stroke_color": style["constraint_stroke_color"],
+                        "stroke_depth": style["constraint_dot_stroke_depth"],
+                        "dash_gap": style["constraint_dot_gap_width"],
                     }
                 )
             )
-        elif kind[:1] == "=":
-            for d in (style["constraint_leg_stroke_depth"], -style["constraint_leg_stroke_depth"]):
-                (x0, y0, x1, y1) = orthogonal_translation(bx, by, cx, cy, d)
-                result.append(
-                    (
-                        "line",
-                        {
-                            "x0": x0,
-                            "y0": y0,
-                            "x1": x1,
-                            "y1": y1,
-                            "stroke_color": style["leg_stroke_color"],
-                            "stroke_depth": style["leg_stroke_depth"],
-                        },
-                    )
-                )
         else:
             raise NotImplementedError
         return result

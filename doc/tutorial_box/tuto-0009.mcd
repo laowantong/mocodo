@@ -1,11 +1,11 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                                                            %
-%                            FLÈCHE SUR UNE PATTE                            %
-%                                                                            %
-%  En suffixant d'un < ou > des cardinalités, vous créez une flèche dont la  %
-%  direction se lit en partant de l'association et en allant vers l'entité.  %
-%                                                                            %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                               %
+%                             FLÈCHE SUR UNE PATTE                              %
+%                                                                               %
+%  En suffixant de « < » ou « > » des cardinalités, vous créez une flèche dont  %
+%  la direction se lit allant de l'association à l'entité.                      %
+%                                                                               %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Produit: réf. produit, libellé, prix unitaire
 Inclure, 1N Commande, 0N> Produit: quantité

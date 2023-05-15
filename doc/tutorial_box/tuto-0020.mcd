@@ -8,9 +8,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Parrainer, XX Client, XX Client
-Produit: _           , , 
+Produit: _           ,,,
 Inclure, XX Commande, XX Produit
  
-Client: _            , , ,
+Client: _            ,,,
 DF, XX Client, XX Commande
-Commande: _            , , ,
+Commande: _            ,,,

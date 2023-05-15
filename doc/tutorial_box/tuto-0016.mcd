@@ -2,7 +2,7 @@
 %                                                                                %
 %                        DÉVOILEMENT PROGRESSIF DU SCHÉMA                        %
 %                                                                                %
-%  Indentez (i.e., insérez des espaces au début de) certaines définitions pour   %
+%  Indentez (i.e., insérez des espaces au début de) certaines clauses pour       %
 %  créer des calques. Les boîtes définies avec la même indentation sont tracées  %
 %  sur le même calque. Les calques sont ordonnés par indentation croissante.     %
 %                                                                                %

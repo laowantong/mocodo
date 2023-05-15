@@ -1,10 +1,10 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                                                              %
-%                           ENTITÉ SANS IDENTIFIANT                            %
-%                                                                              %
-%  Inversement, préfixez d'un _ le premier attribut pour ne pas le souligner,  %
-%  p. ex. à des fins pédagogiques.                                             %
-%                                                                              %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                                %
+%                             IDENTIFIANT COMPOSITE                              %
+%                                                                                %
+%  Inversement, si vous voulez inclure dans l'identifiant un attribut autre que  %
+%  le premier, préfixez le de « _ ».                                             %
+%                                                                                %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-GRATTE-CIEL: _latitude, longitude, nom, hauteur, année de construction
+GRATTE-CIEL: latitude, _longitude, nom, hauteur, année de construction

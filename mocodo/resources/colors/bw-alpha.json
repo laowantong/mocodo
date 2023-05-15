@@ -6,7 +6,7 @@
   "association_stroke_color": "#000",
   "background_color": null,
   "card_text_color": "#000",
-  "constraint_background_color": null,
+  "constraint_background_color": #FFF,
   "constraint_stroke_color": "#000",
   "constraint_text_color": "#000",
   "entity_attribute_text_color": "#000",

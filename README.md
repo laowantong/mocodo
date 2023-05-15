@@ -1,3 +1,5 @@
+**15 mai 2023.** Mocodo 3.2.0 prend en charge la [visualisation des contraintes sur associations](https://rawgit.com/laowantong/mocodo/master/doc/fr_refman.html#Visualisation-des-contraintes-sur-associations).
+
 **11 mai 2023.** Ajout d'un tutoriel / galerie d'exemples dans la [version en ligne](https://www.mocodo.net) de Mocodo 3.1.2.
 
 **24 décembre 2022.** Mocodo 3.1.1 corrige la [gestion des collisions des SVG interactifs](https://rawgit.com/laowantong/mocodo/master/doc/fr_refman.html#Éviter-qu'une-interaction-sur-un-SVG-ne-s'applique-à-un-autre).
@@ -27,14 +29,14 @@ Ci-dessous, un exemple d'utilisation sous [Jupyter Notebook](https://jupyter.org
 
 Ayant-droit: nom ayant-droit, lien
 Diriger, 0N Employé, 01 Projet
-Requérir, 1N Projet, 0N Pièce: quantité
+Requérir, 1N Projet, 0N Pièce: qté requise
 Pièce: réf. pièce, libellé pièce
 Composer, 0N [composée] Pièce, 0N [composante] Pièce: quantité
 
 DF1, _11 Ayant-droit, 0N Employé
 Employé: matricule, nom employé
 Projet: num. projet, nom projet
-Fournir, 1N Projet, 1N Pièce, 1N Société: quantité
+Fournir, 1N Projet, 1N Pièce, 1N Société: qté fournie
 
 Département: num. département, nom département
 Employer, 11 Employé, 1N Département
@@ -53,10 +55,10 @@ En sortie, le MCD (diagramme conceptuel) et le MLD (schéma relationnel) corresp
 **Composer** (<ins>_#réf. pièce composée_</ins>, <ins>_#réf. pièce composante_</ins>, quantité)<br>
 **Département** (<ins>num. département</ins>, nom département)<br>
 **Employé** (<ins>matricule</ins>, nom employé, _#num. département_)<br>
-**Fournir** (<ins>_#num. projet_</ins>, <ins>_#réf. pièce_</ins>, <ins>_#num. société_</ins>, quantité)<br>
+**Fournir** (<ins>_#num. projet_</ins>, <ins>_#réf. pièce_</ins>, <ins>_#num. société_</ins>, qté fournie)<br>
 **Pièce** (<ins>réf. pièce</ins>, libellé pièce)<br>
 **Projet** (<ins>num. projet</ins>, nom projet, _#matricule_)<br>
-**Requérir** (<ins>_#num. projet_</ins>, <ins>_#réf. pièce_</ins>, quantité)<br>
+**Requérir** (<ins>_#num. projet_</ins>, <ins>_#réf. pièce_</ins>, qté requise)<br>
 **Société** (<ins>num. société</ins>, raison sociale, _#num. société mère_)<br>
 **Travailler** (<ins>_#matricule_</ins>, <ins>_#num. projet_</ins>)
 
@@ -64,17 +66,19 @@ L'appel précédent a également créé un fichier `mocodo_notebook/sandbox_data
 
 - nom ayant-droit
 - lien
+- quantité
 - num. département
 - nom département
 - matricule
 - nom employé
-- num. société
-- raison sociale
+- qté fournie
 - réf. pièce
 - libellé pièce
 - num. projet
 - nom projet
-- quantité
+- qté requise
+- num. société
+- raison sociale
 
 Ainsi que le diagramme relationnel, qui peut être visualisé par un nouvel appel:
 

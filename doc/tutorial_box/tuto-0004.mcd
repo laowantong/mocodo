@@ -1,11 +1,11 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                                                           %
-%                          ATTRIBUT D'ASSOCIATION                           %
-%                                                                           %
-%  Pour ajouter des attributs à une association, mettez un deux-points au   %
-%  bout de la ligne, puis énumérez ces attributs séparés par des virgules.  %
-%                                                                           %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                               %
+%                            ATTRIBUT D'ASSOCIATION                             %
+%                                                                               %
+%  Pour ajouter des attributs à une association, mettez un deux-points au bout  %
+%  de la ligne, puis énumérez ces attributs en les séparant par des virgules.   %
+%                                                                               %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Produit: réf. produit, libellé, prix unitaire
 Inclure, XX Commande, XX Produit: quantité

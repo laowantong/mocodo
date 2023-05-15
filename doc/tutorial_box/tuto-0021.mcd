@@ -1,12 +1,12 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                                                              %
-%                               BOÎTES HOMONYMES                               %
-%                                                                              %
-%  L'éventuel dernier chiffre d'un nom d'entité ou d'association n'est jamais  %
-%  affiché. C'est utile, p. ex., pour monnayer une entité « fictive » trop     %
-%  pattue : ici, on évite les croisements en créant deux entités Date.         %
-%                                                                              %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                            %
+%                              BOÎTES HOMONYMES                              %
+%                                                                            %
+%  L'éventuel dernier chiffre d'un nom d'entité ou d'association n'est pas   %
+%  affiché. C'est bon à savoir, p. ex. pour monnayer une entité « fictive »  %
+%  trop pattue : ici, on évite les croisements en créant deux entités Date.  %
+%                                                                            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Date1: date
 

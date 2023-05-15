@@ -114,7 +114,7 @@ svg_elements = {
     "begin_group":      """<g>""",
     "end":              """</g>""",
     "text":             """<text x="{x}" y="{y}" fill="{text_color}" font-family="{family}" font-size="{size}">{text}</text>""",
-    "text_pass_click":  """<text x="{x}" y="{y}" fill="{text_color}" font-family="{family}" font-size="{size}" style="pointer-events: none;">{text}</text>""",
+    "text_above_note":  """<text x="{x}" y="{y}" fill="{text_color}" font-family="{family}" font-size="{size}" style="pointer-events: none;">{text}</text>""",
     "text_with_note":   """<text x="{x}" y="{y}" fill="{text_color}" font-family="{family}" font-size="{size}" onmouseover="show_{mcd_uid}(evt,'{note}')" onmouseout="hide_{mcd_uid}(evt)" style="cursor: pointer;">{text}</text>""",
     "line":             """<line x1="{x0}" y1="{y0}" x2="{x1}" y2="{y1}" stroke="{stroke_color}" stroke-width="{stroke_depth}"/>""",
     "dash_line":        """<line x1="{x0}" y1="{y0}" x2="{x1}" y2="{y1}" stroke="{stroke_color}" stroke-width="{stroke_depth}" stroke-dasharray="{dash_width}"/>""",

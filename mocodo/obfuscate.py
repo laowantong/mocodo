@@ -27,15 +27,18 @@ def obfuscate(clauses, params):
     cache = {"": ""}
     def obfuscate_label(label):
         if label not in cache:
-            try:
-                new_label = next(random_word)
-            except StopIteration:
-                raise MocodoError(12, _('Obfuscation failed. Not enough substitution words in "{filename}". You may decrease the `obfuscation_min_distance` option values.').format(filename=lorem_filename)) # fmt: skip
-            if label.isupper():
-                new_label = new_label.upper()
-            elif label == label.capitalize():
-                new_label = new_label.capitalize()
-            cache[label] = new_label
+            if label.isdigit():
+                cache[label] = label
+            else:
+                try:
+                    new_label = next(random_word)
+                except StopIteration:
+                    raise MocodoError(12, _('Obfuscation failed. Not enough substitution words in "{filename}". You may decrease the `obfuscation_min_distance` option values.').format(filename=lorem_filename)) # fmt: skip
+                if label.isupper():
+                    new_label = new_label.upper()
+                elif label == label.capitalize():
+                    new_label = new_label.capitalize()
+                cache[label] = new_label
         return cache[label]
 
     random.seed(params["seed"])
@@ -51,31 +54,33 @@ def obfuscate(clauses, params):
             lorem_text = read_contents("%s/resources/lorem/lorem_ipsum.txt" % params["script_directory"])
     random_word = random_words_of(lorem_text, params)
     header = [comment + "\n" for comment in itertools.takewhile(lambda line: line.startswith("%"), clauses)]
-    # TODO: add one \n more if necessary
-    # TODO: adapt that to constraints
     clauses = "\n".join(clauses[len(header):])
     clauses = re.sub(r"(?m)^([ \t]*)\[(.+?)\]", r"\1<<<safe-left-bracket>>>\2<<<safe-right-bracket>>>", clauses)
     clauses = re.sub(r"\[.+?\]", "", clauses)
     clauses = clauses.replace("<<<safe-left-bracket>>>", "[")
     clauses = clauses.replace("<<<safe-right-bracket>>>", "]")
     clauses = re.sub(r"(?m)^%.*\n?", "", clauses)
-    elements = re.split(r"([ \t\]]*(?:[:,\n]+|/[XT]*\\|=>|<=|->|<-)[ \t_\[]*)", clauses) + ['']
+    elements = re.split(r"([ \t\]]*(?:[:,\n]+|/[XT]*\\|\(.*?\)|=>|<=|->|<-|(?<= )<?[-.]+>?)[ \t_\[]*)", clauses) + ['']
     after_first_comma = False
     before_colon = True
+    constraint = False
     for (i, element) in enumerate(elements):
         if i % 2:
             if "\n" in element:
                 after_first_comma = False
                 before_colon = True
                 inheritance = False
+                constraint = False
             elif element.startswith("/"):
                 inheritance = True
+            elif element.startswith("("):
+                constraint = True
             elif "," in element:
                 after_first_comma = True
             elif ":" in element:
                 before_colon = False
         else:
-            if after_first_comma and before_colon and not inheritance:
+            if element and after_first_comma and before_colon and not inheritance and not constraint:
                 (card, entity_name) = element.split(" ", 1)
                 entity_name = entity_name.strip()
                 elements[i-1] += card + " "
@@ -89,13 +94,25 @@ if __name__=="__main__":
     # python -m mocodo.obfuscate
     from .argument_parser import parsed_arguments
     clauses = """
-        CLIENT: Réf. client, Nom, Prénom, Adresse
-        PASSER, 0N CLIENT, /11 COMMANDE
-        COMMANDE: Num commande, Date, Montant
-        INCLURE, 1N [foobar] COMMANDE, 0N PRODUIT: Quantité
-        PRODUIT: Réf. produit, Libellé, Prix unitaire
-        [AVOIR COLORIS], 01 PRODUIT, 0N COLORIS
-        COLORIS: coloris
+        Projet: num. projet, nom projet
+        :
+        Fournir, 1N Projet, 1N Pièce, 1N Fournisseur
+        Fournisseur: num. fournisseur, raison sociale
+            
+        Requérir, 1N Projet, 0N Pièce: quantité
+        :
+        Pièce: réf. pièce, libellé pièce
+
+        Date: Date
+        Réserver, /1N Client, 1N Chambre, 0N Date: Durée
+        Chambre: Numéro, Prix
+
+        :
+            
+        Client: Id. client
+
+        (CIF) [Même date, même chambre => un seul client] --Chambre, --Date, ->Client, ..Réserver: 20, 80
+        (X) [Toute pièce fournie doit avoir été requise.] ..Pièce, ->Requérir, --Fournir, Projet
     """.replace("  ", "").split("\n")
     params = parsed_arguments()
     params["obfuscate"] = "four_letter_words.txt"
