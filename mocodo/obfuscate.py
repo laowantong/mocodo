@@ -51,6 +51,8 @@ def obfuscate(clauses, params):
             lorem_text = read_contents("%s/resources/lorem/lorem_ipsum.txt" % params["script_directory"])
     random_word = random_words_of(lorem_text, params)
     header = [comment + "\n" for comment in itertools.takewhile(lambda line: line.startswith("%"), clauses)]
+    # TODO: add one \n more if necessary
+    # TODO: adapt that to constraints
     clauses = "\n".join(clauses[len(header):])
     clauses = re.sub(r"(?m)^([ \t]*)\[(.+?)\]", r"\1<<<safe-left-bracket>>>\2<<<safe-right-bracket>>>", clauses)
     clauses = re.sub(r"\[.+?\]", "", clauses)

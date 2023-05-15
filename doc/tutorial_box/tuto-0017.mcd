@@ -1,28 +1,9 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                                                               %
-%                       BOÎTES HOMONYMES / ENTITÉS VIDES                        %
-%                                                                               %
-%  L'éventuel dernier chiffre d'un nom d'entité ou d'association n'est jamais   %
-%  affiché. C'est utile, p. ex., pour distribuer une entité DATE trop pattue.   %
-%  Notez également la technique de création d'entités vides : leur identifiant  %
-%  est une suite d'espaces insécables.                                          %
-%                                                                               %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                              %
+%                           ENTITÉS SANS IDENTIFIANT                           %
+%                                                                              %
+%  Inversement, préfixez d'un _ le premier attribut pour ne pas le souligner.  %
+%                                                                              %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Date1: date
-
-:
-A40, 0N E10, 0N E20, 0N Date2
-A30, 0N E30, 0N E10, 0N Date1
-E30: _         
-A60, 11 E40, 0N E30
-
-E20: _         
-Date2: date
-E10: _         
-A50, 1N E40, 1N E10
-E40: _         
-
-A10, 0N E10, 0N E20, 0N Date2         
-:
-:
+GRATTE-CIEL: _latitude, longitude, nom, hauteur, année de construction

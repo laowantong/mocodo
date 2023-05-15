@@ -1,15 +1,14 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                                                              %
-%                            ASSOCIATION RÉFLEXIVE                             %
-%                                                                              %
-%  En répétant le nom d'une entité dans la définition d'une association, vous  %
-%  rendez celle-ci réflexive.                                                  %
-%                                                                              %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                                %
+%                    EXPLICATION INTERACTIVE DES CARDINALITÉS                    %
+%                                                                                %
+%  Le survol d'une cardinalité suivie d'un texte entre crochets fait apparaître  %
+%  celui-ci dans un bandeau.                                                     %
+%                                                                                %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Produit: réf. produit, libellé, prix unitaire
-Inclure, 1N Commande, 0N Produit: quantité
+Inclure, 1N [Une commande inclut au moins un produit.] Commande, 0N [Un produit peut être commandé un nombre quelconque de fois.] Produit: quantité
 Commande: num commande, date, montant
-DF, 0N Client, 11 Commande
+DF, 0N [Un client peut passer zéro (prospect) ou plusieurs commandes.] Client, 11 [Une commande est passée par un et un seul client.] Commande
 Client: réf. client, nom, prénom, adresse
-Parrainer, 01 Client, 0N Client : date parrainage

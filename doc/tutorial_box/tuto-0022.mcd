@@ -1,0 +1,26 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                               %
+%                         CONTRAINTES SUR ASSOCIATIONS                          %
+%                                                                               %
+%  Placez sur votre MCD diverses contraintes sous la forme de lettres cerclées  %
+%  et liées à des boîtes par des traits fléchés ou non, pleins, pointillés,     %
+%  doubles ou même invisibles (pour jouer sur la position du barycentre).       %
+%                                                                               %
+%  NB. MCD tiré de Merise, deuxième génération (Nanci et Espinasse, 2001).      %
+%                                                                               %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+:::
+Dépôt: num dépôt, surface
+
+:
+Louer, 11 Commande, 0N Dépôt
+:
+Stocker, 1N Dépôt, 1N Article: quantité
+
+Commande: num. commande, date
+Composer, 1N Commande, 0N Article
+:
+Article: réf. article, prix
+
+(I) ->Stocker, ..Dépôt, ..Article, --Composer, --Louer, Commande, Stocker

@@ -1,12 +1,12 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                                                               %
-%                        RÉARRANGEMENT AVEC CONFINEMENT                         %
-%                                                                               %
-%  Quand le schéma commence à prendre trop de place, maintenez ALT en cliquant  %
-%  sur les deux flèches croisées pour chercher un réarrangement sur la plus     %
-%  petite grille équilibrée possible. Essayez !                                 %
-%                                                                               %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                            %
+%                          RÉARRANGEMENT DES BOÎTES                          %
+%                                                                            %
+%  Quand le schéma commence à devenir confus, cliquez sur les deux flèches   %
+%  croisées pour réordonner automatiquement les définitions de façon à       %
+%  interdire les croisements et minimiser la longueur des pattes. Essayez !  %
+%                                                                            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Produit: réf. produit, libellé, prix unitaire
 Inclure, 1N Commande, 0N Produit: quantité

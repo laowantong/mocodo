@@ -1,10 +1,10 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                            %
-%                          RÉARRANGEMENT DES BOÎTES                          %
+%                        SCHÉMA SUR PLUSIEURS RANGÉES                        %
 %                                                                            %
-%  Quand le schéma commence à devenir confus, cliquez sur les deux flèches   %
-%  croisées pour réordonner automatiquement les définitions de façon à       %
-%  interdire les croisements et minimiser la longueur des pattes. Essayez !  %
+%  Les boîtes (entités et association) définies sur des lignes consécutives  %
+%  sont alignées horizontalement sur la même rangée d'une grille invisible.  %
+%  Pour créer une nouvelle rangée, sautez une ligne entre deux définitions.  %
 %                                                                            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

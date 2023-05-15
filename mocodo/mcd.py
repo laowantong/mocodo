@@ -5,6 +5,7 @@ from collections import defaultdict
 from hashlib import md5
 
 from .association import Association
+from .constraint import Constraint
 from .diagram_link import DiagramLink
 from .entity import Entity
 from .grid import Grid
@@ -30,9 +31,12 @@ class Mcd:
         def parse_clauses():
             self.entities = {}
             self.associations = {}
+            self.constraints = []
+            mcd_has_cif = False
+            self.commented_lines = []
+            self.constraint_clauses = []
             seen = set()
             self.rows = [[]]
-            self.header = ""
             pages = defaultdict(list)
             for clause in clauses:
                 indentation = len(clause) - len(clause.lstrip())
@@ -42,7 +46,7 @@ class Mcd:
                     continue
                 if clause.startswith("%"):
                     if not self.rows[-1]:
-                        self.header += "%s\n" % clause
+                        self.commented_lines.append(clause)
                     continue
                 if clause == ":" * len(clause):
                     self.rows[-1].extend(Phantom(next(phantom_counter)) for _ in clause)
@@ -50,7 +54,15 @@ class Mcd:
                 if clause.startswith(":"):
                     raise MocodoError(19, _('The clause "{clause}" starts with a colon.').format(clause=clause)) # fmt: skip
                 clause = re.sub("\[.+?\]", substitute_forbidden_symbols_between_brackets, clause)
-                if "," in clause.split(":", 1)[0] or re.match(r"\s*(/\w*\\)", clause):
+                if re.match(r"\s*\(.{0,3}\).+", clause):
+                    element = Constraint(clause)
+                    if element.name == "CIF":
+                        mcd_has_cif = True
+                    self.constraints.append(element)
+                    pages[indentation].append(element)
+                    self.constraint_clauses.append(clause)
+                    continue
+                elif "," in clause.split(":", 1)[0] or re.match(r"\s*(/\w*\\)", clause):
                     element = Association(clause, **params)
                     if element.name in self.associations:
                         raise MocodoError(7, _('Duplicate association "{name}". If you want to make two associations appear with the same name, you must suffix it with a number.').format(name=element.name)) # fmt: skip
@@ -77,18 +89,30 @@ class Mcd:
             for (i, (indentation, elements)) in enumerate(sorted(pages.items(), key=lambda x: x[0])):
                 for element in elements:
                     element.page = i
+            self.header = "\n".join(self.commented_lines) + "\n\n" if self.commented_lines else ""
+            self.footer = "\n\n" + "\n".join(self.constraint_clauses) if self.constraint_clauses else ""
+            for association in self.associations.values():
+                association.register_mcd_has_cif(mcd_has_cif)
         
         def add_legs():
             for association in self.associations.values():
                 for leg in association.legs:
-                    try:
+                    if leg.entity_name in self.entities:
                         entity = self.entities[leg.entity_name]
-                    except KeyError:
-                        if leg.entity_name in self.associations:
-                            raise MocodoError(20, _('Association "{association}" linked to another association "{entity}"!').format(association=association.name, entity=leg.entity_name)) # fmt: skip
-                        else:
-                            raise MocodoError(1, _('Association "{association}" linked to an unknown entity "{entity}"!').format(association=association.name, entity=leg.entity_name)) # fmt: skip
+                    elif leg.entity_name in self.associations:
+                        raise MocodoError(20, _('Association "{association}" linked to another association "{entity}"!').format(association=association.name, entity=leg.entity_name)) # fmt: skip
+                    else:
+                        raise MocodoError(1, _('Association "{association}" linked to an unknown entity "{entity}"!').format(association=association.name, entity=leg.entity_name)) # fmt: skip
                     leg.register_entity(entity)
+            for constraint in self.constraints:
+                for leg in constraint.legs:
+                    if leg.box_name in self.associations:
+                        box = self.associations[leg.box_name]
+                    elif leg.box_name in self.entities:
+                        box = self.entities[leg.box_name]
+                    else:
+                        raise MocodoError(101, _('Constraint "{constraint}" linked to an unknown entity or association "{box}"!').format(constraint=constraint.name, box=leg.box_name)) # fmt: skip
+                    leg.register_box(box)
         
         def add_attributes():
             legs_to_strengthen = dict((entity_name, []) for entity_name in self.entities)
@@ -270,16 +294,16 @@ class Mcd:
             result += "\n\n".join(self.get_row_text(row) for row in self.rows)
         else:
             result += "\n\n".join(":\n" + "\n:\n".join(self.get_row_text(row).split("\n")) + "\n:" for row in self.rows)
-        return result
+        return result + self.footer
     
     def get_clauses_horizontal_mirror(self):
-        return self.header + "\n\n".join(self.get_row_text(row) for row in self.rows[::-1])
+        return self.header + "\n\n".join(self.get_row_text(row) for row in self.rows[::-1]) + self.footer
     
     def get_clauses_vertical_mirror(self):
-        return self.header + "\n\n".join(self.get_row_text(row[::-1]) for row in self.rows)
+        return self.header + "\n\n".join(self.get_row_text(row[::-1]) for row in self.rows) + self.footer
     
     def get_clauses_diagonal_mirror(self):
-        return self.header + "\n\n".join(self.get_row_text(row) for row in zip(*self.rows))
+        return self.header + "\n\n".join(self.get_row_text(row) for row in zip(*self.rows)) + self.footer
     
     def get_reformatted_clauses(self, nth_fit):
         grid = Grid(len(self.boxes) + 100) # make sure there are enough precalculated grids
@@ -301,7 +325,7 @@ class Mcd:
             if i % col_count == 0 and i:
                 result.append("")
             result.append(":")
-        return self.header + "\n".join(result)
+        return self.header + "\n".join(result) + self.footer
     
     def calculate_size(self, style):
 
@@ -327,6 +351,8 @@ class Mcd:
                     max_box_width_per_column[i] = max(box.w, max_box_width_per_column[i])
             for diagram_link in self.diagram_links:
                 diagram_link.calculate_size(style, self.get_font_metrics)
+            for constraint in self.constraints:
+                constraint.calculate_size(style, self.get_font_metrics)
         #
         def make_horizontal_layout():
             self.w = style["margin"]
@@ -391,12 +417,16 @@ class Mcd:
     def description(self, style, geo):
         for box in self.boxes:
             box.register_center(geo)
+        for constraint in self.constraints:
+            constraint.register_center(geo)
         result = []
         for element in self.entities.values():
             result.extend(element.description(style, geo))
         for element in self.associations.values():
             result.extend(element.description(style, geo))
         for element in self.diagram_links:
+            result.extend(element.description(style, geo))
+        for element in self.constraints:
             result.extend(element.description(style, geo))
         result.append(("comment", {"text": "Notes"}))
         result.append(

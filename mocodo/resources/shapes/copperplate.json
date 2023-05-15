@@ -22,6 +22,12 @@
   "card_underline_depth": 1,
   "card_underline_skip_height": -2,
   "cartouche_text_height_ratio": 0.85,
+  "constraint_font": {
+    "family": "Copperplate",
+    "size": 14
+  },
+  "constraint_stroke_depth": 1,
+  "constraint_margin": 5,
   "dash_width": 4,
   "df_text_height_ratio": 1.1,
   "entity_attribute_font": {

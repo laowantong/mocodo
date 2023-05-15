@@ -1,15 +1,17 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                                %
-%                   ENTITÉ FAIBLE (OU IDENTIFICATION RELATIVE)                   %
+%                        DÉVOILEMENT PROGRESSIF DU SCHÉMA                        %
 %                                                                                %
-%  Préfixez une cardinalité 11 pour « affaiblir » l'entité distinguée.           %
-%                                                                                %
-%  NB. De façon non conventionnelle, Mocodo souligne le 11 pour signifier que    %
-%  le « renforcement » de l'identifiant va passer par là. Voir la documentation  %
-%  pour des représentations alternatives.                                        %
+%  Indentez (i.e., insérez des espaces au début de) certaines définitions pour   %
+%  créer des calques. Les boîtes définies avec la même indentation sont tracées  %
+%  sur le même calque. Les calques sont ordonnés par indentation croissante.     %
 %                                                                                %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Œuvre: cote œuvre, titre, date parution
-DF, 1N Œuvre, _11 Exemplaire
-Exemplaire: num. exemplaire, état du livre, date d'achat
+      Parrainer, 01 Client, 0N Client : date parrainage
+Produit: réf. produit, libellé, prix unitaire
+  Inclure, 1N Commande, 0N Produit: quantité
+ 
+    Client: réf. client, nom, prénom, adresse
+    DF, 0N Client, 11 Commande
+  Commande: num commande, date, montant

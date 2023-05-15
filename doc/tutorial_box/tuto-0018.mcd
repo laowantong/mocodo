@@ -1,17 +1,28 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                                                                %
-%                                VUE EN EXTENSION                                %
-%                                                                                %
-%  L'ajout d'un dernier chiffre permet également de créer une vue en extension.  %
-%                                                                                %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                               %
+%                       BOÎTES HOMONYMES / ENTITÉS VIDES                        %
+%                                                                               %
+%  L'éventuel dernier chiffre d'un nom d'entité ou d'association n'est jamais   %
+%  affiché. C'est utile, p. ex., pour distribuer une entité DATE trop pattue.   %
+%  Notez également la technique de création d'entités vides : leur identifiant  %
+%  est une suite d'espaces insécables.                                          %
+%                                                                               %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-ŒUVRE: 612.NAT.34, J'apprends à lire à mes souris blanches, mai 1975
+Date1: date
 
-DF1, XX ŒUVRE, XX EXEMPLAIRE1
-DF2, XX ŒUVRE, XX EXEMPLAIRE2
-DF3, XX ŒUVRE, XX EXEMPLAIRE3
+:
+A40, 0N E10, 0N E20, 0N Date2
+A30, 0N E30, 0N E10, 0N Date1
+E30: _         
+A60, 11 E40, 0N E30
 
-EXEMPLAIRE1: 1, bon état, 12/6/1975
-EXEMPLAIRE2: 2, bon état, 1/8/1977
-EXEMPLAIRE3: 3, reliure rongée, 3/4/2005
+E20: _         
+Date2: date
+E10: _         
+A50, 1N E40, 1N E10
+E40: _         
+
+A10, 0N E10, 0N E20, 0N Date2         
+:
+:

@@ -1,17 +1,15 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                            %
-%                        SCHÉMA SUR PLUSIEURS RANGÉES                        %
+%                           FLÈCHES SUR LES PATTES                           %
 %                                                                            %
-%  Les boîtes (entités et association) définies sur des lignes consécutives  %
-%  sont alignées horizontalement sur la même rangée d'une grille invisible.  %
-%  Pour créer une nouvelle rangée, sautez une ligne entre deux définitions.  %
+%  En suffixant d'un < ou > des cardinalités, vous créez une flèche dont la  %
+%  direction se lit en partant de l'association et en allant vers l'entité.  %
 %                                                                            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Produit: réf. produit, libellé, prix unitaire
-Inclure, 1N Commande, 0N Produit: quantité
+Inclure, 1N Commande, 0N> Produit: quantité
 Commande: num commande, date, montant
-
 DF, 0N Client, 11 Commande
 Client: réf. client, nom, prénom, adresse
-Parrainer, 01 Client, 0N Client : date parrainage
+Parrainer, 01> Client, 0N< Client : date parrainage
