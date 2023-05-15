@@ -1,21 +1,17 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                                                                %
-%                          HÉRITAGE (OU SPÉCIALISATION)                          %
-%                                                                                %
-%  Pour spécialiser une entité E en une ou plusieurs autres entités E1, E2, ...  %
-%  écrivez « /\ E <- E1, E2, ... ».                                              %
-%                                                                                %
-%  NB. Vous pouvez insérer X (exclusion) et/ou T (totalité) entre les barres     %
-%  obliques, ajouter une liste d'attributs ou modifier la sémantique et/ou la    %
-%  représentation graphique de l'héritage en remplaçant la flèche par <=, ->,    %
-%  =>, <<=, <<-, ->> =>>. Voir la documentation.                                 %
-%                                                                                %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                             %
+%                        AGRÉGATION (OU PSEUDO-ENTITÉ)                        %
+%                                                                             %
+%  Préfixez d'une barre oblique une cardinalité pour créer une pseudo-entité  %
+%  avec l'association et les autres entités que celle-ci met en jeu.          %
+%                                                                             %
+%  NB. La représentation conventionnelle (non prise en charge par Mocodo)     %
+%  insérerait une association entre Client et Réserver.                       %
+%                                                                             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Personne: num SS, nom, prénom
+Date: date
+Réserver, /1N Client, 1N Chambre, 0N Date: durée
+Chambre: numéro, prix
 
-/\ Personne <- Homme, Femme
-
-Homme: 
-:
-Femme: nom de jeune fille
+Client: id. client

@@ -54,7 +54,7 @@ class Mcd:
                 if clause.startswith(":"):
                     raise MocodoError(19, _('The clause "{clause}" starts with a colon.').format(clause=clause)) # fmt: skip
                 clause = re.sub("\[.+?\]", substitute_forbidden_symbols_between_brackets, clause)
-                if re.match(r"\s*\(.{0,3}\).+", clause):
+                if re.match(r"\s*\(.{0,3}\)\s*(\[.+?\])?\s*.+", clause):
                     element = Constraint(clause)
                     if element.name == "CIF":
                         mcd_has_cif = True

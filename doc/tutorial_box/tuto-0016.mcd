@@ -1,10 +1,17 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                                                            %
-%                          IDENTIFIANTS COMPOSITES                           %
-%                                                                            %
-%  Le premier attribut est par défaut souligné (identifiant fort). Préfixez  %
-%  d'un _ ceux des suivants que vous voulez inclure dans l'identifiant.      %
-%                                                                            %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                                %
+%                        DÉVOILEMENT PROGRESSIF DU SCHÉMA                        %
+%                                                                                %
+%  Indentez (i.e., insérez des espaces au début de) certaines définitions pour   %
+%  créer des calques. Les boîtes définies avec la même indentation sont tracées  %
+%  sur le même calque. Les calques sont ordonnés par indentation croissante.     %
+%                                                                                %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-GRATTE-CIEL: latitude, _longitude, nom, hauteur, année de construction
+      Parrainer, 01 Client, 0N Client : date parrainage
+Produit: réf. produit, libellé, prix unitaire
+  Inclure, 1N Commande, 0N Produit: quantité
+ 
+    Client: réf. client, nom, prénom, adresse
+    DF, 0N Client, 11 Commande
+  Commande: num commande, date, montant

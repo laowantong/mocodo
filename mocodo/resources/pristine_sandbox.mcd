@@ -1,13 +1,18 @@
-PEUT VIVRE DANS, 1N ESPÈCE, 1N ENCLOS: nb. max. congénères
-ENCLOS: num. enclos
-OCCUPE, 1N ANIMAL, 1N PÉRIODE, 1N ENCLOS
-PÉRIODE: date début, _date fin
+AYANT-DROIT: nom ayant-droit, lien
+DIRIGER, 0N EMPLOYÉ, 01 PROJET
+REQUÉRIR, 1N PROJET, 0N PIÈCE: quantité
+PIÈCE: réf. pièce, libellé pièce
+Composer, 0N [composée] PIÈCE, 0N [composante] PIÈCE: quantité
 
-ESPÈCE: code espèce, libellé
-DF, 0N ESPÈCE, _11 ANIMAL
-ANIMAL: nom, sexe, date naissance, date décès
-A MÈRE, 01 ANIMAL, 0N> [mère] ANIMAL
+DF1, _11 AYANT-DROIT, 0N EMPLOYÉ
+EMPLOYÉ: matricule, nom employé
+PROJET: num. projet, nom projet
+FOURNIR, 1N PROJET, 1N PIÈCE, 1N SOCIÉTÉ: quantité
 
-PEUT COHABITER AVEC, 0N ESPÈCE, 0N [commensale] ESPÈCE: nb. max. commensaux
-:
-A PÈRE, 0N ANIMAL, 0N> [père présumé] ANIMAL
+DÉPARTEMENT: num. département, nom département
+EMPLOYER, 11 EMPLOYÉ, 1N DÉPARTEMENT
+TRAVAILLER, 0N EMPLOYÉ, 1N PROJET
+SOCIÉTÉ: num. société, raison sociale
+CONTRÔLER, 0N< [filiale] SOCIÉTÉ, 01 [mère] SOCIÉTÉ
+
+(I) [Les pièces fournies par une société pour un projet font partie de celles qu'il requiert.] ..PIÈCE, ->REQUÉRIR, --FOURNIR, PROJET

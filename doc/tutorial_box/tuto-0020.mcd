@@ -1,17 +1,16 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                                                          %
-%                      AGRÉGATION (OU PSEUDO-ENTITÉ)                       %
-%                                                                          %
-%  Préfixez d'un / une cardinalité pour créer une pseudo-entité avec       %
-%  l'association et les autres entités que celle-ci met en jeu.            %
-%                                                                          %
-%  NB. La représentation conventionnelle (non prise en charge par Mocodo)  %
-%  insérerait une association entre Client et Réserver.                    %
-%                                                                          %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                               %
+%                                   MCD VIDE                                    %
+%                                                                               %
+%  Remplacez les cardinalités par XX et les attributs par des suites d'espaces  %
+%  insécables pour créer un « squelette » de MCD à remplir.                     %
+%                                                                               %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Date: date
-Réserver, /1N Client, 1N Chambre, 0N Date: durée
-Chambre: numéro, prix
-
-Client: id. client
+Parrainer, XX Client, XX Client
+Produit: _           , , 
+Inclure, XX Commande, XX Produit
+ 
+Client: _            , , ,
+DF, XX Client, XX Commande
+Commande: _            , , ,

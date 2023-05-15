@@ -8,7 +8,7 @@ from .mocodo_error import MocodoError
 class Constraint:
 
     def __init__(self, clause):
-        (self.name, legs) = re.match(r"\s*\((.{0,3})\)(.+)", clause).groups() # already checked by the caller
+        (self.name, note, legs) = re.match(r"\s*\((.{0,3})\)\s*(?:\[(.+?)\])?\s*(.+)", clause).groups() # already checked by the caller
         (legs, self.ratios) = re.match(r"^\s*(.*?)\s*(?::\s*(.+))?$", legs).groups()
         if self.ratios:
             try:
@@ -28,6 +28,7 @@ class Constraint:
             except AttributeError:
                 raise MocodoError(102, _('Malformed constraint leg "{leg}".').format(leg=leg))
             self.legs.append(ConstraintLeg(self, *kind_and_box_name))
+        self.note = note and note.replace("<<<safe-comma>>>", ",").replace("<<<safe-colon>>>", ":")
         self.kind= "constraint"
 
     def register_boxes(self, boxes):
@@ -60,7 +61,7 @@ class Constraint:
     def _description(self, style):
         return [
             (
-                "circle",
+                "circle_with_note" if self.note else "circle",
                 {
                     "stroke_depth": style["constraint_stroke_depth"],
                     "stroke_color": style["association_stroke_color"],
@@ -68,10 +69,11 @@ class Constraint:
                     "cx": self.cx,
                     "cy": self.cy,
                     "r": self.w // 2,
+                    "note": self.note,
                 },
             ),
             (
-                "text",
+                "text_pass_click",
                 {
                     "text": self.name,
                     "text_color": style['card_text_color'],
@@ -80,7 +82,7 @@ class Constraint:
                     "family": style["constraint_font"]["family"],
                     "size": style["constraint_font"]["size"],
                 },
-            )
+            ),
         ]
 
     def description(self, style, geo):

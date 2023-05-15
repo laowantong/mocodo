@@ -1,9 +1,15 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                                                              %
-%                           ENTITÉS SANS IDENTIFIANT                           %
-%                                                                              %
-%  Inversement, préfixez d'un _ le premier attribut pour ne pas le souligner.  %
-%                                                                              %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                                %
+%                   ENTITÉ FAIBLE (OU IDENTIFICATION RELATIVE)                   %
+%                                                                                %
+%  Préfixez une cardinalité 11 pour « affaiblir » l'entité distinguée.           %
+%                                                                                %
+%  NB. De façon non conventionnelle, Mocodo souligne le 11 pour signifier que    %
+%  le « renforcement » de l'identifiant va passer par là. Voir la documentation  %
+%  pour des représentations alternatives.                                        %
+%                                                                                %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-GRATTE-CIEL: _latitude, longitude, nom, hauteur, année de construction
+Œuvre: cote œuvre, titre, date parution
+DF, 1N Œuvre, _11 Exemplaire
+Exemplaire: num. exemplaire, état du livre, date d'achat

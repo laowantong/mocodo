@@ -65,8 +65,15 @@ class parse_test(unittest.TestCase):
         self.assertEqual(a.legs[0].card_view, "0,1")
         self.assertEqual(a.legs[1].card_view, "0,N")
 
-    def test_label(self):
+    def test_note(self):
         a = Association("ENGENDRER, 0N [Parent] PERSONNE, 1N [Enfant] PERSONNE")
+        self.assertEqual(a.legs[0].note, "Parent")
+        self.assertEqual(a.legs[1].note, "Enfant")
+        self.assertEqual(a.legs[0].card_view, "0,N")
+        self.assertEqual(a.legs[1].card_view, "1,N")
+
+    def test_note_in_agregation(self):
+        a = Association("ENGENDRER, /0N [Parent] PERSONNE, 1N [Enfant] PERSONNE")
         self.assertEqual(a.legs[0].note, "Parent")
         self.assertEqual(a.legs[1].note, "Enfant")
         self.assertEqual(a.legs[0].card_view, "0,N")
@@ -142,7 +149,7 @@ class parse_test(unittest.TestCase):
         self.assertEqual(a.name_view, "BUZZ")
         self.assertEqual(a.legs[0].entity_name, "FOtO")
         self.assertEqual(a.legs[1].entity_name, "tBARt")
-        a = Association("BUZZ\, 01 FO\tO, 0N \tBAR\t")
+        a = Association("BUZZ\\, 01 FO\tO, 0N \tBAR\t")
         self.assertEqual(a.name, "BUZZ")
         self.assertEqual(a.name_view, "BUZZ")
         self.assertEqual(a.legs[0].entity_name, "FO\tO")

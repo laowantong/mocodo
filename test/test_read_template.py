@@ -28,15 +28,15 @@ class TestReadTemplate(unittest.TestCase):
         self.assertEqual(template, expected)
     
     def test_errors(self):
-        self.assertRaisesRegex(MocodoError, "Mocodo Err\.30", read_template, "bad_circular_1", TEMPLATE_FOLDER)
-        self.assertRaisesRegex(MocodoError, "Mocodo Err\.31", read_template, "not_a_file", TEMPLATE_FOLDER)
-        self.assertRaisesRegex(MocodoError, "Mocodo Err\.32", read_template, "bad_not_json", TEMPLATE_FOLDER)
-        self.assertRaisesRegex(MocodoError, "Mocodo Err\.33", read_template, "bad_not_an_object", TEMPLATE_FOLDER)
-        self.assertRaisesRegex(MocodoError, "Mocodo Err\.34", read_template, "bad_object_value", TEMPLATE_FOLDER)
-        self.assertRaisesRegex(MocodoError, "Mocodo Err\.35", read_template, "bad_array_element", TEMPLATE_FOLDER)
-        self.assertRaisesRegex(MocodoError, "Mocodo Err\.36", read_template, "bad_no_order", TEMPLATE_FOLDER)
-        self.assertRaisesRegex(MocodoError, "Mocodo Err\.38", read_template, "bad_non_numeric_order", TEMPLATE_FOLDER)
-        self.assertRaisesRegex(MocodoError, "Mocodo Err\.39", read_template, "bad_non_increasing_order", TEMPLATE_FOLDER)
+        self.assertRaisesRegex(MocodoError, r"Mocodo Err\.30", read_template, "bad_circular_1", TEMPLATE_FOLDER)
+        self.assertRaisesRegex(MocodoError, r"Mocodo Err\.31", read_template, "not_a_file", TEMPLATE_FOLDER)
+        self.assertRaisesRegex(MocodoError, r"Mocodo Err\.32", read_template, "bad_not_json", TEMPLATE_FOLDER)
+        self.assertRaisesRegex(MocodoError, r"Mocodo Err\.33", read_template, "bad_not_an_object", TEMPLATE_FOLDER)
+        self.assertRaisesRegex(MocodoError, r"Mocodo Err\.34", read_template, "bad_object_value", TEMPLATE_FOLDER)
+        self.assertRaisesRegex(MocodoError, r"Mocodo Err\.35", read_template, "bad_array_element", TEMPLATE_FOLDER)
+        self.assertRaisesRegex(MocodoError, r"Mocodo Err\.36", read_template, "bad_no_order", TEMPLATE_FOLDER)
+        self.assertRaisesRegex(MocodoError, r"Mocodo Err\.38", read_template, "bad_non_numeric_order", TEMPLATE_FOLDER)
+        self.assertRaisesRegex(MocodoError, r"Mocodo Err\.39", read_template, "bad_non_increasing_order", TEMPLATE_FOLDER)
     
     def test_official_derivation(self):
         official_template_dir = Path("mocodo") / "resources" / "relation_templates"

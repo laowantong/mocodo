@@ -1,26 +1,17 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                                                               %
-%                         CONTRAINTES SUR ASSOCIATIONS                          %
-%                                                                               %
-%  Placez sur votre MCD diverses contraintes sous la forme de lettres cerclées  %
-%  et liées à des boîtes par des traits fléchés ou non, pleins, pointillés,     %
-%  doubles ou même invisibles (pour jouer sur la position du barycentre).       %
-%                                                                               %
-%  NB. MCD tiré de Merise, deuxième génération (Nanci et Espinasse, 2001).      %
-%                                                                               %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                                %
+%                                VUE EN EXTENSION                                %
+%                                                                                %
+%  L'ajout d'un dernier chiffre permet également de créer une vue en extension.  %
+%                                                                                %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-:::
-Dépôt: num dépôt, surface
+ŒUVRE: 612.NAT.34, J'apprends à lire à mes souris blanches, mai 1975
 
-:
-Louer, 11 Commande, 0N Dépôt
-:
-Stocker, 1N Dépôt, 1N Article: quantité
+DF1, XX ŒUVRE, XX EXEMPLAIRE1
+DF2, XX ŒUVRE, XX EXEMPLAIRE2
+DF3, XX ŒUVRE, XX EXEMPLAIRE3
 
-Commande: num. commande, date
-Composer, 1N Commande, 0N Article
-:
-Article: réf. article, prix
-
-(I) ->Stocker, ..Dépôt, ..Article, --Composer, --Louer, Commande, Stocker
+EXEMPLAIRE1: 1, bon état, 12/6/1975
+EXEMPLAIRE2: 2, bon état, 1/8/1977
+EXEMPLAIRE3: 3, reliure rongée, 3/4/2005

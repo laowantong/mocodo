@@ -1,15 +1,23 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                                                                %
-%                   ENTITÉ FAIBLE (OU IDENTIFICATION RELATIVE)                   %
-%                                                                                %
-%  Préfixez une cardinalité 11 pour « affaiblir » l'entité distinguée.           %
-%                                                                                %
-%  NB. De façon non conventionnelle, Mocodo souligne le 11 pour signifier que    %
-%  le « renforcement » de l'identifiant va passer par là. Voir la documentation  %
-%  pour des représentations alternatives.                                        %
-%                                                                                %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                               %
+%                    MLD SOUS FORME DE DIAGRAMME RELATIONNEL                    %
+%                                                                               %
+%  Si vous avez coché la case « diagramme relationnel » sous l'onglet Options,  %
+%  vous pouvez copier le texte généré sous l'onglet Relations, puis le coller   %
+%  sous l'onglet Entrée visualiser son équivalent graphique.                    %
+%                                                                               %
+%  NB. Ce type d'entrée n'est pas censé être écrit à la main, mais généré.      %
+%                                                                               %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+::
+Produit: réf. produit, libellé, prix unitaire
+:
+Inclure: #num commande->Commande->num commande, _#réf. produit->Produit->réf. produit, quantité
+:
 
-Œuvre: cote œuvre, titre, date parution
-DF, 1N Œuvre, _11 Exemplaire
-Exemplaire: num. exemplaire, état du livre, date d'achat
+
+:
+Client: réf. client, nom, prénom, adresse, #réf. client parrain->Client->réf. client, date parrainage
+::
+Commande: num commande, date, montant, #réf. client->Client->réf. client
+:

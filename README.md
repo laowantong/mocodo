@@ -34,7 +34,7 @@ Composer, 0N [composée] Pièce, 0N [composante] Pièce: quantité
 DF1, _11 Ayant-droit, 0N Employé
 Employé: matricule, nom employé
 Projet: num. projet, nom projet
-Fournir, 1N Projet, 1N Pièce, 1N Société
+Fournir, 1N Projet, 1N Pièce, 1N Société: quantité
 
 Département: num. département, nom département
 Employer, 11 Employé, 1N Département
@@ -53,7 +53,7 @@ En sortie, le MCD (diagramme conceptuel) et le MLD (schéma relationnel) corresp
 **Composer** (<ins>_#réf. pièce composée_</ins>, <ins>_#réf. pièce composante_</ins>, quantité)<br>
 **Département** (<ins>num. département</ins>, nom département)<br>
 **Employé** (<ins>matricule</ins>, nom employé, _#num. département_)<br>
-**Fournir** (<ins>_#num. projet_</ins>, <ins>_#réf. pièce_</ins>, <ins>_#num. société_</ins>)<br>
+**Fournir** (<ins>_#num. projet_</ins>, <ins>_#réf. pièce_</ins>, <ins>_#num. société_</ins>, quantité)<br>
 **Pièce** (<ins>réf. pièce</ins>, libellé pièce)<br>
 **Projet** (<ins>num. projet</ins>, nom projet, _#matricule_)<br>
 **Requérir** (<ins>_#num. projet_</ins>, <ins>_#réf. pièce_</ins>, quantité)<br>

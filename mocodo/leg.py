@@ -20,13 +20,17 @@ class Leg:
         association,
         card,
         entity_name,
-        match_card=re.compile(r"(_11|/0N|/1N|..)([<>]?)\s*(?:\[(.+?)\])?").match,
+        match_card=re.compile(r"(-?(?:_11|/0N|/1N|..))([<>]?)\s*(?:\[(.+?)\])?").match,
         **params,
     ):
         params["strengthen_card"] = params.get("strengthen_card", "_1,1_")
         params["card_format"] = params.get("card_format", "{min_card},{max_card}")
         (card, arrow, note) = match_card(card).groups()
         kind = "leg"
+        is_masked = False
+        if card.startswith("-"):
+            card = card[1:]
+            is_masked = True
         if card == "_11":
             kind = "strengthening"
             card = "11"
@@ -52,6 +56,8 @@ class Leg:
         else:
             card = auto_correction.get(card, card)
             card_view = params["card_format"].format(min_card=card[0], max_card=card[1])
+        if is_masked:
+            card_view = "     "
         self.card = card
         self.arrow = arrow
         self.kind = kind
