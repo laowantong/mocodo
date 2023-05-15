@@ -25,6 +25,16 @@
   "card_underline_depth": 1,
   "card_underline_skip_height": -2,
   "cartouche_text_height_ratio": 0.85,
+  "constraint_dot_gap_width": 6,
+  "constraint_dot_stroke_depth": 3,
+  "constraint_font": {
+    "family": "Verdana",
+    "size": 12,
+    "weight": "bold"
+  },
+  "constraint_margin": 5,
+  "constraint_stroke_depth": 1.5,
+  "constraint_text_height_tweak": 0.3,
   "dash_width": 4,
   "df_text_height_ratio": 1.0,
   "entity_attribute_font": {

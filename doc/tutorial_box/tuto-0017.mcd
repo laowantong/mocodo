@@ -1,28 +1,16 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                                                               %
-%                       BOÎTES HOMONYMES / ENTITÉS VIDES                        %
-%                                                                               %
-%  L'éventuel dernier chiffre d'un nom d'entité ou d'association n'est jamais   %
-%  affiché. C'est utile, p. ex., pour distribuer une entité DATE trop pattue.   %
-%  Notez également la technique de création d'entités vides : leur identifiant  %
-%  est une suite d'espaces insécables.                                          %
-%                                                                               %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                                %
+%                   ENTITÉ FAIBLE (OU IDENTIFICATION RELATIVE)                   %
+%                                                                                %
+%  Préfixez de « _ » une cardinalité 11 pour « affaiblir » l'entité distinguée,  %
+%  dont l'identifiant sera alors souligné en pointillés.                         %
+%                                                                                %
+%  NB. De façon non conventionnelle, Mocodo souligne le 11 pour signifier que    %
+%  le « renforcement » de l'identifiant va passer par là. Voir la documentation  %
+%  pour des représentations alternatives.                                        %
+%                                                                                %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Date1: date
-
-:
-A40, 0N E10, 0N E20, 0N Date2
-A30, 0N E30, 0N E10, 0N Date1
-E30: _         
-A60, 11 E40, 0N E30
-
-E20: _         
-Date2: date
-E10: _         
-A50, 1N E40, 1N E10
-E40: _         
-
-A10, 0N E10, 0N E20, 0N Date2         
-:
-:
+Œuvre: cote œuvre, titre, date parution
+DF, 1N Œuvre, _11 Exemplaire
+Exemplaire: num. exemplaire, état du livre, date d'achat

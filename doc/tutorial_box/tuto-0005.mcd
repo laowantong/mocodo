@@ -1,11 +1,11 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                                                           %
-%                          ATTRIBUTS D'ASSOCIATION                          %
-%                                                                           %
-%  Pour ajouter des attributs à une association, mettez un deux-points au   %
-%  bout de la ligne, puis énumérez ces attributs séparés par des virgules.  %
-%                                                                           %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                               %
+%                                 CARDINALITÉS                                  %
+%                                                                               %
+%  Si vous connaissez le couple de cardinalités d'une patte, mettez 01, 11, 0N  %
+%  ou 1N à la place du XX de l'entité distinguée par cette patte.               %
+%                                                                               %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Produit: réf. produit, libellé, prix unitaire
 Inclure, 1N Commande, 0N Produit: quantité

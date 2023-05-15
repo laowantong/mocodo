@@ -1,3 +1,5 @@
+**15 mai 2023.** Mocodo 3.2.0 prend en charge la [visualisation des contraintes sur associations](https://rawgit.com/laowantong/mocodo/master/doc/fr_refman.html#Visualisation-des-contraintes-sur-associations).
+
 **11 mai 2023.** Ajout d'un tutoriel / galerie d'exemples dans la [version en ligne](https://www.mocodo.net) de Mocodo 3.1.2.
 
 **24 décembre 2022.** Mocodo 3.1.1 corrige la [gestion des collisions des SVG interactifs](https://rawgit.com/laowantong/mocodo/master/doc/fr_refman.html#Éviter-qu'une-interaction-sur-un-SVG-ne-s'applique-à-un-autre).
@@ -20,28 +22,29 @@ Mocodo est un logiciel d'aide à l'enseignement et à la conception des [bases d
 - En sortie, il produit son diagramme entité-association en [SVG](https://fr.wikipedia.org/wiki/Scalable_Vector_Graphics) et son schéma relationnel ([MLD](
 https://fr.wikipedia.org/wiki/Merise_%28informatique%29#MLD_:_mod.C3.A8le_logique_des_donn.C3.A9es)) en [SQL](https://fr.wikipedia.org/wiki/Structured_Query_Language), [LaTeX](https://fr.wikipedia.org/wiki/LaTeX), [Markdown](https://fr.wikipedia.org/wiki/Markdown), etc.
 
-Ci-dessous, un exemple d'utilisation sous [Jupyter Notebook](https://jupyter.org). L'appel du programme est en première ligne, sur un texte d'entrée donné lignes suivantes. Le cas est adapté de l'article fondateur de Peter Chen, [_The entity-relationship model—toward a unified view of data_](https://doi.org/10.1145/320434.320440) (ACM Trans. Database Syst. 1, 1, March 1976, pp. 9–36).
+Ci-dessous, un exemple d'utilisation sous [Jupyter Notebook](https://jupyter.org). L'appel du programme est en première ligne, sur un texte d'entrée donné lignes suivantes. Le cas est adapté de l'article fondateur de Peter Chen, [_The entity-relationship model—toward a unified view of data_](https://doi.org/10.1145/320434.320440) (ACM Trans. Database Syst. 1, 1, March 1976, pp. 9–36), avec en bonus une association de type hiérarchique et une contrainte d'inclusion.
 
 ```
 %%mocodo --mld --colors brewer+1 --shapes copperplate --relations diagram markdown_data_dict
 
+Ayant-droit: nom ayant-droit, lien
+Diriger, 0N Employé, 01 Projet
+Requérir, 1N Projet, 0N Pièce: qté requise
+Pièce: réf. pièce, libellé pièce
+Composer, 0N [composée] Pièce, 0N [composante] Pièce: quantité
+
+DF1, _11 Ayant-droit, 0N Employé
+Employé: matricule, nom employé
+Projet: num. projet, nom projet
+Fournir, 1N Projet, 1N Pièce, 1N Société: qté fournie
+
 Département: num. département, nom département
 Employer, 11 Employé, 1N Département
 Travailler, 0N Employé, 1N Projet
-:
-Fournisseur: num. fournisseur, raison sociale
+Société: num. société, raison sociale
+Contrôler, 0N< [filiale] Société, 01 [mère] Société
 
-Employé: matricule, nom employé
-:
-Projet: num. projet, nom projet
-Fournir, 1N Projet, 1N Pièce, 1N Fournisseur
-
-Ayant-droit: nom ayant-droit, lien
-DF1, _11 Ayant-droit, 0N Employé
-Diriger, 0N Employé, 01 Projet
-Requérir, 1N Projet, 0N Pièce: quantité
-Pièce: réf. pièce, libellé pièce
-Composer, 0N Pièce, 0N [composante] Pièce
+(I) --Fournir, ->Requérir, ..Pièce, Projet
 ```
 
 En sortie, le MCD (diagramme conceptuel) et le MLD (schéma relationnel) correspondants:
@@ -49,31 +52,33 @@ En sortie, le MCD (diagramme conceptuel) et le MLD (schéma relationnel) corresp
 ![](https://cdn.rawgit.com/laowantong/mocodo/master/doc/readme_1.png)
 
 **Ayant-droit** (<ins>_#matricule_</ins>, <ins>nom ayant-droit</ins>, lien)<br>
-**Composer** (<ins>_#réf. pièce_</ins>, <ins>_#réf. pièce composante_</ins>)<br>
+**Composer** (<ins>_#réf. pièce composée_</ins>, <ins>_#réf. pièce composante_</ins>, quantité)<br>
 **Département** (<ins>num. département</ins>, nom département)<br>
 **Employé** (<ins>matricule</ins>, nom employé, _#num. département_)<br>
-**Fournir** (<ins>_#num. projet_</ins>, <ins>_#réf. pièce_</ins>, <ins>_#num. fournisseur_</ins>)<br>
-**Fournisseur** (<ins>num. fournisseur</ins>, raison sociale)<br>
+**Fournir** (<ins>_#num. projet_</ins>, <ins>_#réf. pièce_</ins>, <ins>_#num. société_</ins>, qté fournie)<br>
 **Pièce** (<ins>réf. pièce</ins>, libellé pièce)<br>
 **Projet** (<ins>num. projet</ins>, nom projet, _#matricule_)<br>
-**Requérir** (<ins>_#num. projet_</ins>, <ins>_#réf. pièce_</ins>, quantité)<br>
+**Requérir** (<ins>_#num. projet_</ins>, <ins>_#réf. pièce_</ins>, qté requise)<br>
+**Société** (<ins>num. société</ins>, raison sociale, _#num. société mère_)<br>
 **Travailler** (<ins>_#matricule_</ins>, <ins>_#num. projet_</ins>)
 
 L'appel précédent a également créé un fichier `mocodo_notebook/sandbox_data_dict.md` contenant le dictionnaire des données :
 
 - nom ayant-droit
 - lien
+- quantité
 - num. département
 - nom département
 - matricule
 - nom employé
-- num. fournisseur
-- raison sociale
+- qté fournie
 - réf. pièce
 - libellé pièce
 - num. projet
 - nom projet
-- quantité
+- qté requise
+- num. société
+- raison sociale
 
 Ainsi que le diagramme relationnel, qui peut être visualisé par un nouvel appel:
 

@@ -20,13 +20,17 @@ class Leg:
         association,
         card,
         entity_name,
-        match_card=re.compile(r"(_11|/0N|/1N|..)([<>]?)\s*(?:\[(.+?)\])?").match,
+        match_card=re.compile(r"(-?(?:_11|/0N|/1N|..))([<>]?)\s*(?:\[(.+?)\])?").match,
         **params,
     ):
         params["strengthen_card"] = params.get("strengthen_card", "_1,1_")
         params["card_format"] = params.get("card_format", "{min_card},{max_card}")
         (card, arrow, note) = match_card(card).groups()
         kind = "leg"
+        is_masked = False
+        if card.startswith("-"):
+            card = card[1:]
+            is_masked = True
         if card == "_11":
             kind = "strengthening"
             card = "11"
@@ -52,6 +56,8 @@ class Leg:
         else:
             card = auto_correction.get(card, card)
             card_view = params["card_format"].format(min_card=card[0], max_card=card[1])
+        if is_masked:
+            card_view = "     "
         self.card = card
         self.arrow = arrow
         self.kind = kind
@@ -64,6 +70,9 @@ class Leg:
 
     def register_entity(self, entity):
         self.entity = entity
+    
+    def register_mcd_has_cif(self, mcd_has_cif):
+        self.mcd_has_cif = mcd_has_cif
 
     def calculate_size(self, style, get_font_metrics):
         font = get_font_metrics(style["card_font"])
@@ -94,7 +103,7 @@ class Leg:
         if self.kind == "cluster_peg":
             result.append(
                 (
-                    "dash_line",
+                    "line" if self.mcd_has_cif else "dash_line",
                     {
                         "x0": ex,
                         "y0": ey,
@@ -309,6 +318,87 @@ class Leg:
         return result
 
 
+class ConstraintLeg:
+
+    def __init__(self, constraint, kind, box_name):
+        self.constraint = constraint
+        self.kind = kind
+        self.box_name = box_name
+        self.identifier = None
+    
+    def register_box(self, box):
+        self.box = box
+    
+    def description(self, style, geo):
+        if self.kind == "": # a phantom leg, useful to tweak the barycenter
+            return []
+        result = []
+        bx = self.box.cx
+        by = self.box.cy
+        bw = self.box.w // 2
+        bh = self.box.h // 2
+        cx = self.constraint.cx
+        cy = self.constraint.cy
+        cw = self.constraint.w // 2
+        ch = self.constraint.h // 2
+        leg = straight_leg_factory(bx, by, bw, bh, cx, cy, cw, ch)
+        kind = self.kind
+        for direction in "<>":
+            if direction in self.kind:
+                (x, y, a, b) = leg.arrow_pos(direction, 1)
+                c = hypot(a, b) or 1
+                (cos, sin) = (a / c, b / c)
+                result.append(
+                    (
+                        "arrow",
+                        {
+                            "x0": x,
+                            "y0": y,
+                            "x1": x + style["arrow_width"] * cos - style["arrow_half_height"] * sin,
+                            "y1": y - style["arrow_half_height"] * cos - style["arrow_width"] * sin,
+                            "x2": x + style["arrow_axis"] * cos,
+                            "y2": y - style["arrow_axis"] * sin,
+                            "x3": x + style["arrow_width"] * cos + style["arrow_half_height"] * sin,
+                            "y3": y + style["arrow_half_height"] * cos - style["arrow_width"] * sin,
+                            "stroke_color": style["constraint_stroke_color"],
+                        },
+                    ),
+                )
+                kind = kind.replace(direction, "")
+        if kind[:1] == "-":
+            result.append(
+                (
+                    "line",
+                    {
+                        "x0": bx,
+                        "y0": by,
+                        "x1": cx,
+                        "y1": cy,
+                        "stroke_color": style["constraint_stroke_color"],
+                        "stroke_depth": style["constraint_stroke_depth"],
+                    }
+                )
+            )
+        elif kind[:1] == ".":
+            result.append(
+                (
+                    "dot_line",
+                    {
+                        "x0": bx,
+                        "y0": by,
+                        "x1": cx,
+                        "y1": cy,
+                        "stroke_color": style["constraint_stroke_color"],
+                        "stroke_depth": style["constraint_dot_stroke_depth"],
+                        "dash_gap": style["constraint_dot_gap_width"],
+                    }
+                )
+            )
+        else:
+            raise NotImplementedError
+        return result
+
+
 class DiagramLink:
     def __init__(self, entities, foreign_entity, foreign_key):
         self.foreign_entity = foreign_entity
@@ -426,7 +516,7 @@ def line_intersection(ex, ey, w, h, ax, ay, cmp=lambda x, y: (x > y) - (x < y)):
     return (x, y)
 
 
-def straight_leg_factory(ex, ey, ew, eh, ax, ay, aw, ah, cw, ch, card_margin):
+def straight_leg_factory(ex, ey, ew, eh, ax, ay, aw, ah, cw=0, ch=0, card_margin=0):
     def card_pos(twist, shift):
         compare = operator.lt if twist else operator.le
         correction = 1 - abs(abs(ax - ex) - abs(ay - ey)) / hypot(ax - ex, ay - ey)

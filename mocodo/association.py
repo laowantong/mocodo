@@ -30,7 +30,7 @@ class Association:
         
         def clean_up_legs_and_attributes(
             legs_and_attributes,
-            match_leg = re.compile(r"((?:_11|/..|..)[<>]?\s+(?:\[.+?\]\s+)?)(.+)").match,
+            match_leg = re.compile(r"(-?(?:_11|/..|..)[<>]?\s+(?:\[.+?\]\s+)?)(.+)").match,
         ):
             (legs, attributes) = (legs_and_attributes.split(":", 1) + [""])[:2]
             (cards, entity_names) = ([], [])
@@ -105,9 +105,13 @@ class Association:
             leg.set_spin_strategy(0 if mutiplicity == 1 else 2 * rank / (mutiplicity - 1) - 1)
             self.legs.append(leg)
 
-
     def register_boxes(self, boxes):
         self.boxes = boxes
+
+    def register_mcd_has_cif(self, mcd_has_cif):
+        self.mcd_has_cif = mcd_has_cif
+        for leg in self.legs:
+            leg.register_mcd_has_cif(mcd_has_cif)
 
     def calculate_size(self, style, get_font_metrics):
         cartouche_font = get_font_metrics(style["association_cartouche_font"])
@@ -212,6 +216,8 @@ class Association:
             ]
         
         def optional_description_for_cluster(style):
+            if self.mcd_has_cif:
+                return []
             clustered_entities = [leg.entity for leg in self.legs if leg.kind == "cluster_leg"]
             if len(clustered_entities) == 2:
                 (e1, e2) = clustered_entities

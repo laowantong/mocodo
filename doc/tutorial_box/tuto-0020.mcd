@@ -1,21 +1,16 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                                                                %
-%                          HÉRITAGE (OU SPÉCIALISATION)                          %
-%                                                                                %
-%  Pour spécialiser une entité E en une ou plusieurs autres entités E1, E2, ...  %
-%  écrivez « /\ E <- E1, E2, ... ».                                              %
-%                                                                                %
-%  NB. Vous pouvez insérer X (exclusion) et/ou T (totalité) entre les barres     %
-%  obliques, ajouter une liste d'attributs ou modifier la sémantique et/ou la    %
-%  représentation graphique de l'héritage en remplaçant la flèche par <=, ->,    %
-%  =>, <<=, <<-, ->> =>>. Voir la documentation.                                 %
-%                                                                                %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                               %
+%                                   MCD VIDE                                    %
+%                                                                               %
+%  Remplacez les cardinalités par XX et les attributs par des suites d'espaces  %
+%  insécables pour créer un « squelette » de MCD à remplir.                     %
+%                                                                               %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Personne: num SS, nom, prénom
-
-/\ Personne <- Homme, Femme
-
-Homme: 
-:
-Femme: nom de jeune fille
+Parrainer, XX Client, XX Client
+Produit: _           ,,,
+Inclure, XX Commande, XX Produit
+ 
+Client: _            ,,,
+DF, XX Client, XX Commande
+Commande: _            ,,,

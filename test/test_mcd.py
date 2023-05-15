@@ -45,6 +45,23 @@ class McdTest(unittest.TestCase):
             else:
                 self.assertIn(box.kind, ["association", "df", "cluster", "inheritance"])
 
+    def test_constraint_recognition(self):
+        clauses = [
+            "Lorem: lorem, ipsum",
+            "Ipsum, XX Lorem, XX Dolor",
+            "Dolor: dolor, sit",
+            "Sit, XX Dolor, XX Amet",
+            "Amet: consectetur, adipiscing",
+            "(A) --Lorem, ..Ipsum, Dolor: 30, 90",
+            "(B) ->Dolor, <-->Sit, -->Amet: 69, 90",
+        ]
+        mcd = Mcd(clauses, **params)
+        self.assertEqual(mcd.box_count, len(clauses) - 2)
+        self.assertEqual(len(mcd.constraints), 2)
+        for constraint in mcd.constraints:
+            self.assertEqual(constraint.kind, "constraint")
+
+
     def test_rows(self):
         clauses = """
             BARATTE: piston, racloir, fusil
@@ -176,7 +193,7 @@ class McdTest(unittest.TestCase):
             "PROJET: num. projet, nom projet, budget projet",
             "ASSUMER, 1N PROJET, 1N INDIVIDU",
         ]
-        self.assertRaisesRegex(MocodoError, "Mocodo Err\.1", Mcd, clauses, params)
+        self.assertRaisesRegex(MocodoError, r"Mocodo Err\.1", Mcd, clauses, params)
 
     def test_duplicate_errors(self):
         clauses = [
@@ -186,7 +203,7 @@ class McdTest(unittest.TestCase):
             "BALANCE, 0N ROULEAU, 0N TINET: charrue",
             "BARATTE: tribulum",
         ]
-        self.assertRaisesRegex(MocodoError, "Mocodo Err\.6", Mcd, clauses, params)
+        self.assertRaisesRegex(MocodoError, r"Mocodo Err\.6", Mcd, clauses, params)
         clauses = [
             "DF, 11 BARATTE, 1N ROULEAU",
             "BARATTE: piston, racloir, fusil",
@@ -194,7 +211,7 @@ class McdTest(unittest.TestCase):
             "DF, 0N ROULEAU, 0N TINET: charrue",
             "ROULEAU: tribulum",
         ]
-        self.assertRaisesRegex(MocodoError, "Mocodo Err\.7", Mcd, clauses, params)
+        self.assertRaisesRegex(MocodoError, r"Mocodo Err\.7", Mcd, clauses, params)
         clauses = [
             "BARATTE, 11 BARATTE, 1N ROULEAU",
             "BARATTE: piston, racloir, fusil",
@@ -202,7 +219,7 @@ class McdTest(unittest.TestCase):
             "BALANCE, 0N ROULEAU, 0N TINET: charrue",
             "ROULEAU: tribulum",
         ]
-        self.assertRaisesRegex(MocodoError, "Mocodo Err\.8", Mcd, clauses, params)
+        self.assertRaisesRegex(MocodoError, r"Mocodo Err\.8", Mcd, clauses, params)
         clauses = [
             "BARATTE: piston, racloir, fusil",
             "BARATTE, 11 BARATTE, 1N ROULEAU",
@@ -210,7 +227,27 @@ class McdTest(unittest.TestCase):
             "BALANCE, 0N ROULEAU, 0N TINET: charrue",
             "ROULEAU: tribulum",
         ]
-        self.assertRaisesRegex(MocodoError, "Mocodo Err\.8", Mcd, clauses, params)
+        self.assertRaisesRegex(MocodoError, r"Mocodo Err\.8", Mcd, clauses, params)
+
+    def test_constraint_errors(self):
+        clauses = [
+            "Lorem: lorem, ipsum",
+            "Ipsum, XX Lorem, XX Lorem",
+            "(A) --Lorem, ..Ipsum, Dolor: 30, 90",
+        ]
+        self.assertRaisesRegex(MocodoError, r"Mocodo Err\.40", Mcd, clauses, params)
+        clauses = [
+            "Lorem: lorem, ipsum",
+            "Ipsum, XX Lorem, XX Lorem",
+            "(A) --Lorem, ---->Ipsum: 30, 90",
+        ]
+        self.assertRaisesRegex(MocodoError, r"Mocodo Err\.40", Mcd, clauses, params)
+        clauses = [
+            "Lorem: lorem, ipsum",
+            "Ipsum, XX Lorem, XX Lorem",
+            "(A) --Lorem, >Ipsum: 30, 90",
+        ]
+        self.assertRaisesRegex(MocodoError, r"Mocodo Err\.40", Mcd, clauses, params)
 
     def test_flip(self):
         clauses = """

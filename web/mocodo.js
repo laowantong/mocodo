@@ -212,7 +212,7 @@ function refreshRelations(result) {
     legends[i].addEventListener("click", function (event) {
       var index = event.target.dataset.index;
       var code = document.getElementById(`code-${index}`);
-      navigator.clipboard.writeText(code.innerText);
+      navigator.clipboard.writeText(code.innerText + "\n");
       $(`#code-${index}`).highlight();
     })
   }
@@ -434,5 +434,5 @@ $().ready(function () {
   createOptions("SQL_dialect", ["", "MySQL", "Oracle", "PostgreSQL", "SQLite"], "");
   createFormatCheckboxes();
   readCookie();
-  createOptions("tutorial", ["Sélectionnez un exemple de MCD", "Entité", "Attributs d'entité", "Association", "Cardinalités", "Attributs d'association", "Association de dépendance fonctionnelle", "Association réflexive", "Flèches sur les pattes", "Schéma sur plusieurs rangées", "Réarrangement des boîtes", "Réarrangement avec confinement", "Explication des cardinalités", "Dévoilement progressif du schéma", "Entité faible (ou identification relative)", "Identifiants composites", "Entités sans identifiant", "Boîtes homonymes / entités vides", "Vue en extension", "Agrégation (ou pseudo-entité)", "Héritage (ou spécialisation)"])
+  createOptions("tutorial", ["Sélectionnez un exemple de MCD", "Entité", "Attribut d'entité", "Association", "Attribut d'association", "Cardinalités", "Association de dépendance fonctionnelle", "Explication interactive des cardinalités", "Association réflexive", "Flèche sur une patte", "Schéma sur plusieurs rangées", "Réarrangement automatique", "Réarrangement automatique minimal", "Explication des cardinalités", "Rôle d'une patte pour le MLD", "MLD sous forme de diagramme relationnel", "Dévoilement progressif du schéma", "Entité faible (ou identification relative)", "Entité sans identifiant", "Identifiant composite", "MCD vide", "Boîtes homonymes", "Agrégation (ou pseudo-entité)", "Vue en extension", "Contrainte d'intégrité fonctionnelle (CIF)", "Contrainte sur associations", "Explication interactive d'une contrainte", "Héritage (ou spécialisation)"])
 });

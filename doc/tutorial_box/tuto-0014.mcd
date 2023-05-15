@@ -1,15 +1,17 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                                %
-%                   ENTITÉ FAIBLE (OU IDENTIFICATION RELATIVE)                   %
+%                          RÔLE D'UNE PATTE POUR LE MLD                          %
 %                                                                                %
-%  Préfixez une cardinalité 11 pour « affaiblir » l'entité distinguée.           %
-%                                                                                %
-%  NB. De façon non conventionnelle, Mocodo souligne le 11 pour signifier que    %
-%  le « renforcement » de l'identifiant va passer par là. Voir la documentation  %
-%  pour des représentations alternatives.                                        %
+%  La même syntaxe sert à « préserver » la sémantique d'une association appelée  %
+%  à disparaître lors du passage au relationnel. Ici, notez le rôle « parrain »  %
+%  et ce qu'il devient dans le MLD textuel généré sous le MCD.                   %
 %                                                                                %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Œuvre: cote œuvre, titre, date parution
-DF, 1N Œuvre, _11 Exemplaire
-Exemplaire: num. exemplaire, état du livre, date d'achat
+Parrainer, 01 Client, 0N [parrain] Client : date parrainage
+Produit: réf. produit, libellé, prix unitaire
+Inclure, 1N Commande, 0N Produit: quantité
+
+Client: réf. client, nom, prénom, adresse
+DF, 0N Client, 11 Commande
+Commande: num commande, date, montant

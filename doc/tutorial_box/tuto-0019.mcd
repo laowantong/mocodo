@@ -1,17 +1,10 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                                                          %
-%                      AGRÉGATION (OU PSEUDO-ENTITÉ)                       %
-%                                                                          %
-%  Préfixez d'un / une cardinalité pour créer une pseudo-entité avec       %
-%  l'association et les autres entités que celle-ci met en jeu.            %
-%                                                                          %
-%  NB. La représentation conventionnelle (non prise en charge par Mocodo)  %
-%  insérerait une DF entre Client et Réserver.                             %
-%                                                                          %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                                %
+%                             IDENTIFIANT COMPOSITE                              %
+%                                                                                %
+%  Inversement, si vous voulez inclure dans l'identifiant un attribut autre que  %
+%  le premier, préfixez le de « _ ».                                             %
+%                                                                                %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Date: date
-Réserver, /1N Client, 1N Chambre, 0N Date: durée
-Chambre: numéro, prix
-
-Client: nom
+GRATTE-CIEL: latitude, _longitude, nom, hauteur, année de construction
