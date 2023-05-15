@@ -84,11 +84,11 @@ class Association:
             self.kind = kind
         else:
             candidate_peg_count = sum(card.startswith("/") for card in cards)
-            valid_peg_count = sum(card in ("/0N", "/1N") for card in cards)
+            valid_peg_count = sum(card.startswith(("/0N", "/1N")) for card in cards)
             if candidate_peg_count > valid_peg_count:
                 raise MocodoError(26, _('Only cardinalities "/0N" or "/1N" are permitted to start with a "/" character.').format(name=self.name)) # fmt: skip
             if valid_peg_count > 0:
-                valid_leg_count = sum(card in ("0N", "1N") for card in cards)
+                valid_leg_count = sum(card.startswith(("0N", "1N")) for card in cards)
                 if valid_leg_count < 1:
                     raise MocodoError(27, _('To become a cluster, association "{name}" must have at least one cardinality "0N" or "1N" (without "/").').format(name=self.name)) # fmt: skip
                 if valid_leg_count + valid_peg_count < len(cards):
