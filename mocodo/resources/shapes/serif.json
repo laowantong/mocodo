@@ -22,6 +22,15 @@
   "card_underline_depth": 1,
   "card_underline_skip_height": 1,
   "cartouche_text_height_ratio": 0.85,
+  "constraint_dot_gap_width": 5.0,
+  "constraint_dot_stroke_depth": 2,
+  "constraint_font": {
+    "family": "Liberation Serif",
+    "size": 12
+  },
+  "constraint_margin": 2.5,
+  "constraint_stroke_depth": 1,
+  "constraint_text_height_tweak": 0.3,
   "dash_width": 4,
   "df_text_height_ratio": 1.0,
   "entity_attribute_font": {
