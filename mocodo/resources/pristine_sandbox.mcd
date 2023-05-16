@@ -2,7 +2,7 @@ AYANT-DROIT: nom ayant-droit, lien
 DIRIGER, 0N EMPLOYÉ, 01 PROJET
 REQUÉRIR, 1N PROJET, 0N PIÈCE: qté requise
 PIÈCE: réf. pièce, libellé pièce
-Composer, 0N [composée] PIÈCE, 0N [composante] PIÈCE: quantité
+COMPOSER, 0N [composée] PIÈCE, 0N [composante] PIÈCE: quantité
 
 DF1, _11 AYANT-DROIT, 0N EMPLOYÉ
 EMPLOYÉ: matricule, nom employé
@@ -15,4 +15,4 @@ TRAVAILLER, 0N EMPLOYÉ, 1N PROJET
 SOCIÉTÉ: num. société, raison sociale
 CONTRÔLER, 0N< [filiale] SOCIÉTÉ, 01 [mère] SOCIÉTÉ
 
-(I) [Les pièces fournies par une société pour un projet font partie de celles qu'il requiert.] ..PIÈCE, ->REQUÉRIR, --FOURNIR, PROJET
+  (I) [Les pièces fournies par une société pour un projet font partie de celles qu'il requiert.] ..PIÈCE, ->REQUÉRIR, --FOURNIR, PROJET
