@@ -365,10 +365,8 @@ function mayUnfreezeTitle() {
 };
 function changeTitleToNthTuto() {
   var index = $("select[id='tutorial'] option:selected").index();
-  if (index > 0) {
-    $("#title").val("tuto-" + ("000" + index).slice(-4));
-    freezeTitle();
-  }
+  $("#title").val("tuto-" + ("000" + index).slice(-4));
+  freezeTitle();
 }
 function markAsMoved() {
   $("#state").val("moved");
@@ -434,5 +432,5 @@ $().ready(function () {
   createOptions("SQL_dialect", ["", "MySQL", "Oracle", "PostgreSQL", "SQLite"], "");
   createFormatCheckboxes();
   readCookie();
-  createOptions("tutorial", ["Sélectionnez un exemple de MCD", "Entité", "Attribut d'entité", "Association", "Attribut d'association", "Cardinalités", "Association de dépendance fonctionnelle", "Explication interactive des cardinalités", "Association réflexive", "Flèche sur une patte", "Schéma sur plusieurs rangées", "Réarrangement automatique", "Réarrangement automatique minimal", "Explication des cardinalités", "Rôle d'une patte pour le MLD", "MLD sous forme de diagramme relationnel", "Dévoilement progressif du schéma", "Entité faible (ou identification relative)", "Entité sans identifiant", "Identifiant composite", "MCD vide", "Boîtes homonymes", "Agrégation (ou pseudo-entité)", "Vue en extension", "Contrainte d'intégrité fonctionnelle (CIF)", "Contrainte sur associations", "Explication interactive d'une contrainte", "Héritage (ou spécialisation)"])
+  createOptions("tutorial", ["MCD d'accueil", "Entité", "Attribut d'entité", "Association", "Attribut d'association", "Cardinalités", "Association de dépendance fonctionnelle", "Explication interactive des cardinalités", "Association réflexive", "Flèche sur une patte", "Schéma sur plusieurs rangées", "Réarrangement automatique", "Réarrangement automatique minimal", "Explication des cardinalités", "Rôle d'une patte pour le MLD", "MLD sous forme de diagramme relationnel", "Dévoilement progressif du schéma", "Entité faible (ou identification relative)", "Entité sans identifiant", "Identifiant composite", "MCD vide", "Boîtes homonymes", "Agrégation (ou pseudo-entité)", "Vue en extension", "Contrainte d'intégrité fonctionnelle (CIF)", "Contrainte sur associations", "Explication interactive d'une contrainte", "Héritage (ou spécialisation)"])
 });

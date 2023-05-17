@@ -1,0 +1,36 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                                %
+%                                 MCD D'ACCUEIL                                  %
+%                                                                                %
+%  Un petit zoo de la syntaxe de Mocodo, avec quelques fonctionnalités :         %
+%  - de base : entité, association, attribut, identifiant, cardinalité, patte ;  %
+%  - sur les entités : forte, faible (AYANT-DROIT) ;                             %
+%  - sur les associations : binaire, ternaire (FOURNIR), réflexive arborescente  %
+%   (CONTRÔLER) ou pas (COMPOSER), de dépendance fonctionnelle (DF, EMPLOYER) ;  %
+%   rôle des pattes (CONTRÔLER et COMPOSER), flèche, contrainte (I) ;            %
+%  - visuelles : dévoilement graduel, explications interactives (survolez les    %
+%   cardinalités des associations réflexives ou la contrainte d'inclusion).      %
+%                                                                                %
+%  MCD adapté de : The entity-relationship model—toward a unified view of data   %
+%  (Chen, 1976).                                                                 %
+%                                                                                %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+AYANT-DROIT: nom ayant-droit, lien
+DIRIGER, 0N EMPLOYÉ, 01 PROJET
+REQUÉRIR, 1N PROJET, 0N PIÈCE: qté requise
+PIÈCE: réf. pièce, libellé pièce
+COMPOSER, 0N [composée] PIÈCE, 0N [composante] PIÈCE: quantité
+
+DF1, _11 AYANT-DROIT, 0N EMPLOYÉ
+EMPLOYÉ: matricule, nom employé
+PROJET: num. projet, nom projet
+FOURNIR, 1N PROJET, 1N PIÈCE, 1N SOCIÉTÉ: qté fournie
+
+DÉPARTEMENT: num. département, nom département
+EMPLOYER, 11 EMPLOYÉ, 1N DÉPARTEMENT
+TRAVAILLER, 0N EMPLOYÉ, 1N PROJET
+SOCIÉTÉ: num. société, raison sociale
+CONTRÔLER, 0N< [filiale] SOCIÉTÉ, 01 [mère] SOCIÉTÉ
+
+  (I) [Les pièces fournies par une société pour un projet font partie de celles qu'il requiert.] ..PIÈCE, ->REQUÉRIR, --FOURNIR, PROJET

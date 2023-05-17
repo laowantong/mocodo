@@ -83,7 +83,7 @@ L'appel précédent a également créé un fichier `mocodo_notebook/sandbox_data
 Ainsi que le diagramme relationnel, qui peut être visualisé par un nouvel appel:
 
 ```
-%mocodo --input mocodo_notebook/sandbox.mld --colors brewer+1
+%mocodo --input mocodo_notebook/sandbox.mld --colors desert
 ```
 
 ![](https://cdn.rawgit.com/laowantong/mocodo/master/doc/readme_2.png)

@@ -13123,7 +13123,7 @@ $( document ).ready(function(){
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Mocodo 3.2.0 loaded.
+<pre>Mocodo 3.2.1 loaded.
 </pre>
 </div>
 </div>
@@ -17507,7 +17507,7 @@ Article: réf. article, prix
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>On peut tirer parti de ce mécanisme en intégrant (fictivement) d'autres boîtes à la définition de la contrainte, ou même en en répétant certaines. Dans ces deux cas, bien entendu, le trait devra être rendu invisible (il suffit de l'omettre). Par exemple, intégrer l'entité Commande et répéter l'association Stocker permet de réduire la largeur du MCD sans compromettre sa lisibilité :</p>
+<p>On peut tirer parti de ce mécanisme en intégrant (fictivement) d'autres boîtes à la définition de la contrainte, ou même en en répétant certaines. Dans ces deux cas, bien entendu, le trait devra être rendu invisible (il suffit de l'omettre). Par exemple, intégrer l'entité Commande et répéter l'association Stocker permet de réduire la largeur du MCD sans compromettre sa lisibilité. Ci-dessous, on a en outre indenté la définition de la contrainte pour la placer sur un second calque :</p>
 
 </div>
 </div>
@@ -17531,7 +17531,7 @@ Composer, 1N Commande, 0N Article
 :
 Article: réf. article, prix
 
-(I) -&gt;Stocker, ..Dépôt, ..Article, --Composer, --Louer, Commande, Stocker
+  (I) -&gt;Stocker, ..Dépôt, ..Article, --Composer, --Louer, Commande, Stocker
 </pre></div>
 
     </div>
@@ -17549,11 +17549,11 @@ Article: réf. article, prix
 
 
 <div class="output_svg output_subarea ">
-<svg xmlns="http://www.w3.org/2000/svg" width="417" height="276" viewBox="0 0 417 276">
+<svg xmlns="http://www.w3.org/2000/svg" width="417" height="316" viewBox="0 0 417 316">
 <rect id="frame" x="0" y="0" width="417" height="276" fill="#FFF" stroke="none" stroke-width="0"/>
 
 <!-- Constraint I -->
-<g>
+<g class="page_1_2317cf14 diagram_page" visibility="hidden">
 	<polygon points="320 151.28 310.25 160.49 312.34 153.59 306.78 149.0" fill="#000" stroke-width="0"/>
 	<line x1="364" y1="138" x2="277.86" y2="164" stroke="#000" stroke-width="1"/>
 	<line x1="364" y1="47" x2="277.86" y2="164" stroke="#000" stroke-width="2" stroke-dasharray="0,5" stroke-linecap="round"/>
@@ -17567,7 +17567,7 @@ Article: réf. article, prix
 </g>
 
 <!-- Association Louer -->
-<g>
+<g class="page_0_2317cf14 diagram_page" visibility="visible">
 	<line x1="69" y1="229" x2="210" y2="138" stroke="#000" stroke-width="1"/>
 	<text x="109.84" y="183" fill="#000" font-family="Futura" font-size="11">1,1</text>
 	<line x1="364" y1="47" x2="210" y2="138" stroke="#000" stroke-width="1"/>
@@ -17582,7 +17582,7 @@ Article: réf. article, prix
 </g>
 
 <!-- Association Stocker -->
-<g>
+<g class="page_0_2317cf14 diagram_page" visibility="visible">
 	<line x1="364" y1="47" x2="364" y2="138" stroke="#000" stroke-width="1"/>
 	<text x="369" y="101" fill="#000" font-family="Futura" font-size="11">1,N</text>
 	<line x1="364" y1="229" x2="364" y2="138" stroke="#000" stroke-width="1"/>
@@ -17598,7 +17598,7 @@ Article: réf. article, prix
 </g>
 
 <!-- Association Composer -->
-<g>
+<g class="page_0_2317cf14 diagram_page" visibility="visible">
 	<line x1="69" y1="229" x2="210" y2="229" stroke="#000" stroke-width="1"/>
 	<text x="134" y="245" fill="#000" font-family="Futura" font-size="11">1,N</text>
 	<line x1="364" y1="229" x2="210" y2="229" stroke="#000" stroke-width="1"/>
@@ -17613,7 +17613,7 @@ Article: réf. article, prix
 </g>
 
 <!-- Entity Dépôt -->
-<g>
+<g class="page_0_2317cf14 diagram_page" visibility="visible">
 	<g>
 		<rect x="321" y="9" width="86" height="30" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
 		<rect x="321" y="39" width="86" height="46" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
@@ -17627,7 +17627,7 @@ Article: réf. article, prix
 </g>
 
 <!-- Entity Commande -->
-<g>
+<g class="page_0_2317cf14 diagram_page" visibility="visible">
 	<g>
 		<rect x="9" y="191" width="120" height="30" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
 		<rect x="9" y="221" width="120" height="46" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
@@ -17641,7 +17641,7 @@ Article: réf. article, prix
 </g>
 
 <!-- Entity Article -->
-<g>
+<g class="page_0_2317cf14 diagram_page" visibility="visible">
 	<g>
 		<rect x="321" y="191" width="86" height="30" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
 		<rect x="321" y="221" width="86" height="46" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
@@ -17653,6 +17653,24 @@ Article: réf. article, prix
 	<line x1="329" y1="241" x2="393" y2="241" stroke="#000" stroke-width="1"/>
 	<text x="329" y="255.1" fill="#000" font-family="Gill Sans" font-size="15">prix</text>
 </g>
+
+<!-- Pager -->
+<circle cx="198.5" cy="296" r="5" fill="gray" id="pager_dot_0_2317cf14" class="pager_dot" stroke-width="0" onclick="switch_page_visibility_2317cf14(evt,0)" style="cursor: pointer;"/>
+<circle cx="218.5" cy="296" r="5" fill="lightgray" id="pager_dot_1_2317cf14" class="pager_dot" stroke-width="0" onclick="switch_page_visibility_2317cf14(evt,1)" style="cursor: pointer;"/>
+<script type="text/ecmascript">
+<![CDATA[
+	function switch_page_visibility_2317cf14(evt, page) {
+		for (var i = 0; i < 2; i++) {
+			components = document.getElementsByClassName(`page_${i}_2317cf14`);
+			for (var j = 0; j < components.length; j++) {
+				components[j].setAttributeNS(null, "visibility", i <= page ? "visible" : "hidden");
+			};
+			dot = document.getElementById(`pager_dot_${i}_2317cf14`);
+			dot.setAttributeNS(null, "fill", i <= page ? "gray" : "lightgray");
+		}
+	}
+]]>
+</script>
 </svg>
 </div>
 
@@ -17665,7 +17683,7 @@ Article: réf. article, prix
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Redisons-le : à l'heure actuelle (19h05), seul l'aspect graphique des contraintes est implanté. Certains types de contrainte sont déjà pris en charge par Mocodo, mais d'une autre manière. C'est ce que nous allons voir dans les deux sections suivantes.</p>
+<p>Redisons-le : à l'heure actuelle (19h05), seul l'aspect graphique des contraintes est implanté. L'éventuel aspect relationnel de certains types de contrainte est déjà pris en charge par Mocodo, mais d'une autre manière. C'est ce que nous allons voir dans les deux sections suivantes.</p>
 
 </div>
 </div>
@@ -20997,11 +21015,11 @@ PRODUIT: Réf. produit, Libellé, Prix unitaire
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>%%mocodo
-MULTITUDE: Libellé, Www, Galerie, Mutiplicatifs
-CONTRAINTE, 0N MULTITUDE, 11 FACTEURS
-FACTEURS: Graphe, Trans, Bases
-PASSAGE, 1N FACTEURS, 0N ÉVOLUER: Être
-ÉVOLUER: Nickel, Exportée, Est
+OCCUPE: Évoluer, Diagram, Tutoriel, Description
+LIGNE, 0N OCCUPE, 11 DATA
+DATA: Pièce, Augmentera, Plongement
+SORTIE, 1N DATA, 0N NOUVEL: Informations
+NOUVEL: Rien, Jupyter, Mocodo
 </pre>
 </div>
 </div>
