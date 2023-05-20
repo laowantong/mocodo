@@ -13,7 +13,7 @@ from mocodo.mcd import Mcd
 
 class ArrangeBB(unittest.TestCase):
     def test_constrained_rearrangement(self):
-        clauses = """
+        source = """
             SUSPENDISSE: diam
             SOLLICITUDIN, 0N SUSPENDISSE, 0N CONSECTETUER, 0N LOREM: lectus
             CONSECTETUER: elit, sed
@@ -28,9 +28,9 @@ class ArrangeBB(unittest.TestCase):
             AMET, 11> LOREM, 01 CONSECTETUER: adipiscing
             RISUS: ultricies, _cras, elementum
             SEMPER, 0N RISUS, 1N DIGNISSIM
-        """
+        """.replace("   ", "")
         params = parsed_arguments()
-        mcd = Mcd(clauses.split("\n"), params)
+        mcd = Mcd(source, params)
         params.update(mcd.get_layout_data())
         params["organic"] = False
         params["call_limit"] = 10000
@@ -77,11 +77,11 @@ class ArrangeBB(unittest.TestCase):
             TORTOR, 0N RISUS, 11 DIGNISSIM, 1N CONSECTETUER: nec
             CONSECTETUER: elit, sed
             AMET, 11> LOREM, 01 CONSECTETUER: adipiscing
-        """
+        """.replace("   ", "")
         self.assertEqual(result, expected.strip().replace("  ", ""))
 
     def test_non_connected_graph(self):
-        clauses = """
+        source = """
             SUSPENDISSE: diam
             SOLLICITUDIN, 0N SUSPENDISSE, 0N CONSECTETUER, 0N LOREM: lectus
             CONSECTETUER: elit, sed
@@ -95,9 +95,9 @@ class ArrangeBB(unittest.TestCase):
             AMET, 11> LOREM, 01 CONSECTETUER: adipiscing
             RISUS: ultricies, _cras, elementum
             SEMPER, 0N RISUS, 1N DIGNISSIM
-        """
+        """.replace("   ", "")
         params = parsed_arguments()
-        mcd = Mcd(clauses.split("\n"), params)
+        mcd = Mcd(source, params)
         params.update(mcd.get_layout_data())
         params["organic"] = False
         params["call_limit"] = 10000
@@ -143,11 +143,11 @@ class ArrangeBB(unittest.TestCase):
             DF1, 11 LOREM, 1N SUSPENDISSE
             DIGNISSIM: ligula, massa, varius
             SEMPER, 0N RISUS, 1N DIGNISSIM
-        """
+        """.replace("   ", "")
         self.assertEqual(mcd.get_clauses(), expected.strip().replace("  ", ""))
 
     def test_no_links(self):
-        clauses = """
+        source = """
             SUSPENDISSE: diam
             CONSECTETUER: elit, sed
 
@@ -155,9 +155,9 @@ class ArrangeBB(unittest.TestCase):
             DIGNISSIM: ligula, massa, varius
 
             RISUS: ultricies, _cras, elementum
-        """
+        """.replace("   ", "")
         params = parsed_arguments()
-        mcd = Mcd(clauses.split("\n"), params)
+        mcd = Mcd(source, params)
         params.update(mcd.get_layout_data())
         params["organic"] = False
         params["call_limit"] = 10000
@@ -184,9 +184,7 @@ class ArrangeBB(unittest.TestCase):
             :
             SUSPENDISSE: diam
             :
-        """.strip().replace(
-            "  ", ""
-        )
+        """.strip().replace("  ", "")
         rearrangement = arrange(**params)
         self.assertEqual(
             rearrangement,
@@ -201,7 +199,7 @@ class ArrangeBB(unittest.TestCase):
         self.assertEqual(expected, result)
 
     def test_organic_rearrangement(self):
-        clauses = """
+        source = """
             SUSPENDISSE: diam
             SOLLICITUDIN, 0N SUSPENDISSE, 0N CONSECTETUER, 0N LOREM: lectus
             CONSECTETUER: elit, sed
@@ -216,11 +214,9 @@ class ArrangeBB(unittest.TestCase):
             AMET, 11> LOREM, 01 CONSECTETUER: adipiscing
             RISUS: ultricies, _cras, elementum
             SEMPER, 0N RISUS, 1N DIGNISSIM
-        """.replace(
-            "  ", ""
-        )
+        """.replace("  ", "")
         params = parsed_arguments()
-        mcd = Mcd(clauses.split("\n"), params)
+        mcd = Mcd(source, params)
         params.update(mcd.get_layout_data())
         params["organic"] = True
         params["call_limit"] = 10000

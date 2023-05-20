@@ -474,10 +474,10 @@ ANIMAL: #code espèce->ESPÈCE->code espèce, _nom, sexe, date naissance, date d
           "primary": false,
           "nature": "deleted_child_discriminant_",
           "data_type": "INTEGER UNSIGNED NOT NULL",
-          "association_name": "",
-          "association_name_lower_case": "",
-          "association_name_uppercase": "",
-          "association_name_titlecase": "",
+          "association_name": " <= ANIMAL,CARNIVORE,HERBIVORE",
+          "association_name_lower_case": " <= animal,carnivore,herbivore",
+          "association_name_uppercase": " <= ANIMAL,CARNIVORE,HERBIVORE",
+          "association_name_titlecase": " <= animal,carnivore,herbivore",
           "leg_note": null,
           "outer_source": null,
           "outer_source_lowercase": null,
@@ -498,10 +498,10 @@ ANIMAL: #code espèce->ESPÈCE->code espèce, _nom, sexe, date naissance, date d
           "primary": false,
           "nature": "deleted_child_entity_name",
           "data_type": "BOOLEAN",
-          "association_name": "",
-          "association_name_lower_case": "",
-          "association_name_uppercase": "",
-          "association_name_titlecase": "",
+          "association_name": " <= ANIMAL,CARNIVORE,HERBIVORE",
+          "association_name_lower_case": " <= animal,carnivore,herbivore",
+          "association_name_uppercase": " <= ANIMAL,CARNIVORE,HERBIVORE",
+          "association_name_titlecase": " <= animal,carnivore,herbivore",
           "leg_note": null,
           "outer_source": "CARNIVORE",
           "outer_source_lowercase": "carnivore",
@@ -522,10 +522,10 @@ ANIMAL: #code espèce->ESPÈCE->code espèce, _nom, sexe, date naissance, date d
           "primary": false,
           "nature": "deleted_child_attribute",
           "data_type": null,
-          "association_name": "",
-          "association_name_lower_case": "",
-          "association_name_uppercase": "",
-          "association_name_titlecase": "",
+          "association_name": " <= ANIMAL,CARNIVORE,HERBIVORE",
+          "association_name_lower_case": " <= animal,carnivore,herbivore",
+          "association_name_uppercase": " <= ANIMAL,CARNIVORE,HERBIVORE",
+          "association_name_titlecase": " <= animal,carnivore,herbivore",
           "leg_note": null,
           "outer_source": null,
           "outer_source_lowercase": null,
@@ -546,10 +546,10 @@ ANIMAL: #code espèce->ESPÈCE->code espèce, _nom, sexe, date naissance, date d
           "primary": false,
           "nature": "deleted_child_entity_name",
           "data_type": "BOOLEAN",
-          "association_name": "",
-          "association_name_lower_case": "",
-          "association_name_uppercase": "",
-          "association_name_titlecase": "",
+          "association_name": " <= ANIMAL,CARNIVORE,HERBIVORE",
+          "association_name_lower_case": " <= animal,carnivore,herbivore",
+          "association_name_uppercase": " <= ANIMAL,CARNIVORE,HERBIVORE",
+          "association_name_titlecase": " <= animal,carnivore,herbivore",
           "leg_note": null,
           "outer_source": "HERBIVORE",
           "outer_source_lowercase": "herbivore",
@@ -570,10 +570,10 @@ ANIMAL: #code espèce->ESPÈCE->code espèce, _nom, sexe, date naissance, date d
           "primary": false,
           "nature": "deleted_child_attribute",
           "data_type": null,
-          "association_name": "",
-          "association_name_lower_case": "",
-          "association_name_uppercase": "",
-          "association_name_titlecase": "",
+          "association_name": " <= ANIMAL,CARNIVORE,HERBIVORE",
+          "association_name_lower_case": " <= animal,carnivore,herbivore",
+          "association_name_uppercase": " <= ANIMAL,CARNIVORE,HERBIVORE",
+          "association_name_titlecase": " <= animal,carnivore,herbivore",
           "leg_note": null,
           "outer_source": null,
           "outer_source_lowercase": null,
@@ -1295,34 +1295,6 @@ Généré par Mocodo
 - **OCCUPE** (__#code espèce__, __#nom__, __num. enclos__, date début, date fin)
 - **PEUT COHABITER AVEC** (__#code espèce__, __#code espèce commensale__, nb. max. commensaux)
 - **PEUT VIVRE DANS** (__#code espèce__, __num. enclos__, nb. max. congénères)
-```
-
-## Obfuscation
-
-```
-:
-    FEEL, 0N TURN, 0N TURN: grin
-:
-:
-:
-
-LAND, 1N TURN, 1N NEAR: silk
-TURN: debt, shoe
-  LOSS, 0N TURN, _11 POET
-:
-  STIR: auto
-
-NEAR: slew
-      TAPE, 1N POET, /1N KNEE, 1N NEAR
-  POET: code, they, bath, unit
-  /\ POET <= STIR, HAUL: draw
-:
-
-:
-      KNEE: four, _duck
-    ICON, 01 POET, 0N> POET
-:
-  HAUL: golf
 ```
 
 ## Inheritance stress test

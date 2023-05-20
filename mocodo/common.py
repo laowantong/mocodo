@@ -36,7 +36,7 @@ class Common:
         for encoding in self.params["encodings"]:
             try:
                 self.encoding = encoding
-                return read_contents(self.params["input"], encoding=encoding).replace('"', '').splitlines()
+                return read_contents(self.params["input"], encoding=encoding).replace('"', '')
             except UnicodeError:
                 pass
         raise MocodoError(5, _('Unable to read "{filename}" with any of the following encodings: "{encodings}".').format(filename=self.params["input"], encodings= ", ".join(self.params["encodings"]))) # fmt: skip
@@ -118,7 +118,7 @@ class Common:
                 for box in row
                 if box.kind != "phantom"
             },
-            "shift": {leg.identifier: 0 for row in mcd.rows for box in row for leg in box.legs},
+            "shift": {leg.identifier: 0 for row in mcd.rows for box in row for leg in box.legs if hasattr(leg, "card_view")},
             "ratio": {
                 leg.identifier: 1.0
                 for row in mcd.rows

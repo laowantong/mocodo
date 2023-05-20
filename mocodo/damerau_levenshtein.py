@@ -1,7 +1,7 @@
 # http://mwh.geek.nz/2009/04/26/python-damerau-levenshtein-distance/
 
 
-def damerau_levenshtein(seq1, seq2):
+def distance(seq1, seq2):
     """Calculate the Damerau-Levenshtein distance between sequences.
 
     This distance is the number of additions, deletions, substitutions,

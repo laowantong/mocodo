@@ -8,24 +8,16 @@ from .mocodo_error import MocodoError
 class Constraint:
 
     def __init__(self, clause):
-        (self.name, note, legs) = re.match(r"\s*\((.{0,3})\)\s*(?:\[(.+?)\])?\s*(.*)$", clause).groups()
-        (legs, self.ratios) = re.match(r"^\s*(.*?)\s*(?::\s*(.+))?$", legs).groups()
-        if self.ratios:
-            try:
-                self.ratios = [int(ratio) for ratio in self.ratios.split(",")]
-            except ValueError:
-                raise MocodoError(42, _('Malformed constraint ratios "{ratios}".').format(ratios=self.ratios))
-            if len(self.ratios) == 1:
-                self.ratios += self.ratios # if only one ratio is given, it is used for both width and height
-            self.ratios = tuple(self.ratios[:2]) # the subsequent ratios are ignored
+        self.source = clause["source"]
+        self.name = clause.get("name", "")
+        self.note = clause.get("constraint_message")
+        self.ratios = clause.get("constraint_ratios", [])
+        if len(self.ratios) == 1:
+            self.ratios += self.ratios # if only one ratio is given, it is used for both width and height
+        self.ratios = tuple(self.ratios[:2]) # the subsequent ratios are ignored
         self.legs = []
-        for leg in legs.split(","):
-            leg = leg.strip()
-            if not leg:
-                continue
-            kind_and_box_name = re.match(r"(<?[-.]{1,2}>?|)\s*(.+)", leg).groups()
-            self.legs.append(ConstraintLeg(self, *kind_and_box_name))
-        self.note = note and note.replace("<<<safe-comma>>>", ",").replace("<<<safe-colon>>>", ":")
+        for target in clause.get("constraint_targets", []):
+            self.legs.append(ConstraintLeg(self, target.get("constraint_link", ""), target["box"]))
         self.kind= "constraint"
 
     def register_boxes(self, boxes):

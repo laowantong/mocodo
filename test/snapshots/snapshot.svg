@@ -2,12 +2,26 @@
 <svg width="739" height="471" viewBox="0 0 739 471" xmlns="http://www.w3.org/2000/svg">
 <rect id="frame" x="0" y="0" width="739" height="431" fill="#FFF" stroke="none" stroke-width="0"/>
 
+<!-- Inheritance  &lt;= ANIMAL,CARNIVORE,HERBIVORE -->
+<g class="page_1_f8fc7c43 diagram_page" visibility="hidden">
+	<line x1="439" y1="257" x2="556" y2="257" stroke="#000" stroke-width="1"/>
+	<polygon points="492 257 504 251 500 257 504 263" fill="#000" stroke-width="0"/>
+	<line x1="658.73" y1="148.68" x2="556.73" y2="257.68" stroke="#000" stroke-width="1"/>
+	<line x1="657.27" y1="147.32" x2="555.27" y2="256.32" stroke="#000" stroke-width="1"/>
+	<line x1="657.24" y1="375.65" x2="555.24" y2="257.65" stroke="#000" stroke-width="1"/>
+	<line x1="658.76" y1="374.35" x2="556.76" y2="256.35" stroke="#000" stroke-width="1"/>
+	<g>
+		<polygon points="556 228.13 531 271.43 581 271.43" stroke="#000" stroke-width="1.5" fill="#FFF"/>
+		<text x="556" y="263" fill="#000" font-family="Copperplate" font-size="18"></text>
+	</g>
+</g>
+
 <!-- Association PEUT COHABITER AVEC -->
-<g class="page_2_6deac48e diagram_page" visibility="hidden">
+<g class="page_2_f8fc7c43 diagram_page" visibility="hidden">
 	<path d="M284 148 C232 108.33 232 74.67 284 47" fill="none" stroke="#000" stroke-width="1"/>
 	<text x="260" y="97" fill="#000" font-family="Futura" font-size="11">0,N</text>
 	<path d="M284 148 C336 108.33 336 74.67 284 47" fill="none" stroke="#000" stroke-width="1"/>
-	<text x="289" y="97" fill="#000" font-family="Futura" font-size="11" onmouseover="show_6deac48e(evt,'commensale')" onmouseout="hide_6deac48e(evt)" style="cursor: pointer;">0,N</text>
+	<text x="289" y="97" fill="#000" font-family="Futura" font-size="11" onmouseover="show_f8fc7c43(evt,'commensale')" onmouseout="hide_f8fc7c43(evt)" style="cursor: pointer;">0,N</text>
 	<g>
 		<path d="M386 18 a14 14 90 0 1 14 14 V46 h-232 V32 a14 14 90 0 1 14 -14" fill="#FFF" stroke="#FFF" stroke-width="0"/>
 		<path d="M400 46 v16 a14 14 90 0 1 -14 14 H182 a14 14 90 0 1 -14 -14 V46 H232" fill="#FFF" stroke="#FFF" stroke-width="0"/>
@@ -19,7 +33,7 @@
 </g>
 
 <!-- Association PEUT VIVRE DANS -->
-<g class="page_0_6deac48e diagram_page" visibility="visible">
+<g class="page_0_f8fc7c43 diagram_page" visibility="visible">
 	<line x1="284" y1="148" x2="108" y2="148" stroke="#000" stroke-width="1"/>
 	<text x="208" y="169" fill="#000" font-family="Futura" font-size="11">1,N</text>
 	<line x1="108" y1="257" x2="108" y2="148" stroke="#000" stroke-width="1"/>
@@ -35,12 +49,11 @@
 </g>
 
 <!-- Association DF -->
-<g class="page_1_6deac48e diagram_page" visibility="hidden">
+<g class="page_1_f8fc7c43 diagram_page" visibility="hidden">
 	<line x1="284" y1="148" x2="439" y2="148" stroke="#000" stroke-width="1"/>
 	<text x="341" y="169" fill="#000" font-family="Futura" font-size="11">0,N</text>
 	<line x1="439" y1="257" x2="439" y2="148" stroke="#000" stroke-width="1"/>
 	<text x="449" y="189" fill="#000" font-family="Futura" font-size="11">1,1</text>
-	<line x1="449" y1="191" x2="467" y2="191" stroke="#000" stroke-width="1"/>
 	<g>
 		<circle cx="439" cy="148" r="20" stroke="#000" stroke-width="1.5" fill="#FFF"/>
 		<text x="426" y="152.8" fill="#000" font-family="Copperplate" font-size="18">DF</text>
@@ -48,7 +61,7 @@
 </g>
 
 <!-- Association OCCUPE -->
-<g class="page_3_6deac48e diagram_page" visibility="hidden">
+<g class="page_3_f8fc7c43 diagram_page" visibility="hidden">
 	<line x1="439" y1="257" x2="284" y2="257" stroke="#000" stroke-width="1"/>
 	<text x="357" y="278" fill="#000" font-family="Futura" font-size="11">1,N</text>
 	<line x1="284" y1="375" x2="284" y2="257" stroke="#000" stroke-width="1" stroke-dasharray="4"/>
@@ -66,29 +79,12 @@
 	</g>
 </g>
 
-<!-- Association  -->
-<g class="page_1_6deac48e diagram_page" visibility="hidden">
-	<line x1="439" y1="257" x2="556" y2="257" stroke="#000" stroke-width="1"/>
-	<text x="502" y="278" fill="#000" font-family="Futura" font-size="11">     </text>
-	<polygon points="492 257 504 251 500 257 504 263" fill="#000" stroke-width="0"/>
-	<line x1="658.73" y1="148.68" x2="556.73" y2="257.68" stroke="#000" stroke-width="1"/>
-	<line x1="657.27" y1="147.32" x2="555.27" y2="256.32" stroke="#000" stroke-width="1"/>
-	<text x="626.45" y="199" fill="#000" font-family="Futura" font-size="11">     </text>
-	<line x1="657.24" y1="375.65" x2="555.24" y2="257.65" stroke="#000" stroke-width="1"/>
-	<line x1="658.76" y1="374.35" x2="556.76" y2="256.35" stroke="#000" stroke-width="1"/>
-	<text x="629.38" y="332" fill="#000" font-family="Futura" font-size="11">     </text>
-	<g>
-		<polygon points="556 228.13 531 271.43 581 271.43" stroke="#000" stroke-width="1.5" fill="#FFF"/>
-		<text x="556" y="263" fill="#000" font-family="Copperplate" font-size="18"></text>
-	</g>
-</g>
-
 <!-- Association A MÈRE -->
-<g class="page_2_6deac48e diagram_page" visibility="hidden">
+<g class="page_2_f8fc7c43 diagram_page" visibility="hidden">
 	<path d="M439 257 C489.67 313.67 489.67 353 439 375" fill="none" stroke="#000" stroke-width="1"/>
 	<text x="445" y="333" fill="#000" font-family="Futura" font-size="11">0,1</text>
 	<path d="M439 257 C387 313.67 387 353 439 375" fill="none" stroke="#000" stroke-width="1"/>
-	<text x="414" y="333" fill="#000" font-family="Futura" font-size="11" onmouseover="show_6deac48e(evt,'mère')" onmouseout="hide_6deac48e(evt)" style="cursor: pointer;">0,N</text>
+	<text x="414" y="333" fill="#000" font-family="Futura" font-size="11" onmouseover="show_f8fc7c43(evt,'mère')" onmouseout="hide_f8fc7c43(evt)" style="cursor: pointer;">0,N</text>
 	<polygon points="402.88 312.0 404.93 325.26 400.44 319.62 393.5 321.59" fill="#000" stroke-width="0"/>
 	<g>
 		<path d="M468 346 a14 14 90 0 1 14 14 V374 h-86 V360 a14 14 90 0 1 14 -14" fill="#FFF" stroke="#FFF" stroke-width="0"/>
@@ -100,7 +96,7 @@
 </g>
 
 <!-- Entity ESPÈCE -->
-<g class="page_0_6deac48e diagram_page" visibility="visible">
+<g class="page_0_f8fc7c43 diagram_page" visibility="visible">
 	<g>
 		<rect x="237" y="110" width="94" height="30" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
 		<rect x="237" y="140" width="94" height="46" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
@@ -114,7 +110,7 @@
 </g>
 
 <!-- Entity CARNIVORE -->
-<g class="page_1_6deac48e diagram_page" visibility="hidden">
+<g class="page_1_f8fc7c43 diagram_page" visibility="hidden">
 	<g>
 		<rect x="595" y="118" width="126" height="30" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
 		<rect x="595" y="148" width="126" height="30" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
@@ -126,7 +122,7 @@
 </g>
 
 <!-- Entity ENCLOS -->
-<g class="page_0_6deac48e diagram_page" visibility="visible">
+<g class="page_0_f8fc7c43 diagram_page" visibility="visible">
 	<g>
 		<rect x="61" y="227" width="94" height="30" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
 		<rect x="61" y="257" width="94" height="30" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
@@ -139,7 +135,7 @@
 </g>
 
 <!-- Entity ANIMAL -->
-<g class="page_1_6deac48e diagram_page" visibility="hidden">
+<g class="page_1_f8fc7c43 diagram_page" visibility="hidden">
 	<g>
 		<rect x="386" y="202" width="106" height="30" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
 		<rect x="386" y="232" width="106" height="80" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
@@ -155,7 +151,7 @@
 </g>
 
 <!-- Entity PÉRIODE -->
-<g class="page_3_6deac48e diagram_page" visibility="hidden">
+<g class="page_3_f8fc7c43 diagram_page" visibility="hidden">
 	<g>
 		<rect x="234" y="337" width="100" height="30" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
 		<rect x="234" y="367" width="100" height="46" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
@@ -170,7 +166,7 @@
 </g>
 
 <!-- Entity HERBIVORE -->
-<g class="page_1_6deac48e diagram_page" visibility="hidden">
+<g class="page_1_f8fc7c43 diagram_page" visibility="hidden">
 	<g>
 		<rect x="595" y="345" width="126" height="30" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
 		<rect x="595" y="375" width="126" height="30" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
@@ -184,40 +180,40 @@
 <!-- Notes -->
 <script type="text/ecmascript">
 <![CDATA[
-	function show_6deac48e(evt, text) {
+	function show_f8fc7c43(evt, text) {
 		var pos = (evt.target.getAttribute("y") < 381) ? "bottom" : "top";
-		var note = document.getElementById(pos + "_note_6deac48e");
+		var note = document.getElementById(pos + "_note_f8fc7c43");
 		note.textContent = text;
 		note.setAttributeNS(null, "visibility", "visible");
-		document.getElementById(pos + "_overlay_6deac48e").setAttributeNS(null, "visibility", "visible");
+		document.getElementById(pos + "_overlay_f8fc7c43").setAttributeNS(null, "visibility", "visible");
 	}
-	function hide_6deac48e(evt) {
-		document.getElementById("top_note_6deac48e").setAttributeNS(null, "visibility", "hidden");
-		document.getElementById("top_overlay_6deac48e").setAttributeNS(null, "visibility", "hidden");
-		document.getElementById("bottom_note_6deac48e").setAttributeNS(null, "visibility", "hidden");
-		document.getElementById("bottom_overlay_6deac48e").setAttributeNS(null, "visibility", "hidden");
+	function hide_f8fc7c43(evt) {
+		document.getElementById("top_note_f8fc7c43").setAttributeNS(null, "visibility", "hidden");
+		document.getElementById("top_overlay_f8fc7c43").setAttributeNS(null, "visibility", "hidden");
+		document.getElementById("bottom_note_f8fc7c43").setAttributeNS(null, "visibility", "hidden");
+		document.getElementById("bottom_overlay_f8fc7c43").setAttributeNS(null, "visibility", "hidden");
 	}
 ]]>
 </script>
-<rect id="top_overlay_6deac48e" x="0" y="0" width="100%" height="40" fill="#000" stroke-width="0" opacity="0.7" visibility="hidden"/>
-<text id="top_note_6deac48e" text-anchor="middle" x="369" y="24" fill="#FFF" font-family="Futura" font-size="16" visibility="hidden"></text>
-<rect id="bottom_overlay_6deac48e" x="0" y="391" width="100%" height="40" fill="#000" stroke-width="0" opacity="0.7" visibility="hidden"/>
-<text id="bottom_note_6deac48e" text-anchor="middle" x="369" y="415" fill="#FFF" font-family="Futura" font-size="16" visibility="hidden"></text>
+<rect id="top_overlay_f8fc7c43" x="0" y="0" width="100%" height="40" fill="#000" stroke-width="0" opacity="0.7" visibility="hidden"/>
+<text id="top_note_f8fc7c43" text-anchor="middle" x="369" y="24" fill="#FFF" font-family="Futura" font-size="16" visibility="hidden"></text>
+<rect id="bottom_overlay_f8fc7c43" x="0" y="391" width="100%" height="40" fill="#000" stroke-width="0" opacity="0.7" visibility="hidden"/>
+<text id="bottom_note_f8fc7c43" text-anchor="middle" x="369" y="415" fill="#FFF" font-family="Futura" font-size="16" visibility="hidden"></text>
 
 <!-- Pager -->
-<circle cx="339.5" cy="451" r="5" fill="gray" id="pager_dot_0_6deac48e" class="pager_dot" stroke-width="0" onclick="switch_page_visibility_6deac48e(evt,0)" style="cursor: pointer;"/>
-<circle cx="359.5" cy="451" r="5" fill="lightgray" id="pager_dot_1_6deac48e" class="pager_dot" stroke-width="0" onclick="switch_page_visibility_6deac48e(evt,1)" style="cursor: pointer;"/>
-<circle cx="379.5" cy="451" r="5" fill="lightgray" id="pager_dot_2_6deac48e" class="pager_dot" stroke-width="0" onclick="switch_page_visibility_6deac48e(evt,2)" style="cursor: pointer;"/>
-<circle cx="399.5" cy="451" r="5" fill="lightgray" id="pager_dot_3_6deac48e" class="pager_dot" stroke-width="0" onclick="switch_page_visibility_6deac48e(evt,3)" style="cursor: pointer;"/>
+<circle cx="339.5" cy="451" r="5" fill="gray" id="pager_dot_0_f8fc7c43" class="pager_dot" stroke-width="0" onclick="switch_page_visibility_f8fc7c43(evt,0)" style="cursor: pointer;"/>
+<circle cx="359.5" cy="451" r="5" fill="lightgray" id="pager_dot_1_f8fc7c43" class="pager_dot" stroke-width="0" onclick="switch_page_visibility_f8fc7c43(evt,1)" style="cursor: pointer;"/>
+<circle cx="379.5" cy="451" r="5" fill="lightgray" id="pager_dot_2_f8fc7c43" class="pager_dot" stroke-width="0" onclick="switch_page_visibility_f8fc7c43(evt,2)" style="cursor: pointer;"/>
+<circle cx="399.5" cy="451" r="5" fill="lightgray" id="pager_dot_3_f8fc7c43" class="pager_dot" stroke-width="0" onclick="switch_page_visibility_f8fc7c43(evt,3)" style="cursor: pointer;"/>
 <script type="text/ecmascript">
 <![CDATA[
-	function switch_page_visibility_6deac48e(evt, page) {
+	function switch_page_visibility_f8fc7c43(evt, page) {
 		for (var i = 0; i < 4; i++) {
-			components = document.getElementsByClassName(`page_${i}_6deac48e`);
+			components = document.getElementsByClassName(`page_${i}_f8fc7c43`);
 			for (var j = 0; j < components.length; j++) {
 				components[j].setAttributeNS(null, "visibility", i <= page ? "visible" : "hidden");
 			};
-			dot = document.getElementById(`pager_dot_${i}_6deac48e`);
+			dot = document.getElementById(`pager_dot_${i}_f8fc7c43`);
 			dot.setAttributeNS(null, "fill", i <= page ? "gray" : "lightgray");
 		}
 	}

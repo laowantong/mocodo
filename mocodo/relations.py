@@ -41,7 +41,7 @@ class Relations:
             if not counter:
                 return
             title = counter.most_common(1)[0][0][0]
-            title = re.sub("[^A-Za-zÀ-ÖØ-öø-ÿ0-9 '\._-]", "-", title)
+            title = re.sub("[^A-Za-zÀ-ÖØ-öø-ÿ0-9 '\\._-]", "-", title)
             if params["language"].startswith("fr"):
                 from .pluralize_fr import pluralize
                 title = " ".join(map(pluralize, title.split()))
@@ -333,15 +333,13 @@ class Relations:
 
     def find_inheritance_parent_or_children_to_delete(self):
         result = set()
-        for association in self.mcd.associations.values():
-            if not association.kind.startswith("inheritance"):
-                continue
-            parent_leg = association.legs[0]
-            if association.kind[-2:] in ("<-", "<="):
-                for child_leg in association.legs[1:]:
+        for inheritance in self.mcd.inheritances:
+            parent_leg = inheritance.legs[0]
+            if inheritance.kind in ("<-", "<="):
+                for child_leg in inheritance.legs[1:]:
                     result.add(child_leg.entity_name)
-            elif association.kind[-2:] == "=>":
-                if "T" not in association.name:
+            elif inheritance.kind == "=>":
+                if "T" not in inheritance.name:
                     raise MocodoError(25, _('Totality (/T\\ or /XT\\) is mandatory for "=>" inheritance of parent {name}.').format(name=parent_leg.entity_name)) # fmt: skip
                 result.add(parent_leg.entity_name)
         return result
@@ -353,19 +351,17 @@ class Relations:
         children must disappear. But in the case they are connected to other entities, they need
         an identifier to make possible to apply the remaining rules.
         """
-        for association in self.mcd.associations.values():
-            if not association.kind.startswith("inheritance"):
-                continue
-            parent_leg = association.legs[0]
+        for inheritance in self.mcd.inheritances:
+            parent_leg = inheritance.legs[0]
             to_be_deleted = parent_leg.entity_name in self.inheritance_parent_or_children_to_delete
-            for child_leg in association.legs[1:]: 
+            for child_leg in inheritance.legs[1:]: 
                 self.relations[child_leg.entity_name]["columns"][0:0] = [{
                     "attribute": attribute["attribute"],
                     "data_type": attribute["data_type"],
                     "adjacent_source": parent_leg.entity_name,
                     "outer_source": parent_leg.entity_name,
-                    "leg_note": parent_leg.note,
-                    "association_name": association.name,
+                    "leg_note": None,
+                    "association_name": inheritance.name,
                     "primary": True,
                     "nature": "deleted_parent_primary_key" if to_be_deleted else "parent_primary_key"
                 } for attribute in self.relations[parent_leg.entity_name]["columns"] if attribute["primary"]]
@@ -375,24 +371,22 @@ class Relations:
         Migrate the optional children's discriminants in their parent when it disappears (totality + =>).
         In this case, this discriminant should further migrate with the identifier of the parent.
         """
-        for association in self.mcd.associations.values():
-            if association.kind == "inheritance: =>":
-                parent_leg = association.legs[0]
+        for inheritance in self.mcd.inheritances:
+            if inheritance.kind == "=>":
+                parent_leg = inheritance.legs[0]
                 self.relations[parent_leg.entity_name]["columns"].extend({ 
                     "attribute": attribute.label,
-                    "data_type": attribute.data_type or (f"INTEGER UNSIGNED{'' if 'T' in association.name else ' NOT NULL'}"),
+                    "data_type": attribute.data_type or (f"INTEGER UNSIGNED{'' if 'T' in inheritance.name else ' NOT NULL'}"),
                     "adjacent_source": None,
                     "outer_source": None,
-                    "association_name": association.name, # "", "X", "T" or "XT"
+                    "association_name": inheritance.name, # "", "X", "T" or "XT"
                     "leg_note": None,
                     "primary": False,
-                    "nature": f"deleted_parent_discriminant_{association.name_view}"
-                } for attribute in association.attributes)
+                    "nature": f"deleted_parent_discriminant_{inheritance.name_view}"
+                } for attribute in inheritance.attributes)
 
     def process_associations(self):
         for association in self.mcd.associations.values():
-            if association.kind.startswith("inheritance"):
-                continue
             df_leg = None
             for leg in association.legs:
                 if leg.card[1] == "1":
@@ -514,12 +508,10 @@ class Relations:
 
 
     def process_inheritances(self):
-        for association in self.mcd.associations.values():
-            if not association.kind.startswith("inheritance"):
-                continue
-            parent_leg = association.legs[0]
-            if association.kind[-2:] == "=>": # total migration: parent > children
-                for child_leg in association.legs[1:]: 
+        for inheritance in self.mcd.inheritances:
+            parent_leg = inheritance.legs[0]
+            if inheritance.kind == "=>": # total migration: parent > children
+                for child_leg in inheritance.legs[1:]: 
                     # migrate the parent's attributes, except those of nature "deleted_parent_discriminant"
                     self.relations[child_leg.entity_name]["columns"][0:0] = [{
                         "attribute": attribute["attribute"],
@@ -527,32 +519,32 @@ class Relations:
                         "adjacent_source": parent_leg.entity_name,
                         "outer_source": self.may_retrieve_distant_outer_source(parent_leg, attribute),
                         "leg_note": self.may_retrieve_distant_leg_note(parent_leg, attribute),
-                        "association_name": association.name,
+                        "association_name": inheritance.name,
                         "primary": False,
                         "nature": "deleted_parent_foreign_key" if attribute["nature"] == "foreign_key" else "deleted_parent_attribute"
                     } for attribute in self.relations[parent_leg.entity_name]["columns"] if not attribute["primary"] and not attribute["nature"].startswith("deleted_parent_discriminant")]
             else: # migration: triangle attributes > parent
                 self.relations[parent_leg.entity_name]["columns"].extend({ 
                     "attribute": attribute.label,
-                    "data_type": attribute.data_type or (f"INTEGER UNSIGNED{'' if 'T' in association.name else ' NOT NULL'}"),
+                    "data_type": attribute.data_type or (f"INTEGER UNSIGNED{'' if 'T' in inheritance.name else ' NOT NULL'}"),
                     "adjacent_source": None,
                     "outer_source": None,
-                    "association_name": association.name,
+                    "association_name": inheritance.name,
                     "leg_note": None,
                     "primary": False,
-                    "nature": f"deleted_child_discriminant_{association.name_view}" # "", "X", "T" or "XT"
-                } for attribute in association.attributes)
-                if association.kind[-2:] in ("<-", "<="): # migration: children > parent, and suppress children
-                    for child_leg in association.legs[1:]:
-                        if association.kind[-2:] == "<=":
+                    "nature": f"deleted_child_discriminant_{inheritance.name_view}" # "", "X", "T" or "XT"
+                } for attribute in inheritance.attributes)
+                if inheritance.kind in ("<-", "<="): # migration: children > parent, and suppress children
+                    for child_leg in inheritance.legs[1:]:
+                        if inheritance.kind == "<=":
                             # make the child's name a boolean attribute of the parent
                             self.relations[parent_leg.entity_name]["columns"].append({
                                 "attribute": child_leg.entity_name,
                                 "data_type": "BOOLEAN",
                                 "adjacent_source": child_leg.entity_name,
                                 "outer_source": child_leg.entity_name,
-                                "leg_note": parent_leg.note,
-                                "association_name": association.name,
+                                "leg_note": None,
+                                "association_name": inheritance.name,
                                 "primary": False,
                                 "nature": "deleted_child_entity_name"
                             })
@@ -566,7 +558,7 @@ class Relations:
                                 "adjacent_source": child_leg.entity_name,
                                 "outer_source": self.may_retrieve_distant_outer_source(child_leg, attribute),
                                 "leg_note": self.may_retrieve_distant_leg_note(child_leg, attribute),
-                                "association_name": association.name,
+                                "association_name": inheritance.name,
                                 "primary": False,
                                 "nature": "deleted_child_foreign_key" if attribute["nature"] == "foreign_key" else "deleted_child_attribute"
                             })

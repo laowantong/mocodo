@@ -5,7 +5,7 @@ class Phantom:
         self.attributes = []
         self.legs = [] # iterating over box's legs does nothing if it is not an association
         self.kind = "phantom"
-        self.clause = ":"
+        self.source = ":"
         self.identifier = None
         self.page = 0
 

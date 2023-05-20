@@ -1,107 +1,45 @@
-import re
-from math import sqrt
-
 from .attribute import *
 from .leg import *
 from .mocodo_error import MocodoError
 
-TRIANGLE_ALTITUDE = sqrt(3) / 2
-INCIRCLE_RADIUS = 1 / sqrt(12)
 
 class Association:
 
     def __init__(self, clause, **params):
-        def clean_up_name(name):
-            name = name.strip()
-            kind = "association"
-            ends = name[:1] + name[-1:]
-            if ends == "/\\":
-                name = name[1:-1].replace(" ", "").upper().replace("TX", "XT")
-                unnumbered_name = (name[:-1] if name[-1:].isdigit() else name)
-                if unnumbered_name not in ("X", "T", "XT", ""):
-                    raise MocodoError(24, _('Unknown specialization "{name}".').format(name=name)) # fmt: skip
-                kind = "inheritance"
-            elif ends == "[]":
-                name = name[1:-1]
-                kind = "forced_table"
-            name = name.replace("\\", "")
-            name_view = (name[:-1] if name[-1:].isdigit() else name)
-            return (name, name_view, kind)
-        
-        def clean_up_legs_and_attributes(
-            legs_and_attributes,
-            match_leg = re.compile(r"(-?(?:_11|/..|..)[<>]?\s+(?:\[.+?\]\s+)?)(.+)").match,
-        ):
-            (legs, attributes) = (legs_and_attributes.split(":", 1) + [""])[:2]
-            (cards, entity_names) = ([], [])
-            for leg in legs.split(","):
-                leg = leg.strip().replace("\\", "")
-                m = match_leg(leg)
-                if m:
-                    cards.append(m[1].strip())
-                    entity_names.append(m[2].lstrip())
-                elif leg:
-                    raise MocodoError(2, _('Missing cardinalities on leg "{leg}" of association "{name}".').format(leg=leg, name=self.name)) # fmt: skip
-                else:
-                    raise MocodoError(11, _('Missing leg in association "{name}".').format(name=self.name)) # fmt: skip
-            return (cards, entity_names, outer_split(attributes))
-
-        
-        self.clause = clause
-        match = re.match(r"\s*(/\w*\\)", clause)
-        if match: # If the clause starts with an inheritance symbol, start "normalizing" its syntax:
-            # e.g. change "/XT\ parent => child1, child2" into "/XT\, => parent, child1, child2".
-            (clause, n) = re.subn(
-                r"(\s*/\w*\\)\s*([^:,]+)\s+(<=|<-|->|=>)([<=->]?)",
-                r"\1, \3\4 \2, ",
-                clause,
-            )
-            if n == 0:
-                raise MocodoError(23, _('Syntax error in inheritance "{inheritance}".').format(inheritance=match[1])) # fmt: skip
-        (name, legs_and_attributes) = clause.split(",", 1)
-        (self.name, self.name_view, kind) = clean_up_name(name)
-        if kind == "inheritance": # Finish syntax normalization by prefixing children names with fake cardinalities
-            # e.g. change "/XT\, => parent, child1, child2" into "/XT\, => parent, XX child1, XX child2"
-            legs_and_attributes = re.sub(r",\s*", ", XX ", legs_and_attributes)
-        (cards, entity_names, attributes) = clean_up_legs_and_attributes(legs_and_attributes)
-        self.attributes = [SimpleAssociationAttribute(attribute, i) for (i, attribute) in enumerate(attributes)]
+        self.source = clause["source"]
+        self.name = clause["name"]
+        self.name_view = self.name[:-1] if self.name[-1:].isdigit() else self.name  # get rid of single digit suffix, if any
+        self.forced_to_table = clause.get("box_def_prefix", False)
+        self.attributes = [SimpleAssociationAttribute(attr) for attr in clause.get("attrs", [])]
         self.df_label = params.get("df", "DF")
         if self.name_view == self.df_label:
             self.kind = "df"
-        elif kind == "inheritance":
-            if cards[0][2:3] == cards[0][1]: # the last symbol of the arrow is repeated
-                cards[0] = cards[0][:2] + ">" # replace it by the "standard" arrow
-                self.prettify_inheritance = False
-            else:
-                self.prettify_inheritance = True
-                if cards[0][1] == ">":
-                    for i in range(1, len(cards)):
-                        cards[i] = cards[i][:2] + ">" + cards[i][2:]
-                elif cards[0][0] == "<":
-                    cards[0] = cards[0][:2] + ">" + cards[0][2:]
-            self.kind = f"inheritance: {cards[0][:2]}"
-        elif kind == "forced_table":
-            self.kind = kind
+        elif self.forced_to_table:
+            self.kind = "forced_table"
         else:
-            candidate_peg_count = sum(card.startswith("/") for card in cards)
-            valid_peg_count = sum(card.startswith(("/0N", "/1N")) for card in cards)
+            legs = clause["legs"]
+            candidate_peg_count = sum(leg.get("card_prefix") == "/" for leg in legs)
+            valid_peg_count = sum(leg.get("card_prefix") == "/" and leg["card"] in ("0N", "1N") for leg in legs)
             if candidate_peg_count > valid_peg_count:
                 raise MocodoError(26, _('Only cardinalities "/0N" or "/1N" are permitted to start with a "/" character.').format(name=self.name)) # fmt: skip
             if valid_peg_count > 0:
-                valid_leg_count = sum(card.startswith(("0N", "1N")) for card in cards)
+                valid_leg_count = sum(leg.get("card_prefix") != "/" and leg["card"] in ("0N", "1N") for leg in legs)
                 if valid_leg_count < 1:
                     raise MocodoError(27, _('To become a cluster, association "{name}" must have at least one cardinality "0N" or "1N" (without "/").').format(name=self.name)) # fmt: skip
-                if valid_leg_count + valid_peg_count < len(cards):
+                if valid_leg_count + valid_peg_count < len(legs):
                     raise MocodoError(28, _('''To become a cluster, association "{name}"'s cardinalities must all be "0N", "1N", "/0N" or "/1N".''').format(name=self.name)) # fmt: skip
                 self.kind = "cluster"
             else:
                 self.kind = "association"
         self.set_view_strategies()
+        entity_names = [leg["entity"] for leg in clause["legs"]]
         self.legs = []
-        for (i, (card, name)) in enumerate(zip(cards, entity_names)):
-            leg = Leg(self, card, name, **params)
-            mutiplicity = entity_names.count(name)
-            rank = entity_names[:i].count(name)
+        for leg_clause in clause["legs"]:
+            entity_name = leg_clause["entity"]
+            rank = leg_clause["rank"]
+            leg = Leg(self, leg_clause, **params)
+            mutiplicity = entity_names.count(entity_name)
+            rank = entity_names[:rank].count(entity_name)
             leg.set_spin_strategy(0 if mutiplicity == 1 else 2 * rank / (mutiplicity - 1) - 1)
             self.legs.append(leg)
 
@@ -141,12 +79,6 @@ class Association:
                 style["round_rect_margin_width"] * 2 + self.cartouche_height
             )
 
-        def calculate_size_when_inheritance(style, get_font_metrics):
-            self.w = self.h = max(
-                style["round_rect_margin_width"] * 2 + self.cartouche_height * 2,
-                style["round_rect_margin_width"] * 2 + self.cartouche_height * 2
-            )
-
         def calculate_size_when_default(style, get_font_metrics):
             for attribute in self.attributes:
                 attribute.calculate_size(style, get_font_metrics)
@@ -184,35 +116,6 @@ class Association:
                         "size": style["association_cartouche_font"]["size"],
                     },
                 )
-            ]
-
-        def description_when_inheritance(style):
-            return [
-                (
-                    "triangle",
-                    {
-                        "stroke_depth": style["box_stroke_depth"],
-                        "stroke_color": style['association_stroke_color'],
-                        "color": style['association_cartouche_color'],
-                        "x1": self.cx,
-                        "x2": self.l,
-                        "x3": self.r,
-                        "y1": self.cy - (TRIANGLE_ALTITUDE - INCIRCLE_RADIUS) * self.w,
-                        "y2": self.cy + INCIRCLE_RADIUS * self.w,
-                        "y3": self.cy + INCIRCLE_RADIUS * self.w,
-                    },
-                ),
-                (
-                    "text",
-                    {
-                        "text": self.name_view,
-                        "text_color": style['association_cartouche_text_color'],
-                        "x": self.cx - self.get_cartouche_string_width(self.name_view) // 2,
-                        "y": self.cy + self.cartouche_height // 3,
-                        "family": style["association_cartouche_font"]["family"],
-                        "size": style["association_cartouche_font"]["size"],
-                    },
-                ),
             ]
         
         def optional_description_for_cluster(style):
@@ -433,9 +336,6 @@ class Association:
         if self.kind == "df":
             self.calculate_size_depending_on_kind = calculate_size_when_df
             self.description_depending_on_kind = description_when_df
-        elif self.kind.startswith("inheritance"):
-            self.calculate_size_depending_on_kind = calculate_size_when_inheritance
-            self.description_depending_on_kind = description_when_inheritance
         else:
             self.calculate_size_depending_on_kind = calculate_size_when_default
             self.description_depending_on_kind = description_when_default

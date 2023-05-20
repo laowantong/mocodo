@@ -42,6 +42,7 @@ def main(mcd, common):
     categories = { # the order is that of the drawing in the SVG
         "": [],
         "Constraint": [],
+        "Inheritance": [],
         "Association": [],
         "Entity": [],
         "Link": [],

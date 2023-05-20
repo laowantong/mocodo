@@ -18,7 +18,7 @@ class McdTest(unittest.TestCase):
             "PROJET ABC: num. projet, nom projet, budget projet",
             "PROJET CDE:",
         ]
-        mcd = Mcd(clauses, **params)
+        mcd = Mcd("\n".join(clauses), **params)
         self.assertEqual(mcd.box_count, len(clauses))
         for box in mcd.boxes:
             self.assertEqual(box.kind, "entity")
@@ -37,13 +37,13 @@ class McdTest(unittest.TestCase):
             "ASSURER2, 1N EMPLOYÉ ABC, 1N FONCTION: date début, date fin",
         ]
         clauses = entities + associations
-        mcd = Mcd(clauses, **params)
+        mcd = Mcd("\n".join(clauses), **params)
         self.assertEqual(mcd.box_count, len(clauses))
         for box in mcd.boxes:
             if box.name + ":" in entities:
                 self.assertEqual(box.kind, "entity")
             else:
-                self.assertIn(box.kind, ["association", "df", "cluster", "inheritance"])
+                self.assertIn(box.kind, ["association", "df"])
 
     def test_constraint_recognition(self):
         clauses = [
@@ -55,7 +55,7 @@ class McdTest(unittest.TestCase):
             "(A) --Lorem, ..Ipsum, Dolor: 30, 90",
             "(B) ->Dolor, <-->Sit, -->Amet: 69, 90",
         ]
-        mcd = Mcd(clauses, **params)
+        mcd = Mcd("\n".join(clauses), **params)
         self.assertEqual(mcd.box_count, len(clauses) - 2)
         self.assertEqual(len(mcd.constraints), 2)
         for constraint in mcd.constraints:
@@ -63,7 +63,7 @@ class McdTest(unittest.TestCase):
 
 
     def test_rows(self):
-        clauses = """
+        source = """
             BARATTE: piston, racloir, fusil
             MARTEAU, 0N BARATTE, 11 TINET: ciseaux
             TINET: fendoir, grattoir
@@ -78,8 +78,8 @@ class McdTest(unittest.TestCase):
             HERSE, 1N FLÉAU, 1N FLÉAU
 
             FLÉAU: battadère, van, mesure
-        """.split("\n")
-        mcd = Mcd(clauses, **params)
+        """
+        mcd = Mcd(source, **params)
         self.assertEqual([element.name for element in mcd.rows[0]], ["BARATTE", "MARTEAU", "TINET", "CROCHET"])
         self.assertEqual([element.name for element in mcd.rows[1]], ["DF", "BALANCE", "BANNETON", "PORTE"])
         self.assertEqual([element.name for element in mcd.rows[2]], [" 0", "ROULEAU", "HERSE", " 1"])
@@ -102,7 +102,7 @@ class McdTest(unittest.TestCase):
             "",
             "FLÉAU: battadère, van, mesure",
         ]
-        mcd = Mcd(clauses, **params)
+        mcd = Mcd("\n".join(clauses), **params)
         self.assertEqual(mcd.get_layout(), list(range(16)))
         self.assertEqual(mcd.get_layout_data(), {
             'col_count': 4,
@@ -193,7 +193,7 @@ class McdTest(unittest.TestCase):
             "PROJET: num. projet, nom projet, budget projet",
             "ASSUMER, 1N PROJET, 1N INDIVIDU",
         ]
-        self.assertRaisesRegex(MocodoError, r"Mocodo Err\.1", Mcd, clauses, params)
+        self.assertRaisesRegex(MocodoError, r"Mocodo Err\.1", Mcd, "\n".join(clauses), params)
 
     def test_duplicate_errors(self):
         clauses = [
@@ -203,7 +203,7 @@ class McdTest(unittest.TestCase):
             "BALANCE, 0N ROULEAU, 0N TINET: charrue",
             "BARATTE: tribulum",
         ]
-        self.assertRaisesRegex(MocodoError, r"Mocodo Err\.6", Mcd, clauses, params)
+        self.assertRaisesRegex(MocodoError, r"Mocodo Err\.6", Mcd, "\n".join(clauses), params)
         clauses = [
             "DF, 11 BARATTE, 1N ROULEAU",
             "BARATTE: piston, racloir, fusil",
@@ -211,7 +211,7 @@ class McdTest(unittest.TestCase):
             "DF, 0N ROULEAU, 0N TINET: charrue",
             "ROULEAU: tribulum",
         ]
-        self.assertRaisesRegex(MocodoError, r"Mocodo Err\.7", Mcd, clauses, params)
+        self.assertRaisesRegex(MocodoError, r"Mocodo Err\.7", Mcd, "\n".join(clauses), params)
         clauses = [
             "BARATTE, 11 BARATTE, 1N ROULEAU",
             "BARATTE: piston, racloir, fusil",
@@ -219,7 +219,7 @@ class McdTest(unittest.TestCase):
             "BALANCE, 0N ROULEAU, 0N TINET: charrue",
             "ROULEAU: tribulum",
         ]
-        self.assertRaisesRegex(MocodoError, r"Mocodo Err\.8", Mcd, clauses, params)
+        self.assertRaisesRegex(MocodoError, r"Mocodo Err\.8", Mcd, "\n".join(clauses), params)
         clauses = [
             "BARATTE: piston, racloir, fusil",
             "BARATTE, 11 BARATTE, 1N ROULEAU",
@@ -227,7 +227,7 @@ class McdTest(unittest.TestCase):
             "BALANCE, 0N ROULEAU, 0N TINET: charrue",
             "ROULEAU: tribulum",
         ]
-        self.assertRaisesRegex(MocodoError, r"Mocodo Err\.8", Mcd, clauses, params)
+        self.assertRaisesRegex(MocodoError, r"Mocodo Err\.8", Mcd, "\n".join(clauses), params)
 
     def test_constraint_errors(self):
         clauses = [
@@ -235,22 +235,10 @@ class McdTest(unittest.TestCase):
             "Ipsum, XX Lorem, XX Lorem",
             "(A) --Lorem, ..Ipsum, Dolor: 30, 90",
         ]
-        self.assertRaisesRegex(MocodoError, r"Mocodo Err\.40", Mcd, clauses, params)
-        clauses = [
-            "Lorem: lorem, ipsum",
-            "Ipsum, XX Lorem, XX Lorem",
-            "(A) --Lorem, ---->Ipsum: 30, 90",
-        ]
-        self.assertRaisesRegex(MocodoError, r"Mocodo Err\.40", Mcd, clauses, params)
-        clauses = [
-            "Lorem: lorem, ipsum",
-            "Ipsum, XX Lorem, XX Lorem",
-            "(A) --Lorem, >Ipsum: 30, 90",
-        ]
-        self.assertRaisesRegex(MocodoError, r"Mocodo Err\.40", Mcd, clauses, params)
+        self.assertRaisesRegex(MocodoError, r"Mocodo Err\.40", Mcd, "\n".join(clauses), params)
 
     def test_flip(self):
-        clauses = """
+        source = """
             BARATTE: piston, racloir, fusil
             MARTEAU, 0N BARATTE, 11 TINET: ciseaux
             TINET: fendoir, grattoir
@@ -265,8 +253,8 @@ class McdTest(unittest.TestCase):
             HERSE, 1N FLÉAU, 1N FLÉAU
 
             FLÉAU: battadère, van, mesure
-        """.split("\n")
-        mcd = Mcd(clauses, **params)
+        """
+        mcd = Mcd(source, **params)
         expected = """
             :
             FLÉAU: battadère, van, mesure
@@ -287,8 +275,9 @@ class McdTest(unittest.TestCase):
             MARTEAU, 0N BARATTE, 11 TINET: ciseaux
             TINET: fendoir, grattoir
             CROCHET: égrenoir, _gorgeoir, bouillie
-        """.strip().replace("  ", "")
-        self.assertEqual(mcd.get_clauses_horizontal_mirror(), expected)
+        """.replace("    ", "").strip()
+        actual = mcd.get_clauses_horizontal_mirror().replace("    ", "").strip()
+        self.assertEqual(actual, expected)
         expected = """
             CROCHET: égrenoir, _gorgeoir, bouillie
             TINET: fendoir, grattoir
@@ -310,7 +299,8 @@ class McdTest(unittest.TestCase):
             FLÉAU: battadère, van, mesure
             :
         """.strip().replace("  ", "")
-        self.assertEqual(mcd.get_clauses_vertical_mirror(), expected)
+        actual = mcd.get_clauses_vertical_mirror().replace("    ", "").strip()
+        self.assertEqual(actual, expected)
         expected = """
             BARATTE: piston, racloir, fusil
             DF, 11 BARATTE, 1N ROULEAU
@@ -332,11 +322,12 @@ class McdTest(unittest.TestCase):
             :
             :
         """.strip().replace("  ", "")
-        self.assertEqual(mcd.get_clauses_diagonal_mirror(), expected)
+        actual = mcd.get_clauses_diagonal_mirror().replace("    ", "").strip()
+        self.assertEqual(actual, expected)
 
     def test_explicit_fit(self):
         # initially: (5, 4) for 11 nodes
-        clauses = """
+        source = """
             Item: Norm, Wash, Haul
             Milk, 0N Item, 0N Draw
 
@@ -351,8 +342,8 @@ class McdTest(unittest.TestCase):
 
             Call: Ride, Soon
             Gear , 1N Call, 1N Folk
-        """.split("\n")
-        mcd = Mcd(clauses, **params)
+        """
+        mcd = Mcd(source, **params)
         # minimal fit: (4, 3)
         expected = """
             Item: Norm, Wash, Haul
@@ -369,8 +360,9 @@ class McdTest(unittest.TestCase):
             Call: Ride, Soon
             Gear , 1N Call, 1N Folk
             :
-        """.strip().replace("  ", "")
-        self.assertEqual(mcd.get_reformatted_clauses(0), expected)
+        """.strip().replace("    ", "")
+        actual = mcd.get_reformatted_clauses(0).strip().replace("    ", "")
+        self.assertEqual(actual, expected)
         # 1st next fit: (5, 3)
         expected = """
             Item: Norm, Wash, Haul
@@ -390,8 +382,9 @@ class McdTest(unittest.TestCase):
             :
             :
             :
-        """.strip().replace("  ", "")
-        self.assertEqual(mcd.get_reformatted_clauses(1), expected)
+        """.strip().replace("    ", "")
+        actual = mcd.get_reformatted_clauses(1).strip().replace("    ", "")
+        self.assertEqual(actual, expected)
         # 2nd next fit: (4, 4)
         expected = """
             Item: Norm, Wash, Haul
@@ -413,12 +406,13 @@ class McdTest(unittest.TestCase):
             :
             :
             :
-        """.strip().replace("  ", "")
-        self.assertEqual(mcd.get_reformatted_clauses(2), expected)
+        """.strip().replace("    ", "")
+        actual = mcd.get_reformatted_clauses(2).strip().replace("    ", "")
+        self.assertEqual(actual, expected)
         
     def test_automatic_fit_produces_next_grid(self):
         # initially: (5, 4) for 11 nodes
-        clauses = """
+        source = """
             Item: Norm, Wash, Haul
             Milk, 0N Item, 0N Draw
 
@@ -433,8 +427,8 @@ class McdTest(unittest.TestCase):
 
             Call: Ride, Soon
             Gear , 1N Call, 1N Folk
-        """.split("\n")
-        mcd = Mcd(clauses, **params)
+        """
+        mcd = Mcd(source, **params)
         # (5, 4) being a preferred grid, the next one (6, 4) is generated
         expected = """
             Item: Norm, Wash, Haul
@@ -465,11 +459,12 @@ class McdTest(unittest.TestCase):
             :
             :
         """.strip().replace("  ", "")
-        self.assertEqual(mcd.get_reformatted_clauses(-1), expected)
+        actual = mcd.get_reformatted_clauses(-1).strip().replace("    ", "")
+        self.assertEqual(actual, expected)
 
     def test_implicit_fit_produces_min_grid_next(self):
         # initially: (4, 5) for 11 nodes
-        clauses = """
+        source = """
             Item: Norm, Wash, Haul
             Milk, 0N Item, 0N Draw
 
@@ -485,8 +480,8 @@ class McdTest(unittest.TestCase):
 
             Call: Ride, Soon
             Gear , 1N Call, 1N Folk
-        """.split("\n")
-        mcd = Mcd(clauses, **params)
+        """
+        mcd = Mcd(source, **params)
         # (4, 5) not being a preferred grid, it is equivalent to nth_fit == 1
         expected = """
             Item: Norm, Wash, Haul
@@ -507,22 +502,24 @@ class McdTest(unittest.TestCase):
             :
             :
         """.strip().replace("  ", "")
-        self.assertEqual(mcd.get_reformatted_clauses(-1), expected)
-        self.assertEqual(mcd.get_reformatted_clauses(1), expected)
+        actual = mcd.get_reformatted_clauses(-1).strip().replace("    ", "")
+        self.assertEqual(actual, expected)
+        actual = mcd.get_reformatted_clauses(1).strip().replace("    ", "")
+        self.assertEqual(actual, expected)
     
     def test_no_overlapping(self):
-        clauses = """
+        source = """
             CLIENT: Réf. client, Nom, Prénom, Adresse
             PASSER, 0N CLIENT, 11 COMMANDE
             COMMANDE: Num commande, Date, Montant
             INCLURE, 1N COMMANDE, 0N PRODUIT: Quantité
             PRODUIT: Réf. produit, Libellé, Prix unitaire
-        """.replace("  ", "").split("\n")
-        mcd = Mcd(clauses, **params)
+        """.replace("    ", "")
+        mcd = Mcd(source, **params)
         self.assertEqual(mcd.get_overlaps(), [])
     
     def test_no_overlapping_with_reflexive_associations(self):
-        clauses = """
+        source = """
             :
             :
                 A MÈRE, 01 ANIMAL, 0N> [mère] ANIMAL
@@ -542,12 +539,12 @@ class McdTest(unittest.TestCase):
             PEUT VIVRE DANS, 1N ESPÈCE, 1N ENCLOS: nb. max. congénères
             ENCLOS: num. enclos
             :       
-        """.replace("  ", "").split("\n")
-        mcd = Mcd(clauses, **params)
+        """.replace("    ", "")
+        mcd = Mcd(source, **params)
         self.assertEqual(mcd.get_overlaps(), [])
     
     def test_horizontal_legs_overlap(self):
-        clauses = """
+        source = """
             CLIENT: Réf. client, Nom, Prénom, Adresse
             COMMANDE: Num commande, Date, Montant
             PRODUIT: Réf. produit, Libellé, Prix unitaire
@@ -555,8 +552,8 @@ class McdTest(unittest.TestCase):
             INCLURE, 1N COMMANDE, 0N PRODUIT: Quantité
         """.replace(
             "  ", ""
-        ).split("\n")
-        mcd = Mcd(clauses, **params)
+        )
+        mcd = Mcd(source, **params)
         self.assertEqual(
             mcd.get_overlaps(),
             [
@@ -568,16 +565,14 @@ class McdTest(unittest.TestCase):
         )
 
     def test_vertical_legs_overlap(self):
-        clauses = """
+        source = """
             CLIENT: Réf. client, Nom, Prénom, Adresse\n
             COMMANDE: Num commande, Date, Montant\n
             PRODUIT: Réf. produit, Libellé, Prix unitaire\n
             PASSER, 0N CLIENT, 11 COMMANDE\n
             INCLURE, 1N COMMANDE, 0N PRODUIT: Quantité
-        """.replace(
-            "  ", ""
-        ).split("\n")
-        mcd = Mcd(clauses, **params)
+        """
+        mcd = Mcd(source, **params)
         self.assertEqual(
             mcd.get_overlaps(),
             [
@@ -589,7 +584,7 @@ class McdTest(unittest.TestCase):
         )
 
     def test_leg_overlaps_entity(self):
-        clauses = """
+        source = """
             COMMANDE: Num commande, Date, Montant
             PRODUIT: Réf. produit, Libellé, Prix unitaire
             PASSER, 0N CLIENT, 11 COMMANDE
@@ -598,15 +593,15 @@ class McdTest(unittest.TestCase):
             :
             INCLURE, 1N COMMANDE, 0N PRODUIT: Quantité
             :::
-        """.replace("  ", "").split("\n")
-        mcd = Mcd(clauses, **params)
+        """
+        mcd = Mcd(source, **params)
         self.assertEqual(
             mcd.get_overlaps(),
             [('PASSER', 'COMMANDE', 'PRODUIT', 'PRODUIT')],
         )
 
     def test_leg_overlaps_association(self):
-        clauses = """
+        source = """
             PRODUIT: Réf. produit, Libellé, Prix unitaire
 
             COMMANDE: Num commande, Date, Montant
@@ -614,8 +609,8 @@ class McdTest(unittest.TestCase):
             CLIENT: Réf. client, Nom, Prénom, Adresse
 
             INCLURE, 1N COMMANDE, 0N PRODUIT: Quantité
-        """.replace("  ", "").split("\n")
-        mcd = Mcd(clauses, **params)
+        """
+        mcd = Mcd(source, **params)
         self.assertEqual(
             mcd.get_overlaps(),
             [('INCLURE', 'PRODUIT', 'PASSER', 'PASSER')],

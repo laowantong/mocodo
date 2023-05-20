@@ -2,6 +2,20 @@
 <svg width="739" height="431" viewBox="0 0 739 431" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="739" height="431" fill="#FFF" stroke="none" stroke-width="0"/>
 
+<!-- Inheritance  &lt;= ANIMAL,CARNIVORE,HERBIVORE -->
+<g>
+	<line x1="439" y1="257" x2="556" y2="257" stroke="#000" stroke-width="1"/>
+	<polygon points="492 257 504 251 500 257 504 263" fill="#000" stroke-width="0"/>
+	<line x1="658.73" y1="148.68" x2="556.73" y2="257.68" stroke="#000" stroke-width="1"/>
+	<line x1="657.27" y1="147.32" x2="555.27" y2="256.32" stroke="#000" stroke-width="1"/>
+	<line x1="657.24" y1="375.65" x2="555.24" y2="257.65" stroke="#000" stroke-width="1"/>
+	<line x1="658.76" y1="374.35" x2="556.76" y2="256.35" stroke="#000" stroke-width="1"/>
+	<g>
+		<polygon points="556 228.13 531 271.43 581 271.43" stroke="#000" stroke-width="1.5" fill="#FFF"/>
+		<text x="556" y="263" fill="#000" font-family="Copperplate" font-size="18"></text>
+	</g>
+</g>
+
 <!-- Association PEUT COHABITER AVEC -->
 <g>
 	<path d="M284 148 C232 108.33 232 74.67 284 47" fill="none" stroke="#000" stroke-width="1"/>
@@ -40,7 +54,6 @@
 	<text x="341" y="169" fill="#000" font-family="Futura" font-size="11">0,N</text>
 	<line x1="439" y1="257" x2="439" y2="148" stroke="#000" stroke-width="1"/>
 	<text x="449" y="189" fill="#000" font-family="Futura" font-size="11">1,1</text>
-	<line x1="449" y1="191" x2="467" y2="191" stroke="#000" stroke-width="1"/>
 	<g>
 		<circle cx="439" cy="148" r="20" stroke="#000" stroke-width="1.5" fill="#FFF"/>
 		<text x="426" y="152.8" fill="#000" font-family="Copperplate" font-size="18">DF</text>
@@ -63,23 +76,6 @@
 		<rect x="238" y="228" width="92" height="58" fill="none" rx="14" stroke="#000" stroke-width="1.5"/>
 		<line x1="238" y1="256" x2="330" y2="256" stroke="#000" stroke-width="1.5"/>
 		<text x="245" y="249.3" fill="#000" font-family="Copperplate" font-size="18">OCCUPE</text>
-	</g>
-</g>
-
-<!-- Association  -->
-<g>
-	<line x1="439" y1="257" x2="556" y2="257" stroke="#000" stroke-width="1"/>
-	<text x="502" y="278" fill="#000" font-family="Futura" font-size="11">     </text>
-	<polygon points="492 257 504 251 500 257 504 263" fill="#000" stroke-width="0"/>
-	<line x1="658.73" y1="148.68" x2="556.73" y2="257.68" stroke="#000" stroke-width="1"/>
-	<line x1="657.27" y1="147.32" x2="555.27" y2="256.32" stroke="#000" stroke-width="1"/>
-	<text x="626.45" y="199" fill="#000" font-family="Futura" font-size="11">     </text>
-	<line x1="657.24" y1="375.65" x2="555.24" y2="257.65" stroke="#000" stroke-width="1"/>
-	<line x1="658.76" y1="374.35" x2="556.76" y2="256.35" stroke="#000" stroke-width="1"/>
-	<text x="629.38" y="332" fill="#000" font-family="Futura" font-size="11">     </text>
-	<g>
-		<polygon points="556 228.13 531 271.43 581 271.43" stroke="#000" stroke-width="1.5" fill="#FFF"/>
-		<text x="556" y="263" fill="#000" font-family="Copperplate" font-size="18"></text>
 	</g>
 </g>
 

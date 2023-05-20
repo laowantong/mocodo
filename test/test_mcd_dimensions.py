@@ -75,7 +75,7 @@ class McdGeometryTest(unittest.TestCase):
         clauses = [
             "My entity: first, second",
         ]
-        mcd = Mcd(clauses, stub_for_get_font_metrics, **params)
+        mcd = Mcd("\n".join(clauses), stub_for_get_font_metrics, **params)
         self.assertEqual(get_dimensions(mcd), [{'name': 'My entity', 'x': 9, 'y': 9, 'w': 62, 'h': 54}])
     
     def test_read_me_mcd(self):
@@ -94,7 +94,7 @@ class McdGeometryTest(unittest.TestCase):
             "Matière: Libellé matière",
             "Enseigner, 11 Prof, 1N Matière",
         ]
-        mcd = Mcd(clauses, stub_for_get_font_metrics, **params)
+        mcd = Mcd("\n".join(clauses), stub_for_get_font_metrics, **params)
         self.assertEqual(get_dimensions(mcd), [
             {'name': 'DF', 'x': 30, 'y': 24, 'w': 24, 'h': 24},
             {'name': 'Classe', 'x': 95, 'y': 9, 'w': 72, 'h': 54},
@@ -126,7 +126,7 @@ class McdGeometryTest(unittest.TestCase):
             ":",
             "A PÈRE, 0N ANIMAL, 0N> [père présumé] ANIMAL",
         ]
-        mcd = Mcd(clauses, stub_for_get_font_metrics, **params)
+        mcd = Mcd("\n".join(clauses), stub_for_get_font_metrics, **params)
         self.assertEqual(get_dimensions(mcd), [
             {'name': 'PEUT VIVRE DANS', 'x': 9, 'y': 15, 'w': 110, 'h': 42},
             {'name': 'ENCLOS', 'x': 144, 'y': 14, 'w': 72, 'h': 44},

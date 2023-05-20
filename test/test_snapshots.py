@@ -7,7 +7,6 @@ from mocodo.common import Common
 from mocodo.font_metrics import font_metrics_factory
 from mocodo.mcd import Mcd
 from mocodo.mcd_to_svg import main as mcd_to_svg
-from mocodo.obfuscate import obfuscate
 from mocodo.read_template import read_template
 from mocodo.relations import *
 
@@ -16,7 +15,7 @@ TEMPLATE_DIR = Path("mocodo") / "resources" / "relation_templates"
 minimal_template = read_template("text", TEMPLATE_DIR)
 debug_template = read_template("debug", TEMPLATE_DIR)
 
-clauses = """
+source = """
 :
     PEUT COHABITER AVEC, 0N ESPÈCE, 0N [commensale] ESPÈCE: nb. max. commensaux
 :
@@ -52,8 +51,8 @@ get_font_metrics = font_metrics_factory(params)
 
 result = []
 result.append("# Snapshots")
-result.append(f"## Source\n\n```{clauses}```\n")
-mcd = Mcd(clauses.split("\n"), get_font_metrics, **params)
+result.append(f"## Source\n\n```{source}```\n")
+mcd = Mcd(source, get_font_metrics, **params)
 try:
     os.remove(snapshot_dir / "snapshot_geo.json")
 except:
@@ -72,18 +71,11 @@ for relation_path in sorted(Path("mocodo/resources/relation_templates/").glob("*
     output = relations.get_text(template).strip()
     result.append(f"### `{relation_path.name}`\n\n```{template.get('highlight', '')}\n{output}\n```\n")
 
-result.append("## Obfuscation\n")
-
-params["seed"] = 42
-params["obfuscate"] = "four_letter_words.txt"
-text = obfuscate(clauses.split("\n"), params)
-result.append(f"```\n{text}\n```\n")
-
 result.append("## Inheritance stress test\n")
 
 result.append("### External associations\n")
 
-clauses = """
+source = """
     SUSCIPIT: orci, lorem
     RHONCUS, 1N TRISTIS, 11 SUSCIPIT
     :
@@ -108,20 +100,20 @@ clauses = """
     ULTRICES, 1N LIBERO, 1N LACUS
     LIBERO: posuere, lacrima
 """
-result.append(f"```{clauses}```\n")
+result.append(f"```{source}```\n")
 for arrow in ("<=", "<-", "->", "=>"):
-    c = clauses.format(arrow=arrow)
+    c = source.format(arrow=arrow)
     result.append(f"#### Arrow `{arrow}`")
     try:
-        t = Relations(Mcd(c.split("\n"), params), params)
+        t = Relations(Mcd(c, params), params)
         result.append(f"```\n{t.get_text(minimal_template)}\n```\n")
         result.append(t.get_text(debug_template))
-    except KeyError as e:
+    except MocodoError as e:
         print(e)
 
 result.append("### Internal associations\n")
 
-clauses = """
+source = """
 :
 MOLLIS, 1N [via mollis] LACUS, 11 NEC
 NEC: pulvinar, audis
@@ -137,12 +129,12 @@ ULTRICES, 1N [sodales] SODALES, 1N [lacus] LACUS
 SODALES: convallis, ipsum
 :
 """
-result.append(f"```{clauses}```\n")
+result.append(f"```{source}```\n")
 for arrow in ("<=", "<-", "->", "=>"):
-    c = clauses.format(arrow=arrow)
+    c = source.format(arrow=arrow)
     result.append(f"#### Arrow `{arrow}`")
     try:
-        t = Relations(Mcd(c.split("\n"), params), params)
+        t = Relations(Mcd(c, params), params)
         result.append(f"```\n{t.get_text(minimal_template)}\n```\n")
         result.append(t.get_text(debug_template))
     except KeyError as e:

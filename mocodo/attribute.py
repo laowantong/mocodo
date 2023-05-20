@@ -1,24 +1,13 @@
-import re
-
-
-def outer_split(s, findall_outer_commas = re.compile(r'[^,]+\[.*?\][^,]*|[^,]+').findall):
-    return [s.replace(", ", ",").strip(" \t").replace("\\", "") for s in findall_outer_commas(s.replace(",", ", "))]
-
-
-
 class Attribute:
 
-    def __init__(self, attribute, rank, search_label_and_type = re.compile(r"^(.*?)(?: *\[(.*)\])?$").search):
-        (label, dt) = search_label_and_type(attribute).groups()
-        self.data_type = dt and dt.replace("<<<safe-comma>>>", ",").replace("<<<safe-colon>>>", ":")
-        components = label.split("->")
-        if len(components) == 3:
-            (self.label, self.primary_entity_name, self.primary_key_label) = components
-        else:
-            (self.label, self.primary_entity_name, self.primary_key_label) = (label, None, None)
+    def __init__(self, attribute):
+        self.label = attribute.get("attribute_label", "")
+        self.rank = attribute["rank"]
+        self.data_type = attribute.get("data_type")
+        self.primary_entity_name = attribute.get("that_table")
+        self.primary_key_label = attribute.get("that_table_attribute_label")
         self.box_type = "entity"
         self.font_type = "entity_attribute_font"
-        self.rank = rank
 
     def calculate_size(self, style, get_font_metrics):
         self.attribute_font = style[self.font_type]
@@ -44,8 +33,8 @@ class Attribute:
 
 class SimpleEntityAttribute(Attribute):
 
-    def __init__(self, attribute, rank):
-        Attribute.__init__(self, attribute, rank)
+    def __init__(self, attribute):
+        Attribute.__init__(self, attribute)
 
     def get_category(self):
         return "simple"
@@ -53,16 +42,16 @@ class SimpleEntityAttribute(Attribute):
 
 class SimpleAssociationAttribute(Attribute):
 
-    def __init__(self, attribute, rank):
-        Attribute.__init__(self, attribute, rank)
+    def __init__(self, attribute):
+        Attribute.__init__(self, attribute)
         self.box_type = "association"
         self.font_type = "association_attribute_font"
 
 
 class StrongAttribute(Attribute):
 
-    def __init__(self, attribute, rank):
-        Attribute.__init__(self, attribute, rank)
+    def __init__(self, attribute):
+        Attribute.__init__(self, attribute)
 
     def get_category(self):
         return "strong"
@@ -85,8 +74,8 @@ class StrongAttribute(Attribute):
 
 class WeakAttribute(Attribute):
 
-    def __init__(self, attribute, rank):
-        Attribute.__init__(self, attribute, rank)
+    def __init__(self, attribute):
+        Attribute.__init__(self, attribute)
 
     def get_category(self):
         return "weak"
@@ -110,11 +99,15 @@ class WeakAttribute(Attribute):
 
 class PhantomAttribute(Attribute):
 
-    def __init__(self, rank):
-        Attribute.__init__(self, "", rank)
-
     def get_category(self):
         return "phantom"
 
     def description(self, style, x, y, dx, dy):
         return []
+
+
+class InheritanceAttribute(Attribute):
+
+    def __init__(self, attribute):
+        Attribute.__init__(self, attribute)
+        self.box_type = "inheritance"

@@ -3,14 +3,11 @@ from .attribute import *
 
 class Entity:
     def __init__(self, clause):
-        (name, attribute_labels) = clause.split(":", 1)
-        self.is_deletable = True
-        if name.startswith("+"):
-            self.is_deletable = False
-            name = name[1:]
-        self.name = name.strip().replace("\\", "")
-        self.attribute_labels = outer_split(attribute_labels)
+        self.source = clause["source"]
+        self.is_deletable = clause.get("box_def_prefix", "") != "+"
+        self.name = clause["name"]
         self.name_view = self.name[:-1] if self.name[-1].isdigit() else self.name  # get rid of single digit suffix, if any
+        self.attrs = clause.get("attrs", [])
         self.legs = []  # iterating over box's legs does nothing if it is not an association
         self.kind = "entity"
         self.clause = clause
@@ -23,18 +20,19 @@ class Entity:
         else:
             IdentifierAttribute = StrongAttribute
         self.attributes = []
-        for (i, attribute_label) in enumerate(self.attribute_labels):
+        for attr in self.attrs:
+            attribute_label = attr.get("attribute_label", "")
             if attribute_label == "":
-                self.attributes.append(PhantomAttribute(i))
-            elif attribute_label.startswith("_"):
-                if i == 0:
-                    self.attributes.append(SimpleEntityAttribute(attribute_label[1:], i))
+                self.attributes.append(PhantomAttribute(attr))
+            elif attr.get("underscore"):
+                if attr["rank"] == 0:
+                    self.attributes.append(SimpleEntityAttribute(attr))
                 else:
-                    self.attributes.append(IdentifierAttribute(attribute_label[1:], i))
-            elif i == 0:
-                self.attributes.append(IdentifierAttribute(attribute_label, i))
+                    self.attributes.append(IdentifierAttribute(attr))
+            elif attr["rank"] == 0:
+                self.attributes.append(IdentifierAttribute(attr))
             else:
-                self.attributes.append(SimpleEntityAttribute(attribute_label, i))
+                self.attributes.append(SimpleEntityAttribute(attr))
         self.strengthening_legs = legs_to_strenghten
 
     def register_boxes(self, boxes):

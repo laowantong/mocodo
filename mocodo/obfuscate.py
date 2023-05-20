@@ -1,119 +1,130 @@
-__import__("sys").path[0:0] =  ["."]
-import itertools
-import os
+__import__("sys").path[0:0] = ["."]
 import random
 import re
+from pathlib import Path
 
-from .damerau_levenshtein import damerau_levenshtein
-from .file_helpers import read_contents
+from .damerau_levenshtein import distance
 from .mocodo_error import MocodoError
+from .parse_mcd import Transformer
+from .parser_tools import transform_source
 
 
-def random_words_of(lorem_text, params):
-    words = list(dict.fromkeys(word.lower() for word in re.findall(r"(?u)[^\W\d_]{3,}", lorem_text))) # use dict.fromkeys instead of set for preserving order
+def random_words_of(lorem_text, obfuscation_min_distance):
+    """Generate random words from a given text.
+
+    Args:
+        lorem_text (str): The text to generate random words from.
+        obfuscation_min_distance (int): The minimum distance between two words.
+
+    Yields:
+        str: A random word from the text, guaranteed to be at least
+            `obfuscation_min_distance` apart from the previous ones.
+
+    Raises:
+        StopIteration: If there are not enough words in the text to satisfy the
+            `obfuscation_min_distance` constraint.
+    """
+    words = list(
+        dict.fromkeys(word.lower() for word in re.findall(r"(?u)[^\W\d_]{3,}", lorem_text))
+    )  # use dict.fromkeys instead of set for preserving order
     random.shuffle(words)
     previous_words = set()
     for word in words:
         for previous_word in previous_words:
-            if damerau_levenshtein(word, previous_word) < params["obfuscation_min_distance"]:
+            if distance(word, previous_word) < obfuscation_min_distance:
                 # print "_%s_ (possible confusion with _%s_)," % (word, previous_word)
                 break
         else:
             yield word
             previous_words.add(word)
 
-def obfuscate(clauses, params):
-    
-    cache = {"": ""}
-    def obfuscate_label(label):
-        if label not in cache:
-            if label.isdigit():
-                cache[label] = label
-            else:
-                try:
-                    new_label = next(random_word)
-                except StopIteration:
-                    raise MocodoError(12, _('Obfuscation failed. Not enough substitution words in "{filename}". You may decrease the `obfuscation_min_distance` option values.').format(filename=lorem_filename)) # fmt: skip
-                if label.isupper():
-                    new_label = new_label.upper()
-                elif label == label.capitalize():
-                    new_label = new_label.capitalize()
-                cache[label] = new_label
-        return cache[label]
 
-    random.seed(params["seed"])
-    lorem_filename = params["obfuscate"] or ""
-    try:
-        lorem_text = read_contents(lorem_filename)
-    except IOError:
+class Obfuscator(Transformer):
+    def __init__(self, params):
+        box_cache = {}
+        attr_cache = {}
+        lorem_filename = params["obfuscate"] or ""
         try:
-            if lorem_filename.endswith(".txt"):
-                lorem_filename = lorem_filename[:-4]
-            lorem_text = read_contents("%s/resources/lorem/%s.txt" % (params["script_directory"], os.path.basename(lorem_filename)))
+            self.lorem_path = Path(lorem_filename)
+            lorem_text = self.lorem_path.read_text()
         except IOError:
-            lorem_text = read_contents("%s/resources/lorem/lorem_ipsum.txt" % params["script_directory"])
-    random_word = random_words_of(lorem_text, params)
-    header = [comment + "\n" for comment in itertools.takewhile(lambda line: line.startswith("%"), clauses)]
-    clauses = "\n".join(clauses[len(header):])
-    clauses = re.sub(r"(?m)^([ \t]*)\[(.+?)\]", r"\1<<<safe-left-bracket>>>\2<<<safe-right-bracket>>>", clauses)
-    clauses = re.sub(r"\[.+?\]", "", clauses)
-    clauses = clauses.replace("<<<safe-left-bracket>>>", "[")
-    clauses = clauses.replace("<<<safe-right-bracket>>>", "]")
-    clauses = re.sub(r"(?m)^%.*\n?", "", clauses)
-    elements = re.split(r"([ \t\]]*(?:[:,\n]+|/[XT]*\\|\(.*?\)|=>|<=|->|<-|(?<= )<?[-.]+>?)[ \t_\[]*)", clauses) + ['']
-    after_first_comma = False
-    before_colon = True
-    constraint = False
-    for (i, element) in enumerate(elements):
-        if i % 2:
-            if "\n" in element:
-                after_first_comma = False
-                before_colon = True
-                inheritance = False
-                constraint = False
-            elif element.startswith("/"):
-                inheritance = True
-            elif element.startswith("("):
-                constraint = True
-            elif "," in element:
-                after_first_comma = True
-            elif ":" in element:
-                before_colon = False
-        else:
-            if element and after_first_comma and before_colon and not inheritance and not constraint:
-                (card, entity_name) = element.split(" ", 1)
-                entity_name = entity_name.strip()
-                elements[i-1] += card + " "
-                elements[i] = entity_name
-            elements[i] = obfuscate_label(elements[i])
-    return "".join(header + elements).strip()
+            try:
+                if lorem_filename.endswith(".txt"):
+                    lorem_filename = lorem_filename[:-4]
+                self.lorem_path = (
+                    Path(params["script_directory"])
+                    / "resources"
+                    / "lorem"
+                    / f"{lorem_filename}.txt"
+                )
+                lorem_text = self.lorem_path.read_text()
+            except IOError:
+                self.lorem_path = (
+                    Path(params["script_directory"]) / "resources" / "lorem" / "lorem_ipsum.txt"
+                )
+                lorem_text = self.lorem_path.read_text()
+        self.random_word = random_words_of(lorem_text, params["obfuscation_min_distance"])
+        self.box_name = lambda tree: self.obfuscate_name(box_cache, tree)
+        self.attr = lambda tree: self.obfuscate_name(attr_cache, tree)
+
+    def obfuscate_name(self, cache, tree):
+        name = tree[0].value
+        suffix = ""
+        if name[-1].isdigit():
+            suffix = name[-1]
+            name = name[:-1]
+        if name not in cache:
+            try:
+                new_name = next(self.random_word)
+            except StopIteration:
+                raise MocodoError(
+                    12,
+                    _(
+                        'Obfuscation failed. Not enough substitution words in "{filename}". You may decrease the `obfuscation_min_distance` option values.'
+                    ).format(filename=self.lorem_path),
+                )
+            if name.isupper():
+                new_name = new_name.upper()
+            elif name == name.lower():
+                new_name = new_name.lower()
+            elif name == name.capitalize():
+                new_name = new_name.capitalize()
+            cache[name] = new_name + suffix
+        return tree[0].update(value=cache[name])
 
 
-if __name__=="__main__":
+def obfuscate(source, params):
+    return transform_source(source, Obfuscator(params))
+
+
+class CardinalityFixer(Transformer):
+
+    def __init__(self):
+        self.fixes = {
+            "01": ["O1", "o1", "10", "1O", "1o", "Ol", "ol", "l0", "lO", "lo"],
+            "0N": ["ON", "oN", "NO", "No", "N0"],
+            "0n": ["On", "on", "no", "nO", "n0"],
+            "1N": ["N1", "Nl"],
+            "1n": ["n1", "nl"],
+        }
+        self.fixes = {v: k for k in self.fixes for v in self.fixes[k]}
+    
+    def card(self, tree):
+        card = tree[0].value
+        new_card = self.fixes.get(card, card)
+        return tree[0].update(value=new_card)
+
+def fix_cardinalities(source):
+    return transform_source(source, CardinalityFixer())
+
+
+if __name__ == "__main__":
     # launch with:
     # python -m mocodo.obfuscate
     from .argument_parser import parsed_arguments
-    clauses = """
-        Projet: num. projet, nom projet
-        :
-        Fournir, 1N Projet, 1N Pièce, 1N Fournisseur
-        Fournisseur: num. fournisseur, raison sociale
-            
-        Requérir, 1N Projet, 0N Pièce: quantité
-        :
-        Pièce: réf. pièce, libellé pièce
 
-        Date: Date
-        Réserver, /1N Client, 1N Chambre, 0N Date: Durée
-        Chambre: Numéro, Prix
-
-        :
-            
-        Client: Id. client
-
-        (CIF) [Même date, même chambre => un seul client] --Chambre, --Date, ->Client, ..Réserver: 20, 80
-        (X) [Toute pièce fournie doit avoir été requise.] ..Pièce, ->Requérir, --Fournir, Projet
-    """.replace("  ", "").split("\n")
+    clauses = Path("mocodo/resources/pristine_sandbox.mcd").read_text()
     params = parsed_arguments()
     params["obfuscate"] = "four_letter_words.txt"
-    print(obfuscate(clauses, params))
+    obfuscated_source = obfuscate(f"\n{clauses}\n", params)
+    print(obfuscated_source[1:-1])

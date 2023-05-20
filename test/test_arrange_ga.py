@@ -14,7 +14,7 @@ from mocodo.mcd import Mcd
 class ArrangeGA(unittest.TestCase):
     
     def test_run(self):
-        clauses = """
+        source = """
             SUSPENDISSE: diam
             SOLLICITUDIN, 0N SUSPENDISSE, 0N CONSECTETUER, 0N LOREM: lectus
             CONSECTETUER: elit, sed
@@ -31,7 +31,7 @@ class ArrangeGA(unittest.TestCase):
             SEMPER, 0N RISUS, 1N DIGNISSIM
         """.replace("  ", "")
         params = parsed_arguments()
-        mcd = Mcd(clauses.split("\n"), params)
+        mcd = Mcd(source, params)
         params.update(mcd.get_layout_data())
         params["crossover_rate"] = 0.9
         params["max_generations"] = 50
@@ -63,7 +63,7 @@ class ArrangeGA(unittest.TestCase):
             DIGNISSIM: ligula, massa, varius
             TORTOR, 0N RISUS, 11 DIGNISSIM, 1N CONSECTETUER: nec
             RISUS: ultricies, _cras, elementum
-        """.strip().replace("  ", "")
+        """.replace("  ", "").strip()
         mcd.set_layout(**rearrangement)
         result = mcd.get_clauses()
         self.assertEqual(expected, result)

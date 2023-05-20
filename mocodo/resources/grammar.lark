@@ -1,0 +1,91 @@
+// NOTE: add a newline at the beginning and at the end of the input before parsing it.
+// https://github.com/lark-parser/lark/discussions/1041
+
+%import common.NUMBER
+// %ignore /(?<!\n)( |\t)+/ // Ignore all non indented spaces
+seq{item}: item (COMMA item)*
+
+COMMA: SP? "," SP?
+COLON: SP? ":" SP?
+NL: / *\r?\n/
+SLASH: "/"
+BACKSLASH: "\\"+
+LPAREN: SP? "(" SP?
+RPAREN: SP? ")" SP?
+LBRACKET: SP? "[" SP?
+RBRACKET: SP? "]" SP?
+HASHTAG: "#"
+PERCENT: "%"
+SP : /[ \t]+/
+
+box_name : /(?![\W_\d])[^=<>,:\n\\]*[^-\[\\\]=<>,:\s\\]/
+_box_attr : attr data_type?
+data_type: LBRACKET message? RBRACKET
+!box_def_prefix : "+"
+
+attr : /(?=[\w ])(?!_)[^\[\]>,\r\n]*[^\[\]>,\s]/
+?message : /[^\r\n\]]+/
+
+start : (break_ | line)*
+break_ :  /(\s*\n)+/
+line : indent? (phantoms | comment | clause | NL)
+?clause : assoc_clause
+        | entity_clause
+        | constraint_clause
+        | herit_clause
+
+phantoms : /( *:)+ */ NL
+indent: INDENT
+INDENT.10: / +|\t+/
+comment : PERCENT /.*\r?\n/
+
+// Associations
+
+assoc_clause: box_def_prefix? assoc_name_def COMMA seq{assoc_leg} (COLON seq{assoc_attr}?)? NL
+assoc_name_def : box_name
+assoc_leg : _assoc_card? leg_arrow? SP? (LBRACKET leg_role RBRACKET)? entity_name_ref
+_assoc_card : card_hidden? card_prefix? card
+entity_name_ref: box_name
+!card_hidden : "-"
+!card_prefix : "_" | "/"
+CARD.2 : /(?![-_\/])(\w|\?){2}(?=[ \t]*[^\w,\r\n:])/
+leg_arrow : /[<>]/
+leg_role : message
+assoc_attr : _box_attr?
+
+// Entities
+
+entity_clause : box_def_prefix? entity_name_def COLON seq{entity_or_table_attr}? NL
+entity_name_def : box_name
+entity_or_table_attr : entity_attr_underscore? (_box_attr? | HASHTAG foreign_reference)
+!entity_attr_underscore : "_"
+foreign_reference : this_table_attr MORETHAN that_table MORETHAN that_table_attr
+this_table_attr : attr
+that_table_attr : attr
+that_table : entity_name_ref
+MORETHAN: ">"
+
+// Constraints
+
+constraint_clause : LPAREN constraint_name? RPAREN (LBRACKET constraint_message RBRACKET)? seq{constraint_target}? (COLON constraint_ratios)? NL
+constraint_name : /[\w  ]{1,3}/
+constraint_message: message
+constraint_target : constraint_link? SP* box_name_ref
+box_name_ref: box_name
+CONSTRAINT_LINK : /<?(\.+|-+)>?/
+constraint_ratios : constraint_ratio (COMMA constraint_ratio)?
+CONSTRAINT_RATIO : NUMBER
+
+// Inheritance
+
+herit_clause : SLASH herit_name? BACKSLASH SP? herit_parent SP? herit_arrow SP? seq{herit_child} (COLON seq{assoc_attr})? NL
+herit_name : /(XT\d?|X\d?|T\d?|\d)/
+herit_parent : entity_name_ref
+herit_child : entity_name_ref
+herit_arrow : /<==?|<--?|--?>|==?>/
+
+// Avoid anonymous tokens for some terminals
+
+constraint_link: CONSTRAINT_LINK
+card: CARD
+constraint_ratio: CONSTRAINT_RATIO
