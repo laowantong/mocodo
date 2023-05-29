@@ -3,14 +3,14 @@
 %                                   MCD VIDE                                    %
 %                                                                               %
 %  Remplacez les cardinalités par XX et les attributs par des suites d'espaces  %
-%  insécables pour créer un « squelette » de MCD à remplir.                     %
+%  insécables pour créer un « squelette » de MCD à remplir.                     %
 %                                                                               %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Parrainer, XX Client, XX Client
-Produit: _           ,,,
+Produit: _           ,,,
 Inclure, XX Commande, XX Produit
  
-Client: _            ,,,
+Client: _            ,,,
 DF, XX Client, XX Commande
-Commande: _            ,,,
+Commande: _            ,,,

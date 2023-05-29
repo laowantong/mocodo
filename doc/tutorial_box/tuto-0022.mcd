@@ -2,7 +2,7 @@
 %                                                                          %
 %                      AGRÉGATION (OU PSEUDO-ENTITÉ)                       %
 %                                                                          %
-%  Préfixez de « / » une cardinalité pour créer une pseudo-entité avec     %
+%  Préfixez de « / » une cardinalité pour créer une pseudo-entité avec     %
 %  l'association et les autres entités que celle-ci met en jeu.            %
 %                                                                          %
 %  NB. La représentation conventionnelle (non prise en charge par Mocodo)  %

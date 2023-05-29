@@ -54,7 +54,9 @@ EXEMPLAIRE4: 3, reliure rongée, 3/4/2005
 DF1, -1N ŒUVRE, -_11 EXEMPLAIRE1
 +Prof: Num. prof, Nom prof
 COMMANDE: Num commande, Date, Montant, #Réf. client>CLIENT>Réf. client
+COMMANDE: Num commande, Date, Montant, #Réf. client > CLIENT > Réf. client
 INCLURE: #Num commande>COMMANDE>Num commande, _#Réf. produit>PRODUIT>Réf. produit, Quantité
+INCLURE: #Num commande > COMMANDE > Num commande, _#Réf. produit > PRODUIT > Réf. produit, Quantité
 CLIENT: Réf. client [varchar(8)], Nom [varchar(20)], Adresse [varchar(40)]
 INCLURE, 1N COMMANDE, 0N PRODUIT: Quantité [tinyint(4)]
 PARTICIPANT: numero [], nom, adresse [type3]
@@ -70,7 +72,11 @@ DIRIGER, EMPLOYÉ, PROJET: biz, buz
 A, B, C: biz, buz
 Foo, Bar: biz, buz
 AYANT-DROIT   :   nom ayant-droit   ,   lien   
-DIRIGER   ,    0N    EMPLOYÉ   ,    01    PROJET   
+DIRIGER   ,    0N    EMPLOYÉ   ,    01    PROJET   : fizz,  buzz   
+AYANT-DROIT  :  nom ayant-droit  ,  lien  
+DIRIGER  ,  0N  EMPLOYÉ  ,  01  PROJET  : fizz, buzz  
+AYANT-DROIT	 :	 nom ayant-droit	 ,	 lien	 
+DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz	 
 () [bla bla.] ..PIÈCE, ->REQUÉRIR, --FOURNIR, PROJET
 (I) [bla bla.] ..PIÈCE, ->REQUÉRIR, --FOURNIR, PROJET
 (II) ..PIÈCE, ->REQUÉRIR, --FOURNIR, PROJET

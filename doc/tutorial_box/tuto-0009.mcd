@@ -2,7 +2,7 @@
 %                                                                               %
 %                             FLÈCHE SUR UNE PATTE                              %
 %                                                                               %
-%  En suffixant de « < » ou « > » des cardinalités, vous créez une flèche dont  %
+%  En suffixant de « < » ou « > » des cardinalités, vous créez une flèche dont  %
 %  la direction se lit allant de l'association à l'entité.                      %
 %                                                                               %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -12,4 +12,4 @@ Inclure, 1N Commande, 0N> Produit: quantité
 Commande: num commande, date, montant
 DF, 0N Client, 11 Commande
 Client: réf. client, nom, prénom, adresse
-Parrainer, 01> Client, 0N< Client : date parrainage
+Parrainer, 01> Client, 0N< Client : date parrainage

@@ -1,0 +1,35 @@
+{
+  "name": "vscode-mocodo",
+  "version": "0.0.1",
+  "publisher": "laowantong",
+  "engines": {
+    "vscode": "^1.2.0"
+  },
+  "license": "MIT",
+  "displayName": "Mocodo syntax highlighter",
+  "description": "A syntax highlighter for Mocodo E/R diagrams",
+  "categories": [
+    "Programming Languages"
+  ],
+	"homepage": "https://marketplace.visualstudio.com/items?itemName=laowantong.vscode-mocodo",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/laowantong/mocodo"
+	},
+	"bugs": {
+		"url": "https://github.com/laowantong/mocodo/issues"
+	},
+  "contributes": {
+    "languages": [{
+      "id": "mocodo",
+      "aliases": ["Mocodo", "mocodo"],
+      "extensions": [".mcd", ".mld"],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "mocodo",
+      "scopeName": "source.mocodo",
+      "path": "./syntaxes/mocodo.tmLanguage.json"
+    }]
+  }
+}

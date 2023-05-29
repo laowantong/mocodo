@@ -4,7 +4,7 @@
 %                                                                               %
 %  Quand le schéma commence à prendre trop de place, maintenez ALT en cliquant  %
 %  sur les deux flèches croisées pour chercher un réarrangement sur la plus     %
-%  petite grille équilibrée possible. Essayez !                                 %
+%  petite grille équilibrée possible. Essayez !                                 %
 %                                                                               %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -14,4 +14,4 @@ Commande: num commande, date, montant
 
 DF, 0N Client, 11 Commande
 Client: réf. client, nom, prénom, adresse
-Parrainer, 01 Client, 0N Client : date parrainage
+Parrainer, 01 Client, 0N Client : date parrainage

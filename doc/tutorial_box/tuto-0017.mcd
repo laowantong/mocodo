@@ -2,11 +2,11 @@
 %                                                                                %
 %                   ENTITÉ FAIBLE (OU IDENTIFICATION RELATIVE)                   %
 %                                                                                %
-%  Préfixez de « _ » une cardinalité 11 pour « affaiblir » l'entité distinguée,  %
+%  Préfixez de « _ » une cardinalité 11 pour « affaiblir » l'entité distinguée,  %
 %  dont l'identifiant sera alors souligné en pointillés.                         %
 %                                                                                %
 %  NB. De façon non conventionnelle, Mocodo souligne le 11 pour signifier que    %
-%  le « renforcement » de l'identifiant va passer par là. Voir la documentation  %
+%  le « renforcement » de l'identifiant va passer par là. Voir la documentation  %
 %  pour des représentations alternatives.                                        %
 %                                                                                %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

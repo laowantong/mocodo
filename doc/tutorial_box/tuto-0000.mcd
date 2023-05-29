@@ -3,15 +3,15 @@
 %                                 MCD D'ACCUEIL                                  %
 %                                                                                %
 %  Un petit zoo de la syntaxe de Mocodo, avec quelques fonctionnalités :         %
-%  - de base : entité, association, attribut, identifiant, cardinalité, patte ;  %
-%  - sur les entités : forte, faible (AYANT-DROIT) ;                             %
-%  - sur les associations : binaire, ternaire (FOURNIR), réflexive arborescente  %
-%   (CONTRÔLER) ou pas (COMPOSER), de dépendance fonctionnelle (DF, EMPLOYER) ;  %
-%   rôle des pattes (CONTRÔLER et COMPOSER), flèche, contrainte (I) ;            %
-%  - visuelles : dévoilement graduel, explications interactives (survolez les    %
+%  - de base : entité, association, attribut, identifiant, cardinalité, patte ;  %
+%  - sur les entités : forte, faible (AYANT-DROIT) ;                             %
+%  - sur les associations : binaire, ternaire (FOURNIR), réflexive arborescente  %
+%   (CONTRÔLER) ou pas (COMPOSER), de dépendance fonctionnelle (DF, EMPLOYER) ;  %
+%   rôle des pattes (CONTRÔLER et COMPOSER), flèche, contrainte (I) ;            %
+%  - visuelles : dévoilement graduel, explications interactives (survolez les    %
 %   cardinalités des associations réflexives ou la contrainte d'inclusion).      %
 %                                                                                %
-%  MCD adapté de : The entity-relationship model—toward a unified view of data   %
+%  MCD adapté de : The entity-relationship model—toward a unified view of data   %
 %  (Chen, 1976).                                                                 %
 %                                                                                %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

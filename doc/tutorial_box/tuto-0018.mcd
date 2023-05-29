@@ -2,7 +2,7 @@
 %                                                                               %
 %                            ENTITÉ SANS IDENTIFIANT                            %
 %                                                                               %
-%  Préfixez d'un « _ » le premier attribut pour l'exclure de l'identifiant, p.  %
+%  Préfixez d'un « _ » le premier attribut pour l'exclure de l'identifiant, p.  %
 %  ex. pour une entité faible sans discriminant.                                %
 %                                                                               %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

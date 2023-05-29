@@ -191,7 +191,7 @@ class ClauseExtractor(Transformer):
 def extract_clauses(source):
     tree = parse_source(source)
     extractor = ClauseExtractor()
-    result = extractor.transform(tree)
+    result = extractor.transform(tree)    
     # Uniformize indentations. First, find the set of all distinct indentations.
     # Include the empty string if absent. Then, sort them by length. Finally,
     # replace each indentation by a number of spaces proportional to its index

@@ -88,21 +88,21 @@ digraph {
 ```plain
 %%mocodo
 :::
-PEUT COHABITER AVEC: #code espèce->ESPÈCE->code espèce, _#code espèce commensale->ESPÈCE->code espèce, nb. max. commensaux
+PEUT COHABITER AVEC: #code espèce > ESPÈCE > code espèce, _#code espèce commensale > ESPÈCE > code espèce, nb. max. commensaux
 :::
 
 
 :
-PEUT VIVRE DANS: #code espèce->ESPÈCE->code espèce, _num. enclos, nb. max. congénères
+PEUT VIVRE DANS: #code espèce > ESPÈCE > code espèce, _num. enclos, nb. max. congénères
 :
 ESPÈCE: code espèce, libellé
 :::
 
 
 :::
-OCCUPE: #code espèce->ANIMAL->code espèce, _#nom->ANIMAL->nom, _num. enclos, date début, date fin
+OCCUPE: #code espèce > ANIMAL > code espèce, _#nom > ANIMAL > nom, _num. enclos, date début, date fin
 :
-ANIMAL: #code espèce->ESPÈCE->code espèce, _nom, sexe, date naissance, date décès, #code espèce mère->ANIMAL->code espèce, #nom mère->ANIMAL->nom, type alimentation, CARNIVORE, quantité viande, HERBIVORE, plante préférée
+ANIMAL: #code espèce > ESPÈCE > code espèce, _nom, sexe, date naissance, date décès, #code espèce mère > ANIMAL > code espèce, #nom mère > ANIMAL > nom, type alimentation, CARNIVORE, quantité viande, HERBIVORE, plante préférée
 :
 ```
 

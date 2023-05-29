@@ -45,10 +45,7 @@ class Inheritance:
         self.cartouche_height = cartouche_font.get_pixel_height()
         attribute_font = get_font_metrics(style["association_attribute_font"])
         self.attribute_height = attribute_font.get_pixel_height()
-        self.w = self.h = max(
-            style["round_rect_margin_width"] * 2 + self.cartouche_height * 2,
-            style["round_rect_margin_width"] * 2 + self.cartouche_height * 2
-        )
+        self.w = self.h = 2 * (style["round_rect_margin_width"] + self.cartouche_height)
         self.w += self.w % 2
         self.h += self.h % 2
         for leg in self.legs:

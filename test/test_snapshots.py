@@ -31,7 +31,7 @@ ESPÈCE: code espèce, libellé
 ENCLOS: num. enclos
       OCCUPE, 1N ANIMAL, /1N PÉRIODE, 1N ENCLOS
   ANIMAL: nom, sexe, date naissance, date décès
-  /\ ANIMAL <= CARNIVORE, HERBIVORE: type alimentation
+  /\\ ANIMAL <= CARNIVORE, HERBIVORE: type alimentation
 :
 
 :
@@ -87,7 +87,7 @@ source = """
     CONSEQUAT: fermentum, dederit
     ELIT, 11 TRISTIS, 1N CONSEQUAT
     TRISTIS: magna, vestibulum
-    /T\ TRISTIS {arrow} SODALES, NEC, LACUS: type
+    /T\\ TRISTIS {arrow} SODALES, NEC, LACUS: type
     NEC: pulvinar, audis
     MOLLIS, 1N CURABITUR, 11 NEC
     CURABITUR: gravida, amor
@@ -120,7 +120,7 @@ NEC: pulvinar, audis
 :
 
 LACUS: tempor, fugit
-/XT\ TRISTIS {arrow} SODALES, NEC, LACUS: type
+/XT\\ TRISTIS {arrow} SODALES, NEC, LACUS: type
 TRISTIS: magna, vestibulum
 VITAE, 11 NEC, 1N [via vitae] SODALES
 

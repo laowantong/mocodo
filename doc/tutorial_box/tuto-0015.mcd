@@ -2,7 +2,7 @@
 %                                                                               %
 %                    MLD SOUS FORME DE DIAGRAMME RELATIONNEL                    %
 %                                                                               %
-%  Si vous avez coché la case « diagramme relationnel » sous l'onglet Options,  %
+%  Si vous avez coché la case « diagramme relationnel » sous l'onglet Options,  %
 %  vous pouvez copier le texte généré sous l'onglet Relations, puis le coller   %
 %  sous l'onglet Entrée pour visualiser son équivalent graphique.               %
 %                                                                               %
@@ -13,11 +13,11 @@
 ::
 Produit: réf. produit, libellé, prix unitaire
 :
-Inclure: #num commande->Commande->num commande, _#réf. produit->Produit->réf. produit, quantité
+Inclure: #num commande > Commande > num commande, _#réf. produit > Produit > réf. produit, quantité
 :
 
 :
-Client: réf. client, nom, prénom, adresse, #réf. client parrain->Client->réf. client, date parrainage
+Client: réf. client, nom, prénom, adresse, #réf. client parrain>Client>réf. client, date parrainage
 ::
-Commande: num commande, date, montant, #réf. client->Client->réf. client
+Commande: num commande, date, montant, #réf. client>Client>réf. client
 :

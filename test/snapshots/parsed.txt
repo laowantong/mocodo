@@ -1140,6 +1140,50 @@ COMMANDE: Num commande, Date, Montant, #Réf. client>CLIENT>Réf. client
             'client'}]
 
 --------------------------------------------------------------------------------
+COMMANDE: Num commande, Date, Montant, #Réf. client > CLIENT > Réf. client
+--------------------------------------------------------------------------------start
+  line
+    entity_clause
+      entity_name_def
+        box_name	COMMANDE
+      : 
+      seq
+        entity_or_table_attr
+          attr	Num commande
+        , 
+        entity_or_table_attr
+          attr	Date
+        , 
+        entity_or_table_attr
+          attr	Montant
+        , 
+        entity_or_table_attr
+          #
+          foreign_reference
+            this_table_attr
+              attr	Réf. client
+             > 
+            that_table
+              entity_name_ref
+                box_name	CLIENT
+             > 
+            that_table_attr
+              attr	Réf. client
+--------------------------------------------------------------------------------
+[{'name': 'COMMANDE',
+  'attrs': [{'attribute_label': 'Num commande', 'rank': 0},
+            {'attribute_label': 'Date', 'rank': 1},
+            {'attribute_label': 'Montant', 'rank': 2},
+            {'attribute_label': 'Réf. client',
+             'that_table': 'CLIENT',
+             'that_table_attribute_label': 'Réf. client',
+             'rank': 3}],
+  'type': 'entity',
+  'indent': '',
+  'source': 'COMMANDE: Num commande, Date, Montant, #Réf. client > CLIENT > '
+            'Réf. client'}]
+
+--------------------------------------------------------------------------------
 INCLURE: #Num commande>COMMANDE>Num commande, _#Réf. produit>PRODUIT>Réf. produit, Quantité
 --------------------------------------------------------------------------------start
   line
@@ -1193,6 +1237,61 @@ INCLURE: #Num commande>COMMANDE>Num commande, _#Réf. produit>PRODUIT>Réf. prod
   'indent': '',
   'source': 'INCLURE: #Num commande>COMMANDE>Num commande, _#Réf. '
             'produit>PRODUIT>Réf. produit, Quantité'}]
+
+--------------------------------------------------------------------------------
+INCLURE: #Num commande > COMMANDE > Num commande, _#Réf. produit > PRODUIT > Réf. produit, Quantité
+--------------------------------------------------------------------------------start
+  line
+    entity_clause
+      entity_name_def
+        box_name	INCLURE
+      : 
+      seq
+        entity_or_table_attr
+          #
+          foreign_reference
+            this_table_attr
+              attr	Num commande
+             > 
+            that_table
+              entity_name_ref
+                box_name	COMMANDE
+             > 
+            that_table_attr
+              attr	Num commande
+        , 
+        entity_or_table_attr
+          entity_attr_underscore	_
+          #
+          foreign_reference
+            this_table_attr
+              attr	Réf. produit
+             > 
+            that_table
+              entity_name_ref
+                box_name	PRODUIT
+             > 
+            that_table_attr
+              attr	Réf. produit
+        , 
+        entity_or_table_attr
+          attr	Quantité
+--------------------------------------------------------------------------------
+[{'name': 'INCLURE',
+  'attrs': [{'attribute_label': 'Num commande',
+             'that_table': 'COMMANDE',
+             'that_table_attribute_label': 'Num commande',
+             'rank': 0},
+            {'underscore': True,
+             'attribute_label': 'Réf. produit',
+             'that_table': 'PRODUIT',
+             'that_table_attribute_label': 'Réf. produit',
+             'rank': 1},
+            {'attribute_label': 'Quantité', 'rank': 2}],
+  'type': 'entity',
+  'indent': '',
+  'source': 'INCLURE: #Num commande > COMMANDE > Num commande, _#Réf. produit '
+            '> PRODUIT > Réf. produit, Quantité'}]
 
 --------------------------------------------------------------------------------
 CLIENT: Réf. client [varchar(8)], Nom [varchar(20)], Adresse [varchar(40)]
@@ -1635,7 +1734,7 @@ AYANT-DROIT   :   nom ayant-droit   ,   lien
   'source': 'AYANT-DROIT   :   nom ayant-droit   ,   lien   '}]
 
 --------------------------------------------------------------------------------
-DIRIGER   ,    0N    EMPLOYÉ   ,    01    PROJET   
+DIRIGER   ,    0N    EMPLOYÉ   ,    01    PROJET   : fizz,  buzz   
 --------------------------------------------------------------------------------start
   line
     assoc_clause
@@ -1654,13 +1753,143 @@ DIRIGER   ,    0N    EMPLOYÉ   ,    01    PROJET
               
           entity_name_ref
             box_name	PROJET
+         : 
+      seq
+        assoc_attr
+          attr	fizz
+        ,  
+        assoc_attr
+          attr	buzz
 --------------------------------------------------------------------------------
 [{'name': 'DIRIGER',
   'legs': [{'card': '0N', 'entity': 'EMPLOYÉ', 'rank': 0},
            {'card': '01', 'entity': 'PROJET', 'rank': 1}],
+  'attrs': [{'attribute_label': 'fizz', 'rank': 0},
+            {'attribute_label': 'buzz', 'rank': 1}],
   'type': 'association',
   'indent': '',
-  'source': 'DIRIGER   ,    0N    EMPLOYÉ   ,    01    PROJET   '}]
+  'source': 'DIRIGER   ,    0N    EMPLOYÉ   ,    01    PROJET   : fizz,  '
+            'buzz   '}]
+
+--------------------------------------------------------------------------------
+AYANT-DROIT  :  nom ayant-droit  ,  lien  
+--------------------------------------------------------------------------------start
+  line
+    entity_clause
+      entity_name_def
+        box_name	AYANT-DROIT
+        :  
+      seq
+        entity_or_table_attr
+          attr	nom ayant-droit
+          ,  
+        entity_or_table_attr
+          attr	lien
+--------------------------------------------------------------------------------
+[{'name': 'AYANT-DROIT',
+  'attrs': [{'attribute_label': 'nom ayant-droit', 'rank': 0},
+            {'attribute_label': 'lien', 'rank': 1}],
+  'type': 'entity',
+  'indent': '',
+  'source': 'AYANT-DROIT\xa0 :\xa0 nom ayant-droit\xa0 ,\xa0 lien\xa0 '}]
+
+--------------------------------------------------------------------------------
+DIRIGER  ,  0N  EMPLOYÉ  ,  01  PROJET  : fizz, buzz  
+--------------------------------------------------------------------------------start
+  line
+    assoc_clause
+      assoc_name_def
+        box_name	DIRIGER
+        ,  
+      seq
+        assoc_leg
+          card	0N
+            
+          entity_name_ref
+            box_name	EMPLOYÉ
+          ,  
+        assoc_leg
+          card	01
+            
+          entity_name_ref
+            box_name	PROJET
+        : 
+      seq
+        assoc_attr
+          attr	fizz
+        , 
+        assoc_attr
+          attr	buzz
+--------------------------------------------------------------------------------
+[{'name': 'DIRIGER',
+  'legs': [{'card': '0N', 'entity': 'EMPLOYÉ', 'rank': 0},
+           {'card': '01', 'entity': 'PROJET', 'rank': 1}],
+  'attrs': [{'attribute_label': 'fizz', 'rank': 0},
+            {'attribute_label': 'buzz', 'rank': 1}],
+  'type': 'association',
+  'indent': '',
+  'source': 'DIRIGER\xa0 ,\xa0\xa00N\xa0\xa0EMPLOYÉ\xa0 ,\xa0\xa001\xa0\xa0'
+            'PROJET\xa0 : fizz,\xa0buzz\xa0 '}]
+
+--------------------------------------------------------------------------------
+AYANT-DROIT	 :	 nom ayant-droit	 ,	 lien	 
+--------------------------------------------------------------------------------start
+  line
+    entity_clause
+      entity_name_def
+        box_name	AYANT-DROIT
+      	 :	 
+      seq
+        entity_or_table_attr
+          attr	nom ayant-droit
+        	 ,	 
+        entity_or_table_attr
+          attr	lien
+--------------------------------------------------------------------------------
+[{'name': 'AYANT-DROIT',
+  'attrs': [{'attribute_label': 'nom ayant-droit', 'rank': 0},
+            {'attribute_label': 'lien', 'rank': 1}],
+  'type': 'entity',
+  'indent': '',
+  'source': 'AYANT-DROIT\t :\t nom ayant-droit\t ,\t lien\t '}]
+
+--------------------------------------------------------------------------------
+DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz	 
+--------------------------------------------------------------------------------start
+  line
+    assoc_clause
+      assoc_name_def
+        box_name	DIRIGER
+      	 ,		
+      seq
+        assoc_leg
+          card	0N
+          		
+          entity_name_ref
+            box_name	EMPLOYÉ
+        	 ,		
+        assoc_leg
+          card	01
+          		
+          entity_name_ref
+            box_name	PROJET
+      	 : 
+      seq
+        assoc_attr
+          attr	fizz
+        ,	
+        assoc_attr
+          attr	buzz
+--------------------------------------------------------------------------------
+[{'name': 'DIRIGER',
+  'legs': [{'card': '0N', 'entity': 'EMPLOYÉ', 'rank': 0},
+           {'card': '01', 'entity': 'PROJET', 'rank': 1}],
+  'attrs': [{'attribute_label': 'fizz', 'rank': 0},
+            {'attribute_label': 'buzz', 'rank': 1}],
+  'type': 'association',
+  'indent': '',
+  'source': 'DIRIGER\t ,\t\t0N\t\tEMPLOYÉ\t ,\t\t01\t\tPROJET\t : fizz,\t'
+            'buzz\t '}]
 
 --------------------------------------------------------------------------------
 () [bla bla.] ..PIÈCE, ->REQUÉRIR, --FOURNIR, PROJET
@@ -2616,7 +2845,7 @@ DIRIGER   ,    0N    EMPLOYÉ   ,    01    PROJET
 --------------------------------------------------------------------------------
 (A) --Lorem, >Ipsum: 30, 90
              ^
-Unexpected token "Token('__ANON_2', '>Ipsum: 30, 90')" at line 1, column 14.
+Unexpected token "Token('MORETHAN', '>')" at line 1, column 14.
 Expected: ['CONSTRAINT_LINK', 'SP', '__ANON_0'].
 --------------------------------------------------------------------------------
 : foobar
