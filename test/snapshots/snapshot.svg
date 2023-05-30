@@ -2,7 +2,7 @@
 <svg width="739" height="471" viewBox="0 0 739 471" xmlns="http://www.w3.org/2000/svg">
 <rect id="frame" x="0" y="0" width="739" height="431" fill="#FFF" stroke="none" stroke-width="0"/>
 
-<!-- Inheritance  &lt;= ANIMAL,CARNIVORE,HERBIVORE -->
+<!-- Inheritance ANIMAL parent #1 -->
 <g class="page_1_f8fc7c43 diagram_page" visibility="hidden">
 	<line x1="439" y1="257" x2="556" y2="257" stroke="#000" stroke-width="1"/>
 	<polygon points="492 257 504 251 500 257 504 263" fill="#000" stroke-width="0"/>

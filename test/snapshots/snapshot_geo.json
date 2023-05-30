@@ -10,7 +10,7 @@
     [ "ENCLOS", 108 ],
     [ "OCCUPE", 284 ],
     [ "ANIMAL", 439 ],
-    [ " <= ANIMAL,CARNIVORE,HERBIVORE", 556 ],
+    [ "ANIMAL parent #1", 556 ],
     [ "PÉRIODE", 284 ],
     [ "A MÈRE", 439 ],
     [ "HERBIVORE", 658 ]
@@ -24,7 +24,7 @@
     [ "ENCLOS", 257 ],
     [ "OCCUPE", 257 ],
     [ "ANIMAL", 257 ],
-    [ " <= ANIMAL,CARNIVORE,HERBIVORE", 257 ],
+    [ "ANIMAL parent #1", 257 ],
     [ "PÉRIODE", 375 ],
     [ "A MÈRE", 375 ],
     [ "HERBIVORE", 375 ]
@@ -43,7 +43,7 @@
     [ "A MÈRE,ANIMAL,1_0", 0 ]
   ],
   "ratio": [
-    [ " <= *ANIMAL,CARNIVORE,HERBIVORE", 1.0 ],
+    [ "ANIMAL parent #1 / ANIMAL", 1.0 ],
     [ "A MÈRE,ANIMAL,1_0", 1.0 ]
   ]
 }

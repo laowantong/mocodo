@@ -339,7 +339,7 @@ class Relations:
                 for child_leg in inheritance.legs[1:]:
                     result.add(child_leg.entity_name)
             elif inheritance.kind == "=>":
-                if "T" not in inheritance.name:
+                if "T" not in inheritance.name_view:
                     raise MocodoError(25, _('Totality (/T\\ or /XT\\) is mandatory for "=>" inheritance of parent {name}.').format(name=parent_leg.entity_name)) # fmt: skip
                 result.add(parent_leg.entity_name)
         return result
@@ -376,10 +376,10 @@ class Relations:
                 parent_leg = inheritance.legs[0]
                 self.relations[parent_leg.entity_name]["columns"].extend({ 
                     "attribute": attribute.label,
-                    "data_type": attribute.data_type or (f"INTEGER UNSIGNED{'' if 'T' in inheritance.name else ' NOT NULL'}"),
+                    "data_type": attribute.data_type or (f"INTEGER UNSIGNED{'' if 'T' in inheritance.name_view else ' NOT NULL'}"),
                     "adjacent_source": None,
                     "outer_source": None,
-                    "association_name": inheritance.name, # "", "X", "T" or "XT"
+                    "association_name": inheritance.name,
                     "leg_note": None,
                     "primary": False,
                     "nature": f"deleted_parent_discriminant_{inheritance.name_view}"
@@ -526,7 +526,7 @@ class Relations:
             else: # migration: triangle attributes > parent
                 self.relations[parent_leg.entity_name]["columns"].extend({ 
                     "attribute": attribute.label,
-                    "data_type": attribute.data_type or (f"INTEGER UNSIGNED{'' if 'T' in inheritance.name else ' NOT NULL'}"),
+                    "data_type": attribute.data_type or (f"INTEGER UNSIGNED{'' if 'T' in inheritance.name_view else ' NOT NULL'}"),
                     "adjacent_source": None,
                     "outer_source": None,
                     "association_name": inheritance.name,

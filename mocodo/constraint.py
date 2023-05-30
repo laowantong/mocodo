@@ -1,23 +1,26 @@
-import re
+import itertools
 
 from .attribute import *
 from .leg import ConstraintLeg
-from .mocodo_error import MocodoError
 
+constraint_counter = itertools.count(1)
 
 class Constraint:
 
     def __init__(self, clause):
         self.source = clause["source"]
-        self.name = clause.get("name", "")
+        self.name = f'{clause.get("name", "Anonymous")} constraint #{next(constraint_counter)}'
         self.note = clause.get("constraint_message")
-        self.ratios = clause.get("constraint_ratios", [])
+        self.ratios = clause.get(
+            "constraint_ratios",
+            [0, 0], # when there is neither ratio nor target, the constraint is placed at the top right corner
+                    # which is obviously undesirable, forcing the user to specify at least one ratio.
+        ) 
         if len(self.ratios) == 1:
             self.ratios += self.ratios # if only one ratio is given, it is used for both width and height
-        self.ratios = tuple(self.ratios[:2]) # the subsequent ratios are ignored
         self.legs = []
         for target in clause.get("constraint_targets", []):
-            self.legs.append(ConstraintLeg(self, target.get("constraint_link", ""), target["box"]))
+            self.legs.append(ConstraintLeg(self, target.get("constraint_leg", ""), target["box"]))
         self.kind= "constraint"
 
     def register_boxes(self, boxes):

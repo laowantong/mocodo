@@ -20,7 +20,7 @@ def parse_source(source):
             raise MocodoError(501, _('{pin}{v} is not a valid line beginning.').format(pin=pin, v=v)) # fmt: skip
         if expected == {'PHANTOMS', 'PERCENT', 'LPAREN', 'PLUS', 'NL', 'SLASH', 'BOX_NAME'}:
             raise MocodoError(501, _('{pin}{v} is not a valid line beginning.').format(pin=pin, v=v)) # fmt: skip
-        if expected == {'HERIT_ARROW', 'COLON', 'NL', 'MORETHAN', 'SP', 'COMMA'}:
+        if expected == {'INHERITANCE_ARROW', 'COLON', 'NL', 'MORETHAN', 'SP', 'COMMA'}:
             raise MocodoError(502, _('{pin}A box name cannot contain {v}.').format(pin=pin, v=v)) # fmt: skip
         if expected == {'COLON', 'COMMA'}:
             raise MocodoError(503, _('{pin}A valid box name starting a line must be followed by a colon or a comma.').format(pin=pin)) # fmt: skip
@@ -32,7 +32,7 @@ def parse_source(source):
             raise MocodoError(506, _('{pin}Malformed cardinalities.').format(pin=pin)) # fmt: skip
         if expected == {'SLASH', 'CARD', 'UNDERSCORE'}:
             raise MocodoError(506, _('{pin}Malformed cardinalities.').format(pin=pin)) # fmt: skip
-        if expected == {'HERIT_NAME', 'BACKSLASH'} or expected == {'BACKSLASH'}:
+        if expected == {'INHERITANCE_NAME', 'BACKSLASH'} or expected == {'BACKSLASH'}:
             raise MocodoError(507, _('{pin}An inheritance name must be "", "X", "T" or "XT" (optionally followed by a single digit).').format(pin=pin)) # fmt: skip
         if t == "COMMA" and expected == {'NL'}:
             raise MocodoError(508, _('{pin}Only two ratios are allowed.').format(pin=pin)) # fmt: skip
@@ -48,13 +48,13 @@ def parse_source(source):
             raise MocodoError(513, _('{pin}Illegal character in a constraint name.').format(pin=pin)) # fmt: skip
         if t == "BOX_NAME" and expected == {'RPAREN'}:
             raise MocodoError(514, _('{pin}A constraint name cannot contain more than three letters, digits or spaces.').format(pin=pin)) # fmt: skip
-        if expected == {'SP', 'BOX_NAME', 'CONSTRAINT_LINK'}:
+        if expected == {'SP', 'BOX_NAME', 'CONSTRAINT_LEG'}:
             raise MocodoError(515, _('{pin}Expected a box name or a constraint leg.').format(pin=pin)) # fmt: skip
-        if expected == {'LBRACKET', 'SP', 'BOX_NAME', 'NL', 'COLON', 'CONSTRAINT_LINK'}:
+        if expected == {'LBRACKET', 'SP', 'BOX_NAME', 'NL', 'COLON', 'CONSTRAINT_LEG'}:
             raise MocodoError(516, _('{pin}Illegal character after a constraint name.').format(pin=pin)) # fmt: skip
-        if expected == {'HERIT_ARROW', 'SP'} or expected == {'HERIT_ARROW'}:
+        if expected == {'INHERITANCE_ARROW', 'SP'} or expected == {'INHERITANCE_ARROW'}:
             raise MocodoError(517, _('{pin}A parent name must be followed by an inheritance arrow among "<=", "<-", "->", "=>".').format(pin=pin)) # fmt: skip
-        if t == "HERIT_ARROW" and expected == {'MORETHAN'}:
+        if t == "INHERITANCE_ARROW" and expected == {'MORETHAN'}:
             raise MocodoError(518, _('{pin}Please change the old foreign key syntax ("->") by the new one (">").').format(pin=pin)) # fmt: skip
         if t == "SP" and expected == {'COMMA', 'COLON', 'NL'}:
             raise MocodoError(519, _('{pin}The constraint targets must be comma-separated.').format(pin=pin)) # fmt: skip
@@ -117,14 +117,14 @@ class ClauseExtractor(Transformer):
     box_name_ref = lambda self, tree: self._item("box", tree)
     leg_role = lambda self, tree: self._item("role", tree)
     constraint_message = lambda self, tree: self._item("constraint_message", tree)
-    constraint_link = lambda self, tree: self._item("constraint_link", tree)
+    constraint_leg = lambda self, tree: self._item("constraint_leg", tree)
     constraint_name = lambda self, tree: self._item("name", tree)
     card_prefix = lambda self, tree: self._item("card_prefix", tree)
     card_hidden = lambda self, tree: self._item("card_hidden", tree)
     leg_arrow = lambda self, tree: self._item("leg_arrow", tree)
-    herit_arrow = lambda self, tree: self._item("herit_arrow", tree)
+    inheritance_arrow = lambda self, tree: self._item("inheritance_arrow", tree)
     entity_name_def = lambda self, tree: self._item("name", tree)
-    herit_name = lambda self, tree: self._item("name", tree)
+    inheritance_name = lambda self, tree: self._item("name", tree)
     assoc_name_def = lambda self, tree: self._item("name", tree)
     attr = lambda self, tree: self._item("attribute_label", tree)
     box_def_prefix = lambda self, tree: self._item("box_def_prefix", tree)
@@ -156,7 +156,7 @@ class ClauseExtractor(Transformer):
     def constraint_clause(self, tree):
         return tree + [("type", "constraint")]
     
-    def herit_clause(self, tree):
+    def inheritance_clause(self, tree):
         # Tweak the tree to make it look like an association
         d = dict(item for item in tree if isinstance(item, tuple))
         d["name"] = d.get("name", "")
@@ -171,10 +171,10 @@ class ClauseExtractor(Transformer):
     def assoc_leg(self, tree):
         return ("leg", dict(tree))
     
-    def herit_parent(self, tree):
+    def inheritance_parent(self, tree):
         return ("entity", tree[0][1])
     
-    def herit_child(self, tree):
+    def inheritance_child(self, tree):
         return ("leg", dict(tree))
     
     def assoc_attr(self, tree):

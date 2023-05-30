@@ -269,7 +269,7 @@ class InheritanceLeg:
         self.arrow = leg["arrow"]
         self.inheritance = inheritance
         self.entity_name = leg["entity"]
-        self.identifier = self.inheritance.name.replace(self.entity_name, f"*{self.entity_name}")
+        self.identifier = f"{self.inheritance.name} / {self.entity_name}"
 
     def register_entity(self, entity):
         self.entity = entity
