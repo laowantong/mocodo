@@ -9,8 +9,7 @@
 :
 --------------------------------------------------------------------------------start
   line
-    phantoms
-      :
+    phantoms	:
 --------------------------------------------------------------------------------
 [{'type': 'phantoms', 'count': 1, 'indent': '', 'source': ':'}]
 
@@ -18,8 +17,7 @@
 :::
 --------------------------------------------------------------------------------start
   line
-    phantoms
-      :::
+    phantoms	:::
 --------------------------------------------------------------------------------
 [{'type': 'phantoms', 'count': 3, 'indent': '', 'source': ':::'}]
 
@@ -27,8 +25,7 @@
 :  :  :
 --------------------------------------------------------------------------------start
   line
-    phantoms
-      :  :  :
+    phantoms	:  :  :
 --------------------------------------------------------------------------------
 [{'type': 'phantoms', 'count': 3, 'indent': '', 'source': ':  :  :'}]
 
@@ -37,8 +34,7 @@
 --------------------------------------------------------------------------------start
   line
     indent	   
-    phantoms
-      :  :  :
+    phantoms	:  :  :
 --------------------------------------------------------------------------------
 [{'type': 'phantoms', 'indent': '  ', 'count': 3, 'source': '  :  :  :'}]
 
@@ -68,6 +64,20 @@
   'text': 'commented %',
   'indent': '',
   'source': '% commented %'}]
+
+--------------------------------------------------------------------------------
+  % foo\\ , %  foo  /TX\\
+--------------------------------------------------------------------------------start
+  line
+    indent	  
+    comment
+      %
+       foo\\ , %  foo  /TX\\
+--------------------------------------------------------------------------------
+[{'type': 'comment',
+  'indent': '  ',
+  'text': 'foo\\\\ , %  foo  /TX\\\\',
+  'source': '  % foo\\\\ , %  foo  /TX\\\\'}]
 
 --------------------------------------------------------------------------------
 AYANT-DROIT: nom ayant-droit, lien
@@ -2843,72 +2853,26 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
   'source': '/1\\\\ FOO => BAR'}]
 
 --------------------------------------------------------------------------------
-(A) --Lorem, >Ipsum: 30, 90
-             ^
-Unexpected token "Token('MORETHAN', '>')" at line 1, column 14.
-Expected: ['CONSTRAINT_LINK', 'SP', '__ANON_0'].
+/T\\foo==>foo11 
+--------------------------------------------------------------------------------start
+  line
+    herit_clause
+      /
+      herit_name	T
+      \\
+      herit_parent
+        entity_name_ref
+          box_name	foo
+      herit_arrow	==>
+      seq
+        herit_child
+          entity_name_ref
+            box_name	foo11
 --------------------------------------------------------------------------------
-: foobar
-  ^
-Unexpected token "Token('__ANON_0', 'foobar')" at line 1, column 3.
-Expected: ['NL'].
---------------------------------------------------------------------------------
-DIRIGER,
-        ^
-Unexpected token "Token('__ANON_3', '\n')" at line 1, column 9.
-Expected: ['CARD', 'LBRACKET', 'MINUS', 'SLASH', 'SP', 'UNDERSCORE', '__ANON_0', '__ANON_6'].
---------------------------------------------------------------------------------
-, 01 PROJET
-^
-Unexpected token "Token('COMMA', ', ')" at line 1, column 1.
-Expected: ['INDENT', 'LPAREN', 'NL', 'PERCENT', 'PLUS', 'SLASH', '__ANON_0', '__ANON_3', '__ANON_4'].
---------------------------------------------------------------------------------
-(I) : 1, 2, 3
-          ^
-Unexpected token "Token('COMMA', ', ')" at line 1, column 11.
-Expected: ['NL'].
---------------------------------------------------------------------------------
-(I) : 
-      ^
-Unexpected token "Token('__ANON_3', '\n')" at line 1, column 7.
-Expected: ['CONSTRAINT_RATIO'].
---------------------------------------------------------------------------------
--ABC: 
-^
-Unexpected token "Token('MINUS', '-')" at line 1, column 1.
-Expected: ['INDENT', 'LPAREN', 'NL', 'PERCENT', 'PLUS', 'SLASH', '__ANON_0', '__ANON_3', '__ANON_4'].
---------------------------------------------------------------------------------
-_FOOBAR: 
-^
-Unexpected token "Token('__ANON_2', '_FOOBAR: ')" at line 1, column 1.
-Expected: ['INDENT', 'LPAREN', 'NL', 'PERCENT', 'PLUS', 'SLASH', '__ANON_0', '__ANON_3', '__ANON_4'].
---------------------------------------------------------------------------------
-FOOBAR
-      ^
-Unexpected token "Token('NL', '\n')" at line 1, column 7.
-Expected: ['COLON', 'COMMA'].
---------------------------------------------------------------------------------
-BACK\SLASH:
-    ^
-Unexpected token "Token('__ANON_2', '\\SLASH:')" at line 1, column 5.
-Expected: ['COLON', 'COMMA', 'MORETHAN', 'NL', 'SP', '__ANON_9'].
---------------------------------------------------------------------------------
-DIRIGER, 0 EMPLOYÉ, 01 PROJET
-         ^
-Unexpected token "Token('CONSTRAINT_RATIO', '0')" at line 1, column 10.
-Expected: ['CARD', 'LBRACKET', 'MINUS', 'SLASH', 'SP', 'UNDERSCORE', '__ANON_0', '__ANON_6'].
---------------------------------------------------------------------------------
-DIRIGER, 0 EMPLOYÉ, 01 PROJET: biz, buz
-         ^
-Unexpected token "Token('CONSTRAINT_RATIO', '0')" at line 1, column 10.
-Expected: ['CARD', 'LBRACKET', 'MINUS', 'SLASH', 'SP', 'UNDERSCORE', '__ANON_0', '__ANON_6'].
---------------------------------------------------------------------------------
-/ANYTHING\ Personne => Homme, Femme: sexe
- ^
-Unexpected token "Token('__ANON_0', 'ANYTHING')" at line 1, column 2.
-Expected: ['BACKSLASH', '__ANON_8'].
---------------------------------------------------------------------------------
-PARTICIPANT: numero [, nom, adresse
-                                   ^
-Unexpected token "Token('__ANON_3', '\n')" at line 1, column 36.
-Expected: ['RBRACKET'].
+[{'name': 'T',
+  'herit_arrow': '==>',
+  'legs': [{'entity': 'foo', 'rank': -1}, {'entity': 'foo11', 'rank': 0}],
+  'type': 'inheritance',
+  'indent': '',
+  'source': '/T\\\\foo==>foo11 '}]
+

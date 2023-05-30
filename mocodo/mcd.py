@@ -1,16 +1,15 @@
 from email.policy import default
 import itertools
-import re
 from collections import defaultdict
 from hashlib import md5
 
-from mocodo.inheritance import Inheritance
 
 from .association import Association
 from .constraint import Constraint
 from .diagram_link import DiagramLink
 from .entity import Entity
 from .grid import Grid
+from .inheritance import Inheritance
 from .mocodo_error import MocodoError
 from .phantom import Phantom
 

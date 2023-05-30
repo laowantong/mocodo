@@ -1,14 +1,15 @@
 import os
 from pathlib import Path
+import re
 import unittest
 import pprint
 
 os.system("python -m lark.tools.standalone --compress mocodo/resources/grammar.lark > mocodo/parse_mcd.py")
 __import__("sys").path[0:0] = ["mocodo"]
 
-from mocodo.parse_mcd import Lark_StandAlone
-from mocodo.parse_mcd import UnexpectedInput, UnexpectedToken
+from mocodo.parse_mcd import Lark_StandAlone, UnexpectedToken
 from mocodo.parser_tools import reconstruct_source, parse_source, extract_clauses
+from mocodo.mocodo_error import MocodoError
 
 parser = Lark_StandAlone()
 
@@ -19,6 +20,7 @@ valid_lines = r"""
    :  :  :
    % commented
 % commented %
+  % foo\\ , %  foo  /TX\\
 AYANT-DROIT: nom ayant-droit, lien
 DIRIGER, 0N EMPLOYÉ, 01 PROJET
 REQUÉRIR, 1N PROJET, 0N PIÈCE: qté requise
@@ -104,61 +106,127 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
 /\\ Personne <= Homme, Femme: sexe
 /\\ Personne => Homme, Femme: sexe
 /1\\ FOO => BAR
-"""
-
-invalid_lines = """
-(A) --Lorem, >Ipsum: 30, 90
-: foobar
-DIRIGER,
-, 01 PROJET
-(I) : 1, 2, 3
-(I) : 
--ABC: 
-_FOOBAR: 
-FOOBAR
-BACK\\SLASH:
-DIRIGER, 0 EMPLOYÉ, 01 PROJET
-DIRIGER, 0 EMPLOYÉ, 01 PROJET: biz, buz
-/ANYTHING\\ Personne => Homme, Femme: sexe
-PARTICIPANT: numero [, nom, adresse
-"""
+/T\\foo==>foo11 
+""".splitlines()
 
 line = "-" * 80
 path = Path("test/snapshots/parsed.txt")
 with path.open(mode="w") as file:
-    for source in valid_lines.splitlines():
-        file.write(f'{line}\n{source}\n')
+    for source in valid_lines:
+        file.write(f"{line}\n{source}\n")
         tree = parse_source(source).pretty()
-        file.write(f'{line}{tree}'.strip())
-        file.write(f'\n{line}\n')
+        file.write(f"{line}{tree}".strip())
+        file.write(f"\n{line}\n")
         clauses = extract_clauses(source)
         output = pprint.pformat(clauses, sort_dicts=False)
-        file.write(f'{output}\n\n')
-    for source in invalid_lines.splitlines():
-        if not source:
-            continue
+        file.write(f"{output}\n\n")
+
+def fuzzer(seed=0):
+    import random
+    random.seed(seed)
+    for _ in range(50):
+        (left, right) = random.sample(valid_lines, 2)
+        source = f"{left[:random.randint(0, len(left))]}{right[random.randint(0, len(right)):]}"
         try:
-            tree = parse_source(source).pretty()
-        except UnexpectedInput as e:
-            pinpointed_text = e.get_context(source)
-            file.write(f'{line}\n{pinpointed_text}')
-            if isinstance(e, UnexpectedToken):
-                file.write(f'Unexpected token "{repr(e.token)}" at line {e.line}, column {e.column}.\n')
-                file.write(f'Expected: {sorted(e.expected)}.\n')
-        else:
-            raise Exception(f"Expected error for:\n{source}")
+            tree = parse_source(source)
+            print(source)
+        except Exception as error:
+            print(source)
+            print(error)
+        input()
+
+# fuzzer(4)
+
+mocodo_errors = [
+    *[(501, c) for c in "0123456789!#$&')*,.-;<=>?@[\\]^_`{|}~"],
+    (501, ": foobar"),
+    *[(501, f" {c}") for c in "0123456789!#$&')*,.-;<=>?@[\\]^_`{|}~"],
+    (501, " : foobar"),
+    (502, "FOO, 0N Bar, 1N Biz [bla] "),
+    (502, "FOO, 0N Bar, 1N Biz [bla]"),
+    (502, "FOO, 0N Bar, 1N Biz [bla], 0N Buz"),
+    (502, " foo /TX\\#  ]  #/ "),
+    (502, "BACK\\SLASH:"),
+    (502, " foo_11<11_ ]<-->]foo"),
+    (503, "FOOBAR"),
+    (503, "  FOOBAR>"),
+    (503, "  FOOBAR    >"),
+    (503, "  FOOBAR+"),
+    (505, "/T\\, foobar"),
+    (506, "DIRIGER, 0 EMPLOYÉ, 01 PROJET"),
+    (506, "DIRIGER, 0 EMPLOYÉ, 01 PROJET: biz, buz"),
+    (506, "DIRIGER, 0NV"),
+    (507, "/ANYTHING\\ Personne => Homme, Femme: sexe"),
+    (507, "/X12\\ Personne => Homme, Femme: sexe"),
+    (507, "/1N\\"),
+    (508, "(I) : 1, 2, 3"),
+    (509, "DIRIGER,"),
+    (509, "DIRIGER,    "),
+    (510, "(I) : "),
+    (510, "(I) ->Foo ..Bar : "),
+    (510, "(A) : Ipsum, --Lorem: 30, 90"),
+    (510, "(A) ->Ipsum, ->Lorem: 30, 9N"),
+    (511, " +"),
+    (511, "   +#   "),
+    (511, "/T\\ \\.. ,\\foo"),
+    (511, "+..==>"),
+    (511, " /TX\\ foo -> .bar"),
+    (512, "PARTICIPANT: numero [, nom, adresse"),
+    (513, " (])"),
+    (513, " (+)"),
+    (513, " (/)"),
+    (514, " (IIII)"),
+    (515, "(A) --Lorem, >Ipsum: 30, 90"),
+    (515, "(A) --Lorem, : Ipsum: 30, 90"),
+    (515, "(A) --Lorem 30, 90"),
+    (516, "(A) >Ipsum, --Lorem: 30, 90"),
+    (517, "/TX\\ foo bar "),
+    (518, "COMMANDE: Num commande, Date, Montant, #Réf. client->CLIENT->Réf. client"),
+    (518, "INCLURE: #Num commande->COMMANDE->Num commande, _#Réf. produit->PRODUIT->Réf. produit, Quantité"),
+    (519, "(A) ->Ipsum ->Lorem: 30, 90"),
+    (520, "FOOBAR: foo, /bar"),
+    (520, "FOO, 1N Bar: -->Amet"),
+    (521, "FOOBAR: foo>bar, biz"),
+    (522, "FOO: #bar, biz"),
+    (522, "FOO: #bar"),
+    (522, "FOO: biz, #bar"),
+    (522, "FOO: #bar>buzz, biz"),
+    (522, "FOO: #bar>buzz"),
+    (522, "FOO: biz, #bar>buzz"),
+    (523, "FOO: #bar>buzz>, biz"),
+    (523, "FOO: #bar>buzz>"),
+    (523, "FOO: biz, #bar>buzz>  "),
+    (524, "DIRIGER, 0N EMPLOYÉ > PRODUIT, Quantité"),
+]
+
+class MocodoErrorTest(unittest.TestCase):
+    def test_mocodo_errors(self):
+        for n, source in mocodo_errors:
+            try:
+                parse_source(source)
+            except MocodoError as e:
+                actual_error_number = re.search(r"\d+", str(e)).group()
+                assert actual_error_number == str(n), f"Expected error {n} for:\n{source}"
+            except Exception as e:
+                pin = e.get_context(source)
+                print(f"{line}\n{source}\n{line}\n{pin}")
+                if isinstance(e, UnexpectedToken):
+                    print(f'Unexpected token "{repr(e.token)}" at line {e.line}, column {e.column}.')
+                    print(f"Expected: {set(e.expected)}.\n")
+                assert False
+            else:
+                assert False, f"\n\nExpected Mocodo Error {n} for:\n{source}"
 
 
 class TestReconstructSource(unittest.TestCase):
-
     def test_reconstruct_source(self):
-        for source in valid_lines.splitlines():
+        for source in valid_lines:
             if not source:
                 continue
             tree = parse_source(source)
             new_source = reconstruct_source(tree)
             self.assertEqual(source.strip(), new_source.strip())
-    
+
     def test_alignment(self):
         source = """
             AYANT-DROIT: nom ayant-droit, lien
@@ -175,9 +243,8 @@ class TestReconstructSource(unittest.TestCase):
               (I) [Les pièces fournies par une société pour un projet font partie de celles qu'il requiert.] ..PIÈCE, ->REQUÉRIR, --FOURNIR, PROJET        
         """
         clauses = extract_clauses(source)
-        for (raw_line, clause) in zip(source.splitlines(), clauses):
+        for raw_line, clause in zip(source.splitlines(), clauses):
             self.assertEqual(clause["source"].lstrip(), raw_line.lstrip())
 
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

@@ -1,22 +1,78 @@
+import gettext
+
 __import__("sys").path[0:0] =  ["."]
 
-import re
-from .parse_mcd import Token, Visitor, Transformer, Lark_StandAlone, Discard
+from .mocodo_error import MocodoError
+from .parse_mcd import Token, Visitor, Transformer, Lark_StandAlone, Discard, UnexpectedToken, UnexpectedCharacters
 
-# @v_args(inline=True)
-# class Stripper(Transformer):
-
-#     def __default__(self, data, children, meta):
-#         if data in ("attr",):
-#             children[0] = children[0].update(value=children[0].value.strip())
-#         tree = super().__default__(data, children, meta)
-#         return tree
+gettext.NullTranslations().install()
 
 def parse_source(source):
     parser = Lark_StandAlone()
-    tree = parser.parse(f"{source}\n")
-    return tree
-
+    try:
+        return parser.parse(f"{source}\n")
+    except Exception as error:
+        pin = f"Parsing error:\n{error.get_context(source)}\n"
+        expected = set(error.expected)
+        t = error.token.type
+        v = repr(error.token.value)
+        if expected == {'PERCENT', 'LPAREN', 'BREAK', 'INDENT', 'PHANTOMS', 'BOX_NAME', 'SLASH', 'PLUS', 'NL'}:
+            raise MocodoError(501, _('{pin}{v} is not a valid line beginning.').format(pin=pin, v=v)) # fmt: skip
+        if expected == {'PHANTOMS', 'PERCENT', 'LPAREN', 'PLUS', 'NL', 'SLASH', 'BOX_NAME'}:
+            raise MocodoError(501, _('{pin}{v} is not a valid line beginning.').format(pin=pin, v=v)) # fmt: skip
+        if expected == {'HERIT_ARROW', 'COLON', 'NL', 'MORETHAN', 'SP', 'COMMA'}:
+            raise MocodoError(502, _('{pin}A box name cannot contain {v}.').format(pin=pin, v=v)) # fmt: skip
+        if expected == {'COLON', 'COMMA'}:
+            raise MocodoError(503, _('{pin}A valid box name starting a line must be followed by a colon or a comma.').format(pin=pin)) # fmt: skip
+        if t == "COMMA" and expected == {'SP', 'BOX_NAME'}:
+            raise MocodoError(505, _('{pin}Illegal comma after inheritance.').format(pin=pin)) # fmt: skip
+        if t == "CONSTRAINT_RATIO" and expected == {'BOX_NAME', 'CARD', 'LBRACKET', 'LEG_ARROW', 'MINUS', 'SLASH', 'SP', 'UNDERSCORE'}:
+            raise MocodoError(506, _('{pin}Malformed cardinalities.').format(pin=pin)) # fmt: skip
+        if expected == {'CARD'}:
+            raise MocodoError(506, _('{pin}Malformed cardinalities.').format(pin=pin)) # fmt: skip
+        if expected == {'SLASH', 'CARD', 'UNDERSCORE'}:
+            raise MocodoError(506, _('{pin}Malformed cardinalities.').format(pin=pin)) # fmt: skip
+        if expected == {'HERIT_NAME', 'BACKSLASH'} or expected == {'BACKSLASH'}:
+            raise MocodoError(507, _('{pin}An inheritance name must be "", "X", "T" or "XT" (optionally followed by a single digit).').format(pin=pin)) # fmt: skip
+        if t == "COMMA" and expected == {'NL'}:
+            raise MocodoError(508, _('{pin}Only two ratios are allowed.').format(pin=pin)) # fmt: skip
+        if t == "BREAK" and expected == {'UNDERSCORE', 'LEG_ARROW', 'BOX_NAME', 'SLASH', 'SP', 'LBRACKET', 'MINUS', 'CARD'}:
+            raise MocodoError(509, _('{pin}An association leg cannot be empty.').format(pin=pin)) # fmt: skip
+        if t == "BOX_NAME" and expected == {'NL', 'COMMA'} or expected == {'CONSTRAINT_RATIO'}:
+            raise MocodoError(510, _('{pin}Expected a numeric constraint ratio.').format(pin=pin)) # fmt: skip
+        if expected == {'BOX_NAME'}:
+            raise MocodoError(511, _('{pin}Only a box name is possible here.').format(pin=pin)) # fmt: skip
+        if expected == {'RBRACKET'}:
+            raise MocodoError(512, _('{pin}Unclosed square bracket.').format(pin=pin)) # fmt: skip
+        if expected == {'CONSTRAINT_NAME', 'RPAREN'}:
+            raise MocodoError(513, _('{pin}Illegal character in a constraint name.').format(pin=pin)) # fmt: skip
+        if t == "BOX_NAME" and expected == {'RPAREN'}:
+            raise MocodoError(514, _('{pin}A constraint name cannot contain more than three letters, digits or spaces.').format(pin=pin)) # fmt: skip
+        if expected == {'SP', 'BOX_NAME', 'CONSTRAINT_LINK'}:
+            raise MocodoError(515, _('{pin}Expected a box name or a constraint leg.').format(pin=pin)) # fmt: skip
+        if expected == {'LBRACKET', 'SP', 'BOX_NAME', 'NL', 'COLON', 'CONSTRAINT_LINK'}:
+            raise MocodoError(516, _('{pin}Illegal character after a constraint name.').format(pin=pin)) # fmt: skip
+        if expected == {'HERIT_ARROW', 'SP'} or expected == {'HERIT_ARROW'}:
+            raise MocodoError(517, _('{pin}A parent name must be followed by an inheritance arrow among "<=", "<-", "->", "=>".').format(pin=pin)) # fmt: skip
+        if t == "HERIT_ARROW" and expected == {'MORETHAN'}:
+            raise MocodoError(518, _('{pin}Please change the old foreign key syntax ("->") by the new one (">").').format(pin=pin)) # fmt: skip
+        if t == "SP" and expected == {'COMMA', 'COLON', 'NL'}:
+            raise MocodoError(519, _('{pin}The constraint targets must be comma-separated.').format(pin=pin)) # fmt: skip
+        if expected == {'HASHTAG', 'NL', 'UNDERSCORE', 'ATTR', 'COMMA'}:
+            raise MocodoError(520, _('{pin}An attribute label cannot start with {v[1]!r}.').format(pin=pin, v=v)) # fmt: skip
+        if expected == {'NL', 'ATTR', 'COMMA'}:
+            raise MocodoError(520, _('Parsing error:{t}\n{pin}\nAn attribute label cannot start with {v[1]!r}.').format(pin=pin, v=v, t=t)) # fmt: skip
+        if expected == {'LBRACKET', 'NL', 'COMMA'}:
+            raise MocodoError(521, _('{pin}An attribute label cannot contain {v}.').format(pin=pin, v=v)) # fmt: skip
+        if t in ("COMMA", "NL", "BREAK") and expected == {'MORETHAN'}:
+            raise MocodoError(522, _('{pin}An attribute starting with "#" must contain two ">".').format(pin=pin)) # fmt: skip
+        if t in ("COMMA", "NL", "BREAK") and expected == {'ATTR'}:
+            raise MocodoError(523, _('{pin}Expected an entity name.').format(pin=pin)) # fmt: skip
+        if expected == {'COLON', 'COMMA', 'NL'}:
+            raise MocodoError(524, _('{pin}A box name cannot contain {v}.').format(pin=pin, v=v)) # fmt: skip
+        raise MocodoError(599, _('{pin}\nExpected {expected}.').format(line=error.line, column=error.column, pin=pin, expected=expected))
+        
+    
 class Reconstructor(Visitor):
 
     def __init__(self):

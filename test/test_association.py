@@ -11,7 +11,7 @@ gettext.NullTranslations().install()
 def association_wrapper(s, **kargs):
     return Association(extract_clauses(s)[0], **kargs)
 
-class parse_test(unittest.TestCase):
+class ParseTest(unittest.TestCase):
     
     def test_reflexive(self):
         a = association_wrapper("ÊTRE AMI, 0N BANDIT, 0N BANDIT")

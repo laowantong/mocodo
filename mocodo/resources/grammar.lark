@@ -18,23 +18,23 @@ HASHTAG: "#"
 PERCENT: "%"
 SP.-50 : /[^\S\r\n]+/
 
-box_name : /(?![\W_\d])[^=<>,:\n\\]*[^-\[\\\]=<>,:\s\\]/
+BOX_NAME : /(?![\W_\d])[^=<>,:\n\\]*[^-\[\\\]=<>,:\s\\]/
 _box_attr : attr data_type?
 data_type: LBRACKET message? RBRACKET
 !box_def_prefix : "+"
 
-attr : /(?=\w)(?!_)[^\[\]>,\r\n]*[^\[\]>,\s]/
+ATTR : /(?=\w)(?!_)[^\[\]>,\r\n]*[^\[\]>,\s]/
 ?message : /[^\r\n\]]+/
 
 start : (break_ | line)*
-break_ :  /(\s*\n)+/
+BREAK :  /(\s*\n)+/
 line : indent? (phantoms | comment | clause | NL)
 ?clause : assoc_clause
         | entity_clause
         | constraint_clause
         | herit_clause
 
-phantoms : /( *:)+ */ NL
+PHANTOMS : /( *:)+ */ NL
 indent: INDENT
 INDENT.10: / +|\t+/
 comment : PERCENT /.*\r?\n/
@@ -49,7 +49,7 @@ entity_name_ref: box_name
 !card_hidden : "-"
 !card_prefix : "_" | "/"
 CARD.2 : /(?![-_\/])(\w|\?){2}(?=[ \t]*[^\w,\r\n:])/
-leg_arrow : /[<>]/
+LEG_ARROW : /[<>]/
 leg_role : message
 assoc_attr : _box_attr?
 
@@ -68,7 +68,7 @@ MORETHAN: SP? ">" SP?
 // Constraints
 
 constraint_clause : LPAREN constraint_name? RPAREN (LBRACKET constraint_message RBRACKET)? seq{constraint_target}? (COLON constraint_ratios)? NL
-constraint_name : /[\w  ]{1,3}/
+CONSTRAINT_NAME : /[\w  ]{1,3}/
 constraint_message: message
 constraint_target : constraint_link? SP* box_name_ref
 box_name_ref: box_name
@@ -79,13 +79,21 @@ CONSTRAINT_RATIO : NUMBER
 // Inheritance
 
 herit_clause : SLASH herit_name? BACKSLASH SP? herit_parent SP? herit_arrow SP? seq{herit_child} (COLON seq{assoc_attr})? NL
-herit_name : /(XT\d?|X\d?|T\d?|\d)/
+HERIT_NAME : /(XT\d?|TX\d?|X\d?|T\d?|\d)/
 herit_parent : entity_name_ref
 herit_child : entity_name_ref
-herit_arrow : /<==?|<--?|--?>|==?>/
+HERIT_ARROW.-10 : /<==?|<--?|--?>|==?>/
 
 // Avoid anonymous tokens for some terminals
 
 constraint_link: CONSTRAINT_LINK
 card: CARD
 constraint_ratio: CONSTRAINT_RATIO
+box_name : BOX_NAME
+leg_arrow: LEG_ARROW
+phantoms: PHANTOMS
+break_: BREAK
+herit_name: HERIT_NAME
+constraint_name: CONSTRAINT_NAME
+attr: ATTR
+herit_arrow: HERIT_ARROW
