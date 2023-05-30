@@ -7,7 +7,6 @@ from .mocodo_error import MocodoError
 
 class Leg:
     def __init__(self, association, leg, **params):
-        params["strengthen_card"] = params.get("strengthen_card", "_1,1_")
         params["card_format"] = params.get("card_format", "{min_card},{max_card}")
 
         self.card = leg.get("card", "XX")
@@ -16,8 +15,11 @@ class Leg:
         else:
             self.card_view = params["card_format"].format(min_card=self.card[0], max_card=self.card[1])
         
+        self.has_underlined_card = False
         if leg.get("card_prefix") == "_":
             self.kind = "strengthening"
+            s = params.get("strengthen_card", "_1,1_")
+            self.has_underlined_card = (s[0] == "_" == s[-1])
         elif association.kind == "cluster":
             self.kind = "cluster_peg" if leg.get("card_prefix") == "/" else "cluster_leg"
         else:
@@ -121,11 +123,11 @@ class Leg:
                         "family": style["card_font"]["family"],
                         "size": style["card_font"]["size"],
                         "note": self.note,
-                        "text": self.card_view,
+                        "text": self.card_view.strip("_"),
                     },
                 )
             )
-        if self.kind == "strengthening" and self.card_view[:1] + self.card_view[-1:] == "__":
+        if self.has_underlined_card:
             result.append(
                 (
                     "line",
@@ -269,7 +271,7 @@ class InheritanceLeg:
         self.arrow = leg["arrow"]
         self.inheritance = inheritance
         self.entity_name = leg["entity"]
-        self.identifier = self.inheritance.name.replace(self.entity_name, f"*{self.entity_name}")
+        self.identifier = f"{self.inheritance.name} / {self.entity_name}"
 
     def register_entity(self, entity):
         self.entity = entity

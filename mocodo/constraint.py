@@ -1,23 +1,28 @@
-import re
+import itertools
 
 from .attribute import *
 from .leg import ConstraintLeg
-from .mocodo_error import MocodoError
 
+constraint_counter = itertools.count(1)
 
 class Constraint:
 
     def __init__(self, clause):
         self.source = clause["source"]
-        self.name = clause.get("name", "")
+        self.name_view = clause.get("name", "")
+        self.name = f'{clause.get("name", "Anonymous")} constraint #{next(constraint_counter)}'
         self.note = clause.get("constraint_message")
-        self.ratios = clause.get("constraint_ratios", [])
-        if len(self.ratios) == 1:
-            self.ratios += self.ratios # if only one ratio is given, it is used for both width and height
-        self.ratios = tuple(self.ratios[:2]) # the subsequent ratios are ignored
         self.legs = []
         for target in clause.get("constraint_targets", []):
-            self.legs.append(ConstraintLeg(self, target.get("constraint_link", ""), target["box"]))
+            self.legs.append(ConstraintLeg(self, target.get("constraint_leg", ""), target["box"]))
+        if self.legs:
+            self.ratios = clause.get("constraint_ratios", [])
+        else:
+            # When there is neither ratio nor target, the constraint is placed at the top right corner
+            # which is obviously undesirable, forcing the user to specify at least one ratio.
+            self.ratios = clause.get("constraint_ratios", [0, 0])
+        if len(self.ratios) == 1:
+            self.ratios += self.ratios # if only one ratio is given, it is used for both width and height
         self.kind= "constraint"
 
     def register_boxes(self, boxes):
@@ -27,10 +32,10 @@ class Constraint:
         constraint_font = get_font_metrics(style["constraint_font"])
         self.get_constraint_string_width = constraint_font.get_pixel_width
         self.constraint_height = constraint_font.get_pixel_height()
-        if self.name.strip():
-            size = max(self.get_constraint_string_width(self.name), self.constraint_height)
+        if self.name_view.strip():
+            size = max(self.get_constraint_string_width(self.name_view), self.constraint_height)
         else:
-            size = self.get_constraint_string_width(self.name * 2)
+            size = self.get_constraint_string_width(self.name_view * 2)
         self.w = self.h = style["constraint_margin"] * 2 + size
 
     def register_center(self, geo):
@@ -64,9 +69,9 @@ class Constraint:
             (
                 "text_above_note",
                 {
-                    "text": self.name,
+                    "text": self.name_view,
                     "text_color": style['constraint_text_color'],
-                    "x": self.cx - self.get_constraint_string_width(self.name) / 2,
+                    "x": self.cx - self.get_constraint_string_width(self.name_view) / 2,
                     "y": self.cy + self.constraint_height * style["constraint_text_height_tweak"],
                     "family": style["card_font"]["family"],
                     "size": style["card_font"]["size"],

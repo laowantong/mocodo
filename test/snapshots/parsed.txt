@@ -1913,17 +1913,17 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
       ] 
       seq
         constraint_target
-          constraint_link	..
+          constraint_leg	..
           box_name_ref
             box_name	PIÈCE
         , 
         constraint_target
-          constraint_link	->
+          constraint_leg	->
           box_name_ref
             box_name	REQUÉRIR
         , 
         constraint_target
-          constraint_link	--
+          constraint_leg	--
           box_name_ref
             box_name	FOURNIR
         , 
@@ -1932,11 +1932,9 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
             box_name	PROJET
 --------------------------------------------------------------------------------
 [{'constraint_message': 'bla bla.',
-  'constraint_targets': [{'constraint_link': '..', 'box': 'PIÈCE', 'rank': 0},
-                         {'constraint_link': '->',
-                          'box': 'REQUÉRIR',
-                          'rank': 1},
-                         {'constraint_link': '--', 'box': 'FOURNIR', 'rank': 2},
+  'constraint_targets': [{'constraint_leg': '..', 'box': 'PIÈCE', 'rank': 0},
+                         {'constraint_leg': '->', 'box': 'REQUÉRIR', 'rank': 1},
+                         {'constraint_leg': '--', 'box': 'FOURNIR', 'rank': 2},
                          {'box': 'PROJET', 'rank': 3}],
   'type': 'constraint',
   'indent': '',
@@ -1955,17 +1953,17 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
       ] 
       seq
         constraint_target
-          constraint_link	..
+          constraint_leg	..
           box_name_ref
             box_name	PIÈCE
         , 
         constraint_target
-          constraint_link	->
+          constraint_leg	->
           box_name_ref
             box_name	REQUÉRIR
         , 
         constraint_target
-          constraint_link	--
+          constraint_leg	--
           box_name_ref
             box_name	FOURNIR
         , 
@@ -1975,11 +1973,9 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
 --------------------------------------------------------------------------------
 [{'name': 'I',
   'constraint_message': 'bla bla.',
-  'constraint_targets': [{'constraint_link': '..', 'box': 'PIÈCE', 'rank': 0},
-                         {'constraint_link': '->',
-                          'box': 'REQUÉRIR',
-                          'rank': 1},
-                         {'constraint_link': '--', 'box': 'FOURNIR', 'rank': 2},
+  'constraint_targets': [{'constraint_leg': '..', 'box': 'PIÈCE', 'rank': 0},
+                         {'constraint_leg': '->', 'box': 'REQUÉRIR', 'rank': 1},
+                         {'constraint_leg': '--', 'box': 'FOURNIR', 'rank': 2},
                          {'box': 'PROJET', 'rank': 3}],
   'type': 'constraint',
   'indent': '',
@@ -1995,17 +1991,17 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
       ) 
       seq
         constraint_target
-          constraint_link	..
+          constraint_leg	..
           box_name_ref
             box_name	PIÈCE
         , 
         constraint_target
-          constraint_link	->
+          constraint_leg	->
           box_name_ref
             box_name	REQUÉRIR
         , 
         constraint_target
-          constraint_link	--
+          constraint_leg	--
           box_name_ref
             box_name	FOURNIR
         , 
@@ -2014,11 +2010,9 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
             box_name	PROJET
 --------------------------------------------------------------------------------
 [{'name': 'II',
-  'constraint_targets': [{'constraint_link': '..', 'box': 'PIÈCE', 'rank': 0},
-                         {'constraint_link': '->',
-                          'box': 'REQUÉRIR',
-                          'rank': 1},
-                         {'constraint_link': '--', 'box': 'FOURNIR', 'rank': 2},
+  'constraint_targets': [{'constraint_leg': '..', 'box': 'PIÈCE', 'rank': 0},
+                         {'constraint_leg': '->', 'box': 'REQUÉRIR', 'rank': 1},
+                         {'constraint_leg': '--', 'box': 'FOURNIR', 'rank': 2},
                          {'box': 'PROJET', 'rank': 3}],
   'type': 'constraint',
   'indent': '',
@@ -2066,17 +2060,17 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
       ] 
       seq
         constraint_target
-          constraint_link	..
+          constraint_leg	..
           box_name_ref
             box_name	PIÈCE
         , 
         constraint_target
-          constraint_link	->
+          constraint_leg	->
           box_name_ref
             box_name	REQUÉRIR
         , 
         constraint_target
-          constraint_link	--
+          constraint_leg	--
           box_name_ref
             box_name	FOURNIR
         , 
@@ -2091,11 +2085,9 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
 --------------------------------------------------------------------------------
 [{'name': 'I',
   'constraint_message': 'bla bla.',
-  'constraint_targets': [{'constraint_link': '..', 'box': 'PIÈCE', 'rank': 0},
-                         {'constraint_link': '->',
-                          'box': 'REQUÉRIR',
-                          'rank': 1},
-                         {'constraint_link': '--', 'box': 'FOURNIR', 'rank': 2},
+  'constraint_targets': [{'constraint_leg': '..', 'box': 'PIÈCE', 'rank': 0},
+                         {'constraint_leg': '->', 'box': 'REQUÉRIR', 'rank': 1},
+                         {'constraint_leg': '--', 'box': 'FOURNIR', 'rank': 2},
                          {'box': 'PROJET', 'rank': 3}],
   'constraint_ratios': [12.5, 30.0],
   'type': 'constraint',
@@ -2112,17 +2104,17 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
       ) 
       seq
         constraint_target
-          constraint_link	..
+          constraint_leg	..
           box_name_ref
             box_name	PIÈCE
         , 
         constraint_target
-          constraint_link	->
+          constraint_leg	->
           box_name_ref
             box_name	REQUÉRIR
         , 
         constraint_target
-          constraint_link	--
+          constraint_leg	--
           box_name_ref
             box_name	FOURNIR
         , 
@@ -2136,11 +2128,9 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
         constraint_ratio	30
 --------------------------------------------------------------------------------
 [{'name': 'II',
-  'constraint_targets': [{'constraint_link': '..', 'box': 'PIÈCE', 'rank': 0},
-                         {'constraint_link': '->',
-                          'box': 'REQUÉRIR',
-                          'rank': 1},
-                         {'constraint_link': '--', 'box': 'FOURNIR', 'rank': 2},
+  'constraint_targets': [{'constraint_leg': '..', 'box': 'PIÈCE', 'rank': 0},
+                         {'constraint_leg': '->', 'box': 'REQUÉRIR', 'rank': 1},
+                         {'constraint_leg': '--', 'box': 'FOURNIR', 'rank': 2},
                          {'box': 'PROJET', 'rank': 3}],
   'constraint_ratios': [12.5, 30.0],
   'type': 'constraint',
@@ -2204,17 +2194,17 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
       ] 
       seq
         constraint_target
-          constraint_link	..
+          constraint_leg	..
           box_name_ref
             box_name	PIÈCE
         , 
         constraint_target
-          constraint_link	->
+          constraint_leg	->
           box_name_ref
             box_name	REQUÉRIR
         , 
         constraint_target
-          constraint_link	--
+          constraint_leg	--
           box_name_ref
             box_name	FOURNIR
         , 
@@ -2227,11 +2217,9 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
 --------------------------------------------------------------------------------
 [{'name': 'I',
   'constraint_message': 'bla bla.',
-  'constraint_targets': [{'constraint_link': '..', 'box': 'PIÈCE', 'rank': 0},
-                         {'constraint_link': '->',
-                          'box': 'REQUÉRIR',
-                          'rank': 1},
-                         {'constraint_link': '--', 'box': 'FOURNIR', 'rank': 2},
+  'constraint_targets': [{'constraint_leg': '..', 'box': 'PIÈCE', 'rank': 0},
+                         {'constraint_leg': '->', 'box': 'REQUÉRIR', 'rank': 1},
+                         {'constraint_leg': '--', 'box': 'FOURNIR', 'rank': 2},
                          {'box': 'PROJET', 'rank': 3}],
   'constraint_ratios': [12.5],
   'type': 'constraint',
@@ -2248,17 +2236,17 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
       ) 
       seq
         constraint_target
-          constraint_link	..
+          constraint_leg	..
           box_name_ref
             box_name	PIÈCE
         , 
         constraint_target
-          constraint_link	->
+          constraint_leg	->
           box_name_ref
             box_name	REQUÉRIR
         , 
         constraint_target
-          constraint_link	--
+          constraint_leg	--
           box_name_ref
             box_name	FOURNIR
         , 
@@ -2270,11 +2258,9 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
         constraint_ratio	12.5
 --------------------------------------------------------------------------------
 [{'name': 'II',
-  'constraint_targets': [{'constraint_link': '..', 'box': 'PIÈCE', 'rank': 0},
-                         {'constraint_link': '->',
-                          'box': 'REQUÉRIR',
-                          'rank': 1},
-                         {'constraint_link': '--', 'box': 'FOURNIR', 'rank': 2},
+  'constraint_targets': [{'constraint_leg': '..', 'box': 'PIÈCE', 'rank': 0},
+                         {'constraint_leg': '->', 'box': 'REQUÉRIR', 'rank': 1},
+                         {'constraint_leg': '--', 'box': 'FOURNIR', 'rank': 2},
                          {'box': 'PROJET', 'rank': 3}],
   'constraint_ratios': [12.5],
   'type': 'constraint',
@@ -2331,17 +2317,17 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
       ) 
       seq
         constraint_target
-          constraint_link	--
+          constraint_leg	--
           box_name_ref
             box_name	Lorem
         , 
         constraint_target
-          constraint_link	.....
+          constraint_leg	.....
           box_name_ref
             box_name	Ipsum
         , 
         constraint_target
-          constraint_link	-
+          constraint_leg	-
           box_name_ref
             box_name	Dolor
       : 
@@ -2351,11 +2337,9 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
         constraint_ratio	10
 --------------------------------------------------------------------------------
 [{'name': 'A',
-  'constraint_targets': [{'constraint_link': '--', 'box': 'Lorem', 'rank': 0},
-                         {'constraint_link': '.....',
-                          'box': 'Ipsum',
-                          'rank': 1},
-                         {'constraint_link': '-', 'box': 'Dolor', 'rank': 2}],
+  'constraint_targets': [{'constraint_leg': '--', 'box': 'Lorem', 'rank': 0},
+                         {'constraint_leg': '.....', 'box': 'Ipsum', 'rank': 1},
+                         {'constraint_leg': '-', 'box': 'Dolor', 'rank': 2}],
   'constraint_ratios': [30.0, 10.0],
   'type': 'constraint',
   'indent': '',
@@ -2371,17 +2355,17 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
       ) 
       seq
         constraint_target
-          constraint_link	->
+          constraint_leg	->
           box_name_ref
             box_name	Dolor
         , 
         constraint_target
-          constraint_link	<-->
+          constraint_leg	<-->
           box_name_ref
             box_name	Sit
         , 
         constraint_target
-          constraint_link	-->
+          constraint_leg	-->
           box_name_ref
             box_name	Amet
       : 
@@ -2391,9 +2375,9 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
         constraint_ratio	10
 --------------------------------------------------------------------------------
 [{'name': 'B',
-  'constraint_targets': [{'constraint_link': '->', 'box': 'Dolor', 'rank': 0},
-                         {'constraint_link': '<-->', 'box': 'Sit', 'rank': 1},
-                         {'constraint_link': '-->', 'box': 'Amet', 'rank': 2}],
+  'constraint_targets': [{'constraint_leg': '->', 'box': 'Dolor', 'rank': 0},
+                         {'constraint_leg': '<-->', 'box': 'Sit', 'rank': 1},
+                         {'constraint_leg': '-->', 'box': 'Amet', 'rank': 2}],
   'constraint_ratios': [69.0, 10.0],
   'type': 'constraint',
   'indent': '',
@@ -2409,32 +2393,32 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
       ) 
       seq
         constraint_target
-          constraint_link	->
+          constraint_leg	->
           box_name_ref
             box_name	foo
         , 
         constraint_target
-          constraint_link	-->
+          constraint_leg	-->
           box_name_ref
             box_name	foo
         , 
         constraint_target
-          constraint_link	->
+          constraint_leg	->
            
           box_name_ref
             box_name	foo
         , 
         constraint_target
-          constraint_link	-->
+          constraint_leg	-->
            
           box_name_ref
             box_name	foo
 --------------------------------------------------------------------------------
 [{'name': 'XX',
-  'constraint_targets': [{'constraint_link': '->', 'box': 'foo', 'rank': 0},
-                         {'constraint_link': '-->', 'box': 'foo', 'rank': 1},
-                         {'constraint_link': '->', 'box': 'foo', 'rank': 2},
-                         {'constraint_link': '-->', 'box': 'foo', 'rank': 3}],
+  'constraint_targets': [{'constraint_leg': '->', 'box': 'foo', 'rank': 0},
+                         {'constraint_leg': '-->', 'box': 'foo', 'rank': 1},
+                         {'constraint_leg': '->', 'box': 'foo', 'rank': 2},
+                         {'constraint_leg': '-->', 'box': 'foo', 'rank': 3}],
   'type': 'constraint',
   'indent': '',
   'source': '(XX) ->foo, -->foo, -> foo, --> foo'}]
@@ -2449,38 +2433,36 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
       ) 
       seq
         constraint_target
-          constraint_link	->
+          constraint_leg	->
           box_name_ref
             box_name	Stocker
         , 
         constraint_target
-          constraint_link	..
+          constraint_leg	..
           box_name_ref
             box_name	Dépôt
         , 
         constraint_target
-          constraint_link	..
+          constraint_leg	..
           box_name_ref
             box_name	Article
         , 
         constraint_target
-          constraint_link	--
+          constraint_leg	--
           box_name_ref
             box_name	Composer
         , 
         constraint_target
-          constraint_link	--
+          constraint_leg	--
           box_name_ref
             box_name	Louer
 --------------------------------------------------------------------------------
 [{'name': 'I',
-  'constraint_targets': [{'constraint_link': '->', 'box': 'Stocker', 'rank': 0},
-                         {'constraint_link': '..', 'box': 'Dépôt', 'rank': 1},
-                         {'constraint_link': '..', 'box': 'Article', 'rank': 2},
-                         {'constraint_link': '--',
-                          'box': 'Composer',
-                          'rank': 3},
-                         {'constraint_link': '--', 'box': 'Louer', 'rank': 4}],
+  'constraint_targets': [{'constraint_leg': '->', 'box': 'Stocker', 'rank': 0},
+                         {'constraint_leg': '..', 'box': 'Dépôt', 'rank': 1},
+                         {'constraint_leg': '..', 'box': 'Article', 'rank': 2},
+                         {'constraint_leg': '--', 'box': 'Composer', 'rank': 3},
+                         {'constraint_leg': '--', 'box': 'Louer', 'rank': 4}],
   'type': 'constraint',
   'indent': '',
   'source': '(I) ->Stocker, ..Dépôt, ..Article, --Composer, --Louer'}]
@@ -2489,23 +2471,23 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
 /XT\ Personne ==> Homme, Femme: sexe
 --------------------------------------------------------------------------------start
   line
-    herit_clause
+    inheritance_clause
       /
-      herit_name	XT
+      inheritance_name	XT
       \
        
-      herit_parent
+      inheritance_parent
         entity_name_ref
           box_name	Personne
        
-      herit_arrow	==>
+      inheritance_arrow	==>
        
       seq
-        herit_child
+        inheritance_child
           entity_name_ref
             box_name	Homme
         , 
-        herit_child
+        inheritance_child
           entity_name_ref
             box_name	Femme
       : 
@@ -2514,7 +2496,7 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
           attr	sexe
 --------------------------------------------------------------------------------
 [{'name': 'XT',
-  'herit_arrow': '==>',
+  'inheritance_arrow': '==>',
   'legs': [{'entity': 'Personne', 'rank': -1},
            {'entity': 'Homme', 'rank': 0},
            {'entity': 'Femme', 'rank': 1}],
@@ -2527,23 +2509,23 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
 /XT1\\ Personne <= Homme, Femme: sexe
 --------------------------------------------------------------------------------start
   line
-    herit_clause
+    inheritance_clause
       /
-      herit_name	XT1
+      inheritance_name	XT1
       \\
        
-      herit_parent
+      inheritance_parent
         entity_name_ref
           box_name	Personne
        
-      herit_arrow	<=
+      inheritance_arrow	<=
        
       seq
-        herit_child
+        inheritance_child
           entity_name_ref
             box_name	Homme
         , 
-        herit_child
+        inheritance_child
           entity_name_ref
             box_name	Femme
       : 
@@ -2552,7 +2534,7 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
           attr	sexe
 --------------------------------------------------------------------------------
 [{'name': 'XT1',
-  'herit_arrow': '<=',
+  'inheritance_arrow': '<=',
   'legs': [{'entity': 'Personne', 'rank': -1},
            {'entity': 'Homme', 'rank': 0},
            {'entity': 'Femme', 'rank': 1}],
@@ -2565,23 +2547,23 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
 /XT\\ Personne => Homme, Femme: sexe
 --------------------------------------------------------------------------------start
   line
-    herit_clause
+    inheritance_clause
       /
-      herit_name	XT
+      inheritance_name	XT
       \\
        
-      herit_parent
+      inheritance_parent
         entity_name_ref
           box_name	Personne
        
-      herit_arrow	=>
+      inheritance_arrow	=>
        
       seq
-        herit_child
+        inheritance_child
           entity_name_ref
             box_name	Homme
         , 
-        herit_child
+        inheritance_child
           entity_name_ref
             box_name	Femme
       : 
@@ -2590,7 +2572,7 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
           attr	sexe
 --------------------------------------------------------------------------------
 [{'name': 'XT',
-  'herit_arrow': '=>',
+  'inheritance_arrow': '=>',
   'legs': [{'entity': 'Personne', 'rank': -1},
            {'entity': 'Homme', 'rank': 0},
            {'entity': 'Femme', 'rank': 1}],
@@ -2603,23 +2585,23 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
 /T\\ Personne <= Homme, Femme: sexe
 --------------------------------------------------------------------------------start
   line
-    herit_clause
+    inheritance_clause
       /
-      herit_name	T
+      inheritance_name	T
       \\
        
-      herit_parent
+      inheritance_parent
         entity_name_ref
           box_name	Personne
        
-      herit_arrow	<=
+      inheritance_arrow	<=
        
       seq
-        herit_child
+        inheritance_child
           entity_name_ref
             box_name	Homme
         , 
-        herit_child
+        inheritance_child
           entity_name_ref
             box_name	Femme
       : 
@@ -2628,7 +2610,7 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
           attr	sexe
 --------------------------------------------------------------------------------
 [{'name': 'T',
-  'herit_arrow': '<=',
+  'inheritance_arrow': '<=',
   'legs': [{'entity': 'Personne', 'rank': -1},
            {'entity': 'Homme', 'rank': 0},
            {'entity': 'Femme', 'rank': 1}],
@@ -2641,23 +2623,23 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
 /T\\ Personne => Homme, Femme: sexe
 --------------------------------------------------------------------------------start
   line
-    herit_clause
+    inheritance_clause
       /
-      herit_name	T
+      inheritance_name	T
       \\
        
-      herit_parent
+      inheritance_parent
         entity_name_ref
           box_name	Personne
        
-      herit_arrow	=>
+      inheritance_arrow	=>
        
       seq
-        herit_child
+        inheritance_child
           entity_name_ref
             box_name	Homme
         , 
-        herit_child
+        inheritance_child
           entity_name_ref
             box_name	Femme
       : 
@@ -2666,7 +2648,7 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
           attr	sexe
 --------------------------------------------------------------------------------
 [{'name': 'T',
-  'herit_arrow': '=>',
+  'inheritance_arrow': '=>',
   'legs': [{'entity': 'Personne', 'rank': -1},
            {'entity': 'Homme', 'rank': 0},
            {'entity': 'Femme', 'rank': 1}],
@@ -2679,23 +2661,23 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
 /X\\ Personne <= Homme, Femme: sexe
 --------------------------------------------------------------------------------start
   line
-    herit_clause
+    inheritance_clause
       /
-      herit_name	X
+      inheritance_name	X
       \\
        
-      herit_parent
+      inheritance_parent
         entity_name_ref
           box_name	Personne
        
-      herit_arrow	<=
+      inheritance_arrow	<=
        
       seq
-        herit_child
+        inheritance_child
           entity_name_ref
             box_name	Homme
         , 
-        herit_child
+        inheritance_child
           entity_name_ref
             box_name	Femme
       : 
@@ -2704,7 +2686,7 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
           attr	sexe
 --------------------------------------------------------------------------------
 [{'name': 'X',
-  'herit_arrow': '<=',
+  'inheritance_arrow': '<=',
   'legs': [{'entity': 'Personne', 'rank': -1},
            {'entity': 'Homme', 'rank': 0},
            {'entity': 'Femme', 'rank': 1}],
@@ -2717,23 +2699,23 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
 /X\\ Personne => Homme, Femme: sexe
 --------------------------------------------------------------------------------start
   line
-    herit_clause
+    inheritance_clause
       /
-      herit_name	X
+      inheritance_name	X
       \\
        
-      herit_parent
+      inheritance_parent
         entity_name_ref
           box_name	Personne
        
-      herit_arrow	=>
+      inheritance_arrow	=>
        
       seq
-        herit_child
+        inheritance_child
           entity_name_ref
             box_name	Homme
         , 
-        herit_child
+        inheritance_child
           entity_name_ref
             box_name	Femme
       : 
@@ -2742,7 +2724,7 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
           attr	sexe
 --------------------------------------------------------------------------------
 [{'name': 'X',
-  'herit_arrow': '=>',
+  'inheritance_arrow': '=>',
   'legs': [{'entity': 'Personne', 'rank': -1},
            {'entity': 'Homme', 'rank': 0},
            {'entity': 'Femme', 'rank': 1}],
@@ -2755,22 +2737,22 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
 /\\ Personne <= Homme, Femme: sexe
 --------------------------------------------------------------------------------start
   line
-    herit_clause
+    inheritance_clause
       /
       \\
        
-      herit_parent
+      inheritance_parent
         entity_name_ref
           box_name	Personne
        
-      herit_arrow	<=
+      inheritance_arrow	<=
        
       seq
-        herit_child
+        inheritance_child
           entity_name_ref
             box_name	Homme
         , 
-        herit_child
+        inheritance_child
           entity_name_ref
             box_name	Femme
       : 
@@ -2778,7 +2760,7 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
         assoc_attr
           attr	sexe
 --------------------------------------------------------------------------------
-[{'herit_arrow': '<=',
+[{'inheritance_arrow': '<=',
   'legs': [{'entity': 'Personne', 'rank': -1},
            {'entity': 'Homme', 'rank': 0},
            {'entity': 'Femme', 'rank': 1}],
@@ -2792,22 +2774,22 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
 /\\ Personne => Homme, Femme: sexe
 --------------------------------------------------------------------------------start
   line
-    herit_clause
+    inheritance_clause
       /
       \\
        
-      herit_parent
+      inheritance_parent
         entity_name_ref
           box_name	Personne
        
-      herit_arrow	=>
+      inheritance_arrow	=>
        
       seq
-        herit_child
+        inheritance_child
           entity_name_ref
             box_name	Homme
         , 
-        herit_child
+        inheritance_child
           entity_name_ref
             box_name	Femme
       : 
@@ -2815,7 +2797,7 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
         assoc_attr
           attr	sexe
 --------------------------------------------------------------------------------
-[{'herit_arrow': '=>',
+[{'inheritance_arrow': '=>',
   'legs': [{'entity': 'Personne', 'rank': -1},
            {'entity': 'Homme', 'rank': 0},
            {'entity': 'Femme', 'rank': 1}],
@@ -2829,24 +2811,24 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
 /1\\ FOO => BAR
 --------------------------------------------------------------------------------start
   line
-    herit_clause
+    inheritance_clause
       /
-      herit_name	1
+      inheritance_name	1
       \\
        
-      herit_parent
+      inheritance_parent
         entity_name_ref
           box_name	FOO
        
-      herit_arrow	=>
+      inheritance_arrow	=>
        
       seq
-        herit_child
+        inheritance_child
           entity_name_ref
             box_name	BAR
 --------------------------------------------------------------------------------
 [{'name': '1',
-  'herit_arrow': '=>',
+  'inheritance_arrow': '=>',
   'legs': [{'entity': 'FOO', 'rank': -1}, {'entity': 'BAR', 'rank': 0}],
   'type': 'inheritance',
   'indent': '',
@@ -2856,21 +2838,21 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
 /T\\foo==>foo11 
 --------------------------------------------------------------------------------start
   line
-    herit_clause
+    inheritance_clause
       /
-      herit_name	T
+      inheritance_name	T
       \\
-      herit_parent
+      inheritance_parent
         entity_name_ref
           box_name	foo
-      herit_arrow	==>
+      inheritance_arrow	==>
       seq
-        herit_child
+        inheritance_child
           entity_name_ref
             box_name	foo11
 --------------------------------------------------------------------------------
 [{'name': 'T',
-  'herit_arrow': '==>',
+  'inheritance_arrow': '==>',
   'legs': [{'entity': 'foo', 'rank': -1}, {'entity': 'foo11', 'rank': 0}],
   'type': 'inheritance',
   'indent': '',

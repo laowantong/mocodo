@@ -1,3 +1,4 @@
+import itertools
 from math import sqrt
 
 from .attribute import *
@@ -6,35 +7,39 @@ from .leg import *
 TRIANGLE_ALTITUDE = sqrt(3) / 2
 INCIRCLE_RADIUS = 1 / sqrt(12)
 
+inheritance_counter = itertools.count(1)
+
 class Inheritance:
 
     def __init__(self, clause, **params):
         self.source = clause["source"]
         leg_entities = [leg["entity"] for leg in clause["legs"]]
-        self.name = f'{clause["name"]} {clause["herit_arrow"]} {",".join(leg_entities)}'
+        if clause["name"] == "TX":
+            clause["name"] = "XT"
+        self.name = f'{leg_entities[0]} parent #{next(inheritance_counter)}'
         self.name_view = clause['name'][:-1] if clause['name'][-1:].isdigit() else clause['name']  # get rid of single digit suffix, if any
         self.attributes = [InheritanceAttribute(attr) for attr in clause.get("attrs", [])]
         for leg_clause in clause["legs"]:
             leg_clause["kind"] = "-"
             leg_clause["arrow"] = False
-        herit_arrow = clause["herit_arrow"]
-        if herit_arrow == "<-":
+        inheritance_arrow = clause["inheritance_arrow"]
+        if inheritance_arrow == "<-":
             clause["legs"][0]["arrow"] = True
-        elif herit_arrow == "->":
+        elif inheritance_arrow == "->":
             for leg_clause in clause["legs"][1:]:
                 leg_clause["arrow"] = True
-        elif herit_arrow == "<=":
+        elif inheritance_arrow == "<=":
             clause["legs"][0]["arrow"] = True
             for leg_clause in clause["legs"][1:]:
                 leg_clause["kind"] = "="
-        elif herit_arrow == "=>":
+        elif inheritance_arrow == "=>":
             clause["legs"][0]["kind"] = "="
             for leg_clause in clause["legs"][1:]:
                 leg_clause["arrow"] = True
         else:
             clause["legs"][0]["arrow"] = True
         self.legs = [InheritanceLeg(self, leg, **params) for leg in clause["legs"]]
-        self.kind = herit_arrow.replace("--", "-").replace("==", "=")
+        self.kind = inheritance_arrow.replace("--", "-").replace("==", "=")
 
     def register_boxes(self, boxes):
         self.boxes = boxes

@@ -56,7 +56,7 @@ class Mcd:
                     continue
                 if clause["type"] == "constraint":
                     element = Constraint(clause)
-                    if element.name == "CIF":
+                    if element.name_view == "CIF":
                         mcd_has_cif = True
                     self.constraints.append(element)
                     pages[indentation].append(element)
