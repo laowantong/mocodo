@@ -118,7 +118,12 @@ class Common:
                 for box in row
                 if box.kind != "phantom"
             },
-            "shift": {leg.identifier: 0 for row in mcd.rows for box in row for leg in box.legs if hasattr(leg, "card_view")},
+            "shift": {
+                leg.identifier: 0
+                for row in mcd.rows
+                for box in row
+                for leg in box.legs
+                if hasattr(leg, "card_view")},
             "ratio": {
                 leg.identifier: 1.0
                 for row in mcd.rows

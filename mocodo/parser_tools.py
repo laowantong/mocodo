@@ -183,17 +183,8 @@ class ClauseExtractor(Transformer):
     def foreign_reference(self, tree):
         return ("foreign_reference", dict(tree))
     
-    def forced_to_table_lbracket(self, tree):
-        return ("forced_to_table", True)
-
     def foreign_reference(self, tree):
         return ("foreign_reference", dict(tree))
-    
-    def forced_to_table_lbracket(self, tree):
-        return ("forced_to_table", True)
-
-    def assoc_protect(self, tree):
-        return ("protect", True)
 
     def box_name(self, tree):
         return tree[0]

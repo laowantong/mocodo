@@ -8,14 +8,12 @@ class Association:
     def __init__(self, clause, **params):
         self.source = clause["source"]
         self.name = clause["name"]
-        self.name_view = self.name[:-1] if self.name[-1:].isdigit() else self.name  # get rid of single digit suffix, if any
-        self.forced_to_table = clause.get("box_def_prefix", False)
+        self.name_view = self.name[:-1] if self.name[-1:].isdigit() else self.name  # get rid of digital suffix, if any
+        self.is_protected = (clause.get("box_def_prefix") == "+")
         self.attributes = [SimpleAssociationAttribute(attr) for attr in clause.get("attrs", [])]
         self.df_label = params.get("df", "DF")
         if self.name_view == self.df_label:
             self.kind = "df"
-        elif self.forced_to_table:
-            self.kind = "forced_table"
         else:
             legs = clause["legs"]
             candidate_peg_count = sum(leg.get("card_prefix") == "/" for leg in legs)
@@ -283,7 +281,7 @@ class Association:
                     },
                 )
             )
-            if self.kind == "forced_table":
+            if self.is_protected:
                 result.append(
                     (
                         "dash_rect",

@@ -265,8 +265,8 @@ class Relations:
         for (name, entity) in self.mcd.entities.items():
             self.relations[name] = {
                 "this_relation_name": entity.name,
-                "is_forced": False,
-                "is_deletable": entity.is_deletable,
+                "is_forced": False, # an entity naturally results in a relation. No need to force it.
+                "is_protected": entity.is_protected,
                 "columns": []
             }
             for attribute in entity.attributes:
@@ -393,11 +393,11 @@ class Relations:
                     df_leg = leg
                     if leg.card[0] == "1":
                         break # elect the first leg with cardinality 11
-            if df_leg is None or association.kind == "forced_table":
+            if df_leg is None or association.is_protected:
                 # make a relation of this association
                 self.relations[association.name] = {
                     "this_relation_name": association.name,
-                    "is_forced": bool(df_leg),
+                    "is_forced": bool(df_leg), # if this association has a 11 leg, being here means it is protected: it must be forced into a relation
                     "columns": []
                 }
                 for leg in association.legs:
@@ -415,7 +415,7 @@ class Relations:
                                     "primary": False,
                                     "nature": "demoted_foreign_key"
                                 })
-                            elif association.kind == "forced_table" and df_leg is not None and leg is not df_leg:
+                            elif association.is_protected and df_leg is not None and leg is not df_leg:
                                 self.relations[association.name]["columns"].append({ # gather all migrant attributes
                                     "attribute": attribute["attribute"],
                                     "data_type": attribute["data_type"],
@@ -570,7 +570,7 @@ class Relations:
     def delete_deletable_relations(self):
         deleted_outer_sources = set()
         for (name, relation) in list(self.relations.items()):
-            if relation.get("is_deletable") and all(column["nature"] == "primary_key" for column in relation["columns"]):
+            if not relation.get("is_protected") and all(column["nature"] == "primary_key" for column in relation["columns"]):
                 del self.relations[name]
                 deleted_outer_sources.add(name)
         for relation in self.relations.values():

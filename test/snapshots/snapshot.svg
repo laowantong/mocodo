@@ -54,6 +54,7 @@
 	<text x="341" y="169" fill="#000" font-family="Futura" font-size="11">0,N</text>
 	<line x1="439" y1="257" x2="439" y2="148" stroke="#000" stroke-width="1"/>
 	<text x="449" y="189" fill="#000" font-family="Futura" font-size="11">1,1</text>
+	<line x1="449" y1="191" x2="467" y2="191" stroke="#000" stroke-width="1"/>
 	<g>
 		<circle cx="439" cy="148" r="20" stroke="#000" stroke-width="1.5" fill="#FFF"/>
 		<text x="426" y="152.8" fill="#000" font-family="Copperplate" font-size="18">DF</text>

@@ -4,13 +4,13 @@ from .attribute import *
 class Entity:
     def __init__(self, clause):
         self.source = clause["source"]
-        self.is_deletable = clause.get("box_def_prefix", "") != "+"
+        # A protected entity results in a table, even if all its columns are part of its primary key.
+        self.is_protected = (clause.get("box_def_prefix") == "+") 
         self.name = clause["name"]
         self.name_view = self.name[:-1] if self.name[-1].isdigit() else self.name  # get rid of single digit suffix, if any
         self.attrs = clause.get("attrs", [])
         self.legs = []  # iterating over box's legs does nothing if it is not an association
         self.kind = "entity"
-        self.clause = clause
 
     def add_attributes(self, legs_to_strenghten, is_child=False):
         if is_child:

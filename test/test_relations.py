@@ -381,7 +381,7 @@ class relationsTest(unittest.TestCase):
         self.assertEqual(d["relations"][2]["columns"][3]["nature"], "association_attribute")
         self.assertEqual(d["relations"][2]["columns"][3]["outer_source"], None)
 
-    def test_forced_table(self):
+    def test_protected(self):
         source = """
             LACUS: blandit, elit
             +LIGULA, 01 LACUS, 1N EROS: metus
@@ -403,7 +403,7 @@ class relationsTest(unittest.TestCase):
         self.assertEqual(d["relations"][2]["columns"][2]["nature"], "association_attribute")
         self.assertEqual(d["relations"][2]["columns"][2]["outer_source"], None)
 
-    def test_forced_table_ignored(self):
+    def test_protected_ignored(self):
         source = """
             LACUS: blandit, elit
             +LIGULA, 1N LACUS, 1N EROS: metus
