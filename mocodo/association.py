@@ -9,6 +9,7 @@ class Association:
         self.source = clause["source"]
         self.name = clause["name"]
         self.name_view = self.name[:-1] if self.name[-1:].isdigit() else self.name  # get rid of digital suffix, if any
+        # A protected association results in a table, even if this association is a DF.
         self.is_protected = (clause.get("box_def_prefix") == "+")
         self.attributes = [SimpleAssociationAttribute(attr) for attr in clause.get("attrs", [])]
         self.df_label = params.get("df", "DF")

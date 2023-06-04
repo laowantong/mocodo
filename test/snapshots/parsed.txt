@@ -174,7 +174,7 @@ COMPOSER, 0N [composée] PIÈCE, 0N [composante] PIÈCE: quantité
         assoc_leg
           card	0N
            [
-          leg_role	composée
+          leg_note	composée
           ] 
           entity_name_ref
             box_name	PIÈCE
@@ -182,7 +182,7 @@ COMPOSER, 0N [composée] PIÈCE, 0N [composante] PIÈCE: quantité
         assoc_leg
           card	0N
            [
-          leg_role	composante
+          leg_note	composante
           ] 
           entity_name_ref
             box_name	PIÈCE
@@ -192,8 +192,11 @@ COMPOSER, 0N [composée] PIÈCE, 0N [composante] PIÈCE: quantité
           attr	quantité
 --------------------------------------------------------------------------------
 [{'name': 'COMPOSER',
-  'legs': [{'card': '0N', 'role': 'composée', 'entity': 'PIÈCE', 'rank': 0},
-           {'card': '0N', 'role': 'composante', 'entity': 'PIÈCE', 'rank': 1}],
+  'legs': [{'card': '0N', 'leg_note': 'composée', 'entity': 'PIÈCE', 'rank': 0},
+           {'card': '0N',
+            'leg_note': 'composante',
+            'entity': 'PIÈCE',
+            'rank': 1}],
   'attrs': [{'attribute_label': 'quantité', 'rank': 0}],
   'type': 'association',
   'indent': '',
@@ -284,7 +287,7 @@ CONTRÔLER, 0N< [filiale] SOCIÉTÉ, 01 [mère] SOCIÉTÉ
           card	0N
           leg_arrow	<
            [
-          leg_role	filiale
+          leg_note	filiale
           ] 
           entity_name_ref
             box_name	SOCIÉTÉ
@@ -292,7 +295,7 @@ CONTRÔLER, 0N< [filiale] SOCIÉTÉ, 01 [mère] SOCIÉTÉ
         assoc_leg
           card	01
            [
-          leg_role	mère
+          leg_note	mère
           ] 
           entity_name_ref
             box_name	SOCIÉTÉ
@@ -300,10 +303,10 @@ CONTRÔLER, 0N< [filiale] SOCIÉTÉ, 01 [mère] SOCIÉTÉ
 [{'name': 'CONTRÔLER',
   'legs': [{'card': '0N',
             'leg_arrow': '<',
-            'role': 'filiale',
+            'leg_note': 'filiale',
             'entity': 'SOCIÉTÉ',
             'rank': 0},
-           {'card': '01', 'role': 'mère', 'entity': 'SOCIÉTÉ', 'rank': 1}],
+           {'card': '01', 'leg_note': 'mère', 'entity': 'SOCIÉTÉ', 'rank': 1}],
   'type': 'association',
   'indent': '',
   'source': 'CONTRÔLER, 0N< [filiale] SOCIÉTÉ, 01 [mère] SOCIÉTÉ'}]
@@ -691,7 +694,7 @@ PASSER, 0N [Un client peut passer un nombre quelconque de commandes.] CLIENT, 11
         assoc_leg
           card	0N
            [
-          leg_role	Un client peut passer un nombre quelconque de commandes.
+          leg_note	Un client peut passer un nombre quelconque de commandes.
           ] 
           entity_name_ref
             box_name	CLIENT
@@ -699,18 +702,19 @@ PASSER, 0N [Un client peut passer un nombre quelconque de commandes.] CLIENT, 11
         assoc_leg
           card	11
            [
-          leg_role	Toute commande est passée par un en un seul client.
+          leg_note	Toute commande est passée par un en un seul client.
           ] 
           entity_name_ref
             box_name	COMMANDE
 --------------------------------------------------------------------------------
 [{'name': 'PASSER',
   'legs': [{'card': '0N',
-            'role': 'Un client peut passer un nombre quelconque de commandes.',
+            'leg_note': 'Un client peut passer un nombre quelconque de '
+                        'commandes.',
             'entity': 'CLIENT',
             'rank': 0},
            {'card': '11',
-            'role': 'Toute commande est passée par un en un seul client.',
+            'leg_note': 'Toute commande est passée par un en un seul client.',
             'entity': 'COMMANDE',
             'rank': 1}],
   'type': 'association',
@@ -731,7 +735,7 @@ INCLURE, 1N [Une commande peut inclure plusieurs produits distincts, et en inclu
         assoc_leg
           card	1N
            [
-          leg_role	Une commande peut inclure plusieurs produits distincts, et en inclut au moins un.
+          leg_note	Une commande peut inclure plusieurs produits distincts, et en inclut au moins un.
           ] 
           entity_name_ref
             box_name	COMMANDE
@@ -739,7 +743,7 @@ INCLURE, 1N [Une commande peut inclure plusieurs produits distincts, et en inclu
         assoc_leg
           card	0N
            [
-          leg_role	Certains produits ne sont jamais commandés, d'autres le sont plusieurs fois.
+          leg_note	Certains produits ne sont jamais commandés, d'autres le sont plusieurs fois.
           ] 
           entity_name_ref
             box_name	PRODUIT
@@ -750,13 +754,13 @@ INCLURE, 1N [Une commande peut inclure plusieurs produits distincts, et en inclu
 --------------------------------------------------------------------------------
 [{'name': 'INCLURE',
   'legs': [{'card': '1N',
-            'role': 'Une commande peut inclure plusieurs produits distincts, '
-                    'et en inclut au moins un.',
+            'leg_note': 'Une commande peut inclure plusieurs produits '
+                        'distincts, et en inclut au moins un.',
             'entity': 'COMMANDE',
             'rank': 0},
            {'card': '0N',
-            'role': "Certains produits ne sont jamais commandés, d'autres le "
-                    'sont plusieurs fois.',
+            'leg_note': "Certains produits ne sont jamais commandés, d'autres "
+                        'le sont plusieurs fois.',
             'entity': 'PRODUIT',
             'rank': 1}],
   'attrs': [{'attribute_label': 'Quantité', 'rank': 0}],
@@ -1909,7 +1913,7 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
       (
       ) 
       [
-      constraint_message	bla bla.
+      constraint_note	bla bla.
       ] 
       seq
         constraint_target
@@ -1931,7 +1935,7 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
           box_name_ref
             box_name	PROJET
 --------------------------------------------------------------------------------
-[{'constraint_message': 'bla bla.',
+[{'constraint_note': 'bla bla.',
   'constraint_targets': [{'constraint_leg': '..', 'box': 'PIÈCE', 'rank': 0},
                          {'constraint_leg': '->', 'box': 'REQUÉRIR', 'rank': 1},
                          {'constraint_leg': '--', 'box': 'FOURNIR', 'rank': 2},
@@ -1949,7 +1953,7 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
       constraint_name	I
       ) 
       [
-      constraint_message	bla bla.
+      constraint_note	bla bla.
       ] 
       seq
         constraint_target
@@ -1972,7 +1976,7 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
             box_name	PROJET
 --------------------------------------------------------------------------------
 [{'name': 'I',
-  'constraint_message': 'bla bla.',
+  'constraint_note': 'bla bla.',
   'constraint_targets': [{'constraint_leg': '..', 'box': 'PIÈCE', 'rank': 0},
                          {'constraint_leg': '->', 'box': 'REQUÉRIR', 'rank': 1},
                          {'constraint_leg': '--', 'box': 'FOURNIR', 'rank': 2},
@@ -2027,11 +2031,11 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
       constraint_name	III
       ) 
       [
-      constraint_message	bla bla.
+      constraint_note	bla bla.
       ]
 --------------------------------------------------------------------------------
 [{'name': 'III',
-  'constraint_message': 'bla bla.',
+  'constraint_note': 'bla bla.',
   'type': 'constraint',
   'indent': '',
   'source': '(III) [bla bla.]'}]
@@ -2056,7 +2060,7 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
       constraint_name	I
       ) 
       [
-      constraint_message	bla bla.
+      constraint_note	bla bla.
       ] 
       seq
         constraint_target
@@ -2084,7 +2088,7 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
         constraint_ratio	30
 --------------------------------------------------------------------------------
 [{'name': 'I',
-  'constraint_message': 'bla bla.',
+  'constraint_note': 'bla bla.',
   'constraint_targets': [{'constraint_leg': '..', 'box': 'PIÈCE', 'rank': 0},
                          {'constraint_leg': '->', 'box': 'REQUÉRIR', 'rank': 1},
                          {'constraint_leg': '--', 'box': 'FOURNIR', 'rank': 2},
@@ -2146,7 +2150,7 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
       constraint_name	III
       ) 
       [
-      constraint_message	bla bla.
+      constraint_note	bla bla.
       ]
       : 
       constraint_ratios
@@ -2155,7 +2159,7 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
         constraint_ratio	30
 --------------------------------------------------------------------------------
 [{'name': 'III',
-  'constraint_message': 'bla bla.',
+  'constraint_note': 'bla bla.',
   'constraint_ratios': [12.5, 30.0],
   'type': 'constraint',
   'indent': '',
@@ -2190,7 +2194,7 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
       constraint_name	I
       ) 
       [
-      constraint_message	bla bla.
+      constraint_note	bla bla.
       ] 
       seq
         constraint_target
@@ -2216,7 +2220,7 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
         constraint_ratio	12.5
 --------------------------------------------------------------------------------
 [{'name': 'I',
-  'constraint_message': 'bla bla.',
+  'constraint_note': 'bla bla.',
   'constraint_targets': [{'constraint_leg': '..', 'box': 'PIÈCE', 'rank': 0},
                          {'constraint_leg': '->', 'box': 'REQUÉRIR', 'rank': 1},
                          {'constraint_leg': '--', 'box': 'FOURNIR', 'rank': 2},
@@ -2276,14 +2280,14 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
       constraint_name	III
       ) 
       [
-      constraint_message	bla bla.
+      constraint_note	bla bla.
       ]
       : 
       constraint_ratios
         constraint_ratio	12.5
 --------------------------------------------------------------------------------
 [{'name': 'III',
-  'constraint_message': 'bla bla.',
+  'constraint_note': 'bla bla.',
   'constraint_ratios': [12.5],
   'type': 'constraint',
   'indent': '',

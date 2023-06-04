@@ -11,7 +11,7 @@ class Constraint:
         self.source = clause["source"]
         self.name_view = clause.get("name", "")
         self.name = f'{clause.get("name", "Anonymous")} constraint #{next(constraint_counter)}'
-        self.note = clause.get("constraint_message")
+        self.note = clause.get("constraint_note")
         self.legs = []
         for target in clause.get("constraint_targets", []):
             self.legs.append(ConstraintLeg(self, target.get("constraint_leg", ""), target["box"]))

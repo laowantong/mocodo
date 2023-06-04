@@ -160,7 +160,7 @@ class Asciifier(Transformer):
     def attr(self, tree):
         return tree[0].update(value=asciify(tree[0].value))
     
-    leg_role = attr
+    leg_note = attr
 
 def asciify_source(source):
     return transform_source(source, Asciifier())

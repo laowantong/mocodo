@@ -26,7 +26,7 @@ class Leg:
             self.kind = "leg"
         
         self.arrow = leg.get("leg_arrow", "")
-        self.note = leg.get("role")
+        self.note = leg.get("leg_note")
         self.association = association
         self.entity_name = leg["entity"]
         self.twist = False
