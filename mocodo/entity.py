@@ -24,7 +24,7 @@ class Entity:
             attribute_label = attr.get("attribute_label", "")
             if attribute_label == "":
                 self.attributes.append(PhantomAttribute(attr))
-            elif attr.get("underscore"):
+            elif attr.get("id_mark") == "_":
                 if attr["rank"] == 0:
                     self.attributes.append(SimpleEntityAttribute(attr))
                 else:

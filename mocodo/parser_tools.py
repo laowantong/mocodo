@@ -30,17 +30,17 @@ def parse_source(source):
             raise MocodoError(503, _('{pin}A valid box name starting a line must be followed by a colon or a comma.').format(pin=pin)) # fmt: skip
         if t == "COMMA" and expected == {'SP', 'BOX_NAME'}:
             raise MocodoError(505, _('{pin}Illegal comma after inheritance.').format(pin=pin)) # fmt: skip
-        if t == "NUMBER" and expected == {'BOX_NAME', 'CARD', 'LBRACKET', 'LEG_ARROW', 'MINUS', 'SLASH', 'SP', 'UNDERSCORE'}:
+        if t == "NUMBER" and expected == {'BOX_NAME', 'CARD', 'LBRACKET', 'LEG_ARROW', 'MINUS', 'SLASH', 'SP', 'ID_MARK'}:
             raise MocodoError(506, _('{pin}Malformed cardinalities.').format(pin=pin)) # fmt: skip
         if expected == {'CARD'}:
             raise MocodoError(506, _('{pin}Malformed cardinalities.').format(pin=pin)) # fmt: skip
-        if expected == {'SLASH', 'CARD', 'UNDERSCORE'}:
+        if expected == {'SLASH', 'CARD', 'ID_MARK'}:
             raise MocodoError(506, _('{pin}Malformed cardinalities.').format(pin=pin)) # fmt: skip
         if expected == {'INHERITANCE_NAME', 'BACKSLASH'} or expected == {'BACKSLASH'}:
             raise MocodoError(507, _('{pin}An inheritance name must be "", "X", "T" or "XT" (optionally followed by a single digit).').format(pin=pin)) # fmt: skip
         if t == "COMMA" and expected == {'NL'}:
             raise MocodoError(508, _('{pin}Only two coords are allowed.').format(pin=pin)) # fmt: skip
-        if t == "BREAK" and expected == {'BOX_NAME', 'CARD', 'LBRACKET', 'LEG_ARROW', 'MINUS', 'SLASH', 'SP', 'UNDERSCORE'}:
+        if t == "BREAK" and expected == {'BOX_NAME', 'CARD', 'LBRACKET', 'LEG_ARROW', 'MINUS', 'SLASH', 'SP', 'ID_MARK'}:
             raise MocodoError(509, _('{pin}An association leg cannot be empty.').format(pin=pin)) # fmt: skip
         if expected == {'BOX_NAME', 'NUMBER'}:
             raise MocodoError(510, _('{pin}Expected a number or a box name.').format(pin=pin)) # fmt: skip
@@ -62,7 +62,7 @@ def parse_source(source):
             raise MocodoError(518, _('{pin}Please change the old foreign key syntax ("->") by the new one (">").').format(pin=pin)) # fmt: skip
         if t == "SP" and expected == {'COMMA', 'COLON', 'NL'}:
             raise MocodoError(519, _('{pin}The constraint targets must be comma-separated.').format(pin=pin)) # fmt: skip
-        if expected == {'HASHTAG', 'NL', 'UNDERSCORE', 'ATTR', 'COMMA'}:
+        if expected == {'HASHTAG', 'NL', 'ID_GROUP', 'ID_MARK', 'ATTR', 'COMMA'}:
             raise MocodoError(520, _('{pin}An attribute label cannot start with {v[1]!r}.').format(pin=pin, v=v)) # fmt: skip
         if expected == {'NL', 'ATTR', 'COMMA'}:
             raise MocodoError(520, _('Parsing error:{t}\n{pin}\nAn attribute label cannot start with {v[1]!r}.').format(pin=pin, v=v, t=t)) # fmt: skip
@@ -138,6 +138,8 @@ class ClauseExtractor(Transformer):
     assoc_name_def = lambda self, tree: self._item("name", tree)
     attr = lambda self, tree: self._item("attribute_label", tree)
     box_def_prefix = lambda self, tree: self._item("box_def_prefix", tree)
+    id_mark = lambda self, tree: self._item("id_mark", tree)
+    id_group = lambda self, tree: self._item("id_group", tree)
     
     def start(self, tree):
         return tree
@@ -206,9 +208,6 @@ class ClauseExtractor(Transformer):
             items.append(d)
         return (f"{tree[0][0]}s", items)
 
-    def entity_attr_underscore(self, tree):
-        return ("underscore", True)
-    
     def assoc_leg(self, tree):
         return ("leg", dict(tree))
     

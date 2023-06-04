@@ -57,8 +57,10 @@ assoc_attr : _box_attr?
 
 entity_clause : box_def_prefix? entity_name_def COLON seq{entity_or_table_attr}? NL
 entity_name_def : box_name
-entity_or_table_attr : entity_attr_underscore? (_box_attr? | HASHTAG foreign_reference)
-!entity_attr_underscore : "_"
+entity_or_table_attr : _id_symbols? (_box_attr? | HASHTAG foreign_reference)
+_id_symbols : id_group? id_mark
+ID_GROUP.10: /[1-9](?=_)/
+ID_MARK: "_"
 foreign_reference : this_table_attr MORETHAN that_table MORETHAN that_table_attr
 this_table_attr : attr
 that_table_attr : attr
@@ -96,3 +98,5 @@ inheritance_name: INHERITANCE_NAME
 constraint_name: CONSTRAINT_NAME
 attr: ATTR
 inheritance_arrow: INHERITANCE_ARROW
+id_mark: ID_MARK
+id_group: ID_GROUP

@@ -107,6 +107,7 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
 /\\ Personne => Homme, Femme: sexe
 /1\\ FOO => BAR
 /T\\foo==>foo11
+Étudiant: num, 1_nom, 1_prénom, adresse, 2_mail
 """.splitlines()
 
 line = "-" * 80

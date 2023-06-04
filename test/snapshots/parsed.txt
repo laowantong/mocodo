@@ -353,7 +353,7 @@ GRATTE-CIEL: latitude, _longitude, nom, hauteur, année de construction
           attr	latitude
         , 
         entity_or_table_attr
-          entity_attr_underscore	_
+          id_mark	_
           attr	longitude
         , 
         entity_or_table_attr
@@ -367,7 +367,7 @@ GRATTE-CIEL: latitude, _longitude, nom, hauteur, année de construction
 --------------------------------------------------------------------------------
 [{'name': 'GRATTE-CIEL',
   'attrs': [{'attribute_label': 'latitude', 'rank': 0},
-            {'underscore': True, 'attribute_label': 'longitude', 'rank': 1},
+            {'id_mark': '_', 'attribute_label': 'longitude', 'rank': 1},
             {'attribute_label': 'nom', 'rank': 2},
             {'attribute_label': 'hauteur', 'rank': 3},
             {'attribute_label': 'année de construction', 'rank': 4}],
@@ -638,11 +638,11 @@ Réserver: _Durée
       : 
       seq
         entity_or_table_attr
-          entity_attr_underscore	_
+          id_mark	_
           attr	Durée
 --------------------------------------------------------------------------------
 [{'name': 'Réserver',
-  'attrs': [{'underscore': True, 'attribute_label': 'Durée', 'rank': 0}],
+  'attrs': [{'id_mark': '_', 'attribute_label': 'Durée', 'rank': 0}],
   'type': 'entity',
   'indent': '',
   'source': 'Réserver: _Durée'}]
@@ -1220,7 +1220,7 @@ INCLURE: #Num commande>COMMANDE>Num commande, _#Réf. produit>PRODUIT>Réf. prod
               attr	Num commande
         , 
         entity_or_table_attr
-          entity_attr_underscore	_
+          id_mark	_
           #
           foreign_reference
             this_table_attr
@@ -1241,7 +1241,7 @@ INCLURE: #Num commande>COMMANDE>Num commande, _#Réf. produit>PRODUIT>Réf. prod
              'that_table': 'COMMANDE',
              'that_table_attribute_label': 'Num commande',
              'rank': 0},
-            {'underscore': True,
+            {'id_mark': '_',
              'attribute_label': 'Réf. produit',
              'that_table': 'PRODUIT',
              'that_table_attribute_label': 'Réf. produit',
@@ -1275,7 +1275,7 @@ INCLURE: #Num commande > COMMANDE > Num commande, _#Réf. produit > PRODUIT > R�
               attr	Num commande
         , 
         entity_or_table_attr
-          entity_attr_underscore	_
+          id_mark	_
           #
           foreign_reference
             this_table_attr
@@ -1296,7 +1296,7 @@ INCLURE: #Num commande > COMMANDE > Num commande, _#Réf. produit > PRODUIT > R�
              'that_table': 'COMMANDE',
              'that_table_attribute_label': 'Num commande',
              'rank': 0},
-            {'underscore': True,
+            {'id_mark': '_',
              'attribute_label': 'Réf. produit',
              'that_table': 'PRODUIT',
              'that_table_attribute_label': 'Réf. produit',
@@ -2896,4 +2896,53 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
   'type': 'inheritance',
   'indent': '',
   'source': '/T\\\\foo==>foo11'}]
+
+--------------------------------------------------------------------------------
+Étudiant: num, 1_nom, 1_prénom, adresse, 2_mail
+--------------------------------------------------------------------------------start
+  line
+    entity_clause
+      entity_name_def
+        box_name	Étudiant
+      : 
+      seq
+        entity_or_table_attr
+          attr	num
+        , 
+        entity_or_table_attr
+          id_group	1
+          id_mark	_
+          attr	nom
+        , 
+        entity_or_table_attr
+          id_group	1
+          id_mark	_
+          attr	prénom
+        , 
+        entity_or_table_attr
+          attr	adresse
+        , 
+        entity_or_table_attr
+          id_group	2
+          id_mark	_
+          attr	mail
+--------------------------------------------------------------------------------
+[{'name': 'Étudiant',
+  'attrs': [{'attribute_label': 'num', 'rank': 0},
+            {'id_group': '1',
+             'id_mark': '_',
+             'attribute_label': 'nom',
+             'rank': 1},
+            {'id_group': '1',
+             'id_mark': '_',
+             'attribute_label': 'prénom',
+             'rank': 2},
+            {'attribute_label': 'adresse', 'rank': 3},
+            {'id_group': '2',
+             'id_mark': '_',
+             'attribute_label': 'mail',
+             'rank': 4}],
+  'type': 'entity',
+  'indent': '',
+  'source': 'Étudiant: num, 1_nom, 1_prénom, adresse, 2_mail'}]
 
