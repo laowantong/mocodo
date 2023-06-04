@@ -1,5 +1,4 @@
 import operator
-import re
 from math import hypot, sqrt
 
 from .mocodo_error import MocodoError

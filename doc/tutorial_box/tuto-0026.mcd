@@ -11,7 +11,7 @@ Projet: num. projet, nom projet
 :
 Fournir, 1N Projet, 1N Pièce, 1N Société: quantité
 Société: num. société, raison sociale
-    
+
 Requérir, 1N Projet, 0N Pièce: quantité
 :
 Pièce: réf. pièce, libellé pièce

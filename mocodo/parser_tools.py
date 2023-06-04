@@ -16,6 +16,10 @@ def parse_source(source):
         expected = set(error.expected)
         t = error.token.type
         v = repr(error.token.value)
+        try:
+            previous = error.token_history[0].type
+        except:
+            previous = None
         if expected == {'PERCENT', 'LPAREN', 'BREAK', 'INDENT', 'PHANTOMS', 'BOX_NAME', 'SLASH', 'PLUS', 'NL'}:
             raise MocodoError(501, _('{pin}{v} is not a valid line beginning.').format(pin=pin, v=v)) # fmt: skip
         if expected == {'PHANTOMS', 'PERCENT', 'LPAREN', 'PLUS', 'NL', 'SLASH', 'BOX_NAME'}:
@@ -26,7 +30,7 @@ def parse_source(source):
             raise MocodoError(503, _('{pin}A valid box name starting a line must be followed by a colon or a comma.').format(pin=pin)) # fmt: skip
         if t == "COMMA" and expected == {'SP', 'BOX_NAME'}:
             raise MocodoError(505, _('{pin}Illegal comma after inheritance.').format(pin=pin)) # fmt: skip
-        if t == "CONSTRAINT_RATIO" and expected == {'BOX_NAME', 'CARD', 'LBRACKET', 'LEG_ARROW', 'MINUS', 'SLASH', 'SP', 'UNDERSCORE'}:
+        if t == "NUMBER" and expected == {'BOX_NAME', 'CARD', 'LBRACKET', 'LEG_ARROW', 'MINUS', 'SLASH', 'SP', 'UNDERSCORE'}:
             raise MocodoError(506, _('{pin}Malformed cardinalities.').format(pin=pin)) # fmt: skip
         if expected == {'CARD'}:
             raise MocodoError(506, _('{pin}Malformed cardinalities.').format(pin=pin)) # fmt: skip
@@ -35,11 +39,11 @@ def parse_source(source):
         if expected == {'INHERITANCE_NAME', 'BACKSLASH'} or expected == {'BACKSLASH'}:
             raise MocodoError(507, _('{pin}An inheritance name must be "", "X", "T" or "XT" (optionally followed by a single digit).').format(pin=pin)) # fmt: skip
         if t == "COMMA" and expected == {'NL'}:
-            raise MocodoError(508, _('{pin}Only two ratios are allowed.').format(pin=pin)) # fmt: skip
-        if t == "BREAK" and expected == {'UNDERSCORE', 'LEG_ARROW', 'BOX_NAME', 'SLASH', 'SP', 'LBRACKET', 'MINUS', 'CARD'}:
+            raise MocodoError(508, _('{pin}Only two coords are allowed.').format(pin=pin)) # fmt: skip
+        if t == "BREAK" and expected == {'BOX_NAME', 'CARD', 'LBRACKET', 'LEG_ARROW', 'MINUS', 'SLASH', 'SP', 'UNDERSCORE'}:
             raise MocodoError(509, _('{pin}An association leg cannot be empty.').format(pin=pin)) # fmt: skip
-        if t == "BOX_NAME" and expected == {'NL', 'COMMA'} or expected == {'CONSTRAINT_RATIO'}:
-            raise MocodoError(510, _('{pin}Expected a numeric constraint ratio.').format(pin=pin)) # fmt: skip
+        if expected == {'BOX_NAME', 'NUMBER'}:
+            raise MocodoError(510, _('{pin}Expected a number or a box name.').format(pin=pin)) # fmt: skip
         if expected == {'BOX_NAME'}:
             raise MocodoError(511, _('{pin}Only a box name is possible here.').format(pin=pin)) # fmt: skip
         if expected == {'RBRACKET'}:
@@ -70,6 +74,12 @@ def parse_source(source):
             raise MocodoError(523, _('{pin}Expected an entity name.').format(pin=pin)) # fmt: skip
         if expected == {'COLON', 'COMMA', 'NL'}:
             raise MocodoError(524, _('{pin}A box name cannot contain {v}.').format(pin=pin, v=v)) # fmt: skip
+        if expected == {"COMMA"}:
+            raise MocodoError(525, _('{pin}Expected a comma.').format(pin=pin, v=v)) # fmt: skip)
+        if t == "BOX_NAME" and expected == {'COMMA', 'NL'}:
+            raise MocodoError(526, _('{pin}Malformed number.').format(pin=pin, v=v)) # fmt: skip
+        if previous in ("NUMBER", "BOX_NAME") and expected == {'COMMA', 'NL'}:
+            raise MocodoError(527, _('{pin}More than two coordinates.').format(pin=pin, v=v)) # fmt: skip
         raise MocodoError(599, _('{pin}\nExpected {expected}.').format(line=error.line, column=error.column, pin=pin, expected=expected))
         
     
@@ -223,11 +233,14 @@ class ClauseExtractor(Transformer):
     def that_table_attr(self, tree):
         return ("that_table_attribute_label", tree[0][1])
     
-    def constraint_ratios(self, tree):
-        return ("constraint_ratios", tree)
+    def constraint_coords(self, tree):
+        return ("constraint_coords", [self._constraint_coord(x) for x in tree])
     
-    def constraint_ratio(self, tree):
-        return float(tree[0].value)
+    def _constraint_coord(self, x):
+        try:
+            return float(x)
+        except ValueError:
+            return x.value
 
     def indent(self, tree):
         return {"type": "break", "indent": tree[0].value} # Add a default type for dangling indents

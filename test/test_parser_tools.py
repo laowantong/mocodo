@@ -88,10 +88,10 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
 (II) ..PIÈCE, ->REQUÉRIR, --FOURNIR, PROJET: 12.5, 30
 (III) [bla bla.]: 12.5, 30
 (IV) : 12.5, 30
-(I) [bla bla.] ..PIÈCE, ->REQUÉRIR, --FOURNIR, PROJET: 12.5
-(II) ..PIÈCE, ->REQUÉRIR, --FOURNIR, PROJET: 12.5
-(III) [bla bla.]: 12.5
-(IV) : 12.5
+(I) [bla bla.] ..PIÈCE, ->REQUÉRIR, --FOURNIR, PROJET: FOO, 30
+(I) [bla bla.] ..PIÈCE, ->REQUÉRIR, --FOURNIR, PROJET: 12.5, BAR
+(I) [bla bla.] ..PIÈCE, ->REQUÉRIR, --FOURNIR, PROJET: FOO, BAR
+(IV) : 12.5, 30
 (A) --Lorem, .....Ipsum, -Dolor: 30, 10
 (B) ->Dolor, <-->Sit, -->Amet: 69, 10
 (XX) ->foo, -->foo, -> foo, --> foo
@@ -106,7 +106,7 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
 /\\ Personne <= Homme, Femme: sexe
 /\\ Personne => Homme, Femme: sexe
 /1\\ FOO => BAR
-/T\\foo==>foo11 
+/T\\foo==>foo11
 """.splitlines()
 
 line = "-" * 80
@@ -164,8 +164,9 @@ mocodo_errors = [
     (509, "DIRIGER,    "),
     (510, "(I) : "),
     (510, "(I) ->Foo ..Bar : "),
+    (510, "(I) [bla bla.] ..PIÈCE, ->REQUÉRIR, --FOURNIR, PROJET: 12.5, "),
+    (510, "(I) [bla bla.] ..PIÈCE, ->REQUÉRIR, --FOURNIR, PROJET: FOOBAR, "),
     (510, "(A) : Ipsum, --Lorem: 30, 90"),
-    (510, "(A) ->Ipsum, ->Lorem: 30, 9N"),
     (511, " +"),
     (511, "   +#   "),
     (511, "/T\\ \\.. ,\\foo"),
@@ -197,6 +198,10 @@ mocodo_errors = [
     (523, "FOO: #bar>buzz>"),
     (523, "FOO: biz, #bar>buzz>  "),
     (524, "DIRIGER, 0N EMPLOYÉ > PRODUIT, Quantité"),
+    (525, "(I) [bla bla.] ..PIÈCE, ->REQUÉRIR, --FOURNIR, PROJET: 12.5"),
+    (526, "(A) ->Ipsum, ->Lorem: 30, 9N"),
+    (527, "(I) [bla bla.] ..PIÈCE, ->REQUÉRIR, --FOURNIR, PROJET: 3,14 3,14"),
+    # (527, "(I) [bla bla.] ..PIÈCE, ->REQUÉRIR, --FOURNIR, PROJET: 3,14,"),
 ]
 
 class MocodoErrorTest(unittest.TestCase):
@@ -208,6 +213,7 @@ class MocodoErrorTest(unittest.TestCase):
                 actual_error_number = re.search(r"\d+", str(e)).group()
                 assert actual_error_number == str(n), f"Expected error {n} for:\n{source}"
             except Exception as e:
+                print(source)
                 pin = e.get_context(source)
                 print(f"{line}\n{source}\n{line}\n{pin}")
                 if isinstance(e, UnexpectedToken):

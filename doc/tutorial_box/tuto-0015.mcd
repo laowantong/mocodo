@@ -17,7 +17,7 @@ Inclure: #num commande > Commande > num commande, _#réf. produit > Produit > r�
 :
 
 :
-Client: réf. client, nom, prénom, adresse, #réf. client parrain>Client>réf. client, date parrainage
+Client: réf. client, nom, prénom, adresse, #réf. client parrain > Client > réf. client, date parrainage
 ::
-Commande: num commande, date, montant, #réf. client>Client>réf. client
+Commande: num commande, date, montant, #réf. client > Client > réf. client
 :

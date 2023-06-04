@@ -67,14 +67,14 @@ MORETHAN: SP? ">" SP?
 
 // Constraints
 
-constraint_clause : LPAREN constraint_name? RPAREN (LBRACKET constraint_note RBRACKET)? seq{constraint_target}? (COLON constraint_ratios)? NL
+constraint_clause : LPAREN constraint_name? RPAREN (LBRACKET constraint_note RBRACKET)? seq{constraint_target}? (COLON constraint_coords)? NL
 CONSTRAINT_NAME : /[\w  ]{1,3}/
 constraint_note: note
 constraint_target : constraint_leg? SP* box_name_ref
 box_name_ref: box_name
 CONSTRAINT_LEG : /<?(\.+|-+)>?/
-constraint_ratios : constraint_ratio (COMMA constraint_ratio)?
-CONSTRAINT_RATIO : NUMBER
+constraint_coords : _constraint_coord COMMA _constraint_coord
+_constraint_coord : NUMBER | BOX_NAME
 
 // Inheritance
 
@@ -88,7 +88,6 @@ INHERITANCE_ARROW.-10 : /<==?|<--?|--?>|==?>/
 
 constraint_leg: CONSTRAINT_LEG
 card: CARD
-constraint_ratio: CONSTRAINT_RATIO
 box_name : BOX_NAME
 leg_arrow: LEG_ARROW
 phantoms: PHANTOMS

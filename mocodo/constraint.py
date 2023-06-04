@@ -16,13 +16,11 @@ class Constraint:
         for target in clause.get("constraint_targets", []):
             self.legs.append(ConstraintLeg(self, target.get("constraint_leg", ""), target["box"]))
         if self.legs:
-            self.ratios = clause.get("constraint_ratios", [])
+            self.coords = clause.get("constraint_coords", [])
         else:
-            # When there is neither ratio nor target, the constraint is placed at the top right corner
-            # which is obviously undesirable, forcing the user to specify at least one ratio.
-            self.ratios = clause.get("constraint_ratios", [0, 0])
-        if len(self.ratios) == 1:
-            self.ratios += self.ratios # if only one ratio is given, it is used for both width and height
+            # When there is neither coord nor target, the constraint is placed at the top right corner
+            # which is obviously undesirable, forcing the user to specify at least one coord.
+            self.coords = clause.get("constraint_coords", [0, 0])
         self.kind= "constraint"
 
     def register_boxes(self, boxes):
@@ -39,10 +37,17 @@ class Constraint:
         self.w = self.h = style["constraint_margin"] * 2 + size
 
     def register_center(self, geo):
-        if self.ratios:
-            # The center of a constraint is at a certain ratio of the width and height of the page
-            self.cx = self.ratios[0] * geo["width"] // 100
-            self.cy = self.ratios[1] * geo["height"] // 100
+        if self.coords:
+            # The center of a constraint is either at a certain ratio of the width and height of the
+            # page, or aligned with the center of a box.
+            if isinstance(self.coords[0], float):
+                self.cx = self.coords[0] * geo["width"] // 100
+            else:
+                self.cx = geo["cx"][self.coords[0]]
+            if isinstance(self.coords[1], float):
+                self.cy = self.coords[1] * geo["height"] // 100
+            else:
+                self.cy = geo["cy"][self.coords[1]]
         else:
             # The center of a constraint is the barycenter of the centers of its boxes
             self.cx = sum(geo["cx"][leg.box_name] for leg in self.legs) / len(self.legs)

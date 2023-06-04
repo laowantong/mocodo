@@ -128,6 +128,12 @@ class Mcd:
                     else:
                         raise MocodoError(40, _('Constraint "{constraint}" linked to an unknown entity or association "{box}"!').format(constraint=constraint.name, box=leg.box_name)) # fmt: skip
                     leg.register_box(box)
+                for box_name in constraint.coords:
+                    if isinstance(box_name, float):
+                        continue
+                    if box_name in self.associations or box_name in self.entities:
+                        continue
+                    raise MocodoError(600, _('Constraint "{constraint}" aligned with an unknown entity or association "{box}"!').format(constraint=constraint.name, box=box_name)) # fmt: skip
         
         def add_attributes():
             legs_to_strengthen = dict((entity_name, []) for entity_name in self.entities)

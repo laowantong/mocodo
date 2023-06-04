@@ -4,7 +4,10 @@
 %                                                                               %
 %  Ajoutez à votre MCD diverses contraintes sous forme de lettres entourées et  %
 %  liées aux boîtes par des traits fléchés ou non, pleins ou pointillés, ou     %
-%  même invisibles (pour jouer sur la position du barycentre).                  %
+%  même invisibles.                                                             %
+%                                                                               %
+%  NB : par défaut, le centre de la contrainte coïncide avec le barycentre des  %
+%  boîtes qu'elle met en jeu.                                                   %
 %                                                                               %
 %  Source du MCD : Merise, deuxième génération (Nanci et Espinasse, 2001).      %
 %                                                                               %

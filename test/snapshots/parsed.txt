@@ -2082,10 +2082,10 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
           box_name_ref
             box_name	PROJET
       : 
-      constraint_ratios
-        constraint_ratio	12.5
+      constraint_coords
+        12.5
         , 
-        constraint_ratio	30
+        30
 --------------------------------------------------------------------------------
 [{'name': 'I',
   'constraint_note': 'bla bla.',
@@ -2093,7 +2093,7 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
                          {'constraint_leg': '->', 'box': 'REQUÉRIR', 'rank': 1},
                          {'constraint_leg': '--', 'box': 'FOURNIR', 'rank': 2},
                          {'box': 'PROJET', 'rank': 3}],
-  'constraint_ratios': [12.5, 30.0],
+  'constraint_coords': [12.5, 30.0],
   'type': 'constraint',
   'indent': '',
   'source': '(I) [bla bla.] ..PIÈCE, ->REQUÉRIR, --FOURNIR, PROJET: 12.5, 30'}]
@@ -2126,17 +2126,17 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
           box_name_ref
             box_name	PROJET
       : 
-      constraint_ratios
-        constraint_ratio	12.5
+      constraint_coords
+        12.5
         , 
-        constraint_ratio	30
+        30
 --------------------------------------------------------------------------------
 [{'name': 'II',
   'constraint_targets': [{'constraint_leg': '..', 'box': 'PIÈCE', 'rank': 0},
                          {'constraint_leg': '->', 'box': 'REQUÉRIR', 'rank': 1},
                          {'constraint_leg': '--', 'box': 'FOURNIR', 'rank': 2},
                          {'box': 'PROJET', 'rank': 3}],
-  'constraint_ratios': [12.5, 30.0],
+  'constraint_coords': [12.5, 30.0],
   'type': 'constraint',
   'indent': '',
   'source': '(II) ..PIÈCE, ->REQUÉRIR, --FOURNIR, PROJET: 12.5, 30'}]
@@ -2153,14 +2153,14 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
       constraint_note	bla bla.
       ]
       : 
-      constraint_ratios
-        constraint_ratio	12.5
+      constraint_coords
+        12.5
         , 
-        constraint_ratio	30
+        30
 --------------------------------------------------------------------------------
 [{'name': 'III',
   'constraint_note': 'bla bla.',
-  'constraint_ratios': [12.5, 30.0],
+  'constraint_coords': [12.5, 30.0],
   'type': 'constraint',
   'indent': '',
   'source': '(III) [bla bla.]: 12.5, 30'}]
@@ -2174,19 +2174,19 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
       constraint_name	IV
       ) 
       : 
-      constraint_ratios
-        constraint_ratio	12.5
+      constraint_coords
+        12.5
         , 
-        constraint_ratio	30
+        30
 --------------------------------------------------------------------------------
 [{'name': 'IV',
-  'constraint_ratios': [12.5, 30.0],
+  'constraint_coords': [12.5, 30.0],
   'type': 'constraint',
   'indent': '',
   'source': '(IV) : 12.5, 30'}]
 
 --------------------------------------------------------------------------------
-(I) [bla bla.] ..PIÈCE, ->REQUÉRIR, --FOURNIR, PROJET: 12.5
+(I) [bla bla.] ..PIÈCE, ->REQUÉRIR, --FOURNIR, PROJET: FOO, 30
 --------------------------------------------------------------------------------start
   line
     constraint_clause
@@ -2216,8 +2216,10 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
           box_name_ref
             box_name	PROJET
       : 
-      constraint_ratios
-        constraint_ratio	12.5
+      constraint_coords
+        FOO
+        , 
+        30
 --------------------------------------------------------------------------------
 [{'name': 'I',
   'constraint_note': 'bla bla.',
@@ -2225,19 +2227,22 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
                          {'constraint_leg': '->', 'box': 'REQUÉRIR', 'rank': 1},
                          {'constraint_leg': '--', 'box': 'FOURNIR', 'rank': 2},
                          {'box': 'PROJET', 'rank': 3}],
-  'constraint_ratios': [12.5],
+  'constraint_coords': ['FOO', 30.0],
   'type': 'constraint',
   'indent': '',
-  'source': '(I) [bla bla.] ..PIÈCE, ->REQUÉRIR, --FOURNIR, PROJET: 12.5'}]
+  'source': '(I) [bla bla.] ..PIÈCE, ->REQUÉRIR, --FOURNIR, PROJET: FOO, 30'}]
 
 --------------------------------------------------------------------------------
-(II) ..PIÈCE, ->REQUÉRIR, --FOURNIR, PROJET: 12.5
+(I) [bla bla.] ..PIÈCE, ->REQUÉRIR, --FOURNIR, PROJET: 12.5, BAR
 --------------------------------------------------------------------------------start
   line
     constraint_clause
       (
-      constraint_name	II
+      constraint_name	I
       ) 
+      [
+      constraint_note	bla bla.
+      ] 
       seq
         constraint_target
           constraint_leg	..
@@ -2258,43 +2263,71 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
           box_name_ref
             box_name	PROJET
       : 
-      constraint_ratios
-        constraint_ratio	12.5
+      constraint_coords
+        12.5
+        , 
+        BAR
 --------------------------------------------------------------------------------
-[{'name': 'II',
+[{'name': 'I',
+  'constraint_note': 'bla bla.',
   'constraint_targets': [{'constraint_leg': '..', 'box': 'PIÈCE', 'rank': 0},
                          {'constraint_leg': '->', 'box': 'REQUÉRIR', 'rank': 1},
                          {'constraint_leg': '--', 'box': 'FOURNIR', 'rank': 2},
                          {'box': 'PROJET', 'rank': 3}],
-  'constraint_ratios': [12.5],
+  'constraint_coords': [12.5, 'BAR'],
   'type': 'constraint',
   'indent': '',
-  'source': '(II) ..PIÈCE, ->REQUÉRIR, --FOURNIR, PROJET: 12.5'}]
+  'source': '(I) [bla bla.] ..PIÈCE, ->REQUÉRIR, --FOURNIR, PROJET: 12.5, BAR'}]
 
 --------------------------------------------------------------------------------
-(III) [bla bla.]: 12.5
+(I) [bla bla.] ..PIÈCE, ->REQUÉRIR, --FOURNIR, PROJET: FOO, BAR
 --------------------------------------------------------------------------------start
   line
     constraint_clause
       (
-      constraint_name	III
+      constraint_name	I
       ) 
       [
       constraint_note	bla bla.
-      ]
+      ] 
+      seq
+        constraint_target
+          constraint_leg	..
+          box_name_ref
+            box_name	PIÈCE
+        , 
+        constraint_target
+          constraint_leg	->
+          box_name_ref
+            box_name	REQUÉRIR
+        , 
+        constraint_target
+          constraint_leg	--
+          box_name_ref
+            box_name	FOURNIR
+        , 
+        constraint_target
+          box_name_ref
+            box_name	PROJET
       : 
-      constraint_ratios
-        constraint_ratio	12.5
+      constraint_coords
+        FOO
+        , 
+        BAR
 --------------------------------------------------------------------------------
-[{'name': 'III',
+[{'name': 'I',
   'constraint_note': 'bla bla.',
-  'constraint_ratios': [12.5],
+  'constraint_targets': [{'constraint_leg': '..', 'box': 'PIÈCE', 'rank': 0},
+                         {'constraint_leg': '->', 'box': 'REQUÉRIR', 'rank': 1},
+                         {'constraint_leg': '--', 'box': 'FOURNIR', 'rank': 2},
+                         {'box': 'PROJET', 'rank': 3}],
+  'constraint_coords': ['FOO', 'BAR'],
   'type': 'constraint',
   'indent': '',
-  'source': '(III) [bla bla.]: 12.5'}]
+  'source': '(I) [bla bla.] ..PIÈCE, ->REQUÉRIR, --FOURNIR, PROJET: FOO, BAR'}]
 
 --------------------------------------------------------------------------------
-(IV) : 12.5
+(IV) : 12.5, 30
 --------------------------------------------------------------------------------start
   line
     constraint_clause
@@ -2302,14 +2335,16 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
       constraint_name	IV
       ) 
       : 
-      constraint_ratios
-        constraint_ratio	12.5
+      constraint_coords
+        12.5
+        , 
+        30
 --------------------------------------------------------------------------------
 [{'name': 'IV',
-  'constraint_ratios': [12.5],
+  'constraint_coords': [12.5, 30.0],
   'type': 'constraint',
   'indent': '',
-  'source': '(IV) : 12.5'}]
+  'source': '(IV) : 12.5, 30'}]
 
 --------------------------------------------------------------------------------
 (A) --Lorem, .....Ipsum, -Dolor: 30, 10
@@ -2335,16 +2370,16 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
           box_name_ref
             box_name	Dolor
       : 
-      constraint_ratios
-        constraint_ratio	30
+      constraint_coords
+        30
         , 
-        constraint_ratio	10
+        10
 --------------------------------------------------------------------------------
 [{'name': 'A',
   'constraint_targets': [{'constraint_leg': '--', 'box': 'Lorem', 'rank': 0},
                          {'constraint_leg': '.....', 'box': 'Ipsum', 'rank': 1},
                          {'constraint_leg': '-', 'box': 'Dolor', 'rank': 2}],
-  'constraint_ratios': [30.0, 10.0],
+  'constraint_coords': [30.0, 10.0],
   'type': 'constraint',
   'indent': '',
   'source': '(A) --Lorem, .....Ipsum, -Dolor: 30, 10'}]
@@ -2373,16 +2408,16 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
           box_name_ref
             box_name	Amet
       : 
-      constraint_ratios
-        constraint_ratio	69
+      constraint_coords
+        69
         , 
-        constraint_ratio	10
+        10
 --------------------------------------------------------------------------------
 [{'name': 'B',
   'constraint_targets': [{'constraint_leg': '->', 'box': 'Dolor', 'rank': 0},
                          {'constraint_leg': '<-->', 'box': 'Sit', 'rank': 1},
                          {'constraint_leg': '-->', 'box': 'Amet', 'rank': 2}],
-  'constraint_ratios': [69.0, 10.0],
+  'constraint_coords': [69.0, 10.0],
   'type': 'constraint',
   'indent': '',
   'source': '(B) ->Dolor, <-->Sit, -->Amet: 69, 10'}]
@@ -2839,7 +2874,7 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
   'source': '/1\\\\ FOO => BAR'}]
 
 --------------------------------------------------------------------------------
-/T\\foo==>foo11 
+/T\\foo==>foo11
 --------------------------------------------------------------------------------start
   line
     inheritance_clause
@@ -2860,5 +2895,5 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
   'legs': [{'entity': 'foo', 'rank': -1}, {'entity': 'foo11', 'rank': 0}],
   'type': 'inheritance',
   'indent': '',
-  'source': '/T\\\\foo==>foo11 '}]
+  'source': '/T\\\\foo==>foo11'}]
 
