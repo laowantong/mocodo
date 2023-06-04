@@ -27,6 +27,8 @@ class Entity:
             elif attr.get("id_mark") == "_":
                 if attr["rank"] == 0:
                     self.attributes.append(SimpleEntityAttribute(attr))
+                elif attr.get("id_group"):
+                    self.attributes.append(AlternateIdentifierAttribute(attr))
                 else:
                     self.attributes.append(IdentifierAttribute(attr))
             elif attr["rank"] == 0:

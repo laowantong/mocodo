@@ -277,8 +277,8 @@ class Relations:
                     "outer_source": None,
                     "association_name": None,
                     "leg_note": None,
-                    "primary": attribute.get_category() in ("strong", "weak"),
-                    "nature": "primary_key" if attribute.get_category() in ("strong", "weak") else "normal_attribute"
+                    "primary": attribute.kind in ("strong", "weak"),
+                    "nature": "primary_key" if attribute.kind in ("strong", "weak") else "normal_attribute"
                 })
 
     def strengthen_weak_identifiers(self):
