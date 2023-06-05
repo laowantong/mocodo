@@ -39,6 +39,7 @@
     }
   ],
   "compose_primary_key": "`{label_lowercase}` {data_type},\nADD_PRIMARY_KEY `{label_lowercase}`",
+  "compose_alternate_key": "`{label_lowercase}` {data_type},\nADD_CONSTRAINT `{this_relation_name_lowercase}_u{group}` UNIQUE (`{label_lowercase}`)",
   "compose_normal_attribute": "`{label_lowercase}` {data_type}",
   "compose_foreign_key": "`{label_lowercase}` {data_type},\nADD_FOREIGN_KEY (`{label_lowercase}`) REFERENCES `{outer_source_uppercase}` (`{raw_label_lowercase}`)",
   "compose_primary_foreign_key": "`{label_lowercase}` {data_type},\nADD_PRIMARY_KEY `{label_lowercase}`,\nADD_FOREIGN_KEY (`{label_lowercase}`) REFERENCES `{outer_source_uppercase}` (`{raw_label_lowercase}`)",
@@ -91,13 +92,27 @@
     },
     {
       "order": 800,
-      "comment": "Prefix any FOREIGN KEY with a minus sign = mark it as unprotected.",
+      "comment": "Prefix any FOREIGN KEY with a minus sign (mark it as unprotected).",
       "search": "(?m)^  FOREIGN KEY",
       "replace": "- FOREIGN KEY"
+    },
+    {
+      "order": 900,
+      "comment": "Move the constraints to the end of the table.",
+      "search": "(?sm)ADD_CONSTRAINT ([^\n]+)\n(.+)^\\)",
+      "replace": "\\2  CONSTRAINT \\1\n)",
+      "iterated": true
+    },
+    {
+      "order": 1000,
+      "comment": "Replace any '  CONSTRAINT `foobar_un` UNIQUE (`biz`) \n CONSTRAINT `foobar_un` UNIQUE (`buz`)' with '- CONSTRAINT `foobar_un` UNIQUE (`biz`, `buz`)'",
+      "search": "  CONSTRAINT `(.+?_u\\d+?)` UNIQUE \\((.+?)\\),\n((?:.+\n)*?)  CONSTRAINT `\\1` UNIQUE \\((.+?)\\),\n",
+      "replace": "  CONSTRAINT `\\1` UNIQUE (\\2, \\4),\n\\3",
+      "iterated": true
     }
   ],
   "relation_separator": "\n\n",
-  "compose_relational_schema": "CREATE DATABASE IF NOT EXISTS `{title_uppercase}` DEFAULT CHARACTER SET UTF8MB4 COLLATE utf8_general_ci;\nUSE `{title_uppercase}`;\n\n{relations}\n",
+  "compose_relational_schema": "CREATE DATABASE IF NOT EXISTS `{title_uppercase}`;\nUSE `{title_uppercase}`;\n\n{relations}\n",
   "transform_relational_schema": [
     {
       "order": 100,
@@ -108,20 +123,20 @@
     },
     {
       "order": 200,
-      "comment": "Suppress the minus sign before any FOREIGN KEY line which references an actual PRIMARY KEY declared after this line = protect it.",
+      "comment": "Suppress the minus sign before any FOREIGN KEY line which references an actual PRIMARY KEY declared after this line (protect it).",
       "search": "(?m)^-( FOREIGN KEY .+ REFERENCES ([^\\(]+?) (.+),\n(?:.*\n)*CREATE TABLE \\2 \\(\n(?:.+\n)*^  PRIMARY KEY \\3,\n)",
       "replace": " \\1",
       "iterated": true
     },
     {
       "order": 300,
-      "comment": "Suppress any unprotected line = still starting with a minus sign.",
+      "comment": "Suppress any unprotected line (still starting with a minus sign).",
       "search": "(?m)^-.+\n",
       "replace": ""
     },
     {
       "order": 400,
-      "comment": "Move all foreign keys constraints at the end of the document",
+      "comment": "Move all foreign keys constraints to the end of the document",
       "search": "(?sm)(CREATE TABLE ([^\n]+) \\(\n(?:[^\n]+\n)*)  (FOREIGN KEY[^\n]+),\n(.*)",
       "replace": "\\1\\4\nALTER TABLE \\2 ADD \\3;",
       "iterated": true
@@ -131,6 +146,13 @@
       "comment": "Comment out foreign keys referencing commented tables.",
       "search": "(?sm)(/\\*\nCREATE TABLE (.+?) \\(\n.*)(^ALTER TABLE [^\n]+ REFERENCES \\2)",
       "replace": "\\1-- \\3",
+      "iterated": true
+    },
+    {
+      "order": 550,
+      "comment": "Move all constraints to the end of the document.",
+      "search": "(?sm)(CREATE TABLE ([^\n]+) \\(\n(?:[^\n]+\n)*?)  (CONSTRAINT[^\n]+),\n(.*)",
+      "replace": "\\1\\4\nALTER TABLE \\2 ADD \\3;",
       "iterated": true
     },
     {

@@ -1045,7 +1045,7 @@ ANIMAL: #code espèce > ESPÈCE > code espèce, _nom, sexe, date naissance, date
 ### `mysql.json`
 
 ```sql
-CREATE DATABASE IF NOT EXISTS `UNTITLED` DEFAULT CHARACTER SET UTF8MB4 COLLATE utf8_general_ci;
+CREATE DATABASE IF NOT EXISTS `UNTITLED`;
 USE `UNTITLED`;
 
 CREATE TABLE `ANIMAL` (

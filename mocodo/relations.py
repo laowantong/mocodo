@@ -105,6 +105,7 @@ class Relations:
               "transform_relational_schema": [],
             }
             result.update(template)
+            result.setdefault("compose_alternate_key", result["compose_normal_attribute"])
             result.setdefault("compose_association_attribute", result["compose_normal_attribute"])
             result.setdefault("compose_deleted_child_attribute", result["compose_normal_attribute"])
             result.setdefault("compose_deleted_child_discriminant_", result["compose_normal_attribute"])
@@ -270,6 +271,13 @@ class Relations:
                 "columns": []
             }
             for attribute in entity.attributes:
+                nature = "normal_attribute"
+                group = None
+                if attribute.kind in ("strong", "weak"):
+                    nature = "primary_key"
+                elif attribute.kind == "alternate_identifier":
+                    nature = "alternate_key"
+                    group = attribute.group
                 self.relations[name]["columns"].append({
                     "attribute": attribute.label,
                     "data_type": attribute.data_type,
@@ -278,7 +286,8 @@ class Relations:
                     "association_name": None,
                     "leg_note": None,
                     "primary": attribute.kind in ("strong", "weak"),
-                    "nature": "primary_key" if attribute.kind in ("strong", "weak") else "normal_attribute"
+                    "nature": nature,
+                    "group": group,
                 })
 
     def strengthen_weak_identifiers(self):

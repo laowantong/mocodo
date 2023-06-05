@@ -39,6 +39,7 @@
     }
   ],
   "compose_primary_key": "\"{label_lowercase}\" {data_type},\nADD_PRIMARY_KEY \"{label_lowercase}\"",
+  "compose_alternate_key": "\"{label_lowercase}\" {data_type},\nADD_CONSTRAINT \"{this_relation_name_lowercase}_u{group}\" ON \"{this_relation_name_uppercase}\" (\"{label_lowercase}\")",
   "compose_normal_attribute": "\"{label_lowercase}\" {data_type}",
   "compose_foreign_key": "\"{label_lowercase}\" {data_type},\nADD_FOREIGN_KEY (\"{label_lowercase}\") REFERENCES \"{outer_source_uppercase}\" (\"{raw_label_lowercase}\")",
   "compose_primary_foreign_key": "\"{label_lowercase}\" {data_type},\nADD_PRIMARY_KEY \"{label_lowercase}\",\nADD_FOREIGN_KEY (\"{label_lowercase}\") REFERENCES \"{outer_source_uppercase}\" (\"{raw_label_lowercase}\")",
@@ -97,9 +98,23 @@
     },
     {
       "order": 900,
-      "comment": "Prefix any FOREIGN KEY with a minus sign = mark it as unprotected.",
+      "comment": "Prefix any FOREIGN KEY with a minus sign (mark it as unprotected).",
       "search": "(?m)^  FOREIGN KEY",
       "replace": "- FOREIGN KEY"
+    },
+    {
+      "order": 1000,
+      "comment": "Move the constraints to the end of the table.",
+      "search": "(?sm)ADD_CONSTRAINT ([^\n]+)\n(.+)^\\)",
+      "replace": "\\2  CREATE UNIQUE INDEX \\1\n)",
+      "iterated": true
+    },
+    {
+      "order": 1100,
+      "comment": "Replace any '  CREATE UNIQUE INDEX \"foobar_un\" ON \"FOOBAR\" (\"biz\") \n CREATE UNIQUE INDEX \"foobar_un\" ON \"FOOBAR\" (\"bUz\")' with '  CREATE UNIQUE INDEX \"foobar_un\" ON \"FOOBAR\" (\"biz\", \"bUz\")'",
+      "search": "(?sm)^  CREATE UNIQUE INDEX \"(.+?)\" ON \"(.+?)\" \\((.+?)\\),\n((?:.+\n)*?)  CREATE UNIQUE INDEX \"\\1\" ON \"\\2\" \\((.+?)\\),\n",
+      "replace": "  CREATE UNIQUE INDEX \"\\1\" ON \"\\2\" (\\3, \\5)\n\\4",
+      "iterated": true
     }
   ],
   "relation_separator": "\n\n",
@@ -114,14 +129,14 @@
     },
     {
       "order": 200,
-      "comment": "Suppress the minus sign before any FOREIGN KEY line which references an actual PRIMARY KEY declared after this line = protect it.",
+      "comment": "Suppress the minus sign before any FOREIGN KEY line which references an actual PRIMARY KEY declared after this line (protect it).",
       "search": "(?m)^-( FOREIGN KEY .+ REFERENCES ([^\\(]+?) (.+),\n(?:.*\n)*CREATE TABLE \\2 \\(\n(?:.+\n)*^  PRIMARY KEY \\3,\n)",
       "replace": " \\1",
       "iterated": true
     },
     {
       "order": 300,
-      "comment": "Suppress any unprotected line = still starting with a minus sign.",
+      "comment": "Suppress any unprotected line (still starting with a minus sign).",
       "search": "(?m)^-.+\n",
       "replace": ""
     },
@@ -138,6 +153,18 @@
       "search": "(?m)^  (FOREIGN KEY .+ REFERENCES (.+?) \\(.+\n(?:.*\n)*/\\*\nCREATE TABLE \\2 \\()",
       "replace": "  -- \\1",
       "iterated": true
+    },
+    {
+      "order": 550,
+      "comment": "Move all constraints to the end of the document.",
+      "search": "(?sm)(CREATE TABLE .+?)  (CREATE UNIQUE INDEX [^\n]+?),?\n(.*)",
+      "replace": "\\1\\3\n\\2;",
+      "iterated": true
+    },
+    {
+      "order": 570,
+      "search": "(?sm)^(CREATE UNIQUE INDEX .+)",
+      "replace": "\n\\1"
     },
     {
       "order": 600,

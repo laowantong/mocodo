@@ -1,3 +1,56 @@
 {
-  "extension": ".txt"
+  "extension": ".txt",
+  "compose_alternate_key": "{label}<unicodify>{group}</unicodify>",
+  "transform_relational_schema": [
+    {
+      "order": 0,
+      "search": "<unicodify>(.*?)0(.*?)</unicodify>",
+      "replace": "\\1⁰\\2"
+    },
+    {
+      "order": 1,
+      "search": "<unicodify>(.*?)1(.*?)</unicodify>",
+      "replace": "\\1¹\\2"
+    },
+    {
+      "order": 2,
+      "search": "<unicodify>(.*?)2(.*?)</unicodify>",
+      "replace": "\\1²\\2"
+    },
+    {
+      "order": 3,
+      "search": "<unicodify>(.*?)3(.*?)</unicodify>",
+      "replace": "\\1³\\2"
+    },
+    {
+      "order": 4,
+      "search": "<unicodify>(.*?)4(.*?)</unicodify>",
+      "replace": "\\1⁴\\2"
+    },
+    {
+      "order": 5,
+      "search": "<unicodify>(.*?)5(.*?)</unicodify>",
+      "replace": "\\1⁵\\2"
+    },
+    {
+      "order": 6,
+      "search": "<unicodify>(.*?)6(.*?)</unicodify>",
+      "replace": "\\1⁶\\2"
+    },
+    {
+      "order": 7,
+      "search": "<unicodify>(.*?)7(.*?)</unicodify>",
+      "replace": "\\1⁷\\2"
+    },
+    {
+      "order": 8,
+      "search": "<unicodify>(.*?)8(.*?)</unicodify>",
+      "replace": "\\1⁸\\2"
+    },
+    {
+      "order": 9,
+      "search": "<unicodify>(.*?)9(.*?)</unicodify>",
+      "replace": "\\1⁹\\2"
+    }
+  ]
 }

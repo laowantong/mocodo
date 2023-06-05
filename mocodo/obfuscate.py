@@ -77,12 +77,7 @@ class Obfuscator(Transformer):
             try:
                 new_name = next(self.random_word)
             except StopIteration:
-                raise MocodoError(
-                    12,
-                    _(
-                        'Obfuscation failed. Not enough substitution words in "{filename}". You may decrease the `obfuscation_min_distance` option values.'
-                    ).format(filename=self.lorem_path),
-                )
+                raise MocodoError(12, _('Obfuscation failed. Not enough substitution words in "{filename}". You may decrease the `obfuscation_min_distance` option values.').format(filename=self.lorem_path)) # fmt: skip
             if name.isupper():
                 new_name = new_name.upper()
             elif name == name.lower():

@@ -36,6 +36,7 @@
     }
   ],
   "compose_primary_key": "<span class='primary'>{label}</span>",
+  "compose_alternate_key": "<span class='normal'>{label}<sup>u{group}</sup></span>",
   "compose_normal_attribute": "<span class='normal'>{label}</span>",
   "compose_foreign_key": "<span class='foreign'>#{label}</span>",
   "compose_primary_foreign_key": "<span class='foreign primary'>#{label}</span>",

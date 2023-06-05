@@ -2,6 +2,7 @@
   "extension": ".mld",
   "highlight": "plain",
   "compose_primary_key": "_{label}",
+  "compose_alternate_key": "{group}_{label}",
   "compose_foreign_key": "#{label} > {outer_source} > {raw_label}",
   "compose_outer_attribute": "{label}",
   "compose_primary_foreign_key": "_#{label} > {outer_source} > {raw_label}",

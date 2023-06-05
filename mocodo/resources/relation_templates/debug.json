@@ -19,6 +19,7 @@
   "compose_parent_primary_key": "| {this_relation_name} | {label} | `parent_primary_key` | {adjacent_source} | {outer_source} |\n",
   "compose_primary_foreign_key": "| {this_relation_name} | {label} | `primary_foreign_key` | {adjacent_source} | {outer_source} |\n",
   "compose_primary_key": "| {this_relation_name} | {label} | `primary_key` | {adjacent_source} | {outer_source} |\n",
+  "compose_alternate_key": "| {this_relation_name} | {label} | `alternate_key` | {adjacent_source} | {outer_source} |\n",
   "compose_strengthening_primary_key": "| {this_relation_name} | {label} | `strengthening_primary_key` | {adjacent_source} | {outer_source} |\n",
   "compose_unsourced_foreign_key": "| {this_relation_name} | {label} | `unsourced_foreign_key` | {adjacent_source} | {outer_source} |\n",
   "compose_unsourced_primary_foreign_key": "| {this_relation_name} | {label} | `unsourced_primary_foreign_key` | {adjacent_source} | {outer_source} |\n",
