@@ -1283,20 +1283,6 @@ PEUT COHABITER AVEC (_#code espèce_, _#code espèce commensale_, nb. max. comme
 PEUT VIVRE DANS (_#code espèce_, _num. enclos_, nb. max. congénères)
 ```
 
-### `txt2tags.json`
-
-```plain
-Untitled
-Généré par Mocodo
-%%mtime(%c)
-%!encoding: utf8
-- **ANIMAL** (__#code espèce__, __nom__, sexe, date naissance, date décès, #code espèce mère, #nom mère, type alimentation, CARNIVORE, quantité viande, HERBIVORE, plante préférée)
-- **ESPÈCE** (__code espèce__, libellé)
-- **OCCUPE** (__#code espèce__, __#nom__, __num. enclos__, date début, date fin)
-- **PEUT COHABITER AVEC** (__#code espèce__, __#code espèce commensale__, nb. max. commensaux)
-- **PEUT VIVRE DANS** (__#code espèce__, __num. enclos__, nb. max. congénères)
-```
-
 ## Inheritance stress test
 
 ### External associations

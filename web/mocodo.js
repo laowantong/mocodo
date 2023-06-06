@@ -66,11 +66,6 @@ var relation_formats = {
   //   "highlighting": "markdown",
   //   "name": "Markdown avec explications",
   // },
-  // "txt2tags": {
-  //   "default": false,
-  //   "highlighting": "none",
-  //   "name": "txt2tags",
-  // },
   "mysql": {
     "default": false,
     "highlighting": "sql",
