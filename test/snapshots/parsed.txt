@@ -2910,12 +2910,12 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
           attr	num
         , 
         entity_or_table_attr
-          id_group	1
+          id_groups	1
           id_mark	_
           attr	nom
         , 
         entity_or_table_attr
-          id_group	1
+          id_groups	1
           id_mark	_
           attr	prénom
         , 
@@ -2923,26 +2923,161 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
           attr	adresse
         , 
         entity_or_table_attr
-          id_group	2
+          id_groups	2
           id_mark	_
           attr	mail
 --------------------------------------------------------------------------------
 [{'name': 'Étudiant',
   'attrs': [{'attribute_label': 'num', 'rank': 0},
-            {'id_group': '1',
+            {'id_groups': '1',
              'id_mark': '_',
              'attribute_label': 'nom',
              'rank': 1},
-            {'id_group': '1',
+            {'id_groups': '1',
              'id_mark': '_',
              'attribute_label': 'prénom',
              'rank': 2},
             {'attribute_label': 'adresse', 'rank': 3},
-            {'id_group': '2',
+            {'id_groups': '2',
              'id_mark': '_',
              'attribute_label': 'mail',
              'rank': 4}],
   'type': 'entity',
   'indent': '',
   'source': 'Étudiant: num, 1_nom, 1_prénom, adresse, 2_mail'}]
+
+--------------------------------------------------------------------------------
+Étudiant: 0_num, 1_nom, 1_prénom, adresse, 2_mail
+--------------------------------------------------------------------------------start
+  line
+    entity_clause
+      entity_name_def
+        box_name	Étudiant
+      : 
+      seq
+        entity_or_table_attr
+          id_groups	0
+          id_mark	_
+          attr	num
+        , 
+        entity_or_table_attr
+          id_groups	1
+          id_mark	_
+          attr	nom
+        , 
+        entity_or_table_attr
+          id_groups	1
+          id_mark	_
+          attr	prénom
+        , 
+        entity_or_table_attr
+          attr	adresse
+        , 
+        entity_or_table_attr
+          id_groups	2
+          id_mark	_
+          attr	mail
+--------------------------------------------------------------------------------
+[{'name': 'Étudiant',
+  'attrs': [{'id_groups': '0',
+             'id_mark': '_',
+             'attribute_label': 'num',
+             'rank': 0},
+            {'id_groups': '1',
+             'id_mark': '_',
+             'attribute_label': 'nom',
+             'rank': 1},
+            {'id_groups': '1',
+             'id_mark': '_',
+             'attribute_label': 'prénom',
+             'rank': 2},
+            {'attribute_label': 'adresse', 'rank': 3},
+            {'id_groups': '2',
+             'id_mark': '_',
+             'attribute_label': 'mail',
+             'rank': 4}],
+  'type': 'entity',
+  'indent': '',
+  'source': 'Étudiant: 0_num, 1_nom, 1_prénom, adresse, 2_mail'}]
+
+--------------------------------------------------------------------------------
+Position: 0_latitude, 0_longitude, altitude
+--------------------------------------------------------------------------------start
+  line
+    entity_clause
+      entity_name_def
+        box_name	Position
+      : 
+      seq
+        entity_or_table_attr
+          id_groups	0
+          id_mark	_
+          attr	latitude
+        , 
+        entity_or_table_attr
+          id_groups	0
+          id_mark	_
+          attr	longitude
+        , 
+        entity_or_table_attr
+          attr	altitude
+--------------------------------------------------------------------------------
+[{'name': 'Position',
+  'attrs': [{'id_groups': '0',
+             'id_mark': '_',
+             'attribute_label': 'latitude',
+             'rank': 0},
+            {'id_groups': '0',
+             'id_mark': '_',
+             'attribute_label': 'longitude',
+             'rank': 1},
+            {'attribute_label': 'altitude', 'rank': 2}],
+  'type': 'entity',
+  'indent': '',
+  'source': 'Position: 0_latitude, 0_longitude, altitude'}]
+
+--------------------------------------------------------------------------------
+Foo: bar, 1_baz, 21_qux, 123_quux
+--------------------------------------------------------------------------------start
+  line
+    entity_clause
+      entity_name_def
+        box_name	Foo
+      : 
+      seq
+        entity_or_table_attr
+          attr	bar
+        , 
+        entity_or_table_attr
+          id_groups	1
+          id_mark	_
+          attr	baz
+        , 
+        entity_or_table_attr
+          id_groups	21
+          id_mark	_
+          attr	qux
+        , 
+        entity_or_table_attr
+          id_groups	123
+          id_mark	_
+          attr	quux
+--------------------------------------------------------------------------------
+[{'name': 'Foo',
+  'attrs': [{'attribute_label': 'bar', 'rank': 0},
+            {'id_groups': '1',
+             'id_mark': '_',
+             'attribute_label': 'baz',
+             'rank': 1},
+            {'id_groups': '12',
+             'id_mark': '_',
+             'attribute_label': 'qux',
+             'rank': 2},
+            {'id_groups': '123',
+             'id_mark': '_',
+             'attribute_label': 'quux',
+             'rank': 3}],
+  'type': 'entity',
+  'indent': '',
+  'source': 'Foo: bar, 1_baz, 21_qux, 123_quux'}]
 

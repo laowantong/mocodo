@@ -1,27 +1,16 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                                                            %
-%                              BOÎTES HOMONYMES                              %
-%                                                                            %
-%  L'éventuel dernier chiffre d'un nom d'entité ou d'association n'est pas   %
-%  affiché. C'est bon à savoir, p. ex. pour monnayer une entité « fictive »  %
-%  trop pattue : ici, on évite les croisements en créant deux entités Date.  %
-%                                                                            %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                               %
+%                                   MCD VIDE                                    %
+%                                                                               %
+%  Remplacez les cardinalités par XX et les attributs par des suites d'espaces  %
+%  insécables pour créer un « squelette » de MCD à remplir.                     %
+%                                                                               %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Date1: date
-
-:
-A40, 0N E10, 0N E20, 0N Date2
-A30, 0N E30, 0N E10, 0N Date1
-E30: _         
-A60, 11 E40, 0N E30
-
-E20: _         
-Date2: date
-E10: _         
-A50, 1N E40, 1N E10
-E40: _         
-
-A10, 0N E10, 0N E20, 0N Date2         
-:
-:
+Parrainer, XX Client, XX Client
+Produit: _           ,,,
+Inclure, XX Commande, XX Produit
+ 
+Client: _            ,,,
+DF, XX Client, XX Commande
+Commande: _            ,,,

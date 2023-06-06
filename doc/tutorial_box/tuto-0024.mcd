@@ -1,22 +1,18 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                                                             %
-%                 CONTRAINTE D'INTÉGRITÉ FONCTIONNELLE (CIF)                  %
-%                                                                             %
-%  Le même cas de figure peut aussi être rendu visuellement par une CIF.      %
-%                                                                             %
-%  NB. Le paragraphe réduit à « : » permet d'ajouter une rangée vide à la     %
-%  grille sous-jacente, de façon à aérer verticalement le MCD. Les deux noms  %
-%  de boîtes qui suivent le « : » de la définition de la contrainte alignent  %
-%  celle-ci sur l'abcisse et l'ordonnée (respectivement) de ces boîtes.       %
-%                                                                             %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                         %
+%                            VUE EN EXTENSION                             %
+%                                                                         %
+%  Combiner l'astuce du dernier chiffre et celui des cardinalités « XX »  %
+%  permet de créer une vue en extension.                                  %
+%                                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Date: date
-Réserver, /1N Client, 1N Chambre, 0N Date: durée
-Chambre: numéro, prix
+Œuvre: 612.NAT.34, J'apprends à lire à mes souris blanches, mai 1975
 
-:
-    
-Client: id. client
-    
-(CIF) ->Client, --Chambre, --Date, ..Réserver: Date, Client
+DF1, XX Œuvre, XX Exemplaire1
+DF2, XX Œuvre, XX Exemplaire2
+DF3, XX Œuvre, XX Exemplaire3
+
+Exemplaire1: 1, bon état, 12/6/1975
+Exemplaire2: 2, bon état, 1/8/1977
+Exemplaire3: 3, reliure rongée, 3/4/2005

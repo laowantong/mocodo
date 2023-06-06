@@ -1,16 +1,12 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                               %
-%                                   MCD VIDE                                    %
+%                            IDENTIFIANTS CANDIDATS                             %
 %                                                                               %
-%  Remplacez les cardinalités par XX et les attributs par des suites d'espaces  %
-%  insécables pour créer un « squelette » de MCD à remplir.                     %
+%  Préfixez d'un « i_ » les attributs formant le ième identifiant alternatif.   %
+%  Ce numéro apparaîtra dans une gouttière latérale, ainsi qu'un symbole ID en  %
+%  face des attributs que vous avez retenus pour l'identifiant. Le code SQL     %
+%  généré inclura une contrainte d'unicité pour chacun des groupes concernés.   %
 %                                                                               %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Parrainer, XX Client, XX Client
-Produit: _           ,,,
-Inclure, XX Commande, XX Produit
- 
-Client: _            ,,,
-DF, XX Client, XX Commande
-Commande: _            ,,,
+Client: réf. client, 1_nom, 1_prénom, adresse, 2_mail

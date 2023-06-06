@@ -62,7 +62,7 @@ def parse_source(source):
             raise MocodoError(518, _('{pin}Please change the old foreign key syntax ("->") by the new one (">").').format(pin=pin)) # fmt: skip
         if t == "SP" and expected == {'COMMA', 'COLON', 'NL'}:
             raise MocodoError(519, _('{pin}The constraint targets must be comma-separated.').format(pin=pin)) # fmt: skip
-        if expected == {'HASHTAG', 'NL', 'ID_GROUP', 'ID_MARK', 'ATTR', 'COMMA'}:
+        if expected == {'HASHTAG', 'NL', 'ID_GROUPS', 'ID_MARK', 'ATTR', 'COMMA'}:
             raise MocodoError(520, _('{pin}An attribute label cannot start with {v[1]!r}.').format(pin=pin, v=v)) # fmt: skip
         if expected == {'NL', 'ATTR', 'COMMA'}:
             raise MocodoError(520, _('Parsing error:{t}\n{pin}\nAn attribute label cannot start with {v[1]!r}.').format(pin=pin, v=v, t=t)) # fmt: skip
@@ -139,8 +139,7 @@ class ClauseExtractor(Transformer):
     attr = lambda self, tree: self._item("attribute_label", tree)
     box_def_prefix = lambda self, tree: self._item("box_def_prefix", tree)
     id_mark = lambda self, tree: self._item("id_mark", tree)
-    id_group = lambda self, tree: self._item("id_group", tree)
-    
+
     def start(self, tree):
         return tree
 
@@ -246,6 +245,9 @@ class ClauseExtractor(Transformer):
     
     def data_type(self, tree):
         return ("data_type", tree[0].value if tree else "")
+    
+    def id_groups(self, tree):
+        return ("id_groups", "".join(sorted(set(tree[0].value))))
     
 def extract_clauses(source):
     tree = parse_source(source)

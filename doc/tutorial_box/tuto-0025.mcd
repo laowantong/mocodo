@@ -1,29 +1,22 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                                                               %
-%                          CONTRAINTE SUR ASSOCIATIONS                          %
-%                                                                               %
-%  Ajoutez à votre MCD diverses contraintes sous forme de lettres entourées et  %
-%  liées aux boîtes par des traits fléchés ou non, pleins ou pointillés, ou     %
-%  même invisibles.                                                             %
-%                                                                               %
-%  NB : par défaut, le centre de la contrainte coïncide avec le barycentre des  %
-%  boîtes qu'elle met en jeu.                                                   %
-%                                                                               %
-%  Source du MCD : Merise, deuxième génération (Nanci et Espinasse, 2001).      %
-%                                                                               %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                             %
+%                 CONTRAINTE D'INTÉGRITÉ FONCTIONNELLE (CIF)                  %
+%                                                                             %
+%  Le même cas de figure peut aussi être rendu visuellement par une CIF.      %
+%                                                                             %
+%  NB. Le paragraphe réduit à « : » permet d'ajouter une rangée vide à la     %
+%  grille sous-jacente, de façon à aérer verticalement le MCD. Les deux noms  %
+%  de boîtes qui suivent le « : » de la définition de la contrainte alignent  %
+%  celle-ci sur l'abcisse et l'ordonnée (respectivement) de ces boîtes.       %
+%                                                                             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-:::
-Dépôt: num dépôt, surface
+Date: date
+Réserver, /1N Client, 1N Chambre, 0N Date: durée
+Chambre: numéro, prix
 
 :
-Louer, 11 Commande, 0N Dépôt
-:
-Stocker, 1N Dépôt, 1N Article: quantité
-
-Commande: num. commande, date
-Composer, 1N Commande, 0N Article
-:
-Article: réf. article, prix
-
-(I) ->Stocker, ..Dépôt, ..Article, --Composer, --Louer, Commande, Stocker
+    
+Client: id. client
+    
+(CIF) ->Client, --Chambre, --Date, ..Réserver: Date, Client

@@ -1,21 +1,19 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                                %
-%                          HÉRITAGE (OU SPÉCIALISATION)                          %
+%                    EXPLICATION INTERACTIVE D'UNE CONTRAINTE                    %
 %                                                                                %
-%  Pour spécialiser une entité E en une ou plusieurs autres entités E1, E2, ...  %
-%  écrivez « /\ E <- E1, E2, ... ».                                              %
-%                                                                                %
-%  NB. Vous pouvez insérer X (exclusion) et/ou T (totalité) entre les barres     %
-%  obliques, ajouter une liste d'attributs ou modifier la sémantique et/ou la    %
-%  représentation graphique de l'héritage en remplaçant la flèche par <=, ->,    %
-%  =>, <<=, <<-, ->> =>>. Voir la documentation.                                 %
+%  Le survol d'une contrainte suivie d'un texte entre crochets affiche celui-ci  %
+%  dans un bandeau en haut ou en bas du diagramme. Essayez !                     %
 %                                                                                %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Personne: num SS, nom, prénom
-
-/\ Personne <- Homme, Femme
-
-Homme: 
+Projet: num. projet, nom projet
 :
-Femme: nom de jeune fille
+Fournir, 1N Projet, 1N Pièce, 1N Société: quantité
+Société: num. société, raison sociale
+
+Requérir, 1N Projet, 0N Pièce: quantité
+:
+Pièce: réf. pièce, libellé pièce
+
+(I) [Toute pièce fournie doit avoir été requise.] ..Pièce, ->Requérir, --Fournir, Projet

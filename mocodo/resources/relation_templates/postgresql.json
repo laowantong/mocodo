@@ -39,7 +39,7 @@
     }
   ],
   "compose_primary_key": "{label_lowercase} {data_type},\nADD_PRIMARY_KEY {label_lowercase}",
-  "compose_alt_key": "{label_lowercase} {data_type},\nADD_CONSTRAINT {this_relation_name_lowercase}_u{group} UNIQUE ({label_lowercase})",
+  "compose_alt_key": "{label_lowercase} {data_type},\nADD_CONSTRAINT {this_relation_name_lowercase}_u{id_groups} UNIQUE ({label_lowercase})",
   "compose_normal_attribute": "{label_lowercase} {data_type}",
   "compose_foreign_key": "{label_lowercase} {data_type},\nADD_FOREIGN_KEY ({label_lowercase}) REFERENCES {outer_source_uppercase} ({raw_label_lowercase})",
   "compose_primary_foreign_key": "{label_lowercase} {data_type},\nADD_PRIMARY_KEY {label_lowercase},\nADD_FOREIGN_KEY ({label_lowercase}) REFERENCES {outer_source_uppercase} ({raw_label_lowercase})",
@@ -105,7 +105,13 @@
     },
     {
       "order": 1000,
-      "comment": "Replace any '  CONSTRAINT foobar_un UNIQUE (biz) \n CONSTRAINT foobar_un UNIQUE (buz)' with '- CONSTRAINT foobar_un UNIQUE (biz, buz)'",
+      "search": "(  CONSTRAINT .+_u)(\\d+)(\\d)( UNIQUE .+)",
+      "replace": "\\1\\2\\4\n\\1\\3\\4",
+      "iterated": true
+    },
+    {
+      "order": 1100,
+      "comment": "Factorize the UNIQUE constraints.",
       "search": "  CONSTRAINT (.+?_u\\d+?) UNIQUE \\((.+?)\\),\n((?:.+\n)*?)  CONSTRAINT \\1 UNIQUE \\((.+?)\\),\n",
       "replace": "  CONSTRAINT \\1 UNIQUE (\\2, \\4),\n\\3",
       "iterated": true

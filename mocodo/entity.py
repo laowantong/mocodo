@@ -30,19 +30,29 @@ class Entity:
         for attr in self.attrs:
             attribute_label = attr.get("attribute_label", "")
             if attribute_label == "":
+                # An attribute without label is treated as a phantom attribute.
                 self.attributes.append(PhantomAttribute(attr))
             elif attr.get("id_mark") == "_":
-                if attr["rank"] == 0:
+                if "0" in attr.get("id_groups", ""):
+                    # An attribute prefixed with "\d*0\d*_" is treated as an identifier (if applicable).
+                    del attr["id_groups"]
+                    self.attributes.append(identifier_attribute_class(attr, id_text))
+                elif attr["rank"] == 0:
+                    # A first attribute prefixed with "\d*_" is always treated as a simple attribute.
                     self.attributes.append(SimpleEntityAttribute(attr))
-                elif attr.get("id_group"):
-                    id_text = self.left_gutter_alt_ids[attr["id_group"]]
+                elif attr.get("id_groups"):
+                    # An attribute prefixed with "\d+_" is always treated as an alternate identifier.
+                    id_text = " ".join(self.left_gutter_alt_ids[id_group] for id_group in attr["id_groups"])
                     self.attributes.append(AltIdentifierAttribute(attr, id_text))
                     self.has_alt_identifier = True
                 else:
+                    # Any other attribute prefixed with "_" is treated as an identifier (if applicable).
                     self.attributes.append(identifier_attribute_class(attr, id_text))
             elif attr["rank"] == 0:
+                # An attribute not prefixed with "\d*_" is treated as an identifier (if applicable).
                 self.attributes.append(identifier_attribute_class(attr, id_text))
             else:
+                # Any other attribute is treated as a simple attribute.
                 self.attributes.append(SimpleEntityAttribute(attr))
         self.strengthening_legs = legs_to_strenghten
 
@@ -153,7 +163,7 @@ class Entity:
                         "x1": self.l + self.left_gutter_width,
                         "y1": self.b,
                         "stroke_color": style["entity_stroke_color"],
-                        "stroke_depth": style["inner_stroke_depth"],
+                        "stroke_depth": style["inner_stroke_depth"] / 4,
                     },
                 )
             )

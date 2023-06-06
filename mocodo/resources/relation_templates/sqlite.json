@@ -39,7 +39,7 @@
     }
   ],
   "compose_primary_key": "\"{label_lowercase}\" {data_type},\nADD_PRIMARY_KEY \"{label_lowercase}\"",
-  "compose_alt_key": "\"{label_lowercase}\" {data_type},\nADD_CONSTRAINT \"{this_relation_name_lowercase}_u{group}\" ON \"{this_relation_name_uppercase}\" (\"{label_lowercase}\")",
+  "compose_alt_key": "\"{label_lowercase}\" {data_type},\nADD_CONSTRAINT \"{this_relation_name_lowercase}_u{id_groups}\" ON \"{this_relation_name_uppercase}\" (\"{label_lowercase}\")",
   "compose_normal_attribute": "\"{label_lowercase}\" {data_type}",
   "compose_foreign_key": "\"{label_lowercase}\" {data_type},\nADD_FOREIGN_KEY (\"{label_lowercase}\") REFERENCES \"{outer_source_uppercase}\" (\"{raw_label_lowercase}\")",
   "compose_primary_foreign_key": "\"{label_lowercase}\" {data_type},\nADD_PRIMARY_KEY \"{label_lowercase}\",\nADD_FOREIGN_KEY (\"{label_lowercase}\") REFERENCES \"{outer_source_uppercase}\" (\"{raw_label_lowercase}\")",
@@ -111,7 +111,13 @@
     },
     {
       "order": 1100,
-      "comment": "Replace any '  CREATE UNIQUE INDEX \"foobar_un\" ON \"FOOBAR\" (\"biz\") \n CREATE UNIQUE INDEX \"foobar_un\" ON \"FOOBAR\" (\"bUz\")' with '  CREATE UNIQUE INDEX \"foobar_un\" ON \"FOOBAR\" (\"biz\", \"bUz\")'",
+      "search": "(  CREATE UNIQUE INDEX .+_u)(\\d+)(\\d)(\" ON .+)",
+      "replace": "\\1\\2\\4\n\\1\\3\\4",
+      "iterated": true
+    },
+    {
+      "order": 1200,
+      "comment": "Factorize the UNIQUE constraints.",
       "search": "(?sm)^  CREATE UNIQUE INDEX \"(.+?)\" ON \"(.+?)\" \\((.+?)\\),\n((?:.+\n)*?)  CREATE UNIQUE INDEX \"\\1\" ON \"\\2\" \\((.+?)\\),\n",
       "replace": "  CREATE UNIQUE INDEX \"\\1\" ON \"\\2\" (\\3, \\5)\n\\4",
       "iterated": true
