@@ -272,12 +272,12 @@ class Relations:
             }
             for attribute in entity.attributes:
                 nature = "normal_attribute"
-                group = None
+                id_groups = None
                 if attribute.kind in ("strong", "weak"):
                     nature = "primary_key"
                 elif attribute.kind == "alt_identifier":
                     nature = "alt_key"
-                    group = attribute.group
+                    id_groups = attribute.id_groups
                 self.relations[name]["columns"].append({
                     "attribute": attribute.label,
                     "data_type": attribute.data_type,
@@ -287,7 +287,7 @@ class Relations:
                     "leg_note": None,
                     "primary": attribute.kind in ("strong", "weak"),
                     "nature": nature,
-                    "group": group,
+                    "id_groups": id_groups,
                 })
 
     def strengthen_weak_identifiers(self):

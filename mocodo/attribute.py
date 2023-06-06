@@ -126,7 +126,7 @@ class AltIdentifierAttribute(IdentifierAttribute):
 
     def __init__(self, attribute, id_text):
         IdentifierAttribute.__init__(self, attribute, id_text)
-        self.group = attribute["id_group"]
+        self.id_groups = "".join(sorted(set(attribute["id_groups"])))
         self.kind = "alt_identifier"
 
 
@@ -136,7 +136,7 @@ class PhantomAttribute(Attribute):
         Attribute.__init__(self, attribute)
         self.kind = "phantom"
     
-    def description(self, style, x, y, left_gutter_width, dy):
+    def description(self, *_):
         return []
 
 

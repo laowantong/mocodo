@@ -108,6 +108,9 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
 /1\\ FOO => BAR
 /T\\foo==>foo11
 Étudiant: num, 1_nom, 1_prénom, adresse, 2_mail
+Étudiant: 0_num, 1_nom, 1_prénom, adresse, 2_mail
+Position: 0_latitude, 0_longitude, altitude
+Foo: bar, 1_baz, 21_qux, 123_quux
 """.splitlines()
 
 line = "-" * 80
