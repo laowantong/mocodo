@@ -26,7 +26,7 @@
     }
   ],
   "compose_primary_key": "\\prim{{{label}}}",
-  "compose_alternate_key": "\\prim{{{group}}} \\attr{{{label}}}",
+  "compose_alt_key": "\\prim{{{group}}} \\attr{{{label}}}",
   "compose_normal_attribute": "\\attr{{{label}}}",
   "compose_foreign_key": "\\foreign{{{label}}}",
   "compose_primary_foreign_key": "\\foreign{{\\prim{{{label}}}}}",

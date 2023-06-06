@@ -64,7 +64,7 @@ def init_localization(script_directory, language):
             sys.platform.lower().startswith("darwin")
             and os.system("defaults read -g AppleLanguages > /tmp/languages.txt") == 0
         ):
-            language = re.search("\W*(\w+)", Path("/tmp/languages.txt").read_text()).group(1)
+            language = re.search(r"\W*(\w+)", Path("/tmp/languages.txt").read_text()).group(1)
         else:
             try:
                 language = locale.getdefaultlocale()[0][:2]
@@ -135,7 +135,6 @@ def positive_integer(string):
         msg = f"The integer {repr(string)} is negative or zero"
         raise argparse.ArgumentTypeError(msg)
     return value
-
 
 def parsed_arguments():
     def add_key(key, value):
@@ -299,6 +298,33 @@ def parsed_arguments():
         "--detect_overlaps",
         action="store_true",
         help="raise an error when horizontal or vertical legs overlap",
+    )
+    aspect_group.add_argument(
+        "--left_gutter",
+        choices=["on", "off", "auto"],
+        default="auto",
+        help="show the status of candidate identifiers in each entity",
+    )
+    aspect_group.add_argument(
+        "--left_gutter_strong_id",
+        metavar="STR",
+        default="ID",
+        type=str,
+        help="string to be used in the left gutter for strong identifiers",
+    )
+    aspect_group.add_argument(
+        "--left_gutter_weak_id",
+        metavar="STR",
+        default="id",
+        type=str,
+        help="string to be used in the left gutter for weak identifiers",
+    )
+    aspect_group.add_argument(
+        "--left_gutter_alt_ids",
+        metavar="STR",
+        nargs="+",
+        default=list("123456789"),
+        help="strings (space-separated) to be used in the left gutter for alt identifiers",
     )
 
     relational_group.add_argument(
@@ -507,6 +533,11 @@ def parsed_arguments():
 
     parser.set_defaults(**default_params)
     params = vars(parser.parse_args(remaining_args))
+    if len(params["left_gutter_alt_ids"]) != 9:
+        msg = f"The option --left_gutter_alt_ids must be followed by exactly 9 strings"
+        raise argparse.ArgumentTypeError(msg)
+    else:
+        params["left_gutter_alt_ids"] = dict(zip("123456789", params["left_gutter_alt_ids"]))
     params["added_keys"] = ["added_keys", "params_path"]
     add_key("script_directory", script_directory)
     add_key("has_expired", has_expired_factory(params["timeout"]))

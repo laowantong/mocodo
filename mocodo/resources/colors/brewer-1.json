@@ -14,6 +14,8 @@
   "entity_cartouche_text_color": "#000",
   "entity_color": "#f6e8c3",
   "entity_stroke_color": "#bf812d",
+  "left_gutter_color": "#f6e8c3",
+  "left_gutter_text_color": "#000",
   "leg_stroke_color": "#35978f",
   "note_color": "#01665e",
   "note_opacity": 0.9,

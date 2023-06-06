@@ -324,11 +324,12 @@ class Association:
                     },
                 ),
             )
-            dx = style["round_rect_margin_width"] - self.w // 2
+            x = self.cx - self.w // 2 + style["round_rect_margin_width"]
+            dx = 0
             dy = style["round_rect_margin_height"] + self.cartouche_height + 2 * style["rect_margin_height"] - self.h // 2
             for attribute in self.attributes:
                 attribute.name = self.name
-                result.extend(attribute.description(style, self.cx, self.cy, dx, dy))
+                result.extend(attribute.description(style, x, self.cy, dx, dy))
                 dy += self.attribute_height + style["line_skip_height"]
             return result
 

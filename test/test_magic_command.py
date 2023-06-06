@@ -40,7 +40,7 @@ class SplitTest(unittest.TestCase):
         self.assertEqual(split("a='b=c'"), ["a", "b=c"])
 
     def real_example(self):
-        source = """mocodo --mld --colors = brewer+1 --shapes=copperplate --relations mysql markdown text --title="foobar" --gutter_alt_ids "(1)" 2️⃣ 3️⃣ 4️⃣ 5️⃣ 6️⃣ 7️⃣ 8️⃣ 9️⃣\""""
+        source = """mocodo --mld --colors = brewer+1 --shapes=copperplate --relations mysql markdown text --title="foobar" --left_gutter_alt_ids "(1)" 2️⃣ 3️⃣ 4️⃣ 5️⃣ 6️⃣ 7️⃣ 8️⃣ 9️⃣\""""
         expected = [
             "mocodo",
             "--mld",
@@ -54,7 +54,7 @@ class SplitTest(unittest.TestCase):
             "text",
             "--title",
             "foobar",
-            "--gutter_alt_ids",
+            "--left_gutter_alt_ids",
             "(1)",
             "2️⃣",
             "3️⃣",

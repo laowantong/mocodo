@@ -74,7 +74,7 @@ class Mcd:
                         self.associations[element.name] = element
                         pages[indentation].append(element)
                     elif clause["type"] == "entity":
-                        element = Entity(clause)
+                        element = Entity(clause, **params)
                         if element.name in self.entities:
                             raise MocodoError(6, _('Duplicate entity "{name}". If you want to make two entities appear with the same name, you must suffix it with a number.').format(name=element.name)) # fmt: skip
                         self.entities[element.name] = element
@@ -136,17 +136,24 @@ class Mcd:
                     raise MocodoError(600, _('Constraint "{constraint}" aligned with an unknown entity or association "{box}"!').format(constraint=constraint.name, box=box_name)) # fmt: skip
         
         def add_attributes():
-            legs_to_strengthen = dict((entity_name, []) for entity_name in self.entities)
+            strengthening_legs = dict((entity_name, []) for entity_name in self.entities)
             for association in self.associations.values():
                 for leg in association.legs:
                     if leg.kind == "strengthening":
-                        legs_to_strengthen[leg.entity_name].append(leg)
+                        strengthening_legs[leg.entity_name].append(leg)
             children = set()
             for inheritance in self.inheritances:
                 for leg in inheritance.legs[1:]: # the first leg is the parent
-                    children.add(leg.entity_name)
-            for (entity_name, legs) in legs_to_strengthen.items():
-                self.entities[entity_name].add_attributes(legs, entity_name in children)
+                    children.add(leg.entity_name) # the other legs are its children
+            for (entity_name, entity) in self.entities.items():
+                entity.add_attributes(strengthening_legs[entity_name], entity_name in children)
+            self.has_alt_identifier = any(entity.has_alt_identifier for entity in self.entities.values())
+        
+        def set_left_gutter_visibility():
+            left_gutter = params.get("left_gutter", "auto")
+            is_visible = left_gutter == "on" or left_gutter == "auto" and self.has_alt_identifier
+            for entity in self.entities.values():
+                entity.set_left_gutter_visibility(is_visible)
         
         def tweak_straight_cards():
             coordinates = {}
@@ -234,6 +241,7 @@ class Mcd:
         create()
         add_legs()
         add_attributes()
+        set_left_gutter_visibility()
         add_diagram_links()
         may_center()
         make_boxes()

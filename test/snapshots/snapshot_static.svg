@@ -99,8 +99,8 @@
 <!-- Entity ESPÈCE -->
 <g>
 	<g>
-		<rect x="237" y="110" width="94" height="30" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
-		<rect x="237" y="140" width="94" height="46" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="237" y="110" width="94" height="30" fill="#FFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="237" y="140" width="94" height="46" fill="#FFF" stroke="none" stroke-width="0" opacity="1"/>
 		<rect x="237" y="110" width="94" height="76" fill="none" stroke="#000" stroke-width="1.5" opacity="1"/>
 		<line x1="237" y1="140" x2="331" y2="140" stroke="#000" stroke-width="1.5"/>
 	</g>
@@ -113,8 +113,8 @@
 <!-- Entity CARNIVORE -->
 <g>
 	<g>
-		<rect x="595" y="118" width="126" height="30" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
-		<rect x="595" y="148" width="126" height="30" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="595" y="118" width="126" height="30" fill="#FFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="595" y="148" width="126" height="30" fill="#FFF" stroke="none" stroke-width="0" opacity="1"/>
 		<rect x="595" y="118" width="126" height="60" fill="none" stroke="#000" stroke-width="1.5" opacity="1"/>
 		<line x1="595" y1="148" x2="721" y2="148" stroke="#000" stroke-width="1.5"/>
 	</g>
@@ -125,8 +125,8 @@
 <!-- Entity ENCLOS -->
 <g>
 	<g>
-		<rect x="61" y="227" width="94" height="30" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
-		<rect x="61" y="257" width="94" height="30" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="61" y="227" width="94" height="30" fill="#FFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="61" y="257" width="94" height="30" fill="#FFF" stroke="none" stroke-width="0" opacity="1"/>
 		<rect x="61" y="227" width="94" height="60" fill="none" stroke="#000" stroke-width="1.5" opacity="1"/>
 		<line x1="61" y1="257" x2="155" y2="257" stroke="#000" stroke-width="1.5"/>
 	</g>
@@ -138,8 +138,8 @@
 <!-- Entity ANIMAL -->
 <g>
 	<g>
-		<rect x="386" y="202" width="106" height="30" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
-		<rect x="386" y="232" width="106" height="80" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="386" y="202" width="106" height="30" fill="#FFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="386" y="232" width="106" height="80" fill="#FFF" stroke="none" stroke-width="0" opacity="1"/>
 		<rect x="386" y="202" width="106" height="110" fill="none" stroke="#000" stroke-width="1.5" opacity="1"/>
 		<line x1="386" y1="232" x2="492" y2="232" stroke="#000" stroke-width="1.5"/>
 	</g>
@@ -154,8 +154,8 @@
 <!-- Entity PÉRIODE -->
 <g>
 	<g>
-		<rect x="234" y="337" width="100" height="30" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
-		<rect x="234" y="367" width="100" height="46" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="234" y="337" width="100" height="30" fill="#FFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="234" y="367" width="100" height="46" fill="#FFF" stroke="none" stroke-width="0" opacity="1"/>
 		<rect x="234" y="337" width="100" height="76" fill="none" stroke="#000" stroke-width="1.5" opacity="1"/>
 		<line x1="234" y1="367" x2="334" y2="367" stroke="#000" stroke-width="1.5"/>
 	</g>
@@ -169,8 +169,8 @@
 <!-- Entity HERBIVORE -->
 <g>
 	<g>
-		<rect x="595" y="345" width="126" height="30" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
-		<rect x="595" y="375" width="126" height="30" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="595" y="345" width="126" height="30" fill="#FFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="595" y="375" width="126" height="30" fill="#FFF" stroke="none" stroke-width="0" opacity="1"/>
 		<rect x="595" y="345" width="126" height="60" fill="none" stroke="#000" stroke-width="1.5" opacity="1"/>
 		<line x1="595" y1="375" x2="721" y2="375" stroke="#000" stroke-width="1.5"/>
 	</g>

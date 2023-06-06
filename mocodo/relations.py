@@ -105,7 +105,7 @@ class Relations:
               "transform_relational_schema": [],
             }
             result.update(template)
-            result.setdefault("compose_alternate_key", result["compose_normal_attribute"])
+            result.setdefault("compose_alt_key", result["compose_normal_attribute"])
             result.setdefault("compose_association_attribute", result["compose_normal_attribute"])
             result.setdefault("compose_deleted_child_attribute", result["compose_normal_attribute"])
             result.setdefault("compose_deleted_child_discriminant_", result["compose_normal_attribute"])
@@ -275,8 +275,8 @@ class Relations:
                 group = None
                 if attribute.kind in ("strong", "weak"):
                     nature = "primary_key"
-                elif attribute.kind == "alternate_identifier":
-                    nature = "alternate_key"
+                elif attribute.kind == "alt_identifier":
+                    nature = "alt_key"
                     group = attribute.group
                 self.relations[name]["columns"].append({
                     "attribute": attribute.label,

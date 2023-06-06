@@ -1,6 +1,6 @@
 {
   "extension": ".txt",
-  "compose_alternate_key": "{label}<unicodify>{group}</unicodify>",
+  "compose_alt_key": "{label}<unicodify>{group}</unicodify>",
   "transform_relational_schema": [
     {
       "order": 0,
