@@ -137,7 +137,7 @@ class PhantomAttribute(Attribute):
         self.kind = "phantom"
         self.font_type = "entity_attribute_font" # dummy
     
-    def description(self, style, x, y, left_gutter_width, dy):
+    def description(self, *_):
         return []
 
 
