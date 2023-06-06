@@ -1,18 +1,32 @@
-from IPython.core.magic import Magics, line_cell_magic, magics_class
-from IPython.display import HTML, SVG, display
-from IPython import get_ipython
 import argparse
+import re
 import warnings
-from subprocess import PIPE, Popen
 from pathlib import Path
+from subprocess import PIPE, Popen
 
 import pkg_resources
+from IPython import get_ipython
+from IPython.core.magic import Magics, line_cell_magic, magics_class
+from IPython.display import HTML, SVG, display
 
 try:
     MOCODO_VERSION = pkg_resources.get_distribution("mocodo").version
 except pkg_resources.DistributionNotFound:
     MOCODO_VERSION = "(unknown version)"  # For tests during CI
 
+
+def split_by_unquoted_spaces_or_equals(
+        string,
+        findall=re.compile(r'(?:[^=\s\'"]+|"[^"]*"|\'[^\']*\')').findall,
+    ):
+    result = []
+    for s in findall(string):
+        if s.startswith('"') and s.endswith('"'):
+            s = s[1:-1]
+        elif s.startswith("'") and s.endswith("'"):
+            s = s[1:-1]
+        result.append(s)
+    return result
 
 @magics_class
 class MocodoMagics(Magics):
@@ -46,7 +60,8 @@ class MocodoMagics(Magics):
         parser.add_argument("--mld", action="store_true")
         parser.add_argument("--input")
         parser.add_argument("--output_dir")
-        (notebook_options, options) = parser.parse_known_args(line.split())
+        chunks = split_by_unquoted_spaces_or_equals(line)
+        (notebook_options, options) = parser.parse_known_args(chunks)
 
         Path("mocodo_notebook").mkdir(parents=True, exist_ok=True)
 
@@ -127,8 +142,12 @@ class MocodoMagics(Magics):
 
 
 def load_ipython_extension(ipython):
-    ipython.register_magics(MocodoMagics)
-    print(f"Mocodo {MOCODO_VERSION} loaded.")
+    try:
+        ipython.register_magics(MocodoMagics)
+    except AttributeError:
+        pass # necessary for launching the tests
+    else:
+        print(f"Mocodo {MOCODO_VERSION} loaded.")
 
 load_ipython_extension(get_ipython())
 
