@@ -2,7 +2,6 @@
 // https://github.com/lark-parser/lark/discussions/1041
 
 %import common.NUMBER
-// %ignore /(?<!\n)( |\t)+/ // Ignore all non indented spaces
 seq{item}: item (COMMA item)*
 
 COMMA: SP? "," SP?
@@ -12,6 +11,8 @@ SLASH: "/"
 BACKSLASH: "\\"+
 LPAREN: SP? "(" SP?
 RPAREN: SP? ")" SP?
+CONSTRAINT_LPAREN: SP? "("
+CONSTRAINT_RPAREN: ")" SP?
 LBRACKET: SP? "[" SP?
 RBRACKET: SP? "]" SP?
 HASHTAG: "#"
@@ -69,7 +70,7 @@ MORETHAN: SP? ">" SP?
 
 // Constraints
 
-constraint_clause : LPAREN constraint_name? RPAREN (LBRACKET constraint_note RBRACKET)? seq{constraint_target}? (COLON constraint_coords)? NL
+constraint_clause : CONSTRAINT_LPAREN constraint_name? CONSTRAINT_RPAREN (LBRACKET constraint_note RBRACKET)? seq{constraint_target}? (COLON constraint_coords)? NL
 CONSTRAINT_NAME : /[\w  ]{1,3}/
 constraint_note: note
 constraint_target : constraint_leg? SP* box_name_ref

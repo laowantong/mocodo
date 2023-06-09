@@ -16,6 +16,8 @@ minimal_template = read_template("text", TEMPLATE_DIR)
 debug_template = read_template("debug", TEMPLATE_DIR)
 
 source = """
+%%mocodo --mld --relations mysql html_verbose latex text sqlite
+
 :
     PEUT COHABITER AVEC, 0N ESPÈCE, 0N [commensale] ESPÈCE: nb. max. commensaux
 :
@@ -23,14 +25,14 @@ source = """
 :
 
 PEUT VIVRE DANS, 1N ESPÈCE, 1N ENCLOS: nb. max. congénères
-ESPÈCE: code espèce, libellé
+ESPÈCE: code espèce, 1_nom latin, nom vernaculaire
   DF, 0N ESPÈCE, _11 ANIMAL
 :
   CARNIVORE: quantité viande
 
 ENCLOS: num. enclos
       OCCUPE, 1N ANIMAL, /1N PÉRIODE, 1N ENCLOS
-  ANIMAL: nom, sexe, date naissance, date décès
+  ANIMAL: 3_nom, sexe, _date naissance, 3_date décès
   /\\ ANIMAL <= CARNIVORE, HERBIVORE: type alimentation
 :
 
@@ -39,6 +41,8 @@ ENCLOS: num. enclos
     A MÈRE, 01 ANIMAL, 0N> [mère] ANIMAL
 :
   HERBIVORE: plante préférée
+
+      (   ) [For testing purpose] --> ENCLOS, ..PÉRIODE, --OCCUPE: ENCLOS, PÉRIODE
 """
 
 snapshot_dir = Path("test/snapshots")

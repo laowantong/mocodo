@@ -1,60 +1,46 @@
+from collections import defaultdict
 from .attribute import *
 
 
 class Entity:
-    def __init__(self, clause, **params):
+    def __init__(self, clause):
         self.source = clause["source"]
         # A protected entity results in a table, even if all its columns are part of its primary key.
         self.is_protected = (clause.get("box_def_prefix") == "+") 
         self.name = clause["name"]
         self.name_view = self.name[:-1] if self.name[-1].isdigit() else self.name  # get rid of single digit suffix, if any
-        self.attrs = clause.get("attrs", [])
+        self.attributes = clause.get("attrs", [])
         self.legs = []  # iterating over box's legs does nothing if it is not an association
         self.kind = "entity"
         self.has_alt_identifier = False
-        self.left_gutter_strong_id = params.get("left_gutter_strong_id", "ID")
-        self.left_gutter_weak_id = params.get("left_gutter_weak_id", "id")
-        self.left_gutter_alt_ids = params.get("left_gutter_alt_ids", dict(zip("123456789", "123456789")))
 
-    def add_attributes(self, legs_to_strenghten, is_child=False):
-        if is_child:
-            identifier_attribute_class = SimpleEntityAttribute
-            id_text = None
-        elif legs_to_strenghten:
-            identifier_attribute_class = WeakAttribute
-            id_text = self.left_gutter_weak_id
-        else:
-            identifier_attribute_class = StrongAttribute
-            id_text = self.left_gutter_strong_id
-        self.attributes = []
-        for attr in self.attrs:
-            attribute_label = attr.get("attribute_label", "")
-            if attribute_label == "":
-                # An attribute without label is treated as a phantom attribute.
-                self.attributes.append(PhantomAttribute(attr))
-            elif attr.get("id_mark") == "_":
-                if "0" in attr.get("id_groups", ""):
-                    # An attribute prefixed with "\d*0\d*_" is treated as an identifier (if applicable).
-                    del attr["id_groups"]
-                    self.attributes.append(identifier_attribute_class(attr, id_text))
-                elif attr["rank"] == 0:
-                    # A first attribute prefixed with "\d*_" is always treated as a simple attribute.
-                    self.attributes.append(SimpleEntityAttribute(attr))
-                elif attr.get("id_groups"):
-                    # An attribute prefixed with "\d+_" is always treated as an alternate identifier.
-                    id_text = " ".join(self.left_gutter_alt_ids[id_group] for id_group in attr["id_groups"])
-                    self.attributes.append(AltIdentifierAttribute(attr, id_text))
-                    self.has_alt_identifier = True
-                else:
-                    # Any other attribute prefixed with "_" is treated as an identifier (if applicable).
-                    self.attributes.append(identifier_attribute_class(attr, id_text))
-            elif attr["rank"] == 0:
-                # An attribute not prefixed with "\d*_" is treated as an identifier (if applicable).
-                self.attributes.append(identifier_attribute_class(attr, id_text))
+    def add_attributes(self, legs_to_strengthen, is_child=False):
+        weak_entity = bool(legs_to_strengthen)
+        self.strengthening_legs = legs_to_strengthen
+        for (i, a) in enumerate(self.attributes):
+            id_mark = a.get("id_mark","")
+            explicit_underscore = "0" in a.get("id_groups", "") or a.get("id_groups", "") == ""
+            if a.get("attribute_label", "") == "":
+                self.attributes[i] = PhantomAttribute(a)
+            elif is_child:
+                self.attributes[i] = SimpleEntityAttribute(a)
+            elif i == 0 and id_mark != "_":
+                self.attributes[i] = WeakAttribute(a) if  weak_entity else StrongAttribute(a)
+            elif i == 0 and id_mark == "_" and not explicit_underscore:
+                self.attributes[i] = WeakAttribute(a) if  weak_entity else StrongAttribute(a)
+            elif i != 0 and id_mark == "_" and explicit_underscore:
+                self.attributes[i] = WeakAttribute(a) if  weak_entity else StrongAttribute(a)
             else:
-                # Any other attribute is treated as a simple attribute.
-                self.attributes.append(SimpleEntityAttribute(attr))
-        self.strengthening_legs = legs_to_strenghten
+                self.attributes[i] = SimpleEntityAttribute(a)
+        
+        self.candidates = defaultdict(set)
+        for a in self.attributes:
+            for id_group in a.id_groups:
+                self.candidates[id_group].add(a.label)
+        self.candidates = dict(self.candidates)
+        if len(self.candidates) > 1:
+            self.has_alt_identifier = True
+        
 
     def register_boxes(self, boxes):
         self.boxes = boxes
@@ -86,6 +72,8 @@ class Entity:
         )
         self.w += self.w % 2
         self.h += self.h % 2
+        for attribute in self.attributes:
+            attribute.set_left_gutter_width(self.left_gutter_width)
 
     def register_center(self, geo):
         self.cx = geo["cx"][self.name]

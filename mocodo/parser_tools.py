@@ -20,9 +20,9 @@ def parse_source(source):
             previous = error.token_history[0].type
         except:
             previous = None
-        if expected == {'PERCENT', 'LPAREN', 'BREAK', 'INDENT', 'PHANTOMS', 'BOX_NAME', 'SLASH', 'PLUS', 'NL'}:
+        if expected == {'PERCENT', 'CONSTRAINT_LPAREN', 'BREAK', 'INDENT', 'PHANTOMS', 'BOX_NAME', 'SLASH', 'PLUS', 'NL'}:
             raise MocodoError(501, _('{pin}{v} is not a valid line beginning.').format(pin=pin, v=v)) # fmt: skip
-        if expected == {'PHANTOMS', 'PERCENT', 'LPAREN', 'PLUS', 'NL', 'SLASH', 'BOX_NAME'}:
+        if expected == {'PHANTOMS', 'PERCENT', 'CONSTRAINT_LPAREN', 'PLUS', 'NL', 'SLASH', 'BOX_NAME'}:
             raise MocodoError(501, _('{pin}{v} is not a valid line beginning.').format(pin=pin, v=v)) # fmt: skip
         if expected == {'INHERITANCE_ARROW', 'COLON', 'NL', 'MORETHAN', 'SP', 'COMMA'}:
             raise MocodoError(502, _('{pin}A box name cannot contain {v}.').format(pin=pin, v=v)) # fmt: skip
@@ -48,9 +48,9 @@ def parse_source(source):
             raise MocodoError(511, _('{pin}Only a box name is possible here.').format(pin=pin)) # fmt: skip
         if expected == {'RBRACKET'}:
             raise MocodoError(512, _('{pin}Unclosed square bracket.').format(pin=pin)) # fmt: skip
-        if expected == {'CONSTRAINT_NAME', 'RPAREN'}:
+        if expected == {'CONSTRAINT_NAME', 'CONSTRAINT_RPAREN'}:
             raise MocodoError(513, _('{pin}Illegal character in a constraint name.').format(pin=pin)) # fmt: skip
-        if t == "BOX_NAME" and expected == {'RPAREN'}:
+        if expected == {'CONSTRAINT_RPAREN'}:
             raise MocodoError(514, _('{pin}A constraint name cannot contain more than three letters, digits or spaces.').format(pin=pin)) # fmt: skip
         if expected == {'SP', 'BOX_NAME', 'CONSTRAINT_LEG'}:
             raise MocodoError(515, _('{pin}Expected a box name or a constraint leg.').format(pin=pin)) # fmt: skip
@@ -114,6 +114,8 @@ class ClauseExtractor(Transformer):
     RBRACKET = discard
     LPAREN = discard
     RPAREN = discard
+    CONSTRAINT_LPAREN = discard
+    CONSTRAINT_RPAREN = discard
     HASHTAG = discard
     MORETHAN = discard
     PERCENT = discard

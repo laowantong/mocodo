@@ -1,22 +1,32 @@
 class Attribute:
 
-    def __init__(self, attribute, id_text=None):
+    # Static attributes updated by Mcd.add_attributes() method. Used in the test suite.
+    left_gutter_strong_id = "ID"
+    left_gutter_weak_id = "id"
+    left_gutter_alt_ids = dict(zip("123456789", "123456789"))
+
+    def __init__(self, attribute):
         self.label = attribute.get("attribute_label", "")
         self.rank = attribute["rank"]
         self.data_type = attribute.get("data_type")
         self.primary_entity_name = attribute.get("that_table")
         self.primary_key_label = attribute.get("that_table_attribute_label")
-        self.id_text = id_text
+        self.id_groups = set(attribute.get("id_groups", "").replace("0", ""))
+        self.id_text =  " ".join(map(self.left_gutter_alt_ids.get, sorted(self.id_groups)))
+        self.left_gutter_width = 0  # For anything but entities
 
     def calculate_size(self, style, get_font_metrics):
         self.attribute_font = style[self.font_type]
         self.font = get_font_metrics(self.attribute_font)
         self.w = self.font.get_pixel_width(self.label)
         self.h = self.font.get_pixel_height()
-        self.id_width = 0
+        self.id_width = self.font.get_pixel_width(self.id_text)
+
+    def set_left_gutter_width(self, left_gutter_width):
+        self.left_gutter_width = left_gutter_width
 
     def description(self, style, x, y, dx, dy):
-        return [
+        result = [
             (
                 "text",
                 {
@@ -29,11 +39,26 @@ class Attribute:
                 }
             )
         ]
+        if self.left_gutter_width:
+            result.append(
+                (
+                    "text",
+                    {
+                        "x": x + (self.left_gutter_width - self.id_width) // 2 - style["rect_margin_width"],
+                        "y": y + round(dy + style["attribute_text_height_ratio"] * self.h, 1),
+                        "text": self.id_text,
+                        "text_color": style[f"{self.box_type}_attribute_text_color"],
+                        "family": self.attribute_font["family"],
+                        "size": self.attribute_font["size"],
+                    }
+                )
+            )
+        return result
 
 class SimpleEntityAttribute(Attribute):
 
-    def __init__(self, attribute, id_text=None):
-        Attribute.__init__(self, attribute, id_text)
+    def __init__(self, attribute):
+        Attribute.__init__(self, attribute)
         self.box_type = "entity"
         self.font_type = "entity_attribute_font"
         self.kind = "simple"
@@ -50,48 +75,30 @@ class SimpleAssociationAttribute(Attribute):
 
 class IdentifierAttribute(Attribute):
 
-    def __init__(self, attribute, id_text):
+    def __init__(self, attribute):
         Attribute.__init__(self, attribute)
         self.box_type = "entity"
         self.font_type = "entity_attribute_font"
-        self.id_text = id_text
+        self.id_groups.add("0")
 
     def calculate_size(self, *args):
         Attribute.calculate_size(self, *args)
-        self.id_width = self.font.get_pixel_width(self.id_text)
-
-    def description(self, style, x, y, left_gutter_width, dy):
-        result = Attribute.description(self, style, x, y, left_gutter_width, dy)
-        if left_gutter_width:
-            result.append(
-                (
-                    "text",
-                    {
-                        "x": x + (left_gutter_width - self.id_width) // 2 - style["rect_margin_width"],
-                        "y": y + round(dy + style["attribute_text_height_ratio"] * self.h, 1),
-                        "text": self.id_text,
-                        "text_color": style[f"{self.box_type}_attribute_text_color"],
-                        "family": self.attribute_font["family"],
-                        "size": self.attribute_font["size"],
-                    }
-                )
-            )
-        return result
 
 class StrongAttribute(IdentifierAttribute):
 
-    def __init__(self, attribute, id_text):
-        IdentifierAttribute.__init__(self, attribute, id_text)
+    def __init__(self, attribute):
+        IdentifierAttribute.__init__(self, attribute)
+        self.id_text = f"{self.id_text} {self.left_gutter_strong_id}".lstrip()
         self.kind = "strong"
 
-    def description(self, style, x, y, left_gutter_width, dy):
-        return IdentifierAttribute.description(self, style, x, y, left_gutter_width, dy) + [
+    def description(self, style, x, y, dx, dy):
+        return IdentifierAttribute.description(self, style, x, y, dx, dy) + [
             (
                 "line",
                 {
-                    "x0": x + left_gutter_width,
+                    "x0": x + dx,
                     "y0": y + dy + self.h + style["underline_skip_height"],
-                    "x1": x + left_gutter_width + self.w,
+                    "x1": x + dx + self.w,
                     "y1": y + dy + self.h + style["underline_skip_height"],
                     "stroke_depth": style["underline_depth"],
                     "stroke_color": style['entity_attribute_text_color'],
@@ -101,18 +108,19 @@ class StrongAttribute(IdentifierAttribute):
 
 class WeakAttribute(IdentifierAttribute):
 
-    def __init__(self, attribute, id_text):
-        IdentifierAttribute.__init__(self, attribute, id_text)
+    def __init__(self, attribute):
+        IdentifierAttribute.__init__(self, attribute)
+        self.id_text = f"{self.id_text} {self.left_gutter_weak_id}".lstrip()
         self.kind = "weak"
 
-    def description(self, style, x, y, left_gutter_width, dy):
-        return IdentifierAttribute.description(self, style, x, y, left_gutter_width, dy) + [
+    def description(self, style, x, y, dx, dy):
+        return IdentifierAttribute.description(self, style, x, y, dx, dy) + [
             (
                 "dash_line",
                 {
-                    "x0": x + left_gutter_width,
+                    "x0": x + dx,
                     "y0": y + dy + self.h + style["underline_skip_height"],
-                    "x1": x + left_gutter_width + self.w,
+                    "x1": x + dx + self.w,
                     "y1": y + dy + self.h + style["underline_skip_height"],
                     "dash_width": style["dash_width"],
                     "stroke_depth": style["underline_depth"],
@@ -120,14 +128,6 @@ class WeakAttribute(IdentifierAttribute):
                 }
             )
         ]
-
-
-class AltIdentifierAttribute(IdentifierAttribute):
-
-    def __init__(self, attribute, id_text):
-        IdentifierAttribute.__init__(self, attribute, id_text)
-        self.id_groups = "".join(sorted(set(attribute["id_groups"])))
-        self.kind = "alt_identifier"
 
 
 class PhantomAttribute(Attribute):

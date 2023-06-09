@@ -39,7 +39,8 @@
     }
   ],
   "compose_primary_key": "\"{label_lowercase}\" {data_type},\nADD_PRIMARY_KEY \"{label_lowercase}\"",
-  "compose_alt_key": "\"{label_lowercase}\" {data_type},\nADD_CONSTRAINT \"{this_relation_name_lowercase}_u{id_groups}\" UNIQUE (\"{label_lowercase}\")",
+  "compose_alt_primary_key": "\"{label_lowercase}\" {data_type},\nADD_PRIMARY_KEY \"{label_lowercase}\",\nADD_CONSTRAINT \"{this_relation_name_lowercase}_u{alt_groups}\" UNIQUE (\"{label_lowercase}\")",
+  "compose_alt_normal_attribute": "\"{label_lowercase}\" {data_type},\nADD_CONSTRAINT \"{this_relation_name_lowercase}_u{alt_groups}\" UNIQUE (\"{label_lowercase}\")",
   "compose_normal_attribute": "\"{label_lowercase}\" {data_type}",
   "compose_foreign_key": "\"{label_lowercase}\" {data_type},\nADD_FOREIGN_KEY (\"{label_lowercase}\") REFERENCES \"{outer_source_uppercase}\" (\"{raw_label_lowercase}\")",
   "compose_primary_foreign_key": "\"{label_lowercase}\" {data_type},\nADD_PRIMARY_KEY \"{label_lowercase}\",\nADD_FOREIGN_KEY (\"{label_lowercase}\") REFERENCES \"{outer_source_uppercase}\" (\"{raw_label_lowercase}\")",

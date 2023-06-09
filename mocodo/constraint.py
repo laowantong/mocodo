@@ -33,7 +33,7 @@ class Constraint:
         if self.name_view.strip():
             size = max(self.get_constraint_string_width(self.name_view), self.constraint_height)
         else:
-            size = self.get_constraint_string_width(self.name_view * 2)
+            size = self.get_constraint_string_width("W") * len(self.name_view)
         self.w = self.h = style["constraint_margin"] * 2 + size
 
     def register_center(self, geo):

@@ -105,7 +105,8 @@ class Relations:
               "transform_relational_schema": [],
             }
             result.update(template)
-            result.setdefault("compose_alt_key", result["compose_normal_attribute"])
+            result.setdefault("compose_alt_normal_attribute", result["compose_normal_attribute"])
+            result.setdefault("compose_alt_primary_key", result["compose_primary_key"])
             result.setdefault("compose_association_attribute", result["compose_normal_attribute"])
             result.setdefault("compose_deleted_child_attribute", result["compose_normal_attribute"])
             result.setdefault("compose_deleted_child_discriminant_", result["compose_normal_attribute"])
@@ -272,12 +273,11 @@ class Relations:
             }
             for attribute in entity.attributes:
                 nature = "normal_attribute"
-                id_groups = None
                 if attribute.kind in ("strong", "weak"):
                     nature = "primary_key"
-                elif attribute.kind == "alt_identifier":
-                    nature = "alt_key"
-                    id_groups = attribute.id_groups
+                alt_groups = "".join(c for c in sorted(attribute.id_groups) if c != "0")
+                if alt_groups:
+                    nature = "alt_" + nature
                 self.relations[name]["columns"].append({
                     "attribute": attribute.label,
                     "data_type": attribute.data_type,
@@ -287,7 +287,7 @@ class Relations:
                     "leg_note": None,
                     "primary": attribute.kind in ("strong", "weak"),
                     "nature": nature,
-                    "id_groups": id_groups,
+                    "alt_groups": alt_groups,
                 })
 
     def strengthen_weak_identifiers(self):
@@ -560,7 +560,7 @@ class Relations:
                         # migrate all child's attributes
                         for attribute in self.relations[child_leg.entity_name]["columns"]:
                             if attribute["nature"].endswith("parent_primary_key"):
-                                continue # except the "strenghtening" parent identifier
+                                continue # except the "strengthening" parent identifier
                             self.relations[parent_leg.entity_name]["columns"].append({
                                 "attribute": attribute["attribute"],
                                 "data_type": attribute["data_type"],

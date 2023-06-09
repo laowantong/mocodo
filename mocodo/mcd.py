@@ -3,8 +3,8 @@ import itertools
 from collections import defaultdict
 from hashlib import md5
 
-
 from .association import Association
+from .attribute import Attribute
 from .constraint import Constraint
 from .diagram_link import DiagramLink
 from .entity import Entity
@@ -74,7 +74,7 @@ class Mcd:
                         self.associations[element.name] = element
                         pages[indentation].append(element)
                     elif clause["type"] == "entity":
-                        element = Entity(clause, **params)
+                        element = Entity(clause)
                         if element.name in self.entities:
                             raise MocodoError(6, _('Duplicate entity "{name}". If you want to make two entities appear with the same name, you must suffix it with a number.').format(name=element.name)) # fmt: skip
                         self.entities[element.name] = element
@@ -145,6 +145,9 @@ class Mcd:
             for inheritance in self.inheritances:
                 for leg in inheritance.legs[1:]: # the first leg is the parent
                     children.add(leg.entity_name) # the other legs are its children
+            Attribute.left_gutter_strong_id = params.get("left_gutter_strong_id", "ID")
+            Attribute.left_gutter_weak_id = params.get("left_gutter_weak_id", "id")
+            Attribute.left_gutter_alt_ids = params.get("left_gutter_alt_ids", dict(zip("123456789", "123456789")))
             for (entity_name, entity) in self.entities.items():
                 entity.add_attributes(strengthening_legs[entity_name], entity_name in children)
             self.has_alt_identifier = any(entity.has_alt_identifier for entity in self.entities.values())

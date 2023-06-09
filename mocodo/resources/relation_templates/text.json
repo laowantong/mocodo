@@ -1,6 +1,7 @@
 {
   "extension": ".txt",
-  "compose_alt_key": "{label}<unicodify>{id_groups}</unicodify>",
+  "compose_alt_primary_key": "_{label}<unicodify>{alt_groups}</unicodify>_",
+  "compose_alt_normal_attribute": "{label}<unicodify>{alt_groups}</unicodify>",
   "transform_relational_schema": [
     {
       "order": 0,

@@ -40,7 +40,7 @@ class TestReadTemplate(unittest.TestCase):
     
     def test_official_derivation(self):
         official_template_dir = Path("mocodo") / "resources" / "relation_templates"
-        template = read_template("latex_without_def", official_template_dir)
+        template = read_template("latex_barebones", official_template_dir)
         # print(json.dumps(template, indent=4))
         expected = json.loads(official_template_dir.joinpath("latex.json").read_text())
         expected["compose_relational_schema"] = template["compose_relational_schema"]
