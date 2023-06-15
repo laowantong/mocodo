@@ -26,5 +26,5 @@ web/box/*
 poetry.lock
 mocodo_web.py
 doc/Untitled.ipynb
-mocodo/parse_mcd.py
+parse_mcd.py
 *.vsix
