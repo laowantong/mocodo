@@ -1,10 +1,11 @@
 {
   "name": "vscode-mocodo",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "publisher": "laowantong",
   "engines": {
     "vscode": "^1.2.0"
   },
+  "icon": "images/android-chrome-512x512.png",
   "license": "MIT",
   "displayName": "Mocodo syntax highlighter",
   "description": "A syntax highlighter for Mocodo E/R diagrams",
