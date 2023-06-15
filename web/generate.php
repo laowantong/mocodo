@@ -21,7 +21,6 @@ $extensions = array(
   "postgresql" => "_postgresql.sql",
   "sqlite" => "_sqlite.sql",
   "text" => ".txt",
-  "txt2tags" => ".t2t",
 );
 $flex = array(
   "désactivée" => 0,
