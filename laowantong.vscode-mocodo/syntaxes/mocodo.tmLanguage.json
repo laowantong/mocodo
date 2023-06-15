@@ -1,0 +1,214 @@
+{
+  "name": "Mocodo",
+  "scopeName": "source.mocodo",
+  "uuid": "2AD24A5A-63C9-40B3-B6AA-E240B7B54480",
+  "patterns": [
+    { "include": "#indent" },
+    { "include": "#comment" },
+    { "include": "#phantoms" },
+    { "include": "#constraint_clause" },
+    { "include": "#inheritance_clause" },
+    { "include": "#association_clause" },
+    { "include": "#entity_clause" },
+    { "include": "#invalid" }
+  ],
+  "repository": {
+    "indent": { "match": "^\\s+" },
+    "comment": {
+      "patterns": [
+        {
+          "match": "((%%mocodo\\b.*))$",
+          "captures": {
+            "1": { "name": "markup.bold.mocodo" },
+            "2": { "name": "comment.line.magic.mocodo" }
+          }
+        },
+        {
+          "match": "(%.*)$",
+          "captures": {
+            "1": { "name": "comment.line.normal.mocodo" }
+          }
+        }
+      ]
+    },
+    "phantoms": {
+      "description": "A line containing at least one colon, ane nothing else but spaces and colons",
+      "match": ":[:\\s]*$",
+      "name": "markup.italic.phantom.mocodo"
+    },
+    "association_clause": {
+      "name": "association.mocodo",
+      "begin": "(\\+)?(((?![\\W_\\d])[^=<>,:\\\\]*[^-\\[\\]\\\\=<>,:\\s\\\\]))(?=\\s*,\\s*)",
+      "end": "$",
+      "beginCaptures": {
+        "1": { "name": "keyword.control.mocodo" },
+        "2": { "name": "markup.bold.association.mocodo" },
+        "3": { "name": "entity.name.function.association.mocodo" }
+      },
+      "patterns": [
+        { "include": "#association_legs" },
+        { "include": "#association_attrs" },
+        { "include": "#invalid" }
+      ]
+    },
+    "association_legs": {
+      "name": "legs.mocodo",
+      "begin": "(?=\\s*,\\s*)",
+      "end": "(?=\\s*:\\s*|$)",
+      "patterns": [
+        {
+          "match": "\\s*,\\s*(?:(-)?([_/])?((?![-_\\/])(\\w|\\?){2}(?=[\\s]*[^\\w,\\r\\n:])))?([<>])?\\s*(\\[.*?\\])?\\s*((?![\\W_\\d])[^=<>,:\\\\]*[^-\\[\\]\\\\=<>,:\\s\\\\])\\s*",
+          "captures": {
+            "1": { "name": "keyword.control.card_hidden.mocodo" },
+            "2": { "name": "keyword.control.card_prefix.mocodo" },
+            "3": { "name": "storage.type.cardinality.mocodo" },
+            "5": { "name": "keyword.control.arrow.mocodo" },
+            "6": { "name": "string.unquoted.role.mocodo" },
+            "7": { "name": "entity.name.type.entity.mocodo" }
+          }
+        },
+        { "include": "#invalid" }
+      ]
+    },
+    "association_attrs": {
+      "name": "attrs.mocodo",
+      "begin": "\\s*:\\s*",
+      "end": "$",
+      "patterns": [
+        { "include": "#typed_attr" },
+        { "match": "\\s*,\\s*" },
+        { "include": "#invalid" }
+      ]
+    },
+    "typed_attr": {
+      "name": "typed_attribute.mocodo",
+      "match": "((?=\\w)(?!_)[^\\[\\]>,]*[^\\[\\]>,\\s]\\b)\\s*((\\[.*?\\]))?",
+      "captures": {
+        "1": { "name": "variable.attribute.assocation.mocodo" },
+        "2": { "name": "string.quoted.attr_type.mocodo" },
+        "3": { "name": "markup.italic.attr_type.mocodo" }
+      }
+    },
+    "entity_clause": {
+      "name": "entity.mocodo",
+      "begin": "(\\+)?(((?![\\W_\\d])[^=<>,:\\\\]*[^-\\[\\]\\\\=<>,:\\s\\\\]))\\s*:\\s*",
+      "end": "$",
+      "beginCaptures": {
+        "1": { "name": "keyword.control.mocodo" },
+        "2": { "name": "markup.bold.entity.mocodo" },
+        "3": { "name": "entity.name.type.entity.mocodo" }
+      },
+      "patterns": [
+        {
+          "begin": "(?:((?:\\d*0\\d*_|_))(?:(?=\\w)(?!_)[^\\[\\]>,]*[^\\[\\]>,\\s]\\b|#(?=\\w)(?!_)[^\\[\\]>,]*[^\\[\\]>,\\s]\\b\\s*>\\s*(?=\\w)(?!_)[^\\[\\]>,]*[^\\[\\]>,\\s]\\b\\s*>\\s*(?=\\w)(?!_)[^\\[\\]>,]*[^\\[\\]>,\\s]\\b)|(([1-9]+_)?(?:(?=\\w)(?!_)[^\\[\\]>,]*[^\\[\\]>,\\s]\\b|#(?=\\w)(?!_)[^\\[\\]>,]*[^\\[\\]>,\\s]\\b\\s*>\\s*(?=\\w)(?!_)[^\\[\\]>,]*[^\\[\\]>,\\s]\\b\\s*>\\s*(?=\\w)(?!_)[^\\[\\]>,]*[^\\[\\]>,\\s]\\b)))\\s*((\\[.*?\\]))?",
+          "end": "$",
+          "beginCaptures": {
+            "0": { "name": "variable.attribute.mocodo" },
+            "1": { "name": "keyword.control.id_symbols.mocodo" },
+            "2": { "name": "markup.underline.mocodo" },
+            "3": { "name": "keyword.control.alt_id_symbols.mocodo" },
+            "4": { "name": "string.quoted.attr_type.mocodo" },
+            "5": { "name": "markup.italic.attr_type.mocodo" }
+          },
+          "patterns": [
+            {
+              "match": "\\s*,\\s*(((?:\\d*0\\d*_|_))((?:(?=\\w)(?!_)[^\\[\\]>,]*[^\\[\\]>,\\s]\\b|#(?=\\w)(?!_)[^\\[\\]>,]*[^\\[\\]>,\\s]\\b\\s*>\\s*(?=\\w)(?!_)[^\\[\\]>,]*[^\\[\\]>,\\s]\\b\\s*>\\s*(?=\\w)(?!_)[^\\[\\]>,]*[^\\[\\]>,\\s]\\b))|([1-9]+_)?(?:(?=\\w)(?!_)[^\\[\\]>,]*[^\\[\\]>,\\s]\\b|#(?=\\w)(?!_)[^\\[\\]>,]*[^\\[\\]>,\\s]\\b\\s*>\\s*(?=\\w)(?!_)[^\\[\\]>,]*[^\\[\\]>,\\s]\\b\\s*>\\s*(?=\\w)(?!_)[^\\[\\]>,]*[^\\[\\]>,\\s]\\b))\\s*((\\[.*?\\]))?",
+              "captures": {
+                "1": { "name": "variable.attribute.mocodo" },
+                "2": { "name": "keyword.control.id_symbols.mocodo" },
+                "3": { "name": "markup.underline.mocodo" },
+                "4": { "name": "keyword.control.alt_id_symbols.mocodo" },
+                "5": { "name": "string.quoted.attr_type.mocodo" },
+                "6": { "name": "markup.italic.attr_type.mocodo" }
+              }
+            },
+            { "include": "#invalid" }
+          ]
+        },
+        { "include": "#invalid" }
+      ]
+    },
+    "constraint_clause": {
+      "name": "constraint.mocodo",
+      "begin": "(\\([\\w\\s]{0,3}\\))\\s*(\\[.*?\\])?\\s*",
+      "end": "$",
+      "beginCaptures": {
+        "1": { "name": "storage.type.constraint_name.mocodo" },
+        "2": { "name": "string.quoted.constraint_note.mocodo" }
+      },
+      "patterns": [
+        { "include": "#constraint_targets" }
+      ]
+    },
+    "constraint_targets": {
+      "name": "targets.mocodo",
+      "begin": "",
+      "end": "$",
+      "patterns": [
+        {
+          "match": "(<?(?:\\.+|-+)>?)?\\s*((?![\\W_\\d])[^=<>,:\\\\]*[^-\\[\\]\\\\=<>,:\\s\\\\])",
+          "captures": {
+            "1": { "name": "keyword.control.constraint_leg.mocodo" },
+            "2": { "name": "keyword.other.unit.box.mocodo" }
+          }
+        },
+        { "match": "\\s*,\\s*" },
+        { "include": "#constraint_coords" },
+        { "include": "#invalid" }
+      ]
+    },
+    "constraint_coords": {
+      "name": "coords.mocodo",
+      "match": "\\s*:\\s*((?:-?\\d+(?:\\.\\d+)?(?:[eE][+-]?\\d+)?|(?![\\W_\\d])[^=<>,:\\\\]*[^-\\[\\]\\\\=<>,:\\s\\\\]))\\s*,\\s*((?:-?\\d+(?:\\.\\d+)?(?:[eE][+-]?\\d+)?|(?![\\W_\\d])[^=<>,:\\\\]*[^-\\[\\]\\\\=<>,:\\s\\\\]))$",
+      "captures": {
+        "1": { "name": "variable.x.mocodo" },
+        "2": { "name": "variable.y.mocodo" }
+      }
+    },
+    "inheritance_clause": {
+      "name": "inheritance.mocodo",
+      "begin": "((/(?:XT\\d?|TX\\d?|X\\d?|T\\d?|\\d?)\\\\{1,2}))\\s*((?![\\W_\\d])[^=<>,:\\\\]*[^-\\[\\]\\\\=<>,:\\s\\\\])?\\s*((?:<==?|<--?|--?>|==?>))\\s*",
+      "end": "$",
+      "beginCaptures": {
+        "1": { "name": "markup.underline.inheritance.mocodo" },
+        "2": { "name": "entity.name.function.inheritance.mocodo" },
+        "3": { "name": "entity.name.type.parent.mocodo" },
+        "4": { "name": "keyword.control.arrow.mocodo" }
+      },
+      "patterns": [
+        { "include": "#inheritance_children" }
+      ]
+    },
+    "inheritance_children": {
+      "name": "children.mocodo",
+      "begin": "",
+      "end": "$",
+      "patterns": [
+        {
+          "match": "((?![\\W_\\d])[^=<>,:\\\\]*[^-\\[\\]\\\\=<>,:\\s\\\\])",
+          "name": "entity.name.type.child.mocodo"
+        },
+        { "match": "\\s*,\\s*" },
+        { "include": "#inheritance_attrs" },
+        { "include": "#invalid" }
+      ]
+    },
+    "inheritance_attrs": {
+      "name": "attrs.mocodo",
+      "begin": "\\s*:\\s*",
+      "end": "$",
+      "patterns": [
+        {
+          "match": "(?=\\w)(?!_)[^\\[\\]>,]*[^\\[\\]>,\\s]\\b",
+          "name": "variable.attribute.association.mocodo"
+        },
+        { "match": "\\s*,\\s*" },
+        { "include": "#invalid" }
+      ]
+    },
+    "invalid": {
+      "match": ".+",
+      "name": "invalid.illegal.mocodo"
+    }
+  }
+}
