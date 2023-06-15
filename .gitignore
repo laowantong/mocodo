@@ -27,3 +27,4 @@ poetry.lock
 mocodo_web.py
 doc/Untitled.ipynb
 parse_mcd.py
+*.vsix

@@ -2,11 +2,11 @@
 
 Syntax highlighting support for Mocodo.
 
-![Mocodo text source](images/readme_0.png)
+![Mocodo text source](doc/syntax_screenshot.png)
 
 Mocodo is a tool for designing and teaching relational databases. It is based on the French-flavored Entity-Relationship model (aka Merise).
 
-![Mocodo text source](images/readme_1.png)
+![Mocodo text source](doc/readme_1.png)
 
 ## Contributing
 Bug reports and pull requests are welcome on GitHub at https://github.com/laowantong/mocodo/.
@@ -16,11 +16,7 @@ MIT.
 
 ## Release Notes
 
-### 0.0.3
-
-Fix more packaging problems.
-
-### 0.0.2
+### 0.0.2 -> 0.0.4
 
 Fix packaging problems.
 
