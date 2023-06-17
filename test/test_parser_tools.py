@@ -55,6 +55,7 @@ EXEMPLAIRE3: 2, bon état, 1/8/1977
 EXEMPLAIRE4: 3, reliure rongée, 3/4/2005
 DF1, -1N ŒUVRE, -_11 EXEMPLAIRE1
 +Prof: Num. prof, Nom prof
+Enseignant: num. ens. [numéro identifiant un enseignant], nom ens. [nom enseignant], tél. ens. [téléphone enseignant]
 COMMANDE: Num commande, Date, Montant, #Réf. client>CLIENT>Réf. client
 COMMANDE: Num commande, Date, Montant, #Réf. client > CLIENT > Réf. client
 INCLURE: #Num commande>COMMANDE>Num commande, _#Réf. produit>PRODUIT>Réf. produit, Quantité

@@ -1110,6 +1110,51 @@ DF1, -1N ŒUVRE, -_11 EXEMPLAIRE1
   'source': '+Prof: Num. prof, Nom prof'}]
 
 --------------------------------------------------------------------------------
+Enseignant: num. ens. [numéro identifiant un enseignant], nom ens. [nom enseignant], tél. ens. [téléphone enseignant]
+--------------------------------------------------------------------------------start
+  line
+    entity_clause
+      entity_name_def
+        box_name	Enseignant
+      : 
+      seq
+        entity_or_table_attr
+          attr	num. ens.
+          data_type
+             [
+            numéro identifiant un enseignant
+            ]
+        , 
+        entity_or_table_attr
+          attr	nom ens.
+          data_type
+             [
+            nom enseignant
+            ]
+        , 
+        entity_or_table_attr
+          attr	tél. ens.
+          data_type
+             [
+            téléphone enseignant
+            ]
+--------------------------------------------------------------------------------
+[{'name': 'Enseignant',
+  'attrs': [{'attribute_label': 'num. ens.',
+             'data_type': 'numéro identifiant un enseignant',
+             'rank': 0},
+            {'attribute_label': 'nom ens.',
+             'data_type': 'nom enseignant',
+             'rank': 1},
+            {'attribute_label': 'tél. ens.',
+             'data_type': 'téléphone enseignant',
+             'rank': 2}],
+  'type': 'entity',
+  'indent': '',
+  'source': 'Enseignant: num. ens. [numéro identifiant un enseignant], nom '
+            'ens. [nom enseignant], tél. ens. [téléphone enseignant]'}]
+
+--------------------------------------------------------------------------------
 COMMANDE: Num commande, Date, Montant, #Réf. client>CLIENT>Réf. client
 --------------------------------------------------------------------------------start
   line
