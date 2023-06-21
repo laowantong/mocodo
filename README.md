@@ -1,3 +1,5 @@
+**21 juin 2023.** En anticipation de la version 4, coloration syntaxique dans Mocodo online et VS-Code. Voir https://github.com/laowantong/mocodo/issues/84.
+
 **15 mai 2023.** Mocodo 3.2.0 prend en charge la [visualisation des contraintes sur associations](https://rawgit.com/laowantong/mocodo/master/doc/fr_refman.html#Visualisation-des-contraintes-sur-les-associations).
 
 **11 mai 2023.** Ajout d'un tutoriel / galerie d'exemples dans la [version en ligne](https://www.mocodo.net) de Mocodo 3.1.2.
