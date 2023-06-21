@@ -1,4 +1,5 @@
 import itertools
+import re
 
 from .attribute import *
 from .leg import ConstraintLeg
@@ -37,15 +38,17 @@ class Constraint:
         self.w = self.h = style["constraint_margin"] * 2 + size
 
     def register_center(self, geo):
+        self.page_width = geo["width"]
+        self.page_height = geo["height"]
         if self.coords:
             # The center of a constraint is either at a certain ratio of the width and height of the
             # page, or aligned with the center of a box.
-            if isinstance(self.coords[0], float):
-                self.cx = self.coords[0] * geo["width"] // 100
+            if isinstance(self.coords[0], (float, int)):
+                self.cx = self.coords[0] * self.page_width // 100
             else:
                 self.cx = geo["cx"][self.coords[0]]
-            if isinstance(self.coords[1], float):
-                self.cy = self.coords[1] * geo["height"] // 100
+            if isinstance(self.coords[1], (float, int)):
+                self.cy = self.coords[1] * self.page_height // 100
             else:
                 self.cy = geo["cy"][self.coords[1]]
         else:
@@ -108,3 +111,18 @@ class Constraint:
         for leg in self.legs:
             result.extend(leg.description(style, geo))
         return result
+
+    def invert_coords_horizontal_mirror(self):
+        if self.coords and isinstance(self.coords[1], (float, int)):
+            self.coords[1] = 100 - self.coords[1]
+            self.source = re.sub(r"(.+):.+", fr"\1: {self.coords[0]}, {self.coords[1]}", self.source)
+    
+    def invert_coords_vertical_mirror(self):
+        if self.coords and isinstance(self.coords[0], (float, int)):
+            self.coords[0] = 100 - self.coords[0]
+            self.source = re.sub(r"(.+):.+", fr"\1: {self.coords[0]}, {self.coords[1]}", self.source)
+    
+    def invert_coords_diagonal_mirror(self):
+        if self.coords:
+            (self.coords[0], self.coords[1]) = (self.coords[1], self.coords[0])
+            self.source = re.sub(r"(.+):.+", fr"\1: {self.coords[0]}, {self.coords[1]}", self.source)

@@ -240,7 +240,8 @@ class ClauseExtractor(Transformer):
     
     def _constraint_coord(self, x):
         try:
-            return float(x)
+            x = float(x)
+            return int(x) if x == int(x) else x
         except ValueError:
             return x.value
 

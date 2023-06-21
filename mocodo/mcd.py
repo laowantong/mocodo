@@ -99,8 +99,6 @@ class Mcd:
                 for element in elements:
                     element.page = i
             self.header = "\n".join(self.commented_lines) + "\n\n" if self.commented_lines else ""
-            constraint_sources = [clause["source"] for clause in self.constraint_clauses]
-            self.footer = "\n\n" + "\n".join(constraint_sources) if constraint_sources else ""
             for association in self.associations.values():
                 association.register_mcd_has_cif(mcd_has_cif)
         
@@ -133,7 +131,7 @@ class Mcd:
                         raise MocodoError(40, _('Constraint "{constraint}" linked to an unknown entity or association "{box}"!').format(constraint=constraint.name, box=leg.box_name)) # fmt: skip
                     leg.register_box(box)
                 for box_name in constraint.coords:
-                    if isinstance(box_name, float):
+                    if isinstance(box_name, (float, int)):
                         continue
                     if box_name in self.associations or box_name in self.entities:
                         continue
@@ -246,6 +244,7 @@ class Mcd:
         phantom_counter = itertools.count()
         self.uid = calculate_uid()
         create()
+        self.update_footer()
         add_legs()
         add_attributes()
         set_left_gutter_visibility()
@@ -255,6 +254,10 @@ class Mcd:
         tweak_straight_cards()
         self.title = params.get("title", "Untitled")
     
+    def update_footer(self):
+        constraint_sources = [constraint.source for constraint in self.constraints]
+        self.footer = "\n\n" + "\n".join(constraint_sources) if constraint_sources else ""
+
     def get_layout_data(self):
         successors = [set() for i in range(self.box_count)] # use `set` to deduplicate reflexive associations
         multiplicity = defaultdict(int) # but count the multiplicity (1 or 2) of each link
@@ -322,14 +325,23 @@ class Mcd:
         else:
             result += "\n\n".join(":\n" + "\n:\n".join(self.get_row_text(row).split("\n")) + "\n:" for row in self.rows)
         return result + self.footer
-    
+
     def get_clauses_horizontal_mirror(self):
+        for constraint in self.constraints:
+            constraint.invert_coords_horizontal_mirror()
+        self.update_footer()
         return self.header + "\n\n".join(self.get_row_text(row) for row in self.rows[::-1]) + self.footer
     
     def get_clauses_vertical_mirror(self):
+        for constraint in self.constraints:
+            constraint.invert_coords_vertical_mirror()
+        self.update_footer()
         return self.header + "\n\n".join(self.get_row_text(row[::-1]) for row in self.rows) + self.footer
     
     def get_clauses_diagonal_mirror(self):
+        for constraint in self.constraints:
+            constraint.invert_coords_diagonal_mirror()
+        self.update_footer()
         return self.header + "\n\n".join(self.get_row_text(row) for row in zip(*self.rows)) + self.footer
     
     def get_reformatted_clauses(self, nth_fit):
