@@ -52,7 +52,11 @@ class Mcd:
                         self.commented_lines.append(clause["text"])
                     continue
                 if clause["type"] == "phantoms":
-                    self.rows[-1].extend(Phantom(next(phantom_counter)) for _ in range(clause["count"]))
+                    phantoms = [Phantom(next(phantom_counter)) for _ in range(clause["count"])]
+                    if self.rows[-1]:
+                        self.rows[-1].extend(phantoms)
+                    else:
+                        self.rows.append(phantoms)
                     continue
                 if clause["type"] == "constraint":
                     element = Constraint(clause)

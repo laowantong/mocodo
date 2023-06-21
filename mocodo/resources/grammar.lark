@@ -28,7 +28,7 @@ ATTR : /(?=\w)(?!_)[^\[\]>,\r\n]*[^\[\]>,\s]/
 ?note : /[^\r\n\]]+/
 
 start : (break_ | line)*
-BREAK :  /(\s*\n)+/
+BREAK.100 : /^\n/
 line : indent? (phantoms | comment | clause | NL)
 ?clause : assoc_clause
         | entity_clause

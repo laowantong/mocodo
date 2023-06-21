@@ -16,6 +16,8 @@ def parse_source(source):
         expected = set(error.expected)
         t = error.token.type
         v = repr(error.token.value)
+        if error.token.value == "\n":
+            t = "BREAK"
         try:
             previous = error.token_history[0].type
         except:
@@ -158,7 +160,7 @@ class ClauseExtractor(Transformer):
         return {"type": "phantoms", "count": tree[0].value.count(":")}
     
     def comment(self, tree):
-        return {"type": "comment", "text": tree[0].value.strip()}
+        return {"type": "comment", "text": f"%{tree[0].value.rstrip()}"}
     
     def entity_clause(self, tree):
         return tree + [("type", "entity")]
@@ -254,7 +256,10 @@ class ClauseExtractor(Transformer):
 def extract_clauses(source):
     tree = parse_source(source)
     extractor = ClauseExtractor()
-    result = extractor.transform(tree)    
+    result = extractor.transform(tree)
+    for line in result:
+        if "type" not in line:
+            line["type"] = "break"
     # Uniformize indentations. First, find the set of all distinct indentations.
     # Include the empty string if absent. Then, sort them by length. Finally,
     # replace each indentation by a number of spaces proportional to its index

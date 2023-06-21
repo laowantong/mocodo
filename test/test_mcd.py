@@ -239,11 +239,13 @@ class McdTest(unittest.TestCase):
 
     def test_flip(self):
         source = """
+            % The comments are placed before
             BARATTE: piston, racloir, fusil
             MARTEAU, 0N BARATTE, 11 TINET: ciseaux
             TINET: fendoir, grattoir
             CROCHET: égrenoir, _gorgeoir, bouillie
 
+            % ... the first line of the file
             DF, 11 BARATTE, 1N ROULEAU
             BALANCE, 0N ROULEAU, 0N TINET: charrue
             BANNETON, 01 CROCHET, 11 FLÉAU, 1N TINET: pulvérisateur
@@ -256,6 +258,9 @@ class McdTest(unittest.TestCase):
         """
         mcd = Mcd(source, **params)
         expected = """
+            % The comments are placed before
+            % ... the first line of the file
+            
             :
             FLÉAU: battadère, van, mesure
             :
@@ -279,6 +284,9 @@ class McdTest(unittest.TestCase):
         actual = mcd.get_clauses_horizontal_mirror().replace("    ", "").strip()
         self.assertEqual(actual, expected)
         expected = """
+            % The comments are placed before
+            % ... the first line of the file
+            
             CROCHET: égrenoir, _gorgeoir, bouillie
             TINET: fendoir, grattoir
             MARTEAU, 0N BARATTE, 11 TINET: ciseaux
@@ -302,6 +310,9 @@ class McdTest(unittest.TestCase):
         actual = mcd.get_clauses_vertical_mirror().replace("    ", "").strip()
         self.assertEqual(actual, expected)
         expected = """
+            % The comments are placed before
+            % ... the first line of the file
+            
             BARATTE: piston, racloir, fusil
             DF, 11 BARATTE, 1N ROULEAU
             :

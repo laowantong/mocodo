@@ -144,8 +144,8 @@ def fuzzer(seed=0):
 
 mocodo_errors = [
     *[(501, c) for c in "0123456789!#$&')*,.-;<=>?@[\\]^_`{|}~"],
-    (501, ": foobar"),
     *[(501, f" {c}") for c in "0123456789!#$&')*,.-;<=>?@[\\]^_`{|}~"],
+    (501, ": foobar"),
     (501, " : foobar"),
     (502, "FOO, 0N Bar, 1N Biz [bla] "),
     (502, "FOO, 0N Bar, 1N Biz [bla]"),
@@ -165,6 +165,7 @@ mocodo_errors = [
     (507, "/X12\\ Personne => Homme, Femme: sexe"),
     (507, "/1N\\"),
     (508, "(I) : 1, 2, 3"),
+    (508, "(I) : 1, 2,"),
     (509, "DIRIGER,"),
     (509, "DIRIGER,    "),
     (510, "(I) : "),
@@ -208,7 +209,6 @@ mocodo_errors = [
     (525, "(I) [bla bla.] ..PIÈCE, ->REQUÉRIR, --FOURNIR, PROJET: 12.5"),
     (526, "(A) ->Ipsum, ->Lorem: 30, 9N"),
     (527, "(I) [bla bla.] ..PIÈCE, ->REQUÉRIR, --FOURNIR, PROJET: 3,14 3,14"),
-    # (527, "(I) [bla bla.] ..PIÈCE, ->REQUÉRIR, --FOURNIR, PROJET: 3,14,"),
 ]
 
 class MocodoErrorTest(unittest.TestCase):

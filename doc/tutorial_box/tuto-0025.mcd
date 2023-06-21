@@ -6,7 +6,7 @@
 %                                                                             %
 %  NB. Le paragraphe réduit à « : » permet d'ajouter une rangée vide à la     %
 %  grille sous-jacente, de façon à aérer verticalement le MCD. Les deux noms  %
-%  de boîtes qui suivent le « : » de la définition de la contrainte alignent  %
+%  de boîtes qui suivent le « : » de la définition de la contrainte alignent  %
 %  celle-ci sur l'abcisse et l'ordonnée (respectivement) de ces boîtes.       %
 %                                                                             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
