@@ -37,7 +37,13 @@ fwrite($chan, json_encode($_POST));
 fclose($chan);
 
 // Launch the script
-$command_line = "~/.local/bin/mocodo --timeout=" . $_POST['timeout'] . " --" . $_POST['algo'] . " 2>&1";
+
+if (strpos($_SERVER['HTTP_REFERER'], 'localhost')) {
+    $mocodo = "~/opt/anaconda3/bin/mocodo";
+  } else {
+    $mocodo = "~/.local/bin/mocodo";
+};
+$command_line = "{$mocodo} --timeout=" . $_POST['timeout'] . " --" . $_POST['algo'] . " 2>&1";
 // fwrite($php_log, $command_line . "\n");
 // fwrite($php_log,$_POST['text']);
 $out = array();

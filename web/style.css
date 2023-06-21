@@ -122,25 +122,19 @@ form input[type="text"] {
 #gear.fa-spin {
 	visibility: visible;
 }
-textarea {
+#editor {
   border:1px solid #bbb;
-  overflow: auto;
-  outline: none;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
-  padding:10px;
-  font-family: 'Source Code Pro', monospace;
-	font-size:11pt;
+	font-size:12pt;
+  font-family: 'Menlo', 'Monaco', 'Andale mono', 'Source Code Pro', monospace;
   max-width:100%;
   min-width:100%;
   min-height:100px;
   height:350px;
 	position:relative;
-	margin-top:-3px;
+  resize: vertical;
 }
-#text.flash {
-  color:#bbb;
+#editor.flash {
+  background-color:#ededed;
 }
 #inputZone, #outputZone {
   background:#fff;

@@ -4,7 +4,11 @@ if (!array_key_exists('text', $_POST)) {
     exit("Need a POST value.");
 }
 
-$python = "/usr/local/bin/python3.9";
+if (strpos($_SERVER['HTTP_REFERER'], 'localhost')) {
+    $python = "~/opt/anaconda3/bin/mocodo";
+} else {
+    $python = "/usr/local/bin/python3.9";
+}
 
 $extensions = array(
   "dependencies" => "_dependencies.gv",
@@ -110,7 +114,13 @@ else {
   };
 
   // Launch the script
-$command_line = "~/.local/bin/mocodo 2>&1 >/dev/null";
+if (strpos($_SERVER['HTTP_REFERER'], 'localhost')) {
+  $mocodo = "~/opt/anaconda3/bin/mocodo";
+} else {
+  $mocodo = "~/.local/bin/mocodo";
+};
+$command_line = "{$mocodo} 2>&1 >/dev/null";
+
 $out = array();
 // die('{"err": "' . $command_line . '"}');
 

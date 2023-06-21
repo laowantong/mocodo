@@ -229,11 +229,12 @@ $.fn.highlight = function () {
       .fadeOut(500);
   });
 }
-
 function generate() {
   if (request_lock) return;
   request_lock = true;
   $("#generateButton").addClass("fa-spin");
+  var text = ace.edit("editor").getSession().getValue();
+  $('textarea[name="text"]').val(text);
   $.ajax({
     type: "POST",
     url: "web/generate.php",
@@ -273,13 +274,13 @@ function generate() {
 };
 function reorganize(algo) {
     $("#gear").addClass("fa-spin");
-    $("#text").addClass("flash");
+    $("#editor").addClass("flash");
     return $.ajax({
       type: "POST",
       url: "web/arrange.php",
       data: {
         algo: algo,
-        text: $("#text").attr("value"),
+        text: ace.edit("editor").getSession().getValue(),
         timeout: delays[$("#delays").attr("value")]
       },
       success: function (result) {
@@ -290,9 +291,7 @@ function reorganize(algo) {
           $("#errorTab").css("display", "inline");
           return;
         }
-        $("#text").val(result["text"]);
-        $("#text").scrollTop(0);
-        markAsDirty();
+        set_editor_content(result["text"]);
         if (!$("#diagramOutput").hasClass('initial') & algo!="fit=0" & algo!="fit=1") {
           request_lock = false;
           generate();
@@ -300,7 +299,7 @@ function reorganize(algo) {
       },
       complete: function (data) {
         $("#gear").removeClass("fa-spin");
-        $("#text").removeClass("flash");
+        $("#editor").removeClass("flash");
         request_lock = false;
       }
     });
@@ -330,9 +329,7 @@ function reveal() {
     data: { title: $("#title").attr("value") },
     success: function (result) {
       if (result) {
-        $("#text").val(result);
-        $("#text").scrollTop(0);
-        markAsDirty();
+        set_editor_content(result);
         if (!$("#diagramOutput").hasClass('initial')) {
           request_lock = false;
           generate();
@@ -343,6 +340,12 @@ function reveal() {
       request_lock = false;
     }
   });
+};
+function set_editor_content(text) {
+  var editor = ace.edit("editor");
+  editor.setValue(text);
+  editor.selection.moveCursorFileStart();
+  markAsDirty();
 };
 function markAsDirty() {
   $("#title").val($("#title").attr("value").replace(/[^A-Za-zÀ-ÖØ-öø-ÿ0-9 '\._-]/g, '-'));
@@ -413,7 +416,27 @@ $(document).keypress(function (e) {
 });
 $().ready(function () {
   createTabs();
-  $.get(location.protocol + '//' + location.host + "/resources/pristine_sandbox.mcd", function (data) { $("#text").val(data) });
+	var editor = ace.edit("editor");
+  // if it is launched from localhost, use the local pristine sandbox
+  if (location.hostname == "localhost") {
+    var pristine_sandbox = "/mocodo/mocodo/resources/pristine_sandbox.mcd";
+  }
+  else {
+    var pristine_sandbox = "/resources/pristine_sandbox.mcd";
+  }
+  $.get(location.protocol + '//' + location.host + pristine_sandbox, function (data) {
+    editor.setValue(data);
+    editor.selection.moveCursorFileStart();
+  });
+  editor.session.setMode("ace/mode/mocodo");
+  editor.setTheme("ace/theme/chrome");
+	editor.setOptions({
+    enableAutoIndent: false,
+    showPrintMargin: false,
+    showGutter: false,
+    enableLiveAutocompletion: true,
+	});
+  editor.renderer.updateFull();
   var default_color = "brewer" + "+-"[Math.floor(Math.random() * 2)] + (Math.floor(Math.random() * 9) + 1);
   createOptions("colors", ["blank", "bw", "bw-alpha", "desert", "keepsake", "mondrian", "ocean", "pond", "wb", "xinnian", "brewer+1", "brewer-1", "brewer+2", "brewer-2", "brewer+3", "brewer-3", "brewer+4", "brewer-4", "brewer+5", "brewer-5", "brewer+6", "brewer-6", "brewer+7", "brewer-7", "brewer+8", "brewer-8", "brewer+9", "brewer-9"], default_color);
   createOptions("shapes", ["arial", "copperplate", "georgia", "mondrian", "sans", "serif", "times", "trebuchet", "verdana", "xinnian"], "verdana");

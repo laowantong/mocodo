@@ -133,7 +133,8 @@
 						<div><input type="text" oninput="markAsDirty();freezeTitle();reveal()" onfocus="onFocus(this)" name="title" id="title" value="Sans Titre" onblur="onBlur(this)" autocomplete="off" title="Si vous ne donnez pas de titre à votre MCD, Mocodo essaiera d'en trouver un pour vous." /></div>
 						<span id="gear" class="fa fa-cog fa-2x"></span>
 						<select onchange="changeTitleToNthTuto();reveal()" name="tutorial" id="tutorial" title="Parcourez notre galerie de MCD pour apprendre la syntaxe de Mocodo."></select>
-						<div><textarea onchange="markAsDirty();mayUnfreezeTitle()" name="text" id="text" wrap="off"></textarea></div>
+						<textarea hidden name="text"></textarea>
+						<div id="editor" onchange="markAsDirty();mayUnfreezeTitle()"></div>
 					</div>
 				</div>
 				<div id="paramContents" class="contents">
@@ -193,6 +194,8 @@
 <script type="text/javascript" charset="utf8" src="web/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" charset="utf8" src="web/js.cookie.js"></script>
 <script type="text/javascript" charset="utf8" src="web/mocodo.js"></script>
+<script type="text/javascript" charset="utf8" src="web/ace-builds/ace.js"></script>
+<script type="text/javascript" charset="utf8" src="web/ace-builds/ext-language_tools.js"></script>
 
 </body>
 </html>
