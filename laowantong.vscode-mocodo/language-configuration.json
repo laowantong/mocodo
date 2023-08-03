@@ -2,10 +2,6 @@
     "comments": {
         "lineComment": "%",
     },
-    "brackets": [
-        ["[", "]"],
-        ["(", ")"]
-    ],
     "autoClosingPairs": [
         ["[", "]"],
         ["(", ")"]
