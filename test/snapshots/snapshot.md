@@ -1203,9 +1203,9 @@ CREATE TABLE `ANIMAL` (
   `date_naissance` VARCHAR(42),
   `sexe` VARCHAR(42),
   `date_décès` VARCHAR(42),
-  `code_espèce mère` VARCHAR(42),
-  `nom mère` VARCHAR(42),
-  `date_naissance mère` VARCHAR(42),
+  `code_espèce_mère` VARCHAR(42),
+  `nom_mère` VARCHAR(42),
+  `date_naissance_mère` VARCHAR(42),
   `type_alimentation` TINYINT UNSIGNED NOT NULL,
   `carnivore` BOOLEAN,
   `quantité_viande` VARCHAR(42),
@@ -1233,9 +1233,9 @@ CREATE TABLE `OCCUPE` (
 
 CREATE TABLE `PEUT_COHABITER_AVEC` (
   `code_espèce` VARCHAR(42),
-  `code_espèce commensale` VARCHAR(42),
+  `code_espèce_commensale` VARCHAR(42),
   `nb_max_commensaux` VARCHAR(42),
-  PRIMARY KEY (`code_espèce`, `code_espèce commensale`)
+  PRIMARY KEY (`code_espèce`, `code_espèce_commensale`)
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 CREATE TABLE `PEUT_VIVRE_DANS` (
@@ -1246,7 +1246,7 @@ CREATE TABLE `PEUT_VIVRE_DANS` (
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 ALTER TABLE `ANIMAL` ADD FOREIGN KEY (`code_espèce`) REFERENCES `ESPÈCE` (`code_espèce`);
-ALTER TABLE `PEUT_COHABITER_AVEC` ADD FOREIGN KEY (`code_espèce commensale`) REFERENCES `ESPÈCE` (`code_espèce`);
+ALTER TABLE `PEUT_COHABITER_AVEC` ADD FOREIGN KEY (`code_espèce_commensale`) REFERENCES `ESPÈCE` (`code_espèce`);
 ALTER TABLE `PEUT_COHABITER_AVEC` ADD FOREIGN KEY (`code_espèce`) REFERENCES `ESPÈCE` (`code_espèce`);
 ALTER TABLE `PEUT_VIVRE_DANS` ADD FOREIGN KEY (`code_espèce`) REFERENCES `ESPÈCE` (`code_espèce`);
 ALTER TABLE `ANIMAL` ADD CONSTRAINT `animal_u3` UNIQUE (`nom`, `date_décès`);
@@ -1262,9 +1262,9 @@ CREATE TABLE "ANIMAL" (
   "date_naissance" VARCHAR(42),
   "sexe" VARCHAR(42),
   "date_décès" VARCHAR(42),
-  "code_espèce mère" VARCHAR(42),
-  "nom mère" VARCHAR(42),
-  "date_naissance mère" VARCHAR(42),
+  "code_espèce_mère" VARCHAR(42),
+  "nom_mère" VARCHAR(42),
+  "date_naissance_mère" VARCHAR(42),
   "type_alimentation" NUMBER(1) UNSIGNED NOT NULL,
   "carnivore" NUMBER(1) DEFAULT 0 NOT NULL,
   "quantité_viande" VARCHAR(42),
@@ -1292,9 +1292,9 @@ CREATE TABLE "OCCUPE" (
 
 CREATE TABLE "PEUT_COHABITER_AVEC" (
   "code_espèce" VARCHAR(42),
-  "code_espèce commensale" VARCHAR(42),
+  "code_espèce_commensale" VARCHAR(42),
   "nb_max_commensaux" VARCHAR(42),
-  PRIMARY KEY ("code_espèce", "code_espèce commensale")
+  PRIMARY KEY ("code_espèce", "code_espèce_commensale")
 );
 
 CREATE TABLE "PEUT_VIVRE_DANS" (
@@ -1304,10 +1304,10 @@ CREATE TABLE "PEUT_VIVRE_DANS" (
   PRIMARY KEY ("code_espèce", "num_enclos")
 );
 
-ALTER TABLE "ANIMAL" ADD FOREIGN KEY ("code_espèce mère", "nom mère", "date_naissance mère") REFERENCES "ANIMAL" ("code_espèce", "nom", "date_naissance");
+ALTER TABLE "ANIMAL" ADD FOREIGN KEY ("code_espèce_mère", "nom_mère", "date_naissance_mère") REFERENCES "ANIMAL" ("code_espèce", "nom", "date_naissance");
 ALTER TABLE "ANIMAL" ADD FOREIGN KEY ("code_espèce") REFERENCES "ESPÈCE" ("code_espèce");
 ALTER TABLE "OCCUPE" ADD FOREIGN KEY ("code_espèce", "nom", "date_naissance") REFERENCES "ANIMAL" ("code_espèce", "nom", "date_naissance");
-ALTER TABLE "PEUT_COHABITER_AVEC" ADD FOREIGN KEY ("code_espèce commensale") REFERENCES "ESPÈCE" ("code_espèce");
+ALTER TABLE "PEUT_COHABITER_AVEC" ADD FOREIGN KEY ("code_espèce_commensale") REFERENCES "ESPÈCE" ("code_espèce");
 ALTER TABLE "PEUT_COHABITER_AVEC" ADD FOREIGN KEY ("code_espèce") REFERENCES "ESPÈCE" ("code_espèce");
 ALTER TABLE "PEUT_VIVRE_DANS" ADD FOREIGN KEY ("code_espèce") REFERENCES "ESPÈCE" ("code_espèce");
 ALTER TABLE "ANIMAL" ADD CONSTRAINT "animal_u3" UNIQUE ("nom", "date_décès");
@@ -1326,9 +1326,9 @@ CREATE TABLE ANIMAL (
   date_naissance VARCHAR(42),
   sexe VARCHAR(42),
   date_décès VARCHAR(42),
-  code_espèce mère VARCHAR(42),
-  nom mère VARCHAR(42),
-  date_naissance mère VARCHAR(42),
+  code_espèce_mère VARCHAR(42),
+  nom_mère VARCHAR(42),
+  date_naissance_mère VARCHAR(42),
   type_alimentation SMALLINT NOT NULL,
   carnivore BOOLEAN,
   quantité_viande VARCHAR(42),
@@ -1356,9 +1356,9 @@ CREATE TABLE OCCUPE (
 
 CREATE TABLE PEUT_COHABITER_AVEC (
   code_espèce VARCHAR(42),
-  code_espèce commensale VARCHAR(42),
+  code_espèce_commensale VARCHAR(42),
   nb_max_commensaux VARCHAR(42),
-  PRIMARY KEY (code_espèce, code_espèce commensale)
+  PRIMARY KEY (code_espèce, code_espèce_commensale)
 );
 
 CREATE TABLE PEUT_VIVRE_DANS (
@@ -1369,7 +1369,7 @@ CREATE TABLE PEUT_VIVRE_DANS (
 );
 
 ALTER TABLE ANIMAL ADD FOREIGN KEY (code_espèce) REFERENCES ESPÈCE (code_espèce);
-ALTER TABLE PEUT_COHABITER_AVEC ADD FOREIGN KEY (code_espèce commensale) REFERENCES ESPÈCE (code_espèce);
+ALTER TABLE PEUT_COHABITER_AVEC ADD FOREIGN KEY (code_espèce_commensale) REFERENCES ESPÈCE (code_espèce);
 ALTER TABLE PEUT_COHABITER_AVEC ADD FOREIGN KEY (code_espèce) REFERENCES ESPÈCE (code_espèce);
 ALTER TABLE PEUT_VIVRE_DANS ADD FOREIGN KEY (code_espèce) REFERENCES ESPÈCE (code_espèce);
 ALTER TABLE ANIMAL ADD CONSTRAINT animal_u3 UNIQUE (nom, date_décès);
@@ -1388,9 +1388,9 @@ CREATE TABLE ANIMAL (
   date_naissance VARCHAR(42),
   sexe VARCHAR(42),
   date_décès VARCHAR(42),
-  code_espèce mère VARCHAR(42),
-  nom mère VARCHAR(42),
-  date_naissance mère VARCHAR(42),
+  code_espèce_mère VARCHAR(42),
+  nom_mère VARCHAR(42),
+  date_naissance_mère VARCHAR(42),
   type_alimentation SMALLINT NOT NULL,
   carnivore BOOLEAN,
   quantité_viande VARCHAR(42),
@@ -1418,9 +1418,9 @@ CREATE TABLE OCCUPE (
 
 CREATE TABLE PEUT_COHABITER_AVEC (
   code_espèce VARCHAR(42),
-  code_espèce commensale VARCHAR(42),
+  code_espèce_commensale VARCHAR(42),
   nb_max_commensaux VARCHAR(42),
-  PRIMARY KEY (code_espèce, code_espèce commensale)
+  PRIMARY KEY (code_espèce, code_espèce_commensale)
 );
 
 CREATE TABLE PEUT_VIVRE_DANS (
@@ -1431,7 +1431,7 @@ CREATE TABLE PEUT_VIVRE_DANS (
 );
 
 ALTER TABLE ANIMAL ADD FOREIGN KEY (code_espèce) REFERENCES ESPÈCE (code_espèce);
-ALTER TABLE PEUT_COHABITER_AVEC ADD FOREIGN KEY (code_espèce commensale) REFERENCES ESPÈCE (code_espèce);
+ALTER TABLE PEUT_COHABITER_AVEC ADD FOREIGN KEY (code_espèce_commensale) REFERENCES ESPÈCE (code_espèce);
 ALTER TABLE PEUT_COHABITER_AVEC ADD FOREIGN KEY (code_espèce) REFERENCES ESPÈCE (code_espèce);
 ALTER TABLE PEUT_VIVRE_DANS ADD FOREIGN KEY (code_espèce) REFERENCES ESPÈCE (code_espèce);
 ALTER TABLE ANIMAL ADD CONSTRAINT animal_u3 UNIQUE (nom, date_décès);
@@ -1449,9 +1449,9 @@ CREATE TABLE "ANIMAL" (
   "date_naissance" VARCHAR(42),
   "sexe" VARCHAR(42),
   "date_décès" VARCHAR(42),
-  "code_espèce mère" VARCHAR(42),
-  "nom mère" VARCHAR(42),
-  "date_naissance mère" VARCHAR(42),
+  "code_espèce_mère" VARCHAR(42),
+  "nom_mère" VARCHAR(42),
+  "date_naissance_mère" VARCHAR(42),
   "type_alimentation" INTEGER NOT NULL,
   "carnivore" INTEGER,
   "quantité_viande" VARCHAR(42),
@@ -1480,11 +1480,11 @@ CREATE TABLE "OCCUPE" (
 
 CREATE TABLE "PEUT_COHABITER_AVEC" (
   "code_espèce" VARCHAR(42),
-  "code_espèce commensale" VARCHAR(42),
+  "code_espèce_commensale" VARCHAR(42),
   "nb_max_commensaux" VARCHAR(42),
-  PRIMARY KEY ("code_espèce", "code_espèce commensale"),
+  PRIMARY KEY ("code_espèce", "code_espèce_commensale"),
   FOREIGN KEY ("code_espèce") REFERENCES "ESPÈCE" ("code_espèce"),
-  FOREIGN KEY ("code_espèce commensale") REFERENCES "ESPÈCE" ("code_espèce")
+  FOREIGN KEY ("code_espèce_commensale") REFERENCES "ESPÈCE" ("code_espèce")
 );
 
 CREATE TABLE "PEUT_VIVRE_DANS" (

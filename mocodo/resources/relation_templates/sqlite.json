@@ -13,6 +13,7 @@
       "replace": ""
     }
   ],
+  "compose_label_disambiguated_by_note": "{raw_label}_{leg_note}",
   "compose_label_disambiguated_by_number": "{label}_{disambiguation_number}",
   "transform_title": [
     {
