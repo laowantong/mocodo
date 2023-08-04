@@ -136,6 +136,10 @@ form input[type="text"] {
 #editor.flash {
   background-color:#ededed;
 }
+.ace_layer, .ace_text-layer {
+  left: 5px!important;
+  top: 5px!important;
+}
 #inputZone, #outputZone {
   background:#fff;
   overflow:auto;
