@@ -2138,7 +2138,7 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
                          {'constraint_leg': '->', 'box': 'REQUÉRIR', 'rank': 1},
                          {'constraint_leg': '--', 'box': 'FOURNIR', 'rank': 2},
                          {'box': 'PROJET', 'rank': 3}],
-  'constraint_coords': [12.5, 30.0],
+  'constraint_coords': [12.5, 30],
   'type': 'constraint',
   'indent': '',
   'source': '(I) [bla bla.] ..PIÈCE, ->REQUÉRIR, --FOURNIR, PROJET: 12.5, 30'}]
@@ -2181,7 +2181,7 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
                          {'constraint_leg': '->', 'box': 'REQUÉRIR', 'rank': 1},
                          {'constraint_leg': '--', 'box': 'FOURNIR', 'rank': 2},
                          {'box': 'PROJET', 'rank': 3}],
-  'constraint_coords': [12.5, 30.0],
+  'constraint_coords': [12.5, 30],
   'type': 'constraint',
   'indent': '',
   'source': '(II) ..PIÈCE, ->REQUÉRIR, --FOURNIR, PROJET: 12.5, 30'}]
@@ -2205,7 +2205,7 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
 --------------------------------------------------------------------------------
 [{'name': 'III',
   'constraint_note': 'bla bla.',
-  'constraint_coords': [12.5, 30.0],
+  'constraint_coords': [12.5, 30],
   'type': 'constraint',
   'indent': '',
   'source': '(III) [bla bla.]: 12.5, 30'}]
@@ -2225,7 +2225,7 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
         30
 --------------------------------------------------------------------------------
 [{'name': 'IV',
-  'constraint_coords': [12.5, 30.0],
+  'constraint_coords': [12.5, 30],
   'type': 'constraint',
   'indent': '',
   'source': '(IV) : 12.5, 30'}]
@@ -2272,7 +2272,7 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
                          {'constraint_leg': '->', 'box': 'REQUÉRIR', 'rank': 1},
                          {'constraint_leg': '--', 'box': 'FOURNIR', 'rank': 2},
                          {'box': 'PROJET', 'rank': 3}],
-  'constraint_coords': ['FOO', 30.0],
+  'constraint_coords': ['FOO', 30],
   'type': 'constraint',
   'indent': '',
   'source': '(I) [bla bla.] ..PIÈCE, ->REQUÉRIR, --FOURNIR, PROJET: FOO, 30'}]
@@ -2386,7 +2386,7 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
         30
 --------------------------------------------------------------------------------
 [{'name': 'IV',
-  'constraint_coords': [12.5, 30.0],
+  'constraint_coords': [12.5, 30],
   'type': 'constraint',
   'indent': '',
   'source': '(IV) : 12.5, 30'}]
@@ -2424,7 +2424,7 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
   'constraint_targets': [{'constraint_leg': '--', 'box': 'Lorem', 'rank': 0},
                          {'constraint_leg': '.....', 'box': 'Ipsum', 'rank': 1},
                          {'constraint_leg': '-', 'box': 'Dolor', 'rank': 2}],
-  'constraint_coords': [30.0, 10.0],
+  'constraint_coords': [30, 10],
   'type': 'constraint',
   'indent': '',
   'source': '(A) --Lorem, .....Ipsum, -Dolor: 30, 10'}]
@@ -2462,7 +2462,7 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
   'constraint_targets': [{'constraint_leg': '->', 'box': 'Dolor', 'rank': 0},
                          {'constraint_leg': '<-->', 'box': 'Sit', 'rank': 1},
                          {'constraint_leg': '-->', 'box': 'Amet', 'rank': 2}],
-  'constraint_coords': [69.0, 10.0],
+  'constraint_coords': [69, 10],
   'type': 'constraint',
   'indent': '',
   'source': '(B) ->Dolor, <-->Sit, -->Amet: 69, 10'}]
