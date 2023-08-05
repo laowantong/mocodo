@@ -19,7 +19,6 @@ def distance(seq1, seq2):
     2
     >>> damerau_levenshtein('fee', 'deed')
     2
-
     It works with arbitrary sequences too:
     >>> damerau_levenshtein('abcd', ['b', 'a', 'c', 'd', 'e'])
     2

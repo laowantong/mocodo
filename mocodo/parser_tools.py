@@ -275,7 +275,6 @@ def extract_clauses(source):
     return result
 
 
-
 if __name__ == "__main__":
     source = "Foo: bar [baz]"
     print(parse_source(source))
