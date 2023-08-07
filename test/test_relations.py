@@ -142,7 +142,7 @@ class relationsTest(unittest.TestCase):
         self.assertEqual(d["relations"][2]["columns"][0]["nature"], "primary_key")
         self.assertEqual(d["relations"][3]["this_relation_name"], "Hour")
         self.assertEqual(d["relations"][3]["columns"][0]["label"], "clue")
-        self.assertEqual(d["relations"][3]["columns"][0]["nature"], "strengthening_primary_key")
+        self.assertEqual(d["relations"][3]["columns"][0]["nature"], "strengthening_primary_foreign_key")
         self.assertEqual(d["relations"][3]["columns"][1]["label"], "book")
         self.assertEqual(d["relations"][3]["columns"][1]["nature"], "primary_key")
         self.assertEqual(d["relations"][4]["this_relation_name"], "Poll")
@@ -447,7 +447,7 @@ class relationsTest(unittest.TestCase):
         self.assertEqual(d["relations"][0]["columns"][0]["label"], "code rue")
         self.assertEqual(d["relations"][0]["columns"][0]["raw_label"], "code rue")
         self.assertEqual(d["relations"][0]["columns"][0]["primary"], True)
-        self.assertEqual(d["relations"][0]["columns"][0]["nature"], "strengthening_primary_key")
+        self.assertEqual(d["relations"][0]["columns"][0]["nature"], "strengthening_primary_foreign_key")
         self.assertEqual(d["relations"][0]["columns"][0]["association_name"], "Composer")
         self.assertEqual(d["relations"][0]["columns"][0]["outer_source"], "Étage")
         
@@ -455,7 +455,7 @@ class relationsTest(unittest.TestCase):
         self.assertEqual(d["relations"][0]["columns"][1]["label"], "num immeuble")
         self.assertEqual(d["relations"][0]["columns"][1]["raw_label"], "num immeuble")
         self.assertEqual(d["relations"][0]["columns"][1]["primary"], True)
-        self.assertEqual(d["relations"][0]["columns"][1]["nature"], "strengthening_primary_key")
+        self.assertEqual(d["relations"][0]["columns"][1]["nature"], "strengthening_primary_foreign_key")
         self.assertEqual(d["relations"][0]["columns"][1]["association_name"], "Composer")
         self.assertEqual(d["relations"][0]["columns"][1]["outer_source"], "Étage")
         
@@ -463,7 +463,7 @@ class relationsTest(unittest.TestCase):
         self.assertEqual(d["relations"][0]["columns"][2]["label"], "num étage")
         self.assertEqual(d["relations"][0]["columns"][2]["raw_label"], "num étage")
         self.assertEqual(d["relations"][0]["columns"][2]["primary"], True)
-        self.assertEqual(d["relations"][0]["columns"][2]["nature"], "strengthening_primary_key")
+        self.assertEqual(d["relations"][0]["columns"][2]["nature"], "strengthening_primary_foreign_key")
         self.assertEqual(d["relations"][0]["columns"][2]["association_name"], "Composer")
         self.assertEqual(d["relations"][0]["columns"][2]["outer_source"], "Étage")
         
