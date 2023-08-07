@@ -33,8 +33,8 @@ class Relations:
             for d in self.relations.values():
                 for column in d["columns"]:
                     # FIXME: the previous version said:
-                    # if column["foreign"] and column["outer_source"] and column["nature"] != "strengthening_primary_key":
-                    if column["outer_source"] and column["nature"] != "strengthening_primary_key":
+                    # if column["foreign"] and column["outer_source"] and column["nature"] != "strengthening_primary_foreign_key":
+                    if column["outer_source"] and column["nature"] != "strengthening_primary_foreign_key":
                         counter[(column["outer_source"], column["attribute"])] += 1
                     elif column["nature"] == "primary_key":
                         counter[(d["this_relation_name"], column["attribute"])] += 1
@@ -124,7 +124,8 @@ class Relations:
             result.setdefault("compose_stopped_foreign_key", result["compose_foreign_key"])
             result.setdefault("compose_outer_attribute", result["compose_normal_attribute"])
             result.setdefault("compose_parent_primary_key", result["compose_primary_foreign_key"])
-            result.setdefault("compose_strengthening_primary_key", result["compose_primary_foreign_key"])
+            result.setdefault("compose_strengthening_primary_foreign_key", result["compose_primary_foreign_key"])
+            result.setdefault("compose_strengthening_primary_naturalized_foreign_key", result["compose_primary_key"])
             result.setdefault("compose_unsourced_foreign_key", result["compose_normal_attribute"])
             result.setdefault("compose_unsourced_primary_foreign_key", result["compose_primary_key"])
             result.setdefault("compose_naturalized_foreign_key", result["compose_normal_attribute"])
@@ -174,7 +175,7 @@ class Relations:
         data["title_uppercase"] = data["title"].upper()
         data["title_titlecase"] = data["title"].capitalize()
         lines = []
-        for (_, relation) in sorted(self.relations.items()):
+        for (__, relation) in sorted(self.relations.items()): # For the double underscore, see __main__.py
             data["this_relation_name"] = transform(relation["this_relation_name"], "transform_relation_name")
             data["this_relation_name_lowercase"] = data["this_relation_name"].lower()
             data["this_relation_name_uppercase"] = data["this_relation_name"].upper()
@@ -302,7 +303,7 @@ class Relations:
                     break
                 if strengthening_entities_via_associations:
                     for (strengthening_entity, association) in strengthening_entities_via_associations:
-                        # find the potential note on the strenghening leg
+                        # find the potential note on the strengthening leg
                         for leg in association.legs:
                             if leg.entity_name == strengthening_entity.name:
                                 leg_note = leg.note
@@ -318,7 +319,7 @@ class Relations:
                                 "association_name": association.name,
                                 "leg_note": leg_note,
                                 "primary": True,
-                                "nature": "strengthening_primary_key"
+                                "nature": "strengthening_primary_foreign_key"
                             } for attribute in self.relations[strengthening_entity.name]["columns"] if attribute["primary"]]
                         self.freeze_strengthening_foreign_key_migration.add((entity.name, association.name, strengthening_entity.name))
                     remaining_entities.remove(entity)
