@@ -396,8 +396,8 @@ def parsed_arguments():
         "--arrange",
         nargs="?",
         const="bb",
-        choices=["bb", "ga", "lp"],
-        help="rearrange the layout with either a Branch & Bound, a Genetic Algorithm, or a Linear Program solver, then exit",
+        choices=["bb", "ga"],
+        help="rearrange the layout with either a Branch & Bound or a Genetic Algorithm, then exit",
     )
     source_group.add_argument(
         "--timeout",
@@ -424,25 +424,41 @@ def parsed_arguments():
         help="display an horizontal / vertical / diagonal flip of the input file, then exit",
     )
     source_group.add_argument(
-        "--obfuscate",
-        metavar="PATH",
-        type=os.path.abspath,
-        nargs="?",
-        const="lorem_ipsum.txt",
-        help="display an obfuscated version of the input file, then exit. Cf. directory 'lorem'",
-    )
-    source_group.add_argument(
-        "--obfuscation_min_distance",
-        metavar="NAT*",
-        type=positive_integer,
-        default=3,
-        help="minimal Damerau-Levenshtein's distance between any two obfuscated labels",
+        "--rewrite",
+        metavar="STR",
+        nargs="*",
+        help="apply sequentially some token transformations to the input file, then exit.",
     )
     source_group.add_argument(
         "--seed",
         metavar="FLOAT",
         type=float,
         help="initial value for the random number generator",
+    )
+    source_group.add_argument(
+        "--obfuscation_source",
+        metavar="PATH",
+        type=os.path.abspath,
+        default="lorem_ipsum.txt",
+        help="the word list to be used for obfuscation. Cf. directory 'lorem'",
+    )
+    source_group.add_argument(
+        "--obfuscation_min_distance",
+        metavar="NAT",
+        type=positive_integer,
+        default=3,
+        help="minimal Damerau-Levenshtein's distance between any two obfuscated labels",
+    )
+    source_group.add_argument(
+        "--weak_explosion",
+        action="store_true",
+        help="weakness of the entities resulting from an explosion",
+    )
+    source_group.add_argument(
+        "--explosion_arity",
+        choices=["2", "3"],
+        default="3",
+        help="minimal arity of the associations to be exploded",
     )
 
     bb_group.add_argument(

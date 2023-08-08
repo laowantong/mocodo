@@ -1,11 +1,7 @@
-import gettext
-
 __import__("sys").path[0:0] =  ["."]
 
 from .mocodo_error import MocodoError
 from .parse_mcd import Token, Visitor, Transformer, Lark_StandAlone, Discard, UnexpectedToken, UnexpectedCharacters
-
-gettext.NullTranslations().install()
 
 def parse_source(source):
     parser = Lark_StandAlone()
@@ -274,6 +270,12 @@ def extract_clauses(source):
         line["source"] = line["indent"] + raw_line.lstrip()
     return result
 
+
+def first_child(tree, name, i=0):
+    result = next(tree.find_data(name), None)
+    if result is None:
+        return ""
+    return result.children[i]
 
 if __name__ == "__main__":
     source = "Foo: bar [baz]"

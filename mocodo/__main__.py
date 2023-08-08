@@ -4,6 +4,7 @@ if sys.version_info < (3, 6):
     print(f"Mocodo requires Python 3.6 or later to run.\nThis version is {sys.version}.")
     sys.exit()
 
+import importlib
 import os
 from .common import Common, safe_print_for_PHP
 from .file_helpers import write_contents
@@ -35,9 +36,27 @@ def main():
             params["print_params"] = False
             params_contents = json.dumps(params, ensure_ascii=False, indent=2, sort_keys=True)
             return safe_print_for_PHP(params_contents)
-        if params["obfuscate"]:
-            from .obfuscate import obfuscate  # fmt: skip
-            return safe_print_for_PHP(obfuscate(clauses, params))
+        if params["rewrite"] and params["rewrite"][0]:
+            for s in params["rewrite"]:
+                if "_" in s:
+                    # Beware that, in the following line, using a single underscore would clash
+                    # with the gettext alias, EVEN IF THIS CODE IS NOT REACHED: the compiler would
+                    # consider that _ is a local variable, and shadow the global one, resulting in:
+                    # UnboundLocalError: local variable '_' referenced before assignment
+                    (operation, __, token) = s.partition("_")
+                    module = importlib.import_module(f".rewrite.rewrite_token", package="mocodo")
+                    if operation in module.OPERATIONS:
+                        try:
+                            clauses = module.run(clauses, operation, token).rstrip()
+                        except:
+                            raise MocodoError(650, _('Unable to apply "{op}" to "{tk}".').format(op=operation, tk=token))  # fmt: skip
+                        continue
+                try:
+                    module = importlib.import_module(f".rewrite.{s}", package="mocodo")
+                    clauses = module.run(clauses, params=params).rstrip()
+                except ModuleNotFoundError:
+                    raise MocodoError(651, _("Unknown rewrite operation: {op}".format(op=s)))  # fmt: skip
+            return safe_print_for_PHP(clauses)
         mcd = Mcd(clauses, get_font_metrics, **params)
         if params["fit"] is not None:
             return safe_print_for_PHP(mcd.get_reformatted_clauses(params["fit"]))

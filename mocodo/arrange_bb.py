@@ -127,7 +127,7 @@ def arrange(
                 )
             weighted_possible_coords.append((cumulated_distance, random(), x1, y1))
         weighted_possible_coords.sort()
-        for (cumulated_distance, _, x1, y1) in weighted_possible_coords:
+        for (cumulated_distance, __, x1, y1) in weighted_possible_coords:  # For the double underscore, see __main__.py
             box_coords[box_to_place] = (x1, y1)
             new_segments = [(x1, y1, x2, y2) for (x2, y2) in placed_successors]
             new_next_boxes = list(

@@ -48,7 +48,7 @@ ENCLOS: num. enclos
 ```markdown
 | Relation | Attribute | `nature` | `adjacent_source` | `outer_source` |
 |---|---|---|---|---|
-| ANIMAL | code espèce | `strengthening_primary_key` | ESPÈCE | ESPÈCE |
+| ANIMAL | code espèce | `primary_foreign_key` | ESPÈCE | ESPÈCE |
 | ANIMAL | nom | `alt_primary_key` | None | None |
 | ANIMAL | date naissance | `primary_key` | None | None |
 | ANIMAL | sexe | `normal_attribute` | None | None |
@@ -257,7 +257,7 @@ ANIMAL: #code espèce > ESPÈCE > code espèce, _nom, _date naissance, sexe, dat
 <div id='mld'>
 <div>
   <details><summary><span class='relation'>ANIMAL</span> (
-    <span title='strengthening_primary_key (ESPÈCE)' class='foreign primary'>#code espèce</span>,
+    <span title='primary_foreign_key (ESPÈCE)' class='foreign primary'>#code espèce</span>,
     <span title='primary_key (None)' class='primary'>nom<sup>u3</sup></span>,
     <span title='primary_key (None)' class='primary'>date naissance</span>,
     <span title='normal_attribute (None)' class='normal'>sexe</span>,
@@ -272,7 +272,7 @@ ANIMAL: #code espèce > ESPÈCE > code espèce, _nom, _date naissance, sexe, dat
     <span title='deleted_child_attribute (None)' class='normal'>plante préférée</span>
   )</summary>
   <ul>
-    <li>Le champ <i>code espèce</i> fait partie de la clé primaire de la table. Il a migré à partir de l'entité <i>ESPÈCE</i> pour renforcer l'identifiant.</li>
+    <li>Le champ <i>code espèce</i> fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité <i>ESPÈCE</i>.</li>
     <li>Le champ <i>nom</i> fait partie de la clé primaire de la table. C'était déjà un identifiant de l'entité <i>ANIMAL</i>. Il fait partie du groupe 3 des clés candidates qui n'ont pas été retenues comme clé primaire.</li>
     <li>Le champ <i>date naissance</i> fait partie de la clé primaire de la table. C'était déjà un identifiant de l'entité <i>ANIMAL</i>.</li>
     <li>Le champ <i>sexe</i> était déjà un simple attribut de l'entité <i>ANIMAL</i>.</li>
@@ -377,7 +377,7 @@ ANIMAL: #code espèce > ESPÈCE > code espèce, _nom, _date naissance, sexe, dat
           "label_uppercase": "CODE ESPÈCE",
           "label_titlecase": "Code espèce",
           "primary": true,
-          "nature": "strengthening_primary_key",
+          "nature": "strengthening_primary_foreign_key",
           "data_type": null,
           "association_name": "DF",
           "association_name_lower_case": "df",
@@ -1153,7 +1153,7 @@ ANIMAL: #code espèce > ESPÈCE > code espèce, _nom, _date naissance, sexe, dat
 
 ```markdown
 **ANIMAL** (<ins>_#code espèce_</ins>, <ins>nom<sup>u3</sup></ins>, <ins>date naissance</ins>, sexe, date décès<sup>u3</sup>, _#code espèce mère_, _#nom mère_, _#date naissance mère_, type alimentation, CARNIVORE, quantité viande, HERBIVORE, plante préférée)  
-- Le champ _code espèce_ fait partie de la clé primaire de la table. Il a migré à partir de l'entité _ESPÈCE_ pour renforcer l'identifiant.  
+- Le champ _code espèce_ fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité _ESPÈCE_.  
 - Les champs _nom_ et _date naissance_ font partie de la clé primaire de la table. C'était déjà des identifiants de l'entité _ANIMAL_.  
 - Le champ _sexe_ était déjà un simple attribut de l'entité _ANIMAL_.  
 - Le champ _date décès_ était déjà un simple attribut de l'entité _ANIMAL_. Il fait partie du groupe 3 des clés candidates qui n'ont pas été retenues comme clé primaire.  

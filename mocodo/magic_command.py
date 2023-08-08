@@ -95,8 +95,8 @@ class MocodoMagics(Magics):
             process = Popen(["mocodo"] + options, stdin=PIPE, stdout=PIPE, stderr=PIPE)
             stdoutdata, stderrdata = process.communicate()
             try:
-                stdoutdata = stdoutdata.strip().decode("utf8")
-                stderrdata = stderrdata.strip().decode("utf8")
+                stdoutdata = stdoutdata.decode("utf8")
+                stderrdata = stderrdata.decode("utf8")
             except:
                 pass
             status = process.wait()
