@@ -1,0 +1,46 @@
+@startuml title
+
+left to right direction
+skinparam linetype ortho
+
+
+' %%mocodo
+' Salle: num salle, capacité
+
+' :
+
+' Film: id film, titre, durée
+' Projection, /1N Film, 1N Salle, 1N Créneau horaire: tarif
+' Créneau horaire: code créneau, date séance, heure début
+    
+' (CIF) ->Film, --Salle, --Créneau horaire, .. Projection: 50, 45
+
+class Salle {
+    + **num salle**
+    + capacité
+}
+
+class Film {
+    + **id film**
+    + titre
+    + durée
+}
+
+diamond NARY_ASSOCIATION_1
+
+NARY_ASSOCIATION_1 -- "1" Film
+NARY_ASSOCIATION_1 -- "1..*" Salle
+NARY_ASSOCIATION_1 -- "1..*" Créneau_horaire
+NARY_ASSOCIATION_1 "Projection" .. "1..*" Projection
+
+class Projection {
+    + tarif
+}
+
+class Créneau_horaire {
+    + **code créneau**
+    + date séance
+    + heure début
+}
+
+@enduml

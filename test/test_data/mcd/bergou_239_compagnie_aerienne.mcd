@@ -1,0 +1,10 @@
+%%mocodo
+Affecter, 1N Personnel, 1N Vol: fonction
+Personnel: matricule, nom, prénom
+
+Vol: date vol, _heure décollage
+Effectuer, 11 Vol, 1N Trajet
+Trajet: code trajet, aéroport départ, aéroport arrivée, durée vol
+
+Utiliser, _11 Vol, 1N Avion
+Avion: num avion, compagnie, modèle, capacité

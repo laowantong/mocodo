@@ -1,0 +1,59 @@
+@startuml title
+
+top to bottom direction
+' skinparam linetype ortho
+
+' %%mocodo
+' Possède, 0N Personnel, 11 Véhicule
+' Personnel: matricule, nom, prénom, date naissance, adresse, téléphone, courriel
+' Matière: code matière, libellé, nb heures
+    
+' Véhicule: immatriculation, type, marque
+' /XT\ Personnel <- Administratif, Enseignant
+' Cours, 1N Enseignant, 1N Matière
+
+
+' Administratif: _fonction, salaire mensuel
+' :
+' Enseignant: _grade, échelon, horaire hebdo
+
+Personnel "1" -- "*" Véhicule
+
+class Personnel {
+    + **matricule**
+    + nom
+    + prénom
+    + date naissance
+    + adresse
+}
+
+class Matière {
+    + **code matière**
+    + libellé
+    + nb heures
+}
+
+class Véhicule {
+    + **immatriculation**
+    + type
+    + marque
+}
+
+note "Partition" as P1
+P1 -[dotted]- Administratif
+P1 -[dotted]- Enseignant
+Administratif -|> Personnel
+Enseignant -|> Personnel
+
+Enseignant "1..*" -- "1..*" Matière: Cours
+
+class Administratif {
+    + fonction
+    + salaire mensuel
+}
+
+class Enseignant {
+    + grade
+    + échelon
+    + horaire hebdo
+}
