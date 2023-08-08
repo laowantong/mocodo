@@ -170,7 +170,7 @@ var MocodoHighlightRules = function() {
         }],
         "#constraint_targets": [{
             token: [
-                "keyword.control.constraint_leg.mocodo",
+                "string.regexp.constraint_leg.mocodo",
                 "text",
                 "support.type.box.mocodo"
             ],
@@ -272,7 +272,7 @@ var Mode = function () {
 };
 oop.inherits(Mode, TextMode);
 (function () {
-    this.lineCommentStart = "#";
+    this.lineCommentStart = "%";
     this.$id = "ace/mode/mocodo";
 }).call(Mode.prototype);
 exports.Mode = Mode;
