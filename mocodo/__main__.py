@@ -75,7 +75,7 @@ def main():
                     if s.isdigit():
                         source = mcd.get_refitted_clauses(int(s))
                         mcd = Mcd(source, get_font_metrics, **params)
-                    module = importlib.import_module(f".arrange_{params['arrangement']}", package="mocodo")
+                    module = importlib.import_module(f".rewrite.arrange_{params['arrangement']}", package="mocodo")
                     params.update(mcd.get_layout_data())
                     params["organic"] = (s == "organic")
                     rearrangement = module.arrange(**params)

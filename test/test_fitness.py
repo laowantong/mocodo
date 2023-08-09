@@ -3,7 +3,7 @@ from math import hypot
 
 __import__("sys").path[0:0] = ["mocodo"]
 from mocodo.argument_parser import parsed_arguments
-from mocodo.fitness import *
+from mocodo.rewrite.fitness import *
 from mocodo.mcd import Mcd
 
 

@@ -4,7 +4,7 @@ from pathlib import Path
 
 __import__("sys").path[0:0] = ["."]
 
-from ..damerau_levenshtein import distance
+from .damerau_levenshtein import distance
 from ..mocodo_error import MocodoError
 from ..parse_mcd import Transformer
 from ..parser_tools import transform_source

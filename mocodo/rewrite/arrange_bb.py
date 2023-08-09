@@ -4,7 +4,7 @@ from math import hypot
 from random import choice, random, shuffle
 
 from .cross import cross
-from .mocodo_error import MocodoError
+from ..mocodo_error import MocodoError
 
 
 def arrange(
