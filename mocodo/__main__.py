@@ -46,8 +46,6 @@ def main():
                     # consider that _ is a local variable, and shadow the global one, resulting in:
                     # UnboundLocalError: local variable '_' referenced before assignment
                     (operation, __, token) = sub_option.partition("_")
-                    if token.endswith("s"): # tolerance for the plural forms
-                        token = token[:-1]
                     module = importlib.import_module(f".rewrite.op_tk", package="mocodo")
                     if operation in module.OPERATIONS:
                         try:
