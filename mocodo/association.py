@@ -11,7 +11,12 @@ class Association:
         self.name_view = self.name[:-1] if self.name[-1:].isdigit() else self.name  # get rid of digital suffix, if any
         # A protected association results in a table, even if this association is a DF.
         self.is_protected = (clause.get("box_def_prefix") == "+")
-        self.attributes = [SimpleAssociationAttribute(attr) for attr in clause.get("attrs", [])]
+        self.attributes = []
+        for attr in clause.get("attrs", []):
+            if attr.get("attribute_label", "") == "":
+                self.attributes.append(PhantomAttribute(attr))
+            else:
+                self.attributes.append(SimpleAssociationAttribute(attr))
         self.df_label = params.get("df", "DF")
         if self.name_view == self.df_label:
             self.kind = "df"
@@ -364,3 +369,4 @@ class Association:
         for leg in self.legs:
             result.extend(leg.description(style, geo))
         return result
+

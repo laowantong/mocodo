@@ -46,6 +46,9 @@ CLIENT:
 CLIENT: ,          ,,
 COMMANDE: ,               ,
 PRODUIT: ,            , 
+MEAN: wash, rest, king,
+HERE, 0N NICE, 0N MEAN: wood, much, , stop
+NICE: _poke, news, , lawn
 Unit, 1N Draw, 11 Folk: Peer, Tour, 
 PASSER, XX CLIENT, XX COMMANDE
 INCLURE, XX COMMANDE, XX PRODUIT: 

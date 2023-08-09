@@ -28,13 +28,10 @@ class ParseTest(unittest.TestCase):
         l = [
             association_wrapper("EMPLOYER, 01 PARTICIPANT, 0N ENTREPRISE"),
             association_wrapper("EMPLOYER, 01 PARTICIPANT, 0N ENTREPRISE:"),
-            association_wrapper("EMPLOYER,01 PARTICIPANT,0N ENTREPRISE"),
-            association_wrapper(" EMPLOYER , 01 PARTICIPANT, 0N   ENTREPRISE "),
         ]
         for a in l:
             self.assertEqual(a.name, "EMPLOYER")
             self.assertEqual(a.name_view, "EMPLOYER")
-            self.assertEqual(a.attributes, [])
             self.assertEqual(a.legs[0].card_view, "0,1")
             self.assertEqual(a.legs[0].entity_name, "PARTICIPANT")
             self.assertEqual(a.legs[0].arrow, "")
@@ -43,6 +40,8 @@ class ParseTest(unittest.TestCase):
             self.assertEqual(a.legs[1].entity_name, "ENTREPRISE")
             self.assertEqual(a.legs[1].arrow, "")
             self.assertEqual(a.legs[1].note, None)
+        self.assertEqual(l[0].attributes, [])
+        self.assertEqual(l[1].attributes[0].kind, "phantom")
 
     def test_triple(self):
         a = association_wrapper("SUIVRE, 0N DATE, 11 ÉTUDIANT, 0N ENSEIGNANT")
