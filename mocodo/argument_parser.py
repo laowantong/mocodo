@@ -153,6 +153,7 @@ def parsed_arguments():
     io_group = parser.add_argument_group("INPUT/OUTPUT")
     aspect_group = parser.add_argument_group("ASPECT OF THE GRAPHICAL OUTPUT")
     relational_group = parser.add_argument_group("RELATIONAL OUTPUT")
+    dump_group = parser.add_argument_group("DERIVATIVE PRODUCTS")
     source_group = parser.add_argument_group("MODIFICATIONS OF THE SOURCE TEXT")
     bb_group = parser.add_argument_group(
         "BRANCH & BOUND LAYOUT REARRANGEMENT",
@@ -259,7 +260,7 @@ def parsed_arguments():
         default="_1,1_",
         help="string for relative cardinalities",
     )
-    source_group.add_argument(
+    aspect_group.add_argument(
         "--flex",
         metavar="FLOAT",
         type=float,
@@ -392,6 +393,19 @@ def parsed_arguments():
         type=non_negative_integer,
         default=0,
         help="discriminate between multiple SVG of the same interactive diagram",
+    )
+
+    dump_group.add_argument(
+        "--data_dict",
+        action="store_true",
+        help="generate a data dictionary",
+    )
+    dump_group.add_argument(
+        "--erd",
+        nargs="*",
+        default=["crow"],
+        choices=["crow", "chen"],
+        help="generate an entity-relationship diagram in another notation",
     )
 
     source_group.add_argument(
@@ -545,10 +559,7 @@ def parsed_arguments():
     params["added_keys"] = ["added_keys", "params_path"]
     add_key("script_directory", script_directory)
     add_key("has_expired", has_expired_factory(params["timeout"]))
-    add_key(
-        "output_name",
-        os.path.join(params["output_dir"], os.path.splitext(os.path.basename(params["input"]))[0]),
-    )
+    add_key("output_name", os.path.join(params["output_dir"], os.path.splitext(os.path.basename(params["input"]))[0]))
 
     if not os.path.exists(params["input"]):
         import shutil  # fmt: skip

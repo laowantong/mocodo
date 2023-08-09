@@ -90,13 +90,18 @@ class Common:
         official_template_dir = Path(self.params["script_directory"]) / "resources" / "relation_templates"
         for stem_or_path in self.params["relations"]:
             template = read_template(stem_or_path, official_template_dir)
-            path = Path(self.params["output_name"] + template.get("extension", ""))
             try:
                 text = relations.get_text(template)
-                safe_print_for_PHP(self.output_success_message(path))
             except Exception as error:
                 raise MocodoError(37, _('Problem when generating the relational schema with template "{stem_or_path}": {error}').format(stem_or_path=stem_or_path, error=error))  # fmt: skip
+            path = Path(self.params["output_name"] + template.get("extension", ""))
             write_contents(path, text)
+            safe_print_for_PHP(self.output_success_message(path))
+
+    def dump_file(self, suffix, content):
+        path = Path(self.params["output_name"] + "_" + suffix)
+        write_contents(path, content)
+        safe_print_for_PHP(self.output_success_message(path))
 
     def calculate_or_retrieve_geo(self, mcd, reuse_geo=False):
         geo_path = Path(f"{self.params['output_name']}_geo.json")

@@ -14,7 +14,7 @@ from .relations import Relations
 from .font_metrics import font_metrics_factory
 from .mcd_to_svg import main as mcd_to_svg
 from .mocodo_error import MocodoError
-
+from .dump import data_dict
 
 def main():
     try:
@@ -36,7 +36,7 @@ def main():
             params["print_params"] = False
             params_contents = json.dumps(params, ensure_ascii=False, indent=2, sort_keys=True)
             return safe_print_for_PHP(params_contents)
-        if "rewrite" in params: # It contains at least the default "echo" option
+        if "rewrite" in params: # contains at least the default "echo" option
             for sub_option in params["rewrite"]:
                 if sub_option == "echo":
                     continue
@@ -106,6 +106,8 @@ def main():
                         acc.append(_("- Legs “{b1} — {b2}” and “{b3} — {b4}” overlap.").format(b1=b1, b2=b2, b3=b3, b4=b4))  # fmt: skip
                 details = "\n".join(acc)
                 raise MocodoError(29, _('On Mocodo online, click the 🔀 button to fix the following problem(s):\n{details}').format(details=details))  # fmt: skip
+        if "data_dict" in params:
+            common.dump_file("data_dict.md", data_dict.run(source))
         relations = Relations(mcd, params)
         # The order of the following two lines ensures that the relational diagram is dumped after
         # the geometry of the MCD. Later on, when drawing this relational diagram, the geometry
