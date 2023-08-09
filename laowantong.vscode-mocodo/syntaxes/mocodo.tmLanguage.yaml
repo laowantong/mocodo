@@ -117,7 +117,7 @@ repository:
   entity_first_attr:
     # After the entity's name, process the first attribute
     # Underline it iff it is **not** prefixed by id_symbols.
-    begin: '(?: ({{id_symbols}}) ({{entity_or_table_attr}}) | ({{alt_id_symbols}})? ({{entity_or_table_attr}}) ) \s* ({{note}})?'
+    begin: '(?: ({{id_symbols}}) ({{entity_or_table_attr}}) | ({{alt_id_symbols}})? ({{entity_or_table_attr}}) | ) \s* ({{note}})?'
     end: '$|^'
     beginCaptures:
       '1': { name: string.regexp.id_symbols.mocodo }
@@ -133,7 +133,7 @@ repository:
     # After the first attribute, process the remaining ones.
     # Underline them iff they are prefixed by a "_" symbol.
     patterns:
-      - match: '{{comma}} (?: ({{id_symbols}}) ({{entity_or_table_attr}}) | ({{alt_id_symbols}})? ({{entity_or_table_attr}}) ) \s* ({{note}})?'
+      - match: '{{comma}} (?: ({{id_symbols}}) ({{entity_or_table_attr}}) | ({{alt_id_symbols}})? ({{entity_or_table_attr}}) | ) \s* ({{note}})?'
         captures:
           '1': { name: string.regexp.id_symbols.mocodo }
           '2': { name: "markup.underline support.type.attribute.mocodo" }
