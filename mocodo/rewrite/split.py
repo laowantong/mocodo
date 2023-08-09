@@ -40,7 +40,7 @@ class Splitter(Visitor):
         
         # Concatenate any attributes of the association.
         attrs = []
-        for child in tree.find_data("assoc_attr"):
+        for child in tree.find_data("typed_attr"):
             acc = []
             acc.append(first_child(child, "attr"))
             acc.append(first_child(child, "data_type", 1))

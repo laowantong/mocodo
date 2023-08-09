@@ -22,7 +22,7 @@ class DrainerFirstPass(Visitor):
             return
 
         # Guard: ensure that the association has at least one attributes
-        attrs = [*tree.find_data("assoc_attr")]
+        attrs = [*tree.find_data("typed_attr")]
         if len(attrs) == 0:
             return
 

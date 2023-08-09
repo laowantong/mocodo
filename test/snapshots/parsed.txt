@@ -89,10 +89,12 @@ AYANT-DROIT: nom ayant-droit, lien
       : 
       seq
         entity_or_table_attr
-          attr	nom ayant-droit
+          typed_attr
+            attr	nom ayant-droit
         , 
         entity_or_table_attr
-          attr	lien
+          typed_attr
+            attr	lien
 --------------------------------------------------------------------------------
 [{'name': 'AYANT-DROIT',
   'attrs': [{'attribute_label': 'nom ayant-droit', 'rank': 0},
@@ -151,7 +153,7 @@ REQUÉRIR, 1N PROJET, 0N PIÈCE: qté requise
             box_name	PIÈCE
       : 
       seq
-        assoc_attr
+        typed_attr
           attr	qté requise
 --------------------------------------------------------------------------------
 [{'name': 'REQUÉRIR',
@@ -188,7 +190,7 @@ COMPOSER, 0N [composée] PIÈCE, 0N [composante] PIÈCE: quantité
             box_name	PIÈCE
       : 
       seq
-        assoc_attr
+        typed_attr
           attr	quantité
 --------------------------------------------------------------------------------
 [{'name': 'COMPOSER',
@@ -262,7 +264,7 @@ FOURNIR, 1N PROJET, 1N PIÈCE, 1N SOCIÉTÉ: qté fournie
             box_name	SOCIÉTÉ
       : 
       seq
-        assoc_attr
+        typed_attr
           attr	qté fournie
 --------------------------------------------------------------------------------
 [{'name': 'FOURNIR',
@@ -350,20 +352,25 @@ GRATTE-CIEL: latitude, _longitude, nom, hauteur, année de construction
       : 
       seq
         entity_or_table_attr
-          attr	latitude
+          typed_attr
+            attr	latitude
         , 
         entity_or_table_attr
           id_mark	_
-          attr	longitude
+          typed_attr
+            attr	longitude
         , 
         entity_or_table_attr
-          attr	nom
+          typed_attr
+            attr	nom
         , 
         entity_or_table_attr
-          attr	hauteur
+          typed_attr
+            attr	hauteur
         , 
         entity_or_table_attr
-          attr	année de construction
+          typed_attr
+            attr	année de construction
 --------------------------------------------------------------------------------
 [{'name': 'GRATTE-CIEL',
   'attrs': [{'attribute_label': 'latitude', 'rank': 0},
@@ -452,7 +459,8 @@ Agent 0070: bar
       : 
       seq
         entity_or_table_attr
-          attr	bar
+          typed_attr
+            attr	bar
 --------------------------------------------------------------------------------
 [{'name': 'Agent 0070',
   'attrs': [{'attribute_label': 'bar', 'rank': 0}],
@@ -498,7 +506,8 @@ Agent1: bar
       : 
       seq
         entity_or_table_attr
-          attr	bar
+          typed_attr
+            attr	bar
 --------------------------------------------------------------------------------
 [{'name': 'Agent1',
   'attrs': [{'attribute_label': 'bar', 'rank': 0}],
@@ -568,7 +577,7 @@ Réserver, /1N Client, 1N Chambre, 0N Date: Durée
             box_name	Date
       : 
       seq
-        assoc_attr
+        typed_attr
           attr	Durée
 --------------------------------------------------------------------------------
 [{'name': 'Réserver',
@@ -615,7 +624,7 @@ LIGULA, 0N LACUS, /1N EROS, 0N TELLUS, 0N CONSEQUAT: metus
             box_name	CONSEQUAT
       : 
       seq
-        assoc_attr
+        typed_attr
           attr	metus
 --------------------------------------------------------------------------------
 [{'name': 'LIGULA',
@@ -639,7 +648,8 @@ Réserver: _Durée
       seq
         entity_or_table_attr
           id_mark	_
-          attr	Durée
+          typed_attr
+            attr	Durée
 --------------------------------------------------------------------------------
 [{'name': 'Réserver',
   'attrs': [{'id_mark': '_', 'attribute_label': 'Durée', 'rank': 0}],
@@ -670,7 +680,7 @@ Réserver: _Durée
             box_name	EROS
       : 
       seq
-        assoc_attr
+        typed_attr
           attr	metus
 --------------------------------------------------------------------------------
 [{'box_def_prefix': '+',
@@ -749,7 +759,7 @@ INCLURE, 1N [Une commande peut inclure plusieurs produits distincts, et en inclu
             box_name	PRODUIT
       : 
       seq
-        assoc_attr
+        typed_attr
           attr	Quantité
 --------------------------------------------------------------------------------
 [{'name': 'INCLURE',
@@ -792,12 +802,16 @@ CLIENT: ,          ,,
       : 
       seq
         entity_or_table_attr
+          typed_attr
         ,          
         entity_or_table_attr
+          typed_attr
         ,
         entity_or_table_attr
+          typed_attr
         ,
         entity_or_table_attr
+          typed_attr
 --------------------------------------------------------------------------------
 [{'name': 'CLIENT',
   'attrs': [{'rank': 0}, {'rank': 1}, {'rank': 2}, {'rank': 3}],
@@ -815,10 +829,13 @@ COMMANDE: ,               ,
       : 
       seq
         entity_or_table_attr
+          typed_attr
         ,               
         entity_or_table_attr
+          typed_attr
         ,
         entity_or_table_attr
+          typed_attr
 --------------------------------------------------------------------------------
 [{'name': 'COMMANDE',
   'attrs': [{'rank': 0}, {'rank': 1}, {'rank': 2}],
@@ -836,16 +853,130 @@ PRODUIT: ,            ,
       : 
       seq
         entity_or_table_attr
+          typed_attr
         ,            
         entity_or_table_attr
+          typed_attr
         , 
         entity_or_table_attr
+          typed_attr
 --------------------------------------------------------------------------------
 [{'name': 'PRODUIT',
   'attrs': [{'rank': 0}, {'rank': 1}, {'rank': 2}],
   'type': 'entity',
   'indent': '',
   'source': 'PRODUIT: ,            , '}]
+
+--------------------------------------------------------------------------------
+MEAN: wash, rest, king,
+--------------------------------------------------------------------------------start
+  line
+    entity_clause
+      entity_name_def
+        box_name	MEAN
+      : 
+      seq
+        entity_or_table_attr
+          typed_attr
+            attr	wash
+        , 
+        entity_or_table_attr
+          typed_attr
+            attr	rest
+        , 
+        entity_or_table_attr
+          typed_attr
+            attr	king
+        ,
+        entity_or_table_attr
+          typed_attr
+--------------------------------------------------------------------------------
+[{'name': 'MEAN',
+  'attrs': [{'attribute_label': 'wash', 'rank': 0},
+            {'attribute_label': 'rest', 'rank': 1},
+            {'attribute_label': 'king', 'rank': 2},
+            {'rank': 3}],
+  'type': 'entity',
+  'indent': '',
+  'source': 'MEAN: wash, rest, king,'}]
+
+--------------------------------------------------------------------------------
+HERE, 0N NICE, 0N MEAN: wood, much, , stop
+--------------------------------------------------------------------------------start
+  line
+    assoc_clause
+      assoc_name_def
+        box_name	HERE
+      , 
+      seq
+        assoc_leg
+          card	0N
+           
+          entity_name_ref
+            box_name	NICE
+        , 
+        assoc_leg
+          card	0N
+           
+          entity_name_ref
+            box_name	MEAN
+      : 
+      seq
+        typed_attr
+          attr	wood
+        , 
+        typed_attr
+          attr	much
+        , 
+        typed_attr
+        , 
+        typed_attr
+          attr	stop
+--------------------------------------------------------------------------------
+[{'name': 'HERE',
+  'legs': [{'card': '0N', 'entity': 'NICE', 'rank': 0},
+           {'card': '0N', 'entity': 'MEAN', 'rank': 1}],
+  'attrs': [{'attribute_label': 'wood', 'rank': 0},
+            {'attribute_label': 'much', 'rank': 1},
+            {'rank': 2},
+            {'attribute_label': 'stop', 'rank': 3}],
+  'type': 'association',
+  'indent': '',
+  'source': 'HERE, 0N NICE, 0N MEAN: wood, much, , stop'}]
+
+--------------------------------------------------------------------------------
+NICE: _poke, news, , lawn
+--------------------------------------------------------------------------------start
+  line
+    entity_clause
+      entity_name_def
+        box_name	NICE
+      : 
+      seq
+        entity_or_table_attr
+          id_mark	_
+          typed_attr
+            attr	poke
+        , 
+        entity_or_table_attr
+          typed_attr
+            attr	news
+        , 
+        entity_or_table_attr
+          typed_attr
+        , 
+        entity_or_table_attr
+          typed_attr
+            attr	lawn
+--------------------------------------------------------------------------------
+[{'name': 'NICE',
+  'attrs': [{'id_mark': '_', 'attribute_label': 'poke', 'rank': 0},
+            {'attribute_label': 'news', 'rank': 1},
+            {'rank': 2},
+            {'attribute_label': 'lawn', 'rank': 3}],
+  'type': 'entity',
+  'indent': '',
+  'source': 'NICE: _poke, news, , lawn'}]
 
 --------------------------------------------------------------------------------
 Unit, 1N Draw, 11 Folk: Peer, Tour, 
@@ -869,13 +1000,13 @@ Unit, 1N Draw, 11 Folk: Peer, Tour,
             box_name	Folk
       : 
       seq
-        assoc_attr
+        typed_attr
           attr	Peer
         , 
-        assoc_attr
+        typed_attr
           attr	Tour
         , 
-        assoc_attr
+        typed_attr
 --------------------------------------------------------------------------------
 [{'name': 'Unit',
   'legs': [{'card': '1N', 'entity': 'Draw', 'rank': 0},
@@ -935,11 +1066,14 @@ INCLURE, XX COMMANDE, XX PRODUIT:
            
           entity_name_ref
             box_name	PRODUIT
-      :
+      : 
+      seq
+        typed_attr
 --------------------------------------------------------------------------------
 [{'name': 'INCLURE',
   'legs': [{'card': 'XX', 'entity': 'COMMANDE', 'rank': 0},
            {'card': 'XX', 'entity': 'PRODUIT', 'rank': 1}],
+  'attrs': [{'rank': 0}],
   'type': 'association',
   'indent': '',
   'source': 'INCLURE, XX COMMANDE, XX PRODUIT: '}]
@@ -954,13 +1088,16 @@ INCLURE, XX COMMANDE, XX PRODUIT:
       : 
       seq
         entity_or_table_attr
-          attr	612.NAT.34
+          typed_attr
+            attr	612.NAT.34
         , 
         entity_or_table_attr
-          attr	J'apprends à lire à mes souris blanches
+          typed_attr
+            attr	J'apprends à lire à mes souris blanches
         , 
         entity_or_table_attr
-          attr	mai 1975
+          typed_attr
+            attr	mai 1975
 --------------------------------------------------------------------------------
 [{'name': 'ŒUVRE',
   'attrs': [{'attribute_label': '612.NAT.34', 'rank': 0},
@@ -982,13 +1119,16 @@ EXEMPLAIRE2: 1, bon état, 12/6/1975
       : 
       seq
         entity_or_table_attr
-          attr	1
+          typed_attr
+            attr	1
         , 
         entity_or_table_attr
-          attr	bon état
+          typed_attr
+            attr	bon état
         , 
         entity_or_table_attr
-          attr	12/6/1975
+          typed_attr
+            attr	12/6/1975
 --------------------------------------------------------------------------------
 [{'name': 'EXEMPLAIRE2',
   'attrs': [{'attribute_label': '1', 'rank': 0},
@@ -1008,13 +1148,16 @@ EXEMPLAIRE3: 2, bon état, 1/8/1977
       : 
       seq
         entity_or_table_attr
-          attr	2
+          typed_attr
+            attr	2
         , 
         entity_or_table_attr
-          attr	bon état
+          typed_attr
+            attr	bon état
         , 
         entity_or_table_attr
-          attr	1/8/1977
+          typed_attr
+            attr	1/8/1977
 --------------------------------------------------------------------------------
 [{'name': 'EXEMPLAIRE3',
   'attrs': [{'attribute_label': '2', 'rank': 0},
@@ -1034,13 +1177,16 @@ EXEMPLAIRE4: 3, reliure rongée, 3/4/2005
       : 
       seq
         entity_or_table_attr
-          attr	3
+          typed_attr
+            attr	3
         , 
         entity_or_table_attr
-          attr	reliure rongée
+          typed_attr
+            attr	reliure rongée
         , 
         entity_or_table_attr
-          attr	3/4/2005
+          typed_attr
+            attr	3/4/2005
 --------------------------------------------------------------------------------
 [{'name': 'EXEMPLAIRE4',
   'attrs': [{'attribute_label': '3', 'rank': 0},
@@ -1096,10 +1242,12 @@ DF1, -1N ŒUVRE, -_11 EXEMPLAIRE1
       : 
       seq
         entity_or_table_attr
-          attr	Num. prof
+          typed_attr
+            attr	Num. prof
         , 
         entity_or_table_attr
-          attr	Nom prof
+          typed_attr
+            attr	Nom prof
 --------------------------------------------------------------------------------
 [{'box_def_prefix': '+',
   'name': 'Prof',
@@ -1119,25 +1267,28 @@ Enseignant: num. ens. [numéro identifiant un enseignant], nom ens. [nom enseign
       : 
       seq
         entity_or_table_attr
-          attr	num. ens.
-          data_type
-             [
-            numéro identifiant un enseignant
-            ]
+          typed_attr
+            attr	num. ens.
+            data_type
+               [
+              numéro identifiant un enseignant
+              ]
         , 
         entity_or_table_attr
-          attr	nom ens.
-          data_type
-             [
-            nom enseignant
-            ]
+          typed_attr
+            attr	nom ens.
+            data_type
+               [
+              nom enseignant
+              ]
         , 
         entity_or_table_attr
-          attr	tél. ens.
-          data_type
-             [
-            téléphone enseignant
-            ]
+          typed_attr
+            attr	tél. ens.
+            data_type
+               [
+              téléphone enseignant
+              ]
 --------------------------------------------------------------------------------
 [{'name': 'Enseignant',
   'attrs': [{'attribute_label': 'num. ens.',
@@ -1164,13 +1315,16 @@ COMMANDE: Num commande, Date, Montant, #Réf. client>CLIENT>Réf. client
       : 
       seq
         entity_or_table_attr
-          attr	Num commande
+          typed_attr
+            attr	Num commande
         , 
         entity_or_table_attr
-          attr	Date
+          typed_attr
+            attr	Date
         , 
         entity_or_table_attr
-          attr	Montant
+          typed_attr
+            attr	Montant
         , 
         entity_or_table_attr
           #
@@ -1208,13 +1362,16 @@ COMMANDE: Num commande, Date, Montant, #Réf. client > CLIENT > Réf. client
       : 
       seq
         entity_or_table_attr
-          attr	Num commande
+          typed_attr
+            attr	Num commande
         , 
         entity_or_table_attr
-          attr	Date
+          typed_attr
+            attr	Date
         , 
         entity_or_table_attr
-          attr	Montant
+          typed_attr
+            attr	Montant
         , 
         entity_or_table_attr
           #
@@ -1279,7 +1436,8 @@ INCLURE: #Num commande>COMMANDE>Num commande, _#Réf. produit>PRODUIT>Réf. prod
               attr	Réf. produit
         , 
         entity_or_table_attr
-          attr	Quantité
+          typed_attr
+            attr	Quantité
 --------------------------------------------------------------------------------
 [{'name': 'INCLURE',
   'attrs': [{'attribute_label': 'Num commande',
@@ -1334,7 +1492,8 @@ INCLURE: #Num commande > COMMANDE > Num commande, _#Réf. produit > PRODUIT > R�
               attr	Réf. produit
         , 
         entity_or_table_attr
-          attr	Quantité
+          typed_attr
+            attr	Quantité
 --------------------------------------------------------------------------------
 [{'name': 'INCLURE',
   'attrs': [{'attribute_label': 'Num commande',
@@ -1362,25 +1521,28 @@ CLIENT: Réf. client [varchar(8)], Nom [varchar(20)], Adresse [varchar(40)]
       : 
       seq
         entity_or_table_attr
-          attr	Réf. client
-          data_type
-             [
-            varchar(8)
-            ]
+          typed_attr
+            attr	Réf. client
+            data_type
+               [
+              varchar(8)
+              ]
         , 
         entity_or_table_attr
-          attr	Nom
-          data_type
-             [
-            varchar(20)
-            ]
+          typed_attr
+            attr	Nom
+            data_type
+               [
+              varchar(20)
+              ]
         , 
         entity_or_table_attr
-          attr	Adresse
-          data_type
-             [
-            varchar(40)
-            ]
+          typed_attr
+            attr	Adresse
+            data_type
+               [
+              varchar(40)
+              ]
 --------------------------------------------------------------------------------
 [{'name': 'CLIENT',
   'attrs': [{'attribute_label': 'Réf. client',
@@ -1417,7 +1579,7 @@ INCLURE, 1N COMMANDE, 0N PRODUIT: Quantité [tinyint(4)]
             box_name	PRODUIT
       : 
       seq
-        assoc_attr
+        typed_attr
           attr	Quantité
           data_type
              [
@@ -1444,20 +1606,23 @@ PARTICIPANT: numero [], nom, adresse [type3]
       : 
       seq
         entity_or_table_attr
-          attr	numero
-          data_type
-             [
-            ]
+          typed_attr
+            attr	numero
+            data_type
+               [
+              ]
         , 
         entity_or_table_attr
-          attr	nom
+          typed_attr
+            attr	nom
         , 
         entity_or_table_attr
-          attr	adresse
-          data_type
-             [
-            type3
-            ]
+          typed_attr
+            attr	adresse
+            data_type
+               [
+              type3
+              ]
 --------------------------------------------------------------------------------
 [{'name': 'PARTICIPANT',
   'attrs': [{'attribute_label': 'numero', 'data_type': '', 'rank': 0},
@@ -1538,10 +1703,12 @@ L33T123, 0N> H4X0R12, 0N< H4X0R0
       : 
       seq
         entity_or_table_attr
-          attr	nom ayant-droit
+          typed_attr
+            attr	nom ayant-droit
         , 
         entity_or_table_attr
-          attr	lien
+          typed_attr
+            attr	lien
 --------------------------------------------------------------------------------
 [{'type': 'entity',
   'indent': '  ',
@@ -1602,7 +1769,7 @@ L33T123, 0N> H4X0R12, 0N< H4X0R0
             box_name	PIÈCE
       : 
       seq
-        assoc_attr
+        typed_attr
           attr	qté requise
 --------------------------------------------------------------------------------
 [{'type': 'association',
@@ -1696,10 +1863,10 @@ DIRIGER, EMPLOYÉ, PROJET: biz, buz
             box_name	PROJET
       : 
       seq
-        assoc_attr
+        typed_attr
           attr	biz
         , 
-        assoc_attr
+        typed_attr
           attr	buz
 --------------------------------------------------------------------------------
 [{'name': 'DIRIGER',
@@ -1728,10 +1895,10 @@ A, B, C: biz, buz
             box_name	C
       : 
       seq
-        assoc_attr
+        typed_attr
           attr	biz
         , 
-        assoc_attr
+        typed_attr
           attr	buz
 --------------------------------------------------------------------------------
 [{'name': 'A',
@@ -1756,10 +1923,10 @@ Foo, Bar: biz, buz
             box_name	Bar
       : 
       seq
-        assoc_attr
+        typed_attr
           attr	biz
         , 
-        assoc_attr
+        typed_attr
           attr	buz
 --------------------------------------------------------------------------------
 [{'name': 'Foo',
@@ -1780,10 +1947,12 @@ AYANT-DROIT   :   nom ayant-droit   ,   lien
          :   
       seq
         entity_or_table_attr
-          attr	nom ayant-droit
+          typed_attr
+            attr	nom ayant-droit
            ,   
         entity_or_table_attr
-          attr	lien
+          typed_attr
+            attr	lien
 --------------------------------------------------------------------------------
 [{'name': 'AYANT-DROIT',
   'attrs': [{'attribute_label': 'nom ayant-droit', 'rank': 0},
@@ -1814,10 +1983,10 @@ DIRIGER   ,    0N    EMPLOYÉ   ,    01    PROJET   : fizz,  buzz
             box_name	PROJET
          : 
       seq
-        assoc_attr
+        typed_attr
           attr	fizz
         ,  
-        assoc_attr
+        typed_attr
           attr	buzz
 --------------------------------------------------------------------------------
 [{'name': 'DIRIGER',
@@ -1840,10 +2009,12 @@ AYANT-DROIT  :  nom ayant-droit  ,  lien 
         :  
       seq
         entity_or_table_attr
-          attr	nom ayant-droit
+          typed_attr
+            attr	nom ayant-droit
           ,  
         entity_or_table_attr
-          attr	lien
+          typed_attr
+            attr	lien
 --------------------------------------------------------------------------------
 [{'name': 'AYANT-DROIT',
   'attrs': [{'attribute_label': 'nom ayant-droit', 'rank': 0},
@@ -1874,10 +2045,10 @@ DIRIGER  ,  0N  EMPLOYÉ  ,  01  PROJET  : fizz, buzz 
             box_name	PROJET
         : 
       seq
-        assoc_attr
+        typed_attr
           attr	fizz
         , 
-        assoc_attr
+        typed_attr
           attr	buzz
 --------------------------------------------------------------------------------
 [{'name': 'DIRIGER',
@@ -1900,10 +2071,12 @@ AYANT-DROIT	 :	 nom ayant-droit	 ,	 lien
       	 :	 
       seq
         entity_or_table_attr
-          attr	nom ayant-droit
+          typed_attr
+            attr	nom ayant-droit
         	 ,	 
         entity_or_table_attr
-          attr	lien
+          typed_attr
+            attr	lien
 --------------------------------------------------------------------------------
 [{'name': 'AYANT-DROIT',
   'attrs': [{'attribute_label': 'nom ayant-droit', 'rank': 0},
@@ -1934,10 +2107,10 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
             box_name	PROJET
       	 : 
       seq
-        assoc_attr
+        typed_attr
           attr	fizz
         ,	
-        assoc_attr
+        typed_attr
           attr	buzz
 --------------------------------------------------------------------------------
 [{'name': 'DIRIGER',
@@ -2576,7 +2749,7 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
             box_name	Femme
       : 
       seq
-        assoc_attr
+        typed_attr
           attr	sexe
 --------------------------------------------------------------------------------
 [{'name': 'XT',
@@ -2614,7 +2787,7 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
             box_name	Femme
       : 
       seq
-        assoc_attr
+        typed_attr
           attr	sexe
 --------------------------------------------------------------------------------
 [{'name': 'XT1',
@@ -2652,7 +2825,7 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
             box_name	Femme
       : 
       seq
-        assoc_attr
+        typed_attr
           attr	sexe
 --------------------------------------------------------------------------------
 [{'name': 'XT',
@@ -2690,7 +2863,7 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
             box_name	Femme
       : 
       seq
-        assoc_attr
+        typed_attr
           attr	sexe
 --------------------------------------------------------------------------------
 [{'name': 'T',
@@ -2728,7 +2901,7 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
             box_name	Femme
       : 
       seq
-        assoc_attr
+        typed_attr
           attr	sexe
 --------------------------------------------------------------------------------
 [{'name': 'T',
@@ -2766,7 +2939,7 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
             box_name	Femme
       : 
       seq
-        assoc_attr
+        typed_attr
           attr	sexe
 --------------------------------------------------------------------------------
 [{'name': 'X',
@@ -2804,7 +2977,7 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
             box_name	Femme
       : 
       seq
-        assoc_attr
+        typed_attr
           attr	sexe
 --------------------------------------------------------------------------------
 [{'name': 'X',
@@ -2841,7 +3014,7 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
             box_name	Femme
       : 
       seq
-        assoc_attr
+        typed_attr
           attr	sexe
 --------------------------------------------------------------------------------
 [{'inheritance_arrow': '<=',
@@ -2878,7 +3051,7 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
             box_name	Femme
       : 
       seq
-        assoc_attr
+        typed_attr
           attr	sexe
 --------------------------------------------------------------------------------
 [{'inheritance_arrow': '=>',
@@ -2952,25 +3125,30 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
       : 
       seq
         entity_or_table_attr
-          attr	num
+          typed_attr
+            attr	num
         , 
         entity_or_table_attr
           id_groups	1
           id_mark	_
-          attr	nom
+          typed_attr
+            attr	nom
         , 
         entity_or_table_attr
           id_groups	1
           id_mark	_
-          attr	prénom
+          typed_attr
+            attr	prénom
         , 
         entity_or_table_attr
-          attr	adresse
+          typed_attr
+            attr	adresse
         , 
         entity_or_table_attr
           id_groups	2
           id_mark	_
-          attr	mail
+          typed_attr
+            attr	mail
 --------------------------------------------------------------------------------
 [{'name': 'Étudiant',
   'attrs': [{'attribute_label': 'num', 'rank': 0},
@@ -3003,25 +3181,30 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
         entity_or_table_attr
           id_groups	0
           id_mark	_
-          attr	num
+          typed_attr
+            attr	num
         , 
         entity_or_table_attr
           id_groups	1
           id_mark	_
-          attr	nom
+          typed_attr
+            attr	nom
         , 
         entity_or_table_attr
           id_groups	1
           id_mark	_
-          attr	prénom
+          typed_attr
+            attr	prénom
         , 
         entity_or_table_attr
-          attr	adresse
+          typed_attr
+            attr	adresse
         , 
         entity_or_table_attr
           id_groups	2
           id_mark	_
-          attr	mail
+          typed_attr
+            attr	mail
 --------------------------------------------------------------------------------
 [{'name': 'Étudiant',
   'attrs': [{'id_groups': '0',
@@ -3057,15 +3240,18 @@ Position: 0_latitude, 0_longitude, altitude
         entity_or_table_attr
           id_groups	0
           id_mark	_
-          attr	latitude
+          typed_attr
+            attr	latitude
         , 
         entity_or_table_attr
           id_groups	0
           id_mark	_
-          attr	longitude
+          typed_attr
+            attr	longitude
         , 
         entity_or_table_attr
-          attr	altitude
+          typed_attr
+            attr	altitude
 --------------------------------------------------------------------------------
 [{'name': 'Position',
   'attrs': [{'id_groups': '0',
@@ -3091,22 +3277,26 @@ Foo: bar, 1_baz, 21_qux, 123_quux
       : 
       seq
         entity_or_table_attr
-          attr	bar
+          typed_attr
+            attr	bar
         , 
         entity_or_table_attr
           id_groups	1
           id_mark	_
-          attr	baz
+          typed_attr
+            attr	baz
         , 
         entity_or_table_attr
           id_groups	21
           id_mark	_
-          attr	qux
+          typed_attr
+            attr	qux
         , 
         entity_or_table_attr
           id_groups	123
           id_mark	_
-          attr	quux
+          typed_attr
+            attr	quux
 --------------------------------------------------------------------------------
 [{'name': 'Foo',
   'attrs': [{'attribute_label': 'bar', 'rank': 0},

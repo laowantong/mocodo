@@ -176,8 +176,8 @@ class ClauseExtractor(Transformer):
         del d["entity"]
         return list(d.items())
     
-    def box_attr(self, tree):
-        return ("attribute", dict(tree))
+    def typed_attr(self, tree):
+        return ("attr", dict(tree))
     
     def assoc_leg(self, tree):
         return ("leg", dict(tree))
@@ -187,12 +187,6 @@ class ClauseExtractor(Transformer):
     
     def inheritance_child(self, tree):
         return ("leg", dict(tree))
-    
-    def assoc_attr(self, tree):
-        return ("attr", dict(tree))
-    
-    def foreign_reference(self, tree):
-        return ("foreign_reference", dict(tree))
     
     def foreign_reference(self, tree):
         return ("foreign_reference", dict(tree))
@@ -220,6 +214,8 @@ class ClauseExtractor(Transformer):
         d = dict(tree)
         if "foreign_reference" in d:
             d.update(d.pop("foreign_reference"))
+        if "attr" in d:
+            d.update(d.pop("attr"))
         return ("attr", d)
     
     def this_table_attr(self, tree):
@@ -278,5 +274,9 @@ def first_child(tree, name, i=0):
     return result.children[i]
 
 if __name__ == "__main__":
-    source = "Foo: bar [baz]"
-    print(parse_source(source))
+    # python -m mocodo.parser_tools
+    source = "EMPLOYER, 01 PARTICIPANT, 0N ENTREPRISE:"
+    tree = parse_source(source)
+    print(tree.pretty())
+    print(reconstruct_source(tree))
+    print(extract_clauses(source))
