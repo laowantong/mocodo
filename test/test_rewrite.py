@@ -3,6 +3,7 @@ import unittest
 __import__("sys").path[0:0] = ["mocodo"]
 
 from mocodo.rewrite import (
+    pre_type,
     drain,
     explode,
     obfuscate,
@@ -98,6 +99,20 @@ class TestTransformers(unittest.TestCase):
         actual = fix_cards.run(source).strip()
         expected = "A, 0N B, 0N No"
         self.assertEqual(actual, expected)
+
+    def test_pre_type(self):
+        source = """
+            MEAN: wash, rest [], king [int],
+            HERE, 0N NICE, 0N MEAN: wood, much [], stop [int]
+            NICE: _poke, news [], , lawn [int]
+        """
+        actual = pre_type.run(source)
+        expected = """
+            MEAN: wash [], rest [], king [int],
+            HERE, 0N NICE, 0N MEAN: wood [], much [], stop [int]
+            NICE: _poke [], news [], , lawn [int]
+        """
+        self.assertEqual(actual.strip(), expected.strip())
 
     def test_split(self):
         source = """
