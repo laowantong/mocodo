@@ -2,7 +2,7 @@ from collections import defaultdict
 
 __import__("sys").path[0:0] = ["."]
 
-from ..parse_mcd import Token, Tree, Visitor
+from ..parse_mcd import Token, Visitor
 from ..parser_tools import parse_source, reconstruct_source, first_child
 
 

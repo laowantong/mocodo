@@ -6,9 +6,9 @@ from mocodo.rewrite import (
     drain,
     explode,
     obfuscate,
+    op_tk,
     randomize_cards,
     fix_cards,
-    rewrite_token,
     split,
 )
 
@@ -243,7 +243,7 @@ class TestTransformers(unittest.TestCase):
 
             (I) [Les pièces fournies par une société pour un projet font partie de celles qu'il requiert.] ..PIÈCE, ->REQUÉRIR, --FOURNIR, PROJET
         """
-        actual = rewrite_token.run(source, "ascii", "labels")
+        actual = op_tk.run(source, "ascii", "labels")
         expected = """
             AYANT-DROIT: nom ayant-droit, lien
             DIRIGER, 0N EMPLOYE, 01 PROJET
@@ -278,7 +278,7 @@ class TestTransformers(unittest.TestCase):
             +prefixedEntity: _prefixed_Attribute
             ALL UPPER CASE: CHIEN CHAT, ÉLAN ÉLÉPHANT
         """
-        actual = rewrite_token.run(source, "snake", "labels")
+        actual = op_tk.run(source, "snake", "labels")
         expected = """
             space_separated_words: chien_chat, élan_éléphant
             underline_separated_words: chien_chat, élan_éléphant
@@ -304,7 +304,7 @@ class TestTransformers(unittest.TestCase):
             +prefixedEntity: _prefixed_Attribute
             ALL UPPER CASE: CHIEN CHAT, ÉLAN ÉLÉPHANT
         """
-        actual = rewrite_token.run(source, "camel", "labels")
+        actual = op_tk.run(source, "camel", "labels")
         expected = """
             spaceSeparatedWords: chienChat, élanÉléphant
             underlineSeparatedWords: chienChat, élanÉléphant

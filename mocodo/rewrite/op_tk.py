@@ -82,9 +82,11 @@ OPERATIONS["snake"] = snake
 class TokenRewriter(Transformer):
     def __init__(self, token, operation):
         self.operation = OPERATIONS[operation]
-        if token == "labels":
+        if token.endswith("s"): # tolerance for the plural forms
+            token = token[:-1]
+        if token == "label":
             tokens = ["box_name", "attr", "leg_note"]
-        elif token == "notes":
+        elif token == "note":
             tokens = ["leg_note", "constraint_note"]
         else:
             tokens = [token]

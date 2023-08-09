@@ -14,6 +14,10 @@ try:
 except pkg_resources.DistributionNotFound:
     MOCODO_VERSION = "(unknown version)"  # For tests during CI
 
+IPYTHON = get_ipython()
+
+def update_cell(content):
+    IPYTHON.set_next_input(content, replace=True)
 
 def split_by_unquoted_spaces_or_equals(
         string,
@@ -47,13 +51,14 @@ class MocodoMagics(Magics):
 
         def display_diagrams():
             svg_path = Path(output_name).with_suffix(".svg")
-            if svg_path.is_file() and input_path.stat().st_mtime <= svg_path.stat().st_mtime:
+            svg_was_updated = svg_path.is_file() and input_path.stat().st_mtime <= svg_path.stat().st_mtime
+            if svg_was_updated:
                 if not notebook_options.no_mcd:
                     display(SVG(filename=svg_path))
                 if notebook_options.mld:
                     mld = Path(output_name).with_suffix(".html").read_text("utf8")
                     display(HTML(mld))
-                return True
+            return svg_was_updated
 
         parser = argparse.ArgumentParser(add_help=False)
         parser.add_argument("--no_mcd", action="store_true")
@@ -90,64 +95,54 @@ class MocodoMagics(Magics):
         except ValueError:
             options.extend(["--relations", "html"])
 
-        def execute_command(options):
-            global stdoutdata
-            process = Popen(["mocodo"] + options, stdin=PIPE, stdout=PIPE, stderr=PIPE)
-            stdoutdata, stderrdata = process.communicate()
-            try:
-                stdoutdata = stdoutdata.decode("utf8")
-                stderrdata = stderrdata.decode("utf8")
-            except:
-                pass
-            status = process.wait()
-            if status == 0 and not stderrdata:
-                return True
+        process = Popen(["mocodo"] + options, stdin=PIPE, stdout=PIPE, stderr=PIPE)
+        stdoutdata, stderrdata = process.communicate()
+        try:
+            stdoutdata = stdoutdata.decode("utf8")
+            stderrdata = stderrdata.decode("utf8")
+        except:
+            pass
+        status = process.wait()
+        if status != 0 or stderrdata:
             warnings.formatwarning = lambda x, *args, **kargs : str(x)
             warnings.warn(stderrdata)
+            return
+        
+        if "--rewrite" in options:
+            updated_source = input_path.read_text().rstrip()
+            if "--replace" in options:
+                update_cell(updated_source)
+                return # abort, since this erases the [Out] section after returning asynchronously
+            svg_was_updated = display_diagrams()
+            if "--no_source" not in options:
+                print(updated_source)
+        else:
+            svg_was_updated = display_diagrams()
+        
+        if svg_was_updated:
+            return
+        
+        if "--help" in options:
+            print(stdoutdata)
+        elif "--print_params" in options:
+            form = [
+                f'# You may edit and run the following lines',
+                f'import json, pathlib',
+                f'params = """',
+                f'{stdoutdata}',
+                f'"""',
+                f'try:',
+                f'    json.loads(params)',
+                f'except:',
+                f'    raise RuntimeError("Invalid JSON. Check your syntax on https://jsonlint.com.")',
+                f'pathlib.Path("{output_dir}/params.json").write_text(params.strip(), encoding="utf8")',
+            ]
+            update_cell("\n".join(form))
 
-        if execute_command(options):
-            if not display_diagrams():
-                if "--print_params" in options:
-                    form = [
-                        f'# You may edit and run the following lines',
-                        f'import json, pathlib',
-                        f'params = """',
-                        f'{stdoutdata}',
-                        f'"""',
-                        f'try:',
-                        f'    json.loads(params)',
-                        f'except:',
-                        f'    raise RuntimeError("Invalid JSON. Check your syntax on https://jsonlint.com.")',
-                        f'pathlib.Path("{output_dir}/params.json").write_text(params.strip(), encoding="utf8")',
-                    ]
-                    get_ipython().set_next_input("\n".join(form), replace = True)
-                    return
-                if "--help" in options:
-                    print(stdoutdata)
-                    return
-                if "--replace" in options:
-                    get_ipython().set_next_input("%%mocodo\n" + stdoutdata.rstrip(), replace = True)
-                    return
-                print(f"%%mocodo\n{stdoutdata.rstrip()}")
-                if not notebook_options.no_mcd or notebook_options.mld:
-                    parser.add_argument("--arrange", nargs="?")
-                    parser.add_argument("--obfuscate", nargs="?")
-                    parser.add_argument("--flip", nargs="?")
-                    (_, options) = parser.parse_known_args(options)
-                    input_path.write_text(stdoutdata, encoding="utf8")
-                    options.extend(["--input", str(input_path), "--output_dir", str(output_dir)])
-                    if execute_command(options):
-                        display_diagrams()
-
-
-
-def load_ipython_extension(ipython):
-    try:
-        ipython.register_magics(MocodoMagics)
-    except AttributeError:
-        pass # necessary for launching the tests
-    else:
-        print(f"Mocodo {MOCODO_VERSION} loaded.")
-
-load_ipython_extension(get_ipython())
+try:
+    IPYTHON.register_magics(MocodoMagics)
+except AttributeError:
+    pass # necessary for launching the tests
+else:
+    print(f"Mocodo {MOCODO_VERSION} loaded.")
 

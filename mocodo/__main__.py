@@ -20,7 +20,7 @@ def main():
     try:
         params = parsed_arguments()
         common = Common(params)
-        clauses = common.load_input_file()
+        source = common.load_input_file()
         get_font_metrics = font_metrics_factory(params)
         if params["restore"]:
             import shutil  # fmt: skip
@@ -36,49 +36,67 @@ def main():
             params["print_params"] = False
             params_contents = json.dumps(params, ensure_ascii=False, indent=2, sort_keys=True)
             return safe_print_for_PHP(params_contents)
-        if params["rewrite"] and params["rewrite"][0]:
-            for s in params["rewrite"]:
-                if "_" in s:
+        if "rewrite" in params: # It contains at least the default "echo" option
+            for sub_option in params["rewrite"]:
+                if sub_option == "echo":
+                    continue
+                if "_" in sub_option:
                     # Beware that, in the following line, using a single underscore would clash
                     # with the gettext alias, EVEN IF THIS CODE IS NOT REACHED: the compiler would
                     # consider that _ is a local variable, and shadow the global one, resulting in:
                     # UnboundLocalError: local variable '_' referenced before assignment
-                    (operation, __, token) = s.partition("_")
-                    module = importlib.import_module(f".rewrite.rewrite_token", package="mocodo")
+                    (operation, __, token) = sub_option.partition("_")
+                    if token.endswith("s"): # tolerance for the plural forms
+                        token = token[:-1]
+                    module = importlib.import_module(f".rewrite.op_tk", package="mocodo")
                     if operation in module.OPERATIONS:
                         try:
-                            clauses = module.run(clauses, operation, token).rstrip()
+                            source = module.run(source, operation, token).rstrip()
                         except:
                             raise MocodoError(650, _('Unable to apply "{op}" to "{tk}".').format(op=operation, tk=token))  # fmt: skip
                         continue
+                    # Now we know that s in not of the form "operation_token"
+                if "flip" in sub_option:
+                    mcd = Mcd(source, get_font_metrics, **params)
+                    s = sub_option.replace("flip", "").replace("_", "")
+                    if s.startswith("v"):
+                        source = mcd.get_clauses_vertical_mirror()
+                    elif s.startswith("h"):
+                        source = mcd.get_clauses_horizontal_mirror()
+                    else:
+                        source = mcd.get_clauses_diagonal_mirror()
+                    continue
+                if sub_option.startswith("arrange"):
+                    # Possible sub-commands:
+                    # - arrange_organic: non-constrained layout
+                    # - arrange_0: constrain the layout to the smallest balanced grid
+                    # - arrange_𝑖: ... to the 𝑖th next grid (with 𝑖 > 0)
+                    # - arrange (and any other suffix): ... to the current grid
+                    mcd = Mcd(source, get_font_metrics, **params)
+                    s = sub_option.replace("arrange_", "")
+                    if s.isdigit():
+                        source = mcd.get_refitted_clauses(int(s))
+                        mcd = Mcd(source, get_font_metrics, **params)
+                    module = importlib.import_module(f".arrange_{params['arrangement']}", package="mocodo")
+                    params.update(mcd.get_layout_data())
+                    params["organic"] = (s == "organic")
+                    rearrangement = module.arrange(**params)
+                    if rearrangement:
+                        mcd.set_layout(**rearrangement)
+                        source = mcd.get_clauses()
+                    elif s == "organic":
+                        raise MocodoError(41, _('Failed to calculate a planar layout.'))  # fmt: skip
+                    else:
+                        raise MocodoError(9, _('Failed to calculate a planar layout on the given grid.'))  # fmt: skip
+                    continue
                 try:
-                    module = importlib.import_module(f".rewrite.{s}", package="mocodo")
-                    clauses = module.run(clauses, params=params).rstrip()
+                    module = importlib.import_module(f".rewrite.{sub_option}", package="mocodo")
+                    source = module.run(source, params=params).rstrip()
                 except ModuleNotFoundError:
-                    raise MocodoError(651, _("Unknown rewrite operation: {op}".format(op=s)))  # fmt: skip
-            return safe_print_for_PHP(clauses)
-        mcd = Mcd(clauses, get_font_metrics, **params)
-        if params["fit"] is not None:
-            return safe_print_for_PHP(mcd.get_reformatted_clauses(params["fit"]))
-        if params["flip"]:
-            return safe_print_for_PHP(
-                {
-                    "v": mcd.get_clauses_vertical_mirror,
-                    "h": mcd.get_clauses_horizontal_mirror,
-                    "d": mcd.get_clauses_diagonal_mirror,
-                }[params["flip"]]()
-            )
-        if params["arrange"]:
-            params.update(mcd.get_layout_data())
-            if params["arrange"] == "ga":
-                from .arrange_ga import arrange
-            elif params["arrange"] == "bb":
-                from .arrange_bb import arrange
-            result = arrange(**params)
-            if result:
-                mcd.set_layout(**result)
-                return safe_print_for_PHP(mcd.get_clauses())
-            raise MocodoError(9, _('Failed to calculate a planar layout.'))  # fmt: skip
+                    raise MocodoError(651, _("Unknown rewrite operation: {op}".format(op=sub_option)))  # fmt: skip
+            # The source file is updated for further processing
+            common.update_input_file(source)
+        mcd = Mcd(source, get_font_metrics, **params)
         if params["detect_overlaps"]:
             overlaps = mcd.get_overlaps()
             if overlaps:

@@ -16,9 +16,15 @@ class Leg:
         
         self.has_underlined_card = False
         if leg.get("card_prefix") == "_":
-            self.kind = "strengthening"
-            s = params.get("strengthen_card", "_1,1_")
-            self.has_underlined_card = (s[0] == "_" == s[-1])
+            if self.card != "11": # silently ignore the prefix
+                self.kind = "leg"
+                del leg["card_prefix"]
+            else:
+                self.kind = "strengthening"
+                self.card_view = params.get("strengthen_card", "_1,1_")
+                if self.card_view[0] == self.card_view[-1] == "_":
+                    self.has_underlined_card = True
+                    self.card_view = self.card_view[1:-1]
         elif association.kind == "cluster":
             self.kind = "cluster_peg" if leg.get("card_prefix") == "/" else "cluster_leg"
         else:

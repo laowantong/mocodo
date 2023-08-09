@@ -344,7 +344,7 @@ class Mcd:
         self.update_footer()
         return self.header + "\n\n".join(self.get_row_text(row) for row in zip(*self.rows)) + self.footer
     
-    def get_reformatted_clauses(self, nth_fit):
+    def get_refitted_clauses(self, nth_fit):
         grid = Grid(len(self.boxes) + 100) # make sure there are enough precalculated grids
         start = len(self.entities) + len(self.associations) # number of nonempty boxes
         if nth_fit < 0:

@@ -372,7 +372,7 @@ class McdTest(unittest.TestCase):
             Gear , 1N Call, 1N Folk
             :
         """.strip().replace("    ", "")
-        actual = mcd.get_reformatted_clauses(0).strip().replace("    ", "")
+        actual = mcd.get_refitted_clauses(0).strip().replace("    ", "")
         self.assertEqual(actual, expected)
         # 1st next fit: (5, 3)
         expected = """
@@ -394,7 +394,7 @@ class McdTest(unittest.TestCase):
             :
             :
         """.strip().replace("    ", "")
-        actual = mcd.get_reformatted_clauses(1).strip().replace("    ", "")
+        actual = mcd.get_refitted_clauses(1).strip().replace("    ", "")
         self.assertEqual(actual, expected)
         # 2nd next fit: (4, 4)
         expected = """
@@ -418,7 +418,7 @@ class McdTest(unittest.TestCase):
             :
             :
         """.strip().replace("    ", "")
-        actual = mcd.get_reformatted_clauses(2).strip().replace("    ", "")
+        actual = mcd.get_refitted_clauses(2).strip().replace("    ", "")
         self.assertEqual(actual, expected)
         
     def test_automatic_fit_produces_next_grid(self):
@@ -470,7 +470,7 @@ class McdTest(unittest.TestCase):
             :
             :
         """.strip().replace("  ", "")
-        actual = mcd.get_reformatted_clauses(-1).strip().replace("    ", "")
+        actual = mcd.get_refitted_clauses(-1).strip().replace("    ", "")
         self.assertEqual(actual, expected)
 
     def test_implicit_fit_produces_min_grid_next(self):
@@ -513,9 +513,9 @@ class McdTest(unittest.TestCase):
             :
             :
         """.strip().replace("  ", "")
-        actual = mcd.get_reformatted_clauses(-1).strip().replace("    ", "")
+        actual = mcd.get_refitted_clauses(-1).strip().replace("    ", "")
         self.assertEqual(actual, expected)
-        actual = mcd.get_reformatted_clauses(1).strip().replace("    ", "")
+        actual = mcd.get_refitted_clauses(1).strip().replace("    ", "")
         self.assertEqual(actual, expected)
     
     def test_no_overlapping(self):

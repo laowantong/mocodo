@@ -40,6 +40,12 @@ class Common:
                 pass
         raise MocodoError(5, _('Unable to read "{filename}" with any of the following encodings: "{encodings}".').format(filename=self.params["input"], encodings= ", ".join(self.params["encodings"]))) # fmt: skip
 
+    def update_input_file(self, source):
+        if not source.startswith("%%mocodo"):
+            source = f"%%mocodo\n{source}"
+        write_contents(self.params["input"], source, encoding=self.encoding)
+        safe_print_for_PHP(self.output_success_message(self.params["input"]))
+
     def load_style(self):
         
         def load_by_name(name):

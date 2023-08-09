@@ -17,81 +17,81 @@ LBRACKET: SP? "[" SP?
 RBRACKET: SP? "]" SP?
 HASHTAG: "#"
 PERCENT: "%"
-SP.-50 : /[^\S\r\n]+/
+SP.-50: /[^\S\r\n]+/
 
-BOX_NAME : /(?![\W_\d])[^=<>,:\n\\]*[^-\[\\\]=<>,:\s\\]/
-_box_attr : attr data_type?
+BOX_NAME: /(?![\W_\d])[^=<>,:\n\\]*[^-\[\\\]=<>,:\s\\]/
+_box_attr: attr data_type?
 data_type: LBRACKET note? RBRACKET
-!box_def_prefix : "+"
+!box_def_prefix: "+"
 
-ATTR : /(?=\w)(?!_)[^\[\]>,\r\n]*[^\[\]>,\s]/
-?note : /[^\r\n\]]+/
+ATTR: /(?=\w)(?!_)[^\[\]>,\r\n]*[^\[\]>,\s]/
+?note: /[^\r\n\]]+/
 
-start : (break_ | line)*
-BREAK.100 : /^\n/
-line : indent? (phantoms | comment | clause | NL)
-?clause : assoc_clause
+start: (break_ | line)*
+BREAK.100: /^\n/
+line: indent? (phantoms | comment | clause | NL)
+?clause: assoc_clause
         | entity_clause
         | constraint_clause
         | inheritance_clause
 
-PHANTOMS : /( *:)+ */ NL
+PHANTOMS: /( *:)+ */ NL
 indent: INDENT
 INDENT.10: / +|\t+/
-comment : PERCENT /.*\r?\n/
+comment: PERCENT /.*\r?\n/
 
 // Associations
 
 assoc_clause: box_def_prefix? assoc_name_def COMMA seq{assoc_leg} (COLON seq{assoc_attr}?)? NL
-assoc_name_def : box_name
-assoc_leg : _assoc_card? leg_arrow? SP? (LBRACKET leg_note RBRACKET)? entity_name_ref
-_assoc_card : card_hidden? card_prefix? card
+assoc_name_def: box_name
+assoc_leg: _assoc_card? leg_arrow? SP? (LBRACKET leg_note RBRACKET)? entity_name_ref
+_assoc_card: card_hidden? card_prefix? card
 entity_name_ref: box_name
-!card_hidden : "-"
-!card_prefix : "_" | "/"
-CARD.2 : /(?![-_\/])(\w|\?){2}(?=[ \t]*[^\w,\r\n:])/
-LEG_ARROW : /[<>]/
-leg_note : note
-assoc_attr : _box_attr?
+!card_hidden: "-"
+!card_prefix: "_" | "/"
+CARD.2: /(?![-_\/])(\w|\?){2}(?=[ \t]*[^\w,\r\n:])/
+LEG_ARROW: /[<>]/
+leg_note: note
+assoc_attr: _box_attr?
 
 // Entities
 
-entity_clause : box_def_prefix? entity_name_def COLON seq{entity_or_table_attr}? NL
-entity_name_def : box_name
-entity_or_table_attr : _id_symbols? (_box_attr? | HASHTAG foreign_reference)
-_id_symbols : id_groups? id_mark
+entity_clause: box_def_prefix? entity_name_def COLON seq{entity_or_table_attr}? NL
+entity_name_def: box_name
+entity_or_table_attr: _id_symbols? (_box_attr? | HASHTAG foreign_reference)
+_id_symbols: id_groups? id_mark
 ID_GROUPS.10: /\d+(?=_)/
 ID_MARK: "_"
-foreign_reference : this_table_attr MORETHAN that_table MORETHAN that_table_attr
-this_table_attr : attr
-that_table_attr : attr
-that_table : entity_name_ref
+foreign_reference: this_table_attr MORETHAN that_table MORETHAN that_table_attr
+this_table_attr: attr
+that_table_attr: attr
+that_table: entity_name_ref
 MORETHAN: SP? ">" SP?
 
 // Constraints
 
-constraint_clause : CONSTRAINT_LPAREN constraint_name? CONSTRAINT_RPAREN (LBRACKET constraint_note RBRACKET)? seq{constraint_target}? (COLON constraint_coords)? NL
-CONSTRAINT_NAME : /[\w  ]{1,3}/
+constraint_clause: CONSTRAINT_LPAREN constraint_name? CONSTRAINT_RPAREN (LBRACKET constraint_note RBRACKET)? seq{constraint_target}? (COLON constraint_coords)? NL
+CONSTRAINT_NAME: /[\w  ]{1,3}/
 constraint_note: note
-constraint_target : constraint_leg? SP* box_name_ref
+constraint_target: constraint_leg? SP* box_name_ref
 box_name_ref: box_name
-CONSTRAINT_LEG : /<?(\.+|-+)>?/
-constraint_coords : _constraint_coord COMMA _constraint_coord
-_constraint_coord : NUMBER | BOX_NAME
+CONSTRAINT_LEG: /<?(\.+|-+)>?/
+constraint_coords: _constraint_coord COMMA _constraint_coord
+_constraint_coord: NUMBER | BOX_NAME
 
 // Inheritance
 
-inheritance_clause : SLASH inheritance_name? BACKSLASH SP? inheritance_parent SP? inheritance_arrow SP? seq{inheritance_child} (COLON seq{assoc_attr})? NL
-INHERITANCE_NAME : /(XT\d?|TX\d?|X\d?|T\d?|\d)/
-inheritance_parent : entity_name_ref
-inheritance_child : entity_name_ref
-INHERITANCE_ARROW.-10 : /<==?|<--?|--?>|==?>/
+inheritance_clause: SLASH inheritance_name? BACKSLASH SP? inheritance_parent SP? inheritance_arrow SP? seq{inheritance_child} (COLON seq{assoc_attr})? NL
+INHERITANCE_NAME: /(XT\d?|TX\d?|X\d?|T\d?|\d)/
+inheritance_parent: entity_name_ref
+inheritance_child: entity_name_ref
+INHERITANCE_ARROW.-10: /<==?|<--?|--?>|==?>/
 
 // Avoid anonymous tokens for some terminals
 
 constraint_leg: CONSTRAINT_LEG
 card: CARD
-box_name : BOX_NAME
+box_name: BOX_NAME
 leg_arrow: LEG_ARROW
 phantoms: PHANTOMS
 break_: BREAK

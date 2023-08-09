@@ -156,11 +156,11 @@ def parsed_arguments():
     source_group = parser.add_argument_group("MODIFICATIONS OF THE SOURCE TEXT")
     bb_group = parser.add_argument_group(
         "BRANCH & BOUND LAYOUT REARRANGEMENT",
-        "sub-options triggered by the option --arrange=bb",
+        "sub-options triggered by the option --arrangement=bb",
     )
     ga_group = parser.add_argument_group(
         "GENETIC ALGORITHM LAYOUT REARRANGEMENT",
-        "sub-options triggered by the option --arrange=ga",
+        "sub-options triggered by the option --arrangement=ga",
     )
     nb_group = parser.add_argument_group(
         "NOTEBOOK SPECIFIC OPTIONS",
@@ -292,7 +292,9 @@ def parsed_arguments():
         help="scale all calculated text widths by the given factor",
     )
     aspect_group.add_argument(
-        "--hide_notes", action="store_true", help="ignore the hovering of annotated elements"
+        "--hide_notes",
+        action="store_true",
+        help="ignore the hovering of annotated elements",
     )
     aspect_group.add_argument(
         "--detect_overlaps",
@@ -393,41 +395,16 @@ def parsed_arguments():
     )
 
     source_group.add_argument(
-        "--arrange",
-        nargs="?",
-        const="bb",
-        choices=["bb", "ga"],
-        help="rearrange the layout with either a Branch & Bound or a Genetic Algorithm, then exit",
-    )
-    source_group.add_argument(
-        "--timeout",
-        metavar="SECONDS",
-        type=int,
-        help="limit the duration of the layout rearrangement",
-    )
-    source_group.add_argument(
-        "--verbose",
+        "--no_source",
         action="store_true",
-        help="display some gory details during the layout rearrangement",
-    )
-    source_group.add_argument(
-        "--fit",
-        metavar="INT",
-        type=int,
-        const=0,
-        nargs="?",
-        help="fit the layout in the nth smallest grid",
-    )
-    source_group.add_argument(
-        "--flip",
-        choices=["h", "v", "d"],
-        help="display an horizontal / vertical / diagonal flip of the input file, then exit",
+        help="do not print the rewritten MCD source in the cell output",
     )
     source_group.add_argument(
         "--rewrite",
         metavar="STR",
         nargs="*",
-        help="apply sequentially some token transformations to the input file, then exit.",
+        default=["echo"],
+        help="apply sequentially some token transformations to the input file",
     )
     source_group.add_argument(
         "--seed",
@@ -460,6 +437,24 @@ def parsed_arguments():
         default="3",
         help="minimal arity of the associations to be exploded",
     )
+    source_group.add_argument(
+        "--arrangement",
+        nargs="?",
+        default="bb",
+        choices=["bb", "ga"],
+        help="use a Branch & Bound or a Genetic Algorithm to rearrange the layout",
+    )
+    source_group.add_argument(
+        "--timeout",
+        metavar="SECONDS",
+        type=int,
+        help="limit the duration of the layout rearrangement",
+    )
+    source_group.add_argument(
+        "--verbose",
+        action="store_true",
+        help="display some gory details during the layout rearrangement",
+    )
 
     bb_group.add_argument(
         "--call_limit",
@@ -481,11 +476,6 @@ def parsed_arguments():
         type=positive_integer,
         default=15,
         help="worst acceptable fitness for a layout",
-    )
-    bb_group.add_argument(
-        "--organic",
-        action="store_true",
-        help="unconstrained Branch & Bound",
     )
 
     ga_group.add_argument(
