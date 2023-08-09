@@ -6,7 +6,8 @@ from ..parser_tools import parse_source, reconstruct_source, first_child
 class Exploder(Visitor):
 
     def __init__(self, params):
-        self.threshold = int(params["explosion_arity"])
+        self.threshold = int(float(params["explosion_arity"]))
+        self.empty_only = params["explosion_arity"] == "2.5" 
         if params["weak_explosion"]:
             # Don't create an identifier for the new weak entity
             self.explosion_template = ":"
@@ -36,6 +37,10 @@ class Exploder(Visitor):
         # Guard: ensure that there are enough legs and all their max cards are N.
         cards = [node.children[0].value for node in tree.find_data("card")]
         if len(cards) < self.threshold or any(card[1] != "N" for card in cards):
+            return
+        
+        # Guard: on demand, avoid processing binary associations with no attributes.
+        if self.empty_only and not first_child(tree, "typed_attr"):
             return
         
         # Back the legs up as a list of strings.

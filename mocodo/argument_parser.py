@@ -447,7 +447,7 @@ def parsed_arguments():
     )
     source_group.add_argument(
         "--explosion_arity",
-        choices=["2", "3"],
+        choices=["2", "2.5", "3"],
         default="3",
         help="minimal arity of the associations to be exploded",
     )
