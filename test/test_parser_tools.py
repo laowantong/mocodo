@@ -1,10 +1,8 @@
-import os
 from pathlib import Path
 import re
 import unittest
 import pprint
 
-os.system("python -m lark.tools.standalone --compress mocodo/resources/grammar.lark > mocodo/parse_mcd.py")
 __import__("sys").path[0:0] = ["mocodo"]
 
 from mocodo.parse_mcd import Lark_StandAlone, UnexpectedToken

@@ -36,7 +36,7 @@ def main():
             params["print_params"] = False
             params_contents = json.dumps(params, ensure_ascii=False, indent=2, sort_keys=True)
             return safe_print_for_PHP(params_contents)
-        if "modify" in params: # contains at least the default "echo" option
+        if params["modify"] != ["echo"]:
             for sub_option in params["modify"]:
                 if sub_option == "echo":
                     continue
@@ -89,11 +89,20 @@ def main():
                     continue
                 try:
                     module = importlib.import_module(f".modify.{sub_option}", package="mocodo")
-                    source = module.run(source, params=params).rstrip()
                 except ModuleNotFoundError:
                     raise MocodoError(651, _("Unknown modification operation: {op}".format(op=sub_option)))  # fmt: skip
+                source = module.run(source, params=params).rstrip()
             # The source file is updated for further processing
             common.update_input_file(source)
+        if "dump" in params and params["dump"]:
+            for sub_option in params["dump"]:
+                try:
+                    module = importlib.import_module(f".dump.{sub_option}", package="mocodo")
+                except ModuleNotFoundError:
+                    raise MocodoError(652, _("Unknown dump operation: {op}".format(op=sub_option)))  # fmt: skip
+                text = module.run(source, params).rstrip()
+                common.dump_file(module.FILENAME_SUFFIX, f"{text}\n")
+            return
         mcd = Mcd(source, get_font_metrics, **params)
         if params["detect_overlaps"]:
             overlaps = mcd.get_overlaps()
@@ -106,8 +115,6 @@ def main():
                         acc.append(_("- Legs “{b1} — {b2}” and “{b3} — {b4}” overlap.").format(b1=b1, b2=b2, b3=b3, b4=b4))  # fmt: skip
                 details = "\n".join(acc)
                 raise MocodoError(29, _('On Mocodo online, click the 🔀 button to fix the following problem(s):\n{details}').format(details=details))  # fmt: skip
-        if "data_dict" in params:
-            common.dump_file("data_dict.md", data_dict.run(source))
         relations = Relations(mcd, params)
         # The order of the following two lines ensures that the relational diagram is dumped after
         # the geometry of the MCD. Later on, when drawing this relational diagram, the geometry

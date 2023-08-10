@@ -108,7 +108,7 @@ class MocodoMagics(Magics):
             warnings.warn(stderrdata)
             return
         
-        if "--modify" in options:
+        if "--modify" in options or "-m" in options:
             updated_source = input_path.read_text().rstrip()
             if "--replace" in options:
                 update_cell(updated_source)
@@ -116,6 +116,9 @@ class MocodoMagics(Magics):
             svg_was_updated = display_diagrams()
             if "--no_text" not in options:
                 print(updated_source)
+        elif "--dump" in options or "-d" in options:
+            print(stdoutdata, end="")
+            return
         else:
             svg_was_updated = display_diagrams()
         
