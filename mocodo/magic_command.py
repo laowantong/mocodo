@@ -108,13 +108,13 @@ class MocodoMagics(Magics):
             warnings.warn(stderrdata)
             return
         
-        if "--rewrite" in options:
+        if "--modify" in options:
             updated_source = input_path.read_text().rstrip()
             if "--replace" in options:
                 update_cell(updated_source)
                 return # abort, since this erases the [Out] section after returning asynchronously
             svg_was_updated = display_diagrams()
-            if "--no_source" not in options:
+            if "--no_text" not in options:
                 print(updated_source)
         else:
             svg_was_updated = display_diagrams()

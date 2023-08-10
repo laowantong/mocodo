@@ -36,8 +36,8 @@ def main():
             params["print_params"] = False
             params_contents = json.dumps(params, ensure_ascii=False, indent=2, sort_keys=True)
             return safe_print_for_PHP(params_contents)
-        if "rewrite" in params: # contains at least the default "echo" option
-            for sub_option in params["rewrite"]:
+        if "modify" in params: # contains at least the default "echo" option
+            for sub_option in params["modify"]:
                 if sub_option == "echo":
                     continue
                 if "_" in sub_option:
@@ -46,7 +46,7 @@ def main():
                     # consider that _ is a local variable, and shadow the global one, resulting in:
                     # UnboundLocalError: local variable '_' referenced before assignment
                     (operation, __, token) = sub_option.partition("_")
-                    module = importlib.import_module(f".rewrite.op_tk", package="mocodo")
+                    module = importlib.import_module(f".modify.op_tk", package="mocodo")
                     if operation in module.OPERATIONS:
                         try:
                             source = module.run(source, operation, token).rstrip()
@@ -75,7 +75,7 @@ def main():
                     if s.isdigit():
                         source = mcd.get_refitted_clauses(int(s))
                         mcd = Mcd(source, get_font_metrics, **params)
-                    module = importlib.import_module(f".rewrite.arrange_{params['arrangement']}", package="mocodo")
+                    module = importlib.import_module(f".modify.arrange_{params['arrangement']}", package="mocodo")
                     params.update(mcd.get_layout_data())
                     params["organic"] = (s == "organic")
                     rearrangement = module.arrange(**params)
@@ -88,10 +88,10 @@ def main():
                         raise MocodoError(9, _('Failed to calculate a planar layout on the given grid.'))  # fmt: skip
                     continue
                 try:
-                    module = importlib.import_module(f".rewrite.{sub_option}", package="mocodo")
+                    module = importlib.import_module(f".modify.{sub_option}", package="mocodo")
                     source = module.run(source, params=params).rstrip()
                 except ModuleNotFoundError:
-                    raise MocodoError(651, _("Unknown rewrite operation: {op}".format(op=sub_option)))  # fmt: skip
+                    raise MocodoError(651, _("Unknown modification operation: {op}".format(op=sub_option)))  # fmt: skip
             # The source file is updated for further processing
             common.update_input_file(source)
         mcd = Mcd(source, get_font_metrics, **params)

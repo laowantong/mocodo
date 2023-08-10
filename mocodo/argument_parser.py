@@ -148,13 +148,14 @@ def parsed_arguments():
         formatter_class=ArgumentDefaultsRawDescriptionHelpFormatter,
         description=DESCRIPTION,
         epilog=EPILOG,
+        allow_abbrev=False,
     )
     mocodo_group = parser.add_argument_group("OPTIONS ON MOCODO ITSELF")
     io_group = parser.add_argument_group("INPUT/OUTPUT")
     aspect_group = parser.add_argument_group("ASPECT OF THE GRAPHICAL OUTPUT")
     relational_group = parser.add_argument_group("RELATIONAL OUTPUT")
-    dump_group = parser.add_argument_group("DERIVATIVE PRODUCTS")
-    source_group = parser.add_argument_group("MODIFICATIONS OF THE SOURCE TEXT")
+    dump_group = parser.add_argument_group("DERIVATIONS OF THE CONCEPTUAL MODEL")
+    modify_group = parser.add_argument_group("MODIFICATIONS OF THE SOURCE TEXT")
     bb_group = parser.add_argument_group(
         "BRANCH & BOUND LAYOUT REARRANGEMENT",
         "sub-options triggered by the option --arrangement=bb",
@@ -331,7 +332,7 @@ def parsed_arguments():
     )
 
     relational_group.add_argument(
-        "--relations",
+        "-r", "--relations",
         metavar="STEM_OR_PATH",
         nargs="*",
         default=["html", "text"],
@@ -396,75 +397,65 @@ def parsed_arguments():
     )
 
     dump_group.add_argument(
-        "--data_dict",
-        action="store_true",
-        help="generate a data dictionary",
-    )
-    dump_group.add_argument(
-        "--erd",
+        "-d", "--dump",
+        metavar="STR",
         nargs="*",
-        default=["crow"],
-        choices=["crow", "chen"],
-        help="generate an entity-relationship diagram in another notation",
+        choices=["data_dict", "crow", "chen", "uml"],
+        help="dump a text derived from the source text of the MCD",
     )
 
-    source_group.add_argument(
-        "--no_source",
-        action="store_true",
-        help="do not print the rewritten MCD source in the cell output",
-    )
-    source_group.add_argument(
-        "--rewrite",
+    modify_group.add_argument(
+        "-m", "--modify",
         metavar="STR",
         nargs="*",
         default=["echo"],
-        help="apply sequentially some token transformations to the input file",
+        help="transform the source text of the MCD into another one",
     )
-    source_group.add_argument(
+    modify_group.add_argument(
         "--seed",
         metavar="FLOAT",
         type=float,
         help="initial value for the random number generator",
     )
-    source_group.add_argument(
+    modify_group.add_argument(
         "--obfuscation_source",
         metavar="PATH",
         type=os.path.abspath,
         default="lorem_ipsum.txt",
         help="the word list to be used for obfuscation. Cf. directory 'lorem'",
     )
-    source_group.add_argument(
+    modify_group.add_argument(
         "--obfuscation_min_distance",
         metavar="NAT",
         type=positive_integer,
         default=3,
         help="minimal Damerau-Levenshtein's distance between any two obfuscated labels",
     )
-    source_group.add_argument(
+    modify_group.add_argument(
         "--weak_explosion",
         action="store_true",
         help="weakness of the entities resulting from an explosion",
     )
-    source_group.add_argument(
+    modify_group.add_argument(
         "--explosion_arity",
         choices=["2", "2.5", "3"],
         default="3",
         help="minimal arity of the associations to be exploded",
     )
-    source_group.add_argument(
+    modify_group.add_argument(
         "--arrangement",
         nargs="?",
         default="bb",
         choices=["bb", "ga"],
         help="use a Branch & Bound or a Genetic Algorithm to rearrange the layout",
     )
-    source_group.add_argument(
+    modify_group.add_argument(
         "--timeout",
         metavar="SECONDS",
         type=int,
         help="limit the duration of the layout rearrangement",
     )
-    source_group.add_argument(
+    modify_group.add_argument(
         "--verbose",
         action="store_true",
         help="display some gory details during the layout rearrangement",
@@ -544,6 +535,11 @@ def parsed_arguments():
         "--no_mcd",
         action="store_true",
         help="do not display the conceptual diagram in the cell output",
+    )
+    nb_group.add_argument(
+        "--no_text",
+        action="store_true",
+        help="do not print the rewritten MCD source in the cell output",
     )
     nb_group.add_argument(
         "--replace",

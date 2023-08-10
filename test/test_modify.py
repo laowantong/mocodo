@@ -2,7 +2,7 @@ import unittest
 
 __import__("sys").path[0:0] = ["mocodo"]
 
-from mocodo.rewrite import (
+from mocodo.modify import (
     pre_type,
     drain,
     explode,

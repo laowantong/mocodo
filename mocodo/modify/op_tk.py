@@ -91,9 +91,9 @@ class TokenRewriter(Transformer):
         else:
             tokens = [token]
         for token in tokens:
-            setattr(self, token, self._rewrite)
+            setattr(self, token, self._modify)
 
-    def _rewrite(self, tree):
+    def _modify(self, tree):
         return tree[0].update(value=self.operation(tree[0].value))
 
 
