@@ -71,7 +71,11 @@ class Exploder(Visitor):
         prefix = first_child(tree, "box_def_prefix")
         base = assoc_name[:2]
         for (i, leg) in enumerate(legs, 1):
-            clauses.append(f"{indent}{prefix}{base}{i}, {self.explosion_card} {assoc_name}, {leg}")
+            card = self.explosion_card
+            if leg.startswith("/"): # when there is a cluster
+                leg = leg[1:] # suppress it
+                card = "11" # and switch to a non-strenghtening leg
+            clauses.append(f"{indent}{prefix}{base}{i}, {card} {assoc_name}, {leg}")
 
         # Suffix the resulting string to the last node (a "NL" token")
         tree.children[-1].value += "\n".join(clauses) + "\n"

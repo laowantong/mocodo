@@ -152,7 +152,7 @@ class TestTransformers(unittest.TestCase):
          """
         self.assertEqual(actual.strip(), expected.strip())
 
-    def test_explosion_weakness(self):
+    def test_weak_explosion(self):
         source = """
             Wake: tend, bath
             Bowl, 0N Wake, 1N Move, 0N Poet: turn, from
@@ -212,6 +212,27 @@ class TestTransformers(unittest.TestCase):
             Ha1, 11 Hate, 0N Gene
             Ha2, 11 Hate, 1N Rain
             Rain: iron, pose
+        """
+        self.assertEqual(actual.strip(), expected.strip())   
+
+    def test_explode_cluster(self):
+        source = """
+            Date: Date
+            Réserver, /1N Client, 1N Chambre, 0N Date: Durée
+            Chambre: Numéro, Prix
+            Client: Id. client, Nom client
+        """
+        params = parsed_arguments()
+        params["weak_explosion"] = True
+        actual = explode.run(source, params)
+        expected = """
+            Date: Date
+            Réserver: _Durée
+            Ré1, 11 Réserver, 1N Client
+            Ré2, _11 Réserver, 1N Chambre
+            Ré3, _11 Réserver, 0N Date
+            Chambre: Numéro, Prix
+            Client: Id. client, Nom client
         """
         self.assertEqual(actual.strip(), expected.strip())   
 
