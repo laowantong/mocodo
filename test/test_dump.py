@@ -5,6 +5,7 @@ __import__("sys").path[0:0] = ["mocodo"]
 
 from mocodo.dump import (
     data_dict,
+    crow,
 )
 
 class TestDumps(unittest.TestCase):
@@ -57,6 +58,42 @@ class TestDumps(unittest.TestCase):
             - Réf. produit
         """
         self.assertEqual(actual.strip(), expected.replace("    ", "").strip())
+
+    def test_crow(self):
+        source = """
+            CLIENT: Réf. client, Nom, Prénom, Adresse
+            PASSER, 0N CLIENT, 11 COMMANDE
+            COMMANDE: Num commande, Date, Montant
+            INCLURE, 1N COMMANDE, 0N PRODUIT: Quantité
+            PRODUIT: Réf. produit, Libellé, Prix unitaire
+        """
+        actual = crow.run(source)
+        expected = """
+        erDiagram
+            CLIENT {
+                TYPE ref_client PK
+                TYPE nom
+                TYPE prenom
+                TYPE adresse
+            }
+            CLIENT ||..o{ COMMANDE: passer
+            COMMANDE {
+                TYPE num_commande PK
+                TYPE date
+                TYPE montant
+            }
+            INCLURE {
+                TYPE quantite
+            }
+            INCLURE }|--|| COMMANDE: in
+            INCLURE }o--|| PRODUIT: in
+            PRODUIT {
+                TYPE ref_produit PK
+                TYPE libelle
+                TYPE prix_unitaire
+            }
+        """
+        self.assertEqual(actual.replace("    ", "").strip(), expected.replace("    ", "").strip())
 
 if __name__ == '__main__':
     unittest.main()
