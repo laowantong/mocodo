@@ -3,6 +3,7 @@ import unittest
 __import__("sys").path[0:0] = ["mocodo"]
 
 from mocodo.modify import (
+    guess_types,
     pre_type,
     drain,
     explode,
@@ -111,6 +112,22 @@ class TestTransformers(unittest.TestCase):
             MEAN: wash [], rest [], king [int],
             HERE, 0N NICE, 0N MEAN: wood [], much [], stop [int]
             NICE: _poke [], news [], , lawn [int]
+        """
+        self.assertEqual(actual.strip(), expected.strip())
+
+    def test_guess_types(self):
+        source = """
+            ALREADY_TYPED: foo [int], bar [float], baz [date]
+            EMPTY_BRACKETS: foo [], bar [], baz []
+            NON_TYPABLE: foo, bar, baz
+            TYPABLE: person id, name, birth date
+        """
+        actual = guess_types.run(source, {"language": "fr"})
+        expected = """
+            ALREADY_TYPED: foo [int], bar [float], baz [date]
+            EMPTY_BRACKETS: foo [], bar [], baz []
+            NON_TYPABLE: foo [], bar [], baz []
+            TYPABLE: person id [VARCHAR(8)?], name [VARCHAR(255)?], birth date [DATE?]
         """
         self.assertEqual(actual.strip(), expected.strip())
 
