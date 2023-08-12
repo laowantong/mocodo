@@ -1,7 +1,5 @@
 from pathlib import Path
-import random
 import re
-import string
 
 from .mocodo_error import MocodoError
 
