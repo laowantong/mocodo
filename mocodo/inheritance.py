@@ -3,6 +3,7 @@ from math import sqrt
 
 from .attribute import *
 from .leg import *
+from .tools.string_tools import rstrip_digit
 
 TRIANGLE_ALTITUDE = sqrt(3) / 2
 INCIRCLE_RADIUS = 1 / sqrt(12)
@@ -17,7 +18,7 @@ class Inheritance:
         if clause["name"] == "TX":
             clause["name"] = "XT"
         self.name = f'{leg_entities[0]} parent #{next(inheritance_counter)}'
-        self.name_view = clause['name'][:-1] if clause['name'][-1:].isdigit() else clause['name']  # get rid of single digit suffix, if any
+        self.name_view = rstrip_digit(clause["name"])
         self.attributes = [InheritanceAttribute(attr) for attr in clause.get("attrs", [])]
         for leg_clause in clause["legs"]:
             leg_clause["kind"] = "-"

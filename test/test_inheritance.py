@@ -3,7 +3,7 @@ import unittest
 
 __import__("sys").path[0:0] = ["mocodo"]
 from mocodo.inheritance import *
-from mocodo.parser_tools import extract_clauses
+from mocodo.tools.parser_tools import extract_clauses
 
 
 gettext.NullTranslations().install()

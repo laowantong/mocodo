@@ -6,7 +6,7 @@ import pprint
 __import__("sys").path[0:0] = ["mocodo"]
 
 from mocodo.parse_mcd import Lark_StandAlone, UnexpectedToken
-from mocodo.parser_tools import reconstruct_source, parse_source, extract_clauses
+from mocodo.tools.parser_tools import reconstruct_source, parse_source, extract_clauses
 from mocodo.mocodo_error import MocodoError
 
 parser = Lark_StandAlone()

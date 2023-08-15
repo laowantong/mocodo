@@ -1,7 +1,7 @@
 __import__("sys").path[0:0] = ["."]
 
 from ..parse_mcd import Transformer
-from ..parser_tools import transform_source
+from ..tools.parser_tools import transform_source
 
 FIXES = {
     "01": ["O1", "o1", "10", "1O", "1o", "Ol", "ol", "l0", "lO", "lo"],

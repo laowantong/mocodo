@@ -1,14 +1,14 @@
 from .attribute import *
 from .leg import *
 from .mocodo_error import MocodoError
-
+from .tools.string_tools import rstrip_digit
 
 class Association:
 
     def __init__(self, clause, **params):
         self.source = clause["source"]
         self.name = clause["name"]
-        self.name_view = self.name[:-1] if self.name[-1:].isdigit() else self.name  # get rid of digital suffix, if any
+        self.name_view = rstrip_digit(self.name)
         # A protected association results in a table, even if this association is a DF.
         self.is_protected = (clause.get("box_def_prefix") == "+")
         self.attributes = []

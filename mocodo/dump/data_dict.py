@@ -1,7 +1,7 @@
 __import__("sys").path[0:0] = ["."]
 
 from ..parse_mcd import Visitor
-from ..parser_tools import parse_source
+from ..tools.parser_tools import parse_source
 
 FILENAME_SUFFIX = "_data_dict.md"
 
@@ -17,7 +17,7 @@ class AttributeListExtractor(Visitor):
         self.data_type_count += 1
         self.attributes[-1] = (self.attributes[-1][0], tree.children[1].value)
 
-def run(source, params=None):
+def run(source, common):
     tree = parse_source(source)
     extractor = AttributeListExtractor()
     extractor.visit(tree)

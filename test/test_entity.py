@@ -3,7 +3,7 @@ from collections import defaultdict
 
 __import__("sys").path[0:0] = ["mocodo"]
 from mocodo.entity import *
-from mocodo.parser_tools import extract_clauses
+from mocodo.tools.parser_tools import extract_clauses
 
 def entity_wrapper(s, legs_to_strengthen=None, is_child=False):
     if legs_to_strengthen is None:

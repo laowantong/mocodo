@@ -4,6 +4,7 @@ import os
 import sys
 import time
 from pathlib import Path
+import contextlib
 
 from .file_helpers import read_contents, write_contents
 from .mocodo_error import MocodoError
@@ -33,11 +34,9 @@ class Common:
 
     def load_input_file(self):
         for encoding in self.params["encodings"]:
-            try:
+            with contextlib.suppress(UnicodeError):
                 self.encoding = encoding
                 return read_contents(self.params["input"], encoding=encoding).replace('"', '')
-            except UnicodeError:
-                pass
         raise MocodoError(5, _('Unable to read "{filename}" with any of the following encodings: "{encodings}".').format(filename=self.params["input"], encodings= ", ".join(self.params["encodings"]))) # fmt: skip
 
     def update_input_file(self, source):

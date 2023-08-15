@@ -4,7 +4,7 @@ from unicodedata import combining, normalize
 __import__("sys").path[0:0] = ["."]
 
 from ..parse_mcd import Transformer
-from ..parser_tools import transform_source
+from ..tools.parser_tools import transform_source
 
 # One-liners to be used in the transformer
 

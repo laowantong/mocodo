@@ -11,12 +11,14 @@ VARCHAR(255) or DECIMAL(11,2). Do not add column properties such as UNSIGNED sin
 they are not supported by all DBMS.
 """
 
+# TODO: check https://www.google.com/search?rls=en&q=site%3Alegifrance.gouv.fr+varchar&ie=UTF-8&oe=UTF-8
+
 import re
 
 __import__("sys").path[0:0] = ["."]
 
 from ..parse_mcd import Visitor, Token
-from ..parser_tools import parse_source, reconstruct_source, first_child
+from ..tools.parser_tools import parse_source, reconstruct_source, first_child
 from .op_tk import ascii, snake
 
 FIELD_TYPES = {
@@ -71,7 +73,7 @@ FIELD_TYPES = {
         # Financial
         r"\bprice$": "DECIMAL(10,2)",
         r"\bamount$": "DECIMAL(10,2)",
-        # General
+        # Predicate
         r"^is\b": "BOOLEAN",
         r"^has\b": "BOOLEAN",
         r"^does\b": "BOOLEAN",
@@ -79,12 +81,14 @@ FIELD_TYPES = {
         r"\bflag$": "BOOLEAN",
         # Text
         r"\btag$": "VARCHAR(50)",
+        r"\blabel$": "VARCHAR(50)",
         r"\bbody$": "TEXT",
         r"\bcomment$": "TEXT",
         r"\bdescription$": "TEXT",
         r"\bnote$": "TEXT",
         r"\bmessage$": "TEXT",
         r"\bcontent$": "TEXT",
+        r"\binfo(rmation)?s?$": "JSON",
         # Geographical
         r"\blat(itude)?$": "DECIMAL(9,6)",
         r"\blon(gitude)?$": "DECIMAL(9,6)",
@@ -157,6 +161,9 @@ FIELD_TYPES = {
         r"^sexe\b": "CHAR(1)",
         r"^genre\b": "VARCHAR(10)",
         r"^age\b": "SMALLINT",
+        r"^nir\b": "VARCHAR(15)",
+        r"^ss\b": "VARCHAR(15)",
+        r"\bsecu(rite sociale)?\b": "VARCHAR(15)",
         # Addressing
         r"^code postal\b": "VARCHAR(20)",
         r"^tel(ephone)?\b": "VARCHAR(20)",
@@ -168,13 +175,14 @@ FIELD_TYPES = {
         # Financial
         r"^prix\b": "DECIMAL(10,2)",
         r"^montant\b": "DECIMAL(10,2)",
-        # General
+        # Predicate
         r"^est\b": "BOOLEAN",
         r"^a\b": "BOOLEAN",
         r"^peut\b": "BOOLEAN",
         r"^drapeau\b": "BOOLEAN",
         # Text
         r"^mot clef?\b": "VARCHAR(50)",
+        r"\blibelle$": "VARCHAR(50)",
         r"^corps\b": "TEXT",
         r"^commentaire\b": "TEXT",
         r"^desc(r?(iption)?)\b": "TEXT",
@@ -183,6 +191,7 @@ FIELD_TYPES = {
         r"^message\b": "TEXT",
         r"^avis\b": "TEXT",
         r"^contenu\b": "TEXT",
+        r"\binfo(rmation)?s?\b": "JSON",
         # Geographical
         r"^lat(itude)?\b": "DECIMAL(9,6)",
         r"^lon(gitude)?\b": "DECIMAL(9,6)",
@@ -191,6 +200,7 @@ FIELD_TYPES = {
         r"\bétoiles$": "DECIMAL(3,2)",
         # Quantity
         r"^(quantite|qte)\b": "INTEGER",
+        r"^(nombre|nb)\b": "INTEGER",
         r"^pourcent(age)?\b": "DECIMAL(5,2)",
         r"^ratio\b": "DECIMAL(5,2)",
         r"^poids\b": "DECIMAL(10,2)",

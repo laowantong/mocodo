@@ -2,6 +2,7 @@ import operator
 from math import hypot, sqrt
 
 from .mocodo_error import MocodoError
+from .tools.string_tools import surrounds
 
 
 class Leg:
@@ -22,7 +23,7 @@ class Leg:
             else:
                 self.kind = "strengthening"
                 self.card_view = params.get("strengthen_card", "_1,1_")
-                if self.card_view[0] == self.card_view[-1] == "_":
+                if surrounds("_", self.card_view):
                     self.has_underlined_card = True
                     self.card_view = self.card_view[1:-1]
         elif association.kind == "cluster":

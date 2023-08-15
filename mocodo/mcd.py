@@ -13,7 +13,7 @@ from .inheritance import Inheritance
 from .mocodo_error import MocodoError
 from .phantom import Phantom
 
-from .parser_tools import extract_clauses
+from .tools.parser_tools import extract_clauses
 
 def cmp(x, y):
     return (x > y) - (x < y)
