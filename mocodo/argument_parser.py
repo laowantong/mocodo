@@ -400,7 +400,7 @@ def parsed_arguments():
         "-d", "--dump",
         metavar="STR",
         nargs="*",
-        choices=["data_dict", "crow", "chen", "uml"],
+        choices=["data_dict", "crow_gv", "crow_mmd", "chen", "uml"],
         help="dump a text derived from the source text of the MCD",
     )
 
@@ -535,6 +535,11 @@ def parsed_arguments():
         "--no_mcd",
         action="store_true",
         help="do not display the conceptual diagram in the cell output",
+    )
+    nb_group.add_argument(
+        "--suck",
+        action="store_true",
+        help="delegate the rendering of certain outputs to an external service",
     )
     nb_group.add_argument(
         "--no_text",

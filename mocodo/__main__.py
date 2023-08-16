@@ -1,3 +1,4 @@
+from pathlib import Path
 import sys
 
 if sys.version_info < (3, 6):
@@ -5,6 +6,7 @@ if sys.version_info < (3, 6):
     sys.exit()
 
 import importlib
+import json
 import os
 from .common import Common, safe_print_for_PHP
 from .file_helpers import write_contents
@@ -14,7 +16,6 @@ from .relations import Relations
 from .font_metrics import font_metrics_factory
 from .mcd_to_svg import main as mcd_to_svg
 from .mocodo_error import MocodoError
-from .dump import data_dict
 
 def main():
     try:
@@ -30,7 +31,6 @@ def main():
             )
             return write_contents("params.json", "{}")
         if params["print_params"]:
-            import json  # fmt: skip
             for added_key in params["added_keys"][:]:
                 del params[added_key]
             params["print_params"] = False
@@ -100,8 +100,8 @@ def main():
                     module = importlib.import_module(f".dump.{sub_option}", package="mocodo")
                 except ModuleNotFoundError:
                     raise MocodoError(652, _("Unknown dump operation: {op}".format(op=sub_option)))  # fmt: skip
-                text = module.run(source, params).rstrip()
-                common.dump_file(module.FILENAME_SUFFIX, f"{text}\n")
+                text = module.run(source, common).rstrip()
+                common.dump_file(module.SUFFIX, f"{text}\n")
             return
         mcd = Mcd(source, get_font_metrics, **params)
         if params["detect_overlaps"]:

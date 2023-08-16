@@ -1,23 +1,45 @@
 import argparse
+import base64
 import re
 import warnings
 from pathlib import Path
 from subprocess import PIPE, Popen
+import zlib
 
 import pkg_resources
 from IPython import get_ipython
 from IPython.core.magic import Magics, line_cell_magic, magics_class
-from IPython.display import HTML, SVG, display
+from IPython.display import HTML, Image, SVG, display
 
 try:
     MOCODO_VERSION = pkg_resources.get_distribution("mocodo").version
 except pkg_resources.DistributionNotFound:
     MOCODO_VERSION = "(unknown version)"  # For tests during CI
 
+# TODO: parse arguments with argparse:
+# Sometimes a script may only parse a few of the command-line arguments,
+# passing the remaining arguments on to another script or program.
+# In these cases, the parse_known_args() method can be useful.
+# It works much like parse_args() except that it does not produce an error
+# when extra arguments are present. Instead, it returns a two item tuple
+# containing the populated namespace and the list of remaining argument strings.
+# source: https://docs.python.org/3/library/argparse.html#argparse.ArgumentParser.parse_known_args
+
+
 IPYTHON = get_ipython()
 
 def update_cell(content):
     IPYTHON.set_next_input(content, replace=True)
+
+RENDERING_SERVICE = "https://kroki.io/{input_format}/{output_format}/{payload}"
+
+INPUT_FORMATS = {
+    "gv": "graphviz",
+    "mmd": "mermaid"
+}
+
+def encode_text(text):
+    return base64.urlsafe_b64encode(zlib.compress(text.encode('utf-8'), 9)).decode('ascii')
 
 def split_by_unquoted_spaces_or_equals(
         string,
@@ -48,17 +70,6 @@ class MocodoMagics(Magics):
         Usage:
             %load_ext mocodo
         """
-
-        def display_diagrams():
-            svg_path = Path(output_name).with_suffix(".svg")
-            svg_was_updated = svg_path.is_file() and input_path.stat().st_mtime <= svg_path.stat().st_mtime
-            if svg_was_updated:
-                if not notebook_options.no_mcd:
-                    display(SVG(filename=svg_path))
-                if notebook_options.mld:
-                    mld = Path(output_name).with_suffix(".html").read_text("utf8")
-                    display(HTML(mld))
-            return svg_was_updated
 
         parser = argparse.ArgumentParser(add_help=False)
         parser.add_argument("--no_mcd", action="store_true")
@@ -108,26 +119,11 @@ class MocodoMagics(Magics):
             warnings.warn(stderrdata)
             return
         
-        if "--modify" in options or "-m" in options:
-            updated_source = input_path.read_text().rstrip()
-            if "--replace" in options:
-                update_cell(updated_source)
-                return # abort, since this erases the [Out] section after returning asynchronously
-            svg_was_updated = display_diagrams()
-            if "--no_text" not in options:
-                print(updated_source)
-        elif "--dump" in options or "-d" in options:
-            print(stdoutdata, end="")
-            return
-        else:
-            svg_was_updated = display_diagrams()
-        
-        if svg_was_updated:
-            return
-        
         if "--help" in options:
             print(stdoutdata)
-        elif "--print_params" in options:
+            return
+        
+        if "--print_params" in options:
             form = [
                 f'# You may edit and run the following lines',
                 f'import json, pathlib',
@@ -141,6 +137,45 @@ class MocodoMagics(Magics):
                 f'pathlib.Path("{output_dir}/params.json").write_text(params.strip(), encoding="utf8")',
             ]
             update_cell("\n".join(form))
+            return
+        
+        updated_source = None
+        if any(x in options for x in ("--modify", "-m")):
+            updated_source = input_path.read_text().rstrip()
+            if "--replace" in options:
+                update_cell(updated_source)
+                return # abort, since this erases the [Out] section after returning asynchronously
+        
+        if "--suck" in options:
+            keys = "|".join(INPUT_FORMATS)
+            # Parse the output message to find the names of the generated files of interest
+            for diagram_path in re.findall(fr"{output_name}.+?\.(?:{keys})\b", stdoutdata):
+                diagram_path = Path(diagram_path)
+                # Read the diagram file, encode and render it
+                diagram = Path(diagram_path).read_text()
+                suffix = diagram_path.suffix[1:]
+                url = RENDERING_SERVICE.format(
+                    input_format=INPUT_FORMATS.get(suffix, suffix),
+                    output_format="svg", # TODO: support other formats as --suck argument
+                    payload=encode_text(diagram),
+                )
+                display(Image(url=url, unconfined=False))
+        
+        if any(x in options for x in ("--dump", "-d")):
+            print(stdoutdata, end="")
+            return
+        
+        svg_path = Path(output_name).with_suffix(".svg")
+        if svg_path.is_file() and input_path.stat().st_mtime <= svg_path.stat().st_mtime:
+            if not notebook_options.no_mcd:
+                display(SVG(filename=svg_path))
+            if notebook_options.mld:
+                mld = Path(output_name).with_suffix(".html").read_text("utf8")
+                display(HTML(mld))
+
+        if not(updated_source is None or "--no_text" in options):
+            print(updated_source)
+
 
 try:
     IPYTHON.register_magics(MocodoMagics)

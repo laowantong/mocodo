@@ -5,7 +5,7 @@ from collections import Counter
 __import__("sys").path[0:0] = ["."]
 
 from ..parse_mcd import Tree, Visitor
-from ..parser_tools import parse_source, reconstruct_source
+from ..tools.parser_tools import parse_source, reconstruct_source
 
 
 class CardRandomizer(Visitor):
