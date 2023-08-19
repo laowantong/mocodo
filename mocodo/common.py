@@ -97,8 +97,7 @@ class Common:
             write_contents(path, text)
             safe_print_for_PHP(self.output_success_message(path))
 
-    def dump_file(self, filename_suffix, content):
-        path = Path(self.params["output_name"] + filename_suffix)
+    def dump_file(self, path, content):
         write_contents(path, content)
         safe_print_for_PHP(self.output_success_message(path))
 

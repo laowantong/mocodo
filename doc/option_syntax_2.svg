@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg
+  xmlns='http://www.w3.org/2000/svg'
+  xmlns:xlink='http://www.w3.org/1999/xlink'
+
+  width='840' height='290'>
+
+  <style>
+    rect, line, path { stroke-width: 1.5px; stroke: black; fill: transparent; }
+    rect, line, path { stroke-linecap: square; stroke-linejoin: rounded; }
+    path { fill: transparent; }
+    text.literal { font-family: monospace; }
+    line.ellipsis { stroke-dasharray: 1 3.5; }
+    tspan.hex { font-family: monospace; font-size: 90%; }
+    path.arrow { fill: black; }
+  </style>
+
+  <g transform='translate(40 50)'>
+    <text x='-30' y='-10'>start:</text>
+    <path d='M5.5 54 v12 m 4 0 v-12' class='station'/>
+    <path d='M770.5 54 v12 m 4 0 v-12' class='station'/>
+    <rect x='30' y='50' height='20' width='50' rx='0' ry='0' class='rule'/>
+    <text x='55' y='65' text-anchor='middle' class='rule'>opt</text>
+    <rect x='100' y='50' height='20' width='20' rx='8' ry='8' class='literal'/>
+    <text x='110' y='65' text-anchor='middle' class='literal'> </text>
+    <rect x='170' y='50' height='20' width='70' rx='0' ry='0' class='rule'/>
+    <text x='205' y='65' text-anchor='middle' class='rule'>subopt</text>
+    <path d='M492 10 l-4 3 v-6 z' class='arrow'/>
+    <rect x='290' y='50' height='20' width='20' rx='8' ry='8' class='literal'/>
+    <text x='300' y='65' text-anchor='middle' class='literal'>:</text>
+    <rect x='360' y='50' height='20' width='90' rx='0' ry='0' class='rule'/>
+    <text x='405' y='65' text-anchor='middle' class='rule'>subsubarg</text>
+    <path d='M567 30 l-4 3 v-6 z' class='arrow'/>
+    <rect x='500' y='50' height='20' width='20' rx='8' ry='8' class='literal'/>
+    <text x='510' y='65' text-anchor='middle' class='literal'>=</text>
+    <rect x='540' y='50' height='20' width='90' rx='0' ry='0' class='rule'/>
+    <text x='585' y='65' text-anchor='middle' class='rule'>subsubopt</text>
+    <rect x='500' y='80' height='20' width='20' rx='8' ry='8' class='literal'/>
+    <text x='510' y='95' text-anchor='middle' class='literal'>,</text>
+    <rect x='435' y='110' height='20' width='20' rx='8' ry='8' class='literal'/>
+    <text x='445' y='125' text-anchor='middle' class='literal'>,</text>
+    <path d='M150 70 v40 q0 10 10 10 h275'/>
+    <path d='M455 120 h275 q10 0 10 -10'/>
+    <path d='M730 60 q10 0 10 10 v40'/>
+    <path d='M270 20 v30'/>
+    <path d='M710 50 q0 10 10 10'/>
+    <path d='M340 70 v10 q0 10 10 10 h150'/>
+    <path d='M520 90 h150 q10 0 10 -10'/>
+    <path d='M670 60 q10 0 10 10 v10'/>
+    <path d='M480 40 v10'/>
+    <path d='M650 50 q0 10 10 10'/>
+    <path d='M630 60 h140'/>
+    <path d='M520 60 h20'/>
+    <path d='M470 60 q10 0 10 -10'/>
+    <path d='M480 40 q0 -10 10 -10 h150 q10 0 10 10 v10'/>
+    <path d='M450 60 h50'/>
+    <path d='M340 70 q0 -10 10 -10'/>
+    <path d='M310 60 h50'/>
+    <path d='M260 60 q10 0 10 -10'/>
+    <path d='M270 20 q0 -10 10 -10 h420 q10 0 10 10 v30'/>
+    <path d='M240 60 h50'/>
+    <path d='M150 70 q0 -10 10 -10'/>
+    <path d='M120 60 h50'/>
+    <path d='M80 60 h20'/>
+    <path d='M10 60 h20'/>
+  </g>
+
+</svg>
+

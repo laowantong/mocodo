@@ -1,0 +1,5 @@
+start = opt " " (arg *("," arg))
+
+arg = subopt [":" subarg *("," subarg)]
+
+subarg = subsubarg ["=" subsubopt]

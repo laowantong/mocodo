@@ -104,6 +104,7 @@ class McdTest(unittest.TestCase):
         ]
         mcd = Mcd("\n".join(clauses), **params)
         self.assertEqual(mcd.get_layout(), list(range(16)))
+        print(mcd.get_layout_data())
         self.assertEqual(mcd.get_layout_data(), {
             'col_count': 4,
             'row_count': 4,

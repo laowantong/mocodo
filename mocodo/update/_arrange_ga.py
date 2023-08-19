@@ -2,12 +2,27 @@ from collections import namedtuple
 from random import choice, random, randrange, sample
 
 from .fitness import fitness
+from ..argument_parser import rate, positive_integer
 
-
-def arrange(links, successors, multiplicity, col_count, row_count, verbose, has_expired,
-            population_size, max_generations, plateau, crossover_rate, mutation_rate, sample_size,
-            **kwargs):
+def arrange(layout_data, subargs, has_expired=None):
     
+    links = layout_data["links"]
+    successors = layout_data["successors"]
+    col_count = layout_data["col_count"]
+    row_count = layout_data["row_count"]
+    multiplicity = layout_data["multiplicity"]
+
+    verbose = subargs.get("verbose", False)
+    population_size = positive_integer(subargs.get("population_size", 1000)) # number of individuals to evolve
+    max_generations = positive_integer(subargs.get("max_generations", 300))
+    plateau = positive_integer(subargs.get("plateau", 30)) # maximal number of consecutive generations without improvement
+    crossover_rate = rate(subargs.get("crossover_rate", 0.9))
+    mutation_rate = rate(subargs.get("mutation_rate", 0.06))
+    sample_size = positive_integer(subargs.get("sample_size", 7))
+    verbose = bool(subargs.get("verbose") is not None) # -u arrange:verbose => {"verbose": ""} => True
+
+    has_expired = has_expired or (lambda: False)
+
     def make_individual():
         """ Construct a chromosome. Select a random node for the first gene. The next ones are chosen
             sequentially. When a gene has another gene to the west, the corresponding node is preferably
@@ -86,11 +101,12 @@ def arrange(links, successors, multiplicity, col_count, row_count, verbose, has_
     }
     
 if __name__ == "__main__":
-    from random import seed
-    from time import time
+    # python -m mocodo.update._arrange_ga
 
-    from .argument_parser import parsed_arguments
-    from .mcd import Mcd
+    from time import time
+    from ..argument_parser import parsed_arguments
+    from ..mcd import Mcd
+
     clauses = """
         SUSPENDISSE: diam
         SOLLICITUDIN, 0N SUSPENDISSE, 0N CONSECTETUER, 0N LOREM: lectus
@@ -106,18 +122,18 @@ if __name__ == "__main__":
         AMET, 11> LOREM, 01 CONSECTETUER: adipiscing
         RISUS: ultricies, _cras, elementum
         SEMPER, 0N RISUS, 1N DIGNISSIM
-    """.replace("  ", "").split("\n")
+    """
     params = parsed_arguments()
-    params["verbose"] = True
-    mcd = Mcd(clauses, **params)
-    params.update(mcd.get_layout_data())
+    mcd = Mcd(clauses.replace("  ", ""), **params)
+    layout_data = mcd.get_layout_data()
     starting_time = time()
-    seed(42)
-    result = arrange(**params)
-    if result:
+    params["seed"] = 42
+    rearrangement = arrange(layout_data, {"is_organic": True}, lambda: False)
+    if rearrangement:
         print()
-        print(mcd.get_clauses_from_layout(**result))
+        mcd.set_layout(**rearrangement)
+        print(mcd.get_clauses())
         print()
-        print("Cumulated distances:", result["distances"])
+        print("Cumulated distances:", rearrangement["distances"])
         print("Duration:", time() - starting_time)
-        print() 
+        print()

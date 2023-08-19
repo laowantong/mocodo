@@ -13,13 +13,24 @@ they are not supported by all DBMS.
 
 # TODO: check https://www.google.com/search?rls=en&q=site%3Alegifrance.gouv.fr+varchar&ie=UTF-8&oe=UTF-8
 
-import re
+import re, random
 
-__import__("sys").path[0:0] = ["."]
-
+from . import stand_for
+from ..mocodo_error import subsubopt_error
 from ..parse_mcd import Visitor, Token
-from ..tools.parser_tools import parse_source, reconstruct_source, first_child
-from .op_tk import ascii, snake
+from ..tools.parser_tools import first_child, parse_source, reconstruct_source
+from ..tools.string_tools import ascii, snake
+from .op_tk import op_tk
+
+class CreateTypePlaceholder(Visitor):
+
+    def typed_attr(self, tree):
+        if first_child(tree, "data_type"):
+            return
+        name_token = first_child(tree, "attr")
+        if not name_token:
+            return
+        name_token.value += " []"
 
 FIELD_TYPES = {
     "en": {
@@ -230,7 +241,7 @@ class GuessType(Visitor):
 
     def __init__(self, params):
         self.field_types = FIELD_TYPES["en"] # English is always used as fallback
-        language = params["language"]
+        language = params.get("language", "en")
         if language != "en":
             self.field_types.update(FIELD_TYPES[language])
         # Convert the dict to a list of tuples, and sort them by decreasing length
@@ -253,8 +264,26 @@ class GuessType(Visitor):
             data_type = ""
         tree.children = [Token("MOCK", f"{attr.value} [{data_type}]", line=attr.line, column=attr.column)]
 
-def run(source, params=None):
-    tree = parse_source(source)
-    visitor = GuessType(params)
-    visitor.visit(tree)
-    return reconstruct_source(tree)
+
+def run(source, subargs=None, params=None):
+    subargs = subargs or {}
+    params = params or {}
+    for (subsubopt, subsubarg) in subargs.items():
+        if stand_for(subsubopt, "create"):
+            visitor = CreateTypePlaceholder()
+            tree = parse_source(source)
+            visitor.visit(tree)
+            source = reconstruct_source(tree)
+        elif stand_for(subsubopt, "guess"):
+            visitor = GuessType(params)
+            tree = parse_source(source)
+            visitor.visit(tree)
+            source = reconstruct_source(tree)
+        elif stand_for(subsubopt, "randomize"):
+            pool = list(FIELD_TYPES["en"].values())
+            if "seed" in params:
+                random.seed(params["seed"])
+            source = op_tk(source, "data_type", lambda x: x or random.choice(pool))
+        else:
+            raise subsubopt_error(subsubopt)
+    return source

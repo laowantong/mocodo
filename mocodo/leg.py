@@ -23,7 +23,7 @@ class Leg:
             else:
                 self.kind = "strengthening"
                 self.card_view = params.get("strengthen_card", "_1,1_")
-                if surrounds("_", self.card_view):
+                if surrounds(self.card_view, "_"):
                     self.has_underlined_card = True
                     self.card_view = self.card_view[1:-1]
         elif association.kind == "cluster":

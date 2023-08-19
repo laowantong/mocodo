@@ -68,7 +68,7 @@ class DrainerSecondPass(Visitor):
         last_token.value = f", {', '.join(attrs)}{last_token.value}"
 
 
-def run(source, params=None):
+def run(source, subargs=None, params=None):
     tree = parse_source(source)
     visitor = DrainerFirstPass()
     visitor.visit(tree)

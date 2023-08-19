@@ -5,21 +5,23 @@ from random import choice, random, shuffle
 
 from .cross import cross
 from ..mocodo_error import MocodoError
+from ..argument_parser import non_negative_integer, positive_integer
 
+def arrange(layout_data, subargs, has_expired=None):
 
-def arrange(
-    col_count,
-    row_count,
-    successors,
-    multiplicity,
-    organic,
-    min_objective,
-    max_objective,
-    call_limit,
-    verbose,
-    has_expired,
-    **kwargs
-):
+    successors = layout_data["successors"]
+    col_count = layout_data["col_count"]
+    row_count = layout_data["row_count"]
+    multiplicity = layout_data["multiplicity"]
+
+    is_organic = subargs["is_organic"] # always populated by the caller
+    min_objective = non_negative_integer(subargs.get("min_objective", 0))
+    max_objective = non_negative_integer(subargs.get("max_objective", 15))
+    call_limit = positive_integer(subargs.get("call_limit", 10000))
+    verbose = bool(subargs.get("verbose") is not None) # -u arrange:verbose => {"verbose": ""} => True
+
+    has_expired = has_expired or (lambda: False)
+
     @lru_cache
     def bounded_neighborhood(x1, y1):
         result = set()
@@ -150,8 +152,8 @@ def arrange(
             del box_coords[box_to_place]
 
     box_count = col_count * row_count
-    neighborhood = organic_neighborhood if organic else bounded_neighborhood
-    hull = organic_hull if organic else bounded_hull
+    neighborhood = organic_neighborhood if is_organic else bounded_neighborhood
+    hull = organic_hull if is_organic else bounded_hull
     radius = 3
     distances = [[hypot(i, j) - 1 for j in range(radius + 1)] for i in range(radius + 1)]
     outside_hull_minimal_distance = distances[1][2]
@@ -177,7 +179,7 @@ def arrange(
                 result = recurs({first_box: (0, 0)}, list(successors[first_box]), [], 0)
                 if result:
                     coords = result["coords"]
-                    if organic:
+                    if is_organic:
                         min_x = min(x for (x, y) in coords.values())
                         max_x = max(x for (x, y) in coords.values())
                         min_y = min(y for (x, y) in coords.values())
@@ -190,17 +192,17 @@ def arrange(
                     for (box_index, (x, y)) in coords.items():
                         result["layout"][x + y * col_count] = box_index
                     return result
-                if organic:
+                if is_organic:
                     break
         objective += 1
 
 
 if __name__ == "__main__":
-    from random import seed
-    from time import time
+    # python -m mocodo.update._arrange_bb
 
-    from .argument_parser import parsed_arguments
-    from .mcd import Mcd
+    from time import time
+    from ..argument_parser import parsed_arguments
+    from ..mcd import Mcd
 
     clauses = """
         SUSPENDISSE: diam
@@ -219,15 +221,16 @@ if __name__ == "__main__":
         SEMPER, 0N RISUS, 1N DIGNISSIM
     """
     params = parsed_arguments()
-    mcd = Mcd(clauses.replace("  ", "").split("\n"), **params)
-    params.update(mcd.get_layout_data())
+    mcd = Mcd(clauses.replace("  ", ""), **params)
+    layout_data = mcd.get_layout_data()
     starting_time = time()
-    seed(42)
-    result = arrange(**params)
-    if result:
+    params["seed"] = 42
+    rearrangement = arrange(layout_data, {"is_organic": True}, lambda: False)
+    if rearrangement:
         print()
-        print(mcd.get_clauses_from_layout(**result))
+        mcd.set_layout(**rearrangement)
+        print(mcd.get_clauses())
         print()
-        print("Cumulated distances:", result["distances"])
+        print("Cumulated distances:", rearrangement["distances"])
         print("Duration:", time() - starting_time)
         print()

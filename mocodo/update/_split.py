@@ -67,7 +67,7 @@ class Splitter(Visitor):
         token = first_child(tree, "box_name")
         tree.children = [Token("MOCK", "\n".join(result), line=token.line, column=token.column)]
 
-def run(source, params=None):
+def run(source, subargs=None, params=None):
     tree = parse_source(source)
     visitor = Splitter()
     visitor.visit(tree)

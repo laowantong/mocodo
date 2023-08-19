@@ -4,11 +4,13 @@ __import__("sys").path[0:0] = ["."]
 
 from ..parse_mcd import Visitor
 from ..tools.parser_tools import first_child, parse_source
-from ..modify import drain, explode, split
-from ..tools.graphviz_tools import create_name_to_index, minify
+from ..update import (
+    _drain as drain,
+    _explode as explode,
+    _split as split
+)
+from ..tools.graphviz_tools import create_name_to_index
 from ..tools.string_tools import wrap_label, rstrip_digit
-
-SUFFIX = "_chen_erd.gv"
 
 # Legends
 # False: normal cardinality prefix
@@ -250,14 +252,17 @@ class Chen(Visitor):
 
         return "\n".join(acc)
 
-def run(source, common):
+def run(source, subargs=None, common=None):
     source = drain.run(source)
     source = split.run(source)
-    source = explode.run(source, {"explosion_arity": "3", "weak_explosion": True})
+    source = explode.run(source, {"explode": "3", "weak": True})
     tree = parse_source(source)
     extractor = Chen()
     extractor.visit(tree)
-    result = extractor.get_graphviz(common)
-    if common.params["suck"]:
-        result = minify(result)
-    return result
+    text = extractor.get_graphviz(common)
+    return {
+        "stem_suffix": "erd_chen",
+        "text": text,
+        "extension": "gv",
+        "displayable": True,
+    }

@@ -1,18 +1,14 @@
 __import__("sys").path[0:0] = ["."]
 
-from ..dump.crow import Crow
+from ._crow import Crow
 from ..tools.parser_tools import parse_source
-from ..modify import (
-    drain,
-    explode,
-    split,
+from ..update import (
+    _drain as drain,
+    _explode as explode,
+    _split as split,
 )
 from ..tools.string_tools import rstrip_digit
-from ..tools.graphviz_tools import (
-    NODE_OPTIONS_TEMPLATE,
-    table_as_label,
-    minify,
-)
+from ..tools.graphviz_tools import NODE_OPTIONS_TEMPLATE, table_as_label
 
 SUFFIX = "_crows_foot_erd.gv"
 
@@ -89,14 +85,12 @@ class CrowGv(Crow):
 
         return "\n".join(acc)
 
-def run(source, common=None):
+def run(source, subargs, common=None):
     source = drain.run(source)
     source = split.run(source)
-    source = explode.run(source, {"explosion_arity": "2.5", "weak_explosion": True})
+    source = explode.run(source, {"arity": "2.5", "weak": True})
     tree = parse_source(source)
     extractor = CrowGv()
     extractor.visit(tree)
     result = extractor.get_text(common)
-    if common.params["suck"]:
-        result = minify(result)
     return result

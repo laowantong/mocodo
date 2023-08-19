@@ -8,7 +8,8 @@ import re
 import sys
 from io import open
 from pathlib import Path
-from time import time
+
+from mocodo.tools.string_tools import strip_surrounds
 
 from .common import version
 from .mocodo_error import MocodoError
@@ -48,8 +49,7 @@ CONTACT:
                         3 rue Augustin Fresnel
                         57070 METZ Technopôle
                         France
-"""  # NB: accents raise an error in Jupyter Notebook
-
+"""
 
 class ArgumentDefaultsRawDescriptionHelpFormatter(
     argparse.ArgumentDefaultsHelpFormatter,
@@ -77,16 +77,24 @@ def init_localization(script_directory, language):
     except IOError:
         trans = gettext.NullTranslations()
 
+    # Beware that the following line set the global variable `_`. Using a single underscore
+    # would clash with the gettext alias, EVEN IF THE CODE IS NOT REACHED: the compiler would
+    # consider that _ is a local variable, and shadow the global one, resulting in:
+    # UnboundLocalError: local variable '_' referenced before assignment
+    # Solution : use `__` instead of `_` in any function that uses the gettext alias.
     trans.install()
     return language
 
 
-def has_expired_factory(timeout):
-    if timeout:
-        timeout += time()
-        return lambda: time() > timeout
-    else:
-        return lambda: False
+def extract_subargs(arg):
+    (subopt, _, tail) = arg.partition(":")
+    subargs = {}
+    for string in filter(None, tail.split(",")):
+        subsubopt, _, subsubarg = string.partition("=")
+        subsubarg = strip_surrounds(subsubarg, "''")
+        subsubarg = strip_surrounds(subsubarg, '""')
+        subargs[subsubopt] = subsubarg
+    return subopt, subargs
 
 
 def rate(string):
@@ -150,20 +158,11 @@ def parsed_arguments():
         epilog=EPILOG,
         allow_abbrev=False,
     )
+
     mocodo_group = parser.add_argument_group("OPTIONS ON MOCODO ITSELF")
     io_group = parser.add_argument_group("INPUT/OUTPUT")
+    source_group = parser.add_argument_group("OPERATIONS ON THE SOURCE TEXT")
     aspect_group = parser.add_argument_group("ASPECT OF THE GRAPHICAL OUTPUT")
-    relational_group = parser.add_argument_group("RELATIONAL OUTPUT")
-    dump_group = parser.add_argument_group("DERIVATIONS OF THE CONCEPTUAL MODEL")
-    modify_group = parser.add_argument_group("MODIFICATIONS OF THE SOURCE TEXT")
-    bb_group = parser.add_argument_group(
-        "BRANCH & BOUND LAYOUT REARRANGEMENT",
-        "sub-options triggered by the option --arrangement=bb",
-    )
-    ga_group = parser.add_argument_group(
-        "GENETIC ALGORITHM LAYOUT REARRANGEMENT",
-        "sub-options triggered by the option --arrangement=ga",
-    )
     nb_group = parser.add_argument_group(
         "NOTEBOOK SPECIFIC OPTIONS",
         "ignored when called from the command line",
@@ -185,23 +184,23 @@ def parsed_arguments():
             "shapes": "serif",
         }
 
-    mocodo_group.add_argument(
-        "--language",
+    # First, add the arguments that need some preprocessing
+
+    mocodo_group.add_argument("--language",
         metavar="CODE",
         type=str,
         help="override the automatic localization of the messages with the given language code (e.g., 'fr', 'en', ...)",
     )
-    io_group.add_argument(
-        "--params_path",
+    io_group.add_argument("--params_path",
         metavar="PATH",
         default="params.json",
         help="the path of the parameter file. If omitted, use 'params.json' in the input directory. If non existent, use default parameters.",
     )
-    io_group.add_argument(
-        "--input",
+    io_group.add_argument("--input",
         metavar="PATH",
         help="the path of the input file. By default, the output files will be generated in the same directory",
     )
+    
     (args, remaining_args) = parser.parse_known_args()
 
     if args.input and not os.path.exists(args.input):
@@ -211,6 +210,7 @@ def parsed_arguments():
             init_localization(script_directory, default_params.get("language", args.language))
             raise MocodoError(18, _('The file "{input}" doesn\'t exist.').format(input=args.input))  # fmt: skip
     default_params["input"] = args.input
+
     if os.path.exists(args.params_path):
         default_params.update(json.loads(Path(args.params_path).read_text()))
     if not default_params["input"]:
@@ -221,333 +221,185 @@ def parsed_arguments():
     )
     default_params.setdefault("output_dir", os.path.dirname(default_params["input"]))
 
-    mocodo_group.add_argument(
-        "--help",
+    mocodo_group.add_argument("--help",
         action="help",
         help="show this help message and exit",
     )
-    mocodo_group.add_argument(
-        "--version",
+    mocodo_group.add_argument("--version",
         action="version",
         version="%(prog)s " + version,
         help="display the version number, then exit",
     )
-    mocodo_group.add_argument(
-        "--restore",
+    mocodo_group.add_argument("--restore",
         action="store_true",
         help="recreate a pristine version of the files 'sandbox.mcd' and 'params.json' in the input directory, then exit",
     )
 
-    aspect_group.add_argument(
-        "--df",
+    io_group.add_argument("--output_dir",
+        metavar="PATH",
+        help="the directory of the output files",
+    )
+    io_group.add_argument("--encodings",
+        metavar="STR",
+        nargs="*",
+        help="one or several encodings to be tried successively when reading the input file",
+    )
+    io_group.add_argument("--png",
+        action="store_true",
+        help="generate a PNG version of the SVG output (requires CairoSVG)",
+    )
+    io_group.add_argument("--pdf",
+        action="store_true",
+        help="generate a PDF version of the SVG output (requires CairoSVG)",
+    )
+    io_group.add_argument("--print_params",
+        action="store_true",
+        help="display the contents of the parameter file, then exit",
+    )
+    io_group.add_argument("--reuse_geo",
+        action="store_true",
+        help="reuse the geometry file of the previous execution",
+    )
+    io_group.add_argument("--uid_suffix",
+        metavar="INT",
+        type=non_negative_integer,
+        default=0,
+        help="discriminate between multiple SVG of the same interactive diagram",
+    )
+    io_group.add_argument("--suck",
+        nargs="*",
+        choices=["svg", "png", "pdf"],
+        default=["svg"],
+        help="download the visualization of certain types of output from an external web-service",
+    )
+
+    source_group.add_argument("-u", "--update",
+        metavar="STR",
+        nargs="*",
+        type=extract_subargs,
+        # default=["echo"],
+        help="make a new version of the MCD by applying one or several modifications",
+    )
+    source_group.add_argument("-e", "-x", "--export",
+        metavar="STR",
+        nargs="+",
+        type=extract_subargs,
+        help="translate all or parts of the MCD into a different format",
+    )
+    source_group.add_argument("-r", "--relations",
+        metavar="STEM_OR_PATH",
+        nargs="*",
+        default=["html", "text"],
+        help="use one or several templates to transform the MCD into a relational model. Name (without extension) of files located in the directory 'relation_templates', or path to personal files",
+    )
+    source_group.add_argument("--seed",
+        metavar="FLOAT",
+        type=float,
+        help="initial value for the random number generator",
+    )
+    source_group.add_argument("--disambiguation",
+        choices=["numbers_only", "notes"],
+        default="notes",
+        help="specify the way to disambiguate outer attributes during the conversion to a relational model",
+    )
+    source_group.add_argument("--title",
+        metavar="STR",
+        default=_("Untitled").encode("utf8"),
+        type=str,
+        help="name of the model, used at various places (file system, database, etc.)",
+    )
+    aspect_group.add_argument("--df",
         metavar="STR",
         type=str,
         default="DF",
         help="the acronym to be circled in a functional dependency",
     )
-    aspect_group.add_argument(
-        "--card_format",
+    aspect_group.add_argument("--card_format",
         metavar="STR",
         type=str,
         nargs="?",
         default="{min_card},{max_card}",
         help="format string for minimal and maximal cardinalities",
     )
-    aspect_group.add_argument(
-        "--strengthen_card",
+    aspect_group.add_argument("--strengthen_card",
         metavar="STR",
         type=str,
         nargs="?",
         default="_1,1_",
         help="string for relative cardinalities",
     )
-    aspect_group.add_argument(
-        "--flex",
+    aspect_group.add_argument("--flex",
         metavar="FLOAT",
         type=float,
         default=0.75,
         help="flex straight legs whose cardinalities may collide",
     )
-    aspect_group.add_argument(
-        "--colors",
+    aspect_group.add_argument("--colors",
         metavar="STEM_OR_PATH",
         default="bw",
         help="the color palette to use when generating the drawing. Name (without extension) of a file located in the directory 'colors', or path to a personal file",
     )
-    aspect_group.add_argument(
-        "--shapes",
+    aspect_group.add_argument("--shapes",
         metavar="STEM_OR_PATH",
         help="specification of the fonts, dimensions, etc. Name (without extension) of a file located in the directory 'shapes', or path to a personal file",
     )
-    aspect_group.add_argument(
-        "--scale",
+    aspect_group.add_argument("--scale",
         metavar="RATE",
         type=scale,
         default=1,
         help="scale the diagram by the given factor",
     )
-    aspect_group.add_argument(
-        "--adjust_width",
+    aspect_group.add_argument("--adjust_width",
         metavar="RATE",
         type=scale,
         default=1,
         help="scale all calculated text widths by the given factor",
     )
-    aspect_group.add_argument(
-        "--hide_notes",
+    aspect_group.add_argument("--hide_notes",
         action="store_true",
         help="ignore the hovering of annotated elements",
     )
-    aspect_group.add_argument(
-        "--detect_overlaps",
+    aspect_group.add_argument("--detect_overlaps",
         action="store_true",
         help="raise an error when horizontal or vertical legs overlap",
     )
-    aspect_group.add_argument(
-        "--left_gutter",
+    aspect_group.add_argument("--left_gutter",
         choices=["on", "off", "auto"],
         default="auto",
         help="show the status of candidate identifiers in each entity",
     )
-    aspect_group.add_argument(
-        "--left_gutter_strong_id",
+    aspect_group.add_argument("--left_gutter_strong_id",
         metavar="STR",
         default="ID",
         type=str,
         help="string to be used in the left gutter for strong identifiers",
     )
-    aspect_group.add_argument(
-        "--left_gutter_weak_id",
+    aspect_group.add_argument("--left_gutter_weak_id",
         metavar="STR",
         default="id",
         type=str,
         help="string to be used in the left gutter for weak identifiers",
     )
-    aspect_group.add_argument(
-        "--left_gutter_alt_ids",
+    aspect_group.add_argument("--left_gutter_alt_ids",
         metavar="STR",
         nargs="+",
         default=list("123456789"),
         help="strings to be used in the left gutter for alt identifiers",
     )
 
-    relational_group.add_argument(
-        "-r", "--relations",
-        metavar="STEM_OR_PATH",
-        nargs="*",
-        default=["html", "text"],
-        help="one or several templates for the generated relational schemas. Name (without extension) of files located in the directory 'relation_templates', or path to personal files",
-    )
-    relational_group.add_argument(
-        "--disambiguation",
-        choices=["numbers_only", "notes"],
-        default="notes",
-        help="specify the way to disambiguate outer attributes",
-    )
-    relational_group.add_argument(
-        "--title",
-        metavar="STR",
-        default=_("Untitled").encode("utf8"),
-        type=str,
-        help="database name (used for SQL output)",
-    )
-    relational_group.add_argument(
-        "--guess_title",
-        action="store_true",
-        help="use the name of the most referred entity as title",
-    )
-
-    io_group.add_argument(
-        "--output_dir",
-        metavar="PATH",
-        help="the directory of the output files",
-    )
-    io_group.add_argument(
-        "--encodings",
-        metavar="STR",
-        nargs="*",
-        help="one or several encodings to be tried successively when reading the input file",
-    )
-    io_group.add_argument(
-        "--png",
-        action="store_true",
-        help="generate a PNG version of the SVG output (requires CairoSVG)",
-    )
-    io_group.add_argument(
-        "--pdf",
-        action="store_true",
-        help="generate a PDF version of the SVG output (requires CairoSVG)",
-    )
-    io_group.add_argument(
-        "--print_params",
-        action="store_true",
-        help="display the contents of the parameter file, then exit",
-    )
-    io_group.add_argument(
-        "--reuse_geo",
-        action="store_true",
-        help="reuse the geometry file of the previous execution",
-    )
-    io_group.add_argument(
-        "--uid_suffix",
-        metavar="INT",
-        type=non_negative_integer,
-        default=0,
-        help="discriminate between multiple SVG of the same interactive diagram",
-    )
-
-    dump_group.add_argument(
-        "-d", "--dump",
-        metavar="STR",
-        nargs="*",
-        choices=["data_dict", "crow_gv", "crow_mmd", "chen", "uml"],
-        help="dump a text derived from the source text of the MCD",
-    )
-
-    modify_group.add_argument(
-        "-m", "--modify",
-        metavar="STR",
-        nargs="*",
-        default=["echo"],
-        help="transform the source text of the MCD into another one",
-    )
-    modify_group.add_argument(
-        "--seed",
-        metavar="FLOAT",
-        type=float,
-        help="initial value for the random number generator",
-    )
-    modify_group.add_argument(
-        "--obfuscation_source",
-        metavar="PATH",
-        type=os.path.abspath,
-        default="lorem_ipsum.txt",
-        help="the word list to be used for obfuscation. Cf. directory 'lorem'",
-    )
-    modify_group.add_argument(
-        "--obfuscation_min_distance",
-        metavar="NAT",
-        type=positive_integer,
-        default=3,
-        help="minimal Damerau-Levenshtein's distance between any two obfuscated labels",
-    )
-    modify_group.add_argument(
-        "--weak_explosion",
-        action="store_true",
-        help="weakness of the entities resulting from an explosion",
-    )
-    modify_group.add_argument(
-        "--explosion_arity",
-        choices=["2", "2.5", "3"],
-        default="3",
-        help="minimal arity of the associations to be exploded",
-    )
-    modify_group.add_argument(
-        "--arrangement",
-        nargs="?",
-        default="bb",
-        choices=["bb", "ga"],
-        help="use a Branch & Bound or a Genetic Algorithm to rearrange the layout",
-    )
-    modify_group.add_argument(
-        "--timeout",
-        metavar="SECONDS",
-        type=int,
-        help="limit the duration of the layout rearrangement",
-    )
-    modify_group.add_argument(
-        "--verbose",
-        action="store_true",
-        help="display some gory details during the layout rearrangement",
-    )
-
-    bb_group.add_argument(
-        "--call_limit",
-        metavar="NAT*",
-        type=positive_integer,
-        default=10000,
-        help="maximal number of calls for a given starting box",
-    )
-    bb_group.add_argument(
-        "--min_objective",
-        metavar="NAT*",
-        type=positive_integer,
-        default=0,
-        help="best acceptable fitness for a layout",
-    )
-    bb_group.add_argument(
-        "--max_objective",
-        metavar="NAT*",
-        type=positive_integer,
-        default=15,
-        help="worst acceptable fitness for a layout",
-    )
-
-    ga_group.add_argument(
-        "--population_size",
-        metavar="NAT*",
-        type=positive_integer,
-        default=1000,
-        help="number of individuals to evolve",
-    )
-    ga_group.add_argument(
-        "--crossover_rate",
-        metavar="RATE",
-        type=rate,
-        default=0.9,
-        help="crossover rate, between 0 and 1",
-    )
-    ga_group.add_argument(
-        "--mutation_rate",
-        metavar="RATE",
-        type=rate,
-        default=0.06,
-        help="mutation rate, between 0 and 1",
-    )
-    ga_group.add_argument(
-        "--sample_size",
-        metavar="NAT*",
-        type=positive_integer,
-        default=7,
-        help="the sample size in tournaments",
-    )
-    ga_group.add_argument(
-        "--max_generations",
-        metavar="NAT*",
-        type=positive_integer,
-        default=300,
-        help="maximal number of generations",
-    )
-    ga_group.add_argument(
-        "--plateau",
-        metavar="NAT*",
-        type=positive_integer,
-        default=30,
-        help="maximal number of consecutive generations without improvement",
-    )
-
-    nb_group.add_argument(
-        "--mld",
+    nb_group.add_argument("--mld",
         action="store_true",
         help="display the HTML relational model in the cell output",
     )
-    nb_group.add_argument(
-        "--no_mcd",
+    nb_group.add_argument("--no_mcd",
         action="store_true",
         help="do not display the conceptual diagram in the cell output",
     )
-    nb_group.add_argument(
-        "--suck",
-        action="store_true",
-        help="delegate the rendering of certain outputs to an external service",
-    )
-    nb_group.add_argument(
-        "--no_text",
+    nb_group.add_argument("--no_text",
         action="store_true",
         help="do not print the rewritten MCD source in the cell output",
     )
-    nb_group.add_argument(
-        "--replace",
+    nb_group.add_argument("--replace",
         action="store_true",
         help="replaces the cell contents by its output",
     )
@@ -559,7 +411,6 @@ def parsed_arguments():
     params["left_gutter_alt_ids"] = dict(zip("123456789", alt_ids))
     params["added_keys"] = ["added_keys", "params_path"]
     add_key("script_directory", script_directory)
-    add_key("has_expired", has_expired_factory(params["timeout"]))
     add_key("output_name", os.path.join(params["output_dir"], os.path.splitext(os.path.basename(params["input"]))[0]))
 
     if not os.path.exists(params["input"]):

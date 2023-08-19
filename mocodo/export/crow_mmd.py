@@ -2,13 +2,13 @@ import re
 
 __import__("sys").path[0:0] = ["."]
 
-from ..dump.crow import Crow
+from ._crow import Crow
 from ..tools.parser_tools import parse_source
-from ..modify import (
+from ..update import (
     op_tk,
-    drain,
-    explode,
-    split,
+    _drain as drain,
+    _explode as explode,
+    _split as split,
 )
 from ..tools.string_tools import rstrip_digit
 
@@ -61,12 +61,12 @@ class CrowMmd(Crow):
         return "\n".join(result)
 
 
-def run(source, common=None):
-    source = op_tk.run(source, "ascii", "label")
-    source = op_tk.run(source, "snake", "label")
+def run(source, subargs, common=None):
+    source = op_tk.op_tk(source, "label", "ascii")
+    source = op_tk.op_tk(source, "label", "snake")
     source = drain.run(source)
     source = split.run(source)
-    source = explode.run(source, {"explosion_arity": "2.5", "weak_explosion": True})
+    source = explode.run(source, {"arity": "2.5", "weak": True})
     tree = parse_source(source)
     extractor = CrowMmd()
     extractor.visit(tree)

@@ -3,7 +3,7 @@ from random import seed
 
 __import__("sys").path[0:0] = ["mocodo"]
 from mocodo.argument_parser import parsed_arguments
-from mocodo.modify.arrange_bb import *
+from mocodo.update._arrange_bb import arrange
 from mocodo.mcd import Mcd
 
 
@@ -31,15 +31,10 @@ class ArrangeBB(unittest.TestCase):
         """.replace("   ", "")
         params = parsed_arguments()
         mcd = Mcd(source, params)
-        params.update(mcd.get_layout_data())
-        params["organic"] = False
-        params["call_limit"] = 10000
-        params["max_objective"] = 15
-        params["min_objective"] = 0
-        params["timeout"] = None
-        params["verbose"] = False
+        layout_data = mcd.get_layout_data()
+        subargs = {"is_organic": False}
         seed(42)
-        rearrangement = arrange(**params)
+        rearrangement = arrange(layout_data, subargs)
         mcd.set_layout(**rearrangement)
         expected = {
             "coords": {
@@ -98,15 +93,10 @@ class ArrangeBB(unittest.TestCase):
         """.replace("   ", "")
         params = parsed_arguments()
         mcd = Mcd(source, params)
-        params.update(mcd.get_layout_data())
-        params["organic"] = False
-        params["call_limit"] = 10000
-        params["max_objective"] = 15
-        params["min_objective"] = 0
-        params["timeout"] = None
-        params["verbose"] = False
+        layout_data = mcd.get_layout_data()
+        subargs = {"is_organic": False}
         seed(42)
-        rearrangement = arrange(**params)
+        rearrangement = arrange(layout_data, subargs)
         expected = {
             "coords": {
                 0: (0, 2),
@@ -158,13 +148,8 @@ class ArrangeBB(unittest.TestCase):
         """.replace("   ", "")
         params = parsed_arguments()
         mcd = Mcd(source, params)
-        params.update(mcd.get_layout_data())
-        params["organic"] = False
-        params["call_limit"] = 10000
-        params["max_objective"] = 15
-        params["min_objective"] = 0
-        params["timeout"] = None
-        params["verbose"] = False
+        layout_data = mcd.get_layout_data()
+        subargs = {"is_organic": False}
         seed(458)
         expected = """
             :
@@ -185,7 +170,7 @@ class ArrangeBB(unittest.TestCase):
             SUSPENDISSE: diam
             :
         """.strip().replace("  ", "")
-        rearrangement = arrange(**params)
+        rearrangement = arrange(layout_data, subargs)
         self.assertEqual(
             rearrangement,
             {
@@ -217,13 +202,8 @@ class ArrangeBB(unittest.TestCase):
         """.replace("  ", "")
         params = parsed_arguments()
         mcd = Mcd(source, params)
-        params.update(mcd.get_layout_data())
-        params["organic"] = True
-        params["call_limit"] = 10000
-        params["max_objective"] = 15
-        params["min_objective"] = 0
-        params["timeout"] = None
-        params["verbose"] = False
+        layout_data = mcd.get_layout_data()
+        subargs = {"is_organic": True}
         seed(42)
         expected = {
             "coords": {
@@ -246,7 +226,7 @@ class ArrangeBB(unittest.TestCase):
             "col_count": 5,
             "layout": [4, 0, None, None, None, 5, 1, None, None, None, 9, 2, 6, 7, 3, None, None, 10, 11, None, None, None, 8, None, None],  # fmt: skip
         }
-        rearrangement = arrange(**params)
+        rearrangement = arrange(layout_data, subargs)
         self.assertEqual(rearrangement, expected)
         expected = """
             DF1, 11 LOREM, 1N SUSPENDISSE

@@ -26,32 +26,6 @@ class Relations:
                 raise NotImplemented
             return inner_function
         
-        def may_update_params_with_guessed_title():
-            if not params["guess_title"]:
-                return
-            counter = collections.Counter()
-            for d in self.relations.values():
-                for column in d["columns"]:
-                    # FIXME: the previous version said:
-                    # if column["foreign"] and column["outer_source"] and column["nature"] != "strengthening_primary_foreign_key":
-                    if column["outer_source"] and column["nature"] != "strengthening_primary_foreign_key":
-                        counter[(column["outer_source"], column["attribute"])] += 1
-                    elif column["nature"] == "primary_key":
-                        counter[(d["this_relation_name"], column["attribute"])] += 1
-            if not counter:
-                return
-            title = counter.most_common(1)[0][0][0]
-            title = re.sub("[^A-Za-zÀ-ÖØ-öø-ÿ0-9 '\\._-]", "-", title)
-            if params["language"].startswith("fr"):
-                from .pluralize_fr import pluralize
-                title = " ".join(map(pluralize, title.split()))
-            title = title.capitalize()
-            if not title:
-                return
-            write_contents(f"{params['output_name']}_new_title.txt", title)
-            params["title"] = title
-            params["output_name"] = os.path.join(params["output_dir"], title)
-        
         self.mcd = mcd
         self.ensure_no_reciprocical_relative_entities()
         self.freeze_strengthening_foreign_key_migration = set()
@@ -67,7 +41,6 @@ class Relations:
         self.delete_deletable_relations()
         self.make_primary_keys_first()
         self.may_disambiguate_with_leg_notes = set_disambiguation_strategy(params["disambiguation"])
-        may_update_params_with_guessed_title()
         self.relations = dict(sorted(self.relations.items()))
 
     

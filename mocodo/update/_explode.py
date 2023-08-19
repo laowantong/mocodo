@@ -1,14 +1,18 @@
 __import__("sys").path[0:0] = ["."]
 
+import contextlib
 from ..parse_mcd import Token, Visitor
 from ..tools.parser_tools import parse_source, reconstruct_source, first_child
 
 class Exploder(Visitor):
 
-    def __init__(self, params):
-        self.threshold = int(float(params["explosion_arity"]))
-        self.empty_only = params["explosion_arity"] == "2.5" 
-        if params["weak_explosion"]:
+    def __init__(self, subargs):
+        arity = 3
+        with contextlib.suppress(ValueError, KeyError):
+            arity = float(subargs["arity"])
+        self.empty_only = (arity == 2.5)
+        self.threshold = int(arity)
+        if subargs.get("weak"):
             # Don't create an identifier for the new weak entity
             self.explosion_template = ":"
             # Prefix the potential first attribute with an underscore
@@ -81,8 +85,9 @@ class Exploder(Visitor):
         tree.children[-1].value += "\n".join(clauses) + "\n"
 
 
-def run(source, params):
+def run(source, subargs=None, params=None):
+    subargs = subargs or {}
     tree = parse_source(source)
-    visitor = Exploder(params)
+    visitor = Exploder(subargs)
     visitor.visit(tree)
     return reconstruct_source(tree)

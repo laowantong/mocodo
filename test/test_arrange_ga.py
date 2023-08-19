@@ -3,12 +3,12 @@ from random import seed
 
 __import__("sys").path[0:0] = ["mocodo"]
 from mocodo.argument_parser import parsed_arguments
-from mocodo.modify.arrange_ga import *
+from mocodo.update._arrange_ga import arrange
 from mocodo.mcd import Mcd
 
 
 # WARNING: by default, this should fail for Python 3.
-# Set PYTHONHASHSEED to 0 before launching the tests.
+# Before launching the tests: export PYTHONHASHSEED=0
 # cf. http://stackoverflow.com/questions/38943038/difference-between-python-2-and-3-for-shuffle-with-a-given-seed/
 
 class ArrangeGA(unittest.TestCase):
@@ -32,17 +32,10 @@ class ArrangeGA(unittest.TestCase):
         """.replace("  ", "")
         params = parsed_arguments()
         mcd = Mcd(source, params)
-        params.update(mcd.get_layout_data())
-        params["crossover_rate"] = 0.9
-        params["max_generations"] = 50
-        params["mutation_rate"] = 0.06
-        params["plateau"] = 30
-        params["population_size"] = 100
-        params["sample_size"] = 7
-        params["timeout"] = None
-        params["verbose"] = False
+        layout_data = mcd.get_layout_data()
+        subargs = {"max_generations": 50, "population_size": 100}
         seed(67)
-        rearrangement = arrange(**params)
+        rearrangement = arrange(layout_data, subargs)
         self.assertEqual(rearrangement, {
             'distances': 3.3005630797457695,
             'crossings': 1,

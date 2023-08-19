@@ -13,7 +13,7 @@ def create_name_to_index():
     return name_to_index
 
 
-def minify(text):
+def minify_graphviz(text):
     # Suppress comments
     text = re.sub(r"(?m)^ *//.*$", "", text)
     # Suppress empty lines

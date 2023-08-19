@@ -1,5 +1,8 @@
+import importlib
+
 __import__("sys").path[0:0] = ["."]
 
+from ..mocodo_error import subsubopt_error
 from ..parse_mcd import Visitor
 from ..tools.parser_tools import first_child
 from ..tools.string_tools import rstrip_digit
@@ -48,3 +51,18 @@ class Crow(Visitor):
         ent_1 = first_child(next(entities), "entity_name_ref").children[0]
         ent_2 = first_child(next(entities), "entity_name_ref").children[0]
         self.links.append((ent_1, cards[1], kind, cards[0], ent_2, assoc_name))
+
+
+def run(source, subargs, common=None):
+    extension = "mmd" if "mmd" in subargs or "mermaid" in subargs else "gv"
+    try:
+        module = importlib.import_module(f".export.crow_{extension}", package="mocodo")
+    except ModuleNotFoundError:
+        raise subsubopt_error(extension)
+    text = module.run(source, subargs, common)
+    return {
+        "stem_suffix": "erd_crow",
+        "text": text,
+        "extension": extension,
+        "displayable": True,
+    }

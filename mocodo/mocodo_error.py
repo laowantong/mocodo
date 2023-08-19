@@ -20,3 +20,9 @@ class MocodoError(Exception):
         )
         self.errno = errno
         super(MocodoError, self).__init__(message)
+
+def subarg_error(subsubopt, subsubarg):
+    return MocodoError(1457, f"Invalid sub-argument: {subsubopt}={subsubarg}.")
+
+def subsubopt_error(subsubopt):
+    return MocodoError(1458, f"Invalid sub-sub-option: {subsubopt}.")
