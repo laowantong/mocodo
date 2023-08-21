@@ -2,7 +2,7 @@ import unittest
 
 __import__("sys").path[0:0] = ["mocodo"]
 
-from mocodo.update import _types as update_types
+from mocodo.update.types import guess_types, create_type_placeholders
 
 
 class TestUpdateTypes(unittest.TestCase):
@@ -13,7 +13,7 @@ class TestUpdateTypes(unittest.TestCase):
             HERE, 0N NICE, 0N MEAN: wood, much [], stop [int]
             NICE: _poke, news [], , lawn [int]
         """
-        actual = update_types.run(source, {"create": True})
+        actual = create_type_placeholders(source)
         expected = """
             MEAN: wash [], rest [], king [int],
             HERE, 0N NICE, 0N MEAN: wood [], much [], stop [int]
@@ -28,7 +28,7 @@ class TestUpdateTypes(unittest.TestCase):
             NON_TYPABLE: foo, bar, baz
             TYPABLE: person id, name, birth date
         """
-        actual = update_types.run(source, {"guess": True})
+        actual = guess_types(source, {})
         expected = """
             ALREADY_TYPED: foo [int], bar [float], baz [date]
             EMPTY_BRACKETS: foo [], bar [], baz []

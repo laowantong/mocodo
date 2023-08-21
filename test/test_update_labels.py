@@ -2,14 +2,14 @@ import unittest
 
 __import__("sys").path[0:0] = ["mocodo"]
 
-from mocodo.update import _labels as update_labels
+from mocodo.update import op_tk
 
 
 class TestUpdateLabels(unittest.TestCase):
 
     def test_upper(self):
         source = "composer, 0n [composée] pièce, 0n [composante] pièce: quantité"
-        actual = update_labels.run(source, {"upper": None})
+        actual = op_tk.run(source, "labels", {"upper": None}, {})
         expected = "COMPOSER, 0n [composée] PIÈCE, 0n [composante] PIÈCE: QUANTITÉ"
         self.assertEqual(actual.strip(), expected.strip())
 
@@ -29,7 +29,7 @@ class TestUpdateLabels(unittest.TestCase):
         """
         subargs = {"obfuscate": "four_letter_words.txt"}
         params = {"seed": 42, "script_directory": "mocodo"}
-        actual = update_labels.run(source, subargs, params)
+        actual = op_tk.run(source, "labels", subargs, params)
         print(actual)
         expected = """
             feel: turn, grin

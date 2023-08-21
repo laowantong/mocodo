@@ -13,14 +13,11 @@ they are not supported by all DBMS.
 
 # TODO: check https://www.google.com/search?rls=en&q=site%3Alegifrance.gouv.fr+varchar&ie=UTF-8&oe=UTF-8
 
-import re, random
+import re
 
-from . import stand_for
-from ..mocodo_error import subsubopt_error
 from ..parse_mcd import Visitor, Token
 from ..tools.parser_tools import first_child, parse_source, reconstruct_source
 from ..tools.string_tools import ascii, snake
-from .op_tk import op_tk
 
 class CreateTypePlaceholder(Visitor):
 
@@ -31,6 +28,13 @@ class CreateTypePlaceholder(Visitor):
         if not name_token:
             return
         name_token.value += " []"
+
+def create_type_placeholders(source):
+    visitor = CreateTypePlaceholder()
+    tree = parse_source(source)
+    visitor.visit(tree)
+    return reconstruct_source(tree)
+
 
 FIELD_TYPES = {
     "en": {
@@ -265,25 +269,8 @@ class GuessType(Visitor):
         tree.children = [Token("MOCK", f"{attr.value} [{data_type}]", line=attr.line, column=attr.column)]
 
 
-def run(source, subargs=None, params=None):
-    subargs = subargs or {}
-    params = params or {}
-    for (subsubopt, subsubarg) in subargs.items():
-        if stand_for(subsubopt, "create"):
-            visitor = CreateTypePlaceholder()
-            tree = parse_source(source)
-            visitor.visit(tree)
-            source = reconstruct_source(tree)
-        elif stand_for(subsubopt, "guess"):
-            visitor = GuessType(params)
-            tree = parse_source(source)
-            visitor.visit(tree)
-            source = reconstruct_source(tree)
-        elif stand_for(subsubopt, "randomize"):
-            pool = list(FIELD_TYPES["en"].values())
-            if "seed" in params:
-                random.seed(params["seed"])
-            source = op_tk(source, "data_type", lambda x: x or random.choice(pool))
-        else:
-            raise subsubopt_error(subsubopt)
-    return source
+def guess_types(source, params=None):
+    visitor = GuessType(params)
+    tree = parse_source(source)
+    visitor.visit(tree)
+    return reconstruct_source(tree)

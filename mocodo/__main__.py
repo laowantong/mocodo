@@ -18,10 +18,11 @@ from .mcd import Mcd
 from .relations import Relations
 from .font_metrics import font_metrics_factory
 from .mcd_to_svg import main as mcd_to_svg
-from .mocodo_error import MocodoError
+from .mocodo_error import MocodoError, subarg_error, subopt_error
 from .tools.string_tools import urlsafe_encoding
 from .tools.graphviz_tools import minify_graphviz
 from .guess_title import may_update_params_with_guessed_title
+from .update.op_tk import ELEMENT_TO_TOKENS
 
 RENDERING_SERVICES = {
     "gv": "https://kroki.io/graphviz/{output_format}/{payload}",
@@ -69,20 +70,24 @@ def main():
                     algo = subargs.get("algo", "bb")
                     if algo == "bb":
                         # -u arrange -> non-constrained layout
-                        # -u arrange:fit -> ... to the current grid
-                        # -u arrange:fit=0 -> constrain the layout to the smallest balanced grid
-                        # -u arrange:fit=𝑖 -> ... to the 𝑖th next grid (with 𝑖 > 0)
+                        # -u arrange:grid=organic -> idem
+                        # -u arrange:grid -> constrain the layout to the current grid
+                        # -u arrange:grid=0 -> ... to the smallest balanced grid
+                        # -u arrange:grid=𝑖 -> ... to the 𝑖th next grid (with 𝑖 > 0)
                         grid = subargs.get("grid")
-                        if grid is None:
+                        if grid in (None, "organic"):
                             subargs["is_organic"] = True
-                        elif grid.isdigit():
-                            source = mcd.get_refitted_clauses(int(grid))
+                        elif grid == "" or grid.isdigit():
+                            if grid:
+                                source = mcd.get_refitted_clauses(int(grid))
                             mcd = Mcd(source, get_font_metrics, **params)
                             subargs["is_organic"] = False
+                        else:
+                            raise subarg_error("grid", grid)
                     try:
                         module = importlib.import_module(f".update._arrange_{algo}", package="mocodo")
                     except ModuleNotFoundError:
-                        raise MocodoError(654, _("Unknown algorithm {algo} for operation {subopt}".format(algo=algo, subopt=subopt)))
+                        raise subarg_error("algo", algo)
                     layout_data = mcd.get_layout_data()
                     rearrangement = module.arrange(layout_data, subargs, has_expired)
                     if rearrangement:
@@ -93,11 +98,14 @@ def main():
                     else:
                         raise MocodoError(41, _('Failed to calculate a planar layout.'))  # fmt: skip
                     continue
-                else:
+                elif subopt in ELEMENT_TO_TOKENS:
+                    module = importlib.import_module(f".update.op_tk", package="mocodo")
+                    source = module.run(source, subopt, subargs, params).rstrip()
+                else: # An unspecified update operation, dynamically loaded
                     try:
                         module = importlib.import_module(f".update._{subopt}", package="mocodo")
                     except ModuleNotFoundError:
-                        raise MocodoError(651, _("Unknown update operation: {op}".format(op=subopt)))  # fmt: skip
+                        raise subopt_error("update", subopt)
                     source = module.run(source, subargs=subargs, params=params).rstrip()
             # The source file is updated for further processing
             common.update_input_file(source)
@@ -108,7 +116,7 @@ def main():
                 try:
                     module = importlib.import_module(f".export._{subopt}", package="mocodo")
                 except ModuleNotFoundError:
-                    raise MocodoError(652, _("Unknown export operation: {op}".format(op=subopt)))  # fmt: skip
+                    raise subopt_error("export", subopt)
                 result = module.run(source, subargs, common)
                 result["output_name"] = params["output_name"]
                 text = result["text"].rstrip()
@@ -123,11 +131,11 @@ def main():
                 if result["extension"] == "gv":
                     payload = minify_graphviz(text) # spare some bandwidth
                 payload = urlsafe_encoding(text)
-                for output_format in params.get("suck", []):
+                for output_format in params.get("defer", []):
                     url = rendering_service.format(output_format=output_format, payload=payload)
                     response = requests.get(url)
-                    if response.status_code != 200:
-                        raise MocodoError(655, _("Failed to download the rendered document from the following url:\n{url}").format(url=url)) # fmt: skip
+                    if not response.ok:
+                        raise MocodoError(655, _("The HTTP status code {code} was returned by:\n{url}").format(code=response.status_code, url=url)) # fmt: skip
                     resp_path = text_path.with_suffix(f".{output_format}")
                     if response.headers["content-type"].startswith("text/"):
                         resp_path.write_text(response.text)

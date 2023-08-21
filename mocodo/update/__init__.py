@@ -7,7 +7,7 @@ def stand_for(
         "capitalize": ["capitalize"],
         "casefold": ["casefold"],
         "create": ["create", "add", "insert", "make"],
-        "delete": ["del", "delete", "suppress", "erase", "remove"],
+        "delete": ["del", "delete", "suppress", "erase", "remove", "hide"],
         "fix": ["fix"],
         "guess": ["guess", "infer"],
         "lower": ["lower", "lowercase", "lower_case"],

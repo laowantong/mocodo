@@ -114,9 +114,9 @@ class MocodoMagics(Magics):
                 update_cell(updated_source)
                 return # abort, since this erases the [Out] section after returning asynchronously
         
-        suck_path = output_dir / "things_to_be_displayed.tmp"
-        if suck_path.is_file():
-            for filename in suck_path.read_text().splitlines():
+        defer_path = output_dir / "things_to_be_displayed.tmp"
+        if defer_path.is_file():
+            for filename in defer_path.read_text().splitlines():
                 extension=Path(filename).suffix[1:]
                 if extension == "svg":
                     # Fix a maximum width for SVG images:
@@ -127,7 +127,7 @@ class MocodoMagics(Magics):
                     display(Markdown(filename=filename))
                 else:
                     display(Image(filename=filename, unconfined=False))
-            suck_path.unlink()
+            defer_path.unlink()
         
         if any(x in remaining_args for x in ("-e", "-x", "--export")):
             print(stdoutdata, end="")
@@ -141,7 +141,7 @@ class MocodoMagics(Magics):
                 mld = Path(output_name).with_suffix(".html").read_text("utf8")
                 display(HTML(mld))
 
-        if not(updated_source is None or "--no_text" in remaining_args):
+        if updated_source and not args.no_text:
             print(updated_source)
 
 

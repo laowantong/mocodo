@@ -22,7 +22,10 @@ class MocodoError(Exception):
         super(MocodoError, self).__init__(message)
 
 def subarg_error(subsubopt, subsubarg):
-    return MocodoError(1457, f"Invalid sub-argument: {subsubopt}={subsubarg}.")
+    return MocodoError(1457, _(f"Invalid sub-argument: {subsubopt}={subsubarg}.".format(subsubopt=subsubopt, subsubarg=subsubarg)))  # fmt: skip
 
 def subsubopt_error(subsubopt):
-    return MocodoError(1458, f"Invalid sub-sub-option: {subsubopt}.")
+    return MocodoError(1458, _(f"Invalid sub-sub-option: {subsubopt}.".format(subsubopt=subsubopt)))  # fmt: skip
+
+def subopt_error(opt, subopt):
+    raise MocodoError(652, _("Unknown {opt} sub-option: {subopt}".format(opt=opt, subopt=subopt)))  # fmt: skip

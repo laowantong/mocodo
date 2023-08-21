@@ -2,13 +2,9 @@ import random
 import re
 from collections import Counter
 
-
-from . import stand_for
-from ..mocodo_error import subsubopt_error
 from ..parse_mcd import Visitor, Tree
 from ..tools.parser_tools import parse_source, reconstruct_source
 from ..tools.various import invert_dict
-from .op_tk import op_tk
 
 
 def fix_card(
@@ -92,23 +88,10 @@ class CardRandomizer(Visitor):
             card_token.value = new_card
 
 
-def run(source, subargs=None, params=None):
-    subargs = subargs or {}
-    params = params or {}
-    for (subsubopt, subsubarg) in subargs.items():
-        if stand_for(subsubopt, "lower", "upper"):
-            source = op_tk(source, "card", subsubopt)
-        elif stand_for(subsubopt, "delete"):
-            source = op_tk(source, "card", lambda _: "XX")
-        elif stand_for(subsubopt, "fix"):
-            source = op_tk(source, "card", fix_card)
-        elif stand_for(subsubopt, "randomize"):
-            tree = parse_source(source)
-            card_prefixes = Counter(node.children[0].value for node in tree.find_data("card_prefix"))
-            card_counter = Counter(node.children[0].value for node in tree.find_data("card"))
-            visitor = CardRandomizer(card_prefixes, card_counter, params)
-            visitor.visit(tree)
-            source = reconstruct_source(tree)
-        else:
-            raise subsubopt_error(subsubopt)
-    return source
+def randomize_cards(source, params):
+    tree = parse_source(source)
+    card_prefixes = Counter(node.children[0].value for node in tree.find_data("card_prefix"))
+    card_counter = Counter(node.children[0].value for node in tree.find_data("card"))
+    visitor = CardRandomizer(card_prefixes, card_counter, params)
+    visitor.visit(tree)
+    return reconstruct_source(tree)

@@ -266,11 +266,11 @@ def parsed_arguments():
         default=0,
         help="discriminate between multiple SVG of the same interactive diagram",
     )
-    io_group.add_argument("--suck",
+    io_group.add_argument("--defer",
         nargs="*",
         choices=["svg", "png", "pdf"],
         default=["svg"],
-        help="download the visualization of certain types of output from an external web-service",
+        help="defer the post-processing of some outputs to an external web-service",
     )
 
     source_group.add_argument("-u", "--update",
