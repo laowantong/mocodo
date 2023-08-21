@@ -30,6 +30,54 @@ RENDERING_SERVICES = {
     "qr": "https://api.qrserver.com/v1/create-qr-code/?size=800x800&data={payload}",
 }
 
+def flip(source, subargs, get_font_metrics, params):
+    mcd = Mcd(source, get_font_metrics, **params)
+    for subsubopt in subargs:
+        if subsubopt in ("v", "vertical"):
+            source = mcd.get_clauses_vertical_mirror()
+        elif subsubopt in ("h", "horizontal"):
+            source = mcd.get_clauses_horizontal_mirror()
+        elif subsubopt in ("d", "diagonal"):
+            source = mcd.get_clauses_diagonal_mirror()
+        else:
+            raise MocodoError(653, _("Unknown argument {subsubopt} for operation {subopt}".format(subsubopt=subsubopt, subopt=subopt)))  # fmt: skip
+    return source
+
+def arrange(source, subargs, get_font_metrics, params):
+    mcd = Mcd(source, get_font_metrics, **params)
+    timeout = subargs.get("timeout")
+    has_expired = (lambda: time() > timeout) if timeout else (lambda: False)
+    algo = subargs.get("algo", "bb")
+    if algo == "bb":
+        # -u arrange -> non-constrained layout
+        # -u arrange:grid=organic -> idem
+        # -u arrange:grid -> constrain the layout to the current grid
+        # -u arrange:grid=0 -> ... to the smallest balanced grid
+        # -u arrange:grid=𝑖 -> ... to the 𝑖th next grid (with 𝑖 > 0)
+        grid = subargs.get("grid")
+        if grid in (None, "organic"):
+            subargs["is_organic"] = True
+        elif grid == "" or grid.isdigit():
+            if grid:
+                source = mcd.get_refitted_clauses(int(grid))
+            mcd = Mcd(source, get_font_metrics, **params)
+            subargs["is_organic"] = False
+        else:
+            raise subarg_error("grid", grid)
+    try:
+        module = importlib.import_module(f".update._arrange_{algo}", package="mocodo")
+    except ModuleNotFoundError:
+        raise subarg_error("algo", algo)
+    layout_data = mcd.get_layout_data()
+    rearrangement = module.arrange(layout_data, subargs, has_expired)
+    if rearrangement:
+        mcd.set_layout(**rearrangement)
+        source = mcd.get_clauses()
+    elif algo == "bb" and not subargs["is_organic"]:
+        raise MocodoError(9, _('Failed to calculate a planar layout on the given grid.'))  # fmt: skip
+    else:
+        raise MocodoError(41, _('Failed to calculate a planar layout.'))  # fmt: skip
+    return source
 
 def main():
     try:
@@ -53,52 +101,10 @@ def main():
         if params["update"]:
             for (subopt, subargs) in params["update"]:
                 if subopt == "flip":
-                    mcd = Mcd(source, get_font_metrics, **params)
-                    for subsubopt in subargs:
-                        if subsubopt in ("v", "vertical"):
-                            source = mcd.get_clauses_vertical_mirror()
-                        elif subsubopt in ("h", "horizontal"):
-                            source = mcd.get_clauses_horizontal_mirror()
-                        elif subsubopt in ("d", "diagonal"):
-                            source = mcd.get_clauses_diagonal_mirror()
-                        else:
-                            raise MocodoError(653, _("Unknown argument {subsubopt} for operation {subopt}".format(subsubopt=subsubopt, subopt=subopt)))  # fmt: skip
+                    source = flip(source, subargs, get_font_metrics, params)
                 elif subopt == "arrange":
-                    mcd = Mcd(source, get_font_metrics, **params)
-                    timeout = subargs.get("timeout")
-                    has_expired = (lambda: time() > timeout) if timeout else (lambda: False)
-                    algo = subargs.get("algo", "bb")
-                    if algo == "bb":
-                        # -u arrange -> non-constrained layout
-                        # -u arrange:grid=organic -> idem
-                        # -u arrange:grid -> constrain the layout to the current grid
-                        # -u arrange:grid=0 -> ... to the smallest balanced grid
-                        # -u arrange:grid=𝑖 -> ... to the 𝑖th next grid (with 𝑖 > 0)
-                        grid = subargs.get("grid")
-                        if grid in (None, "organic"):
-                            subargs["is_organic"] = True
-                        elif grid == "" or grid.isdigit():
-                            if grid:
-                                source = mcd.get_refitted_clauses(int(grid))
-                            mcd = Mcd(source, get_font_metrics, **params)
-                            subargs["is_organic"] = False
-                        else:
-                            raise subarg_error("grid", grid)
-                    try:
-                        module = importlib.import_module(f".update._arrange_{algo}", package="mocodo")
-                    except ModuleNotFoundError:
-                        raise subarg_error("algo", algo)
-                    layout_data = mcd.get_layout_data()
-                    rearrangement = module.arrange(layout_data, subargs, has_expired)
-                    if rearrangement:
-                        mcd.set_layout(**rearrangement)
-                        source = mcd.get_clauses()
-                    elif algo == "bb" and not subargs["is_organic"]:
-                        raise MocodoError(9, _('Failed to calculate a planar layout on the given grid.'))  # fmt: skip
-                    else:
-                        raise MocodoError(41, _('Failed to calculate a planar layout.'))  # fmt: skip
-                    continue
-                elif subopt in ELEMENT_TO_TOKENS:
+                    source = arrange(source, subargs, get_font_metrics, params)
+                elif subopt in ELEMENT_TO_TOKENS: # ex.: labels, attrs, cards, types, etc.
                     module = importlib.import_module(f".update.op_tk", package="mocodo")
                     source = module.run(source, subopt, subargs, params).rstrip()
                 else: # An unspecified update operation, dynamically loaded
