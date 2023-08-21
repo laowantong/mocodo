@@ -326,19 +326,19 @@ class Mcd:
             result += "\n\n".join(":\n" + "\n:\n".join(self.get_row_text(row).split("\n")) + "\n:" for row in self.rows)
         return result + self.footer
 
-    def get_clauses_horizontal_mirror(self):
+    def get_vertically_flipped_clauses(self):
         for constraint in self.constraints:
             constraint.invert_coords_horizontal_mirror()
         self.update_footer()
         return self.header + "\n\n".join(self.get_row_text(row) for row in self.rows[::-1]) + self.footer
     
-    def get_clauses_vertical_mirror(self):
+    def get_horizontally_flipped_clauses(self):
         for constraint in self.constraints:
             constraint.invert_coords_vertical_mirror()
         self.update_footer()
         return self.header + "\n\n".join(self.get_row_text(row[::-1]) for row in self.rows) + self.footer
     
-    def get_clauses_diagonal_mirror(self):
+    def get_diagonally_flipped_clauses(self):
         for constraint in self.constraints:
             constraint.invert_coords_diagonal_mirror()
         self.update_footer()
@@ -556,4 +556,4 @@ if __name__=="__main__":
     """.replace("  ", "").split("\n")
     params = parsed_arguments()
     mcd = Mcd(source, **params)
-    print(mcd.get_clauses_vertical_mirror())
+    print(mcd.get_horizontally_flipped_clauses())

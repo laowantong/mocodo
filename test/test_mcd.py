@@ -282,7 +282,7 @@ class McdTest(unittest.TestCase):
             TINET: fendoir, grattoir
             CROCHET: égrenoir, _gorgeoir, bouillie
         """.replace("    ", "").strip()
-        actual = mcd.get_clauses_horizontal_mirror().replace("    ", "").strip()
+        actual = mcd.get_vertically_flipped_clauses().replace("    ", "").strip()
         self.assertEqual(actual, expected)
         expected = """
             % The comments are placed before
@@ -308,7 +308,7 @@ class McdTest(unittest.TestCase):
             FLÉAU: battadère, van, mesure
             :
         """.strip().replace("  ", "")
-        actual = mcd.get_clauses_vertical_mirror().replace("    ", "").strip()
+        actual = mcd.get_horizontally_flipped_clauses().replace("    ", "").strip()
         self.assertEqual(actual, expected)
         expected = """
             % The comments are placed before
@@ -334,7 +334,7 @@ class McdTest(unittest.TestCase):
             :
             :
         """.strip().replace("  ", "")
-        actual = mcd.get_clauses_diagonal_mirror().replace("    ", "").strip()
+        actual = mcd.get_diagonally_flipped_clauses().replace("    ", "").strip()
         self.assertEqual(actual, expected)
 
     def test_explicit_fit(self):

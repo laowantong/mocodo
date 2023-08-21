@@ -22,7 +22,7 @@ from .mocodo_error import MocodoError, subarg_error, subopt_error
 from .tools.string_tools import urlsafe_encoding
 from .tools.graphviz_tools import minify_graphviz
 from .guess_title import may_update_params_with_guessed_title
-from .update.op_tk import ELEMENT_TO_TOKENS
+from .update import op_tk
 
 RENDERING_SERVICES = {
     "gv": "https://kroki.io/graphviz/{output_format}/{payload}",
@@ -34,11 +34,11 @@ def flip(source, subargs, get_font_metrics, params):
     mcd = Mcd(source, get_font_metrics, **params)
     for subsubopt in subargs:
         if subsubopt in ("v", "vertical"):
-            source = mcd.get_clauses_vertical_mirror()
+            source = mcd.get_horizontally_flipped_clauses()
         elif subsubopt in ("h", "horizontal"):
-            source = mcd.get_clauses_horizontal_mirror()
+            source = mcd.get_vertically_flipped_clauses()
         elif subsubopt in ("d", "diagonal"):
-            source = mcd.get_clauses_diagonal_mirror()
+            source = mcd.get_diagonally_flipped_clauses()
         else:
             raise MocodoError(653, _("Unknown argument {subsubopt} for operation {subopt}".format(subsubopt=subsubopt, subopt=subopt)))  # fmt: skip
     return source
@@ -104,9 +104,8 @@ def main():
                     source = flip(source, subargs, get_font_metrics, params)
                 elif subopt == "arrange":
                     source = arrange(source, subargs, get_font_metrics, params)
-                elif subopt in ELEMENT_TO_TOKENS: # ex.: labels, attrs, cards, types, etc.
-                    module = importlib.import_module(f".update.op_tk", package="mocodo")
-                    source = module.run(source, subopt, subargs, params).rstrip()
+                elif subopt in op_tk.ELEMENT_TO_TOKENS: # ex.: labels, attrs, cards, types, etc.
+                    source = op_tk.run(source, subopt, subargs, params).rstrip()
                 else: # An unspecified update operation, dynamically loaded
                     try:
                         module = importlib.import_module(f".update._{subopt}", package="mocodo")
