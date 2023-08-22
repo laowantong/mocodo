@@ -114,14 +114,14 @@ def main():
                     source = module.run(source, subargs=subargs, params=params).rstrip()
             # The source file is updated for further processing
             common.update_input_file(source)
-        if "export" in params and params["export"]:
+        if "convert" in params and params["convert"]:
             things_to_be_displayed_path = Path(params["output_dir"]) / "things_to_be_displayed.tmp"
             things_to_be_displayed = []
-            for (subopt, subargs) in params["export"]:
+            for (subopt, subargs) in params["convert"]:
                 try:
-                    module = importlib.import_module(f".export._{subopt}", package="mocodo")
+                    module = importlib.import_module(f".convert._{subopt}", package="mocodo")
                 except ModuleNotFoundError:
-                    raise subopt_error("export", subopt)
+                    raise subopt_error("convert", subopt)
                 result = module.run(source, subargs, common)
                 result["output_name"] = params["output_name"]
                 text = result["text"].rstrip()

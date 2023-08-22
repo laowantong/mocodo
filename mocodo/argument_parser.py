@@ -280,7 +280,7 @@ def parsed_arguments():
         # default=["echo"],
         help="make a new version of the MCD by applying one or several modifications",
     )
-    source_group.add_argument("-e", "-x", "--export",
+    source_group.add_argument("-c", "--convert",
         metavar="STR",
         nargs="+",
         type=extract_subargs,

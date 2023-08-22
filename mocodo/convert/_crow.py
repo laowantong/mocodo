@@ -56,7 +56,7 @@ class Crow(Visitor):
 def run(source, subargs, common=None):
     extension = "mmd" if "mmd" in subargs or "mermaid" in subargs else "gv"
     try:
-        module = importlib.import_module(f".export.crow_{extension}", package="mocodo")
+        module = importlib.import_module(f".convert.crow_{extension}", package="mocodo")
     except ModuleNotFoundError:
         raise subsubopt_error(extension)
     text = module.run(source, subargs, common)

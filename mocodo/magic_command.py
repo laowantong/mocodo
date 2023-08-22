@@ -129,7 +129,7 @@ class MocodoMagics(Magics):
                     display(Image(filename=filename, unconfined=False))
             defer_path.unlink()
         
-        if any(x in remaining_args for x in ("-e", "-x", "--export")):
+        if any(x in remaining_args for x in ("-c", "--convert")):
             print(stdoutdata, end="")
             return
         

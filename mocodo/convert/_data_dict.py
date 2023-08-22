@@ -111,4 +111,4 @@ def run(source, subargs=None, common=None):
         result["displayable"] = False
     return result
 
-# --export data_dict:type,box,label="libellé de l'attribut",tsv
+# --convert data_dict:type,box,label="libellé de l'attribut",tsv

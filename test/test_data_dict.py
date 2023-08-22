@@ -3,7 +3,7 @@ import unittest
 __import__("sys").path[0:0] = ["mocodo"]
 
 from mocodo.common import Common
-from mocodo.export import _data_dict as data_dict
+from mocodo.convert import _data_dict as data_dict
 
 class TestDataDict(unittest.TestCase):
 
