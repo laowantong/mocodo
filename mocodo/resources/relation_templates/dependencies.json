@@ -1,5 +1,4 @@
 {
-  "extension": "_dependencies.gv",
   "highlight": "graphviz",
   "compose_primary_key": "",
   "compose_normal_attribute": "",
@@ -12,8 +11,8 @@
     {
       "order": 100,
       "comment": "Present all the dependencies of the same relation on multiple lines",
-      "search": "(\"[^\"]+\")<-(\"[^\"]+\")",
-      "replace": "  \\2 -> \\1\n\\1",
+      "search": "(\".+?\")<-(\".+?\")(.*)",
+      "replace": "\\1\\3\n  \\2 -> \\1",
       "iterated": true
     }
   ],
