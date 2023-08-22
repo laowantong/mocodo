@@ -2,7 +2,7 @@ import unittest
 
 __import__("sys").path[0:0] = ["mocodo"]
 
-from mocodo.update import op_tk
+from mocodo.rewrite import op_tk
 
 
 class TestUpdateLabels(unittest.TestCase):

@@ -273,7 +273,7 @@ def parsed_arguments():
         help="defer the post-processing of some outputs to an external web-service",
     )
 
-    source_group.add_argument("-u", "--update",
+    source_group.add_argument("-r", "--rewrite",
         metavar="STR",
         nargs="*",
         type=extract_subargs,
@@ -286,7 +286,7 @@ def parsed_arguments():
         type=extract_subargs,
         help="translate all or parts of the MCD into a different format",
     )
-    source_group.add_argument("-r", "--relations",
+    source_group.add_argument("--relations",
         metavar="STEM_OR_PATH",
         nargs="*",
         default=["html", "text"],

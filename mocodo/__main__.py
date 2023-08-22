@@ -22,7 +22,7 @@ from .mocodo_error import MocodoError, subarg_error, subopt_error
 from .tools.string_tools import urlsafe_encoding
 from .tools.graphviz_tools import minify_graphviz
 from .guess_title import may_update_params_with_guessed_title
-from .update import op_tk
+from .rewrite import op_tk
 
 RENDERING_SERVICES = {
     "gv": "https://kroki.io/graphviz/{output_format}/{payload}",
@@ -49,11 +49,11 @@ def arrange(source, subargs, get_font_metrics, params):
     has_expired = (lambda: time() > timeout) if timeout else (lambda: False)
     algo = subargs.get("algo", "bb")
     if algo == "bb":
-        # -u arrange -> non-constrained layout
-        # -u arrange:grid=organic -> idem
-        # -u arrange:grid -> constrain the layout to the current grid
-        # -u arrange:grid=0 -> ... to the smallest balanced grid
-        # -u arrange:grid=𝑖 -> ... to the 𝑖th next grid (with 𝑖 > 0)
+        # -r arrange -> non-constrained layout
+        # -r arrange:grid=organic -> idem
+        # -r arrange:grid -> constrain the layout to the current grid
+        # -r arrange:grid=0 -> ... to the smallest balanced grid
+        # -r arrange:grid=𝑖 -> ... to the 𝑖th next grid (with 𝑖 > 0)
         grid = subargs.get("grid")
         if grid in (None, "organic"):
             subargs["is_organic"] = True
@@ -65,7 +65,7 @@ def arrange(source, subargs, get_font_metrics, params):
         else:
             raise subarg_error("grid", grid)
     try:
-        module = importlib.import_module(f".update._arrange_{algo}", package="mocodo")
+        module = importlib.import_module(f".rewrite._arrange_{algo}", package="mocodo")
     except ModuleNotFoundError:
         raise subarg_error("algo", algo)
     layout_data = mcd.get_layout_data()
@@ -98,19 +98,19 @@ def main():
             params["print_params"] = False
             params_contents = json.dumps(params, ensure_ascii=False, indent=2, sort_keys=True)
             return safe_print_for_PHP(params_contents)
-        if params["update"]:
-            for (subopt, subargs) in params["update"]:
+        if params["rewrite"]:
+            for (subopt, subargs) in params["rewrite"]:
                 if subopt == "flip":
                     source = flip(source, subargs, get_font_metrics, params)
                 elif subopt == "arrange":
                     source = arrange(source, subargs, get_font_metrics, params)
                 elif subopt in op_tk.ELEMENT_TO_TOKENS: # ex.: labels, attrs, cards, types, etc.
                     source = op_tk.run(source, subopt, subargs, params).rstrip()
-                else: # An unspecified update operation, dynamically loaded
+                else: # An unspecified rewrite operation, dynamically loaded
                     try:
-                        module = importlib.import_module(f".update._{subopt}", package="mocodo")
+                        module = importlib.import_module(f".rewrite._{subopt}", package="mocodo")
                     except ModuleNotFoundError:
-                        raise subopt_error("update", subopt)
+                        raise subopt_error("rewrite", subopt)
                     source = module.run(source, subargs=subargs, params=params).rstrip()
             # The source file is updated for further processing
             common.update_input_file(source)

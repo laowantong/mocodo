@@ -108,7 +108,7 @@ class MocodoMagics(Magics):
             return
         
         updated_source = None
-        if any(x in remaining_args for x in ("--update", "-u")):
+        if any(x in remaining_args for x in ("--rewrite", "-r")):
             updated_source = input_path.read_text().rstrip()
             if args.replace:
                 update_cell(updated_source)

@@ -2,7 +2,7 @@ import unittest
 
 __import__("sys").path[0:0] = ["mocodo"]
 
-from mocodo.update.types import guess_types, create_type_placeholders
+from mocodo.rewrite.types import guess_types, create_type_placeholders
 
 
 class TestUpdateTypes(unittest.TestCase):

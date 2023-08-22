@@ -4,7 +4,7 @@ __import__("sys").path[0:0] = ["."]
 
 from ._crow import Crow
 from ..tools.parser_tools import parse_source
-from ..update import (
+from ..rewrite import (
     op_tk,
     _drain as drain,
     _explode as explode,

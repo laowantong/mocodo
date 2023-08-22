@@ -1,7 +1,7 @@
 import unittest
 
 __import__("sys").path[0:0] = ["mocodo"]
-from mocodo.update.cross import cross
+from mocodo.rewrite.cross import cross
 
 
 class CrossTests(unittest.TestCase):

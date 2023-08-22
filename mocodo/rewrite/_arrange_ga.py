@@ -19,7 +19,7 @@ def arrange(layout_data, subargs, has_expired=None):
     crossover_rate = rate(subargs.get("crossover_rate", 0.9))
     mutation_rate = rate(subargs.get("mutation_rate", 0.06))
     sample_size = positive_integer(subargs.get("sample_size", 7))
-    verbose = bool(subargs.get("verbose") is not None) # -u arrange:verbose => {"verbose": ""} => True
+    verbose = bool(subargs.get("verbose") is not None) # -r arrange:verbose => {"verbose": ""} => True
 
     has_expired = has_expired or (lambda: False)
 
@@ -101,7 +101,7 @@ def arrange(layout_data, subargs, has_expired=None):
     }
     
 if __name__ == "__main__":
-    # python -m mocodo.update._arrange_ga
+    # python -m mocodo.rewrite._arrange_ga
 
     from time import time
     from ..argument_parser import parsed_arguments

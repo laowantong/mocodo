@@ -3,7 +3,7 @@ from random import seed
 
 __import__("sys").path[0:0] = ["mocodo"]
 from mocodo.argument_parser import parsed_arguments
-from mocodo.update._arrange_ga import arrange
+from mocodo.rewrite._arrange_ga import arrange
 from mocodo.mcd import Mcd
 
 
