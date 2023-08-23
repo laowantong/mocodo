@@ -1,5 +1,5 @@
 {
-  "stem_suffix": "_",
+  "stem_suffix": "_mld",
   "extension": "txt",
   "to_defer": false,
   "compose_alt_primary_key": "_{label}<unicodify>{alt_groups}</unicodify>_",

@@ -1,5 +1,5 @@
 {
-  "stem_suffix": "_verbose",
+  "stem_suffix": "_verbose_mld",
   "extension": "md",
   "to_defer": false,
   "highlight": "markdown",

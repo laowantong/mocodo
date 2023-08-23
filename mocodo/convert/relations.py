@@ -169,7 +169,7 @@ class Relations:
                 line = transform(line, "transform_forced_relation")
             line = transform(line, "transform_relation")
             lines.append(line)
-        if template.get("stem_suffix") == "_mld": # relational diagram
+        if template.get("stem_suffix") == "_mld" and template.get("extension") == "mcd": # relational diagram
             lines = self.map_mcd_layout_onto_mld(lines)
         data["relations"] = template["relation_separator"].join(lines)
 
