@@ -243,7 +243,7 @@ FIELD_TYPES = {
 
 class GuessType(Visitor):
 
-    def __init__(self, params):
+    def __init__(self, guessing_suffix, params):
         self.field_types = FIELD_TYPES["en"] # English is always used as fallback
         language = params.get("language", "en")
         if language != "en":
@@ -253,6 +253,7 @@ class GuessType(Visitor):
         self.field_types = sorted(self.field_types.items(), key=lambda x: -len(x[0]))
         # Precompile the regexes
         self.field_types = [(re.compile(k).search, v) for (k, v) in self.field_types]
+        self.guessing_suffix = guessing_suffix
 
     def typed_attr(self, tree):
         a = list(tree.find_data("data_type"))
@@ -262,15 +263,15 @@ class GuessType(Visitor):
         needle = snake(ascii(attr)).replace("_", " ").lower()
         for (found, data_type) in self.field_types:
             if found(needle):
-                data_type = f"{data_type}?"
+                data_type = f"{data_type}{self.guessing_suffix}"
                 break
         else:
             data_type = ""
         tree.children = [Token("MOCK", f"{attr.value} [{data_type}]", line=attr.line, column=attr.column)]
 
 
-def guess_types(source, params=None):
-    visitor = GuessType(params)
+def guess_types(source, subsubarg, params):
+    visitor = GuessType(subsubarg, params)
     tree = parse_source(source)
     visitor.visit(tree)
     return reconstruct_source(tree)

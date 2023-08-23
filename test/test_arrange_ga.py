@@ -32,10 +32,9 @@ class ArrangeGA(unittest.TestCase):
         """.replace("  ", "")
         params = parsed_arguments()
         mcd = Mcd(source, params)
-        layout_data = mcd.get_layout_data()
         subargs = {"max_generations": 50, "population_size": 100}
         seed(67)
-        rearrangement = arrange(layout_data, subargs)
+        rearrangement = arrange(mcd, subargs)
         self.assertEqual(rearrangement, {
             'distances': 3.3005630797457695,
             'crossings': 1,

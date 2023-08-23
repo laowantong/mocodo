@@ -1,5 +1,7 @@
 {
-  "extension": "_oracle.sql",
+  "stem_suffix": "_oracle",
+  "extension": "sql",
+  "to_defer": false,
   "highlight": "sql",
   "transform_attribute": [
     {

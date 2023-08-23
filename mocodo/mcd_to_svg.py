@@ -15,7 +15,7 @@ from .common import safe_print_for_PHP
 def main(mcd, common):
     style = common.load_style()
     mcd.calculate_size(style)
-    geo = common.calculate_or_retrieve_geo(mcd, reuse_geo=common.params["reuse_geo"])
+    geo = common.calculate_or_retrieve_geo(mcd)
     description = [
         (
             "preamble",

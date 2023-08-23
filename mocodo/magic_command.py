@@ -21,6 +21,35 @@ IPYTHON = get_ipython()
 def update_cell(content):
     IPYTHON.set_next_input(content, replace=True)
 
+PARAM_TEMPLATE = '''\
+# You may edit and run the following lines
+import json, pathlib
+params = """
+{stdoutdata}
+"""
+try:
+    json.loads(params)
+except:
+    raise RuntimeError("Invalid JSON. Check your syntax on https://jsonlint.com.")
+pathlib.Path("{output_dir}/params.json").write_text(params.strip(), encoding="utf8")
+'''
+
+def display_converted_file(path):
+    extension=path.suffix[1:]
+    if extension == "svg":
+        # Fix a maximum width for SVG images:
+        # https://stackoverflow.com/questions/51452569/how-to-resize-rescale-a-svg-graphic-in-an-ipython-jupyter-notebook
+        svg = b64encode(path.read_bytes()).decode("utf8")
+        display(HTML(f'<img max-width="100%" src="data:image/svg+xml;base64,{svg}">'))
+    elif extension == "md":
+        display(Markdown(filename=path))
+    elif extension == "png":
+        display(Image(filename=path, unconfined=False))
+    elif extension == "html":
+        display(HTML(path.read_text()))
+    else:
+        display(Markdown(f"```{extension}\n{path.read_text()}\n```"))
+
 @magics_class
 class MocodoMagics(Magics):
     @staticmethod
@@ -40,8 +69,6 @@ class MocodoMagics(Magics):
 
         parser = argparse.ArgumentParser(add_help=False)
         parser.add_argument("--no_mcd", action="store_true")
-        parser.add_argument("--mld", action="store_true")
-        parser.add_argument("--no_text", action="store_true")
         parser.add_argument("--replace", action="store_true")
         parser.add_argument("--input")
         parser.add_argument("--output_dir")
@@ -66,13 +93,12 @@ class MocodoMagics(Magics):
             except OSError:
                 if not output_dir.is_dir():
                     raise
-        output_name = output_dir / input_path.stem
+        output_path_radical = output_dir / input_path.stem
 
-        remaining_args.extend(["--input", str(input_path), "--output_dir", str(output_dir)]) # may override user's provided options
-        try: # prevent explicit option --relations to override HTML generation
-            remaining_args.insert(remaining_args.index("--relations") + 1, "html")
-        except ValueError:
-            remaining_args.extend(["--relations", "html"])
+        remaining_args.extend([  # may override user's provided options
+            "--input", str(input_path),
+            "--output_dir", str(output_dir),
+        ]) # may override user's provided options
 
         process = Popen(["mocodo"] + remaining_args, stdin=PIPE, stdout=PIPE, stderr=PIPE)
         stdoutdata, stderrdata = process.communicate()
@@ -92,57 +118,37 @@ class MocodoMagics(Magics):
             return
         
         if "--print_params" in remaining_args:
-            form = [
-                f'# You may edit and run the following lines',
-                f'import json, pathlib',
-                f'params = """',
-                f'{stdoutdata}',
-                f'"""',
-                f'try:',
-                f'    json.loads(params)',
-                f'except:',
-                f'    raise RuntimeError("Invalid JSON. Check your syntax on https://jsonlint.com.")',
-                f'pathlib.Path("{output_dir}/params.json").write_text(params.strip(), encoding="utf8")',
-            ]
-            update_cell("\n".join(form))
+            update_cell(PARAM_TEMPLATE.format(stdoutdata=stdoutdata, output_dir=output_dir))
             return
         
-        updated_source = None
-        if any(x in remaining_args for x in ("--rewrite", "-r")):
-            updated_source = input_path.read_text().rstrip()
+        if "--convert" in remaining_args or "-c" in remaining_args:
+            quiet_path = output_dir / "quiet_converting"
+            if quiet_path.is_file():
+                quiet_path.unlink()
+            else:
+                convert_log_files = output_dir / "convert.log"
+                if convert_log_files.is_file():
+                    for filename in convert_log_files.read_text().splitlines():
+                        display_converted_file(Path(filename))
+                    convert_log_files.unlink()
+        elif not args.no_mcd:
+            svg_path = output_path_radical.with_suffix(".svg")
+            if svg_path.is_file() and input_path.stat().st_mtime <= svg_path.stat().st_mtime:
+                display(SVG(filename=svg_path))
+        
+        if "--rewrite" in remaining_args or "-r" in remaining_args:
+            rewritten_path = Path(f"{output_path_radical}_rewritten.mcd")
+            updated_source = rewritten_path.read_text().rstrip()
+            rewritten_path.unlink()
             if args.replace:
                 update_cell(updated_source)
-                return # abort, since this erases the [Out] section after returning asynchronously
-        
-        defer_path = output_dir / "things_to_be_displayed.tmp"
-        if defer_path.is_file():
-            for filename in defer_path.read_text().splitlines():
-                extension=Path(filename).suffix[1:]
-                if extension == "svg":
-                    # Fix a maximum width for SVG images:
-                    # https://stackoverflow.com/questions/51452569/how-to-resize-rescale-a-svg-graphic-in-an-ipython-jupyter-notebook
-                    svg = b64encode(Path(filename).read_bytes()).decode("utf8")
-                    display(HTML(f'<img max-width="100%" src="data:image/svg+xml;base64,{svg}">'))
-                elif extension == "md":
-                    display(Markdown(filename=filename))
-                else:
-                    display(Image(filename=filename, unconfined=False))
-            defer_path.unlink()
-        
-        if any(x in remaining_args for x in ("-c", "--convert")):
-            print(stdoutdata, end="")
-            return
-        
-        svg_path = Path(output_name).with_suffix(".svg")
-        if svg_path.is_file() and input_path.stat().st_mtime <= svg_path.stat().st_mtime:
-            if not args.no_mcd:
-                display(SVG(filename=svg_path))
-            if args.mld:
-                mld = Path(output_name).with_suffix(".html").read_text("utf8")
-                display(HTML(mld))
-
-        if updated_source and not args.no_text:
-            print(updated_source)
+            quiet_path = output_dir / "quiet_rewriting"
+            if quiet_path.is_file():
+                quiet_path.unlink()
+            else:
+                if not updated_source.startswith("%%mocodo"):
+                    updated_source = f"%%mocodo\n{updated_source}"
+                print(updated_source)
 
 
 try:

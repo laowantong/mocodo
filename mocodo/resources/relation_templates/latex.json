@@ -1,5 +1,7 @@
 {
-  "extension": ".tex",
+  "stem_suffix": "_",
+  "extension": "tex",
+  "to_defer": false,
   "highlight": "latex",
   "transform_attribute": [
     {

@@ -7,14 +7,14 @@ from ..mocodo_error import subsubopt_error
 
 DEFAULT_COLUMN_NAMES = {
     "en": {
-        "label": "Label",
+        "label": "Label of the attribute",
         "type": "Type",
-        "box": "Box",
+        "box": "Entity or relationship",
     },
     "fr": {
-        "label": "Libellé",
+        "label": "Libellé de l'attribut",
         "type": "Type",
-        "box": "Boîte",
+        "box": "Entité ou association",
     },
 }
 
@@ -49,6 +49,7 @@ class AttributeListExtractor(Transformer): # depth-first, post-order
                 actual_colons[m[2]] = m[1]
             subargs[m[2]] = subargs.pop(kind)
         if not actual_colons:
+            actual_colons["box"] = subargs["box"] = ""
             actual_colons["label"] = subargs["label"] = ""
             actual_colons["type"] = subargs["type"] = ""
         self.header = []
@@ -100,15 +101,19 @@ def run(source, subargs=None, common=None):
     extractor = AttributeListExtractor()
     extractor.transform(tree)
     extractor.finalize(common, subargs)
-    result = {"stem_suffix": "data_dict"}
-    if "md" in subargs or "markdown" in subargs:
-        result["text"] = extractor.get_markdown()
-        result["extension"] = "md"
-        result["displayable"] = True
-    else: # "tsv" is the default
-        result["text"] = extractor.get_tsv()
-        result["extension"] = "tsv"
-        result["displayable"] = False
-    return result
-
-# --convert data_dict:type,box,label="libellé de l'attribut",tsv
+    if "tsv" in subargs:
+        return {
+            "stem_suffix": "_data_dict",
+            "text": extractor.get_tsv(),
+            "extension": "tsv",
+            "to_defer": False,
+            "highlight": "tsv",
+        }
+    else: # Markdown is the default
+        return {
+            "stem_suffix": "_data_dict",
+            "text": extractor.get_markdown(),
+            "extension": "md",
+            "to_defer": False,
+            "highlight": "markdown",
+        }

@@ -1,5 +1,7 @@
 {
-  "extension": ".html",
+  "stem_suffix": "_",
+  "extension": "html",
+  "to_defer": false,
   "highlight": "html",
   "transform_attribute": [
     {

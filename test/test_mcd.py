@@ -104,7 +104,6 @@ class McdTest(unittest.TestCase):
         ]
         mcd = Mcd("\n".join(clauses), **params)
         self.assertEqual(mcd.get_layout(), list(range(16)))
-        print(mcd.get_layout_data())
         self.assertEqual(mcd.get_layout_data(), {
             'col_count': 4,
             'row_count': 4,
@@ -422,58 +421,6 @@ class McdTest(unittest.TestCase):
         actual = mcd.get_refitted_clauses(2).strip().replace("    ", "")
         self.assertEqual(actual, expected)
         
-    def test_automatic_fit_produces_next_grid(self):
-        # initially: (5, 4) for 11 nodes
-        source = """
-            Item: Norm, Wash, Haul
-            Milk, 0N Item, 0N Draw
-
-            Draw: Lady, Face, Soon, Dish, Ever
-            Unit, 1N Draw, 11 Folk: Peer, Tour, 
-
-            Folk: Hall, Fold, Baby, Bind, Gene, Aids, Free
-            Pack, 1N Folk, 1N Seem 
-            Seem: Teen, Amid
-            Disk, 0N Flip, 1N Seem
-            Flip : Gold, Ride
-
-            Call: Ride, Soon
-            Gear , 1N Call, 1N Folk
-        """
-        mcd = Mcd(source, **params)
-        # (5, 4) being a preferred grid, the next one (6, 4) is generated
-        expected = """
-            Item: Norm, Wash, Haul
-            Milk, 0N Item, 0N Draw
-            Draw: Lady, Face, Soon, Dish, Ever
-            Unit, 1N Draw, 11 Folk: Peer, Tour,
-            Folk: Hall, Fold, Baby, Bind, Gene, Aids, Free
-            Pack, 1N Folk, 1N Seem
-
-            Seem: Teen, Amid
-            Disk, 0N Flip, 1N Seem
-            Flip : Gold, Ride
-            Call: Ride, Soon
-            Gear , 1N Call, 1N Folk
-            :
-
-            :
-            :
-            :
-            :
-            :
-            :
-
-            :
-            :
-            :
-            :
-            :
-            :
-        """.strip().replace("  ", "")
-        actual = mcd.get_refitted_clauses(-1).strip().replace("    ", "")
-        self.assertEqual(actual, expected)
-
     def test_implicit_fit_produces_min_grid_next(self):
         # initially: (4, 5) for 11 nodes
         source = """
@@ -514,8 +461,6 @@ class McdTest(unittest.TestCase):
             :
             :
         """.strip().replace("  ", "")
-        actual = mcd.get_refitted_clauses(-1).strip().replace("    ", "")
-        self.assertEqual(actual, expected)
         actual = mcd.get_refitted_clauses(1).strip().replace("    ", "")
         self.assertEqual(actual, expected)
     

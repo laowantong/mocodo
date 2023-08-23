@@ -5,6 +5,7 @@ import locale
 import os
 import random
 import re
+import shutil
 import sys
 from io import open
 from pathlib import Path
@@ -286,12 +287,6 @@ def parsed_arguments():
         type=extract_subargs,
         help="translate all or parts of the MCD into a different format",
     )
-    source_group.add_argument("--relations",
-        metavar="STEM_OR_PATH",
-        nargs="*",
-        default=["html", "text"],
-        help="use one or several templates to transform the MCD into a relational model. Name (without extension) of files located in the directory 'relation_templates', or path to personal files",
-    )
     source_group.add_argument("--seed",
         metavar="FLOAT",
         type=float,
@@ -308,6 +303,7 @@ def parsed_arguments():
         type=str,
         help="name of the model, used at various places (file system, database, etc.)",
     )
+    
     aspect_group.add_argument("--df",
         metavar="STR",
         type=str,
@@ -387,17 +383,9 @@ def parsed_arguments():
         help="strings to be used in the left gutter for alt identifiers",
     )
 
-    nb_group.add_argument("--mld",
-        action="store_true",
-        help="display the HTML relational model in the cell output",
-    )
     nb_group.add_argument("--no_mcd",
         action="store_true",
         help="do not display the conceptual diagram in the cell output",
-    )
-    nb_group.add_argument("--no_text",
-        action="store_true",
-        help="do not print the rewritten MCD source in the cell output",
     )
     nb_group.add_argument("--replace",
         action="store_true",
@@ -411,14 +399,11 @@ def parsed_arguments():
     params["left_gutter_alt_ids"] = dict(zip("123456789", alt_ids))
     params["added_keys"] = ["added_keys", "params_path"]
     add_key("script_directory", script_directory)
-    add_key("output_name", os.path.join(params["output_dir"], os.path.splitext(os.path.basename(params["input"]))[0]))
+    add_key("output_name", Path(params["output_dir"]) / Path(params["input"]).stem)
 
     if not os.path.exists(params["input"]):
-        import shutil  # fmt: skip
-        shutil.copyfile(
-            Path(params["script_directory"]) / "resources" / "pristine_sandbox.mcd",
-            params["input"],
-        )
+        path = Path(params["script_directory"], "resources", "pristine_sandbox.mcd")
+        shutil.copyfile(path, params["input"])
     random.seed(params["seed"])
     try:
         params["title"] = params["title"].decode("utf8")

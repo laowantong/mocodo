@@ -1,5 +1,7 @@
 {
-  "extension": ".mld",
+  "stem_suffix": "_mld",
+  "extension": "mcd",
+  "to_defer": false,
   "highlight": "plain",
   "compose_primary_key": "_{label}",
   "compose_foreign_key": "#{label} > {outer_source} > {raw_label}",

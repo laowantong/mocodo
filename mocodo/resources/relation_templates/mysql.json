@@ -1,5 +1,7 @@
 {
-  "extension": "_mysql.sql",
+  "stem_suffix": "_mysql",
+  "extension": "sql",
+  "to_defer": false,
   "highlight": "sql",
   "transform_attribute": [
     {

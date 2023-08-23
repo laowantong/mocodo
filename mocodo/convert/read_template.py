@@ -2,7 +2,7 @@ from bisect import bisect_left
 import json
 from pathlib import Path
 
-from .mocodo_error import MocodoError
+from ..mocodo_error import MocodoError
 
 def read_template(stem_or_path, official_template_dir):
 

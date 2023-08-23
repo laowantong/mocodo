@@ -261,8 +261,9 @@ def run(source, subargs=None, common=None):
     extractor.visit(tree)
     text = extractor.get_graphviz(common)
     return {
-        "stem_suffix": "erd_chen",
+        "stem_suffix": "_erd_chen",
         "text": text,
         "extension": "gv",
-        "displayable": True,
+        "to_defer": True,
+        "highlight": "graphviz",
     }

@@ -83,8 +83,8 @@ ENCLOS: num. enclos
 ```graphviz
 digraph {
   node [shape=box]
-  "ESPÈCE" -> "ANIMAL"
   "ANIMAL" -> "ANIMAL"
+  "ESPÈCE" -> "ANIMAL"
   "ANIMAL" -> "OCCUPE"
   "ESPÈCE" -> "PEUT COHABITER AVEC"
   "ESPÈCE" -> "PEUT VIVRE DANS"
@@ -1124,29 +1124,6 @@ ANIMAL: #code espèce > ESPÈCE > code espèce, _nom, _date naissance, sexe, dat
 **OCCUPE** (<ins>_#code espèce_</ins>, <ins>_#nom_</ins>, <ins>_#date naissance_</ins>, <ins>num. enclos</ins>, date début, date fin)<br>
 **PEUT COHABITER AVEC** (<ins>_#code espèce_</ins>, <ins>_#code espèce commensale_</ins>, nb. max. commensaux)<br>
 **PEUT VIVRE DANS** (<ins>_#code espèce_</ins>, <ins>num. enclos</ins>, nb. max. congénères)
-```
-
-### `markdown_data_dict.json`
-
-```markdown
-- nom
-- date naissance
-- sexe
-- date décès
-- type alimentation : _INTEGER UNSIGNED NOT NULL_
-- CARNIVORE : _BOOLEAN_
-- quantité viande
-- HERBIVORE : _BOOLEAN_
-- plante préférée
-- code espèce
-- nom latin
-- nom vernaculaire
-- num. enclos
-- date début
-- date fin
-- nb. max. commensaux
-- num. enclos
-- nb. max. congénères
 ```
 
 ### `markdown_verbose.json`

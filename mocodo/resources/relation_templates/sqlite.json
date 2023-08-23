@@ -1,5 +1,7 @@
 {
-  "extension": "_sqlite.sql",
+  "stem_suffix": "_sqlite",
+  "extension": "sql",
+  "to_defer": false,
   "highlight": "sql",
   "transform_attribute": [
     {

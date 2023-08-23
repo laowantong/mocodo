@@ -61,8 +61,9 @@ def run(source, subargs, common=None):
         raise subsubopt_error(extension)
     text = module.run(source, subargs, common)
     return {
-        "stem_suffix": "erd_crow",
+        "stem_suffix": "_erd_crow",
         "text": text,
         "extension": extension,
-        "displayable": True,
+        "to_defer": True,
+        "highlight": "mermaid" if extension == "mmd" else "graphviz",
     }

@@ -31,10 +31,9 @@ class ArrangeBB(unittest.TestCase):
         """.replace("   ", "")
         params = parsed_arguments()
         mcd = Mcd(source, params)
-        layout_data = mcd.get_layout_data()
-        subargs = {"is_organic": False}
+        subargs = {"grid": True}
         seed(42)
-        rearrangement = arrange(layout_data, subargs)
+        rearrangement = arrange(mcd, subargs)
         mcd.set_layout(**rearrangement)
         expected = {
             "coords": {
@@ -93,10 +92,9 @@ class ArrangeBB(unittest.TestCase):
         """.replace("   ", "")
         params = parsed_arguments()
         mcd = Mcd(source, params)
-        layout_data = mcd.get_layout_data()
-        subargs = {"is_organic": False}
+        subargs = {"grid": True}
         seed(42)
-        rearrangement = arrange(layout_data, subargs)
+        rearrangement = arrange(mcd, subargs)
         expected = {
             "coords": {
                 0: (0, 2),
@@ -148,7 +146,6 @@ class ArrangeBB(unittest.TestCase):
         """.replace("   ", "")
         params = parsed_arguments()
         mcd = Mcd(source, params)
-        layout_data = mcd.get_layout_data()
         subargs = {"is_organic": False}
         seed(458)
         expected = """
@@ -170,7 +167,7 @@ class ArrangeBB(unittest.TestCase):
             SUSPENDISSE: diam
             :
         """.strip().replace("  ", "")
-        rearrangement = arrange(layout_data, subargs)
+        rearrangement = arrange(mcd, subargs)
         self.assertEqual(
             rearrangement,
             {
@@ -202,7 +199,6 @@ class ArrangeBB(unittest.TestCase):
         """.replace("  ", "")
         params = parsed_arguments()
         mcd = Mcd(source, params)
-        layout_data = mcd.get_layout_data()
         subargs = {"is_organic": True}
         seed(42)
         expected = {
@@ -226,7 +222,7 @@ class ArrangeBB(unittest.TestCase):
             "col_count": 5,
             "layout": [4, 0, None, None, None, 5, 1, None, None, None, 9, 2, 6, 7, 3, None, None, 10, 11, None, None, None, 8, None, None],  # fmt: skip
         }
-        rearrangement = arrange(layout_data, subargs)
+        rearrangement = arrange(mcd, subargs)
         self.assertEqual(rearrangement, expected)
         expected = """
             DF1, 11 LOREM, 1N SUSPENDISSE

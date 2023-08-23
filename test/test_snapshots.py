@@ -6,11 +6,11 @@ from mocodo.argument_parser import parsed_arguments
 from mocodo.common import Common
 from mocodo.font_metrics import font_metrics_factory
 from mocodo.mcd import Mcd
-from mocodo.mcd_to_svg import main as mcd_to_svg
-from mocodo.read_template import read_template
-from mocodo.relations import *
+from mocodo.mcd_to_svg import main as dump_mcd_to_svg
+from mocodo.convert.read_template import read_template
+from mocodo.convert.relations import *
 
-TEMPLATE_DIR = Path("mocodo") / "resources" / "relation_templates"
+TEMPLATE_DIR = Path("mocodo", "resources", "relation_templates")
 
 minimal_template = read_template("text", TEMPLATE_DIR)
 debug_template = read_template("debug", TEMPLATE_DIR)
@@ -62,7 +62,7 @@ try:
 except:
     pass
 result.append(f"## SVG output\n")
-mcd_to_svg(mcd, common)
+dump_mcd_to_svg(mcd, common)
 result.append(f"### Static\n")
 result.append("![](snapshot_static.svg)\n")
 result.append(f"### Dynamic\n")

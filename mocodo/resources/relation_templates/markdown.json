@@ -1,5 +1,7 @@
 {
-  "extension": ".md",
+  "stem_suffix": "_",
+  "extension": "md",
+  "to_defer": false,
   "highlight": "markdown",
   "compose_primary_key": "<ins>{label}</ins>",
   "compose_alt_primary_key": "<ins>{label}<sup>u{alt_groups}</sup></ins>",

@@ -1,5 +1,7 @@
 {
-  "extension": ".txt",
+  "stem_suffix": "_",
+  "extension": "txt",
+  "to_defer": false,
   "compose_alt_primary_key": "_{label}<unicodify>{alt_groups}</unicodify>_",
   "compose_alt_normal_attribute": "{label}<unicodify>{alt_groups}</unicodify>",
   "transform_relational_schema": [

@@ -65,9 +65,9 @@ def run(source, pre_token, subargs, params):
         # filter special non-op_tk operations
         if stand_for(op_name, "create") and pre_token == "types":
             source = create_type_placeholders(source)
-        if stand_for(op_name, "guess") and pre_token == "types":
-            source = guess_types(source)
-        if stand_for(op_name, "randomize") and pre_token == "cards":
+        elif stand_for(op_name, "guess") and pre_token == "types":
+            source = guess_types(source, subsubarg, params)
+        elif stand_for(op_name, "randomize") and pre_token == "cards":
             source = randomize_cards(source, params)
         else: # apply a normal op_tk operation
             source = transform_source(source, Mapper(pre_token, op_name, subsubarg, params))

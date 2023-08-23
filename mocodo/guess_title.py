@@ -46,4 +46,4 @@ def may_update_params_with_guessed_title(source, params):
         return
     Path(f"{params['output_name']}_new_title.txt").write_text(title)
     params["title"] = title
-    params["output_name"] = str(Path(params["output_dir"]) / title)
+    params["output_name"] = str(Path(params["output_dir"], title))

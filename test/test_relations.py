@@ -6,7 +6,7 @@ __import__("sys").path[0:0] = ["mocodo"]
 from mocodo.argument_parser import parsed_arguments
 from mocodo.file_helpers import read_contents
 from mocodo.mcd import Mcd
-from mocodo.relations import *
+from mocodo.convert.relations import *
 
 
 minimal_template = json.loads(read_contents("mocodo/resources/relation_templates/text.json"))

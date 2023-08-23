@@ -7,14 +7,15 @@ from .cross import cross
 from ..mocodo_error import MocodoError
 from ..argument_parser import non_negative_integer, positive_integer
 
-def arrange(layout_data, subargs, has_expired=None):
+def arrange(mcd, subargs, has_expired=None):
 
+    layout_data = mcd.get_layout_data()
     successors = layout_data["successors"]
     col_count = layout_data["col_count"]
     row_count = layout_data["row_count"]
     multiplicity = layout_data["multiplicity"]
 
-    is_organic = subargs["is_organic"] # always populated by the caller
+    is_organic = "grid" not in subargs
     min_objective = non_negative_integer(subargs.get("min_objective", 0))
     max_objective = non_negative_integer(subargs.get("max_objective", 15))
     call_limit = positive_integer(subargs.get("call_limit", 10000))
@@ -222,10 +223,9 @@ if __name__ == "__main__":
     """
     params = parsed_arguments()
     mcd = Mcd(clauses.replace("  ", ""), **params)
-    layout_data = mcd.get_layout_data()
     starting_time = time()
     params["seed"] = 42
-    rearrangement = arrange(layout_data, {"is_organic": True}, lambda: False)
+    rearrangement = arrange(mcd, {"is_organic": True}, lambda: False)
     if rearrangement:
         print()
         mcd.set_layout(**rearrangement)

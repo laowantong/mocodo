@@ -1,5 +1,7 @@
 {
-  "extension": "_verbose.html",
+  "stem_suffix": "_verbose",
+  "extension": "html",
+  "to_defer": false,
   "highlight": "html",
   "transform_attribute": [
     {

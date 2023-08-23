@@ -52,7 +52,7 @@ class TestDataDict(unittest.TestCase):
         }
         actual = data_dict.run(source, common=common, subargs=subargs)["text"]
         expected = """
-            | Entité ou association | Type | Libellé |
+            | Entité ou association | Type | Libellé de l'attribut |
             |:---|:---|:---|
             | **CLIENT** |  | Nom |
             | **"** | varchar(40) | Adresse |
@@ -85,22 +85,22 @@ class TestDataDict(unittest.TestCase):
         """
         self.assertEqual(actual.strip(), expected.replace("    ", "").strip())
 
-        # By default: label,type,svg
+        # By default: md,box,label,type
 
-        subargs = {}
+        subargs = {"tsv": True}
         actual = data_dict.run(source, common=common, subargs=subargs)["text"]
         expected = """
-            Libellé\tType
-            Adresse\tvarchar(40)
-            Date\tdate
-            Libellé\tvarchar(20)
-            Montant\tdecimal(5,2) DEFAULT '0.00'
-            Nom\t
-            Num commande\ttinyint(4)
-            Prix unitaire\tdecimal(5,2)
-            Quantité\ttinyint(4)
-            Réf. client\tvarchar(8)
-            Réf. produit\tvarchar(8)
+            Entité ou association\tLibellé de l'attribut\tType
+            CLIENT\tAdresse\tvarchar(40)
+            CLIENT\tNom\t
+            CLIENT\tRéf. client\tvarchar(8)
+            COMMANDE\tDate\tdate
+            COMMANDE\tMontant\tdecimal(5,2) DEFAULT '0.00'
+            COMMANDE\tNum commande\ttinyint(4)
+            INCLURE\tQuantité\ttinyint(4)
+            PRODUIT\tLibellé\tvarchar(20)
+            PRODUIT\tPrix unitaire\tdecimal(5,2)
+            PRODUIT\tRéf. produit\tvarchar(8)
         """
         self.assertEqual(actual.strip(), expected.replace("    ", "").strip())
 

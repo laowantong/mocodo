@@ -1,4 +1,7 @@
 {
+  "stem_suffix": "_dependencies",
+  "extension": "gv",
+  "to_defer": true,
   "highlight": "graphviz",
   "compose_primary_key": "",
   "compose_normal_attribute": "",

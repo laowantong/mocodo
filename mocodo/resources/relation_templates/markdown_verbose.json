@@ -1,5 +1,7 @@
 {
-  "extension": "_verbose.md",
+  "stem_suffix": "_verbose",
+  "extension": "md",
+  "to_defer": false,
   "highlight": "markdown",
   "compose_association_attribute": "{label}<item>Le champ _{label}_ était déjà un simple attribut de l'association _{this_relation_name}_.</item>",
   "compose_deleted_child_attribute": "{label}<item>Le champ _{label}_ a migré à partir de l'entité-fille _{adjacent_source}_ (supprimée).</item>",

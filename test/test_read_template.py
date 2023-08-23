@@ -3,10 +3,10 @@ import unittest
 from pathlib import Path
 
 __import__("sys").path[0:0] = ["mocodo"]
-from mocodo.read_template import read_template
+from mocodo.convert.read_template import read_template
 from mocodo.mocodo_error import MocodoError
 
-TEMPLATE_FOLDER = Path("test") / "test_data" / "templates"
+TEMPLATE_FOLDER = Path("test", "test_data", "templates")
 
 class TestReadTemplate(unittest.TestCase):
 
@@ -39,7 +39,7 @@ class TestReadTemplate(unittest.TestCase):
         self.assertRaisesRegex(MocodoError, r"Mocodo Err\.39", read_template, "bad_non_increasing_order", TEMPLATE_FOLDER)
     
     def test_official_derivation(self):
-        official_template_dir = Path("mocodo") / "resources" / "relation_templates"
+        official_template_dir = Path("mocodo", "resources", "relation_templates")
         template = read_template("latex_barebones", official_template_dir)
         # print(json.dumps(template, indent=4))
         expected = json.loads(official_template_dir.joinpath("latex.json").read_text())

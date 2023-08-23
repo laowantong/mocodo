@@ -9,7 +9,6 @@ import contextlib
 from .file_helpers import read_contents, write_contents
 from .mocodo_error import MocodoError
 from .version_number import version
-from .read_template import read_template
 
 
 def safe_print_for_PHP(s):
@@ -85,26 +84,27 @@ class Common:
         style["transparent_color"] = None
         return style
 
-    def dump_mld_files(self, relations):
-        official_template_dir = Path(self.params["script_directory"]) / "resources" / "relation_templates"
-        for stem_or_path in self.params["relations"]:
-            template = read_template(stem_or_path, official_template_dir)
-            try:
-                text = relations.get_text(template)
-            except Exception as error:
-                raise MocodoError(37, _('Problem when generating the relational schema with template "{stem_or_path}": {error}').format(stem_or_path=stem_or_path, error=error))  # fmt: skip
-            path = Path(self.params["output_name"] + template.get("extension", ""))
-            write_contents(path, text)
-            safe_print_for_PHP(self.output_success_message(path))
+    def apply_template(self, relations, template):
+        try:
+            text = relations.get_text(template)
+        except Exception as error:
+            raise MocodoError(37, _('Problem when generating the relational schema with template "{stem_or_path}": {error}').format(stem_or_path=stem_or_path, error=error))  # fmt: skip
+        return {
+            "stem_suffix": template["stem_suffix"],
+            "text": text,
+            "extension": template["extension"],
+            "to_defer": template.get("to_defer", False),
+            "highlight": template.get("highlight", "plain"),
+        }
 
     def dump_file(self, path, content):
         write_contents(path, content)
         safe_print_for_PHP(self.output_success_message(path))
 
-    def calculate_or_retrieve_geo(self, mcd, reuse_geo=False):
+    def calculate_or_retrieve_geo(self, mcd):
         geo_path = Path(f"{self.params['output_name']}_geo.json")
         mcd_path = Path(f"{self.params['input']}")
-        if geo_path.is_file() and (reuse_geo or mcd_path.stat().st_mtime < geo_path.stat().st_mtime):
+        if geo_path.is_file() and (self.params["reuse_geo"] or mcd_path.stat().st_mtime < geo_path.stat().st_mtime):
             try:
                 web_geo = json.loads(geo_path.read_text("utf8"))
                 geo = {k: dict(v) if isinstance(v, list) else v for (k, v) in web_geo.items()}

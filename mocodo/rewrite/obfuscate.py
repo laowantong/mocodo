@@ -35,7 +35,7 @@ def obfuscator_factory(pool, params):
         lorem_path = Path(pool)
         lorem_text = lorem_path.read_text()
     except IOError:
-        lorem_dir = Path(params["script_directory"]) / "resources" / "lorem"
+        lorem_dir = Path(params["script_directory"], "resources", "lorem")
         lorem_path = lorem_dir / f"{lorem_path.stem}.txt"
         try:
             lorem_text = lorem_path.read_text()

@@ -1,5 +1,7 @@
 {
-  "extension": "_debug.md",
+  "stem_suffix": "_debug",
+  "extension": "md",
+  "to_defer": false,
   "highlight": "markdown",
   "compose_association_attribute": "| {this_relation_name} | {label} | `association_attribute` | {adjacent_source} | {outer_source} |\n",
   "compose_deleted_child_attribute": "| {this_relation_name} | {label} | `deleted_child_attribute` | {adjacent_source} | {outer_source} |\n",

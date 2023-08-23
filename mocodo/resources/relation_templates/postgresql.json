@@ -1,5 +1,7 @@
 {
-  "extension": "_postgresql.sql",
+  "stem_suffix": "_postgresql",
+  "extension": "sql",
+  "to_defer": false,
   "highlight": "sql",
   "transform_attribute": [
     {

@@ -12,7 +12,7 @@ class Exploder(Visitor):
             arity = float(subargs["arity"])
         self.empty_only = (arity == 2.5)
         self.threshold = int(arity)
-        if subargs.get("weak"):
+        if "weak" in subargs:
             # Don't create an identifier for the new weak entity
             self.explosion_template = ":"
             # Prefix the potential first attribute with an underscore

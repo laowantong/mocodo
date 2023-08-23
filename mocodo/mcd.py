@@ -344,14 +344,14 @@ class Mcd:
         self.update_footer()
         return self.header + "\n\n".join(self.get_row_text(row) for row in zip(*self.rows)) + self.footer
     
-    def get_refitted_clauses(self, nth_fit):
-        grid = Grid(len(self.boxes) + 100) # make sure there are enough precalculated grids
-        start = len(self.entities) + len(self.associations) # number of nonempty boxes
-        if nth_fit < 0:
-            if (self.col_count, self.row_count) in grid: # the current grid is among precalculated ones
-                start = self.col_count * self.row_count # start from the completed grid
-            nth_fit = 1 # and calculate the next one
-        (col_count, row_count) = grid.get_nth_next(start, nth_fit)
+    def get_refitted_clauses(self, nth_fit_or_col_count, row_count=None):
+        if row_count:
+            col_count = nth_fit_or_col_count
+        else:
+            nth_fit = nth_fit_or_col_count
+            grid = Grid(len(self.boxes) + 100) # make sure there are enough precalculated grids
+            start = len(self.entities) + len(self.associations) # number of nonempty boxes
+            (col_count, row_count) = grid.get_nth_next(start, nth_fit)
         result = []
         i = 0
         for box in self.boxes:

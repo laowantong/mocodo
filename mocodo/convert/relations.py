@@ -1,10 +1,7 @@
 import collections
-import os
-import pprint
 import re
 
-from .file_helpers import write_contents
-from .mocodo_error import MocodoError
+from ..mocodo_error import MocodoError
 
 
 class Relations:
@@ -172,30 +169,8 @@ class Relations:
                 line = transform(line, "transform_forced_relation")
             line = transform(line, "transform_relation")
             lines.append(line)
-        if template.get("extension") == ".mld":
-            rows = [[]]
-            all_commas = [True] * self.mcd.col_count
-            for row in self.mcd.rows:
-                for (i, box) in enumerate(row):
-                    for line in lines:
-                        if line.startswith(box.name + ":"):
-                            rows[-1].append(line)
-                            all_commas[i] = False
-                            break
-                    else:
-                        rows[-1].append(":")
-                rows.append([])
-            rows.pop()
-            for row in rows:
-                row[:] = [x for (x, all_comma) in zip(row, all_commas) if not all_comma]
-            lines = []
-            for row in rows:
-                lines.append(":")
-                for x in row:
-                    lines.append(x)
-                    lines.append(":")
-                lines.append("\n")
-            lines.pop()
+        if template.get("stem_suffix") == "_mld": # relational diagram
+            lines = self.map_mcd_layout_onto_mld(lines)
         data["relations"] = template["relation_separator"].join(lines)
 
         if self.deleted_relations:
@@ -213,6 +188,32 @@ class Relations:
 
 
     # private
+
+    def map_mcd_layout_onto_mld(self, lines):
+        rows = [[]]
+        all_commas = [True] * self.mcd.col_count
+        for row in self.mcd.rows:
+            for (i, box) in enumerate(row):
+                for line in lines:
+                    if line.startswith(box.name + ":"):
+                        rows[-1].append(line)
+                        all_commas[i] = False
+                        break
+                else:
+                    rows[-1].append(":")
+            rows.append([])
+        rows.pop()
+        for row in rows:
+            row[:] = [x for (x, all_comma) in zip(row, all_commas) if not all_comma]
+        lines = []
+        for row in rows:
+            lines.append(":")
+            for x in row:
+                lines.append(x)
+                lines.append(":")
+            lines.append("\n")
+        lines.pop()
+        return lines
 
     def may_retrieve_distant_leg_note(self, leg, attribute):
         if leg.entity_name in self.inheritance_parent_or_children_to_delete:

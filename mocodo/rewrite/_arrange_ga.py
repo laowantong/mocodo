@@ -4,8 +4,9 @@ from random import choice, random, randrange, sample
 from .fitness import fitness
 from ..argument_parser import rate, positive_integer
 
-def arrange(layout_data, subargs, has_expired=None):
+def arrange(mcd, subargs, has_expired=None):
     
+    layout_data = mcd.get_layout_data()
     links = layout_data["links"]
     successors = layout_data["successors"]
     col_count = layout_data["col_count"]
@@ -125,10 +126,9 @@ if __name__ == "__main__":
     """
     params = parsed_arguments()
     mcd = Mcd(clauses.replace("  ", ""), **params)
-    layout_data = mcd.get_layout_data()
     starting_time = time()
     params["seed"] = 42
-    rearrangement = arrange(layout_data, {"is_organic": True}, lambda: False)
+    rearrangement = arrange(mcd, {}, lambda: False)
     if rearrangement:
         print()
         mcd.set_layout(**rearrangement)
