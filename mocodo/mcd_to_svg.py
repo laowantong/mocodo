@@ -87,7 +87,7 @@ def main(mcd, common):
         safe_print_for_PHP(common.output_success_message(path))
     svg = bytes(text, "utf-8")
     for (format, function) in (("png", svg2png), ("pdf", svg2pdf)):
-        if common.params[format]:
+        if format in common.params["svg_to"]:
             path = Path(f"{common.params['output_name']}.{format}")
             function(bytestring=svg, write_to=str(path))
             safe_print_for_PHP(common.output_success_message(path))

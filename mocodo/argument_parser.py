@@ -241,13 +241,11 @@ def parsed_arguments():
         nargs="*",
         help="one or several encodings to be tried successively when reading the input file",
     )
-    io_group.add_argument("--png",
-        action="store_true",
-        help="generate a PNG version of the SVG output (requires CairoSVG)",
-    )
-    io_group.add_argument("--pdf",
-        action="store_true",
-        help="generate a PDF version of the SVG output (requires CairoSVG)",
+    io_group.add_argument("--svg_to",
+        choices=["png", "pdf"],
+        nargs="+",
+        default=[],
+        help="generate a PNG or a PDF version of the SVG output (requires CairoSVG)",
     )
     io_group.add_argument("--print_params",
         action="store_true",
@@ -353,35 +351,16 @@ def parsed_arguments():
         action="store_true",
         help="raise an error when horizontal or vertical legs overlap",
     )
-    aspect_group.add_argument("--left_gutter",
-        choices=["on", "off", "auto"],
-        default="auto",
-        help="show the status of candidate identifiers in each entity",
-    )
-    aspect_group.add_argument("--left_gutter_strong_id",
-        metavar="STR",
-        default="ID",
-        type=str,
-        help="string to be used in the left gutter for strong identifiers",
-    )
-    aspect_group.add_argument("--left_gutter_weak_id",
-        metavar="STR",
-        default="id",
-        type=str,
-        help="string to be used in the left gutter for weak identifiers",
-    )
-    aspect_group.add_argument("--left_gutter_alt_ids",
+    aspect_group.add_argument("--gutters",
         metavar="STR",
         nargs="+",
-        default=list("123456789"),
-        help="strings to be used in the left gutter for alt identifiers",
+        type=extract_subargs,
+        default=argparse.SUPPRESS, 
+        help="set the visibility and the contents of the lateral gutters",
     )
 
     parser.set_defaults(**default_params)
     params = vars(parser.parse_args(remaining_args))
-    alt_ids = params["left_gutter_alt_ids"]
-    alt_ids += list("123456789")[len(alt_ids):]
-    params["left_gutter_alt_ids"] = dict(zip("123456789", alt_ids))
     params["added_keys"] = ["added_keys", "params_path"]
     add_key("script_directory", script_directory)
     add_key("output_name", Path(params["output_dir"]) / Path(params["input"]).stem)

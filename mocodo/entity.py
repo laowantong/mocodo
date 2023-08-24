@@ -45,8 +45,8 @@ class Entity:
     def register_boxes(self, boxes):
         self.boxes = boxes
     
-    def set_left_gutter_visibility(self, is_visible):
-        self.show_left_gutter = is_visible
+    def set_id_gutter_visibility(self, is_visible):
+        self.show_id_gutter = is_visible
     
     def calculate_size(self, style, get_font_metrics):
         cartouche_font = get_font_metrics(style["entity_cartouche_font"])
@@ -59,11 +59,11 @@ class Entity:
         cartouche_and_attribute_widths = []
         cartouche_and_attribute_widths.append(self.get_cartouche_string_width(self.name_view))
         cartouche_and_attribute_widths.extend(a.w for a in self.attributes)
-        self.left_gutter_width = 0
-        if self.show_left_gutter:
-            self.left_gutter_width = 2 * style["rect_margin_width"]
-            self.left_gutter_width += max(attribute.id_width for attribute in self.attributes)
-        self.w = 2 * style["rect_margin_width"] + self.left_gutter_width + max(cartouche_and_attribute_widths)
+        self.id_gutter_width = 0
+        if self.show_id_gutter:
+            self.id_gutter_width = 2 * style["rect_margin_width"]
+            self.id_gutter_width += max(attribute.id_width for attribute in self.attributes)
+        self.w = 2 * style["rect_margin_width"] + self.id_gutter_width + max(cartouche_and_attribute_widths)
         self.h = (
             len(self.attributes) * (self.attribute_height + style["line_skip_height"])
             - style["line_skip_height"]
@@ -73,7 +73,7 @@ class Entity:
         self.w += self.w % 2
         self.h += self.h % 2
         for attribute in self.attributes:
-            attribute.set_left_gutter_width(self.left_gutter_width)
+            attribute.set_id_gutter_width(self.id_gutter_width)
 
     def register_center(self, geo):
         self.cx = geo["cx"][self.name]
@@ -115,9 +115,9 @@ class Entity:
             ( # lower part background (with or without a margin for the left gutter)
                 "rect",
                 { 
-                    "x": self.l + self.left_gutter_width,
+                    "x": self.l + self.id_gutter_width,
                     "y": self.t + self.cartouche_height + 2 * style["rect_margin_height"],
-                    "w": self.w - self.left_gutter_width,
+                    "w": self.w - self.id_gutter_width,
                     "h": self.h - self.cartouche_height - 2 * style["rect_margin_height"],
                     "color": style["entity_color"],
                     "stroke_color": "none",
@@ -126,16 +126,16 @@ class Entity:
                 },
             )
         )
-        if self.show_left_gutter:
+        if self.show_id_gutter:
             result.append(
-                ( # left_gutter background
+                ( # id_gutter background
                     "rect",
                     {
                         "x": self.l,
                         "y": self.t + self.cartouche_height + 2 * style["rect_margin_height"],
-                        "w": self.left_gutter_width,
+                        "w": self.id_gutter_width,
                         "h": self.h - self.cartouche_height - 2 * style["rect_margin_height"],
-                        "color": style["left_gutter_color"],
+                        "color": style["id_gutter_color"],
                         "stroke_color": "none",
                         "stroke_depth": 0,
                         "opacity": 1,
@@ -146,9 +146,9 @@ class Entity:
                 ( # line at the right of the left gutter
                     "line",
                     {
-                        "x0": self.l + self.left_gutter_width,
+                        "x0": self.l + self.id_gutter_width,
                         "y0": self.t + self.cartouche_height + 2 * style["rect_margin_height"],
-                        "x1": self.l + self.left_gutter_width,
+                        "x1": self.l + self.id_gutter_width,
                         "y1": self.b,
                         "stroke_color": style["entity_stroke_color"],
                         "stroke_depth": style["inner_stroke_depth"] / 4,
@@ -198,7 +198,7 @@ class Entity:
             )
         )
         x = self.cx - self.w // 2 + style["rect_margin_width"]
-        dx = self.left_gutter_width
+        dx = self.id_gutter_width
         dy = self.cartouche_height + 3 * style["rect_margin_height"] - self.h // 2
         for attribute in self.attributes:
             attribute.name = self.name

@@ -10,7 +10,7 @@ from .diagram_link import DiagramLink
 from .entity import Entity
 from .grid import Grid
 from .inheritance import Inheritance
-from .mocodo_error import MocodoError
+from .mocodo_error import MocodoError, subopt_error
 from .phantom import Phantom
 
 from .tools.parser_tools import extract_clauses
@@ -147,18 +147,18 @@ class Mcd:
             for inheritance in self.inheritances:
                 for leg in inheritance.legs[1:]: # the first leg is the parent
                     children.add(leg.entity_name) # the other legs are its children
-            Attribute.left_gutter_strong_id = params.get("left_gutter_strong_id", "ID")
-            Attribute.left_gutter_weak_id = params.get("left_gutter_weak_id", "id")
-            Attribute.left_gutter_alt_ids = params.get("left_gutter_alt_ids", dict(zip("123456789", "123456789")))
+            Attribute.id_gutter_strong_string = params["id_gutter_strong_string"]
+            Attribute.id_gutter_weak_string = params["id_gutter_weak_string"]
+            Attribute.id_gutter_alts = params["id_gutter_alts"]
             for (entity_name, entity) in self.entities.items():
                 entity.add_attributes(strengthening_legs[entity_name], entity_name in children)
             self.has_alt_identifier = any(entity.has_alt_identifier for entity in self.entities.values())
         
-        def set_left_gutter_visibility():
-            left_gutter = params.get("left_gutter", "auto")
-            is_visible = left_gutter == "on" or left_gutter == "auto" and self.has_alt_identifier
+        def set_id_gutter_visibility():
+            flag = params["id_gutter_visibility"]
+            is_visible = flag == "on" or (flag == "auto" and self.has_alt_identifier)
             for entity in self.entities.values():
-                entity.set_left_gutter_visibility(is_visible)
+                entity.set_id_gutter_visibility(is_visible)
         
         def tweak_straight_cards():
             coordinates = {}
@@ -239,7 +239,15 @@ class Mcd:
                     self.boxes.append(box)
                     box.register_boxes(self.boxes)
             self.box_count = len(self.boxes)
-        
+
+        # The following keys are actually created by __main__.py.
+        # Using `get` instead of `[]` is for testing purposes only.
+        params.setdefault("id_gutter_strong_string", "ID")
+        params.setdefault("id_gutter_weak_string", "id")
+        params.setdefault("id_gutter_alts", dict(zip("123456789", "123456789")))
+        params.setdefault("id_gutter_visibility", "auto")
+        print(params)
+
         self.get_font_metrics = get_font_metrics
         phantom_counter = itertools.count()
         self.uid = calculate_uid()
@@ -247,7 +255,7 @@ class Mcd:
         self.update_footer()
         add_legs()
         add_attributes()
-        set_left_gutter_visibility()
+        set_id_gutter_visibility()
         add_diagram_links()
         may_center()
         make_boxes()

@@ -55,8 +55,10 @@ class Runner:
             self.params["print_params"] = False
             self.params_contents = json.dumps(self.params, ensure_ascii=False, indent=2, sort_keys=True)
             return safe_print_for_PHP(self.params_contents)
-        
-        if "rewrite" in self.params: # include the case where the list is empty
+
+        self.add_gutter_params(self.params)
+
+        if "rewrite" in self.params: # include the case where --rewrite is provided without sub-arguments
             for (subopt, subargs) in self.params["rewrite"]:
                 if subopt == "quiet": # communicate with the magic command by creating a temporary file
                     Path(self.params["output_dir"], "quiet_rewriting").touch()
@@ -140,16 +142,15 @@ class Runner:
         timeout = subargs.get("timeout")
         has_expired = (lambda: time() > timeout) if timeout else (lambda: False)
         algo = subargs.get("algo", "bb")
-        if algo == "bb" and subargs.get("grid") is not None:
+        is_constrained = "grid" in subargs and subargs["grid"] != "organic"
+        if algo == "bb" and (is_constrained or subargs.get("grid") == ""):
             # -r arrange -> non-constrained layout
             # -r arrange:grid=organic -> idem
             # -r arrange:grid -> constrain the layout to the current grid
             # -r arrange:grid=0 -> ... to the smallest balanced grid
             # -r arrange:grid=𝑖 -> ... to the 𝑖th next grid (with 𝑖 > 0)
             (fst, __, snd) = subargs["grid"].partition("x") # use `__` instead of `_` function
-            if fst == "organic":
-                del subargs["grid"]
-            elif fst.isdigit() and snd.isdigit():
+            if fst.isdigit() and snd.isdigit():
                 source = mcd.get_refitted_clauses(int(fst), int(snd))
                 mcd = Mcd(source, self.get_font_metrics, **self.params)
             elif fst.isdigit() and snd == "":
@@ -165,9 +166,13 @@ class Runner:
         if rearrangement:
             mcd.set_layout(**rearrangement)
             source = mcd.get_clauses()
-        elif algo == "bb" and subargs.get("grid") is not None:
+        elif algo == "bb" and is_constrained:
+            # TODO: revise these translations, currently the first message is not translated:
+            # Mocodo Err.9 - Failed to calculate a planar layout on the given grid. (not translated)
             raise MocodoError(9, _('Failed to calculate a planar layout on the given grid.'))  # fmt: skip
         else:
+            # ... and the second one wrongly refers to a constrained layout:
+            # Mocodo Err.41 - Impossible de calculer une mise en page planaire sur la grille impartie.
             raise MocodoError(41, _('Failed to calculate a planar layout.'))  # fmt: skip
         return source
 
@@ -216,6 +221,31 @@ class Runner:
                 details = "\n".join(acc)
                 raise MocodoError(29, _('On Mocodo online, click the 🔀 button to fix the following problem(s):\n{details}').format(details=details))  # fmt: skip
 
+    def add_gutter_params(self, params):
+        gutters = dict(params.get("gutters", []))
+
+        # Ensure that the --gutter sub-options are a subset of {"ids", "types"}
+        for subopt in gutters:
+            if subopt not in ("ids", "types"):
+                raise subopt_error("gutters", subopt)
+        
+        # Create the sub-option "ids" if needed, and initialize id_gutter params
+        if "ids" not in gutters:
+            gutters["ids"] = {} # created at the end of the (ordered) dict
+        params["id_gutter_visibility"] = gutters["ids"].get("visibility", "auto")
+        params["id_gutter_weak_string"] = gutters["ids"].get("weak", "id")
+        params["id_gutter_strong_string"] = gutters["ids"].get("strong", "ID")
+        s = gutters["ids"].get("alts", "123456789")
+        params["id_gutter_alts"] = dict(zip("123456789", s + "123456789"[len(s):]))
+
+        # Create the sub-option "types" if needed, and initialize type_gutter params
+        # NB: the gutter for types is not implemented yet, but all needed params are already there
+        if "types" not in gutters:
+            gutters["types"] = {}
+        params["type_gutter_visibility"] = gutters["types"].get("visibility", "auto")
+
+        # We are sure that gutters is a dict with keys "ids" and "types" only. Order matters.
+        (params["left_gutter"], params["right_gutter"]) = tuple(gutters.keys())
 
 def main():
     run = Runner()

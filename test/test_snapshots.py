@@ -50,6 +50,10 @@ params = parsed_arguments()
 params["title"] = "Untitled"
 params["guess_title"] = False
 params["output_name"] = f"{snapshot_dir}/snapshot"
+params["id_gutter_visibility"] = "auto"
+params["id_gutter_strong_string"] = "ID"
+params["id_gutter_weak_string"] = "id"
+params["id_gutter_alts"] = dict(zip("123456789", "123456789"))
 common = Common(params)
 get_font_metrics = font_metrics_factory(params)
 
@@ -109,7 +113,8 @@ for arrow in ("<=", "<-", "->", "=>"):
     c = source.format(arrow=arrow)
     result.append(f"#### Arrow `{arrow}`")
     try:
-        t = Relations(Mcd(c, params), params)
+        mcd = Mcd(c, **params)
+        t = Relations(mcd, params)
         result.append(f"```\n{t.get_text(minimal_template)}\n```\n")
         result.append(t.get_text(debug_template))
     except MocodoError as e:
@@ -138,7 +143,8 @@ for arrow in ("<=", "<-", "->", "=>"):
     c = source.format(arrow=arrow)
     result.append(f"#### Arrow `{arrow}`")
     try:
-        t = Relations(Mcd(c, params), params)
+        mcd = Mcd(c, **params)
+        t = Relations(mcd, params)
         result.append(f"```\n{t.get_text(minimal_template)}\n```\n")
         result.append(t.get_text(debug_template))
     except KeyError as e:
