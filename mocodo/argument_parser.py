@@ -164,10 +164,6 @@ def parsed_arguments():
     io_group = parser.add_argument_group("INPUT/OUTPUT")
     source_group = parser.add_argument_group("OPERATIONS ON THE SOURCE TEXT")
     aspect_group = parser.add_argument_group("ASPECT OF THE GRAPHICAL OUTPUT")
-    nb_group = parser.add_argument_group(
-        "NOTEBOOK SPECIFIC OPTIONS",
-        "ignored when called from the command line",
-    )
 
     if sys.platform.lower().startswith("darwin"):
         default_params = {
@@ -267,25 +263,23 @@ def parsed_arguments():
         default=0,
         help="discriminate between multiple SVG of the same interactive diagram",
     )
-    io_group.add_argument("--defer",
-        nargs="*",
-        choices=["svg", "png", "pdf"],
-        default=["svg"],
-        help="defer the post-processing of some outputs to an external web-service",
+    io_group.add_argument("--no_mcd", "--quiet",
+        action="store_true",
+        help="under Jupyter Notebook, do not display the conceptual diagram in the cell output",
     )
 
-    source_group.add_argument("-r", "--rewrite",
+    source_group.add_argument("--rewrite", "-r", "-R",
         metavar="STR",
         nargs="*",
         type=extract_subargs,
-        # default=["echo"],
-        help="make a new version of the MCD by applying one or several modifications",
+        default=argparse.SUPPRESS, # causes no attribute to be added if the argument was not present
+        help="make a new version of the MCD by applying sequentially the given rewriting operations (e.g., 'arrange', 'labels:ascii,snake', 'explode:weak,arity=2'). Under Jupyter Notebook, '-R' replaces the cell content",
     )
-    source_group.add_argument("-c", "--convert",
+    source_group.add_argument("--convert", "-c",
         metavar="STR",
         nargs="+",
         type=extract_subargs,
-        help="translate all or parts of the MCD into a different format",
+        help="translate all or parts of the MCD into the given formats or languages (e.g., 'rel', 'rel:diagram', 'rel:mysql', 'crow:mmd')",
     )
     source_group.add_argument("--seed",
         metavar="FLOAT",
@@ -303,7 +297,7 @@ def parsed_arguments():
         type=str,
         help="name of the model, used at various places (file system, database, etc.)",
     )
-    
+
     aspect_group.add_argument("--df",
         metavar="STR",
         type=str,
@@ -381,15 +375,6 @@ def parsed_arguments():
         nargs="+",
         default=list("123456789"),
         help="strings to be used in the left gutter for alt identifiers",
-    )
-
-    nb_group.add_argument("--no_mcd",
-        action="store_true",
-        help="do not display the conceptual diagram in the cell output",
-    )
-    nb_group.add_argument("--replace",
-        action="store_true",
-        help="replaces the cell contents by its output",
     )
 
     parser.set_defaults(**default_params)

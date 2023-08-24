@@ -56,7 +56,7 @@ class Runner:
             self.params_contents = json.dumps(self.params, ensure_ascii=False, indent=2, sort_keys=True)
             return safe_print_for_PHP(self.params_contents)
         
-        if self.params["rewrite"]:
+        if "rewrite" in self.params: # include the case where the list is empty
             for (subopt, subargs) in self.params["rewrite"]:
                 if subopt == "quiet": # communicate with the magic command by creating a temporary file
                     Path(self.params["output_dir"], "quiet_rewriting").touch()
@@ -85,9 +85,14 @@ class Runner:
         if self.params["convert"]:
             relations = None
             convert_log_files = [] # list of files to be displayed in the notebook
+            deferred_output_formats = []
+            results = []
             for (subopt, subargs) in self.params["convert"]:
                 if subopt == "quiet": # communicate with the magic command by creating a temporary file
                     Path(self.params["output_dir"], "quiet_converting").touch()
+                    continue
+                if subopt == "defer":
+                    deferred_output_formats = list(subargs)
                     continue
                 if subopt == "rel":
                     stem_or_path = next(iter(subargs), "markdown") # silently ignore any other sub-argument
@@ -106,7 +111,9 @@ class Runner:
                 
                 result["text_path"] = Path(f"{self.params['output_name']}{result['stem_suffix']}.{result['extension']}")
                 self.common.dump_file(result["text_path"], f"{result['text'].rstrip()}\n")
-                convert_log_files.extend(self.generate_log_files(result))
+                results.append(result)
+            for result in results:
+                convert_log_files.extend(self.generate_log_files(result, deferred_output_formats))
             if convert_log_files:
                 Path(self.params["output_dir"], "convert.log").write_text("\n".join(convert_log_files))
                 return # No need to calculate the MCD in case of conversion
@@ -164,8 +171,7 @@ class Runner:
             raise MocodoError(41, _('Failed to calculate a planar layout.'))  # fmt: skip
         return source
 
-    def generate_log_files(self, result):
-        deferred_output_formats = self.params.get("defer")
+    def generate_log_files(self, result, deferred_output_formats):
         if result.get("to_defer") and deferred_output_formats:
             # This text must be rendered by a third-party service in at least one format
             rendering_service = RENDERING_SERVICES[result["extension"]]

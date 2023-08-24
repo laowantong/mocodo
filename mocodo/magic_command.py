@@ -69,10 +69,11 @@ class MocodoMagics(Magics):
 
         parser = argparse.ArgumentParser(add_help=False)
         parser.add_argument("--no_mcd", action="store_true")
-        parser.add_argument("--replace", action="store_true")
         parser.add_argument("--input")
         parser.add_argument("--output_dir")
         (args, remaining_args) = parser.parse_known_args(shlex.split(line))
+
+        must_replace = "-R" in remaining_args
 
         Path("mocodo_notebook").mkdir(parents=True, exist_ok=True)
 
@@ -131,23 +132,23 @@ class MocodoMagics(Magics):
                     for filename in convert_log_files.read_text().splitlines():
                         display_converted_file(Path(filename))
                     convert_log_files.unlink()
-        elif not args.no_mcd:
+        elif not args.no_mcd and not must_replace:
             svg_path = output_path_radical.with_suffix(".svg")
             if svg_path.is_file() and input_path.stat().st_mtime <= svg_path.stat().st_mtime:
                 display(SVG(filename=svg_path))
         
-        if "--rewrite" in remaining_args or "-r" in remaining_args:
+        if "--rewrite" in remaining_args or "-r" in remaining_args or "-R" in remaining_args:
             rewritten_path = Path(f"{output_path_radical}_rewritten.mcd")
             updated_source = rewritten_path.read_text().rstrip()
+            if not updated_source.startswith("%%mocodo"):
+                updated_source = f"%%mocodo\n{updated_source}"
             rewritten_path.unlink()
-            if args.replace:
+            if must_replace:
                 update_cell(updated_source)
             quiet_path = output_dir / "quiet_rewriting"
             if quiet_path.is_file():
                 quiet_path.unlink()
             else:
-                if not updated_source.startswith("%%mocodo"):
-                    updated_source = f"%%mocodo\n{updated_source}"
                 print(updated_source)
 
 
