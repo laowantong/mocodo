@@ -205,7 +205,7 @@ def parsed_arguments():
             args.input += ".mcd"
         else:  # the user has explicitely specified a non existent input file
             init_localization(script_directory, default_params.get("language", args.language))
-            raise MocodoError(18, _('The file "{input}" doesn\'t exist.').format(input=args.input))  # fmt: skip
+            raise MocodoError(2, _('The file "{input}" doesn\'t exist.').format(input=args.input))  # fmt: skip
     default_params["input"] = args.input
 
     if os.path.exists(args.params_path):

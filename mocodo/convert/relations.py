@@ -236,7 +236,7 @@ class Relations:
                 if leg.kind == "strengthening":
                     weak_count += 1
                     if weak_count == 2:
-                        raise MocodoError(22, _('Reciprocal relative identification around {association}.').format(association=association.name)) # fmt: skip
+                        raise MocodoError(11, _('Reciprocal relative identification around {association}.').format(association=association.name)) # fmt: skip
 
     def relations_from_entities(self):
         for (name, entity) in self.mcd.entities.items():

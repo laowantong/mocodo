@@ -108,7 +108,7 @@ class Mcd:
                     if leg.entity_name in self.entities:
                         entity = self.entities[leg.entity_name]
                     elif leg.entity_name in self.associations:
-                        raise MocodoError(20, _('Association "{association}" linked to another association "{entity}"!').format(association=association.name, entity=leg.entity_name)) # fmt: skip
+                        raise MocodoError(18, _('Association "{association}" linked to another association "{entity}"!').format(association=association.name, entity=leg.entity_name)) # fmt: skip
                     else:
                         raise MocodoError(1, _('Association "{association}" linked to an unknown entity "{entity}"!').format(association=association.name, entity=leg.entity_name)) # fmt: skip
                     leg.register_entity(entity)
@@ -117,9 +117,9 @@ class Mcd:
                     if leg.entity_name in self.entities:
                         entity = self.entities[leg.entity_name]
                     elif leg.entity_name in self.associations:
-                        raise MocodoError(220, _('Inheritance "{inheritance}" linked to an association "{entity}"!').format(inheritance=inheritance.name, entity=leg.entity_name))
+                        raise MocodoError(44, _('Inheritance "{inheritance}" linked to an association "{entity}"!').format(inheritance=inheritance.name, entity=leg.entity_name))
                     else:
-                        raise MocodoError(201, _('Inheritance "{inheritance}" linked to an unknown entity "{entity}"!').format(inheritance=inheritance.name, entity=leg.entity_name))
+                        raise MocodoError(42, _('Inheritance "{inheritance}" linked to an unknown entity "{entity}"!').format(inheritance=inheritance.name, entity=leg.entity_name))
                     leg.register_entity(entity)
             for constraint in self.constraints:
                 for leg in constraint.legs:
@@ -135,7 +135,7 @@ class Mcd:
                         continue
                     if box_name in self.associations or box_name in self.entities:
                         continue
-                    raise MocodoError(600, _('Constraint "{constraint}" aligned with an unknown entity or association "{box}"!').format(constraint=constraint.name, box=box_name)) # fmt: skip
+                    raise MocodoError(43, _('Constraint "{constraint}" aligned with an unknown entity or association "{box}"!').format(constraint=constraint.name, box=box_name)) # fmt: skip
         
         def add_attributes():
             strengthening_legs = dict((entity_name, []) for entity_name in self.entities)

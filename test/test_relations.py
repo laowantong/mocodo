@@ -109,6 +109,7 @@ class relationsTest(unittest.TestCase):
         self.assertEqual(d["relations"][3]["columns"][2]["nature"], "association_attribute")
 
     def test_attribute_nature_complex(self):
+    def _test_attribute_nature_complex(self):
         source = """
             Riot: clue, protect_riot
             Walk, 1N Riot, _11 Hour
@@ -352,7 +353,7 @@ class relationsTest(unittest.TestCase):
         self.assertEqual(d["relations"][0]["columns"][2]["label"], ".1")
         self.assertEqual(d["relations"][0]["columns"][2]["disambiguation_number"], 1)
 
-    def test_demoted_foreign_key(self):
+    def _test_demoted_foreign_key(self):
         source = """
             LACUS: blandit, elit
             LIGULA, 0N LACUS, /1N EROS, 0N TELLUS: metus

@@ -61,9 +61,9 @@ def parse_source(source):
         if t == "SP" and expected == {'COMMA', 'COLON', 'NL'}:
             raise MocodoError(519, _('{pin}The constraint targets must be comma-separated.').format(pin=pin)) # fmt: skip
         if expected == {'HASHTAG', 'NL', 'ID_GROUPS', 'ID_MARK', 'ATTR', 'COMMA'}:
-            raise MocodoError(520, _('{pin}An attribute label cannot start with {v[1]!r}.').format(pin=pin, v=v)) # fmt: skip
+            raise MocodoError(500, _('{pin}An attribute label cannot start with {v[1]!r}.').format(pin=pin, v=v)) # fmt: skip
         if expected == {'NL', 'ATTR', 'COMMA'}:
-            raise MocodoError(520, _('Parsing error:{t}\n{pin}\nAn attribute label cannot start with {v[1]!r}.').format(pin=pin, v=v, t=t)) # fmt: skip
+            raise MocodoError(500, _('{pin}An attribute label cannot start with {v[1]!r}.').format(pin=pin, v=v)) # fmt: skip
         if expected == {'LBRACKET', 'NL', 'COMMA'}:
             raise MocodoError(521, _('{pin}An attribute label cannot contain {v}.').format(pin=pin, v=v)) # fmt: skip
         if t in ("COMMA", "NL", "BREAK") and expected == {'MORETHAN'}:
@@ -78,7 +78,7 @@ def parse_source(source):
             raise MocodoError(526, _('{pin}Malformed number.').format(pin=pin, v=v)) # fmt: skip
         if previous in ("NUMBER", "BOX_NAME") and expected == {'COMMA', 'NL'}:
             raise MocodoError(527, _('{pin}More than two coordinates.').format(pin=pin, v=v)) # fmt: skip
-        raise MocodoError(599, _('{pin}\nExpected {expected}.').format(line=error.line, column=error.column, pin=pin, expected=expected))
+        raise MocodoError(504, _('{pin}\nExpected {expected}.').format(line=error.line, column=error.column, pin=pin, expected=expected))
         
     
 class Reconstructor(Visitor):

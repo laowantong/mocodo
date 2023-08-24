@@ -134,7 +134,7 @@ class Runner:
             elif subsubopt in ("d", "diagonal"):
                 source = mcd.get_diagonally_flipped_clauses()
             else:
-                raise MocodoError(653, _("Unknown argument {subsubopt} for operation {subopt}".format(subsubopt=subsubopt, subopt=subopt)))  # fmt: skip
+                raise MocodoError(22, _("Unknown argument {subsubopt} for operation {subopt}".format(subsubopt=subsubopt, subopt=subopt)))  # fmt: skip
         return source
 
     def arrange(self, source, subargs):
@@ -187,7 +187,7 @@ class Runner:
                 url = rendering_service.format(output_format=output_format, payload=payload)
                 response = requests.get(url)
                 if not response.ok:
-                    raise MocodoError(655, _("The HTTP status code {code} was returned by:\n{url}").format(code=response.status_code, url=url)) # fmt: skip
+                    raise MocodoError(23, _("The HTTP status code {code} was returned by:\n{url}").format(code=response.status_code, url=url)) # fmt: skip
                 resp_path = result["text_path"].with_suffix(f".{output_format}")
                 if response.headers["content-type"].startswith("text/"):
                     resp_path.write_text(response.text)

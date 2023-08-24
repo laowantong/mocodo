@@ -54,7 +54,7 @@ class Mapper(Transformer):
             elif stand_for(op_name, "obfuscate") and pre_token in ("labels", "texts", "boxes", "attrs", "notes", "leg_notes", "constraint_notes"):
                 op = obfuscator_factory(subsubarg, params)
             else:
-                raise MocodoError(1212, _('Operation {op_name} cannot be applied to {pre_token}.').format(op_name=op_name, pre_token=pre_token))
+                raise MocodoError(24, _('Operation {op_name} cannot be applied to {pre_token}.').format(op_name=op_name, pre_token=pre_token))
         update_tree = lambda tree: tree[0].update(value=op(tree[0].value))
         for token in tokens:
             setattr(self, token, update_tree)
