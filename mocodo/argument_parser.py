@@ -263,7 +263,11 @@ def parsed_arguments():
     )
     io_group.add_argument("--no_mcd", "--quiet",
         action="store_true",
-        help="under Jupyter Notebook, do not display the conceptual diagram in the cell output",
+        help="under Jupyter Notebook, do not render the conceptual diagram in the cell output",
+    )
+    io_group.add_argument("--mld",
+        action="store_true",
+        help="equivalent to '--convert rel:markdown' but, under Jupyter Notebook, does not prevent the rendering of the conceptual diagram in the cell output",
     )
 
     source_group.add_argument("--rewrite", "-r", "-R",

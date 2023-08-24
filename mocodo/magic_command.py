@@ -122,7 +122,12 @@ class MocodoMagics(Magics):
             update_cell(PARAM_TEMPLATE.format(stdoutdata=stdoutdata, output_dir=output_dir))
             return
         
-        if "--convert" in remaining_args or "-c" in remaining_args:
+        if not args.no_mcd and not must_replace:
+            svg_path = output_path_radical.with_suffix(".svg")
+            if svg_path.is_file() and input_path.stat().st_mtime <= svg_path.stat().st_mtime:
+                display(SVG(filename=svg_path))
+
+        if "--convert" in remaining_args or "-c" in remaining_args or "--mld" in remaining_args:
             quiet_path = output_dir / "quiet_converting"
             if quiet_path.is_file():
                 quiet_path.unlink()
@@ -132,10 +137,6 @@ class MocodoMagics(Magics):
                     for filename in convert_log_files.read_text().splitlines():
                         display_converted_file(Path(filename))
                     convert_log_files.unlink()
-        elif not args.no_mcd and not must_replace:
-            svg_path = output_path_radical.with_suffix(".svg")
-            if svg_path.is_file() and input_path.stat().st_mtime <= svg_path.stat().st_mtime:
-                display(SVG(filename=svg_path))
         
         if "--rewrite" in remaining_args or "-r" in remaining_args or "-R" in remaining_args:
             rewritten_path = Path(f"{output_path_radical}_rewritten.mcd")

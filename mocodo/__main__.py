@@ -84,6 +84,11 @@ class Runner:
         
         may_update_params_with_guessed_title(source, self.params)
 
+        if self.params["mld"]: # inject manually the equivalent --convert sub-option
+            if self.params["convert"] is None:
+                self.params["convert"] = []
+            self.params["convert"].append(("rel", {}))
+        
         if self.params["convert"]:
             relations = None
             convert_log_files = [] # list of files to be displayed in the notebook
@@ -118,7 +123,11 @@ class Runner:
                 convert_log_files.extend(self.generate_log_files(result, deferred_output_formats))
             if convert_log_files:
                 Path(self.params["output_dir"], "convert.log").write_text("\n".join(convert_log_files))
-                return # No need to calculate the MCD in case of conversion
+                if not self.params["mld"]:
+                    # In case of an explicit conversion, the rendering of the MCD is not calculated.
+                    # Consequently, the mtime of the ".svg" will be older than the mtime of the ".mcd".
+                    # This will prevent the magic command from displaying the ".svg" file.
+                    return
         
         mcd = Mcd(source, self.get_font_metrics, **self.params)
         self.control_for_overlaps(mcd)
