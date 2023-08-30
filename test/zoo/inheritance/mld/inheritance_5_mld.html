@@ -1,0 +1,79 @@
+<html>
+<head>
+<!-- TO_BE_DELETED_BY_MOCODO_MAGIC --><link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+<meta charset='utf-8'>
+<style>
+  #mld .relation { font-variant: small-caps; font-weight: bold }
+  #mld .primary { text-decoration: underline }
+  #mld .foreign { font-style: oblique }
+  #mld strong { font-weight: bold }
+  #mld i { font-style: italic }
+  #mld ul { list-style-type:square; margin: 0 0 1em 2em }
+</style>
+</head>
+<body>
+<!-- TO_BE_DELETED_BY_MOCODO_MAGIC --><header><h1>Conversion en relationnel</h1><p>Générée par <a href='https://github.com/laowantong/mocodo'>Mocodo</a></p></header>
+<main>
+<!-- TO_BE_DELETED_BY_MOCODO_MAGIC --><figure><center><img src="inheritance_5_mld.svg"/></center><figcaption>MCD <i>inheritance</i></figcaption></figure>
+<div id='mld'>
+<div>
+  <details><summary><span class='relation'>LACUS</span> (
+    <span class='primary'>magna</span>,
+    <span class='normal'>vestibulum</span>,
+    <span class='normal'>tempor</span>,
+    <span class='normal'>fugit</span>
+  )</summary>
+  <ul>
+    <li>Le champ <i>magna</i> constitue la clé primaire de la table. Il était clé primaire de l'entité-mère <i>TRISTIS</i> (supprimée).</li>
+    <li>Le champ <i>vestibulum</i> est un simple attribut. Il était simple attribut de l'entité-mère <i>TRISTIS</i> (supprimée).</li>
+    <li>Les champs <i>tempor</i> et <i>fugit</i> étaient déjà de simples attributs de l'entité <i>LACUS</i>.</li>
+  </ul></details>
+</div>
+
+<div>
+  <details><summary><span class='relation'>NEC</span> (
+    <span class='primary'>magna</span>,
+    <span class='normal'>vestibulum</span>,
+    <span class='normal'>pulvinar</span>,
+    <span class='normal'>audis</span>,
+    <span class='foreign'>#magna via mollis</span>,
+    <span class='foreign'>#magna via vitae</span>
+  )</summary>
+  <ul>
+    <li>Le champ <i>magna</i> constitue la clé primaire de la table. Il était clé primaire de l'entité-mère <i>TRISTIS</i> (supprimée).</li>
+    <li>Le champ <i>vestibulum</i> est un simple attribut. Il était simple attribut de l'entité-mère <i>TRISTIS</i> (supprimée).</li>
+    <li>Les champs <i>pulvinar</i> et <i>audis</i> étaient déjà de simples attributs de l'entité <i>NEC</i>.</li>
+    <li>Le champ <i>magna via mollis</i> est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle <i>MOLLIS</i> à partir de l'entité <i>LACUS</i> en perdant son caractère identifiant.</li>
+    <li>Le champ <i>magna via vitae</i> est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle <i>VITAE</i> à partir de l'entité <i>SODALES</i> en perdant son caractère identifiant.</li>
+  </ul></details>
+</div>
+
+<div>
+  <details><summary><span class='relation'>SODALES</span> (
+    <span class='primary'>magna</span>,
+    <span class='normal'>vestibulum</span>,
+    <span class='normal'>convallis</span>,
+    <span class='normal'>ipsum</span>
+  )</summary>
+  <ul>
+    <li>Le champ <i>magna</i> constitue la clé primaire de la table. Il était clé primaire de l'entité-mère <i>TRISTIS</i> (supprimée).</li>
+    <li>Le champ <i>vestibulum</i> est un simple attribut. Il était simple attribut de l'entité-mère <i>TRISTIS</i> (supprimée).</li>
+    <li>Les champs <i>convallis</i> et <i>ipsum</i> étaient déjà de simples attributs de l'entité <i>SODALES</i>.</li>
+  </ul></details>
+</div>
+
+<div>
+  <details><summary><span class='relation'>ULTRICES</span> (
+    <span class='foreign primary'>#magna sodales</span>,
+    <span class='foreign primary'>#magna lacus</span>
+  )</summary>
+  <ul>
+    <li>Le champ <i>magna sodales</i> fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité <i>SODALES</i>.</li>
+    <li>Le champ <i>magna lacus</i> fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité <i>LACUS</i>.</li>
+  </ul></details>
+</div>
+
+</div>
+</main>
+</body>
+</html>

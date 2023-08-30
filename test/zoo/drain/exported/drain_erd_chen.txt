@@ -1,0 +1,6 @@
+[Date] --1-- <Soutenir>
+[Entreprise] --1-- <Proposer>
+[Stage] --1-- <Attribuer>
+[Stage] ==N== <Proposer>
+[Étudiant] --N-- <Soutenir>
+[Étudiant] ==1== <Attribuer>

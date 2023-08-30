@@ -1,0 +1,25 @@
+{
+  "width": 630,
+  "height": 128,
+  "cx": [
+    [ "CLIENT", 51 ],
+    [ "PASSER", 166 ],
+    [ "COMMANDE", 302 ],
+    [ "INCLURE", 443 ],
+    [ "PRODUIT", 571 ]
+  ],
+  "cy": [
+    [ "CLIENT", 64 ],
+    [ "PASSER", 64 ],
+    [ "COMMANDE", 64 ],
+    [ "INCLURE", 64 ],
+    [ "PRODUIT", 64 ]
+  ],
+  "shift": [
+    [ "PASSER,CLIENT,0", 0 ],
+    [ "PASSER,COMMANDE,0", 0 ],
+    [ "INCLURE,COMMANDE,0", 0 ],
+    [ "INCLURE,PRODUIT,0", 0 ]
+  ],
+  "ratio": []
+}

@@ -1,0 +1,30 @@
+graph{
+  start=42
+
+  // Entities
+  node [
+    shape=box
+    style=filled
+    penwidth=1.5
+    fillcolor="#FFFFFF"
+  ]
+
+  // Associative entities
+  1 [label="CLIENT",shape=Mdiamond]
+
+  // Normal entity attributes
+  node [
+    shape=oval
+    penwidth=1.5
+    fillcolor="#FFFFFF"
+  ]
+
+  // Weak and strong entity attributes
+  2 [label=<<u>Réf.<br/>client</u>>]
+
+  // Edges between entities and attributes
+  edge [
+    penwidth=1.5
+  ]
+  1 -- 2
+}

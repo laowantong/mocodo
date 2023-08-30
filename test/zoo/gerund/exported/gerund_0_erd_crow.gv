@@ -1,0 +1,88 @@
+digraph{
+  layout=dot
+  bgcolor="#FFFFFF"
+  nodesep=0.5
+
+  // Nodes
+  node [
+      shape=none
+      fontcolor="#000000"
+      fontsize=15
+      fontname="Helvetica"
+]
+  node [
+      shape=none
+      fontcolor="#000000"
+      fontsize=15
+      fontname="Helvetica"
+]
+  1 [label=<<table
+        border="0"
+        cellborder="1"
+        cellspacing="0"
+        bgcolor="#FFFFFF"
+        color="#000000"
+        cellpadding="4"
+    >
+        <tr>
+            <td bgcolor="#FFFFFF" colspan="2">
+                <font
+                    color="#000000"
+                    point-size="18"
+                >Produit</font>
+            </td>
+        </tr>
+        <tr><td>PK</td><td align="left">produit</td></tr>
+    </table>
+>]
+  2 [label=<<table
+        border="0"
+        cellborder="1"
+        cellspacing="0"
+        bgcolor="#FFFFFF"
+        color="#000000"
+        cellpadding="4"
+    >
+        <tr>
+            <td bgcolor="#FFFFFF" colspan="2">
+                <font
+                    color="#000000"
+                    point-size="18"
+                >Ligne de commande</font>
+            </td>
+        </tr>
+        <tr><td>PK</td><td align="left">quantité</td></tr>
+    </table>
+>]
+  3 [label=<<table
+        border="0"
+        cellborder="1"
+        cellspacing="0"
+        bgcolor="#FFFFFF"
+        color="#000000"
+        cellpadding="4"
+    >
+        <tr>
+            <td bgcolor="#FFFFFF" colspan="2">
+                <font
+                    color="#000000"
+                    point-size="18"
+                >Commande</font>
+            </td>
+        </tr>
+        <tr><td>PK</td><td align="left">commande</td></tr>
+    </table>
+>]
+
+  // Edges
+  edge [
+    penwidth=1
+    color="#000000"
+    fontcolor="#000000"
+    fontname="Futura"
+    fontsize=11
+    dir=both
+  ]
+  2 -> 1 [arrowhead="teetee" arrowtail="crowodot" label="DF" style=dotted]
+  2 -> 3 [arrowhead="teetee" arrowtail="crowtee" label="DF" style=dotted]
+}

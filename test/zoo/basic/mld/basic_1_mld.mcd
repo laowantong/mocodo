@@ -1,0 +1,12 @@
+%%mocodo
+:
+CLIENT: Réf. client, Nom, Prénom, Adresse
+:
+PASSER: #Réf. client > CLIENT > Réf. client, _#Num commande > COMMANDE > Num commande
+:
+COMMANDE: Num commande, Date, Montant
+:
+INCLURE: #Num commande > COMMANDE > Num commande, _#Réf. produit > PRODUIT > Réf. produit, Quantité
+:
+PRODUIT: Réf. produit, Libellé, Prix unitaire
+:

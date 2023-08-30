@@ -60,8 +60,8 @@ class Runner:
 
         if "rewrite" in self.params: # include the case where --rewrite is provided without sub-arguments
             for (subopt, subargs) in self.params["rewrite"]:
-                if subopt == "quiet": # communicate with the magic command by creating a temporary file
-                    Path(self.params["output_dir"], "quiet_rewriting").touch()
+                if subopt in ("quiet", "mute"): # communicate with the magic command by creating a temporary file
+                    Path(self.params["output_dir"], "mute_rewriting").touch()
                     continue
                 if subopt == "flip":
                     source = self.flip(source, subargs)
@@ -95,20 +95,30 @@ class Runner:
             deferred_output_formats = []
             results = []
             for (subopt, subargs) in self.params["convert"]:
-                if subopt == "quiet": # communicate with the magic command by creating a temporary file
-                    Path(self.params["output_dir"], "quiet_converting").touch()
+                if subopt in ("mute", "mute"): # communicate with the magic command by creating a temporary file
+                    Path(self.params["output_dir"], "mute_converting").touch()
                     continue
                 if subopt == "defer":
-                    deferred_output_formats = list(subargs)
+                    deferred_output_formats = list(subargs) or ["svg"]
                     continue
-                if subopt == "rel":
-                    stem_or_path = next(iter(subargs), "markdown") # silently ignore any other sub-argument
+                if subopt in ("rel", "mld", "ddl"):
+                    (subsubopt, subsubarg) = next(iter(subargs.items()), ("markdown", "")) # ignore all sub-arguments after the first one
+                    stem_or_path = f"{subsubopt}={subsubarg}" if subsubarg else subsubopt
+                    official_template_dir = Path(self.params["script_directory"], "resources", "relation_templates")
+                    template = read_template(stem_or_path, official_template_dir)
+                    if template["extension"] == "sql":
+                        source = op_tk.run(source, "sql", dict.fromkeys(["snake", "ascii", "lower"]), self.params).rstrip()
                     if not relations: # don't recompute the relations if they have already been computed
                         mcd = Mcd(source, self.get_font_metrics, **self.params)
                         relations = Relations(mcd, self.params)
-                    official_template_dir = Path(self.params["script_directory"], "resources", "relation_templates")
-                    template = read_template(stem_or_path, official_template_dir)
-                    result = self.common.apply_template(relations, template)
+                    text = relations.get_text(template)
+                    result = {
+                        "stem_suffix": template["stem_suffix"],
+                        "text": text,
+                        "extension": template["extension"],
+                        "to_defer": template.get("to_defer", False),
+                        "highlight": template.get("highlight", "plain"),
+                    }
                 else:                    
                     try:
                         module = importlib.import_module(f".convert._{subopt}", package="mocodo")
@@ -131,7 +141,10 @@ class Runner:
         
         mcd = Mcd(source, self.get_font_metrics, **self.params)
         self.control_for_overlaps(mcd)
-        dump_mcd_to_svg(mcd, self.common)  # potential side-effect: update *_geo.json
+        resulting_paths = dump_mcd_to_svg(mcd, self.common)  # potential side-effect: update *_geo.json
+        for path in resulting_paths:
+            safe_print_for_PHP(self.common.output_success_message(path))
+
 
     def flip(self, source, subargs):
         mcd = Mcd(source, self.get_font_metrics, **self.params)

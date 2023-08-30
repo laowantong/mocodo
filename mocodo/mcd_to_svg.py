@@ -10,7 +10,6 @@ except:
         raise MocodoError(13, _("PNG and PDF generation requires cairosvg to be installed")) # fmt: skip
     svg2pdf = svg2png
 
-from .common import safe_print_for_PHP
 
 def main(mcd, common):
     style = common.load_style()
@@ -72,7 +71,7 @@ def main(mcd, common):
         text = re.sub(r'<g class="page_0_\w{8}(_\d+)? diagram_page" visibility="visible">', "<g>", text)
     path = Path(f"{common.params['output_name']}.svg")
     path.write_text(text, encoding="utf8")
-    safe_print_for_PHP(common.output_success_message(path))
+    resulting_paths = [path]
     if categories.pop("Notes", []) + categories.pop("Pager"): # don't use `or` to avoid short-circuit
         text = "\n".join(sum(categories.values(), [])) + "\n</svg>"
         text = re.sub(
@@ -84,13 +83,15 @@ def main(mcd, common):
         text = re.sub(r' (onmouseover|onmouseout|style|id)=".+?"', "", text)
         path = Path(f"{common.params['output_name']}_static.svg")
         path.write_text(text, encoding="utf8")
-        safe_print_for_PHP(common.output_success_message(path))
+        resulting_paths.append(path)
     svg = bytes(text, "utf-8")
     for (format, function) in (("png", svg2png), ("pdf", svg2pdf)):
         if format in common.params["svg_to"]:
             path = Path(f"{common.params['output_name']}.{format}")
             function(bytestring=svg, write_to=str(path))
-            safe_print_for_PHP(common.output_success_message(path))
+            resulting_paths.append(path)
+    return resulting_paths
+
 
 
 def html_escape(
@@ -120,8 +121,8 @@ svg_elements = {
     "dot_line":         """<line x1="{x0}" y1="{y0}" x2="{x1}" y2="{y1}" stroke="{stroke_color}" stroke-width="{stroke_depth}"  stroke-dasharray="0,{dash_gap}" stroke-linecap="round"/>""",
     "rect":             """<rect x="{x}" y="{y}" width="{w}" height="{h}" fill="{color}" stroke="{stroke_color}" stroke-width="{stroke_depth}" opacity="{opacity}"/>""",
     "dash_rect":        """<rect x="{x}" y="{y}" width="{w}" height="{h}" fill="{color}" stroke="{stroke_color}" stroke-width="{stroke_depth}" stroke-dasharray="{dash_width}"/>""",
-    "polygon":          """<polygon points="{points}" fill="{color}" stroke="{stroke_color}" stroke-width="{stroke_depth}" opacity="{opacity}"/>""",
-    "dot_polygon":      """<polygon points="{points}" fill="{color}" stroke="{stroke_color}" stroke-width="{stroke_depth}" stroke-dasharray="0,{dash_gap}" stroke-linecap="round"/>""",
+    "polygon":          """<path d="{path}" fill="{color}" stroke="{stroke_color}" stroke-width="{stroke_depth}" opacity="{opacity}"/>""",
+    "dot_polygon":      """<path d="{path}" fill="{color}" stroke="{stroke_color}" stroke-width="{stroke_depth}" stroke-dasharray="0,{dash_gap}" stroke-linecap="round"/>""",
     "circle":           """<circle cx="{cx}" cy="{cy}" r="{r}" stroke="{stroke_color}" stroke-width="{stroke_depth}" fill="{color}"/>""",
     "circle_with_note": """<circle cx="{cx}" cy="{cy}" r="{r}" stroke="{stroke_color}" stroke-width="{stroke_depth}" fill="{color}" onmouseover="show_{mcd_uid}(evt,'{note}')" onmouseout="hide_{mcd_uid}(evt)" style="cursor: pointer;"/>""",
     "pager_dot":        """<circle cx="{cx}" cy="{cy}" r="{r}" fill="{color}" id="pager_dot_{page}_{mcd_uid}" class="pager_dot" stroke-width="0" onclick="switch_page_visibility_{mcd_uid}(evt,{page})" style="cursor: pointer;"/>""",

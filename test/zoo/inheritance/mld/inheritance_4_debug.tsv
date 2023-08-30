@@ -1,0 +1,17 @@
+this_relation_name	label	data_type	nature	adjacent_source	outer_source
+LACUS	magna		parent_primary_key	TRISTIS	TRISTIS
+LACUS	tempor		normal_attribute		
+LACUS	fugit		normal_attribute		
+NEC	magna		parent_primary_key	TRISTIS	TRISTIS
+NEC	pulvinar		normal_attribute		
+NEC	audis		normal_attribute		
+NEC	magna via mollis		foreign_key	LACUS	LACUS
+NEC	magna via vitae		foreign_key	SODALES	SODALES
+SODALES	magna		parent_primary_key	TRISTIS	TRISTIS
+SODALES	convallis		normal_attribute		
+SODALES	ipsum		normal_attribute		
+TRISTIS	magna		primary_key		
+TRISTIS	vestibulum		normal_attribute		
+TRISTIS	type	INTEGER UNSIGNED	deleted_child_discriminant_XT		
+ULTRICES	magna sodales		primary_foreign_key	SODALES	SODALES
+ULTRICES	magna lacus		primary_foreign_key	LACUS	LACUS

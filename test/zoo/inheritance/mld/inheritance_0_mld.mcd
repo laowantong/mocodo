@@ -1,0 +1,26 @@
+%%mocodo
+:
+SUSCIPIT: orci, lorem, #magna > TRISTIS > magna
+:::::::
+QUAM: cras, sed, #magna > TRISTIS > magna
+:
+
+
+:
+CONSEQUAT: fermentum, dederit
+:::
+TRISTIS: magna, vestibulum, #fermentum > CONSEQUAT > fermentum, type, convallis, ipsum, pulvinar, audis, #gravida > CURABITUR > gravida, tempor, fugit
+:::
+CURABITUR: gravida, amor
+:
+
+
+:
+DIGNISSIM: tellus, terra
+:
+ALIQUET: #magna > TRISTIS > magna, _#tellus > DIGNISSIM > tellus
+:::
+ULTRICES: #posuere > LIBERO > posuere, _#magna > TRISTIS > magna
+:
+LIBERO: posuere, lacrima
+:

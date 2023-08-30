@@ -1,13 +1,16 @@
 import argparse
+import os
+import re
 import shlex
 import warnings
 from pathlib import Path
 from subprocess import PIPE, Popen
+import importlib
 
 import pkg_resources
 from IPython import get_ipython
 from IPython.core.magic import Magics, line_cell_magic, magics_class
-from IPython.display import HTML, Image, SVG, display, Markdown
+from IPython.display import HTML, Image, SVG, display, Markdown, Code
 from base64 import b64encode
 
 try:
@@ -46,7 +49,18 @@ def display_converted_file(path):
     elif extension == "png":
         display(Image(filename=path, unconfined=False))
     elif extension == "html":
-        display(HTML(path.read_text()))
+        text = path.read_text()
+        text = re.sub('<!-- TO_BE_DELETED_BY_MOCODO_MAGIC -->.+\n', "", text)
+        display(HTML(text))
+    elif extension == "tex":
+        display(Code(filename=path, language="latex"))
+    elif extension == "tsv":
+        try:
+            df = importlib.import_module("pandas").read_csv(path, sep="\t", header=0, index_col=False)
+            df = df.style.set_properties(**{'text-align': 'left'}).set_table_styles([ dict(selector='th', props=[('text-align', 'left')] ) ])
+            display(df)
+        except ImportError:
+            display(Markdown(f"```\n{path.read_text()}\n```"))
     else:
         display(Markdown(f"```{extension}\n{path.read_text()}\n```"))
 
@@ -68,17 +82,17 @@ class MocodoMagics(Magics):
         """
 
         parser = argparse.ArgumentParser(add_help=False)
-        parser.add_argument("--no_mcd", action="store_true")
+        parser.add_argument("--no_mcd", "--quiet", "--mute", action="store_true")
         parser.add_argument("--input")
         parser.add_argument("--output_dir")
         (args, remaining_args) = parser.parse_known_args(shlex.split(line))
 
-        must_replace = "-R" in remaining_args
-
-        Path("mocodo_notebook").mkdir(parents=True, exist_ok=True)
+        if Path.cwd().name != "mocodo_notebook":
+            Path("mocodo_notebook").mkdir(parents=True, exist_ok=True)
+            os.chdir("mocodo_notebook")
 
         if not args.input:
-            input_path = Path("mocodo_notebook/sandbox.mcd")
+            input_path = Path.cwd() / "sandbox.mcd"
             input_path.write_text(cell, encoding="utf8")
         else:
             input_path = Path(args.input)
@@ -86,7 +100,7 @@ class MocodoMagics(Magics):
                 input_path = input_path.with_suffix(".mcd")
 
         if not args.output_dir:
-            output_dir = Path("mocodo_notebook")
+            output_dir = Path.cwd()
         else:
             output_dir = Path(args.output_dir)
             try:
@@ -122,15 +136,19 @@ class MocodoMagics(Magics):
             update_cell(PARAM_TEMPLATE.format(stdoutdata=stdoutdata, output_dir=output_dir))
             return
         
-        if not args.no_mcd and not must_replace:
+        has_explicit_conversion = "--convert" in remaining_args or "-c" in remaining_args
+        has_rewriting = "--rewrite" in remaining_args or "-r" in remaining_args or "-R" in remaining_args
+        must_replace = "-R" in remaining_args
+
+        if not args.no_mcd and not must_replace and not has_explicit_conversion:
             svg_path = output_path_radical.with_suffix(".svg")
             if svg_path.is_file() and input_path.stat().st_mtime <= svg_path.stat().st_mtime:
                 display(SVG(filename=svg_path))
-
-        if "--convert" in remaining_args or "-c" in remaining_args or "--mld" in remaining_args:
-            quiet_path = output_dir / "quiet_converting"
-            if quiet_path.is_file():
-                quiet_path.unlink()
+        
+        if has_explicit_conversion or "--mld" in remaining_args:
+            mute_path = output_dir / "mute_converting"
+            if mute_path.is_file():
+                mute_path.unlink()
             else:
                 convert_log_files = output_dir / "convert.log"
                 if convert_log_files.is_file():
@@ -138,7 +156,7 @@ class MocodoMagics(Magics):
                         display_converted_file(Path(filename))
                     convert_log_files.unlink()
         
-        if "--rewrite" in remaining_args or "-r" in remaining_args or "-R" in remaining_args:
+        if has_rewriting:
             rewritten_path = Path(f"{output_path_radical}_rewritten.mcd")
             updated_source = rewritten_path.read_text().rstrip()
             if not updated_source.startswith("%%mocodo"):
@@ -146,9 +164,9 @@ class MocodoMagics(Magics):
             rewritten_path.unlink()
             if must_replace:
                 update_cell(updated_source)
-            quiet_path = output_dir / "quiet_rewriting"
-            if quiet_path.is_file():
-                quiet_path.unlink()
+            mute_path = output_dir / "mute_rewriting"
+            if mute_path.is_file():
+                mute_path.unlink()
             else:
                 print(updated_source)
 

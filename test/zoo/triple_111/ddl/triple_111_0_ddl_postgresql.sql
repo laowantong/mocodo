@@ -1,0 +1,12 @@
+CREATE DATABASE triple_111;
+\c triple_111;
+
+CREATE TABLE UTILISER (
+  carnet VARCHAR(42),
+  projet VARCHAR(42),
+  technicien VARCHAR(42),
+  PRIMARY KEY (carnet, projet)
+);
+
+ALTER TABLE UTILISER ADD CONSTRAINT UTILISER_u1 UNIQUE (carnet, technicien);
+ALTER TABLE UTILISER ADD CONSTRAINT UTILISER_u2 UNIQUE (projet, technicien);

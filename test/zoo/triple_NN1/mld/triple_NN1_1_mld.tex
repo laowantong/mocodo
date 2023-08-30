@@ -1,0 +1,46 @@
+\documentclass[a4paper]{article}
+\usepackage[normalem]{ulem}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\frenchsetup{StandardLayout=true}
+
+\newcommand{\relat}[1]{\textsc{#1}}
+\newcommand{\attr}[1]{#1}
+\newcommand{\prim}[1]{\uline{#1}}
+\newcommand{\foreign}[1]{\#\textsl{#1}}
+
+\title{Conversion en relationnel\\du MCD \emph{triple_NN1}}
+\author{\emph{Généré par Mocodo}}
+
+\begin{document}
+\maketitle
+
+\begin{itemize}
+  \item \relat{Gérer} (\foreign{\prim{ingénieur}}, \foreign{\prim{projet}}, \foreign{responsable})
+  \begin{itemize}
+    \item Le champ \emph{ingénieur} fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité \emph{Ingénieur}.
+    \item Le champ \emph{projet} fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité \emph{Projet}.
+    \item Le champ \emph{responsable} est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle \emph{Gérer} à partir de l'entité \emph{Responsable} en perdant son caractère identifiant.
+  \end{itemize}
+
+  \item \relat{Ingénieur} (\prim{ingénieur}, \attr{nom ingénieur})
+  \begin{itemize}
+    \item Le champ \emph{ingénieur} constitue la clé primaire de la table. C'était déjà un identifiant de l'entité \emph{Ingénieur}.
+    \item Le champ \emph{nom ingénieur} était déjà un simple attribut de l'entité \emph{Ingénieur}.
+  \end{itemize}
+
+  \item \relat{Projet} (\prim{projet}, \attr{libellé projet})
+  \begin{itemize}
+    \item Le champ \emph{projet} constitue la clé primaire de la table. C'était déjà un identifiant de l'entité \emph{Projet}.
+    \item Le champ \emph{libellé projet} était déjà un simple attribut de l'entité \emph{Projet}.
+  \end{itemize}
+
+  \item \relat{Responsable} (\prim{responsable}, \attr{nom responsable})
+  \begin{itemize}
+    \item Le champ \emph{responsable} constitue la clé primaire de la table. C'était déjà un identifiant de l'entité \emph{Responsable}.
+    \item Le champ \emph{nom responsable} était déjà un simple attribut de l'entité \emph{Responsable}.
+  \end{itemize}
+
+\end{itemize}
+
+\end{document}

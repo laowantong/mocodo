@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="442" height="162" viewBox="0 0 442 162" xmlns="http://www.w3.org/2000/svg">
+<rect id="frame" x="0" y="0" width="442" height="162" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+
+<!-- Entity CLIENT -->
+<g>
+	<g>
+		<rect x="9" y="17" width="116" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="41" y="47" width="84" height="98" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="9" y="47" width="32" height="98" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<line x1="41" y1="47" x2="41" y2="145" stroke="#000000" stroke-width="0.38"/>
+		<rect x="9" y="17" width="116" height="128" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
+		<line x1="9" y1="47" x2="125" y2="47" stroke="#000000" stroke-width="1.5"/>
+	</g>
+	<text x="33" y="38.3" fill="#000000" font-family="Copperplate" font-size="18">CLIENT</text>
+	<text x="49" y="64.1" fill="#000000" font-family="Gill Sans" font-size="15">Réf. client</text>
+	<text x="17" y="64.1" fill="#000000" font-family="Gill Sans" font-size="15">ID</text>
+	<line x1="49" y1="67" x2="111" y2="67" stroke="#000000" stroke-width="1"/>
+	<text x="49" y="81.1" fill="#000000" font-family="Gill Sans" font-size="15">Nom</text>
+	<text x="20" y="81.1" fill="#000000" font-family="Gill Sans" font-size="15">1</text>
+	<text x="49" y="98.1" fill="#000000" font-family="Gill Sans" font-size="15">Prénom</text>
+	<text x="20" y="98.1" fill="#000000" font-family="Gill Sans" font-size="15">1</text>
+	<text x="49" y="115" fill="#000000" font-family="Gill Sans" font-size="15">Adresse</text>
+	<text x="24" y="115" fill="#000000" font-family="Gill Sans" font-size="15"></text>
+	<text x="49" y="132" fill="#000000" font-family="Gill Sans" font-size="15">Mail</text>
+	<text x="20" y="132" fill="#000000" font-family="Gill Sans" font-size="15">2</text>
+</g>
+
+<!-- Entity FOO -->
+<g>
+	<g>
+		<rect x="154" y="9" width="104" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="202" y="39" width="56" height="114" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="154" y="39" width="48" height="114" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<line x1="202" y1="39" x2="202" y2="153" stroke="#000000" stroke-width="0.38"/>
+		<rect x="154" y="9" width="104" height="144" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
+		<line x1="154" y1="39" x2="258" y2="39" stroke="#000000" stroke-width="1.5"/>
+	</g>
+	<text x="186" y="30.3" fill="#000000" font-family="Copperplate" font-size="18">FOO</text>
+	<text x="210" y="56.1" fill="#000000" font-family="Gill Sans" font-size="15">foo</text>
+	<text x="170" y="56.1" fill="#000000" font-family="Gill Sans" font-size="15">ID</text>
+	<line x1="210" y1="59" x2="232" y2="59" stroke="#000000" stroke-width="1"/>
+	<text x="210" y="73.1" fill="#000000" font-family="Gill Sans" font-size="15">bar</text>
+	<text x="173" y="73.1" fill="#000000" font-family="Gill Sans" font-size="15">1</text>
+	<text x="210" y="90.1" fill="#000000" font-family="Gill Sans" font-size="15">biz</text>
+	<text x="167" y="90.1" fill="#000000" font-family="Gill Sans" font-size="15">1 2</text>
+	<text x="210" y="107.1" fill="#000000" font-family="Gill Sans" font-size="15">buz</text>
+	<text x="173" y="107.1" fill="#000000" font-family="Gill Sans" font-size="15">2</text>
+	<text x="210" y="124" fill="#000000" font-family="Gill Sans" font-size="15">qux</text>
+	<text x="173" y="124" fill="#000000" font-family="Gill Sans" font-size="15">3</text>
+	<text x="210" y="141" fill="#000000" font-family="Gill Sans" font-size="15">quux</text>
+	<text x="162" y="141" fill="#000000" font-family="Gill Sans" font-size="15">1 2 3</text>
+</g>
+
+<!-- Entity UTILISER -->
+<g>
+	<g>
+		<rect x="287" y="34" width="146" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="331" y="64" width="102" height="64" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="287" y="64" width="44" height="64" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<line x1="331" y1="64" x2="331" y2="128" stroke="#000000" stroke-width="0.38"/>
+		<rect x="287" y="34" width="146" height="94" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
+		<line x1="287" y1="64" x2="433" y2="64" stroke="#000000" stroke-width="1.5"/>
+	</g>
+	<text x="318" y="55.3" fill="#000000" font-family="Copperplate" font-size="18">UTILISER</text>
+	<text x="339" y="81.1" fill="#000000" font-family="Gill Sans" font-size="15">carnet</text>
+	<text x="295" y="81.1" fill="#000000" font-family="Gill Sans" font-size="15">1 ID</text>
+	<line x1="339" y1="84" x2="379" y2="84" stroke="#000000" stroke-width="1"/>
+	<text x="339" y="98.1" fill="#000000" font-family="Gill Sans" font-size="15">projet</text>
+	<text x="295" y="98.1" fill="#000000" font-family="Gill Sans" font-size="15">2 ID</text>
+	<line x1="339" y1="101" x2="378" y2="101" stroke="#000000" stroke-width="1"/>
+	<text x="339" y="115" fill="#000000" font-family="Gill Sans" font-size="15">technicien</text>
+	<text x="298" y="115" fill="#000000" font-family="Gill Sans" font-size="15">1 2</text>
+</g>
+</svg>

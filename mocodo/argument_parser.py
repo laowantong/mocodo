@@ -261,7 +261,7 @@ def parsed_arguments():
         default=0,
         help="discriminate between multiple SVG of the same interactive diagram",
     )
-    io_group.add_argument("--no_mcd", "--quiet",
+    io_group.add_argument("--no_mcd", "--quiet", "--mute",
         action="store_true",
         help="under Jupyter Notebook, do not render the conceptual diagram in the cell output",
     )

@@ -96,7 +96,7 @@ class McdGeometryTest(unittest.TestCase):
         ]
         mcd = Mcd("\n".join(clauses), stub_for_get_font_metrics, **params)
         self.assertEqual(get_dimensions(mcd), [
-            {'name': 'DF', 'x': 30, 'y': 24, 'w': 24, 'h': 24},
+            {'name': 'DF0', 'x': 30, 'y': 24, 'w': 24, 'h': 24},
             {'name': 'Classe', 'x': 95, 'y': 9, 'w': 72, 'h': 54},
             {'name': 'Faire Cours', 'x': 195, 'y': 15, 'w': 74, 'h': 42},
             {'name': 'Catégorie', 'x': 294, 'y': 9, 'w': 86, 'h': 54},
@@ -133,7 +133,7 @@ class McdGeometryTest(unittest.TestCase):
             {'name': 'OCCUPE', 'x': 241, 'y': 15, 'w': 44, 'h': 42},
             {'name': 'PÉRIODE', 'x': 320, 'y': 9, 'w': 66, 'h': 54},
             {'name': 'ESPÈCE', 'x': 28, 'y': 93, 'w': 72, 'h': 54},
-            {'name': 'DF', 'x': 168, 'y': 108, 'w': 24, 'h': 24},
+            {'name': 'DF0', 'x': 168, 'y': 108, 'w': 24, 'h': 24},
             {'name': 'ANIMAL', 'x': 220, 'y': 83, 'w': 86, 'h': 74},
             {'name': 'A MÈRE', 'x': 331, 'y': 99, 'w': 44, 'h': 42},
             {'name': 'PEUT COHABITER AVEC', 'x': 9, 'y': 177, 'w': 110, 'h': 42},

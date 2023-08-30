@@ -1,0 +1,54 @@
+graph{
+  start=42
+
+  // Entities
+  node [
+    shape=box
+    style=filled
+    penwidth=1.5
+    fillcolor="#FFFFFF"
+  ]
+  1 [label="Technicien"]
+  5 [label="Projet"]
+  4 [label="Carnet"]
+
+  // Normal entity attributes
+  node [
+    shape=oval
+    penwidth=1.5
+    fillcolor="#FFFFFF"
+  ]
+
+  // Weak and strong entity attributes
+  2 [label=<<u>technicien</u>>]
+  6 [label=<<u>projet</u>>]
+  7 [label=<<u>carnet</u>>]
+
+  // Relationships
+  node [
+    shape=diamond
+    height=0.7
+    penwidth=1.5
+    fillcolor="#FFFFFF"
+  ]
+  3 [label="Utiliser"]
+
+  // Edges between entities and attributes
+  edge [
+    penwidth=1.5
+  ]
+  1 -- 2
+  4 -- 7
+  5 -- 6
+
+  // Edges between entities and relationships
+  edge [
+    penwidth=1
+    color="#000000:#000000"
+    labeldistance=2
+    headlabel=1
+  ]
+  1 -- 3
+  4 -- 3
+  5 -- 3
+}

@@ -1,0 +1,50 @@
+{
+  "width": 827,
+  "height": 476,
+  "cx": [
+    [ "PÉRIODE", 315 ],
+    [ "A MÈRE", 470 ],
+    [ "ENCLOS", 108 ],
+    [ "OCCUPE", 315 ],
+    [ "ANIMAL", 470 ],
+    [ "ANIMAL parent #1", 601 ],
+    [ "CARNIVORE", 737 ],
+    [ "PEUT VIVRE DANS", 108 ],
+    [ "ESPÈCE", 315 ],
+    [ "DF0", 470 ],
+    [ "HERBIVORE", 601 ],
+    [ "PEUT COHABITER AVEC", 315 ]
+  ],
+  "cy": [
+    [ "PÉRIODE", 56 ],
+    [ "A MÈRE", 56 ],
+    [ "ENCLOS", 183 ],
+    [ "OCCUPE", 183 ],
+    [ "ANIMAL", 183 ],
+    [ "ANIMAL parent #1", 183 ],
+    [ "CARNIVORE", 183 ],
+    [ "PEUT VIVRE DANS", 319 ],
+    [ "ESPÈCE", 319 ],
+    [ "DF0", 319 ],
+    [ "HERBIVORE", 319 ],
+    [ "PEUT COHABITER AVEC", 429 ]
+  ],
+  "shift": [
+    [ "A MÈRE,ANIMAL,-1_0", 0 ],
+    [ "A MÈRE,ANIMAL,1_0", 0 ],
+    [ "OCCUPE,ANIMAL,0", 0 ],
+    [ "OCCUPE,PÉRIODE,0", 0 ],
+    [ "OCCUPE,ENCLOS,0", 0 ],
+    [ "PEUT VIVRE DANS,ESPÈCE,0", 0 ],
+    [ "PEUT VIVRE DANS,ENCLOS,0", 0 ],
+    [ "DF0,ESPÈCE,0", 0 ],
+    [ "DF0,ANIMAL,0", 0 ],
+    [ "PEUT COHABITER AVEC,ESPÈCE,-1_0", 0 ],
+    [ "PEUT COHABITER AVEC,ESPÈCE,1_0", 0 ]
+  ],
+  "ratio": [
+    [ "A MÈRE,ANIMAL,1_0", 1.0 ],
+    [ "OCCUPE,PÉRIODE,0", 1.0 ],
+    [ "ANIMAL parent #1 / ANIMAL", 1.0 ]
+  ]
+}

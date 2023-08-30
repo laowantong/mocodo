@@ -1,0 +1,8 @@
+digraph {
+  node [shape=box]
+  "ANIMAL" -> "ANIMAL"
+  "ESPÈCE" -> "ANIMAL"
+  "ANIMAL" -> "OCCUPE"
+  "ESPÈCE" -> "PEUT COHABITER AVEC"
+  "ESPÈCE" -> "PEUT VIVRE DANS"
+}

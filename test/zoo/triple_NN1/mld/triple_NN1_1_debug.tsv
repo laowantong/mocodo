@@ -1,0 +1,10 @@
+this_relation_name	label	data_type	nature	adjacent_source	outer_source
+Gérer	ingénieur		primary_foreign_key	Ingénieur	Ingénieur
+Gérer	projet		primary_foreign_key	Projet	Projet
+Gérer	responsable		foreign_key	Responsable	Responsable
+Ingénieur	ingénieur		primary_key		
+Ingénieur	nom ingénieur		normal_attribute		
+Projet	projet		primary_key		
+Projet	libellé projet		normal_attribute		
+Responsable	responsable		primary_key		
+Responsable	nom responsable		normal_attribute

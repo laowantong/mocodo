@@ -4,7 +4,7 @@ __import__("sys").path[0:0] = ["."]
 
 from ..mocodo_error import subsubopt_error
 from ..parse_mcd import Visitor
-from ..tools.parser_tools import first_child
+from ..tools.parser_tools import first_child, is_identifier
 from ..tools.string_tools import rstrip_digit
 from ..tools.graphviz_tools import create_name_to_index
 
@@ -21,12 +21,13 @@ class Crow(Visitor):
         tree.children = [s]
 
     def entity_or_table_attr(self, tree):
-        id_mark = first_child(tree, "id_mark")
-        attr = first_child(tree, "attr")
-        data_type = first_child(tree, "data_type")
+        id_groups = str(first_child(tree, "id_groups"))
+        id_mark = str(first_child(tree, "id_mark"))
+        attr = str(first_child(tree, "attr"))
+        data_type = str(first_child(tree, "data_type"))
         if data_type:
             self.has_no_data_type = False
-        tree.children = [(id_mark, attr.value, data_type)]
+        tree.children = [(id_groups, id_mark, attr, data_type)]
     
     def entity_clause(self, tree):
         ent_name = first_child(tree, "box_name").value
@@ -35,8 +36,8 @@ class Crow(Visitor):
         attrs = []
         has_id = False
         for (i, node) in enumerate(tree.find_data("entity_or_table_attr")):
-            (id_mark, attr, data_type) = node.children[0]
-            is_id = (id_mark != "_" and i == 0) or (id_mark == "_" and i != 0)
+            (id_groups, id_mark, attr, data_type) = node.children[0]
+            is_id = is_identifier(i, id_groups, id_mark)
             has_id = has_id or is_id
             attrs.append((data_type, attr, is_id))
         self.tables[ent_index] = (ent_name, has_id, attrs)

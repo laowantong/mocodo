@@ -1,0 +1,6 @@
+% All cardinalities other than 01 and 11 are treated as 1N
+CLIENT: Réf. client, Nom, Prénom, Adresse
+PASSER, XX CLIENT, XN COMMANDE
+COMMANDE: Num commande, Date, Montant
+INCLURE, 03 COMMANDE, ?? PRODUIT: Quantité
+PRODUIT: Réf. produit, Libellé, Prix unitaire

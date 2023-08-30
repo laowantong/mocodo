@@ -1,0 +1,6 @@
+digraph {
+  node [shape=box]
+  "Étage" -> "Appartement"
+  "Rue" -> "Immeuble"
+  "Immeuble" -> "Étage"
+}

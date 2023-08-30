@@ -1,0 +1,8 @@
+- Utiliser (_carnet_¹, _projet_², technicien¹²)
+  - Le champ « carnet » fait partie de la clé primaire de la table. Sa table d'origine (« Carnet ») ayant été supprimée, il n'est pas considéré comme clé étrangère. Il fait par contre partie d'une clé alternative matérialisée par la contrainte d'unicité 1.
+  - Le champ « projet » fait partie de la clé primaire de la table. Sa table d'origine (« Projet ») ayant été supprimée, il n'est pas considéré comme clé étrangère. Il fait par contre partie d'une clé alternative matérialisée par la contrainte d'unicité 2.
+  - Le champ « technicien » est un simple attribut. Sa table d'origine (« Technicien ») ayant été supprimée, il n'est pas considéré comme clé étrangère. Il fait par contre partie de clés alternatives matérialisées par les contraintes d'unicité 1 et 2.
+
+--------------------------------------------------------------------------------
+
+NB. Les tables « Carnet », « Projet » et « Technicien » ont été supprimées car elles étaient réduites à la clé primaire de leur entité d'origine.

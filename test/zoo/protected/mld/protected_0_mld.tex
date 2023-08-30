@@ -1,0 +1,40 @@
+\documentclass[a4paper]{article}
+\usepackage[normalem]{ulem}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\frenchsetup{StandardLayout=true}
+
+\newcommand{\relat}[1]{\textsc{#1}}
+\newcommand{\attr}[1]{#1}
+\newcommand{\prim}[1]{\uline{#1}}
+\newcommand{\foreign}[1]{\#\textsl{#1}}
+
+\title{Conversion en relationnel\\du MCD \emph{protected}}
+\author{\emph{Généré par Mocodo}}
+
+\begin{document}
+\maketitle
+
+\begin{itemize}
+  \item \relat{EROS} (\prim{congue})
+  \begin{itemize}
+    \item Le champ \emph{congue} constitue la clé primaire de la table. C'était déjà un identifiant de l'entité \emph{EROS}.
+  \end{itemize}
+
+  \item \relat{LACUS} (\prim{blandit}, \attr{elit})
+  \begin{itemize}
+    \item Le champ \emph{blandit} constitue la clé primaire de la table. C'était déjà un identifiant de l'entité \emph{LACUS}.
+    \item Le champ \emph{elit} était déjà un simple attribut de l'entité \emph{LACUS}.
+  \end{itemize}
+
+  \item \relat{LIGULA} (\foreign{\prim{blandit}}, \foreign{congue}, \attr{metus})
+  \begin{itemize}
+    \item \paragraph{Avertissement.} Table résultant de la conversion forcée d'une association DF.
+    \item Le champ \emph{blandit} constitue la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité \emph{LACUS}.
+    \item Le champ \emph{congue} est une clé étrangère. Il a migré directement de l'entité \emph{EROS} en perdant son caractère identifiant.
+    \item Le champ \emph{metus} était déjà un simple attribut de l'association \emph{LIGULA}.
+  \end{itemize}
+
+\end{itemize}
+
+\end{document}

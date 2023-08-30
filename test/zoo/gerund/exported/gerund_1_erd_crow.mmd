@@ -1,0 +1,14 @@
+erDiagram
+  produit {
+    TYPE produit PK
+    TYPE libelle
+  }
+  ligne_de_commande {
+    TYPE quantite PK
+  }
+  commande {
+    TYPE commande PK
+    TYPE date
+  }
+  ligne_de_commande }o..|| produit: DF
+  ligne_de_commande }|..|| commande: DF

@@ -20,7 +20,7 @@ class ArrangeGA(unittest.TestCase):
             CONSECTETUER: elit, sed
             MAECENAS, 1N DIGNISSIM, 1N DIGNISSIM
 
-            DF1, 11 LOREM, 1N SUSPENDISSE
+            DF, 11 LOREM, 1N SUSPENDISSE
             LOREM: ipsum, dolor, sit
             TORTOR, 0N RISUS, 11 DIGNISSIM, 1N CONSECTETUER: nec
             DIGNISSIM: ligula, massa, varius
@@ -43,7 +43,7 @@ class ArrangeGA(unittest.TestCase):
         expected = """
             AMET, 11> LOREM, 01 CONSECTETUER: adipiscing
             LOREM: ipsum, dolor, sit
-            DF1, 11 LOREM, 1N SUSPENDISSE
+            DF, 11 LOREM, 1N SUSPENDISSE
             SUSPENDISSE: diam
 
             CONSECTETUER: elit, sed

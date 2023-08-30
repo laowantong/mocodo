@@ -1,0 +1,82 @@
+graph{
+  start=42
+
+  // Entities
+  node [
+    shape=box
+    style=filled
+    penwidth=1.5
+    fillcolor="#FFFFFF"
+  ]
+  1 [label="CLIENT"]
+  7 [label="COMMANDE"]
+  12 [label="PRODUIT"]
+
+  // Normal entity attributes
+  node [
+    shape=oval
+    penwidth=1.5
+    fillcolor="#FFFFFF"
+  ]
+  3 [label="Nom"]
+  4 [label="Prénom"]
+  5 [label="Adresse"]
+  9 [label="Date"]
+  10 [label="Montant"]
+  15 [label="Libellé"]
+  16 [label="Prix\nunitaire"]
+
+  // Weak and strong entity attributes
+  2 [label=<<u>Réf.<br/>client</u>>]
+  8 [label=<<u>Num.<br/>commande</u>>]
+  14 [label=<<u>Réf.<br/>produit</u>>]
+
+  // Relationship attributes
+  node [
+    fillcolor="#FFFFFF"
+  ]
+  13 [label="Quantité"]
+
+  // Relationships
+  node [
+    shape=diamond
+    height=0.7
+    penwidth=1.5
+    fillcolor="#FFFFFF"
+  ]
+  6 [label="DF"]
+  11 [label="INCLURE"]
+
+  // Edges between entities and attributes
+  edge [
+    penwidth=1.5
+  ]
+  1 -- 2
+  1 -- 3
+  1 -- 4
+  1 -- 5
+  7 -- 8
+  7 -- 9
+  7 -- 10
+  12 -- 14
+  12 -- 15
+  12 -- 16
+
+  // Edges between relationships and attributes
+  edge [color="#000000"]
+  11 -- 13
+
+  // Edges between entities and relationships
+  edge [
+    penwidth=1
+    color="#000000:#000000"
+    labeldistance=2
+    headlabel=1
+  ]
+  1 -- 6 [color="#000000"]
+  edge [headlabel=M]
+  12 -- 11 [color="#000000"]
+  edge [headlabel=N]
+  7 -- 6
+  7 -- 11
+}

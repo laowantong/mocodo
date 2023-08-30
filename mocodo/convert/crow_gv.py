@@ -24,7 +24,7 @@ class CrowGv(Crow):
     def get_text(self, common):
         style = common.load_style()
         ent_table_style = {
-            "stroke_color": style["box_stroke_depth"],
+            "stroke_color": style["entity_stroke_color"],
             "cell_bg_color": style["entity_color"],
             "header_bg_color": style["entity_cartouche_color"],
             "header_font_color": style["entity_cartouche_text_color"],
@@ -33,7 +33,7 @@ class CrowGv(Crow):
             "cell_font_size": style["entity_attribute_font"]["size"],
         }
         assoc_table_style = {
-            "stroke_color": style["box_stroke_depth"],
+            "stroke_color": style["association_stroke_color"],
             "cell_bg_color": style["association_color"],
             "header_bg_color": style["association_cartouche_color"],
             "header_font_color": style["association_cartouche_text_color"],
@@ -88,7 +88,7 @@ class CrowGv(Crow):
 def run(source, subargs, common=None):
     source = drain.run(source)
     source = split.run(source)
-    source = explode.run(source, {"arity": "2.5", "weak": True})
+    source = explode.run(source, {"arity": "2.5", "weak": True}, common.params)
     tree = parse_source(source)
     extractor = CrowGv()
     extractor.visit(tree)

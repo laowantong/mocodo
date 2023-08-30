@@ -246,10 +246,12 @@ class Mcd:
         params.setdefault("id_gutter_weak_string", "id")
         params.setdefault("id_gutter_alts", dict(zip("123456789", "123456789")))
         params.setdefault("id_gutter_visibility", "auto")
-        print(params)
 
         self.get_font_metrics = get_font_metrics
         phantom_counter = itertools.count()
+        Association.reset_df_counter()
+        Inheritance.reset_counter()
+        Constraint.reset_counter()
         self.uid = calculate_uid()
         create()
         self.update_footer()
@@ -269,6 +271,12 @@ class Mcd:
     def get_layout_data(self):
         successors = [set() for i in range(self.box_count)] # use `set` to deduplicate reflexive associations
         multiplicity = defaultdict(int) # but count the multiplicity (1 or 2) of each link
+        for inheritance in self.inheritances:
+            for leg in inheritance.legs:
+                successors[inheritance.identifier].add(leg.entity.identifier)
+                successors[leg.entity.identifier].add(inheritance.identifier)
+                multiplicity[(inheritance.identifier, leg.entity.identifier)] += 1
+                multiplicity[(leg.entity.identifier, inheritance.identifier)] += 1
         if self.associations:
             for association in self.associations.values():
                 for leg in association.legs:
@@ -285,8 +293,9 @@ class Mcd:
                     successors[pei].add(fei)
                     multiplicity[(fei, pei)] += 1
                     multiplicity[(pei, fei)] += 1
+        links = tuple((node, child) for (node, children) in enumerate(successors) for child in children if node < child)
         return {
-            "links": tuple((node, child) for (node, children) in enumerate(successors) for child in children if node < child),
+            "links": links,
             "successors": successors,
             "col_count": self.col_count,
             "row_count": self.row_count,
@@ -377,11 +386,11 @@ class Mcd:
     def calculate_size(self, style):
 
         def increase_margins_in_presence_of_clusters():
-            for association in self.associations.values():
-                if association.kind == "cluster":
-                    style["margin"] *= 2
-                    style["card_margin"] *= 2
-                    break
+            if not self.associations: # relational diagram or MCD without associations
+                return
+            factor = 1 + max(a.peg_count for a in self.associations.values())
+            style["margin"] *= factor
+            style["card_margin"] *= factor
 
         def card_max_width():
             get_pixel_width = self.get_font_metrics(style["card_font"]).get_pixel_width

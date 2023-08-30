@@ -1,0 +1,12 @@
+erDiagram
+  produit {
+    TYPE produit PK
+  }
+  ligne_de_commande {
+    TYPE quantite PK
+  }
+  commande {
+    TYPE commande PK
+  }
+  ligne_de_commande }o..|| produit: DF
+  ligne_de_commande }|..|| commande: DF

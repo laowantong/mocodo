@@ -9,6 +9,7 @@ from mocodo.tools.parser_tools import extract_clauses
 gettext.NullTranslations().install()
 
 def association_wrapper(s, **kargs):
+    Association.reset_df_counter()
     return Association(extract_clauses(s)[0], **kargs)
 
 class ParseTest(unittest.TestCase):
@@ -96,9 +97,12 @@ class ParseTest(unittest.TestCase):
         a = association_wrapper("SOUTENIR, XX ÉTUDIANT, XX DATE: note stage")
         self.assertTrue(not a.legs[0].card_view.strip())
         self.assertTrue(not a.legs[1].card_view.strip())
+        a = association_wrapper("SOUTENIR, AB ÉTUDIANT, CD DATE: note stage")
+        self.assertEqual(a.legs[0].card_view, "A,B")
+        self.assertEqual(a.legs[1].card_view, "C,D")
         a = association_wrapper("SOUTENIR, XY ÉTUDIANT, XY DATE: note stage")
-        self.assertEqual(a.legs[0].card_view, "X,Y")
-        self.assertEqual(a.legs[1].card_view, "X,Y")
+        self.assertEqual(a.legs[0].card_view, "Y")
+        self.assertEqual(a.legs[1].card_view, "Y")
 
     def test_numbered_association_wrapper(self):
         a = association_wrapper("SOUTENIR1, 01 ÉTUDIANT, 0N DATE: note stage")
@@ -110,7 +114,7 @@ class ParseTest(unittest.TestCase):
 
     def test_df(self):
         a = association_wrapper("DF, 0N CLIENT, 11 COMMANDE")
-        self.assertEqual(a.name, "DF")
+        self.assertEqual(a.name, "DF0")
         self.assertEqual(a.name_view, "DF")
         a = association_wrapper("CIF, 0N CLIENT, 11 COMMANDE", df_label="CIF")
         self.assertEqual(a.name, "CIF")
@@ -134,10 +138,6 @@ class ParseTest(unittest.TestCase):
 
     def test_cluster_with_forbidden_cardinality(self):
         self.assertRaisesRegex(MocodoError, r"Mocodo Err\.26", association_wrapper, "SUIVRE, 0N DATE, /11 ÉTUDIANT, 0N ENSEIGNANT")
-
-    def test_cluster_without_valid_leg(self):
-        self.assertRaisesRegex(MocodoError, r"Mocodo Err\.27", association_wrapper, "SUIVRE, /0N DATE, /1N ÉTUDIANT, /0N ENSEIGNANT")
-        self.assertRaisesRegex(MocodoError, r"Mocodo Err\.27", association_wrapper, "SUIVRE, 11 DATE, /1N ÉTUDIANT, /0N ENSEIGNANT")
 
     def test_cluster_with_df(self):
         self.assertRaisesRegex(MocodoError, r"Mocodo Err\.28", association_wrapper, "SUIVRE, 0N DATE, /1N ÉTUDIANT, 11 ENSEIGNANT")

@@ -1,0 +1,8 @@
+%%mocodo
+:
+Produit: produit, libellé
+:
+Ligne de commande: #commande > Commande > commande, _#produit > Produit > produit, quantité
+:
+Commande: commande, date
+:

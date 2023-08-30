@@ -23,7 +23,7 @@ AYANT-DROIT: nom ayant-droit, lien
 DIRIGER, 0N EMPLOYÉ, 01 PROJET
 REQUÉRIR, 1N PROJET, 0N PIÈCE: qté requise
 COMPOSER, 0N [composée] PIÈCE, 0N [composante] PIÈCE: quantité
-DF1, _11 AYANT-DROIT, 0N EMPLOYÉ
+DF, _11 AYANT-DROIT, 0N EMPLOYÉ
 FOURNIR, 1N PROJET, 1N PIÈCE, 1N SOCIÉTÉ: qté fournie
 CONTRÔLER, 0N< [filiale] SOCIÉTÉ, 01 [mère] SOCIÉTÉ
 DF, 0N> CLIENT, 11 COMMANDE
@@ -31,7 +31,7 @@ GRATTE-CIEL: latitude, _longitude, nom, hauteur, année de construction
 Peut recevoir, 1N> Groupe sanguin, 1N< Groupe sanguin
 Engendre, 0N< Personne, 22> Personne
 Agent 0070: bar
-DF42, 11 Agent 0070, 1N Agent1
+DF4, 11 Agent 0070, 1N Agent1
 Agent1: bar
 DF, _11 ŒUVRE, _11 EXEMPLAIRE
 Réserver, /1N Client, 1N Chambre, 0N Date: Durée
@@ -54,7 +54,7 @@ INCLURE, XX COMMANDE, XX PRODUIT:
 EXEMPLAIRE2: 1, bon état, 12/6/1975
 EXEMPLAIRE3: 2, bon état, 1/8/1977
 EXEMPLAIRE4: 3, reliure rongée, 3/4/2005
-DF1, -1N ŒUVRE, -_11 EXEMPLAIRE1
+DF, -1N ŒUVRE, -_11 EXEMPLAIRE1
 +Prof: Num. prof, Nom prof
 Enseignant: num. ens. [numéro identifiant un enseignant], nom ens. [nom enseignant], tél. ens. [téléphone enseignant]
 COMMANDE: Num commande, Date, Montant, #Réf. client>CLIENT>Réf. client

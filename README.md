@@ -33,7 +33,7 @@ Requérir, 1N Projet, 0N Pièce: qté requise
 Pièce: réf. pièce, libellé pièce
 Composer, 0N [composée] Pièce, 0N [composante] Pièce: quantité
 
-DF1, _11 Ayant-droit, 0N Employé
+DF, _11 Ayant-droit, 0N Employé
 Employé: matricule, nom employé
 Projet: num. projet, nom projet
 Fournir, 1N Projet, 1N Pièce, 1N Société: qté fournie

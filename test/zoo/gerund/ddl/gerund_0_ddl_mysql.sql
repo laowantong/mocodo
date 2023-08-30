@@ -1,0 +1,9 @@
+CREATE DATABASE IF NOT EXISTS gerund;
+USE gerund;
+
+CREATE TABLE LIGNE_DE_COMMANDE (
+  commande VARCHAR(42),
+  produit VARCHAR(42),
+  quantite INTEGER,
+  PRIMARY KEY (commande, produit)
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;

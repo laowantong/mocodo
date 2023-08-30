@@ -1,0 +1,112 @@
+digraph{
+  layout=dot
+  bgcolor="#FFFFFF"
+  nodesep=0.5
+
+  // Nodes
+  node [
+      shape=none
+      fontcolor="#000000"
+      fontsize=15
+      fontname="Helvetica"
+]
+  node [
+      shape=none
+      fontcolor="#000000"
+      fontsize=15
+      fontname="Helvetica"
+]
+  1 [label=<<table
+        border="0"
+        cellborder="1"
+        cellspacing="0"
+        bgcolor="#FFFFFF"
+        color="#000000"
+        cellpadding="4"
+    >
+        <tr>
+            <td bgcolor="#FFFFFF" colspan="2">
+                <font
+                    color="#000000"
+                    point-size="18"
+                >NEC</font>
+            </td>
+        </tr>
+        <tr><td>PK</td><td align="left">pulvinar</td></tr>
+        <tr><td> </td><td align="left">audis</td></tr>
+    </table>
+>]
+  2 [label=<<table
+        border="0"
+        cellborder="1"
+        cellspacing="0"
+        bgcolor="#FFFFFF"
+        color="#000000"
+        cellpadding="4"
+    >
+        <tr>
+            <td bgcolor="#FFFFFF" colspan="2">
+                <font
+                    color="#000000"
+                    point-size="18"
+                >LACUS</font>
+            </td>
+        </tr>
+        <tr><td>PK</td><td align="left">tempor</td></tr>
+        <tr><td> </td><td align="left">fugit</td></tr>
+    </table>
+>]
+  3 [label=<<table
+        border="0"
+        cellborder="1"
+        cellspacing="0"
+        bgcolor="#FFFFFF"
+        color="#000000"
+        cellpadding="4"
+    >
+        <tr>
+            <td bgcolor="#FFFFFF" colspan="2">
+                <font
+                    color="#000000"
+                    point-size="18"
+                >TRISTIS</font>
+            </td>
+        </tr>
+        <tr><td>PK</td><td align="left">magna</td></tr>
+        <tr><td> </td><td align="left">vestibulum</td></tr>
+    </table>
+>]
+  4 [label=<<table
+        border="0"
+        cellborder="1"
+        cellspacing="0"
+        bgcolor="#FFFFFF"
+        color="#000000"
+        cellpadding="4"
+    >
+        <tr>
+            <td bgcolor="#FFFFFF" colspan="2">
+                <font
+                    color="#000000"
+                    point-size="18"
+                >SODALES</font>
+            </td>
+        </tr>
+        <tr><td>PK</td><td align="left">convallis</td></tr>
+        <tr><td> </td><td align="left">ipsum</td></tr>
+    </table>
+>]
+
+  // Edges
+  edge [
+    penwidth=1
+    color="#000000"
+    fontcolor="#000000"
+    fontname="Futura"
+    fontsize=11
+    dir=both
+  ]
+  2 -> 1 [arrowhead="crowtee" arrowtail="teetee" label="MOLLIS"]
+  1 -> 4 [arrowhead="teetee" arrowtail="crowtee" label="VITAE"]
+  4 -> 2 [arrowhead="crowtee" arrowtail="crowtee" label="ULTRICES"]
+}

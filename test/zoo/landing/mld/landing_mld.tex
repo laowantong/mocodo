@@ -1,0 +1,88 @@
+\documentclass[a4paper]{article}
+\usepackage[normalem]{ulem}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\frenchsetup{StandardLayout=true}
+
+\newcommand{\relat}[1]{\textsc{#1}}
+\newcommand{\attr}[1]{#1}
+\newcommand{\prim}[1]{\uline{#1}}
+\newcommand{\foreign}[1]{\#\textsl{#1}}
+
+\title{Conversion en relationnel\\du MCD \emph{landing}}
+\author{\emph{Généré par Mocodo}}
+
+\begin{document}
+\maketitle
+
+\begin{itemize}
+  \item \relat{AYANT-DROIT} (\foreign{\prim{matricule}}, \prim{nom ayant-droit}, \attr{lien})
+  \begin{itemize}
+    \item Le champ \emph{matricule} fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité \emph{EMPLOYÉ}.
+    \item Le champ \emph{nom ayant-droit} fait partie de la clé primaire de la table. C'était déjà un identifiant de l'entité \emph{AYANT-DROIT}.
+    \item Le champ \emph{lien} était déjà un simple attribut de l'entité \emph{AYANT-DROIT}.
+  \end{itemize}
+
+  \item \relat{COMPOSER} (\foreign{\prim{réf. pièce composée}}, \foreign{\prim{réf. pièce composante}}, \attr{quantité})
+  \begin{itemize}
+    \item Les champs \emph{réf. pièce composée} et \emph{réf. pièce composante} constituent la clé primaire de la table. Ce sont des clés étrangères qui ont migré directement à partir de l'entité \emph{PIÈCE}.
+    \item Le champ \emph{quantité} était déjà un simple attribut de l'association \emph{COMPOSER}.
+  \end{itemize}
+
+  \item \relat{DÉPARTEMENT} (\prim{num. département}, \attr{nom département})
+  \begin{itemize}
+    \item Le champ \emph{num. département} constitue la clé primaire de la table. C'était déjà un identifiant de l'entité \emph{DÉPARTEMENT}.
+    \item Le champ \emph{nom département} était déjà un simple attribut de l'entité \emph{DÉPARTEMENT}.
+  \end{itemize}
+
+  \item \relat{EMPLOYÉ} (\prim{matricule}, \attr{nom employé}, \foreign{num. département})
+  \begin{itemize}
+    \item Le champ \emph{matricule} constitue la clé primaire de la table. C'était déjà un identifiant de l'entité \emph{EMPLOYÉ}.
+    \item Le champ \emph{nom employé} était déjà un simple attribut de l'entité \emph{EMPLOYÉ}.
+    \item Le champ \emph{num. département} est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle \emph{EMPLOYER} à partir de l'entité \emph{DÉPARTEMENT} en perdant son caractère identifiant.
+  \end{itemize}
+
+  \item \relat{FOURNIR} (\foreign{\prim{num. projet}}, \foreign{\prim{réf. pièce}}, \foreign{\prim{num. société}}, \attr{qté fournie})
+  \begin{itemize}
+    \item Le champ \emph{num. projet} fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité \emph{PROJET}.
+    \item Le champ \emph{réf. pièce} fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité \emph{PIÈCE}.
+    \item Le champ \emph{num. société} fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité \emph{SOCIÉTÉ}.
+    \item Le champ \emph{qté fournie} était déjà un simple attribut de l'association \emph{FOURNIR}.
+  \end{itemize}
+
+  \item \relat{PIÈCE} (\prim{réf. pièce}, \attr{libellé pièce})
+  \begin{itemize}
+    \item Le champ \emph{réf. pièce} constitue la clé primaire de la table. C'était déjà un identifiant de l'entité \emph{PIÈCE}.
+    \item Le champ \emph{libellé pièce} était déjà un simple attribut de l'entité \emph{PIÈCE}.
+  \end{itemize}
+
+  \item \relat{PROJET} (\prim{num. projet}, \attr{nom projet}, \foreign{matricule})
+  \begin{itemize}
+    \item Le champ \emph{num. projet} constitue la clé primaire de la table. C'était déjà un identifiant de l'entité \emph{PROJET}.
+    \item Le champ \emph{nom projet} était déjà un simple attribut de l'entité \emph{PROJET}.
+    \item Le champ \emph{matricule} est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle \emph{DIRIGER} à partir de l'entité \emph{EMPLOYÉ} en perdant son caractère identifiant.
+  \end{itemize}
+
+  \item \relat{REQUÉRIR} (\foreign{\prim{num. projet}}, \foreign{\prim{réf. pièce}}, \attr{qté requise})
+  \begin{itemize}
+    \item Le champ \emph{num. projet} fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité \emph{PROJET}.
+    \item Le champ \emph{réf. pièce} fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité \emph{PIÈCE}.
+    \item Le champ \emph{qté requise} était déjà un simple attribut de l'association \emph{REQUÉRIR}.
+  \end{itemize}
+
+  \item \relat{SOCIÉTÉ} (\prim{num. société}, \attr{raison sociale}, \foreign{num. société mère})
+  \begin{itemize}
+    \item Le champ \emph{num. société} constitue la clé primaire de la table. C'était déjà un identifiant de l'entité \emph{SOCIÉTÉ}.
+    \item Le champ \emph{raison sociale} était déjà un simple attribut de l'entité \emph{SOCIÉTÉ}.
+    \item Le champ \emph{num. société mère} est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle \emph{CONTRÔLER} à partir de l'entité \emph{SOCIÉTÉ} en perdant son caractère identifiant.
+  \end{itemize}
+
+  \item \relat{TRAVAILLER} (\foreign{\prim{matricule}}, \foreign{\prim{num. projet}})
+  \begin{itemize}
+    \item Le champ \emph{matricule} fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité \emph{EMPLOYÉ}.
+    \item Le champ \emph{num. projet} fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité \emph{PROJET}.
+  \end{itemize}
+
+\end{itemize}
+
+\end{document}

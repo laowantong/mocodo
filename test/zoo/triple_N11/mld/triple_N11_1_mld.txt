@@ -1,0 +1,16 @@
+- Affecter (_#projet_, _#employé_¹, #site¹)
+  - Le champ « projet » fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité « Projet ».
+  - Le champ « employé » fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité « Employé ». Il fait en outre partie d'une clé alternative matérialisée par la contrainte d'unicité 1.
+  - Le champ « site » est simple attribut. C'est une clé étrangère qui a migré directement à partir de l'entité « Site » en perdant son caractère identifiant. Il fait en outre partie d'une clé alternative matérialisée par la contrainte d'unicité 1.
+
+- Employé (_employé_, nom employé)
+  - Le champ « employé » constitue la clé primaire de la table. C'était déjà un identifiant de l'entité « Employé ».
+  - Le champ « nom employé » était déjà un simple attribut de l'entité « Employé ».
+
+- Projet (_projet_, libellé)
+  - Le champ « projet » constitue la clé primaire de la table. C'était déjà un identifiant de l'entité « Projet ».
+  - Le champ « libellé » était déjà un simple attribut de l'entité « Projet ».
+
+- Site (_site_, position)
+  - Le champ « site » constitue la clé primaire de la table. C'était déjà un identifiant de l'entité « Site ».
+  - Le champ « position » était déjà un simple attribut de l'entité « Site ».

@@ -1,0 +1,71 @@
+graph{
+  start=42
+
+  // Entities
+  node [
+    shape=box
+    style=filled
+    penwidth=1.5
+    fillcolor="#FFFFFF"
+  ]
+  1 [label="Appartement",peripheries=2]
+  5 [label="Étage",peripheries=2]
+  9 [label="Immeuble",peripheries=2]
+  13 [label="Rue"]
+
+  // Normal entity attributes
+  node [
+    shape=oval
+    penwidth=1.5
+    fillcolor="#FFFFFF"
+  ]
+  3 [label="nb\npièces"]
+  7 [label="nb\nappartements"]
+  11 [label="nb\nétages"]
+  15 [label="nom rue"]
+
+  // Weak and strong entity attributes
+  2 [label=<<u>num<br/>appart.</u>> style="dashed,filled"]
+  6 [label=<<u>num<br/>étage</u>> style="dashed,filled"]
+  10 [label=<<u>num<br/>immeuble</u>> style="dashed,filled"]
+  14 [label=<<u>code rue</u>>]
+
+  // Relationships
+  node [
+    shape=diamond
+    height=0.7
+    penwidth=1.5
+    fillcolor="#FFFFFF"
+  ]
+  4 [label="Composer",peripheries=2]
+  8 [label="Appartenir",peripheries=2]
+  12 [label="Se\nsituer",peripheries=2]
+
+  // Edges between entities and attributes
+  edge [
+    penwidth=1.5
+  ]
+  1 -- 2
+  1 -- 3
+  5 -- 6
+  5 -- 7
+  9 -- 10
+  9 -- 11
+  13 -- 14
+  13 -- 15
+
+  // Edges between entities and relationships
+  edge [
+    penwidth=1
+    color="#000000:#000000"
+    labeldistance=2
+    headlabel=1
+  ]
+  9 -- 8
+  5 -- 4 [color="#000000"]
+  13 -- 12 [color="#000000"]
+  edge [headlabel=N]
+  1 -- 4
+  5 -- 8
+  9 -- 12
+}

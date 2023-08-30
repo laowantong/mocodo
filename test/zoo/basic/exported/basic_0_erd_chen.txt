@@ -1,0 +1,4 @@
+[CLIENT] --1-- <DF>
+[COMMANDE] ==N== <DF>
+[COMMANDE] ==N== <INCLURE>
+[PRODUIT] --M-- <INCLURE>

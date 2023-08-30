@@ -1,0 +1,28 @@
+\documentclass[a4paper]{article}
+\usepackage[normalem]{ulem}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\frenchsetup{StandardLayout=true}
+
+\newcommand{\relat}[1]{\textsc{#1}}
+\newcommand{\attr}[1]{#1}
+\newcommand{\prim}[1]{\uline{#1}}
+\newcommand{\foreign}[1]{\#\textsl{#1}}
+
+\title{Conversion en relationnel\\du MCD \emph{triple_111}}
+\author{\emph{Généré par Mocodo}}
+
+\begin{document}
+\maketitle
+
+\begin{itemize}
+  \item \relat{Utiliser} (\prim{carnet}$^{u_1}$, \prim{projet}$^{u_2}$, \attr{technicien}$^{u_1 u_2}$)
+  \begin{itemize}
+    \item Le champ \emph{carnet} fait partie de la clé primaire de la table. Sa table d'origine (\emph{Carnet}) ayant été supprimée, il n'est pas considéré comme clé étrangère. Il fait par contre partie d'une clé alternative matérialisée par la contrainte d'unicité 1.
+    \item Le champ \emph{projet} fait partie de la clé primaire de la table. Sa table d'origine (\emph{Projet}) ayant été supprimée, il n'est pas considéré comme clé étrangère. Il fait par contre partie d'une clé alternative matérialisée par la contrainte d'unicité 2.
+    \item Le champ \emph{technicien} est un simple attribut. Sa table d'origine (\emph{Technicien}) ayant été supprimée, il n'est pas considéré comme clé étrangère. Il fait par contre partie de clés alternatives matérialisées par les contraintes d'unicité 1 et 2.
+  \end{itemize}
+
+\end{itemize}
+
+\end{document}

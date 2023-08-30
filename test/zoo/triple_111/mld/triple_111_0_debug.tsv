@@ -1,0 +1,4 @@
+this_relation_name	label	data_type	nature	adjacent_source	outer_source
+Utiliser	carnet		alt_primary_naturalized_foreign_key	Carnet	Carnet
+Utiliser	projet		alt_primary_naturalized_foreign_key	Projet	Projet
+Utiliser	technicien		alt_naturalized_foreign_key	Technicien	Technicien

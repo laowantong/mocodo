@@ -25,7 +25,7 @@ class TestDumps(unittest.TestCase):
             PIÈCE: réf. pièce, libellé pièce
             COMPOSER, 0N [composée] PIÈCE, 0N [composante] PIÈCE: quantité
 
-            DF1, _11 AYANT-DROIT, 0N EMPLOYÉ
+            DF, _11 AYANT-DROIT, 0N EMPLOYÉ
             EMPLOYÉ: matricule, nom employé
             PROJET: num. projet, nom projet
             FOURNIR, 1N PROJET, 1N PIÈCE, 1N SOCIÉTÉ: qté fournie

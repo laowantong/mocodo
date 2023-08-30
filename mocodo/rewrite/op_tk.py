@@ -20,6 +20,7 @@ ELEMENT_TO_TOKENS = {
     "texts": ["box_name", "attr", "leg_note", "constraint_note"],
     "leg_notes": ["leg_note"],
     "notes": ["leg_note", "constraint_note"],
+    "sql": ["box_name", "attr", "leg_note"],
     "types": ["data_type"],
 }
 

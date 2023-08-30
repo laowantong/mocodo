@@ -1,0 +1,18 @@
+- CLIENT (_Réf. client_, Nom¹, Prénom¹, Adresse, Mail²)
+  - Le champ « Réf. client » constitue la clé primaire de la table. C'était déjà un identifiant de l'entité « CLIENT ».
+  - Les champs « Nom » et « Prénom » étaient déjà de simples attributs de l'entité « CLIENT ». Ils constituent une clé alternative matérialisée par la contrainte d'unicité 1.
+  - Le champ « Adresse » était déjà un simple attribut de l'entité « CLIENT ».
+  - Le champ « Mail » était déjà un simple attribut de l'entité « CLIENT ». Il constitue une clé alternative matérialisée par la contrainte d'unicité 2.
+
+- FOO (_foo_, bar¹, biz¹², buz², qux³, quux¹²³)
+  - Le champ « foo » constitue la clé primaire de la table. C'était déjà un identifiant de l'entité « FOO ».
+  - Le champ « bar » était déjà un simple attribut de l'entité « FOO ». Il fait partie d'une clé alternative matérialisée par la contrainte d'unicité 1.
+  - Le champ « biz » était déjà un simple attribut de l'entité « FOO ». Il fait partie de clés alternatives matérialisées par les contraintes d'unicité 1 et 2.
+  - Le champ « buz » était déjà un simple attribut de l'entité « FOO ». Il fait partie d'une clé alternative matérialisée par la contrainte d'unicité 2.
+  - Le champ « qux » était déjà un simple attribut de l'entité « FOO ». Il fait partie d'une clé alternative matérialisée par la contrainte d'unicité 3.
+  - Le champ « quux » était déjà un simple attribut de l'entité « FOO ». Il fait partie de clés alternatives matérialisées par les contraintes d'unicité 1, 2 et 3.
+
+- UTILISER (_carnet_¹, _projet_², technicien¹²)
+  - Le champ « carnet » fait partie de la clé primaire de la table. C'était déjà un identifiant de l'entité « UTILISER ». Il fait en outre partie d'une clé alternative matérialisée par la contrainte d'unicité 1.
+  - Le champ « projet » fait partie de la clé primaire de la table. C'était déjà un identifiant de l'entité « UTILISER ». Il fait en outre partie d'une clé alternative matérialisée par la contrainte d'unicité 2.
+  - Le champ « technicien » était déjà un simple attribut de l'entité « UTILISER ». Il fait partie de clés alternatives matérialisées par les contraintes d'unicité 1 et 2.

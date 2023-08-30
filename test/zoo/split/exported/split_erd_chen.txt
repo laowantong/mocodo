@@ -1,0 +1,4 @@
+[Bataille] --1-- <Récolter>
+[Trophée] ==N== <Récolter>
+[Trophée] ==N== <Récolter>
+[Villageois] --1-- <Récolter>

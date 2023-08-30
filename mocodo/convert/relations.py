@@ -1,7 +1,72 @@
 import collections
+from pathlib import Path
 import re
 
 from ..mocodo_error import MocodoError
+
+
+def set_defaults(template):
+    result = {
+        "transform_attribute": [],
+        "transform_title": [],
+        "transform_data_type": [],
+        "compose_label_disambiguated_by_note": "{raw_label} {leg_note}",
+        "compose_label_disambiguated_by_number": "{label}.{disambiguation_number}",
+        "compose_primary_key": "_{label}_",
+        "compose_normal_attribute": "{label}",
+        "compose_foreign_key": "#{label}",
+        "compose_primary_foreign_key": "_#{label}_",
+        "transform_relation_name": [],
+        "column_separator": ", ",
+        "compose_relation": "{this_relation_name} ({columns})",
+        "deleted_relation_separator": "",
+        "compose_deleted_relation": "",
+        "compose_deleted_relations": "",
+        "transform_forced_relation": [],
+        "transform_relation": [],
+        "relation_separator": "\n",
+        "compose_relational_schema": "{relations}",
+        "transform_relational_schema": [],
+    }
+    result.update(template)
+    result.setdefault("compose_alt_normal_attribute", result["compose_normal_attribute"])
+    result.setdefault("compose_alt_primary_key", result["compose_primary_key"])
+    result.setdefault("compose_alt_foreign_key", result["compose_foreign_key"])
+    result.setdefault("compose_alt_primary_foreign_key", result["compose_primary_foreign_key"])
+    result.setdefault("compose_alt_naturalized_foreign_key", result["compose_alt_normal_attribute"])
+    result.setdefault("compose_alt_primary_naturalized_foreign_key", result["compose_alt_primary_key"])
+    result.setdefault("compose_naturalized_foreign_key", result["compose_normal_attribute"])
+    result.setdefault("compose_primary_naturalized_foreign_key", result["compose_primary_key"])
+    result.setdefault("compose_association_attribute", result["compose_normal_attribute"])
+    result.setdefault("compose_deleted_child_attribute", result["compose_normal_attribute"])
+    result.setdefault("compose_deleted_child_discriminant_", result["compose_normal_attribute"])
+    result.setdefault("compose_deleted_child_discriminant_T", result["compose_normal_attribute"])
+    result.setdefault("compose_deleted_child_discriminant_X", result["compose_normal_attribute"])
+    result.setdefault("compose_deleted_child_discriminant_XT", result["compose_normal_attribute"])
+    result.setdefault("compose_deleted_child_entity_name", result["compose_normal_attribute"])
+    result.setdefault("compose_deleted_child_foreign_key", result["compose_foreign_key"])
+    result.setdefault("compose_deleted_parent_discriminant_", result["compose_normal_attribute"])
+    result.setdefault("compose_deleted_parent_discriminant_T", result["compose_normal_attribute"])
+    result.setdefault("compose_deleted_parent_discriminant_X", result["compose_normal_attribute"])
+    result.setdefault("compose_deleted_parent_discriminant_XT", result["compose_normal_attribute"])
+    result.setdefault("compose_deleted_parent_attribute", result["compose_normal_attribute"])
+    result.setdefault("compose_deleted_parent_foreign_key", result["compose_foreign_key"])
+    result.setdefault("compose_deleted_parent_primary_key", result["compose_primary_key"])
+    result.setdefault("compose_stopped_foreign_key", result["compose_foreign_key"])
+    result.setdefault("compose_outer_attribute", result["compose_normal_attribute"])
+    result.setdefault("compose_parent_primary_key", result["compose_primary_foreign_key"])
+    result.setdefault("compose_strengthening_primary_foreign_key", result["compose_primary_foreign_key"])
+    result.setdefault("compose_strengthening_primary_naturalized_foreign_key", result["compose_primary_key"])
+    result.setdefault("compose_unsourced_foreign_key", result["compose_normal_attribute"])
+    result.setdefault("compose_unsourced_primary_foreign_key", result["compose_primary_key"])
+    result.setdefault("compose_naturalized_foreign_key", result["compose_normal_attribute"])
+    result.setdefault("compose_primary_naturalized_foreign_key", result["compose_primary_key"])
+    result.setdefault("compose_deleted_child_naturalized_foreign_key", result["compose_normal_attribute"])
+    result.setdefault("compose_deleted_parent_naturalized_foreign_key", result["compose_normal_attribute"])
+    result.setdefault("compose_stopped_naturalized_foreign_key", result["compose_normal_attribute"])
+    result.setdefault("compose_unsourced_naturalized_foreign_key", result["compose_normal_attribute"])
+    result.setdefault("compose_unsourced_primary_naturalized_foreign_key", result["compose_primary_key"])
+    return result
 
 
 class Relations:
@@ -18,12 +83,20 @@ class Relations:
                 def inner_function(template):
                     for relation in self.relations.values():
                         for column in relation["columns"]:
-                            column["label"] = column["raw_label"] if column["leg_note"] is None else template["compose_label_disambiguated_by_note"].format(**column)
+                            if column["leg_note"] is None:
+                                column["label"] = column["raw_label"]
+                            else:
+                                try:
+                                    column["label"] = template["compose_label_disambiguated_by_note"].format(**column)
+                                except:
+                                    raise ValueError(relation)
+                                
             else:
                 raise NotImplemented
             return inner_function
         
         self.mcd = mcd
+        self.output_stem = Path(params["output_name"]).stem
         self.ensure_no_reciprocical_relative_entities()
         self.freeze_strengthening_foreign_key_migration = set()
         self.relations = {}
@@ -46,78 +119,20 @@ class Relations:
         def transform(string, transformation):
             for d in template[transformation]:
                 while True:
-                    (string, n) = re.subn(d["search"], d["replace"], string)
+                    try:
+                        (string, n) = re.subn(d["search"], d["replace"], str(string))
+                    except:
+                        raise MocodoError(27, _('Cannot compile the regular expression "{regex}" or the remplacement string "{replace}" in a relation template producing "*{stem_suffix}.{extension}" files.').format(regex=d["search"], replace=d["replace"], stem_suffix=template["stem_suffix"], extension=template["extension"])) # fmt: skip
                     if n == 0 or not d.get("iterated"):
                         break
             return string
         
-        def set_defaults(template):
-            result = {
-              "transform_attribute": [],
-              "transform_title": [],
-              "transform_data_type": [],
-              "compose_label_disambiguated_by_note": "{raw_label} {leg_note}",
-              "compose_label_disambiguated_by_number": "{label}.{disambiguation_number}",
-              "compose_primary_key": "_{label}_",
-              "compose_normal_attribute": "{label}",
-              "compose_foreign_key": "#{label}",
-              "compose_primary_foreign_key": "_#{label}_",
-              "transform_relation_name": [],
-              "column_separator": ", ",
-              "compose_relation": "{this_relation_name} ({columns})",
-              "deleted_relation_separator": "",
-              "compose_deleted_relation": "",
-              "compose_deleted_relations": "",
-              "transform_forced_relation": [],
-              "transform_relation": [],
-              "relation_separator": "\n",
-              "compose_relational_schema": "{relations}",
-              "transform_relational_schema": [],
-            }
-            result.update(template)
-            result.setdefault("compose_alt_normal_attribute", result["compose_normal_attribute"])
-            result.setdefault("compose_alt_primary_key", result["compose_primary_key"])
-            result.setdefault("compose_association_attribute", result["compose_normal_attribute"])
-            result.setdefault("compose_deleted_child_attribute", result["compose_normal_attribute"])
-            result.setdefault("compose_deleted_child_discriminant_", result["compose_normal_attribute"])
-            result.setdefault("compose_deleted_child_discriminant_T", result["compose_normal_attribute"])
-            result.setdefault("compose_deleted_child_discriminant_X", result["compose_normal_attribute"])
-            result.setdefault("compose_deleted_child_discriminant_XT", result["compose_normal_attribute"])
-            result.setdefault("compose_deleted_child_entity_name", result["compose_normal_attribute"])
-            result.setdefault("compose_deleted_child_foreign_key", result["compose_foreign_key"])
-            result.setdefault("compose_deleted_parent_discriminant_", result["compose_normal_attribute"])
-            result.setdefault("compose_deleted_parent_discriminant_T", result["compose_normal_attribute"])
-            result.setdefault("compose_deleted_parent_discriminant_X", result["compose_normal_attribute"])
-            result.setdefault("compose_deleted_parent_discriminant_XT", result["compose_normal_attribute"])
-            result.setdefault("compose_deleted_parent_attribute", result["compose_normal_attribute"])
-            result.setdefault("compose_deleted_parent_foreign_key", result["compose_foreign_key"])
-            result.setdefault("compose_deleted_parent_primary_key", result["compose_primary_key"])
-            result.setdefault("compose_demoted_foreign_key", result["compose_foreign_key"])
-            result.setdefault("compose_stopped_foreign_key", result["compose_foreign_key"])
-            result.setdefault("compose_outer_attribute", result["compose_normal_attribute"])
-            result.setdefault("compose_parent_primary_key", result["compose_primary_foreign_key"])
-            result.setdefault("compose_strengthening_primary_foreign_key", result["compose_primary_foreign_key"])
-            result.setdefault("compose_strengthening_primary_naturalized_foreign_key", result["compose_primary_key"])
-            result.setdefault("compose_unsourced_foreign_key", result["compose_normal_attribute"])
-            result.setdefault("compose_unsourced_primary_foreign_key", result["compose_primary_key"])
-            result.setdefault("compose_naturalized_foreign_key", result["compose_normal_attribute"])
-            result.setdefault("compose_primary_naturalized_foreign_key", result["compose_primary_key"])
-            result.setdefault("compose_deleted_child_naturalized_foreign_key", result["compose_normal_attribute"])
-            result.setdefault("compose_deleted_parent_naturalized_foreign_key", result["compose_normal_attribute"])
-            result.setdefault("compose_demoted_naturalized_foreign_key", result["compose_normal_attribute"])
-            result.setdefault("compose_stopped_naturalized_foreign_key", result["compose_normal_attribute"])
-            result.setdefault("compose_unsourced_naturalized_foreign_key", result["compose_normal_attribute"])
-            result.setdefault("compose_unsourced_primary_naturalized_foreign_key", result["compose_primary_key"])
-            return result
         template = set_defaults(template)
         
         def make_raw_labels_from_attributes():
             for relation in self.relations.values():
                 for column in relation["columns"]:
                     column["raw_label"] = transform(column["attribute"], "transform_attribute")
-                    column["raw_label_lowercase"] = column["raw_label"].lower()
-                    column["raw_label_uppercase"] = column["raw_label"].upper()
-                    column["raw_label_titlecase"] = column["raw_label"].capitalize()
         make_raw_labels_from_attributes()
         
         def make_labels_from_raw_labels():
@@ -135,33 +150,19 @@ class Relations:
                             column["disambiguation_number"] = None
                     else:
                         column["disambiguation_number"] = None
-                    column["label_lowercase"] = column["label"].lower()
-                    column["label_uppercase"] = column["label"].upper()
-                    column["label_titlecase"] = column["label"].capitalize()
         make_labels_from_raw_labels()
         
-        # pprint.pprint(self.relations)
         data = {}
+        data["stem"] = self.output_stem
         data["title"] = transform(self.mcd.title, "transform_title")
-        data["title_lowercase"] = data["title"].lower()
-        data["title_uppercase"] = data["title"].upper()
-        data["title_titlecase"] = data["title"].capitalize()
         lines = []
         for (__, relation) in sorted(self.relations.items()): # For the double underscore, see __main__.py
             data["this_relation_name"] = transform(relation["this_relation_name"], "transform_relation_name")
-            data["this_relation_name_lowercase"] = data["this_relation_name"].lower()
-            data["this_relation_name_uppercase"] = data["this_relation_name"].upper()
-            data["this_relation_name_titlecase"] = data["this_relation_name"].capitalize()
             data["is_forced"] = relation["is_forced"]
             fields = []
             for column in relation["columns"]:
+                column["data_type"] = transform(column["data_type"], "transform_data_type")
                 data.update(column)
-                data["outer_source_lowercase"] = data["outer_source"] and data["outer_source"].lower()
-                data["outer_source_uppercase"] = data["outer_source"] and data["outer_source"].upper()
-                data["outer_source_titlecase"] = data["outer_source"] and data["outer_source"].capitalize()
-                data["association_name_lowercase"] = data["association_name"] and data["association_name"].lower()
-                data["association_name_uppercase"] = data["association_name"] and data["association_name"].upper()
-                data["association_name_titlecase"] = data["association_name"] and data["association_name"].capitalize()
                 fields.append(template["compose_%s" % column["nature"]].format(**data))
             data["columns"] = template["column_separator"].join(fields)
             line = template["compose_relation"].format(**data)
@@ -247,9 +248,7 @@ class Relations:
                 "columns": []
             }
             for attribute in entity.attributes:
-                nature = "normal_attribute"
-                if attribute.kind in ("strong", "weak"):
-                    nature = "primary_key"
+                nature = "primary_key" if attribute.kind in ("strong", "weak") else "normal_attribute"
                 alt_groups = "".join(c for c in sorted(attribute.id_groups) if c != "0")
                 if alt_groups:
                     nature = "alt_" + nature
@@ -260,7 +259,7 @@ class Relations:
                     "outer_source": None,
                     "association_name": None,
                     "leg_note": None,
-                    "primary": attribute.kind in ("strong", "weak"),
+                    "primary": nature == "primary_key",
                     "nature": nature,
                     "alt_groups": alt_groups,
                 })
@@ -302,7 +301,8 @@ class Relations:
                                 "association_name": association.name,
                                 "leg_note": leg_note,
                                 "primary": True,
-                                "nature": "strengthening_primary_foreign_key"
+                                "nature": "strengthening_primary_foreign_key",
+                                "alt_groups": "",
                             } for attribute in self.relations[strengthening_entity.name]["columns"] if attribute["primary"]]
                         self.freeze_strengthening_foreign_key_migration.add((entity.name, association.name, strengthening_entity.name))
                     remaining_entities.remove(entity)
@@ -347,7 +347,8 @@ class Relations:
                     "leg_note": None,
                     "association_name": inheritance.name,
                     "primary": True,
-                    "nature": "deleted_parent_primary_key" if to_be_deleted else "parent_primary_key"
+                    "nature": "deleted_parent_primary_key" if to_be_deleted else "parent_primary_key",
+                    "alt_groups": "",
                 } for attribute in self.relations[parent_leg.entity_name]["columns"] if attribute["primary"]]
 
     def strengthen_parents(self):
@@ -366,7 +367,8 @@ class Relations:
                     "association_name": inheritance.name,
                     "leg_note": None,
                     "primary": False,
-                    "nature": f"deleted_parent_discriminant_{inheritance.name_view}"
+                    "nature": f"deleted_parent_discriminant_{inheritance.name_view}",
+                    "alt_groups": "",
                 } for attribute in inheritance.attributes)
 
     def process_associations(self):
@@ -388,7 +390,17 @@ class Relations:
                     for attribute in self.relations[leg.entity_name]["columns"]:
                         if attribute["primary"]:
                             outer_source = self.may_retrieve_distant_outer_source(leg, attribute)
-                            if leg.kind == "cluster_peg":
+                            if leg.kind in ("cluster_peg", "cluster_leg"):
+                                if leg.is_in_elected_group:
+                                    if leg.alt_groups == "":
+                                        nature = "primary_foreign_key"
+                                    else:
+                                        nature = "alt_primary_foreign_key"
+                                else:
+                                    if leg.alt_groups == "":
+                                        nature = "foreign_key"
+                                    else:
+                                        nature = "alt_foreign_key"
                                 self.relations[association.name]["columns"].append({ # gather all migrant attributes
                                     "attribute": attribute["attribute"],
                                     "data_type": attribute["data_type"],
@@ -396,8 +408,9 @@ class Relations:
                                     "outer_source": outer_source,
                                     "leg_note": leg.note,
                                     "association_name": association.name,
-                                    "primary": False,
-                                    "nature": "demoted_foreign_key"
+                                    "primary": leg.is_in_elected_group,
+                                    "nature": nature,
+                                    "alt_groups": leg.alt_groups,
                                 })
                             elif association.is_protected and df_leg is not None and leg is not df_leg:
                                 self.relations[association.name]["columns"].append({ # gather all migrant attributes
@@ -408,7 +421,8 @@ class Relations:
                                     "leg_note": leg.note,
                                     "association_name": association.name,
                                     "primary": False,
-                                    "nature": "stopped_foreign_key"
+                                    "nature": "stopped_foreign_key",
+                                    "alt_groups": "",
                                 })
                             else:
                                 self.relations[association.name]["columns"].append({ # gather all migrant attributes
@@ -419,7 +433,8 @@ class Relations:
                                     "leg_note": leg.note,
                                     "association_name": association.name,
                                     "primary": True,
-                                    "nature": "unsourced_primary_foreign_key" if outer_source is None else "primary_foreign_key"
+                                    "nature": "unsourced_primary_foreign_key" if outer_source is None else "primary_foreign_key",
+                                    "alt_groups": "",
                                 })
                         elif attribute["nature"].startswith("deleted_parent_discriminant"):
                             self.relations[association.name]["columns"].append({
@@ -430,7 +445,8 @@ class Relations:
                                 "leg_note": leg.note,
                                 "association_name": association.name,
                                 "primary": False,
-                                "nature": attribute["nature"]
+                                "nature": attribute["nature"],
+                                "alt_groups": "",
                             })
                 self.relations[association.name]["columns"].extend({ # and the attributes already existing in the association
                         "attribute": attribute.label,
@@ -440,7 +456,8 @@ class Relations:
                         "association_name": association.name,
                         "leg_note": None,
                         "primary": False,
-                        "nature": "association_attribute"
+                        "nature": "association_attribute",
+                        "alt_groups": "",
                     } for attribute in association.attributes
                 )
             else: # this association is a DF
@@ -463,7 +480,8 @@ class Relations:
                                         "leg_note": leg.note,
                                         "association_name": association.name,
                                         "primary": False,
-                                        "nature": "unsourced_foreign_key" if outer_source is None else "foreign_key"
+                                        "nature": "unsourced_foreign_key" if outer_source is None else "foreign_key",
+                                        "alt_groups": "",
                                         # NB: technically, an unsourced foreign key is not foreign anymore
                                     })
                                 elif attribute["nature"].startswith("deleted_parent_discriminant"):
@@ -475,7 +493,8 @@ class Relations:
                                         "leg_note": leg.note,
                                         "association_name": association.name,
                                         "primary": False,
-                                        "nature": attribute["nature"]
+                                        "nature": attribute["nature"],
+                                        "alt_groups": "",
                                     })
                     else:
                         already_rejected = True
@@ -488,6 +507,7 @@ class Relations:
                         "leg_note": None,
                         "primary": False,
                         "nature": "outer_attribute",
+                        "alt_groups": "",
                     } for attribute in association.attributes])
 
 
@@ -505,7 +525,8 @@ class Relations:
                         "leg_note": self.may_retrieve_distant_leg_note(parent_leg, attribute),
                         "association_name": inheritance.name,
                         "primary": False,
-                        "nature": "deleted_parent_foreign_key" if attribute["nature"] == "foreign_key" else "deleted_parent_attribute"
+                        "nature": "deleted_parent_foreign_key" if attribute["nature"] == "foreign_key" else "deleted_parent_attribute",
+                        "alt_groups": "",
                     } for attribute in self.relations[parent_leg.entity_name]["columns"] if not attribute["primary"] and not attribute["nature"].startswith("deleted_parent_discriminant")]
             else: # migration: triangle attributes > parent
                 self.relations[parent_leg.entity_name]["columns"].extend({ 
@@ -516,7 +537,8 @@ class Relations:
                     "association_name": inheritance.name,
                     "leg_note": None,
                     "primary": False,
-                    "nature": f"deleted_child_discriminant_{inheritance.name_view}" # "", "X", "T" or "XT"
+                    "nature": f"deleted_child_discriminant_{inheritance.name_view}", # "", "X", "T" or "XT"
+                    "alt_groups": "",
                 } for attribute in inheritance.attributes)
                 if inheritance.kind in ("<-", "<="): # migration: children > parent, and suppress children
                     for child_leg in inheritance.legs[1:]:
@@ -530,7 +552,8 @@ class Relations:
                                 "leg_note": None,
                                 "association_name": inheritance.name,
                                 "primary": False,
-                                "nature": "deleted_child_entity_name"
+                                "nature": "deleted_child_entity_name",
+                                "alt_groups": "",
                             })
                         # migrate all child's attributes
                         for attribute in self.relations[child_leg.entity_name]["columns"]:
@@ -544,7 +567,8 @@ class Relations:
                                 "leg_note": self.may_retrieve_distant_leg_note(child_leg, attribute),
                                 "association_name": inheritance.name,
                                 "primary": False,
-                                "nature": "deleted_child_foreign_key" if attribute["nature"] == "foreign_key" else "deleted_child_attribute"
+                                "nature": "deleted_child_foreign_key" if attribute["nature"] == "foreign_key" else "deleted_child_attribute",
+                                "alt_groups": "",
                             })
     
     def delete_inheritance_parent_or_children_to_delete(self):

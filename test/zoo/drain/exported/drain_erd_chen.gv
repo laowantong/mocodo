@@ -1,0 +1,85 @@
+graph{
+  start=42
+
+  // Entities
+  node [
+    shape=box
+    style=filled
+    penwidth=1.5
+    fillcolor="#FFFFFF"
+  ]
+  1 [label="Entreprise"]
+  6 [label="Stage"]
+  11 [label="Étudiant"]
+  16 [label="Date"]
+
+  // Normal entity attributes
+  node [
+    shape=oval
+    penwidth=1.5
+    fillcolor="#FFFFFF"
+  ]
+  3 [label="adresse"]
+  4 [label="téléphone"]
+  9 [label="sujet"]
+  14 [label="nom"]
+
+  // Weak and strong entity attributes
+  2 [label=<<u>nom<br/>entreprise</u>>]
+  8 [label=<<u>num.<br/>stage</u>>]
+  13 [label=<<u>num<br/>étudiant</u>>]
+  18 [label=<<u>date</u>>]
+
+  // Relationship attributes
+  node [
+    fillcolor="#FFFFFF"
+  ]
+  7 [label="date\nproposition"]
+  12 [label="date\nsignature"]
+  17 [label="note\nstage"]
+
+  // Relationships
+  node [
+    shape=diamond
+    height=0.7
+    penwidth=1.5
+    fillcolor="#FFFFFF"
+  ]
+  5 [label="Proposer"]
+  10 [label="Attribuer"]
+  15 [label="Soutenir"]
+
+  // Edges between entities and attributes
+  edge [
+    penwidth=1.5
+  ]
+  1 -- 2
+  1 -- 3
+  1 -- 4
+  6 -- 8
+  6 -- 9
+  11 -- 13
+  11 -- 14
+  16 -- 18
+
+  // Edges between relationships and attributes
+  edge [color="#000000"]
+  5 -- 7
+  10 -- 12
+  15 -- 17
+
+  // Edges between entities and relationships
+  edge [
+    penwidth=1
+    color="#000000:#000000"
+    labeldistance=2
+    headlabel=1
+  ]
+  11 -- 10
+  1 -- 5 [color="#000000"]
+  6 -- 10 [color="#000000"]
+  16 -- 15 [color="#000000"]
+  edge [headlabel=N]
+  6 -- 5
+  11 -- 15 [color="#000000"]
+}

@@ -1,0 +1,28 @@
+\documentclass[a4paper]{article}
+\usepackage[normalem]{ulem}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\frenchsetup{StandardLayout=true}
+
+\newcommand{\relat}[1]{\textsc{#1}}
+\newcommand{\attr}[1]{#1}
+\newcommand{\prim}[1]{\uline{#1}}
+\newcommand{\foreign}[1]{\#\textsl{#1}}
+
+\title{Conversion en relationnel\\du MCD \emph{triple_NN1}}
+\author{\emph{Généré par Mocodo}}
+
+\begin{document}
+\maketitle
+
+\begin{itemize}
+  \item \relat{Gérer} (\prim{ingénieur}, \prim{projet}, \attr{responsable})
+  \begin{itemize}
+    \item Le champ \emph{ingénieur} fait partie de la clé primaire de la table. Sa table d'origine (\emph{Ingénieur}) ayant été supprimée, il n'est pas considéré comme clé étrangère.
+    \item Le champ \emph{projet} fait partie de la clé primaire de la table. Sa table d'origine (\emph{Projet}) ayant été supprimée, il n'est pas considéré comme clé étrangère.
+    \item Le champ \emph{responsable} a migré par l'association de dépendance fonctionnelle \emph{Gérer} à partir de l'entité \emph{Responsable} en perdant son caractère identifiant. De plus, comme la table créée à partir de cette entité a été supprimée, il n'est pas considéré comme clé étrangère.
+  \end{itemize}
+
+\end{itemize}
+
+\end{document}

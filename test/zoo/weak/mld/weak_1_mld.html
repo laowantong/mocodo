@@ -1,0 +1,49 @@
+<html>
+<head>
+<!-- TO_BE_DELETED_BY_MOCODO_MAGIC --><link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+<meta charset='utf-8'>
+<style>
+  #mld .relation { font-variant: small-caps; font-weight: bold }
+  #mld .primary { text-decoration: underline }
+  #mld .foreign { font-style: oblique }
+  #mld strong { font-weight: bold }
+  #mld i { font-style: italic }
+  #mld ul { list-style-type:square; margin: 0 0 1em 2em }
+</style>
+</head>
+<body>
+<!-- TO_BE_DELETED_BY_MOCODO_MAGIC --><header><h1>Conversion en relationnel</h1><p>Générée par <a href='https://github.com/laowantong/mocodo'>Mocodo</a></p></header>
+<main>
+<!-- TO_BE_DELETED_BY_MOCODO_MAGIC --><figure><center><img src="weak_1_mld.svg"/></center><figcaption>MCD <i>weak</i></figcaption></figure>
+<div id='mld'>
+<div>
+  <details><summary><span class='relation'>Exemplaire</span> (
+    <span class='foreign primary'>#œuvre</span>,
+    <span class='primary'>exemplaire</span>,
+    <span class='normal'>nb pages</span>,
+    <span class='normal'>date achat</span>,
+    <span class='normal'>foobar</span>
+  )</summary>
+  <ul>
+    <li>Le champ <i>œuvre</i> fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité <i>Œuvre</i>.</li>
+    <li>Le champ <i>exemplaire</i> fait partie de la clé primaire de la table. C'était déjà un identifiant de l'entité <i>Exemplaire</i>.</li>
+    <li>Les champs <i>nb pages</i> et <i>date achat</i> étaient déjà de simples attributs de l'entité <i>Exemplaire</i>.</li>
+    <li>Le champ <i>foobar</i> a migré à partir de l'association de dépendance fonctionnelle <i>DF0</i>.</li>
+  </ul></details>
+</div>
+
+<div>
+  <details><summary><span class='relation'>Œuvre</span> (
+    <span class='primary'>œuvre</span>,
+    <span class='normal'>auteur</span>
+  )</summary>
+  <ul>
+    <li>Le champ <i>œuvre</i> constitue la clé primaire de la table. C'était déjà un identifiant de l'entité <i>Œuvre</i>.</li>
+    <li>Le champ <i>auteur</i> était déjà un simple attribut de l'entité <i>Œuvre</i>.</li>
+  </ul></details>
+</div>
+
+</div>
+</main>
+</body>
+</html>

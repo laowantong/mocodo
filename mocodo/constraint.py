@@ -1,17 +1,21 @@
-import itertools
 import re
 
 from .attribute import *
 from .leg import ConstraintLeg
 
-constraint_counter = itertools.count(1)
-
 class Constraint:
+
+    counter = 0
+
+    @classmethod
+    def reset_counter(cls):
+        cls.counter = 0
 
     def __init__(self, clause):
         self.source = clause["source"]
         self.name_view = clause.get("name", "")
-        self.name = f'{clause.get("name", "Anonymous")} constraint #{next(constraint_counter)}'
+        Constraint.counter += 1
+        self.name = f'{clause.get("name", "Anonymous")} constraint #{Constraint.counter}'
         self.note = clause.get("constraint_note")
         self.legs = []
         for target in clause.get("constraint_targets", []):

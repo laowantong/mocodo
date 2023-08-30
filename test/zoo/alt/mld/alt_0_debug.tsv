@@ -1,0 +1,15 @@
+this_relation_name	label	data_type	nature	adjacent_source	outer_source
+CLIENT	Réf. client		primary_key		
+CLIENT	Nom		alt_normal_attribute		
+CLIENT	Prénom		alt_normal_attribute		
+CLIENT	Adresse		normal_attribute		
+CLIENT	Mail		alt_normal_attribute		
+FOO	foo		primary_key		
+FOO	bar		alt_normal_attribute		
+FOO	biz		alt_normal_attribute		
+FOO	buz		alt_normal_attribute		
+FOO	qux		alt_normal_attribute		
+FOO	quux		alt_normal_attribute		
+UTILISER	carnet		alt_primary_key		
+UTILISER	projet		alt_primary_key		
+UTILISER	technicien		alt_normal_attribute

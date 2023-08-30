@@ -1,0 +1,7 @@
+Employé: employé
+Appliquer, 0N Employé, 1N Projet, 1N Compétence
+Projet: projet
+
+:
+Compétence: compétence
+:

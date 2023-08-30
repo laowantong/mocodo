@@ -1,0 +1,54 @@
+\documentclass[a4paper]{article}
+\usepackage[normalem]{ulem}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\frenchsetup{StandardLayout=true}
+
+\newcommand{\relat}[1]{\textsc{#1}}
+\newcommand{\attr}[1]{#1}
+\newcommand{\prim}[1]{\uline{#1}}
+\newcommand{\foreign}[1]{\#\textsl{#1}}
+
+\title{Conversion en relationnel\\du MCD \emph{inheritance}}
+\author{\emph{Généré par Mocodo}}
+
+\begin{document}
+\maketitle
+
+\begin{itemize}
+  \item \relat{LACUS} (<ins>#magna</ins>, \attr{tempor}, \attr{fugit})
+  \begin{itemize}
+    \item Le champ \emph{magna} constitue la clé primaire de la table. C'est une clé étrangère qui a migré à partir de l'entité-mère \emph{TRISTIS}.
+    \item Les champs \emph{tempor} et \emph{fugit} étaient déjà de simples attributs de l'entité \emph{LACUS}.
+  \end{itemize}
+
+  \item \relat{NEC} (<ins>#magna</ins>, \attr{pulvinar}, \attr{audis}, \foreign{magna via mollis}, \foreign{magna via vitae})
+  \begin{itemize}
+    \item Le champ \emph{magna} constitue la clé primaire de la table. C'est une clé étrangère qui a migré à partir de l'entité-mère \emph{TRISTIS}.
+    \item Les champs \emph{pulvinar} et \emph{audis} étaient déjà de simples attributs de l'entité \emph{NEC}.
+    \item Le champ \emph{magna via mollis} est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle \emph{MOLLIS} à partir de l'entité \emph{LACUS} en perdant son caractère identifiant.
+    \item Le champ \emph{magna via vitae} est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle \emph{VITAE} à partir de l'entité \emph{SODALES} en perdant son caractère identifiant.
+  \end{itemize}
+
+  \item \relat{SODALES} (<ins>#magna</ins>, \attr{convallis}, \attr{ipsum})
+  \begin{itemize}
+    \item Le champ \emph{magna} constitue la clé primaire de la table. C'est une clé étrangère qui a migré à partir de l'entité-mère \emph{TRISTIS}.
+    \item Les champs \emph{convallis} et \emph{ipsum} étaient déjà de simples attributs de l'entité \emph{SODALES}.
+  \end{itemize}
+
+  \item \relat{TRISTIS} (\prim{magna}, \attr{vestibulum}, \attr{type})
+  \begin{itemize}
+    \item Le champ \emph{magna} constitue la clé primaire de la table. C'était déjà un identifiant de l'entité \emph{TRISTIS}.
+    \item Le champ \emph{vestibulum} était déjà un simple attribut de l'entité \emph{TRISTIS}.
+    \item Un champ entier \emph{type} est ajouté pour indiquer la nature de la spécialisation : 1 pour la première entité-fille, 2 pour la deuxième, etc. Jamais vide, du fait de la contrainte de totalité.
+  \end{itemize}
+
+  \item \relat{ULTRICES} (\foreign{\prim{magna sodales}}, \foreign{\prim{magna lacus}})
+  \begin{itemize}
+    \item Le champ \emph{magna sodales} fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité \emph{SODALES}.
+    \item Le champ \emph{magna lacus} fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité \emph{LACUS}.
+  \end{itemize}
+
+\end{itemize}
+
+\end{document}

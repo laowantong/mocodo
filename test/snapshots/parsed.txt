@@ -205,12 +205,12 @@ COMPOSER, 0N [composée] PIÈCE, 0N [composante] PIÈCE: quantité
   'source': 'COMPOSER, 0N [composée] PIÈCE, 0N [composante] PIÈCE: quantité'}]
 
 --------------------------------------------------------------------------------
-DF1, _11 AYANT-DROIT, 0N EMPLOYÉ
+DF, _11 AYANT-DROIT, 0N EMPLOYÉ
 --------------------------------------------------------------------------------start
   line
     assoc_clause
       assoc_name_def
-        box_name	DF1
+        box_name	DF
       , 
       seq
         assoc_leg
@@ -226,7 +226,7 @@ DF1, _11 AYANT-DROIT, 0N EMPLOYÉ
           entity_name_ref
             box_name	EMPLOYÉ
 --------------------------------------------------------------------------------
-[{'name': 'DF1',
+[{'name': 'DF',
   'legs': [{'card_prefix': '_',
             'card': '11',
             'entity': 'AYANT-DROIT',
@@ -234,7 +234,7 @@ DF1, _11 AYANT-DROIT, 0N EMPLOYÉ
            {'card': '0N', 'entity': 'EMPLOYÉ', 'rank': 1}],
   'type': 'association',
   'indent': '',
-  'source': 'DF1, _11 AYANT-DROIT, 0N EMPLOYÉ'}]
+  'source': 'DF, _11 AYANT-DROIT, 0N EMPLOYÉ'}]
 
 --------------------------------------------------------------------------------
 FOURNIR, 1N PROJET, 1N PIÈCE, 1N SOCIÉTÉ: qté fournie
@@ -469,12 +469,12 @@ Agent 0070: bar
   'source': 'Agent 0070: bar'}]
 
 --------------------------------------------------------------------------------
-DF42, 11 Agent 0070, 1N Agent1
+DF4, 11 Agent 0070, 1N Agent1
 --------------------------------------------------------------------------------start
   line
     assoc_clause
       assoc_name_def
-        box_name	DF42
+        box_name	DF4
       , 
       seq
         assoc_leg
@@ -489,12 +489,12 @@ DF42, 11 Agent 0070, 1N Agent1
           entity_name_ref
             box_name	Agent1
 --------------------------------------------------------------------------------
-[{'name': 'DF42',
+[{'name': 'DF4',
   'legs': [{'card': '11', 'entity': 'Agent 0070', 'rank': 0},
            {'card': '1N', 'entity': 'Agent1', 'rank': 1}],
   'type': 'association',
   'indent': '',
-  'source': 'DF42, 11 Agent 0070, 1N Agent1'}]
+  'source': 'DF4, 11 Agent 0070, 1N Agent1'}]
 
 --------------------------------------------------------------------------------
 Agent1: bar
@@ -1197,12 +1197,12 @@ EXEMPLAIRE4: 3, reliure rongée, 3/4/2005
   'source': 'EXEMPLAIRE4: 3, reliure rongée, 3/4/2005'}]
 
 --------------------------------------------------------------------------------
-DF1, -1N ŒUVRE, -_11 EXEMPLAIRE1
+DF, -1N ŒUVRE, -_11 EXEMPLAIRE1
 --------------------------------------------------------------------------------start
   line
     assoc_clause
       assoc_name_def
-        box_name	DF1
+        box_name	DF
       , 
       seq
         assoc_leg
@@ -1220,7 +1220,7 @@ DF1, -1N ŒUVRE, -_11 EXEMPLAIRE1
           entity_name_ref
             box_name	EXEMPLAIRE1
 --------------------------------------------------------------------------------
-[{'name': 'DF1',
+[{'name': 'DF',
   'legs': [{'card_hidden': '-', 'card': '1N', 'entity': 'ŒUVRE', 'rank': 0},
            {'card_hidden': '-',
             'card_prefix': '_',
@@ -1229,7 +1229,7 @@ DF1, -1N ŒUVRE, -_11 EXEMPLAIRE1
             'rank': 1}],
   'type': 'association',
   'indent': '',
-  'source': 'DF1, -1N ŒUVRE, -_11 EXEMPLAIRE1'}]
+  'source': 'DF, -1N ŒUVRE, -_11 EXEMPLAIRE1'}]
 
 --------------------------------------------------------------------------------
 +Prof: Num. prof, Nom prof

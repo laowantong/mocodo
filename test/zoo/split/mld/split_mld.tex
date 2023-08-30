@@ -1,0 +1,41 @@
+\documentclass[a4paper]{article}
+\usepackage[normalem]{ulem}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\frenchsetup{StandardLayout=true}
+
+\newcommand{\relat}[1]{\textsc{#1}}
+\newcommand{\attr}[1]{#1}
+\newcommand{\prim}[1]{\uline{#1}}
+\newcommand{\foreign}[1]{\#\textsl{#1}}
+
+\title{Conversion en relationnel\\du MCD \emph{split}}
+\author{\emph{Généré par Mocodo}}
+
+\begin{document}
+\maketitle
+
+\begin{itemize}
+  \item \relat{Bataille} (\prim{nom bataille}, \attr{lieu}, \attr{date})
+  \begin{itemize}
+    \item Le champ \emph{nom bataille} constitue la clé primaire de la table. C'était déjà un identifiant de l'entité \emph{Bataille}.
+    \item Les champs \emph{lieu} et \emph{date} étaient déjà de simples attributs de l'entité \emph{Bataille}.
+  \end{itemize}
+
+  \item \relat{Trophée} (\prim{numéro}, \attr{type}, \attr{état}, \foreign{nom villageois}, \foreign{nom bataille})
+  \begin{itemize}
+    \item Le champ \emph{numéro} constitue la clé primaire de la table. C'était déjà un identifiant de l'entité \emph{Trophée}.
+    \item Les champs \emph{type} et \emph{état} étaient déjà de simples attributs de l'entité \emph{Trophée}.
+    \item Le champ \emph{nom villageois} est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle \emph{Récolter} à partir de l'entité \emph{Villageois} en perdant son caractère identifiant.
+    \item Le champ \emph{nom bataille} est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle \emph{Récolter} à partir de l'entité \emph{Bataille} en perdant son caractère identifiant.
+  \end{itemize}
+
+  \item \relat{Villageois} (\prim{nom villageois}, \attr{adresse}, \attr{fonction})
+  \begin{itemize}
+    \item Le champ \emph{nom villageois} constitue la clé primaire de la table. C'était déjà un identifiant de l'entité \emph{Villageois}.
+    \item Les champs \emph{adresse} et \emph{fonction} étaient déjà de simples attributs de l'entité \emph{Villageois}.
+  \end{itemize}
+
+\end{itemize}
+
+\end{document}

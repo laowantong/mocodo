@@ -1,0 +1,112 @@
+graph{
+  start=42
+
+  // Entities
+  node [
+    shape=box
+    style=filled
+    penwidth=1.5
+    fillcolor="#FFFFFF"
+  ]
+  1 [label="AYANT-\nDROIT",peripheries=2]
+  8 [label="PIÈCE"]
+  5 [label="EMPLOYÉ"]
+  6 [label="PROJET"]
+  22 [label="DÉPARTEMENT"]
+  20 [label="SOCIÉTÉ"]
+
+  // Normal entity attributes
+  node [
+    shape=oval
+    penwidth=1.5
+    fillcolor="#FFFFFF"
+  ]
+  3 [label="lien"]
+  11 [label="libellé\npièce"]
+  16 [label="nom\nemployé"]
+  18 [label="nom\nprojet"]
+  24 [label="nom\ndépartement"]
+  28 [label="raison\nsociale"]
+
+  // Weak and strong entity attributes
+  2 [label=<<u>nom ayant-<br/>droit</u>> style="dashed,filled"]
+  10 [label=<<u>réf.<br/>pièce</u>>]
+  15 [label=<<u>matricule</u>>]
+  17 [label=<<u>num.<br/>projet</u>>]
+  23 [label=<<u>num.<br/>département</u>>]
+  27 [label=<<u>num.<br/>société</u>>]
+
+  // Relationship attributes
+  node [
+    fillcolor="#FFFFFF"
+  ]
+  9 [label="qté\nrequise"]
+  13 [label="quantité"]
+  21 [label="qté\nfournie"]
+
+  // Relationships
+  node [
+    shape=diamond
+    height=0.7
+    penwidth=1.5
+    fillcolor="#FFFFFF"
+  ]
+  4 [label="DIRIGER"]
+  7 [label="REQUÉRIR"]
+  12 [label="COMPOSER"]
+  14 [label="DF",peripheries=2]
+  19 [label="FOURNIR"]
+  25 [label="EMPLOYER"]
+  26 [label="TRAVAILLER"]
+  29 [label="CONTRÔLER"]
+
+  // Edges between entities and attributes
+  edge [
+    penwidth=1.5
+  ]
+  1 -- 2
+  1 -- 3
+  5 -- 15
+  5 -- 16
+  6 -- 17
+  6 -- 18
+  8 -- 10
+  8 -- 11
+  20 -- 27
+  20 -- 28
+  22 -- 23
+  22 -- 24
+
+  // Edges between relationships and attributes
+  edge [color="#000000"]
+  7 -- 9
+  12 -- 13
+  19 -- 21
+
+  // Edges between entities and relationships
+  edge [
+    penwidth=1
+    color="#000000:#000000"
+    labeldistance=2
+    headlabel=1
+  ]
+  22 -- 25
+  5 -- 4 [color="#000000"]
+  5 -- 14 [color="#000000"]
+  20 -- 29 [color="#000000"]
+  edge [headlabel=M]
+  6 -- 26
+  8 -- 7 [color="#000000"]
+  8 -- 12 [color="#000000"]
+  edge [headlabel=N]
+  1 -- 14
+  5 -- 25
+  6 -- 7
+  6 -- 19
+  8 -- 19
+  20 -- 19
+  5 -- 26 [color="#000000"]
+  6 -- 4 [color="#000000"]
+  12 -- 8 [color="#000000"]
+  29 -- 20 [color="#000000"]
+}

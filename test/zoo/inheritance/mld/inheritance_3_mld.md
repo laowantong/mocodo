@@ -1,0 +1,15 @@
+- **TRISTIS** (<ins>magna</ins>, vestibulum, type, convallis, ipsum, pulvinar, audis, _#magna via mollis_, _#magna via vitae_, tempor, fugit)
+  - Le champ _magna_ constitue la clé primaire de la table. C'était déjà un identifiant de l'entité _TRISTIS_.
+  - Le champ _vestibulum_ était déjà un simple attribut de l'entité _TRISTIS_.
+  - Un champ entier _type_ est ajouté pour indiquer la nature de la spécialisation : 1 pour la première entité-fille, 2 pour la deuxième, etc. Jamais vide, du fait de la contrainte de totalité.
+  - Le champ _convallis_ a migré à partir de l'entité-fille _SODALES_ (supprimée).
+  - Le champ _ipsum_ a migré à partir de l'entité-fille _SODALES_ (supprimée).
+  - Le champ _pulvinar_ a migré à partir de l'entité-fille _NEC_ (supprimée).
+  - Le champ _audis_ a migré à partir de l'entité-fille _NEC_ (supprimée).
+  - Le champ _magna via mollis_ est une clé étrangère. Il a migré à partir de l'entité-fille _NEC_ (supprimée) dans laquelle il avait déjà migré à partir de l'entité _TRISTIS_.
+  - Le champ _magna via vitae_ est une clé étrangère. Il a migré à partir de l'entité-fille _NEC_ (supprimée) dans laquelle il avait déjà migré à partir de l'entité _TRISTIS_.
+  - Le champ _tempor_ a migré à partir de l'entité-fille _LACUS_ (supprimée).
+  - Le champ _fugit_ a migré à partir de l'entité-fille _LACUS_ (supprimée).
+
+- **ULTRICES** (<ins>_#magna sodales_</ins>, <ins>_#magna lacus_</ins>)
+  - Les champs _magna sodales_ et _magna lacus_ constituent la clé primaire de la table. Ce sont des clés étrangères qui ont migré directement à partir de l'entité _TRISTIS_.

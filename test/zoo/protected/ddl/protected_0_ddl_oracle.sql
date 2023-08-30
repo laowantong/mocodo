@@ -1,0 +1,20 @@
+CREATE TABLE EROS (
+  congue VARCHAR(42),
+  PRIMARY KEY (congue)
+);
+
+CREATE TABLE LACUS (
+  blandit VARCHAR(42),
+  elit VARCHAR(42),
+  PRIMARY KEY (blandit)
+);
+
+CREATE TABLE LIGULA (
+  blandit VARCHAR(42),
+  congue VARCHAR(42),
+  metus VARCHAR(42),
+  PRIMARY KEY (blandit)
+);
+
+ALTER TABLE LIGULA ADD FOREIGN KEY (congue) REFERENCES EROS (congue);
+ALTER TABLE LIGULA ADD FOREIGN KEY (blandit) REFERENCES LACUS (blandit);

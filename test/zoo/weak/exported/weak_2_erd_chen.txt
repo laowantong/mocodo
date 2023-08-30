@@ -1,0 +1,6 @@
+[Rue] --1-- <<Se situer>>
+[[Appartement]] ==N== <<Composer>>
+[[Immeuble]] ==1== <<Appartenir>>
+[[Immeuble]] ==N== <<Se situer>>
+[[Étage]] --1-- <<Composer>>
+[[Étage]] ==N== <<Appartenir>>

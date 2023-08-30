@@ -1,0 +1,18 @@
+erDiagram
+  bataille {
+    TYPE nom_bataille PK
+    TYPE lieu
+    TYPE date
+  }
+  villageois {
+    TYPE nom_villageois PK
+    TYPE adresse
+    TYPE fonction
+  }
+  trophee {
+    TYPE numero PK
+    TYPE type
+    TYPE etat
+  }
+  trophee }o--|| villageois: recolter
+  trophee }o--|| bataille: recolter

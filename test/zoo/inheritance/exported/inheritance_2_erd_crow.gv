@@ -1,0 +1,235 @@
+digraph{
+  layout=dot
+  bgcolor="#FFFFFF"
+  nodesep=0.5
+
+  // Nodes
+  node [
+      shape=none
+      fontcolor="#000000"
+      fontsize=15
+      fontname="Helvetica"
+]
+  node [
+      shape=none
+      fontcolor="#000000"
+      fontsize=15
+      fontname="Helvetica"
+]
+  1 [label=<<table
+        border="0"
+        cellborder="1"
+        cellspacing="0"
+        bgcolor="#FFFFFF"
+        color="#000000"
+        cellpadding="4"
+    >
+        <tr>
+            <td bgcolor="#FFFFFF" colspan="2">
+                <font
+                    color="#000000"
+                    point-size="18"
+                >SUSCIPIT</font>
+            </td>
+        </tr>
+        <tr><td>PK</td><td align="left">orci</td></tr>
+        <tr><td> </td><td align="left">lorem</td></tr>
+    </table>
+>]
+  2 [label=<<table
+        border="0"
+        cellborder="1"
+        cellspacing="0"
+        bgcolor="#FFFFFF"
+        color="#000000"
+        cellpadding="4"
+    >
+        <tr>
+            <td bgcolor="#FFFFFF" colspan="2">
+                <font
+                    color="#000000"
+                    point-size="18"
+                >SODALES</font>
+            </td>
+        </tr>
+        <tr><td>PK</td><td align="left">convallis</td></tr>
+        <tr><td> </td><td align="left">ipsum</td></tr>
+    </table>
+>]
+  3 [label=<<table
+        border="0"
+        cellborder="1"
+        cellspacing="0"
+        bgcolor="#FFFFFF"
+        color="#000000"
+        cellpadding="4"
+    >
+        <tr>
+            <td bgcolor="#FFFFFF" colspan="2">
+                <font
+                    color="#000000"
+                    point-size="18"
+                >QUAM</font>
+            </td>
+        </tr>
+        <tr><td>PK</td><td align="left">cras</td></tr>
+        <tr><td> </td><td align="left">sed</td></tr>
+    </table>
+>]
+  4 [label=<<table
+        border="0"
+        cellborder="1"
+        cellspacing="0"
+        bgcolor="#FFFFFF"
+        color="#000000"
+        cellpadding="4"
+    >
+        <tr>
+            <td bgcolor="#FFFFFF" colspan="2">
+                <font
+                    color="#000000"
+                    point-size="18"
+                >CONSEQUAT</font>
+            </td>
+        </tr>
+        <tr><td>PK</td><td align="left">fermentum</td></tr>
+        <tr><td> </td><td align="left">dederit</td></tr>
+    </table>
+>]
+  5 [label=<<table
+        border="0"
+        cellborder="1"
+        cellspacing="0"
+        bgcolor="#FFFFFF"
+        color="#000000"
+        cellpadding="4"
+    >
+        <tr>
+            <td bgcolor="#FFFFFF" colspan="2">
+                <font
+                    color="#000000"
+                    point-size="18"
+                >TRISTIS</font>
+            </td>
+        </tr>
+        <tr><td>PK</td><td align="left">magna</td></tr>
+        <tr><td> </td><td align="left">vestibulum</td></tr>
+    </table>
+>]
+  6 [label=<<table
+        border="0"
+        cellborder="1"
+        cellspacing="0"
+        bgcolor="#FFFFFF"
+        color="#000000"
+        cellpadding="4"
+    >
+        <tr>
+            <td bgcolor="#FFFFFF" colspan="2">
+                <font
+                    color="#000000"
+                    point-size="18"
+                >NEC</font>
+            </td>
+        </tr>
+        <tr><td>PK</td><td align="left">pulvinar</td></tr>
+        <tr><td> </td><td align="left">audis</td></tr>
+    </table>
+>]
+  7 [label=<<table
+        border="0"
+        cellborder="1"
+        cellspacing="0"
+        bgcolor="#FFFFFF"
+        color="#000000"
+        cellpadding="4"
+    >
+        <tr>
+            <td bgcolor="#FFFFFF" colspan="2">
+                <font
+                    color="#000000"
+                    point-size="18"
+                >CURABITUR</font>
+            </td>
+        </tr>
+        <tr><td>PK</td><td align="left">gravida</td></tr>
+        <tr><td> </td><td align="left">amor</td></tr>
+    </table>
+>]
+  8 [label=<<table
+        border="0"
+        cellborder="1"
+        cellspacing="0"
+        bgcolor="#FFFFFF"
+        color="#000000"
+        cellpadding="4"
+    >
+        <tr>
+            <td bgcolor="#FFFFFF" colspan="2">
+                <font
+                    color="#000000"
+                    point-size="18"
+                >DIGNISSIM</font>
+            </td>
+        </tr>
+        <tr><td>PK</td><td align="left">tellus</td></tr>
+        <tr><td> </td><td align="left">terra</td></tr>
+    </table>
+>]
+  9 [label=<<table
+        border="0"
+        cellborder="1"
+        cellspacing="0"
+        bgcolor="#FFFFFF"
+        color="#000000"
+        cellpadding="4"
+    >
+        <tr>
+            <td bgcolor="#FFFFFF" colspan="2">
+                <font
+                    color="#000000"
+                    point-size="18"
+                >LACUS</font>
+            </td>
+        </tr>
+        <tr><td>PK</td><td align="left">tempor</td></tr>
+        <tr><td> </td><td align="left">fugit</td></tr>
+    </table>
+>]
+  10 [label=<<table
+        border="0"
+        cellborder="1"
+        cellspacing="0"
+        bgcolor="#FFFFFF"
+        color="#000000"
+        cellpadding="4"
+    >
+        <tr>
+            <td bgcolor="#FFFFFF" colspan="2">
+                <font
+                    color="#000000"
+                    point-size="18"
+                >LIBERO</font>
+            </td>
+        </tr>
+        <tr><td>PK</td><td align="left">posuere</td></tr>
+        <tr><td> </td><td align="left">lacrima</td></tr>
+    </table>
+>]
+
+  // Edges
+  edge [
+    penwidth=1
+    color="#000000"
+    fontcolor="#000000"
+    fontname="Futura"
+    fontsize=11
+    dir=both
+  ]
+  5 -> 1 [arrowhead="crowtee" arrowtail="teetee" label="RHONCUS"]
+  3 -> 2 [arrowhead="teetee" arrowtail="crowtee" label="VITAE"]
+  5 -> 4 [arrowhead="teetee" arrowtail="crowtee" label="ELIT"]
+  7 -> 6 [arrowhead="crowtee" arrowtail="teetee" label="MOLLIS"]
+  5 -> 8 [arrowhead="crowtee" arrowtail="crowtee" label="ALIQUET"]
+  10 -> 9 [arrowhead="crowtee" arrowtail="crowtee" label="ULTRICES"]
+}

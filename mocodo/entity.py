@@ -62,7 +62,8 @@ class Entity:
         self.id_gutter_width = 0
         if self.show_id_gutter:
             self.id_gutter_width = 2 * style["rect_margin_width"]
-            self.id_gutter_width += max(attribute.id_width for attribute in self.attributes)
+            if self.attributes:
+                self.id_gutter_width += max(attribute.id_width for attribute in self.attributes)
         self.w = 2 * style["rect_margin_width"] + self.id_gutter_width + max(cartouche_and_attribute_widths)
         self.h = (
             len(self.attributes) * (self.attribute_height + style["line_skip_height"])

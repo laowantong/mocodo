@@ -211,7 +211,7 @@ if __name__ == "__main__":
         CONSECTETUER: elit, sed
         MAECENAS, 1N DIGNISSIM, 1N DIGNISSIM
 
-        DF1, 11 LOREM, 1N SUSPENDISSE
+        DF, 11 LOREM, 1N SUSPENDISSE
         LOREM: ipsum, dolor, sit
         TORTOR, 0N RISUS, 11 DIGNISSIM, 1N CONSECTETUER: nec
         DIGNISSIM: ligula, massa, varius

@@ -244,6 +244,7 @@ FIELD_TYPES = {
 class GuessType(Visitor):
 
     def __init__(self, guessing_suffix, params):
+        # Example: -r types:guess=? will complete all guessed types with a question mark.
         self.field_types = FIELD_TYPES["en"] # English is always used as fallback
         language = params.get("language", "en")
         if language != "en":
@@ -260,6 +261,8 @@ class GuessType(Visitor):
         if a and "".join(a[0].children)[2:-1]:
             return # already typed
         attr = first_child(tree, "attr")
+        if attr == "":
+            return
         needle = snake(ascii(attr)).replace("_", " ").lower()
         for (found, data_type) in self.field_types:
             if found(needle):

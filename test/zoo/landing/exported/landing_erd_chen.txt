@@ -1,0 +1,17 @@
+[DÉPARTEMENT] ==1== <EMPLOYER>
+[EMPLOYÉ] --1-- <<DF>>
+[EMPLOYÉ] --1-- <DIRIGER>
+[EMPLOYÉ] --N-- <TRAVAILLER>
+[EMPLOYÉ] ==N== <EMPLOYER>
+[PIÈCE] --M-- <COMPOSER>
+[PIÈCE] --M-- <REQUÉRIR>
+[PIÈCE] --N-- <COMPOSER>
+[PIÈCE] ==N== <FOURNIR>
+[PROJET] --N-- <DIRIGER>
+[PROJET] ==M== <TRAVAILLER>
+[PROJET] ==N== <FOURNIR>
+[PROJET] ==N== <REQUÉRIR>
+[SOCIÉTÉ] --1-- <CONTRÔLER>
+[SOCIÉTÉ] --N-- <CONTRÔLER>
+[SOCIÉTÉ] ==N== <FOURNIR>
+[[AYANT-DROIT]] ==N== <<DF>>

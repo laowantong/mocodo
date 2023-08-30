@@ -1,0 +1,25 @@
+{
+  "width": 396,
+  "height": 250,
+  "cx": [
+    [ "Projet", 66 ],
+    [ "Affecter", 203 ],
+    [ "Site", 335 ],
+    [ "Employé", 203 ]
+  ],
+  "cy": [
+    [ "Projet", 65 ],
+    [ "Affecter", 65 ],
+    [ "Site", 65 ],
+    [ "Employé", 185 ]
+  ],
+  "shift": [
+    [ "Affecter,Site,0", 0 ],
+    [ "Affecter,Projet,0", 0 ],
+    [ "Affecter,Employé,0", 0 ]
+  ],
+  "ratio": [
+    [ "Affecter,Site,0", 1.0 ],
+    [ "Affecter,Projet,0", 1.0 ]
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "width": 604,
+  "height": 78,
+  "cx": [
+    [ "Produit", 54 ],
+    [ "DF0", 148 ],
+    [ "Ligne de commande", 292 ],
+    [ "DF1", 436 ],
+    [ "Commande", 540 ]
+  ],
+  "cy": [
+    [ "Produit", 39 ],
+    [ "DF0", 39 ],
+    [ "Ligne de commande", 39 ],
+    [ "DF1", 39 ],
+    [ "Commande", 39 ]
+  ],
+  "shift": [
+    [ "DF0,Ligne de commande,0", 0 ],
+    [ "DF0,Produit,0", 0 ],
+    [ "DF1,Ligne de commande,0", 0 ],
+    [ "DF1,Commande,0", 0 ]
+  ],
+  "ratio": []
+}

@@ -59,9 +59,9 @@ class TestUpdater(unittest.TestCase):
         expected = """
             Wake: tend, bath
             Bowl: _turn, from
-            Bo1, _11 Bowl, 0N Wake
-            Bo2, _11 Bowl, 1N Move
-            Bo3, _11 Bowl, 0N Poet
+            DF, _11 Bowl, 0N Wake
+            DF, _11 Bowl, 1N Move
+            DF, _11 Bowl, 0N Poet
             Poet: edge, skip
             Move: aids
         """
@@ -70,9 +70,9 @@ class TestUpdater(unittest.TestCase):
         expected = """
             Wake: tend, bath
             Bowl: id. bowl, turn, from
-            Bo1, 11 Bowl, 0N Wake
-            Bo2, 11 Bowl, 1N Move
-            Bo3, 11 Bowl, 0N Poet
+            DF, 11 Bowl, 0N Wake
+            DF, 11 Bowl, 1N Move
+            DF, 11 Bowl, 0N Poet
             Poet: edge, skip
             Move: aids
         """
@@ -94,13 +94,13 @@ class TestUpdater(unittest.TestCase):
         expected = """
             Edge: what, call
             Love: id. love, toss, noon
-            Lo1, 11 Love, 0N Edge
-            Lo2, 11 Love, 1N Ruin
+            DF, 11 Love, 0N Edge
+            DF, 11 Love, 1N Ruin
             Ruin: area, slip
             Gene: five, away
             Hate: id. hate
-            Ha1, 11 Hate, 0N Gene
-            Ha2, 11 Hate, 1N Rain
+            DF, 11 Hate, 0N Gene
+            DF, 11 Hate, 1N Rain
             Rain: iron, pose
         """
         self.assertEqual(actual.strip(), expected.strip())   
@@ -116,9 +116,9 @@ class TestUpdater(unittest.TestCase):
         expected = """
             Date: Date
             Réserver: _Durée
-            Ré1, 11 Réserver, 1N Client
-            Ré2, _11 Réserver, 1N Chambre
-            Ré3, _11 Réserver, 0N Date
+            DF, 11 Réserver, 1N Client
+            DF, _11 Réserver, 1N Chambre
+            DF, _11 Réserver, 0N Date
             Chambre: Numéro, Prix
             Client: Id. client, Nom client
         """

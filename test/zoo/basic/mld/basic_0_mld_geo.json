@@ -1,0 +1,27 @@
+{
+  "width": 582,
+  "height": 128,
+  "cx": [
+    [ "CLIENT", 51 ],
+    [ "DF0", 142 ],
+    [ "COMMANDE", 254 ],
+    [ "INCLURE", 395 ],
+    [ "PRODUIT", 523 ]
+  ],
+  "cy": [
+    [ "CLIENT", 64 ],
+    [ "DF0", 64 ],
+    [ "COMMANDE", 64 ],
+    [ "INCLURE", 64 ],
+    [ "PRODUIT", 64 ]
+  ],
+  "shift": [
+    [ "DF0,CLIENT,0", 0 ],
+    [ "DF0,COMMANDE,0", 0 ],
+    [ "INCLURE,COMMANDE,0", 0 ],
+    [ "INCLURE,PRODUIT,0", 0 ]
+  ],
+  "ratio": [
+    [ "DF0,CLIENT,0", 1.0 ]
+  ]
+}

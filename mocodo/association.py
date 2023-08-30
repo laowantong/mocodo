@@ -1,3 +1,4 @@
+import re
 from .attribute import *
 from .leg import *
 from .mocodo_error import MocodoError
@@ -5,33 +6,46 @@ from .tools.string_tools import rstrip_digit
 
 class Association:
 
+    df_counter = 0
+
+    @classmethod
+    def reset_df_counter(cls):
+        cls.df_counter = 0
+
     def __init__(self, clause, **params):
         self.source = clause["source"]
         self.name = clause["name"]
-        self.name_view = rstrip_digit(self.name)
         # A protected association results in a table, even if this association is a DF.
         self.is_protected = (clause.get("box_def_prefix") == "+")
+        self.peg_count = 0
         self.attributes = []
         for attr in clause.get("attrs", []):
             if attr.get("attribute_label", "") == "":
                 self.attributes.append(PhantomAttribute(attr))
             else:
                 self.attributes.append(SimpleAssociationAttribute(attr))
-        self.df_label = params.get("df", "DF")
-        if self.name_view == self.df_label:
+        df_label = params.get("df", "DF")
+        if re.match(fr"^{df_label}\d*$", self.name):
+            self.name_view = df_label # strip all digits suffixing a DF name
+            self.name = f"{df_label}{Association.df_counter}" # internal name
+            Association.df_counter += 1
             self.kind = "df"
         else:
+            self.name_view = rstrip_digit(self.name)
             legs = clause["legs"]
-            candidate_peg_count = sum(leg.get("card_prefix") == "/" for leg in legs)
-            valid_peg_count = sum(leg.get("card_prefix") == "/" and leg["card"] in ("0N", "1N") for leg in legs)
-            if candidate_peg_count > valid_peg_count:
-                raise MocodoError(26, _('Only cardinalities "/0N" or "/1N" are permitted to start with a "/" character.').format(name=self.name)) # fmt: skip
-            if valid_peg_count > 0:
-                valid_leg_count = sum(leg.get("card_prefix") != "/" and leg["card"] in ("0N", "1N") for leg in legs)
-                if valid_leg_count < 1:
-                    raise MocodoError(27, _('To become a cluster, association "{name}" must have at least one cardinality "0N" or "1N" (without "/").').format(name=self.name)) # fmt: skip
-                if valid_leg_count + valid_peg_count < len(legs):
-                    raise MocodoError(28, _('''To become a cluster, association "{name}"'s cardinalities must all be "0N", "1N", "/0N" or "/1N".''').format(name=self.name)) # fmt: skip
+            # A "peg" is a leg that starts with a "/" character. To be valid, its max card must be "N".
+            # If there is at least one peg, then all the other legs must have a max card of "N".
+            has_at_least_one_max_card_1 = False
+            for leg in legs:
+                if leg["card"][1] == "1":
+                    if leg.get("card_prefix") == "/":
+                        raise MocodoError(26, _('Only cardinalities "/N" are permitted to start with a "/" character.').format(name=self.name))
+                    has_at_least_one_max_card_1 = True
+                elif leg.get("card_prefix") == "/":
+                    self.peg_count += 1
+            if self.peg_count > 0:
+                if has_at_least_one_max_card_1 > 0:
+                    raise MocodoError(28, _('''To become a cluster, all association "{name}"'s maximal cardinalities must be N.''').format(name=self.name)) # fmt: skip
                 self.kind = "cluster"
             else:
                 self.kind = "association"
@@ -46,6 +60,15 @@ class Association:
             rank = entity_names[:rank].count(entity_name)
             leg.set_spin_strategy(0 if mutiplicity == 1 else 2 * rank / (mutiplicity - 1) - 1)
             self.legs.append(leg)
+        if self.kind == "cluster":
+            candidate_groups = iter([0] + list(range(self.peg_count - 1, 0, -1)))
+            for leg in self.legs:
+                if leg.kind == "cluster_peg":
+                    group_number = str(next(candidate_groups))
+                    for other_leg in self.legs:
+                        if other_leg is leg:
+                            continue
+                        other_leg.append_candidate_group(group_number)
 
     def register_boxes(self, boxes):
         self.boxes = boxes
@@ -79,7 +102,7 @@ class Association:
 
         def calculate_size_when_df(style, get_font_metrics):
             self.w = self.h = max(
-                style["round_rect_margin_width"] * 2 + self.get_cartouche_string_width(self.df_label),
+                style["round_rect_margin_width"] * 2 + self.get_cartouche_string_width(self.name_view),
                 style["round_rect_margin_width"] * 2 + self.cartouche_height
             )
 
@@ -112,7 +135,7 @@ class Association:
                 (
                     "text",
                     {
-                        "text": self.df_label,
+                        "text": self.name_view,
                         "text_color": style['association_cartouche_text_color'],
                         "x": self.l + style["round_rect_margin_width"],
                         "y": self.t + style["round_rect_margin_height"] + style["df_text_height_ratio"] * self.cartouche_height,
@@ -123,112 +146,46 @@ class Association:
             ]
         
         def optional_description_for_cluster(style):
-            if self.mcd_has_cif:
+            if self.kind != "cluster" or self.mcd_has_cif:
                 return []
-            clustered_entities = [leg.entity for leg in self.legs if leg.kind == "cluster_leg"]
-            if len(clustered_entities) == 2:
-                (e1, e2) = clustered_entities
-            elif len(clustered_entities) == 1:
-                e1 = e2 = clustered_entities[0]
-            else:
+            if len(self.legs) > 3:
+                # The calculation of a hull with more than 3 legs is not implemented yet.
                 return []
-
-            x_min = min(box.l for box in (self, e1, e2))
-            y_min = min(box.t for box in (self, e1, e2))
-            x_max = max(box.r for box in (self, e1, e2))
-            y_max = max(box.b for box in (self, e1, e2))
-            x = x_min - style["card_margin"] // 2
-            y = y_min - style["card_margin"] // 2
-            w = x_max - x_min + style["card_margin"]
-            h = y_max - y_min + style["card_margin"]
-
-            x1_min = min(box.l for box in (self, e1))
-            y1_min = min(box.t for box in (self, e1))
-            x1_max = max(box.r for box in (self, e1))
-            y1_max = max(box.b for box in (self, e1))
-            x1 = x1_min - style["card_margin"] // 2
-            y1 = y1_min - style["card_margin"] // 2
-            w1 = x1_max - x1_min + style["card_margin"]
-            h1 = y1_max - y1_min + style["card_margin"]
-            
-            x2_min = min(box.l for box in (self, e2))
-            y2_min = min(box.t for box in (self, e2))
-            x2_max = max(box.r for box in (self, e2))
-            y2_max = max(box.b for box in (self, e2))
-            x2 = x2_min - style["card_margin"] // 2
-            y2 = y2_min - style["card_margin"] // 2
-            w2 = x2_max - x2_min + style["card_margin"]
-            h2 = y2_max - y2_min + style["card_margin"]
-
-            e1_same_row = e1.t <= self.t < self.b <= e1.b or self.t <= e1.t < e1.b <= self.b
-            e2_same_row = e2.t <= self.t < self.b <= e2.b or self.t <= e2.t < e2.b <= self.b
-            e1_same_col = e1.l <= self.l < self.r <= e1.r or self.l <= e1.l < e1.r <= self.r
-            e2_same_col = e2.l <= self.l < self.r <= e2.r or self.l <= e2.l < e2.r <= self.r
-            if e1_same_row and e2_same_row or e1_same_col and e2_same_col:
-                points = (x, y, x+w, y, x+w, y+h, x, y+h)
-            elif e1_same_row and e2_same_col:
-                if e1.cx < self.cx:
-                    if e2.cy < self.cy:
-                        #   2
-                        # 1 a
-                        points = (x, y1, x2, y1, x2, y, x+w, y, x+w, y+h, x, y+h)
-                    else:
-                        # 1 a
-                        #   2
-                        points = (x, y, x+w, y, x+w, y+h, x2, y+h, x2, y1+h1, x, y1+h1)
-                else:
-                    if e2.cy < self.cy:
-                        # 2
-                        # a 1
-                        points = (x, y, x2+w2, y, x2+w2, y1, x+w, y1, x+w, y+h, x, y+h)
-                    else:
-                        # a 1
-                        # 2
-                        points = (x, y, x+w, y, x+w, y1+h1, x2+w2, y1+h1, x2+w2, y+h, x, y+h)
-            elif e2_same_row and e1_same_col:
-                if e2.cx < self.cx:
-                    if e1.cy < self.cy:
-                        #   1
-                        # 2 a
-                        points = (x, y2, x1, y2, x1, y, x+w, y, x+w, y+h, x, y+h)
-                    else:
-                        # 2 a
-                        #   1
-                        points = (x, y, x+w, y, x+w, y+h, x1, y+h, x1, y2+h2, x, y2+h2)
-                else:
-                    if e1.cy < self.cy:
-                        # 1
-                        # a 2
-                        points = (x, y, x1+w1, y, x1+w1, y2, x+w, y2, x+w, y+h, x, y+h)
-                    else:
-                        # a 2
-                        # 1
-                        points = (x, y, x+w, y, x+w, y2+h2, x1+w1, y2+h2, x1+w1, y+h, x, y+h)
-            else:
-                return []
-            points = ",".join(map(str, points))
-            return [
-                (
-                    "polygon",
-                    {
-                        "points": points,
-                        "stroke_color": None,
-                        "stroke_depth": 0,
-                        "color": style["entity_color"],
-                        "opacity": 0.2,
-                    },
-                ),
-                (
-                    "dot_polygon",
-                    {
-                        "points": points,
-                        "stroke_color": style['entity_stroke_color'],
-                        "stroke_depth": style["box_stroke_depth"],
-                        "color": None,
-                        "dash_gap": style["dash_width"],
-                    },
-                )
-            ]
+            result = []
+            tweak = 1
+            for (i, leg) in enumerate(self.legs):
+                if leg.kind == "cluster_peg":
+                    other_legs = self.legs[:i] + self.legs[i+1:]
+                    e1 = other_legs[0].entity # the first entity of the other legs
+                    e2 = other_legs[-1].entity # the last one, either the same as e1 or not
+                    points = self.cluster_hull(e1, e2, style["card_margin"] * tweak)
+                    if not points: # complex hulls are not implemented yet
+                        continue
+                    path = points_to_rounded_path(points, style["round_corner_radius"] // 2)
+                    result.extend([
+                        (
+                            "polygon",
+                            {
+                                "path": path,
+                                "stroke_color": None,
+                                "stroke_depth": 0,
+                                "color": style["entity_color"],
+                                "opacity": 0.3 / self.peg_count,
+                            },
+                        ),
+                        (
+                            "dot_polygon",
+                            {
+                                "path": path,
+                                "stroke_color": style['entity_stroke_color'],
+                                "stroke_depth": style["box_stroke_depth"],
+                                "color": None,
+                                "dash_gap": style["dash_width"],
+                            },
+                        )
+                    ])
+                    tweak += 1
+            return result
 
         def description_when_default(style):
             result = []
@@ -292,14 +249,14 @@ class Association:
                     (
                         "dash_rect",
                         {
-                            "x": self.l - 2 * style["box_stroke_depth"],
-                            "y": self.t - 2 * style["box_stroke_depth"],
-                            "w": self.w + 4 * style["box_stroke_depth"],
-                            "h": self.h + 4 * style["box_stroke_depth"],
+                            "x": self.l,
+                            "y": self.t,
+                            "w": self.w,
+                            "h": self.h,
                             "color": style['transparent_color'],
                             "stroke_color": style['entity_stroke_color'],
                             "stroke_depth": style["box_stroke_depth"],
-                            "dash_width": style["dash_width"],
+                            "dash_width": style["box_stroke_depth"],
                         },
                     )
                 )
@@ -346,6 +303,7 @@ class Association:
             self.description_depending_on_kind = description_when_default
 
     def description(self, style, geo):
+        self.saved_card_description = []
         result = []
         result.append(("comment", {"text": f"Association {self.name}"}))
         result.append(
@@ -361,6 +319,7 @@ class Association:
         result.append(("begin_group", {}))
         result.extend(self.description_depending_on_kind(style))
         result.append(("end", {}))
+        result.extend(self.saved_card_description) # need to be displayed after the clusters for more readability
         result.append(("end", {}))
         return result
 
@@ -368,5 +327,121 @@ class Association:
         result = []
         for leg in self.legs:
             result.extend(leg.description(style, geo))
+            self.saved_card_description.extend(leg.saved_card_description)
         return result
 
+    def cluster_hull(self, e1, e2, card_margin):
+        x_min = min(box.l for box in (self, e1, e2))
+        y_min = min(box.t for box in (self, e1, e2))
+        x_max = max(box.r for box in (self, e1, e2))
+        y_max = max(box.b for box in (self, e1, e2))
+        x = x_min - card_margin // 2
+        y = y_min - card_margin // 2
+        w = x_max - x_min + card_margin
+        h = y_max - y_min + card_margin
+
+        x1_min = min(box.l for box in (self, e1))
+        y1_min = min(box.t for box in (self, e1))
+        x1_max = max(box.r for box in (self, e1))
+        y1_max = max(box.b for box in (self, e1))
+        x1 = x1_min - card_margin // 2
+        y1 = y1_min - card_margin // 2
+        w1 = x1_max - x1_min + card_margin
+        h1 = y1_max - y1_min + card_margin
+        
+        x2_min = min(box.l for box in (self, e2))
+        y2_min = min(box.t for box in (self, e2))
+        x2_max = max(box.r for box in (self, e2))
+        y2_max = max(box.b for box in (self, e2))
+        x2 = x2_min - card_margin // 2
+        y2 = y2_min - card_margin // 2
+        w2 = x2_max - x2_min + card_margin
+        h2 = y2_max - y2_min + card_margin
+
+        e1_same_row = e1.t <= self.t < self.b <= e1.b or self.t <= e1.t < e1.b <= self.b
+        e2_same_row = e2.t <= self.t < self.b <= e2.b or self.t <= e2.t < e2.b <= self.b
+        e1_same_col = e1.l <= self.l < self.r <= e1.r or self.l <= e1.l < e1.r <= self.r
+        e2_same_col = e2.l <= self.l < self.r <= e2.r or self.l <= e2.l < e2.r <= self.r
+        if e1_same_row and e2_same_row or e1_same_col and e2_same_col:
+            return [x, y, x+w, y, x+w, y+h, x, y+h]
+        elif e1_same_row and e2_same_col:
+            if e1.cx < self.cx:
+                if e2.cy < self.cy:
+                    #   2
+                    # 1 a
+                    return [x, y1, x2, y1, x2, y, x+w, y, x+w, y+h, x, y+h]
+                else:
+                    # 1 a
+                    #   2
+                    return [x, y, x+w, y, x+w, y+h, x2, y+h, x2, y1+h1, x, y1+h1]
+            else:
+                if e2.cy < self.cy:
+                    # 2
+                    # a 1
+                    return [x, y, x2+w2, y, x2+w2, y1, x+w, y1, x+w, y+h, x, y+h]
+                else:
+                    # a 1
+                    # 2
+                    return [x, y, x+w, y, x+w, y1+h1, x2+w2, y1+h1, x2+w2, y+h, x, y+h]
+        elif e2_same_row and e1_same_col:
+            if e2.cx < self.cx:
+                if e1.cy < self.cy:
+                    #   1
+                    # 2 a
+                    return [x, y2, x1, y2, x1, y, x+w, y, x+w, y+h, x, y+h]
+                else:
+                    # 2 a
+                    #   1
+                    return [x, y, x+w, y, x+w, y+h, x1, y+h, x1, y2+h2, x, y2+h2]
+            else:
+                if e1.cy < self.cy:
+                    # 1
+                    # a 2
+                    return [x, y, x1+w1, y, x1+w1, y2, x+w, y2, x+w, y+h, x, y+h]
+                else:
+                    # a 2
+                    # 1
+                    return [x, y, x+w, y, x+w, y2+h2, x1+w1, y2+h2, x1+w1, y+h, x, y+h]
+        else:
+            return []
+
+def points_to_rounded_path(points, r):
+    result = []
+    points.extend(points[:6])
+    for i in range(0, len(points) - 6, 2):
+        (x1, y1, x2, y2, x3, y3) = points[i:i+6]
+        if x1 < x2 and y2 > y3:
+            #   3
+            # 1 2
+            (x2, c, dx, dy) = (x2 - r, 0, r, -r)
+        elif x1 < x2 and y2 < y3:
+            # 1 2
+            #   3
+            (x2, c, dx, dy) = (x2 - r, 1, r, r)
+        elif x1 > x2 and y2 < y3:
+            # 2 1
+            # 3
+            (x2, c, dx, dy) = (x2 + r, 0, -r, r)
+        elif x1 > x2 and y2 > y3:
+            # 3
+            # 2 1
+            (x2, c, dx, dy) = (x2 + r, 1, -r, -r)
+        elif y1 < y2 and x2 > x3:
+            #   1
+            # 3 2
+            (y2, c, dx, dy) = (y2 - r, 1, -r, r)
+        elif y1 < y2 and x2 < x3:
+            # 1
+            # 2 3
+            (y2, c, dx, dy) = (y2 - r, 0, r, r)
+        elif y1 > y2 and x2 < x3:
+            # 2 3
+            # 1
+            (y2, c, dx, dy) = (y2 + r, 1, r, -r)
+        elif y1 > y2 and x2 > x3:
+            # 3 2
+            #   1
+            (y2, c, dx, dy) = (y2 + r, 0, -r, -r)
+        result.append(f"L{x2} {y2} a{r} {r} 0 0 {c} {dx} {dy}")
+    result[0:0] = [f"M{x2+dx} {y2+dy}"]
+    return " ".join(result)

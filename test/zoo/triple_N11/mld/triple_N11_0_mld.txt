@@ -1,0 +1,8 @@
+- Affecter (_projet_, _employé_¹, site¹)
+  - Le champ « projet » fait partie de la clé primaire de la table. Sa table d'origine (« Projet ») ayant été supprimée, il n'est pas considéré comme clé étrangère.
+  - Le champ « employé » fait partie de la clé primaire de la table. Sa table d'origine (« Employé ») ayant été supprimée, il n'est pas considéré comme clé étrangère. Il fait par contre partie d'une clé alternative matérialisée par la contrainte d'unicité 1.
+  - Le champ « site » est un simple attribut. Sa table d'origine (« Site ») ayant été supprimée, il n'est pas considéré comme clé étrangère. Il fait par contre partie d'une clé alternative matérialisée par la contrainte d'unicité 1.
+
+--------------------------------------------------------------------------------
+
+NB. Les tables « Employé », « Projet » et « Site » ont été supprimées car elles étaient réduites à la clé primaire de leur entité d'origine.

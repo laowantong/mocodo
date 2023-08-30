@@ -1,0 +1,6 @@
+%%mocodo
+:
+COMPOSER: pièce composante, _pièce composée
+:
+HOMME: Num. SS, Nom, Prénom, #Num. SS père > HOMME > Num. SS
+:

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="425" height="294" viewBox="0 0 425 294" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="425" height="294" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+
+<!-- Inheritance TRISTIS parent #1 -->
+<g>
+	<line x1="275" y1="147" x2="141" y2="147" stroke="#000000" stroke-width="1"/>
+	<polygon points="231 147 219 153 223 147 219 141" fill="#000000" stroke-width="0"/>
+	<line x1="275" y1="247" x2="141" y2="147" stroke="#000000" stroke-width="1"/>
+	<line x1="275" y1="47" x2="141" y2="147" stroke="#000000" stroke-width="1"/>
+	<line x1="48" y1="147" x2="141" y2="147" stroke="#000000" stroke-width="1"/>
+	<g>
+		<polygon points="141 118.13 116 161.43 166 161.43" stroke="#000000" stroke-width="1.5" fill="#FFFFFF"/>
+		<text x="129" y="153" fill="#000000" font-family="Copperplate" font-size="18">XT</text>
+	</g>
+</g>
+
+<!-- Association MOLLIS -->
+<g>
+	<line x1="48" y1="147" x2="141" y2="47" stroke="#000000" stroke-width="1"/>
+	<line x1="275" y1="47" x2="141" y2="47" stroke="#000000" stroke-width="1"/>
+	<g>
+		<path d="M169 18 a14 14 90 0 1 14 14 V46 h-84 V32 a14 14 90 0 1 14 -14" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+		<path d="M183 46 v16 a14 14 90 0 1 -14 14 H113 a14 14 90 0 1 -14 -14 V46 H84" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+		<rect x="99" y="18" width="84" height="58" fill="none" rx="14" stroke="#000000" stroke-width="1.5"/>
+		<line x1="99" y1="46" x2="183" y2="46" stroke="#000000" stroke-width="1.5"/>
+		<text x="106" y="39.3" fill="#000000" font-family="Copperplate" font-size="18">MOLLIS</text>
+	</g>
+	<text x="66.05" y="101" fill="#000000" font-family="Futura" font-size="11">1,N</text>
+	<text x="219" y="63" fill="#000000" font-family="Futura" font-size="11">1,1</text>
+</g>
+
+<!-- Association VITAE -->
+<g>
+	<line x1="275" y1="47" x2="382" y2="147" stroke="#000000" stroke-width="1"/>
+	<line x1="275" y1="247" x2="382" y2="147" stroke="#000000" stroke-width="1"/>
+	<g>
+		<path d="M402 118 a14 14 90 0 1 14 14 V146 h-68 V132 a14 14 90 0 1 14 -14" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+		<path d="M416 146 v16 a14 14 90 0 1 -14 14 H362 a14 14 90 0 1 -14 -14 V146 H68" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+		<rect x="348" y="118" width="68" height="58" fill="none" rx="14" stroke="#000000" stroke-width="1.5"/>
+		<line x1="348" y1="146" x2="416" y2="146" stroke="#000000" stroke-width="1.5"/>
+		<text x="355" y="139.3" fill="#000000" font-family="Copperplate" font-size="18">VITAE</text>
+	</g>
+	<text x="313" y="76.57" fill="#000000" font-family="Futura" font-size="11">1,1</text>
+	<text x="298.39" y="201" fill="#000000" font-family="Futura" font-size="11">1,N</text>
+</g>
+
+<!-- Association ULTRICES -->
+<g>
+	<line x1="275" y1="247" x2="141" y2="247" stroke="#000000" stroke-width="1"/>
+	<line x1="48" y1="147" x2="141" y2="247" stroke="#000000" stroke-width="1"/>
+	<g>
+		<path d="M180 218 a14 14 90 0 1 14 14 V246 h-106 V232 a14 14 90 0 1 14 -14" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+		<path d="M194 246 v16 a14 14 90 0 1 -14 14 H102 a14 14 90 0 1 -14 -14 V246 H106" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+		<rect x="88" y="218" width="106" height="58" fill="none" rx="14" stroke="#000000" stroke-width="1.5"/>
+		<line x1="88" y1="246" x2="194" y2="246" stroke="#000000" stroke-width="1.5"/>
+		<text x="95" y="239.3" fill="#000000" font-family="Copperplate" font-size="18">ULTRICES</text>
+	</g>
+	<text x="199" y="263" fill="#000000" font-family="Futura" font-size="11">1,N</text>
+	<text x="66.05" y="201" fill="#000000" font-family="Futura" font-size="11">1,N</text>
+</g>
+
+<!-- Entity NEC -->
+<g>
+	<g>
+		<rect x="242" y="9" width="66" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="242" y="39" width="66" height="46" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="242" y="9" width="66" height="76" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
+		<line x1="242" y1="39" x2="308" y2="39" stroke="#000000" stroke-width="1.5"/>
+	</g>
+	<text x="255" y="30.3" fill="#000000" font-family="Copperplate" font-size="18">NEC</text>
+	<text x="250" y="56.1" fill="#000000" font-family="Gill Sans" font-size="15">pulvinar</text>
+	<text x="250" y="73.1" fill="#000000" font-family="Gill Sans" font-size="15">audis</text>
+</g>
+
+<!-- Entity LACUS -->
+<g>
+	<g>
+		<rect x="9" y="109" width="78" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="9" y="139" width="78" height="46" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="9" y="109" width="78" height="76" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
+		<line x1="9" y1="139" x2="87" y2="139" stroke="#000000" stroke-width="1.5"/>
+	</g>
+	<text x="17" y="130.3" fill="#000000" font-family="Copperplate" font-size="18">LACUS</text>
+	<text x="17" y="156.1" fill="#000000" font-family="Gill Sans" font-size="15">tempor</text>
+	<text x="17" y="173.1" fill="#000000" font-family="Gill Sans" font-size="15">fugit</text>
+</g>
+
+<!-- Entity TRISTIS -->
+<g>
+	<g>
+		<rect x="231" y="109" width="88" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="231" y="139" width="88" height="46" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="231" y="109" width="88" height="76" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
+		<line x1="231" y1="139" x2="319" y2="139" stroke="#000000" stroke-width="1.5"/>
+	</g>
+	<text x="239" y="130.3" fill="#000000" font-family="Copperplate" font-size="18">TRISTIS</text>
+	<text x="239" y="156.1" fill="#000000" font-family="Gill Sans" font-size="15">magna</text>
+	<line x1="239" y1="159" x2="279" y2="159" stroke="#000000" stroke-width="1"/>
+	<text x="239" y="173.1" fill="#000000" font-family="Gill Sans" font-size="15">vestibulum</text>
+</g>
+
+<!-- Entity SODALES -->
+<g>
+	<g>
+		<rect x="223" y="209" width="104" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="223" y="239" width="104" height="46" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="223" y="209" width="104" height="76" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
+		<line x1="223" y1="239" x2="327" y2="239" stroke="#000000" stroke-width="1.5"/>
+	</g>
+	<text x="232" y="230.3" fill="#000000" font-family="Copperplate" font-size="18">SODALES</text>
+	<text x="231" y="256.1" fill="#000000" font-family="Gill Sans" font-size="15">convallis</text>
+	<text x="231" y="273.1" fill="#000000" font-family="Gill Sans" font-size="15">ipsum</text>
+</g>
+</svg>

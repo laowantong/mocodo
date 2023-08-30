@@ -1,0 +1,8 @@
+this_relation_name	label	data_type	nature	adjacent_source	outer_source
+Commande	commande		primary_key		
+Commande	date		normal_attribute		
+Ligne de commande	commande		strengthening_primary_foreign_key	Commande	Commande
+Ligne de commande	produit		strengthening_primary_foreign_key	Produit	Produit
+Ligne de commande	quantité		normal_attribute		
+Produit	produit		primary_key		
+Produit	libellé		normal_attribute

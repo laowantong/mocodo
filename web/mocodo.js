@@ -39,7 +39,7 @@ var relation_formats = {
     "highlighting": "markdown",
     "name": "Markdown",
   },
-  "html_verbose": {
+  "explain_html": {
     "default": false,
     "highlighting": "markup",
     "title": "S&#39;affiche également au-dessous du diagramme conceptuel.",
@@ -61,7 +61,7 @@ var relation_formats = {
   //   "highlighting": "json",
   //   "name": 'JSON',
   // },
-  // "markdown_verbose": {
+  // "explain_markdown": {
   //   "default": false,
   //   "highlighting": "markdown",
   //   "name": "Markdown avec explications",
@@ -196,7 +196,7 @@ function refreshRelations(result) {
     s += `<pre><code class="language-${highlighting}" id="code-${i}">`
     s += item[1];
     s += `</code></pre></fieldset>`;
-    if (item[0] == "html_verbose") {
+    if (item[0] == "explain_html") {
       supplement = item[1].replace(new RegExp("&lt;", "g"), "<")
     };
   })

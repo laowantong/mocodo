@@ -1,0 +1,8 @@
+this_relation_name	label	data_type	nature	adjacent_source	outer_source
+Exemplaire	œuvre		strengthening_primary_foreign_key	Œuvre	Œuvre
+Exemplaire	exemplaire		primary_key		
+Exemplaire	nb pages		normal_attribute		
+Exemplaire	date achat		normal_attribute		
+Exemplaire	foobar		outer_attribute		
+Œuvre	œuvre		primary_key		
+Œuvre	auteur		normal_attribute

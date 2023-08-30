@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="48" height="60" viewBox="0 0 48 60" xmlns="http://www.w3.org/2000/svg">
+<rect id="frame" x="0" y="0" width="48" height="60" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+
+<!-- Entity A -->
+<g>
+	<g>
+		<rect x="9" y="9" width="30" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="9" y="39" width="30" height="12" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="9" y="9" width="30" height="42" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
+		<line x1="9" y1="39" x2="39" y2="39" stroke="#000000" stroke-width="1.5"/>
+	</g>
+	<text x="18" y="30.3" fill="#000000" font-family="Copperplate" font-size="18">A</text>
+</g>
+</svg>

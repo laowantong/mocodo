@@ -19,7 +19,7 @@ class ArrangeBB(unittest.TestCase):
             CONSECTETUER: elit, sed
             MAECENAS, 1N DIGNISSIM, 1N DIGNISSIM
 
-            DF1, 11 LOREM, 1N SUSPENDISSE
+            DF, 11 LOREM, 1N SUSPENDISSE
             LOREM: ipsum, dolor, sit
             TORTOR, 0N RISUS, 11 DIGNISSIM, 1N CONSECTETUER: nec
             DIGNISSIM: ligula, massa, varius
@@ -60,7 +60,7 @@ class ArrangeBB(unittest.TestCase):
             SEMPER, 0N RISUS, 1N DIGNISSIM
             MAECENAS, 1N DIGNISSIM, 1N DIGNISSIM
             SUSPENDISSE: diam
-            DF1, 11 LOREM, 1N SUSPENDISSE
+            DF, 11 LOREM, 1N SUSPENDISSE
 
             RISUS: ultricies, _cras, elementum
             DIGNISSIM: ligula, massa, varius
@@ -81,7 +81,7 @@ class ArrangeBB(unittest.TestCase):
             CONSECTETUER: elit, sed
             MAECENAS, 1N DIGNISSIM, 1N DIGNISSIM
 
-            DF1, 11 LOREM, 1N SUSPENDISSE
+            DF, 11 LOREM, 1N SUSPENDISSE
             LOREM: ipsum, dolor, sit
             DIGNISSIM: ligula, massa, varius
 
@@ -128,7 +128,7 @@ class ArrangeBB(unittest.TestCase):
             RISUS: ultricies, _cras, elementum
 
             SUSPENDISSE: diam
-            DF1, 11 LOREM, 1N SUSPENDISSE
+            DF, 11 LOREM, 1N SUSPENDISSE
             DIGNISSIM: ligula, massa, varius
             SEMPER, 0N RISUS, 1N DIGNISSIM
         """.replace("   ", "")
@@ -187,7 +187,7 @@ class ArrangeBB(unittest.TestCase):
             CONSECTETUER: elit, sed
             MAECENAS, 1N DIGNISSIM, 1N DIGNISSIM
 
-            DF1, 11 LOREM, 1N SUSPENDISSE
+            DF, 11 LOREM, 1N SUSPENDISSE
             LOREM: ipsum, dolor, sit
             TORTOR, 0N RISUS, 11 DIGNISSIM, 1N CONSECTETUER: nec
             DIGNISSIM: ligula, massa, varius
@@ -225,7 +225,7 @@ class ArrangeBB(unittest.TestCase):
         rearrangement = arrange(mcd, subargs)
         self.assertEqual(rearrangement, expected)
         expected = """
-            DF1, 11 LOREM, 1N SUSPENDISSE
+            DF, 11 LOREM, 1N SUSPENDISSE
             SUSPENDISSE: diam
             :
             :

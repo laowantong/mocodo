@@ -1,0 +1,5 @@
+digraph {
+  node [shape=box]
+  "Produit" -> "Ligne de commande"
+  "Commande" -> "Ligne de commande"
+}

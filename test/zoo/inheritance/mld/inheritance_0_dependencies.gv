@@ -1,0 +1,11 @@
+digraph {
+  node [shape=box]
+  "DIGNISSIM" -> "ALIQUET"
+  "TRISTIS" -> "ALIQUET"
+  "TRISTIS" -> "QUAM"
+  "TRISTIS" -> "SUSCIPIT"
+  "CURABITUR" -> "TRISTIS"
+  "CONSEQUAT" -> "TRISTIS"
+  "TRISTIS" -> "ULTRICES"
+  "LIBERO" -> "ULTRICES"
+}

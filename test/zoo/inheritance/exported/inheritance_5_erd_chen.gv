@@ -1,0 +1,74 @@
+graph{
+  start=42
+
+  // Entities
+  node [
+    shape=box
+    style=filled
+    penwidth=1.5
+    fillcolor="#FFFFFF"
+  ]
+  3 [label="NEC"]
+  2 [label="LACUS"]
+  12 [label="SODALES"]
+
+  // Associative entities
+  8 [label="TRISTIS",shape=Mdiamond]
+
+  // Normal entity attributes
+  node [
+    shape=oval
+    penwidth=1.5
+    fillcolor="#FFFFFF"
+  ]
+  5 [label="audis"]
+  7 [label="fugit"]
+  10 [label="vestibulum"]
+  15 [label="ipsum"]
+
+  // Weak and strong entity attributes
+  4 [label=<<u>pulvinar</u>>]
+  6 [label=<<u>tempor</u>>]
+  9 [label=<<u>magna</u>>]
+  14 [label=<<u>convallis</u>>]
+
+  // Relationships
+  node [
+    shape=diamond
+    height=0.7
+    penwidth=1.5
+    fillcolor="#FFFFFF"
+  ]
+  1 [label="MOLLIS"]
+  11 [label="VITAE"]
+  13 [label="ULTRICES"]
+
+  // Edges between entities and attributes
+  edge [
+    penwidth=1.5
+  ]
+  2 -- 6
+  2 -- 7
+  3 -- 4
+  3 -- 5
+  8 -- 9
+  8 -- 10
+  12 -- 14
+  12 -- 15
+
+  // Edges between entities and relationships
+  edge [
+    penwidth=1
+    color="#000000:#000000"
+    labeldistance=2
+    headlabel=1
+  ]
+  2 -- 1
+  12 -- 11
+  edge [headlabel=M]
+  2 -- 13
+  edge [headlabel=N]
+  3 -- 1
+  3 -- 11
+  12 -- 13
+}

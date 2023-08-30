@@ -11,8 +11,8 @@ class TestUpdateCards(unittest.TestCase):
             BAKE, 0N TEND, 01 TALL
             FISH, -1N TALL, -0N TOUR: slot
             DOWN, 0N [cold] TOUR, 0N [echo] TOUR: hang
-            DF1, _11 PORK, 0N TEND
-            DF2, 11 DRAW, 0N BULK
+            DF, _11 PORK, 0N TEND
+            DF, 11 DRAW, 0N BULK
             HERE, 1N TALL, 1N TOUR, 1N HOST: mask
             GOAL, 11 TEND, 1N AIDS
             ZONE, 0N TEND, /1N TALL
@@ -24,8 +24,8 @@ class TestUpdateCards(unittest.TestCase):
             BAKE, 01 TEND, 01 TALL
             FISH, -0N TALL, -_11 TOUR: slot
             DOWN, 01 [cold] TOUR, /1N [echo] TOUR: hang
-            DF1, 01 PORK, _11 TEND
-            DF2, 01 DRAW, 11 BULK
+            DF, 01 PORK, _11 TEND
+            DF, 01 DRAW, 11 BULK
             HERE, 1N TALL, 11 TOUR, /1N HOST: mask
             GOAL, 11 TEND, 1N AIDS
             ZONE, 0N TEND, 01 TALL

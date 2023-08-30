@@ -1,0 +1,46 @@
+erDiagram
+  AYANT_DROIT {
+    TYPE nom_ayant_droit PK
+    TYPE lien
+  }
+  REQUERIR {
+    TYPE qte_requise PK
+  }
+  PIECE {
+    TYPE ref_piece PK
+    TYPE libelle_piece
+  }
+  COMPOSER {
+    TYPE quantite PK
+  }
+  EMPLOYE {
+    TYPE matricule PK
+    TYPE nom_employe
+  }
+  PROJET {
+    TYPE num_projet PK
+    TYPE nom_projet
+  }
+  FOURNIR {
+    TYPE qte_fournie PK
+  }
+  DEPARTEMENT {
+    TYPE num_departement PK
+    TYPE nom_departement
+  }
+  SOCIETE {
+    TYPE num_societe PK
+    TYPE raison_sociale
+  }
+  EMPLOYE |o--o{ PROJET: DIRIGER
+  REQUERIR }|..|| PROJET: DF
+  REQUERIR }o..|| PIECE: DF
+  COMPOSER }o..|| PIECE: DF
+  COMPOSER }o..|| PIECE: DF
+  AYANT_DROIT }o..|| EMPLOYE: DF
+  FOURNIR }|..|| PROJET: DF
+  FOURNIR }|..|| PIECE: DF
+  FOURNIR }|..|| SOCIETE: DF
+  EMPLOYE }|--|| DEPARTEMENT: EMPLOYER
+  EMPLOYE }|--o{ PROJET: TRAVAILLER
+  SOCIETE |o--o{ SOCIETE: CONTROLER

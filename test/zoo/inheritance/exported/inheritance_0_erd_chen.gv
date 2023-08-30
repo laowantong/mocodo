@@ -1,0 +1,111 @@
+graph{
+  start=42
+
+  // Entities
+  node [
+    shape=box
+    style=filled
+    penwidth=1.5
+    fillcolor="#FFFFFF"
+  ]
+  1 [label="SUSCIPIT"]
+  6 [label="SODALES"]
+  10 [label="QUAM"]
+  13 [label="CONSEQUAT"]
+  5 [label="TRISTIS"]
+  19 [label="NEC"]
+  23 [label="CURABITUR"]
+  26 [label="DIGNISSIM"]
+  30 [label="LACUS"]
+  34 [label="LIBERO"]
+
+  // Normal entity attributes
+  node [
+    shape=oval
+    penwidth=1.5
+    fillcolor="#FFFFFF"
+  ]
+  3 [label="lorem"]
+  8 [label="ipsum"]
+  12 [label="sed"]
+  15 [label="dederit"]
+  18 [label="vestibulum"]
+  21 [label="audis"]
+  25 [label="amor"]
+  28 [label="terra"]
+  32 [label="fugit"]
+  36 [label="lacrima"]
+
+  // Weak and strong entity attributes
+  2 [label=<<u>orci</u>>]
+  7 [label=<<u>convallis</u>>]
+  11 [label=<<u>cras</u>>]
+  14 [label=<<u>fermentum</u>>]
+  17 [label=<<u>magna</u>>]
+  20 [label=<<u>pulvinar</u>>]
+  24 [label=<<u>gravida</u>>]
+  27 [label=<<u>tellus</u>>]
+  31 [label=<<u>tempor</u>>]
+  35 [label=<<u>posuere</u>>]
+
+  // Relationships
+  node [
+    shape=diamond
+    height=0.7
+    penwidth=1.5
+    fillcolor="#FFFFFF"
+  ]
+  4 [label="RHONCUS"]
+  9 [label="VITAE"]
+  16 [label="ELIT"]
+  22 [label="MOLLIS"]
+  29 [label="ALIQUET"]
+  33 [label="ULTRICES"]
+
+  // Edges between entities and attributes
+  edge [
+    penwidth=1.5
+  ]
+  1 -- 2
+  1 -- 3
+  5 -- 17
+  5 -- 18
+  6 -- 7
+  6 -- 8
+  10 -- 11
+  10 -- 12
+  13 -- 14
+  13 -- 15
+  19 -- 20
+  19 -- 21
+  23 -- 24
+  23 -- 25
+  26 -- 27
+  26 -- 28
+  30 -- 31
+  30 -- 32
+  34 -- 35
+  34 -- 36
+
+  // Edges between entities and relationships
+  edge [
+    penwidth=1
+    color="#000000:#000000"
+    labeldistance=2
+    headlabel=1
+  ]
+  5 -- 4
+  6 -- 9
+  13 -- 16
+  23 -- 22
+  edge [headlabel=M]
+  26 -- 29
+  30 -- 33
+  edge [headlabel=N]
+  1 -- 4
+  5 -- 16
+  5 -- 29
+  10 -- 9
+  19 -- 22
+  34 -- 33
+}

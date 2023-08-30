@@ -1,0 +1,20 @@
+- LACUS (_magna_, vestibulum, tempor, fugit)
+  - Le champ « magna » constitue la clé primaire de la table. Il était clé primaire de l'entité-mère « TRISTIS » (supprimée).
+  - Le champ « vestibulum » est un simple attribut. Il était simple attribut de l'entité-mère « TRISTIS » (supprimée).
+  - Les champs « tempor » et « fugit » étaient déjà de simples attributs de l'entité « LACUS ».
+
+- NEC (_magna_, vestibulum, pulvinar, audis, #magna via mollis, #magna via vitae)
+  - Le champ « magna » constitue la clé primaire de la table. Il était clé primaire de l'entité-mère « TRISTIS » (supprimée).
+  - Le champ « vestibulum » est un simple attribut. Il était simple attribut de l'entité-mère « TRISTIS » (supprimée).
+  - Les champs « pulvinar » et « audis » étaient déjà de simples attributs de l'entité « NEC ».
+  - Le champ « magna via mollis » est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle « MOLLIS » à partir de l'entité « LACUS » en perdant son caractère identifiant.
+  - Le champ « magna via vitae » est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle « VITAE » à partir de l'entité « SODALES » en perdant son caractère identifiant.
+
+- SODALES (_magna_, vestibulum, convallis, ipsum)
+  - Le champ « magna » constitue la clé primaire de la table. Il était clé primaire de l'entité-mère « TRISTIS » (supprimée).
+  - Le champ « vestibulum » est un simple attribut. Il était simple attribut de l'entité-mère « TRISTIS » (supprimée).
+  - Les champs « convallis » et « ipsum » étaient déjà de simples attributs de l'entité « SODALES ».
+
+- ULTRICES (_#magna sodales_, _#magna lacus_)
+  - Le champ « magna sodales » fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité « SODALES ».
+  - Le champ « magna lacus » fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité « LACUS ».

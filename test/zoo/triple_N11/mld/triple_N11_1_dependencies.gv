@@ -1,0 +1,6 @@
+digraph {
+  node [shape=box]
+  "Site" -> "Affecter"
+  "Employé" -> "Affecter"
+  "Projet" -> "Affecter"
+}

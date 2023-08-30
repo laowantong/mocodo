@@ -1,0 +1,11 @@
+erDiagram
+  PIECE {
+    TYPE piece PK
+  }
+  HOMME {
+    TYPE num_ss PK
+    TYPE nom
+    TYPE prenom
+  }
+  PIECE }o--o{ PIECE: COMPOSER
+  HOMME ||--o{ HOMME: ENGENDRER

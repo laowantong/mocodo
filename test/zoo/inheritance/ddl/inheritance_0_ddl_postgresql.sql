@@ -1,0 +1,76 @@
+CREATE DATABASE inheritance;
+\c inheritance;
+
+CREATE TABLE ALIQUET (
+  magna VARCHAR(42),
+  tellus VARCHAR(42),
+  PRIMARY KEY (magna, tellus)
+);
+
+CREATE TABLE CONSEQUAT (
+  fermentum VARCHAR(42),
+  dederit VARCHAR(42),
+  PRIMARY KEY (fermentum)
+);
+
+CREATE TABLE CURABITUR (
+  gravida VARCHAR(42),
+  amor VARCHAR(42),
+  PRIMARY KEY (gravida)
+);
+
+CREATE TABLE DIGNISSIM (
+  tellus VARCHAR(42),
+  terra VARCHAR(42),
+  PRIMARY KEY (tellus)
+);
+
+CREATE TABLE LIBERO (
+  posuere VARCHAR(42),
+  lacrima VARCHAR(42),
+  PRIMARY KEY (posuere)
+);
+
+CREATE TABLE QUAM (
+  cras VARCHAR(42),
+  sed VARCHAR(42),
+  magna VARCHAR(42),
+  PRIMARY KEY (cras)
+);
+
+CREATE TABLE SUSCIPIT (
+  orci VARCHAR(42),
+  lorem VARCHAR(42),
+  magna VARCHAR(42),
+  PRIMARY KEY (orci)
+);
+
+CREATE TABLE TRISTIS (
+  magna VARCHAR(42),
+  vestibulum VARCHAR(42),
+  fermentum VARCHAR(42),
+  type SMALLINT,
+  convallis VARCHAR(42),
+  ipsum VARCHAR(42),
+  pulvinar VARCHAR(42),
+  audis VARCHAR(42),
+  gravida VARCHAR(42),
+  tempor VARCHAR(42),
+  fugit VARCHAR(42),
+  PRIMARY KEY (magna)
+);
+
+CREATE TABLE ULTRICES (
+  posuere VARCHAR(42),
+  magna VARCHAR(42),
+  PRIMARY KEY (posuere, magna)
+);
+
+ALTER TABLE ALIQUET ADD FOREIGN KEY (tellus) REFERENCES DIGNISSIM (tellus);
+ALTER TABLE ALIQUET ADD FOREIGN KEY (magna) REFERENCES TRISTIS (magna);
+ALTER TABLE QUAM ADD FOREIGN KEY (magna) REFERENCES TRISTIS (magna);
+ALTER TABLE SUSCIPIT ADD FOREIGN KEY (magna) REFERENCES TRISTIS (magna);
+ALTER TABLE TRISTIS ADD FOREIGN KEY (gravida) REFERENCES CURABITUR (gravida);
+ALTER TABLE TRISTIS ADD FOREIGN KEY (fermentum) REFERENCES CONSEQUAT (fermentum);
+ALTER TABLE ULTRICES ADD FOREIGN KEY (magna) REFERENCES TRISTIS (magna);
+ALTER TABLE ULTRICES ADD FOREIGN KEY (posuere) REFERENCES LIBERO (posuere);

@@ -1,0 +1,97 @@
+digraph{
+  layout=dot
+  bgcolor="#FFFFFF"
+  nodesep=0.5
+
+  // Nodes
+  node [
+      shape=none
+      fontcolor="#000000"
+      fontsize=15
+      fontname="Helvetica"
+]
+  node [
+      shape=none
+      fontcolor="#000000"
+      fontsize=15
+      fontname="Helvetica"
+]
+  1 [label=<<table
+        border="0"
+        cellborder="1"
+        cellspacing="0"
+        bgcolor="#FFFFFF"
+        color="#000000"
+        cellpadding="4"
+    >
+        <tr>
+            <td bgcolor="#FFFFFF" colspan="2">
+                <font
+                    color="#000000"
+                    point-size="18"
+                >CLIENT</font>
+            </td>
+        </tr>
+        <tr><td>PK</td><td align="left">Réf. client</td></tr>
+        <tr><td> </td><td align="left">Nom</td></tr>
+        <tr><td> </td><td align="left">Prénom</td></tr>
+        <tr><td> </td><td align="left">Adresse</td></tr>
+        <tr><td> </td><td align="left">Mail</td></tr>
+    </table>
+>]
+  2 [label=<<table
+        border="0"
+        cellborder="1"
+        cellspacing="0"
+        bgcolor="#FFFFFF"
+        color="#000000"
+        cellpadding="4"
+    >
+        <tr>
+            <td bgcolor="#FFFFFF" colspan="2">
+                <font
+                    color="#000000"
+                    point-size="18"
+                >FOO</font>
+            </td>
+        </tr>
+        <tr><td>PK</td><td align="left">foo</td></tr>
+        <tr><td> </td><td align="left">bar</td></tr>
+        <tr><td> </td><td align="left">biz</td></tr>
+        <tr><td> </td><td align="left">buz</td></tr>
+        <tr><td> </td><td align="left">qux</td></tr>
+        <tr><td> </td><td align="left">quux</td></tr>
+    </table>
+>]
+  3 [label=<<table
+        border="0"
+        cellborder="1"
+        cellspacing="0"
+        bgcolor="#FFFFFF"
+        color="#000000"
+        cellpadding="4"
+    >
+        <tr>
+            <td bgcolor="#FFFFFF" colspan="2">
+                <font
+                    color="#000000"
+                    point-size="18"
+                >UTILISER</font>
+            </td>
+        </tr>
+        <tr><td>PK</td><td align="left">carnet</td></tr>
+        <tr><td>PK</td><td align="left">projet</td></tr>
+        <tr><td> </td><td align="left">technicien</td></tr>
+    </table>
+>]
+
+  // Edges
+  edge [
+    penwidth=1
+    color="#000000"
+    fontcolor="#000000"
+    fontname="Futura"
+    fontsize=11
+    dir=both
+  ]
+}

@@ -1,0 +1,5 @@
+Produit: produit
+DF, _11 Ligne de commande, 0N Produit
+Ligne de commande: _quantité
+DF, _11 Ligne de commande, 1N Commande
+Commande: commande

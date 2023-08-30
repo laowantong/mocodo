@@ -1,0 +1,15 @@
+digraph {
+  node [shape=box]
+  "EMPLOYÉ" -> "AYANT-DROIT"
+  "PIÈCE" -> "COMPOSER"
+  "DÉPARTEMENT" -> "EMPLOYÉ"
+  "SOCIÉTÉ" -> "FOURNIR"
+  "PIÈCE" -> "FOURNIR"
+  "PROJET" -> "FOURNIR"
+  "EMPLOYÉ" -> "PROJET"
+  "PIÈCE" -> "REQUÉRIR"
+  "PROJET" -> "REQUÉRIR"
+  "SOCIÉTÉ" -> "SOCIÉTÉ"
+  "PROJET" -> "TRAVAILLER"
+  "EMPLOYÉ" -> "TRAVAILLER"
+}

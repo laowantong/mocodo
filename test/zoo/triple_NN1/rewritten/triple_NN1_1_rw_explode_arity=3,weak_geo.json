@@ -1,0 +1,24 @@
+{
+  "width": 388,
+  "height": 222,
+  "cx": [
+    [ "Ingénieur", 72 ],
+    [ "Gérer", 200 ],
+    [ "Projet", 322 ],
+    [ "Responsable", 200 ]
+  ],
+  "cy": [
+    [ "Ingénieur", 56 ],
+    [ "Gérer", 56 ],
+    [ "Projet", 56 ],
+    [ "Responsable", 166 ]
+  ],
+  "shift": [
+    [ "Gérer,Responsable,0", 0 ],
+    [ "Gérer,Ingénieur,0", 0 ],
+    [ "Gérer,Projet,0", 0 ]
+  ],
+  "ratio": [
+    [ "Gérer,Responsable,0", 1.0 ]
+  ]
+}

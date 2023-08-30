@@ -1,0 +1,7 @@
+digraph {
+  node [shape=box]
+  "SODALES" -> "NEC"
+  "LACUS" -> "NEC"
+  "LACUS" -> "ULTRICES"
+  "SODALES" -> "ULTRICES"
+}

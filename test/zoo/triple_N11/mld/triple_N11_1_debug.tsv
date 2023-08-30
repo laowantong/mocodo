@@ -1,0 +1,10 @@
+this_relation_name	label	data_type	nature	adjacent_source	outer_source
+Affecter	projet		primary_foreign_key	Projet	Projet
+Affecter	employé		alt_primary_foreign_key	Employé	Employé
+Affecter	site		alt_foreign_key	Site	Site
+Employé	employé		primary_key		
+Employé	nom employé		normal_attribute		
+Projet	projet		primary_key		
+Projet	libellé		normal_attribute		
+Site	site		primary_key		
+Site	position		normal_attribute

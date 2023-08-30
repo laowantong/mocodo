@@ -1,0 +1,218 @@
+digraph{
+  layout=dot
+  bgcolor="#FFFFFF"
+  nodesep=0.5
+
+  // Nodes
+  node [
+      shape=none
+      fontcolor="#000000"
+      fontsize=15
+      fontname="Helvetica"
+]
+  node [
+      shape=none
+      fontcolor="#000000"
+      fontsize=15
+      fontname="Helvetica"
+]
+  1 [label=<<table
+        border="0"
+        cellborder="1"
+        cellspacing="0"
+        bgcolor="#FFFFFF"
+        color="#000000"
+        cellpadding="4"
+    >
+        <tr>
+            <td bgcolor="#FFFFFF" colspan="2">
+                <font
+                    color="#000000"
+                    point-size="18"
+                >AYANT-DROIT</font>
+            </td>
+        </tr>
+        <tr><td>PK</td><td align="left">nom ayant-droit</td></tr>
+        <tr><td> </td><td align="left">lien</td></tr>
+    </table>
+>]
+  2 [label=<<table
+        border="0"
+        cellborder="1"
+        cellspacing="0"
+        bgcolor="#FFFFFF"
+        color="#000000"
+        cellpadding="4"
+    >
+        <tr>
+            <td bgcolor="#FFFFFF" colspan="2">
+                <font
+                    color="#000000"
+                    point-size="18"
+                >REQUÉRIR</font>
+            </td>
+        </tr>
+        <tr><td>PK</td><td align="left">qté requise</td></tr>
+    </table>
+>]
+  3 [label=<<table
+        border="0"
+        cellborder="1"
+        cellspacing="0"
+        bgcolor="#FFFFFF"
+        color="#000000"
+        cellpadding="4"
+    >
+        <tr>
+            <td bgcolor="#FFFFFF" colspan="2">
+                <font
+                    color="#000000"
+                    point-size="18"
+                >PIÈCE</font>
+            </td>
+        </tr>
+        <tr><td>PK</td><td align="left">réf. pièce</td></tr>
+        <tr><td> </td><td align="left">libellé pièce</td></tr>
+    </table>
+>]
+  4 [label=<<table
+        border="0"
+        cellborder="1"
+        cellspacing="0"
+        bgcolor="#FFFFFF"
+        color="#000000"
+        cellpadding="4"
+    >
+        <tr>
+            <td bgcolor="#FFFFFF" colspan="2">
+                <font
+                    color="#000000"
+                    point-size="18"
+                >COMPOSER</font>
+            </td>
+        </tr>
+        <tr><td>PK</td><td align="left">quantité</td></tr>
+    </table>
+>]
+  5 [label=<<table
+        border="0"
+        cellborder="1"
+        cellspacing="0"
+        bgcolor="#FFFFFF"
+        color="#000000"
+        cellpadding="4"
+    >
+        <tr>
+            <td bgcolor="#FFFFFF" colspan="2">
+                <font
+                    color="#000000"
+                    point-size="18"
+                >EMPLOYÉ</font>
+            </td>
+        </tr>
+        <tr><td>PK</td><td align="left">matricule</td></tr>
+        <tr><td> </td><td align="left">nom employé</td></tr>
+    </table>
+>]
+  6 [label=<<table
+        border="0"
+        cellborder="1"
+        cellspacing="0"
+        bgcolor="#FFFFFF"
+        color="#000000"
+        cellpadding="4"
+    >
+        <tr>
+            <td bgcolor="#FFFFFF" colspan="2">
+                <font
+                    color="#000000"
+                    point-size="18"
+                >PROJET</font>
+            </td>
+        </tr>
+        <tr><td>PK</td><td align="left">num. projet</td></tr>
+        <tr><td> </td><td align="left">nom projet</td></tr>
+    </table>
+>]
+  7 [label=<<table
+        border="0"
+        cellborder="1"
+        cellspacing="0"
+        bgcolor="#FFFFFF"
+        color="#000000"
+        cellpadding="4"
+    >
+        <tr>
+            <td bgcolor="#FFFFFF" colspan="2">
+                <font
+                    color="#000000"
+                    point-size="18"
+                >FOURNIR</font>
+            </td>
+        </tr>
+        <tr><td>PK</td><td align="left">qté fournie</td></tr>
+    </table>
+>]
+  8 [label=<<table
+        border="0"
+        cellborder="1"
+        cellspacing="0"
+        bgcolor="#FFFFFF"
+        color="#000000"
+        cellpadding="4"
+    >
+        <tr>
+            <td bgcolor="#FFFFFF" colspan="2">
+                <font
+                    color="#000000"
+                    point-size="18"
+                >DÉPARTEMENT</font>
+            </td>
+        </tr>
+        <tr><td>PK</td><td align="left">num. département</td></tr>
+        <tr><td> </td><td align="left">nom département</td></tr>
+    </table>
+>]
+  9 [label=<<table
+        border="0"
+        cellborder="1"
+        cellspacing="0"
+        bgcolor="#FFFFFF"
+        color="#000000"
+        cellpadding="4"
+    >
+        <tr>
+            <td bgcolor="#FFFFFF" colspan="2">
+                <font
+                    color="#000000"
+                    point-size="18"
+                >SOCIÉTÉ</font>
+            </td>
+        </tr>
+        <tr><td>PK</td><td align="left">num. société</td></tr>
+        <tr><td> </td><td align="left">raison sociale</td></tr>
+    </table>
+>]
+
+  // Edges
+  edge [
+    penwidth=1
+    color="#000000"
+    fontcolor="#000000"
+    fontname="Futura"
+    fontsize=11
+    dir=both
+  ]
+  5 -> 6 [arrowhead="crowodot" arrowtail="teeodot" label="DIRIGER"]
+  2 -> 6 [arrowhead="teetee" arrowtail="crowtee" label="DF" style=dotted]
+  2 -> 3 [arrowhead="teetee" arrowtail="crowodot" label="DF" style=dotted]
+  4 -> 3 [arrowhead="teetee" arrowtail="crowodot" label="DF" style=dotted]
+  4 -> 3 [arrowhead="teetee" arrowtail="crowodot" label="DF" style=dotted]
+  1 -> 5 [arrowhead="teetee" arrowtail="crowodot" label="DF" style=dotted]
+  7 -> 6 [arrowhead="teetee" arrowtail="crowtee" label="DF" style=dotted]
+  7 -> 3 [arrowhead="teetee" arrowtail="crowtee" label="DF" style=dotted]
+  7 -> 9 [arrowhead="teetee" arrowtail="crowtee" label="DF" style=dotted]
+  5 -> 8 [arrowhead="teetee" arrowtail="crowtee" label="EMPLOYER"]
+  5 -> 6 [arrowhead="crowodot" arrowtail="crowtee" label="TRAVAILLER"]
+  9 -> 9 [arrowhead="crowodot" arrowtail="teeodot" label="CONTRÔLER"]
+}

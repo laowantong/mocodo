@@ -32,7 +32,6 @@ class McdTest(unittest.TestCase):
             "ENGENDRER, 0N [Parent] PERSONNE, 1N [Enfant] PERSONNE",
             "SOUTENIR, XX ÉTUDIANT, XX DATE: note stage",
             "DF, 0N CLIENT, 11 COMMANDE",
-            "DF2, 0N CLIENT, 11 COMMANDE",
             "ÊTRE AMI, 0N BANDIT, 0N BANDIT",
             "ASSURER2, 1N EMPLOYÉ ABC, 1N FONCTION: date début, date fin",
         ]
@@ -81,7 +80,7 @@ class McdTest(unittest.TestCase):
         """
         mcd = Mcd(source, **params)
         self.assertEqual([element.name for element in mcd.rows[0]], ["BARATTE", "MARTEAU", "TINET", "CROCHET"])
-        self.assertEqual([element.name for element in mcd.rows[1]], ["DF", "BALANCE", "BANNETON", "PORTE"])
+        self.assertEqual([element.name for element in mcd.rows[1]], ["DF0", "BALANCE", "BANNETON", "PORTE"])
         self.assertEqual([element.name for element in mcd.rows[2]], [" 0", "ROULEAU", "HERSE", " 1"])
         self.assertEqual([element.name for element in mcd.rows[3]], [" 2", "FLÉAU", " 3", " 4"])
 
@@ -204,14 +203,6 @@ class McdTest(unittest.TestCase):
             "BARATTE: tribulum",
         ]
         self.assertRaisesRegex(MocodoError, r"Mocodo Err\.6", Mcd, "\n".join(clauses), params)
-        clauses = [
-            "DF, 11 BARATTE, 1N ROULEAU",
-            "BARATTE: piston, racloir, fusil",
-            "TINET: fendoir, grattoir",
-            "DF, 0N ROULEAU, 0N TINET: charrue",
-            "ROULEAU: tribulum",
-        ]
-        self.assertRaisesRegex(MocodoError, r"Mocodo Err\.7", Mcd, "\n".join(clauses), params)
         clauses = [
             "BARATTE, 11 BARATTE, 1N ROULEAU",
             "BARATTE: piston, racloir, fusil",

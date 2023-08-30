@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="474" height="253" viewBox="0 0 474 253" xmlns="http://www.w3.org/2000/svg">
+<rect id="frame" x="0" y="0" width="474" height="253" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+
+<!-- Association Utiliser -->
+<g>
+	<line x1="94" y1="74" x2="256" y2="74" stroke="#000000" stroke-width="1"/>
+	<polygon points="152 74 164 68 160 74 164 80" fill="#000000" stroke-width="0"/>
+	<line x1="256" y1="187" x2="256" y2="74" stroke="#000000" stroke-width="1"/>
+	<polygon points="256 157 250 145 256 149 262 145" fill="#000000" stroke-width="0"/>
+	<line x1="399" y1="74" x2="256" y2="74" stroke="#000000" stroke-width="1"/>
+	<polygon points="360 74 348 80 352 74 348 68" fill="#000000" stroke-width="0"/>
+	<g>
+		<path d="M208 26 L441 26 a7 7 0 0 1 7 7 L448 115 a7 7 0 0 1 &#45;7 7 L318 122 a7 7 0 0 0 &#45;7 7 L311 220 a7 7 0 0 1 &#45;7 7 L208 227 a7 7 0 0 1 &#45;7 &#45;7 L201 33 a7 7 0 0 1 7 &#45;7" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="0.1"/>
+		<path d="M208 26 L441 26 a7 7 0 0 1 7 7 L448 115 a7 7 0 0 1 &#45;7 7 L318 122 a7 7 0 0 0 &#45;7 7 L311 220 a7 7 0 0 1 &#45;7 7 L208 227 a7 7 0 0 1 &#45;7 &#45;7 L201 33 a7 7 0 0 1 7 &#45;7" fill="none" stroke="#000000" stroke-width="1.5" stroke-dasharray="0,4" stroke-linecap="round"/>
+		<path d="M23 16 L451 16 a7 7 0 0 1 7 7 L458 125 a7 7 0 0 1 &#45;7 7 L23 132 a7 7 0 0 1 &#45;7 &#45;7 L16 23 a7 7 0 0 1 7 &#45;7" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="0.1"/>
+		<path d="M23 16 L451 16 a7 7 0 0 1 7 7 L458 125 a7 7 0 0 1 &#45;7 7 L23 132 a7 7 0 0 1 &#45;7 &#45;7 L16 23 a7 7 0 0 1 7 &#45;7" fill="none" stroke="#000000" stroke-width="1.5" stroke-dasharray="0,4" stroke-linecap="round"/>
+		<path d="M13 6 L324 6 a7 7 0 0 1 7 7 L331 240 a7 7 0 0 1 &#45;7 7 L188 247 a7 7 0 0 1 &#45;7 &#45;7 L181 149 a7 7 0 0 0 &#45;7 &#45;7 L13 142 a7 7 0 0 1 &#45;7 &#45;7 L6 13 a7 7 0 0 1 7 &#45;7" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="0.1"/>
+		<path d="M13 6 L324 6 a7 7 0 0 1 7 7 L331 240 a7 7 0 0 1 &#45;7 7 L188 247 a7 7 0 0 1 &#45;7 &#45;7 L181 149 a7 7 0 0 0 &#45;7 &#45;7 L13 142 a7 7 0 0 1 &#45;7 &#45;7 L6 13 a7 7 0 0 1 7 &#45;7" fill="none" stroke="#000000" stroke-width="1.5" stroke-dasharray="0,4" stroke-linecap="round"/>
+		<path d="M287 45 a14 14 90 0 1 14 14 V73 h-90 V59 a14 14 90 0 1 14 -14" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+		<path d="M301 73 v16 a14 14 90 0 1 -14 14 H225 a14 14 90 0 1 -14 -14 V73 H90" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+		<rect x="211" y="45" width="90" height="58" fill="none" rx="14" stroke="#000000" stroke-width="1.5"/>
+		<line x1="211" y1="73" x2="301" y2="73" stroke="#000000" stroke-width="1.5"/>
+		<text x="218" y="66.3" fill="#000000" font-family="Copperplate" font-size="18">Utiliser</text>
+	</g>
+	<text x="172" y="105" fill="#000000" font-family="Futura" font-size="11">1,N</text>
+	<text x="276" y="134" fill="#000000" font-family="Futura" font-size="11">1,N</text>
+	<text x="321" y="105" fill="#000000" font-family="Futura" font-size="11">1,N</text>
+</g>
+
+<!-- Entity Technicien -->
+<g>
+	<g>
+		<rect x="36" y="36" width="116" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="36" y="66" width="116" height="46" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="36" y="36" width="116" height="76" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
+		<line x1="36" y1="66" x2="152" y2="66" stroke="#000000" stroke-width="1.5"/>
+	</g>
+	<text x="44" y="57.3" fill="#000000" font-family="Copperplate" font-size="18">Technicien</text>
+	<text x="44" y="83.1" fill="#000000" font-family="Gill Sans" font-size="15">technicien</text>
+	<line x1="44" y1="86" x2="108" y2="86" stroke="#000000" stroke-width="1"/>
+	<text x="44" y="100.1" fill="#000000" font-family="Gill Sans" font-size="15">nom technicien</text>
+</g>
+
+<!-- Entity Projet -->
+<g>
+	<g>
+		<rect x="360" y="36" width="78" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="360" y="66" width="78" height="46" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="360" y="36" width="78" height="76" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
+		<line x1="360" y1="66" x2="438" y2="66" stroke="#000000" stroke-width="1.5"/>
+	</g>
+	<text x="368" y="57.3" fill="#000000" font-family="Copperplate" font-size="18">Projet</text>
+	<text x="368" y="83.1" fill="#000000" font-family="Gill Sans" font-size="15">projet</text>
+	<line x1="368" y1="86" x2="407" y2="86" stroke="#000000" stroke-width="1"/>
+	<text x="368" y="100.1" fill="#000000" font-family="Gill Sans" font-size="15">libellé</text>
+</g>
+
+<!-- Entity Carnet -->
+<g>
+	<g>
+		<rect x="215" y="157" width="82" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="215" y="187" width="82" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="215" y="157" width="82" height="60" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
+		<line x1="215" y1="187" x2="297" y2="187" stroke="#000000" stroke-width="1.5"/>
+	</g>
+	<text x="223" y="178.3" fill="#000000" font-family="Copperplate" font-size="18">Carnet</text>
+	<text x="223" y="204.1" fill="#000000" font-family="Gill Sans" font-size="15">carnet</text>
+	<line x1="223" y1="207" x2="263" y2="207" stroke="#000000" stroke-width="1"/>
+</g>
+</svg>

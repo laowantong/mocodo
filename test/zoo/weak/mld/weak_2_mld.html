@@ -1,0 +1,75 @@
+<html>
+<head>
+<!-- TO_BE_DELETED_BY_MOCODO_MAGIC --><link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+<meta charset='utf-8'>
+<style>
+  #mld .relation { font-variant: small-caps; font-weight: bold }
+  #mld .primary { text-decoration: underline }
+  #mld .foreign { font-style: oblique }
+  #mld strong { font-weight: bold }
+  #mld i { font-style: italic }
+  #mld ul { list-style-type:square; margin: 0 0 1em 2em }
+</style>
+</head>
+<body>
+<!-- TO_BE_DELETED_BY_MOCODO_MAGIC --><header><h1>Conversion en relationnel</h1><p>Générée par <a href='https://github.com/laowantong/mocodo'>Mocodo</a></p></header>
+<main>
+<!-- TO_BE_DELETED_BY_MOCODO_MAGIC --><figure><center><img src="weak_2_mld.svg"/></center><figcaption>MCD <i>weak</i></figcaption></figure>
+<div id='mld'>
+<div>
+  <details><summary><span class='relation'>Appartement</span> (
+    <span class='foreign primary'>#code rue</span>,
+    <span class='foreign primary'>#num immeuble</span>,
+    <span class='foreign primary'>#num étage</span>,
+    <span class='primary'>num appart.</span>,
+    <span class='normal'>nb pièces</span>
+  )</summary>
+  <ul>
+    <li>Les champs <i>code rue</i>, <i>num immeuble</i> et <i>num étage</i> font partie de la clé primaire de la table. Ce sont des clés étrangères qui ont migré directement à partir de l'entité <i>Étage</i>.</li>
+    <li>Le champ <i>num appart.</i> fait partie de la clé primaire de la table. C'était déjà un identifiant de l'entité <i>Appartement</i>.</li>
+    <li>Le champ <i>nb pièces</i> était déjà un simple attribut de l'entité <i>Appartement</i>.</li>
+  </ul></details>
+</div>
+
+<div>
+  <details><summary><span class='relation'>Immeuble</span> (
+    <span class='foreign primary'>#code rue</span>,
+    <span class='primary'>num immeuble</span>,
+    <span class='normal'>nb étages</span>
+  )</summary>
+  <ul>
+    <li>Le champ <i>code rue</i> fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité <i>Rue</i>.</li>
+    <li>Le champ <i>num immeuble</i> fait partie de la clé primaire de la table. C'était déjà un identifiant de l'entité <i>Immeuble</i>.</li>
+    <li>Le champ <i>nb étages</i> était déjà un simple attribut de l'entité <i>Immeuble</i>.</li>
+  </ul></details>
+</div>
+
+<div>
+  <details><summary><span class='relation'>Rue</span> (
+    <span class='primary'>code rue</span>,
+    <span class='normal'>nom rue</span>
+  )</summary>
+  <ul>
+    <li>Le champ <i>code rue</i> constitue la clé primaire de la table. C'était déjà un identifiant de l'entité <i>Rue</i>.</li>
+    <li>Le champ <i>nom rue</i> était déjà un simple attribut de l'entité <i>Rue</i>.</li>
+  </ul></details>
+</div>
+
+<div>
+  <details><summary><span class='relation'>Étage</span> (
+    <span class='foreign primary'>#code rue</span>,
+    <span class='foreign primary'>#num immeuble</span>,
+    <span class='primary'>num étage</span>,
+    <span class='normal'>nb appartements</span>
+  )</summary>
+  <ul>
+    <li>Les champs <i>code rue</i> et <i>num immeuble</i> font partie de la clé primaire de la table. Ce sont des clés étrangères qui ont migré directement à partir de l'entité <i>Immeuble</i>.</li>
+    <li>Le champ <i>num étage</i> fait partie de la clé primaire de la table. C'était déjà un identifiant de l'entité <i>Étage</i>.</li>
+    <li>Le champ <i>nb appartements</i> était déjà un simple attribut de l'entité <i>Étage</i>.</li>
+  </ul></details>
+</div>
+
+</div>
+</main>
+</body>
+</html>

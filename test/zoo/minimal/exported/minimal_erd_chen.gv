@@ -1,0 +1,14 @@
+graph{
+  start=42
+
+  // Entities
+  node [
+    shape=box
+    style=filled
+    penwidth=1.5
+    fillcolor="#FFFFFF"
+  ]
+
+  // Associative entities
+  1 [label="A",shape=Mdiamond]
+}

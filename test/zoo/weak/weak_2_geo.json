@@ -1,0 +1,31 @@
+{
+  "width": 952,
+  "height": 94,
+  "cx": [
+    [ "Appartement", 76 ],
+    [ "Composer", 224 ],
+    [ "Étage", 366 ],
+    [ "Appartenir", 514 ],
+    [ "Immeuble", 656 ],
+    [ "Se situer", 790 ],
+    [ "Rue", 906 ]
+  ],
+  "cy": [
+    [ "Appartement", 47 ],
+    [ "Composer", 47 ],
+    [ "Étage", 47 ],
+    [ "Appartenir", 47 ],
+    [ "Immeuble", 47 ],
+    [ "Se situer", 47 ],
+    [ "Rue", 47 ]
+  ],
+  "shift": [
+    [ "Composer,Étage,0", 0 ],
+    [ "Composer,Appartement,0", 0 ],
+    [ "Appartenir,Immeuble,0", 0 ],
+    [ "Appartenir,Étage,0", 0 ],
+    [ "Se situer,Rue,0", 0 ],
+    [ "Se situer,Immeuble,0", 0 ]
+  ],
+  "ratio": []
+}

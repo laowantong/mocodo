@@ -1,0 +1,7 @@
+digraph {
+  node [shape=box]
+  "PRODUIT" -> "INCLURE"
+  "COMMANDE" -> "INCLURE"
+  "COMMANDE" -> "PASSER"
+  "CLIENT" -> "PASSER"
+}

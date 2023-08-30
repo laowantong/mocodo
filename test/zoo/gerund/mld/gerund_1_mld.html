@@ -1,0 +1,57 @@
+<html>
+<head>
+<!-- TO_BE_DELETED_BY_MOCODO_MAGIC --><link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+<meta charset='utf-8'>
+<style>
+  #mld .relation { font-variant: small-caps; font-weight: bold }
+  #mld .primary { text-decoration: underline }
+  #mld .foreign { font-style: oblique }
+  #mld strong { font-weight: bold }
+  #mld i { font-style: italic }
+  #mld ul { list-style-type:square; margin: 0 0 1em 2em }
+</style>
+</head>
+<body>
+<!-- TO_BE_DELETED_BY_MOCODO_MAGIC --><header><h1>Conversion en relationnel</h1><p>Générée par <a href='https://github.com/laowantong/mocodo'>Mocodo</a></p></header>
+<main>
+<!-- TO_BE_DELETED_BY_MOCODO_MAGIC --><figure><center><img src="gerund_1_mld.svg"/></center><figcaption>MCD <i>gerund</i></figcaption></figure>
+<div id='mld'>
+<div>
+  <details><summary><span class='relation'>Commande</span> (
+    <span class='primary'>commande</span>,
+    <span class='normal'>date</span>
+  )</summary>
+  <ul>
+    <li>Le champ <i>commande</i> constitue la clé primaire de la table. C'était déjà un identifiant de l'entité <i>Commande</i>.</li>
+    <li>Le champ <i>date</i> était déjà un simple attribut de l'entité <i>Commande</i>.</li>
+  </ul></details>
+</div>
+
+<div>
+  <details><summary><span class='relation'>Ligne de commande</span> (
+    <span class='foreign primary'>#commande</span>,
+    <span class='foreign primary'>#produit</span>,
+    <span class='normal'>quantité</span>
+  )</summary>
+  <ul>
+    <li>Le champ <i>commande</i> fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité <i>Commande</i>.</li>
+    <li>Le champ <i>produit</i> fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité <i>Produit</i>.</li>
+    <li>Le champ <i>quantité</i> était déjà un simple attribut de l'entité <i>Ligne de commande</i>.</li>
+  </ul></details>
+</div>
+
+<div>
+  <details><summary><span class='relation'>Produit</span> (
+    <span class='primary'>produit</span>,
+    <span class='normal'>libellé</span>
+  )</summary>
+  <ul>
+    <li>Le champ <i>produit</i> constitue la clé primaire de la table. C'était déjà un identifiant de l'entité <i>Produit</i>.</li>
+    <li>Le champ <i>libellé</i> était déjà un simple attribut de l'entité <i>Produit</i>.</li>
+  </ul></details>
+</div>
+
+</div>
+</main>
+</body>
+</html>

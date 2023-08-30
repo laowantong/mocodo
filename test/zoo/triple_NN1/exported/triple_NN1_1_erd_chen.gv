@@ -1,0 +1,61 @@
+graph{
+  start=42
+
+  // Entities
+  node [
+    shape=box
+    style=filled
+    penwidth=1.5
+    fillcolor="#FFFFFF"
+  ]
+  1 [label="Ingénieur"]
+  6 [label="Projet"]
+  5 [label="Responsable"]
+
+  // Normal entity attributes
+  node [
+    shape=oval
+    penwidth=1.5
+    fillcolor="#FFFFFF"
+  ]
+  3 [label="nom\ningénieur"]
+  8 [label="libellé\nprojet"]
+  10 [label="nom\nresponsable"]
+
+  // Weak and strong entity attributes
+  2 [label=<<u>ingénieur</u>>]
+  7 [label=<<u>projet</u>>]
+  9 [label=<<u>responsable</u>>]
+
+  // Relationships
+  node [
+    shape=diamond
+    height=0.7
+    penwidth=1.5
+    fillcolor="#FFFFFF"
+  ]
+  4 [label="Gérer"]
+
+  // Edges between entities and attributes
+  edge [
+    penwidth=1.5
+  ]
+  1 -- 2
+  1 -- 3
+  5 -- 9
+  5 -- 10
+  6 -- 7
+  6 -- 8
+
+  // Edges between entities and relationships
+  edge [
+    penwidth=1
+    color="#000000:#000000"
+    labeldistance=2
+    headlabel=1
+  ]
+  5 -- 4
+  edge [headlabel=N]
+  1 -- 4
+  6 -- 4
+}

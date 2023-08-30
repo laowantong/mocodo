@@ -1,0 +1,12 @@
+erDiagram
+  oeuvre {
+    TYPE oeuvre PK
+    TYPE auteur
+  }
+  exemplaire {
+    TYPE exemplaire PK
+    TYPE nb_pages
+    TYPE date_achat
+    TYPE foobar
+  }
+  oeuvre ||..o{ exemplaire: DF

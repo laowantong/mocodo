@@ -6,7 +6,7 @@ from ..tools.parser_tools import parse_source, reconstruct_source, first_child
 
 class Exploder(Visitor):
 
-    def __init__(self, subargs):
+    def __init__(self, subargs, params):
         arity = 3
         with contextlib.suppress(ValueError, KeyError):
             arity = float(subargs["arity"])
@@ -26,6 +26,7 @@ class Exploder(Visitor):
             self.explosion_prefix = ", "
             # Don't strengthen the new legs
             self.explosion_card = "11"
+        self.df_label = params["df"]
 
     def line(self, tree):
         # It is not possible to use a method `assoc_clause` since the amount of indentation needs
@@ -73,13 +74,13 @@ class Exploder(Visitor):
         # Construct the clauses of the new associations
         clauses = []
         prefix = first_child(tree, "box_def_prefix")
-        base = assoc_name[:2]
-        for (i, leg) in enumerate(legs, 1):
+        for leg in legs:
             card = self.explosion_card
+            # TODO: check this logic
             if leg.startswith("/"): # when there is a cluster
                 leg = leg[1:] # suppress it
                 card = "11" # and switch to a non-strenghtening leg
-            clauses.append(f"{indent}{prefix}{base}{i}, {card} {assoc_name}, {leg}")
+            clauses.append(f"{indent}{prefix}{self.df_label}, {card} {assoc_name}, {leg}")
 
         # Suffix the resulting string to the last node (a "NL" token")
         tree.children[-1].value += "\n".join(clauses) + "\n"
@@ -87,7 +88,8 @@ class Exploder(Visitor):
 
 def run(source, subargs=None, params=None):
     subargs = subargs or {}
+    params = params or {"df": "DF"}
     tree = parse_source(source)
-    visitor = Exploder(subargs)
+    visitor = Exploder(subargs, params)
     visitor.visit(tree)
     return reconstruct_source(tree)

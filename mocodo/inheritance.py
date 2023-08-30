@@ -1,4 +1,3 @@
-import itertools
 from math import sqrt
 
 from .attribute import *
@@ -8,16 +7,22 @@ from .tools.string_tools import rstrip_digit
 TRIANGLE_ALTITUDE = sqrt(3) / 2
 INCIRCLE_RADIUS = 1 / sqrt(12)
 
-inheritance_counter = itertools.count(1)
 
 class Inheritance:
+
+    counter = 0
+
+    @classmethod
+    def reset_counter(cls):
+        cls.counter = 0
 
     def __init__(self, clause, **params):
         self.source = clause["source"]
         leg_entities = [leg["entity"] for leg in clause["legs"]]
         if clause["name"] == "TX":
             clause["name"] = "XT"
-        self.name = f'{leg_entities[0]} parent #{next(inheritance_counter)}'
+        Inheritance.counter += 1
+        self.name = f'{leg_entities[0]} parent #{Inheritance.counter}'
         self.name_view = rstrip_digit(clause["name"])
         self.attributes = [InheritanceAttribute(attr) for attr in clause.get("attrs", [])]
         for leg_clause in clause["legs"]:

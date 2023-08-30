@@ -1,0 +1,3 @@
+--------------------------------------------------------------------------------
+
+NB. La table « A » a été supprimée car elle était réduite à la clé primaire de son entité d'origine.

@@ -1,0 +1,6 @@
+digraph {
+  node [shape=box]
+  "Responsable" -> "Gérer"
+  "Projet" -> "Gérer"
+  "Ingénieur" -> "Gérer"
+}

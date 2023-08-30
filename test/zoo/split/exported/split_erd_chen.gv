@@ -1,0 +1,69 @@
+graph{
+  start=42
+
+  // Entities
+  node [
+    shape=box
+    style=filled
+    penwidth=1.5
+    fillcolor="#FFFFFF"
+  ]
+  1 [label="Bataille"]
+  7 [label="Villageois"]
+  6 [label="Trophée"]
+
+  // Normal entity attributes
+  node [
+    shape=oval
+    penwidth=1.5
+    fillcolor="#FFFFFF"
+  ]
+  3 [label="lieu"]
+  4 [label="date"]
+  10 [label="adresse"]
+  11 [label="fonction"]
+  13 [label="type"]
+  14 [label="état"]
+
+  // Weak and strong entity attributes
+  2 [label=<<u>nom<br/>bataille</u>>]
+  9 [label=<<u>nom<br/>villageois</u>>]
+  12 [label=<<u>numéro</u>>]
+
+  // Relationships
+  node [
+    shape=diamond
+    height=0.7
+    penwidth=1.5
+    fillcolor="#FFFFFF"
+  ]
+  5 [label="Récolter"]
+  8 [label="Récolter"]
+
+  // Edges between entities and attributes
+  edge [
+    penwidth=1.5
+  ]
+  1 -- 2
+  1 -- 3
+  1 -- 4
+  6 -- 12
+  6 -- 13
+  6 -- 14
+  7 -- 9
+  7 -- 10
+  7 -- 11
+
+  // Edges between entities and relationships
+  edge [
+    penwidth=1
+    color="#000000:#000000"
+    labeldistance=2
+    headlabel=1
+  ]
+  1 -- 8 [color="#000000"]
+  7 -- 5 [color="#000000"]
+  edge [headlabel=N]
+  6 -- 5
+  6 -- 8
+}

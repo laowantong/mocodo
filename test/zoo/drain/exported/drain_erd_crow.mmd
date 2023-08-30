@@ -1,0 +1,22 @@
+erDiagram
+  entreprise {
+    TYPE nom_entreprise PK
+    TYPE adresse
+    TYPE telephone
+  }
+  stage {
+    TYPE num_stage PK
+    TYPE sujet
+    TYPE date_proposition
+  }
+  etudiant {
+    TYPE num_etudiant PK
+    TYPE nom
+    TYPE date_signature
+  }
+  date {
+    TYPE date PK
+  }
+  entreprise ||--o{ stage: proposer
+  etudiant |o--|| stage: attribuer
+  etudiant }o--o| date: soutenir

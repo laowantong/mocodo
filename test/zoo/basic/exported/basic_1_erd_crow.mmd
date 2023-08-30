@@ -1,0 +1,19 @@
+erDiagram
+  CLIENT {
+    TYPE ref_client PK
+    TYPE nom
+    TYPE prenom
+    TYPE adresse
+  }
+  COMMANDE {
+    TYPE num_commande PK
+    TYPE date
+    TYPE montant
+  }
+  PRODUIT {
+    TYPE ref_produit PK
+    TYPE libelle
+    TYPE prix_unitaire
+  }
+  CLIENT }|--|{ COMMANDE: PASSER
+  COMMANDE }|--|{ PRODUIT: INCLURE

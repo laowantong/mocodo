@@ -273,6 +273,17 @@ def first_child(tree, name, i=0):
         return ""
     return result.children[i]
 
+def is_identifier(i, id_groups, id_mark):
+    # Entity (foo, bar)
+    if i == 0:
+        if "0" not in id_groups:
+            return True # foo / 1_foo
+    elif "0" in id_groups:
+        return True # 0_bar / 01_bar
+    elif id_mark == "_" and id_groups == "":
+        return True # _bar
+    return False # 0_foo / 01_foo / _foo / bar / 1_bar
+
 if __name__ == "__main__":
     # python -m mocodo.parser_tools
     source = "EMPLOYER, 01 PARTICIPANT, 0N ENTREPRISE:"

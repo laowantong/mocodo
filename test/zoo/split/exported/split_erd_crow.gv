@@ -1,0 +1,94 @@
+digraph{
+  layout=dot
+  bgcolor="#FFFFFF"
+  nodesep=0.5
+
+  // Nodes
+  node [
+      shape=none
+      fontcolor="#000000"
+      fontsize=15
+      fontname="Helvetica"
+]
+  node [
+      shape=none
+      fontcolor="#000000"
+      fontsize=15
+      fontname="Helvetica"
+]
+  1 [label=<<table
+        border="0"
+        cellborder="1"
+        cellspacing="0"
+        bgcolor="#FFFFFF"
+        color="#000000"
+        cellpadding="4"
+    >
+        <tr>
+            <td bgcolor="#FFFFFF" colspan="2">
+                <font
+                    color="#000000"
+                    point-size="18"
+                >Bataille</font>
+            </td>
+        </tr>
+        <tr><td>PK</td><td align="left">nom bataille</td></tr>
+        <tr><td> </td><td align="left">lieu</td></tr>
+        <tr><td> </td><td align="left">date</td></tr>
+    </table>
+>]
+  2 [label=<<table
+        border="0"
+        cellborder="1"
+        cellspacing="0"
+        bgcolor="#FFFFFF"
+        color="#000000"
+        cellpadding="4"
+    >
+        <tr>
+            <td bgcolor="#FFFFFF" colspan="2">
+                <font
+                    color="#000000"
+                    point-size="18"
+                >Villageois</font>
+            </td>
+        </tr>
+        <tr><td>PK</td><td align="left">nom villageois</td></tr>
+        <tr><td> </td><td align="left">adresse</td></tr>
+        <tr><td> </td><td align="left">fonction</td></tr>
+    </table>
+>]
+  3 [label=<<table
+        border="0"
+        cellborder="1"
+        cellspacing="0"
+        bgcolor="#FFFFFF"
+        color="#000000"
+        cellpadding="4"
+    >
+        <tr>
+            <td bgcolor="#FFFFFF" colspan="2">
+                <font
+                    color="#000000"
+                    point-size="18"
+                >Trophée</font>
+            </td>
+        </tr>
+        <tr><td>PK</td><td align="left">numéro</td></tr>
+        <tr><td> </td><td align="left">type</td></tr>
+        <tr><td> </td><td align="left">état</td></tr>
+    </table>
+>]
+
+  // Edges
+  edge [
+    penwidth=1
+    color="#000000"
+    fontcolor="#000000"
+    fontname="Futura"
+    fontsize=11
+    dir=both
+  ]
+  3 -> 2 [arrowhead="teetee" arrowtail="crowodot" label="Récolter"]
+  3 -> 1 [arrowhead="teetee" arrowtail="crowodot" label="Récolter"]
+}

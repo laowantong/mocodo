@@ -1,0 +1,3 @@
+- **CLIENT** (<ins>Réf. client</ins>, </span>, <span class='normal'>.1, .2)
+  - Le champ _Réf. client_ constitue la clé primaire de la table. C'était déjà un identifiant de l'entité _CLIENT_.
+  - Les champs __, _.1_ et _.2_ étaient déjà de simples attributs de l'entité _CLIENT_.

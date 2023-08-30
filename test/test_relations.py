@@ -7,483 +7,37 @@ from mocodo.argument_parser import parsed_arguments
 from mocodo.file_helpers import read_contents
 from mocodo.mcd import Mcd
 from mocodo.convert.relations import *
+from mocodo.tools.string_tools import markdown_table
 
 
 minimal_template = json.loads(read_contents("mocodo/resources/relation_templates/text.json"))
-json_template = json.loads(read_contents("mocodo/resources/relation_templates/json.json"))
+debug_template = json.loads(read_contents("mocodo/resources/relation_templates/debug.json"))
 params = parsed_arguments()
 params["title"] = "Untitled"
 params["guess_title"] = False
 
+
+def debug_table(t):
+    tsv = t.get_text(debug_template).strip().replace("this_relation_name", "relation")
+    rows = [line.split("\t") for line in tsv.split("\n")]
+    return re.sub("(?m)^", "            ", markdown_table(rows))
+
 class relationsTest(unittest.TestCase):
     
-    def test_character_cases(self):
-        source = """
-            Riot: clue, protect_riot
-            Into, 11 Form, 1N Riot: goat
-            Form: land, hide
-            Tuck, 1N Read, 1N Form: thin
-            Read: wage, protect_read
-        """
-        text = """
-            Form (_land_, hide, #clue, goat)
-            Read (_wage_, protect_read)
-            Riot (_clue_, protect_riot)
-            Tuck (_#wage_, _#land_, thin)
-        """.strip().replace("    ", "")
-        t = Relations(Mcd(source, params), params)
-        self.assertEqual(t.get_text(minimal_template), text)
-        d = json.loads(t.get_text(json_template))
-        self.assertEqual(d["title"], "Untitled")
-        self.assertEqual(d["title_titlecase"], "Untitled")
-        self.assertEqual(d["title_lowercase"], "untitled")
-        self.assertEqual(d["title_uppercase"], "UNTITLED")
-        self.assertEqual(d["relations"][0]["columns"][2]["association_name_titlecase"], "Into")
-        self.assertEqual(d["relations"][0]["columns"][2]["association_name_uppercase"], "INTO")
-        self.assertEqual(d["relations"][0]["columns"][2]["association_name"], "Into")
-        self.assertEqual(d["relations"][0]["columns"][2]["outer_source_lowercase"], "riot")
-        self.assertEqual(d["relations"][0]["columns"][2]["outer_source_titlecase"], "Riot")
-        self.assertEqual(d["relations"][0]["columns"][2]["outer_source_uppercase"], "RIOT")
-        self.assertEqual(d["relations"][0]["columns"][2]["outer_source"], "Riot")
-        self.assertEqual(d["relations"][0]["columns"][3]["association_name_lower_case"], "into")
-        self.assertEqual(d["relations"][2]["this_relation_name_lowercase"], "riot")
-        self.assertEqual(d["relations"][2]["this_relation_name_titlecase"], "Riot")
-        self.assertEqual(d["relations"][2]["this_relation_name_uppercase"], "RIOT")
-        self.assertEqual(d["relations"][2]["this_relation_name"], "Riot")
-        self.assertEqual(d["relations"][2]["columns"][0]["association_name_lower_case"], None)
-        self.assertEqual(d["relations"][2]["columns"][0]["association_name_titlecase"], None)
-        self.assertEqual(d["relations"][2]["columns"][0]["association_name_uppercase"], None)
-        self.assertEqual(d["relations"][2]["columns"][0]["association_name"], None)
-        self.assertEqual(d["relations"][2]["columns"][0]["attribute"], "clue")
-        self.assertEqual(d["relations"][2]["columns"][0]["label_lowercase"], "clue")
-        self.assertEqual(d["relations"][2]["columns"][0]["label_titlecase"], "Clue")
-        self.assertEqual(d["relations"][2]["columns"][0]["label_uppercase"], "CLUE")
-        self.assertEqual(d["relations"][2]["columns"][0]["label"], "clue")
-        self.assertEqual(d["relations"][2]["columns"][0]["outer_source_lowercase"], None)
-        self.assertEqual(d["relations"][2]["columns"][0]["outer_source_titlecase"], None)
-        self.assertEqual(d["relations"][2]["columns"][0]["outer_source_uppercase"], None)
-        self.assertEqual(d["relations"][2]["columns"][0]["outer_source"], None)
-        self.assertEqual(d["relations"][2]["columns"][0]["raw_label_lowercase"], "clue")
-        self.assertEqual(d["relations"][2]["columns"][0]["raw_label_titlecase"], "Clue")
-        self.assertEqual(d["relations"][2]["columns"][0]["raw_label_uppercase"], "CLUE")
-        self.assertEqual(d["relations"][2]["columns"][0]["raw_label"], "clue")
-
-    def test_attribute_nature_simple(self):
-        source = """
-            Riot: clue, protect_riot
-            Into, 11 Form, 1N Riot: goat
-            Form: land, hide
-            Tuck, 1N Read, 1N Form: thin
-            Read: wage, protect_read
-        """
-        t = Relations(Mcd(source, params), params)
-        text = """
-            Form (_land_, hide, #clue, goat)
-            Read (_wage_, protect_read)
-            Riot (_clue_, protect_riot)
-            Tuck (_#wage_, _#land_, thin)
-        """.strip().replace("    ", "")
-        self.assertEqual(t.get_text(minimal_template), text)
-        d = json.loads(t.get_text(json_template))
-        self.assertEqual(d["relations"][0]["this_relation_name"], "Form")
-        self.assertEqual(d["relations"][0]["columns"][0]["label"], "land")
-        self.assertEqual(d["relations"][0]["columns"][0]["nature"], "primary_key")
-        self.assertEqual(d["relations"][0]["columns"][1]["label"], "hide")
-        self.assertEqual(d["relations"][0]["columns"][1]["nature"], "normal_attribute")
-        self.assertEqual(d["relations"][0]["columns"][2]["label"], "clue")
-        self.assertEqual(d["relations"][0]["columns"][2]["nature"], "foreign_key")
-        self.assertEqual(d["relations"][0]["columns"][3]["label"], "goat")
-        self.assertEqual(d["relations"][0]["columns"][3]["nature"], "outer_attribute")
-        self.assertEqual(d["relations"][1]["this_relation_name"], "Read")
-        self.assertEqual(d["relations"][1]["columns"][0]["label"], "wage")
-        self.assertEqual(d["relations"][1]["columns"][0]["nature"], "primary_key")
-        self.assertEqual(d["relations"][2]["this_relation_name"], "Riot")
-        self.assertEqual(d["relations"][2]["columns"][0]["label"], "clue")
-        self.assertEqual(d["relations"][2]["columns"][0]["nature"], "primary_key")
-        self.assertEqual(d["relations"][3]["this_relation_name"], "Tuck")
-        self.assertEqual(d["relations"][3]["columns"][0]["label"], "wage")
-        self.assertEqual(d["relations"][3]["columns"][0]["nature"], "primary_foreign_key")
-        self.assertEqual(d["relations"][3]["columns"][1]["label"], "land")
-        self.assertEqual(d["relations"][3]["columns"][1]["nature"], "primary_foreign_key")
-        self.assertEqual(d["relations"][3]["columns"][2]["label"], "thin")
-        self.assertEqual(d["relations"][3]["columns"][2]["nature"], "association_attribute")
-
-    def test_attribute_nature_complex(self):
-    def _test_attribute_nature_complex(self):
-        source = """
-            Riot: clue, protect_riot
-            Walk, 1N Riot, _11 Hour
-            Hour: book
-            Poll, 1N Cast, /1N Hour
-            Cast: mere, protect_cast
-            +Army, 1N Busy, 01 Cast
-            Busy: fail, protect_busy
-        """
-        text = """
-            Army (_#mere_, #fail)
-            Busy (_fail_, protect_busy)
-            Cast (_mere_, protect_cast)
-            Hour (_#clue_, _book_)
-            Poll (_#mere_, #clue, #book)
-            Riot (_clue_, protect_riot)
-        """.strip().replace("    ", "")
-        t = Relations(Mcd(source, params), params)
-        self.assertEqual(t.get_text(minimal_template), text)
-        d = json.loads(t.get_text(json_template))
-        self.assertEqual(d["relations"][0]["this_relation_name"], "Army")
-        self.assertEqual(d["relations"][0]["columns"][0]["label"], "mere")
-        self.assertEqual(d["relations"][0]["columns"][0]["nature"], "primary_foreign_key")
-        self.assertEqual(d["relations"][0]["columns"][1]["label"], "fail")
-        self.assertEqual(d["relations"][0]["columns"][1]["nature"], "stopped_foreign_key")
-        self.assertEqual(d["relations"][1]["this_relation_name"], "Busy")
-        self.assertEqual(d["relations"][1]["columns"][0]["label"], "fail")
-        self.assertEqual(d["relations"][1]["columns"][0]["nature"], "primary_key")
-        self.assertEqual(d["relations"][2]["this_relation_name"], "Cast")
-        self.assertEqual(d["relations"][2]["columns"][0]["label"], "mere")
-        self.assertEqual(d["relations"][2]["columns"][0]["nature"], "primary_key")
-        self.assertEqual(d["relations"][3]["this_relation_name"], "Hour")
-        self.assertEqual(d["relations"][3]["columns"][0]["label"], "clue")
-        self.assertEqual(d["relations"][3]["columns"][0]["nature"], "strengthening_primary_foreign_key")
-        self.assertEqual(d["relations"][3]["columns"][1]["label"], "book")
-        self.assertEqual(d["relations"][3]["columns"][1]["nature"], "primary_key")
-        self.assertEqual(d["relations"][4]["this_relation_name"], "Poll")
-        self.assertEqual(d["relations"][4]["columns"][0]["label"], "mere")
-        self.assertEqual(d["relations"][4]["columns"][0]["nature"], "primary_foreign_key")
-        self.assertEqual(d["relations"][4]["columns"][1]["label"], "clue")
-        self.assertEqual(d["relations"][4]["columns"][1]["nature"], "demoted_foreign_key")
-        self.assertEqual(d["relations"][4]["columns"][2]["label"], "book")
-        self.assertEqual(d["relations"][4]["columns"][2]["nature"], "demoted_foreign_key")
-        self.assertEqual(d["relations"][5]["this_relation_name"], "Riot")
-        self.assertEqual(d["relations"][5]["columns"][0]["label"], "clue")
-        self.assertEqual(d["relations"][5]["columns"][0]["nature"], "primary_key")
-
-    def test_composite_identifier(self):
-        source = """
-            GRATTE-CIEL: latitude, _longitude, nom, hauteur, année de construction
-        """
-        text = """
-            GRATTE-CIEL (_latitude_, _longitude_, nom, hauteur, année de construction)
-        """.strip().replace("    ", "")
-        t = Relations(Mcd(source, params), params)
-        self.assertEqual(t.get_text(minimal_template), text)
-        d = json.loads(t.get_text(json_template))
-        self.assertEqual(d["relations"][0]["columns"][0]["nature"], "primary_key")
-        self.assertEqual(d["relations"][0]["columns"][0]["label"], "latitude")
-        self.assertEqual(d["relations"][0]["columns"][1]["nature"], "primary_key")
-        self.assertEqual(d["relations"][0]["columns"][1]["label"], "longitude")
-    
-    def test_reflexive_df(self):
-        source = """
-            HOMME: Num. SS, Nom, Prénom
-            ENGENDRER, 0N HOMME, 11 HOMME
-        """
-        text = """
-            HOMME (_Num. SS_, Nom, Prénom, #Num. SS.1)
-        """.strip().replace("    ", "")
-        t = Relations(Mcd(source, params), params)
-        self.assertEqual(t.get_text(minimal_template), text)
-        d = json.loads(t.get_text(json_template))
-        self.assertEqual(d["relations"][0]["columns"][3]["data_type"], None)
-        self.assertEqual(d["relations"][0]["columns"][3]["nature"], "foreign_key")
-        self.assertEqual(d["relations"][0]["columns"][3]["attribute"], "Num. SS")
-        self.assertEqual(d["relations"][0]["columns"][3]["primary"], False)
-        self.assertEqual(d["relations"][0]["columns"][3]["label"], "Num. SS.1")
-        self.assertEqual(d["relations"][0]["columns"][3]["raw_label"], "Num. SS")
-        self.assertEqual(d["relations"][0]["columns"][3]["association_name"], "ENGENDRER")
-        self.assertEqual(d["relations"][0]["columns"][3]["disambiguation_number"], 1)
-        self.assertEqual(d["relations"][0]["columns"][3]["outer_source"], "HOMME")
-        self.assertEqual(d["title"], "Untitled")
-
     def test_arrows_are_ignored(self):
         source = """
             Personne: Num. SS, Nom, Prénom, Sexe
             Engendrer, 0N< Personne, 22> Personne
         """
         t = Relations(Mcd(source, params), params)
-        d1 = json.loads(t.get_text(json_template))
+        d1 = t.get_text(debug_template)
         source = """
             Personne: Num. SS, Nom, Prénom, Sexe
             Engendrer, 0N Personne, 22 Personne
         """
         t = Relations(Mcd(source, params), params)
-        d2 = json.loads(t.get_text(json_template))
+        d2 = t.get_text(debug_template)
         self.assertEqual(d1, d2)
-    
-    def test_notes(self):
-        source = """
-            Personne: Num. SS, Nom, Prénom, Sexe
-            Engendrer, 0N [parent] Personne, 0N [enfant] Personne
-        """
-        text = """
-            Engendrer (_#Num. SS parent_, _#Num. SS enfant_)
-            Personne (_Num. SS_, Nom, Prénom, Sexe)
-        """.strip().replace("    ", "")
-        t = Relations(Mcd(source, params), params)
-        self.assertEqual(t.get_text(minimal_template), text)
-        d = json.loads(t.get_text(json_template))
-        self.assertEqual(d["relations"][0]["this_relation_name"], "Engendrer")
-        self.assertEqual(d["relations"][0]["columns"][0]["label"], "Num. SS parent")
-        self.assertEqual(d["relations"][0]["columns"][0]["leg_note"], "parent")
-        self.assertEqual(d["relations"][0]["columns"][1]["label"], "Num. SS enfant")
-        self.assertEqual(d["relations"][0]["columns"][1]["leg_note"], "enfant")
-        self.assertEqual(d["relations"][1]["this_relation_name"], "Personne")
-        self.assertEqual(d["relations"][1]["columns"][0]["label"], "Num. SS")
-        self.assertEqual(d["relations"][1]["columns"][0]["leg_note"], None)
-        self.assertEqual(d["relations"][1]["columns"][1]["label"], "Nom")
-        self.assertEqual(d["relations"][1]["columns"][1]["leg_note"], None)
-        self.assertEqual(d["relations"][1]["columns"][2]["label"], "Prénom")
-        self.assertEqual(d["relations"][1]["columns"][2]["leg_note"], None)
-        self.assertEqual(d["relations"][1]["columns"][3]["label"], "Sexe")
-        self.assertEqual(d["relations"][1]["columns"][3]["leg_note"], None)
-    
-    def test_notes_with_numbers_only_disambiguation_strategy(self):
-        source = """
-            Personne: Num. SS, Nom, Prénom, Sexe
-            Engendrer, 0N [Une personne peut avoir un nombre quelconque d'enfants.] Personne, 0N [Une personne peut avoir un nombre quelconque de parents dans la base. Remarque : vous avez peut-être envie de remplacer la cardinalité maximale N par sa valeur réelle, à savoir 2. Cette précision disparaissant lors du passage au relationnel, elle est en général jugée inutile.] Personne
-        """
-        text = """
-            Engendrer (_#Num. SS_, _#Num. SS.1_)
-            Personne (_Num. SS_, Nom, Prénom, Sexe)
-        """.strip().replace("    ", "")
-        local_params = deepcopy(params)
-        local_params["disambiguation"] = "numbers_only"
-        t = Relations(Mcd(source, local_params), local_params)
-        self.assertEqual(t.get_text(minimal_template), text)
-        d = json.loads(t.get_text(json_template))
-        self.assertEqual(d["relations"][0]["this_relation_name"], "Engendrer")
-        self.assertEqual(d["relations"][0]["columns"][0]["label"], "Num. SS")
-        self.assertEqual(d["relations"][0]["columns"][0]["leg_note"], "Une personne peut avoir un nombre quelconque d'enfants.")
-        self.assertEqual(d["relations"][0]["columns"][1]["label"], "Num. SS.1")
-        self.assertEqual(d["relations"][0]["columns"][1]["leg_note"], "Une personne peut avoir un nombre quelconque de parents dans la base. Remarque : vous avez peut-être envie de remplacer la cardinalité maximale N par sa valeur réelle, à savoir 2. Cette précision disparaissant lors du passage au relationnel, elle est en général jugée inutile.")
-        self.assertEqual(d["relations"][1]["this_relation_name"], "Personne")
-        self.assertEqual(d["relations"][1]["columns"][0]["label"], "Num. SS")
-        self.assertEqual(d["relations"][1]["columns"][0]["leg_note"], None)
-        self.assertEqual(d["relations"][1]["columns"][1]["label"], "Nom")
-        self.assertEqual(d["relations"][1]["columns"][1]["leg_note"], None)
-        self.assertEqual(d["relations"][1]["columns"][2]["label"], "Prénom")
-        self.assertEqual(d["relations"][1]["columns"][2]["leg_note"], None)
-        self.assertEqual(d["relations"][1]["columns"][3]["label"], "Sexe")
-        self.assertEqual(d["relations"][1]["columns"][3]["leg_note"], None)
-
-    def test_data_types(self):
-        source = """
-            CLIENT: Réf. client [varchar(8)], Nom [varchar(20)], Adresse [varchar(40)]
-            DF, 0N CLIENT, 11 COMMANDE
-            COMMANDE: Num commande [tinyint(4)], Date [date], Montant [decimal(5,2) DEFAULT '0.00']
-            INCLURE, 1N COMMANDE, 0N PRODUIT: Quantité [tinyint(4)]
-            PRODUIT: Réf. produit, Libellé, Prix unitaire
-        """
-        text = """
-            CLIENT (_Réf. client_, Nom, Adresse)
-            COMMANDE (_Num commande_, Date, Montant, #Réf. client)
-            INCLURE (_#Num commande_, _#Réf. produit_, Quantité)
-            PRODUIT (_Réf. produit_, Libellé, Prix unitaire)
-        """.strip().replace("    ", "")
-        t = Relations(Mcd(source, params), params)
-        self.assertEqual(t.get_text(minimal_template), text)
-        d = json.loads(t.get_text(json_template))
-        self.assertEqual(d["relations"][0]["this_relation_name"], "CLIENT")
-        self.assertEqual(d["relations"][0]["columns"][0]["data_type"], "varchar(8)")
-        self.assertEqual(d["relations"][0]["columns"][0]["label"], "Réf. client")
-        self.assertEqual(d["relations"][0]["columns"][1]["data_type"], "varchar(20)")
-        self.assertEqual(d["relations"][0]["columns"][1]["label"], "Nom")
-        self.assertEqual(d["relations"][0]["columns"][2]["data_type"], "varchar(40)")
-        self.assertEqual(d["relations"][0]["columns"][2]["label"], "Adresse")
-        self.assertEqual(d["relations"][1]["this_relation_name"], "COMMANDE")
-        self.assertEqual(d["relations"][1]["columns"][0]["data_type"], "tinyint(4)")
-        self.assertEqual(d["relations"][1]["columns"][0]["label"], "Num commande")
-        self.assertEqual(d["relations"][1]["columns"][1]["data_type"], "date")
-        self.assertEqual(d["relations"][1]["columns"][1]["label"], "Date")
-        self.assertEqual(d["relations"][1]["columns"][2]["data_type"], "decimal(5,2) DEFAULT '0.00'")
-        self.assertEqual(d["relations"][1]["columns"][2]["label"], "Montant")
-        self.assertEqual(d["relations"][1]["columns"][3]["data_type"], "varchar(8)")
-        self.assertEqual(d["relations"][1]["columns"][3]["label"], "Réf. client")
-        self.assertEqual(d["relations"][2]["this_relation_name"], "INCLURE")
-        self.assertEqual(d["relations"][2]["columns"][0]["data_type"], "tinyint(4)")
-        self.assertEqual(d["relations"][2]["columns"][0]["label"], "Num commande")
-        self.assertEqual(d["relations"][2]["columns"][1]["data_type"], None)
-        self.assertEqual(d["relations"][2]["columns"][1]["label"], "Réf. produit")
-        self.assertEqual(d["relations"][2]["columns"][2]["data_type"], "tinyint(4)")
-        self.assertEqual(d["relations"][2]["columns"][2]["label"], "Quantité")
-        self.assertEqual(d["relations"][3]["this_relation_name"], "PRODUIT")
-        self.assertEqual(d["relations"][3]["columns"][0]["data_type"], None)
-        self.assertEqual(d["relations"][3]["columns"][0]["label"], "Réf. produit")
-        self.assertEqual(d["relations"][3]["columns"][1]["data_type"], None)
-        self.assertEqual(d["relations"][3]["columns"][1]["label"], "Libellé")
-        self.assertEqual(d["relations"][3]["columns"][2]["data_type"], None)
-        self.assertEqual(d["relations"][3]["columns"][2]["label"], "Prix unitaire")
-
-    def test_all_cardinalities_other_than_01_and_11_are_treated_as_1N(self):
-        source = """
-            CLIENT: Réf. client, Nom, Prénom, Adresse
-            PASSER, XX CLIENT, 1N COMMANDE
-            COMMANDE: Num commande, Date, Montant
-            INCLURE, 03 COMMANDE, ?? PRODUIT: Quantité
-            PRODUIT: Réf. produit, Libellé, Prix unitaire
-        """
-        t = Relations(Mcd(source, params), params)
-        d1 = json.loads(t.get_text(json_template))
-        source = """
-            CLIENT: Réf. client, Nom, Prénom, Adresse
-            PASSER, 1N CLIENT, 1N COMMANDE
-            COMMANDE: Num commande, Date, Montant
-            INCLURE, 1N COMMANDE, 1N PRODUIT: Quantité
-            PRODUIT: Réf. produit, Libellé, Prix unitaire
-        """
-        t = Relations(Mcd(source, params), params)
-        d2 = json.loads(t.get_text(json_template))
-        self.assertEqual(d1, d2)
-
-    def test_empty_attributes(self):
-        source = """
-            CLIENT: Réf. client, , , 
-        """
-        text = """
-            CLIENT (_Réf. client_, , .1, .2)
-        """.strip().replace("    ", "")
-        t = Relations(Mcd(source, params), params)
-        self.assertEqual(t.get_text(minimal_template), text)
-        d = json.loads(t.get_text(json_template))
-        self.assertEqual(d["relations"][0]["columns"][1]["attribute"], "")
-        self.assertEqual(d["relations"][0]["columns"][1]["raw_label"], "")
-        self.assertEqual(d["relations"][0]["columns"][1]["label"], "")
-        self.assertEqual(d["relations"][0]["columns"][1]["disambiguation_number"], None)
-        self.assertEqual(d["relations"][0]["columns"][2]["attribute"], "")
-        self.assertEqual(d["relations"][0]["columns"][2]["raw_label"], "")
-        self.assertEqual(d["relations"][0]["columns"][2]["label"], ".1")
-        self.assertEqual(d["relations"][0]["columns"][2]["disambiguation_number"], 1)
-
-    def _test_demoted_foreign_key(self):
-        source = """
-            LACUS: blandit, elit
-            LIGULA, 0N LACUS, /1N EROS, 0N TELLUS: metus
-            EROS: congue, nibh, tincidunt
-            
-            TELLUS: integer, odio
-        """
-        text = """
-            EROS (_congue_, nibh, tincidunt)
-            LACUS (_blandit_, elit)
-            LIGULA (_#blandit_, _#integer_, #congue, metus)
-            TELLUS (_integer_, odio)
-        """.strip().replace("    ", "")
-        t = Relations(Mcd(source, params), params)
-        self.assertEqual(t.get_text(minimal_template), text)
-        d = json.loads(t.get_text(json_template))
-        self.assertEqual(d["relations"][2]["this_relation_name"], "LIGULA")
-        self.assertEqual(d["relations"][2]["columns"][0]["nature"], "primary_foreign_key")
-        self.assertEqual(d["relations"][2]["columns"][0]["outer_source"], "LACUS")
-        self.assertEqual(d["relations"][2]["columns"][1]["nature"], "primary_foreign_key")
-        self.assertEqual(d["relations"][2]["columns"][1]["outer_source"], "TELLUS")
-        self.assertEqual(d["relations"][2]["columns"][2]["nature"], "demoted_foreign_key")
-        self.assertEqual(d["relations"][2]["columns"][2]["outer_source"], "EROS")
-        self.assertEqual(d["relations"][2]["columns"][3]["nature"], "association_attribute")
-        self.assertEqual(d["relations"][2]["columns"][3]["outer_source"], None)
-
-    def test_protected(self):
-        source = """
-            LACUS: blandit, elit
-            +LIGULA, 01 LACUS, 1N EROS: metus
-            EROS: congue, nibh, tincidunt
-        """
-        text = """
-            EROS (_congue_, nibh, tincidunt)
-            LACUS (_blandit_, elit)
-            LIGULA (_#blandit_, #congue, metus)
-        """.strip().replace("    ", "")
-        t = Relations(Mcd(source, params), params)
-        self.assertEqual(t.get_text(minimal_template), text)
-        d = json.loads(t.get_text(json_template))
-        self.assertEqual(d["relations"][2]["this_relation_name"], "LIGULA")
-        self.assertEqual(d["relations"][2]["columns"][0]["nature"], "primary_foreign_key")
-        self.assertEqual(d["relations"][2]["columns"][0]["outer_source"], "LACUS")
-        self.assertEqual(d["relations"][2]["columns"][1]["nature"], "stopped_foreign_key")
-        self.assertEqual(d["relations"][2]["columns"][1]["outer_source"], "EROS")
-        self.assertEqual(d["relations"][2]["columns"][2]["nature"], "association_attribute")
-        self.assertEqual(d["relations"][2]["columns"][2]["outer_source"], None)
-
-    def test_protected_ignored(self):
-        source = """
-            LACUS: blandit, elit
-            +LIGULA, 1N LACUS, 1N EROS: metus
-            EROS: congue, nibh, tincidunt
-        """
-        text = """
-            EROS (_congue_, nibh, tincidunt)
-            LACUS (_blandit_, elit)
-            LIGULA (_#blandit_, _#congue_, metus)
-        """.strip().replace("    ", "")
-        t = Relations(Mcd(source, params), params)
-        self.assertEqual(t.get_text(minimal_template), text)
-        d = json.loads(t.get_text(json_template))
-        self.assertEqual(d["relations"][2]["this_relation_name"], "LIGULA")
-        self.assertEqual(d["relations"][2]["columns"][0]["nature"], "primary_foreign_key")
-        self.assertEqual(d["relations"][2]["columns"][0]["outer_source"], "LACUS")
-        self.assertEqual(d["relations"][2]["columns"][1]["nature"], "primary_foreign_key")
-        self.assertEqual(d["relations"][2]["columns"][1]["outer_source"], "EROS")
-        self.assertEqual(d["relations"][2]["columns"][2]["nature"], "association_attribute")
-        self.assertEqual(d["relations"][2]["columns"][2]["outer_source"], None)
-    
-    def test_weak_entities(self):
-        source = """
-            Rue: code rue, nom rue
-            Se situer, 0N Rue, _11 Immeuble
-            Immeuble: num immeuble, nb étages immeuble
-            Appartenir, 1N Immeuble, _11 Étage
-            Étage: num étage, nb appart. étage
-            Composer, 0N Étage, _11 Appartement
-            Appartement: num appart., nb pièces appart.
-        """
-        text = """
-            Appartement (_#code rue_, _#num immeuble_, _#num étage_, _num appart._, nb pièces appart.)
-            Immeuble (_#code rue_, _num immeuble_, nb étages immeuble)
-            Rue (_code rue_, nom rue)
-            Étage (_#code rue_, _#num immeuble_, _num étage_, nb appart. étage)
-        """.strip().replace("    ", "")
-        t = Relations(Mcd(source, params), params)
-        self.assertEqual(t.get_text(minimal_template), text)
-        d = json.loads(t.get_text(json_template))
-        self.assertEqual(d["relations"][0]["this_relation_name"], "Appartement")
-        self.assertEqual(d["relations"][0]["columns"][0]["attribute"], "code rue")
-        self.assertEqual(d["relations"][0]["columns"][0]["label"], "code rue")
-        self.assertEqual(d["relations"][0]["columns"][0]["raw_label"], "code rue")
-        self.assertEqual(d["relations"][0]["columns"][0]["primary"], True)
-        self.assertEqual(d["relations"][0]["columns"][0]["nature"], "strengthening_primary_foreign_key")
-        self.assertEqual(d["relations"][0]["columns"][0]["association_name"], "Composer")
-        self.assertEqual(d["relations"][0]["columns"][0]["outer_source"], "Étage")
-        
-        self.assertEqual(d["relations"][0]["columns"][1]["attribute"], "num immeuble")
-        self.assertEqual(d["relations"][0]["columns"][1]["label"], "num immeuble")
-        self.assertEqual(d["relations"][0]["columns"][1]["raw_label"], "num immeuble")
-        self.assertEqual(d["relations"][0]["columns"][1]["primary"], True)
-        self.assertEqual(d["relations"][0]["columns"][1]["nature"], "strengthening_primary_foreign_key")
-        self.assertEqual(d["relations"][0]["columns"][1]["association_name"], "Composer")
-        self.assertEqual(d["relations"][0]["columns"][1]["outer_source"], "Étage")
-        
-        self.assertEqual(d["relations"][0]["columns"][2]["attribute"], "num étage")
-        self.assertEqual(d["relations"][0]["columns"][2]["label"], "num étage")
-        self.assertEqual(d["relations"][0]["columns"][2]["raw_label"], "num étage")
-        self.assertEqual(d["relations"][0]["columns"][2]["primary"], True)
-        self.assertEqual(d["relations"][0]["columns"][2]["nature"], "strengthening_primary_foreign_key")
-        self.assertEqual(d["relations"][0]["columns"][2]["association_name"], "Composer")
-        self.assertEqual(d["relations"][0]["columns"][2]["outer_source"], "Étage")
-        
-        self.assertEqual(d["relations"][0]["columns"][3]["attribute"], "num appart.")
-        self.assertEqual(d["relations"][0]["columns"][3]["label"], "num appart.")
-        self.assertEqual(d["relations"][0]["columns"][3]["raw_label"], "num appart.")
-        self.assertEqual(d["relations"][0]["columns"][3]["primary"], True)
-        self.assertEqual(d["relations"][0]["columns"][3]["nature"], "primary_key")
-        self.assertEqual(d["relations"][0]["columns"][3]["association_name"], None)
-        self.assertEqual(d["relations"][0]["columns"][3]["outer_source"], None)
-        
-        self.assertEqual(d["relations"][0]["columns"][4]["attribute"], "nb pièces appart.")
-        self.assertEqual(d["relations"][0]["columns"][4]["label"], "nb pièces appart.")
-        self.assertEqual(d["relations"][0]["columns"][4]["raw_label"], "nb pièces appart.")
-        self.assertEqual(d["relations"][0]["columns"][4]["primary"], False)
-        self.assertEqual(d["relations"][0]["columns"][4]["nature"], "normal_attribute")
-        self.assertEqual(d["relations"][0]["columns"][4]["association_name"], None)
-        self.assertEqual(d["relations"][0]["columns"][4]["outer_source"], None)
-        self.assertEqual(d["title"], "Untitled")
     
     def test_reciprocical_relative_entities(self):
         source = """
@@ -506,7 +60,7 @@ class relationsTest(unittest.TestCase):
             Bind, _11 Baby, 1n Gene
         """
         mcd = Mcd(source, params)
-        self.assertRaisesRegex(MocodoError, r"Mocodo Err\.22", Relations, mcd, params)
+        self.assertRaisesRegex(MocodoError, r"Mocodo Err\.11", Relations, mcd, params)
         source = """
             Disk: Soon, Ride, Folk, Call, Gear, Tent, Lean
             Flip: Lend
@@ -527,9 +81,9 @@ class relationsTest(unittest.TestCase):
             :
         """
         mcd = Mcd(source, params)
-        self.assertRaisesRegex(MocodoError, r"Mocodo Err\.22", Relations, mcd, params)
+        self.assertRaisesRegex(MocodoError, r"Mocodo Err\.11", Relations, mcd, params)
         mcd = Mcd(source, params)
-        self.assertRaisesRegex(MocodoError, r"Mocodo Err\.22", Relations, mcd, params)
+        self.assertRaisesRegex(MocodoError, r"Mocodo Err\.11", Relations, mcd, params)
         source = """
             ITEM, 1N NORM, 1N WASH
             NORM: haul
@@ -543,7 +97,7 @@ class relationsTest(unittest.TestCase):
             GEAR, _11 FLIP, _11 FACE
         """
         mcd = Mcd(source, params)
-        self.assertRaisesRegex(MocodoError, r"Mocodo Err\.22", Relations, mcd, params)
+        self.assertRaisesRegex(MocodoError, r"Mocodo Err\.11", Relations, mcd, params)
         source = """
             ITEM, 1N NORM, 1N WASH
             NORM: haul
@@ -557,7 +111,7 @@ class relationsTest(unittest.TestCase):
             GEAR, _11 FLIP, _11 FACE
         """
         mcd = Mcd(source, params)
-        self.assertRaisesRegex(MocodoError, r"Mocodo Err\.22", Relations, mcd, params)
+        self.assertRaisesRegex(MocodoError, r"Mocodo Err\.11", Relations, mcd, params)
 
     
     def test_weak_entities_strengthened_by_itself(self):
@@ -625,20 +179,6 @@ class relationsTest(unittest.TestCase):
         """.strip().replace("    ", "")
         t = Relations(Mcd(source, params), params)
         self.assertEqual(t.get_text(template), text)
-        my_json_template = deepcopy(json_template)
-        my_json_template.update(template)
-        d = json.loads(t.get_text(my_json_template))
-        self.assertEqual(d["relations"][0]["this_relation_name"], "A pour père présumé")
-        self.assertEqual(d["relations"][0]["columns"][1]["attribute"], "num. chien")
-        self.assertEqual(d["relations"][0]["columns"][1]["label"],     "num_père")
-        self.assertEqual(d["relations"][0]["columns"][1]["raw_label"], "num_chien")
-        self.assertEqual(d["relations"][1]["this_relation_name"], "Chien")
-        self.assertEqual(d["relations"][1]["columns"][0]["attribute"], "num. chien")
-        self.assertEqual(d["relations"][1]["columns"][0]["label"],     "num_chien")
-        self.assertEqual(d["relations"][1]["columns"][0]["raw_label"], "num_chien")
-        self.assertEqual(d["relations"][1]["columns"][4]["attribute"], "num. chien")
-        self.assertEqual(d["relations"][1]["columns"][4]["label"],     "num_mère")
-        self.assertEqual(d["relations"][1]["columns"][4]["raw_label"], "num_chien")
     
     def test_difference_between_attribute_raw_label_and_label_without_notes(self):
         template = {
@@ -666,20 +206,6 @@ class relationsTest(unittest.TestCase):
         """.strip().replace("    ", "")
         t = Relations(Mcd(source, params), params)
         self.assertEqual(t.get_text(template), text)
-        my_json_template = deepcopy(json_template)
-        my_json_template.update(template)
-        d = json.loads(t.get_text(my_json_template))
-        self.assertEqual(d["relations"][0]["this_relation_name"], "A pour père présumé")
-        self.assertEqual(d["relations"][0]["columns"][1]["attribute"], "num. chien")
-        self.assertEqual(d["relations"][0]["columns"][1]["label"],     "num_chien_1")
-        self.assertEqual(d["relations"][0]["columns"][1]["raw_label"], "num_chien")
-        self.assertEqual(d["relations"][1]["this_relation_name"], "Chien")
-        self.assertEqual(d["relations"][1]["columns"][0]["attribute"], "num. chien")
-        self.assertEqual(d["relations"][1]["columns"][0]["label"],     "num_chien")
-        self.assertEqual(d["relations"][1]["columns"][0]["raw_label"], "num_chien")
-        self.assertEqual(d["relations"][1]["columns"][4]["attribute"], "num. chien")
-        self.assertEqual(d["relations"][1]["columns"][4]["label"],     "num_chien_1")
-        self.assertEqual(d["relations"][1]["columns"][4]["raw_label"], "num_chien")
     
     def test_inheritance_leftwards_double_arrow(self):
         source = """
@@ -694,12 +220,18 @@ class relationsTest(unittest.TestCase):
         mcd = Mcd(source, params)
         t = Relations(mcd, params)
         self.assertEqual(t.get_text(minimal_template), text)
-        d = json.loads(t.get_text(json_template))
-        self.assertEqual(d["relations"][0]["columns"][2]["attribute"], "CARNIVORE")
-        self.assertEqual(d["relations"][0]["columns"][2]["data_type"], "BOOLEAN")
-        self.assertEqual(d["relations"][0]["columns"][2]["nature"], "deleted_child_entity_name")
-        self.assertEqual(d["relations"][0]["columns"][3]["attribute"], "quantité viande")
-        self.assertEqual(d["relations"][0]["columns"][3]["nature"], "deleted_child_attribute")
+        expected = """
+            | relation | label           | data_type | nature                    | adjacent_source |
+            |:---------|:----------------|:----------|:--------------------------|:----------------|
+            | ANIMAL   | animal          |           | primary_key               |                 |
+            | ANIMAL   | poids           |           | normal_attribute          |                 |
+            | ANIMAL   | CARNIVORE       | BOOLEAN   | deleted_child_entity_name | CARNIVORE       |
+            | ANIMAL   | quantité viande |           | deleted_child_attribute   | CARNIVORE       |
+            | ANIMAL   | HERBIVORE       | BOOLEAN   | deleted_child_entity_name | HERBIVORE       |
+            | ANIMAL   | plante préférée |           | deleted_child_attribute   | HERBIVORE       |
+        """
+        actual = debug_table(t)
+        self.assertEqual(actual.strip(), expected.strip())
 
     def test_inheritance_leftwards_simple_arrow(self):
         source = """
@@ -714,11 +246,17 @@ class relationsTest(unittest.TestCase):
         mcd = Mcd(source, params)
         t = Relations(mcd, params)
         self.assertEqual(t.get_text(minimal_template), text)
-        d = json.loads(t.get_text(json_template))
-        self.assertEqual(d["relations"][0]["columns"][2]["attribute"], "type")
-        self.assertEqual(d["relations"][0]["columns"][2]["nature"], "deleted_child_discriminant_")
-        self.assertEqual(d["relations"][0]["columns"][3]["attribute"], "quantité viande")
-        self.assertEqual(d["relations"][0]["columns"][3]["nature"], "deleted_child_attribute")
+        expected = """
+            | relation | label           | data_type                 | nature                      | adjacent_source |
+            |:---------|:----------------|:--------------------------|:----------------------------|:----------------|
+            | ANIMAL   | animal          |                           | primary_key                 |                 |
+            | ANIMAL   | poids           |                           | normal_attribute            |                 |
+            | ANIMAL   | type            | INTEGER UNSIGNED NOT NULL | deleted_child_discriminant_ |                 |
+            | ANIMAL   | quantité viande |                           | deleted_child_attribute     | CARNIVORE       |
+            | ANIMAL   | plante préférée |                           | deleted_child_attribute     | HERBIVORE       |
+        """
+        actual = debug_table(t)
+        self.assertEqual(actual.strip(), expected.strip())
 
     def test_inheritance_rightwards_simple_arrow(self):
         source = """
@@ -734,13 +272,19 @@ class relationsTest(unittest.TestCase):
         """.strip().replace("    ", "")
         t = Relations(Mcd(source, params), params)
         self.assertEqual(t.get_text(minimal_template), text)
-        d = json.loads(t.get_text(json_template))
-        self.assertEqual(d["relations"][0]["columns"][1]["attribute"], "poids")
-        self.assertEqual(d["relations"][0]["columns"][1]["nature"], "normal_attribute")
-        self.assertEqual(d["relations"][0]["columns"][2]["attribute"], "type")
-        self.assertEqual(d["relations"][0]["columns"][2]["nature"], "deleted_child_discriminant_")
-        self.assertEqual(d["relations"][1]["columns"][0]["attribute"], "animal")
-        self.assertEqual(d["relations"][1]["columns"][0]["nature"], "parent_primary_key")
+        expected = """
+            | relation  | label           | data_type                 | nature                      |
+            |:----------|:----------------|:--------------------------|:----------------------------|
+            | ANIMAL    | animal          |                           | primary_key                 |
+            | ANIMAL    | poids           |                           | normal_attribute            |
+            | ANIMAL    | type            | INTEGER UNSIGNED NOT NULL | deleted_child_discriminant_ |
+            | CARNIVORE | animal          |                           | parent_primary_key          |
+            | CARNIVORE | quantité viande |                           | normal_attribute            |
+            | HERBIVORE | animal          |                           | parent_primary_key          |
+            | HERBIVORE | plante préférée |                           | normal_attribute            |
+        """
+        actual = debug_table(t)
+        self.assertEqual(actual.strip(), expected.strip())
 
     def test_inheritance_rightwards_double_arrow_with_totality(self):
         source = """
@@ -756,13 +300,18 @@ class relationsTest(unittest.TestCase):
         mcd = Mcd(source, params)
         t = Relations(mcd, params)
         self.assertEqual(t.get_text(minimal_template), text)
-        d = json.loads(t.get_text(json_template))
-        self.assertEqual(d["relations"][0]["columns"][0]["attribute"], "animal")
-        self.assertEqual(d["relations"][0]["columns"][0]["nature"], "deleted_parent_primary_key")
-        self.assertEqual(d["relations"][0]["columns"][1]["attribute"], "poids")
-        self.assertEqual(d["relations"][0]["columns"][1]["nature"], "deleted_parent_attribute")
-        self.assertEqual(d["relations"][0]["columns"][2]["attribute"], "quantité viande")
-        self.assertEqual(d["relations"][0]["columns"][2]["nature"], "normal_attribute")
+        expected = """
+            | relation  | label           | data_type | nature                     |
+            |:----------|:----------------|:----------|:---------------------------|
+            | CARNIVORE | animal          |           | deleted_parent_primary_key |
+            | CARNIVORE | poids           |           | deleted_parent_attribute   |
+            | CARNIVORE | quantité viande |           | normal_attribute           |
+            | HERBIVORE | animal          |           | deleted_parent_primary_key |
+            | HERBIVORE | poids           |           | deleted_parent_attribute   |
+            | HERBIVORE | plante préférée |           | normal_attribute           |
+        """
+        actual = debug_table(t)
+        self.assertEqual(actual.strip(), expected.strip())
 
     def test_inheritance_rightwards_double_arrow_without_totality(self):
         source = """
@@ -786,11 +335,17 @@ class relationsTest(unittest.TestCase):
         """.strip().replace("    ", "")
         t = Relations(Mcd(source, params), params)
         self.assertEqual(t.get_text(minimal_template), text)
-        d = json.loads(t.get_text(json_template))
-        self.assertEqual(d["relations"][0]["columns"][2]["attribute"], "type")
-        self.assertEqual(d["relations"][0]["columns"][2]["nature"], "deleted_child_discriminant_")
-        self.assertEqual(d["relations"][0]["columns"][3]["attribute"], "quantité viande")
-        self.assertEqual(d["relations"][0]["columns"][3]["nature"], "deleted_child_attribute")
+        expected = """
+            | relation | label           | data_type                 | nature                      | adjacent_source |
+            |:---------|:----------------|:--------------------------|:----------------------------|:----------------|
+            | ANIMAL   | animal          |                           | primary_key                 |                 |
+            | ANIMAL   | poids           |                           | normal_attribute            |                 |
+            | ANIMAL   | type            | INTEGER UNSIGNED NOT NULL | deleted_child_discriminant_ |                 |
+            | ANIMAL   | quantité viande |                           | deleted_child_attribute     | CARNIVORE       |
+            | ANIMAL   | plante préférée |                           | deleted_child_attribute     | HERBIVORE       |
+        """
+        actual = debug_table(t)
+        self.assertEqual(actual.strip(), expected.strip())
 
     def test_inheritance_with_unique_child(self):
         source = """
@@ -804,9 +359,17 @@ class relationsTest(unittest.TestCase):
         """.strip().replace("    ", "")
         t = Relations(Mcd(source, params), params)
         self.assertEqual(t.get_text(minimal_template), text)
-        d = json.loads(t.get_text(json_template))
-        self.assertEqual(d["relations"][1]["columns"][0]["attribute"], "animal")
-        self.assertEqual(d["relations"][1]["columns"][0]["nature"], "parent_primary_key")
+        expected = """
+            | relation  | label           | data_type                 | nature                      |
+            |:----------|:----------------|:--------------------------|:----------------------------|
+            | ANIMAL    | animal          |                           | primary_key                 |
+            | ANIMAL    | poids           |                           | normal_attribute            |
+            | ANIMAL    | type            | INTEGER UNSIGNED NOT NULL | deleted_child_discriminant_ |
+            | CARNIVORE | animal          |                           | parent_primary_key          |
+            | CARNIVORE | quantité viande |                           | normal_attribute            |
+        """
+        actual = debug_table(t)
+        self.assertEqual(actual.strip(), expected.strip())
 
     def test_inheritance_with_distant_leg_note(self):
         source = """
@@ -854,61 +417,6 @@ class relationsTest(unittest.TestCase):
         """.strip().replace("    ", "")
         t = Relations(Mcd(source, params), params)
         self.assertEqual(t.get_text(minimal_template), text)
-
-    def test_delete_deletable_tables(self):
-        source = """
-            Prof: Num. prof, Nom prof
-            Enseigner, 1N Prof, 1N Élève
-            Élève: Num. élève, Nom élève
-
-            Position: Latitude, _Longitude
-            Évaluer, 1N Élève, 0N Prof, 0N Position, 1N Date: Note
-            Date: Date
-            DF, 11 Élève, 0N Date
-        """
-        text = """
-            Enseigner (_#Num. prof_, _#Num. élève_)
-            Prof (_Num. prof_, Nom prof)
-            Élève (_Num. élève_, Nom élève, Date)
-            Évaluer (_#Num. élève_, _#Num. prof_, _Latitude_, _Longitude_, _Date_, Note)
-        """.strip().replace("    ", "")
-        t = Relations(Mcd(source, params), params)
-        self.assertEqual(t.get_text(minimal_template), text)
-        d = json.loads(t.get_text(json_template))
-        self.assertEqual(d["relations"][2]["columns"][2]["attribute"], "Date")
-        self.assertEqual(d["relations"][2]["columns"][2]["nature"], "naturalized_foreign_key")
-        self.assertEqual(d["relations"][3]["columns"][2]["attribute"], "Latitude")
-        self.assertEqual(d["relations"][3]["columns"][2]["nature"], "primary_naturalized_foreign_key")
-        self.assertEqual(d["relations"][3]["columns"][4]["attribute"], "Date")
-        self.assertEqual(d["relations"][3]["columns"][4]["nature"], "primary_naturalized_foreign_key")
-
-    def test_keep_deletable_tables(self):
-        source = """
-            +Prof: Num. prof, Nom prof
-            Enseigner, 1N Prof, 1N Élève
-            Élève: Num. élève, Nom élève
-            +Position: Latitude, _Longitude
-            Évaluer, 1N Élève, 0N Prof, 0N Position, 1N Date: Note
-            +Date: Date
-            DF, 11 Élève, 0N Date
-        """
-        text = """
-            Date (_Date_)
-            Enseigner (_#Num. prof_, _#Num. élève_)
-            Position (_Latitude_, _Longitude_)
-            Prof (_Num. prof_, Nom prof)
-            Élève (_Num. élève_, Nom élève, #Date)
-            Évaluer (_#Num. élève_, _#Num. prof_, _#Latitude_, _#Longitude_, _#Date_, Note)
-        """.strip().replace("    ", "")
-        t = Relations(Mcd(source, params), params)
-        self.assertEqual(t.get_text(minimal_template), text)
-        d = json.loads(t.get_text(json_template))
-        self.assertEqual(d["relations"][4]["columns"][2]["attribute"], "Date")
-        self.assertEqual(d["relations"][4]["columns"][2]["nature"], "foreign_key")
-        self.assertEqual(d["relations"][5]["columns"][2]["attribute"], "Latitude")
-        self.assertEqual(d["relations"][5]["columns"][2]["nature"], "primary_foreign_key")
-        self.assertEqual(d["relations"][5]["columns"][4]["attribute"], "Date")
-        self.assertEqual(d["relations"][5]["columns"][4]["nature"], "primary_foreign_key")
     
 
 if __name__ == '__main__':

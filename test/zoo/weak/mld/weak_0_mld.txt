@@ -1,0 +1,7 @@
+- Exemplaire (_œuvre_, _exemplaire_, foobar)
+  - Les champs « œuvre » et « exemplaire » constituent la clé primaire de la table. C'étaient déjà des identifiants de l'entité « Exemplaire ».
+  - Le champ « foobar » a migré à partir de l'association de dépendance fonctionnelle « DF0 ».
+
+--------------------------------------------------------------------------------
+
+NB. La table « Œuvre » a été supprimée car elle était réduite à la clé primaire de son entité d'origine.

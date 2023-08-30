@@ -1,0 +1,7 @@
+- Ligne de commande (_commande_, _produit_, quantité)
+  - Les champs « commande » et « produit » constituent la clé primaire de la table. C'étaient déjà des identifiants de l'entité « Ligne de commande ».
+  - Le champ « quantité » était déjà un simple attribut de l'entité « Ligne de commande ».
+
+--------------------------------------------------------------------------------
+
+NB. Les tables « Commande » et « Produit » ont été supprimées car elles étaient réduites à la clé primaire de leur entité d'origine.

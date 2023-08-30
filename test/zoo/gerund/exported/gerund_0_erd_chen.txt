@@ -1,0 +1,4 @@
+[<Ligne de commande>] ==N== <<DF>>
+[<Ligne de commande>] ==N== <<DF>>
+[Commande] ==1== <<DF>>
+[Produit] --1-- <<DF>>

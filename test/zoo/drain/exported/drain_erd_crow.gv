@@ -1,0 +1,114 @@
+digraph{
+  layout=dot
+  bgcolor="#FFFFFF"
+  nodesep=0.5
+
+  // Nodes
+  node [
+      shape=none
+      fontcolor="#000000"
+      fontsize=15
+      fontname="Helvetica"
+]
+  node [
+      shape=none
+      fontcolor="#000000"
+      fontsize=15
+      fontname="Helvetica"
+]
+  1 [label=<<table
+        border="0"
+        cellborder="1"
+        cellspacing="0"
+        bgcolor="#FFFFFF"
+        color="#000000"
+        cellpadding="4"
+    >
+        <tr>
+            <td bgcolor="#FFFFFF" colspan="2">
+                <font
+                    color="#000000"
+                    point-size="18"
+                >Entreprise</font>
+            </td>
+        </tr>
+        <tr><td>PK</td><td align="left">nom entreprise</td></tr>
+        <tr><td> </td><td align="left">adresse</td></tr>
+        <tr><td> </td><td align="left">téléphone</td></tr>
+    </table>
+>]
+  2 [label=<<table
+        border="0"
+        cellborder="1"
+        cellspacing="0"
+        bgcolor="#FFFFFF"
+        color="#000000"
+        cellpadding="4"
+    >
+        <tr>
+            <td bgcolor="#FFFFFF" colspan="2">
+                <font
+                    color="#000000"
+                    point-size="18"
+                >Stage</font>
+            </td>
+        </tr>
+        <tr><td>PK</td><td align="left">num. stage</td></tr>
+        <tr><td> </td><td align="left">sujet</td></tr>
+        <tr><td> </td><td align="left">date proposition</td></tr>
+    </table>
+>]
+  3 [label=<<table
+        border="0"
+        cellborder="1"
+        cellspacing="0"
+        bgcolor="#FFFFFF"
+        color="#000000"
+        cellpadding="4"
+    >
+        <tr>
+            <td bgcolor="#FFFFFF" colspan="2">
+                <font
+                    color="#000000"
+                    point-size="18"
+                >Étudiant</font>
+            </td>
+        </tr>
+        <tr><td>PK</td><td align="left">num étudiant</td></tr>
+        <tr><td> </td><td align="left">nom</td></tr>
+        <tr><td> </td><td align="left">date signature</td></tr>
+    </table>
+>]
+  4 [label=<<table
+        border="0"
+        cellborder="1"
+        cellspacing="0"
+        bgcolor="#FFFFFF"
+        color="#000000"
+        cellpadding="4"
+    >
+        <tr>
+            <td bgcolor="#FFFFFF" colspan="2">
+                <font
+                    color="#000000"
+                    point-size="18"
+                >Date</font>
+            </td>
+        </tr>
+        <tr><td>PK</td><td align="left">date</td></tr>
+    </table>
+>]
+
+  // Edges
+  edge [
+    penwidth=1
+    color="#000000"
+    fontcolor="#000000"
+    fontname="Futura"
+    fontsize=11
+    dir=both
+  ]
+  1 -> 2 [arrowhead="crowodot" arrowtail="teetee" label="Proposer"]
+  3 -> 2 [arrowhead="teetee" arrowtail="teeodot" label="Attribuer"]
+  3 -> 4 [arrowhead="teeodot" arrowtail="crowodot" label="Soutenir"]
+}
