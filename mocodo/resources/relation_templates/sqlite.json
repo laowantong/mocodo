@@ -1,63 +1,21 @@
 {
-  "stem_suffix": "_sqlite",
+  "stem_suffix": "_ddl_sqlite",
   "extension": "sql",
   "to_defer": false,
   "highlight": "sql",
-  "transform_attribute": [
-    {
-      "order": 100,
-      "search": " ",
-      "replace": "_"
-    },
-    {
-      "order": 200,
-      "search": "\\.",
-      "replace": ""
-    }
-  ],
   "compose_label_disambiguated_by_note": "{raw_label}_{leg_note}",
   "compose_label_disambiguated_by_number": "{label}_{disambiguation_number}",
-  "transform_title": [
-    {
-      "order": 100,
-      "search": " ",
-      "replace": "_"
-    },
-    {
-      "order": 200,
-      "search": "\\.",
-      "replace": ""
-    }
-  ],
-  "transform_relation_name": [
-    {
-      "order": 100,
-      "search": " ",
-      "replace": "_"
-    },
-    {
-      "order": 200,
-      "search": "\\.",
-      "replace": ""
-    }
-  ],
-  "compose_primary_key": "\"{label}\" {data_type},\nADD_PRIMARY_KEY \"{label}\"",
-  "compose_alt_primary_key": "\"{label}\" {data_type},\nADD_PRIMARY_KEY \"{label}\",\nADD_CONSTRAINT \"{this_relation_name}_u{alt_groups}\" ON \"{this_relation_name}\" (\"{label}\")",
-  "compose_alt_normal_attribute": "\"{label}\" {data_type},\nADD_CONSTRAINT \"{this_relation_name}_u{alt_groups}\" ON \"{this_relation_name}\" (\"{label}\")",
-  "compose_normal_attribute": "\"{label}\" {data_type}",
-  "compose_foreign_key": "\"{label}\" {data_type},\nADD_FOREIGN_KEY (\"{label}\") REFERENCES \"{outer_source}\" (\"{raw_label}\")",
-  "compose_primary_foreign_key": "\"{label}\" {data_type},\nADD_PRIMARY_KEY \"{label}\",\nADD_FOREIGN_KEY (\"{label}\") REFERENCES \"{outer_source}\" (\"{raw_label}\")",
-  "compose_alt_foreign_key": "\"{label}\" {data_type},\nADD_FOREIGN_KEY (\"{label}\") REFERENCES \"{outer_source}\" (\"{raw_label}\"),\nADD_CONSTRAINT \"{this_relation_name}_u{alt_groups}\" ON \"{this_relation_name}\" (\"{label}\")",
-  "compose_alt_primary_foreign_key": "\"{label}\" {data_type},\nADD_PRIMARY_KEY \"{label}\",\nADD_FOREIGN_KEY (\"{label}\") REFERENCES \"{outer_source}\" (\"{raw_label}\"),\nADD_CONSTRAINT \"{this_relation_name}_u{alt_groups}\" ON \"{this_relation_name}\" (\"{label}\")",
+  "compose_primary_key": "{label} {data_type},\nADD_PRIMARY_KEY {label}",
+  "compose_alt_primary_key": "{label} {data_type},\nADD_PRIMARY_KEY {label},\nADD_CONSTRAINT {this_relation_name}_u{alt_groups} ON {this_relation_name} ({label})",
+  "compose_alt_normal_attribute": "{label} {data_type},\nADD_CONSTRAINT {this_relation_name}_u{alt_groups} ON {this_relation_name} ({label})",
+  "compose_normal_attribute": "{label} {data_type}",
+  "compose_foreign_key": "{label} {data_type},\nADD_FOREIGN_KEY ({label}) REFERENCES {outer_source} ({raw_label})",
+  "compose_primary_foreign_key": "{label} {data_type},\nADD_PRIMARY_KEY {label},\nADD_FOREIGN_KEY ({label}) REFERENCES {outer_source} ({raw_label})",
+  "compose_alt_foreign_key": "{label} {data_type},\nADD_FOREIGN_KEY ({label}) REFERENCES {outer_source} ({raw_label}),\nADD_CONSTRAINT {this_relation_name}_u{alt_groups} ON {this_relation_name} ({label})",
+  "compose_alt_primary_foreign_key": "{label} {data_type},\nADD_PRIMARY_KEY {label},\nADD_FOREIGN_KEY ({label}) REFERENCES {outer_source} ({raw_label}),\nADD_CONSTRAINT {this_relation_name}_u{alt_groups} ON {this_relation_name} ({label})",
   "column_separator": ",\n  ",
-  "compose_relation": "CREATE TABLE \"{this_relation_name}\" (\n  {columns},\n  PRIMARY KEY ()\n);",
+  "compose_relation": "CREATE TABLE {this_relation_name} (\n  {columns},\n  PRIMARY KEY ()\n);",
   "transform_relation": [
-    {
-      "order": 100,
-      "comment": "Replace the missing data types with an arbitrary default.",
-      "search": " None,\n",
-      "replace": " VARCHAR(42),\n"
-    },
     {
       "order": 200,
       "comment": "Replace the boolean data type placeholders.",
@@ -117,20 +75,20 @@
     },
     {
       "order": 1100,
-      "search": "(  CREATE UNIQUE INDEX .+_u)(\\d+)(\\d)(\" ON .+)",
+      "search": "(  CREATE UNIQUE INDEX .+_u)(\\d+)(\\d)( ON .+)",
       "replace": "\\1\\2\\4\n\\1\\3\\4",
       "iterated": true
     },
     {
       "order": 1200,
       "comment": "Factorize the UNIQUE constraints.",
-      "search": "(?sm)^  CREATE UNIQUE INDEX \"(.+?)\" ON \"(.+?)\" \\((.+?)\\),\n((?:.+\n)*?)  CREATE UNIQUE INDEX \"\\1\" ON \"\\2\" \\((.+?)\\),\n",
-      "replace": "  CREATE UNIQUE INDEX \"\\1\" ON \"\\2\" (\\3, \\5)\n\\4",
+      "search": "(?sm)^  CREATE UNIQUE INDEX (.+?) ON (.+?) \\((.+?)\\),\n((?:.+\n)*?)  CREATE UNIQUE INDEX \\1 ON \\2 \\((.+?)\\),\n",
+      "replace": "  CREATE UNIQUE INDEX \\1 ON \\2 (\\3, \\5)\n\\4",
       "iterated": true
     }
   ],
   "relation_separator": "\n\n",
-  "compose_relational_schema": ".open \"{title}\";\n\n{relations}",
+  "compose_relational_schema": ".open {title};\n\n{relations}",
   "transform_relational_schema": [
     {
       "order": 100,

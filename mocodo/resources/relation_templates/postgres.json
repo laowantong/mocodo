@@ -1,4 +1,4 @@
 {
   "parent": "postgresql",
-  "extension": "_postgres.sql"
+  "extension": "sql"
 }

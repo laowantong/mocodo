@@ -1,66 +1,32 @@
 {
-  "stem_suffix": "_mysql",
+  "stem_suffix": "_ddl_mysql",
   "extension": "sql",
   "to_defer": false,
   "highlight": "sql",
-  "transform_attribute": [
+  "transform_data_type": [
     {
       "order": 100,
-      "search": " ",
-      "replace": "_"
-    },
-    {
-      "order": 200,
-      "search": "\\.",
-      "replace": ""
+      "comment": "Fill in empty data types with the default one.",
+      "search": "^\\s*$",
+      "replace": "VARCHAR(42)"
     }
   ],
   "compose_label_disambiguated_by_note": "{raw_label}_{leg_note}",
   "compose_label_disambiguated_by_number": "{label}_{disambiguation_number}",
-  "transform_title": [
-    {
-      "order": 100,
-      "search": " ",
-      "replace": "_"
-    },
-    {
-      "order": 200,
-      "search": "\\.",
-      "replace": ""
-    }
-  ],
-  "transform_relation_name": [
-    {
-      "order": 100,
-      "search": " ",
-      "replace": "_"
-    },
-    {
-      "order": 200,
-      "search": "\\.",
-      "replace": ""
-    }
-  ],
-  "compose_primary_key": "`{label}` {data_type},\nADD_PRIMARY_KEY `{label}`",
-  "compose_alt_primary_key": "`{label}` {data_type},\nADD_PRIMARY_KEY `{label}`,\nADD_CONSTRAINT `{this_relation_name}_u{alt_groups}` UNIQUE (`{label}`)",
-  "compose_alt_normal_attribute": "`{label}` {data_type},\nADD_CONSTRAINT `{this_relation_name}_u{alt_groups}` UNIQUE (`{label}`)",
-  "compose_normal_attribute": "`{label}` {data_type}",
+  "compose_primary_key": "{label} {data_type},\nADD_PRIMARY_KEY {label}",
+  "compose_alt_primary_key": "{label} {data_type},\nADD_PRIMARY_KEY {label},\nADD_CONSTRAINT {this_relation_name}_u{alt_groups} UNIQUE ({label})",
+  "compose_alt_normal_attribute": "{label} {data_type},\nADD_CONSTRAINT {this_relation_name}_u{alt_groups} UNIQUE ({label})",
+  "compose_normal_attribute": "{label} {data_type}",
 
-  "compose_primary_foreign_key":     "`{label}` {data_type},\nADD_PRIMARY_KEY `{label}`,\nADD_FOREIGN_KEY (`{label}`) REFERENCES `{outer_source}` (`{raw_label}`)",
-  "compose_alt_primary_foreign_key": "`{label}` {data_type},\nADD_PRIMARY_KEY `{label}`,\nADD_FOREIGN_KEY (`{label}`) REFERENCES `{outer_source}` (`{raw_label}`),\nADD_CONSTRAINT `{this_relation_name}_u{alt_groups}` UNIQUE (`{label}`)",
+  "compose_primary_foreign_key":     "{label} {data_type},\nADD_PRIMARY_KEY {label},\nADD_FOREIGN_KEY ({label}) REFERENCES {outer_source} ({raw_label})",
+  "compose_alt_primary_foreign_key": "{label} {data_type},\nADD_PRIMARY_KEY {label},\nADD_FOREIGN_KEY ({label}) REFERENCES {outer_source} ({raw_label}),\nADD_CONSTRAINT {this_relation_name}_u{alt_groups} UNIQUE ({label})",
 
-  "compose_foreign_key":     "`{label}` {data_type},\nADD_FOREIGN_KEY (`{label}`) REFERENCES `{outer_source}` (`{raw_label}`)",
-  "compose_alt_foreign_key": "`{label}` {data_type},\nADD_FOREIGN_KEY (`{label}`) REFERENCES `{outer_source}` (`{raw_label}`),\nADD_CONSTRAINT `{this_relation_name}_u{alt_groups}` UNIQUE (`{label}`)",
+  "compose_foreign_key":     "{label} {data_type},\nADD_FOREIGN_KEY ({label}) REFERENCES {outer_source} ({raw_label})",
+  "compose_alt_foreign_key": "{label} {data_type},\nADD_FOREIGN_KEY ({label}) REFERENCES {outer_source} ({raw_label}),\nADD_CONSTRAINT {this_relation_name}_u{alt_groups} UNIQUE ({label})",
 
   "column_separator": ",\n  ",
-  "compose_relation": "CREATE TABLE `{this_relation_name}` (\n  {columns},\n  PRIMARY KEY ()\n) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;",
+  "compose_relation": "CREATE TABLE {this_relation_name} (\n  {columns},\n  PRIMARY KEY ()\n) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;",
   "transform_relation": [
-    {
-      "order": 100,
-      "comment": "Replace the missing data types with an arbitrary default.",
-      "search": " None,\n",
-      "replace": " VARCHAR(42),\n"
-    },
     {
       "order": 200,
       "comment": "Replace the integer type placeholders.",
@@ -114,20 +80,20 @@
     },
     {
       "order": 1000,
-      "search": "(  CONSTRAINT `.+_u)(\\d+)(\\d)(` UNIQUE .+)",
+      "search": "(  CONSTRAINT .+_u)(\\d+)(\\d)( UNIQUE .+)",
       "replace": "\\1\\2\\4\n\\1\\3\\4",
       "iterated": true
     },
     {
       "order": 1100,
       "comment": "Factorize the UNIQUE constraints.",
-      "search": "  CONSTRAINT `(.+?_u\\d+?)` UNIQUE \\((.+?)\\),\n((?:.+\n)*?)  CONSTRAINT `\\1` UNIQUE \\((.+?)\\),\n",
-      "replace": "  CONSTRAINT `\\1` UNIQUE (\\2, \\4),\n\\3",
+      "search": "  CONSTRAINT (.+?_u\\d+?) UNIQUE \\((.+?)\\),\n((?:.+\n)*?)  CONSTRAINT \\1 UNIQUE \\((.+?)\\),\n",
+      "replace": "  CONSTRAINT \\1 UNIQUE (\\2, \\4),\n\\3",
       "iterated": true
     }
   ],
   "relation_separator": "\n\n",
-  "compose_relational_schema": "CREATE DATABASE IF NOT EXISTS `{title}`;\nUSE `{title}`;\n\n{relations}\n",
+  "compose_relational_schema": "CREATE DATABASE IF NOT EXISTS {title};\nUSE {title};\n\n{relations}\n",
   "transform_relational_schema": [
     {
       "order": 100,

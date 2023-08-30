@@ -1,46 +1,10 @@
 {
-  "stem_suffix": "_postgresql",
+  "stem_suffix": "_ddl_postgresql",
   "extension": "sql",
   "to_defer": false,
   "highlight": "sql",
-  "transform_attribute": [
-    {
-      "order": 100,
-      "search": " ",
-      "replace": "_"
-    },
-    {
-      "order": 200,
-      "search": "\\.",
-      "replace": ""
-    }
-  ],
   "compose_label_disambiguated_by_note": "{raw_label}_{leg_note}",
   "compose_label_disambiguated_by_number": "{label}_{disambiguation_number}",
-  "transform_title": [
-    {
-      "order": 100,
-      "search": " ",
-      "replace": "_"
-    },
-    {
-      "order": 200,
-      "search": "\\.",
-      "replace": ""
-    }
-  ],
-  "transform_relation_name": [
-    {
-      "order": 100,
-      "search": " ",
-      "replace": "_"
-    },
-    {
-      "order": 200,
-      "search": "\\.",
-      "replace": ""
-    }
-  ],
   "compose_primary_key": "{label} {data_type},\nADD_PRIMARY_KEY {label}",
   "compose_alt_primary_key": "{label} {data_type},\nADD_PRIMARY_KEY {label},\nADD_CONSTRAINT {this_relation_name}_u{alt_groups} UNIQUE ({label})",
   "compose_alt_normal_attribute": "{label} {data_type},\nADD_CONSTRAINT {this_relation_name}_u{alt_groups} UNIQUE ({label})",
@@ -54,12 +18,6 @@
   "column_separator": ",\n  ",
   "compose_relation": "CREATE TABLE {this_relation_name} (\n  {columns},\n  PRIMARY KEY (),\n);",
   "transform_relation": [
-    {
-      "order": 100,
-      "comment": "Replace the missing data types with an arbitrary default.",
-      "search": " None,\n",
-      "replace": " VARCHAR(42),\n"
-    },
     {
       "order": 200,
       "comment": "Replace the integer type placeholders.",

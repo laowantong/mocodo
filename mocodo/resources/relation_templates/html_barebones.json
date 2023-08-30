@@ -1,4 +1,0 @@
-{
-  "parent": "html",
-  "compose_relational_schema": "<div id='mld'>\n{relations}\n</div>"
-}

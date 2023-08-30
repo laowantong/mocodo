@@ -1,4 +1,0 @@
-{
-    "parent": "latex",
-    "compose_relational_schema": "\\begin{{mld}}\n{relations}\n\\end{{mld}}"
-}
