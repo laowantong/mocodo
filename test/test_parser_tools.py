@@ -116,7 +116,7 @@ Foo: bar, 1_baz, 21_qux, 123_quux
 """.splitlines()
 
 line = "-" * 80
-path = Path("test/snapshots/parsed.txt")
+path = Path("test/test_parser_tools_snapshot.txt")
 with path.open(mode="w") as file:
     for source in valid_lines:
         file.write(f"{line}\n{source}\n")
