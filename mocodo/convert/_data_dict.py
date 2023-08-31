@@ -1,6 +1,8 @@
 __import__("sys").path[0:0] = ["."]
 
 import re
+
+from ..tools.string_tools import markdown_table
 from ..parse_mcd import Transformer
 from ..tools.parser_tools import parse_source, first_child
 from ..mocodo_error import subsubopt_error
@@ -77,24 +79,19 @@ class AttributeListExtractor(Transformer): # depth-first, post-order
         result.extend(map("\t".join, self.rows))
         return "\n".join(result)
     
-    def add_md_tags(self, row):
-        return " | ".join(f"{tag}{cell}{tag}" for (tag, cell) in zip(self.md_tags, row))
-
     def get_markdown(self):
-        result = []
         if len(self.header) > 1: # output a table only if there are at least two columns
-            result.append("| " + " | ".join(self.header) + " |")
-            result.append("|:---" * len(self.header) + "|")
+            result = []
             previous_leftmost = None
-            for row in self.rows:
+            for row in [self.header] + self.rows:
                 if row[0] == previous_leftmost:
                     row[0] = '"'
                 else:
                     previous_leftmost = row[0]
-                result.append(f"| {self.add_md_tags(row)} |")
+                result.append(f"{tag}{cell}{tag}" for (tag, cell) in zip(self.md_tags, row))
+            return markdown_table(result)
         else: # otherwise, output a list
-            result.extend(f"- {self.add_md_tags(row)}" for row in self.rows)
-        return "\n".join(result)
+            return "\n".join([f"- {self.md_tags[0]}{row[0]}{self.md_tags[0]}" for row in self.rows])
 
 def run(source, subargs=None, common=None):
     tree = parse_source(source)

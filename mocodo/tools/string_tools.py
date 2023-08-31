@@ -82,3 +82,20 @@ def snake(label):
 
 def urlsafe_encoding(text):
     return base64.urlsafe_b64encode(zlib.compress(text.encode('utf-8'), 9)).decode('ascii')
+
+# Markdown
+
+def markdown_table(rows, formats=None):
+    """
+    Return a Markdown table from a list of rows, each row being a tuple.
+    The first row is the header. For maximum readability, in text mode, each column
+    is filled with spaces so that the longest cell fits in the column.
+    'formats' is a sequence of formatting symbols "l", "c", "r".
+    """
+    rows = [list(map(str, row)) for row in rows]
+    widths = [max(map(len, column)) for column in zip(*rows)]
+    result = ["| " + " | ".join(f"{c:<{w}}" for (w, c) in zip(widths, row)) + " |" for row in rows]
+    formats = formats or "l" * len(rows[0])
+    formats = [("-" if x == "r" else ":") + "-" * w + ("-" if x == "l" else ":") for (w, x) in zip(widths, formats)]
+    result[1:1] = ["|" + "|".join(formats) + "|"]
+    return "\n".join(result)

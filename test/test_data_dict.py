@@ -1,3 +1,4 @@
+import re
 import unittest
 
 __import__("sys").path[0:0] = ["mocodo"]
@@ -27,20 +28,20 @@ class TestDataDict(unittest.TestCase):
         }
         actual = data_dict.run(source, common=common, subargs=subargs)["text"]
         expected = """
-            | Libellé des attributs | Type de données |
-            |:---|:---|
-            | Adresse | varchar(40) |
-            | Date | date |
-            | Libellé | varchar(20) |
-            | Montant | decimal(5,2) DEFAULT '0.00' |
-            | Nom |  |
-            | Num commande | tinyint(4) |
-            | Prix unitaire | decimal(5,2) |
-            | Quantité | tinyint(4) |
-            | Réf. client | varchar(8) |
-            | Réf. produit | varchar(8) |
+            | Libellé des attributs | Type de données             |
+            |:----------------------|:----------------------------|
+            | Adresse               | varchar(40)                 |
+            | Date                  | date                        |
+            | Libellé               | varchar(20)                 |
+            | Montant               | decimal(5,2) DEFAULT '0.00' |
+            | Nom                   |                             |
+            | Num commande          | tinyint(4)                  |
+            | Prix unitaire         | decimal(5,2)                |
+            | Quantité              | tinyint(4)                  |
+            | Réf. client           | varchar(8)                  |
+            | Réf. produit          | varchar(8)                  |
         """
-        self.assertEqual(actual.strip(), expected.replace("    ", "").strip())
+        self.assertEqual(actual.strip(), re.sub("(?m)^ +", "", expected).strip())
 
         # Markdown table with 3 columns in another order and a Markdown emphasis
 
@@ -52,20 +53,20 @@ class TestDataDict(unittest.TestCase):
         }
         actual = data_dict.run(source, common=common, subargs=subargs)["text"]
         expected = """
-            | Entité ou association | Type | Libellé de l'attribut |
-            |:---|:---|:---|
-            | **CLIENT** |  | Nom |
-            | **"** | varchar(40) | Adresse |
-            | **"** | varchar(8) | Réf. client |
-            | **COMMANDE** | date | Date |
-            | **"** | decimal(5,2) DEFAULT '0.00' | Montant |
-            | **"** | tinyint(4) | Num commande |
-            | **INCLURE** | tinyint(4) | Quantité |
-            | **PRODUIT** | decimal(5,2) | Prix unitaire |
-            | **"** | varchar(20) | Libellé |
-            | **"** | varchar(8) | Réf. produit |
+            | **Entité ou association** | Type                        | Libellé de l'attribut |
+            |:--------------------------|:----------------------------|:----------------------|
+            | **CLIENT**                |                             | Nom                   |
+            | **"**                     | varchar(40)                 | Adresse               |
+            | **"**                     | varchar(8)                  | Réf. client           |
+            | **COMMANDE**              | date                        | Date                  |
+            | **"**                     | decimal(5,2) DEFAULT '0.00' | Montant               |
+            | **"**                     | tinyint(4)                  | Num commande          |
+            | **INCLURE**               | tinyint(4)                  | Quantité              |
+            | **PRODUIT**               | decimal(5,2)                | Prix unitaire         |
+            | **"**                     | varchar(20)                 | Libellé               |
+            | **"**                     | varchar(8)                  | Réf. produit          |
         """
-        self.assertEqual(actual.strip(), expected.replace("    ", "").strip())
+        self.assertEqual(actual.strip(), re.sub("(?m)^ +", "", expected).strip())
 
         # With just one column, the table is converted to a list and the header is omitted
 
@@ -83,7 +84,7 @@ class TestDataDict(unittest.TestCase):
             - Réf. client
             - Réf. produit
         """
-        self.assertEqual(actual.strip(), expected.replace("    ", "").strip())
+        self.assertEqual(actual.strip(), re.sub("(?m)^ +", "", expected).strip())
 
         # By default: md,box,label,type
 
@@ -102,7 +103,7 @@ class TestDataDict(unittest.TestCase):
             PRODUIT\tPrix unitaire\tdecimal(5,2)
             PRODUIT\tRéf. produit\tvarchar(8)
         """
-        self.assertEqual(actual.strip(), expected.replace("    ", "").strip())
+        self.assertEqual(actual.strip(), re.sub("(?m)^ +", "", expected).strip())
 
 if __name__ == '__main__':
     unittest.main()
