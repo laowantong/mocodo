@@ -18,7 +18,7 @@
 \begin{itemize}
   \item \relat{AYANT-DROIT} (\foreign{\prim{matricule}}, \prim{nom ayant-droit}, \attr{lien})
   \begin{itemize}
-    \item Le champ \emph{matricule} fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité \emph{EMPLOYÉ}.
+    \item Le champ \emph{matricule} fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré à partir de l'entité \emph{EMPLOYÉ} pour renforcer l'identifiant.
     \item Le champ \emph{nom ayant-droit} fait partie de la clé primaire de la table. C'était déjà un identifiant de l'entité \emph{AYANT-DROIT}.
     \item Le champ \emph{lien} était déjà un simple attribut de l'entité \emph{AYANT-DROIT}.
   \end{itemize}
@@ -70,11 +70,11 @@
     \item Le champ \emph{qté requise} était déjà un simple attribut de l'association \emph{REQUÉRIR}.
   \end{itemize}
 
-  \item \relat{SOCIÉTÉ} (\prim{num. société}, \attr{raison sociale}, \foreign{num. société mère})
+  \item \relat{SOCIÉTÉ} (\prim{num. société}, \attr{raison sociale}, \foreign{num. société mère}$^{u_1}$)
   \begin{itemize}
     \item Le champ \emph{num. société} constitue la clé primaire de la table. C'était déjà un identifiant de l'entité \emph{SOCIÉTÉ}.
     \item Le champ \emph{raison sociale} était déjà un simple attribut de l'entité \emph{SOCIÉTÉ}.
-    \item Le champ \emph{num. société mère} est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle \emph{CONTRÔLER} à partir de l'entité \emph{SOCIÉTÉ} en perdant son caractère identifiant.
+    \item Le champ \emph{num. société mère} est une clé étrangère. Il a migré directement à partir de l'entité \emph{SOCIÉTÉ} en perdant son caractère identifiant. Il obéit en outre à la contrainte d'unicité 1.
   \end{itemize}
 
   \item \relat{TRAVAILLER} (\foreign{\prim{matricule}}, \foreign{\prim{num. projet}})

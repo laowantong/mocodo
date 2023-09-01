@@ -1,0 +1,6 @@
+[Réservation] ==1== <DF>
+[Semaine] ==1== <<DF>>
+[Voilier] ==1== <<DF>>
+[[Disponibilité]] --1-- <DF>
+[[Disponibilité]] ==N== <<DF>>
+[[Disponibilité]] ==N== <<DF>>

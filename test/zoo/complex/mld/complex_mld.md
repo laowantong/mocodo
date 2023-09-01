@@ -1,5 +1,5 @@
 - **ANIMAL** (<ins>_#code espèce_</ins>, <ins>nom</ins>, <ins>date naissance</ins>, sexe, date décès, _#code espèce mère_, _#nom mère_, _#date naissance mère_, type alimentation, CARNIVORE, quantité viande, HERBIVORE, plante préférée)
-  - Le champ _code espèce_ fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité _ESPÈCE_.
+  - Le champ _code espèce_ fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré à partir de l'entité _ESPÈCE_ pour renforcer l'identifiant.
   - Les champs _nom_ et _date naissance_ font partie de la clé primaire de la table. C'étaient déjà des identifiants de l'entité _ANIMAL_.
   - Les champs _sexe_ et _date décès_ étaient déjà de simples attributs de l'entité _ANIMAL_.
   - Le champ _code espèce mère_ est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle _A MÈRE_ à partir de l'entité _ANIMAL_ en perdant son caractère identifiant.
@@ -13,7 +13,7 @@
 
 - **ESPÈCE** (<ins>code espèce</ins>, nom latin <sup>u1</sup>, nom vernaculaire)
   - Le champ _code espèce_ constitue la clé primaire de la table. C'était déjà un identifiant de l'entité _ESPÈCE_.
-  - Le champ _nom latin_ était déjà un simple attribut de l'entité _ESPÈCE_. Il constitue une clé alternative matérialisée par la contrainte d'unicité 1.
+  - Le champ _nom latin_ était déjà un simple attribut de l'entité _ESPÈCE_. Il obéit à la contrainte d'unicité 1.
   - Le champ _nom vernaculaire_ était déjà un simple attribut de l'entité _ESPÈCE_.
 
 - **OCCUPE** (<ins>_#code espèce_</ins>, <ins>_#nom_</ins>, <ins>_#date naissance_</ins>, <ins>num. enclos</ins>, date début, date fin)

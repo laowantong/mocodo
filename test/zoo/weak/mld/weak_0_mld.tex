@@ -16,10 +16,11 @@
 \maketitle
 
 \begin{itemize}
-  \item \relat{Exemplaire} (\prim{œuvre}, \prim{exemplaire}, \attr{foobar})
+  \item \relat{Exemplaire} (\foreign{\prim{œuvre}}, \prim{exemplaire}, \attr{foobar})
   \begin{itemize}
-    \item Les champs \emph{œuvre} et \emph{exemplaire} constituent la clé primaire de la table. C'étaient déjà des identifiants de l'entité \emph{Exemplaire}.
-    \item Le champ \emph{foobar} a migré à partir de l'association de dépendance fonctionnelle \emph{DF0}.
+    \item Le champ \emph{œuvre} fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré à partir de l'entité \emph{Œuvre} pour renforcer l'identifiant. La table correspondante ayant été supprimée, il n'est pas considéré comme clé étrangère.
+    \item Le champ \emph{exemplaire} fait partie de la clé primaire de la table. C'était déjà un identifiant de l'entité \emph{Exemplaire}.
+    \item Le champ \emph{foobar} a migré à partir de l'association de dépendance fonctionnelle \emph{DF}.
   \end{itemize}
 
 \end{itemize}

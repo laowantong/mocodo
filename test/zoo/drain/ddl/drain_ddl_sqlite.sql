@@ -26,3 +26,5 @@ CREATE TABLE STAGE (
   PRIMARY KEY (num_stage)
   FOREIGN KEY (nom_entreprise) REFERENCES ENTREPRISE (nom_entreprise)
 );
+
+CREATE UNIQUE INDEX ETUDIANT_u1 ON ETUDIANT (num_stage);

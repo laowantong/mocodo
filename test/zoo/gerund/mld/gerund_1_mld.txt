@@ -3,8 +3,8 @@
   - Le champ « date » était déjà un simple attribut de l'entité « Commande ».
 
 - Ligne de commande (_#commande_, _#produit_, quantité)
-  - Le champ « commande » fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité « Commande ».
-  - Le champ « produit » fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité « Produit ».
+  - Le champ « commande » fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré à partir de l'entité « Commande » pour renforcer l'identifiant.
+  - Le champ « produit » fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré à partir de l'entité « Produit » pour renforcer l'identifiant.
   - Le champ « quantité » était déjà un simple attribut de l'entité « Ligne de commande ».
 
 - Produit (_produit_, libellé)

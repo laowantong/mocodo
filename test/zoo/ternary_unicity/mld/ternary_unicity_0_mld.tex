@@ -1,0 +1,42 @@
+\documentclass[a4paper]{article}
+\usepackage[normalem]{ulem}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\frenchsetup{StandardLayout=true}
+
+\newcommand{\relat}[1]{\textsc{#1}}
+\newcommand{\attr}[1]{#1}
+\newcommand{\prim}[1]{\uline{#1}}
+\newcommand{\foreign}[1]{\#\textsl{#1}}
+
+\title{Conversion en relationnel\\du MCD \emph{ternary_unicity}}
+\author{\emph{Généré par Mocodo}}
+
+\begin{document}
+\maketitle
+
+\begin{itemize}
+  \item \relat{Disponibilité} (\foreign{\prim{semaine}}, \foreign{\prim{voilier}})
+  \begin{itemize}
+    \item Le champ \emph{semaine} fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré à partir de l'entité \emph{Semaine} pour renforcer l'identifiant.
+    \item Le champ \emph{voilier} fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré à partir de l'entité \emph{Voilier} pour renforcer l'identifiant. La table correspondante ayant été supprimée, il n'est pas considéré comme clé étrangère.
+  \end{itemize}
+
+  \item \relat{Réservation} (\prim{id résa}, \attr{num résa}$^{u_1}$, \attr{arrhes}, \attr{date réservation}, \foreign{semaine}$^{u_2}$, \foreign{voilier}$^{u_2}$)
+  \begin{itemize}
+    \item Le champ \emph{id résa} constitue la clé primaire de la table. C'était déjà un identifiant de l'entité \emph{Réservation}.
+    \item Le champ \emph{num résa} était déjà un simple attribut de l'entité \emph{Réservation}. Il obéit à la contrainte d'unicité 1.
+    \item Les champs \emph{arrhes} et \emph{date réservation} étaient déjà de simples attributs de l'entité \emph{Réservation}.
+    \item Le champ \emph{semaine} est une clé étrangère. Il a migré directement à partir de l'entité \emph{Disponibilité} en perdant son caractère identifiant. Il obéit en outre à la contrainte d'unicité 2.
+    \item Le champ \emph{voilier} est une clé étrangère. Il a migré directement à partir de l'entité \emph{Disponibilité} en perdant son caractère identifiant. Il obéit en outre à la contrainte d'unicité 2.
+  \end{itemize}
+
+  \item \relat{Semaine} (\prim{semaine}, \attr{date début}$^{u_1}$)
+  \begin{itemize}
+    \item Le champ \emph{semaine} constitue la clé primaire de la table. C'était déjà un identifiant de l'entité \emph{Semaine}.
+    \item Le champ \emph{date début} était déjà un simple attribut de l'entité \emph{Semaine}. Il obéit à la contrainte d'unicité 1.
+  \end{itemize}
+
+\end{itemize}
+
+\end{document}

@@ -1,0 +1,112 @@
+digraph{
+  layout=dot
+  bgcolor="#FFFFFF"
+  nodesep=0.5
+
+  // Nodes
+  node [
+      shape=none
+      fontcolor="#000000"
+      fontsize=15
+      fontname="Helvetica"
+]
+  2 [label=<<table
+        border="0"
+        cellborder="1"
+        cellspacing="0"
+        bgcolor="#FFFFFF"
+        color="#000000"
+        cellpadding="4"
+    >
+        <tr>
+            <td bgcolor="#FFFFFF" colspan="2">
+                <font
+                    color="#000000"
+                    point-size="18"
+                >Disponibilité</font>
+            </td>
+        </tr>
+
+    </table>
+>]
+  node [
+      shape=none
+      fontcolor="#000000"
+      fontsize=15
+      fontname="Helvetica"
+]
+  1 [label=<<table
+        border="0"
+        cellborder="1"
+        cellspacing="0"
+        bgcolor="#FFFFFF"
+        color="#000000"
+        cellpadding="4"
+    >
+        <tr>
+            <td bgcolor="#FFFFFF" colspan="2">
+                <font
+                    color="#000000"
+                    point-size="18"
+                >Voilier</font>
+            </td>
+        </tr>
+        <tr><td>PK</td><td align="left">voilier</td></tr>
+    </table>
+>]
+  3 [label=<<table
+        border="0"
+        cellborder="1"
+        cellspacing="0"
+        bgcolor="#FFFFFF"
+        color="#000000"
+        cellpadding="4"
+    >
+        <tr>
+            <td bgcolor="#FFFFFF" colspan="2">
+                <font
+                    color="#000000"
+                    point-size="18"
+                >Semaine</font>
+            </td>
+        </tr>
+        <tr><td>PK</td><td align="left">semaine</td></tr>
+        <tr><td> </td><td align="left">date début</td></tr>
+    </table>
+>]
+  4 [label=<<table
+        border="0"
+        cellborder="1"
+        cellspacing="0"
+        bgcolor="#FFFFFF"
+        color="#000000"
+        cellpadding="4"
+    >
+        <tr>
+            <td bgcolor="#FFFFFF" colspan="2">
+                <font
+                    color="#000000"
+                    point-size="18"
+                >Réservation</font>
+            </td>
+        </tr>
+        <tr><td>PK</td><td align="left">id résa</td></tr>
+        <tr><td> </td><td align="left">num résa</td></tr>
+        <tr><td> </td><td align="left">arrhes</td></tr>
+        <tr><td> </td><td align="left">date réservation</td></tr>
+    </table>
+>]
+
+  // Edges
+  edge [
+    penwidth=1
+    color="#000000"
+    fontcolor="#000000"
+    fontname="Futura"
+    fontsize=11
+    dir=both
+  ]
+  2 -> 1 [arrowhead="teetee" arrowtail="crowtee" style=dotted]
+  2 -> 3 [arrowhead="teetee" arrowtail="crowtee" style=dotted]
+  4 -> 2 [arrowhead="teetee" arrowtail="teeodot"]
+}

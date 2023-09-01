@@ -1,0 +1,16 @@
+{
+  "width": 362,
+  "height": 262,
+  "cx": [
+    [ "Disponibilité", 107 ],
+    [ "Semaine", 279 ],
+    [ "Réservation", 107 ]
+  ],
+  "cy": [
+    [ "Disponibilité", 47 ],
+    [ "Semaine", 47 ],
+    [ "Réservation", 181 ]
+  ],
+  "shift": [],
+  "ratio": []
+}

@@ -1,4 +1,4 @@
-this_relation_name	label	data_type	nature	adjacent_source	outer_source	alt_groups
+this_relation_name	label	data_type	nature	adjacent_source	outer_source	unicities
 EROS	congue		primary_key			
 LACUS	blandit		primary_key			
 LACUS	elit		normal_attribute			

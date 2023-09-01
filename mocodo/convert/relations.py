@@ -1,6 +1,9 @@
 import collections
+import itertools
 from pathlib import Path
 import re
+
+from mocodo.tools.various import first_missing_positive
 
 from ..mocodo_error import MocodoError
 
@@ -16,7 +19,7 @@ def set_defaults(template):
         "compose_normal_attribute": "{label}",
         "compose_foreign_key": "#{label}",
         "compose_primary_foreign_key": "_#{label}_",
-        "add_alt_constraints": [],
+        "add_unicity_constraints": [],
         "transform_relation_name": [],
         "column_separator": ", ",
         "compose_relation": "{this_relation_name} ({columns})",
@@ -30,8 +33,8 @@ def set_defaults(template):
         "transform_relational_schema": [],
     }
     result.update(template)
-    result.setdefault("compose_naturalized_foreign_key", result["compose_normal_attribute"])
-    result.setdefault("compose_primary_naturalized_foreign_key", result["compose_primary_key"])
+    result.setdefault("compose_ex_foreign_key", result["compose_normal_attribute"])
+    result.setdefault("compose_primary_ex_foreign_key", result["compose_primary_key"])
     result.setdefault("compose_association_attribute", result["compose_normal_attribute"])
     result.setdefault("compose_deleted_child_attribute", result["compose_normal_attribute"])
     result.setdefault("compose_deleted_child_discriminant_", result["compose_normal_attribute"])
@@ -51,16 +54,16 @@ def set_defaults(template):
     result.setdefault("compose_outer_attribute", result["compose_normal_attribute"])
     result.setdefault("compose_parent_primary_key", result["compose_primary_foreign_key"])
     result.setdefault("compose_strengthening_primary_foreign_key", result["compose_primary_foreign_key"])
-    result.setdefault("compose_strengthening_primary_naturalized_foreign_key", result["compose_primary_key"])
+    result.setdefault("compose_strengthening_primary_ex_foreign_key", result["compose_primary_key"])
     result.setdefault("compose_unsourced_foreign_key", result["compose_normal_attribute"])
     result.setdefault("compose_unsourced_primary_foreign_key", result["compose_primary_key"])
-    result.setdefault("compose_naturalized_foreign_key", result["compose_normal_attribute"])
-    result.setdefault("compose_primary_naturalized_foreign_key", result["compose_primary_key"])
-    result.setdefault("compose_deleted_child_naturalized_foreign_key", result["compose_normal_attribute"])
-    result.setdefault("compose_deleted_parent_naturalized_foreign_key", result["compose_normal_attribute"])
-    result.setdefault("compose_stopped_naturalized_foreign_key", result["compose_normal_attribute"])
-    result.setdefault("compose_unsourced_naturalized_foreign_key", result["compose_normal_attribute"])
-    result.setdefault("compose_unsourced_primary_naturalized_foreign_key", result["compose_primary_key"])
+    result.setdefault("compose_ex_foreign_key", result["compose_normal_attribute"])
+    result.setdefault("compose_primary_ex_foreign_key", result["compose_primary_key"])
+    result.setdefault("compose_deleted_child_ex_foreign_key", result["compose_normal_attribute"])
+    result.setdefault("compose_deleted_parent_ex_foreign_key", result["compose_normal_attribute"])
+    result.setdefault("compose_stopped_ex_foreign_key", result["compose_normal_attribute"])
+    result.setdefault("compose_unsourced_ex_foreign_key", result["compose_normal_attribute"])
+    result.setdefault("compose_unsourced_primary_ex_foreign_key", result["compose_primary_key"])
     return result
 
 
@@ -156,8 +159,8 @@ class Relations:
                 column["data_type"] = transform(column["data_type"], "transform_data_type")
                 data.update(column)
                 field = template["compose_%s" % column["nature"]].format(**data)
-                if column["alt_groups"]:
-                    field = transform(field, "add_alt_constraints").format(**data)
+                if column["unicities"]:
+                    field = transform(field, "add_unicity_constraints").format(**data)
                 fields.append(field)
             data["columns"] = template["column_separator"].join(fields)
             line = template["compose_relation"].format(**data)
@@ -240,13 +243,14 @@ class Relations:
                 "this_relation_name": entity.name,
                 "is_forced": False, # an entity naturally results in a relation. No need to force it.
                 "is_protected": entity.is_protected,
-                "columns": []
+                "columns": [],
+                "existing_unicity_numbers": set(),
             }
             for attribute in entity.attributes:
                 if attribute.label.strip() == "":
                     continue # ignore empty attributes
                 nature = "primary_key" if attribute.kind in ("strong", "weak") else "normal_attribute"
-                alt_groups = "".join(c for c in sorted(attribute.id_groups) if c != "0")
+                unicities = "".join(c for c in sorted(attribute.id_groups) if c != "0")
                 self.relations[name]["columns"].append({
                     "attribute": attribute.label,
                     "data_type": attribute.data_type,
@@ -256,8 +260,9 @@ class Relations:
                     "leg_note": None,
                     "primary": nature == "primary_key",
                     "nature": nature,
-                    "alt_groups": alt_groups,
+                    "unicities": unicities,
                 })
+                self.relations[name]["existing_unicity_numbers"].update(map(int, unicities))
 
     def strengthen_weak_identifiers(self):
         for entity in self.mcd.entities.values():
@@ -297,7 +302,7 @@ class Relations:
                                 "leg_note": leg_note,
                                 "primary": True,
                                 "nature": "strengthening_primary_foreign_key",
-                                "alt_groups": "",
+                                "unicities": "",
                             } for attribute in self.relations[strengthening_entity.name]["columns"] if attribute["primary"]]
                         self.freeze_strengthening_foreign_key_migration.add((entity.name, association.name, strengthening_entity.name))
                     remaining_entities.remove(entity)
@@ -343,7 +348,7 @@ class Relations:
                     "association_name": inheritance.name,
                     "primary": True,
                     "nature": "deleted_parent_primary_key" if to_be_deleted else "parent_primary_key",
-                    "alt_groups": "",
+                    "unicities": "",
                 } for attribute in self.relations[parent_leg.entity_name]["columns"] if attribute["primary"]]
 
     def strengthen_parents(self):
@@ -363,7 +368,7 @@ class Relations:
                     "leg_note": None,
                     "primary": False,
                     "nature": f"deleted_parent_discriminant_{inheritance.name_view}",
-                    "alt_groups": "",
+                    "unicities": "",
                 } for attribute in inheritance.attributes)
 
     def process_associations(self):
@@ -379,7 +384,8 @@ class Relations:
                 self.relations[association.name] = {
                     "this_relation_name": association.name,
                     "is_forced": bool(df_leg), # if this association has a 11 leg, being here means it is protected: it must be forced into a relation
-                    "columns": []
+                    "columns": [],
+                    "existing_unicity_numbers": set(),
                 }
                 for leg in association.legs:
                     for attribute in self.relations[leg.entity_name]["columns"]:
@@ -395,8 +401,9 @@ class Relations:
                                     "association_name": association.name,
                                     "primary": leg.is_in_elected_group,
                                     "nature": "primary_foreign_key" if leg.is_in_elected_group else "foreign_key",
-                                    "alt_groups": leg.alt_groups,
+                                    "unicities": leg.unicities,
                                 })
+                                self.relations[association.name]["existing_unicity_numbers"].update(map(int, leg.unicities))
                             elif association.is_protected and df_leg is not None and leg is not df_leg:
                                 self.relations[association.name]["columns"].append({ # gather all migrant attributes
                                     "attribute": attribute["attribute"],
@@ -407,7 +414,7 @@ class Relations:
                                     "association_name": association.name,
                                     "primary": False,
                                     "nature": "stopped_foreign_key",
-                                    "alt_groups": "",
+                                    "unicities": "",
                                 })
                             else:
                                 self.relations[association.name]["columns"].append({ # gather all migrant attributes
@@ -419,7 +426,7 @@ class Relations:
                                     "association_name": association.name,
                                     "primary": True,
                                     "nature": "unsourced_primary_foreign_key" if outer_source is None else "primary_foreign_key",
-                                    "alt_groups": "",
+                                    "unicities": "",
                                 })
                         elif attribute["nature"].startswith("deleted_parent_discriminant"):
                             self.relations[association.name]["columns"].append({
@@ -431,7 +438,7 @@ class Relations:
                                 "association_name": association.name,
                                 "primary": False,
                                 "nature": attribute["nature"],
-                                "alt_groups": "",
+                                "unicities": "",
                             })
                 self.relations[association.name]["columns"].extend({ # and the attributes already existing in the association
                         "attribute": attribute.label,
@@ -442,16 +449,19 @@ class Relations:
                         "leg_note": None,
                         "primary": False,
                         "nature": "association_attribute",
-                        "alt_groups": "",
+                        "unicities": "",
                     } for attribute in association.attributes if attribute.label.strip() != ""
                 )
-            else: # this association is a DF
+            else: # No relation will be created from this association.
                 # The entity named `entity_name` is distinguished by the *1 cardinality
                 already_rejected = False
                 for leg in association.legs:
                     if leg.entity_name != df_leg.entity_name or already_rejected:
                         # This leg distinguishes one of the other entities.
                         if (df_leg.entity_name, association.name, leg.entity_name) not in self.freeze_strengthening_foreign_key_migration:
+                            unicities = ""
+                            if leg.card == "01": # 01 --(DF)-- 11 => the migrating attribute must be made unique, find a new unicity group
+                                unicities = str(first_missing_positive(self.relations[df_leg.entity_name]["existing_unicity_numbers"]))
                             for attribute in list(self.relations[leg.entity_name]["columns"]): # traverse a copy...
                                 # ... to prevent an infinite migration of the child discriminant
                                 if attribute["primary"]:
@@ -466,9 +476,10 @@ class Relations:
                                         "association_name": association.name,
                                         "primary": False,
                                         "nature": "unsourced_foreign_key" if outer_source is None else "foreign_key",
-                                        "alt_groups": "",
+                                        "unicities": unicities,
                                         # NB: technically, an unsourced foreign key is not foreign anymore
                                     })
+                                    self.relations[df_leg.entity_name]["existing_unicity_numbers"].update(map(int, unicities))
                                 elif attribute["nature"].startswith("deleted_parent_discriminant"):
                                     self.relations[df_leg.entity_name]["columns"].append({
                                         "attribute": attribute["attribute"],
@@ -479,7 +490,7 @@ class Relations:
                                         "association_name": association.name,
                                         "primary": False,
                                         "nature": attribute["nature"],
-                                        "alt_groups": "",
+                                        "unicities": "",
                                     })
                     else:
                         already_rejected = True
@@ -492,7 +503,7 @@ class Relations:
                         "leg_note": None,
                         "primary": False,
                         "nature": "outer_attribute",
-                        "alt_groups": "",
+                        "unicities": "",
                     } for attribute in association.attributes if attribute.label.strip() != ""])
 
 
@@ -511,7 +522,7 @@ class Relations:
                         "association_name": inheritance.name,
                         "primary": False,
                         "nature": "deleted_parent_foreign_key" if attribute["nature"] == "foreign_key" else "deleted_parent_attribute",
-                        "alt_groups": "",
+                        "unicities": "",
                     } for attribute in self.relations[parent_leg.entity_name]["columns"] if not attribute["primary"] and not attribute["nature"].startswith("deleted_parent_discriminant")]
             else: # migration: triangle attributes > parent
                 self.relations[parent_leg.entity_name]["columns"].extend({ 
@@ -523,7 +534,7 @@ class Relations:
                     "leg_note": None,
                     "primary": False,
                     "nature": f"deleted_child_discriminant_{inheritance.name_view}", # "", "X", "T" or "XT"
-                    "alt_groups": "",
+                    "unicities": "",
                 } for attribute in inheritance.attributes)
                 if inheritance.kind in ("<-", "<="): # migration: children > parent, and suppress children
                     for child_leg in inheritance.legs[1:]:
@@ -538,7 +549,7 @@ class Relations:
                                 "association_name": inheritance.name,
                                 "primary": False,
                                 "nature": "deleted_child_entity_name",
-                                "alt_groups": "",
+                                "unicities": "",
                             })
                         # migrate all child's attributes
                         for attribute in self.relations[child_leg.entity_name]["columns"]:
@@ -553,7 +564,7 @@ class Relations:
                                 "association_name": inheritance.name,
                                 "primary": False,
                                 "nature": "deleted_child_foreign_key" if attribute["nature"] == "foreign_key" else "deleted_child_attribute",
-                                "alt_groups": "",
+                                "unicities": "",
                             })
     
     def delete_inheritance_parent_or_children_to_delete(self):
@@ -569,7 +580,7 @@ class Relations:
         for relation in self.relations.values():
             for column in relation["columns"]:
                 if column["outer_source"] in deleted_outer_sources:
-                    column["nature"] = column["nature"].replace("foreign", "naturalized_foreign")
+                    column["nature"] = column["nature"].replace("foreign", "ex_foreign")
         self.deleted_relations = sorted(deleted_outer_sources)
 
     def make_primary_keys_first(self):

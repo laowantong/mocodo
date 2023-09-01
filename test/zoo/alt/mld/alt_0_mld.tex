@@ -19,26 +19,26 @@
   \item \relat{CLIENT} (\prim{Réf. client}, \attr{Nom}$^{u_1}$, \attr{Prénom}$^{u_1}$, \attr{Adresse}, \attr{Mail}$^{u_2}$)
   \begin{itemize}
     \item Le champ \emph{Réf. client} constitue la clé primaire de la table. C'était déjà un identifiant de l'entité \emph{CLIENT}.
-    \item Les champs \emph{Nom} et \emph{Prénom} étaient déjà de simples attributs de l'entité \emph{CLIENT}. Ils constituent une clé alternative matérialisée par la contrainte d'unicité 1.
+    \item Les champs \emph{Nom} et \emph{Prénom} étaient déjà de simples attributs de l'entité \emph{CLIENT}. Il obéit à la contrainte d'unicité 1.
     \item Le champ \emph{Adresse} était déjà un simple attribut de l'entité \emph{CLIENT}.
-    \item Le champ \emph{Mail} était déjà un simple attribut de l'entité \emph{CLIENT}. Il constitue une clé alternative matérialisée par la contrainte d'unicité 2.
+    \item Le champ \emph{Mail} était déjà un simple attribut de l'entité \emph{CLIENT}. Il obéit à la contrainte d'unicité 2.
   \end{itemize}
 
   \item \relat{FOO} (\prim{foo}, \attr{bar}$^{u_1}$, \attr{biz}$^{u_1 u_2}$, \attr{buz}$^{u_2}$, \attr{qux}$^{u_3}$, \attr{quux}$^{u_1 u_2 u_3}$)
   \begin{itemize}
     \item Le champ \emph{foo} constitue la clé primaire de la table. C'était déjà un identifiant de l'entité \emph{FOO}.
-    \item Le champ \emph{bar} était déjà un simple attribut de l'entité \emph{FOO}. Il fait partie d'une clé alternative matérialisée par la contrainte d'unicité 1.
-    \item Le champ \emph{biz} était déjà un simple attribut de l'entité \emph{FOO}. Il fait partie de clés alternatives matérialisées par les contraintes d'unicité 1 et 2.
-    \item Le champ \emph{buz} était déjà un simple attribut de l'entité \emph{FOO}. Il fait partie d'une clé alternative matérialisée par la contrainte d'unicité 2.
-    \item Le champ \emph{qux} était déjà un simple attribut de l'entité \emph{FOO}. Il fait partie d'une clé alternative matérialisée par la contrainte d'unicité 3.
-    \item Le champ \emph{quux} était déjà un simple attribut de l'entité \emph{FOO}. Il fait partie de clés alternatives matérialisées par les contraintes d'unicité 1, 2 et 3.
+    \item Le champ \emph{bar} était déjà un simple attribut de l'entité \emph{FOO}. Il obéit à la contrainte d'unicité 1.
+    \item Le champ \emph{biz} était déjà un simple attribut de l'entité \emph{FOO}. Il obéit aux contraintes d'unicité 1 et 2.
+    \item Le champ \emph{buz} était déjà un simple attribut de l'entité \emph{FOO}. Il obéit à la contrainte d'unicité 2.
+    \item Le champ \emph{qux} était déjà un simple attribut de l'entité \emph{FOO}. Il obéit à la contrainte d'unicité 3.
+    \item Le champ \emph{quux} était déjà un simple attribut de l'entité \emph{FOO}. Il obéit aux contraintes d'unicité 1, 2 et 3.
   \end{itemize}
 
   \item \relat{UTILISER} (\prim{carnet}$^{u_1}$, \prim{projet}$^{u_2}$, \attr{technicien}$^{u_1 u_2}$)
   \begin{itemize}
-    \item Le champ \emph{carnet} fait partie de la clé primaire de la table. C'était déjà un identifiant de l'entité \emph{UTILISER}. Il fait en outre partie d'une clé alternative matérialisée par la contrainte d'unicité 1.
-    \item Le champ \emph{projet} fait partie de la clé primaire de la table. C'était déjà un identifiant de l'entité \emph{UTILISER}. Il fait en outre partie d'une clé alternative matérialisée par la contrainte d'unicité 2.
-    \item Le champ \emph{technicien} était déjà un simple attribut de l'entité \emph{UTILISER}. Il fait partie de clés alternatives matérialisées par les contraintes d'unicité 1 et 2.
+    \item Le champ \emph{carnet} fait partie de la clé primaire de la table. C'était déjà un identifiant de l'entité \emph{UTILISER}. Il obéit en outre à la contrainte d'unicité 1.
+    \item Le champ \emph{projet} fait partie de la clé primaire de la table. C'était déjà un identifiant de l'entité \emph{UTILISER}. Il obéit en outre à la contrainte d'unicité 2.
+    \item Le champ \emph{technicien} était déjà un simple attribut de l'entité \emph{UTILISER}. Il obéit aux contraintes d'unicité 1 et 2.
   \end{itemize}
 
 \end{itemize}

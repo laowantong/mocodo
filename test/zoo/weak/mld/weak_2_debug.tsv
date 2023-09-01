@@ -1,4 +1,4 @@
-this_relation_name	label	data_type	nature	adjacent_source	outer_source	alt_groups
+this_relation_name	label	data_type	nature	adjacent_source	outer_source	unicities
 Appartement	code rue		strengthening_primary_foreign_key	Étage	Étage	
 Appartement	num immeuble		strengthening_primary_foreign_key	Étage	Étage	
 Appartement	num étage		strengthening_primary_foreign_key	Étage	Étage	

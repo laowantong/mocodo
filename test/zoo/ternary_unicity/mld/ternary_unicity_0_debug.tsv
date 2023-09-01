@@ -1,0 +1,11 @@
+this_relation_name	label	data_type	nature	adjacent_source	outer_source	unicities
+Disponibilité	semaine		strengthening_primary_foreign_key	Semaine	Semaine	
+Disponibilité	voilier		strengthening_primary_ex_foreign_key	Voilier	Voilier	
+Réservation	id résa		primary_key			
+Réservation	num résa		normal_attribute			1
+Réservation	arrhes		normal_attribute			
+Réservation	date réservation		normal_attribute			
+Réservation	semaine		foreign_key	Disponibilité	Disponibilité	2
+Réservation	voilier		foreign_key	Disponibilité	Disponibilité	2
+Semaine	semaine		primary_key			
+Semaine	date début		normal_attribute			1

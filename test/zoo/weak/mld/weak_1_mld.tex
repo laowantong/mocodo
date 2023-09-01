@@ -18,10 +18,10 @@
 \begin{itemize}
   \item \relat{Exemplaire} (\foreign{\prim{œuvre}}, \prim{exemplaire}, \attr{nb pages}, \attr{date achat}, \attr{foobar})
   \begin{itemize}
-    \item Le champ \emph{œuvre} fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité \emph{Œuvre}.
+    \item Le champ \emph{œuvre} fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré à partir de l'entité \emph{Œuvre} pour renforcer l'identifiant.
     \item Le champ \emph{exemplaire} fait partie de la clé primaire de la table. C'était déjà un identifiant de l'entité \emph{Exemplaire}.
     \item Les champs \emph{nb pages} et \emph{date achat} étaient déjà de simples attributs de l'entité \emph{Exemplaire}.
-    \item Le champ \emph{foobar} a migré à partir de l'association de dépendance fonctionnelle \emph{DF0}.
+    \item Le champ \emph{foobar} a migré à partir de l'association de dépendance fonctionnelle \emph{DF}.
   \end{itemize}
 
   \item \relat{Œuvre} (\prim{œuvre}, \attr{auteur})

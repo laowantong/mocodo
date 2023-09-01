@@ -80,3 +80,5 @@ CREATE TABLE TRAVAILLER (
   FOREIGN KEY (matricule) REFERENCES EMPLOYE (matricule),
   FOREIGN KEY (num_projet) REFERENCES PROJET (num_projet)
 );
+
+CREATE UNIQUE INDEX SOCIETE_u1 ON SOCIETE (num_societe_mere);

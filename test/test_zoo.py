@@ -92,7 +92,7 @@ def main():
     params["id_gutter_visibility"] = "auto"
     params["id_gutter_strong_string"] = "ID"
     params["id_gutter_weak_string"] = "id"
-    params["id_gutter_alts"] = dict(zip("123456789", "123456789"))
+    params["id_gutter_unicities"] = dict(zip("123456789", "123456789"))
     params["guess_title"] = False
     params["disambiguation"] = "notes"
     params["language"] = "fr"
@@ -191,7 +191,7 @@ def test_launch_snapshot(capsys):
         for _ in range(5):
             time.sleep(1)
             print(".", end="", flush=True)
-        print("\nLet's go!")
+        print("\nLet's be crazy!")
         main()
 
 if __name__ == "__main__":

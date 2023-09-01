@@ -8,10 +8,10 @@
   - Le champ « nom entreprise » est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle « Proposer » à partir de l'entité « Entreprise » en perdant son caractère identifiant.
   - Le champ « date proposition » a migré à partir de l'association de dépendance fonctionnelle « Proposer ».
 
-- Étudiant (_num étudiant_, nom, #num. stage, date signature, date, note stage)
+- Étudiant (_num étudiant_, nom, #num. stage¹, date signature, date, note stage)
   - Le champ « num étudiant » constitue la clé primaire de la table. C'était déjà un identifiant de l'entité « Étudiant ».
   - Le champ « nom » était déjà un simple attribut de l'entité « Étudiant ».
-  - Le champ « num. stage » est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle « Attribuer » à partir de l'entité « Stage » en perdant son caractère identifiant.
+  - Le champ « num. stage » est une clé étrangère. Il a migré directement à partir de l'entité « Stage » en perdant son caractère identifiant. Il obéit en outre à la contrainte d'unicité 1.
   - Le champ « date signature » a migré à partir de l'association de dépendance fonctionnelle « Attribuer ».
   - Le champ « date » est un simple attribut. Il a migré par l'association de dépendance fonctionnelle « Soutenir » à partir de l'entité « Date » en perdant son caractère identifiant. Cependant, comme la table créée à partir de cette entité a été supprimée, il n'est pas considéré comme clé étrangère.
   - Le champ « note stage » a migré à partir de l'association de dépendance fonctionnelle « Soutenir ».

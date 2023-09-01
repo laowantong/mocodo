@@ -39,7 +39,7 @@ class Leg:
         self.entity_name = leg["entity"]
         self.twist = False
         self.identifier = None
-        self.alt_groups = ""
+        self.unicities = ""
         self.is_in_elected_group = False
 
     def register_entity(self, entity):
@@ -55,7 +55,7 @@ class Leg:
             self.is_in_elected_group = True
         else:
             # concatenate the candidate number to the beginning of the string to ensure sorting
-            self.alt_groups = candidate_number + self.alt_groups
+            self.unicities = candidate_number + self.unicities
 
     def calculate_size(self, style, get_font_metrics):
         font = get_font_metrics(style["card_font"])

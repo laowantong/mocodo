@@ -1,0 +1,69 @@
+graph{
+  start=42
+
+  // Entities
+  node [
+    shape=box
+    style=filled
+    penwidth=1.5
+    fillcolor="#FFFFFF"
+  ]
+  1 [label="Voilier"]
+  4 [label="Disponibilité",peripheries=2]
+  6 [label="Semaine"]
+  10 [label="Réservation"]
+
+  // Normal entity attributes
+  node [
+    shape=oval
+    penwidth=1.5
+    fillcolor="#FFFFFF"
+  ]
+  8 [label="date\ndébut"]
+  12 [label="num résa"]
+  13 [label="arrhes"]
+  14 [label="date\nréservation"]
+
+  // Weak and strong entity attributes
+  2 [label=<<u>voilier</u>>]
+  7 [label=<<u>semaine</u>>]
+  11 [label=<<u>id résa</u>>]
+
+  // Relationships
+  node [
+    shape=diamond
+    height=0.7
+    penwidth=1.5
+    fillcolor="#FFFFFF"
+  ]
+  3 [label="DF",peripheries=2]
+  5 [label="DF",peripheries=2]
+  9 [label="DF"]
+
+  // Edges between entities and attributes
+  edge [
+    penwidth=1.5
+  ]
+  1 -- 2
+  6 -- 7
+  6 -- 8
+  10 -- 11
+  10 -- 12
+  10 -- 13
+  10 -- 14
+
+  // Edges between entities and relationships
+  edge [
+    penwidth=1
+    color="#000000:#000000"
+    labeldistance=2
+    headlabel=1
+  ]
+  1 -- 3
+  6 -- 5
+  10 -- 9
+  4 -- 9 [color="#000000"]
+  edge [headlabel=N]
+  4 -- 3
+  4 -- 5
+}

@@ -1,7 +1,7 @@
 - **Affecter** (<ins>_#projet_</ins>, <ins>_#employé_</ins> <sup>u1</sup>, _#site_ <sup>u1</sup>)
   - Le champ _projet_ fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité _Projet_.
-  - Le champ _employé_ fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité _Employé_. Il fait en outre partie d'une clé alternative matérialisée par la contrainte d'unicité 1.
-  - Le champ _site_ est une clé étrangère. Il a migré directement à partir de l'entité _Site_ en perdant son caractère identifiant. Il fait en outre partie d'une clé alternative matérialisée par la contrainte d'unicité 1.
+  - Le champ _employé_ fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité _Employé_. Il obéit en outre à la contrainte d'unicité 1.
+  - Le champ _site_ est une clé étrangère. Il a migré directement à partir de l'entité _Site_ en perdant son caractère identifiant. Il obéit en outre à la contrainte d'unicité 1.
 
 - **Employé** (<ins>employé</ins>, nom employé)
   - Le champ _employé_ constitue la clé primaire de la table. C'était déjà un identifiant de l'entité _Employé_.

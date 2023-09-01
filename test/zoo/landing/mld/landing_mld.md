@@ -1,5 +1,5 @@
 - **AYANT-DROIT** (<ins>_#matricule_</ins>, <ins>nom ayant-droit</ins>, lien)
-  - Le champ _matricule_ fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité _EMPLOYÉ_.
+  - Le champ _matricule_ fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré à partir de l'entité _EMPLOYÉ_ pour renforcer l'identifiant.
   - Le champ _nom ayant-droit_ fait partie de la clé primaire de la table. C'était déjà un identifiant de l'entité _AYANT-DROIT_.
   - Le champ _lien_ était déjà un simple attribut de l'entité _AYANT-DROIT_.
 
@@ -36,10 +36,10 @@
   - Le champ _réf. pièce_ fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité _PIÈCE_.
   - Le champ _qté requise_ était déjà un simple attribut de l'association _REQUÉRIR_.
 
-- **SOCIÉTÉ** (<ins>num. société</ins>, raison sociale, _#num. société mère_)
+- **SOCIÉTÉ** (<ins>num. société</ins>, raison sociale, _#num. société mère_ <sup>u1</sup>)
   - Le champ _num. société_ constitue la clé primaire de la table. C'était déjà un identifiant de l'entité _SOCIÉTÉ_.
   - Le champ _raison sociale_ était déjà un simple attribut de l'entité _SOCIÉTÉ_.
-  - Le champ _num. société mère_ est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle _CONTRÔLER_ à partir de l'entité _SOCIÉTÉ_ en perdant son caractère identifiant.
+  - Le champ _num. société mère_ est une clé étrangère. Il a migré directement à partir de l'entité _SOCIÉTÉ_ en perdant son caractère identifiant. Il obéit en outre à la contrainte d'unicité 1.
 
 - **TRAVAILLER** (<ins>_#matricule_</ins>, <ins>_#num. projet_</ins>)
   - Le champ _matricule_ fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité _EMPLOYÉ_.

@@ -26,7 +26,7 @@
   \begin{itemize}
     \item Le champ \emph{Num. commande} constitue la clé primaire de la table. C'était déjà un identifiant de l'entité \emph{COMMANDE}.
     \item Les champs \emph{Date} et \emph{Montant} étaient déjà de simples attributs de l'entité \emph{COMMANDE}.
-    \item Le champ \emph{Réf. client} est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle \emph{DF0} à partir de l'entité \emph{CLIENT} en perdant son caractère identifiant.
+    \item Le champ \emph{Réf. client} est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle \emph{DF} à partir de l'entité \emph{CLIENT} en perdant son caractère identifiant.
   \end{itemize}
 
   \item \relat{INCLURE} (\foreign{\prim{Num. commande}}, \foreign{\prim{Réf. produit}}, \attr{Quantité})

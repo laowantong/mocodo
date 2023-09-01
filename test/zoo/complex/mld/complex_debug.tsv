@@ -1,4 +1,4 @@
-this_relation_name	label	data_type	nature	adjacent_source	outer_source	alt_groups
+this_relation_name	label	data_type	nature	adjacent_source	outer_source	unicities
 ANIMAL	code espèce		strengthening_primary_foreign_key	ESPÈCE	ESPÈCE	
 ANIMAL	nom		primary_key			
 ANIMAL	date naissance		primary_key			
@@ -18,12 +18,12 @@ ESPÈCE	nom vernaculaire		normal_attribute
 OCCUPE	code espèce		primary_foreign_key	ANIMAL	ANIMAL	
 OCCUPE	nom		primary_foreign_key	ANIMAL	ANIMAL	
 OCCUPE	date naissance		primary_foreign_key	ANIMAL	ANIMAL	
-OCCUPE	num. enclos		primary_naturalized_foreign_key	ENCLOS	ENCLOS	
-OCCUPE	date début		naturalized_foreign_key	PÉRIODE	PÉRIODE	
-OCCUPE	date fin		naturalized_foreign_key	PÉRIODE	PÉRIODE	
+OCCUPE	num. enclos		primary_ex_foreign_key	ENCLOS	ENCLOS	
+OCCUPE	date début		ex_foreign_key	PÉRIODE	PÉRIODE	
+OCCUPE	date fin		ex_foreign_key	PÉRIODE	PÉRIODE	
 PEUT COHABITER AVEC	code espèce		primary_foreign_key	ESPÈCE	ESPÈCE	
 PEUT COHABITER AVEC	code espèce commensale		primary_foreign_key	ESPÈCE	ESPÈCE	
 PEUT COHABITER AVEC	nb. max. commensaux		association_attribute			
 PEUT VIVRE DANS	code espèce		primary_foreign_key	ESPÈCE	ESPÈCE	
-PEUT VIVRE DANS	num. enclos		primary_naturalized_foreign_key	ENCLOS	ENCLOS	
+PEUT VIVRE DANS	num. enclos		primary_ex_foreign_key	ENCLOS	ENCLOS	
 PEUT VIVRE DANS	nb. max. congénères		association_attribute

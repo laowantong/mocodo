@@ -1,0 +1,66 @@
+<html>
+<head>
+<!-- TO_BE_DELETED_BY_MOCODO_MAGIC --><link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+<meta charset='utf-8'>
+<style>
+  #mld .relation { font-variant: small-caps; font-weight: bold }
+  #mld .primary { text-decoration: underline }
+  #mld .foreign { font-style: oblique }
+  #mld strong { font-weight: bold }
+  #mld i { font-style: italic }
+  #mld ul { list-style-type:square; margin: 0 0 1em 2em }
+</style>
+</head>
+<body>
+<!-- TO_BE_DELETED_BY_MOCODO_MAGIC --><header><h1>Conversion en relationnel</h1><p>Générée par <a href='https://github.com/laowantong/mocodo'>Mocodo</a></p></header>
+<main>
+<!-- TO_BE_DELETED_BY_MOCODO_MAGIC --><figure><center><img src="ternary_unicity_0_mld.svg"/></center><figcaption>MCD <i>ternary_unicity</i></figcaption></figure>
+<div id='mld'>
+<div>
+  <details><summary><span class='relation'>Disponibilité</span> (
+    <span class='foreign primary'>#semaine</span>,
+    <span class='foreign primary'>#voilier</span>
+  )</summary>
+  <ul>
+    <li>Le champ <i>semaine</i> fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré à partir de l'entité <i>Semaine</i> pour renforcer l'identifiant.</li>
+    <li>Le champ <i>voilier</i> fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré à partir de l'entité <i>Voilier</i> pour renforcer l'identifiant. La table correspondante ayant été supprimée, il n'est pas considéré comme clé étrangère.</li>
+  </ul></details>
+</div>
+
+<div>
+  <details><summary><span class='relation'>Réservation</span> (
+    <span class='primary'>id résa</span>,
+    <span class='normal'>num résa</span> <sup>u1</sup>,
+    <span class='normal'>arrhes</span>,
+    <span class='normal'>date réservation</span>,
+    <span class='foreign'>#semaine</span> <sup>u2</sup>,
+    <span class='foreign'>#voilier</span> <sup>u2</sup>
+  )</summary>
+  <ul>
+    <li>Le champ <i>id résa</i> constitue la clé primaire de la table. C'était déjà un identifiant de l'entité <i>Réservation</i>.</li>
+    <li>Le champ <i>num résa</i> était déjà un simple attribut de l'entité <i>Réservation</i>. Il obéit à la contrainte d'unicité 1.</li>
+    <li>Les champs <i>arrhes</i> et <i>date réservation</i> étaient déjà de simples attributs de l'entité <i>Réservation</i>.</li>
+    <li>Le champ <i>semaine</i> est une clé étrangère. Il a migré directement à partir de l'entité <i>Disponibilité</i> en perdant son caractère identifiant. Il obéit en outre à la contrainte d'unicité 2.</li>
+    <li>Le champ <i>voilier</i> est une clé étrangère. Il a migré directement à partir de l'entité <i>Disponibilité</i> en perdant son caractère identifiant. Il obéit en outre à la contrainte d'unicité 2.</li>
+  </ul></details>
+</div>
+
+<div>
+  <details><summary><span class='relation'>Semaine</span> (
+    <span class='primary'>semaine</span>,
+    <span class='normal'>date début</span> <sup>u1</sup>
+  )</summary>
+  <ul>
+    <li>Le champ <i>semaine</i> constitue la clé primaire de la table. C'était déjà un identifiant de l'entité <i>Semaine</i>.</li>
+    <li>Le champ <i>date début</i> était déjà un simple attribut de l'entité <i>Semaine</i>. Il obéit à la contrainte d'unicité 1.</li>
+  </ul></details>
+</div>
+<hr>
+
+<div>
+  <span><strong>NB.</strong> La table <i>Voilier</i> a été supprimée car elle était réduite à la clé primaire de son entité d'origine.</span>
+</div>
+</div>
+</main>
+</body>
+</html>

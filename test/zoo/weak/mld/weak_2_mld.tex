@@ -18,14 +18,14 @@
 \begin{itemize}
   \item \relat{Appartement} (\foreign{\prim{code rue}}, \foreign{\prim{num immeuble}}, \foreign{\prim{num étage}}, \prim{num appart.}, \attr{nb pièces})
   \begin{itemize}
-    \item Les champs \emph{code rue}, \emph{num immeuble} et \emph{num étage} font partie de la clé primaire de la table. Ce sont des clés étrangères qui ont migré directement à partir de l'entité \emph{Étage}.
+    \item Le champ \emph{code rue}, \emph{num immeuble}, \emph{num étage} fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré à partir de l'entité \emph{Étage} pour renforcer l'identifiant.
     \item Le champ \emph{num appart.} fait partie de la clé primaire de la table. C'était déjà un identifiant de l'entité \emph{Appartement}.
     \item Le champ \emph{nb pièces} était déjà un simple attribut de l'entité \emph{Appartement}.
   \end{itemize}
 
   \item \relat{Immeuble} (\foreign{\prim{code rue}}, \prim{num immeuble}, \attr{nb étages})
   \begin{itemize}
-    \item Le champ \emph{code rue} fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité \emph{Rue}.
+    \item Le champ \emph{code rue} fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré à partir de l'entité \emph{Rue} pour renforcer l'identifiant.
     \item Le champ \emph{num immeuble} fait partie de la clé primaire de la table. C'était déjà un identifiant de l'entité \emph{Immeuble}.
     \item Le champ \emph{nb étages} était déjà un simple attribut de l'entité \emph{Immeuble}.
   \end{itemize}
@@ -38,7 +38,7 @@
 
   \item \relat{Étage} (\foreign{\prim{code rue}}, \foreign{\prim{num immeuble}}, \prim{num étage}, \attr{nb appartements})
   \begin{itemize}
-    \item Les champs \emph{code rue} et \emph{num immeuble} font partie de la clé primaire de la table. Ce sont des clés étrangères qui ont migré directement à partir de l'entité \emph{Immeuble}.
+    \item Le champ \emph{code rue}, \emph{num immeuble} fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré à partir de l'entité \emph{Immeuble} pour renforcer l'identifiant.
     \item Le champ \emph{num étage} fait partie de la clé primaire de la table. C'était déjà un identifiant de l'entité \emph{Étage}.
     \item Le champ \emph{nb appartements} était déjà un simple attribut de l'entité \emph{Étage}.
   \end{itemize}

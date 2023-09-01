@@ -1,4 +1,4 @@
-this_relation_name	label	data_type	nature	adjacent_source	outer_source	alt_groups
-Gérer	ingénieur		primary_naturalized_foreign_key	Ingénieur	Ingénieur	
-Gérer	projet		primary_naturalized_foreign_key	Projet	Projet	
-Gérer	responsable		naturalized_foreign_key	Responsable	Responsable
+this_relation_name	label	data_type	nature	adjacent_source	outer_source	unicities
+Gérer	ingénieur		primary_ex_foreign_key	Ingénieur	Ingénieur	
+Gérer	projet		primary_ex_foreign_key	Projet	Projet	
+Gérer	responsable		ex_foreign_key	Responsable	Responsable

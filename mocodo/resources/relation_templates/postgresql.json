@@ -17,11 +17,11 @@
   "compose_normal_attribute": "{label} {data_type}",
   "compose_foreign_key":     "{label} {data_type},\nADD_FOREIGN_KEY ({label}) REFERENCES {outer_source} ({label_before_disambiguation})",
   "compose_primary_foreign_key":     "{label} {data_type},\nADD_PRIMARY_KEY {label},\nADD_FOREIGN_KEY ({label}) REFERENCES {outer_source} ({label_before_disambiguation})",
-  "add_alt_constraints": [
+  "add_unicity_constraints": [
     {
       "order": 100,
       "search": "$",
-      "replace": ",\nADD_CONSTRAINT {this_relation_name}_u{alt_groups} UNIQUE ({label})"
+      "replace": ",\nADD_CONSTRAINT {this_relation_name}_u{unicities} UNIQUE ({label})"
     }
   ],
   "column_separator": ",\n  ",

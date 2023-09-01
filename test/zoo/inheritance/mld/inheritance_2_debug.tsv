@@ -1,4 +1,4 @@
-this_relation_name	label	data_type	nature	adjacent_source	outer_source	alt_groups
+this_relation_name	label	data_type	nature	adjacent_source	outer_source	unicities
 ALIQUET	magna		unsourced_primary_foreign_key	TRISTIS		
 ALIQUET	tellus		primary_foreign_key	DIGNISSIM	DIGNISSIM	
 ALIQUET	type	INTEGER UNSIGNED	deleted_parent_discriminant_XT	TRISTIS		

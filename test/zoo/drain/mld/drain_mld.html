@@ -47,7 +47,7 @@
   <details><summary><span class='relation'>Étudiant</span> (
     <span class='primary'>num étudiant</span>,
     <span class='normal'>nom</span>,
-    <span class='foreign'>#num. stage</span>,
+    <span class='foreign'>#num. stage</span> <sup>u1</sup>,
     <span class='normal'>date signature</span>,
     <span class='normal'>date</span>,
     <span class='normal'>note stage</span>
@@ -55,7 +55,7 @@
   <ul>
     <li>Le champ <i>num étudiant</i> constitue la clé primaire de la table. C'était déjà un identifiant de l'entité <i>Étudiant</i>.</li>
     <li>Le champ <i>nom</i> était déjà un simple attribut de l'entité <i>Étudiant</i>.</li>
-    <li>Le champ <i>num. stage</i> est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle <i>Attribuer</i> à partir de l'entité <i>Stage</i> en perdant son caractère identifiant.</li>
+    <li>Le champ <i>num. stage</i> est une clé étrangère. Il a migré directement à partir de l'entité <i>Stage</i> en perdant son caractère identifiant. Il obéit en outre à la contrainte d'unicité 1.</li>
     <li>Le champ <i>date signature</i> a migré à partir de l'association de dépendance fonctionnelle <i>Attribuer</i>.</li>
     <li>Le champ <i>date</i> est un simple attribut. Il a migré par l'association de dépendance fonctionnelle <i>Soutenir</i> à partir de l'entité <i>Date</i> en perdant son caractère identifiant. Cependant, comme la table créée à partir de cette entité a été supprimée, il n'est pas considéré comme clé étrangère.</li>
     <li>Le champ <i>note stage</i> a migré à partir de l'association de dépendance fonctionnelle <i>Soutenir</i>.</li>
