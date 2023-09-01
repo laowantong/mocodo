@@ -1,9 +1,21 @@
 % Non-orthogonal cluster: not implemented
 
-Projet: projet
-Utiliser, /1N Technicien, /1N Carnet, /1N Projet
+:
+:
 Carnet: carnet
 
 :
-Technicien: technicien
 :
+DF, 11 Utiliser, 1N Carnet
+
+Projet: projet
+DF, 11 Utiliser, 1N Projet
+Utiliser: id. utiliser
+
+:
+:
+DF, 11 Utiliser, 1N Technicien
+
+:
+:
+Technicien: technicien

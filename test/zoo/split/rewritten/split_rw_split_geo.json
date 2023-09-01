@@ -1,22 +1,25 @@
 {
-  "width": 386,
-  "height": 212,
+  "width": 375,
+  "height": 330,
   "cx": [
     [ "Bataille", 57 ],
-    [ "Récolter", 184 ],
-    [ "Villageois", 320 ],
-    [ "Trophée", 184 ]
+    [ "Récolter1", 184 ],
+    [ "Trophée", 184 ],
+    [ "Récolter0", 309 ],
+    [ "Villageois", 309 ]
   ],
   "cy": [
     [ "Bataille", 56 ],
-    [ "Récolter", 56 ],
-    [ "Villageois", 56 ],
-    [ "Trophée", 156 ]
+    [ "Récolter1", 56 ],
+    [ "Trophée", 156 ],
+    [ "Récolter0", 156 ],
+    [ "Villageois", 274 ]
   ],
   "shift": [
-    [ "Récolter,Villageois,0", 0 ],
-    [ "Récolter,Bataille,0", 0 ],
-    [ "Récolter,Trophée,0", 0 ]
+    [ "Récolter1,Trophée,0", 0 ],
+    [ "Récolter1,Bataille,0", 0 ],
+    [ "Récolter0,Trophée,0", 0 ],
+    [ "Récolter0,Villageois,0", 0 ]
   ],
   "ratio": []
 }

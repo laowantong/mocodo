@@ -52,8 +52,11 @@ def main():
         return svg_path
 
     def may_dump_rewritten_version(subfolder, source, stem, operation_name, subargs=None):
-        module = globals()[operation_name] # e.g., explode, drain, ...
-        result = module.run(source, subargs, params).rstrip()
+        try:
+            module = globals()[operation_name] # e.g., explode, drain, ...
+        except KeyError:
+            module = op_tk
+        result = module.run(source, subopt=operation_name, subargs=subargs, params=params).rstrip()
         suffix = ",".join(f"{k}={v}" if v else k for (k, v) in subargs.items())
         if suffix:
             suffix = f"_{suffix}"
@@ -67,13 +70,13 @@ def main():
                 result = f"% same as {path.name}"
                 save(new_mcd_path, result + "\n")
                 return
-        mcd = Mcd(source, get_font_metrics, **params)
+        mcd = Mcd(result, get_font_metrics, **params)
         if operation_name in ("explode", "split"):
             random.seed(42)
             rearrangement = arrange(mcd, {})
             mcd.set_layout(**rearrangement)
             result = mcd.get_clauses()
-            mcd = Mcd(source, get_font_metrics, **params)
+            mcd = Mcd(result, get_font_metrics, **params)
         save(new_mcd_path, result + "\n")
         dump_static_svg(mcd, new_mcd_path)
 
@@ -120,6 +123,7 @@ def main():
         may_dump_rewritten_version(subfolder, source, source_path.stem[1:], "explode", {"arity": 3})
         may_dump_rewritten_version(subfolder, source, source_path.stem[1:], "drain", {})
         may_dump_rewritten_version(subfolder, source, source_path.stem[1:], "split", {})
+        may_dump_rewritten_version(subfolder, source, source_path.stem[1:], "df_arrows", {"create": "across"})
 
         mcd = Mcd(source, get_font_metrics, **params)
 
@@ -191,4 +195,4 @@ def test_launch_snapshot(capsys):
         main()
 
 if __name__ == "__main__":
-    unittest.main()
+    main()

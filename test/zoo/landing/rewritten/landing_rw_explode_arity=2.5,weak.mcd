@@ -1,36 +1,50 @@
+COMPOSER: _quantité
+DF, _11 COMPOSER, 0N [composante] PIÈCE
 :
 :
 :
+:
+
+DF, _11 COMPOSER, 0N [composée] PIÈCE
+PIÈCE: réf. pièce, libellé pièce
+DF, _11 REQUÉRIR, 0N PIÈCE
+:
+:
+:
+
+:
+DF, _11 FOURNIR, 1N PIÈCE
+REQUÉRIR: _qté requise
+DF, _11 REQUÉRIR, 1N PROJET
+:
+:
+
+DF, _11 FOURNIR, 1N SOCIÉTÉ
+FOURNIR: _qté fournie
+DF, _11 FOURNIR, 1N PROJET
+PROJET: num. projet, nom projet
+TRAVAILLER, 0N EMPLOYÉ, 1N PROJET
+:
+
+SOCIÉTÉ: num. société, raison sociale
+:
+:
+DIRIGER, 0N EMPLOYÉ, 01 PROJET
+EMPLOYÉ: matricule, nom employé
 DF, _11 AYANT-DROIT, 0N EMPLOYÉ
-AYANT-DROIT: nom ayant-droit, lien
-:
 
 CONTRÔLER, 0N< [filiale] SOCIÉTÉ, 01 [mère] SOCIÉTÉ
 :
-TRAVAILLER, 0N EMPLOYÉ, 1N PROJET
-EMPLOYÉ: matricule, nom employé
+:
+:
 EMPLOYER, 11 EMPLOYÉ, 1N DÉPARTEMENT
+AYANT-DROIT: nom ayant-droit, lien
+
+:
+:
+:
+:
 DÉPARTEMENT: num. département, nom département
-
-SOCIÉTÉ: num. société, raison sociale
-FOURNIR, 1N PROJET, 1N PIÈCE, 1N SOCIÉTÉ: qté fournie
-PROJET: num. projet, nom projet
-DIRIGER, 0N EMPLOYÉ, 01 PROJET
-:
-:
-
-:
-PIÈCE: réf. pièce, libellé pièce
-REQUÉRIR, 1N PROJET, 0N PIÈCE: qté requise
-:
-:
-:
-
-:
-COMPOSER, 0N [composée] PIÈCE, 0N [composante] PIÈCE: quantité
-:
-:
-:
 :
 
   (I) [Les pièces fournies par une société pour un projet font partie de celles qu'il requiert.] ..PIÈCE, ->REQUÉRIR, --FOURNIR, PROJET

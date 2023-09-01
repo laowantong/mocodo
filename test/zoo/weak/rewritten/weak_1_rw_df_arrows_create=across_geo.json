@@ -1,0 +1,21 @@
+{
+  "width": 314,
+  "height": 112,
+  "cx": [
+    [ "Œuvre", 48 ],
+    [ "DF0", 136 ],
+    [ "Exemplaire", 245 ]
+  ],
+  "cy": [
+    [ "Œuvre", 56 ],
+    [ "DF0", 56 ],
+    [ "Exemplaire", 56 ]
+  ],
+  "shift": [
+    [ "DF0,Œuvre,0", 0 ],
+    [ "DF0,Exemplaire,0", 0 ]
+  ],
+  "ratio": [
+    [ "DF0,Œuvre,0", 1.0 ]
+  ]
+}

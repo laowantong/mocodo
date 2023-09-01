@@ -1,0 +1,39 @@
+{
+  "width": 425,
+  "height": 294,
+  "cx": [
+    [ "MOLLIS", 141 ],
+    [ "NEC", 275 ],
+    [ "LACUS", 48 ],
+    [ "TRISTIS parent #1", 141 ],
+    [ "TRISTIS", 275 ],
+    [ "VITAE", 382 ],
+    [ "ULTRICES", 141 ],
+    [ "SODALES", 275 ]
+  ],
+  "cy": [
+    [ "MOLLIS", 47 ],
+    [ "NEC", 47 ],
+    [ "LACUS", 147 ],
+    [ "TRISTIS parent #1", 147 ],
+    [ "TRISTIS", 147 ],
+    [ "VITAE", 147 ],
+    [ "ULTRICES", 247 ],
+    [ "SODALES", 247 ]
+  ],
+  "shift": [
+    [ "MOLLIS,LACUS,0", 0 ],
+    [ "MOLLIS,NEC,0", 0 ],
+    [ "VITAE,NEC,0", 0 ],
+    [ "VITAE,SODALES,0", 0 ],
+    [ "ULTRICES,SODALES,0", 0 ],
+    [ "ULTRICES,LACUS,0", 0 ]
+  ],
+  "ratio": [
+    [ "MOLLIS,LACUS,0", 1.0 ],
+    [ "TRISTIS parent #1 / SODALES", 1.0 ],
+    [ "TRISTIS parent #1 / NEC", 1.0 ],
+    [ "TRISTIS parent #1 / LACUS", 1.0 ],
+    [ "VITAE,SODALES,0", 1.0 ]
+  ]
+}

@@ -1,7 +1,11 @@
-Ingénieur: ingénieur, nom ingénieur
-Gérer, /1N Responsable, 1N Ingénieur, 1N Projet
 Projet: projet, libellé projet
+:
 
-:
+DF, _11 Gérer, 1N Projet
+Ingénieur: ingénieur, nom ingénieur
+
+Gérer:
+DF, _11 Gérer, 1N Ingénieur
+
+DF, 11 Gérer, 1N Responsable
 Responsable: responsable, nom responsable
-:

@@ -1,7 +1,11 @@
-Projet: projet
-Affecter, /1N Site, /1N Projet, 0N Employé
 Site: site
+:
 
-:
+DF, 11 Affecter, 1N Site
 Employé: employé
-:
+
+Affecter: id. affecter
+DF, 11 Affecter, 0N Employé
+
+DF, 11 Affecter, 1N Projet
+Projet: projet

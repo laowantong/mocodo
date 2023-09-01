@@ -1,14 +1,14 @@
 {
-  "width": 876,
+  "width": 900,
   "height": 112,
   "cx": [
     [ "Entreprise", 68 ],
-    [ "Proposer", 215 ],
-    [ "Stage", 345 ],
-    [ "Attribuer", 469 ],
-    [ "Étudiant", 601 ],
-    [ "Soutenir", 729 ],
-    [ "Date", 837 ]
+    [ "Proposer", 207 ],
+    [ "Stage", 347 ],
+    [ "Attribuer", 489 ],
+    [ "Étudiant", 623 ],
+    [ "Soutenir", 753 ],
+    [ "Date", 861 ]
   ],
   "cy": [
     [ "Entreprise", 56 ],

@@ -1,7 +1,11 @@
-Employé: employé
-Appliquer, 0N Employé, 1N Projet, 1N Compétence
 Projet: projet
+:
 
-:
+DF, _11 Appliquer, 1N Projet
 Compétence: compétence
-:
+
+Appliquer:
+DF, _11 Appliquer, 1N Compétence
+
+DF, _11 Appliquer, 0N Employé
+Employé: employé

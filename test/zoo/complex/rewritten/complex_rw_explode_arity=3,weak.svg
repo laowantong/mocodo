@@ -1,207 +1,238 @@
 <?xml version="1.0" encoding="utf-8"?>
-<svg width="827" height="476" viewBox="0 0 827 476" xmlns="http://www.w3.org/2000/svg">
-<rect x="0" y="0" width="827" height="476" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<svg width="1025" height="494" viewBox="0 0 1025 494" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="1025" height="494" fill="#FFFFFF" stroke="none" stroke-width="0"/>
 
 <!-- Inheritance ANIMAL parent #1 -->
 <g>
-	<line x1="470" y1="183" x2="601" y2="183" stroke="#000000" stroke-width="1"/>
-	<polygon points="537 183 549 177 545 183 549 189" fill="#000000" stroke-width="0"/>
-	<line x1="737" y1="184" x2="601" y2="184" stroke="#000000" stroke-width="1"/>
-	<line x1="737" y1="182" x2="601" y2="182" stroke="#000000" stroke-width="1"/>
-	<line x1="602" y1="319" x2="602" y2="183" stroke="#000000" stroke-width="1"/>
-	<line x1="600" y1="319" x2="600" y2="183" stroke="#000000" stroke-width="1"/>
+	<line x1="673" y1="146" x2="818" y2="146" stroke="#000000" stroke-width="1"/>
+	<polygon points="740 146 752 140 748 146 752 152" fill="#000000" stroke-width="0"/>
+	<line x1="819" y1="255" x2="819" y2="146" stroke="#000000" stroke-width="1"/>
+	<line x1="817" y1="255" x2="817" y2="146" stroke="#000000" stroke-width="1"/>
+	<line x1="944" y1="147" x2="818" y2="147" stroke="#000000" stroke-width="1"/>
+	<line x1="944" y1="145" x2="818" y2="145" stroke="#000000" stroke-width="1"/>
 	<g>
-		<polygon points="601 154.13 576 197.43 626 197.43" stroke="#000000" stroke-width="1.5" fill="#FFFFFF"/>
-		<text x="601" y="189" fill="#000000" font-family="Copperplate" font-size="18"></text>
+		<polygon points="818 117.13 793 160.43 843 160.43" stroke="#000000" stroke-width="1.5" fill="#FFFFFF"/>
+		<text x="818" y="152" fill="#000000" font-family="Copperplate" font-size="18"></text>
 	</g>
 </g>
 
 <!-- Association A MÈRE -->
 <g>
-	<path d="M470 183 C419.33 129.33 419.33 87 470 56" fill="none" stroke="#000000" stroke-width="1"/>
-	<path d="M470 183 C522 129.33 522 87 470 56" fill="none" stroke="#000000" stroke-width="1"/>
-	<polygon points="506.39 127.99 504.06 114.78 508.67 120.33 515.56 118.2" fill="#000000" stroke-width="0"/>
+	<path d="M673 146 C635.67 92.67 635.67 56.67 673 38" fill="none" stroke="#000000" stroke-width="1"/>
+	<path d="M673 146 C711.67 92.67 711.67 56.67 673 38" fill="none" stroke="#000000" stroke-width="1"/>
+	<polygon points="700.7 91.01 697.25 78.04 702.32 83.17 709.0 80.46" fill="#000000" stroke-width="0"/>
 	<g>
-		<path d="M499 27 a14 14 90 0 1 14 14 V55 h-86 V41 a14 14 90 0 1 14 -14" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
-		<path d="M513 55 v16 a14 14 90 0 1 -14 14 H441 a14 14 90 0 1 -14 -14 V55 H86" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
-		<rect x="427" y="27" width="86" height="58" fill="none" rx="14" stroke="#000000" stroke-width="1.5"/>
-		<line x1="427" y1="55" x2="513" y2="55" stroke="#000000" stroke-width="1.5"/>
-		<text x="435" y="48.3" fill="#000000" font-family="Copperplate" font-size="18">A MÈRE</text>
+		<path d="M702 9 a14 14 90 0 1 14 14 V37 h-86 V23 a14 14 90 0 1 14 -14" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+		<path d="M716 37 v16 a14 14 90 0 1 -14 14 H644 a14 14 90 0 1 -14 -14 V37 H86" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+		<rect x="630" y="9" width="86" height="58" fill="none" rx="14" stroke="#000000" stroke-width="1.5"/>
+		<line x1="630" y1="37" x2="716" y2="37" stroke="#000000" stroke-width="1.5"/>
+		<text x="638" y="30.3" fill="#000000" font-family="Copperplate" font-size="18">A MÈRE</text>
 	</g>
-	<text x="445" y="115" fill="#000000" font-family="Futura" font-size="11">0,1</text>
-	<text x="477" y="115" fill="#000000" font-family="Futura" font-size="11">0,N</text>
-</g>
-
-<!-- Association OCCUPE -->
-<g>
-	<line x1="470" y1="183" x2="315" y2="183" stroke="#000000" stroke-width="1"/>
-	<line x1="315" y1="56" x2="315" y2="183" stroke="#000000" stroke-width="1"/>
-	<polygon points="315 94 321 106 315 102 309 106" fill="#000000" stroke-width="0"/>
-	<line x1="108" y1="183" x2="315" y2="183" stroke="#000000" stroke-width="1"/>
-	<g>
-		<path d="M47 123 L535 123 a7 7 0 0 1 7 7 L542 236 a7 7 0 0 1 &#45;7 7 L47 243 a7 7 0 0 1 &#45;7 &#45;7 L40 130 a7 7 0 0 1 7 &#45;7" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="0.3"/>
-		<path d="M47 123 L535 123 a7 7 0 0 1 7 7 L542 236 a7 7 0 0 1 &#45;7 7 L47 243 a7 7 0 0 1 &#45;7 &#45;7 L40 130 a7 7 0 0 1 7 &#45;7" fill="none" stroke="#000000" stroke-width="1.5" stroke-dasharray="0,4" stroke-linecap="round"/>
-		<path d="M347 154 a14 14 90 0 1 14 14 V182 h-92 V168 a14 14 90 0 1 14 -14" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
-		<path d="M361 182 v16 a14 14 90 0 1 -14 14 H283 a14 14 90 0 1 -14 -14 V182 H92" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
-		<rect x="269" y="154" width="92" height="58" fill="none" rx="14" stroke="#000000" stroke-width="1.5"/>
-		<line x1="269" y1="182" x2="361" y2="182" stroke="#000000" stroke-width="1.5"/>
-		<text x="276" y="175.3" fill="#000000" font-family="Copperplate" font-size="18">OCCUPE</text>
-	</g>
-	<text x="374" y="204" fill="#000000" font-family="Futura" font-size="11">1,N</text>
-	<text x="325" y="115" fill="#000000" font-family="Futura" font-size="11">1,N</text>
-	<text x="181" y="204" fill="#000000" font-family="Futura" font-size="11">1,N</text>
-</g>
-
-<!-- Association PEUT VIVRE DANS -->
-<g>
-	<line x1="315" y1="319" x2="108" y2="319" stroke="#000000" stroke-width="1"/>
-	<line x1="108" y1="183" x2="108" y2="319" stroke="#000000" stroke-width="1"/>
-	<g>
-		<path d="M184 290 a14 14 90 0 1 14 14 V318 h-180 V304 a14 14 90 0 1 14 -14" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
-		<path d="M198 318 v16 a14 14 90 0 1 -14 14 H32 a14 14 90 0 1 -14 -14 V318 H180" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
-		<rect x="18" y="290" width="180" height="58" fill="none" rx="14" stroke="#000000" stroke-width="1.5"/>
-		<line x1="18" y1="318" x2="198" y2="318" stroke="#000000" stroke-width="1.5"/>
-		<text x="25" y="311.3" fill="#000000" font-family="Copperplate" font-size="18">PEUT VIVRE DANS</text>
-		<text x="25" y="336.1" fill="#000000" font-family="Gill Sans" font-size="15">nb. max. congénères</text>
-	</g>
-	<text x="208" y="340" fill="#000000" font-family="Futura" font-size="11">1,N</text>
-	<text x="118" y="234" fill="#000000" font-family="Futura" font-size="11">1,N</text>
+	<text x="652" y="83" fill="#000000" font-family="Futura" font-size="11">0,1</text>
+	<text x="676" y="83" fill="#000000" font-family="Futura" font-size="11">0,N</text>
 </g>
 
 <!-- Association DF0 -->
 <g>
-	<line x1="315" y1="319" x2="470" y2="319" stroke="#000000" stroke-width="1"/>
-	<line x1="470" y1="183" x2="470" y2="319" stroke="#000000" stroke-width="1"/>
+	<line x1="294" y1="146" x2="190" y2="146" stroke="#000000" stroke-width="1"/>
+	<line x1="75" y1="146" x2="190" y2="146" stroke="#000000" stroke-width="1"/>
 	<g>
-		<circle cx="470" cy="319" r="20" stroke="#000000" stroke-width="1.5" fill="#FFFFFF"/>
-		<text x="457" y="323.8" fill="#000000" font-family="Copperplate" font-size="18">DF</text>
+		<circle cx="190" cy="146" r="20" stroke="#000000" stroke-width="1.5" fill="#FFFFFF"/>
+		<text x="177" y="150.8" fill="#000000" font-family="Copperplate" font-size="18">DF</text>
 	</g>
-	<text x="403" y="340" fill="#000000" font-family="Futura" font-size="11">0,N</text>
-	<text x="480" y="259" fill="#000000" font-family="Futura" font-size="11">1,1</text>
-	<line x1="480" y1="261" x2="498" y2="261" stroke="#000000" stroke-width="1"/>
+	<text x="216" y="162" fill="#000000" font-family="Futura" font-size="11">1,1</text>
+	<text x="146" y="162" fill="#000000" font-family="Futura" font-size="11">1,N</text>
+</g>
+
+<!-- Association DF1 -->
+<g>
+	<line x1="294" y1="146" x2="476" y2="146" stroke="#000000" stroke-width="1"/>
+	<line x1="673" y1="146" x2="476" y2="146" stroke="#000000" stroke-width="1"/>
+	<g>
+		<circle cx="476" cy="146" r="20" stroke="#000000" stroke-width="1.5" fill="#FFFFFF"/>
+		<text x="463" y="150.8" fill="#000000" font-family="Copperplate" font-size="18">DF</text>
+	</g>
+	<text x="354" y="162" fill="#000000" font-family="Futura" font-size="11">1,1</text>
+	<line x1="354" y1="164" x2="372" y2="164" stroke="#000000" stroke-width="1"/>
+	<text x="582" y="162" fill="#000000" font-family="Futura" font-size="11">1,N</text>
+</g>
+
+<!-- Association DF2 -->
+<g>
+	<line x1="294" y1="146" x2="294" y2="255" stroke="#000000" stroke-width="1"/>
+	<line x1="294" y1="356" x2="294" y2="255" stroke="#000000" stroke-width="1"/>
+	<g>
+		<circle cx="294" cy="255" r="20" stroke="#000000" stroke-width="1.5" fill="#FFFFFF"/>
+		<text x="281" y="259.8" fill="#000000" font-family="Copperplate" font-size="18">DF</text>
+	</g>
+	<text x="299" y="183" fill="#000000" font-family="Futura" font-size="11">1,1</text>
+	<line x1="299" y1="185" x2="317" y2="185" stroke="#000000" stroke-width="1"/>
+	<text x="299" y="318" fill="#000000" font-family="Futura" font-size="11">1,N</text>
+</g>
+
+<!-- Association DF3 -->
+<g>
+	<line x1="673" y1="356" x2="673" y2="255" stroke="#000000" stroke-width="1"/>
+	<line x1="673" y1="146" x2="673" y2="255" stroke="#000000" stroke-width="1"/>
+	<g>
+		<circle cx="673" cy="255" r="20" stroke="#000000" stroke-width="1.5" fill="#FFFFFF"/>
+		<text x="660" y="259.8" fill="#000000" font-family="Copperplate" font-size="18">DF</text>
+	</g>
+	<text x="678" y="301" fill="#000000" font-family="Futura" font-size="11">0,N</text>
+	<text x="678" y="217" fill="#000000" font-family="Futura" font-size="11">1,1</text>
+	<line x1="678" y1="219" x2="696" y2="219" stroke="#000000" stroke-width="1"/>
+</g>
+
+<!-- Association PEUT VIVRE DANS -->
+<g>
+	<line x1="673" y1="356" x2="476" y2="356" stroke="#000000" stroke-width="1"/>
+	<line x1="294" y1="356" x2="476" y2="356" stroke="#000000" stroke-width="1"/>
+	<g>
+		<path d="M552 327 a14 14 90 0 1 14 14 V355 h-180 V341 a14 14 90 0 1 14 -14" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+		<path d="M566 355 v16 a14 14 90 0 1 -14 14 H400 a14 14 90 0 1 -14 -14 V355 H180" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+		<rect x="386" y="327" width="180" height="58" fill="none" rx="14" stroke="#000000" stroke-width="1.5"/>
+		<line x1="386" y1="355" x2="566" y2="355" stroke="#000000" stroke-width="1.5"/>
+		<text x="393" y="348.3" fill="#000000" font-family="Copperplate" font-size="18">PEUT VIVRE DANS</text>
+		<text x="393" y="373.1" fill="#000000" font-family="Gill Sans" font-size="15">nb. max. congénères</text>
+	</g>
+	<text x="571" y="372" fill="#000000" font-family="Futura" font-size="11">1,N</text>
+	<text x="362" y="372" fill="#000000" font-family="Futura" font-size="11">1,N</text>
 </g>
 
 <!-- Association PEUT COHABITER AVEC -->
 <g>
-	<path d="M315 319 C367 367.67 367 404.33 315 429" fill="none" stroke="#000000" stroke-width="1"/>
-	<path d="M315 319 C263 367.67 263 404.33 315 429" fill="none" stroke="#000000" stroke-width="1"/>
+	<path d="M673 356 C711.67 401.33 711.67 434.67 673 456" fill="none" stroke="#000000" stroke-width="1"/>
+	<path d="M673 356 C634.33 401.33 634.33 434.67 673 456" fill="none" stroke="#000000" stroke-width="1"/>
 	<g>
-		<path d="M417 400 a14 14 90 0 1 14 14 V428 h-232 V414 a14 14 90 0 1 14 -14" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
-		<path d="M431 428 v16 a14 14 90 0 1 -14 14 H213 a14 14 90 0 1 -14 -14 V428 H232" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
-		<rect x="199" y="400" width="232" height="58" fill="none" rx="14" stroke="#000000" stroke-width="1.5"/>
-		<line x1="199" y1="428" x2="431" y2="428" stroke="#000000" stroke-width="1.5"/>
-		<text x="207" y="421.3" fill="#000000" font-family="Copperplate" font-size="18">PEUT COHABITER AVEC</text>
-		<text x="206" y="446.1" fill="#000000" font-family="Gill Sans" font-size="15">nb. max. commensaux</text>
+		<path d="M775 427 a14 14 90 0 1 14 14 V455 h-232 V441 a14 14 90 0 1 14 -14" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+		<path d="M789 455 v16 a14 14 90 0 1 -14 14 H571 a14 14 90 0 1 -14 -14 V455 H232" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+		<rect x="557" y="427" width="232" height="58" fill="none" rx="14" stroke="#000000" stroke-width="1.5"/>
+		<line x1="557" y1="455" x2="789" y2="455" stroke="#000000" stroke-width="1.5"/>
+		<text x="565" y="448.3" fill="#000000" font-family="Copperplate" font-size="18">PEUT COHABITER AVEC</text>
+		<text x="564" y="473.1" fill="#000000" font-family="Gill Sans" font-size="15">nb. max. commensaux</text>
 	</g>
-	<text x="321" y="387" fill="#000000" font-family="Futura" font-size="11">0,N</text>
-	<text x="290" y="387" fill="#000000" font-family="Futura" font-size="11">0,N</text>
+	<text x="676" y="419" fill="#000000" font-family="Futura" font-size="11">0,N</text>
+	<text x="651" y="419" fill="#000000" font-family="Futura" font-size="11">0,N</text>
 </g>
 
 <!-- Entity PÉRIODE -->
 <g>
 	<g>
-		<rect x="249" y="18" width="132" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
-		<rect x="281" y="48" width="100" height="46" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
-		<rect x="249" y="48" width="32" height="46" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
-		<line x1="281" y1="48" x2="281" y2="94" stroke="#000000" stroke-width="0.38"/>
-		<rect x="249" y="18" width="132" height="76" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
-		<line x1="249" y1="48" x2="381" y2="48" stroke="#000000" stroke-width="1.5"/>
+		<rect x="9" y="108" width="132" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="41" y="138" width="100" height="46" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="9" y="138" width="32" height="46" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<line x1="41" y1="138" x2="41" y2="184" stroke="#000000" stroke-width="0.38"/>
+		<rect x="9" y="108" width="132" height="76" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
+		<line x1="9" y1="138" x2="141" y2="138" stroke="#000000" stroke-width="1.5"/>
 	</g>
-	<text x="274" y="39.3" fill="#000000" font-family="Copperplate" font-size="18">PÉRIODE</text>
-	<text x="289" y="65.1" fill="#000000" font-family="Gill Sans" font-size="15">date début</text>
-	<text x="257" y="65.1" fill="#000000" font-family="Gill Sans" font-size="15">ID</text>
-	<line x1="289" y1="68" x2="357" y2="68" stroke="#000000" stroke-width="1"/>
-	<text x="289" y="82.1" fill="#000000" font-family="Gill Sans" font-size="15">date fin</text>
-	<text x="257" y="82.1" fill="#000000" font-family="Gill Sans" font-size="15">ID</text>
-	<line x1="289" y1="85" x2="336" y2="85" stroke="#000000" stroke-width="1"/>
+	<text x="34" y="129.3" fill="#000000" font-family="Copperplate" font-size="18">PÉRIODE</text>
+	<text x="49" y="155.1" fill="#000000" font-family="Gill Sans" font-size="15">date début</text>
+	<text x="17" y="155.1" fill="#000000" font-family="Gill Sans" font-size="15">ID</text>
+	<line x1="49" y1="158" x2="117" y2="158" stroke="#000000" stroke-width="1"/>
+	<text x="49" y="172.1" fill="#000000" font-family="Gill Sans" font-size="15">date fin</text>
+	<text x="17" y="172.1" fill="#000000" font-family="Gill Sans" font-size="15">ID</text>
+	<line x1="49" y1="175" x2="96" y2="175" stroke="#000000" stroke-width="1"/>
 </g>
 
-<!-- Entity ENCLOS -->
+<!-- Entity OCCUPE -->
 <g>
 	<g>
-		<rect x="45" y="153" width="126" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
-		<rect x="77" y="183" width="94" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
-		<rect x="45" y="183" width="32" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
-		<line x1="77" y1="183" x2="77" y2="213" stroke="#000000" stroke-width="0.38"/>
-		<rect x="45" y="153" width="126" height="60" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
-		<line x1="45" y1="183" x2="171" y2="183" stroke="#000000" stroke-width="1.5"/>
+		<rect x="239" y="125" width="110" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="255" y="155" width="94" height="12" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="239" y="155" width="16" height="12" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<line x1="255" y1="155" x2="255" y2="167" stroke="#000000" stroke-width="0.38"/>
+		<rect x="239" y="125" width="110" height="42" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
+		<line x1="239" y1="155" x2="349" y2="155" stroke="#000000" stroke-width="1.5"/>
 	</g>
-	<text x="70" y="174.3" fill="#000000" font-family="Copperplate" font-size="18">ENCLOS</text>
-	<text x="85" y="200.1" fill="#000000" font-family="Gill Sans" font-size="15">num. enclos</text>
-	<text x="53" y="200.1" fill="#000000" font-family="Gill Sans" font-size="15">ID</text>
-	<line x1="85" y1="203" x2="160" y2="203" stroke="#000000" stroke-width="1"/>
+	<text x="255" y="146.3" fill="#000000" font-family="Copperplate" font-size="18">OCCUPE</text>
 </g>
 
 <!-- Entity ANIMAL -->
 <g>
 	<g>
-		<rect x="403" y="128" width="134" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
-		<rect x="431" y="158" width="106" height="80" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
-		<rect x="403" y="158" width="28" height="80" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
-		<line x1="431" y1="158" x2="431" y2="238" stroke="#000000" stroke-width="0.38"/>
-		<rect x="403" y="128" width="134" height="110" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
-		<line x1="403" y1="158" x2="537" y2="158" stroke="#000000" stroke-width="1.5"/>
+		<rect x="606" y="91" width="134" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="634" y="121" width="106" height="80" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="606" y="121" width="28" height="80" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<line x1="634" y1="121" x2="634" y2="201" stroke="#000000" stroke-width="0.38"/>
+		<rect x="606" y="91" width="134" height="110" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
+		<line x1="606" y1="121" x2="740" y2="121" stroke="#000000" stroke-width="1.5"/>
 	</g>
-	<text x="435" y="149.3" fill="#000000" font-family="Copperplate" font-size="18">ANIMAL</text>
-	<text x="439" y="175.1" fill="#000000" font-family="Gill Sans" font-size="15">nom</text>
-	<text x="411" y="175.1" fill="#000000" font-family="Gill Sans" font-size="15">id</text>
-	<line x1="439" y1="178" x2="468" y2="178" stroke="#000000" stroke-width="1" stroke-dasharray="4"/>
-	<text x="439" y="192.1" fill="#000000" font-family="Gill Sans" font-size="15">sexe</text>
-	<text x="416" y="192.1" fill="#000000" font-family="Gill Sans" font-size="15"></text>
-	<text x="439" y="209.1" fill="#000000" font-family="Gill Sans" font-size="15">date naissance</text>
-	<text x="411" y="209.1" fill="#000000" font-family="Gill Sans" font-size="15">id</text>
-	<line x1="439" y1="212" x2="529" y2="212" stroke="#000000" stroke-width="1" stroke-dasharray="4"/>
-	<text x="439" y="226" fill="#000000" font-family="Gill Sans" font-size="15">date décès</text>
-	<text x="416" y="226" fill="#000000" font-family="Gill Sans" font-size="15"></text>
-</g>
-
-<!-- Entity CARNIVORE -->
-<g>
-	<g>
-		<rect x="665" y="153" width="144" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
-		<rect x="682" y="183" width="127" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
-		<rect x="665" y="183" width="17" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
-		<line x1="682" y1="183" x2="682" y2="213" stroke="#000000" stroke-width="0.38"/>
-		<rect x="665" y="153" width="144" height="60" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
-		<line x1="665" y1="183" x2="809" y2="183" stroke="#000000" stroke-width="1.5"/>
-	</g>
-	<text x="682" y="174.3" fill="#000000" font-family="Copperplate" font-size="18">CARNIVORE</text>
-	<text x="690" y="200.1" fill="#000000" font-family="Gill Sans" font-size="15">quantité viande</text>
-	<text x="673" y="200.1" fill="#000000" font-family="Gill Sans" font-size="15"></text>
-</g>
-
-<!-- Entity ESPÈCE -->
-<g>
-	<g>
-		<rect x="237" y="272" width="156" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
-		<rect x="269" y="302" width="124" height="64" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
-		<rect x="237" y="302" width="32" height="64" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
-		<line x1="269" y1="302" x2="269" y2="366" stroke="#000000" stroke-width="0.38"/>
-		<rect x="237" y="272" width="156" height="94" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
-		<line x1="237" y1="302" x2="393" y2="302" stroke="#000000" stroke-width="1.5"/>
-	</g>
-	<text x="278" y="293.3" fill="#000000" font-family="Copperplate" font-size="18">ESPÈCE</text>
-	<text x="277" y="319.1" fill="#000000" font-family="Gill Sans" font-size="15">code espèce</text>
-	<text x="245" y="319.1" fill="#000000" font-family="Gill Sans" font-size="15">ID</text>
-	<line x1="277" y1="322" x2="355" y2="322" stroke="#000000" stroke-width="1"/>
-	<text x="277" y="336.1" fill="#000000" font-family="Gill Sans" font-size="15">nom latin</text>
-	<text x="248" y="336.1" fill="#000000" font-family="Gill Sans" font-size="15">1</text>
-	<text x="277" y="353" fill="#000000" font-family="Gill Sans" font-size="15">nom vernaculaire</text>
-	<text x="252" y="353" fill="#000000" font-family="Gill Sans" font-size="15"></text>
+	<text x="638" y="112.3" fill="#000000" font-family="Copperplate" font-size="18">ANIMAL</text>
+	<text x="642" y="138.1" fill="#000000" font-family="Gill Sans" font-size="15">nom</text>
+	<text x="614" y="138.1" fill="#000000" font-family="Gill Sans" font-size="15">id</text>
+	<line x1="642" y1="141" x2="671" y2="141" stroke="#000000" stroke-width="1" stroke-dasharray="4"/>
+	<text x="642" y="155.1" fill="#000000" font-family="Gill Sans" font-size="15">sexe</text>
+	<text x="619" y="155.1" fill="#000000" font-family="Gill Sans" font-size="15"></text>
+	<text x="642" y="172.1" fill="#000000" font-family="Gill Sans" font-size="15">date naissance</text>
+	<text x="614" y="172.1" fill="#000000" font-family="Gill Sans" font-size="15">id</text>
+	<line x1="642" y1="175" x2="732" y2="175" stroke="#000000" stroke-width="1" stroke-dasharray="4"/>
+	<text x="642" y="189" fill="#000000" font-family="Gill Sans" font-size="15">date décès</text>
+	<text x="619" y="189" fill="#000000" font-family="Gill Sans" font-size="15"></text>
 </g>
 
 <!-- Entity HERBIVORE -->
 <g>
 	<g>
-		<rect x="529" y="289" width="144" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
-		<rect x="546" y="319" width="127" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
-		<rect x="529" y="319" width="17" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
-		<line x1="546" y1="319" x2="546" y2="349" stroke="#000000" stroke-width="0.38"/>
-		<rect x="529" y="289" width="144" height="60" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
-		<line x1="529" y1="319" x2="673" y2="319" stroke="#000000" stroke-width="1.5"/>
+		<rect x="872" y="116" width="144" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="889" y="146" width="127" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="872" y="146" width="17" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<line x1="889" y1="146" x2="889" y2="176" stroke="#000000" stroke-width="0.38"/>
+		<rect x="872" y="116" width="144" height="60" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
+		<line x1="872" y1="146" x2="1016" y2="146" stroke="#000000" stroke-width="1.5"/>
 	</g>
-	<text x="546" y="310.3" fill="#000000" font-family="Copperplate" font-size="18">HERBIVORE</text>
-	<text x="554" y="336.1" fill="#000000" font-family="Gill Sans" font-size="15">plante préférée</text>
-	<text x="537" y="336.1" fill="#000000" font-family="Gill Sans" font-size="15"></text>
+	<text x="889" y="137.3" fill="#000000" font-family="Copperplate" font-size="18">HERBIVORE</text>
+	<text x="897" y="163.1" fill="#000000" font-family="Gill Sans" font-size="15">plante préférée</text>
+	<text x="880" y="163.1" fill="#000000" font-family="Gill Sans" font-size="15"></text>
+</g>
+
+<!-- Entity CARNIVORE -->
+<g>
+	<g>
+		<rect x="746" y="225" width="144" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="763" y="255" width="127" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="746" y="255" width="17" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<line x1="763" y1="255" x2="763" y2="285" stroke="#000000" stroke-width="0.38"/>
+		<rect x="746" y="225" width="144" height="60" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
+		<line x1="746" y1="255" x2="890" y2="255" stroke="#000000" stroke-width="1.5"/>
+	</g>
+	<text x="763" y="246.3" fill="#000000" font-family="Copperplate" font-size="18">CARNIVORE</text>
+	<text x="771" y="272.1" fill="#000000" font-family="Gill Sans" font-size="15">quantité viande</text>
+	<text x="754" y="272.1" fill="#000000" font-family="Gill Sans" font-size="15"></text>
+</g>
+
+<!-- Entity ENCLOS -->
+<g>
+	<g>
+		<rect x="231" y="326" width="126" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="263" y="356" width="94" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="231" y="356" width="32" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<line x1="263" y1="356" x2="263" y2="386" stroke="#000000" stroke-width="0.38"/>
+		<rect x="231" y="326" width="126" height="60" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
+		<line x1="231" y1="356" x2="357" y2="356" stroke="#000000" stroke-width="1.5"/>
+	</g>
+	<text x="256" y="347.3" fill="#000000" font-family="Copperplate" font-size="18">ENCLOS</text>
+	<text x="271" y="373.1" fill="#000000" font-family="Gill Sans" font-size="15">num. enclos</text>
+	<text x="239" y="373.1" fill="#000000" font-family="Gill Sans" font-size="15">ID</text>
+	<line x1="271" y1="376" x2="346" y2="376" stroke="#000000" stroke-width="1"/>
+</g>
+
+<!-- Entity ESPÈCE -->
+<g>
+	<g>
+		<rect x="595" y="309" width="156" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="627" y="339" width="124" height="64" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="595" y="339" width="32" height="64" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<line x1="627" y1="339" x2="627" y2="403" stroke="#000000" stroke-width="0.38"/>
+		<rect x="595" y="309" width="156" height="94" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
+		<line x1="595" y1="339" x2="751" y2="339" stroke="#000000" stroke-width="1.5"/>
+	</g>
+	<text x="636" y="330.3" fill="#000000" font-family="Copperplate" font-size="18">ESPÈCE</text>
+	<text x="635" y="356.1" fill="#000000" font-family="Gill Sans" font-size="15">code espèce</text>
+	<text x="603" y="356.1" fill="#000000" font-family="Gill Sans" font-size="15">ID</text>
+	<line x1="635" y1="359" x2="713" y2="359" stroke="#000000" stroke-width="1"/>
+	<text x="635" y="373.1" fill="#000000" font-family="Gill Sans" font-size="15">nom latin</text>
+	<text x="606" y="373.1" fill="#000000" font-family="Gill Sans" font-size="15">1</text>
+	<text x="635" y="390" fill="#000000" font-family="Gill Sans" font-size="15">nom vernaculaire</text>
+	<text x="610" y="390" fill="#000000" font-family="Gill Sans" font-size="15"></text>
 </g>
 </svg>

@@ -1,7 +1,11 @@
-Ingénieur: ingénieur
-Gérer, /1N Responsable, 1N Ingénieur, 1N Projet
 Projet: projet
+:
 
-:
+DF, 11 Gérer, 1N Projet
+Ingénieur: ingénieur
+
+Gérer: id. gérer
+DF, 11 Gérer, 1N Ingénieur
+
+DF, 11 Gérer, 1N Responsable
 Responsable: responsable
-:

@@ -1,71 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<svg width="474" height="253" viewBox="0 0 474 253" xmlns="http://www.w3.org/2000/svg">
-<rect id="frame" x="0" y="0" width="474" height="253" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<svg width="229" height="362" viewBox="0 0 229 362" xmlns="http://www.w3.org/2000/svg">
+<rect id="frame" x="0" y="0" width="229" height="362" fill="#FFFFFF" stroke="none" stroke-width="0"/>
 
-<!-- Association Utiliser -->
+<!-- Association DF0 -->
 <g>
-	<line x1="94" y1="74" x2="256" y2="74" stroke="#000000" stroke-width="1"/>
-	<polygon points="152 74 164 68 160 74 164 80" fill="#000000" stroke-width="0"/>
-	<line x1="256" y1="187" x2="256" y2="74" stroke="#000000" stroke-width="1"/>
-	<polygon points="256 157 250 145 256 149 262 145" fill="#000000" stroke-width="0"/>
-	<line x1="399" y1="74" x2="256" y2="74" stroke="#000000" stroke-width="1"/>
-	<polygon points="360 74 348 80 352 74 348 68" fill="#000000" stroke-width="0"/>
+	<line x1="55" y1="223" x2="55" y2="139" stroke="#000000" stroke-width="1"/>
+	<line x1="55" y1="47" x2="55" y2="139" stroke="#000000" stroke-width="1"/>
 	<g>
-		<path d="M208 26 L441 26 a7 7 0 0 1 7 7 L448 115 a7 7 0 0 1 &#45;7 7 L318 122 a7 7 0 0 0 &#45;7 7 L311 220 a7 7 0 0 1 &#45;7 7 L208 227 a7 7 0 0 1 &#45;7 &#45;7 L201 33 a7 7 0 0 1 7 &#45;7" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="0.1"/>
-		<path d="M208 26 L441 26 a7 7 0 0 1 7 7 L448 115 a7 7 0 0 1 &#45;7 7 L318 122 a7 7 0 0 0 &#45;7 7 L311 220 a7 7 0 0 1 &#45;7 7 L208 227 a7 7 0 0 1 &#45;7 &#45;7 L201 33 a7 7 0 0 1 7 &#45;7" fill="none" stroke="#000000" stroke-width="1.5" stroke-dasharray="0,4" stroke-linecap="round"/>
-		<path d="M23 16 L451 16 a7 7 0 0 1 7 7 L458 125 a7 7 0 0 1 &#45;7 7 L23 132 a7 7 0 0 1 &#45;7 &#45;7 L16 23 a7 7 0 0 1 7 &#45;7" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="0.1"/>
-		<path d="M23 16 L451 16 a7 7 0 0 1 7 7 L458 125 a7 7 0 0 1 &#45;7 7 L23 132 a7 7 0 0 1 &#45;7 &#45;7 L16 23 a7 7 0 0 1 7 &#45;7" fill="none" stroke="#000000" stroke-width="1.5" stroke-dasharray="0,4" stroke-linecap="round"/>
-		<path d="M13 6 L324 6 a7 7 0 0 1 7 7 L331 240 a7 7 0 0 1 &#45;7 7 L188 247 a7 7 0 0 1 &#45;7 &#45;7 L181 149 a7 7 0 0 0 &#45;7 &#45;7 L13 142 a7 7 0 0 1 &#45;7 &#45;7 L6 13 a7 7 0 0 1 7 &#45;7" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="0.1"/>
-		<path d="M13 6 L324 6 a7 7 0 0 1 7 7 L331 240 a7 7 0 0 1 &#45;7 7 L188 247 a7 7 0 0 1 &#45;7 &#45;7 L181 149 a7 7 0 0 0 &#45;7 &#45;7 L13 142 a7 7 0 0 1 &#45;7 &#45;7 L6 13 a7 7 0 0 1 7 &#45;7" fill="none" stroke="#000000" stroke-width="1.5" stroke-dasharray="0,4" stroke-linecap="round"/>
-		<path d="M287 45 a14 14 90 0 1 14 14 V73 h-90 V59 a14 14 90 0 1 14 -14" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
-		<path d="M301 73 v16 a14 14 90 0 1 -14 14 H225 a14 14 90 0 1 -14 -14 V73 H90" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
-		<rect x="211" y="45" width="90" height="58" fill="none" rx="14" stroke="#000000" stroke-width="1.5"/>
-		<line x1="211" y1="73" x2="301" y2="73" stroke="#000000" stroke-width="1.5"/>
-		<text x="218" y="66.3" fill="#000000" font-family="Copperplate" font-size="18">Utiliser</text>
+		<circle cx="55" cy="139" r="20" stroke="#000000" stroke-width="1.5" fill="#FFFFFF"/>
+		<text x="42" y="143.8" fill="#000000" font-family="Copperplate" font-size="18">DF</text>
 	</g>
-	<text x="172" y="105" fill="#000000" font-family="Futura" font-size="11">1,N</text>
-	<text x="276" y="134" fill="#000000" font-family="Futura" font-size="11">1,N</text>
-	<text x="321" y="105" fill="#000000" font-family="Futura" font-size="11">1,N</text>
+	<text x="60" y="185" fill="#000000" font-family="Futura" font-size="11">1,1</text>
+	<text x="60" y="101" fill="#000000" font-family="Futura" font-size="11">1,N</text>
 </g>
 
-<!-- Entity Technicien -->
+<!-- Association DF1 -->
 <g>
+	<line x1="55" y1="223" x2="162" y2="223" stroke="#000000" stroke-width="1"/>
+	<line x1="162" y1="139" x2="162" y2="223" stroke="#000000" stroke-width="1"/>
 	<g>
-		<rect x="36" y="36" width="116" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
-		<rect x="36" y="66" width="116" height="46" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
-		<rect x="36" y="36" width="116" height="76" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
-		<line x1="36" y1="66" x2="152" y2="66" stroke="#000000" stroke-width="1.5"/>
+		<circle cx="162" cy="223" r="20" stroke="#000000" stroke-width="1.5" fill="#FFFFFF"/>
+		<text x="149" y="227.8" fill="#000000" font-family="Copperplate" font-size="18">DF</text>
 	</g>
-	<text x="44" y="57.3" fill="#000000" font-family="Copperplate" font-size="18">Technicien</text>
-	<text x="44" y="83.1" fill="#000000" font-family="Gill Sans" font-size="15">technicien</text>
-	<line x1="44" y1="86" x2="108" y2="86" stroke="#000000" stroke-width="1"/>
-	<text x="44" y="100.1" fill="#000000" font-family="Gill Sans" font-size="15">nom technicien</text>
+	<text x="106" y="239" fill="#000000" font-family="Futura" font-size="11">1,1</text>
+	<text x="167" y="185" fill="#000000" font-family="Futura" font-size="11">1,N</text>
+</g>
+
+<!-- Association DF2 -->
+<g>
+	<line x1="55" y1="223" x2="55" y2="315" stroke="#000000" stroke-width="1"/>
+	<line x1="162" y1="315" x2="55" y2="315" stroke="#000000" stroke-width="1"/>
+	<g>
+		<circle cx="55" cy="315" r="20" stroke="#000000" stroke-width="1.5" fill="#FFFFFF"/>
+		<text x="42" y="319.8" fill="#000000" font-family="Copperplate" font-size="18">DF</text>
+	</g>
+	<text x="60" y="269" fill="#000000" font-family="Futura" font-size="11">1,1</text>
+	<text x="80" y="331" fill="#000000" font-family="Futura" font-size="11">1,N</text>
 </g>
 
 <!-- Entity Projet -->
 <g>
 	<g>
-		<rect x="360" y="36" width="78" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
-		<rect x="360" y="66" width="78" height="46" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
-		<rect x="360" y="36" width="78" height="76" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
-		<line x1="360" y1="66" x2="438" y2="66" stroke="#000000" stroke-width="1.5"/>
+		<rect x="16" y="9" width="78" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="16" y="39" width="78" height="46" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="16" y="9" width="78" height="76" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
+		<line x1="16" y1="39" x2="94" y2="39" stroke="#000000" stroke-width="1.5"/>
 	</g>
-	<text x="368" y="57.3" fill="#000000" font-family="Copperplate" font-size="18">Projet</text>
-	<text x="368" y="83.1" fill="#000000" font-family="Gill Sans" font-size="15">projet</text>
-	<line x1="368" y1="86" x2="407" y2="86" stroke="#000000" stroke-width="1"/>
-	<text x="368" y="100.1" fill="#000000" font-family="Gill Sans" font-size="15">libellé</text>
+	<text x="24" y="30.3" fill="#000000" font-family="Copperplate" font-size="18">Projet</text>
+	<text x="24" y="56.1" fill="#000000" font-family="Gill Sans" font-size="15">projet</text>
+	<line x1="24" y1="59" x2="63" y2="59" stroke="#000000" stroke-width="1"/>
+	<text x="24" y="73.1" fill="#000000" font-family="Gill Sans" font-size="15">libellé</text>
 </g>
 
 <!-- Entity Carnet -->
 <g>
 	<g>
-		<rect x="215" y="157" width="82" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
-		<rect x="215" y="187" width="82" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
-		<rect x="215" y="157" width="82" height="60" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
-		<line x1="215" y1="187" x2="297" y2="187" stroke="#000000" stroke-width="1.5"/>
+		<rect x="121" y="109" width="82" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="121" y="139" width="82" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="121" y="109" width="82" height="60" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
+		<line x1="121" y1="139" x2="203" y2="139" stroke="#000000" stroke-width="1.5"/>
 	</g>
-	<text x="223" y="178.3" fill="#000000" font-family="Copperplate" font-size="18">Carnet</text>
-	<text x="223" y="204.1" fill="#000000" font-family="Gill Sans" font-size="15">carnet</text>
-	<line x1="223" y1="207" x2="263" y2="207" stroke="#000000" stroke-width="1"/>
+	<text x="129" y="130.3" fill="#000000" font-family="Copperplate" font-size="18">Carnet</text>
+	<text x="129" y="156.1" fill="#000000" font-family="Gill Sans" font-size="15">carnet</text>
+	<line x1="129" y1="159" x2="169" y2="159" stroke="#000000" stroke-width="1"/>
+</g>
+
+<!-- Entity Utiliser -->
+<g>
+	<g>
+		<rect x="9" y="193" width="92" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="9" y="223" width="92" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="9" y="193" width="92" height="60" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
+		<line x1="9" y1="223" x2="101" y2="223" stroke="#000000" stroke-width="1.5"/>
+	</g>
+	<text x="17" y="214.3" fill="#000000" font-family="Copperplate" font-size="18">Utiliser</text>
+	<text x="17" y="240.1" fill="#000000" font-family="Gill Sans" font-size="15">id. utiliser</text>
+	<line x1="17" y1="243" x2="79" y2="243" stroke="#000000" stroke-width="1"/>
+</g>
+
+<!-- Entity Technicien -->
+<g>
+	<g>
+		<rect x="104" y="277" width="116" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="104" y="307" width="116" height="46" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="104" y="277" width="116" height="76" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
+		<line x1="104" y1="307" x2="220" y2="307" stroke="#000000" stroke-width="1.5"/>
+	</g>
+	<text x="112" y="298.3" fill="#000000" font-family="Copperplate" font-size="18">Technicien</text>
+	<text x="112" y="324.1" fill="#000000" font-family="Gill Sans" font-size="15">technicien</text>
+	<line x1="112" y1="327" x2="176" y2="327" stroke="#000000" stroke-width="1"/>
+	<text x="112" y="341.1" fill="#000000" font-family="Gill Sans" font-size="15">nom technicien</text>
 </g>
 </svg>

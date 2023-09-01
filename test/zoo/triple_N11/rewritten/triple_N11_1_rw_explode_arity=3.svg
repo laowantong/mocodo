@@ -1,69 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<svg width="396" height="250" viewBox="0 0 396 250" xmlns="http://www.w3.org/2000/svg">
-<rect id="frame" x="0" y="0" width="396" height="250" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<svg width="219" height="378" viewBox="0 0 219 378" xmlns="http://www.w3.org/2000/svg">
+<rect id="frame" x="0" y="0" width="219" height="378" fill="#FFFFFF" stroke="none" stroke-width="0"/>
 
-<!-- Association Affecter -->
+<!-- Association DF0 -->
 <g>
-	<line x1="335" y1="65" x2="203" y2="65" stroke="#000000" stroke-width="1"/>
-	<polygon points="301 65 289 71 293 65 289 59" fill="#000000" stroke-width="0"/>
-	<line x1="66" y1="65" x2="203" y2="65" stroke="#000000" stroke-width="1"/>
-	<polygon points="105 65 117 59 113 65 117 71" fill="#000000" stroke-width="0"/>
-	<line x1="203" y1="185" x2="203" y2="65" stroke="#000000" stroke-width="1"/>
+	<line x1="59" y1="239" x2="59" y2="147" stroke="#000000" stroke-width="1"/>
+	<line x1="59" y1="47" x2="59" y2="147" stroke="#000000" stroke-width="1"/>
 	<g>
-		<path d="M27 20 L255 20 a7 7 0 0 1 7 7 L262 224 a7 7 0 0 1 &#45;7 7 L152 231 a7 7 0 0 1 &#45;7 &#45;7 L145 118 a7 7 0 0 0 &#45;7 &#45;7 L27 111 a7 7 0 0 1 &#45;7 &#45;7 L20 27 a7 7 0 0 1 7 &#45;7" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="0.15"/>
-		<path d="M27 20 L255 20 a7 7 0 0 1 7 7 L262 224 a7 7 0 0 1 &#45;7 7 L152 231 a7 7 0 0 1 &#45;7 &#45;7 L145 118 a7 7 0 0 0 &#45;7 &#45;7 L27 111 a7 7 0 0 1 &#45;7 &#45;7 L20 27 a7 7 0 0 1 7 &#45;7" fill="none" stroke="#000000" stroke-width="1.5" stroke-dasharray="0,4" stroke-linecap="round"/>
-		<path d="M144 12 L377 12 a7 7 0 0 1 7 7 L384 111 a7 7 0 0 1 &#45;7 7 L276 118 a7 7 0 0 0 &#45;7 7 L269 231 a7 7 0 0 1 &#45;7 7 L144 238 a7 7 0 0 1 &#45;7 &#45;7 L137 19 a7 7 0 0 1 7 &#45;7" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="0.15"/>
-		<path d="M144 12 L377 12 a7 7 0 0 1 7 7 L384 111 a7 7 0 0 1 &#45;7 7 L276 118 a7 7 0 0 0 &#45;7 7 L269 231 a7 7 0 0 1 &#45;7 7 L144 238 a7 7 0 0 1 &#45;7 &#45;7 L137 19 a7 7 0 0 1 7 &#45;7" fill="none" stroke="#000000" stroke-width="1.5" stroke-dasharray="0,4" stroke-linecap="round"/>
-		<path d="M238 36 a14 14 90 0 1 14 14 V64 h-98 V50 a14 14 90 0 1 14 -14" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
-		<path d="M252 64 v16 a14 14 90 0 1 -14 14 H168 a14 14 90 0 1 -14 -14 V64 H98" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
-		<rect x="154" y="36" width="98" height="58" fill="none" rx="14" stroke="#000000" stroke-width="1.5"/>
-		<line x1="154" y1="64" x2="252" y2="64" stroke="#000000" stroke-width="1.5"/>
-		<text x="162" y="57.3" fill="#000000" font-family="Copperplate" font-size="18">Affecter</text>
+		<circle cx="59" cy="147" r="20" stroke="#000000" stroke-width="1.5" fill="#FFFFFF"/>
+		<text x="46" y="151.8" fill="#000000" font-family="Copperplate" font-size="18">DF</text>
 	</g>
-	<text x="267" y="91" fill="#000000" font-family="Futura" font-size="11">1,N</text>
-	<text x="120" y="91" fill="#000000" font-family="Futura" font-size="11">1,N</text>
-	<text x="218" y="129" fill="#000000" font-family="Futura" font-size="11">0,N</text>
+	<text x="64" y="201" fill="#000000" font-family="Futura" font-size="11">1,1</text>
+	<text x="64" y="101" fill="#000000" font-family="Futura" font-size="11">1,N</text>
 </g>
 
-<!-- Entity Projet -->
+<!-- Association DF1 -->
 <g>
+	<line x1="59" y1="239" x2="159" y2="239" stroke="#000000" stroke-width="1"/>
+	<line x1="159" y1="147" x2="159" y2="239" stroke="#000000" stroke-width="1"/>
 	<g>
-		<rect x="27" y="27" width="78" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
-		<rect x="27" y="57" width="78" height="46" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
-		<rect x="27" y="27" width="78" height="76" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
-		<line x1="27" y1="57" x2="105" y2="57" stroke="#000000" stroke-width="1.5"/>
+		<circle cx="159" cy="239" r="20" stroke="#000000" stroke-width="1.5" fill="#FFFFFF"/>
+		<text x="146" y="243.8" fill="#000000" font-family="Copperplate" font-size="18">DF</text>
 	</g>
-	<text x="35" y="48.3" fill="#000000" font-family="Copperplate" font-size="18">Projet</text>
-	<text x="35" y="74.1" fill="#000000" font-family="Gill Sans" font-size="15">projet</text>
-	<line x1="35" y1="77" x2="74" y2="77" stroke="#000000" stroke-width="1"/>
-	<text x="35" y="91.1" fill="#000000" font-family="Gill Sans" font-size="15">libellé</text>
+	<text x="114" y="255" fill="#000000" font-family="Futura" font-size="11">1,1</text>
+	<text x="164" y="201" fill="#000000" font-family="Futura" font-size="11">0,N</text>
+</g>
+
+<!-- Association DF2 -->
+<g>
+	<line x1="59" y1="239" x2="59" y2="331" stroke="#000000" stroke-width="1"/>
+	<line x1="159" y1="331" x2="59" y2="331" stroke="#000000" stroke-width="1"/>
+	<g>
+		<circle cx="59" cy="331" r="20" stroke="#000000" stroke-width="1.5" fill="#FFFFFF"/>
+		<text x="46" y="335.8" fill="#000000" font-family="Copperplate" font-size="18">DF</text>
+	</g>
+	<text x="64" y="285" fill="#000000" font-family="Futura" font-size="11">1,1</text>
+	<text x="96" y="347" fill="#000000" font-family="Futura" font-size="11">1,N</text>
 </g>
 
 <!-- Entity Site -->
 <g>
 	<g>
-		<rect x="301" y="27" width="68" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
-		<rect x="301" y="57" width="68" height="46" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
-		<rect x="301" y="27" width="68" height="76" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
-		<line x1="301" y1="57" x2="369" y2="57" stroke="#000000" stroke-width="1.5"/>
+		<rect x="25" y="9" width="68" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="25" y="39" width="68" height="46" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="25" y="9" width="68" height="76" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
+		<line x1="25" y1="39" x2="93" y2="39" stroke="#000000" stroke-width="1.5"/>
 	</g>
-	<text x="316" y="48.3" fill="#000000" font-family="Copperplate" font-size="18">Site</text>
-	<text x="309" y="74.1" fill="#000000" font-family="Gill Sans" font-size="15">site</text>
-	<line x1="309" y1="77" x2="332" y2="77" stroke="#000000" stroke-width="1"/>
-	<text x="309" y="91.1" fill="#000000" font-family="Gill Sans" font-size="15">position</text>
+	<text x="40" y="30.3" fill="#000000" font-family="Copperplate" font-size="18">Site</text>
+	<text x="33" y="56.1" fill="#000000" font-family="Gill Sans" font-size="15">site</text>
+	<line x1="33" y1="59" x2="56" y2="59" stroke="#000000" stroke-width="1"/>
+	<text x="33" y="73.1" fill="#000000" font-family="Gill Sans" font-size="15">position</text>
 </g>
 
 <!-- Entity Employé -->
 <g>
 	<g>
-		<rect x="152" y="147" width="102" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
-		<rect x="152" y="177" width="102" height="46" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
-		<rect x="152" y="147" width="102" height="76" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
-		<line x1="152" y1="177" x2="254" y2="177" stroke="#000000" stroke-width="1.5"/>
+		<rect x="108" y="109" width="102" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="108" y="139" width="102" height="46" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="108" y="109" width="102" height="76" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
+		<line x1="108" y1="139" x2="210" y2="139" stroke="#000000" stroke-width="1.5"/>
 	</g>
-	<text x="165" y="168.3" fill="#000000" font-family="Copperplate" font-size="18">Employé</text>
-	<text x="160" y="194.1" fill="#000000" font-family="Gill Sans" font-size="15">employé</text>
-	<line x1="160" y1="197" x2="214" y2="197" stroke="#000000" stroke-width="1"/>
-	<text x="160" y="211.1" fill="#000000" font-family="Gill Sans" font-size="15">nom employé</text>
+	<text x="121" y="130.3" fill="#000000" font-family="Copperplate" font-size="18">Employé</text>
+	<text x="116" y="156.1" fill="#000000" font-family="Gill Sans" font-size="15">employé</text>
+	<line x1="116" y1="159" x2="170" y2="159" stroke="#000000" stroke-width="1"/>
+	<text x="116" y="173.1" fill="#000000" font-family="Gill Sans" font-size="15">nom employé</text>
+</g>
+
+<!-- Entity Affecter -->
+<g>
+	<g>
+		<rect x="9" y="209" width="100" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="9" y="239" width="100" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="9" y="209" width="100" height="60" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
+		<line x1="9" y1="239" x2="109" y2="239" stroke="#000000" stroke-width="1.5"/>
+	</g>
+	<text x="18" y="230.3" fill="#000000" font-family="Copperplate" font-size="18">Affecter</text>
+	<text x="17" y="256.1" fill="#000000" font-family="Gill Sans" font-size="15">id. affecter</text>
+	<line x1="17" y1="259" x2="83" y2="259" stroke="#000000" stroke-width="1"/>
+</g>
+
+<!-- Entity Projet -->
+<g>
+	<g>
+		<rect x="120" y="293" width="78" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="120" y="323" width="78" height="46" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="120" y="293" width="78" height="76" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
+		<line x1="120" y1="323" x2="198" y2="323" stroke="#000000" stroke-width="1.5"/>
+	</g>
+	<text x="128" y="314.3" fill="#000000" font-family="Copperplate" font-size="18">Projet</text>
+	<text x="128" y="340.1" fill="#000000" font-family="Gill Sans" font-size="15">projet</text>
+	<line x1="128" y1="343" x2="167" y2="343" stroke="#000000" stroke-width="1"/>
+	<text x="128" y="357.1" fill="#000000" font-family="Gill Sans" font-size="15">libellé</text>
 </g>
 </svg>

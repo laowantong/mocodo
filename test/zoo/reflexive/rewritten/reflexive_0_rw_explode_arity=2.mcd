@@ -1,4 +1,7 @@
-ENGENDRER, 0N [fils] HOMME, 11 [père] HOMME
-HOMME: Num. SS, Nom, Prénom
-COMPOSER, 0N [composante] PIÈCE, 0N [composée] PIÈCE
 PIÈCE: pièce
+DF, 11 COMPOSER, 0N [composée] PIÈCE
+ENGENDRER, 0N [fils] HOMME, 11 [père] HOMME
+
+DF, 11 COMPOSER, 0N [composante] PIÈCE
+COMPOSER: id. composer
+HOMME: Num. SS, Nom, Prénom

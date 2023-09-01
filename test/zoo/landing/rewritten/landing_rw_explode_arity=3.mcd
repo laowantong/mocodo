@@ -1,33 +1,46 @@
 :
 :
+COMPOSER, 0N [composée] PIÈCE, 0N [composante] PIÈCE: quantité
+PIÈCE: réf. pièce, libellé pièce
+DF, 11 FOURNIR, 1N PIÈCE
 :
-DF, _11 AYANT-DROIT, 0N EMPLOYÉ
-AYANT-DROIT: nom ayant-droit, lien
 :
 
-CONTRÔLER, 0N< [filiale] SOCIÉTÉ, 01 [mère] SOCIÉTÉ
+:
+:
+:
+REQUÉRIR, 1N PROJET, 0N PIÈCE: qté requise
+FOURNIR: id. fournir, qté fournie
+DF, 11 FOURNIR, 1N SOCIÉTÉ
+SOCIÉTÉ: num. société, raison sociale
+
+:
 :
 TRAVAILLER, 0N EMPLOYÉ, 1N PROJET
-EMPLOYÉ: matricule, nom employé
-EMPLOYER, 11 EMPLOYÉ, 1N DÉPARTEMENT
-DÉPARTEMENT: num. département, nom département
-
-SOCIÉTÉ: num. société, raison sociale
-FOURNIR, 1N PROJET, 1N PIÈCE, 1N SOCIÉTÉ: qté fournie
 PROJET: num. projet, nom projet
+DF, 11 FOURNIR, 1N PROJET
+:
+CONTRÔLER, 0N< [filiale] SOCIÉTÉ, 01 [mère] SOCIÉTÉ
+
+DÉPARTEMENT: num. département, nom département
+EMPLOYER, 11 EMPLOYÉ, 1N DÉPARTEMENT
+EMPLOYÉ: matricule, nom employé
 DIRIGER, 0N EMPLOYÉ, 01 PROJET
 :
 :
-
-:
-PIÈCE: réf. pièce, libellé pièce
-REQUÉRIR, 1N PROJET, 0N PIÈCE: qté requise
-:
-:
 :
 
 :
-COMPOSER, 0N [composée] PIÈCE, 0N [composante] PIÈCE: quantité
+:
+DF, _11 AYANT-DROIT, 0N EMPLOYÉ
+:
+:
+:
+:
+
+:
+:
+AYANT-DROIT: nom ayant-droit, lien
 :
 :
 :

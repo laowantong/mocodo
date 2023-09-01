@@ -68,13 +68,13 @@ class Runner:
                 elif subopt == "arrange":
                     source = self.arrange(source, subargs)
                 elif subopt in op_tk.ELEMENT_TO_TOKENS: # ex.: labels, attrs, cards, types, etc.
-                    source = op_tk.run(source, subopt, subargs, self.params).rstrip()
+                    source = op_tk.run(source, subopt=subopt, subargs=subargs, params=self.params).rstrip()
                 else: # An unspecified rewrite operation, dynamically loaded
                     try:
                         module = importlib.import_module(f".rewrite._{subopt}", package="mocodo")
                     except ModuleNotFoundError:
                         raise subopt_error("rewrite", subopt)
-                    source = module.run(source, subargs=subargs, params=self.params).rstrip()
+                    source = module.run(source, subopt=subopt, subargs=subargs, params=self.params).rstrip()
             # Write the rewritten MCD to a temporary file
             rewritten_mcd_path = Path(f"{self.params['output_name']}_rewritten.mcd")
             self.common.dump_file(rewritten_mcd_path, source)

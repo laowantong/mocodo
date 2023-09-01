@@ -1,25 +1,31 @@
 {
-  "width": 396,
-  "height": 250,
+  "width": 219,
+  "height": 360,
   "cx": [
-    [ "Projet", 66 ],
-    [ "Affecter", 203 ],
-    [ "Site", 335 ],
-    [ "Employé", 203 ]
+    [ "Site", 59 ],
+    [ "DF0", 59 ],
+    [ "Employé", 159 ],
+    [ "Affecter", 59 ],
+    [ "DF1", 159 ],
+    [ "DF2", 59 ],
+    [ "Projet", 159 ]
   ],
   "cy": [
-    [ "Projet", 65 ],
-    [ "Affecter", 65 ],
-    [ "Site", 65 ],
-    [ "Employé", 185 ]
+    [ "Site", 47 ],
+    [ "DF0", 147 ],
+    [ "Employé", 147 ],
+    [ "Affecter", 230 ],
+    [ "DF1", 230 ],
+    [ "DF2", 313 ],
+    [ "Projet", 313 ]
   ],
   "shift": [
-    [ "Affecter,Site,0", 0 ],
-    [ "Affecter,Projet,0", 0 ],
-    [ "Affecter,Employé,0", 0 ]
+    [ "DF0,Affecter,0", 0 ],
+    [ "DF0,Site,0", 0 ],
+    [ "DF1,Affecter,0", 0 ],
+    [ "DF1,Employé,0", 0 ],
+    [ "DF2,Affecter,0", 0 ],
+    [ "DF2,Projet,0", 0 ]
   ],
-  "ratio": [
-    [ "Affecter,Site,0", 1.0 ],
-    [ "Affecter,Projet,0", 1.0 ]
-  ]
+  "ratio": []
 }

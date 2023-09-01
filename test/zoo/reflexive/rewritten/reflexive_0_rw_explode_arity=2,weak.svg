@@ -1,62 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<svg width="517" height="112" viewBox="0 0 517 112" xmlns="http://www.w3.org/2000/svg">
-<rect x="0" y="0" width="517" height="112" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<svg width="364" height="195" viewBox="0 0 364 195" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="364" height="195" fill="#FFFFFF" stroke="none" stroke-width="0"/>
 
-<!-- Association COMPOSER -->
+<!-- Association DF0 -->
 <g>
-	<path d="M45 56 C70.67 24 112.33 24 170 56" fill="none" stroke="#000000" stroke-width="1"/>
-	<path d="M45 56 C70.67 88 112.33 88 170 56" fill="none" stroke="#000000" stroke-width="1"/>
+	<line x1="155" y1="139" x2="155" y2="39" stroke="#000000" stroke-width="1"/>
+	<line x1="45" y1="39" x2="155" y2="39" stroke="#000000" stroke-width="1"/>
 	<g>
-		<path d="M216 27 a14 14 90 0 1 14 14 V55 h-120 V41 a14 14 90 0 1 14 -14" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
-		<path d="M230 55 v16 a14 14 90 0 1 -14 14 H124 a14 14 90 0 1 -14 -14 V55 H120" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
-		<rect x="110" y="27" width="120" height="58" fill="none" rx="14" stroke="#000000" stroke-width="1.5"/>
-		<line x1="110" y1="55" x2="230" y2="55" stroke="#000000" stroke-width="1.5"/>
-		<text x="117" y="48.3" fill="#000000" font-family="Copperplate" font-size="18">COMPOSER</text>
+		<circle cx="155" cy="39" r="20" stroke="#000000" stroke-width="1.5" fill="#FFFFFF"/>
+		<text x="142" y="43.8" fill="#000000" font-family="Copperplate" font-size="18">DF</text>
 	</g>
-	<text x="86" y="49" fill="#000000" font-family="Futura" font-size="11">0,N</text>
-	<text x="86" y="71" fill="#000000" font-family="Futura" font-size="11">0,N</text>
+	<text x="160" y="110" fill="#000000" font-family="Futura" font-size="11">1,1</text>
+	<line x1="160" y1="112" x2="178" y2="112" stroke="#000000" stroke-width="1"/>
+	<text x="86" y="55" fill="#000000" font-family="Futura" font-size="11">0,N</text>
 </g>
 
 <!-- Association ENGENDRER -->
 <g>
-	<path d="M303 56 C334.67 24 381 24 442 56" fill="none" stroke="#000000" stroke-width="1"/>
-	<path d="M303 56 C334 88 380.33 88 442 56" fill="none" stroke="#000000" stroke-width="1"/>
+	<path d="M289 139 C250.33 93.67 250.33 60.33 289 39" fill="none" stroke="#000000" stroke-width="1"/>
+	<path d="M289 139 C326.33 93.67 326.33 60.33 289 39" fill="none" stroke="#000000" stroke-width="1"/>
 	<g>
-		<path d="M494 27 a14 14 90 0 1 14 14 V55 h-132 V41 a14 14 90 0 1 14 -14" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
-		<path d="M508 55 v16 a14 14 90 0 1 -14 14 H390 a14 14 90 0 1 -14 -14 V55 H132" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
-		<rect x="376" y="27" width="132" height="58" fill="none" rx="14" stroke="#000000" stroke-width="1.5"/>
-		<line x1="376" y1="55" x2="508" y2="55" stroke="#000000" stroke-width="1.5"/>
-		<text x="384" y="48.3" fill="#000000" font-family="Copperplate" font-size="18">ENGENDRER</text>
+		<path d="M341 10 a14 14 90 0 1 14 14 V38 h-132 V24 a14 14 90 0 1 14 -14" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+		<path d="M355 38 v16 a14 14 90 0 1 -14 14 H237 a14 14 90 0 1 -14 -14 V38 H132" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+		<rect x="223" y="10" width="132" height="58" fill="none" rx="14" stroke="#000000" stroke-width="1.5"/>
+		<line x1="223" y1="38" x2="355" y2="38" stroke="#000000" stroke-width="1.5"/>
+		<text x="231" y="31.3" fill="#000000" font-family="Copperplate" font-size="18">ENGENDRER</text>
 	</g>
-	<text x="352" y="49" fill="#000000" font-family="Futura" font-size="11">0,N</text>
-	<text x="352" y="71" fill="#000000" font-family="Futura" font-size="11">1,1</text>
+	<text x="267" y="84" fill="#000000" font-family="Futura" font-size="11">0,N</text>
+	<text x="292" y="84" fill="#000000" font-family="Futura" font-size="11">1,1</text>
+</g>
+
+<!-- Association DF1 -->
+<g>
+	<line x1="155" y1="139" x2="45" y2="139" stroke="#000000" stroke-width="1"/>
+	<line x1="45" y1="39" x2="45" y2="139" stroke="#000000" stroke-width="1"/>
+	<g>
+		<circle cx="45" cy="139" r="20" stroke="#000000" stroke-width="1.5" fill="#FFFFFF"/>
+		<text x="32" y="143.8" fill="#000000" font-family="Copperplate" font-size="18">DF</text>
+	</g>
+	<text x="71" y="155" fill="#000000" font-family="Futura" font-size="11">1,1</text>
+	<line x1="71" y1="157" x2="89" y2="157" stroke="#000000" stroke-width="1"/>
+	<text x="50" y="85" fill="#000000" font-family="Futura" font-size="11">0,N</text>
 </g>
 
 <!-- Entity PIÈCE -->
 <g>
 	<g>
-		<rect x="9" y="26" width="72" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
-		<rect x="9" y="56" width="72" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
-		<rect x="9" y="26" width="72" height="60" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
-		<line x1="9" y1="56" x2="81" y2="56" stroke="#000000" stroke-width="1.5"/>
+		<rect x="9" y="9" width="72" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="9" y="39" width="72" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="9" y="9" width="72" height="60" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
+		<line x1="9" y1="39" x2="81" y2="39" stroke="#000000" stroke-width="1.5"/>
 	</g>
-	<text x="17" y="47.3" fill="#000000" font-family="Copperplate" font-size="18">PIÈCE</text>
-	<text x="17" y="73.1" fill="#000000" font-family="Gill Sans" font-size="15">pièce</text>
-	<line x1="17" y1="76" x2="50" y2="76" stroke="#000000" stroke-width="1"/>
+	<text x="17" y="30.3" fill="#000000" font-family="Copperplate" font-size="18">PIÈCE</text>
+	<text x="17" y="56.1" fill="#000000" font-family="Gill Sans" font-size="15">pièce</text>
+	<line x1="17" y1="59" x2="50" y2="59" stroke="#000000" stroke-width="1"/>
+</g>
+
+<!-- Entity COMPOSER -->
+<g>
+	<g>
+		<rect x="94" y="118" width="122" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="94" y="148" width="122" height="12" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="94" y="118" width="122" height="42" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
+		<line x1="94" y1="148" x2="216" y2="148" stroke="#000000" stroke-width="1.5"/>
+	</g>
+	<text x="102" y="139.3" fill="#000000" font-family="Copperplate" font-size="18">COMPOSER</text>
 </g>
 
 <!-- Entity HOMME -->
 <g>
 	<g>
-		<rect x="259" y="9" width="88" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
-		<rect x="259" y="39" width="88" height="64" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
-		<rect x="259" y="9" width="88" height="94" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
-		<line x1="259" y1="39" x2="347" y2="39" stroke="#000000" stroke-width="1.5"/>
+		<rect x="245" y="92" width="88" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="245" y="122" width="88" height="64" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="245" y="92" width="88" height="94" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
+		<line x1="245" y1="122" x2="333" y2="122" stroke="#000000" stroke-width="1.5"/>
 	</g>
-	<text x="268" y="30.3" fill="#000000" font-family="Copperplate" font-size="18">HOMME</text>
-	<text x="267" y="56.1" fill="#000000" font-family="Gill Sans" font-size="15">Num. SS</text>
-	<line x1="267" y1="59" x2="321" y2="59" stroke="#000000" stroke-width="1"/>
-	<text x="267" y="73.1" fill="#000000" font-family="Gill Sans" font-size="15">Nom</text>
-	<text x="267" y="90" fill="#000000" font-family="Gill Sans" font-size="15">Prénom</text>
+	<text x="254" y="113.3" fill="#000000" font-family="Copperplate" font-size="18">HOMME</text>
+	<text x="253" y="139.1" fill="#000000" font-family="Gill Sans" font-size="15">Num. SS</text>
+	<line x1="253" y1="142" x2="307" y2="142" stroke="#000000" stroke-width="1"/>
+	<text x="253" y="156.1" fill="#000000" font-family="Gill Sans" font-size="15">Nom</text>
+	<text x="253" y="173" fill="#000000" font-family="Gill Sans" font-size="15">Prénom</text>
 </g>
 </svg>

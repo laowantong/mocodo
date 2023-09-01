@@ -86,7 +86,7 @@ class Exploder(Visitor):
         tree.children[-1].value += "\n".join(clauses) + "\n"
 
 
-def run(source, subargs=None, params=None):
+def run(source, subargs=None, params=None, **kargs):
     subargs = subargs or {}
     params = params or {"df": "DF"}
     tree = parse_source(source)

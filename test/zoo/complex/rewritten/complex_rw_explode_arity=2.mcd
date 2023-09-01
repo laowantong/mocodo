@@ -1,29 +1,29 @@
 :
 :
-    PEUT COHABITER AVEC, 0N ESPÈCE, 0N [commensale] ESPÈCE: nb. max. commensaux
 :
-:
+    DF, 11 PEUT COHABITER AVEC, 0N [commensale] ESPÈCE
+    PEUT COHABITER AVEC: id. peut cohabiter avec, nb. max. commensaux
 
 :
-PEUT VIVRE DANS, 1N ESPÈCE, 1N ENCLOS: nb. max. congénères
+:
+DF, 11 PEUT VIVRE DANS, 1N ESPÈCE
 ESPÈCE: code espèce, 1_nom latin, nom vernaculaire
-:
+    DF, 11 PEUT COHABITER AVEC, 0N ESPÈCE
+
+ENCLOS: num. enclos
+DF, 11 PEUT VIVRE DANS, 1N ENCLOS
+PEUT VIVRE DANS: id. peut vivre dans, nb. max. congénères
+  DF, 0N ESPÈCE, _11 ANIMAL
 :
 
-:
-ENCLOS: num. enclos
-  DF, 0N ESPÈCE, _11 ANIMAL
-  HERBIVORE: plante préférée
-:
+      DF, 11 OCCUPE, 1N ENCLOS
+      OCCUPE: id. occupe
+      DF, 11 OCCUPE, 1N ANIMAL
+  ANIMAL: nom, sexe, _date naissance, date décès
+    A MÈRE, 01 ANIMAL, 0N> [mère] ANIMAL
 
       PÉRIODE: date début, _date fin
-      OCCUPE, 1N ANIMAL, /1N PÉRIODE, 1N ENCLOS
-  ANIMAL: nom, sexe, _date naissance, date décès
-  /\\ ANIMAL <= CARNIVORE, HERBIVORE: type alimentation
+      DF, 11 OCCUPE, 1N PÉRIODE
   CARNIVORE: quantité viande
-
-:
-:
-    A MÈRE, 01 ANIMAL, 0N> [mère] ANIMAL
-:
-:
+  /\\ ANIMAL <= CARNIVORE, HERBIVORE: type alimentation
+  HERBIVORE: plante préférée

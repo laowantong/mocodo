@@ -1,25 +1,31 @@
 {
-  "width": 582,
-  "height": 128,
+  "width": 433,
+  "height": 347,
   "cx": [
+    [ "DF0", 51 ],
+    [ "COMMANDE", 163 ],
+    [ "DF1", 275 ],
     [ "CLIENT", 51 ],
-    [ "DF0", 142 ],
-    [ "COMMANDE", 254 ],
-    [ "INCLURE", 395 ],
-    [ "PRODUIT", 523 ]
+    [ "INCLURE", 275 ],
+    [ "DF2", 374 ],
+    [ "PRODUIT", 374 ]
   ],
   "cy": [
-    [ "CLIENT", 64 ],
-    [ "DF0", 64 ],
-    [ "COMMANDE", 64 ],
-    [ "INCLURE", 64 ],
-    [ "PRODUIT", 64 ]
+    [ "DF0", 56 ],
+    [ "COMMANDE", 56 ],
+    [ "DF1", 56 ],
+    [ "CLIENT", 182 ],
+    [ "INCLURE", 182 ],
+    [ "DF2", 182 ],
+    [ "PRODUIT", 291 ]
   ],
   "shift": [
     [ "DF0,CLIENT,0", 0 ],
     [ "DF0,COMMANDE,0", 0 ],
-    [ "INCLURE,COMMANDE,0", 0 ],
-    [ "INCLURE,PRODUIT,0", 0 ]
+    [ "DF1,INCLURE,0", 0 ],
+    [ "DF1,COMMANDE,0", 0 ],
+    [ "DF2,INCLURE,0", 0 ],
+    [ "DF2,PRODUIT,0", 0 ]
   ],
   "ratio": [
     [ "DF0,CLIENT,0", 1.0 ]

@@ -9,9 +9,11 @@ from . import stand_for
 from .cards import fix_card, randomize_cards
 from .types import FIELD_TYPES, create_type_placeholders, guess_types
 from .obfuscate import obfuscator_factory
+from .arrows import create_df_arrows
 from ..mocodo_error import MocodoError
 
 ELEMENT_TO_TOKENS = {
+    "arrows": ["leg_arrow"],
     "attrs": ["attr"],
     "boxes": ["box_name"],
     "cards": ["card"],
@@ -46,7 +48,7 @@ class Mapper(Transformer):
             if stand_for(op_name, "randomize") and pre_token == "types":
                 pool = list(FIELD_TYPES["en"].values())
                 op = lambda x: x or random.choice(pool)
-            elif stand_for(op_name, "delete") and pre_token in ("attrs", "notes", "leg_notes", "constraint_notes"):
+            elif stand_for(op_name, "delete") and pre_token in ("attrs", "notes", "leg_notes", "constraint_notes", "arrows"):
                 op = lambda _: ""
             elif stand_for(op_name, "delete") and pre_token == "cards":
                 op = lambda _: "XX"
@@ -61,15 +63,17 @@ class Mapper(Transformer):
             setattr(self, token, update_tree)
 
 
-def run(source, pre_token, subargs, params):
+def run(source, subopt, subargs, params, **kargs):
     for (op_name, subsubarg) in subargs.items():
         # filter special non-op_tk operations
-        if stand_for(op_name, "create") and pre_token == "types":
+        if stand_for(op_name, "create") and subopt == "types":
             source = create_type_placeholders(source)
-        elif stand_for(op_name, "guess") and pre_token == "types":
+        elif stand_for(op_name, "guess") and subopt == "types":
             source = guess_types(source, subsubarg, params)
-        elif stand_for(op_name, "randomize") and pre_token == "cards":
+        elif stand_for(op_name, "randomize") and subopt == "cards":
             source = randomize_cards(source, params)
+        elif stand_for(op_name, "create") and subopt == "df_arrows":
+            source = create_df_arrows(source, subsubarg)
         else: # apply a normal op_tk operation
-            source = transform_source(source, Mapper(pre_token, op_name, subsubarg, params))
+            source = transform_source(source, Mapper(subopt, op_name, subsubarg, params))
     return source

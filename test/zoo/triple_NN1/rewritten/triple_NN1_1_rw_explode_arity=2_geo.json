@@ -1,24 +1,31 @@
 {
-  "width": 388,
-  "height": 222,
+  "width": 249,
+  "height": 378,
   "cx": [
-    [ "Ingénieur", 72 ],
-    [ "Gérer", 200 ],
-    [ "Projet", 322 ],
-    [ "Responsable", 200 ]
+    [ "Projet", 57 ],
+    [ "DF0", 57 ],
+    [ "Ingénieur", 173 ],
+    [ "Gérer", 57 ],
+    [ "DF1", 173 ],
+    [ "DF2", 57 ],
+    [ "Responsable", 173 ]
   ],
   "cy": [
-    [ "Ingénieur", 56 ],
-    [ "Gérer", 56 ],
-    [ "Projet", 56 ],
-    [ "Responsable", 166 ]
+    [ "Projet", 47 ],
+    [ "DF0", 147 ],
+    [ "Ingénieur", 147 ],
+    [ "Gérer", 239 ],
+    [ "DF1", 239 ],
+    [ "DF2", 331 ],
+    [ "Responsable", 331 ]
   ],
   "shift": [
-    [ "Gérer,Responsable,0", 0 ],
-    [ "Gérer,Ingénieur,0", 0 ],
-    [ "Gérer,Projet,0", 0 ]
+    [ "DF0,Gérer,0", 0 ],
+    [ "DF0,Projet,0", 0 ],
+    [ "DF1,Gérer,0", 0 ],
+    [ "DF1,Ingénieur,0", 0 ],
+    [ "DF2,Gérer,0", 0 ],
+    [ "DF2,Responsable,0", 0 ]
   ],
-  "ratio": [
-    [ "Gérer,Responsable,0", 1.0 ]
-  ]
+  "ratio": []
 }
