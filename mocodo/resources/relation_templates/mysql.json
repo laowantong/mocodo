@@ -11,12 +11,12 @@
       "replace": "VARCHAR(42)"
     }
   ],
-  "compose_label_disambiguated_by_note": "{raw_label}_{leg_note}",
-  "compose_label_disambiguated_by_number": "{label}_{disambiguation_number}",
+  "compose_label_disambiguated_by_note": "{label_before_disambiguation}_{leg_note}",
+  "compose_label_disambiguated_by_number": "{label_before_disambiguation}_{disambiguation_number}",
   "compose_primary_key": "{label} {data_type},\nADD_PRIMARY_KEY {label}",
   "compose_normal_attribute": "{label} {data_type}",
-  "compose_primary_foreign_key":     "{label} {data_type},\nADD_PRIMARY_KEY {label},\nADD_FOREIGN_KEY ({label}) REFERENCES {outer_source} ({raw_label})",
-  "compose_foreign_key":     "{label} {data_type},\nADD_FOREIGN_KEY ({label}) REFERENCES {outer_source} ({raw_label})",
+  "compose_primary_foreign_key":     "{label} {data_type},\nADD_PRIMARY_KEY {label},\nADD_FOREIGN_KEY ({label}) REFERENCES {outer_source} ({label_before_disambiguation})",
+  "compose_foreign_key":     "{label} {data_type},\nADD_FOREIGN_KEY ({label}) REFERENCES {outer_source} ({label_before_disambiguation})",
   "add_alt_constraints": [
     {
       "order": 100,

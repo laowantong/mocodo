@@ -153,7 +153,7 @@ class relationsTest(unittest.TestCase):
         mcd = Mcd(source, params)
         self.assertRaisesRegex(MocodoError, r"Mocodo Err\.17", Relations, mcd, params)
     
-    def test_difference_between_attribute_raw_label_and_label_with_notes(self):
+    def test_difference_between_attribute_label_before_disambiguation_and_label_with_notes(self):
         template = {
           "extension": ".json",
           "transform_attribute": [
@@ -180,7 +180,7 @@ class relationsTest(unittest.TestCase):
         t = Relations(Mcd(source, params), params)
         self.assertEqual(t.get_text(template), text)
     
-    def test_difference_between_attribute_raw_label_and_label_without_notes(self):
+    def test_difference_between_attribute_label_before_disambiguation_and_label_without_notes(self):
         template = {
           "extension": None,
           "transform_attribute": [
@@ -193,7 +193,7 @@ class relationsTest(unittest.TestCase):
               "replace": ""
             }
           ],
-          "compose_label_disambiguated_by_number": "{label}_{disambiguation_number}",
+          "compose_label_disambiguated_by_number": "{label_before_disambiguation}_{disambiguation_number}",
         }
         source = """
             A pour mère, 01 Chien, 0N Chien

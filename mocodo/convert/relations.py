@@ -10,8 +10,8 @@ def set_defaults(template):
         "transform_attribute": [],
         "transform_title": [],
         "transform_data_type": [],
-        "compose_label_disambiguated_by_note": "{raw_label} {leg_note}",
-        "compose_label_disambiguated_by_number": "{label}.{disambiguation_number}",
+        "compose_label_disambiguated_by_note": "{label_before_disambiguation} {leg_note}",
+        "compose_label_disambiguated_by_number": "{label_before_disambiguation}.{disambiguation_number}",
         "compose_primary_key": "_{label}_",
         "compose_normal_attribute": "{label}",
         "compose_foreign_key": "#{label}",
@@ -73,18 +73,15 @@ class Relations:
                 def inner_function(template):
                     for relation in self.relations.values():
                         for column in relation["columns"]:
-                            column["label"] = column["raw_label"]
+                            column["label"] = column["label_before_disambiguation"]
             elif strategy == "notes":
                 def inner_function(template):
                     for relation in self.relations.values():
                         for column in relation["columns"]:
                             if column["leg_note"] is None:
-                                column["label"] = column["raw_label"]
+                                column["label"] = column["label_before_disambiguation"]
                             else:
-                                try:
-                                    column["label"] = template["compose_label_disambiguated_by_note"].format(**column)
-                                except:
-                                    raise ValueError(relation)
+                                column["label"] = template["compose_label_disambiguated_by_note"].format(**column)
                                 
             else:
                 raise NotImplemented
@@ -124,13 +121,13 @@ class Relations:
         
         template = set_defaults(template)
         
-        def make_raw_labels_from_attributes():
+        def make_label_before_disambiguations_from_attributes():
             for relation in self.relations.values():
                 for column in relation["columns"]:
-                    column["raw_label"] = transform(column["attribute"], "transform_attribute")
-        make_raw_labels_from_attributes()
+                    column["label_before_disambiguation"] = transform(column["attribute"], "transform_attribute")
+        make_label_before_disambiguations_from_attributes()
         
-        def make_labels_from_raw_labels():
+        def make_labels_from_label_before_disambiguations():
             self.may_disambiguate_with_leg_notes(template)
             for relation in self.relations.values():
                 occurrences = collections.Counter(column["label"] for column in relation["columns"])
@@ -145,7 +142,7 @@ class Relations:
                             column["disambiguation_number"] = None
                     else:
                         column["disambiguation_number"] = None
-        make_labels_from_raw_labels()
+        make_labels_from_label_before_disambiguations()
         
         data = {}
         data["stem"] = self.output_stem
