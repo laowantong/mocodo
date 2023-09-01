@@ -19,8 +19,7 @@
 - OCCUPE (_#code espèce_, _#nom_, _#date naissance_, _num. enclos_, date début, date fin)
   - Les champs « code espèce », « nom » et « date naissance » font partie de la clé primaire de la table. Ce sont des clés étrangères qui ont migré directement à partir de l'entité « ANIMAL ».
   - Le champ « num. enclos » fait partie de la clé primaire de la table. Sa table d'origine (« ENCLOS ») ayant été supprimée, il n'est pas considéré comme clé étrangère.
-  - Le champ « date début » a migré par l'association de dépendance fonctionnelle « OCCUPE » à partir de l'entité « PÉRIODE » en perdant son caractère identifiant. De plus, comme la table créée à partir de cette entité a été supprimée, il n'est pas considéré comme clé étrangère.
-  - Le champ « date fin » a migré par l'association de dépendance fonctionnelle « OCCUPE » à partir de l'entité « PÉRIODE » en perdant son caractère identifiant. De plus, comme la table créée à partir de cette entité a été supprimée, il n'est pas considéré comme clé étrangère.
+  - Les champs « date début » et « date fin » sont de simples attributs. Ils ont migré par l'association de dépendance fonctionnelle « OCCUPE » à partir de l'entité « PÉRIODE » en perdant leur caractère identifiant. Cependant, comme la table créée à partir de cette entité a été supprimée, ils ne sont pas considérés comme clés étrangères.
 
 - PEUT COHABITER AVEC (_#code espèce_, _#code espèce commensale_, nb. max. commensaux)
   - Les champs « code espèce » et « code espèce commensale » constituent la clé primaire de la table. Ce sont des clés étrangères qui ont migré directement à partir de l'entité « ESPÈCE ».

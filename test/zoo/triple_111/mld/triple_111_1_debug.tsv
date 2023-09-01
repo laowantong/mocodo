@@ -1,8 +1,8 @@
-this_relation_name	label	data_type	nature	adjacent_source	outer_source
-Projet	projet		primary_key		
-Projet	libellé		normal_attribute		
-Technicien	technicien		primary_key		
-Technicien	nom technicien		normal_attribute		
-Utiliser	carnet		alt_primary_naturalized_foreign_key	Carnet	Carnet
-Utiliser	projet		alt_primary_foreign_key	Projet	Projet
-Utiliser	technicien		alt_foreign_key	Technicien	Technicien
+this_relation_name	label	data_type	nature	adjacent_source	outer_source	alt_groups
+Projet	projet		primary_key			
+Projet	libellé		normal_attribute			
+Technicien	technicien		primary_key			
+Technicien	nom technicien		normal_attribute			
+Utiliser	carnet		primary_naturalized_foreign_key	Carnet	Carnet	1
+Utiliser	projet		primary_foreign_key	Projet	Projet	2
+Utiliser	technicien		foreign_key	Technicien	Technicien	12

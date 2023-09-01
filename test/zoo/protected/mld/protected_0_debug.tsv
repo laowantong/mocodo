@@ -1,7 +1,7 @@
-this_relation_name	label	data_type	nature	adjacent_source	outer_source
-EROS	congue		primary_key		
-LACUS	blandit		primary_key		
-LACUS	elit		normal_attribute		
-LIGULA	blandit		primary_foreign_key	LACUS	LACUS
-LIGULA	congue		stopped_foreign_key	EROS	EROS
+this_relation_name	label	data_type	nature	adjacent_source	outer_source	alt_groups
+EROS	congue		primary_key			
+LACUS	blandit		primary_key			
+LACUS	elit		normal_attribute			
+LIGULA	blandit		primary_foreign_key	LACUS	LACUS	
+LIGULA	congue		stopped_foreign_key	EROS	EROS	
 LIGULA	metus		association_attribute

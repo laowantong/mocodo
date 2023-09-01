@@ -1,7 +1,7 @@
-this_relation_name	label	data_type	nature	adjacent_source	outer_source
-COMPOSER	pièce composante		primary_naturalized_foreign_key	PIÈCE	PIÈCE
-COMPOSER	pièce composée		primary_naturalized_foreign_key	PIÈCE	PIÈCE
-HOMME	Num. SS		primary_key		
-HOMME	Nom		normal_attribute		
-HOMME	Prénom		normal_attribute		
+this_relation_name	label	data_type	nature	adjacent_source	outer_source	alt_groups
+COMPOSER	pièce composante		primary_naturalized_foreign_key	PIÈCE	PIÈCE	
+COMPOSER	pièce composée		primary_naturalized_foreign_key	PIÈCE	PIÈCE	
+HOMME	Num. SS		primary_key			
+HOMME	Nom		normal_attribute			
+HOMME	Prénom		normal_attribute			
 HOMME	Num. SS père		foreign_key	HOMME	HOMME

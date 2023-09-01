@@ -1,4 +1,4 @@
-this_relation_name	label	data_type	nature	adjacent_source	outer_source
-Exemplaire	œuvre		strengthening_primary_naturalized_foreign_key	Œuvre	Œuvre
-Exemplaire	exemplaire		primary_key		
+this_relation_name	label	data_type	nature	adjacent_source	outer_source	alt_groups
+Exemplaire	œuvre		strengthening_primary_naturalized_foreign_key	Œuvre	Œuvre	
+Exemplaire	exemplaire		primary_key			
 Exemplaire	foobar		outer_attribute

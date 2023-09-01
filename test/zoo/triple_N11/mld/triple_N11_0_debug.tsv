@@ -1,4 +1,4 @@
-this_relation_name	label	data_type	nature	adjacent_source	outer_source
-Affecter	projet		primary_naturalized_foreign_key	Projet	Projet
-Affecter	employé		alt_primary_naturalized_foreign_key	Employé	Employé
-Affecter	site		alt_naturalized_foreign_key	Site	Site
+this_relation_name	label	data_type	nature	adjacent_source	outer_source	alt_groups
+Affecter	projet		primary_naturalized_foreign_key	Projet	Projet	
+Affecter	employé		primary_naturalized_foreign_key	Employé	Employé	1
+Affecter	site		naturalized_foreign_key	Site	Site	1

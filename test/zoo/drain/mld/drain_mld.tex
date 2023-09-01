@@ -36,7 +36,7 @@
     \item Le champ \emph{nom} était déjà un simple attribut de l'entité \emph{Étudiant}.
     \item Le champ \emph{num. stage} est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle \emph{Attribuer} à partir de l'entité \emph{Stage} en perdant son caractère identifiant.
     \item Le champ \emph{date signature} a migré à partir de l'association de dépendance fonctionnelle \emph{Attribuer}.
-    \item Le champ \emph{date} a migré par l'association de dépendance fonctionnelle \emph{Soutenir} à partir de l'entité \emph{Date} en perdant son caractère identifiant. De plus, comme la table créée à partir de cette entité a été supprimée, il n'est pas considéré comme clé étrangère.
+    \item Le champ \emph{date} est un simple attribut. Il a migré par l'association de dépendance fonctionnelle \emph{Soutenir} à partir de l'entité \emph{Date} en perdant son caractère identifiant. Cependant, comme la table créée à partir de cette entité a été supprimée, il n'est pas considéré comme clé étrangère.
     \item Le champ \emph{note stage} a migré à partir de l'association de dépendance fonctionnelle \emph{Soutenir}.
   \end{itemize}
 

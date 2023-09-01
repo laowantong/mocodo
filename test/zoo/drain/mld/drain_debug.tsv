@@ -1,14 +1,14 @@
-this_relation_name	label	data_type	nature	adjacent_source	outer_source
-Entreprise	nom entreprise		primary_key		
-Entreprise	adresse		normal_attribute		
-Entreprise	téléphone		normal_attribute		
-Stage	num. stage		primary_key		
-Stage	sujet		normal_attribute		
-Stage	nom entreprise		foreign_key	Entreprise	Entreprise
-Stage	date proposition		outer_attribute		
-Étudiant	num étudiant		primary_key		
-Étudiant	nom		normal_attribute		
-Étudiant	num. stage		foreign_key	Stage	Stage
-Étudiant	date signature		outer_attribute		
-Étudiant	date		naturalized_foreign_key	Date	Date
+this_relation_name	label	data_type	nature	adjacent_source	outer_source	alt_groups
+Entreprise	nom entreprise		primary_key			
+Entreprise	adresse		normal_attribute			
+Entreprise	téléphone		normal_attribute			
+Stage	num. stage		primary_key			
+Stage	sujet		normal_attribute			
+Stage	nom entreprise		foreign_key	Entreprise	Entreprise	
+Stage	date proposition		outer_attribute			
+Étudiant	num étudiant		primary_key			
+Étudiant	nom		normal_attribute			
+Étudiant	num. stage		foreign_key	Stage	Stage	
+Étudiant	date signature		outer_attribute			
+Étudiant	date		naturalized_foreign_key	Date	Date	
 Étudiant	note stage		outer_attribute

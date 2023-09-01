@@ -13,7 +13,7 @@
   - Le champ « nom » était déjà un simple attribut de l'entité « Étudiant ».
   - Le champ « num. stage » est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle « Attribuer » à partir de l'entité « Stage » en perdant son caractère identifiant.
   - Le champ « date signature » a migré à partir de l'association de dépendance fonctionnelle « Attribuer ».
-  - Le champ « date » a migré par l'association de dépendance fonctionnelle « Soutenir » à partir de l'entité « Date » en perdant son caractère identifiant. De plus, comme la table créée à partir de cette entité a été supprimée, il n'est pas considéré comme clé étrangère.
+  - Le champ « date » est un simple attribut. Il a migré par l'association de dépendance fonctionnelle « Soutenir » à partir de l'entité « Date » en perdant son caractère identifiant. Cependant, comme la table créée à partir de cette entité a été supprimée, il n'est pas considéré comme clé étrangère.
   - Le champ « note stage » a migré à partir de l'association de dépendance fonctionnelle « Soutenir ».
 
 --------------------------------------------------------------------------------

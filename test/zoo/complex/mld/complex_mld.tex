@@ -42,8 +42,7 @@
   \begin{itemize}
     \item Les champs \emph{code espèce}, \emph{nom} et \emph{date naissance} font partie de la clé primaire de la table. Ce sont des clés étrangères qui ont migré directement à partir de l'entité \emph{ANIMAL}.
     \item Le champ \emph{num. enclos} fait partie de la clé primaire de la table. Sa table d'origine (\emph{ENCLOS}) ayant été supprimée, il n'est pas considéré comme clé étrangère.
-    \item Le champ \emph{date début} a migré par l'association de dépendance fonctionnelle \emph{OCCUPE} à partir de l'entité \emph{PÉRIODE} en perdant son caractère identifiant. De plus, comme la table créée à partir de cette entité a été supprimée, il n'est pas considéré comme clé étrangère.
-    \item Le champ \emph{date fin} a migré par l'association de dépendance fonctionnelle \emph{OCCUPE} à partir de l'entité \emph{PÉRIODE} en perdant son caractère identifiant. De plus, comme la table créée à partir de cette entité a été supprimée, il n'est pas considéré comme clé étrangère.
+    \item Les champs \emph{date début} et \emph{date fin} sont de simples attributs. Ils ont migré par l'association de dépendance fonctionnelle \emph{OCCUPE} à partir de l'entité \emph{PÉRIODE} en perdant leur caractère identifiant. Cependant, comme la table créée à partir de cette entité a été supprimée, ils ne sont pas considérés comme clés étrangères.
   \end{itemize}
 
   \item \relat{PEUT COHABITER AVEC} (\foreign{\prim{code espèce}}, \foreign{\prim{code espèce commensale}}, \attr{nb. max. commensaux})

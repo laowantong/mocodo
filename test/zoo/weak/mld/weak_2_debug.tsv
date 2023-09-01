@@ -1,15 +1,15 @@
-this_relation_name	label	data_type	nature	adjacent_source	outer_source
-Appartement	code rue		strengthening_primary_foreign_key	Étage	Étage
-Appartement	num immeuble		strengthening_primary_foreign_key	Étage	Étage
-Appartement	num étage		strengthening_primary_foreign_key	Étage	Étage
-Appartement	num appart.		primary_key		
-Appartement	nb pièces		normal_attribute		
-Immeuble	code rue		strengthening_primary_foreign_key	Rue	Rue
-Immeuble	num immeuble		primary_key		
-Immeuble	nb étages		normal_attribute		
-Rue	code rue		primary_key		
-Rue	nom rue		normal_attribute		
-Étage	code rue		strengthening_primary_foreign_key	Immeuble	Immeuble
-Étage	num immeuble		strengthening_primary_foreign_key	Immeuble	Immeuble
-Étage	num étage		primary_key		
+this_relation_name	label	data_type	nature	adjacent_source	outer_source	alt_groups
+Appartement	code rue		strengthening_primary_foreign_key	Étage	Étage	
+Appartement	num immeuble		strengthening_primary_foreign_key	Étage	Étage	
+Appartement	num étage		strengthening_primary_foreign_key	Étage	Étage	
+Appartement	num appart.		primary_key			
+Appartement	nb pièces		normal_attribute			
+Immeuble	code rue		strengthening_primary_foreign_key	Rue	Rue	
+Immeuble	num immeuble		primary_key			
+Immeuble	nb étages		normal_attribute			
+Rue	code rue		primary_key			
+Rue	nom rue		normal_attribute			
+Étage	code rue		strengthening_primary_foreign_key	Immeuble	Immeuble	
+Étage	num immeuble		strengthening_primary_foreign_key	Immeuble	Immeuble	
+Étage	num étage		primary_key			
 Étage	nb appartements		normal_attribute

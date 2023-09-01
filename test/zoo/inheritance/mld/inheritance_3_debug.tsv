@@ -1,14 +1,14 @@
-this_relation_name	label	data_type	nature	adjacent_source	outer_source
-TRISTIS	magna		primary_key		
-TRISTIS	vestibulum		normal_attribute		
-TRISTIS	type	INTEGER UNSIGNED	deleted_child_discriminant_XT		
-TRISTIS	convallis		deleted_child_attribute	SODALES	
-TRISTIS	ipsum		deleted_child_attribute	SODALES	
-TRISTIS	pulvinar		deleted_child_attribute	NEC	
-TRISTIS	audis		deleted_child_attribute	NEC	
-TRISTIS	magna via mollis		deleted_child_foreign_key	NEC	TRISTIS
-TRISTIS	magna via vitae		deleted_child_foreign_key	NEC	TRISTIS
-TRISTIS	tempor		deleted_child_attribute	LACUS	
-TRISTIS	fugit		deleted_child_attribute	LACUS	
-ULTRICES	magna sodales		primary_foreign_key	SODALES	TRISTIS
+this_relation_name	label	data_type	nature	adjacent_source	outer_source	alt_groups
+TRISTIS	magna		primary_key			
+TRISTIS	vestibulum		normal_attribute			
+TRISTIS	type	INTEGER UNSIGNED	deleted_child_discriminant_XT			
+TRISTIS	convallis		deleted_child_attribute	SODALES		
+TRISTIS	ipsum		deleted_child_attribute	SODALES		
+TRISTIS	pulvinar		deleted_child_attribute	NEC		
+TRISTIS	audis		deleted_child_attribute	NEC		
+TRISTIS	magna via mollis		deleted_child_foreign_key	NEC	TRISTIS	
+TRISTIS	magna via vitae		deleted_child_foreign_key	NEC	TRISTIS	
+TRISTIS	tempor		deleted_child_attribute	LACUS		
+TRISTIS	fugit		deleted_child_attribute	LACUS		
+ULTRICES	magna sodales		primary_foreign_key	SODALES	TRISTIS	
 ULTRICES	magna lacus		primary_foreign_key	LACUS	TRISTIS

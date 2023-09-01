@@ -25,7 +25,7 @@
   <ul>
     <li>Le champ <i>carnet</i> fait partie de la clé primaire de la table. Sa table d'origine (<i>Carnet</i>) ayant été supprimée, il n'est pas considéré comme clé étrangère. Il fait par contre partie d'une clé alternative matérialisée par la contrainte d'unicité 1.</li>
     <li>Le champ <i>projet</i> fait partie de la clé primaire de la table. Sa table d'origine (<i>Projet</i>) ayant été supprimée, il n'est pas considéré comme clé étrangère. Il fait par contre partie d'une clé alternative matérialisée par la contrainte d'unicité 2.</li>
-    <li>Le champ <i>technicien</i> est un simple attribut. Sa table d'origine (<i>Technicien</i>) ayant été supprimée, il n'est pas considéré comme clé étrangère. Il fait par contre partie de clés alternatives matérialisées par les contraintes d'unicité 1 et 2.</li>
+    <li>Le champ <i>technicien</i> est un simple attribut. Il a migré directement à partir de l'entité <i>Technicien</i> en perdant son caractère identifiant. Cependant, comme la table créée à partir de cette entité a été supprimée, il n'est pas considéré comme clé étrangère. Il fait par contre partie de clés alternatives matérialisées par les contraintes d'unicité 1 et 2.</li>
   </ul></details>
 </div>
 <hr>

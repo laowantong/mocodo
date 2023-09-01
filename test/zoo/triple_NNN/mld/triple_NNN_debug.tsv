@@ -1,4 +1,4 @@
-this_relation_name	label	data_type	nature	adjacent_source	outer_source
-Appliquer	employé		primary_naturalized_foreign_key	Employé	Employé
-Appliquer	projet		primary_naturalized_foreign_key	Projet	Projet
+this_relation_name	label	data_type	nature	adjacent_source	outer_source	alt_groups
+Appliquer	employé		primary_naturalized_foreign_key	Employé	Employé	
+Appliquer	projet		primary_naturalized_foreign_key	Projet	Projet	
 Appliquer	compétence		primary_naturalized_foreign_key	Compétence	Compétence

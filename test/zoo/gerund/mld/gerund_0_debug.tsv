@@ -1,4 +1,4 @@
-this_relation_name	label	data_type	nature	adjacent_source	outer_source
-Ligne de commande	commande		strengthening_primary_naturalized_foreign_key	Commande	Commande
-Ligne de commande	produit		strengthening_primary_naturalized_foreign_key	Produit	Produit
+this_relation_name	label	data_type	nature	adjacent_source	outer_source	alt_groups
+Ligne de commande	commande		strengthening_primary_naturalized_foreign_key	Commande	Commande	
+Ligne de commande	produit		strengthening_primary_naturalized_foreign_key	Produit	Produit	
 Ligne de commande	quantité		normal_attribute

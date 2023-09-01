@@ -72,8 +72,7 @@
   <ul>
     <li>Les champs <i>code espèce</i>, <i>nom</i> et <i>date naissance</i> font partie de la clé primaire de la table. Ce sont des clés étrangères qui ont migré directement à partir de l'entité <i>ANIMAL</i>.</li>
     <li>Le champ <i>num. enclos</i> fait partie de la clé primaire de la table. Sa table d'origine (<i>ENCLOS</i>) ayant été supprimée, il n'est pas considéré comme clé étrangère.</li>
-    <li>Le champ <i>date début</i> a migré par l'association de dépendance fonctionnelle <i>OCCUPE</i> à partir de l'entité <i>PÉRIODE</i> en perdant son caractère identifiant. De plus, comme la table créée à partir de cette entité a été supprimée, il n'est pas considéré comme clé étrangère.</li>
-    <li>Le champ <i>date fin</i> a migré par l'association de dépendance fonctionnelle <i>OCCUPE</i> à partir de l'entité <i>PÉRIODE</i> en perdant son caractère identifiant. De plus, comme la table créée à partir de cette entité a été supprimée, il n'est pas considéré comme clé étrangère.</li>
+    <li>Les champs <i>date début</i> et <i>date fin</i> sont de simples attributs. Ils ont migré par l'association de dépendance fonctionnelle <i>OCCUPE</i> à partir de l'entité <i>PÉRIODE</i> en perdant leur caractère identifiant. Cependant, comme la table créée à partir de cette entité a été supprimée, ils ne sont pas considérés comme clés étrangères.</li>
   </ul></details>
 </div>
 

@@ -14,13 +14,16 @@
   "compose_label_disambiguated_by_note": "{raw_label}_{leg_note}",
   "compose_label_disambiguated_by_number": "{label}_{disambiguation_number}",
   "compose_primary_key": "{label} {data_type},\nADD_PRIMARY_KEY {label}",
-  "compose_alt_primary_key": "{label} {data_type},\nADD_PRIMARY_KEY {label},\nADD_CONSTRAINT {this_relation_name}_u{alt_groups} UNIQUE ({label})",
-  "compose_alt_normal_attribute": "{label} {data_type},\nADD_CONSTRAINT {this_relation_name}_u{alt_groups} UNIQUE ({label})",
   "compose_normal_attribute": "{label} {data_type}",
   "compose_foreign_key": "{label} {data_type},\nADD_FOREIGN_KEY ({label}) REFERENCES {outer_source} ({raw_label})",
-  "compose_alt_foreign_key": "{label} {data_type},\nADD_FOREIGN_KEY ({label}) REFERENCES {outer_source} ({raw_label}),\nADD_CONSTRAINT {this_relation_name}_u{alt_groups} UNIQUE ({label})",
   "compose_primary_foreign_key": "{label} {data_type},\nADD_PRIMARY_KEY {label},\nADD_FOREIGN_KEY ({label}) REFERENCES {outer_source} ({raw_label})",
-  "compose_alt_primary_foreign_key": "{label} {data_type},\nADD_PRIMARY_KEY {label},\nADD_FOREIGN_KEY ({label}) REFERENCES {outer_source} ({raw_label}),\nADD_CONSTRAINT {this_relation_name}_u{alt_groups} UNIQUE ({label})",
+  "add_alt_constraints": [
+    {
+      "order": 100,
+      "search": "$",
+      "replace": ",\nADD_CONSTRAINT {this_relation_name}_u{alt_groups} UNIQUE ({label})"
+    }
+  ],
   "column_separator": ",\n  ",
   "compose_relation": "CREATE TABLE {this_relation_name} (\n  {columns},\n  PRIMARY KEY (),\n);",
   "transform_relation": [

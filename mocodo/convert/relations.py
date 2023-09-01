@@ -16,6 +16,7 @@ def set_defaults(template):
         "compose_normal_attribute": "{label}",
         "compose_foreign_key": "#{label}",
         "compose_primary_foreign_key": "_#{label}_",
+        "add_alt_constraints": [],
         "transform_relation_name": [],
         "column_separator": ", ",
         "compose_relation": "{this_relation_name} ({columns})",
@@ -29,12 +30,6 @@ def set_defaults(template):
         "transform_relational_schema": [],
     }
     result.update(template)
-    result.setdefault("compose_alt_normal_attribute", result["compose_normal_attribute"])
-    result.setdefault("compose_alt_primary_key", result["compose_primary_key"])
-    result.setdefault("compose_alt_foreign_key", result["compose_foreign_key"])
-    result.setdefault("compose_alt_primary_foreign_key", result["compose_primary_foreign_key"])
-    result.setdefault("compose_alt_naturalized_foreign_key", result["compose_alt_normal_attribute"])
-    result.setdefault("compose_alt_primary_naturalized_foreign_key", result["compose_alt_primary_key"])
     result.setdefault("compose_naturalized_foreign_key", result["compose_normal_attribute"])
     result.setdefault("compose_primary_naturalized_foreign_key", result["compose_primary_key"])
     result.setdefault("compose_association_attribute", result["compose_normal_attribute"])
@@ -163,7 +158,10 @@ class Relations:
             for column in relation["columns"]:
                 column["data_type"] = transform(column["data_type"], "transform_data_type")
                 data.update(column)
-                fields.append(template["compose_%s" % column["nature"]].format(**data))
+                field = template["compose_%s" % column["nature"]].format(**data)
+                if column["alt_groups"]:
+                    field = transform(field, "add_alt_constraints").format(**data)
+                fields.append(field)
             data["columns"] = template["column_separator"].join(fields)
             line = template["compose_relation"].format(**data)
             if relation["is_forced"]:
@@ -250,8 +248,6 @@ class Relations:
             for attribute in entity.attributes:
                 nature = "primary_key" if attribute.kind in ("strong", "weak") else "normal_attribute"
                 alt_groups = "".join(c for c in sorted(attribute.id_groups) if c != "0")
-                if alt_groups:
-                    nature = "alt_" + nature
                 self.relations[name]["columns"].append({
                     "attribute": attribute.label,
                     "data_type": attribute.data_type,
@@ -391,16 +387,6 @@ class Relations:
                         if attribute["primary"]:
                             outer_source = self.may_retrieve_distant_outer_source(leg, attribute)
                             if leg.kind in ("cluster_peg", "cluster_leg"):
-                                if leg.is_in_elected_group:
-                                    if leg.alt_groups == "":
-                                        nature = "primary_foreign_key"
-                                    else:
-                                        nature = "alt_primary_foreign_key"
-                                else:
-                                    if leg.alt_groups == "":
-                                        nature = "foreign_key"
-                                    else:
-                                        nature = "alt_foreign_key"
                                 self.relations[association.name]["columns"].append({ # gather all migrant attributes
                                     "attribute": attribute["attribute"],
                                     "data_type": attribute["data_type"],
@@ -409,7 +395,7 @@ class Relations:
                                     "leg_note": leg.note,
                                     "association_name": association.name,
                                     "primary": leg.is_in_elected_group,
-                                    "nature": nature,
+                                    "nature": "primary_foreign_key" if leg.is_in_elected_group else "foreign_key",
                                     "alt_groups": leg.alt_groups,
                                 })
                             elif association.is_protected and df_leg is not None and leg is not df_leg:

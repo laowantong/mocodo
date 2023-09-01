@@ -20,7 +20,7 @@
   \begin{itemize}
     \item Le champ \emph{carnet} fait partie de la clé primaire de la table. Sa table d'origine (\emph{Carnet}) ayant été supprimée, il n'est pas considéré comme clé étrangère. Il fait par contre partie d'une clé alternative matérialisée par la contrainte d'unicité 1.
     \item Le champ \emph{projet} fait partie de la clé primaire de la table. Sa table d'origine (\emph{Projet}) ayant été supprimée, il n'est pas considéré comme clé étrangère. Il fait par contre partie d'une clé alternative matérialisée par la contrainte d'unicité 2.
-    \item Le champ \emph{technicien} est un simple attribut. Sa table d'origine (\emph{Technicien}) ayant été supprimée, il n'est pas considéré comme clé étrangère. Il fait par contre partie de clés alternatives matérialisées par les contraintes d'unicité 1 et 2.
+    \item Le champ \emph{technicien} est un simple attribut. Il a migré directement à partir de l'entité \emph{Technicien} en perdant son caractère identifiant. Cependant, comme la table créée à partir de cette entité a été supprimée, il n'est pas considéré comme clé étrangère. Il fait par contre partie de clés alternatives matérialisées par les contraintes d'unicité 1 et 2.
   \end{itemize}
 
 \end{itemize}

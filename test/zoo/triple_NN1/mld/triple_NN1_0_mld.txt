@@ -1,7 +1,7 @@
 - Gérer (_ingénieur_, _projet_, responsable)
   - Le champ « ingénieur » fait partie de la clé primaire de la table. Sa table d'origine (« Ingénieur ») ayant été supprimée, il n'est pas considéré comme clé étrangère.
   - Le champ « projet » fait partie de la clé primaire de la table. Sa table d'origine (« Projet ») ayant été supprimée, il n'est pas considéré comme clé étrangère.
-  - Le champ « responsable » a migré par l'association de dépendance fonctionnelle « Gérer » à partir de l'entité « Responsable » en perdant son caractère identifiant. De plus, comme la table créée à partir de cette entité a été supprimée, il n'est pas considéré comme clé étrangère.
+  - Le champ « responsable » est un simple attribut. Il a migré par l'association de dépendance fonctionnelle « Gérer » à partir de l'entité « Responsable » en perdant son caractère identifiant. Cependant, comme la table créée à partir de cette entité a été supprimée, il n'est pas considéré comme clé étrangère.
 
 --------------------------------------------------------------------------------
 

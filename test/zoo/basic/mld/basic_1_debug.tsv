@@ -1,16 +1,16 @@
-this_relation_name	label	data_type	nature	adjacent_source	outer_source
-CLIENT	Réf. client		primary_key		
-CLIENT	Nom		normal_attribute		
-CLIENT	Prénom		normal_attribute		
-CLIENT	Adresse		normal_attribute		
-COMMANDE	Num commande		primary_key		
-COMMANDE	Date		normal_attribute		
-COMMANDE	Montant		normal_attribute		
-INCLURE	Num commande		primary_foreign_key	COMMANDE	COMMANDE
-INCLURE	Réf. produit		primary_foreign_key	PRODUIT	PRODUIT
-INCLURE	Quantité		association_attribute		
-PASSER	Réf. client		primary_foreign_key	CLIENT	CLIENT
-PASSER	Num commande		primary_foreign_key	COMMANDE	COMMANDE
-PRODUIT	Réf. produit		primary_key		
-PRODUIT	Libellé		normal_attribute		
+this_relation_name	label	data_type	nature	adjacent_source	outer_source	alt_groups
+CLIENT	Réf. client		primary_key			
+CLIENT	Nom		normal_attribute			
+CLIENT	Prénom		normal_attribute			
+CLIENT	Adresse		normal_attribute			
+COMMANDE	Num commande		primary_key			
+COMMANDE	Date		normal_attribute			
+COMMANDE	Montant		normal_attribute			
+INCLURE	Num commande		primary_foreign_key	COMMANDE	COMMANDE	
+INCLURE	Réf. produit		primary_foreign_key	PRODUIT	PRODUIT	
+INCLURE	Quantité		association_attribute			
+PASSER	Réf. client		primary_foreign_key	CLIENT	CLIENT	
+PASSER	Num commande		primary_foreign_key	COMMANDE	COMMANDE	
+PRODUIT	Réf. produit		primary_key			
+PRODUIT	Libellé		normal_attribute			
 PRODUIT	Prix unitaire		normal_attribute
