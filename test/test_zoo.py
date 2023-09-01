@@ -1,3 +1,4 @@
+import time
 import unittest
 import gettext
 from pathlib import Path
@@ -7,9 +8,6 @@ from mocodo.common import Common
 from mocodo.convert.read_template import read_template
 from mocodo.font_metrics import font_metrics_factory
 from mocodo.mcd import Mcd
-from mocodo.association import Association
-from mocodo.inheritance import Inheritance
-from mocodo.constraint import Constraint
 from mocodo.convert.relations import Relations
 from mocodo.mocodo_error import MocodoError
 import random
@@ -183,8 +181,13 @@ def main():
             output = relations.get_text(template).strip() + "\n"
             save(subfolder / f"{source_path.stem[1:]}{template['stem_suffix']}.sql", output)
 
-class TestLaunchSnapshot(unittest.TestCase):
-    def test_launch_snapshot(self):
+def test_launch_snapshot(capsys):
+    with capsys.disabled():
+        print("\nCancel the long snapshot calculation by pressing Ctrl+C within 5 seconds", end="")
+        for _ in range(5):
+            time.sleep(1)
+            print(".", end="", flush=True)
+        print("\nLet's go!")
         main()
 
 if __name__ == "__main__":
