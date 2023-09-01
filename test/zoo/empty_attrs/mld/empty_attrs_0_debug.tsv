@@ -1,5 +1,1 @@
 this_relation_name	label	data_type	nature	adjacent_source	outer_source	alt_groups
-CLIENT	Réf. client		primary_key			
-CLIENT			normal_attribute			
-CLIENT	.1		normal_attribute			
-CLIENT	.2		normal_attribute

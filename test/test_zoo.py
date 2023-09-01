@@ -162,7 +162,7 @@ def main():
                 convert_dot_to_svg(output_path)
             elif template["extension"] == "mcd":
                 try:
-                    relational_diagram_mcd = Mcd(source, get_font_metrics, **params)
+                    relational_diagram_mcd = Mcd(output, get_font_metrics, **params)
                 except MocodoError as e:
                     assert e.args[0].startswith("Mocodo Err.4") # Empty MCD
                 else:

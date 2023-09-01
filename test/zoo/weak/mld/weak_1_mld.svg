@@ -1,46 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<svg width="314" height="112" viewBox="0 0 314 112" xmlns="http://www.w3.org/2000/svg">
-<rect id="frame" x="0" y="0" width="314" height="112" fill="#FFFFFF" stroke="none" stroke-width="0"/>
-
-<!-- Association DF0 -->
-<g>
-	<line x1="48" y1="56" x2="136" y2="56" stroke="#000000" stroke-width="1"/>
-	<line x1="245" y1="56" x2="136" y2="56" stroke="#000000" stroke-width="1"/>
-	<g>
-		<circle cx="136" cy="56" r="20" stroke="#000000" stroke-width="1.5" fill="#FFFFFF"/>
-		<text x="123" y="60.8" fill="#000000" font-family="Copperplate" font-size="18">DF</text>
-	</g>
-	<text x="92" y="72" fill="#000000" font-family="Futura" font-size="11">0,N</text>
-	<text x="162" y="72" fill="#000000" font-family="Futura" font-size="11">1,1</text>
-	<line x1="162" y1="74" x2="180" y2="74" stroke="#000000" stroke-width="1"/>
-</g>
+<svg width="332" height="146" viewBox="0 0 332 146" xmlns="http://www.w3.org/2000/svg">
+<rect id="frame" x="0" y="0" width="332" height="146" fill="#FFFFFF" stroke="none" stroke-width="0"/>
 
 <!-- Entity Œuvre -->
 <g>
 	<g>
-		<rect x="9" y="18" width="78" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
-		<rect x="9" y="48" width="78" height="46" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
-		<rect x="9" y="18" width="78" height="76" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
-		<line x1="9" y1="48" x2="87" y2="48" stroke="#000000" stroke-width="1.5"/>
+		<rect x="38" y="35" width="78" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="38" y="65" width="78" height="46" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="38" y="35" width="78" height="76" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
+		<line x1="38" y1="65" x2="116" y2="65" stroke="#000000" stroke-width="1.5"/>
 	</g>
-	<text x="17" y="39.3" fill="#000000" font-family="Copperplate" font-size="18">Œuvre</text>
-	<text x="17" y="65.1" fill="#000000" font-family="Gill Sans" font-size="15">œuvre</text>
-	<line x1="17" y1="68" x2="58" y2="68" stroke="#000000" stroke-width="1"/>
-	<text x="17" y="82.1" fill="#000000" font-family="Gill Sans" font-size="15">auteur</text>
+	<text x="46" y="56.3" fill="#000000" font-family="Copperplate" font-size="18">Œuvre</text>
+	<text x="46" y="82.1" fill="#000000" font-family="Gill Sans" font-size="15">œuvre</text>
+	<line x1="46" y1="85" x2="87" y2="85" stroke="#000000" stroke-width="1"/>
+	<text x="46" y="99.1" fill="#000000" font-family="Gill Sans" font-size="15">auteur</text>
 </g>
 
 <!-- Entity Exemplaire -->
 <g>
 	<g>
-		<rect x="185" y="9" width="120" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
-		<rect x="185" y="39" width="120" height="64" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
-		<rect x="185" y="9" width="120" height="94" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
-		<line x1="185" y1="39" x2="305" y2="39" stroke="#000000" stroke-width="1.5"/>
+		<rect x="174" y="9" width="120" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="174" y="39" width="120" height="98" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="174" y="9" width="120" height="128" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
+		<line x1="174" y1="39" x2="294" y2="39" stroke="#000000" stroke-width="1.5"/>
 	</g>
-	<text x="194" y="30.3" fill="#000000" font-family="Copperplate" font-size="18">Exemplaire</text>
-	<text x="193" y="56.1" fill="#000000" font-family="Gill Sans" font-size="15">exemplaire</text>
-	<line x1="193" y1="59" x2="262" y2="59" stroke="#000000" stroke-width="1" stroke-dasharray="4"/>
-	<text x="193" y="73.1" fill="#000000" font-family="Gill Sans" font-size="15">nb pages</text>
-	<text x="193" y="90" fill="#000000" font-family="Gill Sans" font-size="15">date achat</text>
+	<text x="183" y="30.3" fill="#000000" font-family="Copperplate" font-size="18">Exemplaire</text>
+	<text x="182" y="56.1" fill="#000000" font-family="Gill Sans" font-size="15">œuvre</text>
+	<line x1="182" y1="59" x2="223" y2="59" stroke="#000000" stroke-width="1"/>
+	<text x="182" y="73.1" fill="#000000" font-family="Gill Sans" font-size="15">exemplaire</text>
+	<line x1="182" y1="76" x2="251" y2="76" stroke="#000000" stroke-width="1"/>
+	<text x="182" y="90.1" fill="#000000" font-family="Gill Sans" font-size="15">nb pages</text>
+	<text x="182" y="107" fill="#000000" font-family="Gill Sans" font-size="15">date achat</text>
+	<text x="182" y="124" fill="#000000" font-family="Gill Sans" font-size="15">foobar</text>
 </g>
+
+<!-- Link from &quot;œuvre&quot; (Exemplaire) to &quot;œuvre&quot; (Œuvre) -->
+<path d="M174 53.5 C145 66.5 154.67 79.5 116 79.5" fill="none" stroke="#000000" stroke-width="1"/>
+<polygon points="116 79.5 128 73.5 124 79.5 128 85.5" fill="#000000" stroke-width="0"/>
+<circle cx="174" cy="53.5" r="1.5" stroke="#000000" stroke-width="1.5" fill="#000000"/>
 </svg>

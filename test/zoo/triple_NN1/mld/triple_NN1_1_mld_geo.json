@@ -1,24 +1,18 @@
 {
-  "width": 388,
-  "height": 222,
+  "width": 530,
+  "height": 212,
   "cx": [
-    [ "Ingénieur", 72 ],
-    [ "Gérer", 200 ],
-    [ "Projet", 322 ],
-    [ "Responsable", 200 ]
+    [ "Ingénieur", 92 ],
+    [ "Gérer", 271 ],
+    [ "Projet", 444 ],
+    [ "Responsable", 271 ]
   ],
   "cy": [
     [ "Ingénieur", 56 ],
     [ "Gérer", 56 ],
     [ "Projet", 56 ],
-    [ "Responsable", 166 ]
+    [ "Responsable", 165 ]
   ],
-  "shift": [
-    [ "Gérer,Responsable,0", 0 ],
-    [ "Gérer,Ingénieur,0", 0 ],
-    [ "Gérer,Projet,0", 0 ]
-  ],
-  "ratio": [
-    [ "Gérer,Responsable,0", 1.0 ]
-  ]
+  "shift": [],
+  "ratio": []
 }

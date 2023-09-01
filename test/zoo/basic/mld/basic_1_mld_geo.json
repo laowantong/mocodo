@@ -1,12 +1,12 @@
 {
-  "width": 630,
+  "width": 862,
   "height": 128,
   "cx": [
-    [ "CLIENT", 51 ],
-    [ "PASSER", 166 ],
-    [ "COMMANDE", 302 ],
-    [ "INCLURE", 443 ],
-    [ "PRODUIT", 571 ]
+    [ "CLIENT", 80 ],
+    [ "PASSER", 241 ],
+    [ "COMMANDE", 423 ],
+    [ "INCLURE", 605 ],
+    [ "PRODUIT", 774 ]
   ],
   "cy": [
     [ "CLIENT", 64 ],
@@ -15,11 +15,6 @@
     [ "INCLURE", 64 ],
     [ "PRODUIT", 64 ]
   ],
-  "shift": [
-    [ "PASSER,CLIENT,0", 0 ],
-    [ "PASSER,COMMANDE,0", 0 ],
-    [ "INCLURE,COMMANDE,0", 0 ],
-    [ "INCLURE,PRODUIT,0", 0 ]
-  ],
+  "shift": [],
   "ratio": []
 }

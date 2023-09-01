@@ -1,26 +1,16 @@
 {
-  "width": 474,
-  "height": 253,
+  "width": 478,
+  "height": 112,
   "cx": [
-    [ "Technicien", 94 ],
-    [ "Utiliser", 256 ],
-    [ "Projet", 399 ],
-    [ "Carnet", 256 ]
+    [ "Technicien", 96 ],
+    [ "Utiliser", 258 ],
+    [ "Projet", 401 ]
   ],
   "cy": [
-    [ "Technicien", 74 ],
-    [ "Utiliser", 74 ],
-    [ "Projet", 74 ],
-    [ "Carnet", 187 ]
+    [ "Technicien", 56 ],
+    [ "Utiliser", 56 ],
+    [ "Projet", 56 ]
   ],
-  "shift": [
-    [ "Utiliser,Technicien,0", 0 ],
-    [ "Utiliser,Carnet,0", 0 ],
-    [ "Utiliser,Projet,0", 0 ]
-  ],
-  "ratio": [
-    [ "Utiliser,Technicien,0", 1.0 ],
-    [ "Utiliser,Carnet,0", 1.0 ],
-    [ "Utiliser,Projet,0", 1.0 ]
-  ]
+  "shift": [],
+  "ratio": []
 }

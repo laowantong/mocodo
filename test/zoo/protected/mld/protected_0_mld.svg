@@ -1,48 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<svg width="304" height="94" viewBox="0 0 304 94" xmlns="http://www.w3.org/2000/svg">
-<rect id="frame" x="0" y="0" width="304" height="94" fill="#FFFFFF" stroke="none" stroke-width="0"/>
-
-<!-- Association LIGULA -->
-<g>
-	<line x1="48" y1="47" x2="157" y2="47" stroke="#000000" stroke-width="1"/>
-	<line x1="261" y1="47" x2="157" y2="47" stroke="#000000" stroke-width="1"/>
-	<g>
-		<path d="M184 18 a14 14 90 0 1 14 14 V46 h-82 V32 a14 14 90 0 1 14 -14" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
-		<path d="M198 46 v16 a14 14 90 0 1 -14 14 H130 a14 14 90 0 1 -14 -14 V46 H82" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
-		<rect x="116" y="18" width="82" height="58" fill="none" rx="14" stroke="#000000" stroke-width="1.5"/>
-		<rect x="116" y="18" width="82" height="58" fill="none" stroke="#000000" stroke-width="1.5" stroke-dasharray="1.5"/>
-		<line x1="116" y1="46" x2="198" y2="46" stroke="#000000" stroke-width="1.5"/>
-		<text x="124" y="39.3" fill="#000000" font-family="Copperplate" font-size="18">LIGULA</text>
-		<text x="123" y="64.1" fill="#000000" font-family="Gill Sans" font-size="15">metus</text>
-	</g>
-	<text x="92" y="63" fill="#000000" font-family="Futura" font-size="11">0,1</text>
-	<text x="203" y="63" fill="#000000" font-family="Futura" font-size="11">1,N</text>
-</g>
+<svg width="422" height="112" viewBox="0 0 422 112" xmlns="http://www.w3.org/2000/svg">
+<rect id="frame" x="0" y="0" width="422" height="112" fill="#FFFFFF" stroke="none" stroke-width="0"/>
 
 <!-- Entity LACUS -->
 <g>
 	<g>
-		<rect x="9" y="9" width="78" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
-		<rect x="9" y="39" width="78" height="46" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
-		<rect x="9" y="9" width="78" height="76" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
-		<line x1="9" y1="39" x2="87" y2="39" stroke="#000000" stroke-width="1.5"/>
+		<rect x="38" y="18" width="78" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="38" y="48" width="78" height="46" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="38" y="18" width="78" height="76" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
+		<line x1="38" y1="48" x2="116" y2="48" stroke="#000000" stroke-width="1.5"/>
 	</g>
-	<text x="17" y="30.3" fill="#000000" font-family="Copperplate" font-size="18">LACUS</text>
-	<text x="17" y="56.1" fill="#000000" font-family="Gill Sans" font-size="15">blandit</text>
-	<line x1="17" y1="59" x2="59" y2="59" stroke="#000000" stroke-width="1"/>
-	<text x="17" y="73.1" fill="#000000" font-family="Gill Sans" font-size="15">elit</text>
+	<text x="46" y="39.3" fill="#000000" font-family="Copperplate" font-size="18">LACUS</text>
+	<text x="46" y="65.1" fill="#000000" font-family="Gill Sans" font-size="15">blandit</text>
+	<line x1="46" y1="68" x2="88" y2="68" stroke="#000000" stroke-width="1"/>
+	<text x="46" y="82.1" fill="#000000" font-family="Gill Sans" font-size="15">elit</text>
+</g>
+
+<!-- Entity LIGULA -->
+<g>
+	<g>
+		<rect x="174" y="9" width="84" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="174" y="39" width="84" height="64" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="174" y="9" width="84" height="94" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
+		<line x1="174" y1="39" x2="258" y2="39" stroke="#000000" stroke-width="1.5"/>
+	</g>
+	<text x="183" y="30.3" fill="#000000" font-family="Copperplate" font-size="18">LIGULA</text>
+	<text x="182" y="56.1" fill="#000000" font-family="Gill Sans" font-size="15">blandit</text>
+	<line x1="182" y1="59" x2="224" y2="59" stroke="#000000" stroke-width="1"/>
+	<text x="182" y="73.1" fill="#000000" font-family="Gill Sans" font-size="15">congue</text>
+	<text x="182" y="90" fill="#000000" font-family="Gill Sans" font-size="15">metus</text>
 </g>
 
 <!-- Entity EROS -->
 <g>
 	<g>
-		<rect x="227" y="17" width="68" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
-		<rect x="227" y="47" width="68" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
-		<rect x="227" y="17" width="68" height="60" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
-		<line x1="227" y1="47" x2="295" y2="47" stroke="#000000" stroke-width="1.5"/>
+		<rect x="316" y="26" width="68" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="316" y="56" width="68" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="316" y="26" width="68" height="60" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
+		<line x1="316" y1="56" x2="384" y2="56" stroke="#000000" stroke-width="1.5"/>
 	</g>
-	<text x="235" y="38.3" fill="#000000" font-family="Copperplate" font-size="18">EROS</text>
-	<text x="235" y="64.1" fill="#000000" font-family="Gill Sans" font-size="15">congue</text>
-	<line x1="235" y1="67" x2="280" y2="67" stroke="#000000" stroke-width="1"/>
+	<text x="324" y="47.3" fill="#000000" font-family="Copperplate" font-size="18">EROS</text>
+	<text x="324" y="73.1" fill="#000000" font-family="Gill Sans" font-size="15">congue</text>
+	<line x1="324" y1="76" x2="369" y2="76" stroke="#000000" stroke-width="1"/>
 </g>
+
+<!-- Link from &quot;blandit&quot; (LIGULA) to &quot;blandit&quot; (LACUS) -->
+<path d="M174 53.5 C145 58 154.67 62.5 116 62.5" fill="none" stroke="#000000" stroke-width="1"/>
+<polygon points="116 62.5 128 56.5 124 62.5 128 68.5" fill="#000000" stroke-width="0"/>
+<circle cx="174" cy="53.5" r="1.5" stroke="#000000" stroke-width="1.5" fill="#000000"/>
+
+<!-- Link from &quot;congue&quot; (LIGULA) to &quot;congue&quot; (EROS) -->
+<path d="M258 70.5 C287 70.5 277.33 70.5 316 70.5" fill="none" stroke="#000000" stroke-width="1"/>
+<polygon points="316 70.5 304 76.5 308 70.5 304 64.5" fill="#000000" stroke-width="0"/>
+<circle cx="258" cy="70.5" r="1.5" stroke="#000000" stroke-width="1.5" fill="#000000"/>
 </svg>

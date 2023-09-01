@@ -1,31 +1,18 @@
 {
-  "width": 952,
-  "height": 94,
+  "width": 690,
+  "height": 146,
   "cx": [
-    [ "Appartement", 76 ],
-    [ "Composer", 224 ],
-    [ "Étage", 366 ],
-    [ "Appartenir", 514 ],
-    [ "Immeuble", 656 ],
-    [ "Se situer", 790 ],
-    [ "Rue", 906 ]
+    [ "Appartement", 105 ],
+    [ "Étage", 291 ],
+    [ "Immeuble", 465 ],
+    [ "Rue", 615 ]
   ],
   "cy": [
-    [ "Appartement", 47 ],
-    [ "Composer", 47 ],
-    [ "Étage", 47 ],
-    [ "Appartenir", 47 ],
-    [ "Immeuble", 47 ],
-    [ "Se situer", 47 ],
-    [ "Rue", 47 ]
+    [ "Appartement", 73 ],
+    [ "Étage", 73 ],
+    [ "Immeuble", 73 ],
+    [ "Rue", 73 ]
   ],
-  "shift": [
-    [ "Composer,Étage,0", 0 ],
-    [ "Composer,Appartement,0", 0 ],
-    [ "Appartenir,Immeuble,0", 0 ],
-    [ "Appartenir,Étage,0", 0 ],
-    [ "Se situer,Rue,0", 0 ],
-    [ "Se situer,Immeuble,0", 0 ]
-  ],
+  "shift": [],
   "ratio": []
 }

@@ -1,108 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<svg width="952" height="94" viewBox="0 0 952 94" xmlns="http://www.w3.org/2000/svg">
-<rect id="frame" x="0" y="0" width="952" height="94" fill="#FFFFFF" stroke="none" stroke-width="0"/>
-
-<!-- Association Composer -->
-<g>
-	<line x1="366" y1="47" x2="224" y2="47" stroke="#000000" stroke-width="1"/>
-	<line x1="76" y1="47" x2="224" y2="47" stroke="#000000" stroke-width="1"/>
-	<g>
-		<path d="M262 18 a14 14 90 0 1 14 14 V46 h-104 V32 a14 14 90 0 1 14 -14" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
-		<path d="M276 46 v16 a14 14 90 0 1 -14 14 H186 a14 14 90 0 1 -14 -14 V46 H104" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
-		<rect x="172" y="18" width="104" height="58" fill="none" rx="14" stroke="#000000" stroke-width="1.5"/>
-		<line x1="172" y1="46" x2="276" y2="46" stroke="#000000" stroke-width="1.5"/>
-		<text x="179" y="39.3" fill="#000000" font-family="Copperplate" font-size="18">Composer</text>
-	</g>
-	<text x="281" y="63" fill="#000000" font-family="Futura" font-size="11">0,N</text>
-	<text x="148" y="63" fill="#000000" font-family="Futura" font-size="11">1,1</text>
-	<line x1="148" y1="65" x2="166" y2="65" stroke="#000000" stroke-width="1"/>
-</g>
-
-<!-- Association Appartenir -->
-<g>
-	<line x1="656" y1="47" x2="514" y2="47" stroke="#000000" stroke-width="1"/>
-	<line x1="366" y1="47" x2="514" y2="47" stroke="#000000" stroke-width="1"/>
-	<g>
-		<path d="M558 18 a14 14 90 0 1 14 14 V46 h-116 V32 a14 14 90 0 1 14 -14" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
-		<path d="M572 46 v16 a14 14 90 0 1 -14 14 H470 a14 14 90 0 1 -14 -14 V46 H116" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
-		<rect x="456" y="18" width="116" height="58" fill="none" rx="14" stroke="#000000" stroke-width="1.5"/>
-		<line x1="456" y1="46" x2="572" y2="46" stroke="#000000" stroke-width="1.5"/>
-		<text x="463" y="39.3" fill="#000000" font-family="Copperplate" font-size="18">Appartenir</text>
-	</g>
-	<text x="577" y="63" fill="#000000" font-family="Futura" font-size="11">1,N</text>
-	<text x="432" y="63" fill="#000000" font-family="Futura" font-size="11">1,1</text>
-	<line x1="432" y1="65" x2="450" y2="65" stroke="#000000" stroke-width="1"/>
-</g>
-
-<!-- Association Se situer -->
-<g>
-	<line x1="906" y1="47" x2="790" y2="47" stroke="#000000" stroke-width="1"/>
-	<line x1="656" y1="47" x2="790" y2="47" stroke="#000000" stroke-width="1"/>
-	<g>
-		<path d="M826 18 a14 14 90 0 1 14 14 V46 h-100 V32 a14 14 90 0 1 14 -14" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
-		<path d="M840 46 v16 a14 14 90 0 1 -14 14 H754 a14 14 90 0 1 -14 -14 V46 H100" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
-		<rect x="740" y="18" width="100" height="58" fill="none" rx="14" stroke="#000000" stroke-width="1.5"/>
-		<line x1="740" y1="46" x2="840" y2="46" stroke="#000000" stroke-width="1.5"/>
-		<text x="747" y="39.3" fill="#000000" font-family="Copperplate" font-size="18">Se situer</text>
-	</g>
-	<text x="845" y="63" fill="#000000" font-family="Futura" font-size="11">0,N</text>
-	<text x="716" y="63" fill="#000000" font-family="Futura" font-size="11">1,1</text>
-	<line x1="716" y1="65" x2="734" y2="65" stroke="#000000" stroke-width="1"/>
-</g>
+<svg width="690" height="146" viewBox="0 0 690 146" xmlns="http://www.w3.org/2000/svg">
+<rect id="frame" x="0" y="0" width="690" height="146" fill="#FFFFFF" stroke="none" stroke-width="0"/>
 
 <!-- Entity Appartement -->
 <g>
 	<g>
-		<rect x="9" y="9" width="134" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
-		<rect x="9" y="39" width="134" height="46" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
-		<rect x="9" y="9" width="134" height="76" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
-		<line x1="9" y1="39" x2="143" y2="39" stroke="#000000" stroke-width="1.5"/>
+		<rect x="38" y="9" width="134" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="38" y="39" width="134" height="98" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="38" y="9" width="134" height="128" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
+		<line x1="38" y1="39" x2="172" y2="39" stroke="#000000" stroke-width="1.5"/>
 	</g>
-	<text x="18" y="30.3" fill="#000000" font-family="Copperplate" font-size="18">Appartement</text>
-	<text x="17" y="56.1" fill="#000000" font-family="Gill Sans" font-size="15">num appart.</text>
-	<line x1="17" y1="59" x2="92" y2="59" stroke="#000000" stroke-width="1" stroke-dasharray="4"/>
-	<text x="17" y="73.1" fill="#000000" font-family="Gill Sans" font-size="15">nb pièces</text>
+	<text x="47" y="30.3" fill="#000000" font-family="Copperplate" font-size="18">Appartement</text>
+	<text x="46" y="56.1" fill="#000000" font-family="Gill Sans" font-size="15">code rue</text>
+	<line x1="46" y1="59" x2="103" y2="59" stroke="#000000" stroke-width="1"/>
+	<text x="46" y="73.1" fill="#000000" font-family="Gill Sans" font-size="15">num immeuble</text>
+	<line x1="46" y1="76" x2="139" y2="76" stroke="#000000" stroke-width="1"/>
+	<text x="46" y="90.1" fill="#000000" font-family="Gill Sans" font-size="15">num étage</text>
+	<line x1="46" y1="93" x2="111" y2="93" stroke="#000000" stroke-width="1"/>
+	<text x="46" y="107" fill="#000000" font-family="Gill Sans" font-size="15">num appart.</text>
+	<line x1="46" y1="110" x2="121" y2="110" stroke="#000000" stroke-width="1"/>
+	<text x="46" y="124" fill="#000000" font-family="Gill Sans" font-size="15">nb pièces</text>
 </g>
 
 <!-- Entity Étage -->
 <g>
 	<g>
-		<rect x="305" y="9" width="122" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
-		<rect x="305" y="39" width="122" height="46" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
-		<rect x="305" y="9" width="122" height="76" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
-		<line x1="305" y1="39" x2="427" y2="39" stroke="#000000" stroke-width="1.5"/>
+		<rect x="230" y="18" width="122" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="230" y="48" width="122" height="80" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="230" y="18" width="122" height="110" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
+		<line x1="230" y1="48" x2="352" y2="48" stroke="#000000" stroke-width="1.5"/>
 	</g>
-	<text x="340" y="30.3" fill="#000000" font-family="Copperplate" font-size="18">Étage</text>
-	<text x="313" y="56.1" fill="#000000" font-family="Gill Sans" font-size="15">num étage</text>
-	<line x1="313" y1="59" x2="378" y2="59" stroke="#000000" stroke-width="1" stroke-dasharray="4"/>
-	<text x="313" y="73.1" fill="#000000" font-family="Gill Sans" font-size="15">nb appartements</text>
+	<text x="265" y="39.3" fill="#000000" font-family="Copperplate" font-size="18">Étage</text>
+	<text x="238" y="65.1" fill="#000000" font-family="Gill Sans" font-size="15">code rue</text>
+	<line x1="238" y1="68" x2="295" y2="68" stroke="#000000" stroke-width="1"/>
+	<text x="238" y="82.1" fill="#000000" font-family="Gill Sans" font-size="15">num immeuble</text>
+	<line x1="238" y1="85" x2="331" y2="85" stroke="#000000" stroke-width="1"/>
+	<text x="238" y="99.1" fill="#000000" font-family="Gill Sans" font-size="15">num étage</text>
+	<line x1="238" y1="102" x2="303" y2="102" stroke="#000000" stroke-width="1"/>
+	<text x="238" y="116" fill="#000000" font-family="Gill Sans" font-size="15">nb appartements</text>
 </g>
 
 <!-- Entity Immeuble -->
 <g>
 	<g>
-		<rect x="601" y="9" width="110" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
-		<rect x="601" y="39" width="110" height="46" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
-		<rect x="601" y="9" width="110" height="76" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
-		<line x1="601" y1="39" x2="711" y2="39" stroke="#000000" stroke-width="1.5"/>
+		<rect x="410" y="26" width="110" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="410" y="56" width="110" height="64" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="410" y="26" width="110" height="94" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
+		<line x1="410" y1="56" x2="520" y2="56" stroke="#000000" stroke-width="1.5"/>
 	</g>
-	<text x="613" y="30.3" fill="#000000" font-family="Copperplate" font-size="18">Immeuble</text>
-	<text x="609" y="56.1" fill="#000000" font-family="Gill Sans" font-size="15">num immeuble</text>
-	<line x1="609" y1="59" x2="702" y2="59" stroke="#000000" stroke-width="1" stroke-dasharray="4"/>
-	<text x="609" y="73.1" fill="#000000" font-family="Gill Sans" font-size="15">nb étages</text>
+	<text x="422" y="47.3" fill="#000000" font-family="Copperplate" font-size="18">Immeuble</text>
+	<text x="418" y="73.1" fill="#000000" font-family="Gill Sans" font-size="15">code rue</text>
+	<line x1="418" y1="76" x2="475" y2="76" stroke="#000000" stroke-width="1"/>
+	<text x="418" y="90.1" fill="#000000" font-family="Gill Sans" font-size="15">num immeuble</text>
+	<line x1="418" y1="93" x2="511" y2="93" stroke="#000000" stroke-width="1"/>
+	<text x="418" y="107" fill="#000000" font-family="Gill Sans" font-size="15">nb étages</text>
 </g>
 
 <!-- Entity Rue -->
 <g>
 	<g>
-		<rect x="869" y="9" width="74" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
-		<rect x="869" y="39" width="74" height="46" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
-		<rect x="869" y="9" width="74" height="76" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
-		<line x1="869" y1="39" x2="943" y2="39" stroke="#000000" stroke-width="1.5"/>
+		<rect x="578" y="35" width="74" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="578" y="65" width="74" height="46" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="578" y="35" width="74" height="76" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
+		<line x1="578" y1="65" x2="652" y2="65" stroke="#000000" stroke-width="1.5"/>
 	</g>
-	<text x="888" y="30.3" fill="#000000" font-family="Copperplate" font-size="18">Rue</text>
-	<text x="877" y="56.1" fill="#000000" font-family="Gill Sans" font-size="15">code rue</text>
-	<line x1="877" y1="59" x2="934" y2="59" stroke="#000000" stroke-width="1"/>
-	<text x="877" y="73.1" fill="#000000" font-family="Gill Sans" font-size="15">nom rue</text>
+	<text x="597" y="56.3" fill="#000000" font-family="Copperplate" font-size="18">Rue</text>
+	<text x="586" y="82.1" fill="#000000" font-family="Gill Sans" font-size="15">code rue</text>
+	<line x1="586" y1="85" x2="643" y2="85" stroke="#000000" stroke-width="1"/>
+	<text x="586" y="99.1" fill="#000000" font-family="Gill Sans" font-size="15">nom rue</text>
 </g>
+
+<!-- Link from &quot;code rue&quot; (Appartement) to &quot;code rue&quot; (Étage) -->
+<path d="M172 53.5 C201 58 191.33 62.5 230 62.5" fill="none" stroke="#000000" stroke-width="1"/>
+<polygon points="230 62.5 218 68.5 222 62.5 218 56.5" fill="#000000" stroke-width="0"/>
+<circle cx="172" cy="53.5" r="1.5" stroke="#000000" stroke-width="1.5" fill="#000000"/>
+
+<!-- Link from &quot;num immeuble&quot; (Appartement) to &quot;num immeuble&quot; (Étage) -->
+<path d="M172 70.5 C201 75 191.33 79.5 230 79.5" fill="none" stroke="#000000" stroke-width="1"/>
+<polygon points="230 79.5 218 85.5 222 79.5 218 73.5" fill="#000000" stroke-width="0"/>
+<circle cx="172" cy="70.5" r="1.5" stroke="#000000" stroke-width="1.5" fill="#000000"/>
+
+<!-- Link from &quot;num étage&quot; (Appartement) to &quot;num étage&quot; (Étage) -->
+<path d="M172 87.5 C201 92 191.33 96.5 230 96.5" fill="none" stroke="#000000" stroke-width="1"/>
+<polygon points="230 96.5 218 102.5 222 96.5 218 90.5" fill="#000000" stroke-width="0"/>
+<circle cx="172" cy="87.5" r="1.5" stroke="#000000" stroke-width="1.5" fill="#000000"/>
+
+<!-- Link from &quot;code rue&quot; (Étage) to &quot;code rue&quot; (Immeuble) -->
+<path d="M352 62.5 C381 66.5 371.33 70.5 410 70.5" fill="none" stroke="#000000" stroke-width="1"/>
+<polygon points="410 70.5 398 76.5 402 70.5 398 64.5" fill="#000000" stroke-width="0"/>
+<circle cx="352" cy="62.5" r="1.5" stroke="#000000" stroke-width="1.5" fill="#000000"/>
+
+<!-- Link from &quot;num immeuble&quot; (Étage) to &quot;num immeuble&quot; (Immeuble) -->
+<path d="M352 79.5 C381 83.5 371.33 87.5 410 87.5" fill="none" stroke="#000000" stroke-width="1"/>
+<polygon points="410 87.5 398 93.5 402 87.5 398 81.5" fill="#000000" stroke-width="0"/>
+<circle cx="352" cy="79.5" r="1.5" stroke="#000000" stroke-width="1.5" fill="#000000"/>
+
+<!-- Link from &quot;code rue&quot; (Immeuble) to &quot;code rue&quot; (Rue) -->
+<path d="M520 70.5 C549 75 539.33 79.5 578 79.5" fill="none" stroke="#000000" stroke-width="1"/>
+<polygon points="578 79.5 566 85.5 570 79.5 566 73.5" fill="#000000" stroke-width="0"/>
+<circle cx="520" cy="70.5" r="1.5" stroke="#000000" stroke-width="1.5" fill="#000000"/>
 </svg>

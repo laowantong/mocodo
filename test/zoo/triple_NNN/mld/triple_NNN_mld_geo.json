@@ -1,22 +1,12 @@
 {
-  "width": 356,
-  "height": 162,
+  "width": 186,
+  "height": 112,
   "cx": [
-    [ "Employé", 56 ],
-    [ "Appliquer", 186 ],
-    [ "Projet", 308 ],
-    [ "Compétence", 186 ]
+    [ "Appliquer", 93 ]
   ],
   "cy": [
-    [ "Employé", 39 ],
-    [ "Appliquer", 39 ],
-    [ "Projet", 39 ],
-    [ "Compétence", 123 ]
+    [ "Appliquer", 56 ]
   ],
-  "shift": [
-    [ "Appliquer,Employé,0", 0 ],
-    [ "Appliquer,Projet,0", 0 ],
-    [ "Appliquer,Compétence,0", 0 ]
-  ],
+  "shift": [],
   "ratio": []
 }

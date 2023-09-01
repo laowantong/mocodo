@@ -1,22 +1,16 @@
 {
-  "width": 386,
-  "height": 212,
+  "width": 506,
+  "height": 217,
   "cx": [
-    [ "Bataille", 57 ],
-    [ "Récolter", 184 ],
-    [ "Villageois", 320 ],
-    [ "Trophée", 184 ]
+    [ "Bataille", 86 ],
+    [ "Villageois", 411 ],
+    [ "Trophée", 244 ]
   ],
   "cy": [
     [ "Bataille", 56 ],
-    [ "Récolter", 56 ],
     [ "Villageois", 56 ],
-    [ "Trophée", 156 ]
+    [ "Trophée", 144 ]
   ],
-  "shift": [
-    [ "Récolter,Villageois,0", 0 ],
-    [ "Récolter,Bataille,0", 0 ],
-    [ "Récolter,Trophée,0", 0 ]
-  ],
+  "shift": [],
   "ratio": []
 }

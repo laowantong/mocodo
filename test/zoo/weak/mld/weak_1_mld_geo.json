@@ -1,19 +1,14 @@
 {
-  "width": 314,
-  "height": 112,
+  "width": 332,
+  "height": 146,
   "cx": [
-    [ "Œuvre", 48 ],
-    [ "DF0", 136 ],
-    [ "Exemplaire", 245 ]
+    [ "Œuvre", 77 ],
+    [ "Exemplaire", 234 ]
   ],
   "cy": [
-    [ "Œuvre", 56 ],
-    [ "DF0", 56 ],
-    [ "Exemplaire", 56 ]
+    [ "Œuvre", 73 ],
+    [ "Exemplaire", 73 ]
   ],
-  "shift": [
-    [ "DF0,Œuvre,0", 0 ],
-    [ "DF0,Exemplaire,0", 0 ]
-  ],
+  "shift": [],
   "ratio": []
 }

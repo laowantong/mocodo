@@ -1,63 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<svg width="370" height="190" viewBox="0 0 370 190" xmlns="http://www.w3.org/2000/svg">
-<rect id="frame" x="0" y="0" width="370" height="190" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<svg width="168" height="112" viewBox="0 0 168 112" xmlns="http://www.w3.org/2000/svg">
+<rect id="frame" x="0" y="0" width="168" height="112" fill="#FFFFFF" stroke="none" stroke-width="0"/>
 
-<!-- Association Gérer -->
-<g>
-	<line x1="200" y1="142" x2="200" y2="48" stroke="#000000" stroke-width="1"/>
-	<polygon points="200 112 194 100 200 104 206 100" fill="#000000" stroke-width="0"/>
-	<line x1="72" y1="48" x2="200" y2="48" stroke="#000000" stroke-width="1"/>
-	<line x1="313" y1="48" x2="200" y2="48" stroke="#000000" stroke-width="1"/>
-	<g>
-		<path d="M20 13 L350 13 a7 7 0 0 1 7 7 L357 76 a7 7 0 0 1 &#45;7 7 L20 83 a7 7 0 0 1 &#45;7 &#45;7 L13 20 a7 7 0 0 1 7 &#45;7" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="0.3"/>
-		<path d="M20 13 L350 13 a7 7 0 0 1 7 7 L357 76 a7 7 0 0 1 &#45;7 7 L20 83 a7 7 0 0 1 &#45;7 &#45;7 L13 20 a7 7 0 0 1 7 &#45;7" fill="none" stroke="#000000" stroke-width="1.5" stroke-dasharray="0,4" stroke-linecap="round"/>
-		<path d="M221 19 a14 14 90 0 1 14 14 V47 h-70 V33 a14 14 90 0 1 14 -14" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
-		<path d="M235 47 v16 a14 14 90 0 1 -14 14 H179 a14 14 90 0 1 -14 -14 V47 H70" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
-		<rect x="165" y="19" width="70" height="58" fill="none" rx="14" stroke="#000000" stroke-width="1.5"/>
-		<line x1="165" y1="47" x2="235" y2="47" stroke="#000000" stroke-width="1.5"/>
-		<text x="172" y="40.3" fill="#000000" font-family="Copperplate" font-size="18">Gérer</text>
-	</g>
-	<text x="210" y="99" fill="#000000" font-family="Futura" font-size="11">1,N</text>
-	<text x="136" y="69" fill="#000000" font-family="Futura" font-size="11">1,N</text>
-	<text x="245" y="69" fill="#000000" font-family="Futura" font-size="11">1,N</text>
-</g>
-
-<!-- Entity Ingénieur -->
+<!-- Entity Gérer -->
 <g>
 	<g>
-		<rect x="18" y="18" width="108" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
-		<rect x="18" y="48" width="108" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
-		<rect x="18" y="18" width="108" height="60" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
-		<line x1="18" y1="48" x2="126" y2="48" stroke="#000000" stroke-width="1.5"/>
+		<rect x="38" y="9" width="92" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="38" y="39" width="92" height="64" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="38" y="9" width="92" height="94" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
+		<line x1="38" y1="39" x2="130" y2="39" stroke="#000000" stroke-width="1.5"/>
 	</g>
-	<text x="27" y="39.3" fill="#000000" font-family="Copperplate" font-size="18">Ingénieur</text>
-	<text x="26" y="65.1" fill="#000000" font-family="Gill Sans" font-size="15">ingénieur</text>
-	<line x1="26" y1="68" x2="84" y2="68" stroke="#000000" stroke-width="1"/>
-</g>
-
-<!-- Entity Projet -->
-<g>
-	<g>
-		<rect x="274" y="18" width="78" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
-		<rect x="274" y="48" width="78" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
-		<rect x="274" y="18" width="78" height="60" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
-		<line x1="274" y1="48" x2="352" y2="48" stroke="#000000" stroke-width="1.5"/>
-	</g>
-	<text x="282" y="39.3" fill="#000000" font-family="Copperplate" font-size="18">Projet</text>
-	<text x="282" y="65.1" fill="#000000" font-family="Gill Sans" font-size="15">projet</text>
-	<line x1="282" y1="68" x2="321" y2="68" stroke="#000000" stroke-width="1"/>
-</g>
-
-<!-- Entity Responsable -->
-<g>
-	<g>
-		<rect x="133" y="112" width="134" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
-		<rect x="133" y="142" width="134" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
-		<rect x="133" y="112" width="134" height="60" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
-		<line x1="133" y1="142" x2="267" y2="142" stroke="#000000" stroke-width="1.5"/>
-	</g>
-	<text x="141" y="133.3" fill="#000000" font-family="Copperplate" font-size="18">Responsable</text>
-	<text x="141" y="159.1" fill="#000000" font-family="Gill Sans" font-size="15">responsable</text>
-	<line x1="141" y1="162" x2="216" y2="162" stroke="#000000" stroke-width="1"/>
+	<text x="56" y="30.3" fill="#000000" font-family="Copperplate" font-size="18">Gérer</text>
+	<text x="46" y="56.1" fill="#000000" font-family="Gill Sans" font-size="15">ingénieur</text>
+	<line x1="46" y1="59" x2="104" y2="59" stroke="#000000" stroke-width="1"/>
+	<text x="46" y="73.1" fill="#000000" font-family="Gill Sans" font-size="15">projet</text>
+	<line x1="46" y1="76" x2="85" y2="76" stroke="#000000" stroke-width="1"/>
+	<text x="46" y="90" fill="#000000" font-family="Gill Sans" font-size="15">responsable</text>
 </g>
 </svg>

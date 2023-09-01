@@ -1,19 +1,16 @@
 {
-  "width": 304,
-  "height": 94,
+  "width": 422,
+  "height": 112,
   "cx": [
-    [ "LACUS", 48 ],
-    [ "LIGULA", 157 ],
-    [ "EROS", 261 ]
+    [ "LACUS", 77 ],
+    [ "LIGULA", 216 ],
+    [ "EROS", 350 ]
   ],
   "cy": [
-    [ "LACUS", 47 ],
-    [ "LIGULA", 47 ],
-    [ "EROS", 47 ]
+    [ "LACUS", 56 ],
+    [ "LIGULA", 56 ],
+    [ "EROS", 56 ]
   ],
-  "shift": [
-    [ "LIGULA,LACUS,0", 0 ],
-    [ "LIGULA,EROS,0", 0 ]
-  ],
+  "shift": [],
   "ratio": []
 }

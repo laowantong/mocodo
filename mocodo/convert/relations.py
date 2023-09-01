@@ -246,6 +246,8 @@ class Relations:
                 "columns": []
             }
             for attribute in entity.attributes:
+                if attribute.label.strip() == "":
+                    continue # ignore empty attributes
                 nature = "primary_key" if attribute.kind in ("strong", "weak") else "normal_attribute"
                 alt_groups = "".join(c for c in sorted(attribute.id_groups) if c != "0")
                 self.relations[name]["columns"].append({
@@ -444,7 +446,7 @@ class Relations:
                         "primary": False,
                         "nature": "association_attribute",
                         "alt_groups": "",
-                    } for attribute in association.attributes
+                    } for attribute in association.attributes if attribute.label.strip() != ""
                 )
             else: # this association is a DF
                 # The entity named `entity_name` is distinguished by the *1 cardinality
@@ -494,7 +496,7 @@ class Relations:
                         "primary": False,
                         "nature": "outer_attribute",
                         "alt_groups": "",
-                    } for attribute in association.attributes])
+                    } for attribute in association.attributes if attribute.label.strip() != ""])
 
 
     def process_inheritances(self):
