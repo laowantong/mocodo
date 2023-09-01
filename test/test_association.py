@@ -119,6 +119,7 @@ class ParseTest(unittest.TestCase):
         a = association_wrapper("CIF, 0N CLIENT, 11 COMMANDE", df_label="CIF")
         self.assertEqual(a.name, "CIF")
         self.assertEqual(a.name_view, "CIF")
+        self.assertRaisesRegex(MocodoError, r"Mocodo Err\.37", association_wrapper, "DF, 0N CLIENT, 0N COMMANDE")
 
     def test_cluster_of_one_entity(self):
         a = association_wrapper("SUIVRE, 0N DATE, /1N ÉTUDIANT")

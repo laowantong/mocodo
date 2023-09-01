@@ -69,6 +69,13 @@ class Association:
                         if other_leg is leg:
                             continue
                         other_leg.append_candidate_group(group_number)
+        elif self.kind == "df":
+            for leg in self.legs:
+                if leg.card.endswith("1"):
+                    break
+            else:
+                raise MocodoError(37, _('An association named "{df_label}" must have at least one leg with a maximal cardinality of 1.').format(df_label=df_label)) # fmt: skip
+
 
     def register_boxes(self, boxes):
         self.boxes = boxes
