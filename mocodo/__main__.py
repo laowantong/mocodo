@@ -60,14 +60,16 @@ class Runner:
 
         if "rewrite" in self.params: # include the case where --rewrite is provided without sub-arguments
             for (subopt, subargs) in self.params["rewrite"]:
-                if subopt in ("quiet", "mute"): # communicate with the magic command by creating a temporary file
+                if subopt in ("quiet", "mute"):
+                    # Create an empty temporary file whose presence will be detected by the magic command,
+                    # resulting in the printing of the rewritten MCD to be disabled.
                     Path(self.params["output_dir"], "mute_rewriting").touch()
                     continue
                 if subopt == "flip":
                     source = self.flip(source, subargs)
                 elif subopt == "arrange":
                     source = self.arrange(source, subargs)
-                elif subopt in op_tk.ELEMENT_TO_TOKENS: # ex.: labels, attrs, cards, types, etc.
+                elif subopt in op_tk.OPERATIONS: # ex.: create, delete, ascii, etc.
                     source = op_tk.run(source, subopt=subopt, subargs=subargs, params=self.params).rstrip()
                 else: # An unspecified rewrite operation, dynamically loaded
                     try:
@@ -107,7 +109,9 @@ class Runner:
                     official_template_dir = Path(self.params["script_directory"], "resources", "relation_templates")
                     template = read_template(stem_or_path, official_template_dir)
                     if template["extension"] == "sql":
-                        source = op_tk.run(source, "sql", dict.fromkeys(["snake", "ascii", "lower"]), self.params).rstrip()
+                        source = op_tk.run(source, "ascii", {"sql": ""}, self.params)
+                        source = op_tk.run(source, "snake", {"sql": ""}, self.params)
+                        source = op_tk.run(source, "lower", {"sql": ""}, self.params)
                     if not relations: # don't recompute the relations if they have already been computed
                         mcd = Mcd(source, self.get_font_metrics, **self.params)
                         relations = Relations(mcd, self.params)

@@ -9,7 +9,7 @@ class TestUpdateLabels(unittest.TestCase):
 
     def test_upper(self):
         source = "composer, 0n [composée] pièce, 0n [composante] pièce: quantité"
-        actual = op_tk.run(source, "labels", {"upper": None}, {})
+        actual = op_tk.run(source, "upper", {"labels": ""}, {})
         expected = "COMPOSER, 0n [composée] PIÈCE, 0n [composante] PIÈCE: QUANTITÉ"
         self.assertEqual(actual.strip(), expected.strip())
 
@@ -27,9 +27,9 @@ class TestUpdateLabels(unittest.TestCase):
             Egestas: vivamus, semper, aliquam
             Ultricies, 11 Rhoncus, 0N Egestas
         """
-        subargs = {"obfuscate": "four_letter_words.txt"}
+        subargs = {"labels": "four_letter_words.txt"}
         params = {"seed": 42, "script_directory": "mocodo"}
-        actual = op_tk.run(source, "labels", subargs, params)
+        actual = op_tk.run(source, "obfuscate", subargs, params)
         print(actual)
         expected = """
             feel: turn, grin

@@ -5,7 +5,7 @@ __import__("sys").path[0:0] = ["."]
 from ..parse_mcd import Transformer
 from ..tools.parser_tools import transform_source
 from ..tools.string_tools import ascii, camel, snake
-from . import stand_for
+from ..tools.various import invert_dict
 from .cards import fix_card, randomize_cards
 from .types import FIELD_TYPES, create_type_placeholders, guess_types
 from .obfuscate import obfuscator_factory
@@ -26,7 +26,7 @@ ELEMENT_TO_TOKENS = {
     "types": ["data_type"],
 }
 
-OPERATIONS = { # operations that can be applied to any token
+GENERAL_OPERATIONS = { # operations that can be applied to any token
     "ascii": ascii,
     "camel": camel,
     "capitalize": lambda x: x.capitalize(),
@@ -39,22 +39,44 @@ OPERATIONS = { # operations that can be applied to any token
     "upper": lambda x: x.upper(),
 }
 
+OPERATION_SYNONYMS = {
+    "ascii": ["ascii"],
+    "camel": ["camel", "camel_case", "camelCase"],
+    "capitalize": ["capitalize"],
+    "casefold": ["casefold"],
+    "create": ["create", "add", "insert", "make"],
+    "delete": ["delete", "del", "suppress", "erase", "remove", "hide"],
+    "fix": ["fix"],
+    "guess": ["guess", "infer"],
+    "lower": ["lower", "lowercase", "lower_case"],
+    "obfuscate": ["obfuscate", "obscure"],
+    "randomize": ["randomize", "rand", "random", "randomise"],
+    "snake": ["snake", "snake_case"],
+    "swapcase": ["swapcase"],
+    "title": ["title"],
+    "upper": ["upper", "uppercase", "upper_case"],
+}
+
+
+OPERATIONS = invert_dict(OPERATION_SYNONYMS)
+
+
 class Mapper(Transformer):
 
-    def __init__(self, pre_token, op_name, subsubarg, params):
+    def __init__(self, op_name, pre_token, subsubarg, params):
         tokens = ELEMENT_TO_TOKENS[pre_token]
-        op = OPERATIONS.get(op_name)
+        op = GENERAL_OPERATIONS.get(op_name)
         if op is None: # op_tk operations with limited applicability
-            if stand_for(op_name, "randomize") and pre_token == "types":
+            if op_name == "randomize" and pre_token == "types":
                 pool = list(FIELD_TYPES["en"].values())
                 op = lambda x: x or random.choice(pool)
-            elif stand_for(op_name, "delete") and pre_token in ("attrs", "notes", "leg_notes", "constraint_notes", "arrows"):
+            elif op_name == "delete" and pre_token in ("attrs", "notes", "leg_notes", "constraint_notes", "arrows"):
                 op = lambda _: ""
-            elif stand_for(op_name, "delete") and pre_token == "cards":
+            elif op_name == "delete" and pre_token == "cards":
                 op = lambda _: "XX"
-            elif stand_for(op_name, "fix") and pre_token == "cards":
+            elif op_name == "fix" and pre_token == "cards":
                 op = fix_card
-            elif stand_for(op_name, "obfuscate") and pre_token in ("labels", "texts", "boxes", "attrs", "notes", "leg_notes", "constraint_notes"):
+            elif op_name == "obfuscate" and pre_token in ("labels", "texts", "boxes", "attrs", "notes", "leg_notes", "constraint_notes"):
                 op = obfuscator_factory(subsubarg, params)
             else:
                 raise MocodoError(24, _('Operation {op_name} cannot be applied to {pre_token}.').format(op_name=op_name, pre_token=pre_token))
@@ -64,16 +86,17 @@ class Mapper(Transformer):
 
 
 def run(source, subopt, subargs, params, **kargs):
-    for (op_name, subsubarg) in subargs.items():
+    op_name = OPERATIONS[subopt]
+    for (pre_token, subsubarg) in subargs.items():
         # filter special non-op_tk operations
-        if stand_for(op_name, "create") and subopt == "types":
+        if op_name == "create" and pre_token == "types":
             source = create_type_placeholders(source)
-        elif stand_for(op_name, "guess") and subopt == "types":
+        elif op_name == "guess" and pre_token == "types":
             source = guess_types(source, subsubarg, params)
-        elif stand_for(op_name, "randomize") and subopt == "cards":
+        elif op_name == "randomize" and pre_token == "cards":
             source = randomize_cards(source, params)
-        elif stand_for(op_name, "create") and subopt == "df_arrows":
+        elif op_name == "create" and pre_token == "df_arrows":
             source = create_df_arrows(source, subsubarg)
         else: # apply a normal op_tk operation
-            source = transform_source(source, Mapper(subopt, op_name, subsubarg, params))
+            source = transform_source(source, Mapper(op_name, pre_token, subsubarg, params))
     return source

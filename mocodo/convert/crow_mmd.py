@@ -62,7 +62,8 @@ class CrowMmd(Crow):
 
 
 def run(source, subargs, common=None):
-    source = op_tk.run(source, "labels", {"ascii": 1, "snake": 1}, common.params)
+    source = op_tk.run(source, "ascii", {"labels": 1}, common.params)
+    source = op_tk.run(source, "snake", {"labels": 1}, common.params)
     source = drain.run(source)
     source = split.run(source)
     source = explode.run(source, {"arity": "2.5", "weak": True}, common.params)

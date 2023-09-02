@@ -19,7 +19,7 @@ class TestUpdateCards(unittest.TestCase):
             LUCK, 0N< [find] HOST, 01 [hill] HOST
             AIDS, XX VARY, ?? WRAP
         """
-        actual = op_tk.run(source, "cards", {"random": True}, {})
+        actual = op_tk.run(source, "random", {"cards": 1}, {})
         expected = """
             BAKE, 01 TEND, 01 TALL
             FISH, -0N TALL, -_11 TOUR: slot
@@ -36,23 +36,23 @@ class TestUpdateCards(unittest.TestCase):
 
     def test_fix_cards(self):
         source = "A, ON B, No No"
-        actual = op_tk.run(source, "cards", {"fix": True}, {}).strip()
+        actual = op_tk.run(source, "fix", {"cards": 1}, {}).strip()
         expected = "A, 0N B, 0N No"
         self.assertEqual(actual, expected)
 
     def test_delete_cards(self):
         source = "A, 01 B, 0N C"
-        actual = op_tk.run(source, "cards", {"delete": True}, {}).strip()
+        actual = op_tk.run(source, "delete", {"cards": 1}, {}).strip()
         expected = "A, XX B, XX C"
         self.assertEqual(actual, expected)
 
     def test_change_capitalization_cards(self):
         source = "A, 0N B, _1N No"
-        actual = op_tk.run(source, "cards", {"lower": True}, {}).strip()
+        actual = op_tk.run(source, "lower", {"cards": 1}, {}).strip()
         expected = "A, 0n B, _1n No"
         self.assertEqual(actual, expected)
         source = expected
-        actual = op_tk.run(source, "cards", {"upper": True}, {}).strip()
+        actual = op_tk.run(source, "upper", {"cards": 1}, {}).strip()
         expected = "A, 0N B, _1N No"
         self.assertEqual(actual, expected)
     

@@ -123,7 +123,7 @@ def main():
         may_dump_rewritten_version(subfolder, source, source_path.stem[1:], "explode", {"arity": 3})
         may_dump_rewritten_version(subfolder, source, source_path.stem[1:], "drain", {})
         may_dump_rewritten_version(subfolder, source, source_path.stem[1:], "split", {})
-        may_dump_rewritten_version(subfolder, source, source_path.stem[1:], "df_arrows", {"create": "across"})
+        may_dump_rewritten_version(subfolder, source, source_path.stem[1:], "create", {"df_arrows": "across"})
 
         mcd = Mcd(source, get_font_metrics, **params)
 
@@ -174,9 +174,11 @@ def main():
         # Create the sql output files. Warning: modifies source.
         subfolder = Path(source_path.parent / "ddl")
         subfolder.mkdir(exist_ok=True)
-        source = op_tk.run(source, "types", {"guess": ""}, params)
-        source = op_tk.run(source, "sql", dict.fromkeys(["ascii", "snake", "lower"]), params)
-        source = op_tk.run(source, "boxes", dict.fromkeys(["upper"]), params)
+        source = op_tk.run(source, "guess", {"types": ""}, params)
+        source = op_tk.run(source, "ascii", {"sql": ""}, params)
+        source = op_tk.run(source, "snake", {"sql": ""}, params)
+        source = op_tk.run(source, "lower", {"sql": ""}, params)
+        source = op_tk.run(source, "upper", {"boxes": ""}, params)
         mcd = Mcd(source, get_font_metrics, **params)
         for template in templates:
             if template["extension"] != "sql":
