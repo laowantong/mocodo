@@ -13,7 +13,7 @@ from time import time
 import requests
 import shutil
 
-from .argument_parser import parsed_arguments
+from .argument_parser import parsed_arguments, transformations
 from .common import Common, safe_print_for_PHP
 from .convert.read_template import read_template
 from .convert.relations import Relations
@@ -50,7 +50,7 @@ class Runner:
             return write_contents("self.params.json", "{}")
         
         if self.params["print_params"]:
-            for added_key in self.params["added_keys"][:]:
+            for added_key in self.params["keys_to_hide"][:]:
                 del self.params[added_key]
             self.params["print_params"] = False
             self.params_contents = json.dumps(self.params, ensure_ascii=False, indent=2, sort_keys=True)
@@ -58,60 +58,64 @@ class Runner:
 
         self.add_gutter_params(self.params)
 
-        if "rewrite" in self.params: # include the case where --rewrite is provided without sub-arguments
+        response = {
+            "redirect_output": self.params["redirect_output"],
+            "must_display_default_mld": False,
+        }
+
+        if self.params["mld"] or ("transform" in self.params and self.params["transform"] == []):
+            # In case there is an option `--mld` or an option `--transform` without arguments,
+            # inject manually the equivalent --convert sub-option
+            self.params["convert"].append(("rel", {}))
+            response["must_display_default_mld"] = True
+
+        if self.params["rewrite"]:
             for (subopt, subargs) in self.params["rewrite"]:
-                if subopt in ("quiet", "mute"):
-                    # Create an empty temporary file whose presence will be detected by the magic command,
-                    # resulting in the printing of the rewritten MCD to be disabled.
-                    Path(self.params["output_dir"], "mute_rewriting").touch()
+                if subopt == "mute":
+                    response["is_muted"] = True
                     continue
                 if subopt == "flip":
                     source = self.flip(source, subargs)
                 elif subopt == "arrange":
                     source = self.arrange(source, subargs)
-                elif subopt in op_tk.OPERATIONS: # ex.: create, delete, ascii, etc.
-                    source = op_tk.run(source, subopt=subopt, subargs=subargs, params=self.params).rstrip()
+                elif subopt in transformations.op_tk_rewritings: # ex.: create, delete, ascii, etc.
+                    source = op_tk.run(source, op_name=subopt, subargs=subargs, params=self.params).rstrip()
                 else: # An unspecified rewrite operation, dynamically loaded
                     try:
                         module = importlib.import_module(f".rewrite._{subopt}", package="mocodo")
                     except ModuleNotFoundError:
                         raise subopt_error("rewrite", subopt)
                     source = module.run(source, subopt=subopt, subargs=subargs, params=self.params).rstrip()
-            # Write the rewritten MCD to a temporary file
-            rewritten_mcd_path = Path(f"{self.params['output_name']}_rewritten.mcd")
-            self.common.dump_file(rewritten_mcd_path, source)
+                response["rewritten_source"] = source
             # The geometry needs to be recomputed after the rewrite operations
             with contextlib.suppress(FileNotFoundError): # Argument missing_ok=True is not available prior to Python 3.8
                 Path(f"{self.params['output_name']}_geo.json").unlink()
         
         may_update_params_with_guessed_title(source, self.params)
-
-        if self.params["mld"]: # inject manually the equivalent --convert sub-option
-            if self.params["convert"] is None:
-                self.params["convert"] = []
-            self.params["convert"].append(("rel", {}))
         
+        converted_file_paths = [] # list of files to be displayed in the notebook
         if self.params["convert"]:
+            response["has_explicit_conversion"] = True
             relations = None
-            convert_log_files = [] # list of files to be displayed in the notebook
             deferred_output_formats = []
             results = []
             for (subopt, subargs) in self.params["convert"]:
-                if subopt in ("mute", "mute"): # communicate with the magic command by creating a temporary file
-                    Path(self.params["output_dir"], "mute_converting").touch()
+                if subopt == "mute": # communicate with the magic command by creating a temporary file
+                    response["is_muted"] = True
                     continue
                 if subopt == "defer":
                     deferred_output_formats = list(subargs) or ["svg"]
                     continue
-                if subopt in ("rel", "mld", "ddl"):
+                if subopt == "rel":
                     (subsubopt, subsubarg) = next(iter(subargs.items()), ("markdown", "")) # ignore all sub-arguments after the first one
                     stem_or_path = f"{subsubopt}={subsubarg}" if subsubarg else subsubopt
                     official_template_dir = Path(self.params["script_directory"], "resources", "relation_templates")
                     template = read_template(stem_or_path, official_template_dir)
                     if template["extension"] == "sql":
-                        source = op_tk.run(source, "ascii", {"sql": ""}, self.params)
-                        source = op_tk.run(source, "snake", {"sql": ""}, self.params)
-                        source = op_tk.run(source, "lower", {"sql": ""}, self.params)
+                        source = op_tk.run(source, "ascii", {"labels": 1, "leg_notes": 1}, self.params)
+                        source = op_tk.run(source, "snake", {"labels": 1, "leg_notes": 1}, self.params)
+                        source = op_tk.run(source, "lower", {"attrs": 1, "leg_notes": 1}, self.params)
+                        source = op_tk.run(source, "upper", {"boxes": 1}, self.params)
                     if not relations: # don't recompute the relations if they have already been computed
                         mcd = Mcd(source, self.get_font_metrics, **self.params)
                         relations = Relations(mcd, self.params)
@@ -132,16 +136,17 @@ class Runner:
                 
                 result["text_path"] = Path(f"{self.params['output_name']}{result['stem_suffix']}.{result['extension']}")
                 self.common.dump_file(result["text_path"], f"{result['text'].rstrip()}\n")
-                results.append(result)
+                if not (response["must_display_default_mld"] and (subopt, subargs) == ("rel", {})):
+                    results.append(result)
             for result in results:
-                convert_log_files.extend(self.generate_log_files(result, deferred_output_formats))
-            if convert_log_files:
-                Path(self.params["output_dir"], "convert.log").write_text("\n".join(convert_log_files))
-                if not self.params["mld"]:
-                    # In case of an explicit conversion, the rendering of the MCD is not calculated.
-                    # Consequently, the mtime of the ".svg" will be older than the mtime of the ".mcd".
-                    # This will prevent the magic command from displaying the ".svg" file.
-                    return
+                converted_file_paths.extend(self.generate_log_files(result, deferred_output_formats))
+            response["converted_file_paths"] = converted_file_paths
+
+        response = json.dumps(response, ensure_ascii=False, indent=2)
+        Path(f"{self.params['output_name']}_response_for_magic_command.json").write_text(response)
+
+        if converted_file_paths and not self.params["rewrite"]:
+            return # Don't calculate the MCD if the user only wants to convert the MCD to another format.
         
         mcd = Mcd(source, self.get_font_metrics, **self.params)
         self.control_for_overlaps(mcd)

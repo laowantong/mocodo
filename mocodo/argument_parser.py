@@ -9,8 +9,10 @@ import shutil
 import sys
 from io import open
 from pathlib import Path
+import textwrap
 
 from mocodo.tools.string_tools import strip_surrounds
+from mocodo.tools.various import invert_dict
 
 from .common import version
 from .mocodo_error import MocodoError
@@ -36,6 +38,7 @@ NOTE:
 EPILOG = """
 SEE ALSO:
   Online version        https://mocodo.net
+  Documentation         https://rawgit.com/laowantong/mocodo/master/doc/fr_refman.html
   Source code           https://github.com/laowantong/mocodo
   Localization          https://www.transifex.com/aristide/mocodo/
 
@@ -52,11 +55,6 @@ CONTACT:
                         France
 """
 
-class ArgumentDefaultsRawDescriptionHelpFormatter(
-    argparse.ArgumentDefaultsHelpFormatter,
-    argparse.RawDescriptionHelpFormatter,
-):
-    pass
 
 
 def init_localization(script_directory, language):
@@ -78,13 +76,189 @@ def init_localization(script_directory, language):
     except IOError:
         trans = gettext.NullTranslations()
 
-    # Beware that the following line set the global variable `_`. Using a single underscore
+    # Beware that the following line sets the global variable `_`. Using a single underscore
     # would clash with the gettext alias, EVEN IF THE CODE IS NOT REACHED: the compiler would
     # consider that _ is a local variable, and shadow the global one, resulting in:
     # UnboundLocalError: local variable '_' referenced before assignment
     # Solution : use `__` instead of `_` in any function that uses the gettext alias.
     trans.install()
     return language
+
+
+class Transformations:
+
+    TRANSFORMATIONS = {
+        "arrange": {
+            "category": "rw",
+            "help": "rearrange the layout with either a Branch & Bound or a Genetic Algorithm",
+            "aliases": [],
+        },
+        "ascii": {
+            "category": "rw",
+            "help": "rewrite the given elements in ASCII",
+            "aliases": [],
+            "op_tk": True,
+        },
+        "camel": {
+            "category": "rw",
+            "help": "rewrite the given elements in camelCase",
+            "aliases": ["camel_case", "camelCase"],
+            "op_tk": True,
+        },
+        "capitalize": {
+            "category": "rw",
+            "help": "rewrite the given elements by capitalizing the first letter of each word",
+            "aliases": [],
+            "op_tk": True,
+        },
+        "casefold": {
+            "category": "rw",
+            "help": "rewrite the given elements in lowercase, but more aggressively than 'lower'",
+            "aliases": [],
+            "op_tk": True,
+        },
+        "chen": {
+            "category": "cv",
+            "help": "convert the MCD into a Chen's ERD",
+            "aliases": ["Chen"],
+        },
+        "create": {
+            "category": "rw",
+            "help": "insert empty datatype placeholders (create:type) or add optional DF arrows (create:df_arrows=here/across)",
+            "aliases": ["add", "insert", "make"],
+            "op_tk": True,
+        },
+        "crow": {
+            "category": "cv",
+            "help": "convert the MCD into a crow's foot ERD",
+            "aliases": ["crowfoot", "crowsfoot"],
+        },
+        "data_dict": {
+            "category": "cv",
+            "help": "collect all the attributes of the MCD into a Mardown or TSV table",
+            "aliases": ["data-dict", "data-dictionary"],
+        },
+        "defer": {
+            "category": "cv",
+            "help": "use an external web-service to further convert the result into a given graphical format (default: svg)",
+            "aliases": ["deferred"],
+        },
+        "delete": {
+            "category": "rw",
+            "help": "suppress the given elements whenever possible",
+            "aliases": ["del", "suppress", "erase", "remove", "hide"],
+            "op_tk": True,
+        },
+        "drain": {
+            "category": "rw",
+            "help": "move any (1,1) association attribute to the appropriate entity",
+            "aliases": [],
+        },
+        "explode": {
+            "category": "rw",
+            "help": "decompose any n-ary (*,N) associations into n binary ones",
+            "aliases": [],
+        },
+        "fix": {
+            "category": "rw",
+            "help": "try to fix common errors in the given elements",
+            "aliases": [],
+            "op_tk": True,
+        },
+        "guess": {
+            "category": "rw",
+            "help": "try to complete the MCD with easily inferable informations (guess:types/entities)",
+            "aliases": ["infer"],
+            "op_tk": True,
+        },
+        "lower": {
+            "category": "rw",
+            "help": "rewrite the given elements in lowercase",
+            "aliases": ["lowercase", "lower_case"],
+            "op_tk": True,
+        },
+        "mute": {
+            "category": "both",
+            "help": "under Jupyter Notebook, do not display the result in the cell output",
+            "aliases": ["quiet"],
+        },
+        "randomize": {
+            "category": "rw",
+            "help": "keep the stucture, but replace the given elements with random ones whenever possible",
+            "aliases": ["rand", "random", "randomise", "obfuscate", "obscure"],
+            "op_tk": True,
+        },
+        "rel": {
+            "category": "cv",
+            "help": "convert the MCD into a relational or physical model",
+            "aliases": ["relations", "relational", "mld", "ddl", "ldd", "sql"],
+        },
+        "snake": {
+            "category": "rw",
+            "help": "rewrite the given elements in snake_case",
+            "aliases": ["snake_case"],
+            "op_tk": True,
+        },
+        "split": {
+            "category": "rw",
+            "help": "decompose any n-ary (*,1) associations into n-1 binary ones",
+            "aliases": [],
+        },
+        "swapcase": {
+            "category": "rw",
+            "help": "rewrite the given elements by swapping the case of each letter",
+            "aliases": [],
+            "op_tk": True,
+        },
+        "title": {
+            "category": "rw",
+            "help": "rewrite the given elements in Title Case",
+            "aliases": [],
+            "op_tk": True,
+        },
+        "upper": {
+            "category": "rw",
+            "help": "rewrite the given elements in UPPERCASE",
+            "aliases": ["uppercase", "upper_case"],
+            "op_tk": True,
+        },
+    }
+
+    def __init__(self):
+        self.normalize = invert_dict({k: v["aliases"] for (k, v) in self.TRANSFORMATIONS.items()})
+        self.normalize.update((k, k) for k in self.TRANSFORMATIONS)
+        self.operations = {"rw": [], "cv": []}
+        self.op_tk_rewritings = set(k for (k, v) in self.TRANSFORMATIONS.items() if v.get("op_tk"))
+    
+    def extract_subargs(self, arg):
+        (subopt, __, tail) = arg.partition(":")
+        try:
+            subopt = self.normalize[subopt]
+        except:
+            valid = ", ".join(sorted(self.normalize.keys()))
+            raise MocodoError(45, _("The transformation '{subopt}' is not among the possible ones: {valid}.").format(subopt=subopt, valid=valid)) # fmt: skip
+        result = extract_subargs(f"{subopt}:{tail}")
+        category = self.TRANSFORMATIONS[subopt]["category"]
+        if category != "cv":
+            self.operations["rw"].append(result)
+        if category != "rw":
+            self.operations["cv"].append(result)
+        return result
+
+    def get_help(self):
+        result = []
+        for (category, header) in ("rw", "REWRITING OPERATIONS"), ("cv", "CONVERSION OPERATIONS"), ("both", "BOTH CATEGORIES"):
+            result.append(f"{header}:")
+            for (name, transformation) in self.TRANSFORMATIONS.items():
+                if transformation["category"] != category:
+                    continue
+                aliases = self.TRANSFORMATIONS[name]["aliases"]
+                aliases = f". Aliases: {', '.join(aliases)}" if aliases else ""
+                result.append(f"- {name}: {transformation['help']}{aliases};")
+            result[-1] = result[-1][:-1] + "."  # replace the last semicolon by a dot
+        return "\n".join(result)
+
+transformations = Transformations()
 
 
 def extract_subargs(arg):
@@ -95,8 +269,7 @@ def extract_subargs(arg):
         subsubarg = strip_surrounds(subsubarg, "''")
         subsubarg = strip_surrounds(subsubarg, '""')
         subargs[subsubopt] = subsubarg
-    return subopt, subargs
-
+    return (subopt, subargs)
 
 def rate(string):
     try:
@@ -146,15 +319,12 @@ def positive_integer(string):
     return value
 
 def parsed_arguments():
-    def add_key(key, value):
-        params[key] = value
-        params["added_keys"].append(key)
 
     script_directory = os.path.dirname(os.path.realpath(os.path.join(__file__)))
     parser = argparse.ArgumentParser(
         prog="mocodo",
         add_help=False,
-        formatter_class=ArgumentDefaultsRawDescriptionHelpFormatter,
+        formatter_class=argparse.RawTextHelpFormatter,
         description=DESCRIPTION,
         epilog=EPILOG,
         allow_abbrev=False,
@@ -267,21 +437,21 @@ def parsed_arguments():
     )
     io_group.add_argument("--mld",
         action="store_true",
-        help="equivalent to '--convert rel:markdown' but, under Jupyter Notebook, does not prevent the rendering of the conceptual diagram in the cell output",
+        help="backward compatibility alias for '-t' (with no arguments). Same as '-t rel:markdown=0' but, under Jupyter Notebook, does not prevent the rendering of the conceptual diagram in the cell output",
     )
 
-    source_group.add_argument("--rewrite", "-r", "-R",
+    source_group.add_argument("--transform", "-t",
         metavar="STR",
         nargs="*",
-        type=extract_subargs,
+        type=transformations.extract_subargs,
         default=argparse.SUPPRESS, # causes no attribute to be added if the argument was not present
-        help="make a new version of the MCD by applying sequentially the given rewriting operations (e.g., 'arrange', 'labels:ascii,snake', 'explode:weak,arity=2'). Under Jupyter Notebook, '-R' replaces the cell content",
+        help=textwrap.dedent("either make a new version of the MCD by applying sequentially the given rewriting operations, or convert it into the given formats or languages.\nUnder Jupyter Notebook, '-T' respectively replaces the current cell by the textual result, or copies it into the clipboard (pip3 install pyperclip).\n" + transformations.get_help()),
     )
-    source_group.add_argument("--convert", "-c",
+    source_group.add_argument("--Transform", "--TRANSFORM", "-T",
         metavar="STR",
-        nargs="+",
-        type=extract_subargs,
-        help="translate all or parts of the MCD into the given formats or languages (e.g., 'rel', 'rel:diagram', 'rel:mysql', 'crow:mmd')",
+        nargs="*",
+        type=transformations.extract_subargs,
+        help=argparse.SUPPRESS,
     )
     source_group.add_argument("--seed",
         metavar="FLOAT",
@@ -365,9 +535,12 @@ def parsed_arguments():
 
     parser.set_defaults(**default_params)
     params = vars(parser.parse_args(remaining_args))
-    params["added_keys"] = ["added_keys", "params_path"]
-    add_key("script_directory", script_directory)
-    add_key("output_name", Path(params["output_dir"]) / Path(params["input"]).stem)
+    params["script_directory"] = script_directory
+    params["output_name"] = Path(params["output_dir"]) / Path(params["input"]).stem
+    params["rewrite"] = transformations.operations["rw"]
+    params["convert"] = transformations.operations["cv"]
+    params["redirect_output"] = ("-T" in remaining_args or "--Transform" in remaining_args)
+    params["keys_to_hide"] = ["keys_to_hide", "params_path", "script_directory", "output_name", "rewrite", "convert", "redirect_output"]
 
     if not os.path.exists(params["input"]):
         path = Path(params["script_directory"], "resources", "pristine_sandbox.mcd")

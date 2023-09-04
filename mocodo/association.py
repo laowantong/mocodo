@@ -25,7 +25,7 @@ class Association:
             else:
                 self.attributes.append(SimpleAssociationAttribute(attr))
         df_label = params.get("df", "DF")
-        if re.match(fr"^{df_label}\d*$", self.name):
+        if re.match(fr"^{df_label.upper()}\d*$", self.name.upper()):
             self.name_view = df_label # strip all digits suffixing a DF name
             self.name = f"{df_label}{Association.df_counter}" # internal name
             Association.df_counter += 1

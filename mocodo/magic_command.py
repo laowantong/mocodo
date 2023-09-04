@@ -1,4 +1,6 @@
 import argparse
+import contextlib
+import json
 import os
 import re
 import shlex
@@ -37,8 +39,20 @@ except:
 pathlib.Path("{output_dir}/params.json").write_text(params.strip(), encoding="utf8")
 '''
 
+OUTPUT_PART_HEADER = re.sub("  +", "", """
+<div style="position: relative; height: 3ex; background-color: transparent">
+  <hr style="margin: 1ex 0 0 0; border-top: 1px solid #BBB">
+  <span style="position: absolute; right: 0; color: #BBB">
+    <tt>
+        {label}
+    </tt>
+  </span>
+</div>
+""")
+
 def display_converted_file(path):
     extension=path.suffix[1:]
+    display(Markdown(OUTPUT_PART_HEADER.format(label=path.relative_to(Path.cwd()))))
     if extension == "svg":
         # Fix a maximum width for SVG images:
         # https://stackoverflow.com/questions/51452569/how-to-resize-rescale-a-svg-graphic-in-an-ipython-jupyter-notebook
@@ -110,7 +124,7 @@ class MocodoMagics(Magics):
                     raise
         output_path_radical = output_dir / input_path.stem
 
-        remaining_args.extend([  # may override user's provided options
+        remaining_args.extend([
             "--input", str(input_path),
             "--output_dir", str(output_dir),
         ]) # may override user's provided options
@@ -136,39 +150,52 @@ class MocodoMagics(Magics):
             update_cell(PARAM_TEMPLATE.format(stdoutdata=stdoutdata, output_dir=output_dir))
             return
         
-        has_explicit_conversion = "--convert" in remaining_args or "-c" in remaining_args
-        has_rewriting = "--rewrite" in remaining_args or "-r" in remaining_args or "-R" in remaining_args
-        must_replace = "-R" in remaining_args
+        
+        response_path = Path(f"{output_path_radical}_response_for_magic_command.json")
+        try: 
+            response = json.loads(response_path.read_text())
+            # response_path.unlink()
+        except:
+            response = {}
 
-        if not args.no_mcd and not must_replace and not has_explicit_conversion:
+        rewritten_source = response.get("rewritten_source", "")
+        redirect_output = response.get("redirect_output", False)
+        is_muted = response.get("is_muted", False)
+        converted_file_paths = response.get("converted_file_paths", [])
+        must_display_default_mld = response.get("must_display_default_mld", False)
+
+        if not args.no_mcd and ((rewritten_source and not redirect_output) or (not rewritten_source and not converted_file_paths)):
+            # Display the MCD when not explicitely disabled and (there is a not redirected rewriting or no transformation at all)
             svg_path = output_path_radical.with_suffix(".svg")
             if svg_path.is_file() and input_path.stat().st_mtime <= svg_path.stat().st_mtime:
                 display(SVG(filename=svg_path))
+
+        if must_display_default_mld:
+            # Display the Markdown MLD without header and exit
+            display(Markdown(filename=f"{output_path_radical}_mld.md"))
+            return
+
+        if rewritten_source:
+            if redirect_output:
+                if not rewritten_source.startswith("%%mocodo"):
+                    rewritten_source = f"%%mocodo\n{rewritten_source}"
+                update_cell(rewritten_source)
+            elif not is_muted:
+                display(Markdown(OUTPUT_PART_HEADER.format(label=Path(f"{output_path_radical}.mcd").relative_to(output_dir))))
+                print(rewritten_source)
         
-        if has_explicit_conversion or "--mld" in remaining_args:
-            mute_path = output_dir / "mute_converting"
-            if mute_path.is_file():
-                mute_path.unlink()
-            else:
-                convert_log_files = output_dir / "convert.log"
-                if convert_log_files.is_file():
-                    for filename in convert_log_files.read_text().splitlines():
-                        display_converted_file(Path(filename))
-                    convert_log_files.unlink()
-        
-        if has_rewriting:
-            rewritten_path = Path(f"{output_path_radical}_rewritten.mcd")
-            updated_source = rewritten_path.read_text().rstrip()
-            if not updated_source.startswith("%%mocodo"):
-                updated_source = f"%%mocodo\n{updated_source}"
-            rewritten_path.unlink()
-            if must_replace:
-                update_cell(updated_source)
-            mute_path = output_dir / "mute_rewriting"
-            if mute_path.is_file():
-                mute_path.unlink()
-            else:
-                print(updated_source)
+        if converted_file_paths:
+            if redirect_output:
+                # Copy the last converted file source to the clipboard
+                with contextlib.suppress(ImportError):
+                    pyperclip = importlib.import_module("pyperclip")
+                    converted_file_path = Path(converted_file_paths[-1])
+                    pyperclip.copy(converted_file_path.read_text())
+                    print(f"Source code of {converted_file_path.relative_to(output_dir)} copied to the clipboard.")
+            if not is_muted:
+                # Display all converted files
+                for converted_file_path in converted_file_paths:
+                    display_converted_file(Path(converted_file_path))
 
 
 try:
