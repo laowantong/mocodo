@@ -56,7 +56,7 @@ def main():
             module = globals()[operation_name] # e.g., explode, drain, ...
         except KeyError:
             module = op_tk
-        result = module.run(source, subopt=operation_name, subargs=subargs, params=params).rstrip()
+        result = module.run(source, op_name=operation_name, subargs=subargs, params=params).rstrip()
         suffix = ",".join(f"{k}={v}" if v else k for (k, v) in subargs.items())
         if suffix:
             suffix = f"_{suffix}"
@@ -152,7 +152,7 @@ def main():
         subfolder = Path(source_path.parent / "mld")
         subfolder.mkdir(exist_ok=True)
         for template in templates:
-            if template["extension"] == "sql":
+            if template["extension"] in ("sql", "dbml"):
                 continue
             relations = Relations(mcd, params)
             output = relations.get_text(template).strip() + "\n"
@@ -171,14 +171,23 @@ def main():
         # Create the svg output file.
         dump_static_svg(mcd, source_path.parent / f"{source_path.stem[1:]}.mcd")
 
-        # Create the sql output files. Warning: modifies source.
+        # Create the dbml output file.
+        subfolder = Path(source_path.parent / "ddl")
+        subfolder.mkdir(exist_ok=True)
+        for template in templates:
+            if template["extension"] == "dbml":
+                output = relations.get_text(template).strip() + "\n"
+                save(subfolder / f"{source_path.stem[1:]}{template['stem_suffix']}.dbml", output)
+                break
+
+        # Create the sql output files. Warning: modifies source. Must be final.
         subfolder = Path(source_path.parent / "ddl")
         subfolder.mkdir(exist_ok=True)
         source = op_tk.run(source, "guess", {"types": ""}, params)
-        source = op_tk.run(source, "ascii", {"sql": ""}, params)
-        source = op_tk.run(source, "snake", {"sql": ""}, params)
-        source = op_tk.run(source, "lower", {"sql": ""}, params)
-        source = op_tk.run(source, "upper", {"boxes": ""}, params)
+        source = op_tk.run(source, "ascii", {"labels": 1, "leg_notes": 1}, params)
+        source = op_tk.run(source, "snake", {"labels": 1, "leg_notes": 1}, params)
+        source = op_tk.run(source, "lower", {"attrs": 1, "leg_notes": 1}, params)
+        source = op_tk.run(source, "upper", {"boxes": 1}, params)
         mcd = Mcd(source, get_font_metrics, **params)
         for template in templates:
             if template["extension"] != "sql":
