@@ -1,0 +1,6 @@
+digraph {
+  node [shape=box]
+  "Compétence" -> "Appliquer"
+  "Projet" -> "Appliquer"
+  "Employé" -> "Appliquer"
+}

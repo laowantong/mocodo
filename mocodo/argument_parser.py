@@ -157,7 +157,7 @@ class Transformations:
         "echo": {
             "category": "rw",
             "help": "rewrite the source text as is",
-            "aliases": [],
+            "aliases": [], 
         },
         "explode": {
             "category": "rw",
@@ -220,6 +220,11 @@ class Transformations:
             "help": "rewrite the given elements in Title Case",
             "aliases": [],
             "op_tk": True,
+        },
+        "uml": {
+            "category": "cv",
+            "help": "convert the MCD into a UML class diagram",
+            "aliases": ["UML", "class_diagram"],
         },
         "upper": {
             "category": "rw",

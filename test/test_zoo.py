@@ -1,6 +1,6 @@
 import time
-import unittest
 import gettext
+gettext.NullTranslations().install()
 from pathlib import Path
 import shutil
 from mocodo.argument_parser import parsed_arguments
@@ -15,6 +15,7 @@ import re
 from mocodo.convert import (
     _chen as chen,
     _crow as crow,
+    _uml as uml,
 )
 from mocodo.rewrite import (
     op_tk,
@@ -26,7 +27,6 @@ from mocodo.rewrite._arrange_bb import arrange
 from mocodo.mcd_to_svg import main as dump_mcd_to_svg
 import os
 
-gettext.NullTranslations().install()
 
 TEMPLATE_DIR = Path("mocodo/resources/relation_templates/")
 ZOO_DIR = Path("test/zoo")
@@ -137,6 +137,9 @@ def main():
         text = chen.run(source, {"attrs": 1}, common)["text"]
         save(subfolder / f"{source_path.stem[1:]}_erd_chen.gv", text)
         convert_dot_to_svg(subfolder / f"{source_path.stem[1:]}_erd_chen.gv")
+
+        text = uml.run(source, {"plantuml": "<"}, common)["text"] # delete the default preamble
+        save(subfolder / f"{source_path.stem[1:]}_uml.puml", text)
 
         try:
             text = crow.run(source, {"mmd": True}, common)["text"]

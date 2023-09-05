@@ -1,0 +1,5 @@
+Employé: employé, nom
+Appliquer, 0N Employé, 1N Projet, 1N Compétence
+Projet: projet, date début, date fin
+
+Compétence: compétence, libellé

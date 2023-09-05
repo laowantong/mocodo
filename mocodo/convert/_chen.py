@@ -100,7 +100,6 @@ class Chen(Visitor):
             for (chen_card, edge_acc, ent_index) in zip(chen_cards, edge_accs, ent_indexes):
                 edge_acc.append((ent_index, assoc_index, chen_card))
                 self.not_gerund_nodes.add(ent_index)
-
         
         # Association attributes
         if self.no_attrs:

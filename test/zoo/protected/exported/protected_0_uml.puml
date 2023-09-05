@@ -1,0 +1,22 @@
+@startuml protected
+
+!define Table(x) class "x" << (T,#FFFFFF) >>
+!define pk(x) <b>x</b>
+
+
+Table("LACUS") {
+    {field} + pk(blandit)
+    {field} + elit
+}
+
+"LACUS" "1..*" --- "1..*" "EROS": "LIGULA"
+("LACUS", "EROS") .. "LIGULA"
+Table("LIGULA") {
+    {field} + metus
+}
+
+Table("EROS") {
+    {field} + pk(congue)
+}
+
+@enduml

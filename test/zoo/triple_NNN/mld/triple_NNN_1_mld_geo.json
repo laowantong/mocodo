@@ -1,0 +1,18 @@
+{
+  "width": 496,
+  "height": 212,
+  "cx": [
+    [ "Employé", 85 ],
+    [ "Appliquer", 253 ],
+    [ "Projet", 416 ],
+    [ "Compétence", 253 ]
+  ],
+  "cy": [
+    [ "Employé", 56 ],
+    [ "Appliquer", 56 ],
+    [ "Projet", 56 ],
+    [ "Compétence", 165 ]
+  ],
+  "shift": [],
+  "ratio": []
+}
