@@ -154,6 +154,11 @@ class Transformations:
             "help": "move any (1,1) association attribute to the appropriate entity",
             "aliases": [],
         },
+        "echo": {
+            "category": "rw",
+            "help": "rewrite the source text as is",
+            "aliases": [],
+        },
         "explode": {
             "category": "rw",
             "help": "decompose any n-ary (*,N) associations into n binary ones",

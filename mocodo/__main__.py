@@ -74,7 +74,9 @@ class Runner:
                 if subopt == "mute":
                     response["is_muted"] = True
                     continue
-                if subopt == "flip":
+                if subopt == "echo":
+                    pass
+                elif subopt == "flip":
                     source = self.flip(source, subargs)
                 elif subopt == "arrange":
                     source = self.arrange(source, subargs)
