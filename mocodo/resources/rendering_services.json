@@ -1,0 +1,6 @@
+{
+    "gv": "https://kroki.io/graphviz/{output_format}/{payload}",
+    "mmd": "https://kroki.io/mermaid/{output_format}/{payload}",
+    "puml": "https://kroki.io/plantuml/{output_format}/{payload}",
+    "qr": "https://api.qrserver.com/v1/create-qr-code/?size=800x800&data={payload}"
+}

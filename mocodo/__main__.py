@@ -27,12 +27,6 @@ from .rewrite import op_tk
 from .tools.graphviz_tools import minify_graphviz
 from .tools.string_tools import urlsafe_encoding
 
-RENDERING_SERVICES = {
-    "gv": "https://kroki.io/graphviz/{output_format}/{payload}",
-    "mmd": "https://kroki.io/mermaid/{output_format}/{payload}",
-    "qr": "https://api.qrserver.com/v1/create-qr-code/?size=800x800&data={payload}",
-}
-
 
 class Runner:
 
@@ -107,6 +101,8 @@ class Runner:
                     continue
                 if subopt == "defer":
                     deferred_output_formats = list(subargs) or ["svg"]
+                    if deferred_output_formats == ["raw"]:
+                        deferred_output_formats.append("svg")
                     continue
                 if subopt == "rel":
                     (subsubopt, subsubarg) = next(iter(subargs.items()), ("markdown", "")) # ignore all sub-arguments after the first one
@@ -209,23 +205,41 @@ class Runner:
             raise MocodoError(41, _('Failed to calculate a planar layout.'))  # fmt: skip
         return source
 
+    def get_rendering_service(self, extension):
+        path = Path(self.params["script_directory"], "resources", "rendering_services.json")
+        try:
+            rendering_services = json.loads(path.read_text())
+        except FileNotFoundError:
+            raise MocodoError(46, _('The file "{path}" is missing.').format(path=path))  # fmt: skip
+        except json.decoder.JSONDecodeError:
+            raise MocodoError(47, _('The file "{path}" is not a valid JSON file.').format(path=path))  # fmt: skip
+        except Exception as err:
+            raise MocodoError(48, _('The file "{path}" could not be read:\n{err}').format(path=path, err=err))  # fmt: skip
+        try:
+            return rendering_services[extension]
+        except KeyError:
+            raise MocodoError(49, _('No third-party rendering service for extension "{extension}". You may want to add one in "{path}".').format(extension=extension, path=path))
+
     def generate_log_files(self, result, deferred_output_formats):
         if result.get("to_defer") and deferred_output_formats:
             # This text must be rendered by a third-party service in at least one format
-            rendering_service = RENDERING_SERVICES[result["extension"]]
+            rendering_service = self.get_rendering_service(result["extension"])
             if result["extension"] == "gv":
                 payload = minify_graphviz(result["text"]) # spare some bandwidth
             payload = urlsafe_encoding(result["text"])
             for output_format in deferred_output_formats: # ex.: svg, png, etc.
-                url = rendering_service.format(output_format=output_format, payload=payload)
-                response = requests.get(url)
-                if not response.ok:
-                    raise MocodoError(23, _("The HTTP status code {code} was returned by:\n{url}").format(code=response.status_code, url=url)) # fmt: skip
-                resp_path = result["text_path"].with_suffix(f".{output_format}")
-                if response.headers["content-type"].startswith("text/"):
-                    resp_path.write_text(response.text)
+                if output_format == "raw":
+                    resp_path = str(result["text_path"])
                 else:
-                    resp_path.write_bytes(response.content)
+                    url = rendering_service.format(output_format=output_format, payload=payload)
+                    response = requests.get(url)
+                    if not response.ok:
+                        raise MocodoError(23, _("The HTTP status code {code} was returned by:\n{url}").format(code=response.status_code, url=url)) # fmt: skip
+                    resp_path = result["text_path"].with_suffix(f".{output_format}")
+                    if response.headers["content-type"].startswith("text/"):
+                        resp_path.write_text(response.text)
+                    else:
+                        resp_path.write_bytes(response.content)
                 yield str(resp_path)
         elif result.get("stem_suffix") == "_mld" and result.get("extension") == "mcd": # relational diagram
             mld = Mcd(result["text"], self.get_font_metrics, **self.params)
