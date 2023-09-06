@@ -8,6 +8,7 @@ import warnings
 from pathlib import Path
 from subprocess import PIPE, Popen
 import importlib
+from itertools import takewhile
 
 import pkg_resources
 from IPython import get_ipython
@@ -100,6 +101,7 @@ class MocodoMagics(Magics):
         parser.add_argument("--input")
         parser.add_argument("--output_dir")
         (args, remaining_args) = parser.parse_known_args(shlex.split(line))
+        remaining_args = list(takewhile(lambda x: not x.startswith("#"), remaining_args))
 
         if Path.cwd().name != "mocodo_notebook":
             Path("mocodo_notebook").mkdir(parents=True, exist_ok=True)
