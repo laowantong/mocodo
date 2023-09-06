@@ -9,8 +9,6 @@ from ..rewrite import (
     _split as split,
     _drain as drain,
 )
-from ..tools.graphviz_tools import create_name_to_index
-from ..tools.string_tools import wrap_label, rstrip_digit
 
 MIN_MAX_IN_UML = {
     "01": "1..*",
@@ -29,7 +27,7 @@ INHERITANCE_IN_UML = {
 class UmlClassDiagram(Visitor):
     def __init__(self, preamble, common):
         self.common = common
-        self.preamble = preamble
+        self.preamble = preamble or "" # preamble may be None
         self.id_counter = itertools.count()
         self.df_label = common.params["df"]
         self.has_no_data_type = True

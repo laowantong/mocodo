@@ -247,7 +247,7 @@ class Transformations:
         except:
             valid = ", ".join(sorted(self.normalize.keys()))
             raise MocodoError(45, _("The transformation '{subopt}' is not among the possible ones: {valid}.").format(subopt=subopt, valid=valid)) # fmt: skip
-        result = extract_subargs(f"{subopt}:{tail}")
+        result = extract_subargs(f"{subopt}:{tail}") # NB: calls the global function, not the method
         category = self.TRANSFORMATIONS[subopt]["category"]
         if category != "cv":
             self.operations["rw"].append(result)
@@ -275,9 +275,12 @@ def extract_subargs(arg):
     (subopt, _, tail) = arg.partition(":")
     subargs = {}
     for string in filter(None, tail.split(",")):
-        subsubopt, _, subsubarg = string.partition("=")
-        subsubarg = strip_surrounds(subsubarg, "''")
-        subsubarg = strip_surrounds(subsubarg, '""')
+        subsubopt, equal, subsubarg = string.partition("=")
+        if equal: # subopt:subsubopt= / subopt:subsubopt=subsubarg
+            subsubarg = strip_surrounds(subsubarg, "''")
+            subsubarg = strip_surrounds(subsubarg, '""')
+        else: # subopt:subsubopt
+            subsubarg = None
         subargs[subsubopt] = subsubarg
     return (subopt, subargs)
 

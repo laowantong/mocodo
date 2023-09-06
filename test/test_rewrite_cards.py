@@ -19,7 +19,7 @@ class TestUpdateCards(unittest.TestCase):
             LUCK, 0N< [find] HOST, 01 [hill] HOST
             AIDS, XX VARY, ?? WRAP
         """
-        actual = op_tk.run(source, "random", {"cards": 1}, {})
+        actual = op_tk.run(source, "randomize", {"cards": 1}, {})
         expected = """
             BAKE, 01 TEND, 01 TALL
             FISH, -0N TALL, -_11 TOUR: slot

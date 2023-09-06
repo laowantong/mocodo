@@ -23,7 +23,7 @@ from .guess_title import may_update_params_with_guessed_title
 from .mcd import Mcd
 from .mcd_to_svg import main as dump_mcd_to_svg
 from .mocodo_error import MocodoError, subarg_error, subopt_error
-from .rewrite import op_tk
+from .rewrite import op_tk, guess_entities
 from .tools.graphviz_tools import minify_graphviz
 from .tools.string_tools import urlsafe_encoding
 
@@ -74,6 +74,8 @@ class Runner:
                     source = self.flip(source, subargs)
                 elif subopt == "arrange":
                     source = self.arrange(source, subargs)
+                elif subopt == "guess" and "entities" in subargs:
+                    source = guess_entities.run(source, subargs["entities"])
                 elif subopt in transformations.op_tk_rewritings: # ex.: create, delete, ascii, etc.
                     source = op_tk.run(source, op_name=subopt, subargs=subargs, params=self.params).rstrip()
                 else: # An unspecified rewrite operation, dynamically loaded

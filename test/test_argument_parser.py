@@ -20,13 +20,12 @@ class TestSubArguments(unittest.TestCase):
                 "--actual",
                 "arrange:algo=bb,grid=organic",
                 "randomize:cards=_/,types=mysql,labels=four_letter_words",
-                "map:ascii=labels,delete,guess=types,create=types",
+                "map:ascii=labels,delete='',guess=types,create=types",
                 "drain",
                 "flip:vertical,horizontal,diagonal",
-                """data_dict:type,box,label="libellé de l'attribut",tsv""",
+                """data_dict:type,box="",label="libellé de l'attribut",tsv""",
             ]
         )
-        print(args.actual)
         expected = [
             (
                 "arrange",
@@ -43,11 +42,11 @@ class TestSubArguments(unittest.TestCase):
             ("drain", {}),
             (
                 "flip",
-                {"vertical": "", "horizontal": "", "diagonal": ""},
+                {"vertical": None, "horizontal": None, "diagonal": None},
             ),
             (
                 "data_dict",
-                {"type": "", "box": "", "label": "libellé de l'attribut", "tsv": ""}
+                {"type": None, "box": "", "label": "libellé de l'attribut", "tsv": None}
             ),
         ]
         self.assertEqual(args.actual, expected)

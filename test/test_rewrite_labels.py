@@ -29,7 +29,7 @@ class TestUpdateLabels(unittest.TestCase):
         """
         subargs = {"labels": "four_letter_words.txt"}
         params = {"seed": 42, "script_directory": "mocodo"}
-        actual = op_tk.run(source, "obfuscate", subargs, params)
+        actual = op_tk.run(source, "randomize", subargs, params)
         print(actual)
         expected = """
             feel: turn, grin
