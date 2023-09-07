@@ -452,6 +452,10 @@ def parsed_arguments():
         action="store_true",
         help="backward compatibility alias for '-t' (with no arguments). Same as '-t rel:markdown=0' but, under Jupyter Notebook, does not prevent the rendering of the conceptual diagram in the cell output",
     )
+    io_group.add_argument("--is_magic",
+        action="store_true",
+        help=argparse.SUPPRESS, # don't show this argument in the help message
+    )
 
     source_group.add_argument("--transform", "-t",
         metavar="STR",
@@ -464,7 +468,7 @@ def parsed_arguments():
         metavar="STR",
         nargs="*",
         type=transformations.extract_subargs,
-        help=argparse.SUPPRESS,
+        help=argparse.SUPPRESS, # don't show this argument in the help message
     )
     source_group.add_argument("--seed",
         metavar="FLOAT",

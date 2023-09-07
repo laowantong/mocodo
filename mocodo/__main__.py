@@ -143,7 +143,8 @@ class Runner:
             response["converted_file_paths"] = converted_file_paths
 
         response = json.dumps(response, ensure_ascii=False, indent=2)
-        Path(f"{self.params['output_name']}_response_for_magic_command.json").write_text(response)
+        if self.params["is_magic"]:
+            Path(f"{self.params['output_name']}_response_for_magic_command.json").write_text(response)
 
         if converted_file_paths and not self.params["rewrite"]:
             return # Don't calculate the MCD if the user only wants to convert the MCD to another format.

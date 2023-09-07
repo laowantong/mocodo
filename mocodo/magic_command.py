@@ -129,6 +129,7 @@ class MocodoMagics(Magics):
         remaining_args.extend([
             "--input", str(input_path),
             "--output_dir", str(output_dir),
+            "--is_magic",
         ]) # may override user's provided options
 
         process = Popen(["mocodo"] + remaining_args, stdin=PIPE, stdout=PIPE, stderr=PIPE)
@@ -156,9 +157,11 @@ class MocodoMagics(Magics):
         response_path = Path(f"{output_path_radical}_response_for_magic_command.json")
         try: 
             response = json.loads(response_path.read_text())
-            # response_path.unlink()
-        except:
+        except (json.decoder.JSONDecodeError, FileNotFoundError):
             response = {}
+        finally:
+            with contextlib.suppress(FileNotFoundError): # From Python 3.8, use the missing_ok argument
+                response_path.unlink()
 
         rewritten_source = response.get("rewritten_source", "")
         redirect_output = response.get("redirect_output", False)
