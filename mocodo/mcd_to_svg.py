@@ -14,7 +14,13 @@ except:
 def main(mcd, common):
     style = common.load_style()
     mcd.calculate_size(style)
-    geo = common.calculate_or_retrieve_geo(mcd)
+    geo = mcd.calculate_or_retrieve_geo(common.params)
+    try:
+        description = mcd.description(style, geo)
+    except KeyError: # retry silently with a fresh geo file if the previous one concerns another MCD
+        Path(f"{common.params['output_name']}_geo.json").unlink()
+        geo = mcd.calculate_or_retrieve_geo(common.params)
+        description = mcd.description(style, geo)
     description = [
         (
             "preamble",
@@ -32,7 +38,7 @@ def main(mcd, common):
                 "background_color": style["background_color"],
             }
         ),
-        *mcd.description(style, geo),
+        *description,
     ]
     has_note_card = False
     tabs = 0

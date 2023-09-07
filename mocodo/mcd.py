@@ -1,10 +1,13 @@
-from email.policy import default
 import itertools
 from collections import defaultdict
 from hashlib import md5
+import json
+from pathlib import Path
+
 
 from .association import Association
 from .attribute import Attribute
+from .common import safe_print_for_PHP
 from .constraint import Constraint
 from .diagram_link import DiagramLink
 from .entity import Entity
@@ -382,7 +385,59 @@ class Mcd:
                 result.append("")
             result.append(":")
         return self.header + "\n".join(result) + self.footer
-    
+
+
+    def calculate_or_retrieve_geo(self, params):
+        geo_path = Path(f"{params['output_name']}_geo.json")
+        mcd_path = Path(f"{params['input']}")
+        if geo_path.is_file() and params["scale"] != 1 and (params["reuse_geo"] or mcd_path.stat().st_mtime < geo_path.stat().st_mtime):
+            try:
+                web_geo = json.loads(geo_path.read_text("utf8"))
+                geo = {k: dict(v) if isinstance(v, list) else v for (k, v) in web_geo.items()}
+                return geo
+            except: # in case a problem occurs with the geo file, fallback to silently regenerate it
+                pass
+        geo = {
+            "width": self.w,
+            "height": self.h,
+            "cx": {
+                box.name: box.x + box.w // 2
+                for row in self.rows
+                for box in row
+                if box.kind != "phantom"
+            },
+            "cy": {
+                box.name: box.y + box.h // 2
+                for row in self.rows
+                for box in row
+                if box.kind != "phantom"
+            },
+            "shift": {
+                leg.identifier: 0
+                for row in self.rows
+                for box in row
+                for leg in box.legs
+                if hasattr(leg, "card_view")},
+            "ratio": {
+                leg.identifier: 1.0
+                for row in self.rows
+                for box in row
+                for leg in box.legs
+                if leg.arrow
+            },
+        }
+        web_geo = {k: list(v.items()) if isinstance(v, dict) else v for (k, v) in geo.items()}
+        text = json.dumps(web_geo, indent=2, ensure_ascii=False)
+        text = text.replace("\n      ", " ")
+        text = text.replace("\n    ]", " ]")
+        text = text + "\n"
+        try:
+            geo_path.write_text(text)
+        except IOError:
+            safe_print_for_PHP(_('Unable to generate file "{filename}"!').format(filename=geo_path))
+        return geo
+
+
     def calculate_size(self, style):
 
         def increase_margins_in_presence_of_clusters():
