@@ -3,6 +3,7 @@ from collections import defaultdict
 from hashlib import md5
 import json
 from pathlib import Path
+import re
 
 
 from .association import Association
@@ -55,7 +56,7 @@ class Mcd:
                         self.commented_lines.append(clause["text"])
                     continue
                 if clause["type"] == "phantoms":
-                    phantoms = [Phantom(next(phantom_counter)) for _ in range(clause["count"])]
+                    phantoms = [Phantom() for _ in range(clause["count"])]
                     if self.rows[-1]:
                         self.rows[-1].extend(phantoms)
                     else:
@@ -230,8 +231,8 @@ class Mcd:
             for row in self.rows:
                 n = self.col_count - len(row)
                 if n:
-                    row[0:0] = [Phantom(next(phantom_counter)) for i in range(n // 2)]
-                    row.extend(Phantom(next(phantom_counter)) for i in range(n // 2 + n % 2))
+                    row[0:0] = [Phantom() for i in range(n // 2)]
+                    row.extend(Phantom() for i in range(n // 2 + n % 2))
         
         def make_boxes():
             i = itertools.count()
@@ -251,7 +252,7 @@ class Mcd:
         params.setdefault("id_gutter_visibility", "auto")
 
         self.get_font_metrics = get_font_metrics
-        phantom_counter = itertools.count()
+        Phantom.reset_counter()
         Association.reset_df_counter()
         Inheritance.reset_counter()
         Constraint.reset_counter()
