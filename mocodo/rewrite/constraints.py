@@ -1,12 +1,21 @@
+import re
 from ..parse_mcd import Visitor
 from ..tools.parser_tools import first_child, parse_source, reconstruct_source
 from ..tools.string_tools import surrounds
+from ..tools.various import first_missing_positive
     
 class CreateCifs(Visitor):
 
     def __init__(self):
         self.candidates = set()
         self.existing = set()
+        self.phantom_numbers = []
+
+    def entity_clause(self, tree):
+        ent_name = str(first_child(tree, "box_name"))
+        m = re.match(r"(?i)phantom(\d+)$", ent_name)
+        if m:
+            self.phantom_numbers.append(int(m.group(1)))
 
     def assoc_clause(self, tree):
         legs = [node for node in tree.find_data("assoc_leg")]
@@ -50,11 +59,17 @@ class CreateCifs(Visitor):
         self.new_cifs = self.candidates - self.existing
         if not self.new_cifs:
             return ""
-        result = [] if self.existing else [""]
         sep = ", " if hidden_links_from_sources else ", --"
+        new_phantom_clauses = ["\n"]
+        new_cif_clauses = [""]
         for (assoc_name, *entity_names) in self.new_cifs:
-            result.append(f"(CIF) ..{assoc_name}, ->{sep.join(entity_names)}")
-        return "\n".join(result)
+            n = first_missing_positive(self.phantom_numbers)
+            self.phantom_numbers.append(n)
+            new_phantom_clauses.append(f"phantom{n}:")
+            new_cif_clauses.append(f"(CIF) ..{assoc_name}, ->{sep.join(entity_names)}: phantom{n}, phantom{n}")
+        if new_cif_clauses == [""]:
+            return ""
+        return "\n".join(new_phantom_clauses + new_cif_clauses)
 
 
 def create_cifs(source, subsubarg):

@@ -43,6 +43,8 @@ class Chen(Visitor):
     
     def entity_clause(self, tree):
         ent_name = str(first_child(tree, "box_name"))
+        if re.match(r"(?i)phantom\d+$", ent_name):
+            return
         ent_index = self.name_to_index(f"ent_{ent_name}")
         ent_name = rstrip_digit(ent_name)
         self.entity_nodes.append((ent_index, ent_name))

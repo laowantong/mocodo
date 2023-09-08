@@ -1,6 +1,6 @@
 {
-  "width": 1033,
-  "height": 494,
+  "width": 1149,
+  "height": 542,
   "cx": [
     [ "A MÈRE", 681 ],
     [ "PÉRIODE", 75 ],
@@ -16,7 +16,9 @@
     [ "ENCLOS", 302 ],
     [ "PEUT VIVRE DANS", 484 ],
     [ "ESPÈCE", 681 ],
-    [ "PEUT COHABITER AVEC", 681 ]
+    [ "PEUT COHABITER AVEC", 681 ],
+    [ "phantom1", 826 ],
+    [ "phantom2", 1140 ]
   ],
   "cy": [
     [ "A MÈRE", 38 ],
@@ -33,7 +35,9 @@
     [ "ENCLOS", 356 ],
     [ "PEUT VIVRE DANS", 356 ],
     [ "ESPÈCE", 356 ],
-    [ "PEUT COHABITER AVEC", 456 ]
+    [ "PEUT COHABITER AVEC", 456 ],
+    [ "phantom1", 456 ],
+    [ "phantom2", 533 ]
   ],
   "shift": [
     [ "A MÈRE,ANIMAL,-1_0", 0 ],

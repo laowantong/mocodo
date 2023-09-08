@@ -1,17 +1,21 @@
 {
   "width": 382,
-  "height": 217,
+  "height": 261,
   "cx": [
     [ "Projet", 66 ],
     [ "Affecter", 203 ],
     [ "Site", 328 ],
-    [ "Employé", 203 ]
+    [ "Employé", 203 ],
+    [ "phantom1", 66 ],
+    [ "phantom2", 203 ]
   ],
   "cy": [
     [ "Projet", 57 ],
     [ "Affecter", 57 ],
     [ "Site", 57 ],
-    [ "Employé", 160 ]
+    [ "Employé", 160 ],
+    [ "phantom1", 234 ],
+    [ "phantom2", 234 ]
   ],
   "shift": [
     [ "Affecter,Site,0", 0 ],

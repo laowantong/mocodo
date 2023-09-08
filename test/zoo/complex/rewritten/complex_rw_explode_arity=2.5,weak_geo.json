@@ -1,6 +1,6 @@
 {
-  "width": 912,
-  "height": 444,
+  "width": 951,
+  "height": 478,
   "cx": [
     [ "HERBIVORE", 90 ],
     [ "ANIMAL parent #1", 241 ],
@@ -16,8 +16,10 @@
     [ "OCCUPE", 241 ],
     [ "PEUT VIVRE DANS", 426 ],
     [ "DF3", 585 ],
+    [ "phantom1", 933 ],
     [ "ENCLOS", 241 ],
-    [ "DF4", 426 ]
+    [ "DF4", 426 ],
+    [ "phantom2", 585 ]
   ],
   "cy": [
     [ "HERBIVORE", 48 ],
@@ -34,8 +36,10 @@
     [ "OCCUPE", 294 ],
     [ "PEUT VIVRE DANS", 294 ],
     [ "DF3", 294 ],
+    [ "phantom1", 294 ],
     [ "ENCLOS", 396 ],
-    [ "DF4", 396 ]
+    [ "DF4", 396 ],
+    [ "phantom2", 460 ]
   ],
   "shift": [
     [ "DF0,PEUT COHABITER AVEC,0", 0 ],

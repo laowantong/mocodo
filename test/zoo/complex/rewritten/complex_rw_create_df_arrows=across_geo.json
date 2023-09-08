@@ -13,7 +13,9 @@
     [ "ESPÈCE", 315 ],
     [ "DF0", 470 ],
     [ "HERBIVORE", 601 ],
-    [ "PEUT COHABITER AVEC", 315 ]
+    [ "PEUT COHABITER AVEC", 315 ],
+    [ "phantom1", 470 ],
+    [ "phantom2", 601 ]
   ],
   "cy": [
     [ "PÉRIODE", 56 ],
@@ -27,7 +29,9 @@
     [ "ESPÈCE", 319 ],
     [ "DF0", 319 ],
     [ "HERBIVORE", 319 ],
-    [ "PEUT COHABITER AVEC", 429 ]
+    [ "PEUT COHABITER AVEC", 429 ],
+    [ "phantom1", 429 ],
+    [ "phantom2", 429 ]
   ],
   "shift": [
     [ "A MÈRE,ANIMAL,-1_0", 0 ],

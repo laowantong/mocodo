@@ -1,4 +1,5 @@
 from collections import defaultdict
+import re
 from .attribute import *
 from .tools.string_tools import rstrip_digit
 
@@ -12,6 +13,14 @@ class Entity:
         self.attributes = clause.get("attrs", [])
         self.legs = []  # iterating over box's legs does nothing if it is not an association
         self.kind = "entity"
+        if re.match(r"(?i)phantom\d+$", clause["name"]):
+            self.calculate_size = self.calculate_size_when_invisible
+            self.description = lambda *ignored: []
+            self.is_invisible = True
+        else:
+            self.calculate_size = self.calculate_size_when_visible
+            self.description = self.description_when_visible
+            self.is_invisible = False
         self.has_alt_identifier = False
 
     def add_attributes(self, legs_to_strengthen, is_child=False):
@@ -48,7 +57,11 @@ class Entity:
     def set_id_gutter_visibility(self, is_visible):
         self.show_id_gutter = is_visible
     
-    def calculate_size(self, style, get_font_metrics):
+    def calculate_size_when_invisible(self, *ignored):
+        self.w = 0
+        self.h = 0
+    
+    def calculate_size_when_visible(self, style, get_font_metrics):
         cartouche_font = get_font_metrics(style["entity_cartouche_font"])
         self.get_cartouche_string_width = cartouche_font.get_pixel_width
         self.cartouche_height = cartouche_font.get_pixel_height()
@@ -84,7 +97,7 @@ class Entity:
         self.t = self.cy - self.h // 2
         self.b = self.cy + self.h // 2
 
-    def description(self, style, geo):
+    def description_when_visible(self, style, geo):
         result = []
         result.append(("comment", {"text": f"Entity {self.name}"}))
         result.append(

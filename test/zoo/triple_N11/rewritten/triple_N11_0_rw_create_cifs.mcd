@@ -3,5 +3,9 @@ Affecter, /1N Site, /1N Projet, 0N Employé
 Site: site
 
 Employé: employé
-(CIF) ..Affecter, ->Projet, --Employé, --Site
-(CIF) ..Affecter, ->Site, --Employé, --Projet
+
+phantom1:
+phantom2:
+
+(CIF) ..Affecter, ->Site, --Employé, --Projet: phantom1, phantom1
+(CIF) ..Affecter, ->Projet, --Employé, --Site: phantom2, phantom2

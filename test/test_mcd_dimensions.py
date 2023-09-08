@@ -125,6 +125,7 @@ class McdGeometryTest(unittest.TestCase):
             "PEUT COHABITER AVEC, 0N ESPÈCE, 0N [commensale] ESPÈCE: nb. max. commensaux",
             ":",
             "A PÈRE, 0N ANIMAL, 0N> [père présumé] ANIMAL",
+            "phantom1:"
         ]
         mcd = Mcd("\n".join(clauses), stub_for_get_font_metrics, **params)
         self.assertEqual(get_dimensions(mcd), [
@@ -139,7 +140,7 @@ class McdGeometryTest(unittest.TestCase):
             {'name': 'PEUT COHABITER AVEC', 'x': 9, 'y': 177, 'w': 110, 'h': 42},
             {'name': ' 0', 'x': 180, 'y': 198, 'w': 0, 'h': 0},
             {'name': 'A PÈRE', 'x': 241, 'y': 177, 'w': 44, 'h': 42},
-            {'name': ' 1', 'x': 353, 'y': 198, 'w': 0, 'h': 0}
+            {'name': 'phantom1', 'x': 353, 'y': 198, 'w': 0, 'h': 0}
         ])
     
 if __name__ == '__main__':

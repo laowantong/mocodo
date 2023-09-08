@@ -1,5 +1,5 @@
 {
-  "width": 826,
+  "width": 1000,
   "height": 538,
   "cx": [
     [ "DF0", 502 ],
@@ -7,6 +7,7 @@
     [ "DF1", 346 ],
     [ "ESPÈCE", 502 ],
     [ "DF2", 684 ],
+    [ "phantom2", 991 ],
     [ "ENCLOS", 75 ],
     [ "DF3", 190 ],
     [ "PEUT VIVRE DANS", 346 ],
@@ -20,7 +21,8 @@
     [ "DF7", 190 ],
     [ "CARNIVORE", 346 ],
     [ "ANIMAL parent #1", 502 ],
-    [ "HERBIVORE", 684 ]
+    [ "HERBIVORE", 684 ],
+    [ "phantom1", 875 ]
   ],
   "cy": [
     [ "DF0", 47 ],
@@ -28,6 +30,7 @@
     [ "DF1", 156 ],
     [ "ESPÈCE", 156 ],
     [ "DF2", 156 ],
+    [ "phantom2", 156 ],
     [ "ENCLOS", 265 ],
     [ "DF3", 265 ],
     [ "PEUT VIVRE DANS", 265 ],
@@ -41,7 +44,8 @@
     [ "DF7", 491 ],
     [ "CARNIVORE", 491 ],
     [ "ANIMAL parent #1", 491 ],
-    [ "HERBIVORE", 491 ]
+    [ "HERBIVORE", 491 ],
+    [ "phantom1", 491 ]
   ],
   "shift": [
     [ "DF0,PEUT COHABITER AVEC,0", 0 ],

@@ -285,8 +285,8 @@ def is_identifier(i, id_groups, id_mark):
     return False # 0_foo / 01_foo / _foo / bar / 1_bar
 
 if __name__ == "__main__":
-    # python -m mocodo.parser_tools
-    source = "EMPLOYER, 01 PARTICIPANT, 0N ENTREPRISE:"
+    # python -m mocodo.tools.parser_tools
+    source = "EMPLOYER, 01 PARTICIPANT, 0N ENTREPRISE:\nCLIENT: num client, nom"
     tree = parse_source(source)
     print(tree.pretty())
     print(reconstruct_source(tree))

@@ -1,5 +1,6 @@
 from collections import Counter
 import itertools
+import re
 
 __import__("sys").path[0:0] = ["."]
 
@@ -48,6 +49,8 @@ class UmlClassDiagram(Visitor):
     
     def entity_clause(self, tree):
         ent_name = str(first_child(tree, "box_name"))
+        if re.match(r"(?i)phantom\d+$", ent_name):
+            return
         attributes = []
         for (i, node) in enumerate(tree.find_data("entity_or_table_attr")):
             (id_groups, id_mark, attr_label, data_type) = node.children[0]

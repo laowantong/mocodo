@@ -239,6 +239,8 @@ class Relations:
 
     def relations_from_entities(self):
         for (name, entity) in self.mcd.entities.items():
+            if entity.is_invisible:
+                continue
             self.relations[name] = {
                 "this_relation_name": entity.name,
                 "is_forced": False, # an entity naturally results in a relation. No need to force it.
@@ -267,7 +269,7 @@ class Relations:
     def strengthen_weak_identifiers(self):
         for entity in self.mcd.entities.values():
             entity.is_strong_or_strengthened = not entity.strengthening_legs
-        remaining_entities = [entity for entity in self.mcd.entities.values() if not entity.is_strong_or_strengthened]
+        remaining_entities = [entity for entity in self.mcd.entities.values() if not entity.is_strong_or_strengthened and not entity.is_invisible]
         while remaining_entities:
             for entity in remaining_entities:
                 strengthening_entities_via_associations = []
