@@ -1,8 +1,7 @@
-@startuml landing
+@startuml "landing"
 
 !define Table(x) class "x" << (T,#FFFFFF) >>
 !define pk(x) <b>x</b>
-
 
 Table("AYANT-DROIT") {
     {field} + pk(nom ayant-droit)

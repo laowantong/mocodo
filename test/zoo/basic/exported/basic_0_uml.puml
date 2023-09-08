@@ -1,8 +1,7 @@
-@startuml basic
+@startuml "basic"
 
 !define Table(x) class "x" << (T,#FFFFFF) >>
 !define pk(x) <b>x</b>
-
 
 Table("CLIENT") {
     {field} + pk(Réf. client)

@@ -1,8 +1,7 @@
-@startuml triple_N11
+@startuml "triple_N11"
 
 !define Table(x) class "x" << (T,#FFFFFF) >>
 !define pk(x) <b>x</b>
-
 
 Table("Projet") {
     {field} + pk(projet)

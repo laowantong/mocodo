@@ -1,8 +1,7 @@
-@startuml inheritance
+@startuml "inheritance"
 
 !define Table(x) class "x" << (T,#FFFFFF) >>
 !define pk(x) <b>x</b>
-
 
 Table("SUSCIPIT") {
     {field} + pk(orci)

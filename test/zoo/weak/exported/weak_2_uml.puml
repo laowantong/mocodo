@@ -1,8 +1,7 @@
-@startuml weak
+@startuml "weak"
 
 !define Table(x) class "x" << (T,#FFFFFF) >>
 !define pk(x) <b>x</b>
-
 
 Table("Appartement") {
     {field} + pk(num appart.)

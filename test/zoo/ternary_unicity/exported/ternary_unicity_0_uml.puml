@@ -1,8 +1,7 @@
-@startuml ternary_unicity
+@startuml "ternary_unicity"
 
 !define Table(x) class "x" << (T,#FFFFFF) >>
 !define pk(x) <b>x</b>
-
 
 Table("Voilier") {
     {field} + pk(voilier)

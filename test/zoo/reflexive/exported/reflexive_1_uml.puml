@@ -1,8 +1,7 @@
-@startuml reflexive
+@startuml "reflexive"
 
 !define Table(x) class "x" << (T,#FFFFFF) >>
 !define pk(x) <b>x</b>
-
 
 Table("PIÈCE") {
     {field} + pk(pièce)

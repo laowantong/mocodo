@@ -1,8 +1,7 @@
-@startuml split
+@startuml "split"
 
 !define Table(x) class "x" << (T,#FFFFFF) >>
 !define pk(x) <b>x</b>
-
 
 Table("Bataille") {
     {field} + pk(nom bataille)

@@ -1,8 +1,7 @@
-@startuml triple_NNN
+@startuml "triple_NNN"
 
 !define Table(x) class "x" << (T,#FFFFFF) >>
 !define pk(x) <b>x</b>
-
 
 Table("Employé") {
     {field} + pk(employé)

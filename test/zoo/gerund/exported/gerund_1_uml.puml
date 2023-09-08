@@ -1,8 +1,7 @@
-@startuml gerund
+@startuml "gerund"
 
 !define Table(x) class "x" << (T,#FFFFFF) >>
 !define pk(x) <b>x</b>
-
 
 Table("Produit") {
     {field} + pk(produit)

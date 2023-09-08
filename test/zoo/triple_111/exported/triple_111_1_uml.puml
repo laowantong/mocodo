@@ -1,8 +1,7 @@
-@startuml triple_111
+@startuml "triple_111"
 
 !define Table(x) class "x" << (T,#FFFFFF) >>
 !define pk(x) <b>x</b>
-
 
 Table("Technicien") {
     {field} + pk(technicien)

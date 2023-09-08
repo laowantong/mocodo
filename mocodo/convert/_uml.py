@@ -142,7 +142,7 @@ class UmlClassDiagram(Visitor):
         style = self.common.load_style()
         result = []
         result.append(f"' {self.common.timestamp()}")
-        result.append(f"@startuml {self.common.params['title']}\n")
+        result.append(f'@startuml "{self.common.params["title"]}"\n')
         result.append(f'!define Table(x) class "x" << (T,{style["entity_color"]}) >>')
         result.append("!define pk(x) <b>x</b>")
         if self.preamble.startswith("<"):
@@ -167,7 +167,6 @@ class UmlClassDiagram(Visitor):
                 f'skinparam classHeaderBackgroundColor {style["entity_cartouche_color"]}',
             ]))
         result.append(self.preamble.replace(r"\n", "\n")) # the user-defined preamble comes raw
-        result.append("")
         for element in self.acc:
             if element["kind"] == "table":
                 max_attr_length = max([len(attr) for (_, attr, _) in element["attributes"]], default=0)
