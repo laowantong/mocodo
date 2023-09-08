@@ -2,18 +2,36 @@
 <svg width="396" height="250" viewBox="0 0 396 250" xmlns="http://www.w3.org/2000/svg">
 <rect id="frame" x="0" y="0" width="396" height="250" fill="#FFFFFF" stroke="none" stroke-width="0"/>
 
+<!-- Constraint CIF constraint #1 -->
+<g>
+	<line x1="66" y1="65" x2="66" y2="185" stroke="#000000" stroke-width="1"/>
+	<line x1="203" y1="185" x2="66" y2="185" stroke="#000000" stroke-width="1"/>
+	<line x1="203" y1="65" x2="66" y2="185" stroke="#000000" stroke-width="2"  stroke-dasharray="0,5" stroke-linecap="round"/>
+	<polygon points="301 80.17 292.49 90.54 293.69 83.43 287.6 79.58" fill="#000000" stroke-width="0"/>
+	<line x1="335" y1="65" x2="66" y2="185" stroke="#000000" stroke-width="1"/>
+	<g>
+		<circle cx="66" cy="185" r="13" stroke="#000000" stroke-width="1" fill="#FFFFFF"/>
+		<text x="57.5" y="189.2" fill="#000000" font-family="Futura" font-size="11" style="pointer-events: none;">CIF</text>
+	</g>
+</g>
+
+<!-- Constraint CIF constraint #2 -->
+<g>
+	<line x1="203" y1="65" x2="335" y2="185" stroke="#000000" stroke-width="2"  stroke-dasharray="0,5" stroke-linecap="round"/>
+	<polygon points="105 82.4 118.4 81.81 112.31 85.66 113.51 92.77" fill="#000000" stroke-width="0"/>
+	<line x1="66" y1="65" x2="335" y2="185" stroke="#000000" stroke-width="1"/>
+	<g>
+		<circle cx="335" cy="185" r="13" stroke="#000000" stroke-width="1" fill="#FFFFFF"/>
+		<text x="326.5" y="189.2" fill="#000000" font-family="Futura" font-size="11" style="pointer-events: none;">CIF</text>
+	</g>
+</g>
+
 <!-- Association Affecter -->
 <g>
 	<line x1="335" y1="65" x2="203" y2="65" stroke="#000000" stroke-width="1"/>
-	<polygon points="301 65 289 71 293 65 289 59" fill="#000000" stroke-width="0"/>
 	<line x1="66" y1="65" x2="203" y2="65" stroke="#000000" stroke-width="1"/>
-	<polygon points="105 65 117 59 113 65 117 71" fill="#000000" stroke-width="0"/>
 	<line x1="203" y1="185" x2="203" y2="65" stroke="#000000" stroke-width="1"/>
 	<g>
-		<path d="M27 20 L255 20 a7 7 0 0 1 7 7 L262 224 a7 7 0 0 1 &#45;7 7 L152 231 a7 7 0 0 1 &#45;7 &#45;7 L145 118 a7 7 0 0 0 &#45;7 &#45;7 L27 111 a7 7 0 0 1 &#45;7 &#45;7 L20 27 a7 7 0 0 1 7 &#45;7" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="0.15"/>
-		<path d="M27 20 L255 20 a7 7 0 0 1 7 7 L262 224 a7 7 0 0 1 &#45;7 7 L152 231 a7 7 0 0 1 &#45;7 &#45;7 L145 118 a7 7 0 0 0 &#45;7 &#45;7 L27 111 a7 7 0 0 1 &#45;7 &#45;7 L20 27 a7 7 0 0 1 7 &#45;7" fill="none" stroke="#000000" stroke-width="1.5" stroke-dasharray="0,4" stroke-linecap="round"/>
-		<path d="M144 12 L377 12 a7 7 0 0 1 7 7 L384 111 a7 7 0 0 1 &#45;7 7 L276 118 a7 7 0 0 0 &#45;7 7 L269 231 a7 7 0 0 1 &#45;7 7 L144 238 a7 7 0 0 1 &#45;7 &#45;7 L137 19 a7 7 0 0 1 7 &#45;7" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="0.15"/>
-		<path d="M144 12 L377 12 a7 7 0 0 1 7 7 L384 111 a7 7 0 0 1 &#45;7 7 L276 118 a7 7 0 0 0 &#45;7 7 L269 231 a7 7 0 0 1 &#45;7 7 L144 238 a7 7 0 0 1 &#45;7 &#45;7 L137 19 a7 7 0 0 1 7 &#45;7" fill="none" stroke="#000000" stroke-width="1.5" stroke-dasharray="0,4" stroke-linecap="round"/>
 		<path d="M238 36 a14 14 90 0 1 14 14 V64 h-98 V50 a14 14 90 0 1 14 -14" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
 		<path d="M252 64 v16 a14 14 90 0 1 -14 14 H168 a14 14 90 0 1 -14 -14 V64 H98" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
 		<rect x="154" y="36" width="98" height="58" fill="none" rx="14" stroke="#000000" stroke-width="1.5"/>

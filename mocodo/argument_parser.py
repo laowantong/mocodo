@@ -124,8 +124,8 @@ class Transformations:
         },
         "create": {
             "category": "rw",
-            "help": "insert empty datatype placeholders (create:type) or add optional DF arrows (create:df_arrows=here/across)",
-            "aliases": ["add", "insert", "make"],
+            "help": "try to infer types, entities, CIFs or DF arrows from the existing elements.",
+            "aliases": ["add", "insert", "make", "guess", "infer", "complete", "new"],
             "op_tk": True,
         },
         "crow": {
@@ -168,12 +168,6 @@ class Transformations:
             "category": "rw",
             "help": "try to fix common errors in the given elements",
             "aliases": [],
-            "op_tk": True,
-        },
-        "guess": {
-            "category": "rw",
-            "help": "try to complete the MCD with easily inferable informations (guess:types/entities)",
-            "aliases": ["infer"],
             "op_tk": True,
         },
         "lower": {

@@ -1,15 +1,17 @@
 import random
+import re
 
 __import__("sys").path[0:0] = ["."]
 
 from ..parse_mcd import Transformer
 from ..tools.parser_tools import transform_source
 from ..tools.string_tools import ascii, camel, snake
+from ..mocodo_error import MocodoError
 from .cards import fix_card, randomize_cards
 from .types import FIELD_TYPES, create_type_placeholders, guess_types
 from .obfuscate import obfuscator_factory
 from .arrows import create_df_arrows
-from ..mocodo_error import MocodoError
+from .constraints import create_cifs
 
 ELEMENT_TO_TOKENS = {
     "arrows": ["leg_arrow"],
@@ -66,13 +68,13 @@ def run(source, op_name, subargs, params, **kargs):
     for (pre_token, subsubarg) in subargs.items():
         # filter special non-op_tk operations
         if op_name == "create" and pre_token == "types":
-            source = create_type_placeholders(source)
-        elif op_name == "guess" and pre_token == "types":
-            source = guess_types(source, subsubarg, params)
-        elif op_name == "randomize" and pre_token == "cards":
-            source = randomize_cards(source, params)
+            source = create_type_placeholders(source) if subsubarg == "[]" else guess_types(source, subsubarg, params)
         elif op_name == "create" and pre_token == "df_arrows":
             source = create_df_arrows(source, subsubarg)
+        elif op_name == "create" and re.match("(?i)cifs?$", pre_token):
+            source = create_cifs(source, subsubarg)
+        elif op_name == "randomize" and pre_token == "cards":
+            source = randomize_cards(source, params)
         else: # apply a normal op_tk operation
             source = transform_source(source, Mapper(op_name, pre_token, subsubarg, params))
     return source

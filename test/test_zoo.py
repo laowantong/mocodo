@@ -124,6 +124,8 @@ def main():
         may_dump_rewritten_version(subfolder, source, source_path.stem[1:], "drain", {})
         may_dump_rewritten_version(subfolder, source, source_path.stem[1:], "split", {})
         may_dump_rewritten_version(subfolder, source, source_path.stem[1:], "create", {"df_arrows": "across"})
+        if source_path.name.startswith("_triple_N11"):
+            may_dump_rewritten_version(subfolder, source, source_path.stem[1:], "create", {"cifs": ""})
 
         mcd = Mcd(source, get_font_metrics, **params)
 
@@ -186,7 +188,7 @@ def main():
         # Create the sql output files. Warning: modifies source. Must be final.
         subfolder = Path(source_path.parent / "ddl")
         subfolder.mkdir(exist_ok=True)
-        source = op_tk.run(source, "guess", {"types": ""}, params)
+        source = op_tk.run(source, "create", {"types": ""}, params)
         source = op_tk.run(source, "ascii", {"labels": 1, "leg_notes": 1}, params)
         source = op_tk.run(source, "snake", {"labels": 1, "leg_notes": 1}, params)
         source = op_tk.run(source, "lower", {"attrs": 1, "leg_notes": 1}, params)

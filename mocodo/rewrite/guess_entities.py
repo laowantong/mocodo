@@ -1,6 +1,4 @@
 from ..tools.parser_tools import parse_source
-from ._arrange_bb import arrange
-from ..mcd import Mcd
 
 def run(source, id_prefix):
     if id_prefix is None:

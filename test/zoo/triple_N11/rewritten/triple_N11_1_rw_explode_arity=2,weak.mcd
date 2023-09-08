@@ -9,3 +9,6 @@ DF, _11 Affecter, 0N Employé
 
 DF, 11 Affecter, 1N Projet
 Projet: projet, libellé
+
+(CIF) --Projet, --Employé, ..Affecter, ->Site: Projet, Employé
+(CIF) ..Affecter, ->Projet, Employé, Site: Site, Employé
