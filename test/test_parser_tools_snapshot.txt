@@ -2435,7 +2435,8 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
             box_name	PROJET
       : 
       constraint_coords
-        FOO
+        box_name_ref
+          box_name	FOO
         , 
         30
 --------------------------------------------------------------------------------
@@ -2484,7 +2485,8 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
       constraint_coords
         12.5
         , 
-        BAR
+        box_name_ref
+          box_name	BAR
 --------------------------------------------------------------------------------
 [{'name': 'I',
   'constraint_note': 'bla bla.',
@@ -2529,9 +2531,11 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
             box_name	PROJET
       : 
       constraint_coords
-        FOO
+        box_name_ref
+          box_name	FOO
         , 
-        BAR
+        box_name_ref
+          box_name	BAR
 --------------------------------------------------------------------------------
 [{'name': 'I',
   'constraint_note': 'bla bla.',

@@ -76,7 +76,7 @@ constraint_target: constraint_leg? SP* box_name_ref
 box_name_ref: box_name
 CONSTRAINT_LEG: /<?(\.+|-+)>?/
 constraint_coords: _constraint_coord COMMA _constraint_coord
-_constraint_coord: NUMBER | BOX_NAME
+_constraint_coord: NUMBER | box_name_ref
 
 // Inheritance
 

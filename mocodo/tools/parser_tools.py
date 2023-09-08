@@ -234,8 +234,8 @@ class ClauseExtractor(Transformer):
         try:
             x = float(x)
             return int(x) if x == int(x) else x
-        except ValueError:
-            return x.value
+        except (TypeError, ValueError):
+            return x[1]
 
     def indent(self, tree):
         return {"type": "break", "indent": tree[0].value} # Add a default type for dangling indents
