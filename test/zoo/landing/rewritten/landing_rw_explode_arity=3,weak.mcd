@@ -20,12 +20,12 @@ TRAVAILLER, 0N EMPLOYÉ, 1N PROJET
 PROJET: num. projet, nom projet
 DF, _11 FOURNIR, 1N PROJET
 :
-CONTRÔLER, 0N< [filiale] SOCIÉTÉ, 01 [mère] SOCIÉTÉ
+CONTRÔLER, 0N< [mère] SOCIÉTÉ, 01 [filiale] SOCIÉTÉ
 
 DÉPARTEMENT: num. département, nom département
 EMPLOYER, 11 EMPLOYÉ, 1N DÉPARTEMENT
 EMPLOYÉ: matricule, nom employé
-DIRIGER, 0N EMPLOYÉ, 01 PROJET
+DIRIGER, 0N [responsable] EMPLOYÉ, 01 PROJET
 :
 :
 :

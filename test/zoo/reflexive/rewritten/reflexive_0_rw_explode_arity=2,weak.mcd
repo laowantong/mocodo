@@ -1,6 +1,6 @@
 PIÈCE: pièce
 DF, _11 COMPOSER, 0N [composée] PIÈCE
-ENGENDRER, 0N [fils] HOMME, 11 [père] HOMME
+ENGENDRER, 0N [père] HOMME, 11 [fils] HOMME
 
 DF, _11 COMPOSER, 0N [composante] PIÈCE
 COMPOSER:

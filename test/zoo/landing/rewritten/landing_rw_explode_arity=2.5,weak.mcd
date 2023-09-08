@@ -29,11 +29,11 @@ TRAVAILLER, 0N EMPLOYÉ, 1N PROJET
 SOCIÉTÉ: num. société, raison sociale
 :
 :
-DIRIGER, 0N EMPLOYÉ, 01 PROJET
+DIRIGER, 0N [responsable] EMPLOYÉ, 01 PROJET
 EMPLOYÉ: matricule, nom employé
 DF, _11 AYANT-DROIT, 0N EMPLOYÉ
 
-CONTRÔLER, 0N< [filiale] SOCIÉTÉ, 01 [mère] SOCIÉTÉ
+CONTRÔLER, 0N< [mère] SOCIÉTÉ, 01 [filiale] SOCIÉTÉ
 :
 :
 :

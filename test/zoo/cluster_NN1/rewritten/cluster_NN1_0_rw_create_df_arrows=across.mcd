@@ -1,0 +1,5 @@
+Voilier: num voilier, longueur
+Offrir, 0N> Voilier, 0N> Semaine, /11 Réservation: tarif
+Semaine: num semaine, 1_date début
+
+Réservation: num résa, arrhes, date résa

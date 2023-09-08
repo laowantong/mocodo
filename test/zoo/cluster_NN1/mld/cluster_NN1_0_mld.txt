@@ -1,0 +1,14 @@
+- Réservation (_num résa_, arrhes, date résa, #num voilier¹, #num semaine¹, tarif)
+  - Le champ « num résa » constitue la clé primaire de la table. C'était déjà un identifiant de l'entité « Réservation ».
+  - Les champs « arrhes » et « date résa » étaient déjà de simples attributs de l'entité « Réservation ».
+  - Le champ « num voilier » est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle « Offrir » à partir de l'entité « Voilier » en perdant son caractère identifiant. Il obéit en outre à la contrainte d'unicité 1.
+  - Le champ « num semaine » est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle « Offrir » à partir de l'entité « Semaine » en perdant son caractère identifiant. Il obéit en outre à la contrainte d'unicité 1.
+  - Le champ « tarif » a migré à partir de l'association de dépendance fonctionnelle « Offrir ».
+
+- Semaine (_num semaine_, date début¹)
+  - Le champ « num semaine » constitue la clé primaire de la table. C'était déjà un identifiant de l'entité « Semaine ».
+  - Le champ « date début » était déjà un simple attribut de l'entité « Semaine ». Il obéit à la contrainte d'unicité 1.
+
+- Voilier (_num voilier_, longueur)
+  - Le champ « num voilier » constitue la clé primaire de la table. C'était déjà un identifiant de l'entité « Voilier ».
+  - Le champ « longueur » était déjà un simple attribut de l'entité « Voilier ».

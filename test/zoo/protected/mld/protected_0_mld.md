@@ -8,5 +8,5 @@
 - **LIGULA** (<ins>_#blandit_</ins>, _#congue_, metus)
   - **Avertissement.** Table résultant de la conversion forcée d'une association DF.
   - Le champ _blandit_ constitue la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité _LACUS_.
-  - Le champ _congue_ est une clé étrangère. Il a migré directement de l'entité _EROS_ en perdant son caractère identifiant.
+  - Le champ _congue_ est une clé étrangère. Il a migré directement à partir de l'entité _EROS_ en perdant son caractère identifiant.
   - Le champ _metus_ était déjà un simple attribut de l'association _LIGULA_.

@@ -137,12 +137,6 @@ class ParseTest(unittest.TestCase):
         self.assertEqual(a.legs[2].entity_name, "ENSEIGNANT")
         self.assertEqual(a.legs[2].kind, "cluster_leg")
 
-    def test_cluster_with_forbidden_cardinality(self):
-        self.assertRaisesRegex(MocodoError, r"Mocodo Err\.26", association_wrapper, "SUIVRE, 0N DATE, /11 ÉTUDIANT, 0N ENSEIGNANT")
-
-    def test_cluster_with_df(self):
-        self.assertRaisesRegex(MocodoError, r"Mocodo Err\.28", association_wrapper, "SUIVRE, 0N DATE, /1N ÉTUDIANT, 11 ENSEIGNANT")
-
 
 if __name__ == '__main__':
     unittest.main()

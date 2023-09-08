@@ -16,10 +16,10 @@
 \maketitle
 
 \begin{itemize}
-  \item \relat{Ligne de commande} (\foreign{\prim{commande}}, \foreign{\prim{produit}}, \attr{quantité})
+  \item \relat{Ligne de commande} (\prim{commande}, \prim{produit}, \attr{quantité})
   \begin{itemize}
-    \item Le champ \emph{commande} fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré à partir de l'entité \emph{Commande} pour renforcer l'identifiant. La table correspondante ayant été supprimée, il n'est pas considéré comme clé étrangère.
-    \item Le champ \emph{produit} fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré à partir de l'entité \emph{Produit} pour renforcer l'identifiant. La table correspondante ayant été supprimée, il n'est pas considéré comme clé étrangère.
+    \item Le champ \emph{commande} fait partie de la clé primaire de la table. Il a migré à partir de l'entité \emph{Commande} pour renforcer l'identifiant. Cependant, comme la table créée à partir de cette entité a été supprimée, il n'est pas considéré comme clé étrangère.
+    \item Le champ \emph{produit} fait partie de la clé primaire de la table. Il a migré à partir de l'entité \emph{Produit} pour renforcer l'identifiant. Cependant, comme la table créée à partir de cette entité a été supprimée, il n'est pas considéré comme clé étrangère.
     \item Le champ \emph{quantité} était déjà un simple attribut de l'entité \emph{Ligne de commande}.
   \end{itemize}
 

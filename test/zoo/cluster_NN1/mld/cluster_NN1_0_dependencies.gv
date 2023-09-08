@@ -1,0 +1,5 @@
+digraph {
+  node [shape=box]
+  "Semaine" -> "Réservation"
+  "Voilier" -> "Réservation"
+}

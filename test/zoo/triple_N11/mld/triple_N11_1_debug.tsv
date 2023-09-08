@@ -1,7 +1,7 @@
 this_relation_name	label	data_type	nature	adjacent_source	outer_source	unicities
 Affecter	projet		primary_foreign_key	Projet	Projet	
 Affecter	employé		primary_foreign_key	Employé	Employé	1
-Affecter	site		foreign_key	Site	Site	1
+Affecter	site		stopped_foreign_key	Site	Site	1
 Employé	employé		primary_key			
 Employé	nom employé		normal_attribute			
 Projet	projet		primary_key			

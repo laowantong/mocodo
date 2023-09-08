@@ -21,9 +21,7 @@
     \item Le champ \emph{code espèce} fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré à partir de l'entité \emph{ESPÈCE} pour renforcer l'identifiant.
     \item Les champs \emph{nom} et \emph{date naissance} font partie de la clé primaire de la table. C'étaient déjà des identifiants de l'entité \emph{ANIMAL}.
     \item Les champs \emph{sexe} et \emph{date décès} étaient déjà de simples attributs de l'entité \emph{ANIMAL}.
-    \item Le champ \emph{code espèce mère} est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle \emph{A MÈRE} à partir de l'entité \emph{ANIMAL} en perdant son caractère identifiant.
-    \item Le champ \emph{nom mère} est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle \emph{A MÈRE} à partir de l'entité \emph{ANIMAL} en perdant son caractère identifiant.
-    \item Le champ \emph{date naissance mère} est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle \emph{A MÈRE} à partir de l'entité \emph{ANIMAL} en perdant son caractère identifiant.
+    \item Les champs \emph{code espèce mère}, \emph{nom mère} et \emph{date naissance mère} sont des clés étrangères. Ils ont migré par l'association de dépendance fonctionnelle \emph{A MÈRE} à partir de l'entité \emph{ANIMAL} en perdant leur caractère identifiant.
     \item Un champ entier \emph{type alimentation} est ajouté pour indiquer la nature de la spécialisation. Il est interprété comme un code binaire : bit 1 pour la première entité-fille, bit 2 pour la deuxième, etc. Peut être vide, du fait de l'absence de contrainte de totalité.
     \item Un champ booléen \emph{CARNIVORE} est ajouté pour indiquer si on a affaire ou pas à la spécialisation de même nom.
     \item Le champ \emph{quantité viande} a migré à partir de l'entité-fille \emph{CARNIVORE} (supprimée).
@@ -42,7 +40,7 @@
   \begin{itemize}
     \item Les champs \emph{code espèce}, \emph{nom} et \emph{date naissance} font partie de la clé primaire de la table. Ce sont des clés étrangères qui ont migré directement à partir de l'entité \emph{ANIMAL}.
     \item Le champ \emph{num. enclos} fait partie de la clé primaire de la table. Sa table d'origine (\emph{ENCLOS}) ayant été supprimée, il n'est pas considéré comme clé étrangère.
-    \item Les champs \emph{date début} et \emph{date fin} sont de simples attributs. Ils ont migré par l'association de dépendance fonctionnelle \emph{OCCUPE} à partir de l'entité \emph{PÉRIODE} en perdant leur caractère identifiant. Cependant, comme la table créée à partir de cette entité a été supprimée, ils ne sont pas considérés comme clés étrangères.
+    \item Les champs \emph{date début} et \emph{date fin} sont de simples attributs. Ils ont migré directement à partir de l'entité \emph{PÉRIODE} en perdant leur caractère identifiant. Cependant, comme la table créée à partir de cette entité a été supprimée, ils ne sont pas considérés comme clés étrangères.
   \end{itemize}
 
   \item \relat{PEUT COHABITER AVEC} (\foreign{\prim{code espèce}}, \foreign{\prim{code espèce commensale}}, \attr{nb. max. commensaux})

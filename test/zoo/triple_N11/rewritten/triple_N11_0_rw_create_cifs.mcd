@@ -7,5 +7,5 @@ Employé: employé
 phantom1:
 phantom2:
 
-(CIF) ..Affecter, ->Site, --Employé, --Projet: phantom1, phantom1
-(CIF) ..Affecter, ->Projet, --Employé, --Site: phantom2, phantom2
+(CIF) ..Affecter, ->Projet, --Employé, --Site: phantom1, phantom1
+(CIF) ..Affecter, ->Site, --Employé, --Projet: phantom2, phantom2

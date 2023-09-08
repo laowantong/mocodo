@@ -18,12 +18,12 @@ PIÈCE	réf. pièce		primary_key
 PIÈCE	libellé pièce		normal_attribute			
 PROJET	num. projet		primary_key			
 PROJET	nom projet		normal_attribute			
-PROJET	matricule		foreign_key	EMPLOYÉ	EMPLOYÉ	
+PROJET	matricule responsable		foreign_key	EMPLOYÉ	EMPLOYÉ	
 REQUÉRIR	num. projet		primary_foreign_key	PROJET	PROJET	
 REQUÉRIR	réf. pièce		primary_foreign_key	PIÈCE	PIÈCE	
 REQUÉRIR	qté requise		association_attribute			
 SOCIÉTÉ	num. société		primary_key			
 SOCIÉTÉ	raison sociale		normal_attribute			
-SOCIÉTÉ	num. société mère		foreign_key	SOCIÉTÉ	SOCIÉTÉ	1
+SOCIÉTÉ	num. société mère		foreign_key	SOCIÉTÉ	SOCIÉTÉ	
 TRAVAILLER	matricule		primary_foreign_key	EMPLOYÉ	EMPLOYÉ	
 TRAVAILLER	num. projet		primary_foreign_key	PROJET	PROJET

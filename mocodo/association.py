@@ -33,19 +33,11 @@ class Association:
         else:
             self.name_view = rstrip_digit(self.name)
             legs = clause["legs"]
-            # A "peg" is a leg that starts with a "/" character. To be valid, its max card must be "N".
-            # If there is at least one peg, then all the other legs must have a max card of "N".
-            has_at_least_one_max_card_1 = False
+            # A "peg" is a leg that is prefixed by a "/" character.
             for leg in legs:
-                if leg["card"][1] == "1":
-                    if leg.get("card_prefix") == "/":
-                        raise MocodoError(26, _('Only cardinalities "/N" are permitted to start with a "/" character.').format(name=self.name))
-                    has_at_least_one_max_card_1 = True
-                elif leg.get("card_prefix") == "/":
+                if leg.get("card_prefix") == "/":
                     self.peg_count += 1
             if self.peg_count > 0:
-                if has_at_least_one_max_card_1 > 0:
-                    raise MocodoError(28, _('''To become a cluster, all association "{name}"'s maximal cardinalities must be N.''').format(name=self.name)) # fmt: skip
                 self.kind = "cluster"
             else:
                 self.kind = "association"

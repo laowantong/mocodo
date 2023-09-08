@@ -1,17 +1,17 @@
 {
-  "width": 1012,
+  "width": 1036,
   "height": 356,
   "cx": [
     [ "AYANT-DROIT", 115 ],
-    [ "REQUÉRIR", 505 ],
-    [ "PIÈCE", 695 ],
-    [ "COMPOSER", 897 ],
+    [ "REQUÉRIR", 517 ],
+    [ "PIÈCE", 719 ],
+    [ "COMPOSER", 921 ],
     [ "EMPLOYÉ", 316 ],
-    [ "PROJET", 505 ],
-    [ "FOURNIR", 695 ],
+    [ "PROJET", 517 ],
+    [ "FOURNIR", 719 ],
     [ "DÉPARTEMENT", 115 ],
-    [ "TRAVAILLER", 505 ],
-    [ "SOCIÉTÉ", 695 ]
+    [ "TRAVAILLER", 517 ],
+    [ "SOCIÉTÉ", 719 ]
   ],
   "cy": [
     [ "AYANT-DROIT", 56 ],

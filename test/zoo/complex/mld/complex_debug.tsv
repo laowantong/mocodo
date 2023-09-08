@@ -19,8 +19,8 @@ OCCUPE	code espèce		primary_foreign_key	ANIMAL	ANIMAL
 OCCUPE	nom		primary_foreign_key	ANIMAL	ANIMAL	
 OCCUPE	date naissance		primary_foreign_key	ANIMAL	ANIMAL	
 OCCUPE	num. enclos		primary_ex_foreign_key	ENCLOS	ENCLOS	
-OCCUPE	date début		ex_foreign_key	PÉRIODE	PÉRIODE	
-OCCUPE	date fin		ex_foreign_key	PÉRIODE	PÉRIODE	
+OCCUPE	date début		stopped_ex_foreign_key	PÉRIODE	PÉRIODE	
+OCCUPE	date fin		stopped_ex_foreign_key	PÉRIODE	PÉRIODE	
 PEUT COHABITER AVEC	code espèce		primary_foreign_key	ESPÈCE	ESPÈCE	
 PEUT COHABITER AVEC	code espèce commensale		primary_foreign_key	ESPÈCE	ESPÈCE	
 PEUT COHABITER AVEC	nb. max. commensaux		association_attribute			

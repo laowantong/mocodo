@@ -13,7 +13,7 @@ COMPOSER: #réf. pièce composée > PIÈCE > réf. pièce, _#réf. pièce compos
 :::
 EMPLOYÉ: matricule, nom employé, #num. département > DÉPARTEMENT > num. département
 :
-PROJET: num. projet, nom projet, #matricule > EMPLOYÉ > matricule
+PROJET: num. projet, nom projet, #matricule responsable > EMPLOYÉ > matricule
 :
 FOURNIR: #num. projet > PROJET > num. projet, _#réf. pièce > PIÈCE > réf. pièce, _#num. société > SOCIÉTÉ > num. société, qté fournie
 :::

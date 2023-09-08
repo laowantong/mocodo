@@ -1,7 +1,7 @@
 - **Gérer** (<ins>_#ingénieur_</ins>, <ins>_#projet_</ins>, _#responsable_)
   - Le champ _ingénieur_ fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité _Ingénieur_.
   - Le champ _projet_ fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité _Projet_.
-  - Le champ _responsable_ est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle _Gérer_ à partir de l'entité _Responsable_ en perdant son caractère identifiant.
+  - Le champ _responsable_ est une clé étrangère. Il a migré directement à partir de l'entité _Responsable_ en perdant son caractère identifiant.
 
 - **Ingénieur** (<ins>ingénieur</ins>, nom ingénieur)
   - Le champ _ingénieur_ constitue la clé primaire de la table. C'était déjà un identifiant de l'entité _Ingénieur_.

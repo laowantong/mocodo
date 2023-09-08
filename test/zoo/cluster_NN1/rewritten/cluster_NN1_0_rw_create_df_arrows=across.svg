@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="442" height="240" viewBox="0 0 442 240" xmlns="http://www.w3.org/2000/svg">
+<rect id="frame" x="0" y="0" width="442" height="240" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+
+<!-- Association Offrir -->
+<g>
+	<line x1="78" y1="56" x2="216" y2="56" stroke="#000000" stroke-width="1"/>
+	<polygon points="138 56 150 50 146 56 150 62" fill="#000000" stroke-width="0"/>
+	<line x1="359" y1="56" x2="216" y2="56" stroke="#000000" stroke-width="1"/>
+	<polygon points="294 56 282 62 286 56 282 50" fill="#000000" stroke-width="0"/>
+	<line x1="216" y1="175" x2="216" y2="56" stroke="#000000" stroke-width="1"/>
+	<polygon points="216 128 210 116 216 120 222 116" fill="#000000" stroke-width="0"/>
+	<g>
+		<path d="M20 13 L422 13 a7 7 0 0 1 7 7 L429 92 a7 7 0 0 1 &#45;7 7 L20 99 a7 7 0 0 1 &#45;7 &#45;7 L13 20 a7 7 0 0 1 7 &#45;7" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="0.3"/>
+		<path d="M20 13 L422 13 a7 7 0 0 1 7 7 L429 92 a7 7 0 0 1 &#45;7 7 L20 99 a7 7 0 0 1 &#45;7 &#45;7 L13 20 a7 7 0 0 1 7 &#45;7" fill="none" stroke="#000000" stroke-width="1.5" stroke-dasharray="0,4" stroke-linecap="round"/>
+		<path d="M241 27 a14 14 90 0 1 14 14 V55 h-78 V41 a14 14 90 0 1 14 -14" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+		<path d="M255 55 v16 a14 14 90 0 1 -14 14 H191 a14 14 90 0 1 -14 -14 V55 H78" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+		<rect x="177" y="27" width="78" height="58" fill="none" rx="14" stroke="#000000" stroke-width="1.5"/>
+		<line x1="177" y1="55" x2="255" y2="55" stroke="#000000" stroke-width="1.5"/>
+		<text x="185" y="48.3" fill="#000000" font-family="Copperplate" font-size="18">Offrir</text>
+		<text x="184" y="73.1" fill="#000000" font-family="Gill Sans" font-size="15">tarif</text>
+	</g>
+	<text x="148" y="77" fill="#000000" font-family="Futura" font-size="11">0,N</text>
+	<text x="265" y="77" fill="#000000" font-family="Futura" font-size="11">0,N</text>
+	<text x="226" y="115" fill="#000000" font-family="Futura" font-size="11">1,1</text>
+</g>
+
+<!-- Entity Voilier -->
+<g>
+	<g>
+		<rect x="18" y="18" width="120" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="50" y="48" width="88" height="46" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="18" y="48" width="32" height="46" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<line x1="50" y1="48" x2="50" y2="94" stroke="#000000" stroke-width="0.38"/>
+		<rect x="18" y="18" width="120" height="76" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
+		<line x1="18" y1="48" x2="138" y2="48" stroke="#000000" stroke-width="1.5"/>
+	</g>
+	<text x="45" y="39.3" fill="#000000" font-family="Copperplate" font-size="18">Voilier</text>
+	<text x="58" y="65.1" fill="#000000" font-family="Gill Sans" font-size="15">num voilier</text>
+	<text x="26" y="65.1" fill="#000000" font-family="Gill Sans" font-size="15">ID</text>
+	<line x1="58" y1="68" x2="129" y2="68" stroke="#000000" stroke-width="1"/>
+	<text x="58" y="82.1" fill="#000000" font-family="Gill Sans" font-size="15">longueur</text>
+	<text x="33" y="82.1" fill="#000000" font-family="Gill Sans" font-size="15"></text>
+</g>
+
+<!-- Entity Semaine -->
+<g>
+	<g>
+		<rect x="294" y="18" width="130" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="326" y="48" width="98" height="46" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="294" y="48" width="32" height="46" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<line x1="326" y1="48" x2="326" y2="94" stroke="#000000" stroke-width="0.38"/>
+		<rect x="294" y="18" width="130" height="76" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
+		<line x1="294" y1="48" x2="424" y2="48" stroke="#000000" stroke-width="1.5"/>
+	</g>
+	<text x="322" y="39.3" fill="#000000" font-family="Copperplate" font-size="18">Semaine</text>
+	<text x="334" y="65.1" fill="#000000" font-family="Gill Sans" font-size="15">num semaine</text>
+	<text x="302" y="65.1" fill="#000000" font-family="Gill Sans" font-size="15">ID</text>
+	<line x1="334" y1="68" x2="416" y2="68" stroke="#000000" stroke-width="1"/>
+	<text x="334" y="82.1" fill="#000000" font-family="Gill Sans" font-size="15">date début</text>
+	<text x="305" y="82.1" fill="#000000" font-family="Gill Sans" font-size="15">1</text>
+</g>
+
+<!-- Entity Réservation -->
+<g>
+	<g>
+		<rect x="135" y="128" width="162" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="167" y="158" width="130" height="64" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="135" y="158" width="32" height="64" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<line x1="167" y1="158" x2="167" y2="222" stroke="#000000" stroke-width="0.38"/>
+		<rect x="135" y="128" width="162" height="94" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
+		<line x1="135" y1="158" x2="297" y2="158" stroke="#000000" stroke-width="1.5"/>
+	</g>
+	<text x="160" y="149.3" fill="#000000" font-family="Copperplate" font-size="18">Réservation</text>
+	<text x="175" y="175.1" fill="#000000" font-family="Gill Sans" font-size="15">num résa</text>
+	<text x="143" y="175.1" fill="#000000" font-family="Gill Sans" font-size="15">ID</text>
+	<line x1="175" y1="178" x2="233" y2="178" stroke="#000000" stroke-width="1"/>
+	<text x="175" y="192.1" fill="#000000" font-family="Gill Sans" font-size="15">arrhes</text>
+	<text x="150" y="192.1" fill="#000000" font-family="Gill Sans" font-size="15"></text>
+	<text x="175" y="209" fill="#000000" font-family="Gill Sans" font-size="15">date résa</text>
+	<text x="150" y="209" fill="#000000" font-family="Gill Sans" font-size="15"></text>
+</g>
+</svg>

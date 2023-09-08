@@ -1,0 +1,17 @@
+erDiagram
+  voilier {
+    TYPE num_voilier PK
+    TYPE longueur
+  }
+  semaine {
+    TYPE num_semaine PK
+    TYPE date_debut
+  }
+  reservation {
+    TYPE num_resa PK
+    TYPE arrhes
+    TYPE date_resa
+    TYPE tarif
+  }
+  reservation }o--|| voilier: offrir
+  reservation }o--|| semaine: offrir

@@ -2,9 +2,7 @@
   - Le champ _code espèce_ fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré à partir de l'entité _ESPÈCE_ pour renforcer l'identifiant.
   - Les champs _nom_ et _date naissance_ font partie de la clé primaire de la table. C'étaient déjà des identifiants de l'entité _ANIMAL_.
   - Les champs _sexe_ et _date décès_ étaient déjà de simples attributs de l'entité _ANIMAL_.
-  - Le champ _code espèce mère_ est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle _A MÈRE_ à partir de l'entité _ANIMAL_ en perdant son caractère identifiant.
-  - Le champ _nom mère_ est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle _A MÈRE_ à partir de l'entité _ANIMAL_ en perdant son caractère identifiant.
-  - Le champ _date naissance mère_ est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle _A MÈRE_ à partir de l'entité _ANIMAL_ en perdant son caractère identifiant.
+  - Les champs _code espèce mère_, _nom mère_ et _date naissance mère_ sont des clés étrangères. Ils ont migré par l'association de dépendance fonctionnelle _A MÈRE_ à partir de l'entité _ANIMAL_ en perdant leur caractère identifiant.
   - Un champ entier _type alimentation_ est ajouté pour indiquer la nature de la spécialisation. Il est interprété comme un code binaire : bit 1 pour la première entité-fille, bit 2 pour la deuxième, etc. Peut être vide, du fait de l'absence de contrainte de totalité.
   - Un champ booléen _CARNIVORE_ est ajouté pour indiquer si on a affaire ou pas à la spécialisation de même nom.
   - Le champ _quantité viande_ a migré à partir de l'entité-fille _CARNIVORE_ (supprimée).
@@ -19,7 +17,7 @@
 - **OCCUPE** (<ins>_#code espèce_</ins>, <ins>_#nom_</ins>, <ins>_#date naissance_</ins>, <ins>num. enclos</ins>, date début, date fin)
   - Les champs _code espèce_, _nom_ et _date naissance_ font partie de la clé primaire de la table. Ce sont des clés étrangères qui ont migré directement à partir de l'entité _ANIMAL_.
   - Le champ _num. enclos_ fait partie de la clé primaire de la table. Sa table d'origine (_ENCLOS_) ayant été supprimée, il n'est pas considéré comme clé étrangère.
-  - Les champs _date début_ et _date fin_ sont de simples attributs. Ils ont migré par l'association de dépendance fonctionnelle _OCCUPE_ à partir de l'entité _PÉRIODE_ en perdant leur caractère identifiant. Cependant, comme la table créée à partir de cette entité a été supprimée, ils ne sont pas considérés comme clés étrangères.
+  - Les champs _date début_ et _date fin_ sont de simples attributs. Ils ont migré directement à partir de l'entité _PÉRIODE_ en perdant leur caractère identifiant. Cependant, comme la table créée à partir de cette entité a été supprimée, ils ne sont pas considérés comme clés étrangères.
 
 - **PEUT COHABITER AVEC** (<ins>_#code espèce_</ins>, <ins>_#code espèce commensale_</ins>, nb. max. commensaux)
   - Les champs _code espèce_ et _code espèce commensale_ constituent la clé primaire de la table. Ce sont des clés étrangères qui ont migré directement à partir de l'entité _ESPÈCE_.

@@ -375,12 +375,14 @@ class Relations:
 
     def process_associations(self):
         for association in self.mcd.associations.values():
+            is_cluster = (association.kind == "cluster")
             df_leg = None
             for leg in association.legs:
                 if leg.card[1] == "1":
                     df_leg = leg
                     if leg.card[0] == "1":
                         break # elect the first leg with cardinality 11
+            
             if df_leg is None or association.is_protected:
                 # make a relation of this association
                 self.relations[association.name] = {
@@ -393,7 +395,7 @@ class Relations:
                     for attribute in self.relations[leg.entity_name]["columns"]:
                         if attribute["primary"]:
                             outer_source = self.may_retrieve_distant_outer_source(leg, attribute)
-                            if leg.kind in ("cluster_peg", "cluster_leg"):
+                            if is_cluster:
                                 self.relations[association.name]["columns"].append({ # gather all migrant attributes
                                     "attribute": attribute["attribute"],
                                     "data_type": attribute["data_type"],
@@ -402,7 +404,7 @@ class Relations:
                                     "leg_note": leg.note,
                                     "association_name": association.name,
                                     "primary": leg.is_in_elected_group,
-                                    "nature": "primary_foreign_key" if leg.is_in_elected_group else "foreign_key",
+                                    "nature": "primary_foreign_key" if leg.is_in_elected_group else "stopped_foreign_key",
                                     "unicities": leg.unicities,
                                 })
                                 self.relations[association.name]["existing_unicity_numbers"].update(map(int, leg.unicities))
@@ -454,20 +456,56 @@ class Relations:
                         "unicities": "",
                     } for attribute in association.attributes if attribute.label.strip() != ""
                 )
-            else: # No relation will be created from this association.
-                # The entity named `entity_name` is distinguished by the *1 cardinality
-                already_rejected = False
+                continue
+
+            # No relation will be created from this association.
+
+            # Check the number of /?1 legs (pegs)
+            df_pegs = []
+            for leg in association.legs:
+                if leg.card[1] == "1" and leg.kind == "cluster_peg":
+                    df_pegs.append(leg)
+            
+            if df_pegs: # A cluster with at least one /?1 leg (peg)
+                for df_peg in df_pegs:
+                    # All migrating attribute must belong to the same new unicity group
+                    unicities = str(first_missing_positive(self.relations[df_peg.entity_name]["existing_unicity_numbers"]))
+                    self.relations[df_leg.entity_name]["existing_unicity_numbers"].update(map(int, unicities))
+                    for leg in association.legs:
+                        if leg is df_peg:
+                            continue
+                        for attribute in list(self.relations[leg.entity_name]["columns"]): # traverse a copy...
+                            # ... to prevent an infinite migration of the child discriminant
+                            if attribute["primary"]:
+                                # Their primary keys must migrate in `entity_name`.
+                                outer_source = self.may_retrieve_distant_outer_source(leg, attribute)
+                                self.relations[df_peg.entity_name]["columns"].append({
+                                    "attribute": attribute["attribute"],
+                                    "data_type": attribute["data_type"],
+                                    "adjacent_source": leg.entity_name,
+                                    "outer_source": outer_source,
+                                    "leg_note": leg.note,
+                                    "association_name": association.name,
+                                    "primary": False,
+                                    "nature": "unsourced_foreign_key" if outer_source is None else "foreign_key",
+                                    "unicities": unicities,
+                                    # NB: technically, an unsourced foreign key is not foreign anymore
+                                })
+                # The association attributes must migrate only once, df_leg is elected.
+                # Delay the addition of the association attributes after the else part.
+
+            else:
+                # A normal DF association. Traverse the other legs to find the attributes to migrate.
                 for leg in association.legs:
-                    if leg.entity_name != df_leg.entity_name or already_rejected:
-                        # This leg distinguishes one of the other entities.
+                    if leg is not df_leg:
                         if (df_leg.entity_name, association.name, leg.entity_name) not in self.freeze_strengthening_foreign_key_migration:
                             unicities = ""
-                            if leg.card == "01": # 01 --(DF)-- 11 => the migrating attribute must be made unique, find a new unicity group
+                            if leg.card[1] == "1": # *1 --(DF)-- 11 => the migrating attribute must be made unique, find a new unicity group
                                 unicities = str(first_missing_positive(self.relations[df_leg.entity_name]["existing_unicity_numbers"]))
                             for attribute in list(self.relations[leg.entity_name]["columns"]): # traverse a copy...
                                 # ... to prevent an infinite migration of the child discriminant
                                 if attribute["primary"]:
-                                    # Their primary keys must migrate in `entity_name`.
+                                    # Their primary keys must migrate in df_leg.entity_name.
                                     outer_source = self.may_retrieve_distant_outer_source(leg, attribute)
                                     self.relations[df_leg.entity_name]["columns"].append({
                                         "attribute": attribute["attribute"],
@@ -494,19 +532,19 @@ class Relations:
                                         "nature": attribute["nature"],
                                         "unicities": "",
                                     })
-                    else:
-                        already_rejected = True
-                self.relations[df_leg.entity_name]["columns"].extend([{
-                        "attribute": attribute.label,
-                        "data_type": attribute.data_type,
-                        "association_name": association.name,
-                        "adjacent_source": None,
-                        "outer_source": None,
-                        "leg_note": None,
-                        "primary": False,
-                        "nature": "outer_attribute",
-                        "unicities": "",
-                    } for attribute in association.attributes if attribute.label.strip() != ""])
+                
+            # Add the attributes already existing in the association
+            self.relations[df_leg.entity_name]["columns"].extend([{
+                    "attribute": attribute.label,
+                    "data_type": attribute.data_type,
+                    "association_name": association.name,
+                    "adjacent_source": None,
+                    "outer_source": None,
+                    "leg_note": None,
+                    "primary": False,
+                    "nature": "outer_attribute",
+                    "unicities": "",
+                } for attribute in association.attributes if attribute.label.strip() != ""])
 
 
     def process_inheritances(self):

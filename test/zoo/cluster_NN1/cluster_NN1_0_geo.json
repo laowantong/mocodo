@@ -1,0 +1,24 @@
+{
+  "width": 442,
+  "height": 240,
+  "cx": [
+    [ "Voilier", 78 ],
+    [ "Offrir", 216 ],
+    [ "Semaine", 359 ],
+    [ "Réservation", 216 ]
+  ],
+  "cy": [
+    [ "Voilier", 56 ],
+    [ "Offrir", 56 ],
+    [ "Semaine", 56 ],
+    [ "Réservation", 175 ]
+  ],
+  "shift": [
+    [ "Offrir,Voilier,0", 0 ],
+    [ "Offrir,Semaine,0", 0 ],
+    [ "Offrir,Réservation,0", 0 ]
+  ],
+  "ratio": [
+    [ "Offrir,Réservation,0", 1.0 ]
+  ]
+}

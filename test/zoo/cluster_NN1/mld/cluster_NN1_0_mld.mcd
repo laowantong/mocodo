@@ -1,0 +1,11 @@
+%%mocodo
+:
+Voilier: num voilier, longueur
+:::
+Semaine: num semaine, date début
+:
+
+
+:::
+Réservation: num résa, arrhes, date résa, #num voilier > Voilier > num voilier, #num semaine > Semaine > num semaine, tarif
+:::

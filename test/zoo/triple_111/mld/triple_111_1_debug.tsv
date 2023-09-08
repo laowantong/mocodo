@@ -5,4 +5,4 @@ Technicien	technicien		primary_key
 Technicien	nom technicien		normal_attribute			
 Utiliser	carnet		primary_ex_foreign_key	Carnet	Carnet	1
 Utiliser	projet		primary_foreign_key	Projet	Projet	2
-Utiliser	technicien		foreign_key	Technicien	Technicien	12
+Utiliser	technicien		stopped_foreign_key	Technicien	Technicien	12

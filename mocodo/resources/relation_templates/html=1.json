@@ -8,14 +8,14 @@
   "compose_deleted_child_discriminant_XT": "<span class='normal'>{label}</span><item>Un champ entier <i>{label}</i> est ajouté pour indiquer la nature de la spécialisation : 1 pour la première entité-fille, 2 pour la deuxième, etc. Jamais vide, du fait de la contrainte de totalité.</item>",
   "compose_deleted_child_entity_name": "<span class='normal'>{label}</span><item>Un champ booléen <i>{label}</i> est ajouté pour indiquer si on a affaire ou pas à la spécialisation de même nom.</item>",
   "compose_deleted_child_foreign_key": "<span class='foreign'>#{label}</span><item>Le champ <i>{label}</i> est une clé étrangère. Il a migré à partir de l'entité-fille <i>{adjacent_source}</i> (supprimée) dans laquelle il avait déjà migré à partir de l'entité <i>{outer_source}</i>.</item>",
-  "compose_deleted_child_ex_foreign_key": "<span class='foreign'>#{label}</span><item>Le champ <i>{label}</i> a migré à travers l'entité-fille <i>{adjacent_source}</i> (supprimée) dans laquelle il avait déjà migré à partir de l'entité <i>{outer_source}</i> (également supprimée).</item>",
+  "compose_deleted_child_ex_foreign_key": "<span class='normal'>{label}</span><item>Le champ <i>{label}</i> a migré à travers l'entité-fille <i>{adjacent_source}</i> (supprimée) dans laquelle il avait déjà migré à partir de l'entité <i>{outer_source}</i> (également supprimée).</item>",
   "compose_deleted_parent_attribute": "<span class='normal'>{label}</span><item>Le champ <i>{label}</i> est un simple attribut. Il était simple attribut de l'entité-mère <i>{adjacent_source}</i> (supprimée).</item>",
   "compose_deleted_parent_discriminant_": "<span class='normal'>{label}</span><item>Un champ entier <i>{label}</i> est ajouté pour indiquer la nature de la spécialisation. Il est interprété comme un code binaire : bit 1 pour la première entité-fille, bit 2 pour la deuxième, etc. Peut être vide, du fait de l'absence de contrainte de totalité.</item>",
   "compose_deleted_parent_discriminant_T": "<span class='normal'>{label}</span><item>Un champ entier <i>{label}</i> est ajouté pour indiquer la nature de la spécialisation. Il est interprété comme un code binaire : bit 1 pour la première entité-fille, bit 2 pour la deuxième, etc. Jamais vide, du fait de la contrainte de totalité.</item>",
   "compose_deleted_parent_discriminant_X": "<span class='normal'>{label}</span><item>Un champ entier <i>{label}</i> est ajouté pour indiquer la nature de la spécialisation : 1 pour la première entité-fille, 2 pour la deuxième, etc. Peut être vide, du fait de l'absence de contrainte de totalité.</item>",
   "compose_deleted_parent_discriminant_XT": "<span class='normal'>{label}</span><item>Un champ entier <i>{label}</i> est ajouté pour indiquer la nature de la spécialisation : 1 pour la première entité-fille, 2 pour la deuxième, etc. Jamais vide, du fait de la contrainte de totalité.</item>",
   "compose_deleted_parent_foreign_key": "<span class='foreign'>#{label}</span><item>Le champ <i>{label}</i> est une clé étrangère. Il a migré à travers l'entité-mère <i>{adjacent_source}</i> (supprimée), et réfère maintenant directement à l'entité <i>{outer_source}</i>.</item>",
-  "compose_deleted_parent_ex_foreign_key": "<span class='foreign'>#{label}</span><item>Le champ <i>{label}</i> a migré à travers l'entité-mère <i>{adjacent_source}</i> (supprimée) dans laquelle il avait déjà migré à partir de l'entité <i>{outer_source}</i> (également supprimée).</item>",
+  "compose_deleted_parent_ex_foreign_key": "<span class='normal'>{label}</span><item>Le champ <i>{label}</i> a migré à travers l'entité-mère <i>{adjacent_source}</i> (supprimée) dans laquelle il avait déjà migré à partir de l'entité <i>{outer_source}</i> (également supprimée).</item>",
   "compose_deleted_parent_primary_key": "<span class='primary'>{label}</span><item>Le champ <i>{label}</i> fait partie de la clé primaire de la table<primary></primary>. Il était clé primaire de l'entité-mère <i>{adjacent_source}</i> (supprimée).</item>",
   "compose_foreign_key": "<span class='foreign'>#{label}</span><item>Le champ <i>{label}</i> est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle <i>{association_name}</i> à partir de l'entité <i>{outer_source}</i> en perdant son caractère identifiant.</item>",
   "compose_ex_foreign_key": "<span class='normal'>{label}</span><item>Le champ <i>{label}</i> est un simple attribut. Il a migré par l'association de dépendance fonctionnelle <i>{association_name}</i> à partir de l'entité <i>{outer_source}</i> en perdant son caractère identifiant. Cependant, comme la table créée à partir de cette entité a été supprimée, il n'est pas considéré comme clé étrangère.</item>",
@@ -25,10 +25,10 @@
   "compose_primary_foreign_key": "<span class='foreign primary'>#{label}</span><item>Le champ <i>{label}</i> fait partie de la clé primaire de la table<primary></primary>. C'est une clé étrangère qui a migré directement à partir de l'entité <i>{outer_source}</i>.</item>",
   "compose_primary_key": "<span class='primary'>{label}</span><item>Le champ <i>{label}</i> fait partie de la clé primaire de la table<primary></primary>. C'était déjà un identifiant de l'entité <i>{this_relation_name}</i>.</item>",
   "compose_primary_ex_foreign_key": "<span class='primary'>{label}</span><item>Le champ <i>{label}</i> fait partie de la clé primaire de la table<primary></primary>. Sa table d'origine (<i>{outer_source}</i>) ayant été supprimée, il n'est pas considéré comme clé étrangère.</item>",
-  "compose_stopped_foreign_key": "<span class='foreign'>#{label}</span><item>Le champ <i>{label}</i> est une clé étrangère. Il a migré directement de l'entité <i>{outer_source}</i> en perdant son caractère identifiant.</item>",
-  "compose_stopped_ex_foreign_key": "<span class='foreign'>#{label}</span><item>Le champ <i>{label}</i> a migré directement de l'entité <i>{outer_source}</i> en perdant son caractère identifiant. La table correspondante ayant été supprimée, il n'est pas considéré comme clé étrangère.</item>",
+  "compose_stopped_foreign_key": "<span class='foreign'>#{label}</span><item>Le champ <i>{label}</i> est une clé étrangère. Il a migré directement à partir de l'entité <i>{outer_source}</i> en perdant son caractère identifiant.</item>",
+  "compose_stopped_ex_foreign_key": "<span class='normal'>{label}</span><item>Le champ <i>{label}</i> est un simple attribut. Il a migré directement à partir de l'entité <i>{outer_source}</i> en perdant son caractère identifiant. Cependant, comme la table créée à partir de cette entité a été supprimée, il n'est pas considéré comme clé étrangère.</item>",
   "compose_strengthening_primary_foreign_key": "<span class='foreign primary'>#{label}</span><item>Le champ <i>{label}</i> fait partie de la clé primaire de la table<primary></primary>. C'est une clé étrangère qui a migré à partir de l'entité <i>{outer_source}</i> pour renforcer l'identifiant.</item>",
-  "compose_strengthening_primary_ex_foreign_key": "<span class='foreign primary'>#{label}</span><item>Le champ <i>{label}</i> fait partie de la clé primaire de la table<primary></primary>. C'est une clé étrangère qui a migré à partir de l'entité <i>{outer_source}</i> pour renforcer l'identifiant. La table correspondante ayant été supprimée, il n'est pas considéré comme clé étrangère.</item>",
+  "compose_strengthening_primary_ex_foreign_key": "<span class='primary'>{label}</span><item>Le champ <i>{label}</i> fait partie de la clé primaire de la table<primary></primary>. Il a migré à partir de l'entité <i>{outer_source}</i> pour renforcer l'identifiant. Cependant, comme la table créée à partir de cette entité a été supprimée, il n'est pas considéré comme clé étrangère.</item>",
   "compose_unsourced_foreign_key": "<span class='normal'>{label}</span><item>Le champ <i>{label}</i> a migré par l'association de dépendance fonctionnelle <i>{association_name}</i> à partir de l'entité <i>{adjacent_source}</i> (supprimée). **Attention** : aucune contrainte d'intégrité référentielle n'est plus assurée.</item>",
   "compose_unsourced_ex_foreign_key": "<span class='normal'>{label}</span><item>Le champ <i>{label}</i> a migré par l'association de dépendance fonctionnelle <i>{association_name}</i> à partir de l'entité <i>{adjacent_source}</i> (supprimée). **Attention** : aucune contrainte d'intégrité référentielle n'est plus assurée.</item>",
   "compose_unsourced_primary_foreign_key": "<span class='primary'>{label}</span><item>Le champ <i>{label}</i> fait partie de la clé primaire de la table<primary></primary>. Il a migré par l'association de dépendance fonctionnelle <i>{association_name}</i> à partir de l'entité <i>{adjacent_source}</i> (supprimée). **Attention** : aucune contrainte d'intégrité référentielle n'est plus assurée.</item>",
@@ -55,11 +55,6 @@
       "order": 400,
       "search": "(pas considéré comme clé.+) en outre",
       "replace": "\\1 par contre"
-    },
-    {
-      "order": 500,
-      "search": "Il a migré par l'association .+ en perdant son caractère identifiant.",
-      "replace": "Il a migré directement à partir de l'entité <i>{outer_source}</i> en perdant son caractère identifiant."
     }
   ],
   "transform_forced_relation": [
@@ -107,13 +102,18 @@
     },
     {
       "order": 1300,
-      "search": "(    <li>Le champ )(.+?)( est une clé étrangère\\. Il a migré à partir de l'entité .+? par l'association de dépendance fonctionnelle .+? en perdant son caractère identifiant.)\n\\1(.+?)\\3",
+      "search": "(    <li>Le champ )(.+?)( est une clé étrangère\\. Il a migré .+? l'association de dépendance fonctionnelle .+? en perdant son caractère identifiant.+)\n\\1(.+?)\\3",
       "replace": "\\1\\2, \\4\\3",
       "iterated": true
     },
     {
+      "order": 1350,
+      "search": "    <li>Le champ (.+), (.+?) est une clé étrangère\\. Il a (migré .+ l'association de dépendance fonctionnelle .+ en perdant) son (caractère identifiant)\\. Il obéit",
+      "replace": "    <li>Les champs \\1 et \\2 sont des clés étrangères. Ils ont \\3 leur \\4. Ils obéissent"
+    },
+    {
       "order": 1400,
-      "search": "    <li>Le champ (.+), (.+?) est une clé étrangère\\. Il a (migré à partir de l'entité .+? par l'association de dépendance fonctionnelle .+? en perdant) son (caractère identifiant.)",
+      "search": "    <li>Le champ (.+), (.+?) est une clé étrangère\\. Il a (migré .+ l'association de dépendance fonctionnelle .+ en perdant) son (caractère identifiant)",
       "replace": "    <li>Les champs \\1 et \\2 sont des clés étrangères. Ils ont \\3 leur \\4"
     },
     {

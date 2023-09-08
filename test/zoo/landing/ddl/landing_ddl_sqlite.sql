@@ -51,9 +51,9 @@ CREATE TABLE PIECE (
 CREATE TABLE PROJET (
   num_projet VARCHAR(8),
   nom_projet VARCHAR(255),
-  matricule VARCHAR(42),
+  matricule_responsable VARCHAR(42),
   PRIMARY KEY (num_projet)
-  FOREIGN KEY (matricule) REFERENCES EMPLOYE (matricule)
+  FOREIGN KEY (matricule_responsable) REFERENCES EMPLOYE (matricule)
 );
 
 CREATE TABLE REQUERIR (
@@ -80,5 +80,3 @@ CREATE TABLE TRAVAILLER (
   FOREIGN KEY (matricule) REFERENCES EMPLOYE (matricule),
   FOREIGN KEY (num_projet) REFERENCES PROJET (num_projet)
 );
-
-CREATE UNIQUE INDEX SOCIETE_u1 ON SOCIETE (num_societe_mere);
