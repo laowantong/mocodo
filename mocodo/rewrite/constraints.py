@@ -62,14 +62,14 @@ class CreateCifs(Visitor):
         sep = ", " if hidden_links_from_sources else ", --"
         new_phantom_clauses = ["\n"]
         new_cif_clauses = [""]
-        for (assoc_name, *entity_names) in self.new_cifs:
+        for (assoc_name, *entity_names) in sorted(self.new_cifs):
             n = first_missing_positive(self.phantom_numbers)
             self.phantom_numbers.append(n)
             new_phantom_clauses.append(f"phantom{n}:")
             new_cif_clauses.append(f"(CIF) ..{assoc_name}, ->{sep.join(entity_names)}: phantom{n}, phantom{n}")
         if new_cif_clauses == [""]:
             return ""
-        return "\n".join(new_phantom_clauses + sorted(new_cif_clauses))
+        return "\n".join(new_phantom_clauses + new_cif_clauses)
 
 
 def create_cifs(source, subsubarg):
