@@ -268,7 +268,7 @@ class Relations:
                     "outer_source": None,
                     "association_name": None,
                     "leg_note": None,
-                    "primary": is_primary,
+                    "is_primary": is_primary,
                     "nature": nature,
                     "unicities": unicities,
                 })
@@ -311,10 +311,10 @@ class Relations:
                                 "outer_source": strengthening_entity.name,
                                 "association_name": association.name,
                                 "leg_note": leg_note,
-                                "primary": True,
+                                "is_primary": True,
                                 "nature": "strengthening_primary_foreign_key",
                                 "unicities": "",
-                            } for attribute in self.relations[strengthening_entity.name]["columns"] if attribute["primary"]]
+                            } for attribute in self.relations[strengthening_entity.name]["columns"] if attribute["is_primary"]]
                         self.freeze_strengthening_foreign_key_migration.add((entity.name, association.name, strengthening_entity.name))
                     remaining_entities.remove(entity)
                     entity.is_strong_or_strengthened = True
@@ -358,10 +358,10 @@ class Relations:
                     "outer_source": parent_leg.entity_name,
                     "leg_note": None,
                     "association_name": inheritance.name,
-                    "primary": True,
+                    "is_primary": True,
                     "nature": "deleted_parent_primary_key" if to_be_deleted else "parent_primary_key",
                     "unicities": "",
-                } for attribute in self.relations[parent_leg.entity_name]["columns"] if attribute["primary"]]
+                } for attribute in self.relations[parent_leg.entity_name]["columns"] if attribute["is_primary"]]
 
     def strengthen_parents(self):
         """
@@ -379,7 +379,7 @@ class Relations:
                     "outer_source": None,
                     "association_name": inheritance.name,
                     "leg_note": None,
-                    "primary": False,
+                    "is_primary": False,
                     "nature": f"deleted_parent_discriminant_{inheritance.name_view}",
                     "unicities": "",
                 } for attribute in inheritance.attributes)
@@ -404,7 +404,7 @@ class Relations:
                 }
                 for leg in association.legs:
                     for attribute in self.relations[leg.entity_name]["columns"]:
-                        if attribute["primary"]:
+                        if attribute["is_primary"]:
                             outer_source = self.may_retrieve_distant_outer_source(leg, attribute)
                             if is_cluster:
                                 self.relations[association.name]["columns"].append({ # gather all migrant attributes
@@ -415,7 +415,7 @@ class Relations:
                                     "outer_source": outer_source,
                                     "leg_note": leg.note,
                                     "association_name": association.name,
-                                    "primary": leg.is_in_elected_group,
+                                    "is_primary": leg.is_in_elected_group,
                                     "nature": "primary_foreign_key" if leg.is_in_elected_group else "stopped_foreign_key",
                                     "unicities": leg.unicities,
                                 })
@@ -429,7 +429,7 @@ class Relations:
                                     "outer_source": outer_source,
                                     "leg_note": leg.note,
                                     "association_name": association.name,
-                                    "primary": False,
+                                    "is_primary": False,
                                     "nature": "stopped_foreign_key",
                                     "unicities": "",
                                 })
@@ -442,7 +442,7 @@ class Relations:
                                     "outer_source": outer_source,
                                     "leg_note": leg.note,
                                     "association_name": association.name,
-                                    "primary": True,
+                                    "is_primary": True,
                                     "nature": "unsourced_primary_foreign_key" if outer_source is None else "primary_foreign_key",
                                     "unicities": "",
                                 })
@@ -455,7 +455,7 @@ class Relations:
                                 "outer_source": None,
                                 "leg_note": leg.note,
                                 "association_name": association.name,
-                                "primary": False,
+                                "is_primary": False,
                                 "nature": attribute["nature"],
                                 "unicities": "",
                             })
@@ -467,7 +467,7 @@ class Relations:
                         "outer_source": None,
                         "association_name": association.name,
                         "leg_note": None,
-                        "primary": False,
+                        "is_primary": False,
                         "nature": "association_attribute",
                         "unicities": "",
                     } for attribute in association.attributes if attribute.label.strip() != ""
@@ -492,7 +492,7 @@ class Relations:
                             continue
                         for attribute in list(self.relations[leg.entity_name]["columns"]): # traverse a copy...
                             # ... to prevent an infinite migration of the child discriminant
-                            if attribute["primary"]:
+                            if attribute["is_primary"]:
                                 # Their primary keys must migrate in `entity_name`.
                                 outer_source = self.may_retrieve_distant_outer_source(leg, attribute)
                                 self.relations[df_peg.entity_name]["columns"].append({
@@ -503,7 +503,7 @@ class Relations:
                                     "outer_source": outer_source,
                                     "leg_note": leg.note,
                                     "association_name": association.name,
-                                    "primary": False,
+                                    "is_primary": False,
                                     "nature": "unsourced_foreign_key" if outer_source is None else "foreign_key",
                                     "unicities": unicities,
                                     # NB: technically, an unsourced foreign key is not foreign anymore
@@ -522,7 +522,7 @@ class Relations:
                             for attribute in list(self.relations[leg.entity_name]["columns"]): # traverse a copy...
                                 # ... to prevent an infinite migration of the child discriminant
                                 optionality = "!" if df_leg.card[0] == "1" else "?"
-                                if attribute["primary"]:
+                                if attribute["is_primary"]:
                                     # Their primary keys must migrate in df_leg.entity_name.
                                     outer_source = self.may_retrieve_distant_outer_source(leg, attribute)
                                     self.relations[df_leg.entity_name]["columns"].append({
@@ -533,7 +533,7 @@ class Relations:
                                         "outer_source": outer_source,
                                         "leg_note": leg.note,
                                         "association_name": association.name,
-                                        "primary": False,
+                                        "is_primary": False,
                                         "nature": "unsourced_foreign_key" if outer_source is None else "foreign_key",
                                         "unicities": unicities,
                                         # NB: technically, an unsourced foreign key is not foreign anymore
@@ -548,7 +548,7 @@ class Relations:
                                         "outer_source": None,
                                         "leg_note": leg.note,
                                         "association_name": association.name,
-                                        "primary": False,
+                                        "is_primary": False,
                                         "nature": attribute["nature"],
                                         "unicities": "",
                                     })
@@ -562,7 +562,7 @@ class Relations:
                     "adjacent_source": None,
                     "outer_source": None,
                     "leg_note": None,
-                    "primary": False,
+                    "is_primary": False,
                     "nature": "outer_attribute",
                     "unicities": "",
                 } for attribute in association.attributes if attribute.label.strip() != ""])
@@ -582,10 +582,10 @@ class Relations:
                         "outer_source": self.may_retrieve_distant_outer_source(parent_leg, attribute),
                         "leg_note": self.may_retrieve_distant_leg_note(parent_leg, attribute),
                         "association_name": inheritance.name,
-                        "primary": False,
+                        "is_primary": False,
                         "nature": "deleted_parent_foreign_key" if attribute["nature"] == "foreign_key" else "deleted_parent_attribute",
                         "unicities": "",
-                    } for attribute in self.relations[parent_leg.entity_name]["columns"] if not attribute["primary"] and not attribute["nature"].startswith("deleted_parent_discriminant")]
+                    } for attribute in self.relations[parent_leg.entity_name]["columns"] if not attribute["is_primary"] and not attribute["nature"].startswith("deleted_parent_discriminant")]
             else: # migration: triangle attributes > parent
                 self.relations[parent_leg.entity_name]["columns"].extend({ 
                     "attribute": attribute.label,
@@ -595,7 +595,7 @@ class Relations:
                     "outer_source": None,
                     "association_name": inheritance.name,
                     "leg_note": None,
-                    "primary": False,
+                    "is_primary": False,
                     "nature": f"deleted_child_discriminant_{inheritance.name_view}", # "", "X", "T" or "XT"
                     "unicities": "",
                 } for attribute in inheritance.attributes)
@@ -611,7 +611,7 @@ class Relations:
                                 "outer_source": child_leg.entity_name,
                                 "leg_note": None,
                                 "association_name": inheritance.name,
-                                "primary": False,
+                                "is_primary": False,
                                 "nature": "deleted_child_entity_name",
                                 "unicities": "",
                             })
@@ -627,7 +627,7 @@ class Relations:
                                 "outer_source": self.may_retrieve_distant_outer_source(child_leg, attribute),
                                 "leg_note": self.may_retrieve_distant_leg_note(child_leg, attribute),
                                 "association_name": inheritance.name,
-                                "primary": False,
+                                "is_primary": False,
                                 "nature": "deleted_child_foreign_key" if attribute["nature"] == "foreign_key" else "deleted_child_attribute",
                                 "unicities": "",
                             })
@@ -650,5 +650,5 @@ class Relations:
 
     def make_primary_keys_first(self):
         for relation in self.relations.values():
-            relation["columns"].sort(key=lambda column: not column["primary"])
+            relation["columns"].sort(key=lambda column: not column["is_primary"])
         
