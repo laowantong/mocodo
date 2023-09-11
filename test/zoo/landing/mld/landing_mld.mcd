@@ -11,9 +11,9 @@ COMPOSER: #réf. pièce composée > PIÈCE > réf. pièce, _#réf. pièce compos
 
 
 :::
-EMPLOYÉ: matricule, nom employé, #num. département > DÉPARTEMENT > num. département
+EMPLOYÉ: matricule, nom employé, #num. département! > DÉPARTEMENT > num. département
 :
-PROJET: num. projet, nom projet, #matricule responsable > EMPLOYÉ > matricule
+PROJET: num. projet, nom projet, #matricule responsable? > EMPLOYÉ > matricule
 :
 FOURNIR: #num. projet > PROJET > num. projet, _#réf. pièce > PIÈCE > réf. pièce, _#num. société > SOCIÉTÉ > num. société, qté fournie
 :::
@@ -24,5 +24,5 @@ DÉPARTEMENT: num. département, nom département
 :::
 TRAVAILLER: #matricule > EMPLOYÉ > matricule, _#num. projet > PROJET > num. projet
 :
-SOCIÉTÉ: num. société, raison sociale, #num. société mère > SOCIÉTÉ > num. société
+SOCIÉTÉ: num. société, raison sociale, #num. société mère? > SOCIÉTÉ > num. société
 :::

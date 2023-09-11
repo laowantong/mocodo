@@ -3,26 +3,26 @@ Project complex {
 }
 
 Table ANIMAL {
-  "code espèce" VARCHAR(42)
-  nom VARCHAR(42)
-  "date naissance" VARCHAR(42)
+  "code espèce" VARCHAR(42) [not null]
+  nom VARCHAR(42) [not null]
+  "date naissance" VARCHAR(42) [not null]
   sexe VARCHAR(42)
   "date décès" VARCHAR(42)
-  "code espèce mère" VARCHAR(42)
-  "nom mère" VARCHAR(42)
-  "date naissance mère" VARCHAR(42)
-  "type alimentation" INTEGER_UNSIGNED_NOT_NULL
-  CARNIVORE BOOLEAN
-  "quantité viande" VARCHAR(42)
-  HERBIVORE BOOLEAN
-  "plante préférée" VARCHAR(42)
+  "code espèce mère" VARCHAR(42) [null]
+  "nom mère" VARCHAR(42) [null]
+  "date naissance mère" VARCHAR(42) [null]
+  "type alimentation" UNSIGNED_INT_PLACEHOLDER [not null]
+  CARNIVORE BOOLEAN_PLACEHOLDER [not null]
+  "quantité viande" VARCHAR(42) [null]
+  HERBIVORE BOOLEAN_PLACEHOLDER [not null]
+  "plante préférée" VARCHAR(42) [null]
   Indexes {
     ("code espèce", nom, "date naissance") [pk]
   }
 }
 
 Table "ESPÈCE" {
-  "code espèce" VARCHAR(42) [pk]
+  "code espèce" VARCHAR(42) [pk, not null]
   "nom latin" VARCHAR(42)
   "nom vernaculaire" VARCHAR(42)
   Indexes {
@@ -31,20 +31,20 @@ Table "ESPÈCE" {
 }
 
 Table OCCUPE {
-  "code espèce" VARCHAR(42)
-  nom VARCHAR(42)
-  "date naissance" VARCHAR(42)
-  "num. enclos" VARCHAR(42)
-  "date début" VARCHAR(42)
-  "date fin" VARCHAR(42)
+  "code espèce" VARCHAR(42) [not null]
+  nom VARCHAR(42) [not null]
+  "date naissance" VARCHAR(42) [not null]
+  "num. enclos" VARCHAR(42) [not null]
+  "date début" VARCHAR(42) [not null]
+  "date fin" VARCHAR(42) [not null]
   Indexes {
     ("code espèce", nom, "date naissance", "num. enclos") [pk]
   }
 }
 
 Table "PEUT COHABITER AVEC" {
-  "code espèce" VARCHAR(42)
-  "code espèce commensale" VARCHAR(42)
+  "code espèce" VARCHAR(42) [not null]
+  "code espèce commensale" VARCHAR(42) [not null]
   "nb. max. commensaux" VARCHAR(42)
   Indexes {
     ("code espèce", "code espèce commensale") [pk]
@@ -52,8 +52,8 @@ Table "PEUT COHABITER AVEC" {
 }
 
 Table "PEUT VIVRE DANS" {
-  "code espèce" VARCHAR(42)
-  "num. enclos" VARCHAR(42)
+  "code espèce" VARCHAR(42) [not null]
+  "num. enclos" VARCHAR(42) [not null]
   "nb. max. congénères" VARCHAR(42)
   Indexes {
     ("code espèce", "num. enclos") [pk]

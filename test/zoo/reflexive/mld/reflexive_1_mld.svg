@@ -30,7 +30,7 @@
 	<line x1="226" y1="59" x2="280" y2="59" stroke="#000000" stroke-width="1"/>
 	<text x="226" y="73.1" fill="#000000" font-family="Gill Sans" font-size="15">Nom</text>
 	<text x="226" y="90.1" fill="#000000" font-family="Gill Sans" font-size="15">Prénom</text>
-	<text x="226" y="107" fill="#000000" font-family="Gill Sans" font-size="15">Num. SS.1</text>
+	<text x="226" y="107" fill="#000000" font-family="Gill Sans" font-size="15">Num. SS.1!</text>
 </g>
 
 <!-- Link from &quot;Num. SS&quot; (HOMME) to &quot;Num. SS&quot; (HOMME) -->

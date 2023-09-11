@@ -22,12 +22,12 @@
     \item Les champs \emph{lieu} et \emph{date} étaient déjà de simples attributs de l'entité \emph{Bataille}.
   \end{itemize}
 
-  \item \relat{Trophée} (\prim{numéro}, \attr{type}, \attr{état}, \foreign{nom villageois}, \foreign{nom bataille})
+  \item \relat{Trophée} (\prim{numéro}, \attr{type}, \attr{état}, \foreign{nom villageois!}, \foreign{nom bataille!})
   \begin{itemize}
     \item Le champ \emph{numéro} constitue la clé primaire de la table. C'était déjà un identifiant de l'entité \emph{Trophée}.
     \item Les champs \emph{type} et \emph{état} étaient déjà de simples attributs de l'entité \emph{Trophée}.
-    \item Le champ \emph{nom villageois} est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle \emph{Récolter} à partir de l'entité \emph{Villageois} en perdant son caractère identifiant.
-    \item Le champ \emph{nom bataille} est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle \emph{Récolter} à partir de l'entité \emph{Bataille} en perdant son caractère identifiant.
+    \item Le champ à saisie obligatoire \emph{nom villageois} est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle \emph{Récolter} à partir de l'entité \emph{Villageois} en perdant son caractère identifiant.
+    \item Le champ à saisie obligatoire \emph{nom bataille} est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle \emph{Récolter} à partir de l'entité \emph{Bataille} en perdant son caractère identifiant.
   \end{itemize}
 
   \item \relat{Villageois} (\prim{nom villageois}, \attr{adresse}, \attr{fonction})

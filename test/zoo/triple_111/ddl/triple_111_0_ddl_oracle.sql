@@ -1,7 +1,7 @@
 CREATE TABLE UTILISER (
-  carnet VARCHAR(42),
-  projet VARCHAR(42),
-  technicien VARCHAR(42),
+  carnet VARCHAR(42) NOT NULL,
+  projet VARCHAR(42) NOT NULL,
+  technicien VARCHAR(42) NOT NULL,
   PRIMARY KEY (carnet, projet)
 );
 

@@ -3,75 +3,75 @@ Project inheritance {
 }
 
 Table ALIQUET {
-  magna VARCHAR(42)
-  tellus VARCHAR(42)
-  type INTEGER_UNSIGNED
+  magna VARCHAR(42) [not null]
+  tellus VARCHAR(42) [not null]
+  type UNSIGNED_INT_PLACEHOLDER [not null]
   Indexes {
     (magna, tellus) [pk]
   }
 }
 
 Table CONSEQUAT {
-  fermentum VARCHAR(42) [pk]
+  fermentum VARCHAR(42) [pk, not null]
   dederit VARCHAR(42)
 }
 
 Table CURABITUR {
-  gravida VARCHAR(42) [pk]
+  gravida VARCHAR(42) [pk, not null]
   amor VARCHAR(42)
 }
 
 Table DIGNISSIM {
-  tellus VARCHAR(42) [pk]
+  tellus VARCHAR(42) [pk, not null]
   terra VARCHAR(42)
 }
 
 Table LACUS {
-  magna VARCHAR(42) [pk]
+  magna VARCHAR(42) [pk, not null]
   vestibulum VARCHAR(42)
-  fermentum VARCHAR(42)
+  fermentum VARCHAR(42) [not null]
   tempor VARCHAR(42)
   fugit VARCHAR(42)
 }
 
 Table LIBERO {
-  posuere VARCHAR(42) [pk]
+  posuere VARCHAR(42) [pk, not null]
   lacrima VARCHAR(42)
 }
 
 Table NEC {
-  magna VARCHAR(42) [pk]
+  magna VARCHAR(42) [pk, not null]
   vestibulum VARCHAR(42)
-  fermentum VARCHAR(42)
+  fermentum VARCHAR(42) [not null]
   pulvinar VARCHAR(42)
   audis VARCHAR(42)
-  gravida VARCHAR(42)
+  gravida VARCHAR(42) [not null]
 }
 
 Table QUAM {
-  cras VARCHAR(42) [pk]
+  cras VARCHAR(42) [pk, not null]
   sed VARCHAR(42)
-  magna VARCHAR(42)
+  magna VARCHAR(42) [not null]
 }
 
 Table SODALES {
-  magna VARCHAR(42) [pk]
+  magna VARCHAR(42) [pk, not null]
   vestibulum VARCHAR(42)
-  fermentum VARCHAR(42)
+  fermentum VARCHAR(42) [not null]
   convallis VARCHAR(42)
   ipsum VARCHAR(42)
 }
 
 Table SUSCIPIT {
-  orci VARCHAR(42) [pk]
+  orci VARCHAR(42) [pk, not null]
   lorem VARCHAR(42)
-  magna VARCHAR(42)
-  type INTEGER_UNSIGNED
+  magna VARCHAR(42) [not null]
+  type UNSIGNED_INT_PLACEHOLDER [not null]
 }
 
 Table ULTRICES {
-  posuere VARCHAR(42)
-  magna VARCHAR(42)
+  posuere VARCHAR(42) [not null]
+  magna VARCHAR(42) [not null]
   Indexes {
     (posuere, magna) [pk]
   }

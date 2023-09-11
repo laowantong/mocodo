@@ -1633,6 +1633,90 @@ PARTICIPANT: numero [], nom, adresse [type3]
   'source': 'PARTICIPANT: numero [], nom, adresse [type3]'}]
 
 --------------------------------------------------------------------------------
+COMMANDE: Num commande, Date, Montant, #Réf. client!>CLIENT>Réf. client
+--------------------------------------------------------------------------------start
+  line
+    entity_clause
+      entity_name_def
+        box_name	COMMANDE
+      : 
+      seq
+        entity_or_table_attr
+          typed_attr
+            attr	Num commande
+        , 
+        entity_or_table_attr
+          typed_attr
+            attr	Date
+        , 
+        entity_or_table_attr
+          typed_attr
+            attr	Montant
+        , 
+        entity_or_table_attr
+          #
+          foreign_reference
+            this_table_attr
+              attr	Réf. client
+            attr_suffix	!
+            >
+            that_table
+              entity_name_ref
+                box_name	CLIENT
+            >
+            that_table_attr
+              attr	Réf. client
+--------------------------------------------------------------------------------
+[{'name': 'COMMANDE',
+  'attrs': [{'attribute_label': 'Num commande', 'rank': 0},
+            {'attribute_label': 'Date', 'rank': 1},
+            {'attribute_label': 'Montant', 'rank': 2},
+            {'attribute_label': 'Réf. client',
+             'attr_suffix': '!',
+             'that_table': 'CLIENT',
+             'that_table_attribute_label': 'Réf. client',
+             'rank': 3}],
+  'type': 'entity',
+  'indent': '',
+  'source': 'COMMANDE: Num commande, Date, Montant, #Réf. client!>CLIENT>Réf. '
+            'client'}]
+
+--------------------------------------------------------------------------------
+COMMANDE: Num commande, Date, Montant, Réf. client!
+--------------------------------------------------------------------------------start
+  line
+    entity_clause
+      entity_name_def
+        box_name	COMMANDE
+      : 
+      seq
+        entity_or_table_attr
+          typed_attr
+            attr	Num commande
+        , 
+        entity_or_table_attr
+          typed_attr
+            attr	Date
+        , 
+        entity_or_table_attr
+          typed_attr
+            attr	Montant
+        , 
+        entity_or_table_attr
+          typed_attr
+            attr	Réf. client
+            attr_suffix	!
+--------------------------------------------------------------------------------
+[{'name': 'COMMANDE',
+  'attrs': [{'attribute_label': 'Num commande', 'rank': 0},
+            {'attribute_label': 'Date', 'rank': 1},
+            {'attribute_label': 'Montant', 'rank': 2},
+            {'attribute_label': 'Réf. client', 'attr_suffix': '!', 'rank': 3}],
+  'type': 'entity',
+  'indent': '',
+  'source': 'COMMANDE: Num commande, Date, Montant, Réf. client!'}]
+
+--------------------------------------------------------------------------------
 L33T, 0N> H4X0R, 0N< H4X0R
 --------------------------------------------------------------------------------start
   line

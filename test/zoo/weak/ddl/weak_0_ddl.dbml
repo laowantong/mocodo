@@ -3,8 +3,8 @@ Project weak {
 }
 
 Table Exemplaire {
-  "œuvre" VARCHAR(42)
-  exemplaire VARCHAR(42)
+  "œuvre" VARCHAR(42) [not null]
+  exemplaire VARCHAR(42) [not null]
   foobar VARCHAR(42)
   Indexes {
     ("œuvre", exemplaire) [pk]

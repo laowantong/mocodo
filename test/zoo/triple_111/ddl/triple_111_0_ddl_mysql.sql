@@ -2,9 +2,9 @@ CREATE DATABASE IF NOT EXISTS triple_111;
 USE triple_111;
 
 CREATE TABLE UTILISER (
-  carnet VARCHAR(42),
-  projet VARCHAR(42),
-  technicien VARCHAR(42),
+  carnet VARCHAR(42) NOT NULL,
+  projet VARCHAR(42) NOT NULL,
+  technicien VARCHAR(42) NOT NULL,
   PRIMARY KEY (carnet, projet)
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 

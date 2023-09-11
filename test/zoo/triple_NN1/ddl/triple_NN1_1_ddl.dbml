@@ -3,26 +3,26 @@ Project triple_NN1 {
 }
 
 Table "Gérer" {
-  "ingénieur" VARCHAR(42)
-  projet VARCHAR(42)
-  responsable VARCHAR(42)
+  "ingénieur" VARCHAR(42) [not null]
+  projet VARCHAR(42) [not null]
+  responsable VARCHAR(42) [not null]
   Indexes {
     ("ingénieur", projet) [pk]
   }
 }
 
 Table "Ingénieur" {
-  "ingénieur" VARCHAR(42) [pk]
+  "ingénieur" VARCHAR(42) [pk, not null]
   "nom ingénieur" VARCHAR(42)
 }
 
 Table Projet {
-  projet VARCHAR(42) [pk]
+  projet VARCHAR(42) [pk, not null]
   "libellé projet" VARCHAR(42)
 }
 
 Table Responsable {
-  responsable VARCHAR(42) [pk]
+  responsable VARCHAR(42) [pk, not null]
   "nom responsable" VARCHAR(42)
 }
 

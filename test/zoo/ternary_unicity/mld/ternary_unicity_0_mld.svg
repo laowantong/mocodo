@@ -45,8 +45,8 @@
 	<text x="50" y="173.1" fill="#000000" font-family="Gill Sans" font-size="15">num résa</text>
 	<text x="50" y="190.1" fill="#000000" font-family="Gill Sans" font-size="15">arrhes</text>
 	<text x="50" y="207.1" fill="#000000" font-family="Gill Sans" font-size="15">date réservation</text>
-	<text x="50" y="224" fill="#000000" font-family="Gill Sans" font-size="15">semaine</text>
-	<text x="50" y="241" fill="#000000" font-family="Gill Sans" font-size="15">voilier</text>
+	<text x="50" y="224" fill="#000000" font-family="Gill Sans" font-size="15">semaine!</text>
+	<text x="50" y="241" fill="#000000" font-family="Gill Sans" font-size="15">voilier!</text>
 </g>
 
 <!-- Link from &quot;semaine&quot; (Disponibilité) to &quot;semaine&quot; (Semaine) -->

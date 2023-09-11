@@ -19,8 +19,8 @@
 	<line x1="350" y1="153" x2="440" y2="153" stroke="#000000" stroke-width="1"/>
 	<text x="350" y="167.1" fill="#000000" font-family="Gill Sans" font-size="15">num. enclos</text>
 	<line x1="350" y1="170" x2="425" y2="170" stroke="#000000" stroke-width="1"/>
-	<text x="350" y="184" fill="#000000" font-family="Gill Sans" font-size="15">date début</text>
-	<text x="350" y="201" fill="#000000" font-family="Gill Sans" font-size="15">date fin</text>
+	<text x="350" y="184" fill="#000000" font-family="Gill Sans" font-size="15">date début!</text>
+	<text x="350" y="201" fill="#000000" font-family="Gill Sans" font-size="15">date fin!</text>
 </g>
 
 <!-- Entity ANIMAL -->
@@ -40,14 +40,14 @@
 	<line x1="578" y1="93" x2="668" y2="93" stroke="#000000" stroke-width="1"/>
 	<text x="578" y="107" fill="#000000" font-family="Gill Sans" font-size="15">sexe</text>
 	<text x="578" y="124.1" fill="#000000" font-family="Gill Sans" font-size="15">date décès</text>
-	<text x="578" y="141.1" fill="#000000" font-family="Gill Sans" font-size="15">code espèce mère</text>
-	<text x="578" y="158.1" fill="#000000" font-family="Gill Sans" font-size="15">nom mère</text>
-	<text x="578" y="175" fill="#000000" font-family="Gill Sans" font-size="15">date naissance mère</text>
-	<text x="578" y="192" fill="#000000" font-family="Gill Sans" font-size="15">type alimentation</text>
-	<text x="578" y="209" fill="#000000" font-family="Gill Sans" font-size="15">CARNIVORE</text>
-	<text x="578" y="226" fill="#000000" font-family="Gill Sans" font-size="15">quantité viande</text>
-	<text x="578" y="243" fill="#000000" font-family="Gill Sans" font-size="15">HERBIVORE</text>
-	<text x="578" y="260" fill="#000000" font-family="Gill Sans" font-size="15">plante préférée</text>
+	<text x="578" y="141.1" fill="#000000" font-family="Gill Sans" font-size="15">code espèce mère?</text>
+	<text x="578" y="158.1" fill="#000000" font-family="Gill Sans" font-size="15">nom mère?</text>
+	<text x="578" y="175" fill="#000000" font-family="Gill Sans" font-size="15">date naissance mère?</text>
+	<text x="578" y="192" fill="#000000" font-family="Gill Sans" font-size="15">type alimentation!</text>
+	<text x="578" y="209" fill="#000000" font-family="Gill Sans" font-size="15">CARNIVORE!</text>
+	<text x="578" y="226" fill="#000000" font-family="Gill Sans" font-size="15">quantité viande?</text>
+	<text x="578" y="243" fill="#000000" font-family="Gill Sans" font-size="15">HERBIVORE!</text>
+	<text x="578" y="260" fill="#000000" font-family="Gill Sans" font-size="15">plante préférée?</text>
 </g>
 
 <!-- Entity PEUT VIVRE DANS -->

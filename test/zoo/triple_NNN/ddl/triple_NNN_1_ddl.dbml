@@ -3,26 +3,26 @@ Project triple_NNN {
 }
 
 Table Appliquer {
-  "employé" VARCHAR(42)
-  projet VARCHAR(42)
-  "compétence" VARCHAR(42)
+  "employé" VARCHAR(42) [not null]
+  projet VARCHAR(42) [not null]
+  "compétence" VARCHAR(42) [not null]
   Indexes {
     ("employé", projet, "compétence") [pk]
   }
 }
 
 Table "Compétence" {
-  "compétence" VARCHAR(42) [pk]
+  "compétence" VARCHAR(42) [pk, not null]
   "libellé" VARCHAR(42)
 }
 
 Table "Employé" {
-  "employé" VARCHAR(42) [pk]
+  "employé" VARCHAR(42) [pk, not null]
   nom VARCHAR(42)
 }
 
 Table Projet {
-  projet VARCHAR(42) [pk]
+  projet VARCHAR(42) [pk, not null]
   "date début" VARCHAR(42)
   "date fin" VARCHAR(42)
 }

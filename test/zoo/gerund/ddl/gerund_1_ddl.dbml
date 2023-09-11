@@ -3,13 +3,13 @@ Project gerund {
 }
 
 Table Commande {
-  commande VARCHAR(42) [pk]
+  commande VARCHAR(42) [pk, not null]
   date VARCHAR(42)
 }
 
 Table "Ligne de commande" {
-  commande VARCHAR(42)
-  produit VARCHAR(42)
+  commande VARCHAR(42) [not null]
+  produit VARCHAR(42) [not null]
   "quantité" VARCHAR(42)
   Indexes {
     (commande, produit) [pk]
@@ -17,7 +17,7 @@ Table "Ligne de commande" {
 }
 
 Table Produit {
-  produit VARCHAR(42) [pk]
+  produit VARCHAR(42) [pk, not null]
   "libellé" VARCHAR(42)
 }
 

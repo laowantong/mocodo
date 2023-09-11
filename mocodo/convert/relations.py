@@ -13,6 +13,7 @@ def set_defaults(template):
         "transform_attribute": [],
         "transform_title": [],
         "transform_data_type": [],
+        "transform_optionality": [],
         "compose_label_disambiguated_by_note": "{label_before_disambiguation} {leg_note}",
         "compose_label_disambiguated_by_number": "{label_before_disambiguation}.{disambiguation_number}",
         "compose_primary_key": "_{label}_",
@@ -20,6 +21,7 @@ def set_defaults(template):
         "compose_foreign_key": "#{label}",
         "compose_primary_foreign_key": "_#{label}_",
         "add_unicity_constraints": [],
+        "add_optionality_constraints": [],
         "transform_relation_name": [],
         "column_separator": ", ",
         "compose_relation": "{this_relation_name} ({columns})",
@@ -157,10 +159,13 @@ class Relations:
             fields = []
             for column in relation["columns"]:
                 column["data_type"] = transform(column["data_type"], "transform_data_type")
+                column["optionality"] = transform(column["optionality"], "transform_optionality")
                 data.update(column)
                 field = template["compose_%s" % column["nature"]].format(**data)
                 if column["unicities"]:
                     field = transform(field, "add_unicity_constraints").format(**data)
+                if column["optionality"]:
+                    field = transform(field, "add_optionality_constraints").format(**data)
                 fields.append(field)
             data["columns"] = template["column_separator"].join(fields)
             line = template["compose_relation"].format(**data)
@@ -253,14 +258,17 @@ class Relations:
                     continue # ignore empty attributes
                 nature = "primary_key" if attribute.kind in ("strong", "weak") else "normal_attribute"
                 unicities = "".join(c for c in sorted(attribute.id_groups) if c != "0")
+                is_primary = (nature == "primary_key")
+                optionality = "!" if is_primary else attribute.optionality
                 self.relations[name]["columns"].append({
                     "attribute": attribute.label,
+                    "optionality": optionality,
                     "data_type": attribute.data_type,
                     "adjacent_source": None,
                     "outer_source": None,
                     "association_name": None,
                     "leg_note": None,
-                    "primary": nature == "primary_key",
+                    "primary": is_primary,
                     "nature": nature,
                     "unicities": unicities,
                 })
@@ -297,6 +305,7 @@ class Relations:
                         # migrate the whole primary key of the strengthening entity into the weak one
                         self.relations[entity.name]["columns"][0:0] = [{
                                 "attribute": attribute["attribute"],
+                                "optionality": "!",
                                 "data_type": attribute["data_type"],
                                 "adjacent_source": strengthening_entity.name,
                                 "outer_source": strengthening_entity.name,
@@ -343,6 +352,7 @@ class Relations:
             for child_leg in inheritance.legs[1:]: 
                 self.relations[child_leg.entity_name]["columns"][0:0] = [{
                     "attribute": attribute["attribute"],
+                    "optionality": "!",
                     "data_type": attribute["data_type"],
                     "adjacent_source": parent_leg.entity_name,
                     "outer_source": parent_leg.entity_name,
@@ -363,7 +373,8 @@ class Relations:
                 parent_leg = inheritance.legs[0]
                 self.relations[parent_leg.entity_name]["columns"].extend({ 
                     "attribute": attribute.label,
-                    "data_type": attribute.data_type or (f"INTEGER UNSIGNED{'' if 'T' in inheritance.name_view else ' NOT NULL'}"),
+                    "optionality": "" if 'T' in inheritance.name_view else "!",
+                    "data_type": attribute.data_type or "UNSIGNED_INT_PLACEHOLDER",
                     "adjacent_source": None,
                     "outer_source": None,
                     "association_name": inheritance.name,
@@ -398,6 +409,7 @@ class Relations:
                             if is_cluster:
                                 self.relations[association.name]["columns"].append({ # gather all migrant attributes
                                     "attribute": attribute["attribute"],
+                                    "optionality": "!",
                                     "data_type": attribute["data_type"],
                                     "adjacent_source": leg.entity_name,
                                     "outer_source": outer_source,
@@ -411,6 +423,7 @@ class Relations:
                             elif association.is_protected and df_leg is not None and leg is not df_leg:
                                 self.relations[association.name]["columns"].append({ # gather all migrant attributes
                                     "attribute": attribute["attribute"],
+                                    "optionality": "!",
                                     "data_type": attribute["data_type"],
                                     "adjacent_source": leg.entity_name,
                                     "outer_source": outer_source,
@@ -423,6 +436,7 @@ class Relations:
                             else:
                                 self.relations[association.name]["columns"].append({ # gather all migrant attributes
                                     "attribute": attribute["attribute"],
+                                    "optionality": "!",
                                     "data_type": attribute["data_type"],
                                     "adjacent_source": leg.entity_name,
                                     "outer_source": outer_source,
@@ -435,6 +449,7 @@ class Relations:
                         elif attribute["nature"].startswith("deleted_parent_discriminant"):
                             self.relations[association.name]["columns"].append({
                                 "attribute": attribute["attribute"],
+                                "optionality": "!",
                                 "data_type": attribute["data_type"],
                                 "adjacent_source": leg.entity_name,
                                 "outer_source": None,
@@ -446,6 +461,7 @@ class Relations:
                             })
                 self.relations[association.name]["columns"].extend({ # and the attributes already existing in the association
                         "attribute": attribute.label,
+                        "optionality": attribute.optionality,
                         "data_type": attribute.data_type,
                         "adjacent_source": None,
                         "outer_source": None,
@@ -481,6 +497,7 @@ class Relations:
                                 outer_source = self.may_retrieve_distant_outer_source(leg, attribute)
                                 self.relations[df_peg.entity_name]["columns"].append({
                                     "attribute": attribute["attribute"],
+                                    "optionality": "!",
                                     "data_type": attribute["data_type"],
                                     "adjacent_source": leg.entity_name,
                                     "outer_source": outer_source,
@@ -504,11 +521,13 @@ class Relations:
                                 unicities = str(first_missing_positive(self.relations[df_leg.entity_name]["existing_unicity_numbers"]))
                             for attribute in list(self.relations[leg.entity_name]["columns"]): # traverse a copy...
                                 # ... to prevent an infinite migration of the child discriminant
+                                optionality = "!" if df_leg.card[0] == "1" else "?"
                                 if attribute["primary"]:
                                     # Their primary keys must migrate in df_leg.entity_name.
                                     outer_source = self.may_retrieve_distant_outer_source(leg, attribute)
                                     self.relations[df_leg.entity_name]["columns"].append({
                                         "attribute": attribute["attribute"],
+                                        "optionality": optionality,
                                         "data_type": attribute["data_type"],
                                         "adjacent_source": leg.entity_name,
                                         "outer_source": outer_source,
@@ -523,6 +542,7 @@ class Relations:
                                 elif attribute["nature"].startswith("deleted_parent_discriminant"):
                                     self.relations[df_leg.entity_name]["columns"].append({
                                         "attribute": attribute["attribute"],
+                                        "optionality": optionality,
                                         "data_type": attribute["data_type"],
                                         "adjacent_source": leg.entity_name,
                                         "outer_source": None,
@@ -536,6 +556,7 @@ class Relations:
             # Add the attributes already existing in the association
             self.relations[df_leg.entity_name]["columns"].extend([{
                     "attribute": attribute.label,
+                    "optionality": attribute.optionality,
                     "data_type": attribute.data_type,
                     "association_name": association.name,
                     "adjacent_source": None,
@@ -555,6 +576,7 @@ class Relations:
                     # migrate the parent's attributes, except those of nature "deleted_parent_discriminant"
                     self.relations[child_leg.entity_name]["columns"][0:0] = [{
                         "attribute": attribute["attribute"],
+                        "optionality": attribute["optionality"],
                         "data_type": attribute["data_type"],
                         "adjacent_source": parent_leg.entity_name,
                         "outer_source": self.may_retrieve_distant_outer_source(parent_leg, attribute),
@@ -567,7 +589,8 @@ class Relations:
             else: # migration: triangle attributes > parent
                 self.relations[parent_leg.entity_name]["columns"].extend({ 
                     "attribute": attribute.label,
-                    "data_type": attribute.data_type or (f"INTEGER UNSIGNED{'' if 'T' in inheritance.name_view else ' NOT NULL'}"),
+                    "optionality": "" if 'T' in inheritance.name_view else "!",
+                    "data_type": attribute.data_type or "UNSIGNED_INT_PLACEHOLDER",
                     "adjacent_source": None,
                     "outer_source": None,
                     "association_name": inheritance.name,
@@ -582,7 +605,8 @@ class Relations:
                             # make the child's name a boolean attribute of the parent
                             self.relations[parent_leg.entity_name]["columns"].append({
                                 "attribute": child_leg.entity_name,
-                                "data_type": "BOOLEAN",
+                                "optionality": "!",
+                                "data_type": "BOOLEAN_PLACEHOLDER",
                                 "adjacent_source": child_leg.entity_name,
                                 "outer_source": child_leg.entity_name,
                                 "leg_note": None,
@@ -597,6 +621,7 @@ class Relations:
                                 continue # except the "strengthening" parent identifier
                             self.relations[parent_leg.entity_name]["columns"].append({
                                 "attribute": attribute["attribute"],
+                                "optionality": "?",
                                 "data_type": attribute["data_type"],
                                 "adjacent_source": child_leg.entity_name,
                                 "outer_source": self.may_retrieve_distant_outer_source(child_leg, attribute),

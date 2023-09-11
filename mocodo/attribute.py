@@ -9,7 +9,8 @@ class Attribute:
     def __init__(self, attribute):
         self.label = attribute.get("attribute_label", "")
         self.rank = attribute["rank"]
-        self.data_type = attribute.get("data_type")
+        self.data_type = attribute.get("data_type", "")
+        self.optionality = attribute.get("attr_suffix", "")
         self.primary_entity_name = attribute.get("that_table")
         self.primary_key_label = attribute.get("that_table_attribute_label")
         self.id_groups = set(attribute.get("id_groups", "").replace("0", ""))
@@ -33,7 +34,7 @@ class Attribute:
                 {
                     "x": x + dx,
                     "y": y + round(dy + style["attribute_text_height_ratio"] * self.h, 1),
-                    "text": self.label,
+                    "text": self.label + self.optionality,
                     "text_color": style[f"{self.box_type}_attribute_text_color"],
                     "family": self.attribute_font["family"],
                     "size": self.attribute_font["size"],

@@ -29,7 +29,7 @@
 		<text x="384" y="48.3" fill="#000000" font-family="Copperplate" font-size="18">ENGENDRER</text>
 	</g>
 	<text x="352" y="49" fill="#000000" font-family="Futura" font-size="11">0,N</text>
-	<text x="352" y="71" fill="#000000" font-family="Futura" font-size="11">1,1</text>
+	<text x="352" y="71" fill="#000000" font-family="Futura" font-size="11">0,1</text>
 </g>
 
 <!-- Entity PIÈCE -->

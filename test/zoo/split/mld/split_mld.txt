@@ -2,11 +2,11 @@
   - Le champ « nom bataille » constitue la clé primaire de la table. C'était déjà un identifiant de l'entité « Bataille ».
   - Les champs « lieu » et « date » étaient déjà de simples attributs de l'entité « Bataille ».
 
-- Trophée (_numéro_, type, état, #nom villageois, #nom bataille)
+- Trophée (_numéro_, type, état, #nom villageois!, #nom bataille!)
   - Le champ « numéro » constitue la clé primaire de la table. C'était déjà un identifiant de l'entité « Trophée ».
   - Les champs « type » et « état » étaient déjà de simples attributs de l'entité « Trophée ».
-  - Le champ « nom villageois » est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle « Récolter » à partir de l'entité « Villageois » en perdant son caractère identifiant.
-  - Le champ « nom bataille » est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle « Récolter » à partir de l'entité « Bataille » en perdant son caractère identifiant.
+  - Le champ à saisie obligatoire « nom villageois » est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle « Récolter » à partir de l'entité « Villageois » en perdant son caractère identifiant.
+  - Le champ à saisie obligatoire « nom bataille » est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle « Récolter » à partir de l'entité « Bataille » en perdant son caractère identifiant.
 
 - Villageois (_nom villageois_, adresse, fonction)
   - Le champ « nom villageois » constitue la clé primaire de la table. C'était déjà un identifiant de l'entité « Villageois ».

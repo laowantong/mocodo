@@ -40,7 +40,7 @@
     \item Le champ \emph{terra} était déjà un simple attribut de l'entité \emph{DIGNISSIM}.
   \end{itemize}
 
-  \item \relat{LACUS} (<ins>#magna</ins>, \attr{tempor}, \attr{fugit})
+  \item \relat{LACUS} (\foreign{\prim{magna}}, \attr{tempor}, \attr{fugit})
   \begin{itemize}
     \item Le champ \emph{magna} constitue la clé primaire de la table. C'est une clé étrangère qui a migré à partir de l'entité-mère \emph{TRISTIS}.
     \item Les champs \emph{tempor} et \emph{fugit} étaient déjà de simples attributs de l'entité \emph{LACUS}.
@@ -52,38 +52,38 @@
     \item Le champ \emph{lacrima} était déjà un simple attribut de l'entité \emph{LIBERO}.
   \end{itemize}
 
-  \item \relat{NEC} (<ins>#magna</ins>, \attr{pulvinar}, \attr{audis}, \foreign{gravida})
+  \item \relat{NEC} (\foreign{\prim{magna}}, \attr{pulvinar}, \attr{audis}, \foreign{gravida!})
   \begin{itemize}
     \item Le champ \emph{magna} constitue la clé primaire de la table. C'est une clé étrangère qui a migré à partir de l'entité-mère \emph{TRISTIS}.
     \item Les champs \emph{pulvinar} et \emph{audis} étaient déjà de simples attributs de l'entité \emph{NEC}.
-    \item Le champ \emph{gravida} est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle \emph{MOLLIS} à partir de l'entité \emph{CURABITUR} en perdant son caractère identifiant.
+    \item Le champ à saisie obligatoire \emph{gravida} est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle \emph{MOLLIS} à partir de l'entité \emph{CURABITUR} en perdant son caractère identifiant.
   \end{itemize}
 
-  \item \relat{QUAM} (\prim{cras}, \attr{sed}, \foreign{magna})
+  \item \relat{QUAM} (\prim{cras}, \attr{sed}, \foreign{magna!})
   \begin{itemize}
     \item Le champ \emph{cras} constitue la clé primaire de la table. C'était déjà un identifiant de l'entité \emph{QUAM}.
     \item Le champ \emph{sed} était déjà un simple attribut de l'entité \emph{QUAM}.
-    \item Le champ \emph{magna} est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle \emph{VITAE} à partir de l'entité \emph{SODALES} en perdant son caractère identifiant.
+    \item Le champ à saisie obligatoire \emph{magna} est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle \emph{VITAE} à partir de l'entité \emph{SODALES} en perdant son caractère identifiant.
   \end{itemize}
 
-  \item \relat{SODALES} (<ins>#magna</ins>, \attr{convallis}, \attr{ipsum})
+  \item \relat{SODALES} (\foreign{\prim{magna}}, \attr{convallis}, \attr{ipsum})
   \begin{itemize}
     \item Le champ \emph{magna} constitue la clé primaire de la table. C'est une clé étrangère qui a migré à partir de l'entité-mère \emph{TRISTIS}.
     \item Les champs \emph{convallis} et \emph{ipsum} étaient déjà de simples attributs de l'entité \emph{SODALES}.
   \end{itemize}
 
-  \item \relat{SUSCIPIT} (\prim{orci}, \attr{lorem}, \foreign{magna})
+  \item \relat{SUSCIPIT} (\prim{orci}, \attr{lorem}, \foreign{magna!})
   \begin{itemize}
     \item Le champ \emph{orci} constitue la clé primaire de la table. C'était déjà un identifiant de l'entité \emph{SUSCIPIT}.
     \item Le champ \emph{lorem} était déjà un simple attribut de l'entité \emph{SUSCIPIT}.
-    \item Le champ \emph{magna} est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle \emph{RHONCUS} à partir de l'entité \emph{TRISTIS} en perdant son caractère identifiant.
+    \item Le champ à saisie obligatoire \emph{magna} est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle \emph{RHONCUS} à partir de l'entité \emph{TRISTIS} en perdant son caractère identifiant.
   \end{itemize}
 
-  \item \relat{TRISTIS} (\prim{magna}, \attr{vestibulum}, \foreign{fermentum}, \attr{type})
+  \item \relat{TRISTIS} (\prim{magna}, \attr{vestibulum}, \foreign{fermentum!}, \attr{type})
   \begin{itemize}
     \item Le champ \emph{magna} constitue la clé primaire de la table. C'était déjà un identifiant de l'entité \emph{TRISTIS}.
     \item Le champ \emph{vestibulum} était déjà un simple attribut de l'entité \emph{TRISTIS}.
-    \item Le champ \emph{fermentum} est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle \emph{ELIT} à partir de l'entité \emph{CONSEQUAT} en perdant son caractère identifiant.
+    \item Le champ à saisie obligatoire \emph{fermentum} est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle \emph{ELIT} à partir de l'entité \emph{CONSEQUAT} en perdant son caractère identifiant.
     \item Un champ entier \emph{type} est ajouté pour indiquer la nature de la spécialisation : 1 pour la première entité-fille, 2 pour la deuxième, etc. Jamais vide, du fait de la contrainte de totalité.
   \end{itemize}
 

@@ -14,7 +14,7 @@
   - Le champ « tellus » constitue la clé primaire de la table. C'était déjà un identifiant de l'entité « DIGNISSIM ».
   - Le champ « terra » était déjà un simple attribut de l'entité « DIGNISSIM ».
 
-- LACUS (<ins>#magna</ins>, tempor, fugit)
+- LACUS (_#magna_, tempor, fugit)
   - Le champ « magna » constitue la clé primaire de la table. C'est une clé étrangère qui a migré à partir de l'entité-mère « TRISTIS ».
   - Les champs « tempor » et « fugit » étaient déjà de simples attributs de l'entité « LACUS ».
 
@@ -22,29 +22,29 @@
   - Le champ « posuere » constitue la clé primaire de la table. C'était déjà un identifiant de l'entité « LIBERO ».
   - Le champ « lacrima » était déjà un simple attribut de l'entité « LIBERO ».
 
-- NEC (<ins>#magna</ins>, pulvinar, audis, #gravida)
+- NEC (_#magna_, pulvinar, audis, #gravida!)
   - Le champ « magna » constitue la clé primaire de la table. C'est une clé étrangère qui a migré à partir de l'entité-mère « TRISTIS ».
   - Les champs « pulvinar » et « audis » étaient déjà de simples attributs de l'entité « NEC ».
-  - Le champ « gravida » est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle « MOLLIS » à partir de l'entité « CURABITUR » en perdant son caractère identifiant.
+  - Le champ à saisie obligatoire « gravida » est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle « MOLLIS » à partir de l'entité « CURABITUR » en perdant son caractère identifiant.
 
-- QUAM (_cras_, sed, #magna)
+- QUAM (_cras_, sed, #magna!)
   - Le champ « cras » constitue la clé primaire de la table. C'était déjà un identifiant de l'entité « QUAM ».
   - Le champ « sed » était déjà un simple attribut de l'entité « QUAM ».
-  - Le champ « magna » est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle « VITAE » à partir de l'entité « SODALES » en perdant son caractère identifiant.
+  - Le champ à saisie obligatoire « magna » est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle « VITAE » à partir de l'entité « SODALES » en perdant son caractère identifiant.
 
-- SODALES (<ins>#magna</ins>, convallis, ipsum)
+- SODALES (_#magna_, convallis, ipsum)
   - Le champ « magna » constitue la clé primaire de la table. C'est une clé étrangère qui a migré à partir de l'entité-mère « TRISTIS ».
   - Les champs « convallis » et « ipsum » étaient déjà de simples attributs de l'entité « SODALES ».
 
-- SUSCIPIT (_orci_, lorem, #magna)
+- SUSCIPIT (_orci_, lorem, #magna!)
   - Le champ « orci » constitue la clé primaire de la table. C'était déjà un identifiant de l'entité « SUSCIPIT ».
   - Le champ « lorem » était déjà un simple attribut de l'entité « SUSCIPIT ».
-  - Le champ « magna » est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle « RHONCUS » à partir de l'entité « TRISTIS » en perdant son caractère identifiant.
+  - Le champ à saisie obligatoire « magna » est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle « RHONCUS » à partir de l'entité « TRISTIS » en perdant son caractère identifiant.
 
-- TRISTIS (_magna_, vestibulum, #fermentum, type)
+- TRISTIS (_magna_, vestibulum, #fermentum!, type)
   - Le champ « magna » constitue la clé primaire de la table. C'était déjà un identifiant de l'entité « TRISTIS ».
   - Le champ « vestibulum » était déjà un simple attribut de l'entité « TRISTIS ».
-  - Le champ « fermentum » est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle « ELIT » à partir de l'entité « CONSEQUAT » en perdant son caractère identifiant.
+  - Le champ à saisie obligatoire « fermentum » est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle « ELIT » à partir de l'entité « CONSEQUAT » en perdant son caractère identifiant.
   - Un champ entier « type » est ajouté pour indiquer la nature de la spécialisation : 1 pour la première entité-fille, 2 pour la deuxième, etc. Jamais vide, du fait de la contrainte de totalité.
 
 - ULTRICES (_#posuere_, _#magna_)

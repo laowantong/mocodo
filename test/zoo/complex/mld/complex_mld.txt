@@ -1,23 +1,23 @@
-- ANIMAL (_#code espèce_, _nom_, _date naissance_, sexe, date décès, #code espèce mère, #nom mère, #date naissance mère, type alimentation, CARNIVORE, quantité viande, HERBIVORE, plante préférée)
+- ANIMAL (_#code espèce_, _nom_, _date naissance_, sexe, date décès, #code espèce mère?, #nom mère?, #date naissance mère?, type alimentation!, CARNIVORE!, quantité viande?, HERBIVORE!, plante préférée?)
   - Le champ « code espèce » fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré à partir de l'entité « ESPÈCE » pour renforcer l'identifiant.
   - Les champs « nom » et « date naissance » font partie de la clé primaire de la table. C'étaient déjà des identifiants de l'entité « ANIMAL ».
   - Les champs « sexe » et « date décès » étaient déjà de simples attributs de l'entité « ANIMAL ».
-  - Les champs « code espèce mère », « nom mère » et « date naissance mère » sont des clés étrangères. Ils ont migré par l'association de dépendance fonctionnelle « A MÈRE » à partir de l'entité « ANIMAL » en perdant leur caractère identifiant.
-  - Un champ entier « type alimentation » est ajouté pour indiquer la nature de la spécialisation. Il est interprété comme un code binaire : bit 1 pour la première entité-fille, bit 2 pour la deuxième, etc. Peut être vide, du fait de l'absence de contrainte de totalité.
-  - Un champ booléen « CARNIVORE » est ajouté pour indiquer si on a affaire ou pas à la spécialisation de même nom.
-  - Le champ « quantité viande » a migré à partir de l'entité-fille « CARNIVORE » (supprimée).
-  - Un champ booléen « HERBIVORE » est ajouté pour indiquer si on a affaire ou pas à la spécialisation de même nom.
-  - Le champ « plante préférée » a migré à partir de l'entité-fille « HERBIVORE » (supprimée).
+  - Les champs à saisie facultative « code espèce mère », « nom mère » et « date naissance mère » sont des clés étrangères. Ils ont migré par l'association de dépendance fonctionnelle « A MÈRE » à partir de l'entité « ANIMAL » en perdant leur caractère identifiant.
+  - Un champ entier à saisie obligatoire « type alimentation » est ajouté pour indiquer la nature de la spécialisation. Il est interprété comme un code binaire : bit 1 pour la première entité-fille, bit 2 pour la deuxième, etc. Peut être vide, du fait de l'absence de contrainte de totalité.
+  - Un champ booléen à saisie obligatoire « CARNIVORE » est ajouté pour indiquer si on a affaire ou pas à la spécialisation de même nom.
+  - Le champ à saisie facultative « quantité viande » a migré à partir de l'entité-fille « CARNIVORE » (supprimée).
+  - Un champ booléen à saisie obligatoire « HERBIVORE » est ajouté pour indiquer si on a affaire ou pas à la spécialisation de même nom.
+  - Le champ à saisie facultative « plante préférée » a migré à partir de l'entité-fille « HERBIVORE » (supprimée).
 
 - ESPÈCE (_code espèce_, nom latin¹, nom vernaculaire)
   - Le champ « code espèce » constitue la clé primaire de la table. C'était déjà un identifiant de l'entité « ESPÈCE ».
   - Le champ « nom latin » était déjà un simple attribut de l'entité « ESPÈCE ». Il obéit à la contrainte d'unicité 1.
   - Le champ « nom vernaculaire » était déjà un simple attribut de l'entité « ESPÈCE ».
 
-- OCCUPE (_#code espèce_, _#nom_, _#date naissance_, _num. enclos_, date début, date fin)
+- OCCUPE (_#code espèce_, _#nom_, _#date naissance_, _num. enclos_, date début!, date fin!)
   - Les champs « code espèce », « nom » et « date naissance » font partie de la clé primaire de la table. Ce sont des clés étrangères qui ont migré directement à partir de l'entité « ANIMAL ».
   - Le champ « num. enclos » fait partie de la clé primaire de la table. Sa table d'origine (« ENCLOS ») ayant été supprimée, il n'est pas considéré comme clé étrangère.
-  - Les champs « date début » et « date fin » sont de simples attributs. Ils ont migré directement à partir de l'entité « PÉRIODE » en perdant leur caractère identifiant. Cependant, comme la table créée à partir de cette entité a été supprimée, ils ne sont pas considérés comme clés étrangères.
+  - Les champs à saisie obligatoire « date début » et « date fin » sont de simples attributs. Ils ont migré directement à partir de l'entité « PÉRIODE » en perdant leur caractère identifiant. Cependant, comme la table créée à partir de cette entité a été supprimée, ils ne sont pas considérés comme clés étrangères.
 
 - PEUT COHABITER AVEC (_#code espèce_, _#code espèce commensale_, nb. max. commensaux)
   - Les champs « code espèce » et « code espèce commensale » constituent la clé primaire de la table. Ce sont des clés étrangères qui ont migré directement à partir de l'entité « ESPÈCE ».

@@ -23,25 +23,25 @@
     <span class='primary'>date naissance</span>,
     <span class='normal'>sexe</span>,
     <span class='normal'>date décès</span>,
-    <span class='foreign'>#code espèce mère</span>,
-    <span class='foreign'>#nom mère</span>,
-    <span class='foreign'>#date naissance mère</span>,
-    <span class='normal'>type alimentation</span>,
-    <span class='normal'>CARNIVORE</span>,
-    <span class='normal'>quantité viande</span>,
-    <span class='normal'>HERBIVORE</span>,
-    <span class='normal'>plante préférée</span>
+    <span class='foreign'>#code espèce mère?</span>,
+    <span class='foreign'>#nom mère?</span>,
+    <span class='foreign'>#date naissance mère?</span>,
+    <span class='normal'>type alimentation!</span>,
+    <span class='normal'>CARNIVORE!</span>,
+    <span class='normal'>quantité viande?</span>,
+    <span class='normal'>HERBIVORE!</span>,
+    <span class='normal'>plante préférée?</span>
   )</summary>
   <ul>
     <li>Le champ <i>code espèce</i> fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré à partir de l'entité <i>ESPÈCE</i> pour renforcer l'identifiant.</li>
     <li>Les champs <i>nom</i> et <i>date naissance</i> font partie de la clé primaire de la table. C'étaient déjà des identifiants de l'entité <i>ANIMAL</i>.</li>
     <li>Les champs <i>sexe</i> et <i>date décès</i> étaient déjà de simples attributs de l'entité <i>ANIMAL</i>.</li>
-    <li>Les champs <i>code espèce mère</i>, <i>nom mère</i> et <i>date naissance mère</i> sont des clés étrangères. Ils ont migré par l'association de dépendance fonctionnelle <i>A MÈRE</i> à partir de l'entité <i>ANIMAL</i> en perdant leur caractère identifiant.</li>
-    <li>Un champ entier <i>type alimentation</i> est ajouté pour indiquer la nature de la spécialisation. Il est interprété comme un code binaire : bit 1 pour la première entité-fille, bit 2 pour la deuxième, etc. Peut être vide, du fait de l'absence de contrainte de totalité.</li>
-    <li>Un champ booléen <i>CARNIVORE</i> est ajouté pour indiquer si on a affaire ou pas à la spécialisation de même nom.</li>
-    <li>Le champ <i>quantité viande</i> a migré à partir de l'entité-fille <i>CARNIVORE</i> (supprimée).</li>
-    <li>Un champ booléen <i>HERBIVORE</i> est ajouté pour indiquer si on a affaire ou pas à la spécialisation de même nom.</li>
-    <li>Le champ <i>plante préférée</i> a migré à partir de l'entité-fille <i>HERBIVORE</i> (supprimée).</li>
+    <li>Les champs à saisie facultative <i>code espèce mère</i>, <i>nom mère</i> et <i>date naissance mère</i> sont des clés étrangères. Ils ont migré par l'association de dépendance fonctionnelle <i>A MÈRE</i> à partir de l'entité <i>ANIMAL</i> en perdant leur caractère identifiant.</li>
+    <li>Un champ entier à saisie obligatoire <i>type alimentation</i> est ajouté pour indiquer la nature de la spécialisation. Il est interprété comme un code binaire : bit 1 pour la première entité-fille, bit 2 pour la deuxième, etc. Peut être vide, du fait de l'absence de contrainte de totalité.</li>
+    <li>Un champ booléen à saisie obligatoire <i>CARNIVORE</i> est ajouté pour indiquer si on a affaire ou pas à la spécialisation de même nom.</li>
+    <li>Le champ à saisie facultative <i>quantité viande</i> a migré à partir de l'entité-fille <i>CARNIVORE</i> (supprimée).</li>
+    <li>Un champ booléen à saisie obligatoire <i>HERBIVORE</i> est ajouté pour indiquer si on a affaire ou pas à la spécialisation de même nom.</li>
+    <li>Le champ à saisie facultative <i>plante préférée</i> a migré à partir de l'entité-fille <i>HERBIVORE</i> (supprimée).</li>
   </ul></details>
 </div>
 
@@ -64,13 +64,13 @@
     <span class='foreign primary'>#nom</span>,
     <span class='foreign primary'>#date naissance</span>,
     <span class='primary'>num. enclos</span>,
-    <span class='normal'>date début</span>,
-    <span class='normal'>date fin</span>
+    <span class='normal'>date début!</span>,
+    <span class='normal'>date fin!</span>
   )</summary>
   <ul>
     <li>Les champs <i>code espèce</i>, <i>nom</i> et <i>date naissance</i> font partie de la clé primaire de la table. Ce sont des clés étrangères qui ont migré directement à partir de l'entité <i>ANIMAL</i>.</li>
     <li>Le champ <i>num. enclos</i> fait partie de la clé primaire de la table. Sa table d'origine (<i>ENCLOS</i>) ayant été supprimée, il n'est pas considéré comme clé étrangère.</li>
-    <li>Les champs <i>date début</i> et <i>date fin</i> sont de simples attributs. Ils ont migré directement à partir de l'entité <i>PÉRIODE</i> en perdant leur caractère identifiant. Cependant, comme la table créée à partir de cette entité a été supprimée, ils ne sont pas considérés comme clés étrangères.</li>
+    <li>Les champs à saisie obligatoire <i>date début</i> et <i>date fin</i> sont de simples attributs. Ils ont migré directement à partir de l'entité <i>PÉRIODE</i> en perdant leur caractère identifiant. Cependant, comme la table créée à partir de cette entité a été supprimée, ils ne sont pas considérés comme clés étrangères.</li>
   </ul></details>
 </div>
 

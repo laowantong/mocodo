@@ -2,9 +2,9 @@ CREATE DATABASE triple_N11;
 \c triple_N11;
 
 CREATE TABLE AFFECTER (
-  projet VARCHAR(42),
-  employe VARCHAR(42),
-  site VARCHAR(42),
+  projet VARCHAR(42) NOT NULL,
+  employe VARCHAR(42) NOT NULL,
+  site VARCHAR(42) NOT NULL,
   PRIMARY KEY (projet, employe)
 );
 

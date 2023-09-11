@@ -64,8 +64,10 @@ def parse_source(source):
             raise MocodoError(500, _('{pin}An attribute label cannot start with {v[1]!r}.').format(pin=pin, v=v)) # fmt: skip
         if expected == {'NL', 'ATTR', 'COMMA'}:
             raise MocodoError(500, _('{pin}An attribute label cannot start with {v[1]!r}.').format(pin=pin, v=v)) # fmt: skip
-        if expected == {'LBRACKET', 'NL', 'COMMA'}:
+        if expected == {'LBRACKET', 'NL', 'COMMA', "BANG", "QMARK"}:
             raise MocodoError(521, _('{pin}An attribute label cannot contain {v}.').format(pin=pin, v=v)) # fmt: skip
+        if t in ("COMMA", "NL", "BREAK") and expected == {'MORETHAN', 'QMARK', 'BANG'}:
+            raise MocodoError(522, _('{pin}An attribute starting with "#" must contain two ">".').format(pin=pin)) # fmt: skip
         if t in ("COMMA", "NL", "BREAK") and expected == {'MORETHAN'}:
             raise MocodoError(522, _('{pin}An attribute starting with "#" must contain two ">".').format(pin=pin)) # fmt: skip
         if t in ("COMMA", "NL", "BREAK") and expected == {'ATTR'}:
@@ -78,7 +80,9 @@ def parse_source(source):
             raise MocodoError(526, _('{pin}Malformed number.').format(pin=pin, v=v)) # fmt: skip
         if previous in ("NUMBER", "BOX_NAME") and expected == {'COMMA', 'NL'}:
             raise MocodoError(527, _('{pin}More than two coordinates.').format(pin=pin, v=v)) # fmt: skip
-        raise MocodoError(504, _('{pin}\nExpected {expected}.').format(line=error.line, column=error.column, pin=pin, expected=expected))
+        if expected == {'LBRACKET', 'NL', 'COMMA', 'MORETHAN'}:
+            raise MocodoError(528, _('{pin}An attribute label cannot have more than one optionality marker.').format(pin=pin, v=v))
+        raise MocodoError(504, _('{pin}\nToken {t}\nExpected {expected}.').format(pin=pin, expected=expected, t=t))
         
     
 class Reconstructor(Visitor):
@@ -139,6 +143,7 @@ class ClauseExtractor(Transformer):
     attr = lambda self, tree: self._item("attribute_label", tree)
     box_def_prefix = lambda self, tree: self._item("box_def_prefix", tree)
     id_mark = lambda self, tree: self._item("id_mark", tree)
+    attr_suffix = lambda self, tree: self._item("attr_suffix", tree)
 
     def start(self, tree):
         return tree
@@ -175,7 +180,7 @@ class ClauseExtractor(Transformer):
         d["legs"] = [{"entity": d["entity"], "rank": -1}] + d["legs"]
         del d["entity"]
         return list(d.items())
-    
+
     def typed_attr(self, tree):
         return ("attr", dict(tree))
     

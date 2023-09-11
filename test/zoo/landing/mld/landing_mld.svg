@@ -76,7 +76,7 @@
 	<text x="258" y="174.1" fill="#000000" font-family="Gill Sans" font-size="15">matricule</text>
 	<line x1="258" y1="177" x2="317" y2="177" stroke="#000000" stroke-width="1"/>
 	<text x="258" y="191.1" fill="#000000" font-family="Gill Sans" font-size="15">nom employé</text>
-	<text x="258" y="208" fill="#000000" font-family="Gill Sans" font-size="15">num. département</text>
+	<text x="258" y="208" fill="#000000" font-family="Gill Sans" font-size="15">num. département!</text>
 </g>
 
 <!-- Entity PROJET -->
@@ -91,7 +91,7 @@
 	<text x="448" y="174.1" fill="#000000" font-family="Gill Sans" font-size="15">num. projet</text>
 	<line x1="448" y1="177" x2="522" y2="177" stroke="#000000" stroke-width="1"/>
 	<text x="448" y="191.1" fill="#000000" font-family="Gill Sans" font-size="15">nom projet</text>
-	<text x="448" y="208" fill="#000000" font-family="Gill Sans" font-size="15">matricule responsable</text>
+	<text x="448" y="208" fill="#000000" font-family="Gill Sans" font-size="15">matricule responsable?</text>
 </g>
 
 <!-- Entity FOURNIR -->
@@ -153,7 +153,7 @@
 	<text x="660" y="300.1" fill="#000000" font-family="Gill Sans" font-size="15">num. société</text>
 	<line x1="660" y1="303" x2="740" y2="303" stroke="#000000" stroke-width="1"/>
 	<text x="660" y="317.1" fill="#000000" font-family="Gill Sans" font-size="15">raison sociale</text>
-	<text x="660" y="334" fill="#000000" font-family="Gill Sans" font-size="15">num. société mère</text>
+	<text x="660" y="334" fill="#000000" font-family="Gill Sans" font-size="15">num. société mère?</text>
 </g>
 
 <!-- Link from &quot;matricule&quot; (AYANT&#45;DROIT) to &quot;matricule&quot; (EMPLOYÉ) -->

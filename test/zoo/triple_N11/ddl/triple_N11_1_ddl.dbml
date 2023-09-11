@@ -3,9 +3,9 @@ Project triple_N11 {
 }
 
 Table Affecter {
-  projet VARCHAR(42)
-  "employé" VARCHAR(42)
-  site VARCHAR(42)
+  projet VARCHAR(42) [not null]
+  "employé" VARCHAR(42) [not null]
+  site VARCHAR(42) [not null]
   Indexes {
     (projet, "employé") [pk]
     ("employé", site) [unique]
@@ -13,17 +13,17 @@ Table Affecter {
 }
 
 Table "Employé" {
-  "employé" VARCHAR(42) [pk]
+  "employé" VARCHAR(42) [pk, not null]
   "nom employé" VARCHAR(42)
 }
 
 Table Projet {
-  projet VARCHAR(42) [pk]
+  projet VARCHAR(42) [pk, not null]
   "libellé" VARCHAR(42)
 }
 
 Table Site {
-  site VARCHAR(42) [pk]
+  site VARCHAR(42) [pk, not null]
   position VARCHAR(42)
 }
 

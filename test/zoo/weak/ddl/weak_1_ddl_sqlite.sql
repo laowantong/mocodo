@@ -1,8 +1,8 @@
 .open weak;
 
 CREATE TABLE EXEMPLAIRE (
-  oeuvre VARCHAR(42),
-  exemplaire VARCHAR(42),
+  oeuvre VARCHAR(42) NOT NULL,
+  exemplaire VARCHAR(42) NOT NULL,
   nb_pages INTEGER,
   date_achat DATE,
   foobar VARCHAR(42),
@@ -11,7 +11,7 @@ CREATE TABLE EXEMPLAIRE (
 );
 
 CREATE TABLE OEUVRE (
-  oeuvre VARCHAR(42),
+  oeuvre VARCHAR(42) NOT NULL,
   auteur VARCHAR(42),
   PRIMARY KEY (oeuvre)
 );

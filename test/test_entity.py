@@ -34,7 +34,7 @@ class EntityTest(unittest.TestCase):
         e = entity_wrapper("PARTICIPANT: numero [type a,b,c], nom [type2], adresse [type3]")
         self.assertEqual([a.data_type for a in e.attributes], ["type a,b,c", "type2", "type3"])
         e = entity_wrapper("PARTICIPANT: numero [], nom, adresse [type3]")
-        self.assertEqual([a.data_type for a in e.attributes], ["", None, "type3"])
+        self.assertEqual([a.data_type for a in e.attributes], ["", "", "type3"])
 
     def test_numbered_entity(self):
         e = entity_wrapper("PARTICIPANT5: numero, nom, adresse")

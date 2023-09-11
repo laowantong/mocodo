@@ -1,7 +1,7 @@
-- Gérer (_#ingénieur_, _#projet_, #responsable)
+- Gérer (_#ingénieur_, _#projet_, #responsable!)
   - Le champ « ingénieur » fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité « Ingénieur ».
   - Le champ « projet » fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité « Projet ».
-  - Le champ « responsable » est une clé étrangère. Il a migré directement à partir de l'entité « Responsable » en perdant son caractère identifiant.
+  - Le champ à saisie obligatoire « responsable » est une clé étrangère. Il a migré directement à partir de l'entité « Responsable » en perdant son caractère identifiant.
 
 - Ingénieur (_ingénieur_, nom ingénieur)
   - Le champ « ingénieur » constitue la clé primaire de la table. C'était déjà un identifiant de l'entité « Ingénieur ».

@@ -1,24 +1,24 @@
 CREATE TABLE ENTREPRISE (
-  nom_entreprise VARCHAR(255),
+  nom_entreprise VARCHAR(255) NOT NULL,
   adresse VARCHAR(42),
   telephone VARCHAR(20),
   PRIMARY KEY (nom_entreprise)
 );
 
 CREATE TABLE ETUDIANT (
-  num_etudiant VARCHAR(8),
+  num_etudiant VARCHAR(8) NOT NULL,
   nom VARCHAR(255),
-  num_stage VARCHAR(8),
+  num_stage VARCHAR(8) NOT NULL,
   date_signature BINARY(64),
-  date DATE,
+  date DATE NULL,
   note_stage TEXT,
   PRIMARY KEY (num_etudiant)
 );
 
 CREATE TABLE STAGE (
-  num_stage VARCHAR(8),
+  num_stage VARCHAR(8) NOT NULL,
   sujet VARCHAR(42),
-  nom_entreprise VARCHAR(255),
+  nom_entreprise VARCHAR(255) NOT NULL,
   date_proposition DATE,
   PRIMARY KEY (num_stage)
 );

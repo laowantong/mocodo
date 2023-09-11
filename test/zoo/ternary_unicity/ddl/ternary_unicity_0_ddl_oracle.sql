@@ -1,21 +1,21 @@
 CREATE TABLE DISPONIBILITE (
-  semaine VARCHAR(42),
-  voilier VARCHAR(42),
+  semaine VARCHAR(42) NOT NULL,
+  voilier VARCHAR(42) NOT NULL,
   PRIMARY KEY (semaine, voilier)
 );
 
 CREATE TABLE RESERVATION (
-  id_resa VARCHAR(8),
+  id_resa VARCHAR(8) NOT NULL,
   num_resa VARCHAR(8),
   arrhes VARCHAR(42),
   date_reservation DATE,
-  semaine VARCHAR(42),
-  voilier VARCHAR(42),
+  semaine VARCHAR(42) NOT NULL,
+  voilier VARCHAR(42) NOT NULL,
   PRIMARY KEY (id_resa)
 );
 
 CREATE TABLE SEMAINE (
-  semaine VARCHAR(42),
+  semaine VARCHAR(42) NOT NULL,
   date_debut DATE,
   PRIMARY KEY (semaine)
 );

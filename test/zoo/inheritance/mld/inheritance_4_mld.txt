@@ -1,14 +1,14 @@
-- LACUS (<ins>#magna</ins>, tempor, fugit)
+- LACUS (_#magna_, tempor, fugit)
   - Le champ « magna » constitue la clé primaire de la table. C'est une clé étrangère qui a migré à partir de l'entité-mère « TRISTIS ».
   - Les champs « tempor » et « fugit » étaient déjà de simples attributs de l'entité « LACUS ».
 
-- NEC (<ins>#magna</ins>, pulvinar, audis, #magna via mollis, #magna via vitae)
+- NEC (_#magna_, pulvinar, audis, #magna via mollis!, #magna via vitae!)
   - Le champ « magna » constitue la clé primaire de la table. C'est une clé étrangère qui a migré à partir de l'entité-mère « TRISTIS ».
   - Les champs « pulvinar » et « audis » étaient déjà de simples attributs de l'entité « NEC ».
-  - Le champ « magna via mollis » est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle « MOLLIS » à partir de l'entité « LACUS » en perdant son caractère identifiant.
-  - Le champ « magna via vitae » est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle « VITAE » à partir de l'entité « SODALES » en perdant son caractère identifiant.
+  - Le champ à saisie obligatoire « magna via mollis » est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle « MOLLIS » à partir de l'entité « LACUS » en perdant son caractère identifiant.
+  - Le champ à saisie obligatoire « magna via vitae » est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle « VITAE » à partir de l'entité « SODALES » en perdant son caractère identifiant.
 
-- SODALES (<ins>#magna</ins>, convallis, ipsum)
+- SODALES (_#magna_, convallis, ipsum)
   - Le champ « magna » constitue la clé primaire de la table. C'est une clé étrangère qui a migré à partir de l'entité-mère « TRISTIS ».
   - Les champs « convallis » et « ipsum » étaient déjà de simples attributs de l'entité « SODALES ».
 

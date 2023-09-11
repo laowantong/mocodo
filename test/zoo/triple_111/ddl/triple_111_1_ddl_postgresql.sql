@@ -2,21 +2,21 @@ CREATE DATABASE triple_111;
 \c triple_111;
 
 CREATE TABLE PROJET (
-  projet VARCHAR(42),
+  projet VARCHAR(42) NOT NULL,
   libelle VARCHAR(50),
   PRIMARY KEY (projet)
 );
 
 CREATE TABLE TECHNICIEN (
-  technicien VARCHAR(42),
+  technicien VARCHAR(42) NOT NULL,
   nom_technicien VARCHAR(255),
   PRIMARY KEY (technicien)
 );
 
 CREATE TABLE UTILISER (
-  carnet VARCHAR(42),
-  projet VARCHAR(42),
-  technicien VARCHAR(42),
+  carnet VARCHAR(42) NOT NULL,
+  projet VARCHAR(42) NOT NULL,
+  technicien VARCHAR(42) NOT NULL,
   PRIMARY KEY (carnet, projet)
 );
 

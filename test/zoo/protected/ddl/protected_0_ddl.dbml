@@ -3,17 +3,17 @@ Project protected {
 }
 
 Table EROS {
-  congue VARCHAR(42) [pk]
+  congue VARCHAR(42) [pk, not null]
 }
 
 Table LACUS {
-  blandit VARCHAR(42) [pk]
+  blandit VARCHAR(42) [pk, not null]
   elit VARCHAR(42)
 }
 
 Table LIGULA {
-  blandit VARCHAR(42) [pk]
-  congue VARCHAR(42)
+  blandit VARCHAR(42) [pk, not null]
+  congue VARCHAR(42) [not null]
   metus VARCHAR(42)
 }
 

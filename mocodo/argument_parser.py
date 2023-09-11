@@ -170,6 +170,12 @@ class Transformations:
             "aliases": [],
             "op_tk": True,
         },
+        "flip": {
+            "category": "rw",
+            "help": "Apply a vertical (v), horizontal (h) or diagonal (d) symmetry to the diagram",
+            "aliases": ["mirror", "reflect"],
+            "op_tk": True,
+        },
         "lower": {
             "category": "rw",
             "help": "rewrite the given elements in lowercase",
@@ -239,8 +245,8 @@ class Transformations:
         try:
             subopt = self.normalize[subopt]
         except:
-            valid = ", ".join(sorted(self.normalize.keys()))
-            raise MocodoError(45, _("The transformation '{subopt}' is not among the possible ones: {valid}.").format(subopt=subopt, valid=valid)) # fmt: skip
+            valid = ", ".join(sorted(self.normalize.keys(), key=lambda x: x.lower()))
+            raise MocodoError(45, _("The transformation '{subopt}' is not among the possible ones:\n{valid}.").format(subopt=subopt, valid=valid)) # fmt: skip
         result = extract_subargs(f"{subopt}:{tail}") # NB: calls the global function, not the method
         category = self.TRANSFORMATIONS[subopt]["category"]
         if category != "cv":

@@ -32,13 +32,13 @@
   <details><summary><span class='relation'>Stage</span> (
     <span class='primary'>num. stage</span>,
     <span class='normal'>sujet</span>,
-    <span class='foreign'>#nom entreprise</span>,
+    <span class='foreign'>#nom entreprise!</span>,
     <span class='normal'>date proposition</span>
   )</summary>
   <ul>
     <li>Le champ <i>num. stage</i> constitue la clé primaire de la table. C'était déjà un identifiant de l'entité <i>Stage</i>.</li>
     <li>Le champ <i>sujet</i> était déjà un simple attribut de l'entité <i>Stage</i>.</li>
-    <li>Le champ <i>nom entreprise</i> est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle <i>Proposer</i> à partir de l'entité <i>Entreprise</i> en perdant son caractère identifiant.</li>
+    <li>Le champ à saisie obligatoire <i>nom entreprise</i> est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle <i>Proposer</i> à partir de l'entité <i>Entreprise</i> en perdant son caractère identifiant.</li>
     <li>Le champ <i>date proposition</i> a migré à partir de l'association de dépendance fonctionnelle <i>Proposer</i>.</li>
   </ul></details>
 </div>
@@ -49,7 +49,7 @@
     <span class='normal'>nom</span>,
     <span class='foreign'>#num. stage</span> <sup>u1</sup>,
     <span class='normal'>date signature</span>,
-    <span class='normal'>date</span>,
+    <span class='normal'>date?</span>,
     <span class='normal'>note stage</span>
   )</summary>
   <ul>
@@ -57,7 +57,7 @@
     <li>Le champ <i>nom</i> était déjà un simple attribut de l'entité <i>Étudiant</i>.</li>
     <li>Le champ <i>num. stage</i> est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle <i>Attribuer</i> à partir de l'entité <i>Stage</i> en perdant son caractère identifiant. Il obéit en outre à la contrainte d'unicité 1.</li>
     <li>Le champ <i>date signature</i> a migré à partir de l'association de dépendance fonctionnelle <i>Attribuer</i>.</li>
-    <li>Le champ <i>date</i> est un simple attribut. Il a migré par l'association de dépendance fonctionnelle <i>Soutenir</i> à partir de l'entité <i>Date</i> en perdant son caractère identifiant. Cependant, comme la table créée à partir de cette entité a été supprimée, il n'est pas considéré comme clé étrangère.</li>
+    <li>Le champ à saisie facultative <i>date</i> est un simple attribut. Il a migré par l'association de dépendance fonctionnelle <i>Soutenir</i> à partir de l'entité <i>Date</i> en perdant son caractère identifiant. Cependant, comme la table créée à partir de cette entité a été supprimée, il n'est pas considéré comme clé étrangère.</li>
     <li>Le champ <i>note stage</i> a migré à partir de l'association de dépendance fonctionnelle <i>Soutenir</i>.</li>
   </ul></details>
 </div>

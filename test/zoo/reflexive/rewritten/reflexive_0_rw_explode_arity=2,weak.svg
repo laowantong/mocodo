@@ -27,7 +27,7 @@
 		<text x="231" y="31.3" fill="#000000" font-family="Copperplate" font-size="18">ENGENDRER</text>
 	</g>
 	<text x="267" y="84" fill="#000000" font-family="Futura" font-size="11">0,N</text>
-	<text x="292" y="84" fill="#000000" font-family="Futura" font-size="11">1,1</text>
+	<text x="292" y="84" fill="#000000" font-family="Futura" font-size="11">0,1</text>
 </g>
 
 <!-- Association DF1 -->

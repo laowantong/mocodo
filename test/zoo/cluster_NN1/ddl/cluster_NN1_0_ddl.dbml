@@ -3,11 +3,11 @@ Project cluster_NN1 {
 }
 
 Table "Réservation" {
-  "num résa" VARCHAR(42) [pk]
+  "num résa" VARCHAR(42) [pk, not null]
   arrhes VARCHAR(42)
   "date résa" VARCHAR(42)
-  "num voilier" VARCHAR(42)
-  "num semaine" VARCHAR(42)
+  "num voilier" VARCHAR(42) [not null]
+  "num semaine" VARCHAR(42) [not null]
   tarif VARCHAR(42)
   Indexes {
     ("num voilier", "num semaine") [unique]
@@ -15,7 +15,7 @@ Table "Réservation" {
 }
 
 Table Semaine {
-  "num semaine" VARCHAR(42) [pk]
+  "num semaine" VARCHAR(42) [pk, not null]
   "date début" VARCHAR(42)
   Indexes {
     "date début" [unique]
@@ -23,7 +23,7 @@ Table Semaine {
 }
 
 Table Voilier {
-  "num voilier" VARCHAR(42) [pk]
+  "num voilier" VARCHAR(42) [pk, not null]
   longueur VARCHAR(42)
 }
 

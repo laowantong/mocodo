@@ -29,7 +29,7 @@
 	<text x="222" y="73.1" fill="#000000" font-family="Gill Sans" font-size="15">num. stage</text>
 	<line x1="222" y1="76" x2="289" y2="76" stroke="#000000" stroke-width="1"/>
 	<text x="222" y="90.1" fill="#000000" font-family="Gill Sans" font-size="15">sujet</text>
-	<text x="222" y="107.1" fill="#000000" font-family="Gill Sans" font-size="15">nom entreprise</text>
+	<text x="222" y="107.1" fill="#000000" font-family="Gill Sans" font-size="15">nom entreprise!</text>
 	<text x="222" y="124" fill="#000000" font-family="Gill Sans" font-size="15">date proposition</text>
 </g>
 
@@ -45,9 +45,9 @@
 	<text x="400" y="56.1" fill="#000000" font-family="Gill Sans" font-size="15">num étudiant</text>
 	<line x1="400" y1="59" x2="483" y2="59" stroke="#000000" stroke-width="1"/>
 	<text x="400" y="73.1" fill="#000000" font-family="Gill Sans" font-size="15">nom</text>
-	<text x="400" y="90.1" fill="#000000" font-family="Gill Sans" font-size="15">num. stage</text>
+	<text x="400" y="90.1" fill="#000000" font-family="Gill Sans" font-size="15">num. stage!</text>
 	<text x="400" y="107.1" fill="#000000" font-family="Gill Sans" font-size="15">date signature</text>
-	<text x="400" y="124" fill="#000000" font-family="Gill Sans" font-size="15">date</text>
+	<text x="400" y="124" fill="#000000" font-family="Gill Sans" font-size="15">date?</text>
 	<text x="400" y="141" fill="#000000" font-family="Gill Sans" font-size="15">note stage</text>
 </g>
 

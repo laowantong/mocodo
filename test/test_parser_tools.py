@@ -1,5 +1,6 @@
 from pathlib import Path
 import re
+import gettext
 import unittest
 import pprint
 
@@ -8,6 +9,8 @@ __import__("sys").path[0:0] = ["mocodo"]
 from mocodo.parse_mcd import Lark_StandAlone, UnexpectedToken
 from mocodo.tools.parser_tools import reconstruct_source, parse_source, extract_clauses
 from mocodo.mocodo_error import MocodoError
+
+gettext.NullTranslations().install()
 
 parser = Lark_StandAlone()
 
@@ -64,6 +67,8 @@ INCLURE: #Num commande > COMMANDE > Num commande, _#Réf. produit > PRODUIT > R�
 CLIENT: Réf. client [varchar(8)], Nom [varchar(20)], Adresse [varchar(40)]
 INCLURE, 1N COMMANDE, 0N PRODUIT: Quantité [tinyint(4)]
 PARTICIPANT: numero [], nom, adresse [type3]
+COMMANDE: Num commande, Date, Montant, #Réf. client!>CLIENT>Réf. client
+COMMANDE: Num commande, Date, Montant, Réf. client!
 L33T, 0N> H4X0R, 0N< H4X0R
 L33T123, 0N> H4X0R12, 0N< H4X0R0
    AYANT-DROIT: nom ayant-droit, lien
@@ -198,9 +203,13 @@ mocodo_errors = [
     (500, "FOO, 1N Bar: -->Amet"),
     (521, "FOOBAR: foo>bar, biz"),
     (522, "FOO: #bar, biz"),
+    (522, "FOO: #bar!, biz"),
     (522, "FOO: #bar"),
+    (522, "FOO: #bar!"),
     (522, "FOO: biz, #bar"),
     (522, "FOO: #bar>buzz, biz"),
+    (522, "FOO: #bar>buzz!, biz"),
+    (522, "FOO: #bar!>buzz, biz"),
     (522, "FOO: #bar>buzz"),
     (522, "FOO: biz, #bar>buzz"),
     (523, "FOO: #bar>buzz>, biz"),
@@ -210,6 +219,7 @@ mocodo_errors = [
     (525, "(I) [bla bla.] ..PIÈCE, ->REQUÉRIR, --FOURNIR, PROJET: 12.5"),
     (526, "(A) ->Ipsum, ->Lorem: 30, 9N"),
     (527, "(I) [bla bla.] ..PIÈCE, ->REQUÉRIR, --FOURNIR, PROJET: 3,14 3,14"),
+    (528, "FOO: bar!?, biz"),
 ]
 
 class MocodoErrorTest(unittest.TestCase):

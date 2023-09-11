@@ -15,8 +15,8 @@
 	<line x1="348" y1="59" x2="388" y2="59" stroke="#000000" stroke-width="1"/>
 	<text x="348" y="73.1" fill="#000000" font-family="Gill Sans" font-size="15">pulvinar</text>
 	<text x="348" y="90.1" fill="#000000" font-family="Gill Sans" font-size="15">audis</text>
-	<text x="348" y="107" fill="#000000" font-family="Gill Sans" font-size="15">magna via mollis</text>
-	<text x="348" y="124" fill="#000000" font-family="Gill Sans" font-size="15">magna via vitae</text>
+	<text x="348" y="107" fill="#000000" font-family="Gill Sans" font-size="15">magna via mollis!</text>
+	<text x="348" y="124" fill="#000000" font-family="Gill Sans" font-size="15">magna via vitae!</text>
 </g>
 
 <!-- Entity LACUS -->

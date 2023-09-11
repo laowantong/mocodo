@@ -2,7 +2,7 @@ CREATE DATABASE IF NOT EXISTS inheritance;
 USE inheritance;
 
 CREATE TABLE LACUS (
-  magna VARCHAR(42),
+  magna VARCHAR(42) NOT NULL,
   vestibulum VARCHAR(42),
   tempor VARCHAR(42),
   fugit VARCHAR(42),
@@ -10,17 +10,17 @@ CREATE TABLE LACUS (
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 CREATE TABLE NEC (
-  magna VARCHAR(42),
+  magna VARCHAR(42) NOT NULL,
   vestibulum VARCHAR(42),
   pulvinar VARCHAR(42),
   audis VARCHAR(42),
-  magna_via_mollis VARCHAR(42),
-  magna_via_vitae VARCHAR(42),
+  magna_via_mollis VARCHAR(42) NOT NULL,
+  magna_via_vitae VARCHAR(42) NOT NULL,
   PRIMARY KEY (magna)
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 CREATE TABLE SODALES (
-  magna VARCHAR(42),
+  magna VARCHAR(42) NOT NULL,
   vestibulum VARCHAR(42),
   convallis VARCHAR(42),
   ipsum VARCHAR(42),
@@ -28,8 +28,8 @@ CREATE TABLE SODALES (
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 CREATE TABLE ULTRICES (
-  magna_sodales VARCHAR(42),
-  magna_lacus VARCHAR(42),
+  magna_sodales VARCHAR(42) NOT NULL,
+  magna_lacus VARCHAR(42) NOT NULL,
   PRIMARY KEY (magna_sodales, magna_lacus)
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 

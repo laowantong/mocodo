@@ -27,7 +27,7 @@
 	<text x="183" y="30.3" fill="#000000" font-family="Copperplate" font-size="18">LIGULA</text>
 	<text x="182" y="56.1" fill="#000000" font-family="Gill Sans" font-size="15">blandit</text>
 	<line x1="182" y1="59" x2="224" y2="59" stroke="#000000" stroke-width="1"/>
-	<text x="182" y="73.1" fill="#000000" font-family="Gill Sans" font-size="15">congue</text>
+	<text x="182" y="73.1" fill="#000000" font-family="Gill Sans" font-size="15">congue!</text>
 	<text x="182" y="90" fill="#000000" font-family="Gill Sans" font-size="15">metus</text>
 </g>
 

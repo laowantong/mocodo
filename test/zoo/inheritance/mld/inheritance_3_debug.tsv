@@ -1,7 +1,7 @@
 this_relation_name	label	data_type	nature	adjacent_source	outer_source	unicities
 TRISTIS	magna		primary_key			
 TRISTIS	vestibulum		normal_attribute			
-TRISTIS	type	INTEGER UNSIGNED	deleted_child_discriminant_XT			
+TRISTIS	type	UNSIGNED_INT_PLACEHOLDER	deleted_child_discriminant_XT			
 TRISTIS	convallis		deleted_child_attribute	SODALES		
 TRISTIS	ipsum		deleted_child_attribute	SODALES		
 TRISTIS	pulvinar		deleted_child_attribute	NEC		

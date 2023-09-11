@@ -8,5 +8,5 @@ Semaine: semaine, date début
 
 
 :
-Réservation: id résa, num résa, arrhes, date réservation, #semaine > Disponibilité > semaine, #voilier > Disponibilité > voilier
+Réservation: id résa, num résa, arrhes, date réservation, #semaine! > Disponibilité > semaine, #voilier! > Disponibilité > voilier
 :::

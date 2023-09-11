@@ -69,7 +69,7 @@ class CreateCifs(Visitor):
             new_cif_clauses.append(f"(CIF) ..{assoc_name}, ->{sep.join(entity_names)}: phantom{n}, phantom{n}")
         if new_cif_clauses == [""]:
             return ""
-        return "\n".join(new_phantom_clauses + new_cif_clauses)
+        return "\n".join(new_phantom_clauses + sorted(new_cif_clauses))
 
 
 def create_cifs(source, subsubarg):

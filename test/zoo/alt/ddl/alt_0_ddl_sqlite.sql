@@ -1,7 +1,7 @@
 .open alt;
 
 CREATE TABLE CLIENT (
-  ref_client VARCHAR(8),
+  ref_client VARCHAR(8) NOT NULL,
   nom VARCHAR(255),
   prenom VARCHAR(255),
   adresse VARCHAR(42),
@@ -10,7 +10,7 @@ CREATE TABLE CLIENT (
 );
 
 CREATE TABLE FOO (
-  foo VARCHAR(42),
+  foo VARCHAR(42) NOT NULL,
   bar VARCHAR(42),
   biz VARCHAR(42),
   buz VARCHAR(42),
@@ -20,8 +20,8 @@ CREATE TABLE FOO (
 );
 
 CREATE TABLE UTILISER (
-  carnet VARCHAR(42),
-  projet VARCHAR(42),
+  carnet VARCHAR(42) NOT NULL,
+  projet VARCHAR(42) NOT NULL,
   technicien VARCHAR(42),
   PRIMARY KEY (carnet, projet)
 );

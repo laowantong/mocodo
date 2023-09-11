@@ -2,7 +2,7 @@
 :
 Projet: projet, libellé
 :
-Affecter: #projet > Projet > projet, _#employé > Employé > employé, #site > Site > site
+Affecter: #projet > Projet > projet, _#employé > Employé > employé, #site! > Site > site
 :
 Site: site, position
 :

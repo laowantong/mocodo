@@ -74,7 +74,7 @@ class Runner:
                     source = self.flip(source, subargs)
                 elif subopt == "arrange":
                     source = self.arrange(source, subargs)
-                elif subopt == "guess" and "entities" in subargs:
+                elif subopt == "create" and "entities" in subargs:
                     source = guess_entities.run(source, subargs["entities"])
                 elif subopt in transformations.op_tk_rewritings: # ex.: create, delete, ascii, etc.
                     source = op_tk.run(source, op_name=subopt, subargs=subargs, params=self.params).rstrip()
@@ -160,9 +160,9 @@ class Runner:
         mcd = Mcd(source, self.get_font_metrics, **self.params)
         for subsubopt in subargs:
             if subsubopt in ("v", "vertical"):
-                source = mcd.get_horizontally_flipped_clauses()
-            elif subsubopt in ("h", "horizontal"):
                 source = mcd.get_vertically_flipped_clauses()
+            elif subsubopt in ("h", "horizontal"):
+                source = mcd.get_horizontally_flipped_clauses()
             elif subsubopt in ("d", "diagonal"):
                 source = mcd.get_diagonally_flipped_clauses()
             else:

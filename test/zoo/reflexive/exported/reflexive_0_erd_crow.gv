@@ -67,5 +67,5 @@ digraph{
     dir=both
   ]
   1 -> 1 [arrowhead="crowodot" arrowtail="crowodot" label="COMPOSER"]
-  2 -> 2 [arrowhead="crowodot" arrowtail="teetee" label="ENGENDRER"]
+  2 -> 2 [arrowhead="crowodot" arrowtail="teeodot" label="ENGENDRER"]
 }

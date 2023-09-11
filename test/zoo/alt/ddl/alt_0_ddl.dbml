@@ -3,7 +3,7 @@ Project alt {
 }
 
 Table CLIENT {
-  "Réf. client" VARCHAR(42) [pk]
+  "Réf. client" VARCHAR(42) [pk, not null]
   Nom VARCHAR(42)
   "Prénom" VARCHAR(42)
   Adresse VARCHAR(42)
@@ -15,7 +15,7 @@ Table CLIENT {
 }
 
 Table FOO {
-  foo VARCHAR(42) [pk]
+  foo VARCHAR(42) [pk, not null]
   bar VARCHAR(42)
   biz VARCHAR(42)
   buz VARCHAR(42)
@@ -29,8 +29,8 @@ Table FOO {
 }
 
 Table UTILISER {
-  carnet VARCHAR(42)
-  projet VARCHAR(42)
+  carnet VARCHAR(42) [not null]
+  projet VARCHAR(42) [not null]
   technicien VARCHAR(42)
   Indexes {
     (carnet, projet) [pk]

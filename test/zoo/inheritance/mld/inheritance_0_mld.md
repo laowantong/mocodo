@@ -18,28 +18,28 @@
   - Le champ _posuere_ constitue la clé primaire de la table. C'était déjà un identifiant de l'entité _LIBERO_.
   - Le champ _lacrima_ était déjà un simple attribut de l'entité _LIBERO_.
 
-- **QUAM** (<ins>cras</ins>, sed, _#magna_)
+- **QUAM** (<ins>cras</ins>, sed, _#magna!_)
   - Le champ _cras_ constitue la clé primaire de la table. C'était déjà un identifiant de l'entité _QUAM_.
   - Le champ _sed_ était déjà un simple attribut de l'entité _QUAM_.
-  - Le champ _magna_ est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle _VITAE_ à partir de l'entité _TRISTIS_ en perdant son caractère identifiant.
+  - Le champ à saisie obligatoire _magna_ est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle _VITAE_ à partir de l'entité _TRISTIS_ en perdant son caractère identifiant.
 
-- **SUSCIPIT** (<ins>orci</ins>, lorem, _#magna_)
+- **SUSCIPIT** (<ins>orci</ins>, lorem, _#magna!_)
   - Le champ _orci_ constitue la clé primaire de la table. C'était déjà un identifiant de l'entité _SUSCIPIT_.
   - Le champ _lorem_ était déjà un simple attribut de l'entité _SUSCIPIT_.
-  - Le champ _magna_ est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle _RHONCUS_ à partir de l'entité _TRISTIS_ en perdant son caractère identifiant.
+  - Le champ à saisie obligatoire _magna_ est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle _RHONCUS_ à partir de l'entité _TRISTIS_ en perdant son caractère identifiant.
 
-- **TRISTIS** (<ins>magna</ins>, vestibulum, _#fermentum_, type, convallis, ipsum, pulvinar, audis, _#gravida_, tempor, fugit)
+- **TRISTIS** (<ins>magna</ins>, vestibulum, _#fermentum!_, type, convallis?, ipsum?, pulvinar?, audis?, _#gravida?_, tempor?, fugit?)
   - Le champ _magna_ constitue la clé primaire de la table. C'était déjà un identifiant de l'entité _TRISTIS_.
   - Le champ _vestibulum_ était déjà un simple attribut de l'entité _TRISTIS_.
-  - Le champ _fermentum_ est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle _ELIT_ à partir de l'entité _CONSEQUAT_ en perdant son caractère identifiant.
+  - Le champ à saisie obligatoire _fermentum_ est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle _ELIT_ à partir de l'entité _CONSEQUAT_ en perdant son caractère identifiant.
   - Un champ entier _type_ est ajouté pour indiquer la nature de la spécialisation : 1 pour la première entité-fille, 2 pour la deuxième, etc. Jamais vide, du fait de la contrainte de totalité.
-  - Le champ _convallis_ a migré à partir de l'entité-fille _SODALES_ (supprimée).
-  - Le champ _ipsum_ a migré à partir de l'entité-fille _SODALES_ (supprimée).
-  - Le champ _pulvinar_ a migré à partir de l'entité-fille _NEC_ (supprimée).
-  - Le champ _audis_ a migré à partir de l'entité-fille _NEC_ (supprimée).
-  - Le champ _gravida_ est une clé étrangère. Il a migré à partir de l'entité-fille _NEC_ (supprimée) dans laquelle il avait déjà migré à partir de l'entité _CURABITUR_.
-  - Le champ _tempor_ a migré à partir de l'entité-fille _LACUS_ (supprimée).
-  - Le champ _fugit_ a migré à partir de l'entité-fille _LACUS_ (supprimée).
+  - Le champ à saisie facultative _convallis_ a migré à partir de l'entité-fille _SODALES_ (supprimée).
+  - Le champ à saisie facultative _ipsum_ a migré à partir de l'entité-fille _SODALES_ (supprimée).
+  - Le champ à saisie facultative _pulvinar_ a migré à partir de l'entité-fille _NEC_ (supprimée).
+  - Le champ à saisie facultative _audis_ a migré à partir de l'entité-fille _NEC_ (supprimée).
+  - Le champ à saisie facultative _gravida_ est une clé étrangère. Il a migré à partir de l'entité-fille _NEC_ (supprimée) dans laquelle il avait déjà migré à partir de l'entité _CURABITUR_.
+  - Le champ à saisie facultative _tempor_ a migré à partir de l'entité-fille _LACUS_ (supprimée).
+  - Le champ à saisie facultative _fugit_ a migré à partir de l'entité-fille _LACUS_ (supprimée).
 
 - **ULTRICES** (<ins>_#posuere_</ins>, <ins>_#magna_</ins>)
   - Le champ _posuere_ fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité _LIBERO_.

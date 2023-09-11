@@ -12,6 +12,6 @@ SODALES	convallis		normal_attribute
 SODALES	ipsum		normal_attribute			
 TRISTIS	magna		primary_key			
 TRISTIS	vestibulum		normal_attribute			
-TRISTIS	type	INTEGER UNSIGNED	deleted_child_discriminant_XT			
+TRISTIS	type	UNSIGNED_INT_PLACEHOLDER	deleted_child_discriminant_XT			
 ULTRICES	magna sodales		primary_foreign_key	SODALES	SODALES	
 ULTRICES	magna lacus		primary_foreign_key	LACUS	LACUS

@@ -1,15 +1,15 @@
-- TRISTIS (_magna_, vestibulum, type, convallis, ipsum, pulvinar, audis, #magna via mollis, #magna via vitae, tempor, fugit)
+- TRISTIS (_magna_, vestibulum, type, convallis?, ipsum?, pulvinar?, audis?, #magna via mollis?, #magna via vitae?, tempor?, fugit?)
   - Le champ « magna » constitue la clé primaire de la table. C'était déjà un identifiant de l'entité « TRISTIS ».
   - Le champ « vestibulum » était déjà un simple attribut de l'entité « TRISTIS ».
   - Un champ entier « type » est ajouté pour indiquer la nature de la spécialisation : 1 pour la première entité-fille, 2 pour la deuxième, etc. Jamais vide, du fait de la contrainte de totalité.
-  - Le champ « convallis » a migré à partir de l'entité-fille « SODALES » (supprimée).
-  - Le champ « ipsum » a migré à partir de l'entité-fille « SODALES » (supprimée).
-  - Le champ « pulvinar » a migré à partir de l'entité-fille « NEC » (supprimée).
-  - Le champ « audis » a migré à partir de l'entité-fille « NEC » (supprimée).
-  - Le champ « magna via mollis » est une clé étrangère. Il a migré à partir de l'entité-fille « NEC » (supprimée) dans laquelle il avait déjà migré à partir de l'entité « TRISTIS ».
-  - Le champ « magna via vitae » est une clé étrangère. Il a migré à partir de l'entité-fille « NEC » (supprimée) dans laquelle il avait déjà migré à partir de l'entité « TRISTIS ».
-  - Le champ « tempor » a migré à partir de l'entité-fille « LACUS » (supprimée).
-  - Le champ « fugit » a migré à partir de l'entité-fille « LACUS » (supprimée).
+  - Le champ à saisie facultative « convallis » a migré à partir de l'entité-fille « SODALES » (supprimée).
+  - Le champ à saisie facultative « ipsum » a migré à partir de l'entité-fille « SODALES » (supprimée).
+  - Le champ à saisie facultative « pulvinar » a migré à partir de l'entité-fille « NEC » (supprimée).
+  - Le champ à saisie facultative « audis » a migré à partir de l'entité-fille « NEC » (supprimée).
+  - Le champ à saisie facultative « magna via mollis » est une clé étrangère. Il a migré à partir de l'entité-fille « NEC » (supprimée) dans laquelle il avait déjà migré à partir de l'entité « TRISTIS ».
+  - Le champ à saisie facultative « magna via vitae » est une clé étrangère. Il a migré à partir de l'entité-fille « NEC » (supprimée) dans laquelle il avait déjà migré à partir de l'entité « TRISTIS ».
+  - Le champ à saisie facultative « tempor » a migré à partir de l'entité-fille « LACUS » (supprimée).
+  - Le champ à saisie facultative « fugit » a migré à partir de l'entité-fille « LACUS » (supprimée).
 
 - ULTRICES (_#magna sodales_, _#magna lacus_)
   - Les champs « magna sodales » et « magna lacus » constituent la clé primaire de la table. Ce sont des clés étrangères qui ont migré directement à partir de l'entité « TRISTIS ».

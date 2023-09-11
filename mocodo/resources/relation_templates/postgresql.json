@@ -9,14 +9,38 @@
       "comment": "Fill in empty data types with the default one.",
       "search": "^\\s*$",
       "replace": "VARCHAR(42)"
+    },
+    {
+      "order": 200,
+      "search": "BOOLEAN_PLACEHOLDER",
+      "replace": "BOOLEAN"
+    },
+    {
+      "order": 300,
+      "search": "UNSIGNED_INT_PLACEHOLDER",
+      "replace": "SMALLINT"
+    }
+  ],
+  "transform_optionality": [
+    {
+      "order": 100,
+      "comment": "Replace BANG with NOT NULL.",
+      "search": "^!$",
+      "replace": " NOT NULL"
+    },
+    {
+      "order": 200,
+      "comment": "Replace QMARK with NULL.",
+      "search": "^\\?$",
+      "replace": " NULL"
     }
   ],
   "compose_label_disambiguated_by_note": "{label_before_disambiguation}_{leg_note}",
   "compose_label_disambiguated_by_number": "{label_before_disambiguation}_{disambiguation_number}",
-  "compose_primary_key": "{label} {data_type},\nADD_PRIMARY_KEY {label}",
-  "compose_normal_attribute": "{label} {data_type}",
-  "compose_foreign_key":     "{label} {data_type},\nADD_FOREIGN_KEY ({label}) REFERENCES {outer_source} ({label_before_disambiguation})",
-  "compose_primary_foreign_key":     "{label} {data_type},\nADD_PRIMARY_KEY {label},\nADD_FOREIGN_KEY ({label}) REFERENCES {outer_source} ({label_before_disambiguation})",
+  "compose_primary_key": "{label} {data_type}{optionality},\nADD_PRIMARY_KEY {label}",
+  "compose_normal_attribute": "{label} {data_type}{optionality}",
+  "compose_foreign_key":     "{label} {data_type}{optionality},\nADD_FOREIGN_KEY ({label}) REFERENCES {outer_source} ({label_before_disambiguation})",
+  "compose_primary_foreign_key":     "{label} {data_type}{optionality},\nADD_PRIMARY_KEY {label},\nADD_FOREIGN_KEY ({label}) REFERENCES {outer_source} ({label_before_disambiguation})",
   "add_unicity_constraints": [
     {
       "order": 100,
@@ -27,18 +51,6 @@
   "column_separator": ",\n  ",
   "compose_relation": "CREATE TABLE {this_relation_name} (\n  {columns},\n  PRIMARY KEY (),\n);",
   "transform_relation": [
-    {
-      "order": 200,
-      "comment": "Replace the integer type placeholders.",
-      "search": " INTEGER UNSIGNED NOT NULL,\n",
-      "replace": " SMALLINT NOT NULL,\n"
-    },
-    {
-      "order": 300,
-      "comment": "Replace the integer type placeholders.",
-      "search": " INTEGER UNSIGNED,\n",
-      "replace": " SMALLINT,\n"
-    },
     {
       "order": 400,
       "comment": "Concatenate the primary keys and move them to the end of the table.",

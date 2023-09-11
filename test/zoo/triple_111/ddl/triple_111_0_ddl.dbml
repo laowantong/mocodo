@@ -3,9 +3,9 @@ Project triple_111 {
 }
 
 Table Utiliser {
-  carnet VARCHAR(42)
-  projet VARCHAR(42)
-  technicien VARCHAR(42)
+  carnet VARCHAR(42) [not null]
+  projet VARCHAR(42) [not null]
+  technicien VARCHAR(42) [not null]
   Indexes {
     (carnet, projet) [pk]
     (technicien, projet) [unique]

@@ -3,10 +3,10 @@ Project weak {
 }
 
 Table Appartement {
-  "code rue" VARCHAR(42)
-  "num immeuble" VARCHAR(42)
-  "num étage" VARCHAR(42)
-  "num appart." VARCHAR(42)
+  "code rue" VARCHAR(42) [not null]
+  "num immeuble" VARCHAR(42) [not null]
+  "num étage" VARCHAR(42) [not null]
+  "num appart." VARCHAR(42) [not null]
   "nb pièces" VARCHAR(42)
   Indexes {
     ("code rue", "num immeuble", "num étage", "num appart.") [pk]
@@ -14,8 +14,8 @@ Table Appartement {
 }
 
 Table Immeuble {
-  "code rue" VARCHAR(42)
-  "num immeuble" VARCHAR(42)
+  "code rue" VARCHAR(42) [not null]
+  "num immeuble" VARCHAR(42) [not null]
   "nb étages" VARCHAR(42)
   Indexes {
     ("code rue", "num immeuble") [pk]
@@ -23,14 +23,14 @@ Table Immeuble {
 }
 
 Table Rue {
-  "code rue" VARCHAR(42) [pk]
+  "code rue" VARCHAR(42) [pk, not null]
   "nom rue" VARCHAR(42)
 }
 
 Table "Étage" {
-  "code rue" VARCHAR(42)
-  "num immeuble" VARCHAR(42)
-  "num étage" VARCHAR(42)
+  "code rue" VARCHAR(42) [not null]
+  "num immeuble" VARCHAR(42) [not null]
+  "num étage" VARCHAR(42) [not null]
   "nb appartements" VARCHAR(42)
   Indexes {
     ("code rue", "num immeuble", "num étage") [pk]

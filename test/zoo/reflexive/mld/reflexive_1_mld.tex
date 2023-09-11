@@ -21,11 +21,11 @@
     \item Les champs \emph{pièce} et \emph{pièce.1} constituent la clé primaire de la table. Leur table d'origine (\emph{PIÈCE}) ayant été supprimée, ils ne sont pas considérés comme clés étrangères.
   \end{itemize}
 
-  \item \relat{HOMME} (\prim{Num. SS}, \attr{Nom}, \attr{Prénom}, \foreign{Num. SS.1})
+  \item \relat{HOMME} (\prim{Num. SS}, \attr{Nom}, \attr{Prénom}, \foreign{Num. SS.1!})
   \begin{itemize}
     \item Le champ \emph{Num. SS} constitue la clé primaire de la table. C'était déjà un identifiant de l'entité \emph{HOMME}.
     \item Les champs \emph{Nom} et \emph{Prénom} étaient déjà de simples attributs de l'entité \emph{HOMME}.
-    \item Le champ \emph{Num. SS.1} est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle \emph{ENGENDRER} à partir de l'entité \emph{HOMME} en perdant son caractère identifiant.
+    \item Le champ à saisie obligatoire \emph{Num. SS.1} est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle \emph{ENGENDRER} à partir de l'entité \emph{HOMME} en perdant son caractère identifiant.
   \end{itemize}
 
 \end{itemize}

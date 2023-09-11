@@ -43,8 +43,8 @@
 	<line x1="192" y1="121" x2="250" y2="121" stroke="#000000" stroke-width="1"/>
 	<text x="192" y="135.1" fill="#000000" font-family="Gill Sans" font-size="15">arrhes</text>
 	<text x="192" y="152.1" fill="#000000" font-family="Gill Sans" font-size="15">date résa</text>
-	<text x="192" y="169.1" fill="#000000" font-family="Gill Sans" font-size="15">num voilier</text>
-	<text x="192" y="186" fill="#000000" font-family="Gill Sans" font-size="15">num semaine</text>
+	<text x="192" y="169.1" fill="#000000" font-family="Gill Sans" font-size="15">num voilier!</text>
+	<text x="192" y="186" fill="#000000" font-family="Gill Sans" font-size="15">num semaine!</text>
 	<text x="192" y="203" fill="#000000" font-family="Gill Sans" font-size="15">tarif</text>
 </g>
 

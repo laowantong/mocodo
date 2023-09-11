@@ -15,19 +15,28 @@
       "comment": "Remove all spaces in the data type.",
       "search": " +",
       "replace": "_"
+    }
+  ],
+  "transform_optionality": [
+    {
+      "order": 100,
+      "comment": "Replace BANG with NOT NULL.",
+      "search": "^!$",
+      "replace": "not null"
     },
     {
-      "order": 300,
-      "search": "None",
-      "replace": "VARCHAR(42)"
+      "order": 200,
+      "comment": "Replace QMARK with NULL.",
+      "search": "^\\?$",
+      "replace": "null"
     }
   ],
   "compose_label_disambiguated_by_note": "{label_before_disambiguation} {leg_note}",
   "compose_label_disambiguated_by_number": "{label_before_disambiguation} {disambiguation_number}",
-  "compose_primary_key": "  \"{label}\" {data_type} [pk]\nADD_PRIMARY_KEY \"{label}\"",
-  "compose_normal_attribute": "  \"{label}\" {data_type}",
-  "compose_primary_foreign_key": "  \"{label}\" {data_type} [pk]\nADD_PRIMARY_KEY \"{label}\"\nADD_FOREIGN_KEY \"{this_relation_name}\".(\"{label}\") > \"{outer_source}\".(\"{label_before_disambiguation}\")",
-  "compose_foreign_key": "  \"{label}\" {data_type}\nADD_FOREIGN_KEY \"{this_relation_name}\".(\"{label}\") > \"{outer_source}\".(\"{label_before_disambiguation}\")",
+  "compose_primary_key": "  \"{label}\" {data_type} [{optionality}] [pk]\nADD_PRIMARY_KEY \"{label}\"",
+  "compose_normal_attribute": "  \"{label}\" {data_type} [{optionality}]",
+  "compose_primary_foreign_key": "  \"{label}\" {data_type} [{optionality}] [pk]\nADD_PRIMARY_KEY \"{label}\"\nADD_FOREIGN_KEY \"{this_relation_name}\".(\"{label}\") > \"{outer_source}\".(\"{label_before_disambiguation}\")",
+  "compose_foreign_key": "  \"{label}\" {data_type} [{optionality}]\nADD_FOREIGN_KEY \"{this_relation_name}\".(\"{label}\") > \"{outer_source}\".(\"{label_before_disambiguation}\")",
   "add_unicity_constraints": [
     {
       "order": 100,
@@ -95,6 +104,19 @@
       "order": 1200,
       "comment": "Clean up the empty Indexes.",
       "search": "(?sm)^  Indexes \\{\n  \\}\n",
+      "replace": ""
+    },
+    {
+      "order": 1300,
+      "comment": "Merge brackets and reverse their contents.",
+      "search": "\\[(.+?)\\] \\[(.+?)\\]",
+      "replace": "[\\2, \\1]",
+      "iterated": true
+    },
+    {
+      "order": 1400,
+      "comment": "Suppress empty brackets.",
+      "search": " \\[\\]",
       "replace": ""
     }
   ],
