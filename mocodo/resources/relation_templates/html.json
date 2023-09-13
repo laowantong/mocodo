@@ -1,5 +1,6 @@
 {
-    "parent": "html=c",
+    "help": "convert the conceptual model into a relational schema in HTML format",
+    "parent": "html-c",
     "add_unicity_constraints": [],
     "add_optionality_constraints": []
 }

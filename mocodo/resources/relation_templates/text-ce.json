@@ -1,9 +1,7 @@
 {
-  "parent": "html=c",
+  "parent": "html-ce",
   "extension": "txt",
   "highlight": "text",
-  "transform_attribute": [],
-  "transform_relation_name": [],
   "column_separator": ", ",
   "compose_relation": "- {this_relation_name} ({columns})",
   "transform_relation": [
@@ -32,8 +30,36 @@
       "replace": "\\1"
     }
   ],
-  "compose_relational_schema": "{relations}",
+  "compose_relational_schema": "{relations}{deleted_relations}",
   "transform_relational_schema": [
+    {
+      "order": 1000,
+      "comment": "Process italics",
+      "search": "<i>(.+?)</i>",
+      "replace": "« \\1 »"
+    },
+    {
+      "order": 1100,
+      "comment": "Process strong",
+      "search": "</?strong>",
+      "replace": ""
+    },
+    {
+      "order": 1200,
+      "comment": "Format lists",
+      "search": "    <li>(.+?)</li>",
+      "replace": "  - \\1"
+    },
+    {
+      "order": 1300,
+      "search": "<hr>",
+      "replace": "\n--------------------------------------------------------------------------------"
+    },
+    {
+      "order": 1400,
+      "search": "<div>\n  <span>(.+?)</span>\n</div>",
+      "replace": "\\1"
+    },
     {
       "order": 10000,
       "search": "(<sup>[^<]*)u0 ?([^<]*</sup>)",
@@ -89,6 +115,5 @@
       "search": " <sup>|</sup>",
       "replace": ""
     }
-
   ]
 }

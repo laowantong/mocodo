@@ -1,5 +1,5 @@
 {
-  "parent": "html=c",
+  "parent": "html-c",
   "extension": "tex",
   "highlight": "latex",
   "column_separator": ", ",

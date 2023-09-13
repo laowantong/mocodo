@@ -1,4 +1,5 @@
 {
+  "help": "convert the conceptual model into a physical model for SQLite",
   "stem_suffix": "_ddl_sqlite",
   "extension": "sql",
   "to_defer": false,

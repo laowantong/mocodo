@@ -1,5 +1,5 @@
 {
-    "parent": "text=c",
+    "parent": "text-ces",
     "add_unicity_constraints": [],
     "add_optionality_constraints": []
 }

@@ -60,7 +60,7 @@ class Runner:
         if self.params["mld"] or ("transform" in self.params and self.params["transform"] == []):
             # In case there is an option `--mld` or an option `--transform` without arguments,
             # inject manually the equivalent --convert sub-option
-            self.params["convert"].append(("rel", {}))
+            self.params["convert"].append(("markdown", {}))
             response["must_display_default_mld"] = True
 
         if self.params["rewrite"]:
@@ -106,14 +106,14 @@ class Runner:
                     if deferred_output_formats == ["raw"]:
                         deferred_output_formats.append("svg")
                     continue
-                if subopt == "rel":
-                    (subsubopt, subsubarg) = next(iter(subargs.items()), ("markdown", "")) # ignore all sub-arguments after the first one
-                    if subsubarg and set("ces").issuperset(subsubarg):
-                        stem_or_path = f"{subsubopt}={''.join(sorted(subsubarg))}"
+                official_template_dir = Path(self.params["script_directory"], "resources", "relation_templates")
+                if Path(official_template_dir, f"{subopt}.json").is_file():
+                    template_suffix = next(iter(subargs.keys()), "") # ignore all sub-arguments after the first one
+                    if template_suffix and set("ces").issuperset(template_suffix):
+                        stem = f"{subopt}-{''.join(sorted(template_suffix))}"
                     else:
-                        stem_or_path = subsubopt
-                    official_template_dir = Path(self.params["script_directory"], "resources", "relation_templates")
-                    template = read_template(stem_or_path, official_template_dir)
+                        stem = subopt
+                    template = read_template(stem, official_template_dir)
                     if template["extension"] == "sql":
                         source = op_tk.run(source, "ascii", {"labels": 1, "leg_notes": 1}, self.params)
                         source = op_tk.run(source, "snake", {"labels": 1, "leg_notes": 1}, self.params)
@@ -150,7 +150,7 @@ class Runner:
             Path(f"{self.params['output_name']}_response_for_magic_command.json").write_text(response)
 
         if converted_file_paths and not self.params["rewrite"]:
-            return # Don't calculate the MCD if the user only wants to convert the MCD to another format.
+            return # Don't calculate the MCD if the user only wants to convert the conceptual model to another format.
         
         mcd = Mcd(source, self.get_font_metrics, **self.params)
         self.control_for_overlaps(mcd)

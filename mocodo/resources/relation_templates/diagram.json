@@ -1,4 +1,5 @@
 {
+  "help": "convert the conceptual model into a relational diagram in Mocodo syntax",
   "stem_suffix": "_mld",
   "extension": "mcd",
   "to_defer": false,

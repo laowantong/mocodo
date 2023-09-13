@@ -1,4 +1,5 @@
 import argparse
+from collections import defaultdict
 import gettext
 import json
 import locale
@@ -7,7 +8,6 @@ import random
 import re
 import shutil
 import sys
-from io import open
 from pathlib import Path
 import textwrap
 
@@ -16,6 +16,8 @@ from mocodo.tools.various import invert_dict
 
 from .common import version
 from .mocodo_error import MocodoError
+
+SCRIPT_DIRECTORY = os.path.dirname(os.path.realpath(os.path.join(__file__)))
 
 DESCRIPTION = """
 NAME:
@@ -57,7 +59,7 @@ CONTACT:
 
 
 
-def init_localization(script_directory, language):
+def init_localization(language):
     if not language:
         if (
             sys.platform.lower().startswith("darwin")
@@ -70,7 +72,7 @@ def init_localization(script_directory, language):
             except:
                 language = "en"
     try:
-        path = Path(f"{script_directory}/resources/res/messages_{language}.mo")
+        path = Path(f"{SCRIPT_DIRECTORY}/resources/res/messages_{language}.mo")
         with path.open("rb") as mo_contents:
             trans = gettext.GNUTranslations(mo_contents)
     except IOError:
@@ -87,7 +89,7 @@ def init_localization(script_directory, language):
 
 class Transformations:
 
-    TRANSFORMATIONS = {
+    metadata = {
         "arrange": {
             "category": "rw",
             "help": "rearrange the layout with either a Branch & Bound or a Genetic Algorithm",
@@ -119,7 +121,7 @@ class Transformations:
         },
         "chen": {
             "category": "cv",
-            "help": "convert the MCD into a Chen's ERD",
+            "help": "convert the conceptual model into a Chen's ERD",
             "aliases": ["Chen"],
         },
         "create": {
@@ -130,12 +132,12 @@ class Transformations:
         },
         "crow": {
             "category": "cv",
-            "help": "convert the MCD into a crow's foot ERD",
+            "help": "convert the conceptual model into a crow's foot ERD",
             "aliases": ["crowfoot", "crowsfoot"],
         },
         "data_dict": {
             "category": "cv",
-            "help": "collect all the attributes of the MCD into a Mardown or TSV table",
+            "help": "collect all the attributes of the MCD in a table",
             "aliases": ["data-dict", "data-dictionary"],
         },
         "defer": {
@@ -193,11 +195,6 @@ class Transformations:
             "aliases": ["rand", "random", "randomise", "obfuscate", "obscure"],
             "op_tk": True,
         },
-        "rel": {
-            "category": "cv",
-            "help": "convert the MCD into a relational or physical model",
-            "aliases": ["relations", "relational", "mld", "ddl", "ldd", "sql"],
-        },
         "snake": {
             "category": "rw",
             "help": "rewrite the given elements in snake_case",
@@ -223,7 +220,7 @@ class Transformations:
         },
         "uml": {
             "category": "cv",
-            "help": "convert the MCD into a UML class diagram",
+            "help": "convert the conceptual model into a UML class diagram",
             "aliases": ["UML", "class_diagram"],
         },
         "upper": {
@@ -235,10 +232,30 @@ class Transformations:
     }
 
     def __init__(self):
-        self.normalize = invert_dict({k: v["aliases"] for (k, v) in self.TRANSFORMATIONS.items()})
-        self.normalize.update((k, k) for k in self.TRANSFORMATIONS)
+        template_folder_path = Path(f"{SCRIPT_DIRECTORY}/resources/relation_templates")
+        aliases = defaultdict(list)
+        for path in template_folder_path.glob("*.json"):
+            if path.stem in self.metadata:
+                raise MocodoError(26, _("The file '{path}' has the same name as the builtin transformation '{path.stem}'. Please rename it.").format(path=path)) # fmt: skip
+            if "-" in path.name:
+                continue
+            data = json.loads(path.read_text())
+            if "help" in data:
+                self.metadata[path.stem] = {
+                    "category": "cv",
+                    "help": data["help"],
+                    "aliases": [],
+                }
+            elif "parent" in data:
+                aliases[data["parent"]].append(path.stem)
+        for (parent, children) in aliases.items():
+            self.metadata[parent]["aliases"] = children
+        self.normalize = invert_dict({k: v["aliases"] for (k, v) in self.metadata.items()})
+        self.normalize.update((k, k) for k in self.metadata)
+        # recreate the dictionary to have it in alphabetical order
+        self.metadata = {k: self.metadata[k] for k in sorted(self.metadata.keys(), key=lambda x: x.lower())}
         self.operations = {"rw": [], "cv": []}
-        self.op_tk_rewritings = set(k for (k, v) in self.TRANSFORMATIONS.items() if v.get("op_tk"))
+        self.op_tk_rewritings = set(k for (k, v) in self.metadata.items() if v.get("op_tk"))
     
     def extract_subargs(self, arg):
         (subopt, __, tail) = arg.partition(":")
@@ -248,7 +265,7 @@ class Transformations:
             valid = ", ".join(sorted(self.normalize.keys(), key=lambda x: x.lower()))
             raise MocodoError(45, _("The transformation '{subopt}' is not among the possible ones:\n{valid}.").format(subopt=subopt, valid=valid)) # fmt: skip
         result = extract_subargs(f"{subopt}:{tail}") # NB: calls the global function, not the method
-        category = self.TRANSFORMATIONS[subopt]["category"]
+        category = self.metadata[subopt]["category"]
         if category != "cv":
             self.operations["rw"].append(result)
         if category != "rw":
@@ -259,10 +276,10 @@ class Transformations:
         result = []
         for (category, header) in ("rw", "REWRITING OPERATIONS"), ("cv", "CONVERSION OPERATIONS"), ("both", "BOTH CATEGORIES"):
             result.append(f"{header}:")
-            for (name, transformation) in self.TRANSFORMATIONS.items():
+            for (name, transformation) in self.metadata.items():
                 if transformation["category"] != category:
                     continue
-                aliases = self.TRANSFORMATIONS[name]["aliases"]
+                aliases = self.metadata[name]["aliases"]
                 aliases = f". Aliases: {', '.join(aliases)}" if aliases else ""
                 result.append(f"- {name}: {transformation['help']}{aliases};")
             result[-1] = result[-1][:-1] + "."  # replace the last semicolon by a dot
@@ -333,7 +350,6 @@ def positive_integer(string):
 
 def parsed_arguments():
 
-    script_directory = os.path.dirname(os.path.realpath(os.path.join(__file__)))
     parser = argparse.ArgumentParser(
         prog="mocodo",
         add_help=False,
@@ -387,7 +403,7 @@ def parsed_arguments():
         if os.path.exists(args.input + ".mcd"):
             args.input += ".mcd"
         else:  # the user has explicitely specified a non existent input file
-            init_localization(script_directory, default_params.get("language", args.language))
+            init_localization(default_params.get("language", args.language))
             raise MocodoError(2, _('The file "{input}" doesn\'t exist.').format(input=args.input))  # fmt: skip
     default_params["input"] = args.input
 
@@ -395,10 +411,7 @@ def parsed_arguments():
         default_params.update(json.loads(Path(args.params_path).read_text()))
     if not default_params["input"]:
         default_params["input"] = "sandbox.mcd"
-    default_params["language"] = init_localization(
-        script_directory,
-        default_params.get("language", args.language),
-    )
+    default_params["language"] = init_localization(default_params.get("language", args.language))
     default_params.setdefault("output_dir", os.path.dirname(default_params["input"]))
 
     mocodo_group.add_argument("--help",
@@ -450,7 +463,7 @@ def parsed_arguments():
     )
     io_group.add_argument("--mld",
         action="store_true",
-        help="backward compatibility alias for '-t' (with no arguments). Same as '-t rel:markdown=0' but, under Jupyter Notebook, does not prevent the rendering of the conceptual diagram in the cell output",
+        help="backward compatibility alias for '-t' (with no arguments). Same as '-t markdown' but, under Jupyter Notebook, does not prevent the rendering of the conceptual diagram in the cell output",
     )
     io_group.add_argument("--is_magic",
         action="store_true",
@@ -552,15 +565,15 @@ def parsed_arguments():
 
     parser.set_defaults(**default_params)
     params = vars(parser.parse_args(remaining_args))
-    params["script_directory"] = script_directory
+    params["script_directory"] = SCRIPT_DIRECTORY
     params["output_name"] = Path(params["output_dir"]) / Path(params["input"]).stem
     params["rewrite"] = transformations.operations["rw"]
     params["convert"] = transformations.operations["cv"]
     params["redirect_output"] = ("-T" in remaining_args or "--Transform" in remaining_args)
-    params["keys_to_hide"] = ["keys_to_hide", "params_path", "script_directory", "output_name", "rewrite", "convert", "redirect_output"]
+    params["keys_to_hide"] = ["keys_to_hide", "params_path", "SCRIPT_DIRECTORY", "output_name", "rewrite", "convert", "redirect_output"]
 
     if not os.path.exists(params["input"]):
-        path = Path(params["script_directory"], "resources", "pristine_sandbox.mcd")
+        path = Path(params["SCRIPT_DIRECTORY"], "resources", "pristine_sandbox.mcd")
         shutil.copyfile(path, params["input"])
     random.seed(params["seed"])
     try:

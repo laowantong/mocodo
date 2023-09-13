@@ -1,4 +1,5 @@
 {
+  "help": "convert the conceptual model into a relational schema in DBML format",
   "stem_suffix": "_ddl",
   "extension": "dbml",
   "to_defer": false,

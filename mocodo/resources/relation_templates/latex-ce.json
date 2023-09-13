@@ -1,5 +1,5 @@
 {
-  "parent": "html=ce",
+  "parent": "html-ce",
   "extension": "tex",
   "highlight": "latex",
   "column_separator": ", ",

@@ -1,5 +1,5 @@
 {
-  "parent": "html=ce",
+  "parent": "html-ce",
   "extension": "md",
   "highlight": "markdown",
   "column_separator": ", ",

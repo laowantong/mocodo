@@ -1,4 +1,5 @@
 {
+  "help": "convert the conceptual model into a dependency graph",
   "stem_suffix": "_dependencies",
   "extension": "gv",
   "to_defer": true,
