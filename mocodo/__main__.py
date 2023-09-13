@@ -108,7 +108,10 @@ class Runner:
                     continue
                 if subopt == "rel":
                     (subsubopt, subsubarg) = next(iter(subargs.items()), ("markdown", "")) # ignore all sub-arguments after the first one
-                    stem_or_path = f"{subsubopt}={subsubarg}" if subsubarg else subsubopt
+                    if subsubarg and set("ces").issuperset(subsubarg):
+                        stem_or_path = f"{subsubopt}={''.join(sorted(subsubarg))}"
+                    else:
+                        stem_or_path = subsubopt
                     official_template_dir = Path(self.params["script_directory"], "resources", "relation_templates")
                     template = read_template(stem_or_path, official_template_dir)
                     if template["extension"] == "sql":

@@ -53,7 +53,9 @@ def read_template(stem_or_path, official_template_dir):
                 # create or update a scalar value
                 result[key] = template[key]
             else:
-                # update a list of dictionaries having an "order" key
+                if template[key] == []:
+                    result[key] = []                    
+                # update a non-empty list of dictionaries having an "order" key
                 for new_dictionary in template[key]:
                     order = new_dictionary["order"]
                     orders = [d["order"] for d in result[key]] # Prior to Python 3.10, bisect_left has no `key` argument

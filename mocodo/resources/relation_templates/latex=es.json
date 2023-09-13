@@ -1,5 +1,5 @@
 {
-    "parent": "latex=c",
+    "parent": "latex=ces",
     "add_unicity_constraints": [],
     "add_optionality_constraints": []
 }

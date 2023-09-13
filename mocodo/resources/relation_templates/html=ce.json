@@ -1,5 +1,5 @@
 {
-  "parent": "html=0",
+  "parent": "html=c",
   "compose_association_attribute": "<span class='normal'>{label}</span><item>Le champ <i>{label}</i> était déjà un simple attribut de l'association <i>{this_relation_name}</i>.</item>",
   "compose_deleted_child_attribute": "<span class='normal'>{label}</span><item>Le champ <i>{label}</i> a migré à partir de l'entité-fille <i>{adjacent_source}</i> (supprimée).</item>",
   "compose_deleted_child_discriminant_": "<span class='normal'>{label}</span><item>Un champ entier <i>{label}</i> est ajouté pour indiquer la nature de la spécialisation. Il est interprété comme un code binaire : bit 1 pour la première entité-fille, bit 2 pour la deuxième, etc. Peut être vide, du fait de l'absence de contrainte de totalité.</item>",

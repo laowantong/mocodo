@@ -17,5 +17,11 @@
         }
     ],
     "empty": [],
-    "unchanged": "unchanged"
+    "unchanged": "unchanged",
+    "force_empty_list": [
+        {
+            "order": 10,
+            "qux": "quux"
+        }
+    ]
 }

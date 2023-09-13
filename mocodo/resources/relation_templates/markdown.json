@@ -1,3 +1,5 @@
 {
-    "parent": "markdown=0"
+    "parent": "markdown=c",
+    "add_unicity_constraints": [],
+    "add_optionality_constraints": []
 }

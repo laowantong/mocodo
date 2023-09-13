@@ -83,7 +83,7 @@ def main():
 
     templates = []
     for template_path in TEMPLATE_DIR.glob("*.json"):
-        if re.match(r"(html|markdown|latex|text)(=0|=1|=2|)$", template_path.stem):
+        if re.match(r"(html|markdown|latex|text)(?!=ces)", template_path.stem):
             continue
         templates.append(read_template(template_path.stem, TEMPLATE_DIR))
 
