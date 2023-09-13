@@ -1,9 +1,10 @@
 erDiagram
-  LACUS {
-    TYPE blandit PK
-    TYPE elit
+  agence {
+    TYPE id_agence PK
+    TYPE nom_agence
   }
-  EROS {
-    TYPE congue PK
+  direction_regionale {
+    TYPE id_dir PK
+    TYPE nom_dir
   }
-  LACUS }|--o| EROS: LIGULA
+  direction_regionale |o--|{ agence: superviser

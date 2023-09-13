@@ -8,8 +8,8 @@ graph{
     penwidth=1.5
     fillcolor="#FFFFFF"
   ]
-  1 [label="LACUS"]
-  5 [label="EROS"]
+  1 [label="Agence"]
+  5 [label="Direction\nrégionale"]
 
   // Normal entity attributes
   node [
@@ -17,17 +17,12 @@ graph{
     penwidth=1.5
     fillcolor="#FFFFFF"
   ]
-  3 [label="elit"]
+  3 [label="nom\nagence"]
+  7 [label="nom dir."]
 
   // Weak and strong entity attributes
-  2 [label=<<u>blandit</u>>]
-  7 [label=<<u>congue</u>>]
-
-  // Relationship attributes
-  node [
-    fillcolor="#FFFFFF"
-  ]
-  6 [label="metus"]
+  2 [label=<<u>id.<br/>agence</u>>]
+  6 [label=<<u>id. dir.</u>>]
 
   // Relationships
   node [
@@ -36,7 +31,7 @@ graph{
     penwidth=1.5
     fillcolor="#FFFFFF"
   ]
-  4 [label="LIGULA"]
+  4 [label="Superviser"]
 
   // Edges between entities and attributes
   edge [
@@ -44,11 +39,8 @@ graph{
   ]
   1 -- 2
   1 -- 3
+  5 -- 6
   5 -- 7
-
-  // Edges between relationships and attributes
-  edge [color="#000000"]
-  4 -- 6
 
   // Edges between entities and relationships
   edge [

@@ -1,15 +1,15 @@
 {
-  "width": 422,
-  "height": 112,
+  "width": 606,
+  "height": 94,
   "cx": [
-    [ "LACUS", 77 ],
-    [ "LIGULA", 216 ],
-    [ "EROS", 350 ]
+    [ "Agence", 84 ],
+    [ "Superviser", 248 ],
+    [ "Direction régionale", 467 ]
   ],
   "cy": [
-    [ "LACUS", 56 ],
-    [ "LIGULA", 56 ],
-    [ "EROS", 56 ]
+    [ "Agence", 47 ],
+    [ "Superviser", 47 ],
+    [ "Direction régionale", 47 ]
   ],
   "shift": [],
   "ratio": []

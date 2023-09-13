@@ -1,2 +1,2 @@
-[EROS] ==1== <LIGULA>
-[LACUS] --N-- <LIGULA>
+[Agence] --N-- <Superviser>
+[Direction régionale] ==1== <Superviser>

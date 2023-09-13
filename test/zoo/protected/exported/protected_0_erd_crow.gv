@@ -29,11 +29,11 @@ digraph{
                 <font
                     color="#000000"
                     point-size="18"
-                >LACUS</font>
+                >Agence</font>
             </td>
         </tr>
-        <tr><td>PK</td><td align="left">blandit</td></tr>
-        <tr><td> </td><td align="left">elit</td></tr>
+        <tr><td>PK</td><td align="left">id. agence</td></tr>
+        <tr><td> </td><td align="left">nom agence</td></tr>
     </table>
 >]
   2 [label=<<table
@@ -49,10 +49,11 @@ digraph{
                 <font
                     color="#000000"
                     point-size="18"
-                >EROS</font>
+                >Direction régionale</font>
             </td>
         </tr>
-        <tr><td>PK</td><td align="left">congue</td></tr>
+        <tr><td>PK</td><td align="left">id. dir.</td></tr>
+        <tr><td> </td><td align="left">nom dir.</td></tr>
     </table>
 >]
 
@@ -65,5 +66,5 @@ digraph{
     fontsize=11
     dir=both
   ]
-  1 -> 2 [arrowhead="teeodot" arrowtail="crowtee" label="LIGULA"]
+  2 -> 1 [arrowhead="crowtee" arrowtail="teeodot" label="Superviser"]
 }

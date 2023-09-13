@@ -17,36 +17,36 @@
 <!-- TO_BE_DELETED_BY_MOCODO_MAGIC --><figure><center><img src="protected_0_mld.svg"/></center><figcaption>MCD <i>protected</i></figcaption></figure>
 <div id='mld'>
 <div>
-  <details><summary><span class='relation'>EROS</span> (
-    <span class='primary'>congue</span>
+  <details><summary><span class='relation'>Agence</span> (
+    <span class='primary'>id. agence</span>,
+    <span class='normal'>nom agence</span>
   )</summary>
   <ul>
-    <li>Le champ <i>congue</i> constitue la clé primaire de la table. C'était déjà un identifiant de l'entité <i>EROS</i>.</li>
+    <li>Le champ <i>id. agence</i> constitue la clé primaire de la table. C'était déjà un identifiant de l'entité <i>Agence</i>.</li>
+    <li>Le champ <i>nom agence</i> était déjà un simple attribut de l'entité <i>Agence</i>.</li>
   </ul></details>
 </div>
 
 <div>
-  <details><summary><span class='relation'>LACUS</span> (
-    <span class='primary'>blandit</span>,
-    <span class='normal'>elit</span>
+  <details><summary><span class='relation'>Direction régionale</span> (
+    <span class='primary'>id. dir.</span>,
+    <span class='normal'>nom dir.</span>
   )</summary>
   <ul>
-    <li>Le champ <i>blandit</i> constitue la clé primaire de la table. C'était déjà un identifiant de l'entité <i>LACUS</i>.</li>
-    <li>Le champ <i>elit</i> était déjà un simple attribut de l'entité <i>LACUS</i>.</li>
+    <li>Le champ <i>id. dir.</i> constitue la clé primaire de la table. C'était déjà un identifiant de l'entité <i>Direction régionale</i>.</li>
+    <li>Le champ <i>nom dir.</i> était déjà un simple attribut de l'entité <i>Direction régionale</i>.</li>
   </ul></details>
 </div>
 
 <div>
-  <details><summary><span class='relation'>LIGULA</span> (
-    <span class='foreign primary'>#blandit</span>,
-    <span class='foreign'>#congue!</span>,
-    <span class='normal'>metus</span>
+  <details><summary><span class='relation'>Superviser</span> (
+    <span class='foreign primary'>#id. agence</span>,
+    <span class='foreign'>#id. dir.!</span>
   )</summary>
   <ul>
     <li><strong>Avertissement.</strong> Table résultant de la conversion forcée d'une association DF.</li>
-    <li>Le champ <i>blandit</i> constitue la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité <i>LACUS</i>.</li>
-    <li>Le champ à saisie obligatoire <i>congue</i> est une clé étrangère. Il a migré directement à partir de l'entité <i>EROS</i> en perdant son caractère identifiant.</li>
-    <li>Le champ <i>metus</i> était déjà un simple attribut de l'association <i>LIGULA</i>.</li>
+    <li>Le champ <i>id. agence</i> constitue la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité <i>Agence</i>.</li>
+    <li>Le champ à saisie obligatoire <i>id. dir.</i> est une clé étrangère. Il a migré directement à partir de l'entité <i>Direction régionale</i> en perdant son caractère identifiant.</li>
   </ul></details>
 </div>
 

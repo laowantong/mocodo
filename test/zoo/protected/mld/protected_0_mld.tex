@@ -16,23 +16,23 @@
 \maketitle
 
 \begin{itemize}
-  \item \relat{EROS} (\prim{congue})
+  \item \relat{Agence} (\prim{id. agence}, \attr{nom agence})
   \begin{itemize}
-    \item Le champ \emph{congue} constitue la clé primaire de la table. C'était déjà un identifiant de l'entité \emph{EROS}.
+    \item Le champ \emph{id. agence} constitue la clé primaire de la table. C'était déjà un identifiant de l'entité \emph{Agence}.
+    \item Le champ \emph{nom agence} était déjà un simple attribut de l'entité \emph{Agence}.
   \end{itemize}
 
-  \item \relat{LACUS} (\prim{blandit}, \attr{elit})
+  \item \relat{Direction régionale} (\prim{id. dir.}, \attr{nom dir.})
   \begin{itemize}
-    \item Le champ \emph{blandit} constitue la clé primaire de la table. C'était déjà un identifiant de l'entité \emph{LACUS}.
-    \item Le champ \emph{elit} était déjà un simple attribut de l'entité \emph{LACUS}.
+    \item Le champ \emph{id. dir.} constitue la clé primaire de la table. C'était déjà un identifiant de l'entité \emph{Direction régionale}.
+    \item Le champ \emph{nom dir.} était déjà un simple attribut de l'entité \emph{Direction régionale}.
   \end{itemize}
 
-  \item \relat{LIGULA} (\foreign{\prim{blandit}}, \foreign{congue!}, \attr{metus})
+  \item \relat{Superviser} (\foreign{\prim{id. agence}}, \foreign{id. dir.!})
   \begin{itemize}
     \item \paragraph{Avertissement.} Table résultant de la conversion forcée d'une association DF.
-    \item Le champ \emph{blandit} constitue la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité \emph{LACUS}.
-    \item Le champ à saisie obligatoire \emph{congue} est une clé étrangère. Il a migré directement à partir de l'entité \emph{EROS} en perdant son caractère identifiant.
-    \item Le champ \emph{metus} était déjà un simple attribut de l'association \emph{LIGULA}.
+    \item Le champ \emph{id. agence} constitue la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité \emph{Agence}.
+    \item Le champ à saisie obligatoire \emph{id. dir.} est une clé étrangère. Il a migré directement à partir de l'entité \emph{Direction régionale} en perdant son caractère identifiant.
   \end{itemize}
 
 \end{itemize}

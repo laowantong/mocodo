@@ -1,8 +1,8 @@
 %%mocodo
 :
-LACUS: blandit, elit
+Agence: id. agence, nom agence
 :
-LIGULA: #blandit > LACUS > blandit, #congue! > EROS > congue, metus
+Superviser: #id. agence > Agence > id. agence, #id. dir.! > Direction régionale > id. dir.
 :
-EROS: congue
+Direction régionale: id. dir., nom dir.
 :

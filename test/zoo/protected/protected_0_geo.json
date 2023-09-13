@@ -1,19 +1,19 @@
 {
-  "width": 304,
+  "width": 488,
   "height": 94,
   "cx": [
-    [ "LACUS", 48 ],
-    [ "LIGULA", 157 ],
-    [ "EROS", 261 ]
+    [ "Agence", 55 ],
+    [ "Superviser", 189 ],
+    [ "Direction régionale", 378 ]
   ],
   "cy": [
-    [ "LACUS", 47 ],
-    [ "LIGULA", 47 ],
-    [ "EROS", 47 ]
+    [ "Agence", 47 ],
+    [ "Superviser", 47 ],
+    [ "Direction régionale", 47 ]
   ],
   "shift": [
-    [ "LIGULA,LACUS,0", 0 ],
-    [ "LIGULA,EROS,0", 0 ]
+    [ "Superviser,Direction régionale,0", 0 ],
+    [ "Superviser,Agence,0", 0 ]
   ],
   "ratio": []
 }

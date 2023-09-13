@@ -3,19 +3,16 @@
 !define Table(x) class "x" << (T,#FFFFFF) >>
 !define pk(x) <b>x</b>
 
-Table("LACUS") {
-    {field} + pk(blandit)
-    {field} + elit
+Table("Agence") {
+    {field} + pk(id. agence)
+    {field} + nom agence
 }
 
-"LACUS" "1..*" --- "1..*" "EROS": "LIGULA"
-("LACUS", "EROS") .. "LIGULA"
-Table("LIGULA") {
-    {field} + metus
-}
+"Direction régionale" "1..*" --- "1..*" "Agence": "Superviser"
 
-Table("EROS") {
-    {field} + pk(congue)
+Table("Direction régionale") {
+    {field} + pk(id. dir.)
+    {field} + nom dir.
 }
 
 @enduml

@@ -1,3 +1,4 @@
-LACUS: blandit, elit
-+LIGULA, 01 LACUS, 1N EROS: metus
-+EROS: congue
+% source: https://www.developpez.net/forums/d962823/general-developpement/alm/methodes/merise/regles-passage-mcd-mld-associations-binaires/
+Agence: id. agence, nom agence
++Superviser, 1N Direction régionale, 01 Agence
++Direction régionale: id. dir., nom dir.

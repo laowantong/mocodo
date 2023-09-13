@@ -1,12 +1,12 @@
-- EROS (_congue_)
-  - Le champ « congue » constitue la clé primaire de la table. C'était déjà un identifiant de l'entité « EROS ».
+- Agence (_id. agence_, nom agence)
+  - Le champ « id. agence » constitue la clé primaire de la table. C'était déjà un identifiant de l'entité « Agence ».
+  - Le champ « nom agence » était déjà un simple attribut de l'entité « Agence ».
 
-- LACUS (_blandit_, elit)
-  - Le champ « blandit » constitue la clé primaire de la table. C'était déjà un identifiant de l'entité « LACUS ».
-  - Le champ « elit » était déjà un simple attribut de l'entité « LACUS ».
+- Direction régionale (_id. dir._, nom dir.)
+  - Le champ « id. dir. » constitue la clé primaire de la table. C'était déjà un identifiant de l'entité « Direction régionale ».
+  - Le champ « nom dir. » était déjà un simple attribut de l'entité « Direction régionale ».
 
-- LIGULA (_#blandit_, #congue!, metus)
+- Superviser (_#id. agence_, #id. dir.!)
   - Avertissement. Table résultant de la conversion forcée d'une association DF.
-  - Le champ « blandit » constitue la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité « LACUS ».
-  - Le champ à saisie obligatoire « congue » est une clé étrangère. Il a migré directement à partir de l'entité « EROS » en perdant son caractère identifiant.
-  - Le champ « metus » était déjà un simple attribut de l'association « LIGULA ».
+  - Le champ « id. agence » constitue la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité « Agence ».
+  - Le champ à saisie obligatoire « id. dir. » est une clé étrangère. Il a migré directement à partir de l'entité « Direction régionale » en perdant son caractère identifiant.
