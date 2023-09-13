@@ -126,7 +126,7 @@ class Transformations:
         },
         "create": {
             "category": "rw",
-            "help": "try to infer types, entities, CIFs or DF arrows from the existing elements.",
+            "help": "try to infer types, entities, CIFs or DF arrows from the existing elements",
             "aliases": ["add", "insert", "make", "guess", "infer", "complete", "new"],
             "op_tk": True,
         },
@@ -194,6 +194,11 @@ class Transformations:
             "help": "keep the stucture, but replace the given elements with random ones whenever possible",
             "aliases": ["rand", "random", "randomise", "obfuscate", "obscure"],
             "op_tk": True,
+        },
+        "relation": {
+            "category": "cv",
+            "help": "convert the conceptual model into a relational schema with the given template path",
+            "aliases": ["relation_template"]
         },
         "snake": {
             "category": "rw",

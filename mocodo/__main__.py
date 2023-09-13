@@ -101,19 +101,29 @@ class Runner:
                 if subopt == "mute": # communicate with the magic command by creating a temporary file
                     response["is_muted"] = True
                     continue
+
                 if subopt == "defer":
                     deferred_output_formats = list(subargs) or ["svg"]
                     if deferred_output_formats == ["raw"]:
                         deferred_output_formats.append("svg")
                     continue
+
+                # Try to interpret subopt as the stem or path of a relation template
+                template = None
                 official_template_dir = Path(self.params["script_directory"], "resources", "relation_templates")
-                if Path(official_template_dir, f"{subopt}.json").is_file():
+                if subopt == "relation":
+                    stem_or_path = next(iter(subargs.keys()), "") # ignore all sub-arguments after the first one
+                    template = read_template(stem_or_path, official_template_dir)
+                elif Path(official_template_dir, f"{subopt}.json").is_file():
                     template_suffix = next(iter(subargs.keys()), "") # ignore all sub-arguments after the first one
                     if template_suffix and set("ces").issuperset(template_suffix):
                         stem = f"{subopt}-{''.join(sorted(template_suffix))}"
                     else:
                         stem = subopt
                     template = read_template(stem, official_template_dir)
+                
+                # If the subopt was a relation template, use it to convert the source
+                if template:
                     if template["extension"] == "sql":
                         source = op_tk.run(source, "ascii", {"labels": 1, "leg_notes": 1}, self.params)
                         source = op_tk.run(source, "snake", {"labels": 1, "leg_notes": 1}, self.params)
@@ -130,7 +140,9 @@ class Runner:
                         "to_defer": template.get("to_defer", False),
                         "highlight": template.get("highlight", "plain"),
                     }
-                else:                    
+
+                # Fall back to a dynamically loaded conversion operation
+                else:
                     try:
                         module = importlib.import_module(f".convert._{subopt}", package="mocodo")
                     except ModuleNotFoundError:
