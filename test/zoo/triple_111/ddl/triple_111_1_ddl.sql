@@ -15,8 +15,8 @@ CREATE TABLE UTILISER (
   carnet VARCHAR(42) NOT NULL,
   projet VARCHAR(42) NOT NULL,
   technicien VARCHAR(42) NOT NULL,
-  CONSTRAINT UTILISER_u1 UNIQUE (carnet, technicien),
-  CONSTRAINT UTILISER_u2 UNIQUE (projet, technicien)
+  UNIQUE (carnet, technicien),
+  UNIQUE (projet, technicien)
 );
 
 ALTER TABLE UTILISER ADD FOREIGN KEY (technicien) REFERENCES TECHNICIEN (technicien);

@@ -12,8 +12,8 @@ CREATE TABLE RESERVATION (
   date_reservation DATE,
   semaine VARCHAR(42) NOT NULL,
   voilier VARCHAR(42) NOT NULL,
-  CONSTRAINT RESERVATION_u1 UNIQUE (num_resa),
-  CONSTRAINT RESERVATION_u2 UNIQUE (semaine, voilier)
+  UNIQUE (num_resa),
+  UNIQUE (semaine, voilier)
 );
 
 CREATE TABLE SEMAINE (

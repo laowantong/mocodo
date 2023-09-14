@@ -20,7 +20,7 @@ CREATE TABLE ESPECE (
   code_espece VARCHAR(8) NOT NULL,
   nom_latin VARCHAR(255),
   nom_vernaculaire VARCHAR(255),
-  CONSTRAINT ESPECE_u1 UNIQUE (nom_latin)
+  UNIQUE (nom_latin)
 );
 
 CREATE TABLE OCCUPE (

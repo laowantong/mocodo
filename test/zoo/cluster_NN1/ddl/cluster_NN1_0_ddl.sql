@@ -6,7 +6,7 @@ CREATE TABLE RESERVATION (
   num_voilier VARCHAR(8) NOT NULL,
   num_semaine VARCHAR(8) NOT NULL,
   tarif VARCHAR(42),
-  CONSTRAINT RESERVATION_u1 UNIQUE (num_voilier, num_semaine)
+  UNIQUE (num_voilier, num_semaine)
 );
 
 CREATE TABLE SEMAINE (

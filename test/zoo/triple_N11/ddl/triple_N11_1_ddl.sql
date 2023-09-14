@@ -3,7 +3,7 @@ CREATE TABLE AFFECTER (
   projet VARCHAR(42) NOT NULL,
   employe VARCHAR(42) NOT NULL,
   site VARCHAR(42) NOT NULL,
-  CONSTRAINT AFFECTER_u1 UNIQUE (employe, site)
+  UNIQUE (employe, site)
 );
 
 CREATE TABLE EMPLOYE (

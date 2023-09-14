@@ -106,6 +106,12 @@
       "search": "(?sm)^(  CONSTRAINT [^\n]+ UNIQUE )\\(([^\n]+)\\)\n(.*?)^\\1\\(([^\n]+)\\)\n",
       "replace": "\\1(\\2, \\4)\n\\3",
       "iterated": true
+    },
+    {
+      "order": 2400,
+      "comment": "Suppress their number, let the system name them.",
+      "search": "(?m)^  CONSTRAINT [^\n]+ (UNIQUE .+)",
+      "replace": "  \\1"
     }
   ],
   "transform_relational_schema": [

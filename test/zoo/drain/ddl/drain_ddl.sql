@@ -13,7 +13,7 @@ CREATE TABLE ETUDIANT (
   date_signature BINARY(64),
   date DATE NULL,
   note_stage TEXT,
-  CONSTRAINT ETUDIANT_u1 UNIQUE (num_stage)
+  UNIQUE (num_stage)
 );
 
 CREATE TABLE STAGE (
