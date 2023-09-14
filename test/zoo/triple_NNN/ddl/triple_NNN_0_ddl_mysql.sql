@@ -1,9 +1,0 @@
-CREATE DATABASE IF NOT EXISTS triple_NNN;
-USE triple_NNN;
-
-CREATE TABLE APPLIQUER (
-  employe VARCHAR(42) NOT NULL,
-  projet VARCHAR(42) NOT NULL,
-  competence VARCHAR(42) NOT NULL,
-  PRIMARY KEY (employe, projet, competence)
-) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;

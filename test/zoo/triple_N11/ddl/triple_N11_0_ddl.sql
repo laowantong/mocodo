@@ -1,0 +1,7 @@
+CREATE TABLE AFFECTER (
+  PRIMARY KEY (projet, employe),
+  projet VARCHAR(42) NOT NULL,
+  employe VARCHAR(42) NOT NULL,
+  site VARCHAR(42) NOT NULL,
+  CONSTRAINT AFFECTER_u1 UNIQUE (employe, site)
+);

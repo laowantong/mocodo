@@ -1,0 +1,15 @@
+CREATE TABLE COMPOSER (
+  PRIMARY KEY (piece, piece_1),
+  piece VARCHAR(42) NOT NULL,
+  piece_1 VARCHAR(42) NOT NULL
+);
+
+CREATE TABLE HOMME (
+  PRIMARY KEY (num_ss),
+  num_ss VARCHAR(8) NOT NULL,
+  nom VARCHAR(255),
+  prenom VARCHAR(255),
+  num_ss_1 VARCHAR(8) NOT NULL
+);
+
+ALTER TABLE HOMME ADD FOREIGN KEY (num_ss_1) REFERENCES HOMME (num_ss);

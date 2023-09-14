@@ -98,7 +98,7 @@ class Runner:
             deferred_output_formats = []
             results = []
             for (subopt, subargs) in self.params["convert"]:
-                if subopt == "mute": # communicate with the magic command by creating a temporary file
+                if subopt == "mute":
                     response["is_muted"] = True
                     continue
 
@@ -129,6 +129,7 @@ class Runner:
                         source = op_tk.run(source, "snake", {"labels": 1, "leg_notes": 1}, self.params)
                         source = op_tk.run(source, "lower", {"attrs": 1, "leg_notes": 1}, self.params)
                         source = op_tk.run(source, "upper", {"boxes": 1}, self.params)
+                        relations = None # force the re-computation of the relations after the rewrite operations
                     if not relations: # don't recompute the relations if they have already been computed
                         mcd = Mcd(source, self.get_font_metrics, **self.params)
                         relations = Relations(mcd, self.params)
