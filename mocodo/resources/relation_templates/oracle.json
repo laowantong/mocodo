@@ -4,6 +4,12 @@
   "stem_suffix": "_ddl_oracle",
   "transform_data_type": [
     {
+      "order": 100,
+      "comment": "(Meant to replace the parent's transformation)",
+      "search": "^\\s*$",
+      "replace": "VARCHAR2(42)"
+    },
+    {
       "order": 200,
       "comment": "(Meant to replace the parent's transformation)",
       "search": "UNSIGNED_INT_PLACEHOLDER",

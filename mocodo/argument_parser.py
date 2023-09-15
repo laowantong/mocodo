@@ -397,7 +397,7 @@ def parsed_arguments():
         default="params.json",
         help="the path of the parameter file. If omitted, use 'params.json' in the input directory. If non existent, use default parameters.",
     )
-    io_group.add_argument("--input",
+    io_group.add_argument("--input", "-i",
         metavar="PATH",
         help="the path of the input file. By default, the output files will be generated in the same directory",
     )

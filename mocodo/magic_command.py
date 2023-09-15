@@ -98,7 +98,7 @@ class MocodoMagics(Magics):
 
         parser = argparse.ArgumentParser(add_help=False)
         parser.add_argument("--no_mcd", "--quiet", "--mute", action="store_true")
-        parser.add_argument("--input")
+        parser.add_argument("--input", "-i")
         parser.add_argument("--output_dir")
         (args, remaining_args) = parser.parse_known_args(shlex.split(line))
         remaining_args = list(takewhile(lambda x: not x.startswith("#"), remaining_args))
