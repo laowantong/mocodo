@@ -13,6 +13,7 @@ import textwrap
 
 from mocodo.tools.string_tools import strip_surrounds
 from mocodo.tools.various import invert_dict
+from mocodo.tools import load_mini_yaml
 
 from .common import version
 from .mocodo_error import MocodoError
@@ -239,12 +240,12 @@ class Transformations:
     def __init__(self):
         template_folder_path = Path(f"{SCRIPT_DIRECTORY}/resources/relation_templates")
         aliases = defaultdict(list)
-        for path in template_folder_path.glob("*.json"):
+        for path in template_folder_path.glob("*.yaml"):
             if path.stem in self.metadata:
                 raise MocodoError(26, _("The file '{path}' has the same name as the builtin transformation '{path.stem}'. Please rename it.").format(path=path)) # fmt: skip
             if "-" in path.name:
                 continue
-            data = json.loads(path.read_text())
+            data = load_mini_yaml.run(path)
             if "help" in data:
                 self.metadata[path.stem] = {
                     "category": "cv",

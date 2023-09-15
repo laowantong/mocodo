@@ -1,4 +1,0 @@
-{
-  "parent": "postgresql",
-  "extension": "sql"
-}

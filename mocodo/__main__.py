@@ -114,7 +114,7 @@ class Runner:
                 if subopt == "relation":
                     stem_or_path = next(iter(subargs.keys()), "") # ignore all sub-arguments after the first one
                     template = read_template(stem_or_path, official_template_dir)
-                elif Path(official_template_dir, f"{subopt}.json").is_file():
+                elif Path(official_template_dir, f"{subopt}.yaml").is_file():
                     template_suffix = next(iter(subargs.keys()), "") # ignore all sub-arguments after the first one
                     if template_suffix and set("ces").issuperset(template_suffix):
                         stem = f"{subopt}-{''.join(sorted(template_suffix))}"

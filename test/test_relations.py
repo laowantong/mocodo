@@ -1,17 +1,16 @@
-import json
+from pathlib import Path
 import unittest
-from copy import deepcopy
 
 __import__("sys").path[0:0] = ["mocodo"]
 from mocodo.argument_parser import parsed_arguments
-from mocodo.file_helpers import read_contents
 from mocodo.mcd import Mcd
 from mocodo.convert.relations import *
 from mocodo.tools.string_tools import markdown_table
+from mocodo.tools.load_mini_yaml import run as load_mini_yaml
 
 
-minimal_template = json.loads(read_contents("mocodo/resources/relation_templates/text.json"))
-debug_template = json.loads(read_contents("mocodo/resources/relation_templates/debug.json"))
+minimal_template = load_mini_yaml(Path("mocodo/resources/relation_templates/text.yaml"))
+debug_template = load_mini_yaml(Path("mocodo/resources/relation_templates/debug.yaml"))
 params = parsed_arguments()
 params["title"] = "Untitled"
 params["guess_title"] = False

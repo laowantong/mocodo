@@ -1,5 +1,0 @@
-{
-  "help": "convert the conceptual model into a physical model for SQLite",
-  "parent": "sql",
-  "stem_suffix": "_ddl_sqlite"
-}

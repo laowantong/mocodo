@@ -1,0 +1,16 @@
+parent: 'test/test_data/templates/child.yaml'
+buzz: 'reupdated_value'
+biz:
+  - order: 1
+    foo: 'bar'
+    baz: 'qux'
+  - order: 2
+    foo: 'bar'
+    baz: 'qux'
+baz:
+  - order: 1
+    name: 'foo'
+  - order: 5
+  - order: 20
+    name: 'bar'
+  - order: 35

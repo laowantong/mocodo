@@ -1,0 +1,8 @@
+help: 'convert the conceptual model into a physical model for MySQL'
+parent: 'sql'
+stem_suffix: '_ddl_mysql'
+transform_data_type:
+  - order: 300
+    comment: '(Meant to replace the parent''s transformation)'
+    search: 'UNSIGNED_INT_PLACEHOLDER'
+    replace: 'TINYINT UNSIGNED'

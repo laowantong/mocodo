@@ -1,0 +1,14 @@
+parent: 'root'
+buzz: 'updated value'
+baz:
+  - order: 5
+    foo: 'insert_before'
+  - order: 10
+    qux: 'updated value'
+    quux: 'new_item'
+  - order: 15
+    foo: 'insert_between'
+  - order: 20
+  - order: 35
+    foo: 'insert_after'
+force_empty_list:

@@ -1,0 +1,5 @@
+foo:
+  - order: 100
+    bar: null
+  - order: 50
+    bizz: null

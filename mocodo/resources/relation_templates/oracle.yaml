@@ -1,0 +1,16 @@
+help: 'convert the conceptual model into a physical model for Oracle'
+parent: 'sql'
+stem_suffix: '_ddl_oracle'
+transform_data_type:
+  - order: 100
+    comment: '(Meant to replace the parent''s transformation)'
+    search: '^\s*$'
+    replace: 'VARCHAR2(42)'
+  - order: 200
+    comment: '(Meant to replace the parent''s transformation)'
+    search: 'UNSIGNED_INT_PLACEHOLDER'
+    replace: 'NUMBER(1) UNSIGNED'
+  - order: 300
+    comment: '(Meant to replace the parent''s transformation)'
+    search: 'BOOLEAN_PLACEHOLDER'
+    replace: 'NUMBER(1) DEFAULT 0'

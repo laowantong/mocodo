@@ -1,6 +1,0 @@
-{
-    "help": "convert the conceptual model into a relational schema in LaTeX format",
-    "parent": "latex-c",
-    "add_unicity_constraints": [],
-    "add_optionality_constraints": []
-}

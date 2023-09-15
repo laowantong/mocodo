@@ -82,7 +82,7 @@ def main():
 
 
     templates = []
-    for template_path in TEMPLATE_DIR.glob("*.json"):
+    for template_path in TEMPLATE_DIR.glob("*.yaml"):
         if re.match(r"(html|markdown|latex|text)(?!-ces)", template_path.stem):
             continue
         if re.match(r"(mysql|oracle|postgres|postgresql|sqlite)", template_path.stem):

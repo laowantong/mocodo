@@ -1,0 +1,25 @@
+foo: 'bar'
+buzz: 'reupdated_value'
+baz:
+  - order: 1
+    name: 'foo'
+  - order: 10
+    qux: 'updated value'
+    unchanged: 'unchanged'
+    quux: 'new_item'
+  - order: 15
+    foo: 'insert_between'
+  - order: 20
+    name: 'bar'
+  - order: 30
+    qux: 'quux'
+empty:
+force_empty_list:
+unchanged: 'unchanged'
+biz:
+  - order: 1
+    foo: 'bar'
+    baz: 'qux'
+  - order: 2
+    foo: 'bar'
+    baz: 'qux'

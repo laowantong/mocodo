@@ -1,6 +1,0 @@
-{
-    "help": "convert the conceptual model into a relational schema in Markdown format",
-    "parent": "markdown-c",
-    "add_unicity_constraints": [],
-    "add_optionality_constraints": []
-}
