@@ -27,3 +27,5 @@ poetry.lock
 mocodo_web.py
 doc/Untitled.ipynb
 *.vsix
+mocodo/resources/relation_templates/_graph.gv
+mocodo/resources/relation_templates/_graph.svg
