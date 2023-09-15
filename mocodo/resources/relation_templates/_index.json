@@ -1,0 +1,67 @@
+{
+  "dbml": {
+    "category": "cv",
+    "help": "convert the conceptual model into a relational schema in DBML format",
+    "aliases": []
+  },
+  "debug": {
+    "category": "cv",
+    "help": "list internal informations relative to the conversion into relational schema",
+    "aliases": []
+  },
+  "dependencies": {
+    "category": "cv",
+    "help": "convert the conceptual model into a dependency graph",
+    "aliases": []
+  },
+  "diagram": {
+    "category": "cv",
+    "help": "convert the conceptual model into a relational diagram in Mocodo syntax",
+    "aliases": []
+  },
+  "html": {
+    "category": "cv",
+    "help": "convert the conceptual model into a relational schema in HTML format",
+    "aliases": []
+  },
+  "latex": {
+    "category": "cv",
+    "help": "convert the conceptual model into a relational schema in LaTeX format",
+    "aliases": []
+  },
+  "markdown": {
+    "category": "cv",
+    "help": "convert the conceptual model into a relational schema in Markdown format",
+    "aliases": []
+  },
+  "mysql": {
+    "category": "cv",
+    "help": "convert the conceptual model into a physical model for MySQL",
+    "aliases": []
+  },
+  "oracle": {
+    "category": "cv",
+    "help": "convert the conceptual model into a physical model for Oracle",
+    "aliases": []
+  },
+  "postgresql": {
+    "category": "cv",
+    "help": "convert the conceptual model into a physical model for PostgreSQL",
+    "aliases": ["postgres"]
+  },
+  "sql": {
+    "category": "cv",
+    "help": "convert the conceptual model into a physical model for SQL",
+    "aliases": []
+  },
+  "sqlite": {
+    "category": "cv",
+    "help": "convert the conceptual model into a physical model for SQLite",
+    "aliases": []
+  },
+  "text": {
+    "category": "cv",
+    "help": "convert the conceptual model into a relational schema in text format",
+    "aliases": []
+  }
+}

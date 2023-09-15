@@ -238,24 +238,8 @@ class Transformations:
     }
 
     def __init__(self):
-        template_folder_path = Path(f"{SCRIPT_DIRECTORY}/resources/relation_templates")
-        aliases = defaultdict(list)
-        for path in template_folder_path.glob("*.yaml"):
-            if path.stem in self.metadata:
-                raise MocodoError(26, _("The file '{path}' has the same name as the builtin transformation '{path.stem}'. Please rename it.").format(path=path)) # fmt: skip
-            if "-" in path.name:
-                continue
-            data = load_mini_yaml.run(path)
-            if "help" in data:
-                self.metadata[path.stem] = {
-                    "category": "cv",
-                    "help": data["help"],
-                    "aliases": [],
-                }
-            elif "parent" in data:
-                aliases[data["parent"]].append(path.stem)
-        for (parent, children) in aliases.items():
-            self.metadata[parent]["aliases"] = children
+        index_path = Path(f"{SCRIPT_DIRECTORY}/resources/relation_templates/_index.json")
+        self.metadata.update(json.loads(index_path.read_text()))
         self.normalize = invert_dict({k: v["aliases"] for (k, v) in self.metadata.items()})
         self.normalize.update((k, k) for k in self.metadata)
         # recreate the dictionary to have it in alphabetical order
