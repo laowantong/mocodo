@@ -5,7 +5,7 @@ Project inheritance {
 Table TRISTIS {
   magna VARCHAR(42) [pk, not null]
   vestibulum VARCHAR(42)
-  type UNSIGNED_INT_PLACEHOLDER
+  type UNSIGNED_INT
   convallis VARCHAR(42) [null]
   ipsum VARCHAR(42) [null]
   pulvinar VARCHAR(42) [null]

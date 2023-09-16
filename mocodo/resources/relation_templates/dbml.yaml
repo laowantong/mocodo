@@ -12,6 +12,12 @@ transform_data_type:
     comment: 'Remove all spaces in the data type.'
     search: ' +'
     replace: '_'
+  - order: 300
+    search: 'UNSIGNED_INT_PLACEHOLDER'
+    replace: 'UNSIGNED_INT'
+  - order: 400
+    search: 'BOOLEAN_PLACEHOLDER'
+    replace: 'BOOLEAN'
 transform_optionality:
   - order: 100
     comment: 'Replace BANG with NOT NULL.'
