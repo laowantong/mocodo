@@ -4,6 +4,11 @@
     "help": "convert the conceptual model into a relational schema in DBML format",
     "aliases": []
   },
+  "sql": {
+    "category": "cv",
+    "help": "convert the conceptual model into a physical model for SQL",
+    "aliases": ["ddl"]
+  },
   "debug": {
     "category": "cv",
     "help": "list internal informations relative to the conversion into relational schema",
@@ -32,7 +37,7 @@
   "markdown": {
     "category": "cv",
     "help": "convert the conceptual model into a relational schema in Markdown format",
-    "aliases": []
+    "aliases": ["mld"]
   },
   "mysql": {
     "category": "cv",
@@ -48,11 +53,6 @@
     "category": "cv",
     "help": "convert the conceptual model into a physical model for PostgreSQL",
     "aliases": ["postgres"]
-  },
-  "sql": {
-    "category": "cv",
-    "help": "convert the conceptual model into a physical model for SQL",
-    "aliases": []
   },
   "sqlite": {
     "category": "cv",

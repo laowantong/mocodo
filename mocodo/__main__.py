@@ -34,17 +34,22 @@ class ResponseLogger:
             self.may_log = self.log_nothing
             return
         self.response = {
+            "mld": params["mld"],
             "redirect_output": params["redirect_output"],
-            "must_display_default_mld": False,
+            "show": params["show"],
         }
         self.may_log = self.log_for_magic
         self.path = Path(f"{params['output_name']}_response_for_magic_command.json")
+        self.dump()
     
     def log_nothing(self, *args, **kwargs):
         pass
 
     def log_for_magic(self, key, value):
         self.response[key] = value
+        self.dump()
+    
+    def dump(self):
         self.path.write_text(json.dumps(self.response, ensure_ascii=False))
 
 
@@ -72,21 +77,32 @@ class Runner:
 
         self.add_gutter_params(self.params)
 
-        response = ResponseLogger(self.params)
 
-        must_display_default_mld = False
         if self.params["mld"] or ("transform" in self.params and self.params["transform"] == []):
             # In case there is an option `--mld` or an option `--transform` without arguments,
             # inject manually the equivalent --convert sub-option
-            self.params["convert"].append(("markdown", {}))
-            must_display_default_mld = True
-            response.may_log("must_display_default_mld", True)
+            self.params["mld"] = True
+            self.params["convert"].insert(0, ("markdown", {}))
+
+        if "show" in self.params: # the user wants to override the default display policy under Jupyter
+            if self.params["show"] == []: # display all outputs: MCD, rewritten source, converted files
+                self.params["show"] = ["mcd", "rw", "cv"]
+            # else, don't touch the user's choice
+        elif self.params["rewrite"] and self.params["convert"]:
+            self.params["show"] = ["mcd", "rw", "cv"]
+        elif self.params["rewrite"]:
+            self.params["show"] = ["mcd", "rw"]
+        elif self.params["convert"] and self.params["mld"]:
+            self.params["show"] = ["mcd", "cv"]
+        elif self.params["convert"]:
+            self.params["show"] = ["cv"]
+        else:
+            self.params["show"] = ["mcd"]
+
+        response = ResponseLogger(self.params)
 
         if self.params["rewrite"]:
             for (subopt, subargs) in self.params["rewrite"]:
-                if subopt == "mute":
-                    response.may_log("is_muted", True)
-                    continue
                 if subopt == "echo":
                     pass
                 elif subopt == "flip":
@@ -109,23 +125,17 @@ class Runner:
                 Path(f"{self.params['output_name']}_geo.json").unlink()
         
         may_update_params_with_guessed_title(source, self.params)
-        
+
+        deferred_output_formats = []
+        if "defer" in self.params:
+            deferred_output_formats = self.params["defer"] or ["svg"]
+
         converted_file_paths = [] # list of files to be displayed in the notebook
         if self.params["convert"]:
             response.may_log("has_explicit_conversion", True)
             relations = None
-            deferred_output_formats = []
             results = []
             for (subopt, subargs) in self.params["convert"]:
-                if subopt == "mute":
-                    response.may_log("is_muted", True)
-                    continue
-
-                if subopt == "defer":
-                    deferred_output_formats = list(subargs) or ["svg"]
-                    if deferred_output_formats == ["raw"]:
-                        deferred_output_formats.append("svg")
-                    continue
 
                 # Try to interpret subopt as the stem or path of a relation template
                 template = None
@@ -171,15 +181,11 @@ class Runner:
                 
                 result["text_path"] = Path(f"{self.params['output_name']}{result['stem_suffix']}.{result['extension']}")
                 self.common.dump_file(result["text_path"], f"{result['text'].rstrip()}\n")
-                if not (must_display_default_mld and (subopt, subargs) == ("rel", {})):
-                    results.append(result)
+                results.append(result)
             for result in results:
-                converted_file_paths.extend(self.generate_log_files(result, deferred_output_formats))
+                converted_file_paths.extend(self.generate_converted_files(result, deferred_output_formats))
             response.may_log("converted_file_paths", converted_file_paths)
 
-        if converted_file_paths and not self.params["rewrite"]:
-            return # Don't calculate the MCD if the user only wants to convert the conceptual model to another format.
-        
         mcd = Mcd(source, self.get_font_metrics, **self.params)
         self.control_for_overlaps(mcd)
         resulting_paths = dump_mcd_to_svg(mcd, self.common)  # potential side-effect: update *_geo.json
@@ -253,7 +259,7 @@ class Runner:
         except KeyError:
             raise MocodoError(49, _('No third-party rendering service for extension "{extension}". You may want to add one in "{path}".').format(extension=extension, path=path))
 
-    def generate_log_files(self, result, deferred_output_formats):
+    def generate_converted_files(self, result, deferred_output_formats):
         if result.get("to_defer") and deferred_output_formats:
             # This text must be rendered by a third-party service in at least one format
             rendering_service = self.get_rendering_service(result["extension"])

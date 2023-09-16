@@ -1,26 +1,31 @@
 import argparse
 import contextlib
+import importlib
 import json
 import os
 import re
 import shlex
 import warnings
+from base64 import b64encode
+from itertools import takewhile
 from pathlib import Path
 from subprocess import PIPE, Popen
-import importlib
-from itertools import takewhile
 
 import pkg_resources
 from IPython import get_ipython
 from IPython.core.magic import Magics, line_cell_magic, magics_class
-from IPython.display import HTML, Image, SVG, display, Markdown, Code
-from base64 import b64encode
+from IPython.display import HTML, SVG, Code, Image, Markdown, display
 
 try:
     MOCODO_VERSION = pkg_resources.get_distribution("mocodo").version
 except pkg_resources.DistributionNotFound:
     MOCODO_VERSION = "(unknown version)"  # For tests during CI
 
+# ANSI color codes
+OK = "\033[92m"
+WARNING = "\033[1m\033[38;5;166m"
+FAIL = "\033[1m\033[91m"
+RESET = "\033[0m"
 
 IPYTHON = get_ipython()
 
@@ -51,14 +56,16 @@ OUTPUT_PART_HEADER = re.sub("  +", "", """
 </div>
 """)
 
-def display_converted_file(path):
+def display_converted_file(path, hide_header):
+    if not (hide_header and path.name.endswith("_mld.md")):
+        display(Markdown(OUTPUT_PART_HEADER.format(label=path.relative_to(Path.cwd()))))
     extension=path.suffix[1:]
-    display(Markdown(OUTPUT_PART_HEADER.format(label=path.relative_to(Path.cwd()))))
     if extension == "svg":
         # Fix a maximum width for SVG images:
         # https://stackoverflow.com/questions/51452569/how-to-resize-rescale-a-svg-graphic-in-an-ipython-jupyter-notebook
         svg = b64encode(path.read_bytes()).decode("utf8")
-        display(HTML(f'<img max-width="100%" src="data:image/svg+xml;base64,{svg}">'))
+        # Use Markdown instead of HTML to avoid a grey background.
+        display(Markdown(f'<img max-width="100%" src="data:image/svg+xml;base64,{svg}">'))
     elif extension == "md":
         display(Markdown(filename=path))
     elif extension == "png":
@@ -140,7 +147,7 @@ class MocodoMagics(Magics):
         except:
             pass
         status = process.wait()
-        
+
         if "--help" in remaining_args:
             print(stdoutdata)
             return
@@ -160,9 +167,7 @@ class MocodoMagics(Magics):
         
         rewritten_source = response.get("rewritten_source", "")
         redirect_output = response.get("redirect_output", False)
-        is_muted = response.get("is_muted", False)
         converted_file_paths = response.get("converted_file_paths", [])
-        must_display_default_mld = response.get("must_display_default_mld", False)
 
         if status != 0 or stderrdata:
             message = stderrdata
@@ -172,38 +177,37 @@ class MocodoMagics(Magics):
             warnings.warn(message)
             return
         
-        if not args.no_mcd and ((rewritten_source and not redirect_output) or (not rewritten_source and not converted_file_paths)):
-            # Display the MCD when not explicitely disabled and (there is a not redirected rewriting or no transformation at all)
-            svg_path = output_path_radical.with_suffix(".svg")
-            if svg_path.is_file() and input_path.stat().st_mtime <= svg_path.stat().st_mtime:
-                display(SVG(filename=svg_path))
-
-        if must_display_default_mld:
-            # Display the Markdown MLD without header and exit
-            display(Markdown(filename=f"{output_path_radical}_mld.md"))
-            return
-
-        if rewritten_source:
-            if redirect_output:
-                if not rewritten_source.startswith("%%mocodo"):
-                    rewritten_source = f"%%mocodo\n{rewritten_source}"
-                update_cell(rewritten_source)
-            elif not is_muted:
-                display(Markdown(OUTPUT_PART_HEADER.format(label=Path(f"{output_path_radical}.mcd").relative_to(output_dir))))
-                print(rewritten_source)
+        if rewritten_source and not rewritten_source.startswith("%%mocodo"):
+            rewritten_source = f"%%mocodo\n{rewritten_source}"
         
-        if converted_file_paths:
-            if redirect_output:
+        for show in response.get("show", []):
+            if show == "mcd":
+                svg_path = output_path_radical.with_suffix(".svg")
+                if svg_path.is_file() and input_path.stat().st_mtime <= svg_path.stat().st_mtime:
+                    display(SVG(filename=svg_path))
+            elif show == "rw":
+                path = output_path_radical.with_suffix(".mcd")
+                display(Markdown(OUTPUT_PART_HEADER.format(label=path.relative_to(output_dir))))
+                if rewritten_source:
+                    print(rewritten_source)
+                else:
+                    print(cell)
+            elif show == "cv":
+                for converted_file_path in converted_file_paths:
+                    display_converted_file(Path(converted_file_path), hide_header=response.get("mld"))
+
+        if redirect_output:
+            if rewritten_source:
+                update_cell(rewritten_source)
+            if converted_file_paths:
                 # Copy the last converted file source to the clipboard
                 with contextlib.suppress(ImportError):
                     pyperclip = importlib.import_module("pyperclip")
                     converted_file_path = Path(converted_file_paths[-1])
                     pyperclip.copy(converted_file_path.read_text())
-                    print(f"Source code of {converted_file_path.relative_to(output_dir)} copied to the clipboard.")
-            if not is_muted:
-                # Display all converted files
-                for converted_file_path in converted_file_paths:
-                    display_converted_file(Path(converted_file_path))
+                    print(f'⧉ {OK}The contents of "{converted_file_path.relative_to(output_dir)}" has been copied to the clipboard.{RESET}')
+
+
 
 
 try:

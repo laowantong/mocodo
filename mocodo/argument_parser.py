@@ -139,11 +139,6 @@ class Transformations:
             "help": "collect all the attributes of the MCD in a table",
             "aliases": ["data-dict", "data-dictionary"],
         },
-        "defer": {
-            "category": "cv",
-            "help": "use an external web-service to further convert the result into a given graphical format (default: svg)",
-            "aliases": ["deferred"],
-        },
         "delete": {
             "category": "rw",
             "help": "suppress the given elements whenever possible",
@@ -182,11 +177,6 @@ class Transformations:
             "help": "rewrite the given elements in lowercase",
             "aliases": ["lowercase", "lower_case"],
             "op_tk": True,
-        },
-        "mute": {
-            "category": "both",
-            "help": "under Jupyter Notebook, do not display the result in the cell output",
-            "aliases": ["quiet"],
         },
         "randomize": {
             "category": "rw",
@@ -451,9 +441,17 @@ def parsed_arguments():
         default=0,
         help="discriminate between multiple SVG of the same interactive diagram",
     )
-    io_group.add_argument("--no_mcd", "--quiet", "--mute",
-        action="store_true",
-        help="under Jupyter Notebook, do not render the conceptual diagram in the cell output",
+    io_group.add_argument("--show",
+        choices=["mcd", "rw", "cv"],
+        nargs="*",
+        default=argparse.SUPPRESS, # causes no attribute to be added if the argument was not present
+        help="under Jupyter Notebook, explicitely state which parts of the result to display",
+    )
+    io_group.add_argument("--defer",
+        metavar="STR",
+        nargs="*",
+        default=argparse.SUPPRESS,
+        help="use an external web-service to further convert the conversion results into the given graphical formats",
     )
     io_group.add_argument("--mld",
         action="store_true",
@@ -468,7 +466,7 @@ def parsed_arguments():
         metavar="STR",
         nargs="*",
         type=transformations.extract_subargs,
-        default=argparse.SUPPRESS, # causes no attribute to be added if the argument was not present
+        default=argparse.SUPPRESS,
         help=textwrap.dedent("either make a new version of the MCD by applying sequentially the given rewriting operations, or convert it into the given formats or languages.\nUnder Jupyter Notebook, '-T' respectively replaces the current cell by the textual result, or copies it into the clipboard (pip3 install pyperclip).\n" + transformations.get_help()),
     )
     source_group.add_argument("--Transform", "--TRANSFORM", "-T",
