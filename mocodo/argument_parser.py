@@ -1,5 +1,4 @@
 import argparse
-from collections import defaultdict
 import gettext
 import json
 import locale
@@ -11,9 +10,8 @@ import sys
 from pathlib import Path
 import textwrap
 
-from mocodo.tools.string_tools import strip_surrounds
+from mocodo.tools.string_tools import strip_surrounds, TRUNCATE_DEFAULT_SIZE
 from mocodo.tools.various import invert_dict
-from mocodo.tools import load_mini_yaml
 
 from .common import version
 from .mocodo_error import MocodoError
@@ -222,6 +220,12 @@ class Transformations:
             "category": "rw",
             "help": "rewrite the given elements in Title Case",
             "aliases": [],
+            "op_tk": True,
+        },
+        "truncate": {
+            "category": "rw",
+            "help": f"truncate the given elements to the given length (default: {TRUNCATE_DEFAULT_SIZE})",
+            "aliases": ["trunc", "shorten"],
             "op_tk": True,
         },
         "uml": {

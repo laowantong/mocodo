@@ -153,7 +153,7 @@ mocodo_errors = [
     *[(501, f" {c}") for c in "0123456789!#$&')*,.-;<=>?@[\\]^_`{|}~"],
     (501, ": foobar"),
     (501, " : foobar"),
-    (502, "FOO, 0N Bar, 1N Biz [bla] "),
+    (502, "AYANT-: nom ay, lien"),
     (502, "FOO, 0N Bar, 1N Biz [bla]"),
     (502, "FOO, 0N Bar, 1N Biz [bla], 0N Buz"),
     (502, " foo /TX\\#  ]  #/ "),

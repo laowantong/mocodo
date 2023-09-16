@@ -4,6 +4,7 @@ from unicodedata import combining, normalize
 import base64
 import zlib
 
+TRUNCATE_DEFAULT_SIZE = 64
 
 def wrap_label(s, wrapping_ratio=2):
     """

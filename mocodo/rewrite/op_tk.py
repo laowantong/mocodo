@@ -5,7 +5,7 @@ __import__("sys").path[0:0] = ["."]
 
 from ..parse_mcd import Transformer
 from ..tools.parser_tools import transform_source
-from ..tools.string_tools import ascii, camel, snake
+from ..tools.string_tools import ascii, camel, snake, TRUNCATE_DEFAULT_SIZE
 from ..mocodo_error import MocodoError
 from .cards import fix_card, randomize_cards
 from .types import FIELD_TYPES, create_type_placeholders, guess_types
@@ -45,7 +45,7 @@ class Mapper(Transformer):
     def __init__(self, op_name, pre_token, subsubarg, params):
         tokens = ELEMENT_TO_TOKENS[pre_token]
         op = GENERAL_OPERATIONS.get(op_name)
-        if op is None: # op_tk operations with limited applicability
+        if op is None: # op_tk operations with limited applicability and/or interested in a subsubarg
             if op_name == "randomize" and pre_token == "types":
                 pool = list(FIELD_TYPES["en"].values())
                 op = lambda x: x or random.choice(pool)
@@ -57,6 +57,11 @@ class Mapper(Transformer):
                 op = fix_card
             elif op_name == "randomize" and pre_token in ("labels", "texts", "boxes", "attrs", "notes", "leg_notes", "constraint_notes"):
                 op = obfuscator_factory(subsubarg, params)
+            elif op_name == "truncate":
+                size = TRUNCATE_DEFAULT_SIZE
+                if subsubarg and subsubarg.isdigit() and int(subsubarg) > 0:
+                    size = int(subsubarg)
+                op = lambda x: x[:size]
             else:
                 raise MocodoError(24, _('Operation {op_name} cannot be applied to {pre_token}.').format(op_name=op_name, pre_token=pre_token))
         update_tree = lambda tree: tree[0].update(value=op(tree[0].value))

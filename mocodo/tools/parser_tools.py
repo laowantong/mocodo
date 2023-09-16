@@ -23,7 +23,7 @@ def parse_source(source):
         if expected == {'PHANTOMS', 'PERCENT', 'CONSTRAINT_LPAREN', 'PLUS', 'NL', 'SLASH', 'BOX_NAME'}:
             raise MocodoError(501, _('{pin}{v} is not a valid line beginning.').format(pin=pin, v=v)) # fmt: skip
         if expected == {'INHERITANCE_ARROW', 'COLON', 'NL', 'MORETHAN', 'SP', 'COMMA'}:
-            raise MocodoError(502, _('{pin}A box name cannot contain {v}.').format(pin=pin, v=v)) # fmt: skip
+            raise MocodoError(502, _('{pin}Malformed box name.').format(pin=pin, v=v)) # fmt: skip
         if expected == {'COLON', 'COMMA'}:
             raise MocodoError(503, _('{pin}A valid box name starting a line must be followed by a colon or a comma.').format(pin=pin)) # fmt: skip
         if t == "COMMA" and expected == {'SP', 'BOX_NAME'}:
