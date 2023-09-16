@@ -140,10 +140,6 @@ class MocodoMagics(Magics):
         except:
             pass
         status = process.wait()
-        if status != 0 or stderrdata:
-            warnings.formatwarning = lambda x, *args, **kargs : str(x)
-            warnings.warn(stderrdata)
-            return
         
         if "--help" in remaining_args:
             print(stdoutdata)
@@ -153,7 +149,6 @@ class MocodoMagics(Magics):
             update_cell(PARAM_TEMPLATE.format(stdoutdata=stdoutdata, output_dir=output_dir))
             return
         
-        
         response_path = Path(f"{output_path_radical}_response_for_magic_command.json")
         try: 
             response = json.loads(response_path.read_text())
@@ -162,13 +157,21 @@ class MocodoMagics(Magics):
         finally:
             with contextlib.suppress(FileNotFoundError): # From Python 3.8, use the missing_ok argument
                 response_path.unlink()
-
+        
         rewritten_source = response.get("rewritten_source", "")
         redirect_output = response.get("redirect_output", False)
         is_muted = response.get("is_muted", False)
         converted_file_paths = response.get("converted_file_paths", [])
         must_display_default_mld = response.get("must_display_default_mld", False)
 
+        if status != 0 or stderrdata:
+            message = stderrdata
+            if rewritten_source:
+                message = f"{rewritten_source}\n\n{message}"
+            warnings.formatwarning = lambda x, *args, **kargs : str(x)
+            warnings.warn(message)
+            return
+        
         if not args.no_mcd and ((rewritten_source and not redirect_output) or (not rewritten_source and not converted_file_paths)):
             # Display the MCD when not explicitely disabled and (there is a not redirected rewriting or no transformation at all)
             svg_path = output_path_radical.with_suffix(".svg")

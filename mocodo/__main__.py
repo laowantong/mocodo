@@ -27,6 +27,26 @@ from .rewrite import op_tk, guess_entities
 from .tools.graphviz_tools import minify_graphviz
 from .tools.string_tools import urlsafe_encoding
 
+class ResponseLogger:
+
+    def __init__(self, params):
+        if not params["is_magic"]:
+            self.may_log = self.log_nothing
+            return
+        self.response = {
+            "redirect_output": params["redirect_output"],
+            "must_display_default_mld": False,
+        }
+        self.may_log = self.log_for_magic
+        self.path = Path(f"{params['output_name']}_response_for_magic_command.json")
+    
+    def log_nothing(self, *args, **kwargs):
+        pass
+
+    def log_for_magic(self, key, value):
+        self.response[key] = value
+        self.path.write_text(json.dumps(self.response, ensure_ascii=False))
+
 
 class Runner:
 
@@ -52,21 +72,20 @@ class Runner:
 
         self.add_gutter_params(self.params)
 
-        response = {
-            "redirect_output": self.params["redirect_output"],
-            "must_display_default_mld": False,
-        }
+        response = ResponseLogger(self.params)
 
+        must_display_default_mld = False
         if self.params["mld"] or ("transform" in self.params and self.params["transform"] == []):
             # In case there is an option `--mld` or an option `--transform` without arguments,
             # inject manually the equivalent --convert sub-option
             self.params["convert"].append(("markdown", {}))
-            response["must_display_default_mld"] = True
+            must_display_default_mld = True
+            response.may_log("must_display_default_mld", True)
 
         if self.params["rewrite"]:
             for (subopt, subargs) in self.params["rewrite"]:
                 if subopt == "mute":
-                    response["is_muted"] = True
+                    response.may_log("is_muted", True)
                     continue
                 if subopt == "echo":
                     pass
@@ -84,7 +103,7 @@ class Runner:
                     except ModuleNotFoundError:
                         raise subopt_error("rewrite", subopt)
                     source = module.run(source, subopt=subopt, subargs=subargs, params=self.params).rstrip()
-                response["rewritten_source"] = source
+                response.may_log("rewritten_source", source)
             # The geometry needs to be recomputed after the rewrite operations
             with contextlib.suppress(FileNotFoundError): # Argument missing_ok=True is not available prior to Python 3.8
                 Path(f"{self.params['output_name']}_geo.json").unlink()
@@ -93,13 +112,13 @@ class Runner:
         
         converted_file_paths = [] # list of files to be displayed in the notebook
         if self.params["convert"]:
-            response["has_explicit_conversion"] = True
+            response.may_log("has_explicit_conversion", True)
             relations = None
             deferred_output_formats = []
             results = []
             for (subopt, subargs) in self.params["convert"]:
                 if subopt == "mute":
-                    response["is_muted"] = True
+                    response.may_log("is_muted", True)
                     continue
 
                 if subopt == "defer":
@@ -152,15 +171,11 @@ class Runner:
                 
                 result["text_path"] = Path(f"{self.params['output_name']}{result['stem_suffix']}.{result['extension']}")
                 self.common.dump_file(result["text_path"], f"{result['text'].rstrip()}\n")
-                if not (response["must_display_default_mld"] and (subopt, subargs) == ("rel", {})):
+                if not (must_display_default_mld and (subopt, subargs) == ("rel", {})):
                     results.append(result)
             for result in results:
                 converted_file_paths.extend(self.generate_log_files(result, deferred_output_formats))
-            response["converted_file_paths"] = converted_file_paths
-
-        response = json.dumps(response, ensure_ascii=False, indent=2)
-        if self.params["is_magic"]:
-            Path(f"{self.params['output_name']}_response_for_magic_command.json").write_text(response)
+            response.may_log("converted_file_paths", converted_file_paths)
 
         if converted_file_paths and not self.params["rewrite"]:
             return # Don't calculate the MCD if the user only wants to convert the conceptual model to another format.
@@ -170,7 +185,6 @@ class Runner:
         resulting_paths = dump_mcd_to_svg(mcd, self.common)  # potential side-effect: update *_geo.json
         for path in resulting_paths:
             safe_print_for_PHP(self.common.output_success_message(path))
-
 
     def flip(self, source, subargs):
         mcd = Mcd(source, self.get_font_metrics, **self.params)
