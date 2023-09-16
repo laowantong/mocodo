@@ -23,6 +23,7 @@ from mocodo.rewrite import (
     _explode as explode,
     _drain as drain,
     _split as split,
+    _drown as drown,
 )
 from mocodo.rewrite._arrange_bb import arrange
 from mocodo.mcd_to_svg import main as dump_mcd_to_svg
@@ -46,6 +47,7 @@ def main():
         if Path(f"{output_name}_static.svg").is_file():
             Path(f"{output_name}.svg").unlink()
             Path(f"{output_name}_static.svg").rename(f"{output_name}.svg")
+        Path(f"{output_name}_geo.json").unlink(missing_ok=True)
     
     def convert_dot_to_svg(dot_path):
         svg_path = dot_path.with_suffix(".svg")
@@ -127,6 +129,7 @@ def main():
         may_dump_rewritten_version(subfolder, source, source_path.stem[1:], "explode", {"arity": 3})
         may_dump_rewritten_version(subfolder, source, source_path.stem[1:], "drain", {})
         may_dump_rewritten_version(subfolder, source, source_path.stem[1:], "split", {})
+        may_dump_rewritten_version(subfolder, source, source_path.stem[1:], "drown", {})
         may_dump_rewritten_version(subfolder, source, source_path.stem[1:], "create", {"df_arrows": "across"})
         if source_path.name.startswith("_triple_N11"):
             may_dump_rewritten_version(subfolder, source, source_path.stem[1:], "create", {"cifs": ""})

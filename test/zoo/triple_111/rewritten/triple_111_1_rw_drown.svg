@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="482" height="262" viewBox="0 0 482 262" xmlns="http://www.w3.org/2000/svg">
+<rect id="frame" x="0" y="0" width="482" height="262" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+
+<!-- Association ASSOC 4_ -->
+<g>
+	<line x1="85" y1="74" x2="241" y2="74" stroke="#000000" stroke-width="1"/>
+	<polygon points="134 74 146 68 142 74 146 80" fill="#000000" stroke-width="0"/>
+	<line x1="241" y1="196" x2="241" y2="74" stroke="#000000" stroke-width="1"/>
+	<polygon points="241 166 235 154 241 158 247 154" fill="#000000" stroke-width="0"/>
+	<line x1="397" y1="74" x2="241" y2="74" stroke="#000000" stroke-width="1"/>
+	<polygon points="348 74 336 80 340 74 336 68" fill="#000000" stroke-width="0"/>
+	<g>
+		<path d="M189 26 L449 26 a7 7 0 0 1 7 7 L456 115 a7 7 0 0 1 &#45;7 7 L307 122 a7 7 0 0 0 &#45;7 7 L300 229 a7 7 0 0 1 &#45;7 7 L189 236 a7 7 0 0 1 &#45;7 &#45;7 L182 33 a7 7 0 0 1 7 &#45;7" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="0.1"/>
+		<path d="M189 26 L449 26 a7 7 0 0 1 7 7 L456 115 a7 7 0 0 1 &#45;7 7 L307 122 a7 7 0 0 0 &#45;7 7 L300 229 a7 7 0 0 1 &#45;7 7 L189 236 a7 7 0 0 1 &#45;7 &#45;7 L182 33 a7 7 0 0 1 7 &#45;7" fill="none" stroke="#000000" stroke-width="1.5" stroke-dasharray="0,4" stroke-linecap="round"/>
+		<path d="M23 16 L459 16 a7 7 0 0 1 7 7 L466 125 a7 7 0 0 1 &#45;7 7 L23 132 a7 7 0 0 1 &#45;7 &#45;7 L16 23 a7 7 0 0 1 7 &#45;7" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="0.1"/>
+		<path d="M23 16 L459 16 a7 7 0 0 1 7 7 L466 125 a7 7 0 0 1 &#45;7 7 L23 132 a7 7 0 0 1 &#45;7 &#45;7 L16 23 a7 7 0 0 1 7 &#45;7" fill="none" stroke="#000000" stroke-width="1.5" stroke-dasharray="0,4" stroke-linecap="round"/>
+		<path d="M13 6 L313 6 a7 7 0 0 1 7 7 L320 249 a7 7 0 0 1 &#45;7 7 L169 256 a7 7 0 0 1 &#45;7 &#45;7 L162 149 a7 7 0 0 0 &#45;7 &#45;7 L13 142 a7 7 0 0 1 &#45;7 &#45;7 L6 13 a7 7 0 0 1 7 &#45;7" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="0.1"/>
+		<path d="M13 6 L313 6 a7 7 0 0 1 7 7 L320 249 a7 7 0 0 1 &#45;7 7 L169 256 a7 7 0 0 1 &#45;7 &#45;7 L162 149 a7 7 0 0 0 &#45;7 &#45;7 L13 142 a7 7 0 0 1 &#45;7 &#45;7 L6 13 a7 7 0 0 1 7 &#45;7" fill="none" stroke="#000000" stroke-width="1.5" stroke-dasharray="0,4" stroke-linecap="round"/>
+		<path d="M275 45 a14 14 90 0 1 14 14 V73 h-96 V59 a14 14 90 0 1 14 -14" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+		<path d="M289 73 v16 a14 14 90 0 1 -14 14 H207 a14 14 90 0 1 -14 -14 V73 H96" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+		<rect x="193" y="45" width="96" height="58" fill="none" rx="14" stroke="#000000" stroke-width="1.5"/>
+		<line x1="193" y1="73" x2="289" y2="73" stroke="#000000" stroke-width="1.5"/>
+		<text x="201" y="66.3" fill="#000000" font-family="Copperplate" font-size="18">ASSOC 4</text>
+	</g>
+	<text x="154" y="105" fill="#000000" font-family="Futura" font-size="11">1,N</text>
+	<text x="261" y="143" fill="#000000" font-family="Futura" font-size="11">1,N</text>
+	<text x="309" y="105" fill="#000000" font-family="Futura" font-size="11">1,N</text>
+</g>
+
+<!-- Entity ENTITY 1_ -->
+<g>
+	<g>
+		<rect x="36" y="36" width="98" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="36" y="66" width="98" height="46" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="36" y="36" width="98" height="76" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
+		<line x1="36" y1="66" x2="134" y2="66" stroke="#000000" stroke-width="1.5"/>
+	</g>
+	<text x="44" y="57.3" fill="#000000" font-family="Copperplate" font-size="18">ENTITY 1</text>
+	<text x="44" y="83.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 1 1</text>
+	<line x1="44" y1="86" x2="91" y2="86" stroke="#000000" stroke-width="1"/>
+	<text x="44" y="100.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 1 2</text>
+</g>
+
+<!-- Entity ENTITY 2_ -->
+<g>
+	<g>
+		<rect x="348" y="36" width="98" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="348" y="66" width="98" height="46" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="348" y="36" width="98" height="76" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
+		<line x1="348" y1="66" x2="446" y2="66" stroke="#000000" stroke-width="1.5"/>
+	</g>
+	<text x="356" y="57.3" fill="#000000" font-family="Copperplate" font-size="18">ENTITY 2</text>
+	<text x="356" y="83.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 2 1</text>
+	<line x1="356" y1="86" x2="403" y2="86" stroke="#000000" stroke-width="1"/>
+	<text x="356" y="100.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 2 2</text>
+</g>
+
+<!-- Entity ENTITY 3_ -->
+<g>
+	<g>
+		<rect x="192" y="166" width="98" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="192" y="196" width="98" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="192" y="166" width="98" height="60" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
+		<line x1="192" y1="196" x2="290" y2="196" stroke="#000000" stroke-width="1.5"/>
+	</g>
+	<text x="200" y="187.3" fill="#000000" font-family="Copperplate" font-size="18">ENTITY 3</text>
+	<text x="200" y="213.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 3 1</text>
+	<line x1="200" y1="216" x2="247" y2="216" stroke="#000000" stroke-width="1"/>
+</g>
+</svg>

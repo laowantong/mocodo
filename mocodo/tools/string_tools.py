@@ -23,7 +23,7 @@ def rstrip_digit(s):
     Get rid of single digit suffix, if any. Works on empty strings too.
     Used for entity and association names.
     """
-    return s[:-1] if s[-1:].isdigit() else s
+    return s[:-1] if s[-1:].isdigit() or s[-1:] == "_" else s
 
 def surrounds(s, ends):
     """

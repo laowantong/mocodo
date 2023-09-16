@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="676" height="294" viewBox="0 0 676 294" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="676" height="294" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+
+<!-- Constraint I constraint #1 -->
+<g>
+	<line x1="477" y1="47" x2="408.5" y2="97" stroke="#000000" stroke-width="2"  stroke-dasharray="0,5" stroke-linecap="round"/>
+	<polygon points="379.73 76 392.96 78.23 386.19 80.72 385.89 87.92" fill="#000000" stroke-width="0"/>
+	<line x1="340" y1="47" x2="408.5" y2="97" stroke="#000000" stroke-width="1"/>
+	<line x1="477" y1="147" x2="408.5" y2="97" stroke="#000000" stroke-width="1"/>
+	<g>
+		<circle cx="408.5" cy="97" r="12" stroke="#000000" stroke-width="1" fill="#FFFFFF"/>
+		<text x="406" y="101.2" fill="#000000" font-family="Futura" font-size="11">I</text>
+	</g>
+</g>
+
+<!-- Association ASSOC 07_ -->
+<g>
+	<line x1="201" y1="147" x2="201" y2="47" stroke="#000000" stroke-width="1"/>
+	<line x1="340" y1="147" x2="201" y2="47" stroke="#000000" stroke-width="1"/>
+	<g>
+		<path d="M240 18 a14 14 90 0 1 14 14 V46 h-106 V32 a14 14 90 0 1 14 -14" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+		<path d="M254 46 v16 a14 14 90 0 1 -14 14 H162 a14 14 90 0 1 -14 -14 V46 H106" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+		<rect x="148" y="18" width="106" height="58" fill="none" rx="14" stroke="#000000" stroke-width="1.5"/>
+		<line x1="148" y1="46" x2="254" y2="46" stroke="#000000" stroke-width="1.5"/>
+		<text x="156" y="39.3" fill="#000000" font-family="Copperplate" font-size="18">ASSOC 07</text>
+	</g>
+	<text x="206" y="101" fill="#000000" font-family="Futura" font-size="11">0,N</text>
+	<text x="286.72" y="101" fill="#000000" font-family="Futura" font-size="11">0,1</text>
+</g>
+
+<!-- Association ASSOC 08_ -->
+<g>
+	<line x1="340" y1="147" x2="340" y2="47" stroke="#000000" stroke-width="1"/>
+	<line x1="477" y1="47" x2="340" y2="47" stroke="#000000" stroke-width="1"/>
+	<g>
+		<path d="M379 18 a14 14 90 0 1 14 14 V46 h-106 V32 a14 14 90 0 1 14 -14" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+		<path d="M393 46 v16 a14 14 90 0 1 -14 14 H301 a14 14 90 0 1 -14 -14 V46 H106" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+		<rect x="287" y="18" width="106" height="58" fill="none" rx="14" stroke="#000000" stroke-width="1.5"/>
+		<line x1="287" y1="46" x2="393" y2="46" stroke="#000000" stroke-width="1.5"/>
+		<text x="295" y="39.3" fill="#000000" font-family="Copperplate" font-size="18">ASSOC 08</text>
+		<text x="294" y="64.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 08 1</text>
+	</g>
+	<text x="345" y="101" fill="#000000" font-family="Futura" font-size="11">1,N</text>
+	<text x="398" y="63" fill="#000000" font-family="Futura" font-size="11">0,N</text>
+</g>
+
+<!-- Association ASSOC 09_ -->
+<g>
+	<path d="M477 47 C524 15 569.67 15 614 47" fill="none" stroke="#000000" stroke-width="1"/>
+	<path d="M477 47 C524 79 569.67 79 614 47" fill="none" stroke="#000000" stroke-width="1"/>
+	<g>
+		<path d="M653 18 a14 14 90 0 1 14 14 V46 h-106 V32 a14 14 90 0 1 14 -14" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+		<path d="M667 46 v16 a14 14 90 0 1 -14 14 H575 a14 14 90 0 1 -14 -14 V46 H106" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+		<rect x="561" y="18" width="106" height="58" fill="none" rx="14" stroke="#000000" stroke-width="1.5"/>
+		<line x1="561" y1="46" x2="667" y2="46" stroke="#000000" stroke-width="1.5"/>
+		<text x="569" y="39.3" fill="#000000" font-family="Copperplate" font-size="18">ASSOC 09</text>
+		<text x="568" y="64.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 09 1</text>
+	</g>
+	<text x="537" y="40" fill="#000000" font-family="Futura" font-size="11">0,N</text>
+	<text x="537" y="62" fill="#000000" font-family="Futura" font-size="11">0,N</text>
+</g>
+
+<!-- Association DF0 -->
+<g>
+	<line x1="64" y1="47" x2="64" y2="147" stroke="#000000" stroke-width="1"/>
+	<line x1="201" y1="147" x2="64" y2="147" stroke="#000000" stroke-width="1"/>
+	<g>
+		<circle cx="64" cy="147" r="20" stroke="#000000" stroke-width="1.5" fill="#FFFFFF"/>
+		<text x="51" y="151.8" fill="#000000" font-family="Copperplate" font-size="18">DF</text>
+	</g>
+	<text x="69" y="101" fill="#000000" font-family="Futura" font-size="11">1,1</text>
+	<line x1="69" y1="103" x2="87" y2="103" stroke="#000000" stroke-width="1"/>
+	<text x="122" y="163" fill="#000000" font-family="Futura" font-size="11">0,N</text>
+</g>
+
+<!-- Association ASSOC 11_ -->
+<g>
+	<line x1="340" y1="147" x2="477" y2="147" stroke="#000000" stroke-width="1"/>
+	<line x1="477" y1="47" x2="477" y2="147" stroke="#000000" stroke-width="1"/>
+	<line x1="477" y1="247" x2="477" y2="147" stroke="#000000" stroke-width="1"/>
+	<g>
+		<path d="M516 118 a14 14 90 0 1 14 14 V146 h-106 V132 a14 14 90 0 1 14 -14" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+		<path d="M530 146 v16 a14 14 90 0 1 -14 14 H438 a14 14 90 0 1 -14 -14 V146 H106" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+		<rect x="424" y="118" width="106" height="58" fill="none" rx="14" stroke="#000000" stroke-width="1.5"/>
+		<line x1="424" y1="146" x2="530" y2="146" stroke="#000000" stroke-width="1.5"/>
+		<text x="432" y="139.3" fill="#000000" font-family="Copperplate" font-size="18">ASSOC 11</text>
+		<text x="431" y="164.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 11 1</text>
+	</g>
+	<text x="400" y="163" fill="#000000" font-family="Futura" font-size="11">1,N</text>
+	<text x="482" y="101" fill="#000000" font-family="Futura" font-size="11">1,N</text>
+	<text x="482" y="201" fill="#000000" font-family="Futura" font-size="11">1,N</text>
+</g>
+
+<!-- Association ASSOC 12_ -->
+<g>
+	<line x1="201" y1="147" x2="201" y2="247" stroke="#000000" stroke-width="1"/>
+	<line x1="64" y1="247" x2="201" y2="247" stroke="#000000" stroke-width="1"/>
+	<g>
+		<path d="M240 218 a14 14 90 0 1 14 14 V246 h-106 V232 a14 14 90 0 1 14 -14" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+		<path d="M254 246 v16 a14 14 90 0 1 -14 14 H162 a14 14 90 0 1 -14 -14 V246 H106" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+		<rect x="148" y="218" width="106" height="58" fill="none" rx="14" stroke="#000000" stroke-width="1.5"/>
+		<line x1="148" y1="246" x2="254" y2="246" stroke="#000000" stroke-width="1.5"/>
+		<text x="156" y="239.3" fill="#000000" font-family="Copperplate" font-size="18">ASSOC 12</text>
+	</g>
+	<text x="178" y="201" fill="#000000" font-family="Futura" font-size="11">1,1</text>
+	<text x="124" y="263" fill="#000000" font-family="Futura" font-size="11">1,N</text>
+</g>
+
+<!-- Association ASSOC 13_ -->
+<g>
+	<line x1="201" y1="147" x2="340" y2="247" stroke="#000000" stroke-width="1"/>
+	<line x1="340" y1="147" x2="340" y2="247" stroke="#000000" stroke-width="1"/>
+	<g>
+		<path d="M379 218 a14 14 90 0 1 14 14 V246 h-106 V232 a14 14 90 0 1 14 -14" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+		<path d="M393 246 v16 a14 14 90 0 1 -14 14 H301 a14 14 90 0 1 -14 -14 V246 H106" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+		<rect x="287" y="218" width="106" height="58" fill="none" rx="14" stroke="#000000" stroke-width="1.5"/>
+		<line x1="287" y1="246" x2="393" y2="246" stroke="#000000" stroke-width="1.5"/>
+		<text x="295" y="239.3" fill="#000000" font-family="Copperplate" font-size="18">ASSOC 13</text>
+	</g>
+	<text x="235.28" y="201" fill="#000000" font-family="Futura" font-size="11">0,N</text>
+	<text x="345" y="201" fill="#000000" font-family="Futura" font-size="11">1,N</text>
+</g>
+
+<!-- Association ASSOC 14_ -->
+<g>
+	<path d="M477 247 C524 215 569.67 215 614 247" fill="none" stroke="#000000" stroke-width="1"/>
+	<polygon points="561.0 224.08 548.24 228.24 553.08 222.9 550.02 216.37" fill="#000000" stroke-width="0"/>
+	<path d="M477 247 C523.33 279 569 279 614 247" fill="none" stroke="#000000" stroke-width="1"/>
+	<g>
+		<path d="M653 218 a14 14 90 0 1 14 14 V246 h-106 V232 a14 14 90 0 1 14 -14" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+		<path d="M667 246 v16 a14 14 90 0 1 -14 14 H575 a14 14 90 0 1 -14 -14 V246 H106" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+		<rect x="561" y="218" width="106" height="58" fill="none" rx="14" stroke="#000000" stroke-width="1.5"/>
+		<line x1="561" y1="246" x2="667" y2="246" stroke="#000000" stroke-width="1.5"/>
+		<text x="569" y="239.3" fill="#000000" font-family="Copperplate" font-size="18">ASSOC 14</text>
+	</g>
+	<text x="537" y="240" fill="#000000" font-family="Futura" font-size="11">0,N</text>
+	<text x="537" y="262" fill="#000000" font-family="Futura" font-size="11">0,1</text>
+</g>
+
+<!-- Entity ENTITY 01_ -->
+<g>
+	<g>
+		<rect x="9" y="9" width="110" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="9" y="39" width="110" height="46" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="9" y="9" width="110" height="76" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
+		<line x1="9" y1="39" x2="119" y2="39" stroke="#000000" stroke-width="1.5"/>
+	</g>
+	<text x="18" y="30.3" fill="#000000" font-family="Copperplate" font-size="18">ENTITY 01</text>
+	<text x="17" y="56.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 01 1</text>
+	<line x1="17" y1="59" x2="72" y2="59" stroke="#000000" stroke-width="1" stroke-dasharray="4"/>
+	<text x="17" y="73.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 01 2</text>
+</g>
+
+<!-- Entity ENTITY 02_ -->
+<g>
+	<g>
+		<rect x="422" y="9" width="110" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="422" y="39" width="110" height="46" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="422" y="9" width="110" height="76" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
+		<line x1="422" y1="39" x2="532" y2="39" stroke="#000000" stroke-width="1.5"/>
+	</g>
+	<text x="431" y="30.3" fill="#000000" font-family="Copperplate" font-size="18">ENTITY 02</text>
+	<text x="430" y="56.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 02 1</text>
+	<line x1="430" y1="59" x2="485" y2="59" stroke="#000000" stroke-width="1"/>
+	<text x="430" y="73.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 02 2</text>
+</g>
+
+<!-- Entity ENTITY 03_ -->
+<g>
+	<g>
+		<rect x="146" y="109" width="110" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="146" y="139" width="110" height="46" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="146" y="109" width="110" height="76" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
+		<line x1="146" y1="139" x2="256" y2="139" stroke="#000000" stroke-width="1.5"/>
+	</g>
+	<text x="155" y="130.3" fill="#000000" font-family="Copperplate" font-size="18">ENTITY 03</text>
+	<text x="154" y="156.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 03 1</text>
+	<line x1="154" y1="159" x2="209" y2="159" stroke="#000000" stroke-width="1"/>
+	<text x="154" y="173.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 03 2</text>
+</g>
+
+<!-- Entity ENTITY 04_ -->
+<g>
+	<g>
+		<rect x="285" y="109" width="110" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="285" y="139" width="110" height="46" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="285" y="109" width="110" height="76" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
+		<line x1="285" y1="139" x2="395" y2="139" stroke="#000000" stroke-width="1.5"/>
+	</g>
+	<text x="294" y="130.3" fill="#000000" font-family="Copperplate" font-size="18">ENTITY 04</text>
+	<text x="293" y="156.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 04 1</text>
+	<line x1="293" y1="159" x2="348" y2="159" stroke="#000000" stroke-width="1"/>
+	<text x="293" y="173.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 04 2</text>
+</g>
+
+<!-- Entity ENTITY 05_ -->
+<g>
+	<g>
+		<rect x="9" y="209" width="110" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="9" y="239" width="110" height="46" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="9" y="209" width="110" height="76" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
+		<line x1="9" y1="239" x2="119" y2="239" stroke="#000000" stroke-width="1.5"/>
+	</g>
+	<text x="18" y="230.3" fill="#000000" font-family="Copperplate" font-size="18">ENTITY 05</text>
+	<text x="17" y="256.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 05 1</text>
+	<line x1="17" y1="259" x2="72" y2="259" stroke="#000000" stroke-width="1"/>
+	<text x="17" y="273.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 05 2</text>
+</g>
+
+<!-- Entity ENTITY 06_ -->
+<g>
+	<g>
+		<rect x="422" y="209" width="110" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="422" y="239" width="110" height="46" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="422" y="209" width="110" height="76" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
+		<line x1="422" y1="239" x2="532" y2="239" stroke="#000000" stroke-width="1.5"/>
+	</g>
+	<text x="431" y="230.3" fill="#000000" font-family="Copperplate" font-size="18">ENTITY 06</text>
+	<text x="430" y="256.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 06 1</text>
+	<line x1="430" y1="259" x2="485" y2="259" stroke="#000000" stroke-width="1"/>
+	<text x="430" y="273.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 06 2</text>
+</g>
+</svg>

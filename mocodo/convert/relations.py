@@ -246,7 +246,7 @@ class Relations:
             if entity.is_invisible:
                 continue
             self.relations[name] = {
-                "this_relation_name": entity.name,
+                "this_relation_name": entity.name_view,
                 "is_forced": False, # an entity naturally results in a relation. No need to force it.
                 "is_protected": entity.is_protected,
                 "columns": [],
@@ -396,7 +396,7 @@ class Relations:
             if df_leg is None or association.is_protected:
                 # make a relation of this association
                 self.relations[association.name] = {
-                    "this_relation_name": association.name,
+                    "this_relation_name": association.name_view,
                     "is_forced": bool(df_leg), # if this association has a 11 leg, being here means it is protected: it must be forced into a relation
                     "columns": [],
                     "existing_unicity_numbers": set(),

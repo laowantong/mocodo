@@ -150,6 +150,11 @@ class Transformations:
             "help": "move any (1,1) association attribute to the appropriate entity",
             "aliases": [],
         },
+        "drown": {
+            "category": "rw",
+            "help": "replace all element names by a generic label (e.g., 'Entity 1', 'Attribute 1-2', ...)",
+            "aliases": ["drown_by_numbers"],
+        },
         "echo": {
             "category": "rw",
             "help": "rewrite the source text as is",
