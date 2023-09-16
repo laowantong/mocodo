@@ -1,3 +1,4 @@
+import json
 import time
 import gettext
 gettext.NullTranslations().install()
@@ -82,12 +83,13 @@ def main():
 
 
     templates = []
-    for template_path in TEMPLATE_DIR.glob("*.yaml"):
-        if re.match(r"(html|markdown|latex|text)(?!-ces)", template_path.stem):
+    template_index = json.loads(Path(TEMPLATE_DIR / "_index.json").read_text())
+    for name in template_index:
+        if re.match(r"html|markdown|latex|text", name):
+            name += "-ces"
+        elif re.match(r"mysql|oracle|postgresql|sqlite", name):
             continue
-        if re.match(r"(mysql|oracle|postgres|postgresql|sqlite)", template_path.stem):
-            continue
-        templates.append(read_template(template_path.stem, TEMPLATE_DIR))
+        templates.append(read_template(name, TEMPLATE_DIR))
 
     params = parsed_arguments()
     params["guess_title"] = False

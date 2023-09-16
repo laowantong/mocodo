@@ -32,12 +32,12 @@
   "latex": {
     "category": "cv",
     "help": "convert the conceptual model into a relational schema in LaTeX format",
-    "aliases": []
+    "aliases": ["tex"]
   },
   "markdown": {
     "category": "cv",
     "help": "convert the conceptual model into a relational schema in Markdown format",
-    "aliases": ["mld"]
+    "aliases": ["md", "mld"]
   },
   "mysql": {
     "category": "cv",
@@ -62,6 +62,6 @@
   "text": {
     "category": "cv",
     "help": "convert the conceptual model into a relational schema in text format",
-    "aliases": []
+    "aliases": ["txt"]
   }
 }

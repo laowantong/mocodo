@@ -175,7 +175,7 @@ class Transformations:
         "lower": {
             "category": "rw",
             "help": "rewrite the given elements in lowercase",
-            "aliases": ["lowercase", "lower_case"],
+            "aliases": ["lowercase", "lower_case", "lower-case"],
             "op_tk": True,
         },
         "randomize": {
@@ -187,12 +187,12 @@ class Transformations:
         "relation": {
             "category": "cv",
             "help": "convert the conceptual model into a relational schema with the given template path",
-            "aliases": ["relation_template"]
+            "aliases": ["relation_template", "relation-template"]
         },
         "snake": {
             "category": "rw",
             "help": "rewrite the given elements in snake_case",
-            "aliases": ["snake_case"],
+            "aliases": ["snake_case", "snake-case"],
             "op_tk": True,
         },
         "split": {
@@ -221,12 +221,12 @@ class Transformations:
         "uml": {
             "category": "cv",
             "help": "convert the conceptual model into a UML class diagram",
-            "aliases": ["UML", "class_diagram"],
+            "aliases": ["UML", "class_diagram", "class-diagram"],
         },
         "upper": {
             "category": "rw",
             "help": "rewrite the given elements in UPPERCASE",
-            "aliases": ["uppercase", "upper_case"],
+            "aliases": ["uppercase", "upper_case", "upper-case"],
             "op_tk": True,
         },
     }
@@ -258,14 +258,15 @@ class Transformations:
 
     def get_help(self):
         result = []
-        for (category, header) in ("rw", "REWRITING OPERATIONS"), ("cv", "CONVERSION OPERATIONS"), ("both", "BOTH CATEGORIES"):
+        for (category, header) in ("rw", "REWRITING OPERATIONS"), ("cv", "CONVERSION OPERATIONS"):
             result.append(f"{header}:")
             for (name, transformation) in self.metadata.items():
                 if transformation["category"] != category:
                     continue
                 aliases = self.metadata[name]["aliases"]
-                aliases = f". Aliases: {', '.join(aliases)}" if aliases else ""
-                result.append(f"- {name}: {transformation['help']}{aliases};")
+                plural = "es" if len(aliases) > 1 else ""
+                aliases = f". Alias{plural}: {', '.join(aliases)}" if aliases else ""
+                result.append(f"  - {name}: {transformation['help']}{aliases};")
             result[-1] = result[-1][:-1] + "."  # replace the last semicolon by a dot
         return "\n".join(result)
 
@@ -445,7 +446,7 @@ def parsed_arguments():
         choices=["mcd", "rw", "cv"],
         nargs="*",
         default=argparse.SUPPRESS, # causes no attribute to be added if the argument was not present
-        help="under Jupyter Notebook, explicitely state which parts of the result to display",
+        help="under Jupyter Notebook, explicitely state the categories of results to display",
     )
     io_group.add_argument("--defer",
         metavar="STR",
