@@ -1,23 +1,23 @@
-ENTITY 01_: attr 01 1, attr 01 2
+ENTITY 01_: attr 01 1_, attr 01 2_
 ASSOC 11_, 1N ENTITY 05_, 11 ENTITY 01_
 :
 :
-ENTITY 02_: attr 02 1, attr 02 2
+ENTITY 02_: attr 02 1_, attr 02 2_
 ASSOC 12_, 11 ENTITY 03_, 1N ENTITY 02_
-ENTITY 03_: attr 03 1, attr 03 2
+ENTITY 03_: attr 03 1_, attr 03 2_
 
-ENTITY 04_: attr 04 1, attr 04 2
+ENTITY 04_: attr 04 1_, attr 04 2_
 ASSOC 13_, 11 ENTITY 05_, 1N ENTITY 04_
-ENTITY 05_: attr 05 1, attr 05 2
+ENTITY 05_: attr 05 1_, attr 05 2_
 /XT\ ENTITY 05_ <- ENTITY 02_, ENTITY 06_, ENTITY 09_: type
-ENTITY 06_: attr 06 1, attr 06 2
+ENTITY 06_: attr 06 1_, attr 06 2_
 ASSOC 14_, 1N ENTITY 07_, 11 ENTITY 06_
-ENTITY 07_: attr 07 1, attr 07 2
+ENTITY 07_: attr 07 1_, attr 07 2_
 
-ENTITY 08_: attr 08 1, attr 08 2
+ENTITY 08_: attr 08 1_, attr 08 2_
 ASSOC 15_, 1N ENTITY 05_, 1N ENTITY 08_
 :
 :
-ENTITY 09_: attr 09 1, attr 09 2
+ENTITY 09_: attr 09 1_, attr 09 2_
 ASSOC 16_, 1N ENTITY 10_, 1N ENTITY 09_
-ENTITY 10_: attr 10 1, attr 10 2
+ENTITY 10_: attr 10 1_, attr 10 2_

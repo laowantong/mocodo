@@ -37,8 +37,8 @@
 		<line x1="9" y1="39" x2="107" y2="39" stroke="#000000" stroke-width="1.5"/>
 	</g>
 	<text x="17" y="30.3" fill="#000000" font-family="Copperplate" font-size="18">ENTITY 1</text>
-	<text x="17" y="56.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 1 1</text>
-	<line x1="17" y1="59" x2="64" y2="59" stroke="#000000" stroke-width="1"/>
+	<text x="17" y="56.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 1 1_</text>
+	<line x1="17" y1="59" x2="73" y2="59" stroke="#000000" stroke-width="1"/>
 </g>
 
 <!-- Entity ENTITY 2_ -->
@@ -50,7 +50,7 @@
 		<line x1="205" y1="39" x2="303" y2="39" stroke="#000000" stroke-width="1.5"/>
 	</g>
 	<text x="213" y="30.3" fill="#000000" font-family="Copperplate" font-size="18">ENTITY 2</text>
-	<text x="213" y="56.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 2 1</text>
+	<text x="213" y="56.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 2 1_</text>
 </g>
 
 <!-- Entity ENTITY 3_ -->
@@ -62,7 +62,7 @@
 		<line x1="401" y1="39" x2="499" y2="39" stroke="#000000" stroke-width="1.5"/>
 	</g>
 	<text x="409" y="30.3" fill="#000000" font-family="Copperplate" font-size="18">ENTITY 3</text>
-	<text x="409" y="56.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 3 1</text>
-	<line x1="409" y1="59" x2="456" y2="59" stroke="#000000" stroke-width="1"/>
+	<text x="409" y="56.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 3 1_</text>
+	<line x1="409" y1="59" x2="465" y2="59" stroke="#000000" stroke-width="1"/>
 </g>
 </svg>

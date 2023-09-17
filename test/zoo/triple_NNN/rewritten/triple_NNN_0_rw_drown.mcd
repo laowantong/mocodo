@@ -1,5 +1,5 @@
-ENTITY 1_: attr 1 1
+ENTITY 1_: attr 1 1_
 ASSOC 4_, 0N ENTITY 1_, 1N ENTITY 2_, 1N ENTITY 3_
-ENTITY 2_: attr 2 1
+ENTITY 2_: attr 2 1_
 
-ENTITY 3_: attr 3 1
+ENTITY 3_: attr 3 1_

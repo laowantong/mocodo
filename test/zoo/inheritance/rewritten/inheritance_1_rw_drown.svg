@@ -116,9 +116,9 @@
 		<line x1="9" y1="39" x2="119" y2="39" stroke="#000000" stroke-width="1.5"/>
 	</g>
 	<text x="18" y="30.3" fill="#000000" font-family="Copperplate" font-size="18">ENTITY 01</text>
-	<text x="17" y="56.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 01 1</text>
-	<line x1="17" y1="59" x2="72" y2="59" stroke="#000000" stroke-width="1"/>
-	<text x="17" y="73.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 01 2</text>
+	<text x="17" y="56.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 01 1_</text>
+	<line x1="17" y1="59" x2="81" y2="59" stroke="#000000" stroke-width="1"/>
+	<text x="17" y="73.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 01 2_</text>
 </g>
 
 <!-- Entity ENTITY 02_ -->
@@ -130,8 +130,8 @@
 		<line x1="501" y1="39" x2="611" y2="39" stroke="#000000" stroke-width="1.5"/>
 	</g>
 	<text x="510" y="30.3" fill="#000000" font-family="Copperplate" font-size="18">ENTITY 02</text>
-	<text x="509" y="56.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 02 1</text>
-	<text x="509" y="73.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 02 2</text>
+	<text x="509" y="56.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 02 1_</text>
+	<text x="509" y="73.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 02 2_</text>
 </g>
 
 <!-- Entity ENTITY 03_ -->
@@ -143,9 +143,9 @@
 		<line x1="775" y1="39" x2="885" y2="39" stroke="#000000" stroke-width="1.5"/>
 	</g>
 	<text x="784" y="30.3" fill="#000000" font-family="Copperplate" font-size="18">ENTITY 03</text>
-	<text x="783" y="56.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 03 1</text>
-	<line x1="783" y1="59" x2="838" y2="59" stroke="#000000" stroke-width="1"/>
-	<text x="783" y="73.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 03 2</text>
+	<text x="783" y="56.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 03 1_</text>
+	<line x1="783" y1="59" x2="847" y2="59" stroke="#000000" stroke-width="1"/>
+	<text x="783" y="73.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 03 2_</text>
 </g>
 
 <!-- Entity ENTITY 04_ -->
@@ -157,9 +157,9 @@
 		<line x1="9" y1="139" x2="119" y2="139" stroke="#000000" stroke-width="1.5"/>
 	</g>
 	<text x="18" y="130.3" fill="#000000" font-family="Copperplate" font-size="18">ENTITY 04</text>
-	<text x="17" y="156.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 04 1</text>
-	<line x1="17" y1="159" x2="72" y2="159" stroke="#000000" stroke-width="1"/>
-	<text x="17" y="173.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 04 2</text>
+	<text x="17" y="156.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 04 1_</text>
+	<line x1="17" y1="159" x2="81" y2="159" stroke="#000000" stroke-width="1"/>
+	<text x="17" y="173.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 04 2_</text>
 </g>
 
 <!-- Entity ENTITY 05_ -->
@@ -171,9 +171,9 @@
 		<line x1="283" y1="139" x2="393" y2="139" stroke="#000000" stroke-width="1.5"/>
 	</g>
 	<text x="292" y="130.3" fill="#000000" font-family="Copperplate" font-size="18">ENTITY 05</text>
-	<text x="291" y="156.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 05 1</text>
-	<line x1="291" y1="159" x2="346" y2="159" stroke="#000000" stroke-width="1"/>
-	<text x="291" y="173.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 05 2</text>
+	<text x="291" y="156.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 05 1_</text>
+	<line x1="291" y1="159" x2="355" y2="159" stroke="#000000" stroke-width="1"/>
+	<text x="291" y="173.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 05 2_</text>
 </g>
 
 <!-- Entity ENTITY 06_ -->
@@ -185,8 +185,8 @@
 		<line x1="501" y1="139" x2="611" y2="139" stroke="#000000" stroke-width="1.5"/>
 	</g>
 	<text x="510" y="130.3" fill="#000000" font-family="Copperplate" font-size="18">ENTITY 06</text>
-	<text x="509" y="156.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 06 1</text>
-	<text x="509" y="173.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 06 2</text>
+	<text x="509" y="156.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 06 1_</text>
+	<text x="509" y="173.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 06 2_</text>
 </g>
 
 <!-- Entity ENTITY 07_ -->
@@ -198,9 +198,9 @@
 		<line x1="775" y1="139" x2="885" y2="139" stroke="#000000" stroke-width="1.5"/>
 	</g>
 	<text x="784" y="130.3" fill="#000000" font-family="Copperplate" font-size="18">ENTITY 07</text>
-	<text x="783" y="156.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 07 1</text>
-	<line x1="783" y1="159" x2="838" y2="159" stroke="#000000" stroke-width="1"/>
-	<text x="783" y="173.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 07 2</text>
+	<text x="783" y="156.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 07 1_</text>
+	<line x1="783" y1="159" x2="847" y2="159" stroke="#000000" stroke-width="1"/>
+	<text x="783" y="173.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 07 2_</text>
 </g>
 
 <!-- Entity ENTITY 08_ -->
@@ -212,9 +212,9 @@
 		<line x1="9" y1="239" x2="119" y2="239" stroke="#000000" stroke-width="1.5"/>
 	</g>
 	<text x="18" y="230.3" fill="#000000" font-family="Copperplate" font-size="18">ENTITY 08</text>
-	<text x="17" y="256.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 08 1</text>
-	<line x1="17" y1="259" x2="72" y2="259" stroke="#000000" stroke-width="1"/>
-	<text x="17" y="273.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 08 2</text>
+	<text x="17" y="256.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 08 1_</text>
+	<line x1="17" y1="259" x2="81" y2="259" stroke="#000000" stroke-width="1"/>
+	<text x="17" y="273.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 08 2_</text>
 </g>
 
 <!-- Entity ENTITY 09_ -->
@@ -226,8 +226,8 @@
 		<line x1="501" y1="239" x2="611" y2="239" stroke="#000000" stroke-width="1.5"/>
 	</g>
 	<text x="510" y="230.3" fill="#000000" font-family="Copperplate" font-size="18">ENTITY 09</text>
-	<text x="509" y="256.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 09 1</text>
-	<text x="509" y="273.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 09 2</text>
+	<text x="509" y="256.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 09 1_</text>
+	<text x="509" y="273.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 09 2_</text>
 </g>
 
 <!-- Entity ENTITY 10_ -->
@@ -239,8 +239,8 @@
 		<line x1="775" y1="239" x2="885" y2="239" stroke="#000000" stroke-width="1.5"/>
 	</g>
 	<text x="784" y="230.3" fill="#000000" font-family="Copperplate" font-size="18">ENTITY 10</text>
-	<text x="783" y="256.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 10 1</text>
-	<line x1="783" y1="259" x2="838" y2="259" stroke="#000000" stroke-width="1"/>
-	<text x="783" y="273.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 10 2</text>
+	<text x="783" y="256.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 10 1_</text>
+	<line x1="783" y1="259" x2="847" y2="259" stroke="#000000" stroke-width="1"/>
+	<text x="783" y="273.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 10 2_</text>
 </g>
 </svg>

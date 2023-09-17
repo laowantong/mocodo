@@ -24,15 +24,15 @@ class Numbering(Visitor):
         update_translations("entity_name_def", _("ENTITY"), 1)
         update_translations("assoc_name_def", _("ASSOC"), len(self.names) + 1)
 
-        self.attr_base_name = _("attr")
-        self.leg_note_base_name = _("role")
+        self.attr_base = _("attr")
+        self.leg_note_base = _("role")
 
     def update_box_attrs(self, tree, token_name):
         number = self.numbers[first_child(tree, token_name).children[0].value]
         for (i, attr) in enumerate(tree.find_data("attr"), 1):
             if attr.children[0] == "":
                 continue # do nothing for a spacer attribute
-            attr.children[0].value = f"{self.attr_base_name} {number} {i}"
+            attr.children[0].value = f"{self.attr_base} {number} {i}_"
     
     def box_name(self, tree):
         token = tree.children[0]
@@ -44,7 +44,7 @@ class Numbering(Visitor):
     def assoc_clause(self, tree):
         self.update_box_attrs(tree, "assoc_name_def")
         for (i, attr) in enumerate(tree.find_data("leg_note"), 1):
-            attr.children[0].value = f"{self.leg_note_base_name} {i}"
+            attr.children[0].value = f"{self.leg_note_base} {i}"
 
 
 def run(source, params, **kargs):
