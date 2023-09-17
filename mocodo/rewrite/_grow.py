@@ -29,6 +29,20 @@ def extract_weak_entities(cards, refs):
         if "_" in card:
             yield ref
 
+def biased_choice(elements):
+    # Return a random element from a list, with a bias towards the last elements.
+    i = max(random.randrange(0, len(elements)) for _ in range(3))
+    return elements[i]
+
+def biased_sample(elements, k):
+    # Return a random sample of k elements from a list, with a bias towards the last elements.
+    max_sample = [-1] # incorrect sample, but it will be replaced on the first iteration
+    for _ in range(3):
+        sample = random.sample(range(len(elements)), k)
+        if min(sample) > min(max_sample):
+            max_sample = sample
+    return [elements[i] for i in max_sample]
+
 def run(source, subargs=None, params=None, **kargs):
     match_card_scheme = re.compile(r"^[/_]?[01*][1N]-[/_]?[01*][1N]$").match
     subargs = subargs or {}
@@ -82,7 +96,6 @@ def run(source, subargs=None, params=None, **kargs):
         if match_card_scheme(k):
             card_schemes.extend([k] * v)
     card_schemes.extend(["*N-*N"] * (n - len(card_schemes)))
-    random.shuffle(card_schemes)
 
     # Try to find a combination of card schemes and arities that is compatible
     arities = [1] * settings["arity_1"] + [3] * settings["arity_3"] + [4] * settings["arity_4"] + [2] * n
@@ -90,6 +103,12 @@ def run(source, subargs=None, params=None, **kargs):
     max_tries = 100
     while max_tries > 0:
         random.shuffle(arities)
+        # Slightly push the non binary arities towards the end (one iteration of bubble sort).
+        # Reason: the non binary arities are tougher to place when there a not many entities yet
+        for i in range(len(arities) - 1):
+            if arities[i] != 2 and arities[i + 1] == 2:
+                (arities[i], arities[i + 1]) = (arities[i + 1], arities[i])
+        random.shuffle(card_schemes) # avoid being stuck with a card scheme incompatible with a small arity
         max_tries -= 1
         for (scheme, arity) in zip(card_schemes, arities):
             if "_" in scheme and arity == 1:
@@ -126,7 +145,7 @@ def run(source, subargs=None, params=None, **kargs):
 
         if arities[i] == 1:
             # to keep the MCD connected, don't create a new entity if the association is reflexive
-            old_entity = random.choice(entities)
+            old_entity = biased_choice(entities)
             refs = [old_entity, old_entity]
         else:
             # Normal case: create a new entity
@@ -134,9 +153,9 @@ def run(source, subargs=None, params=None, **kargs):
             new_ent_attrs = [f"{ent_attr_name} {counter} {j}" for (j, ent_attr_name) in enumerate(ent_attr_names[i], 1)]
             clauses.append(f"{new_entity}: {', '.join(new_ent_attrs)}")
             try: # Prefer all distinct entities
-                old_refs = random.sample(entities, arities[i] - 1)
+                old_refs = biased_sample(entities, arities[i] - 1)
             except ValueError: # If there are not enough entities, allow reflexive associations
-                old_refs = [random.choice(entities) for _ in range(arities[i] - 1)]
+                old_refs = [biased_choice(entities) for _ in range(arities[i] - 1)]
             refs = [new_entity] + old_refs
             entities.append(new_entity)
             counter += 1
@@ -153,7 +172,7 @@ def run(source, subargs=None, params=None, **kargs):
         counter += 1
     
     for i in range(settings["n"] - settings["doubles"], settings["n"]):
-        old_refs = random.choice(ref_pool)
+        old_refs = biased_choice(ref_pool)
         arity = len(set(old_refs))
         new_association = f"{association_bases[arity]} {counter}_"
         cards = calculate_cards(card_schemes[i], refs)

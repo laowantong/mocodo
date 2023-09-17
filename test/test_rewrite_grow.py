@@ -15,23 +15,23 @@ class TestGrow(unittest.TestCase):
         actual = grow("FOO: bar, biz", {})
         expected = """
             FOO: bar, biz
-            Entity 2_: attr 2 1_, attr 2 2_, attr 2 3_, attr 2 4_
-            Binary 3_, XX Entity 2_, XX FOO
-            Entity 4_: attr 4 1_, attr 4 2_
-            Binary 5_, XX Entity 4_, XX Entity 2_
-            Entity 6_: attr 6 1_, attr 6 2_, attr 6 3_, attr 6 4_
-            Binary 7_, XX Entity 6_, XX Entity 2_
-            Entity 8_: attr 8 1_
-            Binary 9_, XX Entity 8_, XX FOO
-            Entity 10_: attr 10 1_, attr 10 2_
-            Binary 11_, XX Entity 10_, XX Entity 6_
-            Entity 12_: attr 12 1_, _attr 12 2_, attr 12 3_, attr 12 4_
-            Ternary 13_, XX Entity 12_, XX Entity 8_, XX Entity 10_
-            Reflexive 14_, XX FOO, XX FOO: attr 14 1_
-            Entity 15_: attr 15 1_, _attr 15 2_, attr 15 3_
-            Binary 16_, XX Entity 15_, XX Entity 2_
-            Reflexive 17_, XX Entity 8_, XX Entity 8_: attr 17 1_
-            Binary 18_, XX Entity 4_, XX Entity 2_
+            Reflexive 2_, 1N FOO, 0N FOO
+            Entity 3_: id 3 1, attr 3 2, attr 3 3, attr 3 4
+            Binary 4_, 11 Entity 3_, 0N FOO: attr 4 1
+            Reflexive 5_, 1N Entity 3_, 11 Entity 3_
+            Entity 6_: id 6 1, _id 6 2, attr 6 3, attr 6 4
+            Ternary 7_, 0N Entity 6_, 0N Entity 3_, 0N FOO
+            Entity 8_: id 8 1, attr 8 2, attr 8 3, attr 8 4
+            Binary 9_, 1N Entity 8_, 1N Entity 6_
+            Entity 10_: id 10 1, attr 10 2, attr 10 3, attr 10 4
+            Binary 11_, 1N Entity 10_, 0N Entity 8_
+            Entity 12_: id 12 1, attr 12 2
+            Binary 13_, 0N Entity 12_, 1N Entity 10_: attr 13 1
+            Entity 14_: id 14 1, _id 14 2, attr 14 3, attr 14 4
+            Binary 15_, 01 Entity 14_, 11 Entity 8_
+            Entity 16_: id 16 1, attr 16 2, attr 16 3
+            Binary 17_, 0N Entity 16_, 0N Entity 14_
+            Binary 18_, 0N Entity 16_, 01 Entity 14_
         """.replace("    ", "")
         self.assertEqual(actual.strip(), expected.strip())
 
