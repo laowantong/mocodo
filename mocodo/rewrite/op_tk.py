@@ -59,9 +59,15 @@ class Mapper(Transformer):
                 op = obfuscator_factory(subsubarg, params)
             elif op_name == "truncate":
                 size = TRUNCATE_DEFAULT_SIZE
-                if subsubarg and subsubarg.isdigit() and int(subsubarg) > 0:
-                    size = int(subsubarg)
+                if subsubarg and isinstance(subsubarg, int) and subsubarg > 0:
+                    size = subsubarg
                 op = lambda x: x[:size]
+            elif op_name == "replace":
+                if isinstance(subsubarg, str):
+                    (substring, __, repl) = subsubarg.partition("/")
+                    op = lambda x: x.replace(substring, repl)
+                else:
+                    op = lambda x: x
             else:
                 raise MocodoError(24, _('Operation {op_name} cannot be applied to {pre_token}.').format(op_name=op_name, pre_token=pre_token))
         update_tree = lambda tree: tree[0].update(value=op(tree[0].value))

@@ -201,6 +201,12 @@ class Transformations:
             "help": "convert the conceptual model into a relational schema with the given template path",
             "aliases": ["relation_template", "relation-template"]
         },
+        "replace": {
+            "category": "rw",
+            "help": "rewrite the given elements by applying the given 'search/repl' pattern",
+            "aliases": ["snake_case", "snake-case"],
+            "op_tk": True,
+        },
         "snake": {
             "category": "rw",
             "help": "rewrite the given elements in snake_case",
