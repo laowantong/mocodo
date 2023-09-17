@@ -233,7 +233,7 @@ class Leg:
                     },
                 )
             )
-        if self.kind == "strengthening" and surrounds(self.card_view, "_"):
+        if self.has_underlined_card:
             self.saved_card_description.append(
                 (
                     "line",
