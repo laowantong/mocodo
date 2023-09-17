@@ -1,6 +1,6 @@
 import re
 from ..parse_mcd import Visitor
-from ..tools.parser_tools import first_child, parse_source, reconstruct_source
+from ..tools.parser_tools import first_child, parse_source
 from ..tools.string_tools import surrounds
 from ..tools.various import first_missing_positive
     
