@@ -1,5 +1,4 @@
 import argparse
-from ast import literal_eval
 import contextlib
 import gettext
 import json
@@ -154,7 +153,7 @@ class Transformations:
         },
         "drown": {
             "category": "rw",
-            "help": "replace all element names by a generic label (e.g., 'Entity 1', 'Attribute 1-2', ...)",
+            "help": "replace all element names by a numbered generic label",
             "aliases": ["drown_by_numbers"],
         },
         "echo": {
@@ -299,8 +298,6 @@ def extract_subargs(arg):
         if equal: # subopt:subsubopt= / subopt:subsubopt=subsubarg
             subsubarg = strip_surrounds(subsubarg, "''")
             subsubarg = strip_surrounds(subsubarg, '""')
-            with contextlib.suppress(ValueError, SyntaxError):
-                subsubarg = literal_eval(subsubarg)
         else: # subopt:subsubopt
             subsubarg = None
         subargs[subsubopt] = subsubarg

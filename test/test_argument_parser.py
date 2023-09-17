@@ -37,7 +37,7 @@ class TestSubArguments(unittest.TestCase):
             ),
             (
                 "map",
-                {"ascii": "labels", "n": 3, "x": 3.14, "delete": "", "guess": "types", "create": "types"},
+                {"ascii": "labels", "n": "3", "x": "3.14", "delete": "", "guess": "types", "create": "types"},
             ),
             ("drain", {}),
             (

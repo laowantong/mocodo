@@ -33,16 +33,16 @@ class TestUpdateLabels(unittest.TestCase):
         print(actual)
         expected = """
             feel: turn, grin
-            land, 0N Near, 0N feel, 0N SILK2
-            SILK2: debt
-            Shoe, 0N Near, 0N SILK, 0N feel: loss
-            Near: poet, stir
-            Auto, 1N Slew, 0N SILK2
+            land, 0N Near, 0N feel, 0N SILK
             SILK: debt
-            Tape, 0N Knee, 0N Near, 0N SILK
-            Slew: code, they, bath, unit, haul
-            Knee: draw, four, duck
-            Icon, 11 Slew, 0N Knee
+            Shoe, 0N Near, 0N LOSS, 0N feel: poet
+            Near: stir, auto
+            Slew, 1N Tape, 0N SILK
+            LOSS: debt
+            Knee, 0N Code, 0N Near, 0N LOSS
+            Tape: they, bath, unit, haul, draw
+            Code: four, duck, icon
+            Golf, 11 Tape, 0N Code
         """
         self.assertEqual(actual.strip(), expected.strip())
     
