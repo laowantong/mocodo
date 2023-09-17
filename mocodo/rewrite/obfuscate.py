@@ -29,6 +29,8 @@ def obfuscator_factory(pool, params):
 
     if params["seed"] is not None:
         random.seed(params["seed"])
+    
+    pool = pool or ""
 
     # Initialize the random word generator
     try:
@@ -48,9 +50,6 @@ def obfuscator_factory(pool, params):
     cache = {}
     def obfuscate(name):
         suffix = ""
-        if name[-1].isdigit():
-            suffix = name[-1]
-            name = name[:-1]
         if name not in cache:
             try:
                 new_name = next(random_word)
