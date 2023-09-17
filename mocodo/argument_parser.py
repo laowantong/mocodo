@@ -1,4 +1,6 @@
 import argparse
+from ast import literal_eval
+import contextlib
 import gettext
 import json
 import locale
@@ -177,6 +179,11 @@ class Transformations:
             "aliases": ["mirror", "reflect"],
             "op_tk": True,
         },
+        "grow": {
+            "category": "rw",
+            "help": "Add random entities and associations (default: 10 new associations)",
+            "aliases": []
+        },
         "lower": {
             "category": "rw",
             "help": "rewrite the given elements in lowercase",
@@ -286,6 +293,8 @@ def extract_subargs(arg):
         if equal: # subopt:subsubopt= / subopt:subsubopt=subsubarg
             subsubarg = strip_surrounds(subsubarg, "''")
             subsubarg = strip_surrounds(subsubarg, '""')
+            with contextlib.suppress(ValueError, SyntaxError):
+                subsubarg = literal_eval(subsubarg)
         else: # subopt:subsubopt
             subsubarg = None
         subargs[subsubopt] = subsubarg
@@ -448,7 +457,7 @@ def parsed_arguments():
         help="discriminate between multiple SVG of the same interactive diagram",
     )
     io_group.add_argument("--show",
-        choices=["mcd", "rw", "cv"],
+        choices=["mcd", "rw", "source", "text", "code", "cv", "mld", "ddl"],
         nargs="*",
         default=argparse.SUPPRESS, # causes no attribute to be added if the argument was not present
         help="under Jupyter Notebook, explicitely state the categories of results to display",

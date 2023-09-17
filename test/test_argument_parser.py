@@ -20,7 +20,7 @@ class TestSubArguments(unittest.TestCase):
                 "--actual",
                 "arrange:algo=bb,grid=organic",
                 "randomize:cards=_/,types=mysql,labels=four_letter_words",
-                "map:ascii=labels,delete='',guess=types,create=types",
+                "map:ascii=labels,n=3,x=3.14,delete='',guess=types,create=types",
                 "drain",
                 "flip:vertical,horizontal,diagonal",
                 """data_dict:type,box="",label="libellé de l'attribut",tsv""",
@@ -37,7 +37,7 @@ class TestSubArguments(unittest.TestCase):
             ),
             (
                 "map",
-                {"ascii": "labels", "delete": "", "guess": "types", "create": "types"},
+                {"ascii": "labels", "n": 3, "x": 3.14, "delete": "", "guess": "types", "create": "types"},
             ),
             ("drain", {}),
             (
