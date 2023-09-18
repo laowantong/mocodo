@@ -1,7 +1,7 @@
 __import__("sys").path[0:0] =  ["."]
 
 from ..mocodo_error import MocodoError
-from ..parse_mcd import Token, Visitor, Transformer, Lark_StandAlone, Discard, UnexpectedToken, UnexpectedCharacters
+from ..parse_mcd import Token, Visitor, Transformer, Lark_StandAlone, Discard
 
 def parse_source(source):
     parser = Lark_StandAlone()

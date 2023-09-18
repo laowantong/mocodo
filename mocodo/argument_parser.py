@@ -101,6 +101,11 @@ class Transformations:
             "aliases": [],
             "op_tk": True,
         },
+        "ast": {
+            "category": "cv",
+            "help": "dump the abstract syntax tree of the source text (for debugging purposes)",
+            "aliases": []
+        },
         "camel": {
             "category": "rw",
             "help": "rewrite the given elements in camelCase",
