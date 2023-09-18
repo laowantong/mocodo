@@ -27,9 +27,6 @@ def random_words_generator(
 
 def obfuscator_factory(pool, params):
 
-    if params["seed"] is not None:
-        random.seed(params["seed"])
-    
     pool = pool or ""
 
     # Initialize the random word generator

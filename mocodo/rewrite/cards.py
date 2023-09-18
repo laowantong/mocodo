@@ -26,9 +26,6 @@ class CardRandomizer(Visitor):
     def __init__(self, card_prefixes, card_counter, params):
         self.card_prefixes = card_prefixes
         self.card_counter = card_counter
-        seed = params.get("seed", 42)
-        if seed is not None:
-            random.seed(seed)
         self.df_label = params.get("df", "DF")
 
     def assoc_clause(self, tree):

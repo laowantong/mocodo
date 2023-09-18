@@ -1,4 +1,5 @@
 import unittest
+import random
 
 __import__("sys").path[0:0] = ["mocodo"]
 
@@ -19,6 +20,7 @@ class TestUpdateCards(unittest.TestCase):
             LUCK, 0N< [find] HOST, 01 [hill] HOST
             AIDS, XX VARY, ?? WRAP
         """
+        random.seed(42)
         actual = op_tk.run(source, "randomize", {"cards": 1}, {})
         expected = """
             BAKE, 01 TEND, 01 TALL

@@ -1,4 +1,5 @@
 import unittest
+import random
 
 __import__("sys").path[0:0] = ["mocodo"]
 
@@ -28,7 +29,8 @@ class TestUpdateLabels(unittest.TestCase):
             Ultricies, 11 Rhoncus, 0N Egestas
         """
         subargs = {"labels": "en4.txt"}
-        params = {"seed": 42, "script_directory": "mocodo"}
+        params = {"script_directory": "mocodo"}
+        random.seed(42)
         actual = op_tk.run(source, "randomize", subargs, params)
         expected = """
             feel: turn, grin

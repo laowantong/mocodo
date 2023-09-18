@@ -105,6 +105,7 @@ if __name__ == "__main__":
     # python -m mocodo.rewrite._arrange_ga
 
     from time import time
+    import random
     from ..argument_parser import parsed_arguments
     from ..mcd import Mcd
 
@@ -127,7 +128,7 @@ if __name__ == "__main__":
     params = parsed_arguments()
     mcd = Mcd(clauses.replace("  ", ""), **params)
     starting_time = time()
-    params["seed"] = 42
+    random.seed(42)
     rearrangement = arrange(mcd, {}, lambda: False)
     if rearrangement:
         print()
