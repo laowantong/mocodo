@@ -7,32 +7,33 @@ from mocodo.rewrite import op_tk
 
 
 class TestUpdateCards(unittest.TestCase):
-    def test_randomize(self):
+
+    def test_infer_df(self):
+        # Actually not a card update, but I don't want to create a new test file just for this.
         source = """
             BAKE, 0N TEND, 01 TALL
-            FISH, -1N TALL, -0N TOUR: slot
+            FISH, -1N TALL, -11 TOUR: slot
+            DOWN, 0N [cold] TOUR, 0N [echo] TOUR: hang
+            WRAP, _11 PORK, 0N TEND
+            FINE, 11 DRAW, 0N BULK
+            HERE, 1N TALL, 1N TOUR, /11 HOST: mask
+            GOAL, 11 TEND, 1N AIDS
+            ZONE, 0N TEND, /1N TALL
+            LUCK, 0N< [find] HOST, /11 [hill] HOST
+            AIDS, XX VARY, ?? WRAP
+        """
+        actual = op_tk.run(source, "create", {"df": 1}, {"df": "DF"})
+        expected = """
+            BAKE, 0N TEND, 01 TALL
+            DF, -1N TALL, -11 TOUR: slot
             DOWN, 0N [cold] TOUR, 0N [echo] TOUR: hang
             DF, _11 PORK, 0N TEND
             DF, 11 DRAW, 0N BULK
-            HERE, 1N TALL, 1N TOUR, 1N HOST: mask
-            GOAL, 11 TEND, 1N AIDS
+            HERE, 1N TALL, 1N TOUR, /11 HOST: mask
+            DF, 11 TEND, 1N AIDS
             ZONE, 0N TEND, /1N TALL
-            LUCK, 0N< [find] HOST, 01 [hill] HOST
+            LUCK, 0N< [find] HOST, /11 [hill] HOST
             AIDS, XX VARY, ?? WRAP
-        """
-        random.seed(42)
-        actual = op_tk.run(source, "randomize", {"cards": 1}, {})
-        expected = """
-            BAKE, 01 TEND, 01 TALL
-            FISH, -0N TALL, -_11 TOUR: slot
-            DOWN, 01 [cold] TOUR, /1N [echo] TOUR: hang
-            DF, 01 PORK, _11 TEND
-            DF, 01 DRAW, 11 BULK
-            HERE, 1N TALL, 11 TOUR, /1N HOST: mask
-            GOAL, 11 TEND, 1N AIDS
-            ZONE, 0N TEND, 01 TALL
-            LUCK, 01< [find] HOST, 0N [hill] HOST
-            AIDS, 0N VARY, 01 WRAP
         """
         self.assertEqual(actual.strip(), expected.strip())
 

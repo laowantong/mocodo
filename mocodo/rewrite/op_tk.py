@@ -7,7 +7,7 @@ from ..parse_mcd import Transformer
 from ..tools.parser_tools import transform_source
 from ..tools.string_tools import ascii, camel, snake, TRUNCATE_DEFAULT_SIZE
 from ..mocodo_error import MocodoError
-from .cards import fix_card, randomize_cards
+from .cards import fix_card, infer_dfs
 from .types import FIELD_TYPES, create_type_placeholders, guess_types
 from .obfuscate import obfuscator_factory
 from .arrows import create_df_arrows
@@ -61,7 +61,6 @@ class Mapper(Transformer):
                 size = TRUNCATE_DEFAULT_SIZE
                 if subsubarg and isinstance(subsubarg, int) and subsubarg > 0:
                     size = subsubarg
-                op = lambda x: x[:size]
             elif op_name == "replace":
                 if isinstance(subsubarg, str):
                     (substring, __, repl) = subsubarg.partition("/")
@@ -82,10 +81,10 @@ def run(source, op_name, subargs, params, **kargs):
             source = create_type_placeholders(source) if subsubarg == "[]" else guess_types(source, subsubarg, params)
         elif op_name == "create" and pre_token == "df_arrows":
             source = create_df_arrows(source, subsubarg)
+        elif op_name == "create" and re.match("(?i)dfs?$", pre_token):
+            source = infer_dfs(source, params["df"])
         elif op_name == "create" and re.match("(?i)cifs?$", pre_token):
             source = create_cifs(source, subsubarg)
-        elif op_name == "randomize" and pre_token == "cards":
-            source = randomize_cards(source, params)
         else: # apply a normal op_tk operation
             source = transform_source(source, Mapper(op_name, pre_token, subsubarg, params))
     return source
