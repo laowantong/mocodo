@@ -192,6 +192,15 @@ def arrange(mcd, subargs, has_expired=None):
                     result["layout"] = [None] * row_count * col_count
                     for (box_index, (x, y)) in coords.items():
                         result["layout"][x + y * col_count] = box_index
+                    if row_count > col_count:
+                        # If the layout is taller than wide, transpose it.
+                        # Warning: the original matrix is linearized by rows.
+                        result["layout"] = [
+                            result["layout"][x + y * col_count]
+                            for x in range(col_count)
+                            for y in range(row_count)
+                        ]
+                        (result["row_count"], result["col_count"]) = (col_count, row_count)
                     return result
                 if is_organic:
                     break
