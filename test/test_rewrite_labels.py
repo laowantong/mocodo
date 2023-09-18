@@ -27,10 +27,9 @@ class TestUpdateLabels(unittest.TestCase):
             Egestas: vivamus, semper, aliquam
             Ultricies, 11 Rhoncus, 0N Egestas
         """
-        subargs = {"labels": "four_letter_words.txt"}
+        subargs = {"labels": "en4.txt"}
         params = {"seed": 42, "script_directory": "mocodo"}
         actual = op_tk.run(source, "randomize", subargs, params)
-        print(actual)
         expected = """
             feel: turn, grin
             land, 0N Near, 0N feel, 0N SILK

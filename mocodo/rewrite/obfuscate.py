@@ -42,7 +42,7 @@ def obfuscator_factory(pool, params):
         try:
             lorem_text = lorem_path.read_text()
         except IOError:
-            lorem_path = lorem_dir / "lorem_ipsum.txt"
+            lorem_path = lorem_dir / "lorem.txt"
             lorem_text = lorem_path.read_text()
     random_word = random_words_generator(lorem_text)
 
