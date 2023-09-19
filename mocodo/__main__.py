@@ -41,6 +41,8 @@ class ResponseLogger:
             return
         self.response = {
             "mld": params["mld"],
+            "args_to_delete": params["args_to_delete"],
+            "opt_to_restore": params["opt_to_restore"],
             "redirect_output": params["redirect_output"],
             "show": params["show"],
         }

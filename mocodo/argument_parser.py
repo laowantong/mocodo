@@ -262,6 +262,8 @@ class Transformations:
         self.metadata = {k: self.metadata[k] for k in sorted(self.metadata.keys(), key=lambda x: x.lower())}
         self.operations = {"rw": [], "cv": []}
         self.op_tk_rewritings = set(k for (k, v) in self.metadata.items() if v.get("op_tk"))
+        self.args_to_delete = ["-t", "-T", "--transform"]
+        self.opt_to_restore = " "
     
     def extract_subargs(self, arg):
         (subopt, __, tail) = arg.partition(":")
@@ -272,10 +274,11 @@ class Transformations:
             raise MocodoError(45, _("The transformation '{subopt}' is not among the possible ones:\n{valid}.").format(subopt=subopt, valid=valid)) # fmt: skip
         result = extract_subargs(f"{subopt}:{tail}") # NB: calls the global function, not the method
         category = self.metadata[subopt]["category"]
-        if category != "cv":
-            self.operations["rw"].append(result)
-        if category != "rw":
-            self.operations["cv"].append(result)
+        self.operations[category].append(result)
+        if category == "rw":
+            self.args_to_delete.append(arg)
+        else:
+            self.opt_to_restore = " -t "
         return result
 
     def get_help(self):
@@ -584,6 +587,8 @@ def parsed_arguments():
     params["output_name"] = Path(params["output_dir"]) / Path(params["input"]).stem
     params["rewrite"] = transformations.operations["rw"]
     params["convert"] = transformations.operations["cv"]
+    params["args_to_delete"] = transformations.args_to_delete
+    params["opt_to_restore"] = transformations.opt_to_restore
     params["redirect_output"] = ("-T" in remaining_args or "--Transform" in remaining_args)
     params["keys_to_hide"] = ["keys_to_hide", "params_path", "SCRIPT_DIRECTORY", "output_name", "rewrite", "convert", "redirect_output"]
 

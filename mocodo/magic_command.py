@@ -104,11 +104,11 @@ class MocodoMagics(Magics):
         """
 
         parser = argparse.ArgumentParser(add_help=False)
-        parser.add_argument("--no_mcd", "--quiet", "--mute", action="store_true")
         parser.add_argument("--input", "-i")
         parser.add_argument("--output_dir")
         (args, remaining_args) = parser.parse_known_args(shlex.split(line))
         remaining_args = list(takewhile(lambda x: not x.startswith("#"), remaining_args))
+        new_args = remaining_args[:]
 
         if Path.cwd().name != "mocodo_notebook":
             Path("mocodo_notebook").mkdir(parents=True, exist_ok=True)
@@ -178,7 +178,9 @@ class MocodoMagics(Magics):
             return
         
         if rewritten_source and not rewritten_source.startswith("%%mocodo"):
-            rewritten_source = f"%%mocodo\n{rewritten_source}"
+            new_args = " ".join(filter(lambda x: x not in response["args_to_delete"], new_args))
+            new_args = response["opt_to_restore"] + new_args
+            rewritten_source = f"%%mocodo{new_args}\n{rewritten_source}"
         
         for show in response.get("show", []):
             if show == "mcd":
