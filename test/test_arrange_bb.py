@@ -1,18 +1,17 @@
 import unittest
 from random import seed
+import gettext
 
 __import__("sys").path[0:0] = ["mocodo"]
-from mocodo.argument_parser import parsed_arguments
-from mocodo.rewrite._arrange_bb import arrange
-from mocodo.mcd import Mcd
 
+from mocodo.rewrite._arrange import run as arrange
+from mocodo.mocodo_error import MocodoError
 
-# WARNING: by default, this should fail for Python 3.
-# Set PYTHONHASHSEED to 0 before launching the tests.
-# cf. http://stackoverflow.com/questions/38943038/difference-between-python-2-and-3-for-shuffle-with-a-given-seed/
+gettext.NullTranslations().install()
 
 class ArrangeBB(unittest.TestCase):
-    def test_constrained_rearrangement(self):
+
+    def test_constraints(self):
         source = """
             SUSPENDISSE: diam
             SOLLICITUDIN, 0N SUSPENDISSE, 0N CONSECTETUER, 0N LOREM: lectus
@@ -28,34 +27,12 @@ class ArrangeBB(unittest.TestCase):
             AMET, 11> LOREM, 01 CONSECTETUER: adipiscing
             RISUS: ultricies, _cras, elementum
             SEMPER, 0N RISUS, 1N DIGNISSIM
-        """.replace("   ", "")
-        params = parsed_arguments()
-        mcd = Mcd(source, params)
-        subargs = {"grid": True}
+        """.replace("   ", "").strip()
+
+        # balanced = 0
+        subargs = {"algo": "bb", "balanced": ""}
         seed(42)
-        rearrangement = arrange(mcd, subargs)
-        mcd.set_layout(**rearrangement)
-        expected = {
-            "coords": {
-                0: (2, 0),
-                1: (2, 1),
-                2: (2, 2),
-                3: (1, 0),
-                4: (3, 0),
-                5: (3, 1),
-                6: (1, 2),
-                7: (1, 1),
-                8: (0, 2),
-                9: (3, 2),
-                10: (0, 1),
-                11: (0, 0),
-            },
-            "crossings": 0,
-            "distances": 0.8284271247461903,
-            "layout": [11, 3, 0, 4, 10, 7, 1, 5, 8, 6, 2, 9],
-        }
-        self.assertEqual(rearrangement, expected)
-        result = mcd.get_clauses()
+        actual = arrange(source, subargs)
         expected = """
             SEMPER, 0N RISUS, 1N DIGNISSIM
             MAECENAS, 1N DIGNISSIM, 1N DIGNISSIM
@@ -71,8 +48,116 @@ class ArrangeBB(unittest.TestCase):
             TORTOR, 0N RISUS, 11 DIGNISSIM, 1N CONSECTETUER: nec
             CONSECTETUER: elit, sed
             AMET, 11> LOREM, 01 CONSECTETUER: adipiscing
-        """.replace("   ", "")
-        self.assertEqual(result, expected.strip().replace("  ", ""))
+        """.replace("   ", "").strip()
+        self.assertEqual(actual, expected)
+
+        # balanced = 1
+
+        subargs = {"algo": "bb", "balanced": "1"}
+        seed(42)
+        actual = arrange(source, subargs)
+        expected = """
+            DF, 11 RISUS, 0N RISUS
+            :
+            AMET, 11> LOREM, 01 CONSECTETUER: adipiscing
+            LOREM: ipsum, dolor, sit
+            DF, 11 LOREM, 1N SUSPENDISSE
+
+            RISUS: ultricies, _cras, elementum
+            TORTOR, 0N RISUS, 11 DIGNISSIM, 1N CONSECTETUER: nec
+            CONSECTETUER: elit, sed
+            SOLLICITUDIN, 0N SUSPENDISSE, 0N CONSECTETUER, 0N LOREM: lectus
+            SUSPENDISSE: diam
+
+            SEMPER, 0N RISUS, 1N DIGNISSIM
+            DIGNISSIM: ligula, massa, varius
+            MAECENAS, 1N DIGNISSIM, 1N DIGNISSIM
+            :
+            :
+        """.replace("   ", "").strip()
+        self.assertEqual(actual, expected)
+
+        # organic
+
+        subargs = {"algo": "bb"}
+        seed(2)
+        actual = arrange(source, subargs)
+        expected = """
+            DF, 11 LOREM, 1N SUSPENDISSE
+            SUSPENDISSE: diam
+            MAECENAS, 1N DIGNISSIM, 1N DIGNISSIM
+            :
+
+            LOREM: ipsum, dolor, sit
+            SOLLICITUDIN, 0N SUSPENDISSE, 0N CONSECTETUER, 0N LOREM: lectus
+            DIGNISSIM: ligula, massa, varius
+            SEMPER, 0N RISUS, 1N DIGNISSIM
+
+            AMET, 11> LOREM, 01 CONSECTETUER: adipiscing
+            CONSECTETUER: elit, sed
+            TORTOR, 0N RISUS, 11 DIGNISSIM, 1N CONSECTETUER: nec
+            RISUS: ultricies, _cras, elementum
+
+            :
+            :
+            :
+            DF, 11 RISUS, 0N RISUS
+        """.replace("   ", "").strip()
+        self.assertEqual(actual, expected)
+
+        # wide = 8 (default)
+
+        subargs = {"algo": "bb", "wide": None} # the mere presence of the key is enough
+        seed(2)
+        actual = arrange(source, subargs)
+        expected = """
+            DF, 11 RISUS, 0N RISUS
+            RISUS: ultricies, _cras, elementum
+            TORTOR, 0N RISUS, 11 DIGNISSIM, 1N CONSECTETUER: nec
+            :
+            CONSECTETUER: elit, sed
+            SOLLICITUDIN, 0N SUSPENDISSE, 0N CONSECTETUER, 0N LOREM: lectus
+            SUSPENDISSE: diam
+
+            :
+            SEMPER, 0N RISUS, 1N DIGNISSIM
+            DIGNISSIM: ligula, massa, varius
+            MAECENAS, 1N DIGNISSIM, 1N DIGNISSIM
+            AMET, 11> LOREM, 01 CONSECTETUER: adipiscing
+            LOREM: ipsum, dolor, sit
+            DF, 11 LOREM, 1N SUSPENDISSE
+        """.replace("   ", "").strip()
+        self.assertEqual(actual, expected)
+
+        # wide = 3
+
+        subargs = {"algo": "bb", "wide": "3"} # the mere presence of the key is enough
+        seed(2)
+        actual = arrange(source, subargs)
+        expected = """
+            DF, 11 LOREM, 1N SUSPENDISSE
+            LOREM: ipsum, dolor, sit
+            AMET, 11> LOREM, 01 CONSECTETUER: adipiscing
+
+            SUSPENDISSE: diam
+            SOLLICITUDIN, 0N SUSPENDISSE, 0N CONSECTETUER, 0N LOREM: lectus
+            CONSECTETUER: elit, sed
+
+            MAECENAS, 1N DIGNISSIM, 1N DIGNISSIM
+            DIGNISSIM: ligula, massa, varius
+            TORTOR, 0N RISUS, 11 DIGNISSIM, 1N CONSECTETUER: nec
+
+            SEMPER, 0N RISUS, 1N DIGNISSIM
+            RISUS: ultricies, _cras, elementum
+            DF, 11 RISUS, 0N RISUS
+        """.replace("   ", "").strip()
+        self.assertEqual(actual, expected)
+
+        # timeout too low
+
+        subargs = {"algo": "bb", "timeout": 0.000001}
+        seed(2)
+        self.assertRaisesRegex(MocodoError, r"Mocodo Err\.10", arrange, source, subargs)
 
     def test_non_connected_graph(self):
         source = """
@@ -89,52 +174,29 @@ class ArrangeBB(unittest.TestCase):
             AMET, 11> LOREM, 01 CONSECTETUER: adipiscing
             RISUS: ultricies, _cras, elementum
             SEMPER, 0N RISUS, 1N DIGNISSIM
-        """.replace("   ", "")
-        params = parsed_arguments()
-        mcd = Mcd(source, params)
-        subargs = {"grid": True}
+        """.replace("   ", "").strip()
+        subargs = {"algo": "bb", "balanced": ""}
         seed(42)
-        rearrangement = arrange(mcd, subargs)
-        expected = {
-            "coords": {
-                0: (0, 2),
-                1: (0, 1),
-                2: (0, 0),
-                3: (2, 1),
-                4: (1, 2),
-                5: (1, 1),
-                6: (2, 2),
-                7: (2, 0),
-                8: (3, 0),
-                9: (1, 0),
-                10: (3, 1),
-                11: (3, 2),
-            },
-            "crossings": 0,
-            "distances": 0.0,
-            "layout": [2, 9, 7, 8, 1, 5, 3, 10, 0, 4, 6, 11],
-        }
-        self.assertEqual(rearrangement, expected)
-        mcd.set_layout(**rearrangement)
+        actual = arrange(source, subargs)
         expected = """
-            CONSECTETUER: elit, sed
-            AMET, 11> LOREM, 01 CONSECTETUER: adipiscing
-            :
             DF, 11 RISUS, 0N RISUS
-
-            SOLLICITUDIN, 0N SUSPENDISSE, 0N CONSECTETUER, 0N LOREM: lectus
-            LOREM: ipsum, dolor, sit
-            MAECENAS, 1N DIGNISSIM, 1N DIGNISSIM
-            RISUS: ultricies, _cras, elementum
-
             SUSPENDISSE: diam
-            DF, 11 LOREM, 1N SUSPENDISSE
-            DIGNISSIM: ligula, massa, varius
-            SEMPER, 0N RISUS, 1N DIGNISSIM
-        """.replace("   ", "")
-        self.assertEqual(mcd.get_clauses(), expected.strip().replace("  ", ""))
+            SOLLICITUDIN, 0N SUSPENDISSE, 0N CONSECTETUER, 0N LOREM: lectus
+            CONSECTETUER: elit, sed
 
-    def test_no_links(self):
+            RISUS: ultricies, _cras, elementum
+            DF, 11 LOREM, 1N SUSPENDISSE
+            LOREM: ipsum, dolor, sit
+            AMET, 11> LOREM, 01 CONSECTETUER: adipiscing
+
+            SEMPER, 0N RISUS, 1N DIGNISSIM
+            DIGNISSIM: ligula, massa, varius
+            MAECENAS, 1N DIGNISSIM, 1N DIGNISSIM
+            :
+        """.replace("   ", "").strip()
+        self.assertEqual(actual, expected)
+
+    def test_no_link(self):
         source = """
             SUSPENDISSE: diam
             CONSECTETUER: elit, sed
@@ -143,22 +205,17 @@ class ArrangeBB(unittest.TestCase):
             DIGNISSIM: ligula, massa, varius
 
             RISUS: ultricies, _cras, elementum
-        """.replace("   ", "")
-        params = parsed_arguments()
-        mcd = Mcd(source, params)
-        subargs = {"is_organic": False}
-        seed(458)
+        """.replace("   ", "").strip()
+        subargs = {"algo": "bb", "balanced": "0"}
+        seed(42)
+        actual = arrange(source, subargs)
         expected = """
             :
+            DIGNISSIM: ligula, massa, varius
+            :
             CONSECTETUER: elit, sed
             :
             LOREM: ipsum, dolor, sit
-            :
-
-            :
-            :
-            :
-            DIGNISSIM: ligula, massa, varius
             :
 
             :
@@ -166,24 +223,15 @@ class ArrangeBB(unittest.TestCase):
             :
             SUSPENDISSE: diam
             :
-        """.strip().replace("  ", "")
-        rearrangement = arrange(mcd, subargs)
-        self.assertEqual(
-            rearrangement,
-            {
-                "distances": 0.0,
-                "layout": [1, 2, 5, 3, 4, 0],
-                "crossings": 0,
-            },
-        )
-        mcd.set_layout(**rearrangement)
-        result = mcd.get_clauses()
-        self.assertEqual(expected, result)
+            :
+            :
+        """.replace("   ", "").strip()
+        self.assertEqual(actual, expected)
 
-    def test_organic_rearrangement(self):
+    def test_inheritance(self):
         source = """
             SUSPENDISSE: diam
-            SOLLICITUDIN, 0N SUSPENDISSE, 0N CONSECTETUER, 0N LOREM: lectus
+            /XT\\ SUSPENDISSE -> CONSECTETUER, LOREM
             CONSECTETUER: elit, sed
             MAECENAS, 1N DIGNISSIM, 1N DIGNISSIM
 
@@ -196,34 +244,10 @@ class ArrangeBB(unittest.TestCase):
             AMET, 11> LOREM, 01 CONSECTETUER: adipiscing
             RISUS: ultricies, _cras, elementum
             SEMPER, 0N RISUS, 1N DIGNISSIM
-        """.replace("  ", "")
-        params = parsed_arguments()
-        mcd = Mcd(source, params)
-        subargs = {"is_organic": True}
-        seed(42)
-        expected = {
-            "coords": {
-                7: (3, 2),
-                11: (3, 3),
-                3: (4, 2),
-                6: (2, 2),
-                10: (2, 3),
-                2: (1, 2),
-                8: (2, 4),
-                1: (1, 1),
-                9: (0, 2),
-                5: (0, 1),
-                0: (1, 0),
-                4: (0, 0),
-            },
-            "crossings": 0,
-            "distances": 0.0,
-            "row_count": 5,
-            "col_count": 5,
-            "layout": [4, 0, None, None, None, 5, 1, None, None, None, 9, 2, 6, 7, 3, None, None, 10, 11, None, None, None, 8, None, None],  # fmt: skip
-        }
-        rearrangement = arrange(mcd, subargs)
-        self.assertEqual(rearrangement, expected)
+        """.replace("   ", "").strip()
+        subargs = {"algo": "bb"}
+        seed(4)
+        actual = arrange(source, subargs)
         expected = """
             DF, 11 LOREM, 1N SUSPENDISSE
             SUSPENDISSE: diam
@@ -232,7 +256,7 @@ class ArrangeBB(unittest.TestCase):
             :
 
             LOREM: ipsum, dolor, sit
-            SOLLICITUDIN, 0N SUSPENDISSE, 0N CONSECTETUER, 0N LOREM: lectus
+            /XT\\ SUSPENDISSE -> CONSECTETUER, LOREM
             :
             :
             :
@@ -240,24 +264,17 @@ class ArrangeBB(unittest.TestCase):
             AMET, 11> LOREM, 01 CONSECTETUER: adipiscing
             CONSECTETUER: elit, sed
             TORTOR, 0N RISUS, 11 DIGNISSIM, 1N CONSECTETUER: nec
-            DIGNISSIM: ligula, massa, varius
-            MAECENAS, 1N DIGNISSIM, 1N DIGNISSIM
+            RISUS: ultricies, _cras, elementum
+            DF, 11 RISUS, 0N RISUS
 
             :
-            :
-            RISUS: ultricies, _cras, elementum
+            MAECENAS, 1N DIGNISSIM, 1N DIGNISSIM
+            DIGNISSIM: ligula, massa, varius
             SEMPER, 0N RISUS, 1N DIGNISSIM
             :
-
-            :
-            :
-            DF, 11 RISUS, 0N RISUS
-            :
-            :
-        """
-        mcd.set_layout(**rearrangement)
-        self.assertEqual(mcd.get_clauses(), expected.strip().replace("  ", ""))
-
+        """.replace("   ", "").strip()
+        self.assertEqual(actual, expected)
+        
 
 if __name__ == "__main__":
     unittest.main()

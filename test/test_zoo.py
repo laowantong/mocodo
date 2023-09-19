@@ -25,7 +25,7 @@ from mocodo.rewrite import (
     _split as split,
     _drown as drown,
 )
-from mocodo.rewrite._arrange_bb import arrange
+from mocodo.rewrite.arrange_bb import arrange
 from mocodo.mcd_to_svg import main as dump_mcd_to_svg
 import os
 
@@ -73,13 +73,10 @@ def main():
                 result = f"% same as {path.name}"
                 save(new_mcd_path, result + "\n")
                 return
-        mcd = Mcd(result, get_font_metrics, **params)
         if operation_name in ("explode", "split"):
             random.seed(42)
-            rearrangement = arrange(mcd, {})
-            mcd.set_layout(**rearrangement)
-            result = mcd.get_clauses()
-            mcd = Mcd(result, get_font_metrics, **params)
+            result = arrange(result, {}, has_expired=lambda: False)
+        mcd = Mcd(result, get_font_metrics, **params)
         save(new_mcd_path, result + "\n")
         dump_static_svg(mcd, new_mcd_path)
 
@@ -102,8 +99,8 @@ def main():
     params["guess_title"] = False
     params["disambiguation"] = "notes"
     params["language"] = "fr"
-    params["seed"] = 42
     params["df"] = "DF"
+    params["seed"] = 42 # only to be dumped in graphviz files
     common = Common(params)
     get_font_metrics = font_metrics_factory(params)
     for path in ZOO_DIR.glob("*/*"):
@@ -196,9 +193,9 @@ def main():
         subfolder = Path(source_path.parent / "ddl")
         subfolder.mkdir(exist_ok=True)
         source = op_tk.run(source, "create", {"types": ""}, params)
-        source = op_tk.run(source, "ascii", {"labels": 1, "leg_notes": 1}, params)
-        source = op_tk.run(source, "snake", {"labels": 1, "leg_notes": 1}, params)
-        source = op_tk.run(source, "lower", {"attrs": 1, "leg_notes": 1}, params)
+        source = op_tk.run(source, "ascii", {"labels": 1}, params)
+        source = op_tk.run(source, "snake", {"labels": 1}, params)
+        source = op_tk.run(source, "lower", {"attrs": 1, "roles": 1}, params)
         source = op_tk.run(source, "upper", {"boxes": 1}, params)
         mcd = Mcd(source, get_font_metrics, **params)
         for template in templates:

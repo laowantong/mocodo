@@ -1,3 +1,4 @@
+import contextlib
 from functools import lru_cache
 from itertools import count, product
 from math import hypot
@@ -6,16 +7,37 @@ from random import choice, random, shuffle
 from .cross import cross
 from ..mocodo_error import MocodoError
 from ..argument_parser import non_negative_integer, positive_integer
+from ..mcd import Mcd
 
-def arrange(mcd, subargs, has_expired=None):
+def arrange(source, subargs, has_expired):
 
+    is_organic = False
+    if "wide" in subargs:
+        col_count = 8
+        with contextlib.suppress(Exception):
+            col_count = int(subargs["wide"])
+        mcd = Mcd(source)
+        (q, r) = divmod(mcd.col_count * mcd.row_count, col_count)
+        row_count = q + bool(r)
+        source = mcd.get_refitted_clauses(col_count, row_count)
+    elif "balanced" in subargs:
+        nth_fit = 0
+        with contextlib.suppress(Exception):
+            nth_fit = int(subargs["balanced"])
+        mcd = Mcd(source)
+        source = mcd.get_refitted_clauses(nth_fit)
+    elif "current" in subargs:
+        pass
+    else:
+        is_organic = True
+    
+    mcd = Mcd(source)
     layout_data = mcd.get_layout_data()
     successors = layout_data["successors"]
     col_count = layout_data["col_count"]
     row_count = layout_data["row_count"]
     multiplicity = layout_data["multiplicity"]
 
-    is_organic = "grid" not in subargs
     min_objective = non_negative_integer(subargs.get("min_objective", 0))
     max_objective = non_negative_integer(subargs.get("max_objective", 15))
     call_limit = positive_integer(subargs.get("call_limit", 10000))
@@ -162,11 +184,13 @@ def arrange(mcd, subargs, has_expired=None):
         # print("no link: return a random layout")
         layout = list(range(box_count))
         shuffle(layout)
-        return {
+        result = {
             "layout": layout,
             "crossings": 0,
             "distances": 0,
         }
+        mcd.set_layout(**result)
+        return mcd.get_clauses()
     for objective in range(min_objective, max_objective + 1):
         if verbose:
             print("Objective %s." % objective)
@@ -192,8 +216,8 @@ def arrange(mcd, subargs, has_expired=None):
                     result["layout"] = [None] * row_count * col_count
                     for (box_index, (x, y)) in coords.items():
                         result["layout"][x + y * col_count] = box_index
-                    if row_count > col_count:
-                        # If the layout is taller than wide, transpose it.
+                    if is_organic and row_count > col_count:
+                        # If the organic layout is taller than wide, transpose it.
                         # Warning: the original matrix is linearized by rows.
                         result["layout"] = [
                             result["layout"][x + y * col_count]
@@ -201,10 +225,15 @@ def arrange(mcd, subargs, has_expired=None):
                             for y in range(row_count)
                         ]
                         (result["row_count"], result["col_count"]) = (col_count, row_count)
-                    return result
+                    mcd.set_layout(**result)
+                    return mcd.get_clauses()
                 if is_organic:
                     break
         objective += 1
+    if is_organic:
+        raise MocodoError(41, _('Failed to calculate a non-constrained planar layout.'))  # fmt: skip
+    else:
+        raise MocodoError(9, _('Failed to calculate a planar layout satisfying the given constraint.'))  # fmt: skip
 
 
 if __name__ == "__main__":

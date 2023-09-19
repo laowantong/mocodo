@@ -107,8 +107,6 @@ class Runner:
                     pass
                 elif subopt == "flip":
                     source = self.flip(source, subargs)
-                elif subopt == "arrange":
-                    source = self.arrange(source, subargs)
                 elif subopt == "create" and "entities" in subargs:
                     source = guess_entities.run(source, subargs["entities"])
                 elif subopt in transformations.op_tk_rewritings: # ex.: create, delete, ascii, etc.
@@ -205,44 +203,6 @@ class Runner:
                 raise MocodoError(22, _("Unknown argument {subsubopt} for operation {subopt}".format(subsubopt=subsubopt, subopt=subopt)))  # fmt: skip
         return source
 
-    def arrange(self, source, subargs):
-        mcd = Mcd(source, self.get_font_metrics, **self.params)
-        timeout = subargs.get("timeout")
-        has_expired = (lambda: time() > timeout) if timeout else (lambda: False)
-        algo = subargs.get("algo", "bb")
-        is_constrained = "grid" in subargs and subargs["grid"] != "organic"
-        if algo == "bb" and (is_constrained or subargs.get("grid") == ""):
-            # -r arrange -> non-constrained layout
-            # -r arrange:grid=organic -> idem
-            # -r arrange:grid -> constrain the layout to the current grid
-            # -r arrange:grid=0 -> ... to the smallest balanced grid
-            # -r arrange:grid=𝑖 -> ... to the 𝑖th next grid (with 𝑖 > 0)
-            (fst, __, snd) = subargs["grid"].partition("x") # use `__` instead of `_` function
-            if fst.isdigit() and snd.isdigit():
-                source = mcd.get_refitted_clauses(int(fst), int(snd))
-                mcd = Mcd(source, self.get_font_metrics, **self.params)
-            elif fst.isdigit() and snd == "":
-                source = mcd.get_refitted_clauses(int(fst))
-                mcd = Mcd(source, self.get_font_metrics, **self.params)
-            else:
-                raise subarg_error("grid", subargs["grid"])
-        try:
-            module = importlib.import_module(f".rewrite._arrange_{algo}", package="mocodo")
-        except ModuleNotFoundError:
-            raise subarg_error("algo", algo)
-        rearrangement = module.arrange(mcd, subargs, has_expired)
-        if rearrangement:
-            mcd.set_layout(**rearrangement)
-            source = mcd.get_clauses()
-        elif algo == "bb" and is_constrained:
-            # TODO: revise these translations, currently the first message is not translated:
-            # Mocodo Err.9 - Failed to calculate a planar layout on the given grid. (not translated)
-            raise MocodoError(9, _('Failed to calculate a planar layout on the given grid.'))  # fmt: skip
-        else:
-            # ... and the second one wrongly refers to a constrained layout:
-            # Mocodo Err.41 - Impossible de calculer une mise en page planaire sur la grille impartie.
-            raise MocodoError(41, _('Failed to calculate a planar layout.'))  # fmt: skip
-        return source
 
     def get_rendering_service(self, extension):
         path = Path(self.params["script_directory"], "resources", "rendering_services.json")

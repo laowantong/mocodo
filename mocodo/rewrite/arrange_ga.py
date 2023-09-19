@@ -3,9 +3,11 @@ from random import choice, random, randrange, sample
 
 from .fitness import fitness
 from ..argument_parser import rate, positive_integer
+from ..mcd import Mcd
 
-def arrange(mcd, subargs, has_expired=None):
+def arrange(source, subargs, has_expired):
     
+    mcd = Mcd(source)
     layout_data = mcd.get_layout_data()
     links = layout_data["links"]
     successors = layout_data["successors"]
@@ -21,8 +23,6 @@ def arrange(mcd, subargs, has_expired=None):
     mutation_rate = rate(subargs.get("mutation_rate", 0.06))
     sample_size = positive_integer(subargs.get("sample_size", 7))
     verbose = bool(subargs.get("verbose") is not None) # -r arrange:verbose => {"verbose": ""} => True
-
-    has_expired = has_expired or (lambda: False)
 
     def make_individual():
         """ Construct a chromosome. Select a random node for the first gene. The next ones are chosen
@@ -91,15 +91,19 @@ def arrange(mcd, subargs, has_expired=None):
             previous_best_score = best.score
             patience = plateau
         if best.score == (0, 0) or patience == 0 or has_expired():
+            # Even if the best individual is not perfect, we stop here
+            # without raising an exception.
             break
         population = sorted(next_population())
         best = population[0]
         generation += 1
-    return {
+    result = {
         "distances": best.score[1],
         "crossings": best.score[0],
         "layout": best.chromosome
     }
+    mcd.set_layout(**result)
+    return mcd.get_clauses()
     
 if __name__ == "__main__":
     # python -m mocodo.rewrite._arrange_ga
