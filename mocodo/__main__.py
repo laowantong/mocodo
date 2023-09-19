@@ -1,7 +1,6 @@
 from pathlib import Path
 import sys
 
-
 if sys.version_info < (3, 6):
     print(f"Mocodo requires Python 3.6 or later to run.\nThis version is {sys.version}.")
     sys.exit()
@@ -9,7 +8,6 @@ if sys.version_info < (3, 6):
 import importlib
 import json
 import contextlib
-from time import time
 import requests
 import shutil
 
@@ -22,10 +20,18 @@ from .font_metrics import font_metrics_factory
 from .guess_title import may_update_params_with_guessed_title
 from .mcd import Mcd
 from .mcd_to_svg import main as dump_mcd_to_svg
-from .mocodo_error import MocodoError, subarg_error, subopt_error
+from .mocodo_error import MocodoError, subopt_error
 from .rewrite import op_tk, guess_entities
 from .tools.graphviz_tools import minify_graphviz
 from .tools.string_tools import urlsafe_encoding
+from .tools.various import invert_dict
+
+
+SHOW_ARGS = invert_dict({
+    "mcd": ["mcd"],
+    "rw": ["rw", "source", "text", "code"],
+    "cv": ["cv", "mld", "ddl"],
+})
 
 class ResponseLogger:
 
@@ -77,19 +83,26 @@ class Runner:
 
         self.add_gutter_params(self.params)
 
-
         if self.params["mld"] or ("transform" in self.params and self.params["transform"] == []):
             # In case there is an option `--mld` or an option `--transform` without arguments,
             # inject manually the equivalent --convert sub-option
             self.params["mld"] = True
             self.params["convert"].insert(0, ("markdown", {}))
 
-        if "show" in self.params: # the user wants to override the default display policy under Jupyter
+        if self.params.get("show"): # the user wants to override the default display policy under Jupyter
+            normalized_user_choices = []
+            for k in self.params["show"]:
+                if k.lower() not in SHOW_ARGS:
+                    raise MocodoError(28, _('Unknown argument "{k}" for option --show.').format(k=k)) # fmt: skip
+                normalized_user_choices.append(SHOW_ARGS[k.lower()])
+            self.params["show"] = normalized_user_choices
+        
+        if "show" in self.params:
             if self.params["show"] == []: # display all outputs: MCD, rewritten source, converted files
                 self.params["show"] = ["mcd", "rw", "cv"]
-            # else, don't touch the user's choice
+            # else: don't touch to the user's choices
         elif self.params["rewrite"] and self.params["convert"]:
-            self.params["show"] = ["mcd", "rw", "cv"]
+            self.params["show"] = ["mcd", "cv"]
         elif self.params["rewrite"]:
             self.params["show"] = ["mcd", "rw"]
         elif self.params["convert"] and self.params["mld"]:

@@ -185,14 +185,11 @@ class MocodoMagics(Magics):
                 svg_path = output_path_radical.with_suffix(".svg")
                 if svg_path.is_file() and input_path.stat().st_mtime <= svg_path.stat().st_mtime:
                     display(SVG(filename=svg_path))
-            elif show in ("rw", "source", "text", "code"):
+            elif show == "rw":
                 path = output_path_radical.with_suffix(".mcd")
                 display(Markdown(OUTPUT_PART_HEADER.format(label=path.relative_to(output_dir))))
-                if rewritten_source:
-                    print(rewritten_source)
-                else:
-                    print(cell)
-            elif show in ("cv", "mld", "ddl"):
+                print(rewritten_source or cell)
+            elif show == "cv":
                 for converted_file_path in converted_file_paths:
                     display_converted_file(Path(converted_file_path), hide_header=response.get("mld"))
 
