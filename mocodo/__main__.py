@@ -204,8 +204,8 @@ class Runner:
             safe_print_for_PHP(self.common.output_success_message(path))
 
     def flip(self, source, subargs):
-        mcd = Mcd(source, self.get_font_metrics, **self.params)
         for subsubopt in subargs:
+            mcd = Mcd(source)
             if subsubopt in ("v", "vertical"):
                 source = mcd.get_vertically_flipped_clauses()
             elif subsubopt in ("h", "horizontal"):
