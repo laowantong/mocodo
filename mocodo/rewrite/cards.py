@@ -1,8 +1,4 @@
-import random
-import re
-from collections import Counter
-
-from ..parse_mcd import Visitor, Tree
+from ..parse_mcd import Visitor
 from ..tools.parser_tools import parse_source, reconstruct_source, first_child
 from ..tools.various import invert_dict
 

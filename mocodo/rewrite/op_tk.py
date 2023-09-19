@@ -18,10 +18,10 @@ ELEMENT_TO_TOKENS = {
     "attrs": ["attr"],
     "boxes": ["box_name"],
     "cards": ["card"],
+    "roles": ["leg_note"],
     "constraint_notes": ["constraint_note"],
-    "labels": ["box_name", "attr"],
+    "labels": ["box_name", "attr", "leg_note"],
     "texts": ["box_name", "attr", "leg_note", "constraint_note"],
-    "leg_notes": ["leg_note"],
     "notes": ["leg_note", "constraint_note"],
     "types": ["data_type"],
 }
@@ -49,13 +49,13 @@ class Mapper(Transformer):
             if op_name == "randomize" and pre_token == "types":
                 pool = list(FIELD_TYPES["en"].values())
                 op = lambda x: x or random.choice(pool)
-            elif op_name == "delete" and pre_token in ("attrs", "notes", "leg_notes", "constraint_notes", "arrows", "types"):
+            elif op_name == "delete" and pre_token in ("attrs", "notes", "roles", "constraint_notes", "arrows", "types"):
                 op = lambda _: ""
             elif op_name == "delete" and pre_token == "cards":
                 op = lambda _: "XX"
             elif op_name == "fix" and pre_token == "cards":
                 op = fix_card
-            elif op_name == "randomize" and pre_token in ("labels", "texts", "boxes", "attrs", "notes", "leg_notes", "constraint_notes"):
+            elif op_name == "randomize" and pre_token in ("labels", "texts", "boxes", "attrs", "notes", "roles", "constraint_notes"):
                 op = obfuscator_factory(subsubarg, params)
             elif op_name == "truncate":
                 size = TRUNCATE_DEFAULT_SIZE
@@ -75,6 +75,8 @@ class Mapper(Transformer):
 
 
 def run(source, op_name, subargs, params, **kargs):
+    if op_name == "randomize" and not subargs:
+        subargs = {"labels": 1} # used for obfuscation
     for (pre_token, subsubarg) in subargs.items():
         # filter special non-op_tk operations
         if op_name == "create" and pre_token == "types":
