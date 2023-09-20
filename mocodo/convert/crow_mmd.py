@@ -10,7 +10,7 @@ from ..rewrite import (
     _explode as explode,
     _split as split,
 )
-from ..tools.string_tools import rstrip_digit
+from ..tools.string_tools import rstrip_digit_or_underline
 
 SUFFIX = "_crows_foot_erd.mmd"
 
@@ -53,8 +53,8 @@ class CrowMmd(Crow):
                 result.append(f"    {data_type} {attr}{pk}")
             result.append(f"  }}")
         for (ent_1, card_1, kind, card_2, ent_2, assoc_name) in self.links:
-            ent_1 = rstrip_digit(ent_1)
-            ent_2 = rstrip_digit(ent_2)
+            ent_1 = rstrip_digit_or_underline(ent_1)
+            ent_2 = rstrip_digit_or_underline(ent_2)
             card_1 = LEFT_CARD.get(card_1, "}|")
             card_2 = RIGHT_CARD.get(card_2, "|{")
             result.append(f"  {ent_1} {card_1}{kind}{card_2} {ent_2}: {assoc_name}")

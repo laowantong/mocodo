@@ -2,7 +2,7 @@ import re
 from .attribute import *
 from .leg import *
 from .mocodo_error import MocodoError
-from .tools.string_tools import rstrip_digit
+from .tools.string_tools import rstrip_digit_or_underline
 
 class Association:
 
@@ -31,7 +31,7 @@ class Association:
             Association.df_counter += 1
             self.kind = "df"
         else:
-            self.name_view = rstrip_digit(self.name)
+            self.name_view = rstrip_digit_or_underline(self.name)
             legs = clause["legs"]
             # A "peg" is a leg that is prefixed by a "/" character.
             for leg in legs:

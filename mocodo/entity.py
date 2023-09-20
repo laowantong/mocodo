@@ -1,7 +1,7 @@
 from collections import defaultdict
 import re
 from .attribute import *
-from .tools.string_tools import rstrip_digit
+from .tools.string_tools import rstrip_digit_or_underline
 
 class Entity:
     def __init__(self, clause):
@@ -9,7 +9,7 @@ class Entity:
         # A protected entity results in a table, even if all its columns are part of its primary key.
         self.is_protected = (clause.get("box_def_prefix") == "+") 
         self.name = clause["name"]
-        self.name_view = rstrip_digit(self.name)
+        self.name_view = rstrip_digit_or_underline(self.name)
         self.attributes = clause.get("attrs", [])
         self.legs = []  # iterating over box's legs does nothing if it is not an association
         self.kind = "entity"

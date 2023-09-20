@@ -52,12 +52,15 @@ class StringToolsTest(unittest.TestCase):
         for (label, expected) in zip(sample, wrapped):
             self.assertEqual(wrap_label(label), expected)
 
-    def test_rstrip_digit(self):
-        self.assertEqual(rstrip_digit("foo"), "foo")
-        self.assertEqual(rstrip_digit("foo1"), "foo")
-        self.assertEqual(rstrip_digit("foo12"), "foo1")
-        self.assertEqual(rstrip_digit(""), "")
-        self.assertEqual(rstrip_digit("1"), "")
+    def test_rstrip_digit_or_underline(self):
+        self.assertEqual(rstrip_digit_or_underline("foo"), "foo")
+        self.assertEqual(rstrip_digit_or_underline("foo1"), "foo")
+        self.assertEqual(rstrip_digit_or_underline("foo12"), "foo1")
+        self.assertEqual(rstrip_digit_or_underline(""), "")
+        self.assertEqual(rstrip_digit_or_underline("1"), "")
+        self.assertEqual(rstrip_digit_or_underline("foo_"), "foo")
+        self.assertEqual(rstrip_digit_or_underline("foo1_"), "foo1")
+        self.assertEqual(rstrip_digit_or_underline("_"), "")
 
     def test_surrounds(self):
         self.assertTrue(surrounds("(foobar)", "()"))

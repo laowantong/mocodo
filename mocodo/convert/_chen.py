@@ -8,7 +8,7 @@ from ..parse_mcd import Visitor
 from ..tools.parser_tools import first_child, parse_source, is_identifier
 from ..rewrite import _split as split
 from ..tools.graphviz_tools import create_name_to_index
-from ..tools.string_tools import wrap_label, rstrip_digit
+from ..tools.string_tools import wrap_label, rstrip_digit_or_underline
 
 
 class Chen(Visitor):
@@ -46,7 +46,7 @@ class Chen(Visitor):
         if re.match(r"(?i)phantom\d+$", ent_name):
             return
         ent_index = self.name_to_index(f"ent_{ent_name}")
-        ent_name = rstrip_digit(ent_name)
+        ent_name = rstrip_digit_or_underline(ent_name)
         self.entity_nodes.append((ent_index, ent_name))
 
         # Entity attributes
@@ -72,7 +72,7 @@ class Chen(Visitor):
         if assoc_name == self.df_label:
             assoc_name = f"{assoc_name}{next(self.df_counter)}"
         assoc_index = self.name_to_index(f"assoc_{assoc_name}")
-        assoc_name = rstrip_digit(assoc_name)
+        assoc_name = rstrip_digit_or_underline(assoc_name)
         self.rel_nodes.append((assoc_index, assoc_name))
 
         min_maxs = [node.children[0].value for node in tree.find_data("card")]

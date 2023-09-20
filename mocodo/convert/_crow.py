@@ -5,7 +5,7 @@ __import__("sys").path[0:0] = ["."]
 from ..mocodo_error import subsubopt_error
 from ..parse_mcd import Visitor
 from ..tools.parser_tools import first_child, is_identifier
-from ..tools.string_tools import rstrip_digit
+from ..tools.string_tools import rstrip_digit_or_underline
 from ..tools.graphviz_tools import create_name_to_index
 
 
@@ -32,7 +32,7 @@ class Crow(Visitor):
     def entity_clause(self, tree):
         ent_name = first_child(tree, "box_name").value
         ent_index = self.name_to_index(ent_name)
-        ent_name = rstrip_digit(ent_name)
+        ent_name = rstrip_digit_or_underline(ent_name)
         attrs = []
         has_id = False
         for (i, node) in enumerate(tree.find_data("entity_or_table_attr")):
@@ -46,7 +46,7 @@ class Crow(Visitor):
         cards = [node.children[0].value for node in tree.find_data("card")]
         assert len(cards) == 2
         assoc_name = first_child(tree, "assoc_name_def").children[0].value
-        assoc_name = rstrip_digit(assoc_name)
+        assoc_name = rstrip_digit_or_underline(assoc_name)
         kind = ".." if any(s.children[0].value == "_" for s in tree.find_data("card_prefix")) else "--"
         entities = tree.find_data("entity_name_ref")
         ent_1 = first_child(next(entities), "entity_name_ref").children[0]

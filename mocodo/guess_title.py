@@ -7,7 +7,7 @@ import re
 from pathlib import Path
 
 from .tools.parser_tools import parse_source
-from .tools.string_tools import rstrip_digit
+from .tools.string_tools import rstrip_digit_or_underline
 
 BLACKLIST = {
     "fr": ["date", "calendrier"],
@@ -23,14 +23,14 @@ def guess_title(source, language):
     tree = parse_source(source)
     names = []
     for node in tree.find_data("entity_name_ref"):
-        name = rstrip_digit(node.children[0].children[0])
+        name = rstrip_digit_or_underline(node.children[0].children[0])
         if name.lower() not in blacklist:
             names.append(name)
     counter = Counter(names)
     if not counter:
         return ""
     title = counter.most_common(1)[0][0]
-    title = re.sub("[^\w '\\._-]", "-", title)
+    title = re.sub(r"[^\w '\._-]", "-", title)
     with contextlib.suppress(ModuleNotFoundError):
         pluralize = import_module(f"tools.pluralize_{language}").pluralize
         title = " ".join(map(pluralize, title.split()))

@@ -2,7 +2,7 @@ from math import sqrt
 
 from .attribute import *
 from .leg import *
-from .tools.string_tools import rstrip_digit
+from .tools.string_tools import rstrip_digit_or_underline
 
 TRIANGLE_ALTITUDE = sqrt(3) / 2
 INCIRCLE_RADIUS = 1 / sqrt(12)
@@ -23,7 +23,7 @@ class Inheritance:
             clause["name"] = "XT"
         Inheritance.counter += 1
         self.name = f'{leg_entities[0]} parent #{Inheritance.counter}'
-        self.name_view = rstrip_digit(clause["name"])
+        self.name_view = rstrip_digit_or_underline(clause["name"])
         self.attributes = [InheritanceAttribute(attr) for attr in clause.get("attrs", [])]
         for leg_clause in clause["legs"]:
             leg_clause["kind"] = "-"

@@ -58,15 +58,13 @@ class Mapper(Transformer):
             elif op_name == "randomize" and pre_token in ("labels", "texts", "boxes", "attrs", "notes", "roles", "constraint_notes"):
                 op = obfuscator_factory(subsubarg, params)
             elif op_name == "truncate":
-                size = TRUNCATE_DEFAULT_SIZE
-                if subsubarg and isinstance(subsubarg, int) and subsubarg > 0:
-                    size = subsubarg
+                truncate_size = TRUNCATE_DEFAULT_SIZE
+                if subsubarg and subsubarg.isdigit():
+                    truncate_size = int(subsubarg) or truncate_size
+                op = lambda x: x[:truncate_size]
             elif op_name == "replace":
-                if isinstance(subsubarg, str):
-                    (substring, __, repl) = subsubarg.partition("/")
-                    op = lambda x: x.replace(substring, repl)
-                else:
-                    op = lambda x: x
+                (substring, __, repl) = subsubarg.partition("/")
+                op = lambda x: x.replace(substring, repl)
             else:
                 raise MocodoError(24, _('Operation {op_name} cannot be applied to {pre_token}.').format(op_name=op_name, pre_token=pre_token))
         update_tree = lambda tree: tree[0].update(value=op(tree[0].value))
@@ -76,7 +74,7 @@ class Mapper(Transformer):
 
 def run(source, op_name, subargs, params, **kargs):
     if op_name == "randomize" and not subargs:
-        subargs = {"labels": 1} # used for obfuscation
+        subargs = {"labels": ""} # used for obfuscation
     for (pre_token, subsubarg) in subargs.items():
         # filter special non-op_tk operations
         if op_name == "create" and pre_token == "types":

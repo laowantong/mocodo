@@ -18,7 +18,7 @@ def wrap_label(s, wrapping_ratio=2):
             return lines
     return [s]
 
-def rstrip_digit(s):
+def rstrip_digit_or_underline(s):
     """
     Get rid of single digit suffix, if any. Works on empty strings too.
     Used for entity and association names.

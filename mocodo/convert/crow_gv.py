@@ -7,7 +7,7 @@ from ..rewrite import (
     _explode as explode,
     _split as split,
 )
-from ..tools.string_tools import rstrip_digit
+from ..tools.string_tools import rstrip_digit_or_underline
 from ..tools.graphviz_tools import NODE_OPTIONS_TEMPLATE, table_as_label
 
 SUFFIX = "_crows_foot_erd.gv"
@@ -79,7 +79,7 @@ class CrowGv(Crow):
             kind = " style=dotted" if kind == ".." else ""
             label = ""
             if self.tables[ent_index_1][1] and self.tables[ent_index_2][1]:
-                label = f' label="{rstrip_digit(assoc_name)}"'
+                label = f' label="{rstrip_digit_or_underline(assoc_name)}"'
             acc.append(f'  {ent_index_1} -> {ent_index_2} [arrowhead="{head}" arrowtail="{tail}"{label}{kind}]')
         acc.append('}')
 
