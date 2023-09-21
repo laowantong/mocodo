@@ -220,7 +220,7 @@ class relationsTest(unittest.TestCase):
         t = Relations(mcd, params)
         self.assertEqual(t.get_text(minimal_template), text)
         expected = """
-            | relation | label           | data_type           | nature                    | adjacent_source |
+            | relation | label           | datatype            | nature                    | adjacent_source |
             |:---------|:----------------|:--------------------|:--------------------------|:----------------|
             | ANIMAL   | animal          |                     | primary_key               |                 |
             | ANIMAL   | poids           |                     | normal_attribute          |                 |
@@ -246,7 +246,7 @@ class relationsTest(unittest.TestCase):
         t = Relations(mcd, params)
         self.assertEqual(t.get_text(minimal_template), text)
         expected = """
-            | relation | label           | data_type                | nature                      | adjacent_source |
+            | relation | label           | datatype                 | nature                      | adjacent_source |
             |:---------|:----------------|:-------------------------|:----------------------------|:----------------|
             | ANIMAL   | animal          |                          | primary_key                 |                 |
             | ANIMAL   | poids           |                          | normal_attribute            |                 |
@@ -272,7 +272,7 @@ class relationsTest(unittest.TestCase):
         t = Relations(Mcd(source, params), params)
         self.assertEqual(t.get_text(minimal_template), text)
         expected = """
-            | relation  | label           | data_type                | nature                      |
+            | relation  | label           | datatype                 | nature                      |
             |:----------|:----------------|:-------------------------|:----------------------------|
             | ANIMAL    | animal          |                          | primary_key                 |
             | ANIMAL    | poids           |                          | normal_attribute            |
@@ -300,14 +300,14 @@ class relationsTest(unittest.TestCase):
         t = Relations(mcd, params)
         self.assertEqual(t.get_text(minimal_template), text)
         expected = """
-            | relation  | label           | data_type | nature                     |
-            |:----------|:----------------|:----------|:---------------------------|
-            | CARNIVORE | animal          |           | deleted_parent_primary_key |
-            | CARNIVORE | poids           |           | deleted_parent_attribute   |
-            | CARNIVORE | quantité viande |           | normal_attribute           |
-            | HERBIVORE | animal          |           | deleted_parent_primary_key |
-            | HERBIVORE | poids           |           | deleted_parent_attribute   |
-            | HERBIVORE | plante préférée |           | normal_attribute           |
+            | relation  | label           | datatype | nature                     |
+            |:----------|:----------------|:---------|:---------------------------|
+            | CARNIVORE | animal          |          | deleted_parent_primary_key |
+            | CARNIVORE | poids           |          | deleted_parent_attribute   |
+            | CARNIVORE | quantité viande |          | normal_attribute           |
+            | HERBIVORE | animal          |          | deleted_parent_primary_key |
+            | HERBIVORE | poids           |          | deleted_parent_attribute   |
+            | HERBIVORE | plante préférée |          | normal_attribute           |
         """
         actual = debug_table(t)
         self.assertEqual(actual.strip(), expected.strip())
@@ -335,7 +335,7 @@ class relationsTest(unittest.TestCase):
         t = Relations(Mcd(source, params), params)
         self.assertEqual(t.get_text(minimal_template), text)
         expected = """
-            | relation | label           | data_type                | nature                      | adjacent_source |
+            | relation | label           | datatype                 | nature                      | adjacent_source |
             |:---------|:----------------|:-------------------------|:----------------------------|:----------------|
             | ANIMAL   | animal          |                          | primary_key                 |                 |
             | ANIMAL   | poids           |                          | normal_attribute            |                 |
@@ -359,7 +359,7 @@ class relationsTest(unittest.TestCase):
         t = Relations(Mcd(source, params), params)
         self.assertEqual(t.get_text(minimal_template), text)
         expected = """
-            | relation  | label           | data_type                | nature                      |
+            | relation  | label           | datatype                 | nature                      |
             |:----------|:----------------|:-------------------------|:----------------------------|
             | ANIMAL    | animal          |                          | primary_key                 |
             | ANIMAL    | poids           |                          | normal_attribute            |

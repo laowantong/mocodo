@@ -11,7 +11,7 @@ def set_defaults(template):
     result = {
         "transform_attribute": [],
         "transform_title": [],
-        "transform_data_type": [],
+        "transform_datatype": [],
         "transform_optionality": [],
         "compose_label_disambiguated_by_note": "{label_before_disambiguation} {leg_note}",
         "compose_label_disambiguated_by_number": "{label_before_disambiguation}.{disambiguation_number}",
@@ -157,7 +157,7 @@ class Relations:
             data["is_forced"] = relation["is_forced"]
             fields = []
             for column in relation["columns"]:
-                column["data_type"] = transform(column["data_type"], "transform_data_type")
+                column["datatype"] = transform(column["datatype"], "transform_datatype")
                 column["optionality"] = transform(column["optionality"], "transform_optionality")
                 data.update(column)
                 field = template["compose_%s" % column["nature"]].format(**data)
@@ -262,7 +262,7 @@ class Relations:
                 self.relations[name]["columns"].append({
                     "attribute": attribute.label,
                     "optionality": optionality,
-                    "data_type": attribute.data_type,
+                    "datatype": attribute.datatype,
                     "adjacent_source": None,
                     "outer_source": None,
                     "association_name": None,
@@ -305,7 +305,7 @@ class Relations:
                         self.relations[entity.name]["columns"][0:0] = [{
                                 "attribute": attribute["attribute"],
                                 "optionality": "!",
-                                "data_type": attribute["data_type"],
+                                "datatype": attribute["datatype"],
                                 "adjacent_source": strengthening_entity.name,
                                 "outer_source": strengthening_entity.name,
                                 "association_name": association.name,
@@ -352,7 +352,7 @@ class Relations:
                 self.relations[child_leg.entity_name]["columns"][0:0] = [{
                     "attribute": attribute["attribute"],
                     "optionality": "!",
-                    "data_type": attribute["data_type"],
+                    "datatype": attribute["datatype"],
                     "adjacent_source": parent_leg.entity_name,
                     "outer_source": parent_leg.entity_name,
                     "leg_note": None,
@@ -373,7 +373,7 @@ class Relations:
                 self.relations[parent_leg.entity_name]["columns"].extend({ 
                     "attribute": attribute.label,
                     "optionality": "" if 'T' in inheritance.name_view else "!",
-                    "data_type": attribute.data_type or "UNSIGNED_INT_PLACEHOLDER",
+                    "datatype": attribute.datatype or "UNSIGNED_INT_PLACEHOLDER",
                     "adjacent_source": None,
                     "outer_source": None,
                     "association_name": inheritance.name,
@@ -409,7 +409,7 @@ class Relations:
                                 self.relations[association.name]["columns"].append({ # gather all migrant attributes
                                     "attribute": attribute["attribute"],
                                     "optionality": "!",
-                                    "data_type": attribute["data_type"],
+                                    "datatype": attribute["datatype"],
                                     "adjacent_source": leg.entity_name,
                                     "outer_source": outer_source,
                                     "leg_note": leg.note,
@@ -423,7 +423,7 @@ class Relations:
                                 self.relations[association.name]["columns"].append({ # gather all migrant attributes
                                     "attribute": attribute["attribute"],
                                     "optionality": "!",
-                                    "data_type": attribute["data_type"],
+                                    "datatype": attribute["datatype"],
                                     "adjacent_source": leg.entity_name,
                                     "outer_source": outer_source,
                                     "leg_note": leg.note,
@@ -436,7 +436,7 @@ class Relations:
                                 self.relations[association.name]["columns"].append({ # gather all migrant attributes
                                     "attribute": attribute["attribute"],
                                     "optionality": "!",
-                                    "data_type": attribute["data_type"],
+                                    "datatype": attribute["datatype"],
                                     "adjacent_source": leg.entity_name,
                                     "outer_source": outer_source,
                                     "leg_note": leg.note,
@@ -449,7 +449,7 @@ class Relations:
                             self.relations[association.name]["columns"].append({
                                 "attribute": attribute["attribute"],
                                 "optionality": "!",
-                                "data_type": attribute["data_type"],
+                                "datatype": attribute["datatype"],
                                 "adjacent_source": leg.entity_name,
                                 "outer_source": None,
                                 "leg_note": leg.note,
@@ -461,7 +461,7 @@ class Relations:
                 self.relations[association.name]["columns"].extend({ # and the attributes already existing in the association
                         "attribute": attribute.label,
                         "optionality": attribute.optionality,
-                        "data_type": attribute.data_type,
+                        "datatype": attribute.datatype,
                         "adjacent_source": None,
                         "outer_source": None,
                         "association_name": association.name,
@@ -497,7 +497,7 @@ class Relations:
                                 self.relations[df_peg.entity_name]["columns"].append({
                                     "attribute": attribute["attribute"],
                                     "optionality": "!",
-                                    "data_type": attribute["data_type"],
+                                    "datatype": attribute["datatype"],
                                     "adjacent_source": leg.entity_name,
                                     "outer_source": outer_source,
                                     "leg_note": leg.note,
@@ -527,7 +527,7 @@ class Relations:
                                     self.relations[df_leg.entity_name]["columns"].append({
                                         "attribute": attribute["attribute"],
                                         "optionality": optionality,
-                                        "data_type": attribute["data_type"],
+                                        "datatype": attribute["datatype"],
                                         "adjacent_source": leg.entity_name,
                                         "outer_source": outer_source,
                                         "leg_note": leg.note,
@@ -542,7 +542,7 @@ class Relations:
                                     self.relations[df_leg.entity_name]["columns"].append({
                                         "attribute": attribute["attribute"],
                                         "optionality": optionality,
-                                        "data_type": attribute["data_type"],
+                                        "datatype": attribute["datatype"],
                                         "adjacent_source": leg.entity_name,
                                         "outer_source": None,
                                         "leg_note": leg.note,
@@ -556,7 +556,7 @@ class Relations:
             self.relations[df_leg.entity_name]["columns"].extend([{
                     "attribute": attribute.label,
                     "optionality": attribute.optionality,
-                    "data_type": attribute.data_type,
+                    "datatype": attribute.datatype,
                     "association_name": association.name,
                     "adjacent_source": None,
                     "outer_source": None,
@@ -576,7 +576,7 @@ class Relations:
                     self.relations[child_leg.entity_name]["columns"][0:0] = [{
                         "attribute": attribute["attribute"],
                         "optionality": attribute["optionality"],
-                        "data_type": attribute["data_type"],
+                        "datatype": attribute["datatype"],
                         "adjacent_source": parent_leg.entity_name,
                         "outer_source": self.may_retrieve_distant_outer_source(parent_leg, attribute),
                         "leg_note": self.may_retrieve_distant_leg_note(parent_leg, attribute),
@@ -589,7 +589,7 @@ class Relations:
                 self.relations[parent_leg.entity_name]["columns"].extend({ 
                     "attribute": attribute.label,
                     "optionality": "" if 'T' in inheritance.name_view else "!",
-                    "data_type": attribute.data_type or "UNSIGNED_INT_PLACEHOLDER",
+                    "datatype": attribute.datatype or "UNSIGNED_INT_PLACEHOLDER",
                     "adjacent_source": None,
                     "outer_source": None,
                     "association_name": inheritance.name,
@@ -605,7 +605,7 @@ class Relations:
                             self.relations[parent_leg.entity_name]["columns"].append({
                                 "attribute": child_leg.entity_name,
                                 "optionality": "!",
-                                "data_type": "BOOLEAN_PLACEHOLDER",
+                                "datatype": "BOOLEAN_PLACEHOLDER",
                                 "adjacent_source": child_leg.entity_name,
                                 "outer_source": child_leg.entity_name,
                                 "leg_note": None,
@@ -621,7 +621,7 @@ class Relations:
                             self.relations[parent_leg.entity_name]["columns"].append({
                                 "attribute": attribute["attribute"],
                                 "optionality": "?",
-                                "data_type": attribute["data_type"],
+                                "datatype": attribute["datatype"],
                                 "adjacent_source": child_leg.entity_name,
                                 "outer_source": self.may_retrieve_distant_outer_source(child_leg, attribute),
                                 "leg_note": self.may_retrieve_distant_leg_note(child_leg, attribute),

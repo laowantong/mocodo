@@ -31,10 +31,10 @@ class UmlClassDiagram(Visitor):
         self.preamble = preamble or "" # preamble may be None
         self.id_counter = itertools.count()
         self.df_label = common.params["df"]
-        self.has_no_data_type = True
+        self.has_no_datatype = True
         self.acc = []
 
-    def data_type(self, tree):
+    def datatype(self, tree):
         s = "".join(tree.children)[2:-1] # remove the surrounding brackets
         tree.children = [s]
 
@@ -42,10 +42,10 @@ class UmlClassDiagram(Visitor):
         id_groups = str(first_child(tree, "id_groups"))
         id_mark = str(first_child(tree, "id_mark"))
         attr = str(first_child(tree, "attr"))
-        data_type = str(first_child(tree, "data_type"))
-        if data_type:
-            self.has_no_data_type = False
-        tree.children = [(id_groups, id_mark, attr, data_type)]
+        datatype = str(first_child(tree, "datatype"))
+        if datatype:
+            self.has_no_datatype = False
+        tree.children = [(id_groups, id_mark, attr, datatype)]
     
     def entity_clause(self, tree):
         ent_name = str(first_child(tree, "box_name"))
@@ -53,11 +53,11 @@ class UmlClassDiagram(Visitor):
             return
         attributes = []
         for (i, node) in enumerate(tree.find_data("entity_or_table_attr")):
-            (id_groups, id_mark, attr_label, data_type) = node.children[0]
+            (id_groups, id_mark, attr_label, datatype) = node.children[0]
             attr_label = str(attr_label)
             if attr_label == "":
                 continue # ignore spacer attributes
-            attributes.append((is_identifier(i, id_groups, id_mark), attr_label, data_type))
+            attributes.append((is_identifier(i, id_groups, id_mark), attr_label, datatype))
         self.acc.append({
             "kind": "table",
             "name": ent_name,
@@ -77,8 +77,8 @@ class UmlClassDiagram(Visitor):
             attr_label = str(first_child(node, "attr"))
             if attr_label == "":
                 continue # don't create a node for a spacer attribute
-            data_type = str(first_child(node, "data_type"))
-            typed_attrs.append((attr_label, data_type))
+            datatype = str(first_child(node, "datatype"))
+            typed_attrs.append((attr_label, datatype))
 
         if len(legs) == 2:
             weaks = [first_child(leg, "card_prefix") == "_" for leg in legs]
@@ -120,7 +120,7 @@ class UmlClassDiagram(Visitor):
             self.acc.append({
                 "kind": "table",
                 "name": assoc_name,
-                "attributes": [(False, attr_label, data_type) for (attr_label, data_type) in typed_attrs],
+                "attributes": [(False, attr_label, datatype) for (attr_label, datatype) in typed_attrs],
             })
         
         self.acc.append({"kind": "spacer"})
@@ -174,11 +174,11 @@ class UmlClassDiagram(Visitor):
             if element["kind"] == "table":
                 max_attr_length = max([len(attr) for (_, attr, _) in element["attributes"]], default=0)
                 result.append(f'Table("{element["name"]}") {{')
-                for (is_id, attr, data_type) in element["attributes"]:
+                for (is_id, attr, datatype) in element["attributes"]:
                     suffix = ""
-                    if data_type:
+                    if datatype:
                         tabs = " " * (max_attr_length - len(attr) + 1)
-                        suffix = f"{tabs}{data_type}"
+                        suffix = f"{tabs}{datatype}"
                     if is_id:
                         attr = f"pk({attr})"
                     result.append(f"    {{field}} + {attr}{suffix}")

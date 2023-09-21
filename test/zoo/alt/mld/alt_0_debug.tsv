@@ -1,4 +1,4 @@
-this_relation_name	label	data_type	nature	adjacent_source	outer_source	unicities
+this_relation_name	label	datatype	nature	adjacent_source	outer_source	unicities
 CLIENT	Réf. client		primary_key			
 CLIENT	Nom		normal_attribute			1
 CLIENT	Prénom		normal_attribute			1

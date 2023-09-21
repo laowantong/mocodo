@@ -9,7 +9,7 @@ class Attribute:
     def __init__(self, attribute):
         self.label = attribute.get("attribute_label", "")
         self.rank = attribute["rank"]
-        self.data_type = attribute.get("data_type", "")
+        self.datatype = attribute.get("datatype", "")
         self.optionality = attribute.get("attr_suffix", "")
         self.primary_entity_name = attribute.get("that_table")
         self.primary_key_label = attribute.get("that_table_attribute_label")

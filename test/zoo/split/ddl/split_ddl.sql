@@ -17,7 +17,7 @@ CREATE TABLE TROPHEE (
 CREATE TABLE VILLAGEOIS (
   PRIMARY KEY (nom_villageois),
   nom_villageois VARCHAR(255) NOT NULL,
-  adresse VARCHAR(42),
+  adresse VARCHAR(30),
   fonction VARCHAR(42)
 );
 

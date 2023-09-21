@@ -1269,7 +1269,7 @@ Enseignant: num. ens. [numéro identifiant un enseignant], nom ens. [nom enseign
         entity_or_table_attr
           typed_attr
             attr	num. ens.
-            data_type
+            datatype
                [
               numéro identifiant un enseignant
               ]
@@ -1277,7 +1277,7 @@ Enseignant: num. ens. [numéro identifiant un enseignant], nom ens. [nom enseign
         entity_or_table_attr
           typed_attr
             attr	nom ens.
-            data_type
+            datatype
                [
               nom enseignant
               ]
@@ -1285,20 +1285,20 @@ Enseignant: num. ens. [numéro identifiant un enseignant], nom ens. [nom enseign
         entity_or_table_attr
           typed_attr
             attr	tél. ens.
-            data_type
+            datatype
                [
               téléphone enseignant
               ]
 --------------------------------------------------------------------------------
 [{'name': 'Enseignant',
   'attrs': [{'attribute_label': 'num. ens.',
-             'data_type': 'numéro identifiant un enseignant',
+             'datatype': 'numéro identifiant un enseignant',
              'rank': 0},
             {'attribute_label': 'nom ens.',
-             'data_type': 'nom enseignant',
+             'datatype': 'nom enseignant',
              'rank': 1},
             {'attribute_label': 'tél. ens.',
-             'data_type': 'téléphone enseignant',
+             'datatype': 'téléphone enseignant',
              'rank': 2}],
   'type': 'entity',
   'indent': '',
@@ -1523,7 +1523,7 @@ CLIENT: Réf. client [varchar(8)], Nom [varchar(20)], Adresse [varchar(40)]
         entity_or_table_attr
           typed_attr
             attr	Réf. client
-            data_type
+            datatype
                [
               varchar(8)
               ]
@@ -1531,7 +1531,7 @@ CLIENT: Réf. client [varchar(8)], Nom [varchar(20)], Adresse [varchar(40)]
         entity_or_table_attr
           typed_attr
             attr	Nom
-            data_type
+            datatype
                [
               varchar(20)
               ]
@@ -1539,18 +1539,18 @@ CLIENT: Réf. client [varchar(8)], Nom [varchar(20)], Adresse [varchar(40)]
         entity_or_table_attr
           typed_attr
             attr	Adresse
-            data_type
+            datatype
                [
               varchar(40)
               ]
 --------------------------------------------------------------------------------
 [{'name': 'CLIENT',
   'attrs': [{'attribute_label': 'Réf. client',
-             'data_type': 'varchar(8)',
+             'datatype': 'varchar(8)',
              'rank': 0},
-            {'attribute_label': 'Nom', 'data_type': 'varchar(20)', 'rank': 1},
+            {'attribute_label': 'Nom', 'datatype': 'varchar(20)', 'rank': 1},
             {'attribute_label': 'Adresse',
-             'data_type': 'varchar(40)',
+             'datatype': 'varchar(40)',
              'rank': 2}],
   'type': 'entity',
   'indent': '',
@@ -1581,7 +1581,7 @@ INCLURE, 1N COMMANDE, 0N PRODUIT: Quantité [tinyint(4)]
       seq
         typed_attr
           attr	Quantité
-          data_type
+          datatype
              [
             tinyint(4)
             ]
@@ -1590,7 +1590,7 @@ INCLURE, 1N COMMANDE, 0N PRODUIT: Quantité [tinyint(4)]
   'legs': [{'card': '1N', 'entity': 'COMMANDE', 'rank': 0},
            {'card': '0N', 'entity': 'PRODUIT', 'rank': 1}],
   'attrs': [{'attribute_label': 'Quantité',
-             'data_type': 'tinyint(4)',
+             'datatype': 'tinyint(4)',
              'rank': 0}],
   'type': 'association',
   'indent': '',
@@ -1608,7 +1608,7 @@ PARTICIPANT: numero [], nom, adresse [type3]
         entity_or_table_attr
           typed_attr
             attr	numero
-            data_type
+            datatype
                [
               ]
         , 
@@ -1619,15 +1619,15 @@ PARTICIPANT: numero [], nom, adresse [type3]
         entity_or_table_attr
           typed_attr
             attr	adresse
-            data_type
+            datatype
                [
               type3
               ]
 --------------------------------------------------------------------------------
 [{'name': 'PARTICIPANT',
-  'attrs': [{'attribute_label': 'numero', 'data_type': '', 'rank': 0},
+  'attrs': [{'attribute_label': 'numero', 'datatype': '', 'rank': 0},
             {'attribute_label': 'nom', 'rank': 1},
-            {'attribute_label': 'adresse', 'data_type': 'type3', 'rank': 2}],
+            {'attribute_label': 'adresse', 'datatype': 'type3', 'rank': 2}],
   'type': 'entity',
   'indent': '',
   'source': 'PARTICIPANT: numero [], nom, adresse [type3]'}]

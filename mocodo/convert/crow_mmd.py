@@ -47,10 +47,10 @@ class CrowMmd(Crow):
         result.append("erDiagram")
         for (name, has_id, attrs) in self.tables.values():
             result.append(f"  {name} {{")
-            for (data_type, attr, is_id) in attrs:
-                data_type = sanitize_type(data_type) if data_type else "TYPE"
+            for (datatype, attr, is_id) in attrs:
+                datatype = sanitize_type(datatype) if datatype else "TYPE"
                 pk = " PK" if is_id else ""
-                result.append(f"    {data_type} {attr}{pk}")
+                result.append(f"    {datatype} {attr}{pk}")
             result.append(f"  }}")
         for (ent_1, card_1, kind, card_2, ent_2, assoc_name) in self.links:
             ent_1 = rstrip_digit_or_underline(ent_1)

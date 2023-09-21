@@ -19,7 +19,7 @@ debug_template = {
             "replace": "\t",
         }
     ],
-  "compose_relational_schema": "this_relation_name\tlabel\tdata_type\tnature\tadjacent_source\touter_source\tunicities\n{relations}",
+  "compose_relational_schema": "this_relation_name\tlabel\tdatatype\tnature\tadjacent_source\touter_source\tunicities\n{relations}",
     "transform_relational_schema": [
         {
             "order": 100,
@@ -30,7 +30,7 @@ debug_template = {
         }
     ],
 }
-row = "{this_relation_name}\t{label}\t{data_type}\t%s\t{adjacent_source}\t{outer_source}\t{unicities}\n"
+row = "{this_relation_name}\t{label}\t{datatype}\t%s\t{adjacent_source}\t{outer_source}\t{unicities}\n"
 
 defaults = set_defaults({})
 composition_keys = set(s for s in defaults.keys() if s.startswith("compose_"))

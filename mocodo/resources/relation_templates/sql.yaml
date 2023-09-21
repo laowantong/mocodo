@@ -3,7 +3,7 @@ stem_suffix: '_ddl'
 extension: 'sql'
 to_defer: false
 highlight: 'sql'
-transform_data_type:
+transform_datatype:
   - order: 100
     comment: 'Fill in empty data types with the default one.'
     search: '^\s*$'
@@ -25,10 +25,10 @@ transform_optionality:
     replace: ' NULL'
 compose_label_disambiguated_by_note: '{label_before_disambiguation}_{leg_note}'
 compose_label_disambiguated_by_number: '{label_before_disambiguation}_{disambiguation_number}'
-compose_primary_key: '{label} {data_type}{optionality}\nPRIMARY KEY ({label})'
-compose_normal_attribute: '{label} {data_type}{optionality}'
-compose_foreign_key: '{label} {data_type}{optionality}\nFOREIGN KEY ({label}) REFERENCES {outer_source} ({label_before_disambiguation})'
-compose_primary_foreign_key: '{label} {data_type}{optionality}\nPRIMARY KEY ({label})\nFOREIGN KEY ({label}) REFERENCES {outer_source} ({label_before_disambiguation})'
+compose_primary_key: '{label} {datatype}{optionality}\nPRIMARY KEY ({label})'
+compose_normal_attribute: '{label} {datatype}{optionality}'
+compose_foreign_key: '{label} {datatype}{optionality}\nFOREIGN KEY ({label}) REFERENCES {outer_source} ({label_before_disambiguation})'
+compose_primary_foreign_key: '{label} {datatype}{optionality}\nPRIMARY KEY ({label})\nFOREIGN KEY ({label}) REFERENCES {outer_source} ({label_before_disambiguation})'
 add_unicity_constraints:
   - order: 100
     search: '$'

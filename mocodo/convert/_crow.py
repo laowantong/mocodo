@@ -14,7 +14,9 @@ class Crow(Visitor):
         self.name_to_index = create_name_to_index()
         self.tables = {}
         self.links = []
+        self.has_no_datatype = True
     
+    def datatype(self, tree):
         s = "".join(tree.children)[2:-1] # remove the surrounding brackets
         tree.children = [s]
 
@@ -22,6 +24,10 @@ class Crow(Visitor):
         id_groups = str(first_child(tree, "id_groups"))
         id_mark = str(first_child(tree, "id_mark"))
         attr = str(first_child(tree, "attr"))
+        datatype = str(first_child(tree, "datatype"))
+        if datatype:
+            self.has_no_datatype = False
+        tree.children = [(id_groups, id_mark, attr, datatype)]
     
     def entity_clause(self, tree):
         ent_name = first_child(tree, "box_name").value
@@ -30,8 +36,10 @@ class Crow(Visitor):
         attrs = []
         has_id = False
         for (i, node) in enumerate(tree.find_data("entity_or_table_attr")):
+            (id_groups, id_mark, attr, datatype) = node.children[0]
             is_id = is_identifier(i, id_groups, id_mark)
             has_id = has_id or is_id
+            attrs.append((datatype, attr, is_id))
         self.tables[ent_index] = (ent_name, has_id, attrs)
     
     def assoc_clause(self, tree):

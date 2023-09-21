@@ -245,8 +245,8 @@ class ClauseExtractor(Transformer):
     def indent(self, tree):
         return {"type": "break", "indent": tree[0].value} # Add a default type for dangling indents
     
-    def data_type(self, tree):
-        return ("data_type", tree[0].value if tree else "")
+    def datatype(self, tree):
+        return ("datatype", tree[0].value if tree else "")
     
     def id_groups(self, tree):
         return ("id_groups", "".join(sorted(set(tree[0].value))))

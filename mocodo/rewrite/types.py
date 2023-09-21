@@ -1,18 +1,3 @@
-"""
-Associate common field names (expressed as regular expressions) to data types.
-
-Suppose that the field names have been preprocessed to consist of space separated
-words. Use only SQL:2016 standard data types, namely: CHAR, VARCHAR, CLOB, BINARY,
-VARBINARY, BLOB, NUMERIC, DECIMAL, SMALLINT, INTEGER, BIGINT, FLOAT, REAL, DOUBLE
-PRECISION, DATE, TIME, TIMESTAMP, INTERVAL, BOOLEAN, XML, JSON.
-
-If mandatory, the data types must be followed by a size specification, e.g.
-VARCHAR(255) or DECIMAL(11,2). Do not add column properties such as UNSIGNED since
-they are not supported by all DBMS.
-"""
-
-# TODO: check https://www.google.com/search?rls=en&q=site%3Alegifrance.gouv.fr+varchar&ie=UTF-8&oe=UTF-8
-
 import re
 
 from ..parse_mcd import Visitor, Token
@@ -22,7 +7,7 @@ from ..tools.string_tools import ascii, snake
 class CreateTypePlaceholder(Visitor):
 
     def typed_attr(self, tree):
-        if first_child(tree, "data_type"):
+        if first_child(tree, "datatype"):
             return
         name_token = first_child(tree, "attr")
         if not name_token:
@@ -44,6 +29,8 @@ FIELD_TYPES = {
         r"\bdatetime$": "DATETIME",
         r"\btimestamp$": "TIMESTAMP",
         r"\bat$": "TIMESTAMP",
+        r"\bbefore$": "TIMESTAMP",
+        r"\bafter$": "TIMESTAMP",
         # Identifying and Validating Information
         r"\bid$": "VARCHAR(8)",
         r"\bcode$": "VARCHAR(8)",
@@ -60,6 +47,7 @@ FIELD_TYPES = {
         # Internet and Computers
         r"\burl$": "VARCHAR(2000)",
         r"\bip$": "VARCHAR(15)",
+        r"\bip address$": "VARCHAR(15)",
         r"\bipv4$": "VARCHAR(15)",
         r"\bipv6$": "VARCHAR(45)",
         r"\bcookie$": "VARCHAR(255)",
@@ -85,9 +73,15 @@ FIELD_TYPES = {
         r"\bcountry name$": "VARCHAR(100)",
         r"\bcity name$": "VARCHAR(100)",
         r"\bcountry code$": "CHAR(2)",
+        r"\baddress$": "VARCHAR(30)",
         # Financial
         r"\bprice$": "DECIMAL(10,2)",
         r"\bamount$": "DECIMAL(10,2)",
+        r"\barn$": "VARCHAR(8)", # Acquirer Reference Number
+        r"\barn code$": "VARCHAR(8)",
+        r"\bbic$": "VARCHAR(11)", # Bank Identifier Code
+        r"\bbic code$": "VARCHAR(11)",
+        r"\biban$": "VARCHAR(34)", # Maximum value
         # Predicate
         r"^is\b": "BOOLEAN",
         r"^has\b": "BOOLEAN",
@@ -115,6 +109,8 @@ FIELD_TYPES = {
         r"\bgrade$": "DECIMAL(3,2)",
         # Quantity
         r"\bquantity$": "INTEGER",
+        r"\bcapacity$": "INTEGER",
+        r"\border$": "INTEGER",
         r"\bpercent(age)?$": "DECIMAL(5,2)",
         r"\bratio$": "DECIMAL(5,2)",
         r"\bweight$": "DECIMAL(10,2)",
@@ -145,6 +141,8 @@ FIELD_TYPES = {
         r"^date et heure\b": "DATETIME",
         r"^horodatage\b": "TIMESTAMP",
         r"\ba$": "TIMESTAMP",
+        r"\bapres$": "TIMESTAMP",
+        r"\bavant$": "TIMESTAMP",
         # Identifying and Validating Information
         r"^id\b": "VARCHAR(8)",
         r"^code\b": "VARCHAR(8)",
@@ -158,10 +156,12 @@ FIELD_TYPES = {
         r"^pwd\b": "VARCHAR(255)",
         r"^digest\b": "BINARY(64)",
         r"^signature\b": "BINARY(64)",
-        r"\bsire(t|n)\b": "CHAR(14)",
+        r"\bsiren\b": "CHAR(9)",
+        r"\bsiret\b": "CHAR(14)",
         # Internet and Computers
         r"^url\b": "VARCHAR(2000)",
         r"^ip\b": "VARCHAR(15)",
+        r"^adresse ip\b": "VARCHAR(15)",
         r"^ipv4\b": "VARCHAR(15)",
         r"^ipv6\b": "VARCHAR(45)",
         r"^cookie\b": "VARCHAR(255)",
@@ -187,9 +187,15 @@ FIELD_TYPES = {
         r"^(nom )?pays\b": "VARCHAR(100)",
         r"^(nom )?ville\b": "VARCHAR(100)",
         r"^code pays\b": "CHAR(2)",
+        r"^adresse\b": "VARCHAR(30)",
         # Financial
         r"^prix\b": "DECIMAL(10,2)",
         r"^montant\b": "DECIMAL(10,2)",
+        r"^code nra\b": "VARCHAR(8)",
+        r"^nra\b": "VARCHAR(8)", # Numéro de Référence de l'Acquéreur”, pour identifier les transactions par carte bancaire
+        r"^bic\b": "VARCHAR(11)", # Bank Identifier Code
+        r"^code bic\b": "VARCHAR(11)",
+        r"^iban\b": "VARCHAR(27)", # France, Monaco, etc.
         # Predicate
         r"^est\b": "BOOLEAN",
         r"^a\b": "BOOLEAN",
@@ -215,7 +221,9 @@ FIELD_TYPES = {
         r"\bétoiles$": "DECIMAL(3,2)",
         # Quantity
         r"^(quantite|qte)\b": "INTEGER",
+        r"^(capacite)\b": "INTEGER",
         r"^(nombre|nb)\b": "INTEGER",
+        r"^ordre\b": "INTEGER",
         r"^pourcent(age)?\b": "DECIMAL(5,2)",
         r"^ratio\b": "DECIMAL(5,2)",
         r"^poids\b": "DECIMAL(10,2)",
@@ -257,20 +265,20 @@ class GuessType(Visitor):
         self.guessing_suffix = guessing_suffix
 
     def typed_attr(self, tree):
-        a = list(tree.find_data("data_type"))
+        a = list(tree.find_data("datatype"))
         if a and "".join(a[0].children)[2:-1]:
             return # already typed
         attr = first_child(tree, "attr")
         if attr == "":
             return
         needle = snake(ascii(attr)).replace("_", " ").lower()
-        for (found, data_type) in self.field_types:
+        for (found, datatype) in self.field_types:
             if found(needle):
-                data_type = f"{data_type}{self.guessing_suffix}"
+                datatype = f"{datatype}{self.guessing_suffix}"
                 break
         else:
-            data_type = ""
-        tree.children = [Token("MOCK", f"{attr.value} [{data_type}]", line=attr.line, column=attr.column)]
+            datatype = ""
+        tree.children = [Token("MOCK", f"{attr.value} [{datatype}]", line=attr.line, column=attr.column)]
 
 
 def guess_types(source, subsubarg, params):

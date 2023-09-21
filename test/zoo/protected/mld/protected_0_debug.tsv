@@ -1,4 +1,4 @@
-this_relation_name	label	data_type	nature	adjacent_source	outer_source	unicities
+this_relation_name	label	datatype	nature	adjacent_source	outer_source	unicities
 Agence	id. agence		primary_key			
 Agence	nom agence		normal_attribute			
 Direction régionale	id. dir.		primary_key			

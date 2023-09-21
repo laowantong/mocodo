@@ -20,9 +20,9 @@ PERCENT: "%"
 SP.-50: /[^\S\r\n]+/
 
 BOX_NAME: /(?![\W_\d])[^=<>,:\n\\]*[^-\[\\\]=<>,:\s\\]/
-typed_attr: (attr attr_suffix? data_type?)?
+typed_attr: (attr attr_suffix? datatype?)?
 !attr_suffix: "!" | "?"
-data_type: LBRACKET note? RBRACKET
+datatype: LBRACKET note? RBRACKET
 !box_def_prefix: "+"
 
 ATTR: /(?=\w)(?!_)[^\[\]>,\r\n!?]*[^\[\]>,\s!?]/

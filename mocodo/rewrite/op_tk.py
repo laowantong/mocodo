@@ -23,7 +23,7 @@ ELEMENT_TO_TOKENS = {
     "labels": ["box_name", "attr", "leg_note"],
     "texts": ["box_name", "attr", "leg_note", "constraint_note"],
     "notes": ["leg_note", "constraint_note"],
-    "types": ["data_type"],
+    "types": ["datatype"],
 }
 
 GENERAL_OPERATIONS = { # operations that can be applied to any token

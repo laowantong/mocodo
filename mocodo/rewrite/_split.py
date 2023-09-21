@@ -43,7 +43,7 @@ class Splitter(Visitor):
         for child in tree.find_data("typed_attr"):
             acc = []
             acc.append(first_child(child, "attr"))
-            acc.append(first_child(child, "data_type", 1))
+            acc.append(first_child(child, "datatype", 1))
             acc[-1] = f" [{acc[-1]}]" if acc[-1] else ""
             attrs.append("".join(acc))
         

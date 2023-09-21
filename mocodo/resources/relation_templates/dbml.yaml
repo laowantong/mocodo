@@ -3,7 +3,7 @@ stem_suffix: '_ddl'
 extension: 'dbml'
 to_defer: false
 highlight: 'text'
-transform_data_type:
+transform_datatype:
   - order: 100
     comment: 'Fill in empty data types with the default one.'
     search: '^\s*$'
@@ -29,10 +29,10 @@ transform_optionality:
     replace: 'null'
 compose_label_disambiguated_by_note: '{label_before_disambiguation} {leg_note}'
 compose_label_disambiguated_by_number: '{label_before_disambiguation} {disambiguation_number}'
-compose_primary_key: '  "{label}" {data_type} [{optionality}] [pk]\nADD_PRIMARY_KEY "{label}"'
-compose_normal_attribute: '  "{label}" {data_type} [{optionality}]'
-compose_primary_foreign_key: '  "{label}" {data_type} [{optionality}] [pk]\nADD_PRIMARY_KEY "{label}"\nADD_FOREIGN_KEY "{this_relation_name}".("{label}") > "{outer_source}".("{label_before_disambiguation}")'
-compose_foreign_key: '  "{label}" {data_type} [{optionality}]\nADD_FOREIGN_KEY "{this_relation_name}".("{label}") > "{outer_source}".("{label_before_disambiguation}")'
+compose_primary_key: '  "{label}" {datatype} [{optionality}] [pk]\nADD_PRIMARY_KEY "{label}"'
+compose_normal_attribute: '  "{label}" {datatype} [{optionality}]'
+compose_primary_foreign_key: '  "{label}" {datatype} [{optionality}] [pk]\nADD_PRIMARY_KEY "{label}"\nADD_FOREIGN_KEY "{this_relation_name}".("{label}") > "{outer_source}".("{label_before_disambiguation}")'
+compose_foreign_key: '  "{label}" {datatype} [{optionality}]\nADD_FOREIGN_KEY "{this_relation_name}".("{label}") > "{outer_source}".("{label_before_disambiguation}")'
 add_unicity_constraints:
   - order: 100
     search: '$'

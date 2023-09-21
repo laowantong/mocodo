@@ -56,7 +56,7 @@ class CrowGv(Crow):
                     continue
                 attrs = [(("PK" if is_id else " "), a, (t or " ")) for (t, a, is_id) in attrs]
                 row_format = "|c|lR|"
-                if self.has_no_data_type:
+                if self.has_no_datatype:
                     attrs = [attr[:-1] for attr in attrs]
                     row_format = row_format.replace("R|", "|")
                 label = table_as_label(ent_name, attrs, row_format, table_style)

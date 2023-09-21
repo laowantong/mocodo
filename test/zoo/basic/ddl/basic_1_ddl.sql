@@ -3,7 +3,7 @@ CREATE TABLE CLIENT (
   ref_client VARCHAR(8) NOT NULL,
   nom VARCHAR(255),
   prenom VARCHAR(255),
-  adresse VARCHAR(42)
+  adresse VARCHAR(30)
 );
 
 CREATE TABLE COMMANDE (

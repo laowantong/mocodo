@@ -1,7 +1,7 @@
 CREATE TABLE ENTREPRISE (
   PRIMARY KEY (nom_entreprise),
   nom_entreprise VARCHAR(255) NOT NULL,
-  adresse VARCHAR(42),
+  adresse VARCHAR(30),
   telephone VARCHAR(20)
 );
 

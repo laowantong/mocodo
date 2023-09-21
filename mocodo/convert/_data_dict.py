@@ -37,7 +37,7 @@ class AttributeListExtractor(Transformer): # depth-first, post-order
         # Accumulate a couple (attribute name, data type placeholder)
         self.typed_attribute_accumulator.append((tree[0].value, ""))
     
-    def data_type(self, tree):
+    def datatype(self, tree):
         # Replace the last data type placeholder with the actual data type
         (name, _) = self.typed_attribute_accumulator.pop()
         self.typed_attribute_accumulator.append((name, tree[1].value))
@@ -65,8 +65,8 @@ class AttributeListExtractor(Transformer): # depth-first, post-order
             self.projectors.append(kind)
         self.rows = []
         for (box, attributes) in self.boxes.items():
-            for (attr, data_type) in attributes:
-                d = {"box": box, "label": attr, "type": data_type}
+            for (attr, datatype) in attributes:
+                d = {"box": box, "label": attr, "type": datatype}
                 row = [d[p] for p in self.projectors]
                 self.rows.append(row)
         self.md_tags = [actual_colons[p] for p in self.projectors]
