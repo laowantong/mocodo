@@ -245,6 +245,11 @@ class Transformations:
             "help": "convert the conceptual model into a UML class diagram",
             "aliases": ["UML", "class_diagram", "class-diagram"],
         },
+        "share": {
+            "category": "cv",
+            "help": "encode the MCD into a URL for Mocodo online",
+            "aliases": ["url", "link", "qr", "QR", "QRcode", "QR_code", "QR-code"],
+        },
         "upper": {
             "category": "rw",
             "help": "rewrite the given elements in UPPERCASE",

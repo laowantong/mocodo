@@ -1,5 +1,8 @@
+import mimetypes
 from pathlib import Path
 import sys
+
+import urllib3
 
 if sys.version_info < (3, 6):
     print(f"Mocodo requires Python 3.6 or later to run.\nThis version is {sys.version}.")
@@ -10,6 +13,7 @@ import json
 import contextlib
 import requests
 import shutil
+import urllib
 
 from .argument_parser import parsed_arguments, transformations
 from .common import Common, safe_print_for_PHP
@@ -139,10 +143,6 @@ class Runner:
         
         may_update_params_with_guessed_title(source, self.params)
 
-        deferred_output_formats = []
-        if "defer" in self.params:
-            deferred_output_formats = self.params["defer"] or ["svg"]
-
         converted_file_paths = [] # list of files to be displayed in the notebook
         if self.params["convert"]:
             response.may_log("has_explicit_conversion", True)
@@ -196,7 +196,7 @@ class Runner:
                 self.common.dump_file(result["text_path"], f"{result['text'].rstrip()}\n")
                 results.append(result)
             for result in results:
-                converted_file_paths.extend(self.generate_converted_files(result, deferred_output_formats))
+                converted_file_paths.extend(self.get_converted_file_paths(result))
             response.may_log("converted_file_paths", converted_file_paths)
 
         mcd = Mcd(source, self.get_font_metrics, **self.params)
@@ -234,27 +234,33 @@ class Runner:
         except KeyError:
             raise MocodoError(49, _('No third-party rendering service for extension "{extension}". You may want to add one in "{path}".').format(extension=extension, path=path))
 
-    def generate_converted_files(self, result, deferred_output_formats):
-        if result.get("to_defer") and deferred_output_formats:
-            # This text must be rendered by a third-party service in at least one format
-            rendering_service = self.get_rendering_service(result["extension"])
-            if result["extension"] == "gv":
-                payload = minify_graphviz(result["text"]) # spare some bandwidth
-            payload = urlsafe_encoding(result["text"])
-            for output_format in deferred_output_formats: # ex.: svg, png, etc.
-                if output_format == "raw":
-                    resp_path = str(result["text_path"])
-                else:
-                    url = rendering_service.format(output_format=output_format, payload=payload)
-                    response = requests.get(url)
-                    if not response.ok:
-                        raise MocodoError(23, _("The HTTP status code {code} was returned by:\n{url}").format(code=response.status_code, url=url)) # fmt: skip
-                    resp_path = result["text_path"].with_suffix(f".{output_format}")
-                    if response.headers["content-type"].startswith("text/"):
-                        resp_path.write_text(response.text)
-                    else:
-                        resp_path.write_bytes(response.content)
-                yield str(resp_path)
+    def get_converted_file_paths(self, result):
+        if result.get("to_defer") and "defer" in self.params:
+            # This text must be rendered by a third-party service
+            service = self.get_rendering_service(result["extension"])
+            data = result["text"]
+            for preprocessing in service.get("preprocessing", []):
+                if preprocessing == "minify_graphviz":
+                    # Spare some bandwidth
+                    data = minify_graphviz(data)
+                elif preprocessing == "urlsafe_encoding":
+                    data = urlsafe_encoding(data)
+                elif preprocessing == "encode_prefix":
+                    # Sole use case (so far): "https://mocodo.net?mcd="" becomes "https%3A//mocodo.net%3Fmcd%3D"
+                    index = data.find("=") + 1
+                    data = urllib.parse.quote(data[:index]) + data[index:]
+            url = service["url"].format(data=data)
+            response = requests.get(url)
+            if not response.ok:
+                raise MocodoError(23, _("The HTTP status code {code} was returned by:\n{url}").format(code=response.status_code, url=url)) # fmt: skip
+            content_type = response.headers['content-type']
+            extension = mimetypes.guess_extension(content_type)
+            resp_path = result["text_path"].with_suffix(extension)
+            if content_type.startswith("text/"):
+                resp_path.write_text(response.text)
+            else:
+                resp_path.write_bytes(response.content)
+            yield str(resp_path)
         elif result.get("stem_suffix") == "_mld" and result.get("extension") == "mcd": # relational diagram
             mld = Mcd(result["text"], self.get_font_metrics, **self.params)
             backup_input = self.params["input"]

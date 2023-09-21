@@ -14,9 +14,7 @@ class Crow(Visitor):
         self.name_to_index = create_name_to_index()
         self.tables = {}
         self.links = []
-        self.has_no_data_type = True
     
-    def data_type(self, tree):
         s = "".join(tree.children)[2:-1] # remove the surrounding brackets
         tree.children = [s]
 
@@ -24,10 +22,6 @@ class Crow(Visitor):
         id_groups = str(first_child(tree, "id_groups"))
         id_mark = str(first_child(tree, "id_mark"))
         attr = str(first_child(tree, "attr"))
-        data_type = str(first_child(tree, "data_type"))
-        if data_type:
-            self.has_no_data_type = False
-        tree.children = [(id_groups, id_mark, attr, data_type)]
     
     def entity_clause(self, tree):
         ent_name = first_child(tree, "box_name").value
@@ -36,10 +30,8 @@ class Crow(Visitor):
         attrs = []
         has_id = False
         for (i, node) in enumerate(tree.find_data("entity_or_table_attr")):
-            (id_groups, id_mark, attr, data_type) = node.children[0]
             is_id = is_identifier(i, id_groups, id_mark)
             has_id = has_id or is_id
-            attrs.append((data_type, attr, is_id))
         self.tables[ent_index] = (ent_name, has_id, attrs)
     
     def assoc_clause(self, tree):
@@ -61,10 +53,20 @@ def run(source, subargs, common=None):
     except ModuleNotFoundError:
         raise subsubopt_error(extension)
     text = module.run(source, subargs, common)
-    return {
-        "stem_suffix": "_erd_crow",
-        "text": text,
-        "extension": extension,
-        "to_defer": True,
-        "highlight": "mermaid" if extension == "mmd" else "graphviz",
-    }
+    if extension == "mmd":
+        return {
+            "stem_suffix": "_erd_crow",
+            "text": text,
+            "extension": "mmd",
+            "to_defer": True,
+            "highlight": "mermaid",
+        }
+    else:
+        return {
+            "stem_suffix": "_erd_crow",
+            "text": text,
+            "extension": "gv",
+            "to_defer": True,
+            "highlight": "graphviz",
+        }
+
