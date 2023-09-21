@@ -28,7 +28,7 @@ class TestUpdateTypes(unittest.TestCase):
             NON_TYPABLE: foo, bar, baz
             TYPABLE: person id, name, birth date
         """
-        actual = guess_types(source, "?", {})
+        actual = guess_types(source, "?", {"script_directory": "mocodo"})
         expected = """
             ALREADY_TYPED: foo [int], bar [float], baz [date]
             EMPTY_BRACKETS: foo [], bar [], baz []

@@ -1,3 +1,4 @@
+from pathlib import Path
 import random
 import re
 
@@ -8,7 +9,7 @@ from ..tools.parser_tools import transform_source
 from ..tools.string_tools import ascii, camel, snake, TRUNCATE_DEFAULT_SIZE
 from ..mocodo_error import MocodoError
 from .cards import fix_card, infer_dfs
-from .types import FIELD_TYPES, create_type_placeholders, guess_types
+from .types import read_default_datatypes, create_type_placeholders, guess_types
 from .obfuscate import obfuscator_factory
 from .arrows import create_df_arrows
 from .constraints import create_cifs
@@ -47,7 +48,8 @@ class Mapper(Transformer):
         op = GENERAL_OPERATIONS.get(op_name)
         if op is None: # op_tk operations with limited applicability and/or interested in a subsubarg
             if op_name == "randomize" and pre_token == "types":
-                pool = list(FIELD_TYPES["en"].values())
+                resource_dir = Path(params["script_directory"], "resources")
+                pool = list(dict(read_default_datatypes(resource_dir)).values())
                 op = lambda x: x or random.choice(pool)
             elif op_name == "delete" and pre_token in ("attrs", "notes", "roles", "constraint_notes", "arrows", "types"):
                 op = lambda _: ""

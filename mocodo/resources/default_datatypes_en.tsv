@@ -1,0 +1,133 @@
+Date and Time
+
+\bdate$	DATE
+\btime$	TIME
+\bdatetime$	DATETIME
+\btimestamp$	TIMESTAMP
+\bat$	TIMESTAMP
+\bbefore$	TIMESTAMP
+\bafter$	TIMESTAMP
+
+Identifying and Validating Information
+
+\bid$	VARCHAR(8)
+\bcode$	VARCHAR(8)
+\bref$	VARCHAR(8)
+\bnum$	VARCHAR(8)
+\buuid$	VARCHAR(36)
+\bsalt$	BINARY(16)
+\bhash$	BINARY(64)
+\btoken$	VARCHAR(255)
+\bpassword$	VARCHAR(255)
+\bpwd$	VARCHAR(255)
+\bdigest$	BINARY(64)
+\bsignature$	BINARY(64)
+
+Internet and Computers
+
+\burl$	VARCHAR(2000)
+\bip$	VARCHAR(15)
+\bip address$	VARCHAR(15)
+\bipv4$	VARCHAR(15)
+\bipv6$	VARCHAR(45)
+\bcookie$	VARCHAR(255)
+\bsession$	VARCHAR(255)
+\bmd5$	BINARY(16)
+\bpath$	VARCHAR(255)
+\bstatus$	VARCHAR(20)
+\bpriority$	SMALLINT
+\bversion$	VARCHAR(10)
+
+Personal information
+
+\bname$	VARCHAR(255)
+\bsex$	CHAR(1)
+\bgender$	VARCHAR(10)
+\bage$	SMALLINT
+
+Addressing
+
+\bpost code$	VARCHAR(20)
+\bzip code$	VARCHAR(20)
+\bphone number$	VARCHAR(20)
+\bphone$	VARCHAR(20)
+\bfax number$	VARCHAR(20)
+\bfax$	VARCHAR(20)
+\bemail$	VARCHAR(255)
+\bcountry name$	VARCHAR(100)
+\bcity name$	VARCHAR(100)
+\bcountry code$	CHAR(2)
+\baddress$	VARCHAR(30)
+
+Financial
+
+\bprice$	DECIMAL(10,2)
+\bamount$	DECIMAL(10,2)
+\barn$	VARCHAR(8)"	 Acquirer Reference Number
+\barn code$	VARCHAR(8)
+\bbic$	VARCHAR(11)"	 Bank Identifier Code
+\bbic code$	VARCHAR(11)
+\biban$	VARCHAR(34)"	 Maximum value
+
+Predicate
+
+^is\b	BOOLEAN
+^has\b	BOOLEAN
+^does\b	BOOLEAN
+^can\b	BOOLEAN
+\bflag$	BOOLEAN
+
+Text
+
+\btag$	VARCHAR(50)
+\blabel$	VARCHAR(50)
+\bbody$	TEXT
+\bcomment$	TEXT
+\bdescription$	TEXT
+\bnote$	TEXT
+\bmessage$	TEXT
+\bcontent$	TEXT
+\binfo(rmation)?s?$	JSON
+
+Geographical
+
+\blat(itude)?$	DECIMAL(9,6)
+\blon(gitude)?$	DECIMAL(9,6)
+\bpos(ition)?$	POINT
+
+Grading
+
+\bstars$	DECIMAL(3,2)
+\brating$	DECIMAL(3,2)
+\brating$	DECIMAL(3,2)
+\bgrade$	DECIMAL(3,2)
+
+Quantity
+
+\bquantity$	INTEGER
+\bcapacity$	INTEGER
+\border$	INTEGER
+\bpercent(age)?$	DECIMAL(5,2)
+\bratio$	DECIMAL(5,2)
+\bweight$	DECIMAL(10,2)
+\bsize$	VARCHAR(20)
+\blength$	DECIMAL(10,2)
+\bwidth$	DECIMAL(10,2)
+\bheight$	DECIMAL(10,2)
+\bvolume$	DECIMAL(10,2)
+\btemperature$	DECIMAL(5,1)
+\bhumidity$	DECIMAL(5,2)
+\bcolor$	VARCHAR(50)
+
+Blobs
+
+\bimage$	BLOB
+\bpicture$	BLOB
+\bphoto$	BLOB
+\blogo$	BLOB
+\bicon$	BLOB
+\bfile$	BLOB
+\bvideo$	BLOB
+\baudio$	BLOB
+\bbinary$	BLOB
+\bblob$	BLOB
