@@ -1330,26 +1330,23 @@ Enseignant: num. ens. [numéro identifiant un enseignant], nom ens. [nom enseign
         entity_or_table_attr
           typed_attr
             attr	num. ens.
-            datatype
-               [
-              numéro identifiant un enseignant
-              ]
+             [
+            datatype	numéro identifiant un enseignant
+            ]
         , 
         entity_or_table_attr
           typed_attr
             attr	nom ens.
-            datatype
-               [
-              nom enseignant
-              ]
+             [
+            datatype	nom enseignant
+            ]
         , 
         entity_or_table_attr
           typed_attr
             attr	tél. ens.
-            datatype
-               [
-              téléphone enseignant
-              ]
+             [
+            datatype	téléphone enseignant
+            ]
 --------------------------------------------------------------------------------
 [{'name': 'Enseignant',
   'attrs': [{'attribute_label': 'num. ens.',
@@ -1584,26 +1581,23 @@ CLIENT: Réf. client [varchar(8)], Nom [varchar(20)], Adresse [varchar(40)]
         entity_or_table_attr
           typed_attr
             attr	Réf. client
-            datatype
-               [
-              varchar(8)
-              ]
+             [
+            datatype	varchar(8)
+            ]
         , 
         entity_or_table_attr
           typed_attr
             attr	Nom
-            datatype
-               [
-              varchar(20)
-              ]
+             [
+            datatype	varchar(20)
+            ]
         , 
         entity_or_table_attr
           typed_attr
             attr	Adresse
-            datatype
-               [
-              varchar(40)
-              ]
+             [
+            datatype	varchar(40)
+            ]
 --------------------------------------------------------------------------------
 [{'name': 'CLIENT',
   'attrs': [{'attribute_label': 'Réf. client',
@@ -1642,10 +1636,9 @@ INCLURE, 1N COMMANDE, 0N PRODUIT: Quantité [tinyint(4)]
       seq
         typed_attr
           attr	Quantité
-          datatype
-             [
-            tinyint(4)
-            ]
+           [
+          datatype	tinyint(4)
+          ]
 --------------------------------------------------------------------------------
 [{'name': 'INCLURE',
   'legs': [{'card': '1N', 'entity': 'COMMANDE', 'rank': 0},
@@ -1669,9 +1662,8 @@ PARTICIPANT: numero [], nom, adresse [type3]
         entity_or_table_attr
           typed_attr
             attr	numero
-            datatype
-               [
-              ]
+             [
+            ]
         , 
         entity_or_table_attr
           typed_attr
@@ -1680,13 +1672,12 @@ PARTICIPANT: numero [], nom, adresse [type3]
         entity_or_table_attr
           typed_attr
             attr	adresse
-            datatype
-               [
-              type3
-              ]
+             [
+            datatype	type3
+            ]
 --------------------------------------------------------------------------------
 [{'name': 'PARTICIPANT',
-  'attrs': [{'attribute_label': 'numero', 'datatype': '', 'rank': 0},
+  'attrs': [{'attribute_label': 'numero', 'rank': 0},
             {'attribute_label': 'nom', 'rank': 1},
             {'attribute_label': 'adresse', 'datatype': 'type3', 'rank': 2}],
   'type': 'entity',

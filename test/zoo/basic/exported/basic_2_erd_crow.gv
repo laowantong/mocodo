@@ -1,0 +1,115 @@
+digraph{
+  layout=dot
+  bgcolor="#FFFFFF"
+  nodesep=0.5
+
+  // Nodes
+  node [
+      shape=none
+      fontcolor="#000000"
+      fontsize=15
+      fontname="Helvetica"
+]
+  node [
+      shape=none
+      fontcolor="#000000"
+      fontsize=15
+      fontname="Helvetica"
+]
+  1 [label=<<table
+        border="0"
+        cellborder="1"
+        cellspacing="0"
+        bgcolor="#FFFFFF"
+        color="#000000"
+        cellpadding="4"
+    >
+        <tr>
+            <td bgcolor="#FFFFFF" colspan="3">
+                <font
+                    color="#000000"
+                    point-size="18"
+                >CLIENT</font>
+            </td>
+        </tr>
+        <tr><td>PK</td><td align="left" sides="TBL">Réf. client</td><td align="right" sides="TBR"><font face="Courier">VARCHAR(8)</font></td></tr>
+        <tr><td> </td><td align="left" sides="TBL">Nom</td><td align="right" sides="TBR"><font face="Courier">VARCHAR(255)</font></td></tr>
+        <tr><td> </td><td align="left" sides="TBL">Prénom</td><td align="right" sides="TBR"><font face="Courier">VARCHAR(255)</font></td></tr>
+        <tr><td> </td><td align="left" sides="TBL">Adresse</td><td align="right" sides="TBR"><font face="Courier">VARCHAR(255)</font></td></tr>
+    </table>
+>]
+  2 [label=<<table
+        border="0"
+        cellborder="1"
+        cellspacing="0"
+        bgcolor="#FFFFFF"
+        color="#000000"
+        cellpadding="4"
+    >
+        <tr>
+            <td bgcolor="#FFFFFF" colspan="3">
+                <font
+                    color="#000000"
+                    point-size="18"
+                >COMMANDE</font>
+            </td>
+        </tr>
+        <tr><td>PK</td><td align="left" sides="TBL">Num. commande</td><td align="right" sides="TBR"><font face="Courier">VARCHAR(8)</font></td></tr>
+        <tr><td> </td><td align="left" sides="TBL">Date</td><td align="right" sides="TBR"><font face="Courier">DATE</font></td></tr>
+        <tr><td> </td><td align="left" sides="TBL">Montant</td><td align="right" sides="TBR"><font face="Courier">DECIMAL(10,2)</font></td></tr>
+    </table>
+>]
+  3 [label=<<table
+        border="0"
+        cellborder="1"
+        cellspacing="0"
+        bgcolor="#FFFFFF"
+        color="#000000"
+        cellpadding="4"
+    >
+        <tr>
+            <td bgcolor="#FFFFFF" colspan="3">
+                <font
+                    color="#000000"
+                    point-size="18"
+                >INCLURE</font>
+            </td>
+        </tr>
+        <tr><td>PK</td><td align="left" sides="TBL">Quantité</td><td align="right" sides="TBR"><font face="Courier">INTEGER</font></td></tr>
+    </table>
+>]
+  4 [label=<<table
+        border="0"
+        cellborder="1"
+        cellspacing="0"
+        bgcolor="#FFFFFF"
+        color="#000000"
+        cellpadding="4"
+    >
+        <tr>
+            <td bgcolor="#FFFFFF" colspan="3">
+                <font
+                    color="#000000"
+                    point-size="18"
+                >PRODUIT</font>
+            </td>
+        </tr>
+        <tr><td>PK</td><td align="left" sides="TBL">Réf. produit</td><td align="right" sides="TBR"><font face="Courier">VARCHAR(8)</font></td></tr>
+        <tr><td> </td><td align="left" sides="TBL">Libellé</td><td align="right" sides="TBR"><font face="Courier">VARCHAR(50)</font></td></tr>
+        <tr><td> </td><td align="left" sides="TBL">Prix unitaire</td><td align="right" sides="TBR"><font face="Courier">DECIMAL(10,2)</font></td></tr>
+    </table>
+>]
+
+  // Edges
+  edge [
+    penwidth=1
+    color="#000000"
+    fontcolor="#000000"
+    fontname="Futura"
+    fontsize=11
+    dir=both
+  ]
+  1 -> 2 [arrowhead="crowodot" arrowtail="teetee" label="PASSER"]
+  3 -> 2 [arrowhead="teetee" arrowtail="crowtee" label="DF" style=dotted]
+  3 -> 4 [arrowhead="teetee" arrowtail="crowodot" label="DF" style=dotted]
+}

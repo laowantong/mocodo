@@ -1,0 +1,17 @@
+- CLIENT (_Réf. client_, Nom, Prénom, Adresse)
+  - Le champ « Réf. client » constitue la clé primaire de la table. C'était déjà un identifiant de l'entité « CLIENT ».
+  - Les champs « Nom », « Prénom » et « Adresse » étaient déjà de simples attributs de l'entité « CLIENT ».
+
+- COMMANDE (_Num. commande_, Date, Montant, #Réf. client!)
+  - Le champ « Num. commande » constitue la clé primaire de la table. C'était déjà un identifiant de l'entité « COMMANDE ».
+  - Les champs « Date » et « Montant » étaient déjà de simples attributs de l'entité « COMMANDE ».
+  - Le champ à saisie obligatoire « Réf. client » est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle « PASSER » à partir de l'entité « CLIENT » en perdant son caractère identifiant.
+
+- INCLURE (_#Num. commande_, _#Réf. produit_, Quantité)
+  - Le champ « Num. commande » fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité « COMMANDE ».
+  - Le champ « Réf. produit » fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité « PRODUIT ».
+  - Le champ « Quantité » était déjà un simple attribut de l'association « INCLURE ».
+
+- PRODUIT (_Réf. produit_, Libellé, Prix unitaire)
+  - Le champ « Réf. produit » constitue la clé primaire de la table. C'était déjà un identifiant de l'entité « PRODUIT ».
+  - Les champs « Libellé » et « Prix unitaire » étaient déjà de simples attributs de l'entité « PRODUIT ».

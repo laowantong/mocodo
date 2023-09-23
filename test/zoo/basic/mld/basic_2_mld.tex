@@ -1,0 +1,47 @@
+\documentclass[a4paper]{article}
+\usepackage[normalem]{ulem}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\frenchsetup{StandardLayout=true}
+
+\newcommand{\relat}[1]{\textsc{#1}}
+\newcommand{\attr}[1]{#1}
+\newcommand{\prim}[1]{\uline{#1}}
+\newcommand{\foreign}[1]{\#\textsl{#1}}
+
+\title{Conversion en relationnel\\du MCD \emph{basic}}
+\author{\emph{Généré par Mocodo}}
+
+\begin{document}
+\maketitle
+
+\begin{itemize}
+  \item \relat{CLIENT} (\prim{Réf. client}, \attr{Nom}, \attr{Prénom}, \attr{Adresse})
+  \begin{itemize}
+    \item Le champ \emph{Réf. client} constitue la clé primaire de la table. C'était déjà un identifiant de l'entité \emph{CLIENT}.
+    \item Les champs \emph{Nom}, \emph{Prénom} et \emph{Adresse} étaient déjà de simples attributs de l'entité \emph{CLIENT}.
+  \end{itemize}
+
+  \item \relat{COMMANDE} (\prim{Num. commande}, \attr{Date}, \attr{Montant}, \foreign{Réf. client!})
+  \begin{itemize}
+    \item Le champ \emph{Num. commande} constitue la clé primaire de la table. C'était déjà un identifiant de l'entité \emph{COMMANDE}.
+    \item Les champs \emph{Date} et \emph{Montant} étaient déjà de simples attributs de l'entité \emph{COMMANDE}.
+    \item Le champ à saisie obligatoire \emph{Réf. client} est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle \emph{PASSER} à partir de l'entité \emph{CLIENT} en perdant son caractère identifiant.
+  \end{itemize}
+
+  \item \relat{INCLURE} (\foreign{\prim{Num. commande}}, \foreign{\prim{Réf. produit}}, \attr{Quantité})
+  \begin{itemize}
+    \item Le champ \emph{Num. commande} fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité \emph{COMMANDE}.
+    \item Le champ \emph{Réf. produit} fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité \emph{PRODUIT}.
+    \item Le champ \emph{Quantité} était déjà un simple attribut de l'association \emph{INCLURE}.
+  \end{itemize}
+
+  \item \relat{PRODUIT} (\prim{Réf. produit}, \attr{Libellé}, \attr{Prix unitaire})
+  \begin{itemize}
+    \item Le champ \emph{Réf. produit} constitue la clé primaire de la table. C'était déjà un identifiant de l'entité \emph{PRODUIT}.
+    \item Les champs \emph{Libellé} et \emph{Prix unitaire} étaient déjà de simples attributs de l'entité \emph{PRODUIT}.
+  \end{itemize}
+
+\end{itemize}
+
+\end{document}

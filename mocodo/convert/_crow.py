@@ -17,10 +17,6 @@ class Crow(Visitor):
         self.has_no_datatype = True
         self.invisible_boxes = set()
     
-    def datatype(self, tree):
-        s = "".join(tree.children)[2:-1] # remove the surrounding brackets
-        tree.children = [s]
-
     def entity_or_table_attr(self, tree):
         id_groups = str(first_child(tree, "id_groups"))
         id_mark = str(first_child(tree, "id_mark"))

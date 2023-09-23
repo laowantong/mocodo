@@ -1,0 +1,5 @@
+ENTITY 1_: attr 1 1_ [VARCHAR(8)], attr 1 2_ [VARCHAR(255)], attr 1 3_ [VARCHAR(255)], attr 1 4_ [VARCHAR(255)]
+ASSOC 4_, 0N ENTITY 1_, 11 ENTITY 2_
+ENTITY 2_: attr 2 1_ [VARCHAR(8)], attr 2 2_ [DATE], attr 2 3_ [DECIMAL(10,2)]
+ASSOC 5_, 1N ENTITY 2_, 0N ENTITY 3_: attr 5 1_ [INTEGER]
+ENTITY 3_: attr 3 1_ [VARCHAR(8)], attr 3 2_ [VARCHAR(50)], attr 3 3_ [DECIMAL(10,2)]

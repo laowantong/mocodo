@@ -43,8 +43,9 @@ class Splitter(Visitor):
         for child in tree.find_data("typed_attr"):
             acc = []
             acc.append(first_child(child, "attr"))
-            acc.append(first_child(child, "datatype", 1))
-            acc[-1] = f" [{acc[-1]}]" if acc[-1] else ""
+            datatype  = first_child(child, "datatype")
+            if datatype:
+                acc.append(f" [{datatype}]")
             attrs.append("".join(acc))
         
         # Construct the lines of the exploded association. The *1 leg is the first one.

@@ -8,12 +8,9 @@ from ..tools.string_tools import ascii, snake
 class CreateTypePlaceholder(Visitor):
 
     def typed_attr(self, tree):
-        if first_child(tree, "datatype"):
-            return
-        name_token = first_child(tree, "attr")
-        if not name_token:
-            return
-        name_token.value += " []"
+        if len(tree.children) == 1:
+            tree.children[0].children[0].value += " []"
+        
 
 def create_type_placeholders(source):
     visitor = CreateTypePlaceholder()
@@ -48,12 +45,15 @@ class GuessType(Visitor):
         self.guessing_suffix = guessing_suffix or ""
 
     def typed_attr(self, tree):
-        a = list(tree.find_data("datatype"))
-        if a and "".join(a[0].children)[2:-1]:
-            return # already typed
-        attr = first_child(tree, "attr")
-        if attr == "":
+        n = len(tree.children)
+        # Possible lengths of the children list:
+        # 0: empty attribute
+        # 1: attribute without datatype
+        # 3: attribute with empty datatype
+        # 4: attribute with non-empty datatype
+        if n not in (1, 3):
             return
+        attr = first_child(tree, "attr")
         needle = snake(ascii(attr)).replace("_", " ").lower()
         for (found, datatype) in self.field_types:
             if found(needle):
@@ -61,7 +61,10 @@ class GuessType(Visitor):
                 break
         else:
             datatype = ""
-        tree.children = [Token("MOCK", f"{attr.value} [{datatype}]", line=attr.line, column=attr.column)]
+        if n == 1: # concatenate to the attribute label the datatype between brackets
+            tree.children[0].children[0].value += f" [{datatype}]"
+        else: # insert the datatype between brackets
+            tree.children[1].value += datatype
 
 
 def guess_types(source, subsubarg, params):

@@ -69,9 +69,9 @@ class Mapper(Transformer):
                 op = lambda x: x.replace(substring, repl)
             else:
                 raise MocodoError(24, _('Operation {op_name} cannot be applied to {pre_token}.').format(op_name=op_name, pre_token=pre_token))
-        update_tree = lambda tree: tree[0].update(value=op(tree[0].value))
+        update_first_child = lambda tree: tree[0].update(value=op(tree[0].value))
         for token in tokens:
-            setattr(self, token, update_tree)
+            setattr(self, token, update_first_child)
 
 
 def run(source, op_name, subargs, params, **kargs):

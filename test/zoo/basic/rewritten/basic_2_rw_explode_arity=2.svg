@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="459" height="330" viewBox="0 0 459 330" xmlns="http://www.w3.org/2000/svg">
+<rect id="frame" x="0" y="0" width="459" height="330" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+
+<!-- Association PASSER -->
+<g>
+	<line x1="53" y1="165" x2="53" y2="56" stroke="#000000" stroke-width="1"/>
+	<line x1="189" y1="56" x2="53" y2="56" stroke="#000000" stroke-width="1"/>
+	<g>
+		<path d="M83 27 a14 14 90 0 1 14 14 V55 h-88 V41 a14 14 90 0 1 14 -14" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+		<path d="M97 55 v16 a14 14 90 0 1 -14 14 H23 a14 14 90 0 1 -14 -14 V55 H88" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+		<rect x="9" y="27" width="88" height="58" fill="none" rx="14" stroke="#000000" stroke-width="1.5"/>
+		<line x1="9" y1="55" x2="97" y2="55" stroke="#000000" stroke-width="1.5"/>
+		<text x="16" y="48.3" fill="#000000" font-family="Copperplate" font-size="18">PASSER</text>
+	</g>
+	<text x="58" y="102" fill="#000000" font-family="Futura" font-size="11">0,N</text>
+	<text x="103" y="72" fill="#000000" font-family="Futura" font-size="11">1,1</text>
+</g>
+
+<!-- Association DF0 -->
+<g>
+	<line x1="301" y1="165" x2="301" y2="56" stroke="#000000" stroke-width="1"/>
+	<line x1="189" y1="56" x2="301" y2="56" stroke="#000000" stroke-width="1"/>
+	<g>
+		<circle cx="301" cy="56" r="20" stroke="#000000" stroke-width="1.5" fill="#FFFFFF"/>
+		<text x="288" y="60.8" fill="#000000" font-family="Copperplate" font-size="18">DF</text>
+	</g>
+	<text x="306" y="119" fill="#000000" font-family="Futura" font-size="11">1,1</text>
+	<text x="257" y="72" fill="#000000" font-family="Futura" font-size="11">1,N</text>
+</g>
+
+<!-- Association DF1 -->
+<g>
+	<line x1="301" y1="165" x2="400" y2="165" stroke="#000000" stroke-width="1"/>
+	<line x1="400" y1="274" x2="400" y2="165" stroke="#000000" stroke-width="1"/>
+	<g>
+		<circle cx="400" cy="165" r="20" stroke="#000000" stroke-width="1.5" fill="#FFFFFF"/>
+		<text x="387" y="169.8" fill="#000000" font-family="Copperplate" font-size="18">DF</text>
+	</g>
+	<text x="356" y="181" fill="#000000" font-family="Futura" font-size="11">1,1</text>
+	<text x="405" y="219" fill="#000000" font-family="Futura" font-size="11">0,N</text>
+</g>
+
+<!-- Entity COMMANDE -->
+<g>
+	<g>
+		<rect x="126" y="9" width="126" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="126" y="39" width="126" height="64" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="126" y="9" width="126" height="94" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
+		<line x1="126" y1="39" x2="252" y2="39" stroke="#000000" stroke-width="1.5"/>
+	</g>
+	<text x="135" y="30.3" fill="#000000" font-family="Copperplate" font-size="18">COMMANDE</text>
+	<text x="134" y="56.1" fill="#000000" font-family="Gill Sans" font-size="15">Num. commande</text>
+	<line x1="134" y1="59" x2="242" y2="59" stroke="#000000" stroke-width="1"/>
+	<text x="134" y="73.1" fill="#000000" font-family="Gill Sans" font-size="15">Date</text>
+	<text x="134" y="90" fill="#000000" font-family="Gill Sans" font-size="15">Montant</text>
+</g>
+
+<!-- Entity CLIENT -->
+<g>
+	<g>
+		<rect x="11" y="110" width="84" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="11" y="140" width="84" height="80" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="11" y="110" width="84" height="110" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
+		<line x1="11" y1="140" x2="95" y2="140" stroke="#000000" stroke-width="1.5"/>
+	</g>
+	<text x="19" y="131.3" fill="#000000" font-family="Copperplate" font-size="18">CLIENT</text>
+	<text x="19" y="157.1" fill="#000000" font-family="Gill Sans" font-size="15">Réf. client</text>
+	<line x1="19" y1="160" x2="81" y2="160" stroke="#000000" stroke-width="1"/>
+	<text x="19" y="174.1" fill="#000000" font-family="Gill Sans" font-size="15">Nom</text>
+	<text x="19" y="191.1" fill="#000000" font-family="Gill Sans" font-size="15">Prénom</text>
+	<text x="19" y="208" fill="#000000" font-family="Gill Sans" font-size="15">Adresse</text>
+</g>
+
+<!-- Entity INCLURE -->
+<g>
+	<g>
+		<rect x="251" y="127" width="100" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="251" y="157" width="100" height="46" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="251" y="127" width="100" height="76" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
+		<line x1="251" y1="157" x2="351" y2="157" stroke="#000000" stroke-width="1.5"/>
+	</g>
+	<text x="260" y="148.3" fill="#000000" font-family="Copperplate" font-size="18">INCLURE</text>
+	<text x="259" y="174.1" fill="#000000" font-family="Gill Sans" font-size="15">id. inclure</text>
+	<line x1="259" y1="177" x2="321" y2="177" stroke="#000000" stroke-width="1"/>
+	<text x="259" y="191.1" fill="#000000" font-family="Gill Sans" font-size="15">Quantité</text>
+</g>
+
+<!-- Entity PRODUIT -->
+<g>
+	<g>
+		<rect x="350" y="227" width="100" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="350" y="257" width="100" height="64" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="350" y="227" width="100" height="94" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
+		<line x1="350" y1="257" x2="450" y2="257" stroke="#000000" stroke-width="1.5"/>
+	</g>
+	<text x="359" y="248.3" fill="#000000" font-family="Copperplate" font-size="18">PRODUIT</text>
+	<text x="358" y="274.1" fill="#000000" font-family="Gill Sans" font-size="15">Réf. produit</text>
+	<line x1="358" y1="277" x2="433" y2="277" stroke="#000000" stroke-width="1"/>
+	<text x="358" y="291.1" fill="#000000" font-family="Gill Sans" font-size="15">Libellé</text>
+	<text x="358" y="308" fill="#000000" font-family="Gill Sans" font-size="15">Prix unitaire</text>
+</g>
+</svg>

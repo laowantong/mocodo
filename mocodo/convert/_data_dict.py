@@ -45,7 +45,7 @@ class AttributeListExtractor(Transformer): # depth-first, post-order
     def datatype(self, children):
         # Replace the last data type placeholder with the actual data type
         (name, _) = self.typed_attribute_accumulator.pop()
-        self.typed_attribute_accumulator.append((name, children[1].value))
+        self.typed_attribute_accumulator.append((name, children[0].value))
     
     def finalize(self, common, subargs):
         language = common.params["language"]
