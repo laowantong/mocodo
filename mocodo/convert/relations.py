@@ -234,6 +234,8 @@ class Relations:
 
     def ensure_no_reciprocical_relative_entities(self):
         for association in self.mcd.associations.values():
+            if association.is_invisible:
+                continue
             weak_count = 0
             for leg in association.legs:
                 if leg.kind == "strengthening":
@@ -385,9 +387,13 @@ class Relations:
 
     def process_associations(self):
         for association in self.mcd.associations.values():
+            if association.is_invisible:
+                continue
             is_cluster = (association.kind == "cluster")
             df_leg = None
             for leg in association.legs:
+                if leg.entity.is_invisible:
+                    continue
                 if leg.card[1] == "1":
                     df_leg = leg
                     if leg.card[0] == "1":
@@ -402,6 +408,8 @@ class Relations:
                     "existing_unicity_numbers": set(),
                 }
                 for leg in association.legs:
+                    if leg.entity.is_invisible:
+                        continue
                     for attribute in self.relations[leg.entity_name]["columns"]:
                         if attribute["is_primary"]:
                             outer_source = self.may_retrieve_distant_outer_source(leg, attribute)
@@ -478,6 +486,8 @@ class Relations:
             # Check the number of /?1 legs (pegs)
             df_pegs = []
             for leg in association.legs:
+                if leg.entity.is_invisible:
+                    continue
                 if leg.card[1] == "1" and leg.kind == "cluster_peg":
                     df_pegs.append(leg)
             
@@ -513,6 +523,8 @@ class Relations:
             else:
                 # A normal DF association. Traverse the other legs to find the attributes to migrate.
                 for leg in association.legs:
+                    if leg.entity.is_invisible:
+                        continue
                     if leg is not df_leg:
                         if (df_leg.entity_name, association.name, leg.entity_name) not in self.freeze_strengthening_foreign_key_migration:
                             unicities = ""

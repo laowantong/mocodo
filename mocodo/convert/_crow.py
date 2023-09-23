@@ -15,6 +15,7 @@ class Crow(Visitor):
         self.tables = {}
         self.links = []
         self.has_no_datatype = True
+        self.invisible_boxes = set()
     
     def datatype(self, tree):
         s = "".join(tree.children)[2:-1] # remove the surrounding brackets
@@ -31,6 +32,9 @@ class Crow(Visitor):
     
     def entity_clause(self, tree):
         ent_name = first_child(tree, "box_name").value
+        if first_child(tree, "box_def_prefix") == "-":
+            self.invisible_boxes.add(ent_name)
+            return
         ent_index = self.name_to_index(ent_name)
         ent_name = rstrip_digit_or_underline(ent_name)
         attrs = []
@@ -43,15 +47,25 @@ class Crow(Visitor):
         self.tables[ent_index] = (ent_name, has_id, attrs)
     
     def assoc_clause(self, tree):
+        assoc_name = first_child(tree, "assoc_name_def").children[0].value
+        if first_child(tree, "box_def_prefix") == "-":
+            self.invisible_boxes.add(assoc_name)
+            return
         cards = [node.children[0].value for node in tree.find_data("card")]
         assert len(cards) == 2
-        assoc_name = first_child(tree, "assoc_name_def").children[0].value
         assoc_name = rstrip_digit_or_underline(assoc_name)
         kind = ".." if any(s.children[0].value == "_" for s in tree.find_data("card_prefix")) else "--"
         entities = tree.find_data("entity_name_ref")
         ent_1 = first_child(next(entities), "entity_name_ref").children[0]
         ent_2 = first_child(next(entities), "entity_name_ref").children[0]
         self.links.append((ent_1, cards[1], kind, cards[0], ent_2, assoc_name))
+    
+    def start(self, tree):
+        visible_links = []
+        for (ent_1, card_1, kind, card_2, ent_2, assoc_name) in self.links:
+            if ent_1 in self.invisible_boxes or ent_2 in self.invisible_boxes:
+                continue
+            visible_links.append((ent_1, card_1, kind, card_2, ent_2, assoc_name))
 
 
 def run(source, subargs, common=None):

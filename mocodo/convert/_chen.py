@@ -34,6 +34,8 @@ class Chen(Visitor):
         # Legs with their participation
         self.partial_edges = []
         self.total_edges = []
+        # Invisible boxes
+        self.invisible_boxes = set()
 
     def entity_or_table_attr(self, tree):
         id_groups = str(first_child(tree, "id_groups"))
@@ -43,9 +45,10 @@ class Chen(Visitor):
     
     def entity_clause(self, tree):
         ent_name = str(first_child(tree, "box_name"))
-        if re.match(r"(?i)phantom\d+$", ent_name):
-            return
         ent_index = self.name_to_index(f"ent_{ent_name}")
+        if first_child(tree, "box_def_prefix") == "-":
+            self.invisible_boxes.add(ent_index)
+            return
         ent_name = rstrip_digit_or_underline(ent_name)
         self.entity_nodes.append((ent_index, ent_name))
 
@@ -72,6 +75,9 @@ class Chen(Visitor):
         if assoc_name == self.df_label:
             assoc_name = f"{assoc_name}{next(self.df_counter)}"
         assoc_index = self.name_to_index(f"assoc_{assoc_name}")
+        if first_child(tree, "box_def_prefix") == "-":
+            self.invisible_boxes.add(assoc_index)
+            return
         assoc_name = rstrip_digit_or_underline(assoc_name)
         self.rel_nodes.append((assoc_index, assoc_name))
 
@@ -119,6 +125,8 @@ class Chen(Visitor):
         for (ent_index, strengthening_leg_count) in self.strengthening_leg_count.items():
             if strengthening_leg_count < 2:
                 self.not_gerund_nodes.add(ent_index)
+        self.partial_edges = [(x, y, c) for (x, y, c) in self.partial_edges if x not in self.invisible_boxes and y not in self.invisible_boxes]
+        self.total_edges = [(x, y, c) for (x, y, c) in self.total_edges if x not in self.invisible_boxes and y not in self.invisible_boxes]
     
     def get_graphviz(self, common):
         style = common.load_style()

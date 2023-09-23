@@ -23,7 +23,7 @@ BOX_NAME: /(?![\W_\d])[^=<>,:\n\\]*[^-\[\\\]=<>,:\s\\]/
 typed_attr: (attr attr_suffix? datatype?)?
 !attr_suffix: "!" | "?"
 datatype: LBRACKET note? RBRACKET
-!box_def_prefix: "+"
+!box_def_prefix: "+" | "-"
 
 ATTR: /(?=\w)(?!_)[^\[\]>,\r\n!?]*[^\[\]>,\s!?]/
 ?note: /[^\r\n\]]+/

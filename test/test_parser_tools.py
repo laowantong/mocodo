@@ -41,6 +41,7 @@ Réserver, /1N Client, 1N Chambre, 0N Date: Durée
 LIGULA, 0N LACUS, /1N EROS, 0N TELLUS, 0N CONSEQUAT: metus
 Réserver: _Durée
 +LIGULA, 01 LACUS, 1N EROS: metus
+-LIGULA, 01 LACUS, 1N EROS: metus
 PASSER, 0N [Un client peut passer un nombre quelconque de commandes.] CLIENT, 11 [Toute commande est passée par un en un seul client.] COMMANDE
 INCLURE, 1N [Une commande peut inclure plusieurs produits distincts, et en inclut au moins un.] COMMANDE, 0N [Certains produits ne sont jamais commandés, d'autres le sont plusieurs fois.] PRODUIT: Quantité
 CLIENT: 
@@ -59,6 +60,7 @@ EXEMPLAIRE3: 2, bon état, 1/8/1977
 EXEMPLAIRE4: 3, reliure rongée, 3/4/2005
 DF, -1N ŒUVRE, -_11 EXEMPLAIRE1
 +Prof: Num. prof, Nom prof
+-Prof: Num. prof, Nom prof
 Enseignant: num. ens. [numéro identifiant un enseignant], nom ens. [nom enseignant], tél. ens. [téléphone enseignant]
 COMMANDE: Num commande, Date, Montant, #Réf. client>CLIENT>Réf. client
 COMMANDE: Num commande, Date, Montant, #Réf. client > CLIENT > Réf. client
@@ -149,8 +151,8 @@ def fuzzer(seed=0):
 # fuzzer(4)
 
 mocodo_errors = [
-    *[(501, c) for c in "0123456789!#$&')*,.-;<=>?@[\\]^_`{|}~"],
-    *[(501, f" {c}") for c in "0123456789!#$&')*,.-;<=>?@[\\]^_`{|}~"],
+    *[(501, c) for c in "0123456789!#$&')*,.;<=>?@[\\]^_`{|}~"],
+    *[(501, f" {c}") for c in "0123456789!#$&')*,.;<=>?@[\\]^_`{|}~"],
     (501, ": foobar"),
     (501, " : foobar"),
     (502, "AYANT-: nom ay, lien"),

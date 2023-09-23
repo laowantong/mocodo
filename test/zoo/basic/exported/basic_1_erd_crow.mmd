@@ -15,5 +15,9 @@ erDiagram
     TYPE libelle
     TYPE prix_unitaire
   }
-  CLIENT }|--|{ COMMANDE: PASSER
-  COMMANDE }|--|{ PRODUIT: INCLURE
+  INCLURE {
+    TYPE quantite PK
+  }
+  CLIENT ||--o{ COMMANDE: DF
+  INCLURE }|..|| COMMANDE: DF
+  INCLURE }o..|| PRODUIT: DF

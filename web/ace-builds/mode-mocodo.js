@@ -44,7 +44,7 @@ var MocodoHighlightRules = function() {
                 "keyword.control.mocodo",
                 "entity.other.attribute-name.association.mocodo markup.bold"
             ],
-            regex: /((?:\+)?)((?=[a-zA-Z\u00C0-\u024F\u1E00-\u1EFF])[^=<>,:\\]*[^-\[\]\\=<>,:\s\\])(?=\s*,\s*)/,
+            regex: /((?:\+|-)?)((?=[a-zA-Z\u00C0-\u024F\u1E00-\u1EFF])[^=<>,:\\]*[^-\[\]\\=<>,:\s\\])(?=\s*,\s*)/,
             push: [{
                 token: "association.mocodo",
                 regex: /$|^/,
@@ -105,7 +105,7 @@ var MocodoHighlightRules = function() {
                 "heading.entity.mocodo markup.bold",
                 "entity.mocodo"
             ],
-            regex: /((?:\+)?)((?=[a-zA-Z\u00C0-\u024F\u1E00-\u1EFF])[^=<>,:\\]*[^-\[\]\\=<>,:\s\\])(\s*:\s*)/,
+            regex: /((?:\+|-)?)((?=[a-zA-Z\u00C0-\u024F\u1E00-\u1EFF])[^=<>,:\\]*[^-\[\]\\=<>,:\s\\])(\s*:\s*)/,
             push: [{
                 token: "entity.mocodo",
                 regex: /$|^/,

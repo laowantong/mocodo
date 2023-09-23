@@ -1,5 +1,4 @@
 from collections import defaultdict
-import re
 from .attribute import *
 from .tools.string_tools import rstrip_digit_or_underline
 
@@ -13,7 +12,7 @@ class Entity:
         self.attributes = clause.get("attrs", [])
         self.legs = []  # iterating over box's legs does nothing if it is not an association
         self.kind = "entity"
-        if re.match(r"(?i)phantom\d+$", clause["name"]):
+        if clause.get("box_def_prefix") == "-":
             self.calculate_size = self.calculate_size_when_invisible
             self.description = lambda *ignored: []
             self.is_invisible = True

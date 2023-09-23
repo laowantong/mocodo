@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<svg width="862" height="128" viewBox="0 0 862 128" xmlns="http://www.w3.org/2000/svg">
-<rect id="frame" x="0" y="0" width="862" height="128" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<svg width="684" height="278" viewBox="0 0 684 278" xmlns="http://www.w3.org/2000/svg">
+<rect id="frame" x="0" y="0" width="684" height="278" fill="#FFFFFF" stroke="none" stroke-width="0"/>
 
 <!-- Entity CLIENT -->
 <g>
@@ -18,84 +18,65 @@
 	<text x="46" y="107" fill="#000000" font-family="Gill Sans" font-size="15">Adresse</text>
 </g>
 
-<!-- Entity PASSER -->
-<g>
-	<g>
-		<rect x="180" y="26" width="122" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
-		<rect x="180" y="56" width="122" height="46" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
-		<rect x="180" y="26" width="122" height="76" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
-		<line x1="180" y1="56" x2="302" y2="56" stroke="#000000" stroke-width="1.5"/>
-	</g>
-	<text x="204" y="47.3" fill="#000000" font-family="Copperplate" font-size="18">PASSER</text>
-	<text x="188" y="73.1" fill="#000000" font-family="Gill Sans" font-size="15">Réf. client</text>
-	<line x1="188" y1="76" x2="250" y2="76" stroke="#000000" stroke-width="1"/>
-	<text x="188" y="90.1" fill="#000000" font-family="Gill Sans" font-size="15">Num commande</text>
-	<line x1="188" y1="93" x2="293" y2="93" stroke="#000000" stroke-width="1"/>
-</g>
-
 <!-- Entity COMMANDE -->
 <g>
 	<g>
-		<rect x="360" y="17" width="126" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
-		<rect x="360" y="47" width="126" height="64" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
-		<rect x="360" y="17" width="126" height="94" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
-		<line x1="360" y1="47" x2="486" y2="47" stroke="#000000" stroke-width="1.5"/>
+		<rect x="180" y="88" width="126" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="180" y="118" width="126" height="80" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="180" y="88" width="126" height="110" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
+		<line x1="180" y1="118" x2="306" y2="118" stroke="#000000" stroke-width="1.5"/>
 	</g>
-	<text x="369" y="38.3" fill="#000000" font-family="Copperplate" font-size="18">COMMANDE</text>
-	<text x="368" y="64.1" fill="#000000" font-family="Gill Sans" font-size="15">Num commande</text>
-	<line x1="368" y1="67" x2="473" y2="67" stroke="#000000" stroke-width="1"/>
-	<text x="368" y="81.1" fill="#000000" font-family="Gill Sans" font-size="15">Date</text>
-	<text x="368" y="98" fill="#000000" font-family="Gill Sans" font-size="15">Montant</text>
-</g>
-
-<!-- Entity INCLURE -->
-<g>
-	<g>
-		<rect x="544" y="17" width="122" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
-		<rect x="544" y="47" width="122" height="64" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
-		<rect x="544" y="17" width="122" height="94" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
-		<line x1="544" y1="47" x2="666" y2="47" stroke="#000000" stroke-width="1.5"/>
-	</g>
-	<text x="564" y="38.3" fill="#000000" font-family="Copperplate" font-size="18">INCLURE</text>
-	<text x="552" y="64.1" fill="#000000" font-family="Gill Sans" font-size="15">Num commande</text>
-	<line x1="552" y1="67" x2="657" y2="67" stroke="#000000" stroke-width="1"/>
-	<text x="552" y="81.1" fill="#000000" font-family="Gill Sans" font-size="15">Réf. produit</text>
-	<line x1="552" y1="84" x2="627" y2="84" stroke="#000000" stroke-width="1"/>
-	<text x="552" y="98" fill="#000000" font-family="Gill Sans" font-size="15">Quantité</text>
+	<text x="189" y="109.3" fill="#000000" font-family="Copperplate" font-size="18">COMMANDE</text>
+	<text x="188" y="135.1" fill="#000000" font-family="Gill Sans" font-size="15">Num. commande</text>
+	<line x1="188" y1="138" x2="296" y2="138" stroke="#000000" stroke-width="1"/>
+	<text x="188" y="152.1" fill="#000000" font-family="Gill Sans" font-size="15">Date</text>
+	<text x="188" y="169.1" fill="#000000" font-family="Gill Sans" font-size="15">Montant</text>
+	<text x="188" y="186" fill="#000000" font-family="Gill Sans" font-size="15">Réf. client!</text>
 </g>
 
 <!-- Entity PRODUIT -->
 <g>
 	<g>
-		<rect x="724" y="17" width="100" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
-		<rect x="724" y="47" width="100" height="64" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
-		<rect x="724" y="17" width="100" height="94" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
-		<line x1="724" y1="47" x2="824" y2="47" stroke="#000000" stroke-width="1.5"/>
+		<rect x="546" y="96" width="100" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="546" y="126" width="100" height="64" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="546" y="96" width="100" height="94" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
+		<line x1="546" y1="126" x2="646" y2="126" stroke="#000000" stroke-width="1.5"/>
 	</g>
-	<text x="733" y="38.3" fill="#000000" font-family="Copperplate" font-size="18">PRODUIT</text>
-	<text x="732" y="64.1" fill="#000000" font-family="Gill Sans" font-size="15">Réf. produit</text>
-	<line x1="732" y1="67" x2="807" y2="67" stroke="#000000" stroke-width="1"/>
-	<text x="732" y="81.1" fill="#000000" font-family="Gill Sans" font-size="15">Libellé</text>
-	<text x="732" y="98" fill="#000000" font-family="Gill Sans" font-size="15">Prix unitaire</text>
+	<text x="555" y="117.3" fill="#000000" font-family="Copperplate" font-size="18">PRODUIT</text>
+	<text x="554" y="143.1" fill="#000000" font-family="Gill Sans" font-size="15">Réf. produit</text>
+	<line x1="554" y1="146" x2="629" y2="146" stroke="#000000" stroke-width="1"/>
+	<text x="554" y="160.1" fill="#000000" font-family="Gill Sans" font-size="15">Libellé</text>
+	<text x="554" y="177" fill="#000000" font-family="Gill Sans" font-size="15">Prix unitaire</text>
 </g>
 
-<!-- Link from &quot;Réf. client&quot; (PASSER) to &quot;Réf. client&quot; (CLIENT) -->
-<path d="M180 70.5 C151 62 160.67 53.5 122 53.5" fill="none" stroke="#000000" stroke-width="1"/>
+<!-- Entity INCLURE -->
+<g>
+	<g>
+		<rect x="364" y="175" width="124" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="364" y="205" width="124" height="64" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="364" y="175" width="124" height="94" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
+		<line x1="364" y1="205" x2="488" y2="205" stroke="#000000" stroke-width="1.5"/>
+	</g>
+	<text x="385" y="196.3" fill="#000000" font-family="Copperplate" font-size="18">INCLURE</text>
+	<text x="372" y="222.1" fill="#000000" font-family="Gill Sans" font-size="15">Num. commande</text>
+	<line x1="372" y1="225" x2="480" y2="225" stroke="#000000" stroke-width="1"/>
+	<text x="372" y="239.1" fill="#000000" font-family="Gill Sans" font-size="15">Réf. produit</text>
+	<line x1="372" y1="242" x2="447" y2="242" stroke="#000000" stroke-width="1"/>
+	<text x="372" y="256" fill="#000000" font-family="Gill Sans" font-size="15">Quantité</text>
+</g>
+
+<!-- Link from &quot;Réf. client&quot; (COMMANDE) to &quot;Réf. client&quot; (CLIENT) -->
+<path d="M180 183.5 C151 118.5 160.67 53.5 122 53.5" fill="none" stroke="#000000" stroke-width="1"/>
 <polygon points="122 53.5 134 47.5 130 53.5 134 59.5" fill="#000000" stroke-width="0"/>
-<circle cx="180" cy="70.5" r="1.5" stroke="#000000" stroke-width="1.5" fill="#000000"/>
+<circle cx="180" cy="183.5" r="1.5" stroke="#000000" stroke-width="1.5" fill="#000000"/>
 
-<!-- Link from &quot;Num commande&quot; (PASSER) to &quot;Num commande&quot; (COMMANDE) -->
-<path d="M302 87.5 C331 74.5 321.33 61.5 360 61.5" fill="none" stroke="#000000" stroke-width="1"/>
-<polygon points="360 61.5 348 67.5 352 61.5 348 55.5" fill="#000000" stroke-width="0"/>
-<circle cx="302" cy="87.5" r="1.5" stroke="#000000" stroke-width="1.5" fill="#000000"/>
-
-<!-- Link from &quot;Num commande&quot; (INCLURE) to &quot;Num commande&quot; (COMMANDE) -->
-<path d="M544 61.5 C515 61.5 524.67 61.5 486 61.5" fill="none" stroke="#000000" stroke-width="1"/>
-<polygon points="486 61.5 498 55.5 494 61.5 498 67.5" fill="#000000" stroke-width="0"/>
-<circle cx="544" cy="61.5" r="1.5" stroke="#000000" stroke-width="1.5" fill="#000000"/>
+<!-- Link from &quot;Num. commande&quot; (INCLURE) to &quot;Num. commande&quot; (COMMANDE) -->
+<path d="M364 219.5 C335 176 344.67 132.5 306 132.5" fill="none" stroke="#000000" stroke-width="1"/>
+<polygon points="306 132.5 318 126.5 314 132.5 318 138.5" fill="#000000" stroke-width="0"/>
+<circle cx="364" cy="219.5" r="1.5" stroke="#000000" stroke-width="1.5" fill="#000000"/>
 
 <!-- Link from &quot;Réf. produit&quot; (INCLURE) to &quot;Réf. produit&quot; (PRODUIT) -->
-<path d="M666 78.5 C695 70 685.33 61.5 724 61.5" fill="none" stroke="#000000" stroke-width="1"/>
-<polygon points="724 61.5 712 67.5 716 61.5 712 55.5" fill="#000000" stroke-width="0"/>
-<circle cx="666" cy="78.5" r="1.5" stroke="#000000" stroke-width="1.5" fill="#000000"/>
+<path d="M488 236.5 C517 188.5 507.33 140.5 546 140.5" fill="none" stroke="#000000" stroke-width="1"/>
+<polygon points="546 140.5 534 146.5 538 140.5 534 134.5" fill="#000000" stroke-width="0"/>
+<circle cx="488" cy="236.5" r="1.5" stroke="#000000" stroke-width="1.5" fill="#000000"/>
 </svg>

@@ -5,6 +5,7 @@
 <!-- Association DF0 -->
 <g>
 	<line x1="51" y1="64" x2="51" y2="190" stroke="#000000" stroke-width="1"/>
+	<polygon points="51 119 57 131 51 127 45 131" fill="#000000" stroke-width="0"/>
 	<line x1="163" y1="190" x2="51" y2="190" stroke="#000000" stroke-width="1"/>
 	<g>
 		<circle cx="51" cy="190" r="20" stroke="#000000" stroke-width="1.5" fill="#FFFFFF"/>

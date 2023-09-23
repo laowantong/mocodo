@@ -1,23 +1,23 @@
 :
       ENTITY 01_: attr 01 1_, _attr 01 2_
-    ASSOC 09_, 01 ENTITY 03_, 0N> [role 1] ENTITY 03_
+    ASSOC 07_, 01 ENTITY 03_, 0N> [role 1] ENTITY 03_
 :
 :
 
 ENTITY 02_: attr 02 1_
-      ASSOC 10_, 1N ENTITY 03_, /1N ENTITY 01_, 1N ENTITY 02_
+      ASSOC 08_, 1N ENTITY 03_, /1N ENTITY 01_, 1N ENTITY 02_
   ENTITY 03_: attr 03 1_, attr 03 2_, _attr 03 3_, attr 03 4_
   /\\ ENTITY 03_ <= ENTITY 04_, ENTITY 06_: type alimentation
   ENTITY 04_: attr 04 1_
 
-ASSOC 11_, 1N ENTITY 05_, 1N ENTITY 02_: attr 11 1_
+ASSOC 09_, 1N ENTITY 05_, 1N ENTITY 02_: attr 09 1_
 ENTITY 05_: attr 05 1_, 1_attr 05 2_, attr 05 3_
   DF, 0N ENTITY 05_, _11 ENTITY 03_
   ENTITY 06_: attr 06 1_
 :
 
 :
-    ASSOC 13_, 0N ENTITY 05_, 0N [role 1] ENTITY 05_: attr 13 1_
-ENTITY 07_:
-ENTITY 08_:
+    ASSOC 11_, 0N ENTITY 05_, 0N [role 1] ENTITY 05_: attr 11 1_
+:
+:
 :

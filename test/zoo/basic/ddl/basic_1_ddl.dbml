@@ -10,25 +10,18 @@ Table CLIENT {
 }
 
 Table COMMANDE {
-  "Num commande" VARCHAR(42) [pk, not null]
+  "Num. commande" VARCHAR(42) [pk, not null]
   Date VARCHAR(42)
   Montant VARCHAR(42)
+  "Réf. client" VARCHAR(42) [not null]
 }
 
 Table INCLURE {
-  "Num commande" VARCHAR(42) [not null]
+  "Num. commande" VARCHAR(42) [not null]
   "Réf. produit" VARCHAR(42) [not null]
   "Quantité" VARCHAR(42)
   Indexes {
-    ("Num commande", "Réf. produit") [pk]
-  }
-}
-
-Table PASSER {
-  "Réf. client" VARCHAR(42) [not null]
-  "Num commande" VARCHAR(42) [not null]
-  Indexes {
-    ("Réf. client", "Num commande") [pk]
+    ("Num. commande", "Réf. produit") [pk]
   }
 }
 
@@ -38,7 +31,6 @@ Table PRODUIT {
   "Prix unitaire" VARCHAR(42)
 }
 
-Ref:INCLURE."Num commande" > COMMANDE."Num commande"
+Ref:COMMANDE."Réf. client" > CLIENT."Réf. client"
+Ref:INCLURE."Num. commande" > COMMANDE."Num. commande"
 Ref:INCLURE."Réf. produit" > PRODUIT."Réf. produit"
-Ref:PASSER."Réf. client" > CLIENT."Réf. client"
-Ref:PASSER."Num commande" > COMMANDE."Num commande"

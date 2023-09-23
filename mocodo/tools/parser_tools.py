@@ -18,9 +18,9 @@ def parse_source(source):
             previous = error.token_history[0].type
         except:
             previous = None
-        if expected == {'PERCENT', 'CONSTRAINT_LPAREN', 'BREAK', 'INDENT', 'PHANTOMS', 'BOX_NAME', 'SLASH', 'PLUS', 'NL'}:
+        if expected == {'PERCENT', 'CONSTRAINT_LPAREN', 'BREAK', 'INDENT', 'PHANTOMS', 'BOX_NAME', 'SLASH', 'PLUS', 'MINUS', 'NL'}:
             raise MocodoError(501, _('{pin}{v} is not a valid line beginning.').format(pin=pin, v=v)) # fmt: skip
-        if expected == {'PHANTOMS', 'PERCENT', 'CONSTRAINT_LPAREN', 'PLUS', 'NL', 'SLASH', 'BOX_NAME'}:
+        if expected == {'PHANTOMS', 'PERCENT', 'CONSTRAINT_LPAREN', 'PLUS', 'MINUS', 'NL', 'SLASH', 'BOX_NAME'}:
             raise MocodoError(501, _('{pin}{v} is not a valid line beginning.').format(pin=pin, v=v)) # fmt: skip
         if expected == {'INHERITANCE_ARROW', 'COLON', 'NL', 'MORETHAN', 'SP', 'COMMA'}:
             raise MocodoError(502, _('{pin}Malformed box name.').format(pin=pin, v=v)) # fmt: skip

@@ -33,7 +33,7 @@
     },
     "association_clause": {
       "name": "association.mocodo",
-      "begin": "(\\+)?((?=[a-zA-Z\\u00C0-\\u024F\\u1E00-\\u1EFF])[^=<>,:\\\\]*[^-\\[\\]\\\\=<>,:\\s\\\\])(?=\\s*,\\s*)",
+      "begin": "(\\+|-)?((?=[a-zA-Z\\u00C0-\\u024F\\u1E00-\\u1EFF])[^=<>,:\\\\]*[^-\\[\\]\\\\=<>,:\\s\\\\])(?=\\s*,\\s*)",
       "end": "$|^",
       "beginCaptures": {
         "1": { "name": "keyword.control.mocodo" },
@@ -85,7 +85,7 @@
     },
     "entity_clause": {
       "name": "entity.mocodo",
-      "begin": "(\\+)?((?=[a-zA-Z\\u00C0-\\u024F\\u1E00-\\u1EFF])[^=<>,:\\\\]*[^-\\[\\]\\\\=<>,:\\s\\\\])\\s*:\\s*",
+      "begin": "(\\+|-)?((?=[a-zA-Z\\u00C0-\\u024F\\u1E00-\\u1EFF])[^=<>,:\\\\]*[^-\\[\\]\\\\=<>,:\\s\\\\])\\s*:\\s*",
       "end": "$|^",
       "beginCaptures": {
         "1": { "name": "keyword.control.mocodo" },

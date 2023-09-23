@@ -10,24 +10,24 @@ Table("CLIENT") {
     {field} + Adresse
 }
 
-"CLIENT" "*" --- "*" "COMMANDE": "PASSER"
+"CLIENT" "1" --- "*" "COMMANDE"
 
 Table("COMMANDE") {
-    {field} + pk(Num commande)
+    {field} + pk(Num. commande)
     {field} + Date
     {field} + Montant
-}
-
-"COMMANDE" "*" --- "*" "PRODUIT": "INCLURE"
-("COMMANDE", "PRODUIT") .. "INCLURE"
-Table("INCLURE") {
-    {field} + Quantité
 }
 
 Table("PRODUIT") {
     {field} + pk(Réf. produit)
     {field} + Libellé
     {field} + Prix unitaire
+}
+
+"COMMANDE" "*" --- "1..*" "PRODUIT": "INCLURE"
+("COMMANDE", "PRODUIT") .. "INCLURE"
+Table("INCLURE") {
+    {field} + Quantité
 }
 
 @enduml

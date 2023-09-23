@@ -17,6 +17,14 @@ class Association:
         self.name = clause["name"]
         # A protected association results in a table, even if this association is a DF.
         self.is_protected = (clause.get("box_def_prefix") == "+")
+        if clause.get("box_def_prefix") == "-":
+            self.calculate_size = self.calculate_size_when_invisible
+            self.description = lambda *ignored: []
+            self.is_invisible = True
+        else:
+            self.calculate_size = self.calculate_size_when_visible
+            self.description = self.description_when_visible
+            self.is_invisible = False
         self.peg_count = 0
         self.attributes = []
         for attr in clause.get("attrs", []):
@@ -77,7 +85,11 @@ class Association:
         for leg in self.legs:
             leg.register_mcd_has_cif(mcd_has_cif)
 
-    def calculate_size(self, style, get_font_metrics):
+    def calculate_size_when_invisible(self, *ignored):
+        self.w = 0
+        self.h = 0
+    
+    def calculate_size_when_visible(self, style, get_font_metrics):
         cartouche_font = get_font_metrics(style["association_cartouche_font"])
         self.get_cartouche_string_width = cartouche_font.get_pixel_width
         self.cartouche_height = cartouche_font.get_pixel_height()
@@ -301,7 +313,7 @@ class Association:
             self.calculate_size_depending_on_kind = calculate_size_when_default
             self.description_depending_on_kind = description_when_default
 
-    def description(self, style, geo):
+    def description_when_visible(self, style, geo):
         self.saved_card_description = []
         result = []
         result.append(("comment", {"text": f"Association {self.name}"}))

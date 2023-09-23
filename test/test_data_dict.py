@@ -105,5 +105,48 @@ class TestDataDict(unittest.TestCase):
         """
         self.assertEqual(actual.strip(), re.sub("(?m)^ +", "", expected).strip())
 
+    def test_data_dict_with_invisible_boxes(self):
+        source = """
+            CLIENT: Réf. client, Nom, Prénom, Adresse
+            -Reflexive 6_, 11 COMMANDE, 01 COMMANDE
+            -Entity 7_: id 7 1, _id 7 2, attr 7 3, attr 7 4
+            -Reflexive 13_, 11 PRODUIT, 1N PRODUIT
+
+            DF, 0N CLIENT, 11 COMMANDE
+            COMMANDE: Num. commande, Date, Montant
+            -Ternary 8_, 0N Entity 7_, 0N COMMANDE, 1N PRODUIT
+            PRODUIT: Réf. produit, Libellé, Prix unitaire
+
+            -Entity 14_: id 14 1, attr 14 2, attr 14 3, attr 14 4
+            -Binary 15_, 0N Entity 14_, 01 Entity 11_
+            INCLURE, 1N COMMANDE, 0N PRODUIT: Quantité
+            -Binary 10_, 1N Entity 9_, 1N PRODUIT: attr 10 1
+
+            -Binary 16_, 0N Entity 14_, 1N Entity 11_
+            -Entity 11_: id 11 1, attr 11 2
+            -Binary 12_, 0N Entity 11_, 11 Entity 9_: attr 12 1
+            -Entity 9_: id 9 1, attr 9 2, attr 9 3
+        """
+        params = {"language": "fr"}
+        common = Common(params)
+        actual = data_dict.run(source, common=common, subargs={})["text"]
+        expected = """
+            | Entité ou association | Libellé de l'attribut | Type |
+            |:----------------------|:----------------------|:-----|
+            | CLIENT                | Adresse               |      |
+            | "                     | Nom                   |      |
+            | "                     | Prénom                |      |
+            | "                     | Réf. client           |      |
+            | COMMANDE              | Date                  |      |
+            | "                     | Montant               |      |
+            | "                     | Num. commande         |      |
+            | INCLURE               | Quantité              |      |
+            | PRODUIT               | Libellé               |      |
+            | "                     | Prix unitaire         |      |
+            | "                     | Réf. produit          |      |
+        """
+        self.assertEqual(actual.strip(), re.sub("(?m)^ +", "", expected).strip())
+
+
 if __name__ == '__main__':
     unittest.main()

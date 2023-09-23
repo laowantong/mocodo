@@ -8,7 +8,7 @@ uuid: 2AD24A5A-63C9-40B3-B6AA-E240B7B54480
 variables:
   latin: 'a-zA-Z\u00C0-\u024F\u1E00-\u1EFF'
   attr: '(?=[{{latin}}0-9]) [^\[\]>,]*[^\[\]>,\s]'
-  box_def_prefix: '\+'
+  box_def_prefix: '\+|-'
   constraint_name: '\([{{latin}}\d_\s]{0,3}\)'
   card_hidden: '-'
   card_prefix: '[_/]'

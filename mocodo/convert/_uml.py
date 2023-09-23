@@ -33,6 +33,7 @@ class UmlClassDiagram(Visitor):
         self.df_label = common.params["df"]
         self.has_no_datatype = True
         self.acc = []
+        self.invisible_boxes = set()
 
     def datatype(self, tree):
         s = "".join(tree.children)[2:-1] # remove the surrounding brackets
@@ -49,7 +50,8 @@ class UmlClassDiagram(Visitor):
     
     def entity_clause(self, tree):
         ent_name = str(first_child(tree, "box_name"))
-        if re.match(r"(?i)phantom\d+$", ent_name):
+        if first_child(tree, "box_def_prefix") == "-":
+            self.invisible_boxes.add(ent_name)
             return
         attributes = []
         for (i, node) in enumerate(tree.find_data("entity_or_table_attr")):
@@ -68,6 +70,9 @@ class UmlClassDiagram(Visitor):
     def assoc_clause(self, tree):
         legs = [node for node in tree.find_data("assoc_leg")]
         assoc_name = str(first_child(tree, "assoc_name_def").children[0])
+        if first_child(tree, "box_def_prefix") == "-":
+            self.invisible_boxes.add(assoc_name)
+            return
 
         min_maxs = [node.children[0].value for node in tree.find_data("card")]
         ent_names = [str(first_child(leg, "entity_name_ref").children[0]) for leg in legs]
@@ -84,6 +89,7 @@ class UmlClassDiagram(Visitor):
             weaks = [first_child(leg, "card_prefix") == "_" for leg in legs]
             self.acc.append({
                 "kind": "binary_link",
+                "tables": ent_names,
                 "table_1": ent_names[0],
                 "card_1": MIN_MAX_IN_UML.get(min_maxs[1], "*"),
                 "composition_1": weaks[1],
@@ -95,6 +101,7 @@ class UmlClassDiagram(Visitor):
             if typed_attrs:
                 self.acc.append({
                     "kind": "binary_link_attrs",
+                    "tables": ent_names,
                     "table_1": ent_names[0],
                     "table_2": ent_names[1],
                     "assoc_name": assoc_name,
@@ -113,6 +120,7 @@ class UmlClassDiagram(Visitor):
                 self.acc.append({
                     "kind": "n_ary_link_attrs",
                     "diamond": diamond,
+                    "tables": ent_names,
                     "assoc_name": assoc_name,
                 })
         
@@ -121,6 +129,7 @@ class UmlClassDiagram(Visitor):
                 "kind": "table",
                 "name": assoc_name,
                 "attributes": [(False, attr_label, datatype) for (attr_label, datatype) in typed_attrs],
+                "tables": ent_names,
             })
         
         self.acc.append({"kind": "spacer"})
@@ -139,7 +148,7 @@ class UmlClassDiagram(Visitor):
         self.acc.append({"kind": "spacer"})
     
     def start(self, tree):
-        pass
+        self.acc = list(filter(lambda d: not self.invisible_boxes.intersection(d.get("tables", [])), self.acc))
     
     def get_plantuml(self):
         style = self.common.load_style()

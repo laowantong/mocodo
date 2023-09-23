@@ -693,6 +693,41 @@ Réserver: _Durée
   'source': '+LIGULA, 01 LACUS, 1N EROS: metus'}]
 
 --------------------------------------------------------------------------------
+-LIGULA, 01 LACUS, 1N EROS: metus
+--------------------------------------------------------------------------------start
+  line
+    assoc_clause
+      box_def_prefix	-
+      assoc_name_def
+        box_name	LIGULA
+      , 
+      seq
+        assoc_leg
+          card	01
+           
+          entity_name_ref
+            box_name	LACUS
+        , 
+        assoc_leg
+          card	1N
+           
+          entity_name_ref
+            box_name	EROS
+      : 
+      seq
+        typed_attr
+          attr	metus
+--------------------------------------------------------------------------------
+[{'box_def_prefix': '-',
+  'name': 'LIGULA',
+  'legs': [{'card': '01', 'entity': 'LACUS', 'rank': 0},
+           {'card': '1N', 'entity': 'EROS', 'rank': 1}],
+  'attrs': [{'attribute_label': 'metus', 'rank': 0}],
+  'type': 'association',
+  'indent': '',
+  'source': '-LIGULA, 01 LACUS, 1N EROS: metus'}]
+
+--------------------------------------------------------------------------------
 PASSER, 0N [Un client peut passer un nombre quelconque de commandes.] CLIENT, 11 [Toute commande est passée par un en un seul client.] COMMANDE
 --------------------------------------------------------------------------------start
   line
@@ -1256,6 +1291,32 @@ DF, -1N ŒUVRE, -_11 EXEMPLAIRE1
   'type': 'entity',
   'indent': '',
   'source': '+Prof: Num. prof, Nom prof'}]
+
+--------------------------------------------------------------------------------
+-Prof: Num. prof, Nom prof
+--------------------------------------------------------------------------------start
+  line
+    entity_clause
+      box_def_prefix	-
+      entity_name_def
+        box_name	Prof
+      : 
+      seq
+        entity_or_table_attr
+          typed_attr
+            attr	Num. prof
+        , 
+        entity_or_table_attr
+          typed_attr
+            attr	Nom prof
+--------------------------------------------------------------------------------
+[{'box_def_prefix': '-',
+  'name': 'Prof',
+  'attrs': [{'attribute_label': 'Num. prof', 'rank': 0},
+            {'attribute_label': 'Nom prof', 'rank': 1}],
+  'type': 'entity',
+  'indent': '',
+  'source': '-Prof: Num. prof, Nom prof'}]
 
 --------------------------------------------------------------------------------
 Enseignant: num. ens. [numéro identifiant un enseignant], nom ens. [nom enseignant], tél. ens. [téléphone enseignant]

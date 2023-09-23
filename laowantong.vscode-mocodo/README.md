@@ -16,6 +16,10 @@ MIT.
 
 ## Release Notes
 
+### 1.0.2
+
+Add support for Mocodo 4.0's invisible boxes.
+
 ### 1.0.1
 
 Don't regard a mix of empty and non-empty entity attributes as an error.

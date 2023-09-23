@@ -1,7 +1,6 @@
 digraph {
   node [shape=box]
+  "CLIENT" -> "COMMANDE"
   "PRODUIT" -> "INCLURE"
   "COMMANDE" -> "INCLURE"
-  "COMMANDE" -> "PASSER"
-  "CLIENT" -> "PASSER"
 }

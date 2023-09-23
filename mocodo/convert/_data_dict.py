@@ -27,20 +27,25 @@ class AttributeListExtractor(Transformer): # depth-first, post-order
         self.assoc_clause = self._box_clause
         self.entity_clause = self._box_clause
     
-    def _box_clause(self, tree):
+    def _box_clause(self, children):
         # Associate the box name with the accumulated list of attributes
-        box_name = first_child(tree[0], "box_name").value
-        self.boxes[box_name] = self.typed_attribute_accumulator[:]
+        box_def_prefix = first_child(children[0], "box_def_prefix")
+        if box_def_prefix != "-":
+            if not box_def_prefix:
+                box_name = first_child(children[0], "box_name")
+            else:
+                box_name = first_child(children[1], "box_name")
+            self.boxes[box_name] = self.typed_attribute_accumulator[:]
         self.typed_attribute_accumulator = []
     
-    def attr(self, tree):
+    def attr(self, children):
         # Accumulate a couple (attribute name, data type placeholder)
-        self.typed_attribute_accumulator.append((tree[0].value, ""))
+        self.typed_attribute_accumulator.append((children[0].value, ""))
     
-    def datatype(self, tree):
+    def datatype(self, children):
         # Replace the last data type placeholder with the actual data type
         (name, _) = self.typed_attribute_accumulator.pop()
-        self.typed_attribute_accumulator.append((name, tree[1].value))
+        self.typed_attribute_accumulator.append((name, children[1].value))
     
     def finalize(self, common, subargs):
         language = common.params["language"]
