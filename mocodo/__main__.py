@@ -1,5 +1,6 @@
 import mimetypes
 from pathlib import Path
+import re
 import sys
 
 import urllib3
@@ -207,14 +208,14 @@ class Runner:
     def flip(self, source, subargs):
         for subsubopt in subargs:
             mcd = Mcd(source)
-            if subsubopt in ("v", "vertical"):
+            if re.match(r"(?i)v(er(t(ical)?)?)?", subsubopt):
                 source = mcd.get_vertically_flipped_clauses()
-            elif subsubopt in ("h", "horizontal"):
+            elif re.match(r"(?i)h(or(i(zontal)?)?)?", subsubopt):
                 source = mcd.get_horizontally_flipped_clauses()
-            elif subsubopt in ("d", "diagonal"):
+            elif re.match(r"(?i)d(iag(onal)?)?", subsubopt):
                 source = mcd.get_diagonally_flipped_clauses()
             else:
-                raise MocodoError(22, _("Unknown argument {subsubopt} for operation {subopt}".format(subsubopt=subsubopt, subopt=subopt)))  # fmt: skip
+                subopt_error("flip", subsubopt)
         return source
 
 
@@ -281,11 +282,11 @@ class Runner:
                 acc = []
                 for (b1, b2, b3, b4) in overlaps:
                     if b3 == b4:
-                        acc.append(_("- Leg “{b1} — {b2}” overlaps “{b3}”.").format(b1=b1, b2=b2, b3=b3))  # fmt: skip
+                        acc.append(_('- Leg "{b1} — {b2}" overlaps "{b3}".').format(b1=b1, b2=b2, b3=b3))  # fmt: skip
                     else:
-                        acc.append(_("- Legs “{b1} — {b2}” and “{b3} — {b4}” overlap.").format(b1=b1, b2=b2, b3=b3, b4=b4))  # fmt: skip
+                        acc.append(_('- Legs "{b1} — {b2}" and "{b3} — {b4}" overlap.').format(b1=b1, b2=b2, b3=b3, b4=b4))  # fmt: skip
                 details = "\n".join(acc)
-                raise MocodoError(29, _('On Mocodo online, click the 🔀 button to fix the following problem(s):\n{details}').format(details=details))  # fmt: skip
+                raise MocodoError(29, _('On Mocodo online, click the chocolate bar to fix the following problem(s):\n{details}').format(details=details))  # fmt: skip
 
     def add_gutter_params(self, params):
         gutters = dict(params.get("gutters", []))

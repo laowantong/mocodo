@@ -51,7 +51,7 @@ def obfuscator_factory(pool, params):
             try:
                 new_name = next(random_word)
             except StopIteration:
-                raise MocodoError(12, _('Obfuscation failed. Not enough substitution words in "{filename}". You may decrease the `obfuscation_MIN_DISTANCE` option values.').format(filename=self.lorem_path), filename=self.lorem_path, obfuscation_MIN_DISTANCE=params["obfuscation_MIN_DISTANCE"])  # fmt: skip
+                raise MocodoError(12, _('Obfuscation failed. Not enough substitution words in "{filename}".').format(filename=self.lorem_path), filename=self.lorem_path, obfuscation_MIN_DISTANCE=params["obfuscation_MIN_DISTANCE"])  # fmt: skip
             if name.isupper():
                 new_name = new_name.upper()
             elif name.islower():

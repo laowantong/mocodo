@@ -19,9 +19,9 @@ def parse_source(source):
         except:
             previous = None
         if expected == {'PERCENT', 'CONSTRAINT_LPAREN', 'BREAK', 'INDENT', 'PHANTOMS', 'BOX_NAME', 'SLASH', 'PLUS', 'MINUS', 'NL'}:
-            raise MocodoError(501, _('{pin}{v} is not a valid line beginning.').format(pin=pin, v=v)) # fmt: skip
+            raise MocodoError(501, _('{pin}"{v}" is not a valid line beginning.').format(pin=pin, v=v)) # fmt: skip
         if expected == {'PHANTOMS', 'PERCENT', 'CONSTRAINT_LPAREN', 'PLUS', 'MINUS', 'NL', 'SLASH', 'BOX_NAME'}:
-            raise MocodoError(501, _('{pin}{v} is not a valid line beginning.').format(pin=pin, v=v)) # fmt: skip
+            raise MocodoError(501, _('{pin}"{v}" is not a valid line beginning.').format(pin=pin, v=v)) # fmt: skip
         if expected == {'INHERITANCE_ARROW', 'COLON', 'NL', 'MORETHAN', 'SP', 'COMMA'}:
             raise MocodoError(502, _('{pin}Malformed box name.').format(pin=pin, v=v)) # fmt: skip
         if expected == {'COLON', 'COMMA'}:
@@ -35,7 +35,7 @@ def parse_source(source):
         if expected == {'SLASH', 'CARD', 'ID_MARK'}:
             raise MocodoError(506, _('{pin}Malformed cardinalities.').format(pin=pin)) # fmt: skip
         if expected == {'INHERITANCE_NAME', 'BACKSLASH'} or expected == {'BACKSLASH'}:
-            raise MocodoError(507, _('{pin}An inheritance name must be "", "X", "T" or "XT" (optionally followed by a single digit).').format(pin=pin)) # fmt: skip
+            raise MocodoError(507, _('{pin}An inheritance name must be "", "X", "T" or "XT".').format(pin=pin)) # fmt: skip
         if t == "COMMA" and expected == {'NL'}:
             raise MocodoError(508, _('{pin}Only two coords are allowed.').format(pin=pin)) # fmt: skip
         if t == "BREAK" and expected == {'BOX_NAME', 'CARD', 'LBRACKET', 'LEG_ARROW', 'MINUS', 'SLASH', 'SP', 'ID_MARK'}:
@@ -61,11 +61,11 @@ def parse_source(source):
         if t == "SP" and expected == {'COMMA', 'COLON', 'NL'}:
             raise MocodoError(519, _('{pin}The constraint targets must be comma-separated.').format(pin=pin)) # fmt: skip
         if expected == {'HASHTAG', 'NL', 'ID_GROUPS', 'ID_MARK', 'ATTR', 'COMMA'}:
-            raise MocodoError(500, _('{pin}An attribute label cannot start with {v[1]!r}.').format(pin=pin, v=v)) # fmt: skip
+            raise MocodoError(500, _('{pin}An attribute label cannot start with "{v[1]!r}".').format(pin=pin, v=v)) # fmt: skip
         if expected == {'NL', 'ATTR', 'COMMA'}:
-            raise MocodoError(500, _('{pin}An attribute label cannot start with {v[1]!r}.').format(pin=pin, v=v)) # fmt: skip
+            raise MocodoError(500, _('{pin}An attribute label cannot start with "{v[1]!r}".').format(pin=pin, v=v)) # fmt: skip
         if expected == {'LBRACKET', 'NL', 'COMMA', "BANG", "QMARK"}:
-            raise MocodoError(521, _('{pin}An attribute label cannot contain {v}.').format(pin=pin, v=v)) # fmt: skip
+            raise MocodoError(521, _('{pin}An attribute label cannot contain "{v}".').format(pin=pin, v=v)) # fmt: skip
         if t in ("COMMA", "NL", "BREAK") and expected == {'MORETHAN', 'QMARK', 'BANG'}:
             raise MocodoError(522, _('{pin}An attribute starting with "#" must contain two ">".').format(pin=pin)) # fmt: skip
         if t in ("COMMA", "NL", "BREAK") and expected == {'MORETHAN'}:
@@ -73,7 +73,7 @@ def parse_source(source):
         if t in ("COMMA", "NL", "BREAK") and expected == {'ATTR'}:
             raise MocodoError(523, _('{pin}Expected an entity name.').format(pin=pin)) # fmt: skip
         if expected == {'COLON', 'COMMA', 'NL'}:
-            raise MocodoError(524, _('{pin}A box name cannot contain {v}.').format(pin=pin, v=v)) # fmt: skip
+            raise MocodoError(524, _('{pin}A box name cannot contain "{v}".').format(pin=pin, v=v)) # fmt: skip
         if expected == {"COMMA"}:
             raise MocodoError(525, _('{pin}Expected a comma.').format(pin=pin, v=v)) # fmt: skip)
         if t == "BOX_NAME" and expected == {'COMMA', 'NL'}:
@@ -82,7 +82,7 @@ def parse_source(source):
             raise MocodoError(527, _('{pin}More than two coordinates.').format(pin=pin, v=v)) # fmt: skip
         if expected == {'LBRACKET', 'NL', 'COMMA', 'MORETHAN'}:
             raise MocodoError(528, _('{pin}An attribute label cannot have more than one optionality marker.').format(pin=pin, v=v))
-        raise MocodoError(504, _('{pin}\nToken {t}\nExpected {expected}.').format(pin=pin, expected=expected, t=t))
+        raise MocodoError(504, _('{pin}Token "{t}" encountered. Expected tokens: {expected}.').format(pin=pin, expected=expected, t=t))
         
     
 class Reconstructor(Visitor):

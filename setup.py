@@ -127,7 +127,7 @@ setup(
             'resources/colors/*.json',
             'resources/lorem/*.txt',
             'resources/relation_templates/*.json',
-            'resources/res/*.mo',
+            'resources/i18n/*.mo',
             'resources/shapes/*.json',
             'resources/pristine_sandbox.mcd',
             'resources/font_metrics.json'

@@ -121,7 +121,7 @@ def run(source, subargs=None, params=None, **kargs):
             # All associations are compatible with their card schemes
             break
     else:
-        raise MocodoError(28, _("Cannot find a suitable combination of card schemes and arities"))  # fmt: skip
+        raise MocodoError(28, _("Cannot find a suitable combination of card schemes and arities."))  # fmt: skip
 
     for key in ("assoc_attrs", "composite_ids"):
         settings[key] = random_booleans(n, settings[key])
@@ -165,7 +165,7 @@ def run(source, subargs=None, params=None, **kargs):
         cards = calculate_cards(card_schemes[i], refs)
         clauses.append(", ".join([new_association] + [f"{card} {ref}" for (card, ref) in zip(cards, refs)]))
         weak_entities.update(extract_weak_entities(cards, refs))
-        new_assoc_attrs = [f"attr {counter} {j}" for j in range(1, settings["assoc_attrs"][i] + 1)]
+        new_assoc_attrs = [f"{attr_base} {counter} {j}" for j in range(1, settings["assoc_attrs"][i] + 1)]
         if new_assoc_attrs:
             clauses[-1] += f": {', '.join(new_assoc_attrs)}"
         associations.append(new_association)
@@ -178,7 +178,7 @@ def run(source, subargs=None, params=None, **kargs):
         cards = calculate_cards(card_schemes[i], refs)
         clauses.append(", ".join([new_association] + [f"{card} {ref}" for (card, ref) in zip(cards, refs)]))
         weak_entities.update(extract_weak_entities(cards, refs))
-        new_assoc_attrs = [f"attr {counter} {j}" for j in range(1, settings["assoc_attrs"][i] + 1)]
+        new_assoc_attrs = [f"{attr_base} {counter} {j}" for j in range(1, settings["assoc_attrs"][i] + 1)]
         if new_assoc_attrs:
             clauses[-1] += f": {', '.join(new_assoc_attrs)}"
         associations.append(new_association)

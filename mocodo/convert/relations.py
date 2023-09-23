@@ -336,7 +336,7 @@ class Relations:
                     result.add(child_leg.entity_name)
             elif inheritance.kind == "=>":
                 if "T" not in inheritance.name_view:
-                    raise MocodoError(25, _('Totality (/T\\ or /XT\\) is mandatory for "=>" inheritance of parent {name}.').format(name=parent_leg.entity_name)) # fmt: skip
+                    raise MocodoError(25, _('Totality (/T\\ or /XT\\) is mandatory for "=>" inheritance of parent "{name}".').format(name=parent_leg.entity_name)) # fmt: skip
                 result.add(parent_leg.entity_name)
         return result
 

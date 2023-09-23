@@ -72,7 +72,7 @@ def init_localization(language):
             except:
                 language = "en"
     try:
-        path = Path(f"{SCRIPT_DIRECTORY}/resources/res/messages_{language}.mo")
+        path = Path(f"{SCRIPT_DIRECTORY}/resources/i18n/messages_{language}.mo")
         with path.open("rb") as mo_contents:
             trans = gettext.GNUTranslations(mo_contents)
     except IOError:
