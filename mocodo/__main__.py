@@ -137,9 +137,8 @@ class Runner:
                         raise subopt_error("rewrite", subopt)
                     source = module.run(source, subopt=subopt, subargs=subargs, params=self.params).rstrip()
                 response.may_log("rewritten_source", source)
-            # The geometry needs to be recomputed after the rewrite operations
-            with contextlib.suppress(FileNotFoundError): # Argument missing_ok=True is not available prior to Python 3.8
-                Path(f"{self.params['output_name']}_geo.json").unlink()
+            if not self.params["is_magic"]:
+                safe_print_for_PHP(self.common.update_source(source))
         
         may_update_params_with_guessed_title(source, self.params)
 
