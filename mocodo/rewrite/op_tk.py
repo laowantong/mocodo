@@ -46,7 +46,7 @@ class Mapper(Transformer):
     def __init__(self, op_name, pre_token, subsubarg, params):
         tokens = ELEMENT_TO_TOKENS[pre_token]
         op = GENERAL_OPERATIONS.get(op_name)
-        if op is None: # op_tk operations with limited applicability and/or interested in a subsubarg
+        if op is None: # op_tk operations with limited applicability and/or using a subsubarg
             if op_name == "randomize" and pre_token == "types":
                 resource_dir = Path(params["script_directory"], "resources")
                 pool = list(dict(read_default_datatypes(resource_dir)).values())
@@ -67,6 +67,10 @@ class Mapper(Transformer):
             elif op_name == "replace":
                 (substring, __, repl) = subsubarg.partition("/")
                 op = lambda x: x.replace(substring, repl)
+            elif op_name == "suffix":
+                op = lambda x: f"{x}{subsubarg}"
+            elif op_name == "prefix":
+                op = lambda x: f"{subsubarg}{x}"
             else:
                 raise MocodoError(24, _('Operation "{op_name}" cannot be applied to "{pre_token}".').format(op_name=op_name, pre_token=pre_token))
         update_first_child = lambda tree: tree[0].update(value=op(tree[0].value))

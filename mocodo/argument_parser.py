@@ -194,6 +194,12 @@ class Transformations:
             "aliases": ["lowercase", "lower_case", "lower-case"],
             "op_tk": True,
         },
+        "prefix": {
+            "category": "rw",
+            "help": "prefix the given elements with the given string",
+            "aliases": ["prepend"],
+            "op_tk": True,
+        },
         "randomize": {
             "category": "rw",
             "help": "keep the stucture, but replace the given elements with random ones whenever possible",
@@ -221,6 +227,12 @@ class Transformations:
             "category": "rw",
             "help": "decompose any n-ary (*,1) associations into n-1 binary ones",
             "aliases": [],
+        },
+        "suffix": {
+            "category": "rw",
+            "help": "suffix the given elements with the given string",
+            "aliases": ["append"],
+            "op_tk": True,
         },
         "swapcase": {
             "category": "rw",
