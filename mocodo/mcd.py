@@ -391,7 +391,7 @@ class Mcd:
     def calculate_or_retrieve_geo(self, params):
         geo_path = Path(f"{params['output_name']}_geo.json")
         mcd_path = Path(f"{params['input']}")
-        if geo_path.is_file() and params["scale"] != 1 and (params["reuse_geo"] or mcd_path.stat().st_mtime < geo_path.stat().st_mtime):
+        if geo_path.is_file() and params["scale"] == 1 and (params["reuse_geo"] or mcd_path.stat().st_mtime < geo_path.stat().st_mtime):
             try:
                 web_geo = json.loads(geo_path.read_text("utf8"))
                 geo = {k: dict(v) if isinstance(v, list) else v for (k, v) in web_geo.items()}
