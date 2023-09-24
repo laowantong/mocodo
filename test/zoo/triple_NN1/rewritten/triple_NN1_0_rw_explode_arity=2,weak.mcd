@@ -1,11 +1,9 @@
 Projet: projet
-:
-
 DF, _11 Gérer, 1N Projet
-Ingénieur: ingénieur
-
 Gérer:
-DF, _11 Gérer, 1N Ingénieur
-
 DF, 11 Gérer, 1N Responsable
+
+:
+Ingénieur: ingénieur
+DF, _11 Gérer, 1N Ingénieur
 Responsable: responsable

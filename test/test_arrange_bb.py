@@ -136,19 +136,18 @@ class ArrangeBB(unittest.TestCase):
         actual = arrange(source, subargs)
         expected = """
             DF, 11 LOREM, 1N SUSPENDISSE
-            LOREM: ipsum, dolor, sit
-            AMET, 11> LOREM, 01 CONSECTETUER: adipiscing
-
             SUSPENDISSE: diam
-            SOLLICITUDIN, 0N SUSPENDISSE, 0N CONSECTETUER, 0N LOREM: lectus
-            CONSECTETUER: elit, sed
-
             MAECENAS, 1N DIGNISSIM, 1N DIGNISSIM
-            DIGNISSIM: ligula, massa, varius
-            TORTOR, 0N RISUS, 11 DIGNISSIM, 1N CONSECTETUER: nec
-
             SEMPER, 0N RISUS, 1N DIGNISSIM
+
+            LOREM: ipsum, dolor, sit
+            SOLLICITUDIN, 0N SUSPENDISSE, 0N CONSECTETUER, 0N LOREM: lectus
+            DIGNISSIM: ligula, massa, varius
             RISUS: ultricies, _cras, elementum
+
+            AMET, 11> LOREM, 01 CONSECTETUER: adipiscing
+            CONSECTETUER: elit, sed
+            TORTOR, 0N RISUS, 11 DIGNISSIM, 1N CONSECTETUER: nec
             DF, 11 RISUS, 0N RISUS
         """.replace("   ", "").strip()
         self.assertEqual(actual, expected)

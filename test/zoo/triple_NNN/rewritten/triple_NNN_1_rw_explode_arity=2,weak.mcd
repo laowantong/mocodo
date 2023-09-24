@@ -1,11 +1,9 @@
 Projet: projet, date début, date fin
-:
-
 DF, _11 Appliquer, 1N Projet
-Compétence: compétence, libellé
-
 Appliquer:
-DF, _11 Appliquer, 1N Compétence
-
 DF, _11 Appliquer, 0N Employé
+
+:
+Compétence: compétence, libellé
+DF, _11 Appliquer, 1N Compétence
 Employé: employé, nom

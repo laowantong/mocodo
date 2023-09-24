@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<svg width="344" height="128" viewBox="0 0 344 128" xmlns="http://www.w3.org/2000/svg">
-<rect id="frame" x="0" y="0" width="344" height="128" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<svg width="346" height="128" viewBox="0 0 346 128" xmlns="http://www.w3.org/2000/svg">
+<rect id="frame" x="0" y="0" width="346" height="128" fill="#FFFFFF" stroke="none" stroke-width="0"/>
 
 <!-- Entity COMPOSER -->
 <g>
@@ -20,17 +20,17 @@
 <!-- Entity HOMME -->
 <g>
 	<g>
-		<rect x="218" y="9" width="88" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
-		<rect x="218" y="39" width="88" height="80" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
-		<rect x="218" y="9" width="88" height="110" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
-		<line x1="218" y1="39" x2="306" y2="39" stroke="#000000" stroke-width="1.5"/>
+		<rect x="218" y="9" width="90" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="218" y="39" width="90" height="80" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="218" y="9" width="90" height="110" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
+		<line x1="218" y1="39" x2="308" y2="39" stroke="#000000" stroke-width="1.5"/>
 	</g>
-	<text x="227" y="30.3" fill="#000000" font-family="Copperplate" font-size="18">HOMME</text>
+	<text x="228" y="30.3" fill="#000000" font-family="Copperplate" font-size="18">HOMME</text>
 	<text x="226" y="56.1" fill="#000000" font-family="Gill Sans" font-size="15">Num. SS</text>
 	<line x1="226" y1="59" x2="280" y2="59" stroke="#000000" stroke-width="1"/>
 	<text x="226" y="73.1" fill="#000000" font-family="Gill Sans" font-size="15">Nom</text>
 	<text x="226" y="90.1" fill="#000000" font-family="Gill Sans" font-size="15">Prénom</text>
-	<text x="226" y="107" fill="#000000" font-family="Gill Sans" font-size="15">Num. SS.1!</text>
+	<text x="226" y="107" fill="#000000" font-family="Gill Sans" font-size="15">#Num. SS.1</text>
 </g>
 
 <!-- Link from &quot;Num. SS&quot; (HOMME) to &quot;Num. SS&quot; (HOMME) -->

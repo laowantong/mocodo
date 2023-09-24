@@ -2,20 +2,18 @@
 
 :
 :
-Carnet: carnet
-
-:
-:
-DF, 11 Utiliser, 1N Carnet
-
 Projet: projet
+:
+:
+
+:
+:
 DF, 11 Utiliser, 1N Projet
+:
+:
+
+Carnet: carnet
+DF, 11 Utiliser, 1N Carnet
 Utiliser: id. utiliser
-
-:
-:
 DF, 11 Utiliser, 1N Technicien
-
-:
-:
 Technicien: technicien

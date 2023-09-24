@@ -25,10 +25,10 @@
 		<line x1="186" y1="39" x2="376" y2="39" stroke="#000000" stroke-width="1.5"/>
 	</g>
 	<text x="195" y="30.3" fill="#000000" font-family="Copperplate" font-size="18">Ligne de commande</text>
-	<text x="194" y="56.1" fill="#000000" font-family="Gill Sans" font-size="15">commande</text>
-	<line x1="194" y1="59" x2="263" y2="59" stroke="#000000" stroke-width="1"/>
-	<text x="194" y="73.1" fill="#000000" font-family="Gill Sans" font-size="15">produit</text>
-	<line x1="194" y1="76" x2="241" y2="76" stroke="#000000" stroke-width="1"/>
+	<text x="194" y="56.1" fill="#000000" font-family="Gill Sans" font-size="15">#commande</text>
+	<line x1="194" y1="59" x2="272" y2="59" stroke="#000000" stroke-width="1"/>
+	<text x="194" y="73.1" fill="#000000" font-family="Gill Sans" font-size="15">#produit</text>
+	<line x1="194" y1="76" x2="250" y2="76" stroke="#000000" stroke-width="1"/>
 	<text x="194" y="90" fill="#000000" font-family="Gill Sans" font-size="15">quantité</text>
 </g>
 

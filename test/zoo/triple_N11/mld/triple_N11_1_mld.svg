@@ -25,11 +25,11 @@
 		<line x1="175" y1="39" x2="275" y2="39" stroke="#000000" stroke-width="1.5"/>
 	</g>
 	<text x="184" y="30.3" fill="#000000" font-family="Copperplate" font-size="18">Affecter</text>
-	<text x="183" y="56.1" fill="#000000" font-family="Gill Sans" font-size="15">projet</text>
-	<line x1="183" y1="59" x2="222" y2="59" stroke="#000000" stroke-width="1"/>
-	<text x="183" y="73.1" fill="#000000" font-family="Gill Sans" font-size="15">employé</text>
-	<line x1="183" y1="76" x2="237" y2="76" stroke="#000000" stroke-width="1"/>
-	<text x="183" y="90" fill="#000000" font-family="Gill Sans" font-size="15">site!</text>
+	<text x="183" y="56.1" fill="#000000" font-family="Gill Sans" font-size="15">#projet</text>
+	<line x1="183" y1="59" x2="231" y2="59" stroke="#000000" stroke-width="1"/>
+	<text x="183" y="73.1" fill="#000000" font-family="Gill Sans" font-size="15">#employé</text>
+	<line x1="183" y1="76" x2="246" y2="76" stroke="#000000" stroke-width="1"/>
+	<text x="183" y="90" fill="#000000" font-family="Gill Sans" font-size="15">#site</text>
 </g>
 
 <!-- Entity Site -->

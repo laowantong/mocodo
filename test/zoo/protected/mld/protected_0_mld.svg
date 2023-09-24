@@ -25,9 +25,9 @@
 		<line x1="188" y1="39" x2="308" y2="39" stroke="#000000" stroke-width="1.5"/>
 	</g>
 	<text x="197" y="30.3" fill="#000000" font-family="Copperplate" font-size="18">Superviser</text>
-	<text x="196" y="56.1" fill="#000000" font-family="Gill Sans" font-size="15">id. agence</text>
-	<line x1="196" y1="59" x2="258" y2="59" stroke="#000000" stroke-width="1"/>
-	<text x="196" y="73.1" fill="#000000" font-family="Gill Sans" font-size="15">id. dir.!</text>
+	<text x="196" y="56.1" fill="#000000" font-family="Gill Sans" font-size="15">#id. agence</text>
+	<line x1="196" y1="59" x2="267" y2="59" stroke="#000000" stroke-width="1"/>
+	<text x="196" y="73.1" fill="#000000" font-family="Gill Sans" font-size="15">#id. dir.</text>
 </g>
 
 <!-- Entity Direction régionale -->

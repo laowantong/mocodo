@@ -1,17 +1,17 @@
 %%mocodo
 :
-SUSCIPIT: orci, lorem, magna!, type!
+SUSCIPIT: orci, lorem, magna, type
 :::
-SODALES: magna, vestibulum, #fermentum! > CONSEQUAT > fermentum, convallis, ipsum
+SODALES: magna, vestibulum, #fermentum > CONSEQUAT > fermentum, convallis, ipsum
 :::
-QUAM: cras, sed, #magna! > SODALES > magna
+QUAM: cras, sed, #magna > SODALES > magna
 :
 
 
 :
 CONSEQUAT: fermentum, dederit
 :::
-NEC: magna, vestibulum, #fermentum! > CONSEQUAT > fermentum, pulvinar, audis, #gravida! > CURABITUR > gravida
+NEC: magna, vestibulum, #fermentum > CONSEQUAT > fermentum, pulvinar, audis, #gravida > CURABITUR > gravida
 :::
 CURABITUR: gravida, amor
 :
@@ -20,9 +20,9 @@ CURABITUR: gravida, amor
 :
 DIGNISSIM: tellus, terra
 :
-ALIQUET: magna, _#tellus > DIGNISSIM > tellus, type!
+ALIQUET: magna, _#tellus > DIGNISSIM > tellus, type
 :
-LACUS: magna, vestibulum, #fermentum! > CONSEQUAT > fermentum, tempor, fugit
+LACUS: magna, vestibulum, #fermentum > CONSEQUAT > fermentum, tempor, fugit
 :
 ULTRICES: #posuere > LIBERO > posuere, _#magna > LACUS > magna
 :

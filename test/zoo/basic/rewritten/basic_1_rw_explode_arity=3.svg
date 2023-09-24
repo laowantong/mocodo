@@ -1,78 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<svg width="293" height="542" viewBox="0 0 293 542" xmlns="http://www.w3.org/2000/svg">
-<rect id="frame" x="0" y="0" width="293" height="542" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<svg width="587" height="294" viewBox="0 0 587 294" xmlns="http://www.w3.org/2000/svg">
+<rect id="frame" x="0" y="0" width="587" height="294" fill="#FFFFFF" stroke="none" stroke-width="0"/>
 
 <!-- Association INCLURE -->
 <g>
-	<line x1="130" y1="352" x2="130" y2="252" stroke="#000000" stroke-width="1"/>
-	<line x1="130" y1="152" x2="130" y2="252" stroke="#000000" stroke-width="1"/>
+	<line x1="444" y1="104" x2="303" y2="104" stroke="#000000" stroke-width="1"/>
+	<line x1="175" y1="104" x2="303" y2="104" stroke="#000000" stroke-width="1"/>
 	<g>
-		<path d="M165 223 a14 14 90 0 1 14 14 V251 h-98 V237 a14 14 90 0 1 14 -14" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
-		<path d="M179 251 v16 a14 14 90 0 1 -14 14 H95 a14 14 90 0 1 -14 -14 V251 H98" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
-		<rect x="81" y="223" width="98" height="58" fill="none" rx="14" stroke="#000000" stroke-width="1.5"/>
-		<line x1="81" y1="251" x2="179" y2="251" stroke="#000000" stroke-width="1.5"/>
-		<text x="89" y="244.3" fill="#000000" font-family="Copperplate" font-size="18">INCLURE</text>
-		<text x="88" y="269.1" fill="#000000" font-family="Gill Sans" font-size="15">Quantité</text>
+		<path d="M338 75 a14 14 90 0 1 14 14 V103 h-98 V89 a14 14 90 0 1 14 -14" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+		<path d="M352 103 v16 a14 14 90 0 1 -14 14 H268 a14 14 90 0 1 -14 -14 V103 H98" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+		<rect x="254" y="75" width="98" height="58" fill="none" rx="14" stroke="#000000" stroke-width="1.5"/>
+		<line x1="254" y1="103" x2="352" y2="103" stroke="#000000" stroke-width="1.5"/>
+		<text x="262" y="96.3" fill="#000000" font-family="Copperplate" font-size="18">INCLURE</text>
+		<text x="261" y="121.1" fill="#000000" font-family="Gill Sans" font-size="15">Quantité</text>
 	</g>
-	<text x="135" y="297" fill="#000000" font-family="Futura" font-size="11">1,N</text>
-	<text x="135" y="215" fill="#000000" font-family="Futura" font-size="11">0,N</text>
+	<text x="357" y="120" fill="#000000" font-family="Futura" font-size="11">1,N</text>
+	<text x="230" y="120" fill="#000000" font-family="Futura" font-size="11">0,N</text>
 </g>
 
 <!-- Association DF3 -->
 <g>
-	<line x1="242" y1="478" x2="242" y2="352" stroke="#000000" stroke-width="1"/>
-	<line x1="130" y1="352" x2="242" y2="352" stroke="#000000" stroke-width="1"/>
+	<line x1="536" y1="230" x2="444" y2="230" stroke="#000000" stroke-width="1"/>
+	<line x1="444" y1="104" x2="444" y2="230" stroke="#000000" stroke-width="1"/>
 	<g>
-		<circle cx="242" cy="352" r="20" stroke="#000000" stroke-width="1.5" fill="#FFFFFF"/>
-		<text x="229" y="356.8" fill="#000000" font-family="Copperplate" font-size="18">DF</text>
+		<circle cx="444" cy="230" r="20" stroke="#000000" stroke-width="1.5" fill="#FFFFFF"/>
+		<text x="431" y="234.8" fill="#000000" font-family="Copperplate" font-size="18">DF</text>
 	</g>
-	<text x="247" y="415" fill="#000000" font-family="Futura" font-size="11">0,N</text>
-	<text x="198" y="368" fill="#000000" font-family="Futura" font-size="11">1,1</text>
+	<text x="470" y="246" fill="#000000" font-family="Futura" font-size="11">0,N</text>
+	<text x="449" y="167" fill="#000000" font-family="Futura" font-size="11">1,1</text>
 </g>
 
 <!-- Entity PRODUIT -->
 <g>
 	<g>
-		<rect x="80" y="105" width="100" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
-		<rect x="80" y="135" width="100" height="64" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
-		<rect x="80" y="105" width="100" height="94" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
-		<line x1="80" y1="135" x2="180" y2="135" stroke="#000000" stroke-width="1.5"/>
+		<rect x="125" y="57" width="100" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="125" y="87" width="100" height="64" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="125" y="57" width="100" height="94" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
+		<line x1="125" y1="87" x2="225" y2="87" stroke="#000000" stroke-width="1.5"/>
 	</g>
-	<text x="89" y="126.3" fill="#000000" font-family="Copperplate" font-size="18">PRODUIT</text>
-	<text x="88" y="152.1" fill="#000000" font-family="Gill Sans" font-size="15">Réf. produit</text>
-	<line x1="88" y1="155" x2="163" y2="155" stroke="#000000" stroke-width="1"/>
-	<text x="88" y="169.1" fill="#000000" font-family="Gill Sans" font-size="15">Libellé</text>
-	<text x="88" y="186" fill="#000000" font-family="Gill Sans" font-size="15">Prix unitaire</text>
+	<text x="134" y="78.3" fill="#000000" font-family="Copperplate" font-size="18">PRODUIT</text>
+	<text x="133" y="104.1" fill="#000000" font-family="Gill Sans" font-size="15">Réf. produit</text>
+	<line x1="133" y1="107" x2="208" y2="107" stroke="#000000" stroke-width="1"/>
+	<text x="133" y="121.1" fill="#000000" font-family="Gill Sans" font-size="15">Libellé</text>
+	<text x="133" y="138" fill="#000000" font-family="Gill Sans" font-size="15">Prix unitaire</text>
 </g>
 
 <!-- Entity COMMANDE -->
 <g>
 	<g>
-		<rect x="67" y="305" width="126" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
-		<rect x="67" y="335" width="126" height="64" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
-		<rect x="67" y="305" width="126" height="94" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
-		<line x1="67" y1="335" x2="193" y2="335" stroke="#000000" stroke-width="1.5"/>
+		<rect x="381" y="57" width="126" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="381" y="87" width="126" height="64" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="381" y="57" width="126" height="94" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
+		<line x1="381" y1="87" x2="507" y2="87" stroke="#000000" stroke-width="1.5"/>
 	</g>
-	<text x="76" y="326.3" fill="#000000" font-family="Copperplate" font-size="18">COMMANDE</text>
-	<text x="75" y="352.1" fill="#000000" font-family="Gill Sans" font-size="15">Num. commande</text>
-	<line x1="75" y1="355" x2="183" y2="355" stroke="#000000" stroke-width="1"/>
-	<text x="75" y="369.1" fill="#000000" font-family="Gill Sans" font-size="15">Date</text>
-	<text x="75" y="386" fill="#000000" font-family="Gill Sans" font-size="15">Montant</text>
+	<text x="390" y="78.3" fill="#000000" font-family="Copperplate" font-size="18">COMMANDE</text>
+	<text x="389" y="104.1" fill="#000000" font-family="Gill Sans" font-size="15">Num. commande</text>
+	<line x1="389" y1="107" x2="497" y2="107" stroke="#000000" stroke-width="1"/>
+	<text x="389" y="121.1" fill="#000000" font-family="Gill Sans" font-size="15">Date</text>
+	<text x="389" y="138" fill="#000000" font-family="Gill Sans" font-size="15">Montant</text>
 </g>
 
 <!-- Entity CLIENT -->
 <g>
 	<g>
-		<rect x="200" y="423" width="84" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
-		<rect x="200" y="453" width="84" height="80" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
-		<rect x="200" y="423" width="84" height="110" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
-		<line x1="200" y1="453" x2="284" y2="453" stroke="#000000" stroke-width="1.5"/>
+		<rect x="494" y="175" width="84" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="494" y="205" width="84" height="80" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="494" y="175" width="84" height="110" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
+		<line x1="494" y1="205" x2="578" y2="205" stroke="#000000" stroke-width="1.5"/>
 	</g>
-	<text x="208" y="444.3" fill="#000000" font-family="Copperplate" font-size="18">CLIENT</text>
-	<text x="208" y="470.1" fill="#000000" font-family="Gill Sans" font-size="15">Réf. client</text>
-	<line x1="208" y1="473" x2="270" y2="473" stroke="#000000" stroke-width="1"/>
-	<text x="208" y="487.1" fill="#000000" font-family="Gill Sans" font-size="15">Nom</text>
-	<text x="208" y="504.1" fill="#000000" font-family="Gill Sans" font-size="15">Prénom</text>
-	<text x="208" y="521" fill="#000000" font-family="Gill Sans" font-size="15">Adresse</text>
+	<text x="502" y="196.3" fill="#000000" font-family="Copperplate" font-size="18">CLIENT</text>
+	<text x="502" y="222.1" fill="#000000" font-family="Gill Sans" font-size="15">Réf. client</text>
+	<line x1="502" y1="225" x2="564" y2="225" stroke="#000000" stroke-width="1"/>
+	<text x="502" y="239.1" fill="#000000" font-family="Gill Sans" font-size="15">Nom</text>
+	<text x="502" y="256.1" fill="#000000" font-family="Gill Sans" font-size="15">Prénom</text>
+	<text x="502" y="273" fill="#000000" font-family="Gill Sans" font-size="15">Adresse</text>
 </g>
 </svg>

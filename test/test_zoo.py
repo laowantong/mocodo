@@ -1,7 +1,6 @@
 import json
 import time
 import gettext
-gettext.NullTranslations().install()
 from pathlib import Path
 import shutil
 from mocodo.argument_parser import parsed_arguments
@@ -91,6 +90,7 @@ def main():
         templates.append(read_template(name, TEMPLATE_DIR))
 
     params = parsed_arguments()
+    gettext.NullTranslations().install()
     params["guess_title"] = False
     params["id_gutter_visibility"] = "auto"
     params["id_gutter_strong_string"] = "ID"

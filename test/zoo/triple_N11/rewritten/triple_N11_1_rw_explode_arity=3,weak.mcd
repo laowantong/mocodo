@@ -1,14 +1,12 @@
 Site: site, position
-:
-
 DF, 11 Affecter, 1N Site
-Employé: employé, nom employé
-
 Affecter:
-DF, _11 Affecter, 0N Employé
-
 DF, 11 Affecter, 1N Projet
+
+:
+Employé: employé, nom employé
+DF, _11 Affecter, 0N Employé
 Projet: projet, libellé
 
-(CIF) --Projet, --Employé, ..Affecter, ->Site: Projet, Employé
-(CIF) ..Affecter, ->Projet, Employé, Site: Site, Employé
+(CIF) --Projet, --Employé, ..Affecter, ->Site: Employé, Projet
+(CIF) ..Affecter, ->Projet, Employé, Site: Employé, Site

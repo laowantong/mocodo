@@ -4,8 +4,8 @@ Site: site
 
 Employé: employé
 
-phantom1:
-phantom2:
+-INVISIBLE_1, XX Projet, XX Projet
+-INVISIBLE_2, XX Site, XX Site
 
-(CIF) ..Affecter, ->Projet, --Employé, --Site: phantom1, phantom1
-(CIF) ..Affecter, ->Site, --Employé, --Projet: phantom2, phantom2
+(CIF) ..Affecter, ->Projet, --Employé, --Site: INVISIBLE_1, INVISIBLE_1
+(CIF) ..Affecter, ->Site, --Employé, --Projet: INVISIBLE_2, INVISIBLE_2

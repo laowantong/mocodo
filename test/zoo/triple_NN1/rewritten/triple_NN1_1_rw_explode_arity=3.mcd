@@ -1,11 +1,9 @@
 Projet: projet, libellé projet
-:
-
 DF, 11 Gérer, 1N Projet
-Ingénieur: ingénieur, nom ingénieur
-
 Gérer: id. gérer
-DF, 11 Gérer, 1N Ingénieur
-
 DF, 11 Gérer, 1N Responsable
+
+:
+Ingénieur: ingénieur, nom ingénieur
+DF, 11 Gérer, 1N Ingénieur
 Responsable: responsable, nom responsable

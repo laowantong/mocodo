@@ -7,5 +7,5 @@ Villageois: nom villageois, adresse, fonction
 
 
 :::
-Trophée: numéro, type, état, #nom villageois! > Villageois > nom villageois, #nom bataille! > Bataille > nom bataille
+Trophée: numéro, type, état, #nom villageois > Villageois > nom villageois, #nom bataille > Bataille > nom bataille
 :::

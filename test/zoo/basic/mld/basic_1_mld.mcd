@@ -5,7 +5,7 @@ CLIENT: Réf. client, Nom, Prénom, Adresse
 
 
 :::
-COMMANDE: Num. commande, Date, Montant, #Réf. client! > CLIENT > Réf. client
+COMMANDE: Num. commande, Date, Montant, #Réf. client > CLIENT > Réf. client
 :::
 PRODUIT: Réf. produit, Libellé, Prix unitaire
 :

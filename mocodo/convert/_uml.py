@@ -1,6 +1,5 @@
-from collections import Counter
 import itertools
-import re
+import gettext
 
 __import__("sys").path[0:0] = ["."]
 
@@ -17,6 +16,8 @@ MIN_MAX_IN_UML = {
     "11": "1",
     "1N": "1..*",
 }
+
+gettext.NullTranslations().install()
 
 INHERITANCE_IN_UML = {
     "XT": _("{complete, disjoint}"), # Partition

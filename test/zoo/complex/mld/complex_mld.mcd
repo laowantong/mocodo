@@ -1,7 +1,7 @@
 :::
-OCCUPE: #code espèce > ANIMAL > code espèce, _#nom > ANIMAL > nom, _#date naissance > ANIMAL > date naissance, _num. enclos, date début!, date fin!
+OCCUPE: #code espèce > ANIMAL > code espèce, _#nom > ANIMAL > nom, _#date naissance > ANIMAL > date naissance, _num. enclos, date début, date fin
 :
-ANIMAL: #code espèce > ESPÈCE > code espèce, _nom, _date naissance, sexe, date décès, #code espèce mère? > ANIMAL > code espèce, #nom mère? > ANIMAL > nom, #date naissance mère? > ANIMAL > date naissance, type alimentation!, CARNIVORE!, quantité viande?, HERBIVORE!, plante préférée?
+ANIMAL: #code espèce > ESPÈCE > code espèce, _nom, _date naissance, sexe, date décès, #code espèce mère > ANIMAL > code espèce, #nom mère > ANIMAL > nom, #date naissance mère > ANIMAL > date naissance, type alimentation, CARNIVORE, quantité viande, HERBIVORE, plante préférée
 :
 
 

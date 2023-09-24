@@ -11,12 +11,12 @@
 		<line x1="38" y1="39" x2="172" y2="39" stroke="#000000" stroke-width="1.5"/>
 	</g>
 	<text x="47" y="30.3" fill="#000000" font-family="Copperplate" font-size="18">Appartement</text>
-	<text x="46" y="56.1" fill="#000000" font-family="Gill Sans" font-size="15">code rue</text>
-	<line x1="46" y1="59" x2="103" y2="59" stroke="#000000" stroke-width="1"/>
-	<text x="46" y="73.1" fill="#000000" font-family="Gill Sans" font-size="15">num immeuble</text>
-	<line x1="46" y1="76" x2="139" y2="76" stroke="#000000" stroke-width="1"/>
-	<text x="46" y="90.1" fill="#000000" font-family="Gill Sans" font-size="15">num étage</text>
-	<line x1="46" y1="93" x2="111" y2="93" stroke="#000000" stroke-width="1"/>
+	<text x="46" y="56.1" fill="#000000" font-family="Gill Sans" font-size="15">#code rue</text>
+	<line x1="46" y1="59" x2="112" y2="59" stroke="#000000" stroke-width="1"/>
+	<text x="46" y="73.1" fill="#000000" font-family="Gill Sans" font-size="15">#num immeuble</text>
+	<line x1="46" y1="76" x2="148" y2="76" stroke="#000000" stroke-width="1"/>
+	<text x="46" y="90.1" fill="#000000" font-family="Gill Sans" font-size="15">#num étage</text>
+	<line x1="46" y1="93" x2="120" y2="93" stroke="#000000" stroke-width="1"/>
 	<text x="46" y="107" fill="#000000" font-family="Gill Sans" font-size="15">num appart.</text>
 	<line x1="46" y1="110" x2="121" y2="110" stroke="#000000" stroke-width="1"/>
 	<text x="46" y="124" fill="#000000" font-family="Gill Sans" font-size="15">nb pièces</text>
@@ -31,10 +31,10 @@
 		<line x1="230" y1="48" x2="352" y2="48" stroke="#000000" stroke-width="1.5"/>
 	</g>
 	<text x="265" y="39.3" fill="#000000" font-family="Copperplate" font-size="18">Étage</text>
-	<text x="238" y="65.1" fill="#000000" font-family="Gill Sans" font-size="15">code rue</text>
-	<line x1="238" y1="68" x2="295" y2="68" stroke="#000000" stroke-width="1"/>
-	<text x="238" y="82.1" fill="#000000" font-family="Gill Sans" font-size="15">num immeuble</text>
-	<line x1="238" y1="85" x2="331" y2="85" stroke="#000000" stroke-width="1"/>
+	<text x="238" y="65.1" fill="#000000" font-family="Gill Sans" font-size="15">#code rue</text>
+	<line x1="238" y1="68" x2="304" y2="68" stroke="#000000" stroke-width="1"/>
+	<text x="238" y="82.1" fill="#000000" font-family="Gill Sans" font-size="15">#num immeuble</text>
+	<line x1="238" y1="85" x2="340" y2="85" stroke="#000000" stroke-width="1"/>
 	<text x="238" y="99.1" fill="#000000" font-family="Gill Sans" font-size="15">num étage</text>
 	<line x1="238" y1="102" x2="303" y2="102" stroke="#000000" stroke-width="1"/>
 	<text x="238" y="116" fill="#000000" font-family="Gill Sans" font-size="15">nb appartements</text>
@@ -49,8 +49,8 @@
 		<line x1="410" y1="56" x2="520" y2="56" stroke="#000000" stroke-width="1.5"/>
 	</g>
 	<text x="422" y="47.3" fill="#000000" font-family="Copperplate" font-size="18">Immeuble</text>
-	<text x="418" y="73.1" fill="#000000" font-family="Gill Sans" font-size="15">code rue</text>
-	<line x1="418" y1="76" x2="475" y2="76" stroke="#000000" stroke-width="1"/>
+	<text x="418" y="73.1" fill="#000000" font-family="Gill Sans" font-size="15">#code rue</text>
+	<line x1="418" y1="76" x2="484" y2="76" stroke="#000000" stroke-width="1"/>
 	<text x="418" y="90.1" fill="#000000" font-family="Gill Sans" font-size="15">num immeuble</text>
 	<line x1="418" y1="93" x2="511" y2="93" stroke="#000000" stroke-width="1"/>
 	<text x="418" y="107" fill="#000000" font-family="Gill Sans" font-size="15">nb étages</text>

@@ -27,9 +27,9 @@
 	<text x="220" y="30.3" fill="#000000" font-family="Copperplate" font-size="18">Utiliser</text>
 	<text x="220" y="56.1" fill="#000000" font-family="Gill Sans" font-size="15">carnet</text>
 	<line x1="220" y1="59" x2="260" y2="59" stroke="#000000" stroke-width="1"/>
-	<text x="220" y="73.1" fill="#000000" font-family="Gill Sans" font-size="15">projet</text>
-	<line x1="220" y1="76" x2="259" y2="76" stroke="#000000" stroke-width="1"/>
-	<text x="220" y="90" fill="#000000" font-family="Gill Sans" font-size="15">technicien!</text>
+	<text x="220" y="73.1" fill="#000000" font-family="Gill Sans" font-size="15">#projet</text>
+	<line x1="220" y1="76" x2="268" y2="76" stroke="#000000" stroke-width="1"/>
+	<text x="220" y="90" fill="#000000" font-family="Gill Sans" font-size="15">#technicien</text>
 </g>
 
 <!-- Entity Projet -->

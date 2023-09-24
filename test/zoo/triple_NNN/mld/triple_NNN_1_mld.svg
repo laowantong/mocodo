@@ -25,12 +25,12 @@
 		<line x1="198" y1="39" x2="308" y2="39" stroke="#000000" stroke-width="1.5"/>
 	</g>
 	<text x="207" y="30.3" fill="#000000" font-family="Copperplate" font-size="18">Appliquer</text>
-	<text x="206" y="56.1" fill="#000000" font-family="Gill Sans" font-size="15">employé</text>
-	<line x1="206" y1="59" x2="260" y2="59" stroke="#000000" stroke-width="1"/>
-	<text x="206" y="73.1" fill="#000000" font-family="Gill Sans" font-size="15">projet</text>
-	<line x1="206" y1="76" x2="245" y2="76" stroke="#000000" stroke-width="1"/>
-	<text x="206" y="90" fill="#000000" font-family="Gill Sans" font-size="15">compétence</text>
-	<line x1="206" y1="93" x2="283" y2="93" stroke="#000000" stroke-width="1"/>
+	<text x="206" y="56.1" fill="#000000" font-family="Gill Sans" font-size="15">#employé</text>
+	<line x1="206" y1="59" x2="269" y2="59" stroke="#000000" stroke-width="1"/>
+	<text x="206" y="73.1" fill="#000000" font-family="Gill Sans" font-size="15">#projet</text>
+	<line x1="206" y1="76" x2="254" y2="76" stroke="#000000" stroke-width="1"/>
+	<text x="206" y="90" fill="#000000" font-family="Gill Sans" font-size="15">#compétence</text>
+	<line x1="206" y1="93" x2="292" y2="93" stroke="#000000" stroke-width="1"/>
 </g>
 
 <!-- Entity Projet -->

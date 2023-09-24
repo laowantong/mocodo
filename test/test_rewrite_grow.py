@@ -6,11 +6,10 @@ __import__("sys").path[0:0] = ["mocodo"]
 
 from mocodo.rewrite._grow import run as grow
 
-gettext.NullTranslations().install()
-
 class TestGrow(unittest.TestCase):
 
     def test_default(self):
+        gettext.NullTranslations().install()
         random.seed(1)
         actual = grow("FOO: bar, biz", {})
         expected = """
