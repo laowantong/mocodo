@@ -9,13 +9,13 @@ class CreateCifs(Visitor):
     def __init__(self):
         self.candidates = set()
         self.existing = set()
-        self.phantom_numbers = []
+        self.invisible_numbers = []
 
     def entity_clause(self, tree):
         ent_name = str(first_child(tree, "box_name"))
-        m = re.match(r"(?i)phantom(\d+)$", ent_name)
+        m = re.match(r"(?i)invisible(\d+)$", ent_name)
         if m:
-            self.phantom_numbers.append(int(m.group(1)))
+            self.invisible_numbers.append(int(m.group(1)))
 
     def assoc_clause(self, tree):
         legs = [node for node in tree.find_data("assoc_leg")]
@@ -60,16 +60,16 @@ class CreateCifs(Visitor):
         if not self.new_cifs:
             return ""
         sep = ", " if hidden_links_from_sources else ", --"
-        new_phantom_clauses = ["\n"]
+        new_invisible_clauses = ["\n"]
         new_cif_clauses = [""]
         for (assoc_name, *entity_names) in sorted(self.new_cifs):
-            n = first_missing_positive(self.phantom_numbers)
-            self.phantom_numbers.append(n)
-            new_phantom_clauses.append(f"phantom{n}:")
-            new_cif_clauses.append(f"(CIF) ..{assoc_name}, ->{sep.join(entity_names)}: phantom{n}, phantom{n}")
+            n = first_missing_positive(self.invisible_numbers)
+            self.invisible_numbers.append(n)
+            new_invisible_clauses.append(f"-INVISIBLE_{n}, XX {entity_names[0]}, XX {entity_names[0]}")
+            new_cif_clauses.append(f"(CIF) ..{assoc_name}, ->{sep.join(entity_names)}: INVISIBLE_{n}, INVISIBLE_{n}")
         if new_cif_clauses == [""]:
             return ""
-        return "\n".join(new_phantom_clauses + new_cif_clauses)
+        return "\n".join(new_invisible_clauses + new_cif_clauses)
 
 
 def create_cifs(source, subsubarg):
