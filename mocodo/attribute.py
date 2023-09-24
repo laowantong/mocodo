@@ -12,6 +12,7 @@ class Attribute:
         self.datatype = attribute.get("datatype", "")
         self.optionality = attribute.get("attr_suffix", "")
         self.primary_entity_name = attribute.get("that_table")
+        self.hashtag = "#" if self.primary_entity_name else ""
         self.primary_key_label = attribute.get("that_table_attribute_label")
         self.id_groups = set(attribute.get("id_groups", "").replace("0", ""))
         self.id_text =  " ".join(map(self.id_gutter_unicities.get, sorted(self.id_groups)))
@@ -20,7 +21,7 @@ class Attribute:
     def calculate_size(self, style, get_font_metrics):
         self.attribute_font = style[self.font_type]
         self.font = get_font_metrics(self.attribute_font)
-        self.w = self.font.get_pixel_width(self.label)
+        self.w = self.font.get_pixel_width(f"{self.hashtag}{self.label}{self.optionality}")
         self.h = self.font.get_pixel_height()
         self.id_width = self.font.get_pixel_width(self.id_text)
 
@@ -34,7 +35,7 @@ class Attribute:
                 {
                     "x": x + dx,
                     "y": y + round(dy + style["attribute_text_height_ratio"] * self.h, 1),
-                    "text": self.label + self.optionality,
+                    "text": f"{self.hashtag}{self.label}{self.optionality}",
                     "text_color": style[f"{self.box_type}_attribute_text_color"],
                     "family": self.attribute_font["family"],
                     "size": self.attribute_font["size"],
