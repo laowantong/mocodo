@@ -39,6 +39,11 @@
     "help": "convert the conceptual model into a relational schema in Markdown format",
     "aliases": ["md", "mld"]
   },
+  "mssql": {
+    "category": "cv",
+    "help": "convert the conceptual model into a physical model for Microsoft SQL Server",
+    "aliases": ["sqlserver"]
+  },
   "mysql": {
     "category": "cv",
     "help": "convert the conceptual model into a physical model for MySQL",
