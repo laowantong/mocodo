@@ -1,5 +1,4 @@
 import argparse
-import contextlib
 import gettext
 import json
 import locale
@@ -14,7 +13,6 @@ import textwrap
 from mocodo.tools.string_tools import strip_surrounds, TRUNCATE_DEFAULT_SIZE
 from mocodo.tools.various import invert_dict
 
-from .common import version
 from .mocodo_error import MocodoError
 
 SCRIPT_DIRECTORY = os.path.dirname(os.path.realpath(os.path.join(__file__)))
@@ -181,7 +179,6 @@ class Transformations:
             "category": "rw",
             "help": "Apply a vertical (v), horizontal (h) or diagonal (d) symmetry to the diagram",
             "aliases": ["mirror", "reflect"],
-            "op_tk": True,
         },
         "grow": {
             "category": "rw",
@@ -484,7 +481,7 @@ def parsed_arguments():
         default=0,
         help="discriminate between multiple SVG of the same interactive diagram",
     )
-    io_group.add_argument("--show",
+    io_group.add_argument("--select",
         choices=["mcd", "rw", "source", "text", "code", "cv", "mld", "ddl"],
         nargs="*",
         default=argparse.SUPPRESS, # causes no attribute to be added if the argument was not present

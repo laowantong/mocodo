@@ -49,7 +49,7 @@ class ResponseLogger:
             "args_to_delete": params["args_to_delete"],
             "opt_to_restore": params["opt_to_restore"],
             "redirect_output": params["redirect_output"],
-            "show": params["show"],
+            "select": params["select"],
         }
         self.may_log = self.log_for_magic
         self.path = Path(f"{params['output_name']}_response_for_magic_command.json")
@@ -96,28 +96,28 @@ class Runner:
             self.params["mld"] = True
             self.params["convert"].insert(0, ("markdown", {}))
 
-        if self.params.get("show"): # the user wants to override the default display policy under Jupyter
+        if self.params.get("select"): # the user wants to override the default display policy under Jupyter
             normalized_user_choices = []
-            for k in self.params["show"]:
+            for k in self.params["select"]:
                 if k.lower() not in SHOW_ARGS:
-                    raise MocodoError(28, _('Unknown argument "{k}" for option --show.').format(k=k)) # fmt: skip
+                    raise MocodoError(28, _('Unknown argument "{k}" for option --select.').format(k=k)) # fmt: skip
                 normalized_user_choices.append(SHOW_ARGS[k.lower()])
-            self.params["show"] = normalized_user_choices
+            self.params["select"] = normalized_user_choices
         
-        if "show" in self.params:
-            if self.params["show"] == []: # display all outputs: MCD, rewritten source, converted files
-                self.params["show"] = ["mcd", "rw", "cv"]
+        if "select" in self.params:
+            if self.params["select"] == []: # display all outputs: MCD, rewritten source, converted files
+                self.params["select"] = ["mcd", "rw", "cv"]
             # else: don't touch to the user's choices
         elif self.params["rewrite"] and self.params["convert"]:
-            self.params["show"] = ["mcd", "cv"]
+            self.params["select"] = ["mcd", "cv"]
         elif self.params["rewrite"]:
-            self.params["show"] = ["mcd", "rw"]
+            self.params["select"] = ["mcd", "rw"]
         elif self.params["convert"] and self.params["mld"]:
-            self.params["show"] = ["mcd", "cv"]
+            self.params["select"] = ["mcd", "cv"]
         elif self.params["convert"]:
-            self.params["show"] = ["cv"]
+            self.params["select"] = ["cv"]
         else:
-            self.params["show"] = ["mcd"]
+            self.params["select"] = ["mcd"]
 
         response = ResponseLogger(self.params)
 
@@ -204,20 +204,6 @@ class Runner:
         resulting_paths = dump_mcd_to_svg(mcd, self.common)  # potential side-effect: update *_geo.json
         for path in resulting_paths:
             safe_print_for_PHP(self.common.output_success_message(path))
-
-    def flip(self, source, subargs):
-        for subsubopt in subargs:
-            mcd = Mcd(source)
-            if re.match(r"(?i)v(er(t(ical)?)?)?", subsubopt):
-                source = mcd.get_vertically_flipped_clauses()
-            elif re.match(r"(?i)h(or(i(zontal)?)?)?", subsubopt):
-                source = mcd.get_horizontally_flipped_clauses()
-            elif re.match(r"(?i)d(iag(onal)?)?", subsubopt):
-                source = mcd.get_diagonally_flipped_clauses()
-            else:
-                subopt_error("flip", subsubopt)
-        return source
-
 
     def get_rendering_service(self, extension):
         path = Path(self.params["script_directory"], "resources", "rendering_services.json")

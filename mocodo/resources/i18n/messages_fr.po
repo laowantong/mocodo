@@ -7,8 +7,8 @@ msgid ""
 msgstr "Project-Id-Version: mocodo\nPOT-Creation-Date: 2023-09-23 13:41+0200\nPO-Revision-Date: 2015-08-16 07:00+0000\nLast-Translator: Aristide Grange <chewingword@wingi.net>, 2015-2016,2022-2023\nLanguage-Team: French (http://app.transifex.com/aristide/mocodo/language/fr/)\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nGenerated-By: pygettext.py 1.5\nLanguage: fr\nPlural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 #: mocodo/__main__.py:103
-msgid "Unknown argument \"{k}\" for option --show."
-msgstr "Argument « {k} » inconnu pour l'option --show."
+msgid "Unknown argument \"{k}\" for option --select."
+msgstr "Argument « {k} » inconnu pour l'option --select."
 
 #: mocodo/__main__.py:227
 msgid "The file \"{path}\" is missing."

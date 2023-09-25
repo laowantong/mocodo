@@ -182,16 +182,16 @@ class MocodoMagics(Magics):
             new_args = response["opt_to_restore"] + new_args
             rewritten_source = f"%%mocodo{new_args}\n{rewritten_source}"
         
-        for show in response.get("show", []):
-            if show == "mcd":
+        for select in response.get("select", []):
+            if select == "mcd":
                 svg_path = output_path_radical.with_suffix(".svg")
                 if svg_path.is_file() and input_path.stat().st_mtime <= svg_path.stat().st_mtime:
                     display(SVG(filename=svg_path))
-            elif show == "rw":
+            elif select == "rw":
                 path = output_path_radical.with_suffix(".mcd")
                 display(Markdown(OUTPUT_PART_HEADER.format(label=path.relative_to(output_dir))))
                 print(rewritten_source or cell)
-            elif show == "cv":
+            elif select == "cv":
                 for converted_file_path in converted_file_paths:
                     display_converted_file(Path(converted_file_path), hide_header=response.get("mld"))
 
