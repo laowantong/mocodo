@@ -417,13 +417,24 @@ $(document).keypress(function (e) {
 $().ready(function () {
   createTabs();
 	var editor = ace.edit("editor");
-  // if it is launched from localhost, use the local pristine sandbox
-  if (location.hostname == "localhost") {
-    var pristine_sandbox = "/mocodo/mocodo/resources/pristine_sandbox.mcd";
-  }
+  // if the hidden text area named "text" is not empty, use its content as the initial value of the editor
+  var text = $('textarea[name="text"]').val();
+  if (text) {
+    editor.setValue(text);
+    editor.selection.moveCursorFileStart();
+    // get the current URL without the GET arguments
+    var url = window.location.href.split('?')[0];
+    // replace the current URL with the new URL without the GET arguments
+    window.history.pushState({path: url}, '', url);  }
   else {
-    var pristine_sandbox = "/resources/pristine_sandbox.mcd";
-  }
+    // if it is launched from localhost, use the local pristine sandbox
+    if (location.hostname == "localhost") {
+      var pristine_sandbox = "/mocodo/mocodo/resources/pristine_sandbox.mcd";
+    }
+    else {
+      var pristine_sandbox = "/resources/pristine_sandbox.mcd";
+    }
+  };
   $.get(location.protocol + '//' + location.host + pristine_sandbox, function (data) {
     editor.setValue(data);
     editor.selection.moveCursorFileStart();

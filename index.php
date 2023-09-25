@@ -130,10 +130,25 @@
 				</div>
 				<div id="inputContents" class="contents">
 					<div id=inputPane>
-						<div><input type="text" oninput="markAsDirty();freezeTitle();reveal()" onfocus="onFocus(this)" name="title" id="title" value="Sans Titre" onblur="onBlur(this)" autocomplete="off" title="Si vous ne donnez pas de titre à votre MCD, Mocodo essaiera d'en trouver un pour vous." /></div>
+						<div>
+							<input
+								type="text"
+								oninput="markAsDirty();freezeTitle();reveal()"
+								onfocus="onFocus(this)"
+								name="title"
+								id="title"
+								value="Sans Titre"
+								onblur="onBlur(this)"
+								autocomplete="off"
+								title="Si vous ne donnez pas de titre à votre MCD, Mocodo essaiera d'en trouver un pour vous."
+							/>
+						</div>
 						<span id="gear" class="fa fa-cog fa-2x"></span>
 						<select onchange="changeTitleToNthTuto();reveal()" name="tutorial" id="tutorial" title="Parcourez notre galerie de MCD pour apprendre la syntaxe de Mocodo."></select>
-						<textarea hidden name="text"></textarea>
+						<textarea hidden name="text"><?php
+							$encoded_string = (isset($_GET['mcd'])) ? $_GET['mcd'] : '';
+							echo (zlib_decode(base64_decode(strtr($encoded_string, '-_', '+/'))));
+						?></textarea>
 						<div id="editor" onchange="markAsDirty();mayUnfreezeTitle()"></div>
 					</div>
 				</div>
