@@ -5,6 +5,7 @@ import re
 from mocodo.tools.various import first_missing_positive
 
 from ..mocodo_error import MocodoError
+from ..version_number import version
 
 
 def set_defaults(template):
@@ -151,6 +152,7 @@ class Relations:
         data = {}
         data["stem"] = self.output_stem
         data["title"] = transform(self.mcd.title, "transform_title")
+        data["version"] = version
         lines = []
         for (__, relation) in sorted(self.relations.items()): # For the double underscore, see __main__.py
             data["this_relation_name"] = transform(relation["this_relation_name"], "transform_relation_name")

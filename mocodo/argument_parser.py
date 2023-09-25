@@ -13,6 +13,7 @@ import textwrap
 from mocodo.tools.string_tools import strip_surrounds, TRUNCATE_DEFAULT_SIZE
 from mocodo.tools.various import invert_dict
 
+from .version_number import version
 from .mocodo_error import MocodoError
 
 SCRIPT_DIRECTORY = os.path.dirname(os.path.realpath(os.path.join(__file__)))
