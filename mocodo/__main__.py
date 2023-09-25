@@ -66,6 +66,20 @@ class ResponseLogger:
         self.path.write_text(json.dumps(self.response, ensure_ascii=False))
 
 
+def flip(source, subargs):
+    for subsubopt in subargs:
+        mcd = Mcd(source)
+        if re.match(r"(?i)v(er(t(ical)?)?)?", subsubopt):
+            source = mcd.get_vertically_flipped_clauses()
+        elif re.match(r"(?i)h(or(i(zontal)?)?)?", subsubopt):
+            source = mcd.get_horizontally_flipped_clauses()
+        elif re.match(r"(?i)d(iag(onal)?)?", subsubopt):
+            source = mcd.get_diagonally_flipped_clauses()
+        else:
+            subopt_error("flip", subsubopt)
+    return source
+
+
 class Runner:
 
     def __init__(self):
@@ -126,7 +140,7 @@ class Runner:
                 if subopt == "echo":
                     pass
                 elif subopt == "flip":
-                    source = self.flip(source, subargs)
+                    source = flip(source, subargs)
                 elif subopt == "create" and "entities" in subargs:
                     source = guess_entities.run(source, subargs["entities"])
                 elif subopt in transformations.op_tk_rewritings: # ex.: create, delete, ascii, etc.
