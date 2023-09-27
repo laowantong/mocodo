@@ -14,10 +14,11 @@ class TestUpdateTypes(unittest.TestCase):
             NICE: _poke, news [], , lawn [int]
         """
         actual = create_type_placeholders(source)
+        print(actual)
         expected = """
-            MEAN: wash [], rest [], king [int],
-            HERE, 0N NICE, 0N MEAN: wood [], much [], stop [int]
-            NICE: _poke [], news [], , lawn [int]
+            MEAN: wash [TODO], rest [], king [int],
+            HERE, 0N NICE, 0N MEAN: wood [TODO], much [], stop [int]
+            NICE: _poke [TODO], news [], , lawn [int]
         """
         self.assertEqual(actual.strip(), expected.strip())
 

@@ -13,7 +13,7 @@ def run(source, subargs, **kargs):
         has_expired = lambda: False
     else:
         try:
-            timeout = float(timeout)
+            timeout = time() + float(timeout)
             has_expired = lambda: time() > timeout
         except Exception:
             raise subarg_error("timeout", timeout)

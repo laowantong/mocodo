@@ -84,7 +84,7 @@ def main():
     for name in template_index:
         if re.match(r"html|markdown|latex|text", name):
             name += "-ces"
-        elif re.match(r"mysql|oracle|postgresql|sqlite", name):
+        elif re.match(r"mysql|oracle|postgresql|sqlite|mssql", name):
             continue
         templates.append(read_template(name, TEMPLATE_DIR))
 

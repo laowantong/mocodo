@@ -50,7 +50,7 @@ class Mapper(Transformer):
             if op_name == "randomize" and pre_token == "types":
                 resource_dir = Path(params["script_directory"], "resources")
                 pool = list(dict(read_default_datatypes(resource_dir)).values())
-                op = lambda x: x or random.choice(pool)
+                op = lambda _: random.choice(pool)
             elif op_name == "delete" and pre_token in ("attrs", "notes", "roles", "constraint_notes", "arrows", "types"):
                 op = lambda _: ""
             elif op_name == "delete" and pre_token == "cards":
@@ -84,7 +84,8 @@ def run(source, op_name, subargs, params, **kargs):
     for (pre_token, subsubarg) in subargs.items():
         # filter special non-op_tk operations
         if op_name == "create" and pre_token == "types":
-            source = create_type_placeholders(source) if subsubarg == "[]" else guess_types(source, subsubarg, params)
+            subsubarg = subsubarg or ""
+            source = create_type_placeholders(source) if subsubarg.upper() in ("[]", "TODO", "[TODO]") else guess_types(source, subsubarg, params)
         elif op_name == "create" and pre_token == "df_arrows":
             source = create_df_arrows(source, subsubarg)
         elif op_name == "create" and re.match("(?i)dfs?$", pre_token):

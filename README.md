@@ -25,7 +25,7 @@ https://fr.wikipedia.org/wiki/Merise_%28informatique%29#MLD_:_mod.C3.A8le_logiqu
 Ci-dessous, un exemple d'utilisation sous [Jupyter Notebook](https://jupyter.org). L'appel du programme est en première ligne, sur un texte d'entrée donné lignes suivantes. Le cas est adapté de l'article fondateur de Peter Chen, [_The entity-relationship model—toward a unified view of data_](https://doi.org/10.1145/320434.320440) (ACM Trans. Database Syst. 1, 1, March 1976, pp. 9–36), avec en bonus une association de type hiérarchique et une contrainte d'inclusion.
 
 ```
-%%mocodo --mld --colors brewer+1 --shapes copperplate --relations diagram markdown_data_dict
+%%mocodo --mld --colors brewer+1 --shapes copperplate --relations diagram data_dict
 
 Ayant-droit: nom ayant-droit, lien
 Diriger, 0N Employé, 01 Projet

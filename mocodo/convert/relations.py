@@ -14,8 +14,7 @@ def set_defaults(template):
         "transform_title": [],
         "transform_datatype": [],
         "transform_optionality": [],
-        "compose_label_disambiguated_by_note": "{label_before_disambiguation} {leg_note}",
-        "compose_label_disambiguated_by_number": "{label_before_disambiguation}.{disambiguation_number}",
+        "label_role_separator": " ",
         "compose_primary_key": "_{label}_",
         "compose_normal_attribute": "{label}",
         "compose_foreign_key": "#{label}",
@@ -85,9 +84,10 @@ class Relations:
                         for column in relation["columns"]:
                             if column["leg_note"] is None:
                                 column["label"] = column["label_before_disambiguation"]
+                            elif column["leg_note"].startswith("<"):
+                                column["label"] = column["leg_note"][1:]
                             else:
-                                column["label"] = template["compose_label_disambiguated_by_note"].format(**column)
-                                
+                                column["label"] = column["label_before_disambiguation"] + template["label_role_separator"] + column["leg_note"]
             else:
                 raise NotImplemented
             return inner_function
@@ -141,12 +141,7 @@ class Relations:
                     if column["label"] in occurrences:
                         occurrences[column["label"]] -= 1
                         if occurrences[column["label"]]:
-                            column["disambiguation_number"] = occurrences[column["label"]]
-                            column["label"] = template["compose_label_disambiguated_by_number"].format(**column)
-                        else:
-                            column["disambiguation_number"] = None
-                    else:
-                        column["disambiguation_number"] = None
+                            column["label"] = column["label_before_disambiguation"] + template["label_role_separator"] + str(occurrences[column["label"]])
         make_labels_from_label_before_disambiguations()
         
         data = {}

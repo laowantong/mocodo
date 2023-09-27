@@ -42,7 +42,7 @@
   "mssql": {
     "category": "cv",
     "help": "convert the conceptual model into a physical model for Microsoft SQL Server",
-    "aliases": ["sqlserver"]
+    "aliases": ["ms_sql", "sql_server", "sqlserver"]
   },
   "mysql": {
     "category": "cv",

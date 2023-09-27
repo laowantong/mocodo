@@ -1,7 +1,7 @@
 from pathlib import Path
 import re
 
-from ..parse_mcd import Visitor, Token
+from ..parse_mcd import Visitor
 from ..tools.parser_tools import first_child, parse_source, reconstruct_source
 from ..tools.string_tools import ascii, snake
 
@@ -9,7 +9,7 @@ class CreateTypePlaceholder(Visitor):
 
     def typed_attr(self, tree):
         if len(tree.children) == 1:
-            tree.children[0].children[0].value += " []"
+            tree.children[0].children[0].value += " [TODO]"
         
 
 def create_type_placeholders(source):

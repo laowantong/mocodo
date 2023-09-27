@@ -15,7 +15,6 @@ params = parsed_arguments()
 params["title"] = "Untitled"
 params["guess_title"] = False
 
-
 def debug_table(t):
     tsv = t.get_text(debug_template).strip().replace("this_relation_name", "relation")
     rows = [line.split("\t") for line in tsv.split("\n")]
@@ -151,61 +150,33 @@ class relationsTest(unittest.TestCase):
         """
         mcd = Mcd(source, params)
         self.assertRaisesRegex(MocodoError, r"Mocodo Err\.17", Relations, mcd, params)
-    
-    def test_difference_between_attribute_label_before_disambiguation_and_label_with_notes(self):
-        template = {
-          "extension": ".json",
-          "transform_attribute": [
-            {
-              "search": " ",
-              "replace": "_"
-            },
-            {
-              "search": "\\.",
-              "replace": ""
-            }
-          ],
-          "compose_label_disambiguated_by_note": "{leg_note}",
-        }
+
+    def test_disambiguation(self):
         source = """
-            A pour mère, 01 Chien, 0N [num_mère] Chien
-            Chien: num. chien, nom chien, sexe, date naissance
-            A pour père présumé, 0N Chien, 0N [num_père] Chien
+            Soutenir, 01 Étudiant, 0N [soutenance] Date: note stage
+            Étudiant: num. étudiant, nom, coordonnées
+
+            Date: date
+            Répondre de, 0N [visite] Date, 11 Étudiant, 0N [<num. encadrant] Enseignant
+            Enseignant: num. enseignant, nom, coordonnées
         """
-        text = """
-            A pour père présumé (_#num_chien_, _#num_père_)
-            Chien (_num_chien_, nom_chien, sexe, date_naissance, #num_mère)
+        expected = """
+            Enseignant (_num. enseignant_, nom, coordonnées)
+            Étudiant (_num. étudiant_, nom, coordonnées, date soutenance, note stage, date visite, #num. encadrant)
         """.strip().replace("    ", "")
         t = Relations(Mcd(source, params), params)
-        self.assertEqual(t.get_text(template), text)
-    
-    def test_difference_between_attribute_label_before_disambiguation_and_label_without_notes(self):
-        template = {
-          "extension": None,
-          "transform_attribute": [
-            {
-              "search": " ",
-              "replace": "_"
-            },
-            {
-              "search": "\\.",
-              "replace": ""
-            }
-          ],
-          "compose_label_disambiguated_by_number": "{label_before_disambiguation}_{disambiguation_number}",
-        }
-        source = """
-            A pour mère, 01 Chien, 0N Chien
-            Chien: num. chien, nom chien, sexe, date naissance
-            A pour père présumé, 0N Chien, 0N Chien
-        """
-        text = """
-            A pour père présumé (_#num_chien_, _#num_chien_1_)
-            Chien (_num_chien_, nom_chien, sexe, date_naissance, #num_chien_1)
+        self.assertEqual(t.get_text(minimal_template), expected)
+        temp_params = parsed_arguments()
+        temp_params["title"] = "Untitled"
+        temp_params["guess_title"] = False
+        temp_params["disambiguation"] = "numbers_only"
+        expected = """
+            Enseignant (_num. enseignant_, nom, coordonnées)
+            Étudiant (_num. étudiant_, nom, coordonnées, date, note stage, date 1, #num. enseignant)
         """.strip().replace("    ", "")
-        t = Relations(Mcd(source, params), params)
-        self.assertEqual(t.get_text(template), text)
-    
+        t = Relations(Mcd(source, temp_params), temp_params)
+        self.assertEqual(t.get_text(minimal_template), expected)
+
     def test_inheritance_leftwards_double_arrow(self):
         source = """
             /\\ ANIMAL <= CARNIVORE, HERBIVORE

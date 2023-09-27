@@ -14,6 +14,7 @@ from ..version_number import version
 class Chen(Visitor):
     def __init__(self, subargs, common):
         self.no_attrs = "attrs" not in subargs
+        subargs.pop("attrs", None)
         self.subargs = subargs
         self.df_counter = itertools.count()
         self.df_label = common.params["df"]

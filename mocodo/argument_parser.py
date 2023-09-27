@@ -108,7 +108,7 @@ class Transformations:
         "camel": {
             "category": "rw",
             "help": "rewrite the given elements in camelCase",
-            "aliases": ["camel_case", "camelCase"],
+            "aliases": ["camelCase"],
             "op_tk": True,
         },
         "capitalize": {
@@ -218,7 +218,7 @@ class Transformations:
         "snake": {
             "category": "rw",
             "help": "rewrite the given elements in snake_case",
-            "aliases": ["snake_case", "snake-case"],
+            "aliases": ["snake_case"],
             "op_tk": True,
         },
         "split": {
@@ -605,10 +605,10 @@ def parsed_arguments():
     params["args_to_delete"] = transformations.args_to_delete
     params["opt_to_restore"] = transformations.opt_to_restore
     params["redirect_output"] = ("-T" in remaining_args or "--Transform" in remaining_args)
-    params["keys_to_hide"] = ["keys_to_hide", "params_path", "SCRIPT_DIRECTORY", "output_name", "rewrite", "convert", "redirect_output"]
+    params["keys_to_hide"] = ["keys_to_hide", "params_path", "script_directory", "output_name", "rewrite", "convert", "redirect_output"]
 
     if not os.path.exists(params["input"]):
-        path = Path(params["SCRIPT_DIRECTORY"], "resources", "pristine_sandbox.mcd")
+        path = Path(SCRIPT_DIRECTORY, "resources", "pristine_sandbox.mcd")
         shutil.copyfile(path, params["input"])
     random.seed(params["seed"])
     try:

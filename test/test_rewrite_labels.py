@@ -29,7 +29,7 @@ class TestUpdateLabels(unittest.TestCase):
             Ultricies, 11 Rhoncus, 0N Egestas
         """
         subargs = {"labels": "en4.txt"}
-        params = {"script_directory": "mocodo"}
+        params = {"script_directory": "mocodo", "df": "DF"}
         random.seed(42)
         actual = op_tk.run(source, "randomize", subargs, params)
         expected = """
@@ -44,6 +44,23 @@ class TestUpdateLabels(unittest.TestCase):
             Tape: they, bath, unit, haul, draw
             Code: four, duck, icon
             Golf, 11 Tape, 0N Code
+        """
+        self.assertEqual(actual.strip(), expected.strip())
+
+    def test_obfuscate_df(self):
+        source = """
+            DF, 11 Curabitur, 0N Vitae justo, 0N DATE2
+            DF, 1N Rhoncus, 11 DATE2
+            DF, 11 Rhoncus, 0N Egestas
+        """
+        subargs = {"labels": "en4.txt"}
+        params = {"script_directory": "mocodo", "df": "DF"}
+        random.seed(42)
+        actual = op_tk.run(source, "randomize", subargs, params)
+        expected = """
+            FEEL, 11 Turn, 0N grin, 0N LAND
+            NEAR, 1N Silk, 11 LAND
+            DEBT, 11 Silk, 0N Shoe
         """
         self.assertEqual(actual.strip(), expected.strip())
     

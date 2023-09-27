@@ -1,6 +1,6 @@
 %%mocodo
 :
-COMPOSER: pièce, _pièce.1
+COMPOSER: pièce, _pièce 1
 :
-HOMME: Num. SS, Nom, Prénom, #Num. SS.1 > HOMME > Num. SS
+HOMME: Num. SS, Nom, Prénom, #Num. SS 1 > HOMME > Num. SS
 :

@@ -47,7 +47,7 @@ def obfuscator_factory(pool, params):
     cache = {}
     def obfuscate(name):
         suffix = ""
-        if name not in cache:
+        if name not in cache or name == params["df"]:
             try:
                 new_name = next(random_word)
             except StopIteration:
