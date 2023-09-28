@@ -96,7 +96,6 @@ def main():
     params["id_gutter_weak_string"] = "id"
     params["id_gutter_unicities"] = dict(zip("123456789", "123456789"))
     params["guess_title"] = False
-    params["disambiguation"] = "notes"
     params["language"] = "fr"
     params["df"] = "DF"
     params["seed"] = 42 # only to be dumped in graphviz files
@@ -112,7 +111,6 @@ def main():
         params["title"] = source_path.parent.name
 
         source = source_path.read_text().rstrip()
-        params["disambiguation"] = "numbers_only" if source.startswith("% numbers_only") else "notes"
 
         # Create some rewritten versions of the source file.
         subfolder = Path(source_path.parent / "rewritten")

@@ -27,11 +27,10 @@ transform_optionality:
     comment: 'Replace QMARK with NULL.'
     search: '^\?$'
     replace: 'null'
-label_role_separator: ' '
 compose_primary_key: '  "{label}" {datatype} [{optionality}] [pk]\nADD_PRIMARY_KEY "{label}"'
 compose_normal_attribute: '  "{label}" {datatype} [{optionality}]'
-compose_primary_foreign_key: '  "{label}" {datatype} [{optionality}] [pk]\nADD_PRIMARY_KEY "{label}"\nADD_FOREIGN_KEY "{this_relation_name}".("{label}") > "{outer_source}".("{label_before_disambiguation}")'
-compose_foreign_key: '  "{label}" {datatype} [{optionality}]\nADD_FOREIGN_KEY "{this_relation_name}".("{label}") > "{outer_source}".("{label_before_disambiguation}")'
+compose_primary_foreign_key: '  "{label}" {datatype} [{optionality}] [pk]\nADD_PRIMARY_KEY "{label}"\nADD_FOREIGN_KEY "{this_relation_name}".("{label}") > "{outer_source}".("{non_disambiguated_label}")'
+compose_foreign_key: '  "{label}" {datatype} [{optionality}]\nADD_FOREIGN_KEY "{this_relation_name}".("{label}") > "{outer_source}".("{non_disambiguated_label}")'
 add_unicity_constraints:
   - order: 100
     search: '$'

@@ -1,5 +1,0 @@
-% numbers_only
-PIÈCE: pièce
-COMPOSER, 0N [composante] PIÈCE, 0N [composée] PIÈCE
-HOMME: Num. SS, Nom, Prénom
-ENGENDRER, 0N [père] HOMME, 11 [fils] HOMME

@@ -1,5 +1,0 @@
-% numbers_only
-ENTITY 1_: attr 1 1_
-ASSOC 3_, 0N [role 1] ENTITY 1_, 0N [role 2] ENTITY 1_
-ENTITY 2_: attr 2 1_, attr 2 2_, attr 2 3_
-ASSOC 4_, 0N [role 1] ENTITY 2_, 11 [role 2] ENTITY 2_

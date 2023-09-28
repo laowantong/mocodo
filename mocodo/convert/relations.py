@@ -72,26 +72,6 @@ class Relations:
 
     def __init__(self, mcd, params):
         
-        def set_disambiguation_strategy(strategy):
-            if strategy == "numbers_only":
-                def inner_function(template):
-                    for relation in self.relations.values():
-                        for column in relation["columns"]:
-                            column["label"] = column["label_before_disambiguation"]
-            elif strategy == "notes":
-                def inner_function(template):
-                    for relation in self.relations.values():
-                        for column in relation["columns"]:
-                            if column["leg_note"] is None:
-                                column["label"] = column["label_before_disambiguation"]
-                            elif column["leg_note"].startswith("<"):
-                                column["label"] = column["leg_note"][1:]
-                            else:
-                                column["label"] = column["label_before_disambiguation"] + template["label_role_separator"] + column["leg_note"]
-            else:
-                raise NotImplemented
-            return inner_function
-        
         self.mcd = mcd
         self.output_stem = Path(params["output_name"]).stem
         self.ensure_no_reciprocical_relative_entities()
@@ -107,7 +87,6 @@ class Relations:
         self.delete_inheritance_parent_or_children_to_delete()
         self.delete_deletable_relations()
         self.make_primary_keys_first()
-        self.may_disambiguate_with_leg_notes = set_disambiguation_strategy(params["disambiguation"])
         self.relations = dict(sorted(self.relations.items()))
 
     
@@ -126,23 +105,34 @@ class Relations:
         
         template = set_defaults(template)
         
-        def make_label_before_disambiguations_from_attributes():
+        def make_non_disambiguated_labels_from_attributes():
             for relation in self.relations.values():
                 for column in relation["columns"]:
-                    column["label_before_disambiguation"] = transform(column["attribute"], "transform_attribute")
-        make_label_before_disambiguations_from_attributes()
-        
-        def make_labels_from_label_before_disambiguations():
-            self.may_disambiguate_with_leg_notes(template)
+                    column["non_disambiguated_label"] = transform(column["attribute"], "transform_attribute")
+        make_non_disambiguated_labels_from_attributes()
+
+        def make_labels_from_non_disambiguated_labels():
             for relation in self.relations.values():
-                occurrences = collections.Counter(column["label"] for column in relation["columns"])
+                for column in relation["columns"]:
+                    if not column["leg_note"]:
+                        column["label"] = column["non_disambiguated_label"]
+                    elif column["leg_note"].startswith("-"):
+                        column["label"] = column["leg_note"][1:]
+                    elif column["leg_note"].startswith("+"):
+                        column["label"] = column["non_disambiguated_label"] + column["leg_note"][1:]
+                    elif " " in column["leg_note"]:
+                        column["label"] = column["non_disambiguated_label"]
+                    else:
+                        column["label"] = column["non_disambiguated_label"] + template["label_role_separator"] + column["leg_note"]
+            # After labels have been disambiguated by roles, ensure all of them are distinct.
+            for relation in self.relations.values():
+                occurrences = collections.Counter(column["label"] for column in relation["columns"] if not column["is_primary"])
                 occurrences = dict(c for c in occurrences.items() if c[1] > 1)
                 for column in reversed(relation["columns"]):
-                    if column["label"] in occurrences:
+                    if column["label"] in occurrences and not column["is_primary"]:
                         occurrences[column["label"]] -= 1
-                        if occurrences[column["label"]]:
-                            column["label"] = column["label_before_disambiguation"] + template["label_role_separator"] + str(occurrences[column["label"]])
-        make_labels_from_label_before_disambiguations()
+                        column["label"] = column["non_disambiguated_label"] + str(occurrences[column["label"]] + 1)
+        make_labels_from_non_disambiguated_labels()
         
         data = {}
         data["stem"] = self.output_stem

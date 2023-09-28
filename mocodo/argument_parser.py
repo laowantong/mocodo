@@ -521,11 +521,6 @@ def parsed_arguments():
         type=float,
         help="initial value for the random number generator",
     )
-    source_group.add_argument("--disambiguation",
-        choices=["numbers_only", "notes"],
-        default="notes",
-        help="specify the way to disambiguate outer attributes during the conversion to a relational model",
-    )
     source_group.add_argument("--title",
         metavar="STR",
         default=_("Untitled").encode("utf8"),

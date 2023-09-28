@@ -1,7 +1,7 @@
 :
 DF, 11 ULTRICES, 1N [sodales] SODALES
 SODALES: convallis, ipsum
-VITAE, 11 NEC, 1N [via vitae] SODALES
+VITAE, 11 NEC, 1N [via_vitae] SODALES
 
 ULTRICES: id. ultrices
 TRISTIS: magna, vestibulum
@@ -11,4 +11,4 @@ NEC: pulvinar, audis
 :
 DF, 11 ULTRICES, 1N [lacus] LACUS
 LACUS: tempor, fugit
-MOLLIS, 1N [via mollis] LACUS, 11 NEC
+MOLLIS, 1N [via_mollis] LACUS, 11 NEC

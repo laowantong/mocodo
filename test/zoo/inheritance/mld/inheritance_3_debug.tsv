@@ -6,8 +6,8 @@ TRISTIS	convallis		deleted_child_attribute	SODALES
 TRISTIS	ipsum		deleted_child_attribute	SODALES		
 TRISTIS	pulvinar		deleted_child_attribute	NEC		
 TRISTIS	audis		deleted_child_attribute	NEC		
-TRISTIS	magna via mollis		deleted_child_foreign_key	NEC	TRISTIS	
-TRISTIS	magna via vitae		deleted_child_foreign_key	NEC	TRISTIS	
+TRISTIS	magna via_mollis		deleted_child_foreign_key	NEC	TRISTIS	
+TRISTIS	magna via_vitae		deleted_child_foreign_key	NEC	TRISTIS	
 TRISTIS	tempor		deleted_child_attribute	LACUS		
 TRISTIS	fugit		deleted_child_attribute	LACUS		
 ULTRICES	magna sodales		primary_foreign_key	SODALES	TRISTIS	

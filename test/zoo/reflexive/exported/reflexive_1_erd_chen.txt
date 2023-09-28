@@ -1,4 +1,0 @@
-[HOMME] --1-- <ENGENDRER>
-[HOMME] ==N== <ENGENDRER>
-[PIÈCE] --M-- <COMPOSER>
-[PIÈCE] --N-- <COMPOSER>

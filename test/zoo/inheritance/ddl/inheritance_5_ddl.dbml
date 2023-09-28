@@ -10,8 +10,8 @@ Table NEC {
   vestibulum VARCHAR(42)
   pulvinar VARCHAR(42)
   audis VARCHAR(42)
-  "magna via mollis" VARCHAR(42) [not null]
-  "magna via vitae" VARCHAR(42) [not null]
+  "magna via_mollis" VARCHAR(42) [not null]
+  "magna via_vitae" VARCHAR(42) [not null]
 }
 
 Table SODALES {
@@ -29,7 +29,7 @@ Table ULTRICES {
   }
 }
 
-Ref:NEC."magna via mollis" > LACUS.magna
-Ref:NEC."magna via vitae" > SODALES.magna
+Ref:NEC."magna via_mollis" > LACUS.magna
+Ref:NEC."magna via_vitae" > SODALES.magna
 Ref:ULTRICES."magna sodales" > SODALES.magna
 Ref:ULTRICES."magna lacus" > LACUS.magna

@@ -7,8 +7,8 @@ NEC	magna		deleted_parent_primary_key	TRISTIS	TRISTIS
 NEC	vestibulum		deleted_parent_attribute	TRISTIS		
 NEC	pulvinar		normal_attribute			
 NEC	audis		normal_attribute			
-NEC	magna via mollis		foreign_key	LACUS	LACUS	
-NEC	magna via vitae		foreign_key	SODALES	SODALES	
+NEC	magna via_mollis		foreign_key	LACUS	LACUS	
+NEC	magna via_vitae		foreign_key	SODALES	SODALES	
 SODALES	magna		deleted_parent_primary_key	TRISTIS	TRISTIS	
 SODALES	vestibulum		deleted_parent_attribute	TRISTIS		
 SODALES	convallis		normal_attribute			

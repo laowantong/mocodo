@@ -26,8 +26,8 @@ transform_optionality:
 label_role_separator: '_'
 compose_primary_key: '{label} {datatype}{optionality}\nPRIMARY KEY ({label})'
 compose_normal_attribute: '{label} {datatype}{optionality}'
-compose_foreign_key: '{label} {datatype}{optionality}\nFOREIGN KEY ({label}) REFERENCES {outer_source} ({label_before_disambiguation})'
-compose_primary_foreign_key: '{label} {datatype}{optionality}\nPRIMARY KEY ({label})\nFOREIGN KEY ({label}) REFERENCES {outer_source} ({label_before_disambiguation})'
+compose_foreign_key: '{label} {datatype}{optionality}\nFOREIGN KEY ({label}) REFERENCES {outer_source} ({non_disambiguated_label})'
+compose_primary_foreign_key: '{label} {datatype}{optionality}\nPRIMARY KEY ({label})\nFOREIGN KEY ({label}) REFERENCES {outer_source} ({non_disambiguated_label})'
 add_unicity_constraints:
   - order: 100
     search: '$'

@@ -34,8 +34,6 @@ row = "{this_relation_name}\t{label}\t{datatype}\t%s\t{adjacent_source}\t{outer_
 
 defaults = set_defaults({})
 composition_keys = set(s for s in defaults.keys() if s.startswith("compose_"))
-composition_keys.remove("compose_label_disambiguated_by_note")
-composition_keys.remove("compose_label_disambiguated_by_number")
 composition_keys.remove("compose_deleted_relation")
 composition_keys.remove("compose_deleted_relations")
 for key in sorted(composition_keys):

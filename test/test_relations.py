@@ -153,28 +153,20 @@ class relationsTest(unittest.TestCase):
 
     def test_disambiguation(self):
         source = """
-            Soutenir, 01 Étudiant, 0N [soutenance] Date: note stage
-            Étudiant: num. étudiant, nom, coordonnées
-
-            Date: date
-            Répondre de, 0N [visite] Date, 11 Étudiant, 0N [<num. encadrant] Enseignant
-            Enseignant: num. enseignant, nom, coordonnées
+            FOO: id
+            BAR: id
+            DF, 11 FOO, 1N BAR
+            DF, 11 FOO, 1N BAR
+            DF, 11 FOO, 1N [role] BAR
+            DF, 11 FOO, 1N [+role] BAR
+            DF, 11 FOO, 1N [+_role] BAR
+            DF, 11 FOO, 1N [-role] BAR
+            DF, 11 FOO, 1N [string containing spaces] BAR
         """
         expected = """
-            Enseignant (_num. enseignant_, nom, coordonnées)
-            Étudiant (_num. étudiant_, nom, coordonnées, date soutenance, note stage, date visite, #num. encadrant)
+            FOO (_id_, id1, id2, id role, idrole, id_role, role, id3)
         """.strip().replace("    ", "")
         t = Relations(Mcd(source, params), params)
-        self.assertEqual(t.get_text(minimal_template), expected)
-        temp_params = parsed_arguments()
-        temp_params["title"] = "Untitled"
-        temp_params["guess_title"] = False
-        temp_params["disambiguation"] = "numbers_only"
-        expected = """
-            Enseignant (_num. enseignant_, nom, coordonnées)
-            Étudiant (_num. étudiant_, nom, coordonnées, date, note stage, date 1, #num. enseignant)
-        """.strip().replace("    ", "")
-        t = Relations(Mcd(source, temp_params), temp_params)
         self.assertEqual(t.get_text(minimal_template), expected)
 
     def test_inheritance_leftwards_double_arrow(self):
