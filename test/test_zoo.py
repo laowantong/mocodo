@@ -141,7 +141,7 @@ def main():
         save(subfolder / f"{source_path.stem[1:]}_erd_chen.gv", text)
         convert_dot_to_svg(subfolder / f"{source_path.stem[1:]}_erd_chen.gv")
 
-        text = uml.run(source, {"plantuml": "<"}, common)["text"] # delete the default preamble
+        text = uml.run(source, {"plantuml": "-"}, common)["text"] # delete the default preamble
         save(subfolder / f"{source_path.stem[1:]}_uml.puml", text)
 
         try:
@@ -189,7 +189,7 @@ def main():
         # Create the sql output files. Warning: modifies source. Must be final.
         subfolder = Path(source_path.parent / "ddl")
         subfolder.mkdir(exist_ok=True)
-        source = op_tk.run(source, "create", {"types": ""}, params)
+        source = op_tk.run(source, "create", {"types": None}, params) # guess types
         source = op_tk.run(source, "ascii", {"labels": 1, "roles": 1}, params)
         source = op_tk.run(source, "snake", {"labels": 1}, params)
         source = op_tk.run(source, "lower", {"attrs": 1, "roles": 1}, params)

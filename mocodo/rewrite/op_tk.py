@@ -84,8 +84,7 @@ def run(source, op_name, subargs, params, **kargs):
     for (pre_token, subsubarg) in subargs.items():
         # filter special non-op_tk operations
         if op_name == "create" and pre_token == "types":
-            subsubarg = subsubarg or ""
-            source = create_type_placeholders(source) if subsubarg.upper() in ("[]", "TODO", "[TODO]") else guess_types(source, subsubarg, params)
+            source = create_type_placeholders(source, subsubarg) if subsubarg is not None else guess_types(source, params)
         elif op_name == "create" and pre_token == "df_arrows":
             source = create_df_arrows(source, subsubarg)
         elif op_name == "create" and re.match("(?i)dfs?$", pre_token):

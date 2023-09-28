@@ -7,13 +7,15 @@ from ..tools.string_tools import ascii, snake
 
 class CreateTypePlaceholder(Visitor):
 
+    def __init__(self, subsubarg):
+        self.default = subsubarg
+
     def typed_attr(self, tree):
         if len(tree.children) == 1:
-            tree.children[0].children[0].value += " [TODO]"
-        
+            tree.children[0].children[0].value += f" [{self.default}]"
 
-def create_type_placeholders(source):
-    visitor = CreateTypePlaceholder()
+def create_type_placeholders(source, subsubarg):
+    visitor = CreateTypePlaceholder(subsubarg)
     tree = parse_source(source)
     visitor.visit(tree)
     return reconstruct_source(tree)
@@ -30,8 +32,7 @@ def read_default_datatypes(resource_dir, language="en"):
 
 class GuessType(Visitor):
 
-    def __init__(self, guessing_suffix, params):
-        # Example: -r guess:types=? will complete all guessed types with a question mark.
+    def __init__(self,params):
         resource_dir = Path(params["script_directory"], "resources")
         self.field_types = dict(read_default_datatypes(resource_dir)) # English always used as fallback
         language = params.get("language", "en")
@@ -42,7 +43,6 @@ class GuessType(Visitor):
         self.field_types = sorted(self.field_types.items(), key=lambda x: -len(x[0]))
         # Precompile the regexes
         self.field_types = [(re.compile(k).search, v) for (k, v) in self.field_types]
-        self.guessing_suffix = guessing_suffix or ""
 
     def typed_attr(self, tree):
         n = len(tree.children)
@@ -57,7 +57,6 @@ class GuessType(Visitor):
         needle = snake(ascii(attr)).replace("_", " ").lower()
         for (found, datatype) in self.field_types:
             if found(needle):
-                datatype = f"{datatype}{self.guessing_suffix}"
                 break
         else:
             datatype = ""
@@ -67,8 +66,8 @@ class GuessType(Visitor):
             tree.children[1].value += datatype
 
 
-def guess_types(source, subsubarg, params):
-    visitor = GuessType(subsubarg, params)
+def guess_types(source, params):
+    visitor = GuessType(params)
     tree = parse_source(source)
     visitor.visit(tree)
     return reconstruct_source(tree)
