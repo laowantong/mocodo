@@ -575,10 +575,6 @@ def parsed_arguments():
         default=1,
         help="scale all calculated text widths by the given factor",
     )
-    aspect_group.add_argument("--hide_notes",
-        action="store_true",
-        help="ignore the hovering of annotated elements",
-    )
     aspect_group.add_argument("--detect_overlaps",
         action="store_true",
         help="raise an error when horizontal or vertical legs overlap",

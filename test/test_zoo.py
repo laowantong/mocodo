@@ -190,7 +190,7 @@ def main():
         subfolder = Path(source_path.parent / "ddl")
         subfolder.mkdir(exist_ok=True)
         source = op_tk.run(source, "create", {"types": ""}, params)
-        source = op_tk.run(source, "ascii", {"labels": 1}, params)
+        source = op_tk.run(source, "ascii", {"labels": 1, "roles": 1}, params)
         source = op_tk.run(source, "snake", {"labels": 1}, params)
         source = op_tk.run(source, "lower", {"attrs": 1, "roles": 1}, params)
         source = op_tk.run(source, "upper", {"boxes": 1}, params)

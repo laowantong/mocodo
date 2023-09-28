@@ -21,7 +21,7 @@ ELEMENT_TO_TOKENS = {
     "cards": ["card"],
     "roles": ["leg_note"],
     "constraint_notes": ["constraint_note"],
-    "labels": ["box_name", "attr", "leg_note"],
+    "labels": ["box_name", "attr"],
     "texts": ["box_name", "attr", "leg_note", "constraint_note"],
     "notes": ["leg_note", "constraint_note"],
     "types": ["datatype"],

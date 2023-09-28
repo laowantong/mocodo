@@ -151,7 +151,53 @@ class relationsTest(unittest.TestCase):
         mcd = Mcd(source, params)
         self.assertRaisesRegex(MocodoError, r"Mocodo Err\.17", Relations, mcd, params)
 
-    def test_disambiguation(self):
+    def test_disambiguation_by_role(self):
+        source = """
+            Entité A: id. entité A 
+            DF, 11 Entité centrale, 1N Entité A
+            DF, 11 Entité centrale, 1N [-nouveau nom B] Entité B
+            Entité B: id. entité B
+
+            Entité E: id. entité E 
+            DF, 11 Entité centrale, 1N [suffixe] Entité E
+            Entité centrale: id. entité centrale
+            DF, 11 Entité centrale, 1N [+hérissons] Entité C
+
+            :
+            Entité D: id. entité D
+            DF, 11 Entité centrale, 1N [Description affichée au survol.] Entité D
+            Entité C: id. entité C
+        """
+        expected = """
+            Entité centrale (_id. entité centrale_, id. entité A, nouveau nom B, id. entité E suffixe, id. entité Chérissons, id. entité D)
+        """.strip().replace("    ", "")
+        t = Relations(Mcd(source, params), params)
+        self.assertEqual(t.get_text(minimal_template), expected)
+
+    def test_disambiguation_by_number(self):
+        source = """
+            Entité A: id
+            DF, 11 Entité centrale, 1N Entité A
+            DF, 11 Entité centrale, 1N Entité B
+            Entité B: id
+
+            Entité E: id
+            DF, 11 Entité centrale, 1N [Description affichée au survol.] Entité E
+            Entité centrale: id
+            DF, 11 Entité centrale, 1N [suffixe] Entité C
+
+            :
+            Entité D: id
+            DF, 11 Entité centrale, 1N [suffixe] Entité D
+            Entité C: id
+        """
+        expected = """
+            Entité centrale (_id_, id 1, id 2, id 3, id suffixe 1, id suffixe 2)
+        """.strip().replace("    ", "")
+        t = Relations(Mcd(source, params), params)
+        self.assertEqual(t.get_text(minimal_template), expected)
+
+    def test_disambiguation_by_role_then_number(self):
         source = """
             FOO: id
             BAR: id
@@ -164,7 +210,7 @@ class relationsTest(unittest.TestCase):
             DF, 11 FOO, 1N [string containing spaces] BAR
         """
         expected = """
-            FOO (_id_, id1, id2, id role, idrole, id_role, role, id3)
+            FOO (_id_, id 1, id 2, id role, idrole, id_role, role, id 3)
         """.strip().replace("    ", "")
         t = Relations(Mcd(source, params), params)
         self.assertEqual(t.get_text(minimal_template), expected)

@@ -126,12 +126,12 @@ class Relations:
                         column["label"] = column["non_disambiguated_label"] + template["label_role_separator"] + column["leg_note"]
             # After labels have been disambiguated by roles, ensure all of them are distinct.
             for relation in self.relations.values():
-                occurrences = collections.Counter(column["label"] for column in relation["columns"] if not column["is_primary"])
+                occurrences = collections.Counter(column["label"] for column in relation["columns"] if column["nature"] != "primary_key")
                 occurrences = dict(c for c in occurrences.items() if c[1] > 1)
                 for column in reversed(relation["columns"]):
-                    if column["label"] in occurrences and not column["is_primary"]:
+                    if column["label"] in occurrences and column["nature"] != "primary_key":
                         occurrences[column["label"]] -= 1
-                        column["label"] = column["non_disambiguated_label"] + str(occurrences[column["label"]] + 1)
+                        column["label"] = column["label"] + template["label_role_separator"] + str(occurrences[column["label"]] + 1)
         make_labels_from_non_disambiguated_labels()
         
         data = {}

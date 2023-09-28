@@ -2,6 +2,7 @@ import re
 
 from .attribute import *
 from .leg import ConstraintLeg
+from .tools.string_tools import is_a_description
 
 class Constraint:
 
@@ -67,7 +68,7 @@ class Constraint:
     def _description(self, style):
         return [
             (
-                "circle_with_note" if self.note else "circle",
+                "circle_with_note" if is_a_description(self.note) else "circle",
                 {
                     "stroke_depth": style["constraint_stroke_depth"],
                     "stroke_color": style["constraint_stroke_color"],

@@ -39,6 +39,13 @@ def strip_surrounds(s, ends):
     """
     return s[1:-1] if surrounds(s, ends) else s
 
+def is_a_description(note):
+    if not note:
+        return False
+    if note.startswith(("+", "-")):
+        return False
+    return " " in note
+
 # ASCII
 
 LATIN = "ä  æ  ǽ  đ ð ƒ ħ ı ł ø ǿ ö  œ  ß  ŧ ü  Ä  Æ  Ǽ  Đ Ð Ƒ Ħ I Ł Ø Ǿ Ö  Œ  ẞ  Ŧ Ü "

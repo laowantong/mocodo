@@ -11,7 +11,7 @@ class TestUpdateLabels(unittest.TestCase):
     def test_upper(self):
         source = "composer, 0n [composée] pièce, 0n [composante] pièce: quantité"
         actual = op_tk.run(source, "upper", {"labels": ""}, {})
-        expected = "COMPOSER, 0n [COMPOSÉE] PIÈCE, 0n [COMPOSANTE] PIÈCE: QUANTITÉ"
+        expected = "COMPOSER, 0n [composée] PIÈCE, 0n [composante] PIÈCE: QUANTITÉ"
         self.assertEqual(actual.strip(), expected.strip())
 
     def test_obfuscate(self):

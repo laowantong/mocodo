@@ -2,7 +2,7 @@ import operator
 from math import hypot, sqrt
 
 from .mocodo_error import MocodoError
-from .tools.string_tools import surrounds
+from .tools.string_tools import surrounds, is_a_description
 
 
 class Leg:
@@ -100,7 +100,7 @@ class Leg:
         tx = x + card_margin
         ty = y - card_margin - style["card_baseline"]
         self.saved_card_description = []
-        if self.note:
+        if is_a_description(self.note):
             self.saved_card_description.append(
                 (
                     "text_with_note",
@@ -203,7 +203,7 @@ class Leg:
         tx = x + card_margin
         ty = y - card_margin - style["card_baseline"]
         self.saved_card_description = []
-        if self.note:
+        if is_a_description(self.note):
             self.saved_card_description.append(
                 (
                     "text_with_note",

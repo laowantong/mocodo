@@ -181,7 +181,7 @@ class Runner:
                 # If the subopt was a relation template, use it to convert the source
                 if template:
                     if template["extension"] == "sql":
-                        source = op_tk.run(source, "ascii", {"labels": 1}, self.params)
+                        source = op_tk.run(source, "ascii", {"labels": 1, "roles": 1}, self.params)
                         source = op_tk.run(source, "snake", {"labels": 1}, self.params)
                         source = op_tk.run(source, "lower", {"attrs": 1, "roles": 1}, self.params)
                         source = op_tk.run(source, "upper", {"boxes": 1}, self.params)
