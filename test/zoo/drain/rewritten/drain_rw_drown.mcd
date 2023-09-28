@@ -1,7 +1,7 @@
-ENTITY 1_: attr 1 1_, attr 1 2_, attr 1 3_
-ASSOC 5_, 0N ENTITY 1_, 11 ENTITY 2_: attr 5 1_
-ENTITY 2_: attr 2 1_, attr 2 2_
-ASSOC 6_, 11 ENTITY 3_, 01 ENTITY 2_: attr 6 1_
-ENTITY 3_: attr 3 1_, attr 3 2_
-ASSOC 7_, 01 ENTITY 3_, 0N ENTITY 4_: attr 7 1_
-ENTITY 4_: attr 4 1_
+ENTITY 1_: attr 1 1, attr 1 2, attr 1 3
+ASSOC 5_, 0N ENTITY 1_, 11 ENTITY 2_: attr 5 1
+ENTITY 2_: attr 2 1, attr 2 2
+ASSOC 6_, 11 ENTITY 3_, 01 ENTITY 2_: attr 6 1
+ENTITY 3_: attr 3 1, attr 3 2
+ASSOC 7_, 01 ENTITY 3_, 0N ENTITY 4_: attr 7 1
+ENTITY 4_: attr 4 1

@@ -1,9 +1,9 @@
-ENTITY 1_: attr 1 1_
+ENTITY 1_: attr 1 1
 DF, _11 ENTITY 2_, 1N ENTITY 1_
 ENTITY 2_:
 DF, _11 ENTITY 2_, 1N ENTITY 3_
-ENTITY 3_: attr 3 1_, 1_attr 3 2_
+ENTITY 3_: attr 3 1, 1_attr 3 2
 
 DF, 11 ENTITY 4_, 01 ENTITY 2_
     
-ENTITY 4_: attr 4 1_, 1_attr 4 2_, attr 4 3_, attr 4 4_
+ENTITY 4_: attr 4 1, 1_attr 4 2, attr 4 3, attr 4 4

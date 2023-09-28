@@ -1,14 +1,14 @@
 :
 ASSOC 5_, 1N [role 1] ENTITY 2_, 11 ENTITY 1_
-ENTITY 1_: attr 1 1_, attr 1 2_
+ENTITY 1_: attr 1 1, attr 1 2
 :
 
-ENTITY 2_: attr 2 1_, attr 2 2_
+ENTITY 2_: attr 2 1, attr 2 2
 /XT\ ENTITY 3_ -> ENTITY 4_, ENTITY 1_, ENTITY 2_: type
-ENTITY 3_: attr 3 1_, attr 3 2_
+ENTITY 3_: attr 3 1, attr 3 2
 ASSOC 6_, 11 ENTITY 1_, 1N [role 1] ENTITY 4_
 
 :
 ASSOC 7_, 1N [role 1] ENTITY 4_, 1N [role 2] ENTITY 2_
-ENTITY 4_: attr 4 1_, attr 4 2_
+ENTITY 4_: attr 4 1, attr 4 2
 :

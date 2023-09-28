@@ -1,19 +1,19 @@
-ENTITY 01_: attr 01 1_, attr 01 2_, attr 01 3_, attr 01 4_
+ENTITY 01_: attr 01 1, attr 01 2, attr 01 3, attr 01 4
 -ASSOC 08_, 11 ENTITY 03_, 01 ENTITY 03_
--ENTITY 02_: attr 02 1_, _attr 02 2_, attr 02 3_, attr 02 4_
+-ENTITY 02_: attr 02 1, _attr 02 2, attr 02 3, attr 02 4
 -ASSOC 09_, 11 ENTITY 04_, 1N ENTITY 04_
 
 DF, 0N ENTITY 01_, 11 ENTITY 03_
-ENTITY 03_: attr 03 1_, attr 03 2_, attr 03 3_
+ENTITY 03_: attr 03 1, attr 03 2, attr 03 3
 -ASSOC 11_, 0N ENTITY 02_, 0N ENTITY 03_, 1N ENTITY 04_
-ENTITY 04_: attr 04 1_, attr 04 2_, attr 04 3_
+ENTITY 04_: attr 04 1, attr 04 2, attr 04 3
 
--ENTITY 05_: attr 05 1_, attr 05 2_, attr 05 3_, attr 05 4_
+-ENTITY 05_: attr 05 1, attr 05 2, attr 05 3, attr 05 4
 -ASSOC 12_, 0N ENTITY 05_, 01 ENTITY 06_
-ASSOC 13_, 1N ENTITY 03_, 0N ENTITY 04_: attr 13 1_
--ASSOC 14_, 1N ENTITY 07_, 1N ENTITY 04_: attr 14 1_
+ASSOC 13_, 1N ENTITY 03_, 0N ENTITY 04_: attr 13 1
+-ASSOC 14_, 1N ENTITY 07_, 1N ENTITY 04_: attr 14 1
 
 -ASSOC 15_, 0N ENTITY 05_, 1N ENTITY 06_
--ENTITY 06_: attr 06 1_, attr 06 2_
--ASSOC 16_, 0N ENTITY 06_, 11 ENTITY 07_: attr 16 1_
--ENTITY 07_: attr 07 1_, attr 07 2_, attr 07 3_
+-ENTITY 06_: attr 06 1, attr 06 2
+-ASSOC 16_, 0N ENTITY 06_, 11 ENTITY 07_: attr 16 1
+-ENTITY 07_: attr 07 1, attr 07 2, attr 07 3

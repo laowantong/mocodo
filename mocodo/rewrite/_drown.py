@@ -32,7 +32,7 @@ class Numbering(Visitor):
         for (i, attr) in enumerate(tree.find_data("attr"), 1):
             if attr.children[0] == "":
                 continue # do nothing for a spacer attribute
-            attr.children[0].value = f"{self.attr_base} {number} {i}_"
+            attr.children[0].value = f"{self.attr_base} {number} {i}"
     
     def box_name(self, tree):
         token = tree.children[0]

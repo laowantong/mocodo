@@ -1,4 +1,4 @@
 % source: https://www.developpez.net/forums/d962823/general-developpement/alm/methodes/merise/regles-passage-mcd-mld-associations-binaires/
-ENTITY 1_: attr 1 1_, attr 1 2_
+ENTITY 1_: attr 1 1, attr 1 2
 +ASSOC 3_, 1N ENTITY 2_, 01 ENTITY 1_
-+ENTITY 2_: attr 2 1_, attr 2 2_
++ENTITY 2_: attr 2 1, attr 2 2
