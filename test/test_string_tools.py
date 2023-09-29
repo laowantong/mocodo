@@ -90,6 +90,7 @@ class StringToolsTest(unittest.TestCase):
         self.assertEqual(snake("foO1Bar"), "fo_o1bar")
         self.assertEqual(snake("FOO BAR"), "FOO_BAR")
         self.assertEqual(snake("-FOO-BAR-"), "FOO_BAR")
+        self.assertEqual(snake("_FOO_BAR_"), "_FOO_BAR_")
     
     def test_camel(self):
         self.assertEqual(camel("foo"), "foo")

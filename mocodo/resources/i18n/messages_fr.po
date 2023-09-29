@@ -163,8 +163,8 @@ msgid "One entity and one association share the same name \"{name}\"."
 msgstr "Une entité et une association ont le même nom « {name} »."
 
 #: mocodo/mcd.py:97
-msgid "The ERD is empty."
-msgstr "Le MCD est vide."
+msgid "The ERD \"{title}\" is empty."
+msgstr "Le MCD « {title} » est vide."
 
 #: mocodo/mcd.py:115
 msgid "Association \"{association}\" linked to another association \"{entity}\"!"

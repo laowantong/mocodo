@@ -174,7 +174,6 @@ def run(source, subargs=None, params=None, **kargs):
             clauses[-1] += f": {', '.join(new_assoc_attrs)}"
         associations.append(new_association)
         counter += 1
-    
     for i in range(settings["n"] - settings["doubles"], settings["n"]):
         old_refs = biased_choice(ref_pool)
         arity = len(set(old_refs))
@@ -192,7 +191,7 @@ def run(source, subargs=None, params=None, **kargs):
 
     j = len("ENTITY_NAME_PLACEHOLDER")
     for e in weak_entities:
-        text = re.sub(e, lambda m: f"{weak_entity_base} {m.group(0)[j:]}", text)
+        text = re.sub(fr"\b{e}\b", lambda m: f"{weak_entity_base}{m.group(0)[j:]}", text)
     text = text.replace("ENTITY_NAME_PLACEHOLDER", entity_base)
     
     return text

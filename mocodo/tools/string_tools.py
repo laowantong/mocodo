@@ -83,10 +83,16 @@ def split_camel_case(
     return "".join(result)
 
 def compress_underscores(s):
-    return re.sub(r"_+", "_", s.strip("_"))
+    return re.sub(r"_+", "_", s)
+
+def strip_non_letters(s):
+    # This doesn't include the trailing underscore (used as discriminator)
+    s = re.sub(r"^\W+", "", s)
+    s = re.sub(r"\W+$", "", s)
+    return s
 
 def snake(label):
-    return compress_underscores(split_camel_case(label))
+    return compress_underscores(split_camel_case(strip_non_letters(label)))
 
 def urlsafe_encoding(text):
     return base64.urlsafe_b64encode(zlib.compress(text.encode('utf-8'), 9)).decode('ascii')

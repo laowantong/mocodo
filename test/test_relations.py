@@ -410,11 +410,11 @@ class relationsTest(unittest.TestCase):
 
             :
             UtilisatricesPlus : nom, prénom
-            /XT1\\ UtilisatricesPlus --> Inscrites, Abonnées : catégorie
+            /XT\\ UtilisatricesPlus --> Inscrites, Abonnées : catégorie
             Abonnées :
 
             Utilisatrices : idU, email
-            /XT2\\ Utilisatrices --> Invitées, UtilisatricesPlus : catégorie
+            /XT\\ Utilisatrices --> Invitées, UtilisatricesPlus : catégorie
             Invitées : adresseIP
             :
         """

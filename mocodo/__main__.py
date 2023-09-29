@@ -158,9 +158,10 @@ class Runner:
         may_update_params_with_guessed_title(source, self.params)
 
         converted_file_paths = [] # list of files to be displayed in the notebook
+        raw_relations = None
+        sql_relations = None
         if self.params["convert"]:
             response.may_log("has_explicit_conversion", True)
-            relations = None
             results = []
             for (subopt, subargs) in self.params["convert"]:
 
@@ -181,15 +182,20 @@ class Runner:
                 # If the subopt was a relation template, use it to convert the source
                 if template:
                     if template["extension"] == "sql":
-                        source = op_tk.run(source, "ascii", {"labels": 1, "roles": 1}, self.params)
-                        source = op_tk.run(source, "snake", {"labels": 1}, self.params)
-                        source = op_tk.run(source, "lower", {"attrs": 1, "roles": 1}, self.params)
-                        source = op_tk.run(source, "upper", {"boxes": 1}, self.params)
-                        relations = None # force the re-computation of the relations after the rewrite operations
-                    if not relations: # don't recompute the relations if they have already been computed
-                        mcd = Mcd(source, self.get_font_metrics, **self.params)
-                        relations = Relations(mcd, self.params)
-                    text = relations.get_text(template)
+                        if not sql_relations:
+                            sql_source = source
+                            sql_source = op_tk.run(sql_source, "ascii", {"labels": 1, "roles": 1}, self.params)
+                            sql_source = op_tk.run(sql_source, "snake", {"labels": 1}, self.params)
+                            sql_source = op_tk.run(sql_source, "lower", {"attrs": 1, "roles": 1}, self.params)
+                            sql_source = op_tk.run(sql_source, "upper", {"boxes": 1}, self.params)
+                            sql_mcd = Mcd(sql_source, self.get_font_metrics, **self.params)
+                            sql_relations = Relations(sql_mcd, self.params)
+                        text = sql_relations.get_text(template)
+                    else:
+                        if not raw_relations:
+                            mcd = Mcd(source, self.get_font_metrics, **self.params)
+                            raw_relations = Relations(mcd, self.params)
+                        text = raw_relations.get_text(template)
                     result = {
                         "stem_suffix": template["stem_suffix"],
                         "text": text,
@@ -213,7 +219,8 @@ class Runner:
                 converted_file_paths.extend(self.get_converted_file_paths(result))
             response.may_log("converted_file_paths", converted_file_paths)
 
-        mcd = Mcd(source, self.get_font_metrics, **self.params)
+        if not raw_relations: # if the MCD has not be calculated during the conversions
+            mcd = Mcd(source, self.get_font_metrics, **self.params)
         self.control_for_overlaps(mcd)
         resulting_paths = dump_mcd_to_svg(mcd, self.common)  # potential side-effect: update *_geo.json
         for path in resulting_paths:

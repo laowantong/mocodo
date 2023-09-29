@@ -94,7 +94,7 @@ class Mcd:
                     seen.add(element.name)
                 self.rows[-1].append(element)
             if not seen:
-                raise MocodoError(4, _('The ERD is empty.')) # fmt: skip
+                raise MocodoError(4, _('The ERD "{title}" is empty.').format(title=params["title"])) # fmt: skip
             self.rows = [row for row in self.rows if row]
             self.col_count = max(len(row) for row in self.rows)
             self.row_count = len(self.rows)
