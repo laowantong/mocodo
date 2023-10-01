@@ -17,8 +17,6 @@
 <meta charset="utf-8">
 <link rel="stylesheet" href="web/reset.css" />
 <link rel="stylesheet" href="web/style.css" />
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
-<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Source+Code+Pro:400&subset=latin,latin-ext' type='text/css'>
 
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
@@ -38,131 +36,136 @@
 	</div>​
 	<form method="post" id="mainForm" action="web/download.php" autocomplete="off">
 		<input type="hidden" name="state" id="state" value="dirty"/>
-		<input type="hidden" name="archiveName" id="archiveName"/>
-		<input type="hidden" name="path" id="path"/>
-		<input type="hidden" name="guess_title" id="guess_title" value="true"/>
 		<div id="inputZone">
 			<div class="line"></div>
 			<ul class='tabs'>
-				<li><a href='#aboutContents' class="first_tab"><span class="fa fa-info-circle"></span></a></li>
+				<li><a href='#aboutContents' class="first_tab"><span class="circled">&#8505;</span></a></li>
 				<li><a href='#inputContents' class="active"><span>Entrée</span></a></li>
 				<li><a href='#paramContents'><span>Options</span></a></li>
 				<li><a href='#geoContents' id="geoTab"><span>Retouches</span></a></li>
 			</ul>
 			<div class="pane">
 				<div id="inputButtons" class='buttons'>
-					<span class="fa fa-arrows-v fa-2x customButton" id="flipHorizontallyButton" onclick="reorganize('flip=h')" title="Inverser les rangées."></span>
-					<span class="fa fa-arrows-h fa-2x customButton" id="flipVerticallyButton" onclick="reorganize('flip=v')" title="Inverser les colonnes."></span>
-					<span class="fa fa-arrows-v fa-2x fa-rotate-45 customButton" id="flipDiagonallyButton" onclick="reorganize('flip=d')" title="Transposer colonnes et rangées."></span>
-					<span class="fa fa-random fa-2x customButton" id="arrangeButton" onclick="arrange(event)" title="Réarranger automatiquement les boîtes (sur la grille actuelle avec SHIFT, sur la plus petite grille « équilibrée » possible avec ALT, sur la suivante avec SHIFT+ALT)."></span>
+					<div class="button-with-popup" id="arrangeButton">
+						<span class="customButton tooltip" onmouseenter="closePopup()" onmousedown="startCountdown(this)" onmouseup="stopCountdown('arrange')" style="background-image: url(web/png/arrange.png);"><span class="tooltiptext">Réorganiser</span></span>
+						<div class="popup-menu" onmouseleave="closePopup(this)">
+							<span class="popup-item popup-close" onclick="closePopup()">⨉</span>
+							<span class="popup-item" onclick="rewrite('arrange:current')">sur la grille actuelle</span>
+							<span class="popup-item" onclick="rewrite('arrange:wide')">en privilégiant la largeur</span>
+							<span class="popup-item" onclick="rewrite('arrange:balanced=0')">sur la plus petite grille équilibrée</span>
+							<span class="popup-item" onclick="rewrite('arrange:balanced=1')">sur la seconde plus petite grille équilibrée</span>
+							<span class="popup-item" onclick="rewrite('arrange')">sans contraintes (par défaut)</span>
+						</div>
+					</div>
+					<div class="button-with-popup" id="flipButton">
+						<span class="customButton tooltip" onmouseenter="closePopup()" onmousedown="startCountdown(this)" onmouseup="stopCountdown('flip:h,v,d')" style="background-image: url(web/png/flip.png);"><span class="tooltiptext">Inverser</span></span>
+						<div class="popup-menu" onmouseleave="closePopup(this)">
+							<span class="popup-item popup-close" onclick="closePopup()">⨉</span>
+							<span class="popup-item" onclick="rewrite('flip:h')">horizontalement</span>
+							<span class="popup-item" onclick="rewrite('flip:v')">verticalement</span>
+							<span class="popup-item" onclick="rewrite('flip:d')">selon la première diagonale</span>
+							<span class="popup-item" onclick="rewrite('flip:h,v,d')">selon la deuxième diagonale (par défaut)</span>
+						</div>
+					</div>
+					<div class="button-with-popup" id="typoButton">
+						<span class="customButton tooltip" onmouseenter="closePopup()" onmousedown="startCountdown(this)" onmouseup="stopCountdown('ascii:labels snake:labels lower:attrs,roles upper:boxes')" style="background-image: url(web/png/typo.png);"><span class="tooltiptext">Éditer</span></span>
+						<div class="popup-menu" onmouseleave="closePopup(this)">
+							<span class="popup-item popup-close" onclick="closePopup()">⨉</span>
+							<span class="popup-item" onclick="rewrite('ascii:labels')">libellés en ASCII</span>
+							<span class="popup-item" onclick="rewrite('snake:labels')">libellés en <i>snake case</i></span>
+							<span class="popup-item" onclick="rewrite('lower:attrs,roles')">attributs en minuscules</span>
+							<span class="popup-item" onclick="rewrite('upper:boxes')">noms des entités et des associations en majuscules</span>
+							<span class="popup-item" onclick="rewrite('ascii:labels snake:labels lower:attrs,roles upper:boxes')">tous les précédents à la fois (par défaut)</span>
+							<span class="popup-item" onclick="rewrite('fix:cards')">correction des fautes de frappe dans les cardinalités</span>
+						</div>
+					</div>
+					<div class="button-with-popup" id="createButton">
+						<span class="customButton tooltip" onmouseenter="closePopup()" onmousedown="startCountdown(this)" onmouseup="stopCountdown('create:types')" style="background-image: url(web/png/create.png);"><span class="tooltiptext">Révéler</span></span>
+						<div class="popup-menu" onmouseleave="closePopup(this)">
+							<span class="popup-item popup-close" onclick="closePopup()">⨉</span>
+							<span class="popup-item" onclick="rewrite('create:entities')">réparer l'oubli d'entités référencées dans des associations</span>
+							<span class="popup-item" onclick="rewrite('create:dfs')">mettre des DF partout où c'est possible</span>
+							<span class="popup-item" onclick="rewrite('create:df_arrows')">ajouter des flèches aux DF</span>
+							<span class="popup-item" onclick="rewrite('create:cifs')" id="createCifs" style="display: none;">ajouter les CIF correspondant aux agrégats</span>
+							<span class="popup-item" onclick="rewrite('create:types')">deviner les types à partir du nom des attributs (par défaut)</span>
+						</div>
+					</div>
+					<div class="button-with-popup" id="jokerButton">
+						<span class="customButton tooltip" onmouseenter="closePopup()" onmousedown="startCountdown(this)" onmouseup="stopCountdown('obfuscate')" style="background-image: url(web/png/joker.png);"><span class="tooltiptext">Masquer</span></span>
+						<div class="popup-menu" onmouseleave="closePopup(this)">
+							<span class="popup-item popup-close" onclick="closePopup()">⨉</span>
+							<span class="popup-item" onclick="rewrite('obfuscate')">masquer avec du faux texte (par défaut)</span>
+							<span class="popup-item" onclick="rewrite('drown')">masquer avec des libellés génériques numérotés</span>
+							<span class="popup-item" onclick="rewrite('create:types=PLACEHOLDER randomize:types')">mettre des types au hasard</span>
+							<span class="popup-item" onclick="rewrite('grow:from_scratch,arity_3=1 arrange')">créer un MCD aléatoire avec des libellés génériques numérotés</span>
+							<span class="popup-item" onclick="rewrite('grow:from_scratch,arity_3=1 obfuscate create:roles lower:roles arrange')">créer un MCD d'entraînement à la conversion en relationnel</span>
+						</div>
+					</div>
+					<div class="button-with-popup" id="explodeButton" style="display: none;">
+						<span class="customButton tooltip explosion-call" onmouseenter="closePopup()" onmousedown="startCountdown(this)" onmouseup="stopCountdown('explode:arity=3 arrange')" style="background-image: url(web/png/explode.png);"><span class="tooltiptext">Décomposer</span></span>
+						<div class="popup-menu" onmouseleave="closePopup(this)">
+							<span class="popup-item popup-close" onclick="closePopup()">⨉</span>
+							<span class="popup-item" onclick="rewrite('drain')">vider les DF porteuses d'attributs</span>
+							<span class="popup-item" onclick="rewrite('split arrange')">décomposer les DF ternaires et plus</span>
+							<span class="popup-item explosion-call" onclick="rewrite('explode:arity=3 arrange')">décomposer les non-DF ternaires et plus (par défaut)</span>
+							<span class="popup-item explosion-call" onclick="rewrite('explode:arity=2.5 arrange')">décomposer les non-DF binaires et plus porteuses d'attributs</span>
+							<span class="popup-item explosion-call" onclick="rewrite('explode:arity=2 arrange')">décomposer toutes les non-DF binaires et plus</span>
+						</div>
+					</div>
 				</div>
 				<div id="aboutContents" class="contents">
-<p>
-	Mocodo est un logiciel d'aide à l'enseignement et à la conception de <a href="https://fr.wikipedia.org/wiki/Base_de_données_relationnelle">bases de données relationnelles</a>.
-	En entrée, il prend une description textuelle des entités et associations du modèle conceptuel de données (<a href="https://fr.wikipedia.org/wiki/Modèle_entité-association">MCD</a>).
-	En sortie, il produit son diagramme entité-association en <a href="https://fr.wikipedia.org/wiki/Scalable_Vector_Graphics">SVG</a>, <a href="https://fr.wikipedia.org/wiki/Portable_Document_Format">PDF</a> et <a href="https://fr.wikipedia.org/wiki/Portable_Network_Graphics">PNG</a> et son schéma relationnel (<a href="https://fr.wikipedia.org/wiki/Merise_&amp;# 40;informatique&amp;# 41;#Le_MLD_mod.C3.A8le_logique_des_donn.C3.A9es">MLD</a>) en <a href="https://fr.wikipedia.org/wiki/Structured_Query_Language">SQL</a>, <a href="https://fr.wikipedia.org/wiki/LaTeX"><span style="font-family: serif; font-style: normal; margin-right: -.7em;">L<span style="font-size: 0.9em; position: relative; top: -.1em; left: -0.4em;">A</span><span style="position: relative; left: -.5em;">T</span><span style="position: relative; top: .2em; left: -.6em;">E</span><span style="position: relative; left: -.7em;">X</span></span></a>, <a href="https://fr.wikipedia.org/wiki/Markdown">Markdown</a>, etc.
-</p>
-<h1>Syntaxe du texte d'entrée</h1>
-
-<h2>Principe</h2>
-<ul>
-<li>Chaque ligne constitue la définition d'une entité ou d'une association (« boîte » dans la suite).</li>
-</ul>
-
-<h2>Définir une entité</h2>
-
-<pre><code>nom entité: attribut 1, attribut 2, attribut 3, ...
-</code></pre>
-
-<ul>
-<li>Un nom d'entité est séparé de ses attributs par un deux-points.</li>
-<li>Les attributs sont séparés par des virgules.</li>
-<li>Le premier attribut est par défaut l'identifiant de l'entité.</li>
-</ul>
-
-<h2>Définir une association</h2>
-
-<pre><code>nom association, 01 nom entité 1, 1N nom entité 2, ... : attribut 1, attribut 2, ...
-</code></pre>
-
-<ul>
-<li>Un nom d'association est séparé de sa première patte par une virgule.</li>
-<li>Les pattes d'une association sont séparées par des virgules.</li>
-<li>Une patte consiste en un couple de cardinalités (<code>01</code>, <code>11</code>, <code>0N</code>, <code>1N</code>) suivi du nom d'une entité.</li>
-<li>La dernière patte d'une association est séparée de ses éventuels attributs par un deux-points.</li>
-<li>Les attributs sont séparés par des virgules.</li>
-<li>Deux pattes d'une même association peuvent aboutir à une même entité (association réflexive).</li>
-</ul>
-
-<h2>Spécifier une mise en page</h2>
-
-<ul>
-<li>Les boîtes définies sur des lignes <em>consécutives</em> sont tracées sur une même rangée.</li>
-<li>Un saut de ligne commence une nouvelle rangée.</li>
-<li>Toutes les boîtes d'une même colonne sont alignées verticalement.</li>
-<li>Une ligne réduite à un deux-points insère une boîte invisible.</li>
-</ul>
-
-<h1>Principales opérations</h1>
-
-<h2>Réorganiser les boîtes</h2>
-
-<ul>
-<li><i class="fa fa-arrows-v"></i> : inverser verticalement.</li>
-<li><i class="fa fa-arrows-h"></i> : inverser horizontalement.</li>
-<li><i class="fa fa-arrows-v fa-rotate-45"></i> : transposer selon la première diagonale.</li>
-<li><i class="fa fa-random"></i> : mettre en page en interdisant les croisements et en minimisant la longueur des liens,
-	<ul>
-		<li>avec <kbd>SHIFT</kbd> : sur la grille courante.</li>
-		<li>avec <kbd>ALT</kbd> : sur la plus petite grille «&nbsp;équilibrée&nbsp;» possible.</li>
-        <li>avec <kbd>ALT</kbd> et <kbd>SHIFT</kbd> : sur la deuxième plus petite grille «&nbsp;équilibrée&nbsp;» possible.</li>
-	</ul>
-</li>
-</ul>
-
-<h2>Manipuler les schémas</h2>
-
-<ul>
-<li><i class="fa fa-refresh"></i> : dessiner le MCD et générer le MLD à partir du texte d'entrée.</li>
-<li>Onglet « Retouches » : modifier la position de certains éléments.</li>
-<li><i class="fa fa-download"></i> : récupérer une archive de votre travail (entrée et sortie).</li>
-</ul>
+					<p>
+					Mocodo est un logiciel d'aide à l'apprentissage et à l'enseignement des <a href="https://fr.wikipedia.org/wiki/Base_de_données_relationnelle">bases de données relationnelles</a>.
+					</p><p>
+					<ul>
+						<li>En entrée, il prend un <a href="https://fr.wikipedia.org/wiki/Modèle_entité-association">MCD</a> (modèle conceptuel de données) décrit dans un langage dédié minimaliste.</li>
+						<li>En sortie, il produit un diagramme entité-association et, à la demande, un <a href="https://fr.wikipedia.org/wiki/Merise_(informatique)#MLD_:_modèle_logique_des_données">MLD</a> (schéma relationnel, sous forme graphique ou textuelle), un <a href="https://fr.wikipedia.org/wiki/Langage_de_définition_de_données">DDL</a> (requêtes SQL de création de la base), un <a href="https://fr.wikipedia.org/wiki/Diagramme_de_classes">diagramme de classes UML</a>, etc.</li>
+						<li>En bonus, il est capable de réorganiser automatiquement votre MCD de façon esthétique, et de lui appliquer des opérations de réécriture qui vont du trivial (typographie) au complexe (décomposition d'associations) en flirtant au passage avec le merveilleux (inférence de types, génération d'exemples et d'exercices).</li>
+					</ul>
+					<p>
+					Ce site est destiné à vous permettre de vous familiariser avec Mocodo. Cependant, si vous souhaitez avoir accès à toutes ses fonctionnalités, nous vous conseillons de l'installer en local :
+					</p>
+					<br>
+					<pre>> pip install mocodo</pre>
+					</br>
+					<p>
+					Sous cette forme, Mocodo est un puissant <a href="https://fr.wikipedia.org/wiki/Interface_en_ligne_de_commande">logiciel en ligne de commande</a>, multiplateforme, <a href="https://fr.wikipedia.org/wiki/Licence_MIT">libre</a>, <a href="https://github.com/laowantong/mocodo"><i>open-source</a> et gratuit. Son interface a été pensée pour être particulièrement agréable à utiliser sous <a href="https://jupyter.org">Jupyter Notebook</a>.
+					</p>
+					<br>
+					<p>
+					Suivez notre tutoriel interactif (onglet Entrée), puis lisez la <a target="_blank" href="https://rawgit.com/laowantong/mocodo/master/doc/fr_refman.html">documentation de Mocodo</a> pour en savoir plus.
+					</p>
 				</div>
 				<div id="inputContents" class="contents">
 					<div id=inputPane>
-						<div>
-							<input
-								type="text"
-								oninput="markAsDirty();freezeTitle();reveal()"
-								onfocus="onFocus(this)"
-								name="title"
-								id="title"
-								value="Sans Titre"
-								onblur="onBlur(this)"
-								autocomplete="off"
-								title="Si vous ne donnez pas de titre à votre MCD, Mocodo essaiera d'en trouver un pour vous."
-							/>
-						</div>
-						<span id="gear" class="fa fa-cog fa-2x"></span>
-						<select onchange="changeTitleToNthTuto();reveal()" name="tutorial" id="tutorial" title="Parcourez notre galerie de MCD pour apprendre la syntaxe de Mocodo."></select>
+						<div><input type="text" oninput="markAsDirty();unbox()" onfocus="onFocus(this)" name="title" id="title" value="MCD" onblur="onBlur(this)" autocomplete="off" /></div>
+						<select onchange="changeTitleToNthTuto();unbox()" name="tutorial" id="tutorial" title="Parcourez notre galerie de MCD pour apprendre la syntaxe de Mocodo."></select>
 						<textarea hidden name="text"><?php
 							$encoded_string = (isset($_GET['mcd'])) ? $_GET['mcd'] : '';
 							echo (zlib_decode(base64_decode(strtr($encoded_string, '-_', '+/'))));
 						?></textarea>
-						<div id="editor" onchange="markAsDirty();mayUnfreezeTitle()"></div>
+						<div id="editor-wrapper">
+						<div id="editor"></div>
+						</div>
 					</div>
 				</div>
 				<div id="paramContents" class="contents">
 					<div><label class="fixedWidth" for="colors">Palette de couleurs</label><select onchange="markAsDirty();writeCookie()" name="colors" id="colors"></select></div>
 					<div><label class="fixedWidth" for="shapes">Police et proportions</label><select onchange="markAsDirty();writeCookie()" name="shapes" id="shapes"></select></div>
-					<div><label class="fixedWidth" for="adjust_width">Ajustement de la largeur des libellés</label><input type="number" value="1" max="4.00" min="-0.01" onchange="writeCookie()" name="adjust_width" id="adjust_width" style="width: 6em; text-align: right; border-radius: 0; margin-right: 0.2em; "></input></div>
-					<div><label class="fixedWidth" for="flex">Inflexion des pattes trop rapprochées</label><select onchange="writeCookie()" name="flex" id="flex"></select></div>
+					<div>
+						<label class="fixedWidth" for="adjust_width">Ajustement de la largeur des libellés</label>
+						<input type="number" value="1.00" max="2.00" min="0.50" step="0.01" onchange="writeCookie()" name="adjust_width" id="adjust_width" style="width: 5em; border-radius: 0;">
+					</div>
+					<div>
+						<label class="fixedWidth" for="flex">Inflexion des pattes trop rapprochées</label>
+						<select onchange="writeCookie()" name="flex" id="flex"></select>
+					</div>
 					<div><label class="fixedWidth" for="delays">Temps de calcul limité à </label><select onchange="writeCookie()" name="delays" id="delays"></select></div>
-					<div><label class="fixedWidth" for="disambiguation">Désambiguïsation des attributs migrants </label><select onchange="writeCookie()" name="disambiguation" id="disambiguation"></select></div>
 					<div><label class="fixedWidth" for="detect_overlaps" title="Lève une erreur en cas de chevauchement de pattes horizontales ou verticales.">Détecter les chevauchements</label><input type="checkbox" name="detect_overlaps" id="detect_overlaps" onchange='markAsDirty();writeCookie()' checked /></div>
 					<div><label class="fixedWidth" title="Les formats cochés seront générés et inclus dans l'archive téléchargée.">Format des images en sortie</label><span title="Pour le web, zoom illimité. Requis."><input type="checkbox" disabled="true" id="svg" checked /><label for="svg">&nbsp;SVG&nbsp;&nbsp;</label></span><span title="Multi-usage, zoom limité."><input type="checkbox" name="png" id="png" onchange='markAsDirty();writeCookie()' /><label for="png">&nbsp;PNG&nbsp;&nbsp;</label></span><span title="Pour l'impression, zoom illimité."><input type="checkbox" name="pdf" id="pdf" onchange='markAsDirty();writeCookie()' /><label for="pdf">&nbsp;PDF&nbsp;&nbsp;</label></span></div>
-					<div><label class="fixedWidth" for="SQL_dialect" title="Pour générer un code SQL valide, faites suivre chaque attribut de son type entre crochets.">Dialecte SQL en sortie</label><select onchange="writeCookie()" name="SQL_dialect" id="SQL_dialect"></select></div>
-					<div><label class="fixedWidth" for="relation_formats" title="Les formats cochés seront affichés sous l'onglet Relations et inclus dans l'archive téléchargée.">Format des relations en sortie</label> <ul name="relation_formats" id="relation_formats" ></ul></div>
+					<div><label class="fixedWidth" for="knowledge" title="Mocodo peut adapter ses résultats et son interface en fonction de vos connaissances ou de vos besoins.">Notions mises en œuvre</label><ul name="knowledge" id="knowledge"></ul></div>
+					<div><label class="fixedWidth" for="conversions" title="Les formats cochés seront affichés sous l'onglet « Autres sorties » et inclus dans l'archive téléchargée.">Conversions en sortie</label> <ul name="conversions" id="conversions" ></ul>
+					</div>
 				</div>
 				<div id="geoContents" class="contents">
 					<fieldset><legend>Coordonnées du centre des boîtes</legend><div id="coords"></div></fieldset>
@@ -176,19 +179,23 @@
 			<div class="line"></div>
 			<ul class='tabs'>
 				<li><a href='#diagramAndSupplementOutput' id="diagramTab" class="first_tab active"><span>Diagramme</span></a></li>
-				<li><a href='#relationalOutput'><span>Relations</span></a></li>
+				<li><a href='#convertOutput'><span>Autres sorties</span></a></li>
 				<li><a href='#errorOutput' id="errorTab"><span>Erreurs</span></a></li>
 			</ul>
 			<div class="pane">
 				<div id="outputButtons" class='buttons'>
-						<span class="fa fa-refresh fa-2x customButton" id="generateButton" onclick="generate()" title="Générer le MCD et les relations à partir du texte d'entrée."></span>
-						<span class="fa fa-download fa-2x customButton" id="downloadButton" onclick="mainForm.submit()" title="Télécharger l'ensemble des données et des résultats."></span>
+					<span class="customButton tooltip" id="refreshButton" onclick="generate()" style="background-image: url(web/png/refresh.png);"><span class="tooltiptext">Rafraîchir</span></span>
+					<div id="rotatingButton" style="display: none">
+						<span class="customButton" id="empty" style="background-image: url(web/png/empty.png);"></span>
+						<span class="customButton" id="refreshRotatingButton" style="background-image: url(web/png/refresh_rotating.png);"></span>
+					</div>
+					<a class="customButton tooltip" id="downloadButton" href="" download="" target="_blank" style="background-image: url(web/png/download.png);"><span class="tooltiptext">Télécharger</span></a>
 				</div>
 				<div id="diagramAndSupplementOutput">
-					<div id="diagramOutput" class="contents active initial"><img src="web/generate_tip.svg"/></div>
+					<div id="diagramOutput" class="contents active never_refreshed"><img src="web/generate_tip.svg"/></div>
 					<div id="diagramOutputSupplement" class="contents"></div>
 				</div>
-				<div id="relationalOutput" class="contents initial"><img src="web/generate_tip.svg"/></div>
+				<div id="convertOutput" class="contents never_refreshed"><img src="web/generate_tip.svg"/></div>
 				<div id="errorOutput" class="contents"></div>
 			</div>
 		</div>

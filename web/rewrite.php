@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-// $php_log = fopen("php.log", 'w') or die("can't open file");
+$php_log = fopen("php.log", 'w') or die("can't open file");
 // fwrite($php_log, "Log file\n");
 if (!array_key_exists('text', $_POST)) {
     exit("Need a POST value.");
@@ -26,7 +26,6 @@ fclose($chan);
 // Prepare the contents of the options file
 unset($_POST['text']);
 unset($_POST['state']);
-$_POST["guess_title"] = ($_POST["guess_title"] == "true");
 $_POST['language'] = 'fr';
 $_POST['encodings'] = array("utf8");
 $_POST['title'] = $title;
@@ -43,15 +42,38 @@ if (strpos($_SERVER['HTTP_REFERER'], 'localhost')) {
   } else {
     $mocodo = "~/.local/bin/mocodo";
 };
-$command_line = "{$mocodo} --timeout=" . $_POST['timeout'] . " --" . $_POST['algo'] . " 2>&1";
-// fwrite($php_log, $command_line . "\n");
-// fwrite($php_log,$_POST['text']);
+$command_line = "{$mocodo} -t " . $_POST['args'] . " 2>&1";
+
+fwrite($php_log, $command_line);
+
+// Execute the command and test the exit code.
+// If it is not 0, return an array with a key "err" and the error message.
+
+fwrite($php_log, $command_line . "\n");
 $out = array();
 exec($command_line, $out, $exitCode);
-// fwrite($php_log, "out:" . $out . "\n");
-// fwrite($php_log, "exitCode:" . $exitCode . "\n");
-// fclose($php_log);
+if ($exitCode) {
+    echo json_encode(array("err" => implode("\n", $out)));
+    exit();
+}
 
-$key = $exitCode ? "err" : "text";
-echo json_encode(array($key => implode("\n", $out)));
+// Otherwise, retrieve the updated input file and return it
+// in an array with a key "text".
+
+$chan = fopen($_POST['input'], 'r') or die('{"err": "PHP: Can\'t open MCD file."}');
+$contents = fread($chan, filesize($_POST['input']));
+fwrite($php_log,$contents);
+
+echo json_encode(array("text" => $contents));
+
+
+// // fwrite($php_log,$_POST['text']);
+// $out = array();
+// exec($command_line, $out, $exitCode);
+// fwrite($php_log, "out:" . $out . "\n");
+// // fwrite($php_log, "exitCode:" . $exitCode . "\n");
+// // fclose($php_log);
+
+// $key = $exitCode ? "err" : "text";
+// echo json_encode(array($key => implode("\n", $out)));
 ?>
