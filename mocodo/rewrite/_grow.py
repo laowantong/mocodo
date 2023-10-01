@@ -135,7 +135,7 @@ def run(source, subargs=None, params=None, **kargs):
             ent_attr_names.append([f"{id_base}"] + [f"{attr_base}"] * random.randint(1, settings["ent_attrs"] - 1))
     
     if "from_scratch" in subargs:
-        source = f"ENTITY_NAME_PLACEHOLDER 1: {id_base} 1 1, {attr_base} 1 2, {attr_base} 1 3\n"
+        source = f"ENTITY_NAME_PLACEHOLDER 1_: {id_base} 1 1, {attr_base} 1 2, {attr_base} 1 3\n"
 
     tree = parse_source(source)
     entities = [node.children[0].children[0].value for node in tree.find_data("entity_name_def")]

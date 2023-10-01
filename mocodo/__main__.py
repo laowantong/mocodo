@@ -268,7 +268,7 @@ class Runner:
             else:
                 resp_path.write_bytes(response.content)
             yield str(resp_path)
-        elif result.get("stem_suffix") == "_mld" and result.get("extension") == "mcd": # relational diagram
+        elif result.get("stem_suffix") == "_mld" and result.get("extension") == "mcd" and self.params["is_magic"]: # relational diagram
             mld = Mcd(result["text"], self.get_font_metrics, **self.params)
             backup_input = self.params["input"]
             backup_output_name = self.params["output_name"]
