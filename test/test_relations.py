@@ -192,7 +192,7 @@ class relationsTest(unittest.TestCase):
             Entité C: id
         """
         expected = """
-            Entité centrale (_id_, id 1, id 2, id 3, id suffixe 1, id suffixe 2)
+            Entité centrale (_id_, id 2, id 3, id 4, id suffixe 1, id suffixe 2)
         """.strip().replace("    ", "")
         t = Relations(Mcd(source, params), params)
         self.assertEqual(t.get_text(minimal_template), expected)
@@ -210,7 +210,7 @@ class relationsTest(unittest.TestCase):
             DF, 11 FOO, 1N [string containing spaces] BAR
         """
         expected = """
-            FOO (_id_, id 1, id 2, id role, idrole, id_role, role, id 3)
+            FOO (_id_, id 2, id 3, id role, idrole, id_role, role, id 4)
         """.strip().replace("    ", "")
         t = Relations(Mcd(source, params), params)
         self.assertEqual(t.get_text(minimal_template), expected)
