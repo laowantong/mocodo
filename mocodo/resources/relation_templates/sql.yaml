@@ -37,7 +37,7 @@ compose_relation: 'CREATE TABLE {this_relation_name} (\n  {columns}\n);\n'
 transform_relation:
   - order: 100
     comment: 'Move the primary keys to the end of the table.'
-    search: '(?sm)^(PRIMARY KEY [^\n]+)\n(.+)^\)'
+    search: '(?sm)^(PRIMARY KEY [^\n]+)\n(.*)^\)'
     replace: '\2  \1\n)'
     iterated: true
   - order: 200
@@ -61,7 +61,7 @@ transform_relation:
     iterated: true
   - order: 2100
     comment: 'Move the unique constraints to the end of the table.'
-    search: '(?sm)^(CONSTRAINT [^\n]+ UNIQUE [^\n]+)\n(.+)^\)'
+    search: '(?sm)^(CONSTRAINT [^\n]+ UNIQUE [^\n]+)\n(.*)^\)'
     replace: '\2  \1\n)'
     iterated: true
   - order: 2200

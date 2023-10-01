@@ -14,8 +14,8 @@ CREATE TABLE RESERVATION (
 CREATE TABLE SEMAINE (
   PRIMARY KEY (num_semaine),
   num_semaine VARCHAR(8) NOT NULL,
-  date_debut DATE
-CONSTRAINT SEMAINE_u1 UNIQUE (date_debut)
+  date_debut DATE,
+  UNIQUE (date_debut)
 );
 
 CREATE TABLE VOILIER (
