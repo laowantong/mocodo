@@ -8,7 +8,7 @@ from ..parse_mcd import Transformer
 from ..tools.parser_tools import transform_source
 from ..tools.string_tools import ascii, camel, snake, TRUNCATE_DEFAULT_SIZE
 from ..mocodo_error import MocodoError
-from .cards import fix_card, infer_dfs
+from .cards import fix_card, infer_dfs, infer_roles
 from .types import read_default_datatypes, create_type_placeholders, guess_types
 from .obfuscate import obfuscator_factory
 from .arrows import create_df_arrows
@@ -89,6 +89,8 @@ def run(source, op_name, subargs, params, **kargs):
             source = create_df_arrows(source, subsubarg)
         elif op_name == "create" and re.match("(?i)dfs?$", pre_token):
             source = infer_dfs(source, params["df"])
+        elif op_name == "create" and pre_token == "roles":
+            source = infer_roles(source)
         elif op_name == "create" and re.match("(?i)cifs?$", pre_token):
             source = create_cifs(source, subsubarg)
         else: # apply a normal op_tk operation

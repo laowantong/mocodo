@@ -43,3 +43,23 @@ def infer_dfs(source, df_label):
     visitor.visit(tree)
     return reconstruct_source(tree)
 
+class RoleInference(Visitor):
+
+    def assoc_clause(self, tree):
+        assoc_name = first_child(tree, "assoc_name_def").children[0]
+        legs = list(tree.find_data("assoc_leg"))
+        cards = [first_child(leg, "card") for leg in legs]
+        roles = [first_child(leg, "leg_note") for leg in legs]
+        if {"01", "11"}.intersection(cards):
+            for (card, role) in zip(cards, roles):
+                if role:
+                    continue
+                if card in ("01", "11"):
+                    continue
+                card.value += f" [{assoc_name}]"
+
+def infer_roles(source):
+    tree = parse_source(source)
+    visitor = RoleInference()
+    visitor.visit(tree)
+    return reconstruct_source(tree)
