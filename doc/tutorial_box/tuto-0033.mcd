@@ -1,0 +1,27 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                                 %
+%                                BOÎTES HOMONYMES                                 %
+%                                                                                 %
+%  Le dernier chiffre ou tiret bas d'un nom d'entité ou d'association n'est pas   %
+%  affiché. C'est bon à savoir, p. ex. pour monnayer une entité « fictive » trop  %
+%  pattue : ici, on évite les croisements en créant deux entités Date.            %
+%                                                                                 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Association 9_, XX Entité 3_, XX Date1
+Date1: date
+Association 10_, XX Entité 1_, XX Date1
+Association 11_, XX Entité 1_, XX Entité 2_, XX Date2
+:
+
+Entité 3_:
+Association 8_, XX Entité 3_, XX Entité 1_, XX Date1
+Entité 1_:
+Entité 2_:
+Date2: date
+
+Association 5_, XX Entité 4_, XX Entité 3_
+Entité 4_:
+Association 6_, XX Entité 4_, XX Entité 1_
+Association 7_, XX Entité 1_, XX Entité 2_, XX Date2
+:

@@ -4,7 +4,7 @@
   - Le champ « commande » fait partie de la clé primaire de la table. Il a migré à partir de l'entité « Commande » pour renforcer l'identifiant. Cependant, comme la table créée à partir de cette entité a été supprimée, il n'est pas considéré comme clé étrangère.
   - Le champ « produit » fait partie de la clé primaire de la table. Il a migré à partir de l'entité « Produit » pour renforcer l'identifiant. Cependant, comme la table créée à partir de cette entité a été supprimée, il n'est pas considéré comme clé étrangère.
   - Le champ « quantité » était déjà un simple attribut de l'entité « Ligne de commande ».
-
+<br>
 --------------------------------------------------------------------------------
 
 NB. Les tables « Commande » et « Produit » ont été supprimées car elles étaient réduites à la clé primaire de leur entité d'origine.

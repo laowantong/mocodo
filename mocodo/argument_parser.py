@@ -483,7 +483,7 @@ def parsed_arguments():
         help="discriminate between multiple SVG of the same interactive diagram",
     )
     io_group.add_argument("--select",
-        choices=["mcd", "rw", "source", "text", "code", "cv", "mld", "ddl"],
+        choices=["mcd", "rw", "source", "text", "code", "mocodo", "cv", "mld", "ddl", "sql"],
         nargs="*",
         default=argparse.SUPPRESS, # causes no attribute to be added if the argument was not present
         help="under Jupyter Notebook, explicitely state the categories of results to display",

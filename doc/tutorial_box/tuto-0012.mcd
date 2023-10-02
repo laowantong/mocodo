@@ -1,17 +1,18 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                                                               %
-%                       RÉARRANGEMENT AUTOMATIQUE MINIMAL                       %
-%                                                                               %
-%  Quand le schéma commence à prendre trop de place, maintenez ALT en cliquant  %
-%  sur les deux flèches croisées pour chercher un réarrangement sur la plus     %
-%  petite grille équilibrée possible. Essayez !                                 %
-%                                                                               %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                                  %
+%                            DIAGRAMME RELATIONNEL (2)                             %
+%                                                                                  %
+%  Voici le résultat de la manipulation précédente. Les associations ont cédé la   %
+%  place à des flèches entre les clés étrangères et les clés primaires d'origine.  %
+%                                                                                  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+:
 Produit: réf. produit, libellé, prix unitaire
-Inclure, 1N Commande, 0N Produit: quantité
-Commande: num commande, date, montant
-
-DF, 0N Client, 11 Commande
-Client: réf. client, nom, prénom, adresse
-Parrainer, 01 Client, 0N Client : date parrainage
+:
+Inclure: #num. commande > Commande > num. commande, _#réf. produit > Produit > réf. produit, quantité
+:
+Commande: num. commande, date, montant, #réf. client > Client > réf. client
+:
+Client: réf. client, nom, prénom, adresse, #réf. client parrain > Client > réf. client, date parrainage
+:

@@ -110,12 +110,12 @@ class MocodoMagics(Magics):
         remaining_args = list(takewhile(lambda x: not x.startswith("#"), remaining_args))
         new_args = remaining_args[:]
 
-        if Path.cwd().name != "mocodo_notebook":
-            Path("mocodo_notebook").mkdir(parents=True, exist_ok=True)
-            os.chdir("mocodo_notebook")
-
+        mocodo_notebook_dir = Path.cwd()
+        if mocodo_notebook_dir.name != "mocodo_notebook":
+            mocodo_notebook_dir = mocodo_notebook_dir / "mocodo_notebook"
+            mocodo_notebook_dir.mkdir(parents=True, exist_ok=True)
         if not args.input:
-            input_path = Path.cwd() / "sandbox.mcd"
+            input_path = mocodo_notebook_dir / "sandbox.mcd"
             input_path.write_text(cell, encoding="utf8")
         else:
             input_path = Path(args.input)
@@ -123,14 +123,10 @@ class MocodoMagics(Magics):
                 input_path = input_path.with_suffix(".mcd")
 
         if not args.output_dir:
-            output_dir = Path.cwd()
+            output_dir = mocodo_notebook_dir
         else:
             output_dir = Path(args.output_dir)
-            try:
-                output_dir.mkdir(parents=True, exist_ok=True)
-            except OSError:
-                if not output_dir.is_dir():
-                    raise
+            output_dir.mkdir(parents=True, exist_ok=True)
         output_path_radical = output_dir / input_path.stem
 
         remaining_args.extend([

@@ -1,21 +1,30 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                                %
-%                          HÉRITAGE (OU SPÉCIALISATION)                          %
+%                      AUTRES CONTRAINTES SUR ASSOCIATIONS                       %
 %                                                                                %
-%  Pour spécialiser une entité E en une ou plusieurs autres entités E1, E2, ...  %
-%  écrivez « /\ E <- E1, E2, ... ».                                              %
+%  Ajoutez à votre MCD diverses contraintes sous forme de lettres parenthésées   %
+%  et liées aux boîtes par des traits fléchés ou non, pleins ou pointillés, ou   %
+%  même invisibles. Ces contraintes sont purement décoratives, et ignorées lors  %
+%  du passage au relationnel.                                                    %
 %                                                                                %
-%  NB. Vous pouvez insérer X (exclusion) et/ou T (totalité) entre les barres     %
-%  obliques, ajouter une liste d'attributs ou modifier la sémantique et/ou la    %
-%  représentation graphique de l'héritage en remplaçant la flèche par <=, ->,    %
-%  =>, <<=, <<-, ->> =>>. Voir la documentation.                                 %
+%  NB : par défaut, le centre de la contrainte coïncide avec le barycentre des   %
+%  boîtes qu'elle met en jeu.                                                    %
+%                                                                                %
+%  Source du MCD : Merise, deuxième génération (Nanci et Espinasse, 2001).       %
 %                                                                                %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Personne: num SS, nom, prénom
+:::
+Dépôt: num dépôt, surface
 
-/\ Personne <- Homme, Femme
-
-Homme: 
 :
-Femme: nom de jeune fille
+Louer, 11 Commande, 0N Dépôt
+:
+Stocker, 1N Dépôt, 1N Article: quantité
+
+Commande: num. commande, date
+Composer, 1N Commande, 0N Article
+:
+Article: réf. article, prix
+
+(I) ->Stocker, ..Dépôt, ..Article, --Composer, --Louer, Commande, Stocker

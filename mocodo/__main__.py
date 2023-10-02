@@ -34,8 +34,8 @@ from .tools.various import invert_dict
 
 SHOW_ARGS = invert_dict({
     "mcd": ["mcd"],
-    "rw": ["rw", "source", "text", "code"],
-    "cv": ["cv", "mld", "ddl"],
+    "rw": ["rw", "source", "text", "code", "mocodo"],
+    "cv": ["cv", "mld", "ddl", "sql"],
 })
 
 class ResponseLogger:

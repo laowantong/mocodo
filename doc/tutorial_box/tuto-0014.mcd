@@ -1,17 +1,18 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                                                                %
-%                          RÔLE D'UNE PATTE POUR LE MLD                          %
-%                                                                                %
-%  La même syntaxe sert à « préserver » la sémantique d'une association appelée  %
-%  à disparaître lors du passage au relationnel. Ici, notez le rôle « parrain »  %
-%  et ce qu'il devient dans le MLD textuel généré sous le MCD.                   %
-%                                                                                %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                                   %
+%                                 GÉNÉRATION DU DDL                                 %
+%                                                                                   %
+%  Maintenant que le MCD est typé, cochez « Requêtes SQL de création des tables »,  %
+%  rafraîchissez et allez voir le résultat sous l'onglet Autres sorties. Notez en   %
+%  particulier les contraintes de clés étrangères à la fin. Notez aussi que les     %
+%  les libellés originels ont été purgés de leurs accents et de leurs espaces :     %
+%  cela rend le code SQL plus portable et simplifie l'utilisation de la base.       %
+%                                                                                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Parrainer, 01 Client, 0N [parrain] Client : date parrainage
-Produit: réf. produit, libellé, prix unitaire
-Inclure, 1N Commande, 0N Produit: quantité
-
-Client: réf. client, nom, prénom, adresse
+Produit: réf. produit [VARCHAR(8)], libellé [VARCHAR(50)], prix unitaire [DECIMAL(10,2)]
+Inclure, 1N Commande, 0N Produit: quantité [INTEGER]
+Commande: num. commande [VARCHAR(8)], date [DATE], montant [DECIMAL(10,2)]
 DF, 0N Client, 11 Commande
-Commande: num commande, date, montant
+Client: réf. client [VARCHAR(8)], nom [VARCHAR(255)], prénom [VARCHAR(255)], adresse [VARCHAR(30)]
+Parrainer, 01 Client, 0N [parrain] Client : date parrainage [DATE]

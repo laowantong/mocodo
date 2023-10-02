@@ -1,12 +1,11 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                                                               %
-%                                  ASSOCIATION                                  %
-%                                                                               %
-%  Pour une association A entre plusieurs entités E1, E2, ..., écrivez sur une  %
-%  ligne « A, XX E1, XX E2, ... ».                                              %
-%                                                                               %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                                %
+%                             IDENTIFIANT COMPOSITE                              %
+%                                                                                %
+%  Vous avez remarqué que, par défaut, le premier attribut est considéré comme   %
+%  un identifiant, et donc souligné. Pour souligner d'autres attributs, il faut  %
+%  les préfixer d'un tiret bas.                                                  %
+%                                                                                %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Produit: réf. produit, libellé, prix unitaire
-Inclure, XX Commande, XX Produit
-Commande: num commande, date, montant
+Gratte-ciel: latitude, _longitude, nom, hauteur, année de construction

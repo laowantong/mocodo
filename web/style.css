@@ -172,6 +172,7 @@ code {
   background-color: #666;
   padding-left: 0.1em;
   padding-bottom: 0.1em;
+  height: 1.2em;
 }
 #errorTab {
   color: red;
@@ -281,10 +282,12 @@ ul.tabs a:hover {
     color: greenyellow;
     height: "4em";
 }
-
 #aboutContents ul {
   list-style-type:square;
   margin: 1em 0 1em 2em;
+}
+#aboutContents i {
+  font-style: italic;
 }
 #tutorial {
   position: absolute;

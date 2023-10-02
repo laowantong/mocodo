@@ -1,17 +1,16 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                                %
-%                           RÉARRANGEMENT AUTOMATIQUE                            %
+%                           DIAGRAMME RELATIONNEL (1)                            %
 %                                                                                %
-%  Quand le schéma commence à devenir confus, cliquez sur les deux flèches       %
-%  croisées (à gauche) pour réordonner automatiquement les définitions de façon  %
-%  à interdire les croisements et minimiser la longueur des pattes. Essayez !    %
+%  Cochez « Diagramme relationnel en Mocodo », rafraîchissez la figure et allez  %
+%  sous l'onglet Autres sorties. Vous y trouvez un texte-source que vous pouvez  %
+%  copier-coller (⧉) ici pour voir apparaître un autre type de schéma.           %
 %                                                                                %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Produit: réf. produit, libellé, prix unitaire
 Inclure, 1N Commande, 0N Produit: quantité
-Commande: num commande, date, montant
-
+Commande: num. commande, date, montant
 DF, 0N Client, 11 Commande
 Client: réf. client, nom, prénom, adresse
-Parrainer, 01 Client, 0N Client : date parrainage
+Parrainer, 01 Client, 0N [parrain] Client : date parrainage

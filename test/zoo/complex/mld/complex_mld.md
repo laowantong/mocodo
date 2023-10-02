@@ -29,7 +29,7 @@
   - Le champ _code espèce_ fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité _ESPÈCE_.
   - Le champ _num. enclos_ fait partie de la clé primaire de la table. Sa table d'origine (_ENCLOS_) ayant été supprimée, il n'est pas considéré comme clé étrangère.
   - Le champ _nb. max. congénères_ était déjà un simple attribut de l'association _PEUT VIVRE DANS_.
-
+<br>
 ----
 
 

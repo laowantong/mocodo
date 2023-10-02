@@ -1,22 +1,14 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
-%                 CONTRAINTE D'INTÉGRITÉ FONCTIONNELLE (CIF)                  %
+%                     AGRÉGATION ET CONTRAINTES D'UNICITÉ                     %
 %                                                                             %
-%  Le même cas de figure peut aussi être rendu visuellement par une CIF.      %
-%                                                                             %
-%  NB. Le paragraphe réduit à « : » permet d'ajouter une rangée vide à la     %
-%  grille sous-jacente, de façon à aérer verticalement le MCD. Les deux noms  %
-%  de boîtes qui suivent le « : » de la définition de la contrainte alignent  %
-%  celle-ci sur l'abcisse et l'ordonnée (respectivement) de ces boîtes.       %
+%  La conversion en relationnel d'un agrégat avec une cardinalité maximale 1  %
+%  ajoute une contrainte d'unicité sur la clé étrangère.                      %
 %                                                                             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Date: date
-Réserver, /1N Client, 1N Chambre, 0N Date: durée
-Chambre: numéro, prix
+Voilier: num voilier, longueur
+Offrir, 0N Voilier, 0N Semaine, /11 Réservation: tarif
+Semaine: num semaine, 1_date début
 
-:
-    
-Client: id. client
-    
-(CIF) ->Client, --Chambre, --Date, ..Réserver: Date, Client
+Réservation: num résa, arrhes, date résa

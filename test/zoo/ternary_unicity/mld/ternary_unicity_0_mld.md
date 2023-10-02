@@ -13,7 +13,7 @@
 - **Semaine** (<ins>semaine</ins>, date début <sup>u1</sup>)
   - Le champ _semaine_ constitue la clé primaire de la table. C'était déjà un identifiant de l'entité _Semaine_.
   - Le champ _date début_ était déjà un simple attribut de l'entité _Semaine_. Il obéit à la contrainte d'unicité 1.
-
+<br>
 ----
 
 

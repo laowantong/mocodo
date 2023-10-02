@@ -1,0 +1,15 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                              %
+%                   EXPLICATION INTERACTIVE DES CARDINALITÉS                   %
+%                                                                              %
+%  Même fonctionnalité pour les cardinalités. Si l'élément survolé est en bas  %
+%  du diagramme, le bandeau apparaît en haut, et vice versa.                   %
+%                                                                              %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Produit: réf. produit, libellé, prix unitaire
+Inclure, 1N [Une commande inclut au moins un produit.] Commande, 0N [Un produit peut être commandé un nombre quelconque de fois.] Produit: quantité
+Commande: num. commande, date, montant
+DF, 0N [Un client peut passer zéro (prospect) ou plusieurs commandes.] Client, 11 [Une commande est passée par un et un seul client.] Commande
+Client: réf. client, nom, adresse
+Parrainer, 01 [Un client peut avoir été parrainé ou non.] Client, 0N [Un client peut parrainer d'autres clients.] Client : date parrainage

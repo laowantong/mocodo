@@ -4,7 +4,7 @@
   - Le champ « ingénieur » fait partie de la clé primaire de la table. Sa table d'origine (« Ingénieur ») ayant été supprimée, il n'est pas considéré comme clé étrangère.
   - Le champ « projet » fait partie de la clé primaire de la table. Sa table d'origine (« Projet ») ayant été supprimée, il n'est pas considéré comme clé étrangère.
   - Le champ à saisie obligatoire « responsable » est un simple attribut. Il a migré directement à partir de l'entité « Responsable » en perdant son caractère identifiant. Cependant, comme la table créée à partir de cette entité a été supprimée, il n'est pas considéré comme clé étrangère.
-
+<br>
 --------------------------------------------------------------------------------
 
 NB. Les tables « Ingénieur », « Projet » et « Responsable » ont été supprimées car elles étaient réduites à la clé primaire de leur entité d'origine.

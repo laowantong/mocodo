@@ -17,7 +17,7 @@
   - Le champ « date signature » a migré à partir de l'association de dépendance fonctionnelle « Attribuer ».
   - Le champ à saisie facultative « date » est un simple attribut. Il a migré par l'association de dépendance fonctionnelle « Soutenir » à partir de l'entité « Date » en perdant son caractère identifiant. Cependant, comme la table créée à partir de cette entité a été supprimée, il n'est pas considéré comme clé étrangère.
   - Le champ « note stage » a migré à partir de l'association de dépendance fonctionnelle « Soutenir ».
-
+<br>
 --------------------------------------------------------------------------------
 
 NB. La table « Date » a été supprimée car elle était réduite à la clé primaire de son entité d'origine.

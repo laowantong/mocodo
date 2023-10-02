@@ -45,7 +45,7 @@ comment: PERCENT /.*\r?\n/
 
 assoc_clause: box_def_prefix? assoc_name_def COMMA seq{assoc_leg} (COLON seq{typed_attr})? NL
 assoc_name_def: box_name
-assoc_leg: _assoc_card? leg_arrow? SP? (LBRACKET leg_note RBRACKET)? entity_name_ref
+assoc_leg: _assoc_card? leg_arrow? SP? (LBRACKET leg_note? RBRACKET)? entity_name_ref
 _assoc_card: card_hidden? card_prefix? card
 entity_name_ref: box_name
 !card_hidden: "-"
@@ -70,7 +70,7 @@ MORETHAN: SP? ">" SP?
 
 // Constraints
 
-constraint_clause: CONSTRAINT_LPAREN constraint_name? CONSTRAINT_RPAREN (LBRACKET constraint_note RBRACKET)? seq{constraint_target}? (COLON constraint_coords)? NL
+constraint_clause: CONSTRAINT_LPAREN constraint_name? CONSTRAINT_RPAREN (LBRACKET constraint_note? RBRACKET)? seq{constraint_target}? (COLON constraint_coords)? NL
 CONSTRAINT_NAME: /[\w  ]{1,3}/
 constraint_note: note
 constraint_target: constraint_leg? SP* box_name_ref

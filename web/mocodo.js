@@ -9,21 +9,7 @@ var delays = {
   "4 minutes": 240,
   "8 minutes": 480,
 }
-var flex = {
-  "désactivée": 0,
-  "peu perceptible": 0.25,
-  "faible": 0.5,
-  "normale": 0.75,
-  "forte": 1.0,
-  "très prononcée": 1.25,
-}
 var conversions = {
-  "_data_dict.md": {
-    "default": false,
-    "highlighting": "none",
-    "title": "Trois colonnes : entité ou association / attribut / type.",
-    "name": "Dictionnaire des données en Markdown",
-  },
   "_mld.mcd": {
     "default": false,
     "highlighting": "none",
@@ -33,13 +19,13 @@ var conversions = {
   "_mld.html": {
     "default": false,
     "highlighting": "markup",
-    "title": "Affiché également au-dessous du diagramme conceptuel.",
-    "name": "Schéma relationnel en HTML avec explications escamotables",
+    "title": "Affiché également au-dessous du diagramme conceptuel. Cliquez sur un schéma de relation pour faire apparaître une explication du passage du MCD au MLD.",
+    "name": "Schéma relationnel en HTML avec explications",
   },
   "_ddl.sql": {
     "default": false,
     "highlighting": "sql",
-    "title": "DDL agnostique, mais veillez à utiliser les types requis par le dialecte-cible (MySQL, SQLite, PostgreSQL, Oracle, SQL Server, etc.). Les libellés sont automatiquement convertis en ASCII et snake case pour éviter de surcharger le code SQL avec des délimiteurs de chaînes.",
+    "title": "DDL œcuménique, pour peu que vous utilisiez les types requis par le dialecte-cible (MySQL, SQLite, PostgreSQL, Oracle, SQL Server, etc.). Les libellés sont automatiquement privés de leurs accents et espaces pour éviter de polluer le code SQL avec des délimiteurs de chaînes, qui plus est non portables.",
     "name": "Requêtes SQL de création des tables",
   },
   "_url.url": {
@@ -47,6 +33,20 @@ var conversions = {
     "highlighting": "none",
     "title": "URL d&#39;une session Mocodo online pré-remplie avec le texte-source de votre MCD.",
     "name": "Lien de partage du MCD",
+  },
+  "_data_dict_2.md": {
+    "default": false,
+    "highlighting": "markdown",
+    "title": "Colonnes : attribut / descriptif.",
+    "name": "Dictionnaire des données en Markdown sur deux colonnes",
+    "advanced": true,
+  },
+  "_data_dict_3.md": {
+    "default": false,
+    "highlighting": "markdown",
+    "title": "Colonnes : entité ou association / attribut / type.",
+    "name": "Dictionnaire des données en Markdown sur trois colonnes",
+    "advanced": true,
   },
   "_dependencies.gv": {
     "default": false,
@@ -89,10 +89,11 @@ var conversions = {
   },
 }
 var knowledge = {
-  "basic": {
-    "name": "Bases des bases",
-    "title": "Acquis non négociables d&#39;une introduction aux bases de données : construction de modèles conceptuels simples, passage au relationnel, conversion en SQL.",
-    "default": true
+  "advanced_tutorial": {
+    "name": "Tutoriel interactif avancé",
+    "title": "Cochez pour remplacer la première partie du tutoriel par la seconde.",
+    "default": false,
+    "onchange": "setTutorialKnowledge(event.target.checked)",
   },
   "weak": {
     "name": "Entité faible (ou identification relative)",
@@ -111,28 +112,16 @@ var knowledge = {
     "default": false
   },
   "random": {
-    "name": "MCD masqués ou aléatoires",
+    "name": "Bouton Masquer",
     "title": "Cochez pour ajouter un bouton donnant accès à des opérations de masquage des libellés et de génération d&#39exercices aléatoires.",
     "default": false,
     "onchange": "setRandomKnowledge(event.target.checked)",
   },
   "decomposition": {
-    "name": "Décomposition d'associations",
+    "name": "Bouton Décomposer",
     "title": "Cochez pour ajouter un bouton donnant accès à des opérations de réécriture de certains types d&#39;associations.",
     "default": false,
     "onchange": "setDecompositionKnowledge(event.target.checked)",
-  },
-  "full_tutorial": {
-    "name": "Tutoriel interactif (2/2)",
-    "title": "Exigez des exemples d&#39;utilisation avancée de Mocodo online !",
-    "default": false,
-    "onchange": "setTutorialKnowledge(event.target.checked)",
-  },
-  "all_conversions": {
-    "name": "Plus d'options de conversion",
-    "title": "Cochez pour avoir accès à quelques options de conversion plus exotiques.",
-    "default": false,
-    "onchange": "setConversionKnowledge(event.target.checked)",
   },
 }
 function createTabs() {
@@ -172,15 +161,23 @@ function createOptions(id, items, selected, on_demand_index) {
 function createCheckboxes(group, group_name) {
   var s = '';
   $.each(group, function (key, value) {
-    s = value["advanced"] ? "<li class='advanced'>" : "<li>";
-    s += '<input type="checkbox" name="' + group_name + '[]" id=' + key + ' value="' + key + '"';
+    s = "<li>";
+    s += '<span><input type="checkbox" name="' + group_name + '[]" id=' + key + ' value="' + key + '"';
     if (value["default"]) { s += " checked='checked'" };
     s += " onchange='markAsDirty();writeCookie()"
     if (value["onchange"]) { s += ";" + value["onchange"] }
-    s += "'\/> <label ";
+    s += "'\/> <label for='" + key + "'";
     if (value["title"]) { s += " title='" + value["title"] + "'" };
-    s += ">" + value["name"] + "<\/label><\/li>";
-    $("#" + group_name).append(s);
+    s += ">" + value["name"] + "<\/label><\/span><\/li>";
+    if (value["advanced"]) {
+      $("#" + group_name).find("details").append(s);
+    } else {
+      if ($("#" + group_name).find("details").length) {
+        $("#" + group_name).find("details").before(s);
+      } else {
+        $("#" + group_name).append(s);
+      }
+    }
   })
 }
 function refreshSize(geo) {
@@ -406,11 +403,8 @@ function setRandomKnowledge(is_visible) {
 function setClusterKnowledge(is_visible) {
   is_visible ? $("#createCifs").show() : $("#createCifs").hide();
 };
-function setConversionKnowledge(is_visible) {
-  is_visible ? $(".advanced").show() : $(".advanced").hide();
-};
 
-var tutorialOptions = ["Tutoriel interactif (1/2)", "Entité", "Identifiant et attributs d'entité", "Identifiant composite", "Association", "Cardinalités", "Attribut d'association", "Association de dépendance fonctionnelle", "Association réflexive", "Schéma relationnel", "Rôles", "Diagramme relationnel (1)", "Diagramme relationnel (2)", "Inférence de types", "Génération du DDL", "Schéma sur plusieurs rangées", "Réorganisation automatique", "Réorganisation automatique avec contraintes", "Pour aller plus loin...", "Explication interactive des cardinalités", "Flèche sur une patte", "MLD sous forme de diagramme relationnel", "Dévoilement progressif du schéma", "Entité faible (ou identification relative)", "Entité sans identifiant", "Identifiants candidats", "MCD vide", "Boîtes homonymes", "Agrégation (ou pseudo-entité)", "Vue en extension", "Contrainte d'intégrité fonctionnelle (CIF)", "Contrainte sur associations", "Explication interactive d'une contrainte", "Héritage (ou spécialisation)", "Rôle d'une patte pour le MLD"];
+var tutorialOptions = ["Tutoriel interactif (1/2)", "Entité", "Identifiant et attributs d'entité", "Identifiant composite", "Association", "Cardinalités", "Attribut d'association", "Association de dépendance fonctionnelle", "Association réflexive", "Schéma relationnel", "Rôles", "Diagramme relationnel (1)", "Diagramme relationnel (2)", "Inférence de types", "Génération du DDL", "Schéma sur plusieurs rangées", "Réorganisation automatique", "Réorganisation automatique avec contraintes", "Pour aller plus loin...", "Tutoriel interactif (2/2)", "Entité faible (ou identification relative)", "Entité faible sans identifiant", "Identifiants candidats", "Héritage (ou spécialisation)", "Agrégation (ou pseudo-entité)", "Agrégation et contraintes d'unicité", "Agrégation multiple", "Contrainte d'intégrité fonctionnelle (CIF)", "Autres contraintes sur associations", "Explication interactive d'une contrainte", "Explication interactive des cardinalités", "Flèche sur une patte", "Dévoilement progressif du schéma", "Boîtes homonymes", "Vue en extension", "Décomposition des associations ternaires (1)", "Décomposition des associations ternaires (2)", "Pour aller plus loin..."];
 var basicTutorialLimit = 19;
 function setTutorialKnowledge(is_advanced) {
   $("#tutorial").empty();
@@ -436,7 +430,7 @@ function markAsDirty() {
 };
 function changeTitleToNthTuto() {
   var index = $("select[id='tutorial'] option:selected").index();
-  if ($("#full_tutorial").prop("checked")) {
+  if ($("#advanced_tutorial").prop("checked")) {
     index += basicTutorialLimit;
   }
   $("#title").val("tuto-" + ("000" + index).slice(-4));
@@ -563,17 +557,13 @@ $().ready(function () {
   var items = Object.keys(delays).map(function (key) { return { "value": delays[key], "name": key } });
   items.sort(function (a, b) { return a["value"] - b["value"] });
   createOptions("delays", items.map(function (value, index) { return value["name"] }), "1 minute");
-  items = Object.keys(flex).map(function (key) { return { "value": flex[key], "name": key } });
-  items.sort(function (a, b) { return a["value"] - b["value"] });
-  createOptions("flex", items.map(function (value, index) { return value["name"] }), "normale");
   createCheckboxes(conversions, "conversions");
   createCheckboxes(knowledge, "knowledge");
   readCookie();
-  setTutorialKnowledge($("#full_tutorial").prop("checked"))
+  setTutorialKnowledge($("#advanced_tutorial").prop("checked"))
   setDecompositionKnowledge($("#decomposition").prop("checked"));
   setRandomKnowledge($("#random").prop("checked"));
   setClusterKnowledge($("#cluster").prop("checked"));
-  setConversionKnowledge($("#all_conversions").prop("checked"));
   $("#basic").prop("checked", true);
   $("#basic").prop("disabled", true);
 });

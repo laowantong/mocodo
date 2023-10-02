@@ -1,10 +1,11 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                                %
-%                           TUTORIEL INTERACTIF (2/2)                            %
+%                  DÉCOMPOSITION DES ASSOCIATIONS TERNAIRES (2)                  %
 %                                                                                %
-%  Une variation du MCD de Chen avec deux notions plus avancées : entité faible  %
-%  et contrainte sur associations ; ainsi que trois nouvelles fonctionnalités :  %
-%  flèches, calques, messages au survol.                                         %
+%  Cochez maintenant l'option « Entité faible » : L'entité Fournir devient une   %
+%  entité faible sans identifiant. Vous pouvez vérifier que les schémas sont     %
+%  conceptuellement équivalents, et produisent les mêmes sorties relationnelles  %
+%  (MLD) et physiques (MPD).                                                     %
 %                                                                                %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -24,5 +25,3 @@ EMPLOYER, 11 EMPLOYÉ, 1N DÉPARTEMENT
 TRAVAILLER, 0N EMPLOYÉ, 1N PROJET
 SOCIÉTÉ: num. société, raison sociale
 CONTRÔLER, 0N< [mère] SOCIÉTÉ, 01 [filiale] SOCIÉTÉ
-
-  (I) [Les pièces fournies par une société pour un projet font partie de celles qu'il requiert.] ..PIÈCE, ->REQUÉRIR, --FOURNIR, PROJET

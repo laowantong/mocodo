@@ -18,7 +18,8 @@ if (strpos($_SERVER['HTTP_REFERER'], 'localhost')) {
 
 $transformations = array(
   "_url.url" => "url",
-  "_data_dict.md" => "data_dict",
+  "_data_dict_2.md" => "data_dict:label,type=_Description_",
+  "_data_dict_3.md" => "data_dict",
   "_mld.html" => "html:e",
   "_mld.md" => "markdown",
   "_mld.txt" => "text",
@@ -31,15 +32,6 @@ $transformations = array(
   "_ddl.sql" => "sql",
   "_uml.puml" => "uml",
   "_ddl.dbml" => "dbml",
-);
-
-$flex = array(
-  "désactivée" => 0,
-  "peu perceptible" => 0.25,
-  "faible" => 0.5,
-  "normale" => 0.75,
-  "forte" => 1.0,
-  "très prononcée" => 1.25,
 );
 
 
@@ -96,7 +88,6 @@ else {
     unset($_POST['state']);
     $_POST['language'] = 'fr';
     $_POST['encodings'] = array("utf8");
-    $_POST['flex'] = $flex[$_POST['flex']];
 
     // Write it
     $chan = fopen("params.json", 'w') or die('{"err": "PHP: Can\'t open \'params.json\' file."}');

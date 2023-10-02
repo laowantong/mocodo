@@ -1,17 +1,15 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                               %
-%                          RÉORGANISATION AUTOMATIQUE                           %
+%                             FLÈCHE SUR UNE PATTE                              %
 %                                                                               %
-%  Quand le schéma devient confus, cliquez sur la tablette de chocolat pour le  %
-%  réorganiser aléatoirement. L'algorithme veille à éviter les croisements et   %
-%  à minimiser la longueur des pattes. Essayez !                                %
+%  En suffixant de « < » ou « > » des cardinalités, vous créez une flèche dont  %
+%  la direction se lit de l'association à l'entité.                             %
 %                                                                               %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Produit: réf. produit, libellé, prix unitaire
-Inclure, 1N Commande, 0N Produit: quantité
+Inclure, 1N Commande, 0N> Produit: quantité
 Commande: num. commande, date, montant
-
-DF, 0N Client, 11 Commande
+DF, 0N Client, 11> Commande
 Client: réf. client, nom, prénom, adresse
-Parrainer, 01 Client, 0N Client : date parrainage
+Parrainer, 01> Client, 0N< Client : date parrainage

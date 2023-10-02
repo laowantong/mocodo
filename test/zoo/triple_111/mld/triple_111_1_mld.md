@@ -12,7 +12,7 @@
   - Le champ _carnet_ fait partie de la clé primaire de la table. Sa table d'origine (_Carnet_) ayant été supprimée, il n'est pas considéré comme clé étrangère. Il obéit par contre à la contrainte d'unicité 1.
   - Le champ _projet_ fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité _Projet_. Il obéit en outre à la contrainte d'unicité 2.
   - Le champ _technicien_ est une clé étrangère. Il a migré directement à partir de l'entité _Technicien_ en perdant son caractère identifiant. Il obéit en outre aux contraintes d'unicité 1 et 2.
-
+<br>
 ----
 
 

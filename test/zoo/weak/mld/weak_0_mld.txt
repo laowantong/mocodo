@@ -4,7 +4,7 @@
   - Le champ « œuvre » fait partie de la clé primaire de la table. Il a migré à partir de l'entité « Œuvre » pour renforcer l'identifiant. Cependant, comme la table créée à partir de cette entité a été supprimée, il n'est pas considéré comme clé étrangère.
   - Le champ « exemplaire » fait partie de la clé primaire de la table. C'était déjà un identifiant de l'entité « Exemplaire ».
   - Le champ « foobar » a migré à partir de l'association de dépendance fonctionnelle « DF ».
-
+<br>
 --------------------------------------------------------------------------------
 
 NB. La table « Œuvre » a été supprimée car elle était réduite à la clé primaire de son entité d'origine.

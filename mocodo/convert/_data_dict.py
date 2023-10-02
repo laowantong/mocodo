@@ -76,6 +76,7 @@ class AttributeListExtractor(Transformer): # depth-first, post-order
                 self.rows.append(row)
         self.md_tags = [actual_colons[p] for p in self.projectors]
         self.rows.sort()
+        return len(actual_colons)
     
     def get_tsv(self):
         result = []
@@ -102,10 +103,10 @@ def run(source, subargs=None, common=None):
     tree = parse_source(source)
     extractor = AttributeListExtractor()
     extractor.transform(tree)
-    extractor.finalize(common, subargs)
+    column_count = extractor.finalize(common, subargs)
     if "tsv" in subargs:
         return {
-            "stem_suffix": "_data_dict",
+            "stem_suffix": f"_data_dict_{column_count}",
             "text": extractor.get_tsv(),
             "extension": "tsv",
             "to_defer": False,
@@ -113,7 +114,7 @@ def run(source, subargs=None, common=None):
         }
     else: # Markdown is the default
         return {
-            "stem_suffix": "_data_dict",
+            "stem_suffix": f"_data_dict_{column_count}",
             "text": extractor.get_markdown(),
             "extension": "md",
             "to_defer": False,

@@ -1,0 +1,19 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                                %
+%                    EXPLICATION INTERACTIVE D'UNE CONTRAINTE                    %
+%                                                                                %
+%  Le survol d'une contrainte suivie d'un texte entre crochets affiche celui-ci  %
+%  dans un bandeau. Essayez !                                                    %
+%                                                                                %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Projet: num. projet, nom projet
+:
+Fournir, 1N Projet, 1N Pièce, 1N Société: quantité
+Société: num. société, raison sociale
+
+Requérir, 1N Projet, 0N Pièce: quantité
+:
+Pièce: réf. pièce, libellé pièce
+
+(I) [Toute pièce fournie doit avoir été requise.] ..Pièce, ->Requérir, --Fournir, Projet

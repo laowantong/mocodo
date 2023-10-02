@@ -17,7 +17,7 @@
   - Le champ _date signature_ a migré à partir de l'association de dépendance fonctionnelle _Attribuer_.
   - Le champ à saisie facultative _date_ est un simple attribut. Il a migré par l'association de dépendance fonctionnelle _Soutenir_ à partir de l'entité _Date_ en perdant son caractère identifiant. Cependant, comme la table créée à partir de cette entité a été supprimée, il n'est pas considéré comme clé étrangère.
   - Le champ _note stage_ a migré à partir de l'association de dépendance fonctionnelle _Soutenir_.
-
+<br>
 ----
 
 

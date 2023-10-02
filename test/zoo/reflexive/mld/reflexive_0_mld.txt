@@ -7,7 +7,7 @@
   - Le champ « Num. SS » constitue la clé primaire de la table. C'était déjà un identifiant de l'entité « HOMME ».
   - Les champs « Nom » et « Prénom » étaient déjà de simples attributs de l'entité « HOMME ».
   - Le champ à saisie facultative « Num. SS père » est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle « ENGENDRER » à partir de l'entité « HOMME » en perdant son caractère identifiant.
-
+<br>
 --------------------------------------------------------------------------------
 
 NB. La table « PIÈCE » a été supprimée car elle était réduite à la clé primaire de son entité d'origine.

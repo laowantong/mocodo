@@ -95,4 +95,8 @@ def run(source, op_name, subargs, params, **kargs):
             source = create_cifs(source, subsubarg)
         else: # apply a normal op_tk operation
             source = transform_source(source, Mapper(op_name, pre_token, subsubarg, params))
+        if op_name == "delete":
+            # After a delete operation, remove any [] that may have been left behind
+            # (it's too tedious to remove them from the AST, and it's not worth it).
+            source = re.sub(r" *\[\]", " ", source)
     return source

@@ -1,17 +1,15 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                                                                %
-%                          EXPLICATION DES CARDINALITÉS                          %
-%                                                                                %
-%  Si vous insérez un court message entre crochets entre les cardinalités et le  %
-%  le nom de l'entité, celui-ci apparaîtra au survol. Essayez en survolant les   %
-%  cardinalités de l'association réflexive Parrainer !                           %
-%                                                                                %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                                   %
+%                                INFÉRENCE DE TYPES                                 %
+%                                                                                   %
+%  Cliquez sur le lapin magique. Mocodo essaie de deviner le type des attributs en  %
+%  fonction de leur libellé (en français ou en anglais). Rectifiez-les au besoin.   %
+%                                                                                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Parrainer, 01 [Un client peut avoir été parrainé ou non.] Client, 0N [Un client peut parrainer d'autres clients.] Client : date parrainage
 Produit: réf. produit, libellé, prix unitaire
 Inclure, 1N Commande, 0N Produit: quantité
-
-Client: réf. client, nom, prénom, adresse
+Commande: num. commande, date, montant
 DF, 0N Client, 11 Commande
-Commande: num commande, date, montant
+Client: réf. client, nom, prénom, adresse
+Parrainer, 01 Client, 0N [parrain] Client : date parrainage
