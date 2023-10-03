@@ -16,7 +16,6 @@ import requests
 import shutil
 import urllib
 
-from .argument_parser import parsed_arguments, transformations
 from .common import Common, safe_print_for_PHP
 from .convert.read_template import read_template
 from .convert.relations import Relations
@@ -143,7 +142,6 @@ class Runner:
                     source = flip(source, subargs)
                 elif subopt == "create" and "entities" in subargs:
                     source = guess_entities.run(source, subargs["entities"])
-                elif subopt in transformations.op_tk_rewritings: # ex.: create, delete, ascii, etc.
                     source = op_tk.run(source, op_name=subopt, subargs=subargs, params=self.params).rstrip()
                 else: # An unspecified rewrite operation, dynamically loaded
                     try:
@@ -173,7 +171,7 @@ class Runner:
                     template = read_template(stem_or_path, official_template_dir)
                 elif Path(official_template_dir, f"{subopt}.yaml").is_file():
                     template_suffix = next(iter(subargs.keys()), "") # ignore all sub-arguments after the first one
-                    if template_suffix and set("ces").issuperset(template_suffix):
+                    if template_suffix and set("bce").issuperset(template_suffix):
                         stem = f"{subopt}-{''.join(sorted(template_suffix))}"
                     else:
                         stem = subopt

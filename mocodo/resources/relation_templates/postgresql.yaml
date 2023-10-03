@@ -1,4 +1,12 @@
-help: 'convert the conceptual model into a physical model for PostgreSQL'
+help_en: 'convert the conceptual model into a physical model for PostgreSQL'
+help_fr: 'convertit le modèle conceptuel en un modèle physique pour PostgreSQL'
+fr_examples:
+  - order: 1
+    example: 'postgresql'
+    explanation: 'version minimale'
+  - order: 4
+    example: 'postgresql:b'
+    explanation: 'avec boilerplate'
 parent: 'sql'
 stem_suffix: '_ddl_postgresql'
 transform_datatype:

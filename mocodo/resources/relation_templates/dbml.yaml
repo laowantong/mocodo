@@ -1,4 +1,12 @@
-help: 'convert the conceptual model into a relational schema in DBML format'
+help_en: 'convert the conceptual model into a relational schema in DBML format'
+help_fr: 'convertit le modèle conceptuel en un schéma relationnel au format DBML'
+fr_examples:
+  - order: 1
+    example: 'dbml'
+    explanation: 'version minimale'
+  - order: 2
+    example: 'dbml:b'
+    explanation: 'avec boilerplate'
 stem_suffix: '_ddl'
 extension: 'dbml'
 to_defer: false

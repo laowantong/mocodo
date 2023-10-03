@@ -1,3 +1,11 @@
-help: 'convert the conceptual model into a physical model for SQLite'
+help_en: 'convert the conceptual model into a physical model for SQLite'
+help_fr: 'convertit le modèle conceptuel en un modèle physique pour SQLite'
+fr_examples:
+  - order: 1
+    example: 'sqlite'
+    explanation: 'version minimale'
+  - order: 4
+    example: 'sqlite:b'
+    explanation: 'avec boilerplate'
 parent: 'sql'
 stem_suffix: '_ddl_sqlite'
