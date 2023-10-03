@@ -14,12 +14,18 @@ for path in sorted(folder.glob("*.yaml")):
     if "-" in path.name:
         continue
     data = load_mini_yaml.run(path)
-    if "help" in data:
+    if "help_en" in data:
         metadata[path.stem] = {
             "category": "cv",
-            "help": data["help"],
+            "help_en": data["help_en"],
+            "help_fr": data["help_fr"],
             "aliases": [],
         }
+        if "fr_examples" in data:
+            fr_examples = {}
+            for d in data["fr_examples"]:
+                fr_examples[d["example"]] = d["explanation"]
+            metadata[path.stem]["fr_examples"] = fr_examples
     elif "parent" in data:
         aliases[data["parent"]].append(path.stem)
     for (parent, children) in aliases.items():

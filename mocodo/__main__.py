@@ -16,6 +16,7 @@ import requests
 import shutil
 import urllib
 
+from .argument_parser import parsed_arguments, Transformations
 from .common import Common, safe_print_for_PHP
 from .convert.read_template import read_template
 from .convert.relations import Relations
@@ -142,6 +143,7 @@ class Runner:
                     source = flip(source, subargs)
                 elif subopt == "create" and "entities" in subargs:
                     source = guess_entities.run(source, subargs["entities"])
+                elif subopt in self.params["op_tk_rewritings"]: # ex.: create, delete, ascii, etc.
                     source = op_tk.run(source, op_name=subopt, subargs=subargs, params=self.params).rstrip()
                 else: # An unspecified rewrite operation, dynamically loaded
                     try:

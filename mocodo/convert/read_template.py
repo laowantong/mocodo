@@ -8,7 +8,7 @@ def read_template(stem_or_path, official_template_dir):
 
     def traverse_templates(stem_or_path, template_stack, already_seen):
         if stem_or_path.endswith(".yaml"):
-            path = Path(stem_or_path)
+            path = Path(stem_or_path).absolute()
         else:
             path = official_template_dir / f"{stem_or_path}.yaml"
         (folder, name) = (path.parent, path.stem)

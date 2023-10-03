@@ -18,6 +18,7 @@ ELEMENT_TO_TOKENS = {
     "arrows": ["leg_arrow"],
     "attrs": ["attr"],
     "boxes": ["box_name"],
+    "card_prefixes": ["card_prefix"],
     "cards": ["card"],
     "roles": ["leg_note"],
     "constraint_notes": ["constraint_note"],
@@ -51,7 +52,7 @@ class Mapper(Transformer):
                 resource_dir = Path(params["script_directory"], "resources")
                 pool = list(dict(read_default_datatypes(resource_dir)).values())
                 op = lambda _: random.choice(pool)
-            elif op_name == "delete" and pre_token in ("attrs", "notes", "roles", "constraint_notes", "arrows", "types"):
+            elif op_name == "delete" and pre_token in ("attrs", "notes", "roles", "constraint_notes", "arrows", "types", "card_prefixes"):
                 op = lambda _: ""
             elif op_name == "delete" and pre_token == "cards":
                 op = lambda _: "XX"
@@ -81,6 +82,8 @@ class Mapper(Transformer):
 def run(source, op_name, subargs, params, **kargs):
     if op_name == "randomize" and not subargs:
         subargs = {"labels": ""} # used for obfuscation
+    elif op_name == "delete" and not subargs:
+        subargs = dict.fromkeys("types notes attrs cards".split(), "")
     for (pre_token, subsubarg) in subargs.items():
         # filter special non-op_tk operations
         if op_name == "create" and pre_token == "types":

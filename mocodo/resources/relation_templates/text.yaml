@@ -4,7 +4,7 @@ parent: 'text-c'
 fr_examples:
   - order: 1
     example: 'text'
-    explanation: 'version minimale'
+    explanation: 'version de base'
   - order: 2
     example: 'text:c'
     explanation: 'avec contraintes d''unicité et d''optionnalité'

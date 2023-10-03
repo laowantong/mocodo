@@ -33,7 +33,7 @@ def run(path):
     while i < len(lines):
         line = lines[i]
         i += 1
-        (k1, v1) = re.match(r"(\w+?) *: *(.*?) *$", line).groups()
+        (k1, v1) = re.match(r"(\S+?) *: *(.*?) *$", line).groups()
         data[k1] = parse_value(v1)
         if data[k1] == []: # list of dicts
             while i < len(lines):

@@ -3,7 +3,7 @@ help_fr: 'convertit le modèle conceptuel en un modèle physique pour Microsoft 
 fr_examples:
   - order: 1
     example: 'mssql'
-    explanation: 'version minimale'
+    explanation: 'version de base'
   - order: 4
     example: 'mssql:b'
     explanation: 'avec boilerplate'

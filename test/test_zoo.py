@@ -83,7 +83,7 @@ def main():
     template_index = json.loads(Path(TEMPLATE_DIR / "_index.json").read_text())
     for name in template_index:
         if re.match(r"html|markdown|latex|text", name):
-            name += "-ces"
+            name += "-bce"
         elif re.match(r"mysql|oracle|postgresql|sqlite|mssql", name):
             continue
         templates.append(read_template(name, TEMPLATE_DIR))

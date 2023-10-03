@@ -98,7 +98,7 @@
 							<span class="popup-item popup-close" onclick="closePopup()">⨉</span>
 							<span class="popup-item" onclick="rewrite('obfuscate')">masquer avec du faux texte (par défaut)</span>
 							<span class="popup-item" onclick="rewrite('drown')">masquer avec des libellés génériques numérotés</span>
-							<span class="popup-item" onclick="rewrite('delete:types,notes,attrs,cards')" title="Crée un MCD à compléter. À accompagner de la liste des descriptifs des attributs obtenue avec l'option « Dictionnaire des données en Markdown (deux colonnes) ».">masquer les attributs et les cardinalités</span>
+							<span class="popup-item" onclick="rewrite('delete')" title="Crée un MCD à compléter. À accompagner de la liste des descriptifs des attributs obtenue avec l'option « Dictionnaire des données en Markdown (deux colonnes) ».">masquer les attributs et les cardinalités</span>
 							<span class="popup-item" onclick="rewrite('create:types=PLACEHOLDER randomize:types')">remplir les types au hasard</span>
 							<span class="popup-item" onclick="rewrite('grow:from_scratch,arity_3=1 arrange')">créer un MCD aléatoire avec des libellés génériques numérotés</span>
 							<span class="popup-item" onclick="rewrite('grow:from_scratch,arity_3=1 obfuscate create:roles lower:roles arrange')">créer un MCD d'entraînement à la conversion en relationnel</span>
