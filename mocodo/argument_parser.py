@@ -288,6 +288,21 @@ class Transformations:
                 "aliases": ["substitute", "sub", "repl"],
                 "op_tk": True,
             },
+            "slice": {
+                "category": "rw",
+                "help": _("rewrite the given elements by keeping only a given slice"),
+                "fr_examples": {
+                    "slice:boxes=5:10": "de l'indice 5 (inclus) à l'indice 10 (exclu)",
+                    "slice:boxes=5:": "supprime les 5 premiers caractères",
+                    "slice:boxes=:5": "ne garde que les 5 premiers caractères",
+                    "slice:boxes=:-5": "supprime les 5 derniers caractères",
+                    "slice:boxes=:": "équivalent de `echo`",
+                    "slice:boxes=": "idem",
+                    "slice:boxes": "idem",
+                },
+                "aliases": ["cut", "interval"],
+                "op_tk": True,
+            },
             "snake": {
                 "category": "rw",
                 "help": _("rewrite the given elements in snake_case"),

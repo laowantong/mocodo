@@ -6,7 +6,7 @@ fr_examples:
     explanation: 'version de base'
   - order: 2
     example: 'dbml:b'
-    explanation: 'avec boilerplate'
+    explanation: 'avec _boilerplate_'
 stem_suffix: '_ddl'
 extension: 'dbml'
 to_defer: false

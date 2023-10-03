@@ -6,6 +6,6 @@ fr_examples:
     explanation: 'version de base'
   - order: 4
     example: 'sqlite:b'
-    explanation: 'avec boilerplate'
+    explanation: 'avec _boilerplate_'
 parent: 'sql'
 stem_suffix: '_ddl_sqlite'

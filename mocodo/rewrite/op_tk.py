@@ -1,3 +1,4 @@
+import contextlib
 from pathlib import Path
 import random
 import re
@@ -65,6 +66,14 @@ class Mapper(Transformer):
                 if subsubarg and subsubarg.isdigit():
                     truncate_size = int(subsubarg) or truncate_size
                 op = lambda x: x[:truncate_size]
+            elif op_name == "slice":
+                slice_start = slice_stop = None
+                if subsubarg:
+                    with contextlib.suppress(ValueError):
+                        slice_start = int(subsubarg.partition(":")[0])
+                    with contextlib.suppress(ValueError):
+                        slice_stop = int(subsubarg.partition(":")[2])
+                op = lambda x: x[slice_start:slice_stop]
             elif op_name == "replace":
                 (substring, __, repl) = subsubarg.partition("/")
                 op = lambda x: x.replace(substring, repl)

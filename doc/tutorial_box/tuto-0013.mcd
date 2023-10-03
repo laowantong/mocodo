@@ -1,11 +1,12 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                                                                   %
-%                                INFÉRENCE DE TYPES                                 %
-%                                                                                   %
-%  Cliquez sur le lapin magique. Mocodo essaie de deviner le type des attributs en  %
-%  fonction de leur libellé (en français ou en anglais). Rectifiez-les au besoin.   %
-%                                                                                   %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                                %
+%                               INFÉRENCE DE TYPES                               %
+%                                                                                %
+%  Faites un clic long sur le lapin magique, puis sélectionnez : « deviner les   %
+%  types à partir du nom des attributs » (en français ou en anglais). Bien sûr,  %
+%  vous pourrez toujours rectifier ceux-ci au besoin.                            %
+%                                                                                %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Produit: réf. produit, libellé, prix unitaire
 Inclure, 1N Commande, 0N Produit: quantité

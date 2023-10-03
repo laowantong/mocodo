@@ -80,16 +80,16 @@
 						</div>
 					</div>
 					<div class="button-with-popup" id="createButton">
-						<span class="customButton tooltip" onmouseenter="closePopup()" onmousedown="startCountdown(this)" onmouseup="stopCountdown('create:types')" style="background-image: url(web/png/create.png);"><span class="tooltiptext">Révéler</span></span>
+						<span class="customButton tooltip" onmouseenter="closePopup()" onmousedown="startCountdown(this)" onmouseup="stopCountdown('create:entities')" style="background-image: url(web/png/create.png);"><span class="tooltiptext">Révéler</span></span>
 						<div class="popup-menu" onmouseleave="closePopup(this)">
 							<span class="popup-item popup-close" onclick="closePopup()">⨉</span>
-							<span class="popup-item" onclick="rewrite('create:entities')">réparer l'oubli d'entités référencées dans des associations</span>
 							<span class="popup-item" onclick="rewrite('create:dfs')">mettre des DF partout où c'est possible</span>
 							<span class="popup-item" onclick="rewrite('create:df_arrows')">ajouter des flèches aux DF</span>
 							<span class="popup-item" onclick="rewrite('create:cifs')" id="createCifs" style="display: none;">ajouter les CIF correspondant aux agrégats</span>
 							<span class="popup-item" onclick="rewrite('create:types=')">mettre en évidence les types à remplir</span>
-							<span class="popup-item" onclick="rewrite('create:types')">deviner les types à partir du nom des attributs (par défaut)</span>
+							<span class="popup-item" onclick="rewrite('create:types')">deviner les types à partir du nom des attributs</span>
 							<span class="popup-item" onclick="rewrite('delete:types')">supprimer les types</span>
+							<span class="popup-item" onclick="rewrite('create:entities')">réparer l'oubli d'entités référencées dans des associationss (par défaut)</span>
 						</div>
 					</div>
 					<div class="button-with-popup" id="jokerButton">

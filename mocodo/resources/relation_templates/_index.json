@@ -5,7 +5,7 @@
     "help_fr": "convertit le modèle conceptuel en un modèle physique pour PostgreSQL",
     "aliases": ["bpostgre"],
     "fr_examples": {
-      "postgresql": "version de base", "postgresql:b": "avec boilerplate"
+      "postgresql": "version de base", "postgresql:b": "avec _boilerplate_"
     }
   },
   "dbml": {
@@ -14,7 +14,7 @@
     "help_fr": "convertit le modèle conceptuel en un schéma relationnel au format DBML",
     "aliases": [],
     "fr_examples": {
-      "dbml": "version de base", "dbml:b": "avec boilerplate"
+      "dbml": "version de base", "dbml:b": "avec _boilerplate_"
     }
   },
   "sql": {
@@ -50,7 +50,7 @@
     "help_fr": "convertit le modèle conceptuel en un schéma relationnel au format HTML",
     "aliases": [],
     "fr_examples": {
-      "html": "version de base", "html:b": "avec boilerplate", "html:c": "avec contraintes d'unicité et d'optionnalité", "html:e": "avec explications", "html:bce": "avec boilerplate, contraintes et explications"
+      "html": "version de base", "html:b": "avec _boilerplate_", "html:c": "avec contraintes d'unicité et d'optionnalité", "html:e": "avec explications", "html:bce": "avec _boilerplate_, contraintes et explications"
     }
   },
   "latex": {
@@ -59,7 +59,7 @@
     "help_fr": "convertit le modèle conceptuel en un schéma relationnel au format LaTeX",
     "aliases": ["tex"],
     "fr_examples": {
-      "latex": "version de base", "latex:b": "avec boilerplate", "latex:c": "avec contraintes d'unicité et d'optionnalité", "latex:e": "avec explications", "latex:bce": "avec boilerplate, contraintes et explications"
+      "latex": "version de base", "latex:b": "avec _boilerplate_", "latex:c": "avec contraintes d'unicité et d'optionnalité", "latex:e": "avec explications", "latex:bce": "avec _boilerplate_, contraintes et explications"
     }
   },
   "markdown": {
@@ -77,7 +77,7 @@
     "help_fr": "convertit le modèle conceptuel en un modèle physique pour Microsoft SQL Server",
     "aliases": ["ms_sql", "sql_server", "sqlserver"],
     "fr_examples": {
-      "mssql": "version de base", "mssql:b": "avec boilerplate"
+      "mssql": "version de base", "mssql:b": "avec _boilerplate_"
     }
   },
   "mysql": {
@@ -86,7 +86,7 @@
     "help_fr": "convertit le modèle conceptuel en un modèle physique pour MySQL",
     "aliases": [],
     "fr_examples": {
-      "mysql": "version de base", "mysql:b": "avec boilerplate"
+      "mysql": "version de base", "mysql:b": "avec _boilerplate_"
     }
   },
   "oracle": {
@@ -95,7 +95,7 @@
     "help_fr": "convertit le modèle conceptuel en un modèle physique pour Oracle",
     "aliases": [],
     "fr_examples": {
-      "oracle": "version de base", "oracle:b": "avec boilerplate"
+      "oracle": "version de base", "oracle:b": "avec _boilerplate_"
     }
   },
   "sqlite": {
@@ -104,7 +104,7 @@
     "help_fr": "convertit le modèle conceptuel en un modèle physique pour SQLite",
     "aliases": [],
     "fr_examples": {
-      "sqlite": "version de base", "sqlite:b": "avec boilerplate"
+      "sqlite": "version de base", "sqlite:b": "avec _boilerplate_"
     }
   },
   "text": {

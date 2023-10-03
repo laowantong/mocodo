@@ -264,6 +264,10 @@ msgstr "réécrit les éléments donnés en majuscules"
 msgid "The transformation '{subopt}' is not among the possible ones:\n{valid}."
 msgstr "La transformation « {subopt} » n'est pas parmi celles qui sont possibles :\n{valid}."
 
+#: mocodo/argument_parser.py:291
+msgid "rewrite the given elements by keeping only a given slice"
+msgstr "réécrit les éléments donnés en n'en gardant qu'une tranche donnée"
+
 #: mocodo/argument_parser.py:324
 msgid "truncate the given elements to the given length (default: {n})"
 msgstr "tronque les éléments donnés à la longueur donnée (par défaut : {n})"
