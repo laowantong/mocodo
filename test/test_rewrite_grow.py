@@ -12,6 +12,7 @@ class TestGrow(unittest.TestCase):
         gettext.NullTranslations().install()
         random.seed(1)
         actual = grow("FOO: bar, biz", {})
+        print(actual)
         expected = """
             FOO: bar, biz
             Reflexive 2_, 1N FOO, 0N FOO
@@ -26,7 +27,7 @@ class TestGrow(unittest.TestCase):
             Binary 11_, 1N Entity 10_, 0N Entity 8_
             Entity 12_: id 12 1, attr 12 2
             Binary 13_, 0N Entity 12_, 1N Entity 10_: attr 13 1
-            Entity 14_: id 14 1, _id 14 2, attr 14 3, attr 14 4
+            Entity 14_: id 14 1, attr 14 2, attr 14 3
             Binary 15_, 01 Entity 14_, 11 Entity 8_
             Entity 16_: id 16 1, attr 16 2, attr 16 3
             Binary 17_, 0N Entity 16_, 0N Entity 14_

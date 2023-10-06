@@ -53,7 +53,7 @@ def run(source, subargs=None, params=None, **kargs):
             "arity_4": 0,
             "ent_attrs": 4,
             "doubles": 1,
-            "composite_ids": 2,
+            "composite_ids": 1,
             "assoc_attrs": 2,
             "*1-*N": 3,
             "01-11": 1,
