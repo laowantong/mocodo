@@ -19,8 +19,6 @@ class CreateCifs(Visitor):
 
     def assoc_clause(self, tree):
         legs = [node for node in tree.find_data("assoc_leg")]
-        if len(legs) <= 2:
-            return
         assoc_name = str(first_child(tree, "assoc_name_def").children[0])
         target_names = []
         entity_names = set()
