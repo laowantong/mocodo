@@ -393,10 +393,16 @@ class Mcd:
         if geo_path.is_file() and params["scale"] == 1 and params["reuse_geo"]:
             try:
                 web_geo = json.loads(geo_path.read_text("utf8"))
-                geo = {k: dict(v) if isinstance(v, list) else v for (k, v) in web_geo.items()}
-                return geo
-            except: # in case a problem occurs with the geo file, fallback to silently regenerate it
-                pass
+            except:
+                raise MocodoError(33, _('Unable to reuse the geometry file "{filename}".').format(filename=geo_path)) # fmt: skip
+            # convert lists of couples to dicts
+            geo = {}
+            for (k, v) in web_geo.items():
+                if isinstance(v, list):
+                    geo[k] = dict(v)
+                else:
+                    geo[k] = v
+            return geo
         geo = {
             "width": self.w,
             "height": self.h,
@@ -434,7 +440,7 @@ class Mcd:
         try:
             geo_path.write_text(text)
         except IOError:
-            safe_print_for_PHP(_('Unable to generate file "{filename}"!').format(filename=geo_path))
+            raise MocodoError(34, _('Unable to save geometry file "{filename}".').format(filename=geo_path)) # fmt: skip
         return geo
 
 
