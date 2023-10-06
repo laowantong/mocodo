@@ -258,7 +258,7 @@ class Association:
             if self.is_protected:
                 result.append(
                     (
-                        "dash_rect",
+                        "rect",
                         {
                             "x": self.l,
                             "y": self.t,
@@ -267,7 +267,7 @@ class Association:
                             "color": style['transparent_color'],
                             "stroke_color": style['entity_stroke_color'],
                             "stroke_depth": style["box_stroke_depth"],
-                            "dash_width": style["box_stroke_depth"],
+                            "opacity": 1,
                         },
                     )
                 )

@@ -12,7 +12,7 @@
 		<path d="M234 18 a14 14 90 0 1 14 14 V46 h-118 V32 a14 14 90 0 1 14 -14" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
 		<path d="M248 46 v16 a14 14 90 0 1 -14 14 H144 a14 14 90 0 1 -14 -14 V46 H118" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
 		<rect x="130" y="18" width="118" height="58" fill="none" rx="14" stroke="#000000" stroke-width="1.5"/>
-		<rect x="130" y="18" width="118" height="58" fill="none" stroke="#000000" stroke-width="1.5" stroke-dasharray="1.5"/>
+		<rect x="130" y="18" width="118" height="58" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
 		<line x1="130" y1="46" x2="248" y2="46" stroke="#000000" stroke-width="1.5"/>
 		<text x="138" y="39.3" fill="#000000" font-family="Copperplate" font-size="18">Superviser</text>
 	</g>
