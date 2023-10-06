@@ -157,8 +157,9 @@
 					</div>
 				</div>
 				<div id="paramContents" class="contents">
-					<div><label class="fixedWidth" for="colors">Palette de couleurs</label><select onchange="markAsDirty();writeCookie()" name="colors" id="colors"></select></div>
 					<div><label class="fixedWidth" for="shapes">Police et proportions</label><select onchange="markAsDirty();writeCookie()" name="shapes" id="shapes"></select></div>
+					<div><label class="fixedWidth" for="colors">Palette de couleurs</label><select onchange="markAsDirty();writeCookie()" name="colors" id="colors"></select></div>
+					<div><label class="fixedWidth" for="flashlight-checkbox">Mode nuit</label><input type="checkbox" id="flashlight-checkbox" onclick="switchOnFlashlight(event)"></div>
 					<div>
 						<label class="fixedWidth" for="adjust_width">Ajustement de la largeur des libellés</label>
 						<input type="number" value="1.00" max="2.00" min="0.50" step="0.01" onchange="writeCookie()" name="adjust_width" id="adjust_width" style="width: 5em; border-radius: 0;">
@@ -219,6 +220,7 @@
 <script type="text/javascript" charset="utf8" src="web/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" charset="utf8" src="web/js.cookie.js"></script>
 <script type="text/javascript" charset="utf8" src="web/mocodo.js"></script>
+<script type="text/javascript" charset="utf8" src="web/flashlight.js"></script>
 <script type="text/javascript" charset="utf8" src="web/ace-builds/ace.js"></script>
 <script type="text/javascript" charset="utf8" src="web/ace-builds/ext-language_tools.js"></script>
 

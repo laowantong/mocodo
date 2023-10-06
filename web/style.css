@@ -438,3 +438,16 @@ ul.tabs a:hover {
   from {transform: rotate(359deg);}
   to {transform: rotate(0deg);}
 }
+
+:root.flashlight:before {
+  content: '';
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background: radial-gradient(
+      circle 16rem at var(--cursorXPos) var(--cursorYPos),
+      rgba(0, 0, 50, 0) 0%,
+      rgba(0, 0, 0, 0.95) 100%
+  ), #FFFF0020;
+  z-index: 11;
+}
