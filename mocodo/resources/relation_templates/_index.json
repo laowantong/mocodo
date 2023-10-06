@@ -1,13 +1,4 @@
 {
-  "postgresql": {
-    "category": "cv",
-    "help_en": "convert the conceptual model into a physical model for PostgreSQL",
-    "help_fr": "convertit le modèle conceptuel en un modèle physique pour PostgreSQL",
-    "aliases": ["bpostgre"],
-    "fr_examples": {
-      "postgresql": "version de base", "postgresql:b": "avec _boilerplate_"
-    }
-  },
   "dbml": {
     "category": "cv",
     "help_en": "convert the conceptual model into a relational schema in DBML format",
@@ -96,6 +87,15 @@
     "aliases": [],
     "fr_examples": {
       "oracle": "version de base", "oracle:b": "avec _boilerplate_"
+    }
+  },
+  "postgresql": {
+    "category": "cv",
+    "help_en": "convert the conceptual model into a physical model for PostgreSQL",
+    "help_fr": "convertit le modèle conceptuel en un modèle physique pour PostgreSQL",
+    "aliases": ["postgres"],
+    "fr_examples": {
+      "postgresql": "version de base", "postgresql:b": "avec _boilerplate_"
     }
   },
   "sqlite": {
