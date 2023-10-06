@@ -2,16 +2,6 @@
    "http://www.w3.org/TR/html4/strict.dtd">
 <html lang="fr">
 <head>
-	<script type="text/javascript">
-		var _gaq = _gaq || [];
-		_gaq.push(['_setAccount', 'UA-1925109-8']);
-		_gaq.push(['_trackPageview']);
-		(function() {
-			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-		})();
-	</script>
 <a href="https://github.com/laowantong/mocodo"><img style="position: absolute; top: 0; right: 0; border: 0; width: 149px; height: 149px;" src="web/fork-me-right-turquoise@2x.png" alt="Fork me on GitHub"></a>
 <title>Mocodo online</title>
 <meta charset="utf-8">
