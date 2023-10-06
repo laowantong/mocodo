@@ -279,6 +279,7 @@ class Transformations:
                 "fr_examples": {
                     'replace:boxes="DIRIGER/RÉPONDRE DE"': "renomme une boîte",
                     'replace:texts="personel/personnel"': "corrige une faute d'orthographe",
+                    'replace:replace:texts="_/ "': "remplace les tirets bas par des espaces",
                     'replace:types="VARCHAR/VARCHAR2"': "modifie un nom de type",
                     'replace:cards=0N/1N': "remplace toutes les cardinalités 0N par 1N",
                     'replace:cards=1N//1N': "ajout des marqueurs d'agrégats",
