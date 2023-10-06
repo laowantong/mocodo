@@ -31,16 +31,16 @@ msgid "The HTTP status code {code} was returned by:\n{url}"
 msgstr "Le code HTTP {code} a été retourné par :\n{url}"
 
 #: mocodo/__main__.py:285
-msgid "- Leg \"{b1} — {b2}\" overlaps \"{b3}\"."
-msgstr "- La patte « {b1} — {b2} » chevauche « {b3} »."
+msgid "  - Leg \"{b1} — {b2}\" overlaps \"{b3}\"."
+msgstr "  - La patte « {b1} — {b2} » chevauche « {b3} »."
 
 #: mocodo/__main__.py:287
-msgid "- Legs \"{b1} — {b2}\" and \"{b3} — {b4}\" overlap."
-msgstr "- Les pattes  « {b1} — {b2} » et « {b3} — {b4} » se chevauchent."
+msgid "  - Legs \"{b1} — {b2}\" and \"{b3} — {b4}\" overlap."
+msgstr "  - Les pattes  « {b1} — {b2} » et « {b3} — {b4} » se chevauchent."
 
 #: mocodo/__main__.py:289
-msgid "On Mocodo online, click the chocolate bar to fix the following problem(s):\n{details}"
-msgstr "Sous Mocodo online, cliquez la tablette de chocolat pour résoudre le(s) problème(s) suivant(s) :\n{details}"
+msgid "Bad layout of boxes:\n{details}\nTo fix the problem, reorder and/or skip lines in the source text, either manually, or with the option -t arrange (chocolate bar under Mocodo online)."
+msgstr "Mauvaise disposition des boîtes :\n{details}\nPour corriger cela, réordonnez et/ou sautez des lignes dans le texte-source, soit à la main, soit à l'aide de l'option -t arrange (tablette de chocolat sous Mocodo online)."
 
 #: mocodo/argument_parser.py:401
 msgid "OPTIONS ON MOCODO ITSELF"
@@ -290,15 +290,15 @@ msgstr "Le fichier « {input} » n'existe pas."
 
 #: mocodo/argument_parser.py:443
 msgid "show this help message, then exit"
-msgstr "affiche ce message d'aide, puis quitte"
+msgstr "affiche ce message d'aide, puis termine"
 
 #: mocodo/argument_parser.py:448
 msgid "display the version number, then exit"
-msgstr "affiche le numéro de version, puis quitte"
+msgstr "affiche le numéro de version, puis termine"
 
 #: mocodo/argument_parser.py:452
 msgid "recreate a pristine version of the files 'sandbox.mcd' and 'params.json' in the input directory, then exit"
-msgstr "recrée une version vierge des fichiers « sandbox.mcd » et « params.json » dans le répertoire d'entrée, puis quitte"
+msgstr "recrée une version vierge des fichiers « sandbox.mcd » et « params.json » dans le répertoire d'entrée, puis termine"
 
 #: mocodo/argument_parser.py:457
 msgid "the directory of the output files"
@@ -314,7 +314,7 @@ msgstr "génère une version PNG ou PDF de la sortie SVG (requiert CairoSVG)"
 
 #: mocodo/argument_parser.py:472
 msgid "display the contents of the parameter file, then exit"
-msgstr "affiche le contenu du fichier de paramètres, puis quitte"
+msgstr "affiche le contenu du fichier de paramètres, puis termine"
 
 #: mocodo/argument_parser.py:476
 msgid "reuse the geometry file of the previous execution"
@@ -528,9 +528,13 @@ msgstr "Une contrainte « {constraint} » est liée à une entité ou associat
 msgid "Constraint \"{constraint}\" aligned with an unknown entity or association \"{box}\"!"
 msgstr "Une contrainte « {constraint} » est alignée avec une entité ou association inconnue « {box} »."
 
+#: mocodo/mcd.py:399
+msgid "Unable to reuse the geometry file \"{filename}\"."
+msgstr "Impossible de réutiliser le fichier de géométrie « {filename} »."
+
 #: mocodo/mcd.py:438
-msgid "Unable to generate file \"{filename}\"!"
-msgstr "Impossible de générer le fichier « {filename} »."
+msgid "Unable to save geometry file \"{filename}\"."
+msgstr "Impossible de sauvegarder le fichier de géométrie « {filename} »."
 
 #: mocodo/mcd_to_svg.py:10
 msgid "PNG and PDF generation requires cairosvg to be installed"

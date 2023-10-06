@@ -41,7 +41,7 @@ def arrange(source, subargs, has_expired):
     min_objective = non_negative_integer(subargs.get("min_objective", 0))
     max_objective = non_negative_integer(subargs.get("max_objective", 15))
     call_limit = positive_integer(subargs.get("call_limit", 10000))
-    verbose = bool(subargs.get("verbose") is not None) # -r arrange:verbose => {"verbose": ""} => True
+    verbose = bool(subargs.get("verbose") is not None) # -t arrange:verbose => {"verbose": ""} => True
 
     has_expired = has_expired or (lambda: False)
 
