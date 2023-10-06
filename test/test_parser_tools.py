@@ -93,6 +93,9 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
 (II) ..PIÈCE, ->REQUÉRIR, --FOURNIR, PROJET
 (III) [bla bla.]
 (IV) 
+(])
+(+)
+(/)
 (I) [bla bla.] ..PIÈCE, ->REQUÉRIR, --FOURNIR, PROJET: 12.5, 30
 (II) ..PIÈCE, ->REQUÉRIR, --FOURNIR, PROJET: 12.5, 30
 (III) [bla bla.]: 12.5, 30
@@ -187,9 +190,6 @@ mocodo_errors = [
     (511, "+..==>"),
     (511, " /TX\\ foo -> .bar"),
     (512, "PARTICIPANT: numero [, nom, adresse"),
-    (513, "(])"),
-    (513, "(+)"),
-    (513, "(/)"),
     (514, "(IIII)"),
     (514, "(    )"),
     (514, "(    )"),
@@ -197,6 +197,8 @@ mocodo_errors = [
     (515, "(A) --Lorem, : Ipsum: 30, 90"),
     (515, "(A) --Lorem 30, 90"),
     (516, "(A) >Ipsum, --Lorem: 30, 90"),
+    (516, "())"),
+    (516, "((I))"),
     (517, "/TX\\ foo bar "),
     (518, "COMMANDE: Num commande, Date, Montant, #Réf. client->CLIENT->Réf. client"),
     (518, "INCLURE: #Num commande->COMMANDE->Num commande, _#Réf. produit->PRODUIT->Réf. produit, Quantité"),

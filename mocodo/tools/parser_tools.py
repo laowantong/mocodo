@@ -46,10 +46,8 @@ def parse_source(source):
             raise MocodoError(511, _('{pin}Only a box name is possible here.').format(pin=pin)) # fmt: skip
         if expected == {'RBRACKET'}:
             raise MocodoError(512, _('{pin}Unclosed square bracket.').format(pin=pin)) # fmt: skip
-        if expected == {'CONSTRAINT_NAME', 'CONSTRAINT_RPAREN'}:
-            raise MocodoError(513, _('{pin}Illegal character in a constraint name.').format(pin=pin)) # fmt: skip
         if expected == {'CONSTRAINT_RPAREN'}:
-            raise MocodoError(514, _('{pin}A constraint name cannot contain more than three letters, digits or spaces.').format(pin=pin)) # fmt: skip
+            raise MocodoError(514, _('{pin}A constraint name cannot contain more than three characters.').format(pin=pin)) # fmt: skip
         if expected == {'SP', 'BOX_NAME', 'CONSTRAINT_LEG'}:
             raise MocodoError(515, _('{pin}Expected a box name or a constraint leg.').format(pin=pin)) # fmt: skip
         if expected == {'LBRACKET', 'SP', 'BOX_NAME', 'NL', 'COLON', 'CONSTRAINT_LEG'}:

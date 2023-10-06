@@ -71,7 +71,7 @@ MORETHAN: SP? ">" SP?
 // Constraints
 
 constraint_clause: CONSTRAINT_LPAREN constraint_name? CONSTRAINT_RPAREN (LBRACKET constraint_note? RBRACKET)? seq{constraint_target}? (COLON constraint_coords)? NL
-CONSTRAINT_NAME: /[\w  ]{1,3}/
+CONSTRAINT_NAME: /[^)]{1,3}/
 constraint_note: note
 constraint_target: constraint_leg? SP* box_name_ref
 box_name_ref: box_name

@@ -665,13 +665,9 @@ msgstr "{pin}Seul un nom de boîte est possible ici."
 msgid "{pin}Unclosed square bracket."
 msgstr "{pin}Crochet fermant manquant."
 
-#: mocodo/tools/parser_tools.py:50
-msgid "{pin}Illegal character in a constraint name."
-msgstr "{pin}Caractère illégal dans un nom de contrainte."
-
 #: mocodo/tools/parser_tools.py:52
-msgid "{pin}A constraint name cannot contain more than three letters, digits or spaces."
-msgstr "{pin}Un nom de contrainte ne peut contenir plus de trois lettres, chiffres ou espaces."
+msgid "{pin}A constraint name cannot contain more than three characters."
+msgstr "{pin}Un nom de contrainte ne peut contenir plus de trois caractères."
 
 #: mocodo/tools/parser_tools.py:54
 msgid "{pin}Expected a box name or a constraint leg."
