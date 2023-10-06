@@ -33,10 +33,10 @@ class TestUpdateLabels(unittest.TestCase):
         random.seed(42)
         actual = op_tk.run(source, "randomize", subargs, params)
         expected = """
-            feel: turn, grin
-            land, 0N Near, 0N feel, 0N SILK
+            Feel: turn, grin
+            land, 0N Near, 0N Feel, 0N SILK
             SILK: debt
-            Shoe, 0N Near, 0N LOSS, 0N feel: poet
+            Shoe, 0N Near, 0N LOSS, 0N Feel: poet
             Near: stir, auto
             Slew, 1N Tape, 0N SILK
             LOSS: debt
@@ -58,7 +58,7 @@ class TestUpdateLabels(unittest.TestCase):
         random.seed(42)
         actual = op_tk.run(source, "randomize", subargs, params)
         expected = """
-            FEEL, 11 Turn, 0N grin, 0N LAND
+            FEEL, 11 Turn, 0N Grin, 0N LAND
             NEAR, 1N Silk, 11 LAND
             DEBT, 11 Silk, 0N Shoe
         """

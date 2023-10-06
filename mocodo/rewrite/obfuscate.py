@@ -56,7 +56,7 @@ def obfuscator_factory(pool, params):
                 new_name = new_name.upper()
             elif name.islower():
                 new_name = new_name.lower()
-            elif name.istitle():
+            elif name.partition(" ")[0].istitle():
                 new_name = new_name.title()
             cache[name] = new_name
         return cache[name] + suffix
