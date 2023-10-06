@@ -59,11 +59,11 @@ class Transformations:
                 "help": _("rearrange the layout with either a Branch & Bound or a Genetic Algorithm"),
                 "fr_examples": {
                     "arrange": "B&B sans contraintes",
+                    "arrange:timeout=60": "B&B limité à une minute",
                     "arrange:wide": "B&B privilégiant la largeur",
                     "arrange:current": "B&B sur la grille courante",
                     "arrange:balanced=0": "B&B sur la plus petite grille équilibrée",
                     "arrange:balanced=1": "B&B sur la seconde plus petite grille équilibrée",
-                    "arrange:algo=ga,timeout=60": "algorithme génétique limité à une minute",
                 },
                 "aliases": [],
             },
@@ -220,7 +220,6 @@ class Transformations:
                     'grow:arity_3=2': "nombre d'associations ternaires (défaut)",
                     'grow:arity_4=0': "nombre d'associations quaternaires (défaut)",
                     'grow:doubles=1': "nombre d'associations liant deux mêmes entités (défaut)",
-                    'grow:composite_ids=2': "nombre d'identifiants composites (défaut)",
                     'grow:ent_attrs=4': "nombre maximal d'attributs par entité (défaut)",
                     'grow:assoc_attrs=2': "nombre maximal d'attributs par association (défaut)",
                     'grow:"*1-*N"=3': "nombre d'associations `*1-*N` (défaut)",
@@ -629,7 +628,7 @@ def parsed_arguments():
         help=_("discriminate between multiple SVG of the same interactive diagram"),
     )
     io_group.add_argument("--select",
-        choices=["mcd", "rw", "source", "text", "code", "mocodo", "cv", "mld", "ddl", "sql"],
+        choices=["*", "mcd", "rw", "source", "text", "code", "mocodo", "cv", "mld", "ddl", "sql"],
         nargs="*",
         default=argparse.SUPPRESS, # causes no attribute to be added if the argument was not present
         help=_("under Jupyter Notebook, explicitely state the categories of results to display"),

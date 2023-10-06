@@ -110,28 +110,26 @@ class Runner:
             self.params["mld"] = True
             self.params["convert"].insert(0, ("markdown", {}))
 
-        if self.params.get("select"): # the user wants to override the default display policy under Jupyter
+        if "select" in self.params: # the user wants to override the default display policy under Jupyter
+            if "*" in self.params["select"]:
+                self.params["select"] = ["mcd", "rw", "cv"]
             normalized_user_choices = []
             for k in self.params["select"]:
                 if k.lower() not in SHOW_ARGS:
                     raise MocodoError(28, _('Unknown argument "{k}" for option --select.').format(k=k)) # fmt: skip
                 normalized_user_choices.append(SHOW_ARGS[k.lower()])
             self.params["select"] = normalized_user_choices
-        
-        if "select" in self.params:
-            if self.params["select"] == []: # display all outputs: MCD, rewritten source, converted files
-                self.params["select"] = ["mcd", "rw", "cv"]
-            # else: don't touch to the user's choices
-        elif self.params["rewrite"] and self.params["convert"]:
-            self.params["select"] = ["mcd", "cv"]
-        elif self.params["rewrite"]:
-            self.params["select"] = ["mcd", "rw"]
-        elif self.params["convert"] and self.params["mld"]:
-            self.params["select"] = ["mcd", "cv"]
-        elif self.params["convert"]:
-            self.params["select"] = ["cv"]
         else:
-            self.params["select"] = ["mcd"]
+            if self.params["rewrite"] and self.params["convert"]:
+                self.params["select"] = ["mcd", "cv"]
+            elif self.params["rewrite"]:
+                self.params["select"] = ["mcd", "rw"]
+            elif self.params["convert"] and self.params["mld"]:
+                self.params["select"] = ["mcd", "cv"]
+            elif self.params["convert"]:
+                self.params["select"] = ["cv"]
+            else:
+                self.params["select"] = ["mcd"]
 
         response = ResponseLogger(self.params)
 
@@ -289,11 +287,11 @@ class Runner:
                 acc = []
                 for (b1, b2, b3, b4) in overlaps:
                     if b3 == b4:
-                        acc.append(_('- Leg "{b1} — {b2}" overlaps "{b3}".').format(b1=b1, b2=b2, b3=b3))  # fmt: skip
+                        acc.append(_('  - Leg "{b1} — {b2}" overlaps "{b3}".').format(b1=b1, b2=b2, b3=b3))  # fmt: skip
                     else:
-                        acc.append(_('- Legs "{b1} — {b2}" and "{b3} — {b4}" overlap.').format(b1=b1, b2=b2, b3=b3, b4=b4))  # fmt: skip
-                details = "\n".join(acc)
-                raise MocodoError(29, _('On Mocodo online, click the chocolate bar to fix the following problem(s):\n{details}').format(details=details))  # fmt: skip
+                        acc.append(_('  - Legs "{b1} — {b2}" and "{b3} — {b4}" overlap.').format(b1=b1, b2=b2, b3=b3, b4=b4))  # fmt: skip
+                details = "\n".join(sorted(acc))
+                raise MocodoError(29, _('Bad layout of boxes:\n{details}\nTo fix the problem, reorder and/or skip lines in the source text, either manually, or with the option -t arrange (chocolate bar under Mocodo online).').format(details=details))  # fmt: skip
 
     def add_gutter_params(self, params):
         gutters = dict(params.get("gutters", []))
