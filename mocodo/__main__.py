@@ -83,11 +83,19 @@ def flip(source, subargs):
 class Runner:
 
     def __init__(self):
-        self.params = parsed_arguments()
-        self.common = Common(self.params)
-        self.get_font_metrics = font_metrics_factory(self.params)
+        try:
+            self.params = parsed_arguments()
+            self.parsing_error = None
+            self.common = Common(self.params)
+            self.get_font_metrics = font_metrics_factory(self.params)
+        except MocodoError as e:
+            # Raising a parsing error must be delayed, otherwise it will not be displayed as a MocodoError
+            self.parsing_error = e
     
     def __call__(self):
+        if self.parsing_error:
+            raise self.parsing_error
+        
         source = self.common.load_input_file()
 
         if self.params["restore"]:
