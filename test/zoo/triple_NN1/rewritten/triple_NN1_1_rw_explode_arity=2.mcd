@@ -1,9 +1,1 @@
-Projet: projet, libellé projet
-DF, 11 Gérer, 1N Projet
-Gérer: id. gérer
-DF, 11 Gérer, 1N Responsable
-
-:
-Ingénieur: ingénieur, nom ingénieur
-DF, 11 Gérer, 1N Ingénieur
-Responsable: responsable, nom responsable
+% same as the source file

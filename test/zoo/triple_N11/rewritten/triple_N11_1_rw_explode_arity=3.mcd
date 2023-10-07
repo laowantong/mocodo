@@ -1,12 +1,1 @@
-Site: site, position
-DF, 11 Affecter, 1N Site
-Affecter: id. affecter
-DF, 11 Affecter, 1N Projet
-
-:
-Employé: employé, nom employé
-DF, 11 Affecter, 0N Employé
-Projet: projet, libellé
-
-(CIF) --Projet, --Employé, ..Affecter, ->Site: Employé, Projet
-(CIF) ..Affecter, ->Projet, Employé, Site: Employé, Site
+% same as the source file

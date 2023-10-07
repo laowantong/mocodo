@@ -12,7 +12,8 @@ class Exploder(Visitor):
             arity = float(subargs["arity"])
         self.empty_only = (arity == 2.5)
         self.threshold = int(arity)
-        if "weak" in subargs:
+        self.allow_weak = "weak" in subargs
+        if self.allow_weak:
             # Don't create an identifier for the new weak entity
             self.explosion_template = ":"
             # Prefix the potential first attribute with an underscore
@@ -46,6 +47,15 @@ class Exploder(Visitor):
         
         # Guard: on demand, avoid processing binary associations with no attributes.
         if self.empty_only and not first_child(tree, "typed_attr"):
+            return
+
+        # Guard: don't explode a clustered association if weak is not allowed
+        card_prefixes = [node.children[0].value == "/" for node in tree.find_data("card_prefix")]
+        if any(card_prefixes) and not self.allow_weak:
+            return
+        
+        # Guard: don't explode an association of several clusters
+        if sum(card_prefixes) > 1:
             return
         
         # Back the legs up as a list of strings.

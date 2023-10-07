@@ -1,9 +1,1 @@
-Projet: projet, libellé
-DF, 11 Utiliser, 1N Projet
-Utiliser: id. utiliser
-DF, 11 Utiliser, 1N Technicien
-
-:
-Carnet: carnet
-DF, 11 Utiliser, 1N Carnet
-Technicien: technicien, nom technicien
+% same as the source file

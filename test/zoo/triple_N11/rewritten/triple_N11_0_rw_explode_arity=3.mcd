@@ -1,9 +1,1 @@
-Site: site
-DF, 11 Affecter, 1N Site
-Affecter: id. affecter
-DF, 11 Affecter, 1N Projet
-
-:
-Employé: employé
-DF, 11 Affecter, 0N Employé
-Projet: projet
+% same as the source file
