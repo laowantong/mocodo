@@ -152,6 +152,9 @@ class Runner:
                     source = flip(source, subargs)
                 elif subopt == "create" and "entities" in subargs:
                     source = guess_entities.run(source, subargs["entities"])
+                elif subopt == "delete" and "dfs" in subargs:
+                    module = importlib.import_module(f".rewrite._delete_dfs", package="mocodo")
+                    source = module.run(source, self.params)
                 elif subopt in self.params["op_tk_rewritings"]: # ex.: create, delete, ascii, etc.
                     source = op_tk.run(source, op_name=subopt, subargs=subargs, params=self.params).rstrip()
                 else: # An unspecified rewrite operation, dynamically loaded
