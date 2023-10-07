@@ -74,4 +74,4 @@ def create_cifs(source, subsubarg):
     visitor = CreateCifs()
     tree = parse_source(source)
     visitor.visit(tree)
-    return source + visitor.get_new_cifs(subsubarg == "min")
+    return source + visitor.get_new_cifs(subsubarg == "light")
