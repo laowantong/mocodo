@@ -312,6 +312,9 @@ class Mcd:
     def get_row_text(self, row):
         return "\n".join(box.source for box in row)
     
+    def get_non_phantom_count(self):
+        return sum(box.kind != "phantom" for box in self.boxes)
+
     def set_layout(self, layout, col_count=None, row_count=None, **kwargs):
         if col_count and row_count:
             (self.col_count, self.row_count) = (col_count, row_count)

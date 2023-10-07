@@ -15,9 +15,9 @@ def arrange(source, subargs, has_expired):
     if "wide" in subargs:
         col_count = 8
         with contextlib.suppress(Exception):
-            col_count = int(subargs["wide"])
+            col_count = int(subargs["wide"]) or 1
         mcd = Mcd(source)
-        (q, r) = divmod(mcd.col_count * mcd.row_count, col_count)
+        (q, r) = divmod(mcd.get_non_phantom_count(), col_count)
         row_count = q + bool(r)
         source = mcd.get_refitted_clauses(col_count, row_count)
     elif "balanced" in subargs:
