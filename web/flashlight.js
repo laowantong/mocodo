@@ -9,7 +9,7 @@ function switchOffFlashlight() {
     document.documentElement.classList.toggle('flashlight');
     document.removeEventListener('mousemove', trackMouse);
     document.removeEventListener('mousedown', switchOffFlashlight);
-    document.getElementById('flashlight-checkbox').checked = false;
+    document.getElementById('flashlight').checked = false;
 }
 
 function trackMouse(event) {

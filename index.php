@@ -149,6 +149,7 @@
 				<div id="paramContents" class="contents">
 					<div><label class="fixedWidth" for="shapes">Police et proportions</label><select onchange="markAsDirty();writeCookie()" name="shapes" id="shapes"></select></div>
 					<div><label class="fixedWidth" for="colors">Palette de couleurs</label><select onchange="markAsDirty();writeCookie()" name="colors" id="colors"></select></div>
+					<div><label class="fixedWidth" for="flashlight">Mode nuit</label><input type="checkbox" id="flashlight" onclick="switchOnFlashlight(event)"></div>
 					<div>
 						<label class="fixedWidth" for="adjust_width">Ajustement de la largeur des libellés</label>
 						<input type="number" value="1.00" max="2.00" min="0.50" step="0.01" onchange="writeCookie()" name="adjust_width" id="adjust_width" style="width: 5em; border-radius: 0;">
