@@ -200,4 +200,4 @@ Pour vous familiariser avec Mocodo, le mieux est d'utiliser [sa version en ligne
 
 ----
 
-Documentation en cours de réécriture. En attendant, vous pouvez consulter [celle de la version 3.2](doc/fr_refman.html), ainsi que la sortie de []`mocodo --help`](doc/fr_refman_4.txt) et l'[aide-mémoire des transformations](doc/fr_cheat_sheet.md).
+Documentation en cours de réécriture. En attendant, vous pouvez consulter [celle de la version 3.2](doc/fr_refman.html), ainsi que la sortie de [`mocodo --help`](doc/fr_refman_4.txt) et l'[aide-mémoire des transformations](doc/fr_cheat_sheet.md).
