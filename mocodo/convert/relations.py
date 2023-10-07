@@ -38,16 +38,16 @@ def set_defaults(template):
     result.setdefault("compose_primary_ex_foreign_key", result["compose_primary_key"])
     result.setdefault("compose_association_attribute", result["compose_normal_attribute"])
     result.setdefault("compose_deleted_child_attribute", result["compose_normal_attribute"])
-    result.setdefault("compose_deleted_child_discriminant_", result["compose_normal_attribute"])
-    result.setdefault("compose_deleted_child_discriminant_T", result["compose_normal_attribute"])
-    result.setdefault("compose_deleted_child_discriminant_X", result["compose_normal_attribute"])
-    result.setdefault("compose_deleted_child_discriminant_XT", result["compose_normal_attribute"])
+    result.setdefault("compose_deleted_child_discriminator_", result["compose_normal_attribute"])
+    result.setdefault("compose_deleted_child_discriminator_T", result["compose_normal_attribute"])
+    result.setdefault("compose_deleted_child_discriminator_X", result["compose_normal_attribute"])
+    result.setdefault("compose_deleted_child_discriminator_XT", result["compose_normal_attribute"])
     result.setdefault("compose_deleted_child_entity_name", result["compose_normal_attribute"])
     result.setdefault("compose_deleted_child_foreign_key", result["compose_foreign_key"])
-    result.setdefault("compose_deleted_parent_discriminant_", result["compose_normal_attribute"])
-    result.setdefault("compose_deleted_parent_discriminant_T", result["compose_normal_attribute"])
-    result.setdefault("compose_deleted_parent_discriminant_X", result["compose_normal_attribute"])
-    result.setdefault("compose_deleted_parent_discriminant_XT", result["compose_normal_attribute"])
+    result.setdefault("compose_deleted_parent_discriminator_", result["compose_normal_attribute"])
+    result.setdefault("compose_deleted_parent_discriminator_T", result["compose_normal_attribute"])
+    result.setdefault("compose_deleted_parent_discriminator_X", result["compose_normal_attribute"])
+    result.setdefault("compose_deleted_parent_discriminator_XT", result["compose_normal_attribute"])
     result.setdefault("compose_deleted_parent_attribute", result["compose_normal_attribute"])
     result.setdefault("compose_deleted_parent_foreign_key", result["compose_foreign_key"])
     result.setdefault("compose_deleted_parent_primary_key", result["compose_primary_key"])
@@ -353,8 +353,8 @@ class Relations:
 
     def strengthen_parents(self):
         """
-        Migrate the optional children's discriminants in their parent when it disappears (totality + =>).
-        In this case, this discriminant should further migrate with the identifier of the parent.
+        Migrate the optional children's discriminators in their parent when it disappears (totality + =>).
+        In this case, this discriminator should further migrate with the identifier of the parent.
         """
         for inheritance in self.mcd.inheritances:
             if inheritance.kind == "=>":
@@ -368,7 +368,7 @@ class Relations:
                     "association_name": inheritance.name,
                     "leg_note": None,
                     "is_primary": False,
-                    "nature": f"deleted_parent_discriminant_{inheritance.name_view}",
+                    "nature": f"deleted_parent_discriminator_{inheritance.name_view}",
                     "unicities": "",
                 } for attribute in inheritance.attributes)
 
@@ -440,7 +440,7 @@ class Relations:
                                     "nature": "unsourced_primary_foreign_key" if outer_source is None else "primary_foreign_key",
                                     "unicities": "",
                                 })
-                        elif attribute["nature"].startswith("deleted_parent_discriminant"):
+                        elif attribute["nature"].startswith("deleted_parent_discriminator"):
                             self.relations[association.name]["columns"].append({
                                 "attribute": attribute["attribute"],
                                 "optionality": "!",
@@ -487,7 +487,7 @@ class Relations:
                         if leg is df_peg:
                             continue
                         for attribute in list(self.relations[leg.entity_name]["columns"]): # traverse a copy...
-                            # ... to prevent an infinite migration of the child discriminant
+                            # ... to prevent an infinite migration of the child discriminator
                             if attribute["is_primary"]:
                                 # Their primary keys must migrate in `entity_name`.
                                 outer_source = self.may_retrieve_distant_outer_source(leg, attribute)
@@ -518,7 +518,7 @@ class Relations:
                             if leg.card[1] == "1": # *1 --(DF)-- 11 => the migrating attribute must be made unique, find a new unicity group
                                 unicities = str(first_missing_positive(self.relations[df_leg.entity_name]["existing_unicity_numbers"]))
                             for attribute in list(self.relations[leg.entity_name]["columns"]): # traverse a copy...
-                                # ... to prevent an infinite migration of the child discriminant
+                                # ... to prevent an infinite migration of the child discriminator
                                 optionality = "!" if df_leg.card[0] == "1" else "?"
                                 if attribute["is_primary"]:
                                     # Their primary keys must migrate in df_leg.entity_name.
@@ -537,7 +537,7 @@ class Relations:
                                         # NB: technically, an unsourced foreign key is not foreign anymore
                                     })
                                     self.relations[df_leg.entity_name]["existing_unicity_numbers"].update(map(int, unicities))
-                                elif attribute["nature"].startswith("deleted_parent_discriminant"):
+                                elif attribute["nature"].startswith("deleted_parent_discriminator"):
                                     self.relations[df_leg.entity_name]["columns"].append({
                                         "attribute": attribute["attribute"],
                                         "optionality": optionality,
@@ -571,7 +571,7 @@ class Relations:
             parent_leg = inheritance.legs[0]
             if inheritance.kind == "=>": # total migration: parent > children
                 for child_leg in inheritance.legs[1:]: 
-                    # migrate the parent's attributes, except those of nature "deleted_parent_discriminant"
+                    # migrate the parent's attributes, except those of nature "deleted_parent_discriminator"
                     self.relations[child_leg.entity_name]["columns"][0:0] = [{
                         "attribute": attribute["attribute"],
                         "optionality": attribute["optionality"],
@@ -583,7 +583,7 @@ class Relations:
                         "is_primary": False,
                         "nature": "deleted_parent_foreign_key" if attribute["nature"] == "foreign_key" else "deleted_parent_attribute",
                         "unicities": "",
-                    } for attribute in self.relations[parent_leg.entity_name]["columns"] if not attribute["is_primary"] and not attribute["nature"].startswith("deleted_parent_discriminant")]
+                    } for attribute in self.relations[parent_leg.entity_name]["columns"] if not attribute["is_primary"] and not attribute["nature"].startswith("deleted_parent_discriminator")]
             else: # migration: triangle attributes > parent
                 self.relations[parent_leg.entity_name]["columns"].extend({ 
                     "attribute": attribute.label,
@@ -594,7 +594,7 @@ class Relations:
                     "association_name": inheritance.name,
                     "leg_note": None,
                     "is_primary": False,
-                    "nature": f"deleted_child_discriminant_{inheritance.name_view}", # "", "X", "T" or "XT"
+                    "nature": f"deleted_child_discriminator_{inheritance.name_view}", # "", "X", "T" or "XT"
                     "unicities": "",
                 } for attribute in inheritance.attributes)
                 if inheritance.kind in ("<-", "<="): # migration: children > parent, and suppress children

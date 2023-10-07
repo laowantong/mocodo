@@ -7,7 +7,7 @@ ANIMAL	date décès		normal_attribute
 ANIMAL	code espèce mère		foreign_key	ANIMAL	ANIMAL	
 ANIMAL	nom mère		foreign_key	ANIMAL	ANIMAL	
 ANIMAL	date naissance mère		foreign_key	ANIMAL	ANIMAL	
-ANIMAL	type alimentation	UNSIGNED_INT_PLACEHOLDER	deleted_child_discriminant_			
+ANIMAL	type alimentation	UNSIGNED_INT_PLACEHOLDER	deleted_child_discriminator_			
 ANIMAL	CARNIVORE	BOOLEAN_PLACEHOLDER	deleted_child_entity_name	CARNIVORE	CARNIVORE	
 ANIMAL	quantité viande		deleted_child_attribute	CARNIVORE		
 ANIMAL	HERBIVORE	BOOLEAN_PLACEHOLDER	deleted_child_entity_name	HERBIVORE	HERBIVORE	

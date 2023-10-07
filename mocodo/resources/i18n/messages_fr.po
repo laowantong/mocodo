@@ -322,7 +322,7 @@ msgstr "réutilise le fichier de géométrie de l'exécution précédente"
 
 #: mocodo/argument_parser.py:482
 msgid "discriminate between multiple SVG of the same interactive diagram"
-msgstr "ajoute un discriminant à un SVG interactif"
+msgstr "ajoute un discriminateur à un SVG interactif"
 
 #: mocodo/argument_parser.py:488
 msgid "under Jupyter Notebook, explicitely state the categories of results to display"
@@ -527,6 +527,10 @@ msgstr "Une contrainte « {constraint} » est liée à une entité ou associat
 #: mocodo/mcd.py:142
 msgid "Constraint \"{constraint}\" aligned with an unknown entity or association \"{box}\"!"
 msgstr "Une contrainte « {constraint} » est alignée avec une entité ou association inconnue « {box} »."
+
+#: mocodo/mcd.py:175
+msgid "The weak entity \"{entity}\" should have a discriminator."
+msgstr "L'entité faible « {entity} » devrait avoir un discriminateur."
 
 #: mocodo/mcd.py:399
 msgid "Unable to reuse the geometry file \"{filename}\"."

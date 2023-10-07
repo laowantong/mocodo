@@ -1,7 +1,7 @@
 this_relation_name	label	datatype	nature	adjacent_source	outer_source	unicities
 ALIQUET	magna		unsourced_primary_foreign_key	TRISTIS		
 ALIQUET	tellus		primary_foreign_key	DIGNISSIM	DIGNISSIM	
-ALIQUET	type	UNSIGNED_INT_PLACEHOLDER	deleted_parent_discriminant_XT	TRISTIS		
+ALIQUET	type	UNSIGNED_INT_PLACEHOLDER	deleted_parent_discriminator_XT	TRISTIS		
 CONSEQUAT	fermentum		primary_key			
 CONSEQUAT	dederit		normal_attribute			
 CURABITUR	gravida		primary_key			
@@ -32,6 +32,6 @@ SODALES	ipsum		normal_attribute
 SUSCIPIT	orci		primary_key			
 SUSCIPIT	lorem		normal_attribute			
 SUSCIPIT	magna		unsourced_foreign_key	TRISTIS		
-SUSCIPIT	type	UNSIGNED_INT_PLACEHOLDER	deleted_parent_discriminant_XT	TRISTIS		
+SUSCIPIT	type	UNSIGNED_INT_PLACEHOLDER	deleted_parent_discriminator_XT	TRISTIS		
 ULTRICES	posuere		primary_foreign_key	LIBERO	LIBERO	
 ULTRICES	magna		primary_foreign_key	LACUS	LACUS

@@ -3,7 +3,7 @@
 %                         ENTITÉ FAIBLE SANS IDENTIFIANT                         %
 %                                                                                %
 %  Préfixez d'un tiret bas le premier attribut pour l'exclure de l'identifiant,  %
-%  p. ex. pour une entité faible sans discriminant.                              %
+%  p. ex. pour une entité faible sans discriminateur.                              %
 %                                                                                %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

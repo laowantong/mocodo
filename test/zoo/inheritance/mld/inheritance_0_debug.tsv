@@ -18,7 +18,7 @@ SUSCIPIT	magna		foreign_key	TRISTIS	TRISTIS
 TRISTIS	magna		primary_key			
 TRISTIS	vestibulum		normal_attribute			
 TRISTIS	fermentum		foreign_key	CONSEQUAT	CONSEQUAT	
-TRISTIS	type	UNSIGNED_INT_PLACEHOLDER	deleted_child_discriminant_XT			
+TRISTIS	type	UNSIGNED_INT_PLACEHOLDER	deleted_child_discriminator_XT			
 TRISTIS	convallis		deleted_child_attribute	SODALES		
 TRISTIS	ipsum		deleted_child_attribute	SODALES		
 TRISTIS	pulvinar		deleted_child_attribute	NEC		

@@ -255,13 +255,13 @@ class relationsTest(unittest.TestCase):
         t = Relations(mcd, params)
         self.assertEqual(t.get_text(minimal_template), text)
         expected = """
-            | relation | label           | datatype                 | nature                      | adjacent_source |
-            |:---------|:----------------|:-------------------------|:----------------------------|:----------------|
-            | ANIMAL   | animal          |                          | primary_key                 |                 |
-            | ANIMAL   | poids           |                          | normal_attribute            |                 |
-            | ANIMAL   | type            | UNSIGNED_INT_PLACEHOLDER | deleted_child_discriminant_ |                 |
-            | ANIMAL   | quantité viande |                          | deleted_child_attribute     | CARNIVORE       |
-            | ANIMAL   | plante préférée |                          | deleted_child_attribute     | HERBIVORE       |
+            | relation | label           | datatype                 | nature                       | adjacent_source |
+            |:---------|:----------------|:-------------------------|:-----------------------------|:----------------|
+            | ANIMAL   | animal          |                          | primary_key                  |                 |
+            | ANIMAL   | poids           |                          | normal_attribute             |                 |
+            | ANIMAL   | type            | UNSIGNED_INT_PLACEHOLDER | deleted_child_discriminator_ |                 |
+            | ANIMAL   | quantité viande |                          | deleted_child_attribute      | CARNIVORE       |
+            | ANIMAL   | plante préférée |                          | deleted_child_attribute      | HERBIVORE       |
         """
         actual = debug_table(t)
         self.assertEqual(actual.strip(), expected.strip())
@@ -281,15 +281,15 @@ class relationsTest(unittest.TestCase):
         t = Relations(Mcd(source, params), params)
         self.assertEqual(t.get_text(minimal_template), text)
         expected = """
-            | relation  | label           | datatype                 | nature                      |
-            |:----------|:----------------|:-------------------------|:----------------------------|
-            | ANIMAL    | animal          |                          | primary_key                 |
-            | ANIMAL    | poids           |                          | normal_attribute            |
-            | ANIMAL    | type            | UNSIGNED_INT_PLACEHOLDER | deleted_child_discriminant_ |
-            | CARNIVORE | animal          |                          | parent_primary_key          |
-            | CARNIVORE | quantité viande |                          | normal_attribute            |
-            | HERBIVORE | animal          |                          | parent_primary_key          |
-            | HERBIVORE | plante préférée |                          | normal_attribute            |
+            | relation  | label           | datatype                 | nature                       |
+            |:----------|:----------------|:-------------------------|:-----------------------------|
+            | ANIMAL    | animal          |                          | primary_key                  |
+            | ANIMAL    | poids           |                          | normal_attribute             |
+            | ANIMAL    | type            | UNSIGNED_INT_PLACEHOLDER | deleted_child_discriminator_ |
+            | CARNIVORE | animal          |                          | parent_primary_key           |
+            | CARNIVORE | quantité viande |                          | normal_attribute             |
+            | HERBIVORE | animal          |                          | parent_primary_key           |
+            | HERBIVORE | plante préférée |                          | normal_attribute             |
         """
         actual = debug_table(t)
         self.assertEqual(actual.strip(), expected.strip())
@@ -344,13 +344,13 @@ class relationsTest(unittest.TestCase):
         t = Relations(Mcd(source, params), params)
         self.assertEqual(t.get_text(minimal_template), text)
         expected = """
-            | relation | label           | datatype                 | nature                      | adjacent_source |
-            |:---------|:----------------|:-------------------------|:----------------------------|:----------------|
-            | ANIMAL   | animal          |                          | primary_key                 |                 |
-            | ANIMAL   | poids           |                          | normal_attribute            |                 |
-            | ANIMAL   | type            | UNSIGNED_INT_PLACEHOLDER | deleted_child_discriminant_ |                 |
-            | ANIMAL   | quantité viande |                          | deleted_child_attribute     | CARNIVORE       |
-            | ANIMAL   | plante préférée |                          | deleted_child_attribute     | HERBIVORE       |
+            | relation | label           | datatype                 | nature                       | adjacent_source |
+            |:---------|:----------------|:-------------------------|:-----------------------------|:----------------|
+            | ANIMAL   | animal          |                          | primary_key                  |                 |
+            | ANIMAL   | poids           |                          | normal_attribute             |                 |
+            | ANIMAL   | type            | UNSIGNED_INT_PLACEHOLDER | deleted_child_discriminator_ |                 |
+            | ANIMAL   | quantité viande |                          | deleted_child_attribute      | CARNIVORE       |
+            | ANIMAL   | plante préférée |                          | deleted_child_attribute      | HERBIVORE       |
         """
         actual = debug_table(t)
         self.assertEqual(actual.strip(), expected.strip())
@@ -368,13 +368,13 @@ class relationsTest(unittest.TestCase):
         t = Relations(Mcd(source, params), params)
         self.assertEqual(t.get_text(minimal_template), text)
         expected = """
-            | relation  | label           | datatype                 | nature                      |
-            |:----------|:----------------|:-------------------------|:----------------------------|
-            | ANIMAL    | animal          |                          | primary_key                 |
-            | ANIMAL    | poids           |                          | normal_attribute            |
-            | ANIMAL    | type            | UNSIGNED_INT_PLACEHOLDER | deleted_child_discriminant_ |
-            | CARNIVORE | animal          |                          | parent_primary_key          |
-            | CARNIVORE | quantité viande |                          | normal_attribute            |
+            | relation  | label           | datatype                 | nature                       |
+            |:----------|:----------------|:-------------------------|:-----------------------------|
+            | ANIMAL    | animal          |                          | primary_key                  |
+            | ANIMAL    | poids           |                          | normal_attribute             |
+            | ANIMAL    | type            | UNSIGNED_INT_PLACEHOLDER | deleted_child_discriminator_ |
+            | CARNIVORE | animal          |                          | parent_primary_key           |
+            | CARNIVORE | quantité viande |                          | normal_attribute             |
         """
         actual = debug_table(t)
         self.assertEqual(actual.strip(), expected.strip())
