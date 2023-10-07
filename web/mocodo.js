@@ -20,7 +20,7 @@ var conversions = {
     "default": false,
     "highlighting": "markup",
     "title": "Affiché également au-dessous du diagramme conceptuel. Cliquez sur un schéma de relation pour faire apparaître une explication du passage du MCD au MLD.",
-    "name": "Schéma relationnel en HTML avec explications",
+    "name": "Explications du passage au relationnel",
   },
   "_ddl.sql": {
     "default": false,
@@ -117,13 +117,13 @@ var knowledge = {
     "default": false
   },
   "random": {
-    "name": "Bouton Masquer",
+    "name": "Masquage et génération aléatoire",
     "title": "Cochez pour ajouter un bouton donnant accès à des opérations de masquage des libellés et de génération d&#39exercices aléatoires.",
     "default": false,
     "onchange": "setRandomKnowledge(event.target.checked)",
   },
   "decomposition": {
-    "name": "Bouton Décomposer",
+    "name": "Décomposition d'associations",
     "title": "Cochez pour ajouter un bouton donnant accès à des opérations de réécriture de certains types d&#39;associations.",
     "default": false,
     "onchange": "setDecompositionKnowledge(event.target.checked)",
@@ -290,7 +290,7 @@ function generate() {
   $('textarea[name="text"]').val(text);
   var data = $("#mainForm").serializeArray();
   if ($("#reproductibility").prop("checked")) {
-    data.push({ name: "seed", value: text.indexOf("\n") });
+    data.push({ name: "seed", value: text.indexOf("\n").toString() });
   }
   if ($("#constraints").prop("checked")) {
     for (var i = 0; i < data.length; i++) {
@@ -364,7 +364,6 @@ function rewrite(args) {
       url: "web/rewrite.php",
       data: {
         args: args,
-        text: ace.edit("editor").getSession().getValue()
         text: text
       },
       success: function (result) {
@@ -406,16 +405,39 @@ function unbox() {
     }
   });
 };
+function setPulsatingButton(is_visible, checkbox, button) {
+  if (is_visible) {
+    button.show().css("opacity", "1");
+    checkbox.off("mouseenter");
+    checkbox.off("mouseleave");
+    button.removeClass("pulsating");
+   } else {
+    button.hide();
+    button.addClass("pulsating");
+    checkbox.on("mouseenter", function () { button.show(); });
+    checkbox.on("mouseleave", function () { button.hide(); });
+   }
+};
 function setDecompositionKnowledge(is_visible) {
-  is_visible ? $("#explodeButton").show() : $("#explodeButton").hide();
+  setPulsatingButton(is_visible, $("#decomposition").parent(), $("#explodeButton"));
 };
 function setRandomKnowledge(is_visible) {
-  is_visible ? $("#jokerButton").show() : $("#jokerButton").hide();
+  setPulsatingButton(is_visible, $("#random").parent(), $("#jokerButton"));
 };
 function setClusterKnowledge(is_visible) {
   is_visible ? $("#createCifs").show() : $("#createCifs").hide();
 };
-
+function setButtonPreviewOnHover(checkboxId, buttonId) {
+  $('label[for="' + checkboxId + '"]').hover(function() {
+    if ($("#" + checkboxId).prop("checked", false)) {
+      $('#' + buttonId).fadeTo(500, 0.5);
+    }
+  }, function() {
+    if ($("#" + checkboxId).prop("checked", false)) {
+      $('#' + buttonId).hide();
+    }
+  });
+}
 var tutorialOptions = ["Tutoriel interactif (1/2)", "Entité", "Identifiant et attributs d'entité", "Identifiant composite", "Association", "Cardinalités", "Attribut d'association", "Association de dépendance fonctionnelle", "Association réflexive", "Schéma relationnel", "Rôles", "Diagramme relationnel (1)", "Diagramme relationnel (2)", "Inférence de types", "Génération du DDL", "Schéma sur plusieurs rangées", "Réorganisation automatique", "Réorganisation automatique avec contraintes", "Pour aller plus loin...", "Tutoriel interactif (2/2)", "Entité faible (ou identification relative)", "Entité faible sans identifiant", "Identifiants candidats", "Héritage (ou spécialisation)", "Agrégation (ou pseudo-entité)", "Agrégation et contraintes d'unicité", "Agrégation multiple", "Contrainte d'intégrité fonctionnelle (CIF)", "Autres contraintes sur associations", "Explication interactive d'une contrainte", "Explication interactive des cardinalités", "Flèche sur une patte", "Dévoilement progressif du schéma", "Boîtes homonymes", "Vue en extension", "Décomposition des associations ternaires (1)", "Décomposition des associations ternaires (2)", "Pour aller plus loin..."];
 var basicTutorialLimit = 19;
 function setTutorialKnowledge(is_advanced) {

@@ -456,3 +456,17 @@ ul.tabs a:hover {
   ), #FFFF0020;
   z-index: 11;
 }
+@keyframes pulse {
+  0% {
+   transform: scale(0.9, 0.9);
+  }
+  50% {
+   transform: scale(1.3, 1.3);
+  }
+  100% {
+  transform: scale(0.9, 0.9);
+  }
+}
+.pulsating {
+  animation: pulse 1s linear infinite;
+}
