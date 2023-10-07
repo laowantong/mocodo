@@ -362,10 +362,8 @@ function rewrite(args) {
           return;
         }
         setEditorContent(result["text"]);
-        if (!$("#diagramOutput").hasClass('never_refreshed')) {
-          request_lock = false;
-          generate();
-        };
+        request_lock = false;
+        generate();
       },
       complete: function (data) {
         $("#refreshButton").show();
@@ -480,21 +478,25 @@ function readCookie() {
   }
 }
 
-var longClickTimeout = null;
+var clickTimer = null;
 var currentPopup = null;
 
-function startCountdown(element) {
-  longClickTimeout = setTimeout(function() { // When the timeout finally triggers,
-    currentPopup = element.nextElementSibling;
-    currentPopup.style.display = "block"; // show the popup menu.
-    longClickTimeout = null;
-  }, 500);
-}
-function stopCountdown(rewrite_operation) {
-  if (longClickTimeout) { // If the timeout has not yet triggered,
-    clearTimeout(longClickTimeout); // cancel it
-    longClickTimeout = null;
+function handleClick(element, rewrite_operation) {
+  if (clickTimer != null) { // double-click
+    clearTimeout(clickTimer); // cancel the timer
+    clickTimer = null;
     rewrite(rewrite_operation); // and call the default rewriting.
+  } else { // simple click
+    if (currentPopup) {
+      currentPopup.style.display = "none";
+      currentPopup = null;
+    } else {
+      clickTimer = setTimeout(function () { // start a timer that will call the default rewriting after a short delay.
+        clickTimer = null;
+        currentPopup = element.nextElementSibling;
+        currentPopup.style.display = "block"; // show the popup menu.
+      }, 200);
+    };
   }
 }
 function closePopup() {

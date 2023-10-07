@@ -37,40 +37,40 @@
 			<div class="pane">
 				<div id="inputButtons" class='buttons'>
 					<div class="button-with-popup" id="arrangeButton">
-						<span class="customButton tooltip" onmouseenter="closePopup()" onmousedown="startCountdown(this)" onmouseup="stopCountdown('arrange')" style="background-image: url(web/png/arrange.png);"><span class="tooltiptext">Réorganiser</span></span>
+						<span class="customButton tooltip" onmouseenter="closePopup()" onclick="handleClick(this, 'arrange')" style="background-image: url(web/png/arrange.png);"><span class="tooltiptext">Réorganiser</span></span>
 						<div class="popup-menu" onmouseleave="closePopup(this)">
 							<span class="popup-item popup-close" onclick="closePopup()">⨉</span>
 							<span class="popup-item" onclick="rewrite('arrange:current')">sur la grille actuelle</span>
 							<span class="popup-item" onclick="rewrite('arrange:wide')">en privilégiant la largeur</span>
 							<span class="popup-item" onclick="rewrite('arrange:balanced=0')">sur la plus petite grille équilibrée</span>
 							<span class="popup-item" onclick="rewrite('arrange:balanced=1')">sur la seconde plus petite grille équilibrée</span>
-							<span class="popup-item" onclick="rewrite('arrange')">sans contraintes (par défaut)</span>
+							<span class="popup-item" onclick="rewrite('arrange')">sans contraintes (double clic)</span>
 						</div>
 					</div>
 					<div class="button-with-popup" id="flipButton">
-						<span class="customButton tooltip" onmouseenter="closePopup()" onmousedown="startCountdown(this)" onmouseup="stopCountdown('flip:hvd')" style="background-image: url(web/png/flip.png);"><span class="tooltiptext">Inverser</span></span>
+						<span class="customButton tooltip" onmouseenter="closePopup()" onclick="handleClick(this, 'flip:hvd')" style="background-image: url(web/png/flip.png);"><span class="tooltiptext">Inverser</span></span>
 						<div class="popup-menu" onmouseleave="closePopup(this)">
 							<span class="popup-item popup-close" onclick="closePopup()">⨉</span>
 							<span class="popup-item" onclick="rewrite('flip:h')">horizontalement</span>
 							<span class="popup-item" onclick="rewrite('flip:v')">verticalement</span>
 							<span class="popup-item" onclick="rewrite('flip:d')">selon la première diagonale</span>
-							<span class="popup-item" onclick="rewrite('flip:hvd')">selon la deuxième diagonale (par défaut)</span>
+							<span class="popup-item" onclick="rewrite('flip:hvd')">selon la deuxième diagonale (double clic)</span>
 						</div>
 					</div>
 					<div class="button-with-popup" id="typoButton">
-						<span class="customButton tooltip" onmouseenter="closePopup()" onmousedown="startCountdown(this)" onmouseup="stopCountdown('ascii:labels snake:labels lower:attrs,roles upper:boxes')" style="background-image: url(web/png/typo.png);"><span class="tooltiptext">Éditer</span></span>
+						<span class="customButton tooltip" onmouseenter="closePopup()" onclick="handleClick(this, 'ascii:labels snake:labels lower:attrs,roles upper:boxes')" style="background-image: url(web/png/typo.png);"><span class="tooltiptext">Éditer</span></span>
 						<div class="popup-menu" onmouseleave="closePopup(this)">
 							<span class="popup-item popup-close" onclick="closePopup()">⨉</span>
 							<span class="popup-item" onclick="rewrite('ascii:labels')">libellés en ASCII</span>
 							<span class="popup-item" onclick="rewrite('snake:labels')">libellés en <i>snake case</i></span>
 							<span class="popup-item" onclick="rewrite('lower:attrs,roles')">attributs en minuscules</span>
 							<span class="popup-item" onclick="rewrite('upper:boxes')">noms des entités et des associations en majuscules</span>
-							<span class="popup-item" onclick="rewrite('ascii:labels snake:labels lower:attrs,roles upper:boxes')">tous les précédents à la fois (par défaut)</span>
+							<span class="popup-item" onclick="rewrite('ascii:labels snake:labels lower:attrs,roles upper:boxes')">tous les précédents à la fois (double clic)</span>
 							<span class="popup-item" onclick="rewrite('fix:cards')">correction des fautes de frappe dans les cardinalités</span>
 						</div>
 					</div>
 					<div class="button-with-popup" id="createButton">
-						<span class="customButton tooltip" onmouseenter="closePopup()" onmousedown="startCountdown(this)" onmouseup="stopCountdown('create:entities')" style="background-image: url(web/png/create.png);"><span class="tooltiptext">Révéler</span></span>
+						<span class="customButton tooltip" onmouseenter="closePopup()" onclick="handleClick(this, 'create:entities')" style="background-image: url(web/png/create.png);"><span class="tooltiptext">Révéler</span></span>
 						<div class="popup-menu" onmouseleave="closePopup(this)">
 							<span class="popup-item popup-close" onclick="closePopup()">⨉</span>
 							<span class="popup-item" onclick="rewrite('create:dfs')">mettre des DF partout où c'est possible</span>
@@ -79,28 +79,28 @@
 							<span class="popup-item" onclick="rewrite('create:types=')">mettre en évidence les types à remplir</span>
 							<span class="popup-item" onclick="rewrite('create:types')">deviner les types à partir du nom des attributs</span>
 							<span class="popup-item" onclick="rewrite('delete:types')">supprimer les types</span>
-							<span class="popup-item" onclick="rewrite('create:entities')">réparer l'oubli d'entités référencées dans des associationss (par défaut)</span>
+							<span class="popup-item" onclick="rewrite('create:entities')">réparer l'oubli d'entités référencées dans des associations (double clic)</span>
 						</div>
 					</div>
 					<div class="button-with-popup" id="jokerButton">
-						<span class="customButton tooltip" onmouseenter="closePopup()" onmousedown="startCountdown(this)" onmouseup="stopCountdown('obfuscate')" style="background-image: url(web/png/joker.png);"><span class="tooltiptext">Masquer</span></span>
+						<span class="customButton tooltip" onmouseenter="closePopup()" onclick="handleClick(this, 'obfuscate')" style="background-image: url(web/png/joker.png);"><span class="tooltiptext">Masquer</span></span>
 						<div class="popup-menu" onmouseleave="closePopup(this)">
 							<span class="popup-item popup-close" onclick="closePopup()">⨉</span>
-							<span class="popup-item" onclick="rewrite('obfuscate')">masquer avec du faux texte (par défaut)</span>
 							<span class="popup-item" onclick="rewrite('drown')">masquer avec des libellés génériques numérotés</span>
 							<span class="popup-item" onclick="rewrite('delete')" title="Crée un MCD à compléter. À accompagner de la liste des descriptifs des attributs obtenue avec l'option « Dictionnaire des données en Markdown (deux colonnes) ».">masquer les attributs et les cardinalités</span>
 							<span class="popup-item" onclick="rewrite('create:types=PLACEHOLDER randomize:types')">remplir les types au hasard</span>
 							<span class="popup-item" onclick="rewrite('grow:from_scratch,arity_3=1 arrange')">créer un MCD aléatoire avec des libellés génériques numérotés</span>
 							<span class="popup-item" onclick="rewrite('grow:from_scratch,arity_3=1 obfuscate create:roles lower:roles arrange')">créer un MCD d'entraînement à la conversion en relationnel</span>
+							<span class="popup-item" onclick="rewrite('obfuscate')">masquer avec du faux texte (double clic)</span>
 						</div>
 					</div>
 					<div class="button-with-popup" id="explodeButton" style="display: none;">
-						<span class="customButton tooltip explosion-call" onmouseenter="closePopup()" onmousedown="startCountdown(this)" onmouseup="stopCountdown('explode:arity=3 arrange')" style="background-image: url(web/png/explode.png);"><span class="tooltiptext">Décomposer</span></span>
+						<span class="customButton tooltip explosion-call" onmouseenter="closePopup()" onclick="handleClick(this, 'explode:arity=3 arrange')" style="background-image: url(web/png/explode.png);"><span class="tooltiptext">Décomposer</span></span>
 						<div class="popup-menu" onmouseleave="closePopup(this)">
 							<span class="popup-item popup-close" onclick="closePopup()">⨉</span>
 							<span class="popup-item" onclick="rewrite('drain')">drainer les DF porteuses d'attributs</span>
 							<span class="popup-item" onclick="rewrite('split arrange')">décomposer les DF ternaires et plus</span>
-							<span class="popup-item explosion-call" onclick="rewrite('explode:arity=3 arrange')">décomposer les non-DF ternaires et plus (par défaut)</span>
+							<span class="popup-item explosion-call" onclick="rewrite('explode:arity=3 arrange')">décomposer les non-DF ternaires et plus (double clic)</span>
 							<span class="popup-item explosion-call" onclick="rewrite('explode:arity=2.5 arrange')">décomposer les non-DF binaires et plus porteuses d'attributs</span>
 							<span class="popup-item explosion-call" onclick="rewrite('explode:arity=2 arrange')">décomposer toutes les non-DF binaires et plus</span>
 						</div>
