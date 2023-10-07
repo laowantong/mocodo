@@ -67,7 +67,7 @@ class ResponseLogger:
 
 
 def flip(source, subargs):
-    for subsubopt in subargs:
+    for subsubopt in "".join(subargs.keys()):
         mcd = Mcd(source)
         if subsubopt == "v":
             source = mcd.get_vertically_flipped_clauses()
