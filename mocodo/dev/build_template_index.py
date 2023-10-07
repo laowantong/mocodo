@@ -41,6 +41,9 @@ Path(folder, "_index.json").write_text(result + "\n")
 edges = []
 for path in sorted(folder.glob("*.yaml")):
     data = load_mini_yaml.run(path)
+    data.pop("help_fr", None)
+    data.pop("help_en", None)
+    data.pop("fr_examples", None)
     color = min(9, len(data))
     font_color = "white" if color > 5 else "black"
     if "parent" in data:

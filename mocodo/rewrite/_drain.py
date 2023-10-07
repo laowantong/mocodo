@@ -16,7 +16,7 @@ class DrainerFirstPass(Visitor):
 
     def assoc_clause(self, tree):
 
-        # Guard: ensure that exactly on cardinality is 11
+        # Guard: ensure that exactly one cardinality is 11
         cards = [node.children[0].value for node in tree.find_data("card")]
         if cards.count("11") != 1:
             return
