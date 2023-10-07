@@ -1,0 +1,20 @@
+@startuml "weak"
+
+!define Table(x) class "x" << (T,#FFFFFF) >>
+!define pk(x) <b>x</b>
+
+Table("Œuvre") {
+    {field} + pk(œuvre)
+    {field} + auteur
+}
+
+"Œuvre" "1" *-- "*" "Exemplaire"
+
+Table("Exemplaire") {
+    {field} + pk(exemplaire)
+    {field} + nb pages
+    {field} + date achat
+    {field} + foobar
+}
+
+@enduml

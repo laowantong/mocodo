@@ -1,0 +1,23 @@
+  HERBIVORE: plante préférée
+  /\\ ANIMAL <= CARNIVORE, HERBIVORE: type alimentation
+  CARNIVORE: quantité viande
+    DF, _11 PEUT COHABITER AVEC, 0N [commensale] ESPÈCE
+    PEUT COHABITER AVEC: _nb. max. commensaux
+
+    A MÈRE, 01 ANIMAL, 0N> [mère] ANIMAL
+  ANIMAL: nom, sexe, _date naissance, date décès
+  DF, 0N ESPÈCE, _11 ANIMAL
+ESPÈCE: code espèce, 1_nom latin, nom vernaculaire
+    DF, _11 PEUT COHABITER AVEC, 0N ESPÈCE
+
+      PÉRIODE: date début, _date fin
+      OCCUPE, 1N ANIMAL, /1N PÉRIODE, 1N ENCLOS
+PEUT VIVRE DANS: _nb. max. congénères
+DF, _11 PEUT VIVRE DANS, 1N ESPÈCE
+:
+
+:
+ENCLOS: num. enclos
+DF, _11 PEUT VIVRE DANS, 1N ENCLOS
+:
+:

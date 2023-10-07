@@ -1,0 +1,7 @@
+Appartement: num appart., nb pièces
+Composer, 0N> Étage, _11 Appartement
+Étage: num étage, nb appartements
+Appartenir, 1N> Immeuble, _11 Étage
+Immeuble: num immeuble, nb étages
+Se situer, 0N> Rue, _11 Immeuble
+Rue: code rue, nom rue

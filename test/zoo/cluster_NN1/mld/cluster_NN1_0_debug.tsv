@@ -1,0 +1,11 @@
+this_relation_name	label	datatype	nature	adjacent_source	outer_source	unicities
+Réservation	num résa		primary_key			
+Réservation	arrhes		normal_attribute			
+Réservation	date résa		normal_attribute			
+Réservation	num voilier		foreign_key	Voilier	Voilier	1
+Réservation	num semaine		foreign_key	Semaine	Semaine	1
+Réservation	tarif		outer_attribute			
+Semaine	num semaine		primary_key			
+Semaine	date début		normal_attribute			1
+Voilier	num voilier		primary_key			
+Voilier	longueur		normal_attribute

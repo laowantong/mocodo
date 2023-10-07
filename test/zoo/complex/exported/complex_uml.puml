@@ -1,0 +1,63 @@
+@startuml "complex"
+
+!define Table(x) class "x" << (T,#FFFFFF) >>
+!define pk(x) <b>x</b>
+
+Table("PÉRIODE") {
+    {field} + pk(date début)
+    {field} + pk(date fin)
+}
+
+"ANIMAL" "*" --- "1..*" "ANIMAL": "A MÈRE"
+
+Table("ENCLOS") {
+    {field} + pk(num. enclos)
+}
+
+diamond N_ARY_0
+N_ARY_0 -- "1..*" "ANIMAL"
+N_ARY_0 -- "1" "PÉRIODE"
+N_ARY_0 -- "1..*" "ENCLOS"
+
+Table("ANIMAL") {
+    {field} + pk(nom)
+    {field} + sexe
+    {field} + pk(date naissance)
+    {field} + date décès
+}
+
+note "{incomplete, overlapping}" as GENERALIZATION_1
+GENERALIZATION_1 -[dotted]- HERBIVORE
+GENERALIZATION_1 -[dotted]- CARNIVORE
+ANIMAL <|-- HERBIVORE
+ANIMAL <|-- CARNIVORE
+
+Table("CARNIVORE") {
+    {field} + pk(quantité viande)
+}
+
+"ESPÈCE" "1..*" --- "1..*" "ENCLOS": "PEUT VIVRE DANS"
+("ESPÈCE", "ENCLOS") .. "PEUT VIVRE DANS"
+Table("PEUT VIVRE DANS") {
+    {field} + nb. max. congénères
+}
+
+Table("ESPÈCE") {
+    {field} + pk(code espèce)
+    {field} + nom latin
+    {field} + nom vernaculaire
+}
+
+"ESPÈCE" "1" *-- "*" "ANIMAL"
+
+Table("HERBIVORE") {
+    {field} + pk(plante préférée)
+}
+
+"ESPÈCE" "*" --- "*" "ESPÈCE": "PEUT COHABITER AVEC"
+("ESPÈCE", "ESPÈCE") .. "PEUT COHABITER AVEC"
+Table("PEUT COHABITER AVEC") {
+    {field} + nb. max. commensaux
+}
+
+@enduml

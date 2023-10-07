@@ -1,0 +1,3491 @@
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------start
+  break_
+--------------------------------------------------------------------------------
+[{'type': 'break'}]
+
+--------------------------------------------------------------------------------
+:
+--------------------------------------------------------------------------------start
+  line
+    phantoms	:
+--------------------------------------------------------------------------------
+[{'type': 'phantoms', 'count': 1, 'indent': '', 'source': ':'}]
+
+--------------------------------------------------------------------------------
+:::
+--------------------------------------------------------------------------------start
+  line
+    phantoms	:::
+--------------------------------------------------------------------------------
+[{'type': 'phantoms', 'count': 3, 'indent': '', 'source': ':::'}]
+
+--------------------------------------------------------------------------------
+:  :  :
+--------------------------------------------------------------------------------start
+  line
+    phantoms	:  :  :
+--------------------------------------------------------------------------------
+[{'type': 'phantoms', 'count': 3, 'indent': '', 'source': ':  :  :'}]
+
+--------------------------------------------------------------------------------
+   :  :  :
+--------------------------------------------------------------------------------start
+  line
+    indent	   
+    phantoms	:  :  :
+--------------------------------------------------------------------------------
+[{'type': 'phantoms', 'indent': '  ', 'count': 3, 'source': '  :  :  :'}]
+
+--------------------------------------------------------------------------------
+   % commented
+--------------------------------------------------------------------------------start
+  line
+    indent	   
+    comment
+      %
+       commented
+--------------------------------------------------------------------------------
+[{'type': 'comment',
+  'indent': '  ',
+  'text': '% commented',
+  'source': '  % commented'}]
+
+--------------------------------------------------------------------------------
+% commented %
+--------------------------------------------------------------------------------start
+  line
+    comment
+      %
+       commented %
+--------------------------------------------------------------------------------
+[{'type': 'comment',
+  'text': '% commented %',
+  'indent': '',
+  'source': '% commented %'}]
+
+--------------------------------------------------------------------------------
+  % foo\\ , %  foo  /TX\\
+--------------------------------------------------------------------------------start
+  line
+    indent	  
+    comment
+      %
+       foo\\ , %  foo  /TX\\
+--------------------------------------------------------------------------------
+[{'type': 'comment',
+  'indent': '  ',
+  'text': '% foo\\\\ , %  foo  /TX\\\\',
+  'source': '  % foo\\\\ , %  foo  /TX\\\\'}]
+
+--------------------------------------------------------------------------------
+AYANT-DROIT: nom ayant-droit, lien
+--------------------------------------------------------------------------------start
+  line
+    entity_clause
+      entity_name_def
+        box_name	AYANT-DROIT
+      : 
+      seq
+        entity_or_table_attr
+          typed_attr
+            attr	nom ayant-droit
+        , 
+        entity_or_table_attr
+          typed_attr
+            attr	lien
+--------------------------------------------------------------------------------
+[{'name': 'AYANT-DROIT',
+  'attrs': [{'attribute_label': 'nom ayant-droit', 'rank': 0},
+            {'attribute_label': 'lien', 'rank': 1}],
+  'type': 'entity',
+  'indent': '',
+  'source': 'AYANT-DROIT: nom ayant-droit, lien'}]
+
+--------------------------------------------------------------------------------
+DIRIGER, 0N EMPLOYÉ, 01 PROJET
+--------------------------------------------------------------------------------start
+  line
+    assoc_clause
+      assoc_name_def
+        box_name	DIRIGER
+      , 
+      seq
+        assoc_leg
+          card	0N
+           
+          entity_name_ref
+            box_name	EMPLOYÉ
+        , 
+        assoc_leg
+          card	01
+           
+          entity_name_ref
+            box_name	PROJET
+--------------------------------------------------------------------------------
+[{'name': 'DIRIGER',
+  'legs': [{'card': '0N', 'entity': 'EMPLOYÉ', 'rank': 0},
+           {'card': '01', 'entity': 'PROJET', 'rank': 1}],
+  'type': 'association',
+  'indent': '',
+  'source': 'DIRIGER, 0N EMPLOYÉ, 01 PROJET'}]
+
+--------------------------------------------------------------------------------
+REQUÉRIR, 1N PROJET, 0N PIÈCE: qté requise
+--------------------------------------------------------------------------------start
+  line
+    assoc_clause
+      assoc_name_def
+        box_name	REQUÉRIR
+      , 
+      seq
+        assoc_leg
+          card	1N
+           
+          entity_name_ref
+            box_name	PROJET
+        , 
+        assoc_leg
+          card	0N
+           
+          entity_name_ref
+            box_name	PIÈCE
+      : 
+      seq
+        typed_attr
+          attr	qté requise
+--------------------------------------------------------------------------------
+[{'name': 'REQUÉRIR',
+  'legs': [{'card': '1N', 'entity': 'PROJET', 'rank': 0},
+           {'card': '0N', 'entity': 'PIÈCE', 'rank': 1}],
+  'attrs': [{'attribute_label': 'qté requise', 'rank': 0}],
+  'type': 'association',
+  'indent': '',
+  'source': 'REQUÉRIR, 1N PROJET, 0N PIÈCE: qté requise'}]
+
+--------------------------------------------------------------------------------
+COMPOSER, 0N [composée] PIÈCE, 0N [composante] PIÈCE: quantité
+--------------------------------------------------------------------------------start
+  line
+    assoc_clause
+      assoc_name_def
+        box_name	COMPOSER
+      , 
+      seq
+        assoc_leg
+          card	0N
+           [
+          leg_note	composée
+          ] 
+          entity_name_ref
+            box_name	PIÈCE
+        , 
+        assoc_leg
+          card	0N
+           [
+          leg_note	composante
+          ] 
+          entity_name_ref
+            box_name	PIÈCE
+      : 
+      seq
+        typed_attr
+          attr	quantité
+--------------------------------------------------------------------------------
+[{'name': 'COMPOSER',
+  'legs': [{'card': '0N', 'leg_note': 'composée', 'entity': 'PIÈCE', 'rank': 0},
+           {'card': '0N',
+            'leg_note': 'composante',
+            'entity': 'PIÈCE',
+            'rank': 1}],
+  'attrs': [{'attribute_label': 'quantité', 'rank': 0}],
+  'type': 'association',
+  'indent': '',
+  'source': 'COMPOSER, 0N [composée] PIÈCE, 0N [composante] PIÈCE: quantité'}]
+
+--------------------------------------------------------------------------------
+DF, _11 AYANT-DROIT, 0N EMPLOYÉ
+--------------------------------------------------------------------------------start
+  line
+    assoc_clause
+      assoc_name_def
+        box_name	DF
+      , 
+      seq
+        assoc_leg
+          card_prefix	_
+          card	11
+           
+          entity_name_ref
+            box_name	AYANT-DROIT
+        , 
+        assoc_leg
+          card	0N
+           
+          entity_name_ref
+            box_name	EMPLOYÉ
+--------------------------------------------------------------------------------
+[{'name': 'DF',
+  'legs': [{'card_prefix': '_',
+            'card': '11',
+            'entity': 'AYANT-DROIT',
+            'rank': 0},
+           {'card': '0N', 'entity': 'EMPLOYÉ', 'rank': 1}],
+  'type': 'association',
+  'indent': '',
+  'source': 'DF, _11 AYANT-DROIT, 0N EMPLOYÉ'}]
+
+--------------------------------------------------------------------------------
+FOURNIR, 1N PROJET, 1N PIÈCE, 1N SOCIÉTÉ: qté fournie
+--------------------------------------------------------------------------------start
+  line
+    assoc_clause
+      assoc_name_def
+        box_name	FOURNIR
+      , 
+      seq
+        assoc_leg
+          card	1N
+           
+          entity_name_ref
+            box_name	PROJET
+        , 
+        assoc_leg
+          card	1N
+           
+          entity_name_ref
+            box_name	PIÈCE
+        , 
+        assoc_leg
+          card	1N
+           
+          entity_name_ref
+            box_name	SOCIÉTÉ
+      : 
+      seq
+        typed_attr
+          attr	qté fournie
+--------------------------------------------------------------------------------
+[{'name': 'FOURNIR',
+  'legs': [{'card': '1N', 'entity': 'PROJET', 'rank': 0},
+           {'card': '1N', 'entity': 'PIÈCE', 'rank': 1},
+           {'card': '1N', 'entity': 'SOCIÉTÉ', 'rank': 2}],
+  'attrs': [{'attribute_label': 'qté fournie', 'rank': 0}],
+  'type': 'association',
+  'indent': '',
+  'source': 'FOURNIR, 1N PROJET, 1N PIÈCE, 1N SOCIÉTÉ: qté fournie'}]
+
+--------------------------------------------------------------------------------
+CONTRÔLER, 0N< [filiale] SOCIÉTÉ, 01 [mère] SOCIÉTÉ
+--------------------------------------------------------------------------------start
+  line
+    assoc_clause
+      assoc_name_def
+        box_name	CONTRÔLER
+      , 
+      seq
+        assoc_leg
+          card	0N
+          leg_arrow	<
+           [
+          leg_note	filiale
+          ] 
+          entity_name_ref
+            box_name	SOCIÉTÉ
+        , 
+        assoc_leg
+          card	01
+           [
+          leg_note	mère
+          ] 
+          entity_name_ref
+            box_name	SOCIÉTÉ
+--------------------------------------------------------------------------------
+[{'name': 'CONTRÔLER',
+  'legs': [{'card': '0N',
+            'leg_arrow': '<',
+            'leg_note': 'filiale',
+            'entity': 'SOCIÉTÉ',
+            'rank': 0},
+           {'card': '01', 'leg_note': 'mère', 'entity': 'SOCIÉTÉ', 'rank': 1}],
+  'type': 'association',
+  'indent': '',
+  'source': 'CONTRÔLER, 0N< [filiale] SOCIÉTÉ, 01 [mère] SOCIÉTÉ'}]
+
+--------------------------------------------------------------------------------
+DF, 0N> CLIENT, 11 COMMANDE
+--------------------------------------------------------------------------------start
+  line
+    assoc_clause
+      assoc_name_def
+        box_name	DF
+      , 
+      seq
+        assoc_leg
+          card	0N
+          leg_arrow	>
+           
+          entity_name_ref
+            box_name	CLIENT
+        , 
+        assoc_leg
+          card	11
+           
+          entity_name_ref
+            box_name	COMMANDE
+--------------------------------------------------------------------------------
+[{'name': 'DF',
+  'legs': [{'card': '0N', 'leg_arrow': '>', 'entity': 'CLIENT', 'rank': 0},
+           {'card': '11', 'entity': 'COMMANDE', 'rank': 1}],
+  'type': 'association',
+  'indent': '',
+  'source': 'DF, 0N> CLIENT, 11 COMMANDE'}]
+
+--------------------------------------------------------------------------------
+GRATTE-CIEL: latitude, _longitude, nom, hauteur, année de construction
+--------------------------------------------------------------------------------start
+  line
+    entity_clause
+      entity_name_def
+        box_name	GRATTE-CIEL
+      : 
+      seq
+        entity_or_table_attr
+          typed_attr
+            attr	latitude
+        , 
+        entity_or_table_attr
+          id_mark	_
+          typed_attr
+            attr	longitude
+        , 
+        entity_or_table_attr
+          typed_attr
+            attr	nom
+        , 
+        entity_or_table_attr
+          typed_attr
+            attr	hauteur
+        , 
+        entity_or_table_attr
+          typed_attr
+            attr	année de construction
+--------------------------------------------------------------------------------
+[{'name': 'GRATTE-CIEL',
+  'attrs': [{'attribute_label': 'latitude', 'rank': 0},
+            {'id_mark': '_', 'attribute_label': 'longitude', 'rank': 1},
+            {'attribute_label': 'nom', 'rank': 2},
+            {'attribute_label': 'hauteur', 'rank': 3},
+            {'attribute_label': 'année de construction', 'rank': 4}],
+  'type': 'entity',
+  'indent': '',
+  'source': 'GRATTE-CIEL: latitude, _longitude, nom, hauteur, année de '
+            'construction'}]
+
+--------------------------------------------------------------------------------
+Peut recevoir, 1N> Groupe sanguin, 1N< Groupe sanguin
+--------------------------------------------------------------------------------start
+  line
+    assoc_clause
+      assoc_name_def
+        box_name	Peut recevoir
+      , 
+      seq
+        assoc_leg
+          card	1N
+          leg_arrow	>
+           
+          entity_name_ref
+            box_name	Groupe sanguin
+        , 
+        assoc_leg
+          card	1N
+          leg_arrow	<
+           
+          entity_name_ref
+            box_name	Groupe sanguin
+--------------------------------------------------------------------------------
+[{'name': 'Peut recevoir',
+  'legs': [{'card': '1N',
+            'leg_arrow': '>',
+            'entity': 'Groupe sanguin',
+            'rank': 0},
+           {'card': '1N',
+            'leg_arrow': '<',
+            'entity': 'Groupe sanguin',
+            'rank': 1}],
+  'type': 'association',
+  'indent': '',
+  'source': 'Peut recevoir, 1N> Groupe sanguin, 1N< Groupe sanguin'}]
+
+--------------------------------------------------------------------------------
+Engendre, 0N< Personne, 22> Personne
+--------------------------------------------------------------------------------start
+  line
+    assoc_clause
+      assoc_name_def
+        box_name	Engendre
+      , 
+      seq
+        assoc_leg
+          card	0N
+          leg_arrow	<
+           
+          entity_name_ref
+            box_name	Personne
+        , 
+        assoc_leg
+          card	22
+          leg_arrow	>
+           
+          entity_name_ref
+            box_name	Personne
+--------------------------------------------------------------------------------
+[{'name': 'Engendre',
+  'legs': [{'card': '0N', 'leg_arrow': '<', 'entity': 'Personne', 'rank': 0},
+           {'card': '22', 'leg_arrow': '>', 'entity': 'Personne', 'rank': 1}],
+  'type': 'association',
+  'indent': '',
+  'source': 'Engendre, 0N< Personne, 22> Personne'}]
+
+--------------------------------------------------------------------------------
+Agent 0070: bar
+--------------------------------------------------------------------------------start
+  line
+    entity_clause
+      entity_name_def
+        box_name	Agent 0070
+      : 
+      seq
+        entity_or_table_attr
+          typed_attr
+            attr	bar
+--------------------------------------------------------------------------------
+[{'name': 'Agent 0070',
+  'attrs': [{'attribute_label': 'bar', 'rank': 0}],
+  'type': 'entity',
+  'indent': '',
+  'source': 'Agent 0070: bar'}]
+
+--------------------------------------------------------------------------------
+DF4, 11 Agent 0070, 1N Agent1
+--------------------------------------------------------------------------------start
+  line
+    assoc_clause
+      assoc_name_def
+        box_name	DF4
+      , 
+      seq
+        assoc_leg
+          card	11
+           
+          entity_name_ref
+            box_name	Agent 0070
+        , 
+        assoc_leg
+          card	1N
+           
+          entity_name_ref
+            box_name	Agent1
+--------------------------------------------------------------------------------
+[{'name': 'DF4',
+  'legs': [{'card': '11', 'entity': 'Agent 0070', 'rank': 0},
+           {'card': '1N', 'entity': 'Agent1', 'rank': 1}],
+  'type': 'association',
+  'indent': '',
+  'source': 'DF4, 11 Agent 0070, 1N Agent1'}]
+
+--------------------------------------------------------------------------------
+Agent1: bar
+--------------------------------------------------------------------------------start
+  line
+    entity_clause
+      entity_name_def
+        box_name	Agent1
+      : 
+      seq
+        entity_or_table_attr
+          typed_attr
+            attr	bar
+--------------------------------------------------------------------------------
+[{'name': 'Agent1',
+  'attrs': [{'attribute_label': 'bar', 'rank': 0}],
+  'type': 'entity',
+  'indent': '',
+  'source': 'Agent1: bar'}]
+
+--------------------------------------------------------------------------------
+DF, _11 ŒUVRE, _11 EXEMPLAIRE
+--------------------------------------------------------------------------------start
+  line
+    assoc_clause
+      assoc_name_def
+        box_name	DF
+      , 
+      seq
+        assoc_leg
+          card_prefix	_
+          card	11
+           
+          entity_name_ref
+            box_name	ŒUVRE
+        , 
+        assoc_leg
+          card_prefix	_
+          card	11
+           
+          entity_name_ref
+            box_name	EXEMPLAIRE
+--------------------------------------------------------------------------------
+[{'name': 'DF',
+  'legs': [{'card_prefix': '_', 'card': '11', 'entity': 'ŒUVRE', 'rank': 0},
+           {'card_prefix': '_',
+            'card': '11',
+            'entity': 'EXEMPLAIRE',
+            'rank': 1}],
+  'type': 'association',
+  'indent': '',
+  'source': 'DF, _11 ŒUVRE, _11 EXEMPLAIRE'}]
+
+--------------------------------------------------------------------------------
+Réserver, /1N Client, 1N Chambre, 0N Date: Durée
+--------------------------------------------------------------------------------start
+  line
+    assoc_clause
+      assoc_name_def
+        box_name	Réserver
+      , 
+      seq
+        assoc_leg
+          card_prefix	/
+          card	1N
+           
+          entity_name_ref
+            box_name	Client
+        , 
+        assoc_leg
+          card	1N
+           
+          entity_name_ref
+            box_name	Chambre
+        , 
+        assoc_leg
+          card	0N
+           
+          entity_name_ref
+            box_name	Date
+      : 
+      seq
+        typed_attr
+          attr	Durée
+--------------------------------------------------------------------------------
+[{'name': 'Réserver',
+  'legs': [{'card_prefix': '/', 'card': '1N', 'entity': 'Client', 'rank': 0},
+           {'card': '1N', 'entity': 'Chambre', 'rank': 1},
+           {'card': '0N', 'entity': 'Date', 'rank': 2}],
+  'attrs': [{'attribute_label': 'Durée', 'rank': 0}],
+  'type': 'association',
+  'indent': '',
+  'source': 'Réserver, /1N Client, 1N Chambre, 0N Date: Durée'}]
+
+--------------------------------------------------------------------------------
+LIGULA, 0N LACUS, /1N EROS, 0N TELLUS, 0N CONSEQUAT: metus
+--------------------------------------------------------------------------------start
+  line
+    assoc_clause
+      assoc_name_def
+        box_name	LIGULA
+      , 
+      seq
+        assoc_leg
+          card	0N
+           
+          entity_name_ref
+            box_name	LACUS
+        , 
+        assoc_leg
+          card_prefix	/
+          card	1N
+           
+          entity_name_ref
+            box_name	EROS
+        , 
+        assoc_leg
+          card	0N
+           
+          entity_name_ref
+            box_name	TELLUS
+        , 
+        assoc_leg
+          card	0N
+           
+          entity_name_ref
+            box_name	CONSEQUAT
+      : 
+      seq
+        typed_attr
+          attr	metus
+--------------------------------------------------------------------------------
+[{'name': 'LIGULA',
+  'legs': [{'card': '0N', 'entity': 'LACUS', 'rank': 0},
+           {'card_prefix': '/', 'card': '1N', 'entity': 'EROS', 'rank': 1},
+           {'card': '0N', 'entity': 'TELLUS', 'rank': 2},
+           {'card': '0N', 'entity': 'CONSEQUAT', 'rank': 3}],
+  'attrs': [{'attribute_label': 'metus', 'rank': 0}],
+  'type': 'association',
+  'indent': '',
+  'source': 'LIGULA, 0N LACUS, /1N EROS, 0N TELLUS, 0N CONSEQUAT: metus'}]
+
+--------------------------------------------------------------------------------
+Réserver: _Durée
+--------------------------------------------------------------------------------start
+  line
+    entity_clause
+      entity_name_def
+        box_name	Réserver
+      : 
+      seq
+        entity_or_table_attr
+          id_mark	_
+          typed_attr
+            attr	Durée
+--------------------------------------------------------------------------------
+[{'name': 'Réserver',
+  'attrs': [{'id_mark': '_', 'attribute_label': 'Durée', 'rank': 0}],
+  'type': 'entity',
+  'indent': '',
+  'source': 'Réserver: _Durée'}]
+
+--------------------------------------------------------------------------------
++LIGULA, 01 LACUS, 1N EROS: metus
+--------------------------------------------------------------------------------start
+  line
+    assoc_clause
+      box_def_prefix	+
+      assoc_name_def
+        box_name	LIGULA
+      , 
+      seq
+        assoc_leg
+          card	01
+           
+          entity_name_ref
+            box_name	LACUS
+        , 
+        assoc_leg
+          card	1N
+           
+          entity_name_ref
+            box_name	EROS
+      : 
+      seq
+        typed_attr
+          attr	metus
+--------------------------------------------------------------------------------
+[{'box_def_prefix': '+',
+  'name': 'LIGULA',
+  'legs': [{'card': '01', 'entity': 'LACUS', 'rank': 0},
+           {'card': '1N', 'entity': 'EROS', 'rank': 1}],
+  'attrs': [{'attribute_label': 'metus', 'rank': 0}],
+  'type': 'association',
+  'indent': '',
+  'source': '+LIGULA, 01 LACUS, 1N EROS: metus'}]
+
+--------------------------------------------------------------------------------
+-LIGULA, 01 LACUS, 1N EROS: metus
+--------------------------------------------------------------------------------start
+  line
+    assoc_clause
+      box_def_prefix	-
+      assoc_name_def
+        box_name	LIGULA
+      , 
+      seq
+        assoc_leg
+          card	01
+           
+          entity_name_ref
+            box_name	LACUS
+        , 
+        assoc_leg
+          card	1N
+           
+          entity_name_ref
+            box_name	EROS
+      : 
+      seq
+        typed_attr
+          attr	metus
+--------------------------------------------------------------------------------
+[{'box_def_prefix': '-',
+  'name': 'LIGULA',
+  'legs': [{'card': '01', 'entity': 'LACUS', 'rank': 0},
+           {'card': '1N', 'entity': 'EROS', 'rank': 1}],
+  'attrs': [{'attribute_label': 'metus', 'rank': 0}],
+  'type': 'association',
+  'indent': '',
+  'source': '-LIGULA, 01 LACUS, 1N EROS: metus'}]
+
+--------------------------------------------------------------------------------
+PASSER, 0N [Un client peut passer un nombre quelconque de commandes.] CLIENT, 11 [Toute commande est passée par un en un seul client.] COMMANDE
+--------------------------------------------------------------------------------start
+  line
+    assoc_clause
+      assoc_name_def
+        box_name	PASSER
+      , 
+      seq
+        assoc_leg
+          card	0N
+           [
+          leg_note	Un client peut passer un nombre quelconque de commandes.
+          ] 
+          entity_name_ref
+            box_name	CLIENT
+        , 
+        assoc_leg
+          card	11
+           [
+          leg_note	Toute commande est passée par un en un seul client.
+          ] 
+          entity_name_ref
+            box_name	COMMANDE
+--------------------------------------------------------------------------------
+[{'name': 'PASSER',
+  'legs': [{'card': '0N',
+            'leg_note': 'Un client peut passer un nombre quelconque de '
+                        'commandes.',
+            'entity': 'CLIENT',
+            'rank': 0},
+           {'card': '11',
+            'leg_note': 'Toute commande est passée par un en un seul client.',
+            'entity': 'COMMANDE',
+            'rank': 1}],
+  'type': 'association',
+  'indent': '',
+  'source': 'PASSER, 0N [Un client peut passer un nombre quelconque de '
+            'commandes.] CLIENT, 11 [Toute commande est passée par un en un '
+            'seul client.] COMMANDE'}]
+
+--------------------------------------------------------------------------------
+INCLURE, 1N [Une commande peut inclure plusieurs produits distincts, et en inclut au moins un.] COMMANDE, 0N [Certains produits ne sont jamais commandés, d'autres le sont plusieurs fois.] PRODUIT: Quantité
+--------------------------------------------------------------------------------start
+  line
+    assoc_clause
+      assoc_name_def
+        box_name	INCLURE
+      , 
+      seq
+        assoc_leg
+          card	1N
+           [
+          leg_note	Une commande peut inclure plusieurs produits distincts, et en inclut au moins un.
+          ] 
+          entity_name_ref
+            box_name	COMMANDE
+        , 
+        assoc_leg
+          card	0N
+           [
+          leg_note	Certains produits ne sont jamais commandés, d'autres le sont plusieurs fois.
+          ] 
+          entity_name_ref
+            box_name	PRODUIT
+      : 
+      seq
+        typed_attr
+          attr	Quantité
+--------------------------------------------------------------------------------
+[{'name': 'INCLURE',
+  'legs': [{'card': '1N',
+            'leg_note': 'Une commande peut inclure plusieurs produits '
+                        'distincts, et en inclut au moins un.',
+            'entity': 'COMMANDE',
+            'rank': 0},
+           {'card': '0N',
+            'leg_note': "Certains produits ne sont jamais commandés, d'autres "
+                        'le sont plusieurs fois.',
+            'entity': 'PRODUIT',
+            'rank': 1}],
+  'attrs': [{'attribute_label': 'Quantité', 'rank': 0}],
+  'type': 'association',
+  'indent': '',
+  'source': 'INCLURE, 1N [Une commande peut inclure plusieurs produits '
+            'distincts, et en inclut au moins un.] COMMANDE, 0N [Certains '
+            "produits ne sont jamais commandés, d'autres le sont plusieurs "
+            'fois.] PRODUIT: Quantité'}]
+
+--------------------------------------------------------------------------------
+CLIENT: 
+--------------------------------------------------------------------------------start
+  line
+    entity_clause
+      entity_name_def
+        box_name	CLIENT
+      :
+--------------------------------------------------------------------------------
+[{'name': 'CLIENT', 'type': 'entity', 'indent': '', 'source': 'CLIENT: '}]
+
+--------------------------------------------------------------------------------
+CLIENT: ,          ,,
+--------------------------------------------------------------------------------start
+  line
+    entity_clause
+      entity_name_def
+        box_name	CLIENT
+      : 
+      seq
+        entity_or_table_attr
+          typed_attr
+        ,          
+        entity_or_table_attr
+          typed_attr
+        ,
+        entity_or_table_attr
+          typed_attr
+        ,
+        entity_or_table_attr
+          typed_attr
+--------------------------------------------------------------------------------
+[{'name': 'CLIENT',
+  'attrs': [{'rank': 0}, {'rank': 1}, {'rank': 2}, {'rank': 3}],
+  'type': 'entity',
+  'indent': '',
+  'source': 'CLIENT: ,          ,,'}]
+
+--------------------------------------------------------------------------------
+COMMANDE: ,               ,
+--------------------------------------------------------------------------------start
+  line
+    entity_clause
+      entity_name_def
+        box_name	COMMANDE
+      : 
+      seq
+        entity_or_table_attr
+          typed_attr
+        ,               
+        entity_or_table_attr
+          typed_attr
+        ,
+        entity_or_table_attr
+          typed_attr
+--------------------------------------------------------------------------------
+[{'name': 'COMMANDE',
+  'attrs': [{'rank': 0}, {'rank': 1}, {'rank': 2}],
+  'type': 'entity',
+  'indent': '',
+  'source': 'COMMANDE: ,               ,'}]
+
+--------------------------------------------------------------------------------
+PRODUIT: ,            , 
+--------------------------------------------------------------------------------start
+  line
+    entity_clause
+      entity_name_def
+        box_name	PRODUIT
+      : 
+      seq
+        entity_or_table_attr
+          typed_attr
+        ,            
+        entity_or_table_attr
+          typed_attr
+        , 
+        entity_or_table_attr
+          typed_attr
+--------------------------------------------------------------------------------
+[{'name': 'PRODUIT',
+  'attrs': [{'rank': 0}, {'rank': 1}, {'rank': 2}],
+  'type': 'entity',
+  'indent': '',
+  'source': 'PRODUIT: ,            , '}]
+
+--------------------------------------------------------------------------------
+MEAN: wash, rest, king,
+--------------------------------------------------------------------------------start
+  line
+    entity_clause
+      entity_name_def
+        box_name	MEAN
+      : 
+      seq
+        entity_or_table_attr
+          typed_attr
+            attr	wash
+        , 
+        entity_or_table_attr
+          typed_attr
+            attr	rest
+        , 
+        entity_or_table_attr
+          typed_attr
+            attr	king
+        ,
+        entity_or_table_attr
+          typed_attr
+--------------------------------------------------------------------------------
+[{'name': 'MEAN',
+  'attrs': [{'attribute_label': 'wash', 'rank': 0},
+            {'attribute_label': 'rest', 'rank': 1},
+            {'attribute_label': 'king', 'rank': 2},
+            {'rank': 3}],
+  'type': 'entity',
+  'indent': '',
+  'source': 'MEAN: wash, rest, king,'}]
+
+--------------------------------------------------------------------------------
+HERE, 0N NICE, 0N MEAN: wood, much, , stop
+--------------------------------------------------------------------------------start
+  line
+    assoc_clause
+      assoc_name_def
+        box_name	HERE
+      , 
+      seq
+        assoc_leg
+          card	0N
+           
+          entity_name_ref
+            box_name	NICE
+        , 
+        assoc_leg
+          card	0N
+           
+          entity_name_ref
+            box_name	MEAN
+      : 
+      seq
+        typed_attr
+          attr	wood
+        , 
+        typed_attr
+          attr	much
+        , 
+        typed_attr
+        , 
+        typed_attr
+          attr	stop
+--------------------------------------------------------------------------------
+[{'name': 'HERE',
+  'legs': [{'card': '0N', 'entity': 'NICE', 'rank': 0},
+           {'card': '0N', 'entity': 'MEAN', 'rank': 1}],
+  'attrs': [{'attribute_label': 'wood', 'rank': 0},
+            {'attribute_label': 'much', 'rank': 1},
+            {'rank': 2},
+            {'attribute_label': 'stop', 'rank': 3}],
+  'type': 'association',
+  'indent': '',
+  'source': 'HERE, 0N NICE, 0N MEAN: wood, much, , stop'}]
+
+--------------------------------------------------------------------------------
+NICE: _poke, news, , lawn
+--------------------------------------------------------------------------------start
+  line
+    entity_clause
+      entity_name_def
+        box_name	NICE
+      : 
+      seq
+        entity_or_table_attr
+          id_mark	_
+          typed_attr
+            attr	poke
+        , 
+        entity_or_table_attr
+          typed_attr
+            attr	news
+        , 
+        entity_or_table_attr
+          typed_attr
+        , 
+        entity_or_table_attr
+          typed_attr
+            attr	lawn
+--------------------------------------------------------------------------------
+[{'name': 'NICE',
+  'attrs': [{'id_mark': '_', 'attribute_label': 'poke', 'rank': 0},
+            {'attribute_label': 'news', 'rank': 1},
+            {'rank': 2},
+            {'attribute_label': 'lawn', 'rank': 3}],
+  'type': 'entity',
+  'indent': '',
+  'source': 'NICE: _poke, news, , lawn'}]
+
+--------------------------------------------------------------------------------
+Unit, 1N Draw, 11 Folk: Peer, Tour, 
+--------------------------------------------------------------------------------start
+  line
+    assoc_clause
+      assoc_name_def
+        box_name	Unit
+      , 
+      seq
+        assoc_leg
+          card	1N
+           
+          entity_name_ref
+            box_name	Draw
+        , 
+        assoc_leg
+          card	11
+           
+          entity_name_ref
+            box_name	Folk
+      : 
+      seq
+        typed_attr
+          attr	Peer
+        , 
+        typed_attr
+          attr	Tour
+        , 
+        typed_attr
+--------------------------------------------------------------------------------
+[{'name': 'Unit',
+  'legs': [{'card': '1N', 'entity': 'Draw', 'rank': 0},
+           {'card': '11', 'entity': 'Folk', 'rank': 1}],
+  'attrs': [{'attribute_label': 'Peer', 'rank': 0},
+            {'attribute_label': 'Tour', 'rank': 1},
+            {'rank': 2}],
+  'type': 'association',
+  'indent': '',
+  'source': 'Unit, 1N Draw, 11 Folk: Peer, Tour, '}]
+
+--------------------------------------------------------------------------------
+PASSER, XX CLIENT, XX COMMANDE
+--------------------------------------------------------------------------------start
+  line
+    assoc_clause
+      assoc_name_def
+        box_name	PASSER
+      , 
+      seq
+        assoc_leg
+          card	XX
+           
+          entity_name_ref
+            box_name	CLIENT
+        , 
+        assoc_leg
+          card	XX
+           
+          entity_name_ref
+            box_name	COMMANDE
+--------------------------------------------------------------------------------
+[{'name': 'PASSER',
+  'legs': [{'card': 'XX', 'entity': 'CLIENT', 'rank': 0},
+           {'card': 'XX', 'entity': 'COMMANDE', 'rank': 1}],
+  'type': 'association',
+  'indent': '',
+  'source': 'PASSER, XX CLIENT, XX COMMANDE'}]
+
+--------------------------------------------------------------------------------
+INCLURE, XX COMMANDE, XX PRODUIT: 
+--------------------------------------------------------------------------------start
+  line
+    assoc_clause
+      assoc_name_def
+        box_name	INCLURE
+      , 
+      seq
+        assoc_leg
+          card	XX
+           
+          entity_name_ref
+            box_name	COMMANDE
+        , 
+        assoc_leg
+          card	XX
+           
+          entity_name_ref
+            box_name	PRODUIT
+      : 
+      seq
+        typed_attr
+--------------------------------------------------------------------------------
+[{'name': 'INCLURE',
+  'legs': [{'card': 'XX', 'entity': 'COMMANDE', 'rank': 0},
+           {'card': 'XX', 'entity': 'PRODUIT', 'rank': 1}],
+  'attrs': [{'rank': 0}],
+  'type': 'association',
+  'indent': '',
+  'source': 'INCLURE, XX COMMANDE, XX PRODUIT: '}]
+
+--------------------------------------------------------------------------------
+ŒUVRE: 612.NAT.34, J'apprends à lire à mes souris blanches, mai 1975
+--------------------------------------------------------------------------------start
+  line
+    entity_clause
+      entity_name_def
+        box_name	ŒUVRE
+      : 
+      seq
+        entity_or_table_attr
+          typed_attr
+            attr	612.NAT.34
+        , 
+        entity_or_table_attr
+          typed_attr
+            attr	J'apprends à lire à mes souris blanches
+        , 
+        entity_or_table_attr
+          typed_attr
+            attr	mai 1975
+--------------------------------------------------------------------------------
+[{'name': 'ŒUVRE',
+  'attrs': [{'attribute_label': '612.NAT.34', 'rank': 0},
+            {'attribute_label': "J'apprends à lire à mes souris blanches",
+             'rank': 1},
+            {'attribute_label': 'mai 1975', 'rank': 2}],
+  'type': 'entity',
+  'indent': '',
+  'source': "ŒUVRE: 612.NAT.34, J'apprends à lire à mes souris blanches, mai "
+            '1975'}]
+
+--------------------------------------------------------------------------------
+EXEMPLAIRE2: 1, bon état, 12/6/1975
+--------------------------------------------------------------------------------start
+  line
+    entity_clause
+      entity_name_def
+        box_name	EXEMPLAIRE2
+      : 
+      seq
+        entity_or_table_attr
+          typed_attr
+            attr	1
+        , 
+        entity_or_table_attr
+          typed_attr
+            attr	bon état
+        , 
+        entity_or_table_attr
+          typed_attr
+            attr	12/6/1975
+--------------------------------------------------------------------------------
+[{'name': 'EXEMPLAIRE2',
+  'attrs': [{'attribute_label': '1', 'rank': 0},
+            {'attribute_label': 'bon état', 'rank': 1},
+            {'attribute_label': '12/6/1975', 'rank': 2}],
+  'type': 'entity',
+  'indent': '',
+  'source': 'EXEMPLAIRE2: 1, bon état, 12/6/1975'}]
+
+--------------------------------------------------------------------------------
+EXEMPLAIRE3: 2, bon état, 1/8/1977
+--------------------------------------------------------------------------------start
+  line
+    entity_clause
+      entity_name_def
+        box_name	EXEMPLAIRE3
+      : 
+      seq
+        entity_or_table_attr
+          typed_attr
+            attr	2
+        , 
+        entity_or_table_attr
+          typed_attr
+            attr	bon état
+        , 
+        entity_or_table_attr
+          typed_attr
+            attr	1/8/1977
+--------------------------------------------------------------------------------
+[{'name': 'EXEMPLAIRE3',
+  'attrs': [{'attribute_label': '2', 'rank': 0},
+            {'attribute_label': 'bon état', 'rank': 1},
+            {'attribute_label': '1/8/1977', 'rank': 2}],
+  'type': 'entity',
+  'indent': '',
+  'source': 'EXEMPLAIRE3: 2, bon état, 1/8/1977'}]
+
+--------------------------------------------------------------------------------
+EXEMPLAIRE4: 3, reliure rongée, 3/4/2005
+--------------------------------------------------------------------------------start
+  line
+    entity_clause
+      entity_name_def
+        box_name	EXEMPLAIRE4
+      : 
+      seq
+        entity_or_table_attr
+          typed_attr
+            attr	3
+        , 
+        entity_or_table_attr
+          typed_attr
+            attr	reliure rongée
+        , 
+        entity_or_table_attr
+          typed_attr
+            attr	3/4/2005
+--------------------------------------------------------------------------------
+[{'name': 'EXEMPLAIRE4',
+  'attrs': [{'attribute_label': '3', 'rank': 0},
+            {'attribute_label': 'reliure rongée', 'rank': 1},
+            {'attribute_label': '3/4/2005', 'rank': 2}],
+  'type': 'entity',
+  'indent': '',
+  'source': 'EXEMPLAIRE4: 3, reliure rongée, 3/4/2005'}]
+
+--------------------------------------------------------------------------------
+DF, -1N ŒUVRE, -_11 EXEMPLAIRE1
+--------------------------------------------------------------------------------start
+  line
+    assoc_clause
+      assoc_name_def
+        box_name	DF
+      , 
+      seq
+        assoc_leg
+          card_hidden	-
+          card	1N
+           
+          entity_name_ref
+            box_name	ŒUVRE
+        , 
+        assoc_leg
+          card_hidden	-
+          card_prefix	_
+          card	11
+           
+          entity_name_ref
+            box_name	EXEMPLAIRE1
+--------------------------------------------------------------------------------
+[{'name': 'DF',
+  'legs': [{'card_hidden': '-', 'card': '1N', 'entity': 'ŒUVRE', 'rank': 0},
+           {'card_hidden': '-',
+            'card_prefix': '_',
+            'card': '11',
+            'entity': 'EXEMPLAIRE1',
+            'rank': 1}],
+  'type': 'association',
+  'indent': '',
+  'source': 'DF, -1N ŒUVRE, -_11 EXEMPLAIRE1'}]
+
+--------------------------------------------------------------------------------
++Prof: Num. prof, Nom prof
+--------------------------------------------------------------------------------start
+  line
+    entity_clause
+      box_def_prefix	+
+      entity_name_def
+        box_name	Prof
+      : 
+      seq
+        entity_or_table_attr
+          typed_attr
+            attr	Num. prof
+        , 
+        entity_or_table_attr
+          typed_attr
+            attr	Nom prof
+--------------------------------------------------------------------------------
+[{'box_def_prefix': '+',
+  'name': 'Prof',
+  'attrs': [{'attribute_label': 'Num. prof', 'rank': 0},
+            {'attribute_label': 'Nom prof', 'rank': 1}],
+  'type': 'entity',
+  'indent': '',
+  'source': '+Prof: Num. prof, Nom prof'}]
+
+--------------------------------------------------------------------------------
+-Prof: Num. prof, Nom prof
+--------------------------------------------------------------------------------start
+  line
+    entity_clause
+      box_def_prefix	-
+      entity_name_def
+        box_name	Prof
+      : 
+      seq
+        entity_or_table_attr
+          typed_attr
+            attr	Num. prof
+        , 
+        entity_or_table_attr
+          typed_attr
+            attr	Nom prof
+--------------------------------------------------------------------------------
+[{'box_def_prefix': '-',
+  'name': 'Prof',
+  'attrs': [{'attribute_label': 'Num. prof', 'rank': 0},
+            {'attribute_label': 'Nom prof', 'rank': 1}],
+  'type': 'entity',
+  'indent': '',
+  'source': '-Prof: Num. prof, Nom prof'}]
+
+--------------------------------------------------------------------------------
+Enseignant: num. ens. [numéro identifiant un enseignant], nom ens. [nom enseignant], tél. ens. [téléphone enseignant]
+--------------------------------------------------------------------------------start
+  line
+    entity_clause
+      entity_name_def
+        box_name	Enseignant
+      : 
+      seq
+        entity_or_table_attr
+          typed_attr
+            attr	num. ens.
+             [
+            datatype	numéro identifiant un enseignant
+            ]
+        , 
+        entity_or_table_attr
+          typed_attr
+            attr	nom ens.
+             [
+            datatype	nom enseignant
+            ]
+        , 
+        entity_or_table_attr
+          typed_attr
+            attr	tél. ens.
+             [
+            datatype	téléphone enseignant
+            ]
+--------------------------------------------------------------------------------
+[{'name': 'Enseignant',
+  'attrs': [{'attribute_label': 'num. ens.',
+             'datatype': 'numéro identifiant un enseignant',
+             'rank': 0},
+            {'attribute_label': 'nom ens.',
+             'datatype': 'nom enseignant',
+             'rank': 1},
+            {'attribute_label': 'tél. ens.',
+             'datatype': 'téléphone enseignant',
+             'rank': 2}],
+  'type': 'entity',
+  'indent': '',
+  'source': 'Enseignant: num. ens. [numéro identifiant un enseignant], nom '
+            'ens. [nom enseignant], tél. ens. [téléphone enseignant]'}]
+
+--------------------------------------------------------------------------------
+COMMANDE: Num commande, Date, Montant, #Réf. client>CLIENT>Réf. client
+--------------------------------------------------------------------------------start
+  line
+    entity_clause
+      entity_name_def
+        box_name	COMMANDE
+      : 
+      seq
+        entity_or_table_attr
+          typed_attr
+            attr	Num commande
+        , 
+        entity_or_table_attr
+          typed_attr
+            attr	Date
+        , 
+        entity_or_table_attr
+          typed_attr
+            attr	Montant
+        , 
+        entity_or_table_attr
+          #
+          foreign_reference
+            this_table_attr
+              attr	Réf. client
+            >
+            that_table
+              entity_name_ref
+                box_name	CLIENT
+            >
+            that_table_attr
+              attr	Réf. client
+--------------------------------------------------------------------------------
+[{'name': 'COMMANDE',
+  'attrs': [{'attribute_label': 'Num commande', 'rank': 0},
+            {'attribute_label': 'Date', 'rank': 1},
+            {'attribute_label': 'Montant', 'rank': 2},
+            {'attribute_label': 'Réf. client',
+             'that_table': 'CLIENT',
+             'that_table_attribute_label': 'Réf. client',
+             'rank': 3}],
+  'type': 'entity',
+  'indent': '',
+  'source': 'COMMANDE: Num commande, Date, Montant, #Réf. client>CLIENT>Réf. '
+            'client'}]
+
+--------------------------------------------------------------------------------
+COMMANDE: Num commande, Date, Montant, #Réf. client > CLIENT > Réf. client
+--------------------------------------------------------------------------------start
+  line
+    entity_clause
+      entity_name_def
+        box_name	COMMANDE
+      : 
+      seq
+        entity_or_table_attr
+          typed_attr
+            attr	Num commande
+        , 
+        entity_or_table_attr
+          typed_attr
+            attr	Date
+        , 
+        entity_or_table_attr
+          typed_attr
+            attr	Montant
+        , 
+        entity_or_table_attr
+          #
+          foreign_reference
+            this_table_attr
+              attr	Réf. client
+             > 
+            that_table
+              entity_name_ref
+                box_name	CLIENT
+             > 
+            that_table_attr
+              attr	Réf. client
+--------------------------------------------------------------------------------
+[{'name': 'COMMANDE',
+  'attrs': [{'attribute_label': 'Num commande', 'rank': 0},
+            {'attribute_label': 'Date', 'rank': 1},
+            {'attribute_label': 'Montant', 'rank': 2},
+            {'attribute_label': 'Réf. client',
+             'that_table': 'CLIENT',
+             'that_table_attribute_label': 'Réf. client',
+             'rank': 3}],
+  'type': 'entity',
+  'indent': '',
+  'source': 'COMMANDE: Num commande, Date, Montant, #Réf. client > CLIENT > '
+            'Réf. client'}]
+
+--------------------------------------------------------------------------------
+INCLURE: #Num commande>COMMANDE>Num commande, _#Réf. produit>PRODUIT>Réf. produit, Quantité
+--------------------------------------------------------------------------------start
+  line
+    entity_clause
+      entity_name_def
+        box_name	INCLURE
+      : 
+      seq
+        entity_or_table_attr
+          #
+          foreign_reference
+            this_table_attr
+              attr	Num commande
+            >
+            that_table
+              entity_name_ref
+                box_name	COMMANDE
+            >
+            that_table_attr
+              attr	Num commande
+        , 
+        entity_or_table_attr
+          id_mark	_
+          #
+          foreign_reference
+            this_table_attr
+              attr	Réf. produit
+            >
+            that_table
+              entity_name_ref
+                box_name	PRODUIT
+            >
+            that_table_attr
+              attr	Réf. produit
+        , 
+        entity_or_table_attr
+          typed_attr
+            attr	Quantité
+--------------------------------------------------------------------------------
+[{'name': 'INCLURE',
+  'attrs': [{'attribute_label': 'Num commande',
+             'that_table': 'COMMANDE',
+             'that_table_attribute_label': 'Num commande',
+             'rank': 0},
+            {'id_mark': '_',
+             'attribute_label': 'Réf. produit',
+             'that_table': 'PRODUIT',
+             'that_table_attribute_label': 'Réf. produit',
+             'rank': 1},
+            {'attribute_label': 'Quantité', 'rank': 2}],
+  'type': 'entity',
+  'indent': '',
+  'source': 'INCLURE: #Num commande>COMMANDE>Num commande, _#Réf. '
+            'produit>PRODUIT>Réf. produit, Quantité'}]
+
+--------------------------------------------------------------------------------
+INCLURE: #Num commande > COMMANDE > Num commande, _#Réf. produit > PRODUIT > Réf. produit, Quantité
+--------------------------------------------------------------------------------start
+  line
+    entity_clause
+      entity_name_def
+        box_name	INCLURE
+      : 
+      seq
+        entity_or_table_attr
+          #
+          foreign_reference
+            this_table_attr
+              attr	Num commande
+             > 
+            that_table
+              entity_name_ref
+                box_name	COMMANDE
+             > 
+            that_table_attr
+              attr	Num commande
+        , 
+        entity_or_table_attr
+          id_mark	_
+          #
+          foreign_reference
+            this_table_attr
+              attr	Réf. produit
+             > 
+            that_table
+              entity_name_ref
+                box_name	PRODUIT
+             > 
+            that_table_attr
+              attr	Réf. produit
+        , 
+        entity_or_table_attr
+          typed_attr
+            attr	Quantité
+--------------------------------------------------------------------------------
+[{'name': 'INCLURE',
+  'attrs': [{'attribute_label': 'Num commande',
+             'that_table': 'COMMANDE',
+             'that_table_attribute_label': 'Num commande',
+             'rank': 0},
+            {'id_mark': '_',
+             'attribute_label': 'Réf. produit',
+             'that_table': 'PRODUIT',
+             'that_table_attribute_label': 'Réf. produit',
+             'rank': 1},
+            {'attribute_label': 'Quantité', 'rank': 2}],
+  'type': 'entity',
+  'indent': '',
+  'source': 'INCLURE: #Num commande > COMMANDE > Num commande, _#Réf. produit '
+            '> PRODUIT > Réf. produit, Quantité'}]
+
+--------------------------------------------------------------------------------
+CLIENT: Réf. client [varchar(8)], Nom [varchar(20)], Adresse [varchar(40)]
+--------------------------------------------------------------------------------start
+  line
+    entity_clause
+      entity_name_def
+        box_name	CLIENT
+      : 
+      seq
+        entity_or_table_attr
+          typed_attr
+            attr	Réf. client
+             [
+            datatype	varchar(8)
+            ]
+        , 
+        entity_or_table_attr
+          typed_attr
+            attr	Nom
+             [
+            datatype	varchar(20)
+            ]
+        , 
+        entity_or_table_attr
+          typed_attr
+            attr	Adresse
+             [
+            datatype	varchar(40)
+            ]
+--------------------------------------------------------------------------------
+[{'name': 'CLIENT',
+  'attrs': [{'attribute_label': 'Réf. client',
+             'datatype': 'varchar(8)',
+             'rank': 0},
+            {'attribute_label': 'Nom', 'datatype': 'varchar(20)', 'rank': 1},
+            {'attribute_label': 'Adresse',
+             'datatype': 'varchar(40)',
+             'rank': 2}],
+  'type': 'entity',
+  'indent': '',
+  'source': 'CLIENT: Réf. client [varchar(8)], Nom [varchar(20)], Adresse '
+            '[varchar(40)]'}]
+
+--------------------------------------------------------------------------------
+INCLURE, 1N COMMANDE, 0N PRODUIT: Quantité [tinyint(4)]
+--------------------------------------------------------------------------------start
+  line
+    assoc_clause
+      assoc_name_def
+        box_name	INCLURE
+      , 
+      seq
+        assoc_leg
+          card	1N
+           
+          entity_name_ref
+            box_name	COMMANDE
+        , 
+        assoc_leg
+          card	0N
+           
+          entity_name_ref
+            box_name	PRODUIT
+      : 
+      seq
+        typed_attr
+          attr	Quantité
+           [
+          datatype	tinyint(4)
+          ]
+--------------------------------------------------------------------------------
+[{'name': 'INCLURE',
+  'legs': [{'card': '1N', 'entity': 'COMMANDE', 'rank': 0},
+           {'card': '0N', 'entity': 'PRODUIT', 'rank': 1}],
+  'attrs': [{'attribute_label': 'Quantité',
+             'datatype': 'tinyint(4)',
+             'rank': 0}],
+  'type': 'association',
+  'indent': '',
+  'source': 'INCLURE, 1N COMMANDE, 0N PRODUIT: Quantité [tinyint(4)]'}]
+
+--------------------------------------------------------------------------------
+PARTICIPANT: numero [], nom, adresse [type3]
+--------------------------------------------------------------------------------start
+  line
+    entity_clause
+      entity_name_def
+        box_name	PARTICIPANT
+      : 
+      seq
+        entity_or_table_attr
+          typed_attr
+            attr	numero
+             [
+            ]
+        , 
+        entity_or_table_attr
+          typed_attr
+            attr	nom
+        , 
+        entity_or_table_attr
+          typed_attr
+            attr	adresse
+             [
+            datatype	type3
+            ]
+--------------------------------------------------------------------------------
+[{'name': 'PARTICIPANT',
+  'attrs': [{'attribute_label': 'numero', 'rank': 0},
+            {'attribute_label': 'nom', 'rank': 1},
+            {'attribute_label': 'adresse', 'datatype': 'type3', 'rank': 2}],
+  'type': 'entity',
+  'indent': '',
+  'source': 'PARTICIPANT: numero [], nom, adresse [type3]'}]
+
+--------------------------------------------------------------------------------
+COMMANDE: Num commande, Date, Montant, #Réf. client!>CLIENT>Réf. client
+--------------------------------------------------------------------------------start
+  line
+    entity_clause
+      entity_name_def
+        box_name	COMMANDE
+      : 
+      seq
+        entity_or_table_attr
+          typed_attr
+            attr	Num commande
+        , 
+        entity_or_table_attr
+          typed_attr
+            attr	Date
+        , 
+        entity_or_table_attr
+          typed_attr
+            attr	Montant
+        , 
+        entity_or_table_attr
+          #
+          foreign_reference
+            this_table_attr
+              attr	Réf. client
+            attr_suffix	!
+            >
+            that_table
+              entity_name_ref
+                box_name	CLIENT
+            >
+            that_table_attr
+              attr	Réf. client
+--------------------------------------------------------------------------------
+[{'name': 'COMMANDE',
+  'attrs': [{'attribute_label': 'Num commande', 'rank': 0},
+            {'attribute_label': 'Date', 'rank': 1},
+            {'attribute_label': 'Montant', 'rank': 2},
+            {'attribute_label': 'Réf. client',
+             'attr_suffix': '!',
+             'that_table': 'CLIENT',
+             'that_table_attribute_label': 'Réf. client',
+             'rank': 3}],
+  'type': 'entity',
+  'indent': '',
+  'source': 'COMMANDE: Num commande, Date, Montant, #Réf. client!>CLIENT>Réf. '
+            'client'}]
+
+--------------------------------------------------------------------------------
+COMMANDE: Num commande, Date, Montant, Réf. client!
+--------------------------------------------------------------------------------start
+  line
+    entity_clause
+      entity_name_def
+        box_name	COMMANDE
+      : 
+      seq
+        entity_or_table_attr
+          typed_attr
+            attr	Num commande
+        , 
+        entity_or_table_attr
+          typed_attr
+            attr	Date
+        , 
+        entity_or_table_attr
+          typed_attr
+            attr	Montant
+        , 
+        entity_or_table_attr
+          typed_attr
+            attr	Réf. client
+            attr_suffix	!
+--------------------------------------------------------------------------------
+[{'name': 'COMMANDE',
+  'attrs': [{'attribute_label': 'Num commande', 'rank': 0},
+            {'attribute_label': 'Date', 'rank': 1},
+            {'attribute_label': 'Montant', 'rank': 2},
+            {'attribute_label': 'Réf. client', 'attr_suffix': '!', 'rank': 3}],
+  'type': 'entity',
+  'indent': '',
+  'source': 'COMMANDE: Num commande, Date, Montant, Réf. client!'}]
+
+--------------------------------------------------------------------------------
+L33T, 0N> H4X0R, 0N< H4X0R
+--------------------------------------------------------------------------------start
+  line
+    assoc_clause
+      assoc_name_def
+        box_name	L33T
+      , 
+      seq
+        assoc_leg
+          card	0N
+          leg_arrow	>
+           
+          entity_name_ref
+            box_name	H4X0R
+        , 
+        assoc_leg
+          card	0N
+          leg_arrow	<
+           
+          entity_name_ref
+            box_name	H4X0R
+--------------------------------------------------------------------------------
+[{'name': 'L33T',
+  'legs': [{'card': '0N', 'leg_arrow': '>', 'entity': 'H4X0R', 'rank': 0},
+           {'card': '0N', 'leg_arrow': '<', 'entity': 'H4X0R', 'rank': 1}],
+  'type': 'association',
+  'indent': '',
+  'source': 'L33T, 0N> H4X0R, 0N< H4X0R'}]
+
+--------------------------------------------------------------------------------
+L33T123, 0N> H4X0R12, 0N< H4X0R0
+--------------------------------------------------------------------------------start
+  line
+    assoc_clause
+      assoc_name_def
+        box_name	L33T123
+      , 
+      seq
+        assoc_leg
+          card	0N
+          leg_arrow	>
+           
+          entity_name_ref
+            box_name	H4X0R12
+        , 
+        assoc_leg
+          card	0N
+          leg_arrow	<
+           
+          entity_name_ref
+            box_name	H4X0R0
+--------------------------------------------------------------------------------
+[{'name': 'L33T123',
+  'legs': [{'card': '0N', 'leg_arrow': '>', 'entity': 'H4X0R12', 'rank': 0},
+           {'card': '0N', 'leg_arrow': '<', 'entity': 'H4X0R0', 'rank': 1}],
+  'type': 'association',
+  'indent': '',
+  'source': 'L33T123, 0N> H4X0R12, 0N< H4X0R0'}]
+
+--------------------------------------------------------------------------------
+   AYANT-DROIT: nom ayant-droit, lien
+--------------------------------------------------------------------------------start
+  line
+    indent	   
+    entity_clause
+      entity_name_def
+        box_name	AYANT-DROIT
+      : 
+      seq
+        entity_or_table_attr
+          typed_attr
+            attr	nom ayant-droit
+        , 
+        entity_or_table_attr
+          typed_attr
+            attr	lien
+--------------------------------------------------------------------------------
+[{'type': 'entity',
+  'indent': '  ',
+  'name': 'AYANT-DROIT',
+  'attrs': [{'attribute_label': 'nom ayant-droit', 'rank': 0},
+            {'attribute_label': 'lien', 'rank': 1}],
+  'source': '  AYANT-DROIT: nom ayant-droit, lien'}]
+
+--------------------------------------------------------------------------------
+   DIRIGER, 0N EMPLOYÉ, 01 PROJET
+--------------------------------------------------------------------------------start
+  line
+    indent	   
+    assoc_clause
+      assoc_name_def
+        box_name	DIRIGER
+      , 
+      seq
+        assoc_leg
+          card	0N
+           
+          entity_name_ref
+            box_name	EMPLOYÉ
+        , 
+        assoc_leg
+          card	01
+           
+          entity_name_ref
+            box_name	PROJET
+--------------------------------------------------------------------------------
+[{'type': 'association',
+  'indent': '  ',
+  'name': 'DIRIGER',
+  'legs': [{'card': '0N', 'entity': 'EMPLOYÉ', 'rank': 0},
+           {'card': '01', 'entity': 'PROJET', 'rank': 1}],
+  'source': '  DIRIGER, 0N EMPLOYÉ, 01 PROJET'}]
+
+--------------------------------------------------------------------------------
+   REQUÉRIR, 1N PROJET, 0N PIÈCE: qté requise
+--------------------------------------------------------------------------------start
+  line
+    indent	   
+    assoc_clause
+      assoc_name_def
+        box_name	REQUÉRIR
+      , 
+      seq
+        assoc_leg
+          card	1N
+           
+          entity_name_ref
+            box_name	PROJET
+        , 
+        assoc_leg
+          card	0N
+           
+          entity_name_ref
+            box_name	PIÈCE
+      : 
+      seq
+        typed_attr
+          attr	qté requise
+--------------------------------------------------------------------------------
+[{'type': 'association',
+  'indent': '  ',
+  'name': 'REQUÉRIR',
+  'legs': [{'card': '1N', 'entity': 'PROJET', 'rank': 0},
+           {'card': '0N', 'entity': 'PIÈCE', 'rank': 1}],
+  'attrs': [{'attribute_label': 'qté requise', 'rank': 0}],
+  'source': '  REQUÉRIR, 1N PROJET, 0N PIÈCE: qté requise'}]
+
+--------------------------------------------------------------------------------
+DIRIGER, EMPLOYÉ, PROJET
+--------------------------------------------------------------------------------start
+  line
+    assoc_clause
+      assoc_name_def
+        box_name	DIRIGER
+      , 
+      seq
+        assoc_leg
+          entity_name_ref
+            box_name	EMPLOYÉ
+        , 
+        assoc_leg
+          entity_name_ref
+            box_name	PROJET
+--------------------------------------------------------------------------------
+[{'name': 'DIRIGER',
+  'legs': [{'entity': 'EMPLOYÉ', 'rank': 0}, {'entity': 'PROJET', 'rank': 1}],
+  'type': 'association',
+  'indent': '',
+  'source': 'DIRIGER, EMPLOYÉ, PROJET'}]
+
+--------------------------------------------------------------------------------
+A, B, C
+--------------------------------------------------------------------------------start
+  line
+    assoc_clause
+      assoc_name_def
+        box_name	A
+      , 
+      seq
+        assoc_leg
+          entity_name_ref
+            box_name	B
+        , 
+        assoc_leg
+          entity_name_ref
+            box_name	C
+--------------------------------------------------------------------------------
+[{'name': 'A',
+  'legs': [{'entity': 'B', 'rank': 0}, {'entity': 'C', 'rank': 1}],
+  'type': 'association',
+  'indent': '',
+  'source': 'A, B, C'}]
+
+--------------------------------------------------------------------------------
+Foo, Bar
+--------------------------------------------------------------------------------start
+  line
+    assoc_clause
+      assoc_name_def
+        box_name	Foo
+      , 
+      seq
+        assoc_leg
+          entity_name_ref
+            box_name	Bar
+--------------------------------------------------------------------------------
+[{'name': 'Foo',
+  'legs': [{'entity': 'Bar', 'rank': 0}],
+  'type': 'association',
+  'indent': '',
+  'source': 'Foo, Bar'}]
+
+--------------------------------------------------------------------------------
+DIRIGER, EMPLOYÉ, PROJET: biz, buz
+--------------------------------------------------------------------------------start
+  line
+    assoc_clause
+      assoc_name_def
+        box_name	DIRIGER
+      , 
+      seq
+        assoc_leg
+          entity_name_ref
+            box_name	EMPLOYÉ
+        , 
+        assoc_leg
+          entity_name_ref
+            box_name	PROJET
+      : 
+      seq
+        typed_attr
+          attr	biz
+        , 
+        typed_attr
+          attr	buz
+--------------------------------------------------------------------------------
+[{'name': 'DIRIGER',
+  'legs': [{'entity': 'EMPLOYÉ', 'rank': 0}, {'entity': 'PROJET', 'rank': 1}],
+  'attrs': [{'attribute_label': 'biz', 'rank': 0},
+            {'attribute_label': 'buz', 'rank': 1}],
+  'type': 'association',
+  'indent': '',
+  'source': 'DIRIGER, EMPLOYÉ, PROJET: biz, buz'}]
+
+--------------------------------------------------------------------------------
+A, B, C: biz, buz
+--------------------------------------------------------------------------------start
+  line
+    assoc_clause
+      assoc_name_def
+        box_name	A
+      , 
+      seq
+        assoc_leg
+          entity_name_ref
+            box_name	B
+        , 
+        assoc_leg
+          entity_name_ref
+            box_name	C
+      : 
+      seq
+        typed_attr
+          attr	biz
+        , 
+        typed_attr
+          attr	buz
+--------------------------------------------------------------------------------
+[{'name': 'A',
+  'legs': [{'entity': 'B', 'rank': 0}, {'entity': 'C', 'rank': 1}],
+  'attrs': [{'attribute_label': 'biz', 'rank': 0},
+            {'attribute_label': 'buz', 'rank': 1}],
+  'type': 'association',
+  'indent': '',
+  'source': 'A, B, C: biz, buz'}]
+
+--------------------------------------------------------------------------------
+Foo, Bar: biz, buz
+--------------------------------------------------------------------------------start
+  line
+    assoc_clause
+      assoc_name_def
+        box_name	Foo
+      , 
+      seq
+        assoc_leg
+          entity_name_ref
+            box_name	Bar
+      : 
+      seq
+        typed_attr
+          attr	biz
+        , 
+        typed_attr
+          attr	buz
+--------------------------------------------------------------------------------
+[{'name': 'Foo',
+  'legs': [{'entity': 'Bar', 'rank': 0}],
+  'attrs': [{'attribute_label': 'biz', 'rank': 0},
+            {'attribute_label': 'buz', 'rank': 1}],
+  'type': 'association',
+  'indent': '',
+  'source': 'Foo, Bar: biz, buz'}]
+
+--------------------------------------------------------------------------------
+AYANT-DROIT   :   nom ayant-droit   ,   lien   
+--------------------------------------------------------------------------------start
+  line
+    entity_clause
+      entity_name_def
+        box_name	AYANT-DROIT
+         :   
+      seq
+        entity_or_table_attr
+          typed_attr
+            attr	nom ayant-droit
+           ,   
+        entity_or_table_attr
+          typed_attr
+            attr	lien
+--------------------------------------------------------------------------------
+[{'name': 'AYANT-DROIT',
+  'attrs': [{'attribute_label': 'nom ayant-droit', 'rank': 0},
+            {'attribute_label': 'lien', 'rank': 1}],
+  'type': 'entity',
+  'indent': '',
+  'source': 'AYANT-DROIT   :   nom ayant-droit   ,   lien   '}]
+
+--------------------------------------------------------------------------------
+DIRIGER   ,    0N    EMPLOYÉ   ,    01    PROJET   : fizz,  buzz   
+--------------------------------------------------------------------------------start
+  line
+    assoc_clause
+      assoc_name_def
+        box_name	DIRIGER
+         ,    
+      seq
+        assoc_leg
+          card	0N
+              
+          entity_name_ref
+            box_name	EMPLOYÉ
+           ,    
+        assoc_leg
+          card	01
+              
+          entity_name_ref
+            box_name	PROJET
+         : 
+      seq
+        typed_attr
+          attr	fizz
+        ,  
+        typed_attr
+          attr	buzz
+--------------------------------------------------------------------------------
+[{'name': 'DIRIGER',
+  'legs': [{'card': '0N', 'entity': 'EMPLOYÉ', 'rank': 0},
+           {'card': '01', 'entity': 'PROJET', 'rank': 1}],
+  'attrs': [{'attribute_label': 'fizz', 'rank': 0},
+            {'attribute_label': 'buzz', 'rank': 1}],
+  'type': 'association',
+  'indent': '',
+  'source': 'DIRIGER   ,    0N    EMPLOYÉ   ,    01    PROJET   : fizz,  '
+            'buzz   '}]
+
+--------------------------------------------------------------------------------
+AYANT-DROIT  :  nom ayant-droit  ,  lien  
+--------------------------------------------------------------------------------start
+  line
+    entity_clause
+      entity_name_def
+        box_name	AYANT-DROIT
+        :  
+      seq
+        entity_or_table_attr
+          typed_attr
+            attr	nom ayant-droit
+          ,  
+        entity_or_table_attr
+          typed_attr
+            attr	lien
+--------------------------------------------------------------------------------
+[{'name': 'AYANT-DROIT',
+  'attrs': [{'attribute_label': 'nom ayant-droit', 'rank': 0},
+            {'attribute_label': 'lien', 'rank': 1}],
+  'type': 'entity',
+  'indent': '',
+  'source': 'AYANT-DROIT\xa0 :\xa0 nom ayant-droit\xa0 ,\xa0 lien\xa0 '}]
+
+--------------------------------------------------------------------------------
+DIRIGER  ,  0N  EMPLOYÉ  ,  01  PROJET  : fizz, buzz  
+--------------------------------------------------------------------------------start
+  line
+    assoc_clause
+      assoc_name_def
+        box_name	DIRIGER
+        ,  
+      seq
+        assoc_leg
+          card	0N
+            
+          entity_name_ref
+            box_name	EMPLOYÉ
+          ,  
+        assoc_leg
+          card	01
+            
+          entity_name_ref
+            box_name	PROJET
+        : 
+      seq
+        typed_attr
+          attr	fizz
+        , 
+        typed_attr
+          attr	buzz
+--------------------------------------------------------------------------------
+[{'name': 'DIRIGER',
+  'legs': [{'card': '0N', 'entity': 'EMPLOYÉ', 'rank': 0},
+           {'card': '01', 'entity': 'PROJET', 'rank': 1}],
+  'attrs': [{'attribute_label': 'fizz', 'rank': 0},
+            {'attribute_label': 'buzz', 'rank': 1}],
+  'type': 'association',
+  'indent': '',
+  'source': 'DIRIGER\xa0 ,\xa0\xa00N\xa0\xa0EMPLOYÉ\xa0 ,\xa0\xa001\xa0\xa0'
+            'PROJET\xa0 : fizz,\xa0buzz\xa0 '}]
+
+--------------------------------------------------------------------------------
+AYANT-DROIT	 :	 nom ayant-droit	 ,	 lien	 
+--------------------------------------------------------------------------------start
+  line
+    entity_clause
+      entity_name_def
+        box_name	AYANT-DROIT
+      	 :	 
+      seq
+        entity_or_table_attr
+          typed_attr
+            attr	nom ayant-droit
+        	 ,	 
+        entity_or_table_attr
+          typed_attr
+            attr	lien
+--------------------------------------------------------------------------------
+[{'name': 'AYANT-DROIT',
+  'attrs': [{'attribute_label': 'nom ayant-droit', 'rank': 0},
+            {'attribute_label': 'lien', 'rank': 1}],
+  'type': 'entity',
+  'indent': '',
+  'source': 'AYANT-DROIT\t :\t nom ayant-droit\t ,\t lien\t '}]
+
+--------------------------------------------------------------------------------
+DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz	 
+--------------------------------------------------------------------------------start
+  line
+    assoc_clause
+      assoc_name_def
+        box_name	DIRIGER
+      	 ,		
+      seq
+        assoc_leg
+          card	0N
+          		
+          entity_name_ref
+            box_name	EMPLOYÉ
+        	 ,		
+        assoc_leg
+          card	01
+          		
+          entity_name_ref
+            box_name	PROJET
+      	 : 
+      seq
+        typed_attr
+          attr	fizz
+        ,	
+        typed_attr
+          attr	buzz
+--------------------------------------------------------------------------------
+[{'name': 'DIRIGER',
+  'legs': [{'card': '0N', 'entity': 'EMPLOYÉ', 'rank': 0},
+           {'card': '01', 'entity': 'PROJET', 'rank': 1}],
+  'attrs': [{'attribute_label': 'fizz', 'rank': 0},
+            {'attribute_label': 'buzz', 'rank': 1}],
+  'type': 'association',
+  'indent': '',
+  'source': 'DIRIGER\t ,\t\t0N\t\tEMPLOYÉ\t ,\t\t01\t\tPROJET\t : fizz,\t'
+            'buzz\t '}]
+
+--------------------------------------------------------------------------------
+() [bla bla.] ..PIÈCE, ->REQUÉRIR, --FOURNIR, PROJET
+--------------------------------------------------------------------------------start
+  line
+    constraint_clause
+      (
+      ) 
+      [
+      constraint_note	bla bla.
+      ] 
+      seq
+        constraint_target
+          constraint_leg	..
+          box_name_ref
+            box_name	PIÈCE
+        , 
+        constraint_target
+          constraint_leg	->
+          box_name_ref
+            box_name	REQUÉRIR
+        , 
+        constraint_target
+          constraint_leg	--
+          box_name_ref
+            box_name	FOURNIR
+        , 
+        constraint_target
+          box_name_ref
+            box_name	PROJET
+--------------------------------------------------------------------------------
+[{'constraint_note': 'bla bla.',
+  'constraint_targets': [{'constraint_leg': '..', 'box': 'PIÈCE', 'rank': 0},
+                         {'constraint_leg': '->', 'box': 'REQUÉRIR', 'rank': 1},
+                         {'constraint_leg': '--', 'box': 'FOURNIR', 'rank': 2},
+                         {'box': 'PROJET', 'rank': 3}],
+  'type': 'constraint',
+  'indent': '',
+  'source': '() [bla bla.] ..PIÈCE, ->REQUÉRIR, --FOURNIR, PROJET'}]
+
+--------------------------------------------------------------------------------
+(I) [bla bla.] ..PIÈCE, ->REQUÉRIR, --FOURNIR, PROJET
+--------------------------------------------------------------------------------start
+  line
+    constraint_clause
+      (
+      constraint_name	I
+      ) 
+      [
+      constraint_note	bla bla.
+      ] 
+      seq
+        constraint_target
+          constraint_leg	..
+          box_name_ref
+            box_name	PIÈCE
+        , 
+        constraint_target
+          constraint_leg	->
+          box_name_ref
+            box_name	REQUÉRIR
+        , 
+        constraint_target
+          constraint_leg	--
+          box_name_ref
+            box_name	FOURNIR
+        , 
+        constraint_target
+          box_name_ref
+            box_name	PROJET
+--------------------------------------------------------------------------------
+[{'name': 'I',
+  'constraint_note': 'bla bla.',
+  'constraint_targets': [{'constraint_leg': '..', 'box': 'PIÈCE', 'rank': 0},
+                         {'constraint_leg': '->', 'box': 'REQUÉRIR', 'rank': 1},
+                         {'constraint_leg': '--', 'box': 'FOURNIR', 'rank': 2},
+                         {'box': 'PROJET', 'rank': 3}],
+  'type': 'constraint',
+  'indent': '',
+  'source': '(I) [bla bla.] ..PIÈCE, ->REQUÉRIR, --FOURNIR, PROJET'}]
+
+--------------------------------------------------------------------------------
+(II) ..PIÈCE, ->REQUÉRIR, --FOURNIR, PROJET
+--------------------------------------------------------------------------------start
+  line
+    constraint_clause
+      (
+      constraint_name	II
+      ) 
+      seq
+        constraint_target
+          constraint_leg	..
+          box_name_ref
+            box_name	PIÈCE
+        , 
+        constraint_target
+          constraint_leg	->
+          box_name_ref
+            box_name	REQUÉRIR
+        , 
+        constraint_target
+          constraint_leg	--
+          box_name_ref
+            box_name	FOURNIR
+        , 
+        constraint_target
+          box_name_ref
+            box_name	PROJET
+--------------------------------------------------------------------------------
+[{'name': 'II',
+  'constraint_targets': [{'constraint_leg': '..', 'box': 'PIÈCE', 'rank': 0},
+                         {'constraint_leg': '->', 'box': 'REQUÉRIR', 'rank': 1},
+                         {'constraint_leg': '--', 'box': 'FOURNIR', 'rank': 2},
+                         {'box': 'PROJET', 'rank': 3}],
+  'type': 'constraint',
+  'indent': '',
+  'source': '(II) ..PIÈCE, ->REQUÉRIR, --FOURNIR, PROJET'}]
+
+--------------------------------------------------------------------------------
+(III) [bla bla.]
+--------------------------------------------------------------------------------start
+  line
+    constraint_clause
+      (
+      constraint_name	III
+      ) 
+      [
+      constraint_note	bla bla.
+      ]
+--------------------------------------------------------------------------------
+[{'name': 'III',
+  'constraint_note': 'bla bla.',
+  'type': 'constraint',
+  'indent': '',
+  'source': '(III) [bla bla.]'}]
+
+--------------------------------------------------------------------------------
+(IV) 
+--------------------------------------------------------------------------------start
+  line
+    constraint_clause
+      (
+      constraint_name	IV
+      )
+--------------------------------------------------------------------------------
+[{'name': 'IV', 'type': 'constraint', 'indent': '', 'source': '(IV) '}]
+
+--------------------------------------------------------------------------------
+(])
+--------------------------------------------------------------------------------start
+  line
+    constraint_clause
+      (
+      constraint_name	]
+      )
+--------------------------------------------------------------------------------
+[{'name': ']', 'type': 'constraint', 'indent': '', 'source': '(])'}]
+
+--------------------------------------------------------------------------------
+(+)
+--------------------------------------------------------------------------------start
+  line
+    constraint_clause
+      (
+      constraint_name	+
+      )
+--------------------------------------------------------------------------------
+[{'name': '+', 'type': 'constraint', 'indent': '', 'source': '(+)'}]
+
+--------------------------------------------------------------------------------
+(/)
+--------------------------------------------------------------------------------start
+  line
+    constraint_clause
+      (
+      constraint_name	/
+      )
+--------------------------------------------------------------------------------
+[{'name': '/', 'type': 'constraint', 'indent': '', 'source': '(/)'}]
+
+--------------------------------------------------------------------------------
+(I) [bla bla.] ..PIÈCE, ->REQUÉRIR, --FOURNIR, PROJET: 12.5, 30
+--------------------------------------------------------------------------------start
+  line
+    constraint_clause
+      (
+      constraint_name	I
+      ) 
+      [
+      constraint_note	bla bla.
+      ] 
+      seq
+        constraint_target
+          constraint_leg	..
+          box_name_ref
+            box_name	PIÈCE
+        , 
+        constraint_target
+          constraint_leg	->
+          box_name_ref
+            box_name	REQUÉRIR
+        , 
+        constraint_target
+          constraint_leg	--
+          box_name_ref
+            box_name	FOURNIR
+        , 
+        constraint_target
+          box_name_ref
+            box_name	PROJET
+      : 
+      constraint_coords
+        12.5
+        , 
+        30
+--------------------------------------------------------------------------------
+[{'name': 'I',
+  'constraint_note': 'bla bla.',
+  'constraint_targets': [{'constraint_leg': '..', 'box': 'PIÈCE', 'rank': 0},
+                         {'constraint_leg': '->', 'box': 'REQUÉRIR', 'rank': 1},
+                         {'constraint_leg': '--', 'box': 'FOURNIR', 'rank': 2},
+                         {'box': 'PROJET', 'rank': 3}],
+  'constraint_coords': [12.5, 30],
+  'type': 'constraint',
+  'indent': '',
+  'source': '(I) [bla bla.] ..PIÈCE, ->REQUÉRIR, --FOURNIR, PROJET: 12.5, 30'}]
+
+--------------------------------------------------------------------------------
+(II) ..PIÈCE, ->REQUÉRIR, --FOURNIR, PROJET: 12.5, 30
+--------------------------------------------------------------------------------start
+  line
+    constraint_clause
+      (
+      constraint_name	II
+      ) 
+      seq
+        constraint_target
+          constraint_leg	..
+          box_name_ref
+            box_name	PIÈCE
+        , 
+        constraint_target
+          constraint_leg	->
+          box_name_ref
+            box_name	REQUÉRIR
+        , 
+        constraint_target
+          constraint_leg	--
+          box_name_ref
+            box_name	FOURNIR
+        , 
+        constraint_target
+          box_name_ref
+            box_name	PROJET
+      : 
+      constraint_coords
+        12.5
+        , 
+        30
+--------------------------------------------------------------------------------
+[{'name': 'II',
+  'constraint_targets': [{'constraint_leg': '..', 'box': 'PIÈCE', 'rank': 0},
+                         {'constraint_leg': '->', 'box': 'REQUÉRIR', 'rank': 1},
+                         {'constraint_leg': '--', 'box': 'FOURNIR', 'rank': 2},
+                         {'box': 'PROJET', 'rank': 3}],
+  'constraint_coords': [12.5, 30],
+  'type': 'constraint',
+  'indent': '',
+  'source': '(II) ..PIÈCE, ->REQUÉRIR, --FOURNIR, PROJET: 12.5, 30'}]
+
+--------------------------------------------------------------------------------
+(III) [bla bla.]: 12.5, 30
+--------------------------------------------------------------------------------start
+  line
+    constraint_clause
+      (
+      constraint_name	III
+      ) 
+      [
+      constraint_note	bla bla.
+      ]
+      : 
+      constraint_coords
+        12.5
+        , 
+        30
+--------------------------------------------------------------------------------
+[{'name': 'III',
+  'constraint_note': 'bla bla.',
+  'constraint_coords': [12.5, 30],
+  'type': 'constraint',
+  'indent': '',
+  'source': '(III) [bla bla.]: 12.5, 30'}]
+
+--------------------------------------------------------------------------------
+(IV) : 12.5, 30
+--------------------------------------------------------------------------------start
+  line
+    constraint_clause
+      (
+      constraint_name	IV
+      ) 
+      : 
+      constraint_coords
+        12.5
+        , 
+        30
+--------------------------------------------------------------------------------
+[{'name': 'IV',
+  'constraint_coords': [12.5, 30],
+  'type': 'constraint',
+  'indent': '',
+  'source': '(IV) : 12.5, 30'}]
+
+--------------------------------------------------------------------------------
+(I) [bla bla.] ..PIÈCE, ->REQUÉRIR, --FOURNIR, PROJET: FOO, 30
+--------------------------------------------------------------------------------start
+  line
+    constraint_clause
+      (
+      constraint_name	I
+      ) 
+      [
+      constraint_note	bla bla.
+      ] 
+      seq
+        constraint_target
+          constraint_leg	..
+          box_name_ref
+            box_name	PIÈCE
+        , 
+        constraint_target
+          constraint_leg	->
+          box_name_ref
+            box_name	REQUÉRIR
+        , 
+        constraint_target
+          constraint_leg	--
+          box_name_ref
+            box_name	FOURNIR
+        , 
+        constraint_target
+          box_name_ref
+            box_name	PROJET
+      : 
+      constraint_coords
+        box_name_ref
+          box_name	FOO
+        , 
+        30
+--------------------------------------------------------------------------------
+[{'name': 'I',
+  'constraint_note': 'bla bla.',
+  'constraint_targets': [{'constraint_leg': '..', 'box': 'PIÈCE', 'rank': 0},
+                         {'constraint_leg': '->', 'box': 'REQUÉRIR', 'rank': 1},
+                         {'constraint_leg': '--', 'box': 'FOURNIR', 'rank': 2},
+                         {'box': 'PROJET', 'rank': 3}],
+  'constraint_coords': ['FOO', 30],
+  'type': 'constraint',
+  'indent': '',
+  'source': '(I) [bla bla.] ..PIÈCE, ->REQUÉRIR, --FOURNIR, PROJET: FOO, 30'}]
+
+--------------------------------------------------------------------------------
+(I) [bla bla.] ..PIÈCE, ->REQUÉRIR, --FOURNIR, PROJET: 12.5, BAR
+--------------------------------------------------------------------------------start
+  line
+    constraint_clause
+      (
+      constraint_name	I
+      ) 
+      [
+      constraint_note	bla bla.
+      ] 
+      seq
+        constraint_target
+          constraint_leg	..
+          box_name_ref
+            box_name	PIÈCE
+        , 
+        constraint_target
+          constraint_leg	->
+          box_name_ref
+            box_name	REQUÉRIR
+        , 
+        constraint_target
+          constraint_leg	--
+          box_name_ref
+            box_name	FOURNIR
+        , 
+        constraint_target
+          box_name_ref
+            box_name	PROJET
+      : 
+      constraint_coords
+        12.5
+        , 
+        box_name_ref
+          box_name	BAR
+--------------------------------------------------------------------------------
+[{'name': 'I',
+  'constraint_note': 'bla bla.',
+  'constraint_targets': [{'constraint_leg': '..', 'box': 'PIÈCE', 'rank': 0},
+                         {'constraint_leg': '->', 'box': 'REQUÉRIR', 'rank': 1},
+                         {'constraint_leg': '--', 'box': 'FOURNIR', 'rank': 2},
+                         {'box': 'PROJET', 'rank': 3}],
+  'constraint_coords': [12.5, 'BAR'],
+  'type': 'constraint',
+  'indent': '',
+  'source': '(I) [bla bla.] ..PIÈCE, ->REQUÉRIR, --FOURNIR, PROJET: 12.5, BAR'}]
+
+--------------------------------------------------------------------------------
+(I) [bla bla.] ..PIÈCE, ->REQUÉRIR, --FOURNIR, PROJET: FOO, BAR
+--------------------------------------------------------------------------------start
+  line
+    constraint_clause
+      (
+      constraint_name	I
+      ) 
+      [
+      constraint_note	bla bla.
+      ] 
+      seq
+        constraint_target
+          constraint_leg	..
+          box_name_ref
+            box_name	PIÈCE
+        , 
+        constraint_target
+          constraint_leg	->
+          box_name_ref
+            box_name	REQUÉRIR
+        , 
+        constraint_target
+          constraint_leg	--
+          box_name_ref
+            box_name	FOURNIR
+        , 
+        constraint_target
+          box_name_ref
+            box_name	PROJET
+      : 
+      constraint_coords
+        box_name_ref
+          box_name	FOO
+        , 
+        box_name_ref
+          box_name	BAR
+--------------------------------------------------------------------------------
+[{'name': 'I',
+  'constraint_note': 'bla bla.',
+  'constraint_targets': [{'constraint_leg': '..', 'box': 'PIÈCE', 'rank': 0},
+                         {'constraint_leg': '->', 'box': 'REQUÉRIR', 'rank': 1},
+                         {'constraint_leg': '--', 'box': 'FOURNIR', 'rank': 2},
+                         {'box': 'PROJET', 'rank': 3}],
+  'constraint_coords': ['FOO', 'BAR'],
+  'type': 'constraint',
+  'indent': '',
+  'source': '(I) [bla bla.] ..PIÈCE, ->REQUÉRIR, --FOURNIR, PROJET: FOO, BAR'}]
+
+--------------------------------------------------------------------------------
+(IV) : 12.5, 30
+--------------------------------------------------------------------------------start
+  line
+    constraint_clause
+      (
+      constraint_name	IV
+      ) 
+      : 
+      constraint_coords
+        12.5
+        , 
+        30
+--------------------------------------------------------------------------------
+[{'name': 'IV',
+  'constraint_coords': [12.5, 30],
+  'type': 'constraint',
+  'indent': '',
+  'source': '(IV) : 12.5, 30'}]
+
+--------------------------------------------------------------------------------
+(A) --Lorem, .....Ipsum, -Dolor: 30, 10
+--------------------------------------------------------------------------------start
+  line
+    constraint_clause
+      (
+      constraint_name	A
+      ) 
+      seq
+        constraint_target
+          constraint_leg	--
+          box_name_ref
+            box_name	Lorem
+        , 
+        constraint_target
+          constraint_leg	.....
+          box_name_ref
+            box_name	Ipsum
+        , 
+        constraint_target
+          constraint_leg	-
+          box_name_ref
+            box_name	Dolor
+      : 
+      constraint_coords
+        30
+        , 
+        10
+--------------------------------------------------------------------------------
+[{'name': 'A',
+  'constraint_targets': [{'constraint_leg': '--', 'box': 'Lorem', 'rank': 0},
+                         {'constraint_leg': '.....', 'box': 'Ipsum', 'rank': 1},
+                         {'constraint_leg': '-', 'box': 'Dolor', 'rank': 2}],
+  'constraint_coords': [30, 10],
+  'type': 'constraint',
+  'indent': '',
+  'source': '(A) --Lorem, .....Ipsum, -Dolor: 30, 10'}]
+
+--------------------------------------------------------------------------------
+(B) ->Dolor, <-->Sit, -->Amet: 69, 10
+--------------------------------------------------------------------------------start
+  line
+    constraint_clause
+      (
+      constraint_name	B
+      ) 
+      seq
+        constraint_target
+          constraint_leg	->
+          box_name_ref
+            box_name	Dolor
+        , 
+        constraint_target
+          constraint_leg	<-->
+          box_name_ref
+            box_name	Sit
+        , 
+        constraint_target
+          constraint_leg	-->
+          box_name_ref
+            box_name	Amet
+      : 
+      constraint_coords
+        69
+        , 
+        10
+--------------------------------------------------------------------------------
+[{'name': 'B',
+  'constraint_targets': [{'constraint_leg': '->', 'box': 'Dolor', 'rank': 0},
+                         {'constraint_leg': '<-->', 'box': 'Sit', 'rank': 1},
+                         {'constraint_leg': '-->', 'box': 'Amet', 'rank': 2}],
+  'constraint_coords': [69, 10],
+  'type': 'constraint',
+  'indent': '',
+  'source': '(B) ->Dolor, <-->Sit, -->Amet: 69, 10'}]
+
+--------------------------------------------------------------------------------
+(XX) ->foo, -->foo, -> foo, --> foo
+--------------------------------------------------------------------------------start
+  line
+    constraint_clause
+      (
+      constraint_name	XX
+      ) 
+      seq
+        constraint_target
+          constraint_leg	->
+          box_name_ref
+            box_name	foo
+        , 
+        constraint_target
+          constraint_leg	-->
+          box_name_ref
+            box_name	foo
+        , 
+        constraint_target
+          constraint_leg	->
+           
+          box_name_ref
+            box_name	foo
+        , 
+        constraint_target
+          constraint_leg	-->
+           
+          box_name_ref
+            box_name	foo
+--------------------------------------------------------------------------------
+[{'name': 'XX',
+  'constraint_targets': [{'constraint_leg': '->', 'box': 'foo', 'rank': 0},
+                         {'constraint_leg': '-->', 'box': 'foo', 'rank': 1},
+                         {'constraint_leg': '->', 'box': 'foo', 'rank': 2},
+                         {'constraint_leg': '-->', 'box': 'foo', 'rank': 3}],
+  'type': 'constraint',
+  'indent': '',
+  'source': '(XX) ->foo, -->foo, -> foo, --> foo'}]
+
+--------------------------------------------------------------------------------
+(I) ->Stocker, ..Dépôt, ..Article, --Composer, --Louer
+--------------------------------------------------------------------------------start
+  line
+    constraint_clause
+      (
+      constraint_name	I
+      ) 
+      seq
+        constraint_target
+          constraint_leg	->
+          box_name_ref
+            box_name	Stocker
+        , 
+        constraint_target
+          constraint_leg	..
+          box_name_ref
+            box_name	Dépôt
+        , 
+        constraint_target
+          constraint_leg	..
+          box_name_ref
+            box_name	Article
+        , 
+        constraint_target
+          constraint_leg	--
+          box_name_ref
+            box_name	Composer
+        , 
+        constraint_target
+          constraint_leg	--
+          box_name_ref
+            box_name	Louer
+--------------------------------------------------------------------------------
+[{'name': 'I',
+  'constraint_targets': [{'constraint_leg': '->', 'box': 'Stocker', 'rank': 0},
+                         {'constraint_leg': '..', 'box': 'Dépôt', 'rank': 1},
+                         {'constraint_leg': '..', 'box': 'Article', 'rank': 2},
+                         {'constraint_leg': '--', 'box': 'Composer', 'rank': 3},
+                         {'constraint_leg': '--', 'box': 'Louer', 'rank': 4}],
+  'type': 'constraint',
+  'indent': '',
+  'source': '(I) ->Stocker, ..Dépôt, ..Article, --Composer, --Louer'}]
+
+--------------------------------------------------------------------------------
+/XT\ Personne ==> Homme, Femme: sexe
+--------------------------------------------------------------------------------start
+  line
+    inheritance_clause
+      /
+      inheritance_name	XT
+      \
+       
+      inheritance_parent
+        entity_name_ref
+          box_name	Personne
+       
+      inheritance_arrow	==>
+       
+      seq
+        inheritance_child
+          entity_name_ref
+            box_name	Homme
+        , 
+        inheritance_child
+          entity_name_ref
+            box_name	Femme
+      : 
+      seq
+        typed_attr
+          attr	sexe
+--------------------------------------------------------------------------------
+[{'name': 'XT',
+  'inheritance_arrow': '==>',
+  'legs': [{'entity': 'Personne', 'rank': -1},
+           {'entity': 'Homme', 'rank': 0},
+           {'entity': 'Femme', 'rank': 1}],
+  'attrs': [{'attribute_label': 'sexe', 'rank': 0}],
+  'type': 'inheritance',
+  'indent': '',
+  'source': '/XT\\ Personne ==> Homme, Femme: sexe'}]
+
+--------------------------------------------------------------------------------
+/XT1\\ Personne <= Homme, Femme: sexe
+--------------------------------------------------------------------------------start
+  line
+    inheritance_clause
+      /
+      inheritance_name	XT1
+      \\
+       
+      inheritance_parent
+        entity_name_ref
+          box_name	Personne
+       
+      inheritance_arrow	<=
+       
+      seq
+        inheritance_child
+          entity_name_ref
+            box_name	Homme
+        , 
+        inheritance_child
+          entity_name_ref
+            box_name	Femme
+      : 
+      seq
+        typed_attr
+          attr	sexe
+--------------------------------------------------------------------------------
+[{'name': 'XT1',
+  'inheritance_arrow': '<=',
+  'legs': [{'entity': 'Personne', 'rank': -1},
+           {'entity': 'Homme', 'rank': 0},
+           {'entity': 'Femme', 'rank': 1}],
+  'attrs': [{'attribute_label': 'sexe', 'rank': 0}],
+  'type': 'inheritance',
+  'indent': '',
+  'source': '/XT1\\\\ Personne <= Homme, Femme: sexe'}]
+
+--------------------------------------------------------------------------------
+/XT\\ Personne => Homme, Femme: sexe
+--------------------------------------------------------------------------------start
+  line
+    inheritance_clause
+      /
+      inheritance_name	XT
+      \\
+       
+      inheritance_parent
+        entity_name_ref
+          box_name	Personne
+       
+      inheritance_arrow	=>
+       
+      seq
+        inheritance_child
+          entity_name_ref
+            box_name	Homme
+        , 
+        inheritance_child
+          entity_name_ref
+            box_name	Femme
+      : 
+      seq
+        typed_attr
+          attr	sexe
+--------------------------------------------------------------------------------
+[{'name': 'XT',
+  'inheritance_arrow': '=>',
+  'legs': [{'entity': 'Personne', 'rank': -1},
+           {'entity': 'Homme', 'rank': 0},
+           {'entity': 'Femme', 'rank': 1}],
+  'attrs': [{'attribute_label': 'sexe', 'rank': 0}],
+  'type': 'inheritance',
+  'indent': '',
+  'source': '/XT\\\\ Personne => Homme, Femme: sexe'}]
+
+--------------------------------------------------------------------------------
+/T\\ Personne <= Homme, Femme: sexe
+--------------------------------------------------------------------------------start
+  line
+    inheritance_clause
+      /
+      inheritance_name	T
+      \\
+       
+      inheritance_parent
+        entity_name_ref
+          box_name	Personne
+       
+      inheritance_arrow	<=
+       
+      seq
+        inheritance_child
+          entity_name_ref
+            box_name	Homme
+        , 
+        inheritance_child
+          entity_name_ref
+            box_name	Femme
+      : 
+      seq
+        typed_attr
+          attr	sexe
+--------------------------------------------------------------------------------
+[{'name': 'T',
+  'inheritance_arrow': '<=',
+  'legs': [{'entity': 'Personne', 'rank': -1},
+           {'entity': 'Homme', 'rank': 0},
+           {'entity': 'Femme', 'rank': 1}],
+  'attrs': [{'attribute_label': 'sexe', 'rank': 0}],
+  'type': 'inheritance',
+  'indent': '',
+  'source': '/T\\\\ Personne <= Homme, Femme: sexe'}]
+
+--------------------------------------------------------------------------------
+/T\\ Personne => Homme, Femme: sexe
+--------------------------------------------------------------------------------start
+  line
+    inheritance_clause
+      /
+      inheritance_name	T
+      \\
+       
+      inheritance_parent
+        entity_name_ref
+          box_name	Personne
+       
+      inheritance_arrow	=>
+       
+      seq
+        inheritance_child
+          entity_name_ref
+            box_name	Homme
+        , 
+        inheritance_child
+          entity_name_ref
+            box_name	Femme
+      : 
+      seq
+        typed_attr
+          attr	sexe
+--------------------------------------------------------------------------------
+[{'name': 'T',
+  'inheritance_arrow': '=>',
+  'legs': [{'entity': 'Personne', 'rank': -1},
+           {'entity': 'Homme', 'rank': 0},
+           {'entity': 'Femme', 'rank': 1}],
+  'attrs': [{'attribute_label': 'sexe', 'rank': 0}],
+  'type': 'inheritance',
+  'indent': '',
+  'source': '/T\\\\ Personne => Homme, Femme: sexe'}]
+
+--------------------------------------------------------------------------------
+/X\\ Personne <= Homme, Femme: sexe
+--------------------------------------------------------------------------------start
+  line
+    inheritance_clause
+      /
+      inheritance_name	X
+      \\
+       
+      inheritance_parent
+        entity_name_ref
+          box_name	Personne
+       
+      inheritance_arrow	<=
+       
+      seq
+        inheritance_child
+          entity_name_ref
+            box_name	Homme
+        , 
+        inheritance_child
+          entity_name_ref
+            box_name	Femme
+      : 
+      seq
+        typed_attr
+          attr	sexe
+--------------------------------------------------------------------------------
+[{'name': 'X',
+  'inheritance_arrow': '<=',
+  'legs': [{'entity': 'Personne', 'rank': -1},
+           {'entity': 'Homme', 'rank': 0},
+           {'entity': 'Femme', 'rank': 1}],
+  'attrs': [{'attribute_label': 'sexe', 'rank': 0}],
+  'type': 'inheritance',
+  'indent': '',
+  'source': '/X\\\\ Personne <= Homme, Femme: sexe'}]
+
+--------------------------------------------------------------------------------
+/X\\ Personne => Homme, Femme: sexe
+--------------------------------------------------------------------------------start
+  line
+    inheritance_clause
+      /
+      inheritance_name	X
+      \\
+       
+      inheritance_parent
+        entity_name_ref
+          box_name	Personne
+       
+      inheritance_arrow	=>
+       
+      seq
+        inheritance_child
+          entity_name_ref
+            box_name	Homme
+        , 
+        inheritance_child
+          entity_name_ref
+            box_name	Femme
+      : 
+      seq
+        typed_attr
+          attr	sexe
+--------------------------------------------------------------------------------
+[{'name': 'X',
+  'inheritance_arrow': '=>',
+  'legs': [{'entity': 'Personne', 'rank': -1},
+           {'entity': 'Homme', 'rank': 0},
+           {'entity': 'Femme', 'rank': 1}],
+  'attrs': [{'attribute_label': 'sexe', 'rank': 0}],
+  'type': 'inheritance',
+  'indent': '',
+  'source': '/X\\\\ Personne => Homme, Femme: sexe'}]
+
+--------------------------------------------------------------------------------
+/\\ Personne <= Homme, Femme: sexe
+--------------------------------------------------------------------------------start
+  line
+    inheritance_clause
+      /
+      \\
+       
+      inheritance_parent
+        entity_name_ref
+          box_name	Personne
+       
+      inheritance_arrow	<=
+       
+      seq
+        inheritance_child
+          entity_name_ref
+            box_name	Homme
+        , 
+        inheritance_child
+          entity_name_ref
+            box_name	Femme
+      : 
+      seq
+        typed_attr
+          attr	sexe
+--------------------------------------------------------------------------------
+[{'inheritance_arrow': '<=',
+  'legs': [{'entity': 'Personne', 'rank': -1},
+           {'entity': 'Homme', 'rank': 0},
+           {'entity': 'Femme', 'rank': 1}],
+  'attrs': [{'attribute_label': 'sexe', 'rank': 0}],
+  'name': '',
+  'type': 'inheritance',
+  'indent': '',
+  'source': '/\\\\ Personne <= Homme, Femme: sexe'}]
+
+--------------------------------------------------------------------------------
+/\\ Personne => Homme, Femme: sexe
+--------------------------------------------------------------------------------start
+  line
+    inheritance_clause
+      /
+      \\
+       
+      inheritance_parent
+        entity_name_ref
+          box_name	Personne
+       
+      inheritance_arrow	=>
+       
+      seq
+        inheritance_child
+          entity_name_ref
+            box_name	Homme
+        , 
+        inheritance_child
+          entity_name_ref
+            box_name	Femme
+      : 
+      seq
+        typed_attr
+          attr	sexe
+--------------------------------------------------------------------------------
+[{'inheritance_arrow': '=>',
+  'legs': [{'entity': 'Personne', 'rank': -1},
+           {'entity': 'Homme', 'rank': 0},
+           {'entity': 'Femme', 'rank': 1}],
+  'attrs': [{'attribute_label': 'sexe', 'rank': 0}],
+  'name': '',
+  'type': 'inheritance',
+  'indent': '',
+  'source': '/\\\\ Personne => Homme, Femme: sexe'}]
+
+--------------------------------------------------------------------------------
+/1\\ FOO => BAR
+--------------------------------------------------------------------------------start
+  line
+    inheritance_clause
+      /
+      inheritance_name	1
+      \\
+       
+      inheritance_parent
+        entity_name_ref
+          box_name	FOO
+       
+      inheritance_arrow	=>
+       
+      seq
+        inheritance_child
+          entity_name_ref
+            box_name	BAR
+--------------------------------------------------------------------------------
+[{'name': '1',
+  'inheritance_arrow': '=>',
+  'legs': [{'entity': 'FOO', 'rank': -1}, {'entity': 'BAR', 'rank': 0}],
+  'type': 'inheritance',
+  'indent': '',
+  'source': '/1\\\\ FOO => BAR'}]
+
+--------------------------------------------------------------------------------
+/T\\foo==>foo11
+--------------------------------------------------------------------------------start
+  line
+    inheritance_clause
+      /
+      inheritance_name	T
+      \\
+      inheritance_parent
+        entity_name_ref
+          box_name	foo
+      inheritance_arrow	==>
+      seq
+        inheritance_child
+          entity_name_ref
+            box_name	foo11
+--------------------------------------------------------------------------------
+[{'name': 'T',
+  'inheritance_arrow': '==>',
+  'legs': [{'entity': 'foo', 'rank': -1}, {'entity': 'foo11', 'rank': 0}],
+  'type': 'inheritance',
+  'indent': '',
+  'source': '/T\\\\foo==>foo11'}]
+
+--------------------------------------------------------------------------------
+Étudiant: num, 1_nom, 1_prénom, adresse, 2_mail
+--------------------------------------------------------------------------------start
+  line
+    entity_clause
+      entity_name_def
+        box_name	Étudiant
+      : 
+      seq
+        entity_or_table_attr
+          typed_attr
+            attr	num
+        , 
+        entity_or_table_attr
+          id_groups	1
+          id_mark	_
+          typed_attr
+            attr	nom
+        , 
+        entity_or_table_attr
+          id_groups	1
+          id_mark	_
+          typed_attr
+            attr	prénom
+        , 
+        entity_or_table_attr
+          typed_attr
+            attr	adresse
+        , 
+        entity_or_table_attr
+          id_groups	2
+          id_mark	_
+          typed_attr
+            attr	mail
+--------------------------------------------------------------------------------
+[{'name': 'Étudiant',
+  'attrs': [{'attribute_label': 'num', 'rank': 0},
+            {'id_groups': '1',
+             'id_mark': '_',
+             'attribute_label': 'nom',
+             'rank': 1},
+            {'id_groups': '1',
+             'id_mark': '_',
+             'attribute_label': 'prénom',
+             'rank': 2},
+            {'attribute_label': 'adresse', 'rank': 3},
+            {'id_groups': '2',
+             'id_mark': '_',
+             'attribute_label': 'mail',
+             'rank': 4}],
+  'type': 'entity',
+  'indent': '',
+  'source': 'Étudiant: num, 1_nom, 1_prénom, adresse, 2_mail'}]
+
+--------------------------------------------------------------------------------
+Étudiant: 0_num, 1_nom, 1_prénom, adresse, 2_mail
+--------------------------------------------------------------------------------start
+  line
+    entity_clause
+      entity_name_def
+        box_name	Étudiant
+      : 
+      seq
+        entity_or_table_attr
+          id_groups	0
+          id_mark	_
+          typed_attr
+            attr	num
+        , 
+        entity_or_table_attr
+          id_groups	1
+          id_mark	_
+          typed_attr
+            attr	nom
+        , 
+        entity_or_table_attr
+          id_groups	1
+          id_mark	_
+          typed_attr
+            attr	prénom
+        , 
+        entity_or_table_attr
+          typed_attr
+            attr	adresse
+        , 
+        entity_or_table_attr
+          id_groups	2
+          id_mark	_
+          typed_attr
+            attr	mail
+--------------------------------------------------------------------------------
+[{'name': 'Étudiant',
+  'attrs': [{'id_groups': '0',
+             'id_mark': '_',
+             'attribute_label': 'num',
+             'rank': 0},
+            {'id_groups': '1',
+             'id_mark': '_',
+             'attribute_label': 'nom',
+             'rank': 1},
+            {'id_groups': '1',
+             'id_mark': '_',
+             'attribute_label': 'prénom',
+             'rank': 2},
+            {'attribute_label': 'adresse', 'rank': 3},
+            {'id_groups': '2',
+             'id_mark': '_',
+             'attribute_label': 'mail',
+             'rank': 4}],
+  'type': 'entity',
+  'indent': '',
+  'source': 'Étudiant: 0_num, 1_nom, 1_prénom, adresse, 2_mail'}]
+
+--------------------------------------------------------------------------------
+Position: 0_latitude, 0_longitude, altitude
+--------------------------------------------------------------------------------start
+  line
+    entity_clause
+      entity_name_def
+        box_name	Position
+      : 
+      seq
+        entity_or_table_attr
+          id_groups	0
+          id_mark	_
+          typed_attr
+            attr	latitude
+        , 
+        entity_or_table_attr
+          id_groups	0
+          id_mark	_
+          typed_attr
+            attr	longitude
+        , 
+        entity_or_table_attr
+          typed_attr
+            attr	altitude
+--------------------------------------------------------------------------------
+[{'name': 'Position',
+  'attrs': [{'id_groups': '0',
+             'id_mark': '_',
+             'attribute_label': 'latitude',
+             'rank': 0},
+            {'id_groups': '0',
+             'id_mark': '_',
+             'attribute_label': 'longitude',
+             'rank': 1},
+            {'attribute_label': 'altitude', 'rank': 2}],
+  'type': 'entity',
+  'indent': '',
+  'source': 'Position: 0_latitude, 0_longitude, altitude'}]
+
+--------------------------------------------------------------------------------
+Foo: bar, 1_baz, 21_qux, 123_quux
+--------------------------------------------------------------------------------start
+  line
+    entity_clause
+      entity_name_def
+        box_name	Foo
+      : 
+      seq
+        entity_or_table_attr
+          typed_attr
+            attr	bar
+        , 
+        entity_or_table_attr
+          id_groups	1
+          id_mark	_
+          typed_attr
+            attr	baz
+        , 
+        entity_or_table_attr
+          id_groups	21
+          id_mark	_
+          typed_attr
+            attr	qux
+        , 
+        entity_or_table_attr
+          id_groups	123
+          id_mark	_
+          typed_attr
+            attr	quux
+--------------------------------------------------------------------------------
+[{'name': 'Foo',
+  'attrs': [{'attribute_label': 'bar', 'rank': 0},
+            {'id_groups': '1',
+             'id_mark': '_',
+             'attribute_label': 'baz',
+             'rank': 1},
+            {'id_groups': '12',
+             'id_mark': '_',
+             'attribute_label': 'qux',
+             'rank': 2},
+            {'id_groups': '123',
+             'id_mark': '_',
+             'attribute_label': 'quux',
+             'rank': 3}],
+  'type': 'entity',
+  'indent': '',
+  'source': 'Foo: bar, 1_baz, 21_qux, 123_quux'}]
+

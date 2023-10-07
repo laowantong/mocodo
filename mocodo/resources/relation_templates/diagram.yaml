@@ -1,0 +1,11 @@
+help_en: 'convert the conceptual model into a relational diagram in Mocodo syntax'
+help_fr: 'convertit le modèle conceptuel en un diagramme relationnel au format Mocodo'
+fr_examples:
+  - order: 1
+    example: 'diagram'
+    explanation: 'version de base'
+  - order: 2
+    example: 'diagram:c'
+    explanation: 'avec contraintes d''unicité et d''optionnalité'
+parent: 'diagram-c'
+add_optionality_constraints:

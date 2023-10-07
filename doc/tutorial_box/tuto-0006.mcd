@@ -1,14 +1,13 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                                                               %
-%                    ASSOCIATION DE DÉPENDANCE FONCTIONNELLE                    %
-%                                                                               %
-%  Si votre association a une cardinalité 11, mais aucun attribut, vous pouvez  %
-%  la nommer « DF » : Mocodo la figurera par un cercle.                         %
-%                                                                               %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                                %
+%                             ATTRIBUT D'ASSOCIATION                             %
+%                                                                                %
+%  Pour ajouter des attributs à une association, faites comme pour une entité :  %
+%  mettez un deux-points au bout de la ligne, puis listez les attributs en les   %
+%  séparant par des virgules.                                                    %
+%                                                                                %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Produit: réf. produit, libellé, prix unitaire
 Inclure, 1N Commande, 0N Produit: quantité
-Commande: num commande, date, montant
-DF, 0N Client, 11 Commande
-Client: réf. client, nom, prénom, adresse
+Commande: num. commande, date, montant

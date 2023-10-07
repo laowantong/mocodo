@@ -1,0 +1,9 @@
+@startuml "minimal"
+
+!define Table(x) class "x" << (T,#FFFFFF) >>
+!define pk(x) <b>x</b>
+
+Table("A") {
+}
+
+@enduml

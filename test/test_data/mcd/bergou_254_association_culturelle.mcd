@@ -1,0 +1,17 @@
+%%mocodo
+Bénévole: id bénévole, nom, prénom, téléphone, courriel
+Bureau, 1N Section, 1N Bénévole: fonction
+Lieu: id lieu, nom, adresse, capacité
+Accueillir, 1N Lieu, 11 Activité
+
+Référent, 0N Bénévole, 11 Section
+Section: code section, libellé, début saison
+Proposer, _11 Activité, 1N Section
+Activité: num activité, libellé, description, jour semaine, horaire, durée séance, tarif annuel
+
+:
+Parenté, 0N Adhérent, 0N Adhérent: nature
+Adhérent: num adhérent, nom, prénom, adresse, cp, ville, téléphone, courriel, date naissance
+Adhésion, 1N Adhérent, 1N Activité: date adhésion, nom banque, numéro compte, numéro chèque
+
+(I) --Référent, -> Bureau, .. Bénévole, ..Section

@@ -1,0 +1,27 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                                  %
+%                                 VUE EN EXTENSION                                 %
+%                                                                                  %
+%  La même fonctionnalité permet de créer une vue en extension (à droite du MCD).  %
+%  Notez qu'il n'y a pas besoin de suffixe pour créer plusieurs associations DF.   %
+%  Notez également les lignes réduites à des deux-points : ceux-ci sont traités    %
+%  comme des boîtes « fantômes », et jouent le rôle d'espaces horizontaux.         %
+%                                                                                  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+ŒUVRE1: cote, titre, date de publication
+:::
+ŒUVRE2: 612.NAT.34, J'apprends à lire à mes souris blanches, mai 1975
+:
+  
+DF, 1N ŒUVRE1, _11 EXEMPLAIRE1
+::
+DF, XX ŒUVRE2, XX EXEMPLAIRE2
+DF, XX ŒUVRE2, XX EXEMPLAIRE3
+DF, XX ŒUVRE2, XX EXEMPLAIRE4
+
+EXEMPLAIRE1: numéro d'exemplaire, état, date d'achat
+::
+EXEMPLAIRE2: 1, bon état, 12/6/1975
+EXEMPLAIRE3: 2, bon état, 1/8/1977
+EXEMPLAIRE4: 3, reliure rongée, 3/4/2005

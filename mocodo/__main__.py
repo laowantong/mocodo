@@ -1,86 +1,343 @@
+import mimetypes
+from pathlib import Path
+import re
 import sys
+
+import urllib3
 
 if sys.version_info < (3, 6):
     print(f"Mocodo requires Python 3.6 or later to run.\nThis version is {sys.version}.")
     sys.exit()
 
-import os
+import importlib
+import json
+import contextlib
+import requests
+import shutil
+import urllib
+
+from .argument_parser import parsed_arguments, Transformations
 from .common import Common, safe_print_for_PHP
+from .convert.read_template import read_template
+from .convert.relations import Relations
 from .file_helpers import write_contents
-from .argument_parser import parsed_arguments
-from .mcd import Mcd
-from .relations import Relations
 from .font_metrics import font_metrics_factory
-from .mcd_to_svg import main as mcd_to_svg
-from .mocodo_error import MocodoError
+from .guess_title import may_update_params_with_guessed_title
+from .mcd import Mcd
+from .mcd_to_svg import main as dump_mcd_to_svg
+from .mocodo_error import MocodoError, subopt_error
+from .rewrite import op_tk, guess_entities
+from .tools.graphviz_tools import minify_graphviz
+from .tools.string_tools import urlsafe_encoding
+from .tools.various import invert_dict
 
 
-def main():
-    try:
-        params = parsed_arguments()
-        common = Common(params)
-        clauses = common.load_input_file()
-        get_font_metrics = font_metrics_factory(params)
-        if params["restore"]:
-            import shutil  # fmt: skip
-            shutil.copyfile(
-                os.path.join(params["script_directory"], "resources", "pristine_sandbox.mcd"),
-                "sandbox.mcd",
-            )
-            return write_contents("params.json", "{}")
-        if params["print_params"]:
-            import json  # fmt: skip
-            for added_key in params["added_keys"][:]:
-                del params[added_key]
-            params["print_params"] = False
-            params_contents = json.dumps(params, ensure_ascii=False, indent=2, sort_keys=True)
-            return safe_print_for_PHP(params_contents)
-        if params["obfuscate"]:
-            from .obfuscate import obfuscate  # fmt: skip
-            return safe_print_for_PHP(obfuscate(clauses, params))
-        mcd = Mcd(clauses, get_font_metrics, **params)
-        if params["fit"] is not None:
-            return safe_print_for_PHP(mcd.get_reformatted_clauses(params["fit"]))
-        if params["flip"]:
-            return safe_print_for_PHP(
-                {
-                    "v": mcd.get_clauses_vertical_mirror,
-                    "h": mcd.get_clauses_horizontal_mirror,
-                    "d": mcd.get_clauses_diagonal_mirror,
-                }[params["flip"]]()
-            )
-        if params["arrange"]:
-            params.update(mcd.get_layout_data())
-            if params["arrange"] == "ga":
-                from .arrange_ga import arrange
-            elif params["arrange"] == "bb":
-                from .arrange_bb import arrange
-            result = arrange(**params)
-            if result:
-                mcd.set_layout(**result)
-                return safe_print_for_PHP(mcd.get_clauses())
-            raise MocodoError(9, _('Failed to calculate a planar layout.'))  # fmt: skip
-        if params["detect_overlaps"]:
+SHOW_ARGS = invert_dict({
+    "mcd": ["mcd"],
+    "rw": ["rw", "source", "text", "code", "mocodo"],
+    "cv": ["cv", "mld", "ddl", "sql"],
+})
+
+class ResponseLogger:
+
+    def __init__(self, params):
+        if not params["is_magic"]:
+            self.may_log = self.log_nothing
+            return
+        self.response = {
+            "mld": params["mld"],
+            "args_to_delete": params["args_to_delete"],
+            "opt_to_restore": params["opt_to_restore"],
+            "redirect_output": params["redirect_output"],
+            "select": params["select"],
+        }
+        self.may_log = self.log_for_magic
+        self.path = Path(f"{params['output_name']}_response_for_magic_command.json")
+        self.dump()
+    
+    def log_nothing(self, *args, **kwargs):
+        pass
+
+    def log_for_magic(self, key, value):
+        self.response[key] = value
+        self.dump()
+    
+    def dump(self):
+        self.path.write_text(json.dumps(self.response, ensure_ascii=False))
+
+
+def flip(source, subargs):
+    for subsubopt in "".join(subargs.keys()):
+        mcd = Mcd(source)
+        if subsubopt == "v":
+            source = mcd.get_vertically_flipped_clauses()
+        elif subsubopt == "h":
+            source = mcd.get_horizontally_flipped_clauses()
+        elif subsubopt == "d":
+            source = mcd.get_diagonally_flipped_clauses()
+        else:
+            subopt_error("flip", subsubopt)
+    return source
+
+
+class Runner:
+
+    def __init__(self):
+        try:
+            self.params = parsed_arguments()
+            self.parsing_error = None
+            self.common = Common(self.params)
+            self.get_font_metrics = font_metrics_factory(self.params)
+        except MocodoError as e:
+            # Raising a parsing error must be delayed, otherwise it will not be displayed as a MocodoError
+            self.parsing_error = e
+    
+    def __call__(self):
+        if self.parsing_error:
+            raise self.parsing_error
+        
+        source = self.common.load_input_file()
+
+        if self.params["restore"]:
+            path = Path(self.params["script_directory"], "resources", "pristine_sandbox.mcd")
+            shutil.copyfile(path, "sandbox.mcd")
+            return write_contents("self.params.json", "{}")
+        
+        if self.params["print_params"]:
+            for added_key in self.params["keys_to_hide"][:]:
+                del self.params[added_key]
+            self.params["print_params"] = False
+            self.params_contents = json.dumps(self.params, ensure_ascii=False, indent=2, sort_keys=True)
+            return safe_print_for_PHP(self.params_contents)
+
+        self.add_gutter_params(self.params)
+
+        if self.params["mld"] or ("transform" in self.params and self.params["transform"] == []):
+            # In case there is an option `--mld` or an option `--transform` without arguments,
+            # inject manually the equivalent --convert sub-option
+            self.params["mld"] = True
+            self.params["convert"].insert(0, ("markdown", {}))
+
+        if "select" in self.params: # the user wants to override the default display policy under Jupyter
+            if "*" in self.params["select"]:
+                self.params["select"] = ["mcd", "rw", "cv"]
+            normalized_user_choices = []
+            for k in self.params["select"]:
+                if k.lower() not in SHOW_ARGS:
+                    raise MocodoError(28, _('Unknown argument "{k}" for option --select.').format(k=k)) # fmt: skip
+                normalized_user_choices.append(SHOW_ARGS[k.lower()])
+            self.params["select"] = normalized_user_choices
+        else:
+            if self.params["rewrite"] and self.params["convert"]:
+                self.params["select"] = ["mcd", "cv"]
+            elif self.params["rewrite"]:
+                self.params["select"] = ["mcd", "rw"]
+            elif self.params["convert"] and self.params["mld"]:
+                self.params["select"] = ["mcd", "cv"]
+            elif self.params["convert"]:
+                self.params["select"] = ["cv"]
+            else:
+                self.params["select"] = ["mcd"]
+
+        response = ResponseLogger(self.params)
+
+        if self.params["rewrite"]:
+            for (subopt, subargs) in self.params["rewrite"]:
+                if subopt == "echo":
+                    pass
+                elif subopt == "flip":
+                    source = flip(source, subargs)
+                elif subopt == "create" and "entities" in subargs:
+                    source = guess_entities.run(source, subargs["entities"])
+                elif subopt == "delete" and "dfs" in subargs:
+                    module = importlib.import_module(f".rewrite._delete_dfs", package="mocodo")
+                    source = module.run(source, self.params)
+                elif subopt in self.params["op_tk_rewritings"]: # ex.: create, delete, ascii, etc.
+                    source = op_tk.run(source, op_name=subopt, subargs=subargs, params=self.params).rstrip()
+                else: # An unspecified rewrite operation, dynamically loaded
+                    try:
+                        module = importlib.import_module(f".rewrite._{subopt}", package="mocodo")
+                    except ModuleNotFoundError:
+                        raise subopt_error("rewrite", subopt)
+                    source = module.run(source, subopt=subopt, subargs=subargs, params=self.params).rstrip()
+                response.may_log("rewritten_source", source)
+            if not self.params["is_magic"]:
+                safe_print_for_PHP(self.common.update_source(source))
+        
+        may_update_params_with_guessed_title(source, self.params)
+
+        converted_file_paths = [] # list of files to be displayed in the notebook
+        raw_relations = None
+        sql_relations = None
+        if self.params["convert"]:
+            response.may_log("has_explicit_conversion", True)
+            results = []
+            for (subopt, subargs) in self.params["convert"]:
+
+                # Try to interpret subopt as the stem or path of a relation template
+                template = None
+                official_template_dir = Path(self.params["script_directory"], "resources", "relation_templates")
+                if subopt == "relation":
+                    stem_or_path = next(iter(subargs.keys()), "") # ignore all sub-arguments after the first one
+                    template = read_template(stem_or_path, official_template_dir)
+                elif Path(official_template_dir, f"{subopt}.yaml").is_file():
+                    template_suffix = next(iter(subargs.keys()), "") # ignore all sub-arguments after the first one
+                    if template_suffix and set("bce").issuperset(template_suffix):
+                        stem = f"{subopt}-{''.join(sorted(template_suffix))}"
+                    else:
+                        stem = subopt
+                    template = read_template(stem, official_template_dir)
+                
+                # If the subopt was a relation template, use it to convert the source
+                if template:
+                    if template["extension"] == "sql":
+                        if not sql_relations:
+                            sql_source = source
+                            sql_source = op_tk.run(sql_source, "ascii", {"labels": 1, "roles": 1}, self.params)
+                            sql_source = op_tk.run(sql_source, "snake", {"labels": 1}, self.params)
+                            sql_source = op_tk.run(sql_source, "lower", {"attrs": 1, "roles": 1}, self.params)
+                            sql_source = op_tk.run(sql_source, "upper", {"boxes": 1}, self.params)
+                            sql_mcd = Mcd(sql_source, self.get_font_metrics, **self.params)
+                            sql_relations = Relations(sql_mcd, self.params)
+                        text = sql_relations.get_text(template)
+                    else:
+                        if not raw_relations:
+                            mcd = Mcd(source, self.get_font_metrics, **self.params)
+                            raw_relations = Relations(mcd, self.params)
+                        text = raw_relations.get_text(template)
+                    result = {
+                        "stem_suffix": template["stem_suffix"],
+                        "text": text,
+                        "extension": template["extension"],
+                        "to_defer": template.get("to_defer", False),
+                        "highlight": template.get("highlight", "plain"),
+                    }
+
+                # Fall back to a dynamically loaded conversion operation
+                else:
+                    try:
+                        module = importlib.import_module(f".convert._{subopt}", package="mocodo")
+                    except ModuleNotFoundError:
+                        raise subopt_error("convert", subopt)
+                    result = module.run(source, subargs, self.common)
+                
+                result["text_path"] = Path(f"{self.params['output_name']}{result['stem_suffix']}.{result['extension']}")
+                self.common.dump_file(result["text_path"], f"{result['text'].rstrip()}\n")
+                results.append(result)
+            for result in results:
+                converted_file_paths.extend(self.get_converted_file_paths(result))
+            response.may_log("converted_file_paths", converted_file_paths)
+
+        if not raw_relations: # if the MCD has not be calculated during the conversions
+            mcd = Mcd(source, self.get_font_metrics, **self.params)
+        self.control_for_overlaps(mcd)
+        resulting_paths = dump_mcd_to_svg(mcd, self.common)  # potential side-effect: update *_geo.json
+        for path in resulting_paths:
+            safe_print_for_PHP(self.common.output_success_message(path))
+
+    def get_rendering_service(self, extension):
+        path = Path(self.params["script_directory"], "resources", "rendering_services.json")
+        try:
+            rendering_services = json.loads(path.read_text())
+        except FileNotFoundError:
+            raise MocodoError(46, _('The file "{path}" is missing.').format(path=path))  # fmt: skip
+        except json.decoder.JSONDecodeError:
+            raise MocodoError(47, _('The file "{path}" is not a valid JSON file.').format(path=path))  # fmt: skip
+        except Exception as err:
+            raise MocodoError(48, _('The file "{path}" could not be read:\n{err}').format(path=path, err=err))  # fmt: skip
+        try:
+            return rendering_services[extension]
+        except KeyError:
+            raise MocodoError(49, _('No third-party rendering service for extension "{extension}". You may want to add one in "{path}".').format(extension=extension, path=path))
+
+    def get_converted_file_paths(self, result):
+        if result.get("to_defer") and "defer" in self.params:
+            # This text must be rendered by a third-party service
+            service = self.get_rendering_service(result["extension"])
+            data = result["text"]
+            for preprocessing in service.get("preprocessing", []):
+                if preprocessing == "minify_graphviz":
+                    # Spare some bandwidth
+                    data = minify_graphviz(data)
+                elif preprocessing == "urlsafe_encoding":
+                    data = urlsafe_encoding(data)
+                elif preprocessing == "encode_prefix":
+                    # Sole use case (so far): "https://mocodo.net?mcd="" becomes "https%3A//mocodo.net%3Fmcd%3D"
+                    index = data.find("=") + 1
+                    data = urllib.parse.quote(data[:index]) + data[index:]
+            url = service["url"].format(data=data)
+            response = requests.get(url)
+            if not response.ok:
+                raise MocodoError(23, _("The HTTP status code {code} was returned by:\n{url}").format(code=response.status_code, url=url)) # fmt: skip
+            content_type = response.headers['content-type']
+            extension = mimetypes.guess_extension(content_type)
+            resp_path = result["text_path"].with_suffix(extension)
+            if content_type.startswith("text/"):
+                resp_path.write_text(response.text)
+            else:
+                resp_path.write_bytes(response.content)
+            yield str(resp_path)
+        elif result.get("stem_suffix") == "_mld" and result.get("extension") == "mcd" and self.params["is_magic"]: # relational diagram
+            mld = Mcd(result["text"], self.get_font_metrics, **self.params)
+            backup_input = self.params["input"]
+            backup_output_name = self.params["output_name"]
+            self.params["input"] = result["text_path"]
+            self.params["output_name"] = f"{self.params['output_name']}_mld"
+            dump_mcd_to_svg(mld, self.common)
+            self.params["input"] = backup_input
+            self.params["output_name"] = backup_output_name
+            yield str(result['text_path'].with_suffix(".svg"))
+        else:
+            # This text doesn't need further processing
+            yield str(result["text_path"])
+
+    def control_for_overlaps(self, mcd):
+        if self.params["detect_overlaps"]:
             overlaps = mcd.get_overlaps()
             if overlaps:
                 acc = []
                 for (b1, b2, b3, b4) in overlaps:
                     if b3 == b4:
-                        acc.append(_("- Leg “{b1} — {b2}” overlaps “{b3}”.").format(b1=b1, b2=b2, b3=b3))  # fmt: skip
+                        acc.append(_('  - Leg "{b1} — {b2}" overlaps "{b3}".').format(b1=b1, b2=b2, b3=b3))  # fmt: skip
                     else:
-                        acc.append(_("- Legs “{b1} — {b2}” and “{b3} — {b4}” overlap.").format(b1=b1, b2=b2, b3=b3, b4=b4))  # fmt: skip
-                details = "\n".join(acc)
-                raise MocodoError(29, _('On Mocodo online, click the 🔀 button to fix the following problem(s):\n{details}').format(details=details))  # fmt: skip
-        relations = Relations(mcd, params)
-        # The order of the following two lines ensures that the relational diagram is dumped after
-        # the geometry of the MCD. Later on, when drawing this relational diagram, the geometry
-        # file is found to be older, and thus regenerated.
-        mcd_to_svg(mcd, common)  # potential side-effect: update *_geo.json
-        common.dump_mld_files(relations)  # potential side-effect: generate relation diagram
+                        acc.append(_('  - Legs "{b1} — {b2}" and "{b3} — {b4}" overlap.').format(b1=b1, b2=b2, b3=b3, b4=b4))  # fmt: skip
+                details = "\n".join(sorted(acc))
+                raise MocodoError(29, _('Bad layout of boxes:\n{details}\nTo fix the problem, reorder and/or skip lines in the source text, either manually, or with the option -t arrange (chocolate bar under Mocodo online).').format(details=details))  # fmt: skip
+
+    def add_gutter_params(self, params):
+        gutters = dict(params.get("gutters", []))
+
+        # Ensure that the --gutter sub-options are a subset of {"ids", "types"}
+        for subopt in gutters:
+            if subopt not in ("ids", "types"):
+                raise subopt_error("gutters", subopt)
+        
+        # Create the sub-option "ids" if needed, and initialize id_gutter params
+        if "ids" not in gutters:
+            gutters["ids"] = {} # created at the end of the (ordered) dict
+        params["id_gutter_visibility"] = gutters["ids"].get("visibility", "auto")
+        params["id_gutter_weak_string"] = gutters["ids"].get("weak", "id")
+        params["id_gutter_strong_string"] = gutters["ids"].get("strong", "ID")
+        s = gutters["ids"].get("alts", "123456789")
+        params["id_gutter_alts"] = dict(zip("123456789", s + "123456789"[len(s):]))
+
+        # Create the sub-option "types" if needed, and initialize type_gutter params
+        # NB: the gutter for types is not implemented yet, but all needed params are already there
+        if "types" not in gutters:
+            gutters["types"] = {}
+        params["type_gutter_visibility"] = gutters["types"].get("visibility", "auto")
+
+        # We are sure that gutters is a dict with keys "ids" and "types" only. Order matters.
+        (params["left_gutter"], params["right_gutter"]) = tuple(gutters.keys())
+
+def main():
+    run = Runner()
+    try:
+        run()
     except MocodoError as err:
         print(str(err), file=sys.stderr)
         sys.exit(err.errno)
 
 
-if __name__ == "__main__":
+if __name__ == "__main__": # to be run with `python -m mocodo`
     main()

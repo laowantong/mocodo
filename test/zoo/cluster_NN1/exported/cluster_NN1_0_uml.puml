@@ -1,0 +1,27 @@
+@startuml "cluster_NN1"
+
+!define Table(x) class "x" << (T,#FFFFFF) >>
+!define pk(x) <b>x</b>
+
+Table("Voilier") {
+    {field} + pk(num voilier)
+    {field} + longueur
+}
+
+"Réservation" "*" --- "1" "Voilier": "Offrir0"
+
+"Réservation" "*" --- "1" "Semaine": "Offrir1"
+
+Table("Semaine") {
+    {field} + pk(num semaine)
+    {field} + date début
+}
+
+Table("Réservation") {
+    {field} + pk(num résa)
+    {field} + arrhes
+    {field} + date résa
+    {field} + tarif
+}
+
+@enduml

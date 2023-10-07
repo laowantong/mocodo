@@ -1,0 +1,8 @@
+Table Appliquer {
+  "employé" VARCHAR(42) [not null]
+  projet VARCHAR(42) [not null]
+  "compétence" VARCHAR(42) [not null]
+  Indexes {
+    ("employé", projet, "compétence") [pk]
+  }
+}

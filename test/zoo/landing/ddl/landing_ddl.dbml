@@ -1,0 +1,85 @@
+Table "AYANT-DROIT" {
+  matricule VARCHAR(42) [not null]
+  "nom ayant-droit" VARCHAR(42) [not null]
+  lien VARCHAR(42)
+  Indexes {
+    (matricule, "nom ayant-droit") [pk]
+  }
+}
+
+Table COMPOSER {
+  "réf. pièce composée" VARCHAR(42) [not null]
+  "réf. pièce composante" VARCHAR(42) [not null]
+  "quantité" VARCHAR(42)
+  Indexes {
+    ("réf. pièce composée", "réf. pièce composante") [pk]
+  }
+}
+
+Table "DÉPARTEMENT" {
+  "num. département" VARCHAR(42) [pk, not null]
+  "nom département" VARCHAR(42)
+}
+
+Table "EMPLOYÉ" {
+  matricule VARCHAR(42) [pk, not null]
+  "nom employé" VARCHAR(42)
+  "num. département" VARCHAR(42) [not null]
+}
+
+Table FOURNIR {
+  "num. projet" VARCHAR(42) [not null]
+  "réf. pièce" VARCHAR(42) [not null]
+  "num. société" VARCHAR(42) [not null]
+  "qté fournie" VARCHAR(42)
+  Indexes {
+    ("num. projet", "réf. pièce", "num. société") [pk]
+  }
+}
+
+Table "PIÈCE" {
+  "réf. pièce" VARCHAR(42) [pk, not null]
+  "libellé pièce" VARCHAR(42)
+}
+
+Table PROJET {
+  "num. projet" VARCHAR(42) [pk, not null]
+  "nom projet" VARCHAR(42)
+  "matricule responsable" VARCHAR(42) [null]
+}
+
+Table "REQUÉRIR" {
+  "num. projet" VARCHAR(42) [not null]
+  "réf. pièce" VARCHAR(42) [not null]
+  "qté requise" VARCHAR(42)
+  Indexes {
+    ("num. projet", "réf. pièce") [pk]
+  }
+}
+
+Table "SOCIÉTÉ" {
+  "num. société" VARCHAR(42) [pk, not null]
+  "raison sociale" VARCHAR(42)
+  "num. société mère" VARCHAR(42) [null]
+}
+
+Table TRAVAILLER {
+  matricule VARCHAR(42) [not null]
+  "num. projet" VARCHAR(42) [not null]
+  Indexes {
+    (matricule, "num. projet") [pk]
+  }
+}
+
+Ref:"AYANT-DROIT".matricule > "EMPLOYÉ".matricule
+Ref:COMPOSER.("réf. pièce composée", "réf. pièce composante") > "PIÈCE".("réf. pièce", "réf. pièce")
+Ref:"EMPLOYÉ"."num. département" > "DÉPARTEMENT"."num. département"
+Ref:FOURNIR."num. projet" > PROJET."num. projet"
+Ref:FOURNIR."réf. pièce" > "PIÈCE"."réf. pièce"
+Ref:FOURNIR."num. société" > "SOCIÉTÉ"."num. société"
+Ref:PROJET."matricule responsable" > "EMPLOYÉ".matricule
+Ref:"REQUÉRIR"."num. projet" > PROJET."num. projet"
+Ref:"REQUÉRIR"."réf. pièce" > "PIÈCE"."réf. pièce"
+Ref:"SOCIÉTÉ"."num. société mère" > "SOCIÉTÉ"."num. société"
+Ref:TRAVAILLER.matricule > "EMPLOYÉ".matricule
+Ref:TRAVAILLER."num. projet" > PROJET."num. projet"

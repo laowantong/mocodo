@@ -1,83 +1,66 @@
 import operator
-import re
 from math import hypot, sqrt
 
 from .mocodo_error import MocodoError
-
-auto_correction = {
-    "01": ["O1", "o1", "10", "1O", "1o"],
-    "0N": ["ON", "oN", "NO", "No", "N0"],
-    "0n": ["On", "on", "no", "nO", "n0"],
-    "1N": ["N1"],
-    "1n": ["n1"],
-}
-auto_correction = {v: k for k in auto_correction for v in auto_correction[k]}
+from .tools.string_tools import surrounds, is_a_description
 
 
 class Leg:
-    def __init__(
-        self,
-        association,
-        card,
-        entity_name,
-        match_card=re.compile(r"(-?(?:_11|/0N|/1N|..))([<>]?)\s*(?:\[(.+?)\])?").match,
-        **params,
-    ):
-        params["strengthen_card"] = params.get("strengthen_card", "_1,1_")
+    def __init__(self, association, leg, **params):
         params["card_format"] = params.get("card_format", "{min_card},{max_card}")
-        (card, arrow, note) = match_card(card).groups()
-        kind = "leg"
-        is_masked = False
-        if card.startswith("-"):
-            card = card[1:]
-            is_masked = True
-        if card == "_11":
-            kind = "strengthening"
-            card = "11"
-            card_view = params["strengthen_card"]
-        elif association.kind == "cluster":
-            if card.startswith("/"):
-                kind = "cluster_peg"
-                card = card[1:]
-            else:
-                kind = "cluster_leg"
-            card_view = params["card_format"].format(min_card=card[0], max_card=card[1])
-        elif association.kind.startswith("inheritance"):
-            if association.prettify_inheritance:
-                if association.kind[-2:] == "=>" == card[:2]:
-                    kind = "inheritance_emphasis"
-                elif association.kind[-2:] == "<=" != card[:2]:
-                    kind = "inheritance_emphasis"
-                card_view = "     "
-            else:
-                card_view = "     "
-        elif card.startswith("XX"):
-            card_view = "     "
+
+        self.card = leg.get("card", "XX")
+        if self.card == "XX" or leg.get("card_hidden") == "-":
+            self.card_view = "     "
+        elif "X" in self.card:
+            self.card_view = self.card.replace("X", "")
         else:
-            card = auto_correction.get(card, card)
-            card_view = params["card_format"].format(min_card=card[0], max_card=card[1])
-        if is_masked:
-            card_view = "     "
-        self.card = card
-        self.arrow = arrow
-        self.kind = kind
-        self.card_view = card_view
-        self.note = note and note.replace("<<<safe-comma>>>", ",").replace("<<<safe-colon>>>", ":")
+            self.card_view = params["card_format"].format(min_card=self.card[0], max_card=self.card[1])
+        
+        self.has_underlined_card = False
+        if leg.get("card_prefix") == "_":
+            if self.card != "11": # silently ignore the prefix
+                self.kind = "leg"
+                del leg["card_prefix"]
+            else:
+                self.kind = "strengthening"
+                self.card_view = params.get("strengthen_card", "_1,1_")
+                if surrounds(self.card_view, "_"):
+                    self.has_underlined_card = True
+                    self.card_view = self.card_view[1:-1]
+        elif association.kind == "cluster":
+            self.kind = "cluster_peg" if leg.get("card_prefix") == "/" else "cluster_leg"
+        else:
+            self.kind = "leg"
+        
+        self.arrow = leg.get("leg_arrow", (">" if self.kind == "cluster_peg" else ""))
+        self.note = leg.get("leg_note")
         self.association = association
-        self.entity_name = entity_name
+        self.entity_name = leg["entity"]
         self.twist = False
         self.identifier = None
+        self.unicities = ""
+        self.is_in_elected_group = False
 
     def register_entity(self, entity):
         self.entity = entity
     
     def register_mcd_has_cif(self, mcd_has_cif):
         self.mcd_has_cif = mcd_has_cif
+        if self.mcd_has_cif:
+            self.arrow = ""
+
+    def append_candidate_group(self, candidate_number: str):
+        if candidate_number == "0":
+            self.is_in_elected_group = True
+        else:
+            # concatenate the candidate number to the beginning of the string to ensure sorting
+            self.unicities = candidate_number + self.unicities
 
     def calculate_size(self, style, get_font_metrics):
         font = get_font_metrics(style["card_font"])
         self.h = font.get_pixel_height()
-        self.w = font.get_pixel_width(self.card_view.strip("_"))
+        self.w = font.get_pixel_width(self.card_view)
 
     def set_spin_strategy(self, spin):
         self.spin = spin
@@ -100,57 +83,25 @@ class Leg:
         cw = self.w + 2 * card_margin
         ch = self.h + 2 * card_margin
         leg = straight_leg_factory(ex, ey, ew, eh, ax, ay, aw, ah, cw, ch, card_margin)
-        if self.kind == "cluster_peg":
-            result.append(
-                (
-                    "line" if self.mcd_has_cif else "dash_line",
-                    {
-                        "x0": ex,
-                        "y0": ey,
-                        "x1": ax,
-                        "y1": ay,
-                        "stroke_color": style["leg_stroke_color"],
-                        "stroke_depth": style["leg_stroke_depth"],
-                        "dash_width": style["dash_width"],
-                    },
-                )
+        result.append(
+            (
+                "line",
+                {
+                    "x0": ex,
+                    "y0": ey,
+                    "x1": ax,
+                    "y1": ay,
+                    "stroke_color": style["leg_stroke_color"],
+                    "stroke_depth": style["leg_stroke_depth"],
+                },
             )
-        elif self.kind == "inheritance_emphasis":
-            for d in (style["leg_stroke_depth"], -style["leg_stroke_depth"]):
-                (x0, y0, x1, y1) = orthogonal_translation(ex, ey, ax, ay, d)
-                result.append(
-                    (
-                        "line",
-                        {
-                            "x0": x0,
-                            "y0": y0,
-                            "x1": x1,
-                            "y1": y1,
-                            "stroke_color": style["leg_stroke_color"],
-                            "stroke_depth": style["leg_stroke_depth"],
-                        },
-                    )
-                )
-        else:
-            result.append(
-                (
-                    "line",
-                    {
-                        "x0": ex,
-                        "y0": ey,
-                        "x1": ax,
-                        "y1": ay,
-                        "stroke_color": style["leg_stroke_color"],
-                        "stroke_depth": style["leg_stroke_depth"],
-                    },
-                )
-            )
-
+        )
         (x, y) = leg.card_pos(self.twist, geo["shift"][self.identifier])
         tx = x + card_margin
         ty = y - card_margin - style["card_baseline"]
-        if self.note:
-            result.append(
+        self.saved_card_description = []
+        if is_a_description(self.note):
+            self.saved_card_description.append(
                 (
                     "text_with_note",
                     {
@@ -165,7 +116,7 @@ class Leg:
                 )
             )
         else:
-            result.append(
+            self.saved_card_description.append(
                 (
                     "text",
                     {
@@ -179,8 +130,8 @@ class Leg:
                     },
                 )
             )
-        if self.kind == "strengthening" and self.card_view[:1] + self.card_view[-1:] == "__":
-            result.append(
+        if self.has_underlined_card:
+            self.saved_card_description.append(
                 (
                     "line",
                     {
@@ -251,8 +202,9 @@ class Leg:
         (x, y) = leg.card_pos(geo["shift"][self.identifier])
         tx = x + card_margin
         ty = y - card_margin - style["card_baseline"]
-        if self.note:
-            result.append(
+        self.saved_card_description = []
+        if is_a_description(self.note):
+            self.saved_card_description.append(
                 (
                     "text_with_note",
                     {
@@ -267,7 +219,7 @@ class Leg:
                 )
             )
         else:
-            result.append(
+            self.saved_card_description.append(
                 (
                     "text",
                     {
@@ -277,12 +229,12 @@ class Leg:
                         "family": style["card_font"]["family"],
                         "size": style["card_font"]["size"],
                         "note": self.note,
-                        "text": self.card_view.strip("_"),
+                        "text": self.card_view,
                     },
                 )
             )
-        if self.kind == "strengthening" and self.card_view[:1] + self.card_view[-1:] == "__":
-            result.append(
+        if self.has_underlined_card:
+            self.saved_card_description.append(
                 (
                     "line",
                     {
@@ -292,6 +244,88 @@ class Leg:
                         "y1": ty - style["card_underline_skip_height"],
                         "stroke_color": style["card_text_color"],
                         "stroke_depth": style["card_underline_depth"],
+                    },
+                )
+            )
+        if self.arrow:
+            (x, y, a, b) = leg.arrow_pos(self.arrow, geo["ratio"][self.identifier])
+            c = hypot(a, b)
+            (cos, sin) = (a / c, b / c)
+            result.append(
+                (
+                    "arrow",
+                    {
+                        "x0": x,
+                        "y0": y,
+                        "x1": x + style["arrow_width"] * cos - style["arrow_half_height"] * sin,
+                        "y1": y - style["arrow_half_height"] * cos - style["arrow_width"] * sin,
+                        "x2": x + style["arrow_axis"] * cos,
+                        "y2": y - style["arrow_axis"] * sin,
+                        "x3": x + style["arrow_width"] * cos + style["arrow_half_height"] * sin,
+                        "y3": y + style["arrow_half_height"] * cos - style["arrow_width"] * sin,
+                        "stroke_color": style["leg_stroke_color"],
+                    },
+                ),
+            )
+        return result
+
+class InheritanceLeg:
+    def __init__(self, inheritance, leg, **params):
+        self.kind = leg["kind"] # "-" or "="
+        self.arrow = leg["arrow"]
+        self.inheritance = inheritance
+        self.entity_name = leg["entity"]
+        self.identifier = f"{self.inheritance.name} / {self.entity_name}"
+
+    def register_entity(self, entity):
+        self.entity = entity
+    
+    def calculate_size(self, style, get_font_metrics):
+        font = get_font_metrics(style["card_font"])
+        self.h = font.get_pixel_height()
+        self.w = font.get_pixel_width("--")
+
+    def description(self, style, geo):
+        result = []
+        ex = self.entity.cx
+        ey = self.entity.cy
+        ew = self.entity.w // 2
+        eh = self.entity.h // 2
+        ax = self.inheritance.cx
+        ay = self.inheritance.cy
+        aw = self.inheritance.w // 2
+        ah = self.inheritance.h // 2
+        card_margin = style["card_margin"]
+        cw = self.w + 2 * card_margin
+        ch = self.h + 2 * card_margin
+        leg = straight_leg_factory(ex, ey, ew, eh, ax, ay, aw, ah, cw, ch, card_margin)
+        if self.kind == "=":
+            for d in (style["leg_stroke_depth"], -style["leg_stroke_depth"]):
+                (x0, y0, x1, y1) = orthogonal_translation(ex, ey, ax, ay, d)
+                result.append(
+                    (
+                        "line",
+                        {
+                            "x0": x0,
+                            "y0": y0,
+                            "x1": x1,
+                            "y1": y1,
+                            "stroke_color": style["leg_stroke_color"],
+                            "stroke_depth": style["leg_stroke_depth"],
+                        },
+                    )
+                )
+        else:
+            result.append(
+                (
+                    "line",
+                    {
+                        "x0": ex,
+                        "y0": ey,
+                        "x1": ax,
+                        "y1": ay,
+                        "stroke_color": style["leg_stroke_color"],
+                        "stroke_depth": style["leg_stroke_depth"],
                     },
                 )
             )

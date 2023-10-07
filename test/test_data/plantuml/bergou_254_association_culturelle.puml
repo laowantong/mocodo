@@ -1,0 +1,102 @@
+@startuml title
+
+top to bottom direction
+' skinparam linetype ortho
+
+' %%mocodo
+' Bénévole: id bénévole, nom, prénom, téléphone, courriel
+' Bureau, 1N Section, 1N Bénévole: fonction
+' Lieu: id lieu, nom, adresse, capacité
+' Accueillir, 1N Lieu, 11 Activité
+
+' Référent, 0N Bénévole, 11 Section
+' Section: code section, libellé, début saison
+' Proposer, _11 Activité, 1N Section
+' Activité: num activité, libellé, description, jour semaine, horaire, durée séance, tarif annuel
+
+':
+' Parenté, 0N Adhérent, 0N Adhérent: nature
+' Adhérent: num adhérent, nom, prénom, adresse, cp, ville, téléphone, courriel, date naissance
+' Adhésion, 1N Adhérent, 1N Activité: date adhésion, nom banque, numéro compte, numéro chèque
+
+' (I) --Référent, -> Bureau, .. Bénévole, ..Section
+
+class Bénévole {
+  + **id bénévole**
+  + nom
+  + prénom
+  + téléphone
+  + courriel
+}
+
+Bénévole "1..*" -- "1..*" Section: Bureau
+(Bénévole, Section) .. Bureau
+class Bureau {
+    + fonction
+}
+
+class Lieu {
+    + **id lieu**
+    + nom
+    + adresse
+    + capacité
+}
+
+Lieu "1" -- "1..*" Activité: Accueillir
+
+diamond REFLEXIVE_ASSOCIATION
+REFLEXIVE_ASSOCIATION -- "*" Adhérent
+REFLEXIVE_ASSOCIATION -- "*" Adhérent
+Parenté .. REFLEXIVE_ASSOCIATION
+class Parenté {
+    + nature
+}
+
+Bénévole "1" -- "*" Section: Référent
+
+class Section {
+    + **code section**
+    + libellé
+    + début saison
+}
+
+Activité "1..*" -* "1" Section: Proposer
+
+note "Inclusion" as I1
+I1 -[dotted]- Référent
+I1 -[dotted]> Bureau
+I1 -[dotted]- Bénévole
+I1 -[dotted]- Section
+
+class Activité {
+    + **num activité**
+    + libellé
+    + description
+    + jour semaine
+    + horaire
+    + durée séance
+    + tarif annuel
+}
+
+Adhérent "1..*" -- "1..*" Activité: Adhésion
+(Adhérent, Activité) .. Adhésion
+class Adhésion {
+    + date adhésion
+    + nom banque
+    + numéro compte
+    + numéro chèque
+}
+
+class Adhérent {
+    + **num adhérent**
+    + nom
+    + prénom
+    + adresse
+    + cp
+    + ville
+    + téléphone
+    + courriel
+    + date naissance
+}
+
+@enduml

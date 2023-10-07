@@ -1,0 +1,38 @@
+Table Appartement {
+  "code rue" VARCHAR(42) [not null]
+  "num immeuble" VARCHAR(42) [not null]
+  "num étage" VARCHAR(42) [not null]
+  "num appart." VARCHAR(42) [not null]
+  "nb pièces" VARCHAR(42)
+  Indexes {
+    ("code rue", "num immeuble", "num étage", "num appart.") [pk]
+  }
+}
+
+Table Immeuble {
+  "code rue" VARCHAR(42) [not null]
+  "num immeuble" VARCHAR(42) [not null]
+  "nb étages" VARCHAR(42)
+  Indexes {
+    ("code rue", "num immeuble") [pk]
+  }
+}
+
+Table Rue {
+  "code rue" VARCHAR(42) [pk, not null]
+  "nom rue" VARCHAR(42)
+}
+
+Table "Étage" {
+  "code rue" VARCHAR(42) [not null]
+  "num immeuble" VARCHAR(42) [not null]
+  "num étage" VARCHAR(42) [not null]
+  "nb appartements" VARCHAR(42)
+  Indexes {
+    ("code rue", "num immeuble", "num étage") [pk]
+  }
+}
+
+Ref:Appartement.("code rue", "num étage", "num immeuble") > "Étage".("code rue", "num étage", "num immeuble")
+Ref:Immeuble."code rue" > Rue."code rue"
+Ref:"Étage".("code rue", "num immeuble") > Immeuble.("code rue", "num immeuble")

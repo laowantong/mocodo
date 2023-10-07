@@ -1,0 +1,9 @@
+Projet: projet, date début, date fin
+DF, 11 Appliquer, 1N Projet
+Appliquer: id. appliquer
+DF, 11 Appliquer, 0N Employé
+
+:
+Compétence: compétence, libellé
+DF, 11 Appliquer, 1N Compétence
+Employé: employé, nom

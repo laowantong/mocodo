@@ -1,0 +1,38 @@
+@startuml "drain"
+
+!define Table(x) class "x" << (T,#FFFFFF) >>
+!define pk(x) <b>x</b>
+
+Table("Entreprise") {
+    {field} + pk(nom entreprise)
+    {field} + adresse
+    {field} + téléphone
+}
+
+"Entreprise" "1" --- "*" "Stage": "Proposer"
+
+Table("Stage") {
+    {field} + pk(num. stage)
+    {field} + sujet
+    {field} + date proposition
+}
+
+"Étudiant" "1..*" --- "1" "Stage": "Attribuer"
+
+Table("Étudiant") {
+    {field} + pk(num étudiant)
+    {field} + nom
+    {field} + date signature
+}
+
+"Étudiant" "*" --- "1..*" "Date": "Soutenir"
+("Étudiant", "Date") .. "Soutenir"
+Table("Soutenir") {
+    {field} + note stage
+}
+
+Table("Date") {
+    {field} + pk(date)
+}
+
+@enduml

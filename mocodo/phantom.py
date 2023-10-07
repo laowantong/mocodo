@@ -1,11 +1,18 @@
 class Phantom:
 
-    def __init__(self, phantom_count = 0):
-        self.name_view = self.name = " %s" % phantom_count
+    counter = 0
+
+    @classmethod
+    def reset_counter(cls):
+        cls.counter = 0
+
+    def __init__(self):
+        self.name_view = self.name = f" {Phantom.counter}"
+        Phantom.counter += 1
         self.attributes = []
         self.legs = [] # iterating over box's legs does nothing if it is not an association
         self.kind = "phantom"
-        self.clause = ":"
+        self.source = ":"
         self.identifier = None
         self.page = 0
 

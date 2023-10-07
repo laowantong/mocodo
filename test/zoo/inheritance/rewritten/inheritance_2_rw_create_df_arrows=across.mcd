@@ -1,0 +1,23 @@
+SUSCIPIT: orci, lorem
+RHONCUS, 1N> TRISTIS, 11 SUSCIPIT
+:
+:
+SODALES: convallis, ipsum
+VITAE, 11 QUAM, 1N> SODALES
+QUAM: cras, sed
+
+CONSEQUAT: fermentum, dederit
+ELIT, 11 TRISTIS, 1N> CONSEQUAT
+TRISTIS: magna, vestibulum
+/XT\ TRISTIS => SODALES, NEC, LACUS: type
+NEC: pulvinar, audis
+MOLLIS, 1N> CURABITUR, 11 NEC
+CURABITUR: gravida, amor
+
+DIGNISSIM: tellus, terra
+ALIQUET, 1N TRISTIS, 1N DIGNISSIM
+:
+:
+LACUS: tempor, fugit
+ULTRICES, 1N LIBERO, 1N LACUS
+LIBERO: posuere, lacrima

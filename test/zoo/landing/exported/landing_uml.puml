@@ -1,0 +1,67 @@
+@startuml "landing"
+
+!define Table(x) class "x" << (T,#FFFFFF) >>
+!define pk(x) <b>x</b>
+
+Table("AYANT-DROIT") {
+    {field} + pk(nom ayant-droit)
+    {field} + lien
+}
+
+"EMPLOYÉ" "1..*" --- "*" "PROJET": "DIRIGER"
+
+"PROJET" "*" --- "1..*" "PIÈCE": "REQUÉRIR"
+("PROJET", "PIÈCE") .. "REQUÉRIR"
+Table("REQUÉRIR") {
+    {field} + qté requise
+}
+
+Table("PIÈCE") {
+    {field} + pk(réf. pièce)
+    {field} + libellé pièce
+}
+
+"PIÈCE" "*" --- "*" "PIÈCE": "COMPOSER"
+("PIÈCE", "PIÈCE") .. "COMPOSER"
+Table("COMPOSER") {
+    {field} + quantité
+}
+
+"AYANT-DROIT" "*" --* "1" "EMPLOYÉ"
+
+Table("EMPLOYÉ") {
+    {field} + pk(matricule)
+    {field} + nom employé
+}
+
+Table("PROJET") {
+    {field} + pk(num. projet)
+    {field} + nom projet
+}
+
+diamond N_ARY_0
+N_ARY_0 -- "1..*" "PROJET"
+N_ARY_0 -- "1..*" "PIÈCE"
+N_ARY_0 -- "1..*" "SOCIÉTÉ"
+N_ARY_0 "FOURNIR" .. "FOURNIR"
+Table("FOURNIR") {
+    {field} + qté fournie
+}
+
+Table("DÉPARTEMENT") {
+    {field} + pk(num. département)
+    {field} + nom département
+}
+
+"EMPLOYÉ" "1..*" --- "1" "DÉPARTEMENT": "EMPLOYER"
+
+"EMPLOYÉ" "1..*" --- "*" "PROJET": "TRAVAILLER"
+
+Table("SOCIÉTÉ") {
+    {field} + pk(num. société)
+    {field} + raison sociale
+}
+
+"SOCIÉTÉ" "1..*" --- "*" "SOCIÉTÉ": "CONTRÔLER"
+
+@enduml

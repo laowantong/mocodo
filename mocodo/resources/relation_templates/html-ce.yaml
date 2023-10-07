@@ -1,0 +1,184 @@
+parent: 'html-c'
+compose_association_attribute: '<span class=''normal''>{label}</span><item>Le champ <i>{label}</i> était déjà un simple attribut de l''association <i>{this_relation_name}</i>.</item>'
+compose_deleted_child_attribute: '<span class=''normal''>{label}</span><item>Le champ <i>{label}</i> a migré à partir de l''entité-fille <i>{adjacent_source}</i> (supprimée).</item>'
+compose_deleted_child_discriminator_: '<span class=''normal''>{label}</span><item>Un champ entier <i>{label}</i> est ajouté pour indiquer la nature de la spécialisation. Il est interprété comme un code binaire\xa0: bit 1 pour la première entité-fille, bit 2 pour la deuxième, etc. Peut être vide, du fait de l''absence de contrainte de totalité.</item>'
+compose_deleted_child_discriminator_T: '<span class=''normal''>{label}</span><item>Un champ entier <i>{label}</i> est ajouté pour indiquer la nature de la spécialisation. Il est interprété comme un code binaire\xa0: bit 1 pour la première entité-fille, bit 2 pour la deuxième, etc. Jamais vide, du fait de la contrainte de totalité.</item>'
+compose_deleted_child_discriminator_X: '<span class=''normal''>{label}</span><item>Un champ entier <i>{label}</i> est ajouté pour indiquer la nature de la spécialisation\xa0: 1 pour la première entité-fille, 2 pour la deuxième, etc. Peut être vide, du fait de l''absence de contrainte de totalité.</item>'
+compose_deleted_child_discriminator_XT: '<span class=''normal''>{label}</span><item>Un champ entier <i>{label}</i> est ajouté pour indiquer la nature de la spécialisation\xa0: 1 pour la première entité-fille, 2 pour la deuxième, etc. Jamais vide, du fait de la contrainte de totalité.</item>'
+compose_deleted_child_entity_name: '<span class=''normal''>{label}</span><item>Un champ booléen <i>{label}</i> est ajouté pour indiquer si on a affaire ou pas à la spécialisation de même nom.</item>'
+compose_deleted_child_foreign_key: '<span class=''foreign''>#{label}</span><item>Le champ <i>{label}</i> est une clé étrangère. Il a migré à partir de l''entité-fille <i>{adjacent_source}</i> (supprimée) dans laquelle il avait déjà migré à partir de l''entité <i>{outer_source}</i>.</item>'
+compose_deleted_child_ex_foreign_key: '<span class=''normal''>{label}</span><item>Le champ <i>{label}</i> a migré à travers l''entité-fille <i>{adjacent_source}</i> (supprimée) dans laquelle il avait déjà migré à partir de l''entité <i>{outer_source}</i> (également supprimée).</item>'
+compose_deleted_parent_attribute: '<span class=''normal''>{label}</span><item>Le champ <i>{label}</i> est un simple attribut. Il était simple attribut de l''entité-mère <i>{adjacent_source}</i> (supprimée).</item>'
+compose_deleted_parent_discriminator_: '<span class=''normal''>{label}</span><item>Un champ entier <i>{label}</i> est ajouté pour indiquer la nature de la spécialisation. Il est interprété comme un code binaire\xa0: bit 1 pour la première entité-fille, bit 2 pour la deuxième, etc. Peut être vide, du fait de l''absence de contrainte de totalité.</item>'
+compose_deleted_parent_discriminator_T: '<span class=''normal''>{label}</span><item>Un champ entier <i>{label}</i> est ajouté pour indiquer la nature de la spécialisation. Il est interprété comme un code binaire\xa0: bit 1 pour la première entité-fille, bit 2 pour la deuxième, etc. Jamais vide, du fait de la contrainte de totalité.</item>'
+compose_deleted_parent_discriminator_X: '<span class=''normal''>{label}</span><item>Un champ entier <i>{label}</i> est ajouté pour indiquer la nature de la spécialisation\xa0: 1 pour la première entité-fille, 2 pour la deuxième, etc. Peut être vide, du fait de l''absence de contrainte de totalité.</item>'
+compose_deleted_parent_discriminator_XT: '<span class=''normal''>{label}</span><item>Un champ entier <i>{label}</i> est ajouté pour indiquer la nature de la spécialisation\xa0: 1 pour la première entité-fille, 2 pour la deuxième, etc. Jamais vide, du fait de la contrainte de totalité.</item>'
+compose_deleted_parent_foreign_key: '<span class=''foreign''>#{label}</span><item>Le champ <i>{label}</i> est une clé étrangère. Il a migré à travers l''entité-mère <i>{adjacent_source}</i> (supprimée), et réfère maintenant directement à l''entité <i>{outer_source}</i>.</item>'
+compose_deleted_parent_ex_foreign_key: '<span class=''normal''>{label}</span><item>Le champ <i>{label}</i> a migré à travers l''entité-mère <i>{adjacent_source}</i> (supprimée) dans laquelle il avait déjà migré à partir de l''entité <i>{outer_source}</i> (également supprimée).</item>'
+compose_deleted_parent_primary_key: '<span class=''primary''>{label}</span><item>Le champ <i>{label}</i> fait partie de la clé primaire de la table<primary></primary>. Il était clé primaire de l''entité-mère <i>{adjacent_source}</i> (supprimée).</item>'
+compose_foreign_key: '<span class=''foreign''>#{label}</span><item>Le champ <i>{label}</i> est une clé étrangère. Il a migré par l''association de dépendance fonctionnelle <i>{association_name}</i> à partir de l''entité <i>{outer_source}</i> en perdant son caractère identifiant.</item>'
+compose_ex_foreign_key: '<span class=''normal''>{label}</span><item>Le champ <i>{label}</i> est un simple attribut. Il a migré par l''association de dépendance fonctionnelle <i>{association_name}</i> à partir de l''entité <i>{outer_source}</i> en perdant son caractère identifiant. Cependant, comme la table créée à partir de cette entité a été supprimée, il n''est pas considéré comme clé étrangère.</item>'
+compose_normal_attribute: '<span class=''normal''>{label}</span><item>Le champ <i>{label}</i> était déjà un simple attribut de l''entité <i>{this_relation_name}</i>.</item>'
+compose_outer_attribute: '<span class=''normal''>{label}</span><item>Le champ <i>{label}</i> a migré à partir de l''association de dépendance fonctionnelle <i>{association_name}</i>.</item>'
+compose_parent_primary_key: '<span class=''foreign primary''>#{label}</span><item>Le champ <i>{label}</i> fait partie de la clé primaire de la table<primary></primary>. C''est une clé étrangère qui a migré à partir de l''entité-mère <i>{outer_source}</i>.</item>'
+compose_primary_foreign_key: '<span class=''foreign primary''>#{label}</span><item>Le champ <i>{label}</i> fait partie de la clé primaire de la table<primary></primary>. C''est une clé étrangère qui a migré directement à partir de l''entité <i>{outer_source}</i>.</item>'
+compose_primary_key: '<span class=''primary''>{label}</span><item>Le champ <i>{label}</i> fait partie de la clé primaire de la table<primary></primary>. C''était déjà un identifiant de l''entité <i>{this_relation_name}</i>.</item>'
+compose_primary_ex_foreign_key: '<span class=''primary''>{label}</span><item>Le champ <i>{label}</i> fait partie de la clé primaire de la table<primary></primary>. Sa table d''origine (<i>{outer_source}</i>) ayant été supprimée, il n''est pas considéré comme clé étrangère.</item>'
+compose_stopped_foreign_key: '<span class=''foreign''>#{label}</span><item>Le champ <i>{label}</i> est une clé étrangère. Il a migré directement à partir de l''entité <i>{outer_source}</i> en perdant son caractère identifiant.</item>'
+compose_stopped_ex_foreign_key: '<span class=''normal''>{label}</span><item>Le champ <i>{label}</i> est un simple attribut. Il a migré directement à partir de l''entité <i>{outer_source}</i> en perdant son caractère identifiant. Cependant, comme la table créée à partir de cette entité a été supprimée, il n''est pas considéré comme clé étrangère.</item>'
+compose_strengthening_primary_foreign_key: '<span class=''foreign primary''>#{label}</span><item>Le champ <i>{label}</i> fait partie de la clé primaire de la table<primary></primary>. C''est une clé étrangère qui a migré à partir de l''entité <i>{outer_source}</i> pour renforcer l''identifiant.</item>'
+compose_strengthening_primary_ex_foreign_key: '<span class=''primary''>{label}</span><item>Le champ <i>{label}</i> fait partie de la clé primaire de la table<primary></primary>. Il a migré à partir de l''entité <i>{outer_source}</i> pour renforcer l''identifiant. Cependant, comme la table créée à partir de cette entité a été supprimée, il n''est pas considéré comme clé étrangère.</item>'
+compose_unsourced_foreign_key: '<span class=''normal''>{label}</span><item>Le champ <i>{label}</i> a migré par l''association de dépendance fonctionnelle <i>{association_name}</i> à partir de l''entité <i>{adjacent_source}</i> (supprimée). **Attention**\xa0: aucune contrainte d''intégrité référentielle n''est plus assurée.</item>'
+compose_unsourced_ex_foreign_key: '<span class=''normal''>{label}</span><item>Le champ <i>{label}</i> a migré par l''association de dépendance fonctionnelle <i>{association_name}</i> à partir de l''entité <i>{adjacent_source}</i> (supprimée). **Attention**\xa0: aucune contrainte d''intégrité référentielle n''est plus assurée.</item>'
+compose_unsourced_primary_foreign_key: '<span class=''primary''>{label}</span><item>Le champ <i>{label}</i> fait partie de la clé primaire de la table<primary></primary>. Il a migré par l''association de dépendance fonctionnelle <i>{association_name}</i> à partir de l''entité <i>{adjacent_source}</i> (supprimée). **Attention**\xa0: aucune contrainte d''intégrité référentielle n''est plus assurée.</item>'
+compose_unsourced_primary_ex_foreign_key: '<span class=''primary''>{label}</span><item>Le champ <i>{label}</i> fait partie de la clé primaire de la table<primary></primary>. Il a migré par l''association de dépendance fonctionnelle <i>{association_name}</i> à partir de l''entité <i>{adjacent_source}</i> (supprimée). **Attention**\xa0: aucune contrainte d''intégrité référentielle n''est plus assurée.</item>'
+compose_relation: '<div>\n  <details><summary><span class=''relation''>{this_relation_name}</span> (\n    {columns}\n  )</summary>\n</div>'
+compose_deleted_relation: 'La table <i>{this_relation_name}</i> a été supprimée car elle était réduite à la clé primaire de son entité d''origine.'
+add_unicity_constraints:
+  - order: 100
+    search: '</span>'
+    replace: '</span> <sup>u{unicities}</sup>'
+  - order: 200
+    search: '</item>'
+    replace: ' Il obéit en outre à la contrainte d''unicité {unicities}.</item>'
+  - order: 300
+    search: '(déjà un simple attribut.+) en outre'
+    replace: '\1'
+  - order: 400
+    search: '(pas considéré comme clé.+) en outre'
+    replace: '\1 par contre'
+add_optionality_constraints:
+  - order: 100
+    search: '^(<span class=''(?:normal|foreign)''>.+?)(</span><item>.+? champ .*?)(<i>)'
+    replace: '\1{optionality}\2OPTIONALITY_SYMBOL''{optionality}''\3'
+transform_forced_relation:
+  - order: 100
+    search: '(?s)(.+)$'
+    replace: '\1\n    <li><strong>Avertissement.</strong> Table résultant de la conversion forcée d''une association DF.</li>'
+transform_relation:
+  - order: 800
+    search: 'OPTIONALITY_SYMBOL''\?'''
+    replace: 'à saisie facultative '
+  - order: 900
+    search: 'OPTIONALITY_SYMBOL''!'''
+    replace: 'à saisie obligatoire '
+  - order: 1000
+    comment: 'All header attributes are followed by their description. We must gather all the descriptions after the header.'
+    search: '(?s)<item>(.+?)</item>(.+)'
+    replace: '\2\n    <li>\1</li>'
+    iterated: true
+  - order: 1050
+    comment: 'Suppress the numerical suffixes of the DF associations.'
+    search: '(association de dépendance fonctionnelle <i>[^<]+)\d+(</i>)'
+    replace: '\1\2'
+  - order: 1100
+    search: '(    <li>Le champ .*?)(<i>.+?</i>)( était déjà un simple attribut de .+?.)\n\1(.+?)\3'
+    replace: '\1\2, \4\3'
+    iterated: true
+  - order: 1150
+    search: '    <li>Le champ (.+), (.+?) était déjà un simple attribut( de .+?.)'
+    replace: '    <li>Les champs \1 et \2 étaient déjà de simples attributs\3'
+  - order: 1200
+    search: '(    <li>Le champ .*?)(<i>.+?</i>)( est un simple attribut\. Il a migré .+? pas considéré comme clé étrangère.+)\n\1(.+?)\3'
+    replace: '\1\2, \4\3'
+    iterated: true
+  - order: 1250
+    search: '    <li>Le champ (.+), (.+?) est un simple attribut\. Il a migré (.+?) en perdant son caractère identifiant. (.+?), il n''est pas considéré comme clé étrangère.'
+    replace: '    <li>Les champs \1 et \2 sont de simples attributs. Ils ont migré \3 en perdant leur caractère identifiant. \4, ils ne sont pas considérés comme clés étrangères.'
+  - order: 1300
+    search: '(    <li>Le champ .*?)(<i>.+?</i>)( est une clé étrangère\. Il a migré .+? l''association de dépendance fonctionnelle .+? en perdant son caractère identifiant.+)\n\1(.+?)\3'
+    replace: '\1\2, \4\3'
+    iterated: true
+  - order: 1350
+    search: '    <li>Le champ (.+), (.+?) est une clé étrangère\. Il a (migré .+ l''association de dépendance fonctionnelle .+ en perdant) son (caractère identifiant)\. Il obéit'
+    replace: '    <li>Les champs \1 et \2 sont des clés étrangères. Ils ont \3 leur \4. Ils obéissent'
+  - order: 1400
+    search: '    <li>Le champ (.+), (.+?) est une clé étrangère\. Il a (migré .+ l''association de dépendance fonctionnelle .+ en perdant) son (caractère identifiant)'
+    replace: '    <li>Les champs \1 et \2 sont des clés étrangères. Ils ont \3 leur \4'
+  - order: 1500
+    search: '(    <li>Le champ .*?)(<i>.+?</i>)( fait partie de la clé primaire de la table<primary></primary>. Sa table d''origine .+?)\n\1(.+?)\3'
+    replace: '\1\2, \4\3'
+    iterated: true
+  - order: 1600
+    search: '    <li>Le champ (.+), (.+?) fait partie de la clé primaire de la table<primary></primary>. Sa table d''origine (.+?) ayant été supprimée, il n''est pas considéré comme clé étrangère.'
+    replace: '    <li>Les champs \1 et \2 font partie de la clé primaire de la table<primary></primary>. Leur table d''origine \3 ayant été supprimée, ils ne sont pas considérés comme clés étrangères.'
+  - order: 1700
+    search: '(    <li>Le champ .*?)(<i>.+?</i>)( fait partie de la clé primaire de la table<primary></primary>.+?)\n\1(.+?)\3'
+    replace: '\1\2, \4\3'
+    iterated: true
+  - order: 1800
+    search: '    <li>Le champ (.+), (.+?) fait partie de la clé primaire de la table<primary></primary>. C''est une clé étrangère qui a (migré directement à partir de l''entité .+?)'
+    replace: '    <li>Les champs \1 et \2 font partie de la clé primaire de la table<primary></primary>. Ce sont des clés étrangères qui ont \3'
+  - order: 1900
+    search: '    <li>Le champ (.+), (.+?) fait partie de la clé primaire de la table<primary></primary>. C''était déjà un identifiant (de l''entité .+?)'
+    replace: '    <li>Les champs \1 et \2 font partie de la clé primaire de la table<primary></primary>. C''étaient déjà des identifiants \3'
+  - order: 2000
+    search: '    <li>Le champ (.+), (.+?) fait partie de la clé primaire de la table<primary></primary>. Il a (migré .+?)'
+    replace: '    <li>Les champs \1 et \2 font partie de la clé primaire de la table<primary></primary>. Ils ont \3'
+  - order: 2100
+    search: '    <li>Les champs (.+). Il fait partie'
+    replace: '    <li>Les champs \1. Ils font partie'
+  - order: 2200
+    search: '$'
+    replace: '<primary_count></primary_count>'
+  - order: 2300
+    search: '(?s)<primary></primary>(.+)</primary_count>'
+    replace: '\1I</primary_count>'
+    iterated: true
+  - order: 2400
+    search: '(?s)fait partie de( la clé primaire de la table.+)<primary_count>I</primary_count>'
+    replace: 'constitue\1'
+  - order: 2500
+    search: '(?s)font partie de( la clé primaire de la table.+)<primary_count>I</primary_count>'
+    replace: 'constituent\1'
+  - order: 2600
+    search: '<primary_count>I+</primary_count>'
+    replace: ''
+  - order: 2700
+    search: '(?s)</div>(\n    <li>.+)'
+    replace: '  <ul>\1\n  </ul></details>\n</div>'
+  - order: 2800
+    search: '$'
+    replace: '\n'
+  - order: 2900
+    comment: 'Develop the multiple unicity constraints'
+    search: '(contrainte d''unicité) (\d)(\d)'
+    replace: '\1 \2 \1 \3'
+    iterated: true
+  - order: 3000
+    comment: 'Mark any duplicated unicity constraint, except the first one.'
+    search: '(?s)(contrainte d''unicité )(\d)(.+)\1\2'
+    replace: '\1\2\3\1DUPLICATED_ALT_GROUP:\2'
+    iterated: true
+  - order: 3100
+    comment: 'Mark the remaining duplicated unicity constraints'
+    search: '(?s)(contrainte d''unicité )(\d+)(.+\1DUPLICATED_ALT_GROUP:\2)'
+    replace: '\1DUPLICATED_ALT_GROUP:\2\3'
+    iterated: true
+  - order: 3400
+    comment: 'Remove the mark'
+    search: 'DUPLICATED_ALT_GROUP:'
+    replace: ''
+  - order: 3500
+    comment: 'Remove the repetitions'
+    search: '(contrainte d''unicité) (\d+) \1 (\d)'
+    replace: '\1 \2\3'
+    iterated: true
+  - order: 3600
+    search: '(contrainte d''unicité \d+)(\d)'
+    replace: '\1, \2'
+    iterated: true
+  - order: 3700
+    search: 'à la contrainte d''unicité (.+), (\d)'
+    replace: 'aux contraintes d''unicité \1 et \2'
+    iterated: true
+compose_deleted_relations: '<br><hr>\n\n<div>\n  <span><strong>NB.</strong> {deleted_relation_lines}</span>\n</div>'
+compose_relational_schema: '<!-- Generated by Mocodo {version} -->\n\n<div class="mld">\n{relations}\n{deleted_relations}\n</div>'
+transform_relational_schema:
+  - order: 100
+    search: '(La table )(.+?)( a été supprimée .+)\1(.+?)\3'
+    replace: '\1\2, \4\3'
+    iterated: true
+  - order: 200
+    search: 'La table (.+), (.+?) a été supprimée car elle était réduite à la clé primaire de son entité d''origine'
+    replace: 'Les tables \1 et \2 ont été supprimées car elles étaient réduites à la clé primaire de leur entité d''origine'

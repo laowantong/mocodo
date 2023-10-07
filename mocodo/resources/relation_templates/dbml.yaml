@@ -1,0 +1,123 @@
+help_en: 'convert the conceptual model into a relational schema in DBML format'
+help_fr: 'convertit le modèle conceptuel en un schéma relationnel au format DBML'
+fr_examples:
+  - order: 1
+    example: 'dbml'
+    explanation: 'version de base'
+  - order: 2
+    example: 'dbml:b'
+    explanation: 'avec _boilerplate_'
+stem_suffix: '_ddl'
+extension: 'dbml'
+to_defer: false
+highlight: 'text'
+transform_datatype:
+  - order: 100
+    comment: 'Fill in empty data types with the default one.'
+    search: '^\s*$'
+    replace: 'VARCHAR(42)'
+  - order: 200
+    comment: 'Remove all spaces in the data type.'
+    search: ' +'
+    replace: '_'
+  - order: 300
+    search: 'UNSIGNED_INT_PLACEHOLDER'
+    replace: 'UNSIGNED_INT'
+  - order: 400
+    search: 'BOOLEAN_PLACEHOLDER'
+    replace: 'BOOLEAN'
+transform_optionality:
+  - order: 100
+    comment: 'Replace BANG with NOT NULL.'
+    search: '^!$'
+    replace: 'not null'
+  - order: 200
+    comment: 'Replace QMARK with NULL.'
+    search: '^\?$'
+    replace: 'null'
+compose_primary_key: '  "{label}" {datatype} [{optionality}] [pk]\nADD_PRIMARY_KEY "{label}"'
+compose_normal_attribute: '  "{label}" {datatype} [{optionality}]'
+compose_primary_foreign_key: '  "{label}" {datatype} [{optionality}] [pk]\nADD_PRIMARY_KEY "{label}"\nADD_FOREIGN_KEY "{this_relation_name}".("{label}") > "{outer_source}".("{non_disambiguated_label}")'
+compose_foreign_key: '  "{label}" {datatype} [{optionality}]\nADD_FOREIGN_KEY "{this_relation_name}".("{label}") > "{outer_source}".("{non_disambiguated_label}")'
+add_unicity_constraints:
+  - order: 100
+    search: '$'
+    replace: '\nADD_CONSTRAINT u{unicities} "{label}"'
+column_separator: '\n'
+compose_relation: 'Table "{this_relation_name}" {{\n{columns}\n  Indexes {{\n    [pk] \n  }}\n}}'
+transform_relation:
+  - order: 400
+    comment: 'Move the primary keys inside ''Indexes'' clause.'
+    search: '(?sm)^ADD_PRIMARY_KEY ([^\n]+)\n(.+?^    \[pk\] [^\n]*)\n'
+    replace: '\2\1, \n'
+    iterated: true
+  - order: 500
+    comment: 'Accumulate the composite unique constraints inside ''Indexes'' clause.'
+    search: '(?sm)(^ADD_CONSTRAINT u\d+)(\d)( [^\n]+)(\n.+?)(^  \})'
+    replace: '\1\3\4    [unique] u\2\3\n\5'
+    iterated: true
+  - order: 600
+    comment: 'Accumulate the single unique constraints inside ''Indexes'' clause.'
+    search: '(?sm)^ADD_CONSTRAINT (u\d [^\n]+\n)(.+?)(^  \})'
+    replace: '\2    [unique] \1\3'
+    iterated: true
+  - order: 700
+    comment: 'Group the constraints having the same number.'
+    search: '(?sm)^(    \[unique\] u\d )([^\n]+)(\n.*?)\1([^\n]+)\n'
+    replace: '\1\2, \4\3'
+    iterated: true
+  - order: 800
+    comment: 'Remove the pk lines which contain no comma, except a trailing comma.'
+    search: '(?m)^    \[pk\] [^\n,]+, \n'
+    replace: ''
+  - order: 900
+    comment: 'Remove the [pk] suffixes when it still exists a [pk] line.'
+    search: '(?ms) \[pk\](.+?^    \[pk\] )'
+    replace: '\1'
+    iterated: true
+  - order: 1000
+    comment: 'Finalize Indexes'' line format.'
+    search: '(?m)^    (\[\w+\]) (?:u\d )?(.+")(?:, )?'
+    replace: '    (\2) \1'
+  - order: 1100
+    comment: 'Clean up the useless parenthesis (without comma inside).'
+    search: '(?sm)^    \(([^,\n]+)\) (\[\w+\])'
+    replace: '    \1 \2'
+  - order: 1200
+    comment: 'Clean up the empty Indexes.'
+    search: '(?sm)^  Indexes \{\n  \}\n'
+    replace: ''
+  - order: 1300
+    comment: 'Merge brackets and reverse their contents.'
+    search: '\[(.+?)\] \[(.+?)\]'
+    replace: '[\2, \1]'
+    iterated: true
+  - order: 1400
+    comment: 'Suppress empty brackets.'
+    search: ' \[\]'
+    replace: ''
+relation_separator: '\n\n'
+compose_relational_schema: '{relations}\n'
+transform_relational_schema:
+  - order: 100
+    comment: 'Move the foreign keys to the end of the document.'
+    search: '(?sm)^ADD_FOREIGN_KEY ([^\n]+\n)(.+)'
+    replace: '\2\nRef:\1'
+    iterated: true
+  - order: 200
+    comment: 'Group the foreign keys having the same origin and target.'
+    search: '(?m)^(Ref:.+)\.\((.+)\) > (.+)\.\((.+)\)\n((?:.*\n)*)^\1\.\((.+)\) > \3\.\((.+)\)'
+    replace: '\1.(\2, \6) > \3.(\4, \7)\5'
+    iterated: true
+  - order: 250
+    comment: 'Suppress multiple newlines between Ref lines.'
+    search: '(?m)^(Ref:.+)\n+(?=Ref:)'
+    replace: '\1\n'
+  - order: 300
+    comment: 'Clean up the useless parenthesis (without comma inside).'
+    search: '(?m)^(Ref:.+)\.\(([^,\n]+)\) > (.+)\.\(([^,\n]+)\)'
+    replace: '\1.\2 > \3.\4'
+  - order: 400
+    comment: 'Clean up the useless double quotes (only ASCII \w inside).'
+    search: '"([a-zA-Z1-9_]+?)"|("[^"]+")'
+    replace: '\1\2'

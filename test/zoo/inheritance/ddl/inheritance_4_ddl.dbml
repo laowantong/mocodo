@@ -1,0 +1,41 @@
+Table LACUS {
+  magna VARCHAR(42) [pk, not null]
+  tempor VARCHAR(42)
+  fugit VARCHAR(42)
+}
+
+Table NEC {
+  magna VARCHAR(42) [pk, not null]
+  pulvinar VARCHAR(42)
+  audis VARCHAR(42)
+  "magna via_mollis" VARCHAR(42) [not null]
+  "magna via_vitae" VARCHAR(42) [not null]
+}
+
+Table SODALES {
+  magna VARCHAR(42) [pk, not null]
+  convallis VARCHAR(42)
+  ipsum VARCHAR(42)
+}
+
+Table TRISTIS {
+  magna VARCHAR(42) [pk, not null]
+  vestibulum VARCHAR(42)
+  type UNSIGNED_INT
+}
+
+Table ULTRICES {
+  "magna sodales" VARCHAR(42) [not null]
+  "magna lacus" VARCHAR(42) [not null]
+  Indexes {
+    ("magna sodales", "magna lacus") [pk]
+  }
+}
+
+Ref:LACUS.magna > TRISTIS.magna
+Ref:NEC.magna > TRISTIS.magna
+Ref:NEC."magna via_mollis" > LACUS.magna
+Ref:NEC."magna via_vitae" > SODALES.magna
+Ref:SODALES.magna > TRISTIS.magna
+Ref:ULTRICES."magna sodales" > SODALES.magna
+Ref:ULTRICES."magna lacus" > LACUS.magna

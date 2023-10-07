@@ -1,0 +1,11 @@
+this_relation_name	label	datatype	nature	adjacent_source	outer_source	unicities
+Appliquer	employé		primary_foreign_key	Employé	Employé	
+Appliquer	projet		primary_foreign_key	Projet	Projet	
+Appliquer	compétence		primary_foreign_key	Compétence	Compétence	
+Compétence	compétence		primary_key			
+Compétence	libellé		normal_attribute			
+Employé	employé		primary_key			
+Employé	nom		normal_attribute			
+Projet	projet		primary_key			
+Projet	date début		normal_attribute			
+Projet	date fin		normal_attribute

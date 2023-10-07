@@ -1,0 +1,119 @@
+{
+  "dbml": {
+    "category": "cv",
+    "help_en": "convert the conceptual model into a relational schema in DBML format",
+    "help_fr": "convertit le modèle conceptuel en un schéma relationnel au format DBML",
+    "aliases": [],
+    "fr_examples": {
+      "dbml": "version de base", "dbml:b": "avec _boilerplate_"
+    }
+  },
+  "sql": {
+    "category": "cv",
+    "help_en": "convert the conceptual model into a physical model for SQL",
+    "help_fr": "convertit le modèle conceptuel en un modèle physique pour SQL",
+    "aliases": ["ddl"]
+  },
+  "debug": {
+    "category": "cv",
+    "help_en": "list internal informations relative to the conversion into relational schema",
+    "help_fr": "liste des informations internes relatives à la conversion en schéma relationnel",
+    "aliases": []
+  },
+  "dependencies": {
+    "category": "cv",
+    "help_en": "convert the conceptual model into a dependency graph",
+    "help_fr": "convertit le modèle conceptuel en un graphe de dépendances",
+    "aliases": []
+  },
+  "diagram": {
+    "category": "cv",
+    "help_en": "convert the conceptual model into a relational diagram in Mocodo syntax",
+    "help_fr": "convertit le modèle conceptuel en un diagramme relationnel au format Mocodo",
+    "aliases": [],
+    "fr_examples": {
+      "diagram": "version de base", "diagram:c": "avec contraintes d'unicité et d'optionnalité"
+    }
+  },
+  "html": {
+    "category": "cv",
+    "help_en": "convert the conceptual model into a relational schema in HTML format",
+    "help_fr": "convertit le modèle conceptuel en un schéma relationnel au format HTML",
+    "aliases": [],
+    "fr_examples": {
+      "html": "version de base", "html:b": "avec _boilerplate_", "html:c": "avec contraintes d'unicité et d'optionnalité", "html:e": "avec explications", "html:bce": "avec _boilerplate_, contraintes et explications"
+    }
+  },
+  "latex": {
+    "category": "cv",
+    "help_en": "convert the conceptual model into a relational schema in LaTeX format",
+    "help_fr": "convertit le modèle conceptuel en un schéma relationnel au format LaTeX",
+    "aliases": ["tex"],
+    "fr_examples": {
+      "latex": "version de base", "latex:b": "avec _boilerplate_", "latex:c": "avec contraintes d'unicité et d'optionnalité", "latex:e": "avec explications", "latex:bce": "avec _boilerplate_, contraintes et explications"
+    }
+  },
+  "markdown": {
+    "category": "cv",
+    "help_en": "convert the conceptual model into a relational schema in Markdown format",
+    "help_fr": "convertit le modèle conceptuel en un schéma relationnel au format Markdown",
+    "aliases": ["md", "mld"],
+    "fr_examples": {
+      "markdown": "version de base", "markdown:c": "avec contraintes d'unicité et d'optionnalité", "markdown:e": "avec explications", "markdown:ce": "avec contraintes et explications"
+    }
+  },
+  "mssql": {
+    "category": "cv",
+    "help_en": "convert the conceptual model into a physical model for Microsoft SQL Server",
+    "help_fr": "convertit le modèle conceptuel en un modèle physique pour Microsoft SQL Server",
+    "aliases": ["ms_sql", "sql_server", "sqlserver"],
+    "fr_examples": {
+      "mssql": "version de base", "mssql:b": "avec _boilerplate_"
+    }
+  },
+  "mysql": {
+    "category": "cv",
+    "help_en": "convert the conceptual model into a physical model for MySQL",
+    "help_fr": "convertit le modèle conceptuel en un modèle physique pour MySQL",
+    "aliases": [],
+    "fr_examples": {
+      "mysql": "version de base", "mysql:b": "avec _boilerplate_"
+    }
+  },
+  "oracle": {
+    "category": "cv",
+    "help_en": "convert the conceptual model into a physical model for Oracle",
+    "help_fr": "convertit le modèle conceptuel en un modèle physique pour Oracle",
+    "aliases": [],
+    "fr_examples": {
+      "oracle": "version de base", "oracle:b": "avec _boilerplate_"
+    }
+  },
+  "postgresql": {
+    "category": "cv",
+    "help_en": "convert the conceptual model into a physical model for PostgreSQL",
+    "help_fr": "convertit le modèle conceptuel en un modèle physique pour PostgreSQL",
+    "aliases": ["postgres"],
+    "fr_examples": {
+      "postgresql": "version de base", "postgresql:b": "avec _boilerplate_"
+    }
+  },
+  "sqlite": {
+    "category": "cv",
+    "help_en": "convert the conceptual model into a physical model for SQLite",
+    "help_fr": "convertit le modèle conceptuel en un modèle physique pour SQLite",
+    "aliases": [],
+    "fr_examples": {
+      "sqlite": "version de base", "sqlite:b": "avec _boilerplate_"
+    }
+  },
+  "text": {
+    "category": "cv",
+    "help_en": "convert the conceptual model into a relational schema in text format",
+    "help_fr": "convertit le modèle conceptuel en un schéma relationnel au format texte",
+    "aliases": ["txt"],
+    "fr_examples": {
+      "text": "version de base", "text:c": "avec contraintes d'unicité et d'optionnalité", "html:e": "avec explications", "html:ce": "avec contraintes et explications"
+    }
+  }
+}

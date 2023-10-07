@@ -1,16 +1,21 @@
-from email.policy import default
 import itertools
-import re
 from collections import defaultdict
 from hashlib import md5
+import json
+from pathlib import Path
+
 
 from .association import Association
+from .attribute import Attribute
 from .constraint import Constraint
 from .diagram_link import DiagramLink
 from .entity import Entity
 from .grid import Grid
+from .inheritance import Inheritance
 from .mocodo_error import MocodoError
 from .phantom import Phantom
+
+from .tools.parser_tools import extract_clauses
 
 def cmp(x, y):
     return (x > y) - (x < y)
@@ -19,69 +24,75 @@ SYS_MAXINT = 9223372036854775807 # an integer larger than any practical list or 
 
 class Mcd:
 
-    def __init__(self, clauses, get_font_metrics=None, **params):
+    def __init__(self, source, get_font_metrics=None, **params):
         
         def calculate_uid():
-            h = md5("".join(clauses).encode("utf-8")).hexdigest()
+            h = md5(source.encode("utf-8")).hexdigest()
             if params.get("uid_suffix"):
                 return f"{h[:8]}_{params['uid_suffix']}"
             else:
                 return h[:8]
 
-        def parse_clauses():
+        def create():
             self.entities = {}
             self.associations = {}
             self.constraints = []
+            self.inheritances = []
             mcd_has_cif = False
             self.commented_lines = []
             self.constraint_clauses = []
             seen = set()
             self.rows = [[]]
             pages = defaultdict(list)
-            for clause in clauses:
-                indentation = len(clause) - len(clause.lstrip())
-                clause = clause.strip(" \n\r\t")
-                if not clause:
+            for clause in extract_clauses(source):
+                indentation = clause.get("indent", "")
+                if clause["type"] == "break":
                     self.rows.append([])
                     continue
-                if clause.startswith("%"):
+                if clause["type"] == "comment":
                     if not self.rows[-1]:
-                        self.commented_lines.append(clause)
+                        self.commented_lines.append(clause["text"])
                     continue
-                if clause == ":" * len(clause):
-                    self.rows[-1].extend(Phantom(next(phantom_counter)) for _ in clause)
+                if clause["type"] == "phantoms":
+                    phantoms = [Phantom() for _ in range(clause["count"])]
+                    if self.rows[-1]:
+                        self.rows[-1].extend(phantoms)
+                    else:
+                        self.rows.append(phantoms)
                     continue
-                if clause.startswith(":"):
-                    raise MocodoError(19, _('The clause "{clause}" starts with a colon.').format(clause=clause)) # fmt: skip
-                clause = re.sub(r"\[.+?\]", substitute_forbidden_symbols_between_brackets, clause)
-                if re.match(r"\s*\(.{0,3}\)", clause):
+                if clause["type"] == "constraint":
                     element = Constraint(clause)
-                    if element.name == "CIF":
+                    if element.name_view == "CIF":
                         mcd_has_cif = True
                     self.constraints.append(element)
                     pages[indentation].append(element)
                     self.constraint_clauses.append(clause)
                     continue
-                elif "," in clause.split(":", 1)[0] or re.match(r"\s*(/\w*\\)", clause):
-                    element = Association(clause, **params)
-                    if element.name in self.associations:
-                        raise MocodoError(7, _('Duplicate association "{name}". If you want to make two associations appear with the same name, you must suffix it with a number.').format(name=element.name)) # fmt: skip
-                    self.associations[element.name] = element
-                    pages[indentation].append(element)
-                elif ":" in clause:
-                    element = Entity(clause)
-                    if element.name in self.entities:
-                        raise MocodoError(6, _('Duplicate entity "{name}". If you want to make two entities appear with the same name, you must suffix it with a number.').format(name=element.name)) # fmt: skip
-                    self.entities[element.name] = element
+                if clause["type"] == "inheritance":
+                    element = Inheritance(clause, **params)
+                    self.inheritances.append(element)
                     pages[indentation].append(element)
                 else:
-                    raise MocodoError(21, _('"{clause}" does not constitute a valid declaration of an entity or association.').format(clause=clause)) # fmt: skip
-                if element.name in seen:
-                    raise MocodoError(8, _('One entity and one association share the same name "{name}".').format(name=element.name)) # fmt: skip
-                seen.add(element.name)
+                    if clause["type"] == "association":
+                        element = Association(clause, **params)
+                        if element.name in self.associations:
+                            raise MocodoError(7, _('Duplicate association "{name}". If you want to make two associations appear with the same name, you must suffix it with a number.').format(name=element.name)) # fmt: skip
+                        self.associations[element.name] = element
+                        pages[indentation].append(element)
+                    elif clause["type"] == "entity":
+                        element = Entity(clause)
+                        if element.name in self.entities:
+                            raise MocodoError(6, _('Duplicate entity "{name}". If you want to make two entities appear with the same name, you must suffix it with a number.').format(name=element.name)) # fmt: skip
+                        self.entities[element.name] = element
+                        pages[indentation].append(element)
+                    else:
+                        raise NotImplementedError
+                    if element.name in seen:
+                        raise MocodoError(8, _('One entity and one association share the same name "{name}".').format(name=element.name)) # fmt: skip
+                    seen.add(element.name)
                 self.rows[-1].append(element)
             if not seen:
-                raise MocodoError(4, _('The ERD is empty.')) # fmt: skip
+                raise MocodoError(4, _('The ERD "{title}" is empty.').format(title=params["title"])) # fmt: skip
             self.rows = [row for row in self.rows if row]
             self.col_count = max(len(row) for row in self.rows)
             self.row_count = len(self.rows)
@@ -90,7 +101,6 @@ class Mcd:
                 for element in elements:
                     element.page = i
             self.header = "\n".join(self.commented_lines) + "\n\n" if self.commented_lines else ""
-            self.footer = "\n\n" + "\n".join(self.constraint_clauses) if self.constraint_clauses else ""
             for association in self.associations.values():
                 association.register_mcd_has_cif(mcd_has_cif)
         
@@ -100,9 +110,18 @@ class Mcd:
                     if leg.entity_name in self.entities:
                         entity = self.entities[leg.entity_name]
                     elif leg.entity_name in self.associations:
-                        raise MocodoError(20, _('Association "{association}" linked to another association "{entity}"!').format(association=association.name, entity=leg.entity_name)) # fmt: skip
+                        raise MocodoError(18, _('Association "{association}" linked to another association "{entity}"!').format(association=association.name, entity=leg.entity_name)) # fmt: skip
                     else:
                         raise MocodoError(1, _('Association "{association}" linked to an unknown entity "{entity}"!').format(association=association.name, entity=leg.entity_name)) # fmt: skip
+                    leg.register_entity(entity)
+            for inheritance in self.inheritances:
+                for leg in inheritance.legs:
+                    if leg.entity_name in self.entities:
+                        entity = self.entities[leg.entity_name]
+                    elif leg.entity_name in self.associations:
+                        raise MocodoError(44, _('Inheritance "{inheritance}" linked to an association "{entity}"!').format(inheritance=inheritance.name, entity=leg.entity_name))
+                    else:
+                        raise MocodoError(42, _('Inheritance "{inheritance}" linked to an unknown entity "{entity}"!').format(inheritance=inheritance.name, entity=leg.entity_name))
                     leg.register_entity(entity)
             for constraint in self.constraints:
                 for leg in constraint.legs:
@@ -113,18 +132,56 @@ class Mcd:
                     else:
                         raise MocodoError(40, _('Constraint "{constraint}" linked to an unknown entity or association "{box}"!').format(constraint=constraint.name, box=leg.box_name)) # fmt: skip
                     leg.register_box(box)
+                for box_name in constraint.coords:
+                    if isinstance(box_name, (float, int)):
+                        continue
+                    if box_name in self.associations or box_name in self.entities:
+                        continue
+                    raise MocodoError(43, _('Constraint "{constraint}" aligned with an unknown entity or association "{box}"!').format(constraint=constraint.name, box=box_name)) # fmt: skip
         
         def add_attributes():
-            legs_to_strengthen = dict((entity_name, []) for entity_name in self.entities)
-            children = set()
+            strengthening_legs = dict((entity_name, []) for entity_name in self.entities)
             for association in self.associations.values():
                 for leg in association.legs:
-                    if association.kind.startswith("inheritance") and leg.card == "XX":
-                        children.add(leg.entity_name)
                     if leg.kind == "strengthening":
-                        legs_to_strengthen[leg.entity_name].append(leg)
-            for (entity_name, legs) in legs_to_strengthen.items():
-                self.entities[entity_name].add_attributes(legs, entity_name in children)
+                        strengthening_legs[leg.entity_name].append(leg)
+            children = set()
+            for inheritance in self.inheritances:
+                for leg in inheritance.legs[1:]: # the first leg is the parent
+                    children.add(leg.entity_name) # the other legs are its children
+            Attribute.id_gutter_strong_string = params["id_gutter_strong_string"]
+            Attribute.id_gutter_weak_string = params["id_gutter_weak_string"]
+            Attribute.id_gutter_alts = params["id_gutter_alts"]
+            for (entity_name, entity) in self.entities.items():
+                entity.add_attributes(strengthening_legs[entity_name], entity_name in children)
+            self.has_alt_identifier = any(entity.has_alt_identifier for entity in self.entities.values())
+
+        def check_weak_entities_without_discriminator():
+            too_weak_entities = defaultdict(int)
+            for association in self.associations.values():
+                for leg in association.legs:
+                    if leg.kind != "strengthening":
+                        continue
+                    for attribute in leg.entity.attributes:
+                        if attribute.kind == "weak":
+                            break
+                    else: # the weak entity has no discriminator.
+                        # Ensure the max cards of the other legs are 1
+                        for other_leg in association.legs:
+                            if other_leg is leg:
+                                continue
+                            if other_leg.card[1] != "1":
+                                # Otherwise, accumulate them
+                                too_weak_entities[leg.entity.name] += 1
+            for (too_weak_entity, count) in too_weak_entities.items():
+                if count < 2: # one isolated "too weak entity"
+                    raise MocodoError(50, _('The weak entity "{entity}" should have a discriminator.').format(entity=too_weak_entity)) # fmt: skip
+        
+        def set_id_gutter_visibility():
+            flag = params["id_gutter_visibility"]
+            is_visible = flag == "on" or (flag == "auto" and self.has_alt_identifier)
+            for entity in self.entities.values():
+                entity.set_id_gutter_visibility(is_visible)
         
         def tweak_straight_cards():
             coordinates = {}
@@ -193,8 +250,8 @@ class Mcd:
             for row in self.rows:
                 n = self.col_count - len(row)
                 if n:
-                    row[0:0] = [Phantom(next(phantom_counter)) for i in range(n // 2)]
-                    row.extend(Phantom(next(phantom_counter)) for i in range(n // 2 + n % 2))
+                    row[0:0] = [Phantom() for i in range(n // 2)]
+                    row.extend(Phantom() for i in range(n // 2 + n % 2))
         
         def make_boxes():
             i = itertools.count()
@@ -205,26 +262,45 @@ class Mcd:
                     self.boxes.append(box)
                     box.register_boxes(self.boxes)
             self.box_count = len(self.boxes)
-        
-        def substitute_forbidden_symbols_between_brackets(text):
-            """Neutralize Mocodo syntax separators in the text between brackets."""
-            return text.group().replace(",", "<<<safe-comma>>>").replace(":", "<<<safe-colon>>>")
-        
+
+        # The following keys are actually created by __main__.py.
+        # Using `get` instead of `[]` is for testing purposes only.
+        params.setdefault("id_gutter_strong_string", "ID")
+        params.setdefault("id_gutter_weak_string", "id")
+        params.setdefault("id_gutter_alts", dict(zip("123456789", "123456789")))
+        params.setdefault("id_gutter_visibility", "auto")
+
         self.get_font_metrics = get_font_metrics
-        phantom_counter = itertools.count()
+        Phantom.reset_counter()
+        Association.reset_df_counter()
+        Inheritance.reset_counter()
+        Constraint.reset_counter()
         self.uid = calculate_uid()
-        parse_clauses()
+        create()
+        self.update_footer()
         add_legs()
         add_attributes()
+        check_weak_entities_without_discriminator()
+        set_id_gutter_visibility()
         add_diagram_links()
         may_center()
         make_boxes()
         tweak_straight_cards()
         self.title = params.get("title", "Untitled")
     
+    def update_footer(self):
+        constraint_sources = [constraint.source for constraint in self.constraints]
+        self.footer = "\n\n" + "\n".join(constraint_sources) if constraint_sources else ""
+
     def get_layout_data(self):
         successors = [set() for i in range(self.box_count)] # use `set` to deduplicate reflexive associations
         multiplicity = defaultdict(int) # but count the multiplicity (1 or 2) of each link
+        for inheritance in self.inheritances:
+            for leg in inheritance.legs:
+                successors[inheritance.identifier].add(leg.entity.identifier)
+                successors[leg.entity.identifier].add(inheritance.identifier)
+                multiplicity[(inheritance.identifier, leg.entity.identifier)] += 1
+                multiplicity[(leg.entity.identifier, inheritance.identifier)] += 1
         if self.associations:
             for association in self.associations.values():
                 for leg in association.legs:
@@ -241,8 +317,9 @@ class Mcd:
                     successors[pei].add(fei)
                     multiplicity[(fei, pei)] += 1
                     multiplicity[(pei, fei)] += 1
+        links = tuple((node, child) for (node, children) in enumerate(successors) for child in children if node < child)
         return {
-            "links": tuple((node, child) for (node, children) in enumerate(successors) for child in children if node < child),
+            "links": links,
             "successors": successors,
             "col_count": self.col_count,
             "row_count": self.row_count,
@@ -253,14 +330,11 @@ class Mcd:
         return [box.identifier for row in self.rows for box in row]
     
     def get_row_text(self, row):
-        result = []
-        for box in row:
-            clause = "  " * box.page + box.clause
-            clause = clause.replace("<<<safe-comma>>>", ",")
-            clause = clause.replace("<<<safe-colon>>>", ":")
-            result.append(clause)
-        return "\n".join(result)
+        return "\n".join(box.source for box in row)
     
+    def get_non_phantom_count(self):
+        return sum(box.kind != "phantom" for box in self.boxes)
+
     def set_layout(self, layout, col_count=None, row_count=None, **kwargs):
         if col_count and row_count:
             (self.col_count, self.row_count) = (col_count, row_count)
@@ -295,46 +369,112 @@ class Mcd:
         else:
             result += "\n\n".join(":\n" + "\n:\n".join(self.get_row_text(row).split("\n")) + "\n:" for row in self.rows)
         return result + self.footer
-    
-    def get_clauses_horizontal_mirror(self):
+
+    def get_vertically_flipped_clauses(self):
+        for constraint in self.constraints:
+            constraint.invert_coords_horizontal_mirror()
+        self.update_footer()
         return self.header + "\n\n".join(self.get_row_text(row) for row in self.rows[::-1]) + self.footer
     
-    def get_clauses_vertical_mirror(self):
+    def get_horizontally_flipped_clauses(self):
+        for constraint in self.constraints:
+            constraint.invert_coords_vertical_mirror()
+        self.update_footer()
         return self.header + "\n\n".join(self.get_row_text(row[::-1]) for row in self.rows) + self.footer
     
-    def get_clauses_diagonal_mirror(self):
+    def get_diagonally_flipped_clauses(self):
+        for constraint in self.constraints:
+            constraint.invert_coords_diagonal_mirror()
+        self.update_footer()
         return self.header + "\n\n".join(self.get_row_text(row) for row in zip(*self.rows)) + self.footer
     
-    def get_reformatted_clauses(self, nth_fit):
-        grid = Grid(len(self.boxes) + 100) # make sure there are enough precalculated grids
-        start = len(self.entities) + len(self.associations) # number of nonempty boxes
-        if nth_fit < 0:
-            if (self.col_count, self.row_count) in grid: # the current grid is among precalculated ones
-                start = self.col_count * self.row_count # start from the completed grid
-            nth_fit = 1 # and calculate the next one
-        (col_count, row_count) = grid.get_nth_next(start, nth_fit)
+    def get_refitted_clauses(self, nth_fit_or_col_count, row_count=None):
+        if row_count:
+            col_count = nth_fit_or_col_count
+        else:
+            nth_fit = nth_fit_or_col_count
+            grid = Grid(len(self.boxes) + 100) # make sure there are enough precalculated grids
+            start = len(self.entities) + len(self.associations) # number of nonempty boxes
+            (col_count, row_count) = grid.get_nth_next(start, nth_fit)
         result = []
         i = 0
         for box in self.boxes:
             if box.kind != "phantom":
                 if i % col_count == 0 and i:
                     result.append("")
-                result.append("  " * box.page + box.clause)
+                result.append("  " * box.page + box.source.rstrip())
                 i += 1
         for i in range(i, col_count * row_count):
             if i % col_count == 0 and i:
                 result.append("")
             result.append(":")
         return self.header + "\n".join(result) + self.footer
-    
+
+
+    def calculate_or_retrieve_geo(self, params):
+        geo_path = Path(f"{params['output_name']}_geo.json")
+        if geo_path.is_file() and params["scale"] == 1 and params["reuse_geo"]:
+            try:
+                web_geo = json.loads(geo_path.read_text("utf8"))
+            except:
+                raise MocodoError(33, _('Unable to reuse the geometry file "{filename}".').format(filename=geo_path)) # fmt: skip
+            # convert lists of couples to dicts
+            geo = {}
+            for (k, v) in web_geo.items():
+                if isinstance(v, list):
+                    geo[k] = dict(v)
+                else:
+                    geo[k] = v
+            return geo
+        geo = {
+            "width": self.w,
+            "height": self.h,
+            "cx": {
+                box.name: box.x + box.w // 2
+                for row in self.rows
+                for box in row
+                if box.kind != "phantom"
+            },
+            "cy": {
+                box.name: box.y + box.h // 2
+                for row in self.rows
+                for box in row
+                if box.kind != "phantom"
+            },
+            "shift": {
+                leg.identifier: 0
+                for row in self.rows
+                for box in row
+                for leg in box.legs
+                if hasattr(leg, "card_view")},
+            "ratio": {
+                leg.identifier: 1.0
+                for row in self.rows
+                for box in row
+                for leg in box.legs
+                if leg.arrow
+            },
+        }
+        web_geo = {k: list(v.items()) if isinstance(v, dict) else v for (k, v) in geo.items()}
+        text = json.dumps(web_geo, indent=2, ensure_ascii=False)
+        text = text.replace("\n      ", " ")
+        text = text.replace("\n    ]", " ]")
+        text = text + "\n"
+        try:
+            geo_path.write_text(text)
+        except IOError:
+            raise MocodoError(34, _('Unable to save geometry file "{filename}".').format(filename=geo_path)) # fmt: skip
+        return geo
+
+
     def calculate_size(self, style):
 
         def increase_margins_in_presence_of_clusters():
-            for association in self.associations.values():
-                if association.kind == "cluster":
-                    style["margin"] *= 2
-                    style["card_margin"] *= 2
-                    break
+            if not self.associations: # relational diagram or MCD without associations
+                return
+            factor = 1 + max(a.peg_count for a in self.associations.values())
+            style["margin"] *= factor
+            style["card_margin"] *= factor
 
         def card_max_width():
             get_pixel_width = self.get_font_metrics(style["card_font"]).get_pixel_width
@@ -424,6 +564,8 @@ class Mcd:
             result.extend(element.description(style, geo))
         for element in self.associations.values():
             result.extend(element.description(style, geo))
+        for element in self.inheritances:
+            result.extend(element.description(style, geo))
         for element in self.diagram_links:
             result.extend(element.description(style, geo))
         for element in self.constraints:
@@ -506,7 +648,7 @@ class Mcd:
 
 if __name__=="__main__":
     from .argument_parser import parsed_arguments
-    clauses = """
+    source = """
         CLIENT: Réf. client, Nom, Prénom, Adresse
         PASSER, 0N CLIENT, 11 COMMANDE
         COMMANDE: Num commande, Date, Montant
@@ -514,5 +656,5 @@ if __name__=="__main__":
         PRODUIT: Réf. produit, Libellé, Prix unitaire
     """.replace("  ", "").split("\n")
     params = parsed_arguments()
-    mcd = Mcd(clauses, **params)
-    print(mcd.get_clauses_vertical_mirror())
+    mcd = Mcd(source, **params)
+    print(mcd.get_horizontally_flipped_clauses())

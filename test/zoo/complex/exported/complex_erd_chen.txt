@@ -1,0 +1,11 @@
+[ENCLOS] ==M== <PEUT VIVRE DANS>
+[ENCLOS] ==N== <OCCUPE>
+[ESPÈCE] --1-- <<DF>>
+[ESPÈCE] --M-- <PEUT COHABITER AVEC>
+[ESPÈCE] --N-- <PEUT COHABITER AVEC>
+[ESPÈCE] ==N== <PEUT VIVRE DANS>
+[PÉRIODE] ==1== <OCCUPE>
+[[ANIMAL]] --1-- <A MÈRE>
+[[ANIMAL]] --N-- <A MÈRE>
+[[ANIMAL]] ==N== <<DF>>
+[[ANIMAL]] ==N== <OCCUPE>

@@ -1,0 +1,13 @@
+%%mocodo
+:
+Projet: projet, libellé
+:
+Affecter: #projet > Projet > projet, _#employé > Employé > employé, #site > Site > site
+:
+Site: site, position
+:
+
+
+:::
+Employé: employé, nom employé
+:::

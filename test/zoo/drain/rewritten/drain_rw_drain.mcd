@@ -1,0 +1,7 @@
+Entreprise: nom entreprise, adresse, téléphone
+Proposer, 0N Entreprise, 11 Stage
+Stage: num. stage, sujet, date proposition
+Attribuer, 11 Étudiant, 01 Stage
+Étudiant: num étudiant, nom, date signature
+Soutenir, 01 Étudiant, 0N Date: note stage
+Date: date

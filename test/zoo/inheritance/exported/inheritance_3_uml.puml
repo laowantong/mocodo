@@ -1,0 +1,40 @@
+@startuml "inheritance"
+
+!define Table(x) class "x" << (T,#FFFFFF) >>
+!define pk(x) <b>x</b>
+
+"LACUS" "1" --- "1..*" "NEC": "MOLLIS"
+
+Table("NEC") {
+    {field} + pk(pulvinar)
+    {field} + audis
+}
+
+Table("LACUS") {
+    {field} + pk(tempor)
+    {field} + fugit
+}
+
+note "{complete, disjoint}" as GENERALIZATION_0
+GENERALIZATION_0 -[dotted]- LACUS
+GENERALIZATION_0 -[dotted]- NEC
+GENERALIZATION_0 -[dotted]- SODALES
+TRISTIS <|-- LACUS
+TRISTIS <|-- NEC
+TRISTIS <|-- SODALES
+
+Table("TRISTIS") {
+    {field} + pk(magna)
+    {field} + vestibulum
+}
+
+"NEC" "1..*" --- "1" "SODALES": "VITAE"
+
+"SODALES" "1..*" --- "1..*" "LACUS": "ULTRICES"
+
+Table("SODALES") {
+    {field} + pk(convallis)
+    {field} + ipsum
+}
+
+@enduml

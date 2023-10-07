@@ -1,0 +1,103 @@
+// NOTE: add a newline at the beginning and at the end of the input before parsing it.
+// https://github.com/lark-parser/lark/discussions/1041
+
+%import common.NUMBER
+seq{item}: item (COMMA item)*
+
+COMMA: SP? "," SP?
+COLON: SP? ":" SP?
+NL.-10: /[^\S\r\n]*\r?\n/
+SLASH: "/"
+BACKSLASH: "\\"+
+LPAREN: SP? "(" SP?
+RPAREN: SP? ")" SP?
+CONSTRAINT_LPAREN: SP? "("
+CONSTRAINT_RPAREN: ")" SP?
+LBRACKET: SP? "["
+RBRACKET: "]" SP?
+HASHTAG: "#"
+PERCENT: "%"
+SP.-50: /[^\S\r\n]+/
+
+BOX_NAME: /(?![\W_\d])[^=<>,:\n\\]*[^-\[\\\]=<>,:\s\\]/
+typed_attr: (attr attr_suffix? (LBRACKET datatype? RBRACKET)?)?
+!attr_suffix: "!" | "?"
+datatype: note
+!box_def_prefix: "+" | "-"
+
+ATTR: /(?=\w)(?!_)[^\[\]>,\r\n!?]*[^\[\]>,\s!?]/
+?note: /[^\r\n\]]+/
+
+start: (break_ | line)*
+BREAK.100: /^\n/
+line: indent? (phantoms | comment | clause | NL)
+?clause: assoc_clause
+        | entity_clause
+        | constraint_clause
+        | inheritance_clause
+
+PHANTOMS: /( *:)+ */ NL
+indent: INDENT
+INDENT.10: / +|\t+/
+comment: PERCENT /.*\r?\n/
+
+// Associations
+
+assoc_clause: box_def_prefix? assoc_name_def COMMA seq{assoc_leg} (COLON seq{typed_attr})? NL
+assoc_name_def: box_name
+assoc_leg: _assoc_card? leg_arrow? SP? (LBRACKET leg_note? RBRACKET)? entity_name_ref
+_assoc_card: card_hidden? card_prefix? card
+entity_name_ref: box_name
+!card_hidden: "-"
+!card_prefix: "_" | "/"
+CARD.2: /(?![-_\/])(\w|\?){2}(?=[ \t]*[^\w,\r\n:])/
+LEG_ARROW: /[<>]/
+leg_note: note
+
+// Entities
+
+entity_clause: box_def_prefix? entity_name_def COLON seq{entity_or_table_attr}? NL
+entity_name_def: box_name
+entity_or_table_attr: _id_symbols? (typed_attr | HASHTAG foreign_reference)
+_id_symbols: id_groups? id_mark
+ID_GROUPS.10: /\d+(?=_)/
+ID_MARK: "_"
+foreign_reference: this_table_attr attr_suffix? MORETHAN that_table MORETHAN that_table_attr
+this_table_attr: attr
+that_table_attr: attr
+that_table: entity_name_ref
+MORETHAN: SP? ">" SP?
+
+// Constraints
+
+constraint_clause: CONSTRAINT_LPAREN constraint_name? CONSTRAINT_RPAREN (LBRACKET constraint_note? RBRACKET)? seq{constraint_target}? (COLON constraint_coords)? NL
+CONSTRAINT_NAME: /[^)]{1,3}/
+constraint_note: note
+constraint_target: constraint_leg? SP* box_name_ref
+box_name_ref: box_name
+CONSTRAINT_LEG: /<?(\.+|-+)>?/
+constraint_coords: _constraint_coord COMMA _constraint_coord
+_constraint_coord: NUMBER | box_name_ref
+
+// Inheritance
+
+inheritance_clause: SLASH inheritance_name? BACKSLASH SP? inheritance_parent SP? inheritance_arrow SP? seq{inheritance_child} (COLON seq{typed_attr})? NL
+INHERITANCE_NAME: /(XT\d?|TX\d?|X\d?|T\d?|\d)/
+inheritance_parent: entity_name_ref
+inheritance_child: entity_name_ref
+INHERITANCE_ARROW.-10: /<==?|<--?|--?>|==?>/
+
+// Avoid anonymous tokens for some terminals
+
+constraint_leg: CONSTRAINT_LEG
+card: CARD
+box_name: BOX_NAME
+leg_arrow: LEG_ARROW
+phantoms: PHANTOMS
+break_: BREAK
+inheritance_name: INHERITANCE_NAME
+constraint_name: CONSTRAINT_NAME
+attr: ATTR
+inheritance_arrow: INHERITANCE_ARROW
+id_mark: ID_MARK
+id_groups: ID_GROUPS

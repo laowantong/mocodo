@@ -1,0 +1,5 @@
+Ingénieur: ingénieur
+Gérer, /1N Responsable, 1N Ingénieur, 1N Projet
+Projet: projet
+
+Responsable: responsable

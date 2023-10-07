@@ -1,0 +1,31 @@
+@startuml "ternary_unicity"
+
+!define Table(x) class "x" << (T,#FFFFFF) >>
+!define pk(x) <b>x</b>
+
+Table("Voilier") {
+    {field} + pk(voilier)
+}
+
+"Disponibilité" "1..*" --* "1" "Voilier"
+
+Table("Disponibilité") {
+}
+
+"Disponibilité" "1..*" --* "1" "Semaine"
+
+Table("Semaine") {
+    {field} + pk(semaine)
+    {field} + date début
+}
+
+"Réservation" "1..*" --- "1" "Disponibilité"
+
+Table("Réservation") {
+    {field} + pk(id résa)
+    {field} + num résa
+    {field} + arrhes
+    {field} + date réservation
+}
+
+@enduml

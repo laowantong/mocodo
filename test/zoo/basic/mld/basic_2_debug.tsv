@@ -1,0 +1,15 @@
+this_relation_name	label	datatype	nature	adjacent_source	outer_source	unicities
+CLIENT	Réf. client	VARCHAR(8)	primary_key			
+CLIENT	Nom	VARCHAR(255)	normal_attribute			
+CLIENT	Prénom	VARCHAR(255)	normal_attribute			
+CLIENT	Adresse	VARCHAR(255)	normal_attribute			
+COMMANDE	Num. commande	VARCHAR(8)	primary_key			
+COMMANDE	Date	DATE	normal_attribute			
+COMMANDE	Montant	DECIMAL(10,2)	normal_attribute			
+COMMANDE	Réf. client	VARCHAR(8)	foreign_key	CLIENT	CLIENT	
+INCLURE	Num. commande	VARCHAR(8)	primary_foreign_key	COMMANDE	COMMANDE	
+INCLURE	Réf. produit	VARCHAR(8)	primary_foreign_key	PRODUIT	PRODUIT	
+INCLURE	Quantité	INTEGER	association_attribute			
+PRODUIT	Réf. produit	VARCHAR(8)	primary_key			
+PRODUIT	Libellé	VARCHAR(50)	normal_attribute			
+PRODUIT	Prix unitaire	DECIMAL(10,2)	normal_attribute

@@ -1,0 +1,33 @@
+@startuml "basic"
+
+!define Table(x) class "x" << (T,#FFFFFF) >>
+!define pk(x) <b>x</b>
+
+Table("CLIENT") {
+    {field} + pk(Réf. client) VARCHAR(8)
+    {field} + Nom         VARCHAR(255)
+    {field} + Prénom      VARCHAR(255)
+    {field} + Adresse     VARCHAR(255)
+}
+
+"CLIENT" "1" --- "*" "COMMANDE": "PASSER"
+
+Table("COMMANDE") {
+    {field} + pk(Num. commande) VARCHAR(8)
+    {field} + Date          DATE
+    {field} + Montant       DECIMAL(10,2)
+}
+
+"COMMANDE" "*" --- "1..*" "PRODUIT": "INCLURE"
+("COMMANDE", "PRODUIT") .. "INCLURE"
+Table("INCLURE") {
+    {field} + Quantité INTEGER
+}
+
+Table("PRODUIT") {
+    {field} + pk(Réf. produit)  VARCHAR(8)
+    {field} + Libellé       VARCHAR(50)
+    {field} + Prix unitaire DECIMAL(10,2)
+}
+
+@enduml

@@ -1,12 +1,11 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                                                               %
-%                            ENTITÉ SANS IDENTIFIANT                            %
-%                                                                               %
-%  Préfixez d'un « _ » le premier attribut pour l'exclure de l'identifiant, p.  %
-%  ex. pour une entité faible sans discriminant.                                %
-%                                                                               %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                                %
+%                            POUR ALLER PLUS LOIN...                             %
+%                                                                                %
+%  Si vous débutez dans les bases de données, les exemples précédents devraient  %
+%  suffire à votre bonheur. Dans le cas contraire, cochez l'option « Tutoriel    %
+%  interactif (2/2) » et revenez ici.                                            %
+%                                                                                %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Pavillon: id. pavillon, surface, nombre d'étages
-Posséder, 01 Pavillon, _11 Piscine
-Piscine: _surface, volume
+À suivre...: ou pas!

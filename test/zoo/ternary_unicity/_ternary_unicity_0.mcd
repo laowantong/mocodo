@@ -1,0 +1,9 @@
+Voilier: voilier
+DF, _11 Disponibilité, 1N Voilier
+Disponibilité:
+DF, _11 Disponibilité, 1N Semaine
+Semaine: semaine, 1_date début
+
+DF, 11 Réservation, 01 Disponibilité
+    
+Réservation: id résa, 1_num résa, arrhes, date réservation

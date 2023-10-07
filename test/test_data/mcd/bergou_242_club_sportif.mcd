@@ -1,0 +1,12 @@
+%%mocodo
+Adhérent: num adhérent, nom, prénom, date naissance
+
+Pratique, 0N Adhérent, 1N Activité
+:
+Direction, 0N Adhérent, 1N Section: fonction
+
+Activité: code activité, libellé, horaire
+Proposer, 11 Activité, 1N Section
+Section: id section, nom, adresse
+
+(T) --Pratique, --Direction, ..Adhérent, Proposer

@@ -1,0 +1,28 @@
+@startuml "split"
+
+!define Table(x) class "x" << (T,#FFFFFF) >>
+!define pk(x) <b>x</b>
+
+Table("Bataille") {
+    {field} + pk(nom bataille)
+    {field} + lieu
+    {field} + date
+}
+
+"Trophée" "*" --- "1" "Villageois": "Récolter0"
+
+"Trophée" "*" --- "1" "Bataille": "Récolter1"
+
+Table("Villageois") {
+    {field} + pk(nom villageois)
+    {field} + adresse
+    {field} + fonction
+}
+
+Table("Trophée") {
+    {field} + pk(numéro)
+    {field} + type
+    {field} + état
+}
+
+@enduml

@@ -1,0 +1,8 @@
+%%mocodo
+:
+CLIENT: Réf. client, Nom, Prénom, Adresse, Mail
+:
+FOO: foo, bar, biz, buz, qux, quux
+:
+UTILISER: carnet, _projet, technicien
+:

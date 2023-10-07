@@ -1,0 +1,13 @@
+%%mocodo
+:
+Ingénieur: ingénieur, nom ingénieur
+:
+Gérer: #ingénieur > Ingénieur > ingénieur, _#projet > Projet > projet, #responsable > Responsable > responsable
+:
+Projet: projet, libellé projet
+:
+
+
+:::
+Responsable: responsable, nom responsable
+:::

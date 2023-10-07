@@ -1,15 +1,18 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                                                               %
-%                             FLÈCHE SUR UNE PATTE                              %
-%                                                                               %
-%  En suffixant de « < » ou « > » des cardinalités, vous créez une flèche dont  %
-%  la direction se lit allant de l'association à l'entité.                      %
-%                                                                               %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                                %
+%                               SCHÉMA RELATIONNEL                               %
+%                                                                                %
+%  Sous l'onglet Options, cochez « Explications du passage au relationnel  %
+%  escamotables », puis rafraîchissez la figure : une liste des tables apparaît  %
+%  au-dessous. Cliquez sur n'importe quelle ligne pour mieux comprendre comment  %
+%  elle a été obtenue. Dans la table « Client », remarquez les colonnes « Réf.   %
+%  client » et « Réf. client 2 » : ce n'est pas très satisfaisant.               %
+%                                                                                %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Produit: réf. produit, libellé, prix unitaire
-Inclure, 1N Commande, 0N> Produit: quantité
-Commande: num commande, date, montant
+Inclure, 1N Commande, 0N Produit: quantité
+Commande: num. commande, date, montant
 DF, 0N Client, 11 Commande
 Client: réf. client, nom, prénom, adresse
-Parrainer, 01> Client, 0N< Client : date parrainage
+Parrainer, 01 Client, 0N Client : date parrainage

@@ -1,0 +1,8 @@
+%%mocodo
+:
+Agence: id. agence, nom agence
+:
+Superviser: #id. agence > Agence > id. agence, #id. dir. > Direction régionale > id. dir.
+:
+Direction régionale: id. dir., nom dir.
+:

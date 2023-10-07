@@ -1,17 +1,16 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                                %
-%                          EXPLICATION DES CARDINALITÉS                          %
+%                               INFÉRENCE DE TYPES                               %
 %                                                                                %
-%  Si vous insérez un court message entre crochets entre les cardinalités et le  %
-%  le nom de l'entité, celui-ci apparaîtra au survol. Essayez en survolant les   %
-%  cardinalités de l'association réflexive Parrainer !                           %
+%  Faites un clic long sur le lapin magique, puis sélectionnez : « deviner les   %
+%  types à partir du nom des attributs » (en français ou en anglais). Bien sûr,  %
+%  vous pourrez toujours rectifier ceux-ci au besoin.                            %
 %                                                                                %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Parrainer, 01 [Un client peut avoir été parrainé ou non.] Client, 0N [Un client peut parrainer d'autres clients.] Client : date parrainage
 Produit: réf. produit, libellé, prix unitaire
 Inclure, 1N Commande, 0N Produit: quantité
-
-Client: réf. client, nom, prénom, adresse
+Commande: num. commande, date, montant
 DF, 0N Client, 11 Commande
-Commande: num commande, date, montant
+Client: réf. client, nom, prénom, adresse
+Parrainer, 01 Client, 0N [parrain] Client : date parrainage

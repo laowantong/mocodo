@@ -1,0 +1,3 @@
+[Ingénieur] ==N== <Gérer>
+[Projet] ==N== <Gérer>
+[Responsable] ==1== <Gérer>

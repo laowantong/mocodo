@@ -1,0 +1,18 @@
+@startuml "protected"
+
+!define Table(x) class "x" << (T,#FFFFFF) >>
+!define pk(x) <b>x</b>
+
+Table("Agence") {
+    {field} + pk(id. agence)
+    {field} + nom agence
+}
+
+"Direction régionale" "1..*" --- "1..*" "Agence": "Superviser"
+
+Table("Direction régionale") {
+    {field} + pk(id. dir.)
+    {field} + nom dir.
+}
+
+@enduml

@@ -1,0 +1,6 @@
+%%mocodo
+:
+Œuvre: œuvre, auteur
+:
+Exemplaire: #œuvre > Œuvre > œuvre, _exemplaire, nb pages, date achat, foobar
+:

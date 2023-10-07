@@ -1,0 +1,17 @@
+:::
+OCCUPE: #code espèce > ANIMAL > code espèce, _#nom > ANIMAL > nom, _#date naissance > ANIMAL > date naissance, _num. enclos, date début, date fin
+:
+ANIMAL: #code espèce > ESPÈCE > code espèce, _nom, _date naissance, sexe, date décès, #code espèce mère > ANIMAL > code espèce, #nom mère > ANIMAL > nom, #date naissance mère > ANIMAL > date naissance, type alimentation, CARNIVORE, quantité viande, HERBIVORE, plante préférée
+:
+
+
+:
+PEUT VIVRE DANS: #code espèce > ESPÈCE > code espèce, _num. enclos, nb. max. congénères
+:
+ESPÈCE: code espèce, nom latin, nom vernaculaire
+:::
+
+
+:::
+PEUT COHABITER AVEC: #code espèce > ESPÈCE > code espèce, _#code espèce commensale > ESPÈCE > code espèce, nb. max. commensaux
+:::

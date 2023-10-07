@@ -1,19 +1,16 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                                                                %
-%                    EXPLICATION INTERACTIVE D'UNE CONTRAINTE                    %
-%                                                                                %
-%  Le survol d'une contrainte suivie d'un texte entre crochets affiche celui-ci  %
-%  dans un bandeau en haut ou en bas du diagramme. Essayez !                     %
-%                                                                                %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                                 %
+%                               AGRÉGATION MULTIPLE                               %
+%                                                                                 %
+%  Mocodo gère correctement les cas difficiles à modéliser dans la notation Look  %
+%  Here de Merise. Par exemple, deux dépendances fonctionnelles simultanées :     %
+%  - (Projet, Employé) => Site.                                                   %
+%  - (Employé, Site) => Projet.                                                   %
+%                                                                                 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Projet: num. projet, nom projet
-:
-Fournir, 1N Projet, 1N Pièce, 1N Société: quantité
-Société: num. société, raison sociale
-    
-Requérir, 1N Projet, 0N Pièce: quantité
-:
-Pièce: réf. pièce, libellé pièce
+Projet: projet
+Affecter, /1N Site, /1N Projet, 0N Employé
+Site: site
 
-(I) [Toute pièce fournie doit avoir été requise.] ..Pièce, ->Requérir, --Fournir, Projet
+Employé: employé

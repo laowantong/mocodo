@@ -1,0 +1,27 @@
+@startuml "triple_NNN"
+
+!define Table(x) class "x" << (T,#FFFFFF) >>
+!define pk(x) <b>x</b>
+
+Table("Employé") {
+    {field} + pk(employé)
+    {field} + nom
+}
+
+diamond N_ARY_0
+N_ARY_0 -- "*" "Employé"
+N_ARY_0 -- "1..*" "Projet"
+N_ARY_0 -- "1..*" "Compétence"
+
+Table("Projet") {
+    {field} + pk(projet)
+    {field} + date début
+    {field} + date fin
+}
+
+Table("Compétence") {
+    {field} + pk(compétence)
+    {field} + libellé
+}
+
+@enduml

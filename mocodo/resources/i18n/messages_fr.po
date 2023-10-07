@@ -1,0 +1,734 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR ORGANIZATION
+# 
+# Translators:
+# Aristide Grange <chewingword@wingi.net>, 2015-2016,2022-2023
+msgid ""
+msgstr "Project-Id-Version: mocodo\nPOT-Creation-Date: 2023-09-23 13:41+0200\nPO-Revision-Date: 2015-08-16 07:00+0000\nLast-Translator: Aristide Grange <chewingword@wingi.net>, 2015-2016,2022-2023\nLanguage-Team: French (http://app.transifex.com/aristide/mocodo/language/fr/)\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nGenerated-By: pygettext.py 1.5\nLanguage: fr\nPlural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
+
+#: mocodo/__main__.py:103
+msgid "Unknown argument \"{k}\" for option --select."
+msgstr "Argument « {k} » inconnu pour l'option --select."
+
+#: mocodo/__main__.py:227
+msgid "The file \"{path}\" is missing."
+msgstr "Le fichier « {path} » est manquant."
+
+#: mocodo/__main__.py:229
+msgid "The file \"{path}\" is not a valid JSON file."
+msgstr "Le fichier « {path} » n'est pas un fichier JSON valide."
+
+#: mocodo/__main__.py:231
+msgid "The file \"{path}\" could not be read:\n{err}"
+msgstr "Le fichier « {path} » n'a pas pu être lu :\n{err}"
+
+#: mocodo/__main__.py:235
+msgid "No third-party rendering service for extension \"{extension}\". You may want to add one in \"{path}\"."
+msgstr "Aucun service de rendu tiers pour l'extension « {extension} ». Vous pouvez en ajouter un dans « {path} »."
+
+#: mocodo/__main__.py:255
+msgid "The HTTP status code {code} was returned by:\n{url}"
+msgstr "Le code HTTP {code} a été retourné par :\n{url}"
+
+#: mocodo/__main__.py:285
+msgid "  - Leg \"{b1} — {b2}\" overlaps \"{b3}\"."
+msgstr "  - La patte « {b1} — {b2} » chevauche « {b3} »."
+
+#: mocodo/__main__.py:287
+msgid "  - Legs \"{b1} — {b2}\" and \"{b3} — {b4}\" overlap."
+msgstr "  - Les pattes  « {b1} — {b2} » et « {b3} — {b4} » se chevauchent."
+
+#: mocodo/__main__.py:289
+msgid "Bad layout of boxes:\n{details}\nTo fix the problem, reorder and/or skip lines in the source text, either manually, or with the option -t arrange (chocolate bar under Mocodo online)."
+msgstr "Mauvaise disposition des boîtes :\n{details}\nPour corriger cela, réordonnez et/ou sautez des lignes dans le texte-source, soit à la main, soit à l'aide de l'option -t arrange (tablette de chocolat sous Mocodo online)."
+
+#: mocodo/argument_parser.py:401
+msgid "OPTIONS ON MOCODO ITSELF"
+msgstr "OPTIONS SUR MOCODO LUI-MÊME "
+
+#: mocodo/argument_parser.py:402
+msgid "INPUT/OUTPUT"
+msgstr "ENTRÉE/SORTIE "
+
+#: mocodo/argument_parser.py:404
+msgid "ASPECT OF THE GRAPHICAL OUTPUT"
+msgstr "ASPECT DE LA SORTIE GRAPHIQUE "
+
+#: mocodo/argument_parser.py:406
+msgid ""
+"\n"
+"        NAME:\n"
+"        Mocodo - An Entity-Relation Diagram Generator.\n"
+"\n"
+"        DESCRIPTION:\n"
+"        Mocodo is an open-source tool for designing and teaching relational databases.\n"
+"        It takes as an input a textual description of both entities and associations\n"
+"        of an entity-relationship diagram (ERD). It outputs a vectorial drawing in SVG\n"
+"        and a relational schema in various formats (SQL, LaTeX, Markdown, etc.).\n"
+"\n"
+"        NOTE:\n"
+"        Each one of the following values is:\n"
+"        - explicitely specified by the user as a command line option;\n"
+"        - otherwise, retrieved from a file located at --params_path;\n"
+"        - otherwise, retrieved from a file named 'params.json' in the input directory;\n"
+"        - otherwise, calculated from a default value, possibly dependant of your system.\n"
+"    "
+msgstr ""
+"\n"
+"        NOM :\n"
+"        Mocodo - Un générateur de diagrammes entité-association.\n"
+"\n"
+"        DESCRIPTION :\n"
+"        Mocodo est un outil libre destiné à l'enseignement des bases de données relationnelles.\n"
+"        Il prend en entrée une description textuelle des entités et associations d'un diagramme\n"
+"        entité-association (MCD). Il produit en sortie un dessin vectoriel en SVG et un schéma\n"
+"        relationnel dans divers formats (SQL, LaTeX, Markdown, etc.).\n"
+"\n"
+"        NOTE :\n"
+"        Chacune des valeurs suivantes est :\n"
+"        - spécifiée explicitement par l'utilisateur comme option de ligne de commande ;\n"
+"        - sinon, récupérée depuis un fichier de chemin --params_path ;\n"
+"        - sinon, récupérée depuis un fichier nommé « params.json » dans le répertoire d'entrée ;\n"
+"        - sinon, calculée à partir d'une valeur par défaut, éventuellement dépendante de votre système.\n"
+"    "
+
+#: mocodo/argument_parser.py:424
+msgid ""
+"\n"
+"        SEE ALSO:\n"
+"          Online version        https://mocodo.net\n"
+"          Source code           https://github.com/laowantong/mocodo\n"
+"          Documentation         https://rawgit.com/laowantong/mocodo/master/doc/fr_refman.html\n"
+"          Cheat sheet for -t    https://github.com/laowantong/mocodo/master/doc/fr_cheat_sheet.md\n"
+"\n"
+"        LICENSE:                MIT\n"
+"\n"
+"        CONTACT:\n"
+"          Author                Aristide Grange\n"
+"          Address               Université de Lorraine\n"
+"                                Laboratoire LCOMS - UFR MIM\n"
+"                                3 rue Augustin Fresnel\n"
+"                                57070 METZ Technopôle\n"
+"                                France\n"
+"          Mail                  <author.full.name>@univ-lorraine.fr\n"
+"    "
+msgstr ""
+"\n"
+"        VOIR AUSSI :\n"
+"          Version en ligne      https://mocodo.net\n"
+"          Code source           https://github.com/laowantong/mocodo\n"
+"          Documentation         https://rawgit.com/laowantong/mocodo/master/doc/fr_refman.html\n"
+"          Aide-mémoire pour -t  https://github.com/laowantong/mocodo/master/doc/fr_cheat_sheet.md\n"
+"\n"
+"        LICENCE :               MIT\n"
+"\n"
+"        CONTACT :\n"
+"          Auteur                Aristide Grange\n"
+"          Adresse               Université de Lorraine\n"
+"                                Laboratoire LCOMS - UFR MIM\n"
+"                                3 rue Augustin Fresnel\n"
+"                                57070 METZ Technopôle\n"
+"                                France\n"
+"          Courriel              <prénom.nom>@univ-lorraine.fr\n"
+"    "
+
+#: mocodo/argument_parser.py:93
+msgid "rearrange the layout with either a Branch & Bound or a Genetic Algorithm"
+msgstr "réarrange la disposition, soit par Branch & Bound, soit avec un algorithme génétique"
+
+#: mocodo/argument_parser.py:98
+msgid "rewrite the given elements in ASCII"
+msgstr "réécrit les éléments donnés en ASCII"
+
+#: mocodo/argument_parser.py:104
+msgid "dump the abstract syntax tree of the source text (for debugging purposes)"
+msgstr "crée l'arbre de syntaxe abstraite du texte source (pour le débogage)"
+
+#: mocodo/argument_parser.py:109
+msgid "rewrite the given elements in camelCase"
+msgstr "réécrit les éléments donnés en camelCase"
+
+#: mocodo/argument_parser.py:115
+msgid "rewrite the given elements by capitalizing the first letter of each word"
+msgstr "réécrit les éléments donnés en capitalisant la première lettre de chaque mot"
+
+#: mocodo/argument_parser.py:121
+msgid "rewrite the given elements in lowercase, but more aggressively than 'lower'"
+msgstr "réécrit les éléments donnés en minuscules, mais plus agressivement que « lower »"
+
+#: mocodo/argument_parser.py:127
+msgid "convert the conceptual model into a Chen's ERD"
+msgstr "convertit le modèle conceptuel dans la notation de Chen"
+
+#: mocodo/argument_parser.py:132
+msgid "try to infer types, entities, CIFs or DF arrows from the existing elements"
+msgstr "essaie d'inférer les types, entités, CIFs ou flèches de DF à partir des éléments existants"
+
+#: mocodo/argument_parser.py:138
+msgid "convert the conceptual model into a crow's foot ERD"
+msgstr "convertit le modèle conceptuel dans la notation crow's foot"
+
+#: mocodo/argument_parser.py:143
+msgid "collect all the attributes of the MCD in a table"
+msgstr "extrait tous les attributs du MCD dans une table"
+
+#: mocodo/argument_parser.py:148
+msgid "suppress the given elements whenever possible"
+msgstr "supprime les éléments donnés quand c'est possible"
+
+#: mocodo/argument_parser.py:154
+msgid "move any (1,1) association attribute to the appropriate entity"
+msgstr "déplace tout attribut d'association (1,1) vers l'entité appropriée"
+
+#: mocodo/argument_parser.py:159
+msgid "replace all element names by a numbered generic label"
+msgstr "remplace tous les noms d'éléments par un libellé générique numéroté"
+
+#: mocodo/argument_parser.py:164
+msgid "rewrite the source text as is"
+msgstr "réécrit le texte source tel quel"
+
+#: mocodo/argument_parser.py:169
+msgid "decompose any n-ary (*,N) associations into n binary ones"
+msgstr "décompose toute association n-aire (*,N) en n associations binaires"
+
+#: mocodo/argument_parser.py:174
+msgid "try to fix common errors in the given elements"
+msgstr "essaie de corriger les erreurs courantes dans les éléments donnés"
+
+#: mocodo/argument_parser.py:180
+msgid "apply a vertical, horizontal or diagonal symmetry to the diagram"
+msgstr "applique au diagramme une symétrie verticale, horizontale ou diagonale"
+
+#: mocodo/argument_parser.py:185
+msgid "add random entities and associations (default: 10 new associations)"
+msgstr "ajoute des entités et associations aléatoires (par défaut : 10 nouvelles associations)"
+
+#: mocodo/argument_parser.py:190
+msgid "rewrite the given elements in lowercase"
+msgstr "réécrit les éléments donnés en minuscules"
+
+#: mocodo/argument_parser.py:196
+msgid "prefix the given elements with the given string"
+msgstr "préfixe les éléments donnés avec la chaîne donnée"
+
+#: mocodo/argument_parser.py:202
+msgid "keep the stucture, but replace the given elements with random ones whenever possible"
+msgstr "garde la structure, mais randomise les éléments donnés quand c'est possible"
+
+#: mocodo/argument_parser.py:208
+msgid "convert the conceptual model into a relational schema with the given template path"
+msgstr "convertit le modèle conceptuel en schéma relationnel avec le gabarit donné"
+
+#: mocodo/argument_parser.py:213
+msgid "rewrite the given elements by applying the given 'search/repl' pattern"
+msgstr "réécrit les éléments donnés en appliquant le motif « recherche/remplacement » donné"
+
+#: mocodo/argument_parser.py:219
+msgid "rewrite the given elements in snake_case"
+msgstr "réécrit les éléments donnés en snake_case"
+
+#: mocodo/argument_parser.py:225
+msgid "decompose any n-ary (*,1) associations into n-1 binary ones"
+msgstr "décompose toute association n-aire (*,1) en n-1 associations binaires"
+
+#: mocodo/argument_parser.py:230
+msgid "suffix the given elements with the given string"
+msgstr "suffixe les éléments donnés avec la chaîne donnée"
+
+#: mocodo/argument_parser.py:236
+msgid "rewrite the given elements by swapping the case of each letter"
+msgstr "réécrit les éléments donnés en inversant la casse de chaque lettre"
+
+#: mocodo/argument_parser.py:238
+msgid "The template '{stem}' doesn't have a help message in language of code '{language}'."
+msgstr "Le gabarit « {stem} » n'a pas de message d'aide dans la langue de code « {language} »."
+
+#: mocodo/argument_parser.py:242
+msgid "rewrite the given elements in Title Case"
+msgstr "réécrit les éléments donnés en mettant la première lettre de chaque mot en majuscule"
+
+#: mocodo/argument_parser.py:254
+msgid "convert the conceptual model into a UML class diagram"
+msgstr "convertit le modèle conceptuel en diagramme de classes UML"
+
+#: mocodo/argument_parser.py:259
+msgid "encode the MCD into a URL for Mocodo online"
+msgstr "encode le MCD dans une URL pour Mocodo online"
+
+#: mocodo/argument_parser.py:264
+msgid "rewrite the given elements in UPPERCASE"
+msgstr "réécrit les éléments donnés en majuscules"
+
+#: mocodo/argument_parser.py:288
+msgid "The transformation '{subopt}' is not among the possible ones:\n{valid}."
+msgstr "La transformation « {subopt} » n'est pas parmi celles qui sont possibles :\n{valid}."
+
+#: mocodo/argument_parser.py:291
+msgid "rewrite the given elements by keeping only a given slice"
+msgstr "réécrit les éléments donnés en n'en gardant qu'une tranche donnée"
+
+#: mocodo/argument_parser.py:324
+msgid "truncate the given elements to the given length (default: {n})"
+msgstr "tronque les éléments donnés à la longueur donnée (par défaut : {n})"
+
+#: mocodo/argument_parser.py:412
+msgid "override the automatic localization of the messages with the given language code (e.g., 'fr', 'en', ...)"
+msgstr "force la localisation des messages avec le code de langue donné (par exemple, « fr », « en », ...)"
+
+#: mocodo/argument_parser.py:417
+msgid "the path of the parameter file. If omitted, use 'params.json' in the input directory. If non existent, use default parameters."
+msgstr "le chemin du fichier de paramètres. S'il est omis, utilise « params.json » dans le répertoire d'entrée. S'il n'existe pas, utilise les paramètres par défaut."
+
+#: mocodo/argument_parser.py:421
+msgid "the path of the input file. By default, the output files will be generated in the same directory"
+msgstr "le chemin du fichier d'entrée. Par défaut, les fichiers de sortie seront générés dans le même répertoire"
+
+#: mocodo/argument_parser.py:431
+msgid "The file \"{input}\" doesn't exist."
+msgstr "Le fichier « {input} » n'existe pas."
+
+#: mocodo/argument_parser.py:443
+msgid "show this help message, then exit"
+msgstr "affiche ce message d'aide, puis termine"
+
+#: mocodo/argument_parser.py:448
+msgid "display the version number, then exit"
+msgstr "affiche le numéro de version, puis termine"
+
+#: mocodo/argument_parser.py:452
+msgid "recreate a pristine version of the files 'sandbox.mcd' and 'params.json' in the input directory, then exit"
+msgstr "recrée une version vierge des fichiers « sandbox.mcd » et « params.json » dans le répertoire d'entrée, puis termine"
+
+#: mocodo/argument_parser.py:457
+msgid "the directory of the output files"
+msgstr "le répertoire des fichiers de sortie"
+
+#: mocodo/argument_parser.py:462
+msgid "one or several encodings to be tried successively when reading the input file"
+msgstr "un ou plusieurs encodages à essayer successivement lors de la lecture du fichier d'entrée"
+
+#: mocodo/argument_parser.py:468
+msgid "generate a PNG or a PDF version of the SVG output (requires CairoSVG)"
+msgstr "génère une version PNG ou PDF de la sortie SVG (requiert CairoSVG)"
+
+#: mocodo/argument_parser.py:472
+msgid "display the contents of the parameter file, then exit"
+msgstr "affiche le contenu du fichier de paramètres, puis termine"
+
+#: mocodo/argument_parser.py:476
+msgid "reuse the geometry file of the previous execution"
+msgstr "réutilise le fichier de géométrie de l'exécution précédente"
+
+#: mocodo/argument_parser.py:482
+msgid "discriminate between multiple SVG of the same interactive diagram"
+msgstr "ajoute un discriminateur à un SVG interactif"
+
+#: mocodo/argument_parser.py:488
+msgid "under Jupyter Notebook, explicitely state the categories of results to display"
+msgstr "sous Jupyter Notebook, spécifie explicitement les catégories de résultats à afficher"
+
+#: mocodo/argument_parser.py:494
+msgid "use an external web-service to further convert the conversion results into the given graphical formats"
+msgstr "utilise un service web externe pour convertir les résultats de la conversion dans les formats graphiques donnés"
+
+#: mocodo/argument_parser.py:498
+msgid "backward compatibility alias for '-t' (with no arguments). Same as '-t markdown' but, under Jupyter Notebook, does not prevent the rendering of the conceptual diagram in the cell output"
+msgstr "alias de compatibilité ascendante pour « -t » (sans arguments). Équivalent à « -t markdown » mais, sous Jupyter Notebook, n'empêche pas le rendu du diagramme conceptuel dans la sortie de la cellule"
+
+#: mocodo/argument_parser.py:519
+msgid "make a new version of the MCD by applying sequentially the given rewriting operations, and/or convert it into the given formats or languages. Under Jupyter Notebook, '-T' respectively replaces the current cell by the textual result, or copies it into the clipboard (pip3 install pyperclip)"
+msgstr "crée une nouvelle version du MCD en appliquant séquentiellement les opérations de réécriture données, et/ou le convertit dans les formats ou langages donnés. Sous Jupyter Notebook, « -T » remplace respectivement la cellule courante par le résultat textuel, ou le copie dans le presse-papier (pip3 install pyperclip)"
+
+#: mocodo/argument_parser.py:521
+msgid "initial value for the random number generator"
+msgstr "valeur initiale pour le générateur de nombres aléatoires"
+
+#: mocodo/argument_parser.py:525
+msgid "Untitled"
+msgstr "MCD"
+
+#: mocodo/argument_parser.py:527
+msgid "name of the model, used at various places (file system, database, etc.)"
+msgstr "nom du modèle, utilisé à divers endroits (système de fichiers, base de données, etc.)"
+
+#: mocodo/argument_parser.py:534
+msgid "the acronym to be circled in a functional dependency"
+msgstr "l'acronyme à entourer dans une dépendance fonctionnelle"
+
+#: mocodo/argument_parser.py:541
+msgid "format string for minimal and maximal cardinalities"
+msgstr "chaîne de formatage pour les cardinalités minimales et maximales"
+
+#: mocodo/argument_parser.py:548
+msgid "string for relative cardinalities"
+msgstr "chaîne pour les cardinalités relatives"
+
+#: mocodo/argument_parser.py:554
+msgid "flex straight legs whose cardinalities may collide"
+msgstr "incurve les pattes rectilignes dont les cardinalités peuvent se chevaucher"
+
+#: mocodo/argument_parser.py:559
+msgid "the color palette to use when generating the drawing. Name (without extension) of a file located in the directory 'colors', or path to a personal file"
+msgstr "la palette de couleurs à utiliser lors de la génération du dessin. Nom (sans extension) d'un fichier situé dans le répertoire « colors », ou chemin vers un fichier personnel"
+
+#: mocodo/argument_parser.py:563
+msgid "specification of the fonts, dimensions, etc. Name (without extension) of a file located in the directory 'shapes', or path to a personal file"
+msgstr "spécification des polices, dimensions, etc. Nom (sans extension) d'un fichier situé dans le répertoire « shapes », ou chemin vers un fichier personnel"
+
+#: mocodo/argument_parser.py:569
+msgid "scale the diagram by the given factor"
+msgstr "applique au diagramme le facteur de mise à l'échelle donné"
+
+#: mocodo/argument_parser.py:575
+msgid "scale all calculated text widths by the given factor"
+msgstr "applique à tous les textes calculés le facteur de mise à l'échelle donné"
+
+#: mocodo/argument_parser.py:579
+msgid "raise an error when horizontal or vertical legs overlap"
+msgstr "lève une erreur quand des pattes horizontales ou verticales se chevauchent"
+
+#: mocodo/argument_parser.py:586
+msgid "set the visibility and the contents of the lateral gutters"
+msgstr "définit la visibilité et le contenu des gouttières latérales"
+
+#: mocodo/association.py:77
+msgid "An association named \"{df_label}\" must have at least one leg with a maximal cardinality of 1."
+msgstr "Une association nommée « {df_label} » doit avoir au moins une patte avec une cardinalité maximale de 1."
+
+#: mocodo/common.py:29
+msgid "Output file \"{filename}\" successfully generated."
+msgstr "Fichier de sortie « {filename} » généré avec succès."
+
+#: mocodo/common.py:34
+msgid "Source file \"{filename}\" successfully updated."
+msgstr "Fichier source « {filename} » mis à jour avec succès."
+
+#: mocodo/common.py:44
+msgid "Unable to read \"{filename}\" with any of the following encodings: \"{encodings}\"."
+msgstr "Impossible de lire « {filename} » dans aucun des encodages suivants : \\\"{encodings}\\\"."
+
+#: mocodo/common.py:60 mocodo/common.py:65
+msgid "Problem with \"{name}\" file \"{path}\"."
+msgstr "Problème lors du chargement de « {name} » au bout du chemin « {path} »."
+
+#: mocodo/convert/_uml.py:22
+msgid "{complete, disjoint}"
+msgstr "{complet, disjoint}"
+
+#: mocodo/convert/_uml.py:23
+msgid "{incomplete, disjoint}"
+msgstr "{incomplet, disjoint}"
+
+#: mocodo/convert/_uml.py:24
+msgid "{complete, overlapping}"
+msgstr "{complet, non disjoint}"
+
+#: mocodo/convert/_uml.py:25
+msgid "{incomplete, overlapping}"
+msgstr "{incomplet, non disjoint}"
+
+#: mocodo/convert/read_template.py:16
+msgid "Circular inheritance in template \"{name}.yaml\" of \"{folder}."
+msgstr "Héritage circulaire dans le gabarit « {name}.yaml » de « {folder} »."
+
+#: mocodo/convert/read_template.py:19
+msgid "Template \"{name}.yaml\" not found in \"{folder}\"."
+msgstr "Gabarit « {name}.yaml » introuvable dans « {folder} »."
+
+#: mocodo/convert/read_template.py:23
+msgid "Unable to decode template \"{name}.yaml\" of \"{folder}\"."
+msgstr "Impossible de décoder le gabarit « {name}.yaml » de « {folder} »."
+
+#: mocodo/convert/read_template.py:26
+msgid "Template \"{name}.yaml\" of \"{folder}\" contains a YAML object as value of key \"{key}\"."
+msgstr "Le gabarit « {name}.yaml » de « {folder} » contient un objet YAML comme valeur de la clé « {key} »."
+
+#: mocodo/convert/read_template.py:32
+msgid "Template \"{name}.yaml\" of \"{folder}\" contains a YAML array as value of key \"{key}\" which does not contain only YAML objects."
+msgstr "Le gabarit « {name}.yaml » de « {folder} » contient un tableau YAML comme valeur de la clé « {key} » qui ne contient pas uniquement des objets YAML."
+
+#: mocodo/convert/read_template.py:34
+msgid "Template \"{name}.yaml\" of \"{folder}\" contains a YAML array as value of key \"{key}\" which does not contain only objects having an \"order\" key."
+msgstr "Le gabarit « {name}.yaml » de « {folder} » contient un tableau YAML comme valeur de la clé « {key} » qui ne contient pas uniquement des objets ayant une clé « order »."
+
+#: mocodo/convert/read_template.py:37
+msgid "Template \"{name}.yaml\" of \"{folder}\" contains a YAML array as value of key \"{key}\" where the \"order\" key is not associated to a number."
+msgstr "Le gabarit « {name}.yaml » de « {folder} » contient un tableau YAML comme valeur de la clé « {key} » où la clé « order » n'est pas associée à un nombre."
+
+#: mocodo/convert/read_template.py:39
+msgid "Template \"{name}.yaml\" of \"{folder}\" contains a YAML array as value of key \"{key}\" where the \"order\" keys are not sorted in ascending order."
+msgstr "Le gabarit « {name}.yaml » de « {folder} » contient un tableau YAML comme valeur de la clé « {key} » où les clés « order » ne sont pas triées par ordre croissant."
+
+#: mocodo/convert/relations.py:121
+msgid "Cannot compile the regular expression \"{regex}\" or the remplacement string \"{replace}\" in a relation template producing \"*{stem_suffix}.{extension}\" files."
+msgstr "Impossible de compiler l'expression régulière « {regex} » ou la chaîne de remplacement « {replace} » dans un gabarit de relation produisant des fichiers « *{stem_suffix}.{extension} »."
+
+#: mocodo/convert/relations.py:244
+msgid "Reciprocal relative identification around {association}."
+msgstr "Identification relative réciproque autour de {association}."
+
+#: mocodo/convert/relations.py:325
+msgid "A weak entity (here, {entity}) cannot be strengthened by itself."
+msgstr "Une entité faible (ici, {entity}) ne peut pas être renforcée par elle-même."
+
+#: mocodo/convert/relations.py:328
+msgid "Cycle of weak entities in {entities}."
+msgstr "Cycle d'entités faibles dans {entities}."
+
+#: mocodo/convert/relations.py:339
+msgid "Totality (/T\\ or /XT\\) is mandatory for \"=>\" inheritance of parent \"{name}\"."
+msgstr "La totalité (/T\\ ou /XT\\) est obligatoire pour l'héritage « => » de l'entité-mère « {name} »."
+
+#: mocodo/diagram_link.py:11 mocodo/leg.py:443
+msgid "Attribute \"{attribute}\" in entity \"{entity_1}\" references an unknown entity \"{entity_2}\"."
+msgstr "L'attribut « {attribute} » de l'entité « {entity_1} » fait référence à une entité « {entity_2} » inconnue."
+
+#: mocodo/diagram_link.py:17 mocodo/leg.py:449
+msgid "Attribute \"{attribute_1}\" in entity \"{entity_1}\" references an unknown attribute \"{attribute_2}\" in entity \"{entity_2}\"."
+msgstr "L'attribute « {attribute_1} » de l'entité « {entity_1} » fait référence à un attribut « {attribute_2} » inconnu dans l'entité « {entity_2} »."
+
+#: mocodo/mcd.py:81
+msgid "Duplicate association \"{name}\". If you want to make two associations appear with the same name, you must suffix it with a number."
+msgstr "Association « {name} » dupliquée. Si vous souhaitez faire apparaître deux associations sous le même nom, vous devez suffixer celui-ci avec un nombre."
+
+#: mocodo/mcd.py:87
+msgid "Duplicate entity \"{name}\". If you want to make two entities appear with the same name, you must suffix it with a number."
+msgstr "Entité « {name} » dupliquée. Si vous souhaitez faire apparaître deux entités sous le même nom, vous devez suffixer celui-ci avec un nombre."
+
+#: mocodo/mcd.py:93
+msgid "One entity and one association share the same name \"{name}\"."
+msgstr "Une entité et une association ont le même nom « {name} »."
+
+#: mocodo/mcd.py:97
+msgid "The ERD \"{title}\" is empty."
+msgstr "Le MCD « {title} » est vide."
+
+#: mocodo/mcd.py:115
+msgid "Association \"{association}\" linked to another association \"{entity}\"!"
+msgstr "Association « {association} » liée à une autre association « {entity} »."
+
+#: mocodo/mcd.py:117
+msgid "Association \"{association}\" linked to an unknown entity \"{entity}\"!"
+msgstr "Association « {association} » liée à une entité inconnue « {entity} »."
+
+#: mocodo/mcd.py:124
+msgid "Inheritance \"{inheritance}\" linked to an association \"{entity}\"!"
+msgstr "L'héritage « {inheritance} » est lié à une association « {entity} »."
+
+#: mocodo/mcd.py:126
+msgid "Inheritance \"{inheritance}\" linked to an unknown entity \"{entity}\"!"
+msgstr "L'héritage « {inheritance} » est lié à une entité inconnue « {entity} »."
+
+#: mocodo/mcd.py:135
+msgid "Constraint \"{constraint}\" linked to an unknown entity or association \"{box}\"!"
+msgstr "Une contrainte « {constraint} » est liée à une entité ou association inconnue « {box} »."
+
+#: mocodo/mcd.py:142
+msgid "Constraint \"{constraint}\" aligned with an unknown entity or association \"{box}\"!"
+msgstr "Une contrainte « {constraint} » est alignée avec une entité ou association inconnue « {box} »."
+
+#: mocodo/mcd.py:175
+msgid "The weak entity \"{entity}\" should have a discriminator."
+msgstr "L'entité faible « {entity} » devrait avoir un discriminateur."
+
+#: mocodo/mcd.py:399
+msgid "Unable to reuse the geometry file \"{filename}\"."
+msgstr "Impossible de réutiliser le fichier de géométrie « {filename} »."
+
+#: mocodo/mcd.py:438
+msgid "Unable to save geometry file \"{filename}\"."
+msgstr "Impossible de sauvegarder le fichier de géométrie « {filename} »."
+
+#: mocodo/mcd_to_svg.py:10
+msgid "PNG and PDF generation requires cairosvg to be installed"
+msgstr "Générer un PNG ou un PDF requiert une installation fonctionnelle de CairoSVG."
+
+#: mocodo/mocodo_error.py:25
+msgid "Invalid sub-argument: \"{subsubopt}={subsubarg}\"."
+msgstr "Sous-argument invalide : « {subsubopt}={subsubarg} »."
+
+#: mocodo/mocodo_error.py:28
+msgid "Invalid sub-sub-option: \"{subsubopt}\"."
+msgstr "Sous-sous-option invalide : « {subsubopt} »."
+
+#: mocodo/mocodo_error.py:31
+msgid "Unknown \"{opt}\" sub-option: \"{subopt}\"."
+msgstr "Sous-option « {opt} » inconnue : « {subopt} »."
+
+#: mocodo/rewrite/_drown.py:24
+msgid "ENTITY"
+msgstr "ENTITÉ"
+
+#: mocodo/rewrite/_drown.py:25
+msgid "ASSOC"
+msgstr "ASSOC"
+
+#: mocodo/rewrite/_drown.py:27 mocodo/rewrite/_grow.py:91
+msgid "attr"
+msgstr "at"
+
+#: mocodo/rewrite/_drown.py:28
+msgid "role"
+msgstr "rôle"
+
+#: mocodo/rewrite/_grow.py:88
+msgid "Binary"
+msgstr "Binaire"
+
+#: mocodo/rewrite/_grow.py:88
+msgid "Quaternary"
+msgstr "Quaternaire"
+
+#: mocodo/rewrite/_grow.py:88
+msgid "Reflexive"
+msgstr "Réflexive"
+
+#: mocodo/rewrite/_grow.py:88
+msgid "Ternary"
+msgstr "Ternaire"
+
+#: mocodo/rewrite/_grow.py:89
+msgid "Entity"
+msgstr "Entité"
+
+#: mocodo/rewrite/_grow.py:90
+msgid "Weak Entity"
+msgstr "Entité faible"
+
+#: mocodo/rewrite/_grow.py:92
+msgid "id"
+msgstr "id"
+
+#: mocodo/rewrite/_grow.py:124
+msgid "Cannot find a suitable combination of card schemes and arities."
+msgstr "Impossible de trouver une combinaison adéquate de schémas de cardinalités et d'arités."
+
+#: mocodo/rewrite/arrange_bb.py:111
+msgid "Layout calculation time exceeded."
+msgstr "Temps de calcul du plongement dépassé."
+
+#: mocodo/rewrite/arrange_bb.py:234
+msgid "Failed to calculate a non-constrained planar layout."
+msgstr "Impossible de calculer un plongement planaire."
+
+#: mocodo/rewrite/arrange_bb.py:236
+msgid "Failed to calculate a planar layout satisfying the given constraint."
+msgstr "Impossible de calculer un plongement planaire satisfaisant la contrainte donnée."
+
+#: mocodo/rewrite/obfuscate.py:54
+msgid "Obfuscation failed. Not enough substitution words in \"{filename}\"."
+msgstr "L'obfuscation a échoué. Pas assez de mots de substitution dans « {filename} »."
+
+#: mocodo/rewrite/op_tk.py:71
+msgid "Operation \"{op_name}\" cannot be applied to \"{pre_token}\"."
+msgstr "L'opération « {op_name} » ne peut pas être appliquée à « {pre_token} »."
+
+#: mocodo/tools/parser_tools.py:22 mocodo/tools/parser_tools.py:24
+msgid "{pin}\"{v}\" is not a valid line beginning."
+msgstr "{pin}« {v} » n'est pas un début de ligne valide."
+
+#: mocodo/tools/parser_tools.py:26
+msgid "{pin}Malformed box name."
+msgstr "{pin}Nom de boîte mal formé."
+
+#: mocodo/tools/parser_tools.py:28
+msgid "{pin}A valid box name starting a line must be followed by a colon or a comma."
+msgstr "{pin}Un nom de boîte valide en début de ligne doit être suivi d'un deux-points ou d'une virgule."
+
+#: mocodo/tools/parser_tools.py:30
+msgid "{pin}Illegal comma after inheritance."
+msgstr "{pin}Virgule illégale après un héritage."
+
+#: mocodo/tools/parser_tools.py:32 mocodo/tools/parser_tools.py:34
+#: mocodo/tools/parser_tools.py:36
+msgid "{pin}Malformed cardinalities."
+msgstr "{pin}Cardinalités mal formées."
+
+#: mocodo/tools/parser_tools.py:38
+msgid "{pin}An inheritance name must be \"\", \"X\", \"T\" or \"XT\"."
+msgstr "{pin}Un nom d'héritage doit être «  », « X », « T » ou « XT »."
+
+#: mocodo/tools/parser_tools.py:40
+msgid "{pin}Only two coords are allowed."
+msgstr "{pin}Seulement deux coordonnées sont autorisées."
+
+#: mocodo/tools/parser_tools.py:42
+msgid "{pin}An association leg cannot be empty."
+msgstr "{pin}Une patte d'association ne peut pas être vide."
+
+#: mocodo/tools/parser_tools.py:44
+msgid "{pin}Expected a number or a box name."
+msgstr "{pin}Un nombre ou un nom de boîte est attendu."
+
+#: mocodo/tools/parser_tools.py:46
+msgid "{pin}Only a box name is possible here."
+msgstr "{pin}Seul un nom de boîte est possible ici."
+
+#: mocodo/tools/parser_tools.py:48
+msgid "{pin}Unclosed square bracket."
+msgstr "{pin}Crochet fermant manquant."
+
+#: mocodo/tools/parser_tools.py:52
+msgid "{pin}A constraint name cannot contain more than three characters."
+msgstr "{pin}Un nom de contrainte ne peut contenir plus de trois caractères."
+
+#: mocodo/tools/parser_tools.py:54
+msgid "{pin}Expected a box name or a constraint leg."
+msgstr "{pin}Un nom de boîte ou une patte de contrainte est attendu."
+
+#: mocodo/tools/parser_tools.py:56
+msgid "{pin}Illegal character after a constraint name."
+msgstr "{pin}Caractère illégal après un nom de contrainte."
+
+#: mocodo/tools/parser_tools.py:58
+msgid "{pin}A parent name must be followed by an inheritance arrow among \"<=\", \"<-\", \"->\", \"=>\"."
+msgstr "{pin}Un nom de parent doit être suivi d'une flèche d'héritage parmi « <= », « <- », « -> », « => »."
+
+#: mocodo/tools/parser_tools.py:60
+msgid "{pin}Please change the old foreign key syntax (\"->\") by the new one (\">\")."
+msgstr "{pin}Veuillez changer l'ancienne syntaxe de clé étrangère (« -> ») par la nouvelle (« > »)."
+
+#: mocodo/tools/parser_tools.py:62
+msgid "{pin}The constraint targets must be comma-separated."
+msgstr "{pin}Les cibles de la contrainte doivent être séparées par des virgules."
+
+#: mocodo/tools/parser_tools.py:64 mocodo/tools/parser_tools.py:66
+msgid "{pin}An attribute label cannot start with \"{v[1]!r}\"."
+msgstr "{pin}Un nom d'attribut ne peut pas commencer par « {v[1]!r} »."
+
+#: mocodo/tools/parser_tools.py:68
+msgid "{pin}An attribute label cannot contain \"{v}\"."
+msgstr "{pin}Un nom d'attribut ne peut pas contenir « {v} »."
+
+#: mocodo/tools/parser_tools.py:70 mocodo/tools/parser_tools.py:72
+msgid "{pin}An attribute starting with \"#\" must contain two \">\"."
+msgstr "{pin}Un attribut commençant par « # » doit contenir deux « > »."
+
+#: mocodo/tools/parser_tools.py:74
+msgid "{pin}Expected an entity name."
+msgstr "{pin}Un nom d'entité est attendu."
+
+#: mocodo/tools/parser_tools.py:76
+msgid "{pin}A box name cannot contain \"{v}\"."
+msgstr "{pin}Un nom de boîte ne peut pas contenir « {v} »."
+
+#: mocodo/tools/parser_tools.py:78
+msgid "{pin}Expected a comma."
+msgstr "{pin}Une virgule est attendue."
+
+#: mocodo/tools/parser_tools.py:80
+msgid "{pin}Malformed number."
+msgstr "{pin}Nombre mal formé."
+
+#: mocodo/tools/parser_tools.py:82
+msgid "{pin}More than two coordinates."
+msgstr "{pin}Plus de deux coordonnées."
+
+#: mocodo/tools/parser_tools.py:84
+msgid "{pin}An attribute label cannot have more than one optionality marker."
+msgstr "{pin}Un nom d'attribut ne peut pas avoir plus d'un marqueur d'optionnalité."
+
+#: mocodo/tools/parser_tools.py:85
+msgid "{pin}\nToken \"{t}\" encountered. Expected tokens: {expected}."
+msgstr "{pin}\Token « {t} » rencontré. Tokens attendus : {expected}."

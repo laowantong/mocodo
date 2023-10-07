@@ -9,7 +9,7 @@
 
 Produit: réf. produit, libellé, prix unitaire
 Inclure, 1N Commande, 0N Produit: quantité
-Commande: num commande, date, montant
+Commande: num. commande, date, montant
 DF, 0N Client, 11 Commande
 Client: réf. client, nom, prénom, adresse
-Parrainer, 01 Client, 0N Client : date parrainage
+Parrainer, 01 Client, 0N Client : date parrainage

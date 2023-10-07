@@ -1,0 +1,44 @@
+CLIENT: Réf. client, Nom, Prénom, Adresse
+-Reflexive 6_, 11 COMMANDE, 01 COMMANDE
+:
+:
+:
+-Binary 12_, 0N Entity 11_, 11 Entity 9_: attr 12 1
+-Entity 11_: id 11 1, attr 11 2
+-DF, 11 Binary 16_, 1N Entity 11_
+
+DF, 0N CLIENT, 11 COMMANDE
+COMMANDE: Num. commande, Date, Montant
+DF, 11 INCLURE, 1N COMMANDE
+INCLURE: id. inclure, Quantité
+:
+-Entity 9_: id 9 1, attr 9 2, attr 9 3
+-Binary 15_, 0N Entity 14_, 01 Entity 11_
+-Binary 16_: id. binary 16_
+
+-Entity 7_: id 7 1, _id 7 2, attr 7 3, attr 7 4
+-DF, 11 Ternary 8_, 0N COMMANDE
+:
+DF, 11 INCLURE, 0N PRODUIT
+:
+-DF, 11 Binary 10_, 1N Entity 9_
+-Entity 14_: id 14 1, attr 14 2, attr 14 3, attr 14 4
+-DF, 11 Binary 16_, 0N Entity 14_
+
+-DF, 11 Ternary 8_, 0N Entity 7_
+-Ternary 8_: id. ternary 8_
+-DF, 11 Ternary 8_, 1N PRODUIT
+PRODUIT: Réf. produit, Libellé, Prix unitaire
+-DF, 11 Binary 10_, 1N PRODUIT
+-Binary 10_: id. binary 10_, attr 10 1
+:
+:
+
+:
+:
+:
+-Reflexive 13_, 11 PRODUIT, 1N PRODUIT
+:
+:
+:
+:

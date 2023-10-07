@@ -1,0 +1,20 @@
+@startuml "reflexive"
+
+!define Table(x) class "x" << (T,#FFFFFF) >>
+!define pk(x) <b>x</b>
+
+Table("PIÈCE") {
+    {field} + pk(pièce)
+}
+
+"PIÈCE" "*" --- "*" "PIÈCE": "COMPOSER"
+
+Table("HOMME") {
+    {field} + pk(Num. SS)
+    {field} + Nom
+    {field} + Prénom
+}
+
+"HOMME" "1..*" --- "*" "HOMME": "ENGENDRER"
+
+@enduml

@@ -1,0 +1,21 @@
+help_en: 'convert the conceptual model into a relational schema in HTML format'
+help_fr: 'convertit le modèle conceptuel en un schéma relationnel au format HTML'
+fr_examples:
+  - order: 1
+    example: 'html'
+    explanation: 'version de base'
+  - order: 2
+    example: 'html:b'
+    explanation: 'avec _boilerplate_'
+  - order: 3
+    example: 'html:c'
+    explanation: 'avec contraintes d''unicité et d''optionnalité'
+  - order: 4
+    example: 'html:e'
+    explanation: 'avec explications'
+  - order: 5
+    example: 'html:bce'
+    explanation: 'avec _boilerplate_, contraintes et explications'
+parent: 'html-c'
+add_unicity_constraints:
+add_optionality_constraints:

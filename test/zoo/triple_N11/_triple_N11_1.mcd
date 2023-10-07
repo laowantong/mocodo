@@ -1,0 +1,8 @@
+Projet: projet, libellé
+Affecter, /1N Site, /1N Projet, 0N Employé
+Site: site, position
+
+Employé: employé, nom employé
+
+(CIF) --Projet, --Employé, ..Affecter, ->Site: Projet, Employé
+(CIF) ..Affecter, ->Projet, Employé, Site: Site, Employé

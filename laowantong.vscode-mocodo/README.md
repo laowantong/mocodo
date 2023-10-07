@@ -16,7 +16,19 @@ MIT.
 
 ## Release Notes
 
-### 0.0.2 -> 0.0.4
+### 1.0.2
+
+Add support for Mocodo 4.0's invisible boxes.
+
+### 1.0.1
+
+Don't regard a mix of empty and non-empty entity attributes as an error.
+
+### 1.0.0
+
+Improve color consistency between [Mocodo online](https://mocodo.net) and VS-Code's "Light+" or "Light Modern" themes.
+
+### 0.0.2 -> 0.0.5
 
 Fix packaging problems.
 
@@ -28,3 +40,4 @@ Initial release.
 
 * [Mocodo online](https://mocodo.net)
 * [Github](https://github.com/laowantong/mocodo/)
+* [Documentation](https://rawgit.com/laowantong/mocodo/master/doc/fr_refman.html)

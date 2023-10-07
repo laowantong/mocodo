@@ -1,0 +1,27 @@
+Table "Gérer" {
+  "ingénieur" VARCHAR(42) [not null]
+  projet VARCHAR(42) [not null]
+  responsable VARCHAR(42) [not null]
+  Indexes {
+    ("ingénieur", projet) [pk]
+  }
+}
+
+Table "Ingénieur" {
+  "ingénieur" VARCHAR(42) [pk, not null]
+  "nom ingénieur" VARCHAR(42)
+}
+
+Table Projet {
+  projet VARCHAR(42) [pk, not null]
+  "libellé projet" VARCHAR(42)
+}
+
+Table Responsable {
+  responsable VARCHAR(42) [pk, not null]
+  "nom responsable" VARCHAR(42)
+}
+
+Ref:"Gérer"."ingénieur" > "Ingénieur"."ingénieur"
+Ref:"Gérer".projet > Projet.projet
+Ref:"Gérer".responsable > Responsable.responsable

@@ -1,0 +1,12 @@
+this_relation_name	label	datatype	nature	adjacent_source	outer_source	unicities
+Bataille	nom bataille		primary_key			
+Bataille	lieu		normal_attribute			
+Bataille	date		normal_attribute			
+Trophée	numéro		primary_key			
+Trophée	type		normal_attribute			
+Trophée	état		normal_attribute			
+Trophée	nom villageois		foreign_key	Villageois	Villageois	
+Trophée	nom bataille		foreign_key	Bataille	Bataille	
+Villageois	nom villageois		primary_key			
+Villageois	adresse		normal_attribute			
+Villageois	fonction		normal_attribute

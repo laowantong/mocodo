@@ -1,0 +1,16 @@
+Table COMPOSER {
+  "pièce composante" VARCHAR(42) [not null]
+  "pièce composée" VARCHAR(42) [not null]
+  Indexes {
+    ("pièce composante", "pièce composée") [pk]
+  }
+}
+
+Table HOMME {
+  "Num. SS" VARCHAR(42) [pk, not null]
+  Nom VARCHAR(42)
+  "Prénom" VARCHAR(42)
+  "Num. SS père" VARCHAR(42) [null]
+}
+
+Ref:HOMME."Num. SS père" > HOMME."Num. SS"

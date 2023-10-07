@@ -1,0 +1,5 @@
+CLIENT: Réf. client [VARCHAR(8)], Nom [VARCHAR(255)], Prénom [VARCHAR(255)], Adresse [VARCHAR(255)]
+PASSER, 0N CLIENT, 11 COMMANDE
+COMMANDE: Num. commande [VARCHAR(8)], Date [DATE], Montant [DECIMAL(10,2)]
+INCLURE, 1N COMMANDE, 0N PRODUIT: Quantité [INTEGER]
+PRODUIT: Réf. produit [VARCHAR(8)], Libellé [VARCHAR(50)], Prix unitaire [DECIMAL(10,2)]

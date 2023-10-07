@@ -1,23 +1,18 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                                                               %
-%                    MLD SOUS FORME DE DIAGRAMME RELATIONNEL                    %
-%                                                                               %
-%  Si vous avez coché la case « diagramme relationnel » sous l'onglet Options,  %
-%  vous pouvez copier le texte généré sous l'onglet Relations, puis le coller   %
-%  sous l'onglet Entrée pour visualiser son équivalent graphique.               %
-%                                                                               %
-%  NB. Ce type d'entrée n'est pas censé être écrit à la main, mais généré.      %
-%                                                                               %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                                  %
+%                           SCHÉMA SUR PLUSIEURS RANGÉES                           %
+%                                                                                  %
+%  Pour finir la première partie du tutoriel, quelques notions de mise en page.    %
+%  Les boîtes (entités et association) définies sur des lignes consécutives sont   %
+%  alignées horizontalement sur la même rangée d'une grille invisible. Pour créer  %
+%  une nouvelle rangée, il suffit de sauter une ligne entre deux clauses.          %
+%                                                                                  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-::
 Produit: réf. produit, libellé, prix unitaire
-:
-Inclure: #num commande->Commande->num commande, _#réf. produit->Produit->réf. produit, quantité
-:
+Inclure, 1N Commande, 0N Produit: quantité
+Commande: num. commande, date, montant
 
-:
-Client: réf. client, nom, prénom, adresse, #réf. client parrain->Client->réf. client, date parrainage
-::
-Commande: num commande, date, montant, #réf. client->Client->réf. client
-:
+DF, 0N Client, 11 Commande
+Client: réf. client, nom, prénom, adresse
+Parrainer, 01 Client, 0N Client : date parrainage

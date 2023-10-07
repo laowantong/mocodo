@@ -1,26 +1,14 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                                                               %
-%                          CONTRAINTE SUR ASSOCIATIONS                          %
-%                                                                               %
-%  Ajoutez à votre MCD diverses contraintes sous forme de lettres entourées et  %
-%  liées aux boîtes par des traits fléchés ou non, pleins ou pointillés, ou     %
-%  même invisibles (pour jouer sur la position du barycentre).                  %
-%                                                                               %
-%  Source du MCD : Merise, deuxième génération (Nanci et Espinasse, 2001).      %
-%                                                                               %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                             %
+%                     AGRÉGATION ET CONTRAINTES D'UNICITÉ                     %
+%                                                                             %
+%  La conversion en relationnel d'un agrégat avec une cardinalité maximale 1  %
+%  ajoute une contrainte d'unicité sur la clé étrangère.                      %
+%                                                                             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-:::
-Dépôt: num dépôt, surface
+Voilier: num voilier, longueur
+Offrir, 0N Voilier, 0N Semaine, /11 Réservation: tarif
+Semaine: num semaine, 1_date début
 
-:
-Louer, 11 Commande, 0N Dépôt
-:
-Stocker, 1N Dépôt, 1N Article: quantité
-
-Commande: num. commande, date
-Composer, 1N Commande, 0N Article
-:
-Article: réf. article, prix
-
-(I) ->Stocker, ..Dépôt, ..Article, --Composer, --Louer, Commande, Stocker
+Réservation: num résa, arrhes, date résa

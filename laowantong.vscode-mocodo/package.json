@@ -1,6 +1,6 @@
 {
   "name": "vscode-mocodo",
-  "version": "0.0.4",
+  "version": "1.0.2",
   "publisher": "laowantong",
   "engines": {
     "vscode": "^1.2.0"

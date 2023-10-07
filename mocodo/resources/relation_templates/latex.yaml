@@ -1,0 +1,21 @@
+help_en: 'convert the conceptual model into a relational schema in LaTeX format'
+help_fr: 'convertit le modèle conceptuel en un schéma relationnel au format LaTeX'
+fr_examples:
+  - order: 1
+    example: 'latex'
+    explanation: 'version de base'
+  - order: 2
+    example: 'latex:b'
+    explanation: 'avec _boilerplate_'
+  - order: 3
+    example: 'latex:c'
+    explanation: 'avec contraintes d''unicité et d''optionnalité'
+  - order: 4
+    example: 'latex:e'
+    explanation: 'avec explications'
+  - order: 5
+    example: 'latex:bce'
+    explanation: 'avec _boilerplate_, contraintes et explications'
+parent: 'latex-c'
+add_unicity_constraints:
+add_optionality_constraints:

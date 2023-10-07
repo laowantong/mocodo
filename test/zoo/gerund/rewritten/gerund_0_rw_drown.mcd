@@ -1,0 +1,5 @@
+ENTITY 1_: attr 1 1
+DF, _11 ENTITY 2_, 0N ENTITY 1_
+ENTITY 2_: _attr 2 1
+DF, _11 ENTITY 2_, 1N ENTITY 3_
+ENTITY 3_: attr 3 1

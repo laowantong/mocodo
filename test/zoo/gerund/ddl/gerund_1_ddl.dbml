@@ -1,0 +1,21 @@
+Table Commande {
+  commande VARCHAR(42) [pk, not null]
+  date VARCHAR(42)
+}
+
+Table "Ligne de commande" {
+  commande VARCHAR(42) [not null]
+  produit VARCHAR(42) [not null]
+  "quantité" VARCHAR(42)
+  Indexes {
+    (commande, produit) [pk]
+  }
+}
+
+Table Produit {
+  produit VARCHAR(42) [pk, not null]
+  "libellé" VARCHAR(42)
+}
+
+Ref:"Ligne de commande".commande > Commande.commande
+Ref:"Ligne de commande".produit > Produit.produit

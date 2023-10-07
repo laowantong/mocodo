@@ -1,0 +1,23 @@
+Table Projet {
+  projet VARCHAR(42) [pk, not null]
+  "libellé" VARCHAR(42)
+}
+
+Table Technicien {
+  technicien VARCHAR(42) [pk, not null]
+  "nom technicien" VARCHAR(42)
+}
+
+Table Utiliser {
+  carnet VARCHAR(42) [not null]
+  projet VARCHAR(42) [not null]
+  technicien VARCHAR(42) [not null]
+  Indexes {
+    (carnet, projet) [pk]
+    (technicien, projet) [unique]
+    (carnet, technicien) [unique]
+  }
+}
+
+Ref:Utiliser.projet > Projet.projet
+Ref:Utiliser.technicien > Technicien.technicien

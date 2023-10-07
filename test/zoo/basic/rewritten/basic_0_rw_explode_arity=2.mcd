@@ -1,0 +1,14 @@
+DF, 0N> CLIENT, 11 COMMANDE
+COMMANDE: Num. commande, Date, Montant
+DF, 11 INCLURE, 1N COMMANDE
+:
+
+CLIENT: Réf. client, Nom, Prénom, Adresse
+:
+INCLURE: id. inclure, Quantité
+DF, 11 INCLURE, 0N PRODUIT
+
+:
+:
+:
+PRODUIT: Réf. produit, Libellé, Prix unitaire

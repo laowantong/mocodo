@@ -1,0 +1,18 @@
+{
+    "gv": {
+        "preprocessing": ["minify_graphviz", "urlsafe_encoding"],
+        "url": "https://kroki.io/graphviz/svg/{data}"
+    },
+    "mmd": {
+        "preprocessing": ["urlsafe_encoding"],
+        "url": "https://kroki.io/mermaid/svg/{data}"
+    },
+    "puml": {
+        "preprocessing": ["urlsafe_encoding"],
+        "url": "https://kroki.io/plantuml/svg/{data}"
+    },
+    "url": {
+        "preprocessing": ["encode_prefix"],
+        "url": "https://api.qrserver.com/v1/create-qr-code/?format=svg&size=1000x1000&qzone=1&data={data}"
+    }
+}

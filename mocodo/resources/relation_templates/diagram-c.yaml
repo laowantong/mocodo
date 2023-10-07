@@ -1,0 +1,36 @@
+stem_suffix: '_mld'
+extension: 'mcd'
+to_defer: false
+highlight: 'plain'
+compose_primary_key: '_{label}'
+compose_foreign_key: '#{label} > {outer_source} > {non_disambiguated_label}'
+compose_normal_attribute: '{label}'
+compose_primary_foreign_key: '_#{label} > {outer_source} > {non_disambiguated_label}'
+compose_relation: '{this_relation_name}: {columns}'
+add_optionality_constraints:
+  - order: 100
+    search: '^([^_][^>]+)$'
+    replace: '\1{optionality}'
+  - order: 200
+    search: '^([^_].+?)( >)'
+    replace: '\1{optionality}\2'
+transform_relation:
+  - order: 100
+    comment: 'By default, the first attribute is an identifier'
+    search: ': _'
+    replace: ': '
+compose_relational_schema: '%%mocodo\n{relations}'
+transform_relational_schema:
+  - order: 100
+    search: '(?m)^:\n(?=:)'
+    replace: ':'
+  - order: 200
+    search: '\n\n:+\n\n'
+    replace: '\n\n'
+    iterated: true
+  - order: 300
+    search: '^%%mocodo\n\n?:+\n\n'
+    replace: ''
+  - order: 400
+    search: '\n\n:+\n?$'
+    replace: ''

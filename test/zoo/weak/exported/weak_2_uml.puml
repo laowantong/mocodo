@@ -1,0 +1,32 @@
+@startuml "weak"
+
+!define Table(x) class "x" << (T,#FFFFFF) >>
+!define pk(x) <b>x</b>
+
+Table("Appartement") {
+    {field} + pk(num appart.)
+    {field} + nb pièces
+}
+
+"Étage" "1" *-- "*" "Appartement": "Composer"
+
+Table("Étage") {
+    {field} + pk(num étage)
+    {field} + nb appartements
+}
+
+"Immeuble" "1" *-- "1..*" "Étage": "Appartenir"
+
+Table("Immeuble") {
+    {field} + pk(num immeuble)
+    {field} + nb étages
+}
+
+"Rue" "1" *-- "*" "Immeuble": "Se situer"
+
+Table("Rue") {
+    {field} + pk(code rue)
+    {field} + nom rue
+}
+
+@enduml

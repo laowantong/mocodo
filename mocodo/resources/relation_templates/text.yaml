@@ -1,0 +1,18 @@
+help_en: 'convert the conceptual model into a relational schema in text format'
+help_fr: 'convertit le modèle conceptuel en un schéma relationnel au format texte'
+parent: 'text-c'
+fr_examples:
+  - order: 1
+    example: 'text'
+    explanation: 'version de base'
+  - order: 2
+    example: 'text:c'
+    explanation: 'avec contraintes d''unicité et d''optionnalité'
+  - order: 3
+    example: 'html:e'
+    explanation: 'avec explications'
+  - order: 5
+    example: 'html:ce'
+    explanation: 'avec contraintes et explications'
+add_unicity_constraints:
+add_optionality_constraints:

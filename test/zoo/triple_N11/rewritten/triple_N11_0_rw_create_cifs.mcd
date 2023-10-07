@@ -1,0 +1,11 @@
+Projet: projet
+Affecter, /1N Site, /1N Projet, 0N Employé
+Site: site
+
+Employé: employé
+
+-INVISIBLE_1, XX Projet, XX Projet
+-INVISIBLE_2, XX Site, XX Site
+
+(CIF) ..Affecter, ->Projet, --Employé, --Site: INVISIBLE_1, INVISIBLE_1
+(CIF) ..Affecter, ->Site, --Employé, --Projet: INVISIBLE_2, INVISIBLE_2

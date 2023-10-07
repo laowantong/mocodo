@@ -1,0 +1,10 @@
+%%mocodo
+:
+Appartement: #code rue > Étage > code rue, _#num immeuble > Étage > num immeuble, _#num étage > Étage > num étage, _num appart., nb pièces
+:
+Étage: #code rue > Immeuble > code rue, _#num immeuble > Immeuble > num immeuble, _num étage, nb appartements
+:
+Immeuble: #code rue > Rue > code rue, _num immeuble, nb étages
+:
+Rue: code rue, nom rue
+:

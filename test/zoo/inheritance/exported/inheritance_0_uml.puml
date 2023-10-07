@@ -1,0 +1,76 @@
+@startuml "inheritance"
+
+!define Table(x) class "x" << (T,#FFFFFF) >>
+!define pk(x) <b>x</b>
+
+Table("SUSCIPIT") {
+    {field} + pk(orci)
+    {field} + lorem
+}
+
+"TRISTIS" "1" --- "1..*" "SUSCIPIT": "RHONCUS"
+
+Table("SODALES") {
+    {field} + pk(convallis)
+    {field} + ipsum
+}
+
+"QUAM" "1..*" --- "1" "SODALES": "VITAE"
+
+Table("QUAM") {
+    {field} + pk(cras)
+    {field} + sed
+}
+
+Table("CONSEQUAT") {
+    {field} + pk(fermentum)
+    {field} + dederit
+}
+
+"TRISTIS" "1..*" --- "1" "CONSEQUAT": "ELIT"
+
+Table("TRISTIS") {
+    {field} + pk(magna)
+    {field} + vestibulum
+}
+
+note "{complete, disjoint}" as GENERALIZATION_0
+GENERALIZATION_0 -[dotted]- LACUS
+GENERALIZATION_0 -[dotted]- NEC
+GENERALIZATION_0 -[dotted]- SODALES
+TRISTIS <|-- LACUS
+TRISTIS <|-- NEC
+TRISTIS <|-- SODALES
+
+Table("NEC") {
+    {field} + pk(pulvinar)
+    {field} + audis
+}
+
+"CURABITUR" "1" --- "1..*" "NEC": "MOLLIS"
+
+Table("CURABITUR") {
+    {field} + pk(gravida)
+    {field} + amor
+}
+
+Table("DIGNISSIM") {
+    {field} + pk(tellus)
+    {field} + terra
+}
+
+"TRISTIS" "1..*" --- "1..*" "DIGNISSIM": "ALIQUET"
+
+Table("LACUS") {
+    {field} + pk(tempor)
+    {field} + fugit
+}
+
+"LIBERO" "1..*" --- "1..*" "LACUS": "ULTRICES"
+
+Table("LIBERO") {
+    {field} + pk(posuere)
+    {field} + lacrima
+}
+
+@enduml

@@ -1,0 +1,3 @@
+[Compétence] ==N== <Appliquer>
+[Employé] --N-- <Appliquer>
+[Projet] ==N== <Appliquer>

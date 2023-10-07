@@ -1,0 +1,11 @@
+Bataille: nom bataille, lieu, date
+Récolter1, 11 Trophée, 0N Bataille
+:
+
+:
+Trophée: numéro, type, état
+Récolter0, 11 Trophée, 0N Villageois
+
+:
+:
+Villageois: nom villageois, adresse, fonction

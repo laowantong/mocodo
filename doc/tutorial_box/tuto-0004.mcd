@@ -1,12 +1,12 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                               %
-%                            ATTRIBUT D'ASSOCIATION                             %
+%                                  ASSOCIATION                                  %
 %                                                                               %
-%  Pour ajouter des attributs à une association, mettez un deux-points au bout  %
-%  de la ligne, puis énumérez ces attributs en les séparant par des virgules.   %
+%  Pour une association A entre plusieurs entités E1, E2, ..., écrivez sur une  %
+%  ligne « A, XX E1, XX E2, ... ».                                              %
 %                                                                               %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Produit: réf. produit, libellé, prix unitaire
-Inclure, XX Commande, XX Produit: quantité
-Commande: num commande, date, montant
+Inclure, XX Commande, XX Produit
+Commande: num. commande, date, montant

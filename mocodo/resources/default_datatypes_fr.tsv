@@ -1,0 +1,133 @@
+Date and Time
+
+^date\b	DATE
+^heure\b	TIME
+^date et heure\b	DATETIME
+^horodatage\b	TIMESTAMP
+\ba$	TIMESTAMP
+\bapres$	TIMESTAMP
+\bavant$	TIMESTAMP
+
+Identifying and Validating Information
+
+^id\b	VARCHAR(8)
+^code\b	VARCHAR(8)
+^ref\b	VARCHAR(8)
+^num\b	VARCHAR(8)
+^uuid\b	VARCHAR(36)
+^sel\b	BINARY(16)
+^empreinte\b	BINARY(64)
+^token\b	VARCHAR(255)
+^passe\b	VARCHAR(255)
+^pwd\b	VARCHAR(255)
+^digest\b	BINARY(64)
+^signature\b	BINARY(64)
+\bsiren\b	CHAR(9)
+\bsiret\b	CHAR(14)
+
+Internet and Computers
+
+^url\b	VARCHAR(2000)
+^ip\b	VARCHAR(15)
+^adresse ip\b	VARCHAR(15)
+^ipv4\b	VARCHAR(15)
+^ipv6\b	VARCHAR(45)
+^cookie\b	VARCHAR(255)
+^session\b	VARCHAR(255)
+^md5\b	BINARY(16)
+^chemin\b	VARCHAR(255)
+^statut\b	VARCHAR(20)
+^priorite\b	SMALLINT
+^version\b	VARCHAR(10)
+
+Personal information
+
+^(pre)?nom\b	VARCHAR(255)
+^sexe\b	CHAR(1)
+^genre\b	VARCHAR(10)
+^age\b	SMALLINT
+^nir\b	VARCHAR(15)
+^ss\b	VARCHAR(15)
+\bsecu(rite sociale)?\b	VARCHAR(15)
+
+Addressing
+
+^code postal\b	VARCHAR(20)
+^tel(ephone)?\b	VARCHAR(20)
+^fax\b	VARCHAR(20)
+^e?mail\b	VARCHAR(255)
+^(nom )?pays\b	VARCHAR(100)
+^(nom )?ville\b	VARCHAR(100)
+^code pays\b	CHAR(2)
+^adresse\b	VARCHAR(30)
+
+Financial
+
+^prix\b	DECIMAL(10,2)
+^montant\b	DECIMAL(10,2)
+^code nra\b	VARCHAR(8)
+^nra\b	VARCHAR(8)"	 Numéro de Référence de l'Acquéreur”, pour identifier les transactions par carte bancaire
+^bic\b	VARCHAR(11)"	 Bank Identifier Code
+^code bic\b	VARCHAR(11)
+^iban\b	VARCHAR(27)"	 France, Monaco, etc.
+
+Predicate
+
+^est\b	BOOLEAN
+^a\b	BOOLEAN
+^peut\b	BOOLEAN
+^drapeau\b	BOOLEAN
+
+Text
+
+^mot clef?\b	VARCHAR(50)
+\blibelle$	VARCHAR(50)
+^corps\b	TEXT
+^commentaire\b	TEXT
+^desc(r?(iption)?)\b	TEXT
+^descriptif\b	TEXT
+^notes?\b	TEXT
+^message\b	TEXT
+^avis\b	TEXT
+^contenu\b	TEXT
+\binfo(rmation)?s?\b	JSON
+
+Geographical
+
+^lat(itude)?\b	DECIMAL(9,6)
+^lon(gitude)?\b	DECIMAL(9,6)
+^pos(ition)?\b	POINT
+
+Grading
+
+\bétoiles$	DECIMAL(3,2)
+
+Quantity
+
+^(quantite|qte)\b	INTEGER
+^(capacite)\b	INTEGER
+^(nombre|nb)\b	INTEGER
+^ordre\b	INTEGER
+^pourcent(age)?\b	DECIMAL(5,2)
+^ratio\b	DECIMAL(5,2)
+^poids\b	DECIMAL(10,2)
+^taille\b	VARCHAR(20)
+^longueur\b	DECIMAL(10,2)
+^largeur\b	DECIMAL(10,2)
+^hauteur\b	DECIMAL(10,2)
+^vol(ume)?\b	DECIMAL(10,2)
+^temp(erature)?\b	DECIMAL(5,1)
+^humidite\b	DECIMAL(5,2)
+^couleur\b	VARCHAR(50)
+
+Blobs
+
+^image\b	BLOB
+^photo\b	BLOB
+^logo\b	BLOB
+^icone\b	BLOB
+^fichier\b	BLOB
+^video\b	BLOB
+^audio\b	BLOB
+^binaire\b	BLOB
+^blob\b	BLOB

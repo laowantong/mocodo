@@ -1,0 +1,15 @@
+foo: 'bar'
+buzz: 42
+baz:
+  - order: 10
+    qux: 'quux'
+    unchanged: 'unchanged'
+  - order: 20
+    biz: 'buz'
+  - order: 30
+    qux: 'quux'
+empty:
+unchanged: 'unchanged'
+force_empty_list:
+  - order: 10
+    qux: 'quux'

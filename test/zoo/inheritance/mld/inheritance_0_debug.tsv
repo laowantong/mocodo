@@ -1,0 +1,30 @@
+this_relation_name	label	datatype	nature	adjacent_source	outer_source	unicities
+ALIQUET	magna		primary_foreign_key	TRISTIS	TRISTIS	
+ALIQUET	tellus		primary_foreign_key	DIGNISSIM	DIGNISSIM	
+CONSEQUAT	fermentum		primary_key			
+CONSEQUAT	dederit		normal_attribute			
+CURABITUR	gravida		primary_key			
+CURABITUR	amor		normal_attribute			
+DIGNISSIM	tellus		primary_key			
+DIGNISSIM	terra		normal_attribute			
+LIBERO	posuere		primary_key			
+LIBERO	lacrima		normal_attribute			
+QUAM	cras		primary_key			
+QUAM	sed		normal_attribute			
+QUAM	magna		foreign_key	SODALES	TRISTIS	
+SUSCIPIT	orci		primary_key			
+SUSCIPIT	lorem		normal_attribute			
+SUSCIPIT	magna		foreign_key	TRISTIS	TRISTIS	
+TRISTIS	magna		primary_key			
+TRISTIS	vestibulum		normal_attribute			
+TRISTIS	fermentum		foreign_key	CONSEQUAT	CONSEQUAT	
+TRISTIS	type	UNSIGNED_INT_PLACEHOLDER	deleted_child_discriminator_XT			
+TRISTIS	convallis		deleted_child_attribute	SODALES		
+TRISTIS	ipsum		deleted_child_attribute	SODALES		
+TRISTIS	pulvinar		deleted_child_attribute	NEC		
+TRISTIS	audis		deleted_child_attribute	NEC		
+TRISTIS	gravida		deleted_child_foreign_key	NEC	CURABITUR	
+TRISTIS	tempor		deleted_child_attribute	LACUS		
+TRISTIS	fugit		deleted_child_attribute	LACUS		
+ULTRICES	posuere		primary_foreign_key	LIBERO	LIBERO	
+ULTRICES	magna		primary_foreign_key	LACUS	TRISTIS

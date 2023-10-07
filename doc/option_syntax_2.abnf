@@ -1,0 +1,1 @@
+start = opt " " ((subopt [":" (subsubarg ["=" subsubopt]) *("," (subsubarg ["=" subsubopt]))]) *("," (subopt [":" (subsubarg ["=" subsubopt]) *("," (subsubarg ["=" subsubopt]))])))

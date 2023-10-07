@@ -1,0 +1,24 @@
+@startuml "gerund"
+
+!define Table(x) class "x" << (T,#FFFFFF) >>
+!define pk(x) <b>x</b>
+
+Table("Produit") {
+    {field} + pk(produit)
+    {field} + libellé
+}
+
+"Ligne de commande" "*" --* "1" "Produit"
+
+Table("Ligne de commande") {
+    {field} + pk(quantité)
+}
+
+"Ligne de commande" "1..*" --* "1" "Commande"
+
+Table("Commande") {
+    {field} + pk(commande)
+    {field} + date
+}
+
+@enduml

@@ -1,0 +1,49 @@
+:
+:
+:
+:
+:
+:
+CONTRÔLER, 0N< [mère] SOCIÉTÉ, 01 [filiale] SOCIÉTÉ
+
+DÉPARTEMENT: num. département, nom département
+DF, _11 TRAVAILLER, 0N EMPLOYÉ
+TRAVAILLER:
+DF, _11 TRAVAILLER, 1N PROJET
+:
+DF, _11 FOURNIR, 1N SOCIÉTÉ
+SOCIÉTÉ: num. société, raison sociale
+
+EMPLOYER, 11 EMPLOYÉ, 1N DÉPARTEMENT
+EMPLOYÉ: matricule, nom employé
+DIRIGER, 0N [responsable] EMPLOYÉ, 01 PROJET
+PROJET: num. projet, nom projet
+DF, _11 FOURNIR, 1N PROJET
+FOURNIR: _qté fournie
+:
+
+:
+DF, _11 AYANT-DROIT, 0N EMPLOYÉ
+:
+DF, _11 REQUÉRIR, 1N PROJET
+REQUÉRIR: _qté requise
+DF, _11 FOURNIR, 1N PIÈCE
+:
+
+:
+AYANT-DROIT: nom ayant-droit, lien
+:
+:
+DF, _11 REQUÉRIR, 0N PIÈCE
+PIÈCE: réf. pièce, libellé pièce
+DF, _11 COMPOSER, 0N [composée] PIÈCE
+
+:
+:
+:
+:
+:
+DF, _11 COMPOSER, 0N [composante] PIÈCE
+COMPOSER: _quantité
+
+  (I) [Les pièces fournies par une société pour un projet font partie de celles qu'il requiert.] ..PIÈCE, ->REQUÉRIR, --FOURNIR, PROJET

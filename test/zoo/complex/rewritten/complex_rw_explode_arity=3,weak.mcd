@@ -1,0 +1,39 @@
+:
+:
+:
+:
+    A MÈRE, 01 ANIMAL, 0N> [mère] ANIMAL
+:
+:
+
+      PÉRIODE: date début, _date fin
+      DF, 11 OCCUPE, 1N PÉRIODE
+      OCCUPE:
+      DF, _11 OCCUPE, 1N ANIMAL
+  ANIMAL: nom, sexe, _date naissance, date décès
+  /\\ ANIMAL <= CARNIVORE, HERBIVORE: type alimentation
+  HERBIVORE: plante préférée
+
+:
+:
+      DF, _11 OCCUPE, 1N ENCLOS
+:
+  DF, 0N ESPÈCE, _11 ANIMAL
+  CARNIVORE: quantité viande
+:
+
+:
+:
+ENCLOS: num. enclos
+PEUT VIVRE DANS, 1N ESPÈCE, 1N ENCLOS: nb. max. congénères
+ESPÈCE: code espèce, 1_nom latin, nom vernaculaire
+:
+:
+
+:
+:
+:
+:
+    PEUT COHABITER AVEC, 0N ESPÈCE, 0N [commensale] ESPÈCE: nb. max. commensaux
+:
+:

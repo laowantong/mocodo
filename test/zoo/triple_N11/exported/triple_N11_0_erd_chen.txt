@@ -1,0 +1,3 @@
+[Employé] --N-- <Affecter>
+[Projet] ==1== <Affecter>
+[Site] ==1== <Affecter>

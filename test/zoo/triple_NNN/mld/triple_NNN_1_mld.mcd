@@ -1,0 +1,13 @@
+%%mocodo
+:
+Employé: employé, nom
+:
+Appliquer: #employé > Employé > employé, _#projet > Projet > projet, _#compétence > Compétence > compétence
+:
+Projet: projet, date début, date fin
+:
+
+
+:::
+Compétence: compétence, libellé
+:::

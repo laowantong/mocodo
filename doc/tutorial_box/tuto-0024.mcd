@@ -1,21 +1,22 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                                                           %
-%                CONTRAINTE D'INTÉGRITÉ FONCTIONNELLE (CIF)                 %
-%                                                                           %
-%  Le même cas de figure peut aussi être rendu visuellement par une CIF.    %
-%                                                                           %
-%  NB. Le paragraphe réduit à « : » permet d'ajouter une rangée vide à la   %
-%  grille sous-jacente, de façon à aérer verticalement le MCD. Les nombres  %
-%  représentent des pourcentages de la largeur et de la hauteur totales.    %
-%                                                                           %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                                %
+%                         AGRÉGATION (OU PSEUDO-ENTITÉ)                          %
+%                                                                                %
+%  Préfixez de « / » une cardinalité pour entourer d'une enveloppe pointillée    %
+%  l'association et les autres entités participantes.                            %
+%  Ici, la dépendance fonctionnelle (date, numéro) => id. client se traduit au   %
+%  niveau relationnel par un identifiant réduit pour Réserver, ainsi qu'une      %
+%  contrainte de non-optionalité pour id. client. Les contraintes apparaissent   %
+%  dans les sorties SQL, mais vous pouvez aussi les visualiser au niveau du MLD  %
+%  en cochant l'option « Contraintes d'unicité et d'optionalité ».               %
+%                                                                                %
+%  NB. La représentation usuelle (non prise en charge par Mocodo) insérerait     %
+%  une association entre Client et Réserver.                                     %
+%                                                                                %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Date: date
 Réserver, /1N Client, 1N Chambre, 0N Date: durée
 Chambre: numéro, prix
 
-:
-    
 Client: id. client
-    
-(CIF) ->Client, --Chambre, --Date, ..Réserver: 20, 75

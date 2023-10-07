@@ -1,0 +1,8 @@
+%%mocodo
+:
+Entreprise: nom entreprise, adresse, téléphone
+:
+Stage: num. stage, sujet, #nom entreprise > Entreprise > nom entreprise, date proposition
+:
+Étudiant: num étudiant, nom, #num. stage > Stage > num. stage, date signature, date, note stage
+:

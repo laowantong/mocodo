@@ -1,0 +1,9 @@
+Table Affecter {
+  projet VARCHAR(42) [not null]
+  "employé" VARCHAR(42) [not null]
+  site VARCHAR(42) [not null]
+  Indexes {
+    (projet, "employé") [pk]
+    ("employé", site) [unique]
+  }
+}

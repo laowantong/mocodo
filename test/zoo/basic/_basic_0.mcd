@@ -1,0 +1,5 @@
+CLIENT: Réf. client, Nom, Prénom, Adresse
+DF, 0N> CLIENT, 11 COMMANDE
+COMMANDE: Num. commande, Date, Montant
+INCLURE, 1N COMMANDE, 0N PRODUIT: Quantité
+PRODUIT: Réf. produit, Libellé, Prix unitaire

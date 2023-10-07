@@ -1,16 +1,16 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                                                               %
-%                                   MCD VIDE                                    %
-%                                                                               %
-%  Remplacez les cardinalités par XX et les attributs par des suites d'espaces  %
-%  insécables pour créer un « squelette » de MCD à remplir.                     %
-%                                                                               %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                                  %
+%                    ENTITÉ FAIBLE (OU IDENTIFICATION RELATIVE)                    %
+%                                                                                  %
+%  Préfixez d'un tiret bas une cardinalité 11 pour « affaiblir » l'entité qu'elle  %
+%  distingue, et dont l'identifiant sera alors souligné en pointillés.             %
+%                                                                                  %
+%  NB. De façon non conventionnelle, Mocodo souligne le 11 pour indiquer que le    %
+%  « renforcement » de l'identifiant va passer par là. Voyez la documentation      %
+%  pour des options alternatives.                                                  %
+%                                                                                  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Parrainer, XX Client, XX Client
-Produit: _           ,,,
-Inclure, XX Commande, XX Produit
- 
-Client: _            ,,,
-DF, XX Client, XX Commande
-Commande: _            ,,,
+Œuvre: cote œuvre, titre, date parution
+DF, 1N Œuvre, _11 Exemplaire
+Exemplaire: num. exemplaire, état du livre, date d'achat

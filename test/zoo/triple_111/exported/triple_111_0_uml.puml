@@ -1,0 +1,23 @@
+@startuml "triple_111"
+
+!define Table(x) class "x" << (T,#FFFFFF) >>
+!define pk(x) <b>x</b>
+
+Table("Technicien") {
+    {field} + pk(technicien)
+}
+
+diamond N_ARY_0
+N_ARY_0 -- "1" "Technicien"
+N_ARY_0 -- "1" "Carnet"
+N_ARY_0 -- "1" "Projet"
+
+Table("Projet") {
+    {field} + pk(projet)
+}
+
+Table("Carnet") {
+    {field} + pk(carnet)
+}
+
+@enduml

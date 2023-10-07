@@ -1,21 +1,16 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                                %
-%                          HÉRITAGE (OU SPÉCIALISATION)                          %
+%                   CONTRAINTE D'INTÉGRITÉ FONCTIONNELLE (CIF)                   %
 %                                                                                %
-%  Pour spécialiser une entité E en une ou plusieurs autres entités E1, E2, ...  %
-%  écrivez « /\ E <- E1, E2, ... ».                                              %
-%                                                                                %
-%  NB. Vous pouvez insérer X (exclusion) et/ou T (totalité) entre les barres     %
-%  obliques, ajouter une liste d'attributs ou modifier la sémantique et/ou la    %
-%  représentation graphique de l'héritage en remplaçant la flèche par <=, ->,    %
-%  =>, <<=, <<-, ->> =>>. Voir la documentation.                                 %
+%  Les mêmes cas de figure peuvent aussi être rendus visuellement par des CIF à  %
+%  unicité complète (le seul type de CIF pris en charge par Mocodo).             %
 %                                                                                %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Personne: num SS, nom, prénom
-
-/\ Personne <- Homme, Femme
-
-Homme: 
-:
-Femme: nom de jeune fille
+Date: date
+Réserver, /1N Client, 1N Chambre, 0N Date: durée
+Chambre: numéro, prix
+    
+Client: id. client
+    
+(CIF) ->Client, --Chambre, --Date, ..Réserver: Date, Client

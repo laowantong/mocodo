@@ -1,18 +1,21 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                                                          %
-%                             VUE EN EXTENSION                             %
-%                                                                          %
-%  Combiner l'astuce' du dernier chiffre et celui des cardinalités « XX »  %
-%  permet de créer une vue en extension.                                   %
-%                                                                          %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                                %
+%                          HÉRITAGE (OU SPÉCIALISATION)                          %
+%                                                                                %
+%  Pour spécialiser une entité E en une ou plusieurs autres entités E1, E2, ...  %
+%  écrivez « /\ E <- E1, E2, ... ».                                              %
+%                                                                                %
+%  NB. Vous pouvez insérer X (exclusion) et/ou T (totalité) entre les barres     %
+%  obliques, ajouter une liste d'attributs ou modifier la sémantique et/ou la    %
+%  représentation graphique de l'héritage en remplaçant la flèche par <=, ->,    %
+%  =>, <<=, <<-, ->> =>>. Voir la documentation.                                 %
+%                                                                                %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Œuvre: 612.NAT.34, J'apprends à lire à mes souris blanches, mai 1975
+Client: réf. client, nom, prénom, adresse
 
-DF1, XX Œuvre, XX Exemplaire1
-DF2, XX Œuvre, XX Exemplaire2
-DF3, XX Œuvre, XX Exemplaire3
+/X\ Client <- Particulier, Employé, Administratif
 
-Exemplaire1: 1, bon état, 12/6/1975
-Exemplaire2: 2, bon état, 1/8/1977
-Exemplaire3: 3, reliure rongée, 3/4/2005
+Particulier:
+Employé: siret entreprise
+Administratif: nom ministère
