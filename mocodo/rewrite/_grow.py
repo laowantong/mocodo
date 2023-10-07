@@ -130,9 +130,9 @@ def run(source, subargs=None, params=None, **kargs):
     ent_attr_names = []
     for is_composite in settings["composite_ids"]:
         if is_composite:
-            ent_attr_names.append([f"{id_base}", f"_{id_base}"] + [f"{attr_base}"] * random.randint(1, settings["ent_attrs"] - 2))
+            ent_attr_names.append([f"{id_base}", f"_{id_base}"] + [f"{attr_base}"] * random.randint(0, settings["ent_attrs"] - 2))
         else:
-            ent_attr_names.append([f"{id_base}"] + [f"{attr_base}"] * random.randint(1, settings["ent_attrs"] - 1))
+            ent_attr_names.append([f"{id_base}"] + [f"{attr_base}"] * random.randint(0, settings["ent_attrs"] - 1))
     
     if "from_scratch" in subargs:
         source = f"ENTITY_NAME_PLACEHOLDER 1_: {id_base} 1 1, {attr_base} 1 2, {attr_base} 1 3\n"

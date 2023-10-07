@@ -111,6 +111,11 @@ var knowledge = {
     "title": "Cochez pour faire apparaître dans le schéma relationnel les contraintes d&#39unicité en exposant, d&#39optionalité comme des « ? », et de non-optionalité comme des « ! ». Ces notations sont non standard et peuvent gêner la lecture. NB : quel que soit votre choix, Mocodo ajoute systématiquement les contraintes UNIQUE, NULL ou NOT NULL appropriées dans le code SQL généré.",
     "default": false
   },
+  "reproductibility": {
+    "name": "Reproductibilité des résultats",
+    "title": "Cochez pour que la longueur de la première ligne du texte-source soit prise comme germe du générateur aléatoire. Ainsi, les algorithmes randomisés produiront toujours la même sortie sur un même texte-source.",
+    "default": false
+  },
   "random": {
     "name": "Bouton Masquer",
     "title": "Cochez pour ajouter un bouton donnant accès à des opérations de masquage des libellés et de génération d&#39exercices aléatoires.",
@@ -284,6 +289,9 @@ function generate() {
   var text = ace.edit("editor").getSession().getValue();
   $('textarea[name="text"]').val(text);
   var data = $("#mainForm").serializeArray();
+  if ($("#reproductibility").prop("checked")) {
+    data.push({ name: "seed", value: text.indexOf("\n") });
+  }
   if ($("#constraints").prop("checked")) {
     for (var i = 0; i < data.length; i++) {
       if (data[i].value.startsWith("_mld")) {
@@ -346,12 +354,18 @@ function rewrite(args) {
       args = $("#weak").prop("checked") ? args.replace(":", ":_11-*N=1,") : args.replace("_11-*N=1,", "");
       args = $("#cluster").prop("checked") ? args.replace(":", ":/*N-*N=1,") : args.replace("/*N-*N=1,", "");
     };
+    var text = ace.edit("editor").getSession().getValue();
+    $('textarea[name="text"]').val(text);
+    if ($("#reproductibility").prop("checked")) {
+      args += " --seed=" + text.indexOf("\n");
+    }
     return $.ajax({
       type: "POST",
       url: "web/rewrite.php",
       data: {
         args: args,
         text: ace.edit("editor").getSession().getValue()
+        text: text
       },
       success: function (result) {
         result = $.parseJSON(result);

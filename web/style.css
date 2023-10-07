@@ -281,6 +281,7 @@ ul.tabs a:hover {
     background-color: #222;
     color: greenyellow;
     height: "4em";
+    border-radius: 5px;
 }
 #aboutContents ul {
   list-style-type:square;

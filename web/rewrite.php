@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-$php_log = fopen("php.log", 'w') or die("can't open file");
-// fwrite($php_log, "Log file\n");
+// $php_log = fopen("php.log", 'w') or die("can't open file");
+
 if (!array_key_exists('text', $_POST)) {
     exit("Need a POST value.");
 }
@@ -44,12 +44,9 @@ if (strpos($_SERVER['HTTP_REFERER'], 'localhost')) {
 };
 $command_line = "{$mocodo} -t " . $_POST['args'] . " 2>&1";
 
-fwrite($php_log, $command_line);
-
 // Execute the command and test the exit code.
 // If it is not 0, return an array with a key "err" and the error message.
 
-fwrite($php_log, $command_line . "\n");
 $out = array();
 exec($command_line, $out, $exitCode);
 if ($exitCode) {
@@ -62,18 +59,7 @@ if ($exitCode) {
 
 $chan = fopen($_POST['input'], 'r') or die('{"err": "PHP: Can\'t open MCD file."}');
 $contents = fread($chan, filesize($_POST['input']));
-fwrite($php_log,$contents);
 
 echo json_encode(array("text" => $contents));
 
-
-// // fwrite($php_log,$_POST['text']);
-// $out = array();
-// exec($command_line, $out, $exitCode);
-// fwrite($php_log, "out:" . $out . "\n");
-// // fwrite($php_log, "exitCode:" . $exitCode . "\n");
-// // fclose($php_log);
-
-// $key = $exitCode ? "err" : "text";
-// echo json_encode(array($key => implode("\n", $out)));
 ?>

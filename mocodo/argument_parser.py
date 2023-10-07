@@ -668,6 +668,7 @@ def parsed_arguments():
     )
     io_group.add_argument("--seed",
         metavar="FLOAT",
+        nargs="?",
         type=float,
         help=_("initial value for the random number generator"),
     )
@@ -752,7 +753,8 @@ def parsed_arguments():
     if not os.path.exists(params["input"]):
         path = Path(SCRIPT_DIRECTORY, "resources", "pristine_sandbox.mcd")
         shutil.copyfile(path, params["input"])
-    random.seed(params["seed"])
+    if params["seed"] is not None:
+        random.seed(params["seed"])
     try:
         params["title"] = params["title"].decode("utf8")
     except:

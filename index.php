@@ -2,7 +2,6 @@
    "http://www.w3.org/TR/html4/strict.dtd">
 <html lang="fr">
 <head>
-<a href="https://github.com/laowantong/mocodo"><img style="position: absolute; top: 0; right: 0; border: 0; width: 149px; height: 149px;" src="web/fork-me-right-turquoise@2x.png" alt="Fork me on GitHub"></a>
 <title>Mocodo online</title>
 <meta charset="utf-8">
 <link rel="stylesheet" href="web/reset.css" />
@@ -16,6 +15,14 @@
 <meta name="apple-mobile-web-app-title" content="Mocodo">
 <meta name="application-name" content="Mocodo">
 <meta name="theme-color" content="#fff">
+
+<script src="web/jquery-1.7.2.min.js"></script>
+<script src="web/js.cookie.js"></script>
+<script src="web/mocodo.js"></script>
+<script src="web/flashlight.js"></script>
+<script src="web/ace-builds/ace.js"></script>
+<script src="web/ace-builds/ext-language_tools.js"></script>
+<script async defer src="https://buttons.github.io/buttons.js"></script>
 </head>
 
 <body>
@@ -37,7 +44,7 @@
 			<div class="pane">
 				<div id="inputButtons" class='buttons'>
 					<div class="button-with-popup" id="arrangeButton">
-						<span class="customButton tooltip" onmouseenter="closePopup()" onclick="handleClick(this, 'arrange')" style="background-image: url(web/png/arrange.png);"><span class="tooltiptext">Réorganiser</span></span>
+						<span class="customButton tooltip" onmouseenter="closePopup()" onclick="handleClick(this, 'arrange')" style="background-image: url(web/png/arrange.png);"><span class="tooltiptext">Réarranger</span></span>
 						<div class="popup-menu" onmouseleave="closePopup(this)">
 							<span class="popup-item popup-close" onclick="closePopup()">⨉</span>
 							<span class="popup-item" onclick="rewrite('arrange:current')">sur la grille actuelle</span>
@@ -89,8 +96,8 @@
 							<span class="popup-item" onclick="rewrite('drown')">masquer avec des libellés génériques numérotés</span>
 							<span class="popup-item" onclick="rewrite('delete')" title="Crée un MCD à compléter. À accompagner de la liste des descriptifs des attributs obtenue avec l'option « Dictionnaire des données en Markdown (deux colonnes) ».">masquer les attributs et les cardinalités</span>
 							<span class="popup-item" onclick="rewrite('create:types=PLACEHOLDER randomize:types')">remplir les types au hasard</span>
+							<span class="popup-item" onclick="rewrite('grow:n=9,from_scratch,ent_attrs=3 obfuscate create:roles lower:roles arrange')">créer un MCD d'entraînement à la conversion en relationnel</span>
 							<span class="popup-item" onclick="rewrite('grow:from_scratch,arity_3=1 arrange')">créer un MCD aléatoire avec des libellés génériques numérotés</span>
-							<span class="popup-item" onclick="rewrite('grow:from_scratch,arity_3=1 obfuscate create:roles lower:roles arrange')">créer un MCD d'entraînement à la conversion en relationnel</span>
 							<span class="popup-item" onclick="rewrite('obfuscate')">masquer avec du faux texte (double clic)</span>
 						</div>
 					</div>
@@ -107,13 +114,16 @@
 					</div>
 				</div>
 				<div id="aboutContents" class="contents">
+					<p style="height: 2em;">
+					<a class="github-button" href="https://github.com/laowantong/mocodo" data-icon="octicon-star" data-show-count="true" aria-label="Star laowantong/mocodo on GitHub">Star</a>
+					</p>
 					<p>
 					Mocodo est un logiciel d'aide à l'enseignement et à l'apprentissage des <a href="https://fr.wikipedia.org/wiki/Base_de_données_relationnelle">bases de données relationnelles</a>.
 					</p><p>
 					<ul>
 						<li>En entrée, il prend un <a href="https://fr.wikipedia.org/wiki/Modèle_entité-association">MCD</a> (modèle conceptuel de données) décrit dans un langage dédié minimaliste.</li>
 						<li>En sortie, il produit un diagramme entité-association et, à la demande, un <a href="https://fr.wikipedia.org/wiki/Merise_(informatique)#MLD_:_modèle_logique_des_données">MLD</a> (schéma relationnel, sous forme graphique ou textuelle), un <a href="https://fr.wikipedia.org/wiki/Langage_de_définition_de_données">DDL</a> (requêtes SQL de création de la base), un <a href="https://fr.wikipedia.org/wiki/Diagramme_de_classes">diagramme de classes UML</a>, etc.</li>
-						<li>En bonus, il est capable de réorganiser automatiquement votre MCD de façon esthétique, et de lui appliquer des opérations de réécriture qui vont du mondain (typographie) à l'académique (décomposition d'associations), en passant par le merveilleux (inférence de types, génération d'exercices et d'exemples).</li>
+						<li>En bonus, il est capable de réarranger automatiquement votre MCD de façon esthétique, et de lui appliquer des opérations de réécriture qui vont du mondain (typographie) à l'académique (décomposition d'associations), en passant par le merveilleux (inférence de types, génération d'exercices et d'exemples).</li>
 					</ul>
 					<p>
 					Ce site est prévu pour une utilisation basique et occasionnelle, typiquement en salle de classe. Si vous souhaitez avoir accès à toutes les fonctionnalités de Mocodo, une installation en local est recommandée :
@@ -155,9 +165,9 @@
 						<input type="number" value="1.00" max="2.00" min="0.50" step="0.01" onchange="writeCookie()" name="adjust_width" id="adjust_width" style="width: 5em; border-radius: 0;">
 					</div>
 					<div><label class="fixedWidth" for="delays">Temps de calcul limité à </label><select onchange="writeCookie()" name="delays" id="delays"></select></div>
-					<div><label class="fixedWidth" for="detect_overlaps" title="Lève une erreur en cas de chevauchement de pattes horizontales ou verticales.">Détecter les chevauchements</label><input type="checkbox" name="detect_overlaps" id="detect_overlaps" onchange='markAsDirty();writeCookie()' checked /></div>
+					<div><label class="fixedWidth" for="detect_overlaps" title="Lève une erreur en cas de chevauchement de pattes horizontales ou verticales.">Détection des chevauchements</label><input type="checkbox" name="detect_overlaps" id="detect_overlaps" onchange='markAsDirty();writeCookie()' checked /></div>
 					<div style="color:#222;"><label class="fixedWidth" title="Les formats cochés seront générés et inclus dans l'archive téléchargée.">Format des images en sortie</label><span title="Pour le web, zoom illimité. Requis."><input type="checkbox" disabled="true" id="svg" checked /><label for="svg">&nbsp;SVG&nbsp;&nbsp;</label></span><span title="Multi-usage, zoom limité."><input type="checkbox" name="png" id="png" onchange='markAsDirty();writeCookie()' /><label for="png">&nbsp;PNG&nbsp;&nbsp;</label></span><span title="Pour l'impression, zoom illimité."><input type="checkbox" name="pdf" id="pdf" onchange='markAsDirty();writeCookie()' /><label for="pdf">&nbsp;PDF&nbsp;&nbsp;</label></span></div>
-					<div><label class="fixedWidth" for="knowledge" title="Vous pouvez adapter les traitements et l'interface de Mocodo online à des besoins plus avancés.">Notions et fonctionnalités supplémentaires</label><details style="display: inline-flex;"><summary style="color:#666;">Activer…</summary><label class="fixedWidth"></label><ul name="knowledge" id="knowledge"></ul></details></div>
+					<div><label class="fixedWidth" for="knowledge" title="Vous pouvez adapter les traitements et l'interface de Mocodo online à des besoins plus avancés.">Notions et fonctionnalités supplémentaires</label><details style="display: inline-flex;"><summary style="color:#666;">Sélectionner…</summary><label class="fixedWidth"></label><ul name="knowledge" id="knowledge"></ul></details></div>
 					<div><label class="fixedWidth" for="conversions" title="Les formats cochés seront affichés sous l'onglet « Autres sorties » et inclus dans l'archive téléchargée.">Conversions en sortie</label><ul name="conversions" id="conversions"><details><summary style="color:#666;">Autres options de conversions…</summary></details></ul>
 					</div>
 				</div>
@@ -200,19 +210,9 @@
 	&nbsp;∙&nbsp;
 	<a target="_blank" href="https://rawgit.com/laowantong/mocodo/master/doc/fr_refman.html">Documentation</a>
 	&nbsp;∙&nbsp;
-	<a target="_blank" href="https://www.transifex.com/aristide/mocodo">Localisation</a>
-	&nbsp;∙&nbsp;
 	<a target="_blank" href="https://github.com/laowantong/mocodo/issues">Récriminations</a>
 	&nbsp;∙&nbsp;
-	<a target="_blank" href="" title="En ligne de commande, faites `mocodo --help` pour afficher mon adresse mail." onclick="alert('En ligne de commande, faites :\n\xA0\xA0\xA0\xA0mocodo --help\npour afficher mon adresse mail.')">Contact</a>
+	<a href="" title="En ligne de commande, faites `mocodo --help` pour afficher l\'adresse mail de l\'auteur." onclick="alert('En ligne de commande, faites :\n\xA0\xA0\xA0\xA0mocodo --help\npour afficher l\'adresse mail de l\'auteur.')">Contact</a>
 </div>
-
-<script type="text/javascript" charset="utf8" src="web/jquery-1.7.2.min.js"></script>
-<script type="text/javascript" charset="utf8" src="web/js.cookie.js"></script>
-<script type="text/javascript" charset="utf8" src="web/mocodo.js"></script>
-<script type="text/javascript" charset="utf8" src="web/flashlight.js"></script>
-<script type="text/javascript" charset="utf8" src="web/ace-builds/ace.js"></script>
-<script type="text/javascript" charset="utf8" src="web/ace-builds/ext-language_tools.js"></script>
-
 </body>
 </html>
