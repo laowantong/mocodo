@@ -1,93 +1,203 @@
-**4 octobre 2023.** Mocodo 4 introduit la coloration syntaxique, TODO. 
+**Octobre 2023.** Mocodo [4](https://github.com/laowantong/mocodo/releases/tag/4.0.0) introduit la gestion des contraintes d'optionalité et d'unicité, améliore les interfaces graphique et en ligne de commande, et ajoute un grand nombre de fonctionnalités : liens de partage, exportation en UML, en notation de Chen et _crow's foot_, génération de MCD aléatoires, décomposition des associations et autres opérations de réécriture.
 
-**11 septembre 2022.** Mocodo 3 introduit l'[héritage](https://rawgit.com/laowantong/mocodo/master/doc/fr_refman.html#Héritage-(ou-spécialisation)), l'[agrégation](https://rawgit.com/laowantong/mocodo/master/doc/fr_refman.html#Agrégation-(ou-pseudo-entité)), les [calques](https://rawgit.com/laowantong/mocodo/master/doc/fr_refman.html#Héritage-(ou-spécialisation)), les [sorties PDF et PNG](https://rawgit.com/laowantong/mocodo/master/doc/fr_refman.html#Héritage-(ou-spécialisation)), etc. : [3.0](https://github.com/laowantong/mocodo/releases/tag/3.0), [3.1](https://github.com/laowantong/mocodo/releases/tag/3.1.0), [3.2](https://github.com/laowantong/mocodo/releases/tag/3.2.0).
+**Septembre 2022.** Mocodo 3 introduit l'[héritage](https://rawgit.com/laowantong/mocodo/master/doc/fr_refman.html#Héritage-(ou-spécialisation)), l'[agrégation](https://rawgit.com/laowantong/mocodo/master/doc/fr_refman.html#Agrégation-(ou-pseudo-entité)), les [calques](https://rawgit.com/laowantong/mocodo/master/doc/fr_refman.html#Héritage-(ou-spécialisation)), les [sorties PDF et PNG](https://rawgit.com/laowantong/mocodo/master/doc/fr_refman.html#Héritage-(ou-spécialisation)), etc. : [3.0](https://github.com/laowantong/mocodo/releases/tag/3.0), [3.1](https://github.com/laowantong/mocodo/releases/tag/3.1.0), [3.2](https://github.com/laowantong/mocodo/releases/tag/3.2.0).
 
 ------
 
+<!--
 Documentation [au format HTML](https://rawgit.com/laowantong/mocodo/master/doc/fr_refman.html) ou sous forme de [notebook](doc/fr_refman.ipynb) Jupyter.
 
 ----
+-->
 
-![](https://cdn.rawgit.com/laowantong/mocodo/master/logos/banner.svg)
+![](logos/banner.svg)
 
-Mocodo est un logiciel d'aide à l'enseignement et à la conception des [bases de données relationnelles](https://fr.wikipedia.org/wiki/Base_de_données_relationnelle).
+# Introduction
 
-- En entrée, il prend une description textuelle des entités et associations du modèle conceptuel de données ([MCD](https://fr.wikipedia.org/wiki/Modèle_entité-association)).
-- En sortie, il produit son diagramme entité-association en [SVG](https://fr.wikipedia.org/wiki/Scalable_Vector_Graphics) et son schéma relationnel ([MLD](
-https://fr.wikipedia.org/wiki/Merise_%28informatique%29#MLD_:_mod.C3.A8le_logique_des_donn.C3.A9es)) en [SQL](https://fr.wikipedia.org/wiki/Structured_Query_Language), [LaTeX](https://fr.wikipedia.org/wiki/LaTeX), [Markdown](https://fr.wikipedia.org/wiki/Markdown), etc.
+Mocodo est un logiciel d'aide à l'enseignement et à l'apprentissage des [bases de données relationnelles](https://fr.wikipedia.org/wiki/Base_de_données_relationnelle).
 
-Ci-dessous, un exemple d'utilisation sous [Jupyter Notebook](https://jupyter.org). L'appel du programme est en première ligne, sur un texte d'entrée donné lignes suivantes. Le cas est adapté de l'article fondateur de Peter Chen, [_The entity-relationship model—toward a unified view of data_](https://doi.org/10.1145/320434.320440) (ACM Trans. Database Syst. 1, 1, March 1976, pp. 9–36), avec en bonus une association de type hiérarchique et une contrainte d'inclusion.
+- En entrée, il prend un [MCD](https://fr.wikipedia.org/wiki/Modèle_entité-association) (modèle conceptuel de données) décrit dans un langage dédié minimaliste.
+- En sortie, il produit un diagramme entité-association et, à la demande, un [MLD](https://fr.wikipedia.org/wiki/Merise_(informatique)#MLD_:_modèle_logique_des_données) (schéma relationnel, sous forme graphique ou textuelle), un [DDL](https://fr.wikipedia.org/wiki/Langage_de_définition_de_données) (requêtes SQL de création de la base), un [diagramme de classes UML](https://fr.wikipedia.org/wiki/Diagramme_de_classes), etc.
+- En bonus, il est capable de réarranger automatiquement votre MCD de façon esthétique, et de lui appliquer des opérations de réécriture qui vont du mondain (typographie) à l'académique (décomposition d'associations), en passant par le merveilleux (inférence de types, génération d'exercices et d'exemples).
 
-```
-%%mocodo --mld --colors brewer+1 --shapes copperplate --relations diagram data_dict
+Vous pouvez utiliser Mocodo :
 
-Ayant-droit: nom ayant-droit, lien
-Diriger, 0N Employé, 01 Projet
-Requérir, 1N Projet, 0N Pièce: qté requise
-Pièce: réf. pièce, libellé pièce
-Composer, 0N [composée] Pièce, 0N [composante] Pièce: quantité
+- à distance, sans rien installer, avec [Mocodo _online_](https://www.mocodo.net) ;
+- en local, comme n'importe quel programme Python ;
+- dans un document [Jupyter Notebook](https://jupyter.org).
 
-DF, _11 Ayant-droit, 0N Employé
-Employé: matricule, nom employé
-Projet: num. projet, nom projet
-Fournir, 1N Projet, 1N Pièce, 1N Société: qté fournie
+## Tracé du modèle conceptuel
 
-Département: num. département, nom département
-Employer, 11 Employé, 1N Département
-Travailler, 0N Employé, 1N Projet
-Société: num. société, raison sociale
-Contrôler, 0N< [filiale] Société, 01 [mère] Société
+Ci-dessous, un exemple d'utilisation sous Jupyter Notebook. L'appel du programme est en première ligne ; le texte-source proprement dit, lignes suivantes. En sortie, le diagramme conceptuel, égayé au passage par l'option `--colors` :
 
-(I) --Fournir, ->Requérir, ..Pièce, Projet
-```
+![png](doc/readme/ccp_mcd.png)
 
-En sortie, le MCD (diagramme conceptuel) et le MLD (schéma relationnel) correspondants:
+![svg](doc/readme/ccp_mcd.svg)
 
-![](https://cdn.rawgit.com/laowantong/mocodo/master/doc/readme_1.png)
+## Opérations de conversion
 
-**Ayant-droit** (<ins>_#matricule_</ins>, <ins>nom ayant-droit</ins>, lien)<br>
-**Composer** (<ins>_#réf. pièce composée_</ins>, <ins>_#réf. pièce composante_</ins>, quantité)<br>
-**Département** (<ins>num. département</ins>, nom département)<br>
-**Employé** (<ins>matricule</ins>, nom employé, _#num. département_)<br>
-**Fournir** (<ins>_#num. projet_</ins>, <ins>_#réf. pièce_</ins>, <ins>_#num. société_</ins>, qté fournie)<br>
-**Pièce** (<ins>réf. pièce</ins>, libellé pièce)<br>
-**Projet** (<ins>num. projet</ins>, nom projet, _#matricule_)<br>
-**Requérir** (<ins>_#num. projet_</ins>, <ins>_#réf. pièce_</ins>, qté requise)<br>
-**Société** (<ins>num. société</ins>, raison sociale, _#num. société mère_)<br>
-**Travailler** (<ins>_#matricule_</ins>, <ins>_#num. projet_</ins>)
-
-L'appel précédent a également créé un fichier `mocodo_notebook/sandbox_data_dict.md` contenant le dictionnaire des données :
-
-- nom ayant-droit
-- lien
-- quantité
-- num. département
-- nom département
-- matricule
-- nom employé
-- qté fournie
-- réf. pièce
-- libellé pièce
-- num. projet
-- nom projet
-- qté requise
-- num. société
-- raison sociale
-
-Ainsi que le diagramme relationnel, qui peut être visualisé par un nouvel appel:
+Dans la suite, on récupère ce texte-source avec `--input` pour lui appliquer diverses opérations. Ainsi, l'appel suivant génère et affiche son MLD, son diagramme relationnel et son DDL :
 
 ```
-%mocodo --input mocodo_notebook/sandbox.mld --colors desert
+%mocodo --input ccp --transform mld diagram ddl --colors desert
 ```
 
-![](https://cdn.rawgit.com/laowantong/mocodo/master/doc/readme_2.png)
+---
 
-La devise de Mocodo, « nickel, ni souris », en résume les principaux points forts:
+- **CLIENT** (<ins>Réf. client</ins>, Nom, Prénom, Adresse)
+- **COMMANDE** (<ins>Num. commande</ins>, Date, Montant, _#Réf. client_)
+- **INCLURE** (<ins>_#Num. commande_</ins>, <ins>_#Réf. produit_</ins>, Quantité)
+- **PRODUIT** (<ins>Réf. produit</ins>, Libellé, Prix unitaire)
 
-- description textuelle des données. L'utilisateur n'a pas à renseigner, placer et déplacer des éléments comme avec une lessive ordinaire. Il ne fournit rien de plus que les informations définissant son MCD. L'outil s'occupe tout seul du plongement ;
-- propreté du rendu. La sortie se fait en vectoriel, prête à être affichée, imprimée, agrandie, exportée dans une multitude de formats sans perte de qualité ;
-- rapidité des retouches. L'utilisateur rectifie les alignements en insérant des éléments invisibles, en dupliquant des coordonnées ou en ajustant des facteurs mutiplicatifs : là encore, il travaille sur une description textuelle, et non directement sur le dessin.
+---
 
-Mocodo est libre, gratuit et multiplateforme. Si vous l'aimez, répandez la bonne nouvelle en incluant l'un de ses logos dans votre support : cela augmentera ses chances d'attirer des contributeurs qui le feront évoluer.
+![svg](doc/readme/ccp_mld.svg)
+
+---
+
+```sql
+CREATE TABLE CLIENT (
+  PRIMARY KEY (ref_client),
+  ref_client VARCHAR(8) NOT NULL,
+  nom VARCHAR(255),
+  prenom VARCHAR(255),
+  adresse VARCHAR(255)
+);
+
+CREATE TABLE COMMANDE (
+  PRIMARY KEY (num_commande),
+  num_commande VARCHAR(8) NOT NULL,
+  date DATE,
+  montant DECIMAL(10,2),
+  ref_client VARCHAR(8) NOT NULL
+);
+
+CREATE TABLE INCLURE (
+  PRIMARY KEY (num_commande, ref_produit),
+  num_commande VARCHAR(8) NOT NULL,
+  ref_produit VARCHAR(8) NOT NULL,
+  quantite INTEGER
+);
+
+CREATE TABLE PRODUIT (
+  PRIMARY KEY (ref_produit),
+  ref_produit VARCHAR(8) NOT NULL,
+  libelle VARCHAR(50),
+  prix_unitaire DECIMAL(10,2)
+);
+
+ALTER TABLE COMMANDE ADD FOREIGN KEY (ref_client) REFERENCES CLIENT (ref_client);
+
+ALTER TABLE INCLURE ADD FOREIGN KEY (ref_produit) REFERENCES PRODUIT (ref_produit);
+ALTER TABLE INCLURE ADD FOREIGN KEY (num_commande) REFERENCES COMMANDE (num_commande);
+```
+
+Dans la suite, pour épargner le clavier, les options `--input` et `--transform` seront respectivement abrégées en `-i` et `-t`.
+
+Les opérations de conversion ne se limitent pas forcément au schéma relationnel. En voici une qui extrait un dictionnaire des données, par défaut sous la forme d'un tableau Markdown à trois colonnes :
+
+```
+%mocodo -i ccp -t data_dict
+```
+
+---
+
+| Entité ou association | Libellé de l'attribut | Type          |
+|:----------------------|:----------------------|:--------------|
+| CLIENT                | Adresse               | VARCHAR(255)  |
+| "                     | Nom                   | VARCHAR(255)  |
+| "                     | Prénom                | VARCHAR(255)  |
+| "                     | Réf. client           | VARCHAR(8)    |
+| COMMANDE              | Date                  | DATE          |
+| "                     | Montant               | DECIMAL(10,2) |
+| "                     | Num. commande         | VARCHAR(8)    |
+| INCLURE               | Quantité              | INTEGER       |
+| PRODUIT               | Libellé               | VARCHAR(50)   |
+| "                     | Prix unitaire         | DECIMAL(10,2) |
+| "                     | Réf. produit          | VARCHAR(8)    |
+
+Une autre qui transcrit le MCD dans la notation _crow's foot_ (`crow`) pour [Mermaid](http://mermaid.js.org) (`mmd`) :
+
+```
+%mocodo -i ccp -t crow:mmd
+```
+
+---
+
+```mmd
+erDiagram
+  CLIENT {
+    VARCHAR(8) ref_client PK
+    VARCHAR(255) nom
+    VARCHAR(255) prenom
+    VARCHAR(255) adresse
+  }
+  COMMANDE {
+    VARCHAR(8) num_commande PK
+    DATE date
+    DECIMAL(10-2) montant
+  }
+  INCLURE {
+    INTEGER quantite PK
+  }
+  PRODUIT {
+    VARCHAR(8) ref_produit PK
+    VARCHAR(50) libelle
+    DECIMAL(10-2) prix_unitaire
+  }
+  CLIENT ||--o{ COMMANDE: PASSER
+  INCLURE }|..|| COMMANDE: DF
+  INCLURE }o..|| PRODUIT: DF
+
+```
+
+Le rendu des diagrammes décrits dans des langages-tiers (comme Mermaid) n'est pas directement pris en charge, mais peut être délégué (`--defer`) de façon transparente au service web approprié. Dans ce cas, c'est la sortie graphique qui est affichée :
+
+```
+%mocodo -i ccp -t crow:mmd --defer
+```
+
+---
+
+![svg](doc/readme/ccp_erd_crow.svg)
+
+## Opérations de réécriture
+
+Une **réécriture** transforme un MCD Mocodo en un autre MCD Mocodo (au contraire d'une **conversion**, qui produit un animal d'une espèce différente).
+
+Heureusement, l'utilisateur n'a pas à réfléchir si la transformation qu'il souhaite appliquer est une réécriture ou une conversion : dans les deux cas, il invoque `-t` (c'est-à-dire `--transform`), et Mocodo se débrouille.
+
+En guise de premier exemple de réécriture, mettons les noms des entités et associations (`boxes`) en majuscules, et les libellés (`labels`) en ASCII et _snake case_ :
+
+```
+%mocodo -i ccp -t upper:boxes ascii:labels snake:labels --colors brewer+3
+```
+
+![svg](doc/readme/ccp_mcd_ascii.svg)
+
+---
+
+    %%mocodo --colors brewer+3
+    CLIENT: ref_client [VARCHAR(8)], nom [VARCHAR(255)], prenom [VARCHAR(255)], adresse [VARCHAR(255)]
+    PASSER, 0N CLIENT, 11 COMMANDE
+    COMMANDE: num_commande [VARCHAR(8)], date [DATE], montant [DECIMAL(10,2)]
+    INCLURE, 1N COMMANDE, 0N PRODUIT: quantite [INTEGER]
+    PRODUIT: ref_produit [VARCHAR(8)], libelle [VARCHAR(50)], prix_unitaire [DECIMAL(10,2)]
+
+Remarquez que l'exécution d'une réécriture affiche, au-dessous du diagramme, le code-source résultant. Celui-ci est précédé de la commande magique originale, _privée de l'option `-i` et de toute opération de réécriture_. Ces dispositions permettent de continuer à travailler directement dessus si on le copie-colle dans une autre cellule.
+
+Plusieurs opérations de réécriture de nature sémantique sont également offertes. Par exemple, on peut décomposer un MCD quelconque en un MCD équivalent, mais n'employant que des dépendances fonctionnelles et des entités faibles :
+
+```
+%mocodo -i ccp --select mcd -t explode:weak,arity=2 arrange:wide --seed=3 --colors brewer+3
+```
+
+![svg](doc/readme/ccp_mcd_explode.svg)
+
+Notez la sous-option `arrange:wide`. Elle a procédé à une réorganisation aléatoire des boîtes, ce que l'insertion de deux nouvelles associations de dépendance fonctionnelles avait rendu nécessaire. Quant à l'option `--seed=3`, elle garantit que le résultat sera le même à chaque exécution.
 
 Pour vous familiariser avec Mocodo, le mieux est d'utiliser [sa version en ligne](https://www.mocodo.net).
+
+----
+
+Documentation en cours de réécriture. En attendant, vous pouvez consulter [celle de la version 3.2](doc/fr_refman.html), ainsi que la sortie de []`mocodo --help`](doc/fr_refman_4.txt) et l'[aide-mémoire des transformations](doc/fr_cheat_sheet.md).

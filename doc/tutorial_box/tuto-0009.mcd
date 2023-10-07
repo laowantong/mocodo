@@ -2,7 +2,7 @@
 %                                                                                %
 %                               SCHÉMA RELATIONNEL                               %
 %                                                                                %
-%  Sous l'onglet Options, cochez « Schéma relationnel en HTML avec explications  %
+%  Sous l'onglet Options, cochez « Explications du passage au relationnel  %
 %  escamotables », puis rafraîchissez la figure : une liste des tables apparaît  %
 %  au-dessous. Cliquez sur n'importe quelle ligne pour mieux comprendre comment  %
 %  elle a été obtenue. Dans la table « Client », remarquez les colonnes « Réf.   %

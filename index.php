@@ -206,7 +206,7 @@
 	</form>
 </div>
 <div id="navigation">
-	<a target="_blank" href="https://github.com/laowantong/mocodo">Mocodo 3.2.1</a>
+	<a target="_blank" href="https://github.com/laowantong/mocodo">Mocodo 4.0.0</a>
 	&nbsp;∙&nbsp;
 	<a target="_blank" href="https://rawgit.com/laowantong/mocodo/master/doc/fr_refman.html">Documentation</a>
 	&nbsp;∙&nbsp;

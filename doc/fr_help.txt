@@ -1,0 +1,132 @@
+usage: mocodo [--language CODE] [--params_path PATH] [--input PATH] [--help]
+              [--version] [--restore] [--output_dir PATH]
+              [--encodings [STR ...]] [--svg_to {png,pdf} [{png,pdf} ...]]
+              [--print_params] [--reuse_geo] [--uid_suffix INT]
+              [--select [{*,mcd,rw,source,text,code,mocodo,cv,mld,ddl,sql} ...]]
+              [--defer [STR ...]] [--mld] [--transform [STR ...]]
+              [--seed [FLOAT]] [--title STR] [--df STR] [--card_format [STR]]
+              [--strengthen_card [STR]] [--flex FLOAT] [--colors STEM_OR_PATH]
+              [--shapes STEM_OR_PATH] [--scale RATE] [--adjust_width RATE]
+              [--detect_overlaps] [--gutters STR [STR ...]]
+
+NOM :
+Mocodo - Un générateur de diagrammes entité-association.
+
+DESCRIPTION :
+Mocodo est un outil libre destiné à l'enseignement des bases de données relationnelles.
+Il prend en entrée une description textuelle des entités et associations d'un diagramme
+entité-association (MCD). Il produit en sortie un dessin vectoriel en SVG et un schéma
+relationnel dans divers formats (SQL, LaTeX, Markdown, etc.).
+
+NOTE :
+Chacune des valeurs suivantes est :
+- spécifiée explicitement par l'utilisateur comme option de ligne de commande ;
+- sinon, récupérée depuis un fichier de chemin --params_path ;
+- sinon, récupérée depuis un fichier nommé « params.json » dans le répertoire d'entrée ;
+- sinon, calculée à partir d'une valeur par défaut, éventuellement dépendante de votre système.
+    
+
+OPTIONS SUR MOCODO LUI-MÊME :
+  --language CODE       force la localisation des messages avec le code de
+                        langue donné (par exemple, « fr », « en », ...)
+                        (default: fr)
+  --help                affiche ce message d'aide, puis termine
+  --version             affiche le numéro de version, puis termine
+  --restore             recrée une version vierge des fichiers « sandbox.mcd »
+                        et « params.json » dans le répertoire d'entrée, puis
+                        termine (default: False)
+
+ENTRÉE/SORTIE :
+  --params_path PATH    le chemin du fichier de paramètres. S'il est omis,
+                        utilise « params.json » dans le répertoire d'entrée.
+                        S'il n'existe pas, utilise les paramètres par défaut.
+                        (default: params.json)
+  --input PATH, -i PATH
+                        le chemin du fichier d'entrée. Par défaut, les
+                        fichiers de sortie seront générés dans le même
+                        répertoire (default: sandbox.mcd)
+  --output_dir PATH     le répertoire des fichiers de sortie (default: )
+  --encodings [STR ...]
+                        un ou plusieurs encodages à essayer successivement
+                        lors de la lecture du fichier d'entrée (default:
+                        ['utf8', 'macroman'])
+  --svg_to {png,pdf} [{png,pdf} ...]
+                        génère une version PNG ou PDF de la sortie SVG
+                        (requiert CairoSVG) (default: [])
+  --print_params        affiche le contenu du fichier de paramètres, puis
+                        termine (default: False)
+  --reuse_geo           réutilise le fichier de géométrie de l'exécution
+                        précédente (default: False)
+  --uid_suffix INT      ajoute un discriminateur à un SVG interactif (default:
+                        0)
+  --select [{*,mcd,rw,source,text,code,mocodo,cv,mld,ddl,sql} ...]
+                        sous Jupyter Notebook, spécifie explicitement les
+                        catégories de résultats à afficher
+  --defer [STR ...]     utilise un service web externe pour convertir les
+                        résultats de la conversion dans les formats graphiques
+                        donnés
+  --mld                 alias de compatibilité ascendante pour « -t » (sans
+                        arguments). Équivalent à « -t markdown » mais, sous
+                        Jupyter Notebook, n'empêche pas le rendu du diagramme
+                        conceptuel dans la sortie de la cellule (default:
+                        False)
+  --transform [STR ...], -t [STR ...]
+                        crée une nouvelle version du MCD en appliquant
+                        séquentiellement les opérations de réécriture données,
+                        et/ou le convertit dans les formats ou langages
+                        donnés. Sous Jupyter Notebook, « -T » remplace
+                        respectivement la cellule courante par le résultat
+                        textuel, ou le copie dans le presse-papier (pip3
+                        install pyperclip)
+  --seed [FLOAT]        valeur initiale pour le générateur de nombres
+                        aléatoires (default: None)
+  --title STR           nom du modèle, utilisé à divers endroits (système de
+                        fichiers, base de données, etc.) (default: MCD)
+
+ASPECT DE LA SORTIE GRAPHIQUE :
+  --df STR              l'acronyme à entourer dans une dépendance
+                        fonctionnelle (default: DF)
+  --card_format [STR]   chaîne de formatage pour les cardinalités minimales et
+                        maximales (default: {min_card},{max_card})
+  --strengthen_card [STR]
+                        chaîne pour les cardinalités relatives (default:
+                        _1,1_)
+  --flex FLOAT          incurve les pattes rectilignes dont les cardinalités
+                        peuvent se chevaucher (default: 0.75)
+  --colors STEM_OR_PATH
+                        la palette de couleurs à utiliser lors de la
+                        génération du dessin. Nom (sans extension) d'un
+                        fichier situé dans le répertoire « colors », ou chemin
+                        vers un fichier personnel (default: bw)
+  --shapes STEM_OR_PATH
+                        spécification des polices, dimensions, etc. Nom (sans
+                        extension) d'un fichier situé dans le répertoire
+                        « shapes », ou chemin vers un fichier personnel
+                        (default: copperplate)
+  --scale RATE          applique au diagramme le facteur de mise à l'échelle
+                        donné (default: 1)
+  --adjust_width RATE   applique à tous les textes calculés le facteur de mise
+                        à l'échelle donné (default: 1)
+  --detect_overlaps     lève une erreur quand des pattes horizontales ou
+                        verticales se chevauchent (default: False)
+  --gutters STR [STR ...]
+                        définit la visibilité et le contenu des gouttières
+                        latérales
+
+VOIR AUSSI :
+  Version en ligne      https://mocodo.net
+  Code source           https://github.com/laowantong/mocodo
+  Documentation         https://rawgit.com/laowantong/mocodo/master/doc/fr_refman.html
+  Aide-mémoire pour -t  https://github.com/laowantong/mocodo/master/doc/fr_cheat_sheet.md
+
+LICENCE :               MIT
+
+CONTACT :
+  Auteur                Aristide Grange
+  Adresse               Université de Lorraine
+                        Laboratoire LCOMS - UFR MIM
+                        3 rue Augustin Fresnel
+                        57070 METZ Technopôle
+                        France
+  Courriel              <prénom.nom>@univ-lorraine.fr
+    
