@@ -48,13 +48,13 @@
 						</div>
 					</div>
 					<div class="button-with-popup" id="flipButton">
-						<span class="customButton tooltip" onmouseenter="closePopup()" onmousedown="startCountdown(this)" onmouseup="stopCountdown('flip:h,v,d')" style="background-image: url(web/png/flip.png);"><span class="tooltiptext">Inverser</span></span>
+						<span class="customButton tooltip" onmouseenter="closePopup()" onmousedown="startCountdown(this)" onmouseup="stopCountdown('flip:hvd')" style="background-image: url(web/png/flip.png);"><span class="tooltiptext">Inverser</span></span>
 						<div class="popup-menu" onmouseleave="closePopup(this)">
 							<span class="popup-item popup-close" onclick="closePopup()">⨉</span>
 							<span class="popup-item" onclick="rewrite('flip:h')">horizontalement</span>
 							<span class="popup-item" onclick="rewrite('flip:v')">verticalement</span>
 							<span class="popup-item" onclick="rewrite('flip:d')">selon la première diagonale</span>
-							<span class="popup-item" onclick="rewrite('flip:h,v,d')">selon la deuxième diagonale (par défaut)</span>
+							<span class="popup-item" onclick="rewrite('flip:hvd')">selon la deuxième diagonale (par défaut)</span>
 						</div>
 					</div>
 					<div class="button-with-popup" id="typoButton">
@@ -149,7 +149,6 @@
 				<div id="paramContents" class="contents">
 					<div><label class="fixedWidth" for="shapes">Police et proportions</label><select onchange="markAsDirty();writeCookie()" name="shapes" id="shapes"></select></div>
 					<div><label class="fixedWidth" for="colors">Palette de couleurs</label><select onchange="markAsDirty();writeCookie()" name="colors" id="colors"></select></div>
-					<div><label class="fixedWidth" for="flashlight-checkbox">Mode nuit</label><input type="checkbox" id="flashlight-checkbox" onclick="switchOnFlashlight(event)"></div>
 					<div>
 						<label class="fixedWidth" for="adjust_width">Ajustement de la largeur des libellés</label>
 						<input type="number" value="1.00" max="2.00" min="0.50" step="0.01" onchange="writeCookie()" name="adjust_width" id="adjust_width" style="width: 5em; border-radius: 0;">
