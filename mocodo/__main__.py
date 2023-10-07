@@ -69,13 +69,10 @@ class ResponseLogger:
 def flip(source, subargs):
     for subsubopt in subargs:
         mcd = Mcd(source)
-        if re.match(r"(?i)v(er(t(ical)?)?)?", subsubopt):
         if subsubopt == "v":
             source = mcd.get_vertically_flipped_clauses()
-        elif re.match(r"(?i)h(or(i(zontal)?)?)?", subsubopt):
         elif subsubopt == "h":
             source = mcd.get_horizontally_flipped_clauses()
-        elif re.match(r"(?i)d(iag(onal)?)?", subsubopt):
         elif subsubopt == "d":
             source = mcd.get_diagonally_flipped_clauses()
         else:
@@ -321,8 +318,8 @@ class Runner:
         params["id_gutter_visibility"] = gutters["ids"].get("visibility", "auto")
         params["id_gutter_weak_string"] = gutters["ids"].get("weak", "id")
         params["id_gutter_strong_string"] = gutters["ids"].get("strong", "ID")
-        s = gutters["ids"].get("unicities", "123456789")
-        params["id_gutter_unicities"] = dict(zip("123456789", s + "123456789"[len(s):]))
+        s = gutters["ids"].get("alts", "123456789")
+        params["id_gutter_alts"] = dict(zip("123456789", s + "123456789"[len(s):]))
 
         # Create the sub-option "types" if needed, and initialize type_gutter params
         # NB: the gutter for types is not implemented yet, but all needed params are already there

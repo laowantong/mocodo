@@ -154,6 +154,7 @@ class Mcd:
             Attribute.id_gutter_strong_string = params["id_gutter_strong_string"]
             Attribute.id_gutter_weak_string = params["id_gutter_weak_string"]
             Attribute.id_gutter_unicities = params["id_gutter_unicities"]
+            Attribute.id_gutter_alts = params["id_gutter_alts"]
             for (entity_name, entity) in self.entities.items():
                 entity.add_attributes(strengthening_legs[entity_name], entity_name in children)
             self.has_alt_identifier = any(entity.has_alt_identifier for entity in self.entities.values())
@@ -249,6 +250,7 @@ class Mcd:
         params.setdefault("id_gutter_strong_string", "ID")
         params.setdefault("id_gutter_weak_string", "id")
         params.setdefault("id_gutter_unicities", dict(zip("123456789", "123456789")))
+        params.setdefault("id_gutter_alts", dict(zip("123456789", "123456789")))
         params.setdefault("id_gutter_visibility", "auto")
 
         self.get_font_metrics = get_font_metrics

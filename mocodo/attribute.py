@@ -4,7 +4,7 @@ class Attribute:
     # They are here to simplify the writing of some tests.
     id_gutter_strong_string = "ID"
     id_gutter_weak_string = "id"
-    id_gutter_unicities = dict(zip("123456789", "123456789"))
+    id_gutter_alts = dict(zip("123456789", "123456789"))
 
     def __init__(self, attribute):
         self.label = attribute.get("attribute_label", "")
@@ -15,7 +15,7 @@ class Attribute:
         self.hashtag = "#" if self.primary_entity_name else ""
         self.primary_key_label = attribute.get("that_table_attribute_label")
         self.id_groups = set(attribute.get("id_groups", "").replace("0", ""))
-        self.id_text =  " ".join(map(self.id_gutter_unicities.get, sorted(self.id_groups)))
+        self.id_text =  " ".join(map(self.id_gutter_alts.get, sorted(self.id_groups)))
         self.id_gutter_width = 0  # For anything but entities
 
     def calculate_size(self, style, get_font_metrics):

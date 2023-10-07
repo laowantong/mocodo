@@ -94,7 +94,7 @@ def main():
     params["id_gutter_visibility"] = "auto"
     params["id_gutter_strong_string"] = "ID"
     params["id_gutter_weak_string"] = "id"
-    params["id_gutter_unicities"] = dict(zip("123456789", "123456789"))
+    params["id_gutter_alts"] = dict(zip("123456789", "123456789"))
     params["guess_title"] = False
     params["language"] = "fr"
     params["df"] = "DF"
