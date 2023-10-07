@@ -3,18 +3,16 @@ from collections import defaultdict
 from hashlib import md5
 import json
 from pathlib import Path
-import re
 
 
 from .association import Association
 from .attribute import Attribute
-from .common import safe_print_for_PHP
 from .constraint import Constraint
 from .diagram_link import DiagramLink
 from .entity import Entity
 from .grid import Grid
 from .inheritance import Inheritance
-from .mocodo_error import MocodoError, subopt_error
+from .mocodo_error import MocodoError
 from .phantom import Phantom
 
 from .tools.parser_tools import extract_clauses
@@ -153,11 +151,31 @@ class Mcd:
                     children.add(leg.entity_name) # the other legs are its children
             Attribute.id_gutter_strong_string = params["id_gutter_strong_string"]
             Attribute.id_gutter_weak_string = params["id_gutter_weak_string"]
-            Attribute.id_gutter_unicities = params["id_gutter_unicities"]
             Attribute.id_gutter_alts = params["id_gutter_alts"]
             for (entity_name, entity) in self.entities.items():
                 entity.add_attributes(strengthening_legs[entity_name], entity_name in children)
             self.has_alt_identifier = any(entity.has_alt_identifier for entity in self.entities.values())
+
+        def check_weak_entities_without_discriminator():
+            too_weak_entities = defaultdict(int)
+            for association in self.associations.values():
+                for leg in association.legs:
+                    if leg.kind != "strengthening":
+                        continue
+                    for attribute in leg.entity.attributes:
+                        if attribute.kind == "weak":
+                            break
+                    else: # the weak entity has no discriminator.
+                        # Ensure the max cards of the other legs are 1
+                        for other_leg in association.legs:
+                            if other_leg is leg:
+                                continue
+                            if other_leg.card[1] != "1":
+                                # Otherwise, accumulate them
+                                too_weak_entities[leg.entity.name] += 1
+            for (too_weak_entity, count) in too_weak_entities.items():
+                if count < 2: # one isolated "too weak entity"
+                    raise MocodoError(50, _('The weak entity "{entity}" should have a discriminator.').format(entity=too_weak_entity)) # fmt: skip
         
         def set_id_gutter_visibility():
             flag = params["id_gutter_visibility"]
@@ -249,7 +267,6 @@ class Mcd:
         # Using `get` instead of `[]` is for testing purposes only.
         params.setdefault("id_gutter_strong_string", "ID")
         params.setdefault("id_gutter_weak_string", "id")
-        params.setdefault("id_gutter_unicities", dict(zip("123456789", "123456789")))
         params.setdefault("id_gutter_alts", dict(zip("123456789", "123456789")))
         params.setdefault("id_gutter_visibility", "auto")
 
@@ -263,6 +280,7 @@ class Mcd:
         self.update_footer()
         add_legs()
         add_attributes()
+        check_weak_entities_without_discriminator()
         set_id_gutter_visibility()
         add_diagram_links()
         may_center()
