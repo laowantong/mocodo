@@ -1,21 +1,17 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                                                                %
-%                          HÉRITAGE (OU SPÉCIALISATION)                          %
-%                                                                                %
-%  Pour spécialiser une entité E en une ou plusieurs autres entités E1, E2, ...  %
-%  écrivez « /\ E <- E1, E2, ... ».                                              %
-%                                                                                %
-%  NB. Vous pouvez insérer X (exclusion) et/ou T (totalité) entre les barres     %
-%  obliques, ajouter une liste d'attributs ou modifier la sémantique et/ou la    %
-%  représentation graphique de l'héritage en remplaçant la flèche par <=, ->,    %
-%  =>, <<=, <<-, ->> =>>. Voir la documentation.                                 %
-%                                                                                %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                               %
+%                            IDENTIFIANTS CANDIDATS                             %
+%                                                                               %
+%  Préfixez d'un « i_ » les attributs formant le ième identifiant alternatif.   %
+%  Ce numéro apparaîtra dans une gouttière latérale, ainsi qu'un symbole ID en  %
+%  face des attributs que vous aurez retenus pour l'identifiant. Le code SQL    %
+%  généré inclura une contrainte d'unicité pour chacun des groupes concernés.   %
+%                                                                               %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Client: réf. client, nom, prénom, adresse
-
-/X\ Client <- Particulier, Employé, Administratif
-
-Particulier:
-Employé: siret entreprise
-Administratif: nom ministère
+Produit: réf. produit, libellé, prix unitaire
+Inclure, 1N Commande, 0N Produit: quantité
+Commande: num. commande, date, montant
+DF, 0N Client, 11 Commande
+Client: réf. client, 1_nom, 1_prénom, adresse, 2_mail
+Parrainer, 01 Client, 0N [parrain] Client : date parrainage

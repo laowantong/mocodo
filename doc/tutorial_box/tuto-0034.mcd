@@ -1,27 +1,27 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                                                                  %
-%                                 VUE EN EXTENSION                                 %
-%                                                                                  %
-%  La même fonctionnalité permet de créer une vue en extension (à droite du MCD).  %
-%  Notez qu'il n'y a pas besoin de suffixe pour créer plusieurs associations DF.   %
-%  Notez également les lignes réduites à des deux-points : ceux-ci sont traités    %
-%  comme des boîtes « fantômes », et jouent le rôle d'espaces horizontaux.         %
-%                                                                                  %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                                 %
+%                                BOÎTES HOMONYMES                                 %
+%                                                                                 %
+%  Le dernier chiffre ou tiret bas d'un nom d'entité ou d'association n'est pas   %
+%  affiché. C'est bon à savoir, p. ex. pour monnayer une entité « fictive » trop  %
+%  pattue : ici, on évite les croisements en créant deux entités Date.            %
+%                                                                                 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-ŒUVRE1: cote, titre, date de publication
-:::
-ŒUVRE2: 612.NAT.34, J'apprends à lire à mes souris blanches, mai 1975
+Association 9_, XX Entité 3_, XX Date1
+Date1: date
+Association 10_, XX Entité 1_, XX Date1
+Association 11_, XX Entité 1_, XX Entité 2_, XX Date2
 :
-  
-DF, 1N ŒUVRE1, _11 EXEMPLAIRE1
-::
-DF, XX ŒUVRE2, XX EXEMPLAIRE2
-DF, XX ŒUVRE2, XX EXEMPLAIRE3
-DF, XX ŒUVRE2, XX EXEMPLAIRE4
 
-EXEMPLAIRE1: numéro d'exemplaire, état, date d'achat
-::
-EXEMPLAIRE2: 1, bon état, 12/6/1975
-EXEMPLAIRE3: 2, bon état, 1/8/1977
-EXEMPLAIRE4: 3, reliure rongée, 3/4/2005
+Entité 3_:
+Association 8_, XX Entité 3_, XX Entité 1_, XX Date1
+Entité 1_:
+Entité 2_:
+Date2: date
+
+Association 5_, XX Entité 4_, XX Entité 3_
+Entité 4_:
+Association 6_, XX Entité 4_, XX Entité 1_
+Association 7_, XX Entité 1_, XX Entité 2_, XX Date2
+:

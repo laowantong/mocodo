@@ -1,16 +1,16 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                                                                %
-%                   CONTRAINTE D'INTÉGRITÉ FONCTIONNELLE (CIF)                   %
-%                                                                                %
-%  Les mêmes cas de figure peuvent aussi être rendus visuellement par des CIF à  %
-%  unicité complète (le seul type de CIF pris en charge par Mocodo).             %
-%                                                                                %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                                 %
+%                               AGRÉGATION MULTIPLE                               %
+%                                                                                 %
+%  Mocodo gère correctement les cas difficiles à modéliser dans la notation Look  %
+%  Here de Merise. Par exemple, deux dépendances fonctionnelles simultanées :     %
+%  - (Projet, Employé) => Site.                                                   %
+%  - (Employé, Site) => Projet.                                                   %
+%                                                                                 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Date: date
-Réserver, /1N Client, 1N Chambre, 0N Date: durée
-Chambre: numéro, prix
-    
-Client: id. client
-    
-(CIF) ->Client, --Chambre, --Date, ..Réserver: Date, Client
+Projet: projet
+Affecter, /1N Site, /1N Projet, 0N Employé
+Site: site
+
+Employé: employé

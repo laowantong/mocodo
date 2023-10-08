@@ -1,26 +1,27 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                                                             %
-%                DÉCOMPOSITION DES ASSOCIATIONS TERNAIRES (1)                 %
-%                                                                             %
-%  Cochez l'option « Bouton Décomposer » et cliquez celui-ci : l'association  %
-%  Fournir est remplacée par une entité de même nom pourvue d'un identifiant  %
-%  générique et assortie de trois DF.                                         %
-%                                                                             %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                                  %
+%                                 VUE EN EXTENSION                                 %
+%                                                                                  %
+%  La même fonctionnalité permet de créer une vue en extension (à droite du MCD).  %
+%  Notez qu'il n'y a pas besoin de suffixe pour créer plusieurs associations DF.   %
+%  Notez également les lignes réduites à des deux-points : ceux-ci sont traités    %
+%  comme des boîtes « fantômes », et jouent le rôle d'espaces horizontaux.         %
+%                                                                                  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-AYANT-DROIT: nom ayant-droit, lien
-DIRIGER, 0N [responsable] EMPLOYÉ, 01 PROJET
-REQUÉRIR, 1N PROJET, 0N PIÈCE: qté requise
-PIÈCE: réf. pièce, libellé pièce
-COMPOSER, 0N [composée] PIÈCE, 0N [composante] PIÈCE: quantité
+ŒUVRE1: cote, titre, date de publication
+:::
+ŒUVRE2: 612.NAT.34, J'apprends à lire à mes souris blanches, mai 1975
+:
+  
+DF, 1N ŒUVRE1, _11 EXEMPLAIRE1
+::
+DF, XX ŒUVRE2, XX EXEMPLAIRE2
+DF, XX ŒUVRE2, XX EXEMPLAIRE3
+DF, XX ŒUVRE2, XX EXEMPLAIRE4
 
-DF, _11 AYANT-DROIT, 0N EMPLOYÉ
-EMPLOYÉ: matricule, nom employé
-PROJET: num. projet, nom projet
-FOURNIR, 1N PROJET, 1N PIÈCE, 1N SOCIÉTÉ: qté fournie
-
-DÉPARTEMENT: num. département, nom département
-EMPLOYER, 11 EMPLOYÉ, 1N DÉPARTEMENT
-TRAVAILLER, 0N EMPLOYÉ, 1N PROJET
-SOCIÉTÉ: num. société, raison sociale
-CONTRÔLER, 0N< [mère] SOCIÉTÉ, 01 [filiale] SOCIÉTÉ
+EXEMPLAIRE1: numéro d'exemplaire, état, date d'achat
+::
+EXEMPLAIRE2: 1, bon état, 12/6/1975
+EXEMPLAIRE3: 2, bon état, 1/8/1977
+EXEMPLAIRE4: 3, reliure rongée, 3/4/2005

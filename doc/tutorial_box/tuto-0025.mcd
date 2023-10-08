@@ -1,14 +1,22 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                                                             %
-%                     AGRÉGATION ET CONTRAINTES D'UNICITÉ                     %
-%                                                                             %
-%  La conversion en relationnel d'un agrégat avec une cardinalité maximale 1  %
-%  ajoute une contrainte d'unicité sur la clé étrangère.                      %
-%                                                                             %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                                %
+%                         AGRÉGATION (OU PSEUDO-ENTITÉ)                          %
+%                                                                                %
+%  Préfixez de « / » une cardinalité pour entourer d'une enveloppe pointillée    %
+%  l'association et les autres entités participantes.                            %
+%  Ici, la dépendance fonctionnelle (date, numéro) => id. client se traduit au   %
+%  niveau relationnel par un identifiant réduit pour Réserver, ainsi qu'une      %
+%  contrainte de non-optionalité pour id. client. Les contraintes apparaissent   %
+%  dans les sorties SQL, mais vous pouvez aussi les visualiser au niveau du MLD  %
+%  en cochant l'option « Contraintes d'unicité et d'optionalité ».               %
+%                                                                                %
+%  NB. La représentation usuelle (non prise en charge par Mocodo) insérerait     %
+%  une association entre Client et Réserver.                                     %
+%                                                                                %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Voilier: num voilier, longueur
-Offrir, 0N Voilier, 0N Semaine, /11 Réservation: tarif
-Semaine: num semaine, 1_date début
+Date: date
+Réserver, /1N Client, 1N Chambre, 0N Date: durée
+Chambre: numéro, prix
 
-Réservation: num résa, arrhes, date résa
+Client: id. client

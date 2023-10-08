@@ -1,13 +1,13 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                                                                 %
-%                   RÉORGANISATION AUTOMATIQUE AVEC CONTRAINTES                   %
-%                                                                                 %
-%  Un clic long sur la tablette de chocolat fait apparaître d'autres options de   %
-%  réorganisation. Elles tentent de plonger le MCD sur la grille actuelle, ou en  %
-%  largeur d'abord (pour un document paginé), ou en équilibrant les dimensions    %
-%  (pour un diaporama).                                                           %
-%                                                                                 %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                                  %
+%                    RÉARRANGEMENT AUTOMATIQUE AVEC CONTRAINTES                    %
+%                                                                                  %
+%  Cliquez sur la tablette de chocolat pour faire apparaître d'autres options de   %
+%  réorganisation. Celles-ci tentent de plonger le MCD sur la grille actuelle, ou  %
+%  en largeur d'abord (pour un document paginé), ou en équilibrant les dimensions  %
+%  (pour un diaporama).                                                            %
+%                                                                                  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Produit: réf. produit, libellé, prix unitaire
 Inclure, 1N Commande, 0N Produit: quantité

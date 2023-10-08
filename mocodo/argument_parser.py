@@ -245,6 +245,12 @@ class Transformations:
                 "aliases": ["lowercase", "lower_case"],
                 "op_tk": True,
             },
+            "pascal": {
+                "category": "rw",
+                "help": _("rewrite the given elements in PascalCase"),
+                "aliases": ["pascalcase", "pascal_case"],
+                "op_tk": True,
+            },
             "prefix": {
                 "category": "rw",
                 "help": _("prefix the given elements with the given string"),

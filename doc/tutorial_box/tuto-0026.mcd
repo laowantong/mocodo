@@ -1,16 +1,14 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                                                                 %
-%                               AGRÉGATION MULTIPLE                               %
-%                                                                                 %
-%  Mocodo gère correctement les cas difficiles à modéliser dans la notation Look  %
-%  Here de Merise. Par exemple, deux dépendances fonctionnelles simultanées :     %
-%  - (Projet, Employé) => Site.                                                   %
-%  - (Employé, Site) => Projet.                                                   %
-%                                                                                 %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                             %
+%                     AGRÉGATION ET CONTRAINTES D'UNICITÉ                     %
+%                                                                             %
+%  La conversion en relationnel d'un agrégat avec une cardinalité maximale 1  %
+%  ajoute une contrainte d'unicité sur la clé étrangère.                      %
+%                                                                             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Projet: projet
-Affecter, /1N Site, /1N Projet, 0N Employé
-Site: site
+Voilier: num voilier, longueur
+Offrir, 0N Voilier, 0N Semaine, /11 Réservation: tarif
+Semaine: num semaine, 1_date début
 
-Employé: employé
+Réservation: num résa, arrhes, date résa

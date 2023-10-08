@@ -1,12 +1,16 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                                                                %
-%                         ENTITÉ FAIBLE SANS IDENTIFIANT                         %
-%                                                                                %
-%  Préfixez d'un tiret bas le premier attribut pour l'exclure de l'identifiant,  %
-%  p. ex. pour une entité faible sans discriminateur.                              %
-%                                                                                %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                                  %
+%                    ENTITÉ FAIBLE (OU IDENTIFICATION RELATIVE)                    %
+%                                                                                  %
+%  Préfixez d'un tiret bas une cardinalité 11 pour « affaiblir » l'entité qu'elle  %
+%  distingue, et dont l'identifiant sera alors souligné en pointillés.             %
+%                                                                                  %
+%  NB. De façon non conventionnelle, Mocodo souligne le 11 pour indiquer que le    %
+%  « renforcement » de l'identifiant va passer par là. Voyez la documentation      %
+%  pour des options alternatives.                                                  %
+%                                                                                  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Pavillon: id. pavillon, surface, nombre d'étages
-Posséder, 01 Pavillon, _11 Piscine
-Piscine: _surface, volume
+Œuvre: cote œuvre, titre, date parution
+DF, 1N Œuvre, _11 Exemplaire
+Exemplaire: num. exemplaire, état du livre, date d'achat

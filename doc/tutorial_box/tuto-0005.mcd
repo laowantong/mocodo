@@ -5,8 +5,11 @@
 %  Si vous connaissez le couple de cardinalités d'une patte, mettez 01, 11, 0N  %
 %  ou 1N à la place du XX de l'entité distinguée par cette patte.               %
 %                                                                               %
+%  NB. Cliquez sur le bouton Éditer et sélectionnez « Correction des fautes de  %
+%  frappe dans le cardinalités » pour transformer « ON » en « 0N » ci-dessous.  %
+%                                                                               %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Produit: réf. produit, libellé, prix unitaire
-Inclure, 1N Commande, 0N Produit
+Inclure, 1N Commande, ON Produit
 Commande: num. commande, date, montant

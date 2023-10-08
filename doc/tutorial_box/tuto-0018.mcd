@@ -1,11 +1,13 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                                                                %
-%                            POUR ALLER PLUS LOIN...                             %
-%                                                                                %
-%  Si vous débutez dans les bases de données, les exemples précédents devraient  %
-%  suffire à votre bonheur. Dans le cas contraire, cochez l'option « Tutoriel    %
-%  interactif (2/2) » et revenez ici.                                            %
-%                                                                                %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                               %
+%                    ENTRAÎNEMENT AU PASSAGE AU RELATIONNEL                     %
+%                                                                               %
+%  Cochez l'option « Masquage et génération aléatoire », cliquez le bouton qui  %
+%  vient d'apparaître et sélectionnez « Créer un MCD d'entraînement à la        %
+%  conversion en relationnel ». Apparaît un MCD avec des libellés aléatoires,   %
+%  et dont la structure met en œuvre une certaine diversité de cas. Essayez de  %
+%  le convertir en relationnel, et comparez votre solution à celle de Mocodo.   %
+%                                                                               %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-À suivre...: ou pas!
+LOREM: ipsum, dolor, amet

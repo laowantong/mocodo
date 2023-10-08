@@ -1,12 +1,12 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                                                               %
-%                          RÉORGANISATION AUTOMATIQUE                           %
-%                                                                               %
-%  Quand le schéma devient confus, cliquez sur la tablette de chocolat pour le  %
-%  réarranger aléatoirement. L'algorithme veille à éviter les croisements et   %
-%  à minimiser la longueur des pattes. Essayez !                                %
-%                                                                               %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                            %
+%                         RÉARRANGEMENT AUTOMATIQUE                          %
+%                                                                            %
+%  Quand le schéma devient confus, faites un double clic sur la tablette de  %
+%  chocolat pour le réarranger aléatoirement. L'algorithme veille à éviter   %
+%  les croisements et à minimiser la longueur des pattes. Essayez !          %
+%                                                                            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Produit: réf. produit, libellé, prix unitaire
 Inclure, 1N Commande, 0N Produit: quantité

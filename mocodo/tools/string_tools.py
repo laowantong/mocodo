@@ -62,6 +62,12 @@ def camel(input_string):
     (head, *words) = re.split(r'[_\W]+', input_string)
     return ''.join([head] + [word.capitalize() for word in words])
 
+# Camel case
+
+def pascal(input_string):
+    input_string = camel(input_string)
+    return input_string[0].upper() + input_string[1:]
+
 # Snake case
 
 def split_camel_case(

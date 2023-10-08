@@ -1,11 +1,10 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                                %
-%                  DÉCOMPOSITION DES ASSOCIATIONS TERNAIRES (2)                  %
+%                  DÉCOMPOSITION DES ASSOCIATIONS TERNAIRES (1)                  %
 %                                                                                %
-%  Cochez maintenant l'option « Entité faible » : L'entité Fournir devient une   %
-%  entité faible sans identifiant. Vous pouvez vérifier que les schémas sont     %
-%  conceptuellement équivalents, et produisent les mêmes sorties relationnelles  %
-%  (MLD) et physiques (MPD).                                                     %
+%  Cochez l'option « Décomposition d'associations » et double-cliquez le bouton  %
+%  qui vient d'apparaître : l'association Fournir est remplacée par une entité   %
+%  de même nom pourvue d'un identifiant générique et assortie de trois DF.       %
 %                                                                                %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

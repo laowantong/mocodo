@@ -1,16 +1,28 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                                                                  %
-%                    ENTITÉ FAIBLE (OU IDENTIFICATION RELATIVE)                    %
-%                                                                                  %
-%  Préfixez d'un tiret bas une cardinalité 11 pour « affaiblir » l'entité qu'elle  %
-%  distingue, et dont l'identifiant sera alors souligné en pointillés.             %
-%                                                                                  %
-%  NB. De façon non conventionnelle, Mocodo souligne le 11 pour indiquer que le    %
-%  « renforcement » de l'identifiant va passer par là. Voyez la documentation      %
-%  pour des options alternatives.                                                  %
-%                                                                                  %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                                %
+%                           TUTORIEL INTERACTIF (2/2)                            %
+%                                                                                %
+%  Une variation du MCD de Chen avec deux notions plus avancées : entité faible  %
+%  et contrainte sur associations ; ainsi que trois nouvelles fonctionnalités :  %
+%  flèches, calques, messages au survol.                                         %
+%                                                                                %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Œuvre: cote œuvre, titre, date parution
-DF, 1N Œuvre, _11 Exemplaire
-Exemplaire: num. exemplaire, état du livre, date d'achat
+AYANT-DROIT: nom ayant-droit, lien
+DIRIGER, 0N [responsable] EMPLOYÉ, 01 PROJET
+REQUÉRIR, 1N PROJET, 0N PIÈCE: qté requise
+PIÈCE: réf. pièce, libellé pièce
+COMPOSER, 0N [composée] PIÈCE, 0N [composante] PIÈCE: quantité
+
+DF, _11 AYANT-DROIT, 0N EMPLOYÉ
+EMPLOYÉ: matricule, nom employé
+PROJET: num. projet, nom projet
+FOURNIR, 1N PROJET, 1N PIÈCE, 1N SOCIÉTÉ: qté fournie
+
+DÉPARTEMENT: num. département, nom département
+EMPLOYER, 11 EMPLOYÉ, 1N DÉPARTEMENT
+TRAVAILLER, 0N EMPLOYÉ, 1N PROJET
+SOCIÉTÉ: num. société, raison sociale
+CONTRÔLER, 0N< [mère] SOCIÉTÉ, 01 [filiale] SOCIÉTÉ
+
+  (I) [Les pièces fournies par une société pour un projet font partie de celles qu'il requiert.] ..PIÈCE, ->REQUÉRIR, --FOURNIR, PROJET

@@ -7,7 +7,7 @@ __import__("sys").path[0:0] = ["."]
 
 from ..parse_mcd import Transformer
 from ..tools.parser_tools import transform_source
-from ..tools.string_tools import ascii, camel, snake, TRUNCATE_DEFAULT_SIZE
+from ..tools.string_tools import ascii, camel, snake, pascal, TRUNCATE_DEFAULT_SIZE
 from ..mocodo_error import MocodoError
 from .cards import fix_card, infer_dfs, infer_roles
 from .types import read_default_datatypes, create_type_placeholders, guess_types
@@ -36,6 +36,7 @@ GENERAL_OPERATIONS = { # operations that can be applied to any token
     "casefold": lambda x: x.casefold(),
     "echo": lambda x: x,
     "lower": lambda x: x.lower(),
+    "pascal": pascal,
     "snake": snake,
     "swapcase": lambda x: x.swapcase(),
     "title": lambda x: x.title(),

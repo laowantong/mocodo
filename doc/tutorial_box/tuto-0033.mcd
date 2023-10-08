@@ -1,27 +1,18 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                                                                 %
-%                                BOÎTES HOMONYMES                                 %
-%                                                                                 %
-%  Le dernier chiffre ou tiret bas d'un nom d'entité ou d'association n'est pas   %
-%  affiché. C'est bon à savoir, p. ex. pour monnayer une entité « fictive » trop  %
-%  pattue : ici, on évite les croisements en créant deux entités Date.            %
-%                                                                                 %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                                  %
+%                         DÉVOILEMENT PROGRESSIF DU SCHÉMA                         %
+%                                                                                  %
+%  Indentez (i.e., insérez des espaces au début de) certaines clauses pour créer   %
+%  des calques. Les boîtes définies avec la même indentation sont tracées sur le   %
+%  même calque. Les calques sont ordonnés par indentation croissante. Sous Mocodo  %
+%  online, pour faciliter la mise au point, le schéma est directement dévoilé.     %
+%                                                                                  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Association 9_, XX Entité 3_, XX Date1
-Date1: date
-Association 10_, XX Entité 1_, XX Date1
-Association 11_, XX Entité 1_, XX Entité 2_, XX Date2
-:
-
-Entité 3_:
-Association 8_, XX Entité 3_, XX Entité 1_, XX Date1
-Entité 1_:
-Entité 2_:
-Date2: date
-
-Association 5_, XX Entité 4_, XX Entité 3_
-Entité 4_:
-Association 6_, XX Entité 4_, XX Entité 1_
-Association 7_, XX Entité 1_, XX Entité 2_, XX Date2
-:
+      Parrainer, 01 Client, 0N Client : date parrainage
+Produit: réf. produit, libellé, prix unitaire
+  Inclure, 1N Commande, 0N Produit: quantité
+ 
+    Client: réf. client, nom, prénom, adresse
+    DF, 0N Client, 11 Commande
+  Commande: num. commande, date, montant

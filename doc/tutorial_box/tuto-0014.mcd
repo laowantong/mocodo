@@ -5,8 +5,9 @@
 %  Maintenant que le MCD est typé, cochez « Requêtes SQL de création des tables »,  %
 %  rafraîchissez et allez voir le résultat sous l'onglet Autres sorties. Notez en   %
 %  particulier les contraintes de clés étrangères à la fin. Notez aussi que les     %
-%  les libellés originels ont été purgés de leurs accents et de leurs espaces :     %
-%  cela rend le code SQL plus portable et simplifie l'utilisation de la base.       %
+%  les libellés originaux ont été automatiquement « appauvris » : ainsi, « réf.     %
+%  produit » est devenu « ref_produit », etc. Cela rend le code SQL plus portable   %
+%  et simplifie les références lors de l'utilisation de la base.                    %
 %                                                                                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

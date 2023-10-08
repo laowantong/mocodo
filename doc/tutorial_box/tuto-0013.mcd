@@ -1,12 +1,15 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                                                                %
-%                               INFÉRENCE DE TYPES                               %
-%                                                                                %
-%  Faites un clic long sur le lapin magique, puis sélectionnez : « deviner les   %
-%  types à partir du nom des attributs » (en français ou en anglais). Bien sûr,  %
-%  vous pourrez toujours rectifier ceux-ci au besoin.                            %
-%                                                                                %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                                  %
+%                                INFÉRENCE DE TYPES                                %
+%                                                                                  %
+%  Cliquez sur le lapin magique, puis sélectionnez : « deviner les types à         %
+%  partir du nom des attributs » (en français ou en anglais). Bien sûr, vous       %
+%  pourrez toujours rectifier ceux-ci au besoin.                                   %
+%  Notez que l'inférence donne de meilleurs résultats si les libellés sont écrits  %
+%  de façon standard : Mocodo proposera un type pour « réf. produit », mais pas    %
+%  pour « refproduit ».                                                            %
+%                                                                                  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Produit: réf. produit, libellé, prix unitaire
 Inclure, 1N Commande, 0N Produit: quantité

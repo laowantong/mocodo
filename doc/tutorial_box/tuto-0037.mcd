@@ -1,16 +1,27 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                                %
-%                            POUR ALLER PLUS LOIN...                             %
+%                  DÉCOMPOSITION DES ASSOCIATIONS TERNAIRES (2)                  %
 %                                                                                %
-%  Chacune des opérations que Mocodo online présente sous la forme de bouton ou  %
-%  de case à cocher consiste en un simple appel à la commande « mocodo » avec    %
-%  une séquence fixe d'options. En installant Mocodo, vous pourrez composer ces  %
-%  séquences librement, ce qui vous ouvrira d'autres perspectives : création de  %
-%  jeux de tests, génération d'examens avec un sujet distinct par étudiant,      %
-%  automatisation des corrections, etc. Pour l'heure, l'étape suivante semble    %
-%  être la lecture de la documentation (lien en bas de page), qui vous donnera   %
-%  un éventail complet des possibilités, et peut-être d'autres idées !           %
+%  Cochez maintenant l'option « Entité faible » : l'entité Fournir devient une   %
+%  entité faible sans identifiant. Vous pouvez vérifier que les schémas sont     %
+%  conceptuellement équivalents, et produisent les mêmes sorties relationnelles  %
+%  (MLD) et physiques (MPD).                                                     %
 %                                                                                %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-À suivre...: ou pas!
+AYANT-DROIT: nom ayant-droit, lien
+DIRIGER, 0N [responsable] EMPLOYÉ, 01 PROJET
+REQUÉRIR, 1N PROJET, 0N PIÈCE: qté requise
+PIÈCE: réf. pièce, libellé pièce
+COMPOSER, 0N [composée] PIÈCE, 0N [composante] PIÈCE: quantité
+
+DF, _11 AYANT-DROIT, 0N EMPLOYÉ
+EMPLOYÉ: matricule, nom employé
+PROJET: num. projet, nom projet
+FOURNIR, 1N PROJET, 1N PIÈCE, 1N SOCIÉTÉ: qté fournie
+
+DÉPARTEMENT: num. département, nom département
+EMPLOYER, 11 EMPLOYÉ, 1N DÉPARTEMENT
+TRAVAILLER, 0N EMPLOYÉ, 1N PROJET
+SOCIÉTÉ: num. société, raison sociale
+CONTRÔLER, 0N< [mère] SOCIÉTÉ, 01 [filiale] SOCIÉTÉ

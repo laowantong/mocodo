@@ -68,11 +68,13 @@
 						<span class="customButton tooltip" onmouseenter="closePopup()" onclick="handleClick(this, 'ascii:labels snake:labels lower:attrs,roles upper:boxes')" style="background-image: url(web/png/typo.png);"><span class="tooltiptext">Éditer</span></span>
 						<div class="popup-menu" onmouseleave="closePopup(this)">
 							<span class="popup-item popup-close" onclick="closePopup()">⨉</span>
+							<span class="popup-item" onclick="rewrite('camel:labels')">libellés en <i>camelCase</i></span>
+							<span class="popup-item" onclick="rewrite('pascal:labels')">libellés en <i>PascalCase</i></span>
+							<span class="popup-item" onclick="rewrite('snake:labels')">libellés en <i>snake_case</i></span>
 							<span class="popup-item" onclick="rewrite('ascii:labels')">libellés en ASCII</span>
-							<span class="popup-item" onclick="rewrite('snake:labels')">libellés en <i>snake case</i></span>
 							<span class="popup-item" onclick="rewrite('lower:attrs,roles')">attributs en minuscules</span>
 							<span class="popup-item" onclick="rewrite('upper:boxes')">noms des entités et des associations en majuscules</span>
-							<span class="popup-item" onclick="rewrite('ascii:labels snake:labels lower:attrs,roles upper:boxes')">tous les précédents à la fois (double clic)</span>
+							<span class="popup-item" onclick="rewrite('snake:labels ascii:labels lower:attrs,roles upper:boxes')">les quatre précédents à la fois (double clic)</span>
 							<span class="popup-item" onclick="rewrite('fix:cards')">correction des fautes de frappe dans les cardinalités</span>
 						</div>
 					</div>
@@ -136,7 +138,6 @@
 					</p>
 					<br>
 					<p>
-					Pour en savoir plus, suivez nos tutoriels interactifs (onglet Entrée), puis plongez-vous dans la <a target="_blank" href="https://rawgit.com/laowantong/mocodo/master/doc/fr_refman.html">documentation</a>.
 					Pour en savoir plus, suivez nos tutoriels interactifs (onglet Entrée).
 					<!-- , puis plongez-vous dans la <a target="_blank" href="https://rawgit.com/laowantong/mocodo/master/doc/fr_refman.html">documentation</a>. -->
 					</p>
@@ -208,7 +209,6 @@
 	</form>
 </div>
 <div id="navigation">
-	<a target="_blank" href="https://github.com/laowantong/mocodo">Mocodo 4.0.0</a>
 	<a target="_blank" href="https://github.com/laowantong/mocodo">Mocodo 4.0.1</a>
 	&nbsp;∙&nbsp;
 	<a target="_blank" href="https://rawgit.com/laowantong/mocodo/master/doc/fr_refman.html">Documentation</a>
