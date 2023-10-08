@@ -1,4 +1,3 @@
-**Octobre 2023.** Mocodo [4](https://github.com/laowantong/mocodo/releases/tag/4.0.0) introduit la gestion des contraintes d'optionalité et d'unicité, améliore les interfaces graphique et en ligne de commande, et ajoute un grand nombre de fonctionnalités : liens de partage, exportation en UML, en notation de Chen et _crow's foot_, génération de MCD aléatoires, décomposition des associations et autres opérations de réécriture.
 
 **Septembre 2022.** Mocodo 3 introduit l'[héritage](https://rawgit.com/laowantong/mocodo/master/doc/fr_refman.html#Héritage-(ou-spécialisation)), l'[agrégation](https://rawgit.com/laowantong/mocodo/master/doc/fr_refman.html#Agrégation-(ou-pseudo-entité)), les [calques](https://rawgit.com/laowantong/mocodo/master/doc/fr_refman.html#Héritage-(ou-spécialisation)), les [sorties PDF et PNG](https://rawgit.com/laowantong/mocodo/master/doc/fr_refman.html#Héritage-(ou-spécialisation)), etc. : [3.0](https://github.com/laowantong/mocodo/releases/tag/3.0), [3.1](https://github.com/laowantong/mocodo/releases/tag/3.1.0), [3.2](https://github.com/laowantong/mocodo/releases/tag/3.2.0).
 
@@ -200,4 +199,4 @@ Pour vous familiariser avec Mocodo, le mieux est d'utiliser [sa version en ligne
 
 ----
 
-Documentation en cours de réécriture. En attendant, vous pouvez consulter [celle de la version 3.2](doc/fr_refman.html), ainsi que la sortie de [`mocodo --help`](doc/fr_refman_4.txt) et l'[aide-mémoire des transformations](doc/fr_cheat_sheet.md).
+Documentation en cours de réécriture. En attendant, vous pouvez consulter la sortie de [`mocodo --help`](doc/fr_refman_4.txt) et l'[aide-mémoire des transformations](doc/fr_cheat_sheet.md).

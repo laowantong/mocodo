@@ -137,6 +137,8 @@
 					<br>
 					<p>
 					Pour en savoir plus, suivez nos tutoriels interactifs (onglet Entrée), puis plongez-vous dans la <a target="_blank" href="https://rawgit.com/laowantong/mocodo/master/doc/fr_refman.html">documentation</a>.
+					Pour en savoir plus, suivez nos tutoriels interactifs (onglet Entrée).
+					<!-- , puis plongez-vous dans la <a target="_blank" href="https://rawgit.com/laowantong/mocodo/master/doc/fr_refman.html">documentation</a>. -->
 					</p>
 					<br>
 					<p style="font-size:small; font-style:italic; text-align:right;">
@@ -207,6 +209,7 @@
 </div>
 <div id="navigation">
 	<a target="_blank" href="https://github.com/laowantong/mocodo">Mocodo 4.0.0</a>
+	<a target="_blank" href="https://github.com/laowantong/mocodo">Mocodo 4.0.1</a>
 	&nbsp;∙&nbsp;
 	<a target="_blank" href="https://rawgit.com/laowantong/mocodo/master/doc/fr_refman.html">Documentation</a>
 	&nbsp;∙&nbsp;
