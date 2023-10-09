@@ -4,6 +4,16 @@ stem_suffix: '_ddl'
 extension: 'sql'
 to_defer: false
 highlight: 'sql'
+transform_attribute:
+  - order: 100
+    comment: 'Ensure there are only letters, digits and underscores in the label.'
+    search: '(?u)\W+'
+    replace: '_'
+transform_relation_name:
+  - order: 100
+    comment: 'Ensure there are only letters, digits and underscores in the label.'
+    search: '(?u)\W+'
+    replace: '_'
 transform_datatype:
   - order: 100
     comment: 'Fill in empty data types with the default one.'

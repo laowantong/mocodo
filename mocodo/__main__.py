@@ -194,9 +194,6 @@ class Runner:
                         if not sql_relations:
                             sql_source = source
                             sql_source = op_tk.run(sql_source, "ascii", {"labels": 1, "roles": 1}, self.params)
-                            sql_source = op_tk.run(sql_source, "snake", {"labels": 1}, self.params)
-                            sql_source = op_tk.run(sql_source, "lower", {"attrs": 1, "roles": 1}, self.params)
-                            sql_source = op_tk.run(sql_source, "upper", {"boxes": 1}, self.params)
                             sql_mcd = Mcd(sql_source, self.get_font_metrics, **self.params)
                             sql_relations = Relations(sql_mcd, self.params)
                         text = sql_relations.get_text(template)

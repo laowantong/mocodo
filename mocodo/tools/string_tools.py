@@ -55,50 +55,61 @@ ASCII = "ae ae ae d d f h i l o o oe oe ss t ue AE AE AE D D F H I L O O OE OE S
 def ascii(s, outliers=str.maketrans(dict(zip(LATIN.split(), ASCII.split())))):
     return "".join(c for c in normalize("NFD", s.translate(outliers)) if not combining(c))
 
-
-# Camel case
-
-def camel(input_string):
-    (head, *words) = re.split(r'[_\W]+', input_string)
-    return ''.join([head] + [word.capitalize() for word in words])
-
-# Camel case
-
-def pascal(input_string):
-    input_string = camel(input_string)
-    return input_string[0].upper() + input_string[1:]
-
-# Snake case
-
-def split_camel_case(
-        s,
-        upper = lambda x: x.upper(),
-        lower = lambda x: x.lower(),
-    ):
-    change_case = upper if s.isupper() else lower
+def aggressive_split(
+    input_string,
+    find_all_words = re.compile(r"(?u)[^\W_]+").findall
+):
+    # Split the string, and further split the words
     result = []
-    previous_is_lower = False
-    for c in s:
-        if previous_is_lower and c.isupper():
-            result.extend(["_", change_case(c)])
-        elif not c.isalnum():
-            result.append("_")
+    for word in find_all_words(input_string):
+        previous_is_digit = word[0].isdigit()
+        previous_is_lower = word[0].islower()
+        i = 0
+        for (j, c) in enumerate(word[1:], 1):
+            current_is_lower = c.islower()
+            current_is_digit = c.isdigit()
+            if (
+                previous_is_digit and not current_is_digit
+                or
+                not previous_is_digit and current_is_digit
+                or
+                previous_is_lower and not current_is_lower
+            ):
+                result.append(word[i:j])
+                i = j
+            previous_is_lower = current_is_lower
+            previous_is_digit = current_is_digit
+        result.append(word[i:])
+    return result
+
+# A decorator which calls
+
+def spare_protected_suffix(
+    function,
+    is_protected_suffix = re.compile(r"[_0-9]").match,
+):
+    def wrapper(input_string):
+        suffix = input_string[-1:]
+        if is_protected_suffix(suffix):
+            input_string = input_string[:-1]
         else:
-            result.append(change_case(c))
-        previous_is_lower = c.islower()
-    return "".join(result)
+            suffix = ""
+        result = function(input_string)
+        return result + suffix
+    return wrapper
 
-def compress_underscores(s):
-    return re.sub(r"_+", "_", s)
+@spare_protected_suffix
+def camel(input_string):
+    result = "".join([word.capitalize() for word in aggressive_split(input_string)])
+    return result[:1].lower() + result[1:]
 
-def strip_non_letters(s):
-    # This doesn't include the trailing underscore (used as discriminator)
-    s = re.sub(r"^\W+", "", s)
-    s = re.sub(r"\W+$", "", s)
-    return s
+@spare_protected_suffix
+def pascal(input_string):
+    return "".join([word.capitalize() for word in aggressive_split(input_string)])
 
-def snake(label):
-    return compress_underscores(split_camel_case(strip_non_letters(label)))
+@spare_protected_suffix
+def snake(input_string):
+    return "_".join([word for word in aggressive_split(input_string)])
 
 def urlsafe_encoding(text):
     return base64.urlsafe_b64encode(zlib.compress(text.encode('utf-8'), 9)).decode('ascii')

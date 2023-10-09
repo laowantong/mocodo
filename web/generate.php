@@ -24,10 +24,6 @@ $transformations = array(
   "_mld.md" => "markdown",
   "_mld.txt" => "text",
   "_mld.mcd" => "diagram",
-  "_mld.html_with_constraints" => "html:ec",
-  "_mld.md_with_constraints" => "markdown:c",
-  "_mld.txt_with_constraints" => "text:c",
-  "_mld.mcd_with_constraints" => "diagram:c",
   "_dependencies.gv" => "dependencies",
   "_ddl.sql" => "sql",
   "_uml.puml" => "uml",
@@ -99,8 +95,11 @@ if ($_POST['conversions']) {
   $transformation_options = "";
   $conversions = array();
   foreach ($_POST['conversions'] as $ext) {
+    if ($ext == "_ddl.sql") {
+      $transformation_options .= " " . $_POST['sql_case'] . ":labels";
+    };
     $transformation_options .= " " . $transformations[$ext];
-    $conversions[] = str_replace("_with_constraints", "", $ext);
+    $conversions[] = $ext;
   };
   $mocodo .= " -t{$transformation_options}";
 };
@@ -109,7 +108,8 @@ if ($_POST['conversions']) {
 
 $out = array();
 $command_line = "{$mocodo} 2>&1 >/dev/null";
-exec($command_line,$out);
+// fwrite($php_log, $command_line . "\n");
+exec($command_line, $out);
 
 if (!empty($out)) {
     echo json_encode(array("err" => implode("\n",$out)));
@@ -156,5 +156,6 @@ foreach ($conversions as $ext) {
     $str = str_replace('<','&lt;', $str);
     $result["conversions"][] = array($ext, $str);
 };
+// fwrite($php_log, json_encode($result) . "\n");
 echo json_encode($result);
 ?>

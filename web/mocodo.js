@@ -20,7 +20,7 @@ var conversions = {
     "default": false,
     "highlighting": "markup",
     "title": "Affiché également au-dessous du diagramme conceptuel. Cliquez sur un schéma de relation pour faire apparaître une explication du passage du MCD au MLD.",
-    "name": "Explications du passage au relationnel",
+    "name": "Schéma relationnel expliqué",
   },
   "_ddl.sql": {
     "default": false,
@@ -38,14 +38,14 @@ var conversions = {
     "default": false,
     "highlighting": "markdown",
     "title": "Colonnes : attribut / descriptif.",
-    "name": "Dictionnaire des données en Markdown sur deux colonnes",
+    "name": "Dictionnaire des données sur deux colonnes",
     "advanced": true,
   },
   "_data_dict_3.md": {
     "default": false,
     "highlighting": "markdown",
     "title": "Colonnes : entité ou association / attribut / type.",
-    "name": "Dictionnaire des données en Markdown sur trois colonnes",
+    "name": "Dictionnaire des données sur trois colonnes",
     "advanced": true,
   },
   "_dependencies.gv": {
@@ -531,7 +531,7 @@ function handleClick(element, rewrite_operation) {
         clickTimer = null;
         currentPopup = element.nextElementSibling;
         currentPopup.style.display = "block"; // show the popup menu.
-      }, 200);
+      }, 500);
     };
   }
 }
@@ -592,6 +592,7 @@ $().ready(function () {
   var default_color = "brewer" + "+-"[Math.floor(Math.random() * 2)] + (Math.floor(Math.random() * 9) + 1);
   createOptions("colors", ["blank", "bw", "bw-alpha", "desert", "keepsake", "mondrian", "ocean", "pond", "wb", "xinnian", "brewer+1", "brewer-1", "brewer+2", "brewer-2", "brewer+3", "brewer-3", "brewer+4", "brewer-4", "brewer+5", "brewer-5", "brewer+6", "brewer-6", "brewer+7", "brewer-7", "brewer+8", "brewer-8", "brewer+9", "brewer-9"], default_color);
   createOptions("shapes", ["arial", "copperplate", "georgia", "mondrian", "sans", "serif", "times", "trebuchet", "verdana", "xinnian"], "verdana");
+  createOptions("sql_case", ["snake_case", "camelCase", "PascalCase"], "snake_case");
   var items = Object.keys(delays).map(function (key) { return { "value": delays[key], "name": key } });
   items.sort(function (a, b) { return a["value"] - b["value"] });
   createOptions("delays", items.map(function (value, index) { return value["name"] }), "1 minute");
