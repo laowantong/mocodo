@@ -574,11 +574,11 @@ $().ready(function () {
     else {
       var pristine_sandbox = "/resources/pristine_sandbox.mcd";
     }
+    $.get(location.protocol + '//' + location.host + pristine_sandbox, function (data) {
+      editor.setValue(data);
+      editor.selection.moveCursorFileStart();
+    });
   };
-  $.get(location.protocol + '//' + location.host + pristine_sandbox, function (data) {
-    editor.setValue(data);
-    editor.selection.moveCursorFileStart();
-  });
   editor.session.on('change', markAsDirty);
   editor.session.setMode("ace/mode/mocodo");
   editor.setTheme("ace/theme/chrome");

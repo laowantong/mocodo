@@ -5,7 +5,7 @@ description = "Modélisation Conceptuelle de Données. Nickel. Ni souris."
 authors = ["Aristide Grange"]
 license = "MIT"
 readme = "README.md"
-homepage = "https://www.mocodo.net"
+homepage = "https://www.mocodo.net/"
 repository = "https://github.com/laowantong/mocodo/"
 keywords = ["education",
             "relational",

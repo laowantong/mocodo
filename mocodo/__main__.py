@@ -259,7 +259,7 @@ class Runner:
                 elif preprocessing == "urlsafe_encoding":
                     data = urlsafe_encoding(data)
                 elif preprocessing == "encode_prefix":
-                    # Sole use case (so far): "https://mocodo.net?mcd="" becomes "https%3A//mocodo.net%3Fmcd%3D"
+                    # Sole use case (so far): "https://mocodo.net/?mcd="" becomes "https%3A//mocodo.net/%3Fmcd%3D"
                     index = data.find("=") + 1
                     data = urllib.parse.quote(data[:index]) + data[index:]
             url = service["url"].format(data=data)
