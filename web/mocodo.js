@@ -10,6 +10,12 @@ var delays = {
   "8 minutes": 480,
 }
 var conversions = {
+  "_url.url": {
+    "default": true,
+    "highlighting": "none",
+    "title": "URL d&#39;une session Mocodo online pré-remplie avec le texte-source de votre MCD.",
+    "name": "Lien de partage du MCD",
+  },
   "_mld.mcd": {
     "default": false,
     "highlighting": "none",
@@ -27,12 +33,6 @@ var conversions = {
     "highlighting": "sql",
     "title": "DDL œcuménique, pour peu que vous utilisiez les types requis par le dialecte-cible (MySQL, SQLite, PostgreSQL, Oracle, SQL Server, etc.). Les libellés sont automatiquement privés de leurs accents et espaces pour éviter de polluer le code SQL avec des délimiteurs de chaînes, qui plus est non portables.",
     "name": "Requêtes SQL de création des tables",
-  },
-  "_url.url": {
-    "default": true,
-    "highlighting": "none",
-    "title": "URL d&#39;une session Mocodo online pré-remplie avec le texte-source de votre MCD.",
-    "name": "Lien de partage du MCD",
   },
   "_data_dict_2.md": {
     "default": false,
@@ -562,10 +562,7 @@ $().ready(function () {
   if (text) {
     editor.setValue(text);
     editor.selection.moveCursorFileStart();
-    // get the current URL without the GET arguments
-    var url = window.location.href.split('?')[0];
-    // replace the current URL with the new URL without the GET arguments
-    window.history.pushState({path: url}, '', url);  }
+  }
   else {
     // if it is launched from localhost, use the local pristine sandbox
     if (location.hostname == "localhost") {

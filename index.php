@@ -150,29 +150,10 @@
 					<div id=inputPane>
 						<div><input type="text" oninput="markAsDirty();unbox()" onfocus="onFocus(this)" name="title" id="title" value="MCD" onblur="onBlur(this)" autocomplete="off" /></div>
 						<select onchange="changeTitleToNthTuto();unbox()" name="tutorial" id="tutorial" title="Parcourez notre galerie de MCD pour apprendre la syntaxe de Mocodo."></select>
-<!-- Temporarily replaced by hard-coded pristine MCD
 						<textarea hidden name="text"><?php
 							$encoded_string = (isset($_GET['mcd'])) ? $_GET['mcd'] : '';
 							echo (zlib_decode(base64_decode(strtr($encoded_string, '-_', '+/'))));
 						?></textarea>
--->
-<textarea hidden name="text">AYANT-DROIT: nom ayant-droit, lien
-DIRIGER, 0N [responsable] EMPLOYÉ, 01 PROJET
-REQUÉRIR, 1N PROJET, 0N PIÈCE: qté requise
-PIÈCE: réf. pièce, libellé pièce
-COMPOSER, 0N [composée] PIÈCE, 0N [composante] PIÈCE: quantité
-
-DF, _11 AYANT-DROIT, 0N EMPLOYÉ
-EMPLOYÉ: matricule, nom employé
-PROJET: num. projet, nom projet
-FOURNIR, 1N PROJET, 1N PIÈCE, 1N SOCIÉTÉ: qté fournie
-
-DÉPARTEMENT: num. département, nom département
-EMPLOYER, 11 EMPLOYÉ, 1N DÉPARTEMENT
-TRAVAILLER, 0N EMPLOYÉ, 1N PROJET
-SOCIÉTÉ: num. société, raison sociale
-CONTRÔLER, 0N< [mère] SOCIÉTÉ, 01 [filiale] SOCIÉTÉ
-</textarea>
 						<div id="editor-wrapper">
 						<div id="editor"></div>
 						</div>
@@ -229,7 +210,7 @@ CONTRÔLER, 0N< [mère] SOCIÉTÉ, 01 [filiale] SOCIÉTÉ
 	</form>
 </div>
 <div id="navigation">
-	<a target="_blank" href="https://github.com/laowantong/mocodo">Mocodo 4.0.2</a>
+	<a target="_blank" href="https://github.com/laowantong/mocodo">Mocodo 4.0.3</a>
 	&nbsp;∙&nbsp;
 	<a target="_blank" href="https://rawgit.com/laowantong/mocodo/master/doc/fr_refman.html">Documentation</a>
 	&nbsp;∙&nbsp;
