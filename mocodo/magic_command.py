@@ -81,6 +81,8 @@ def display_converted_file(path, hide_header):
         display(HTML(text))
     elif extension == "tex":
         display(Code(filename=path, language="latex"))
+    elif extension == "url":
+        print(path.read_text()) # make the link clickable
     elif extension == "tsv":
         try:
             df = importlib.import_module("pandas").read_csv(path, sep="\t", header=0, index_col=False)
