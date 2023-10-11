@@ -119,8 +119,8 @@ class Runner:
             self.params["convert"].insert(0, ("markdown", {}))
 
         if "select" in self.params: # the user wants to override the default display policy under Jupyter
-            if "*" in self.params["select"]:
-                self.params["select"] = ["mcd", "rw", "cv"]
+            if "all" in self.params["select"]:
+                self.params["select"] = ["mcd", "rw", "cv"] if self.params["rewrite"] else ["mcd", "cv"]
             normalized_user_choices = []
             for k in self.params["select"]:
                 if k.lower() not in SHOW_ARGS:
