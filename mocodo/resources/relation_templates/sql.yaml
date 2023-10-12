@@ -101,7 +101,7 @@ transform_relational_schema:
     search: '(?m)^((ALTER TABLE .+?) ADD .+\n)(?!\2)'
     replace: '\1\n'
   - order: 10000
-    comment: 'Add a newline after the last ''^);'' followed by a non-empty line.'
+    comment: 'Add a newline after the last "^);" followed by a non-empty line.'
     search: '(?ms)(.+^\);\n)(?!\n)'
     replace: '\1\n'
   - order: 10100
