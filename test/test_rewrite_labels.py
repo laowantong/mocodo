@@ -1,10 +1,12 @@
 import unittest
 import random
+import gettext
 
 __import__("sys").path[0:0] = ["mocodo"]
 
 from mocodo.rewrite import op_tk
 
+gettext.NullTranslations().install()
 
 class TestUpdateLabels(unittest.TestCase):
 
@@ -64,5 +66,16 @@ class TestUpdateLabels(unittest.TestCase):
         """
         self.assertEqual(actual.strip(), expected.strip())
     
+    def test_obfuscate_pool_too_small(self):
+        source = """
+            DF, 11 Curabitur, 0N Vitae justo, 0N DATE2
+            DF, 1N Rhoncus, 11 DATE2
+            DF, 11 Rhoncus, 0N Egestas
+        """
+        subargs = {"labels": "test/test_data/small_pool.txt"}
+        params = {"script_directory": "mocodo", "df": "DF"}
+        random.seed(42)
+        self.assertRaises(op_tk.MocodoError, op_tk.run, source, "randomize", subargs, params)
+
 if __name__ == "__main__":
     unittest.main()

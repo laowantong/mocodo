@@ -95,12 +95,18 @@ class Reconstructor(Visitor):
 
 def reconstruct_source(tree):
     visitor = Reconstructor()
-    visitor.visit(tree)
+    try:
+        visitor.visit(tree)
+    except Exception as visitor_error:
+        raise visitor_error.__context__ if visitor_error.__context__ else visitor_error
     return "".join(s for (_, _, s) in sorted(visitor.result))
 
 def transform_source(source, transformer):
     tree = parse_source(source)
-    new_tree = transformer.transform(tree)
+    try:
+        new_tree = transformer.transform(tree)
+    except Exception as transformer_error:
+        raise transformer_error.__context__ if transformer_error.__context__ else transformer_error
     return reconstruct_source(new_tree)
 
 class ClauseExtractor(Transformer):
