@@ -61,7 +61,7 @@ add_unicity_constraints:
     replace: '</span> <sup>u{unicities}</sup>'
 add_optionality_constraints:
   - order: 100
-    search: '^(<span class=''(?:normal|foreign)''>.+)(</span>)$'
+    search: '^(<span class=''(?:normal|foreign)''>.+)(</span>)'
     replace: '\1{optionality}\2'
 column_separator: ',\n    '
 compose_relation: '<div>\n  <span class=''relation''>{this_relation_name}</span> (\n    {columns}\n  )\n</div>'
