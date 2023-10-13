@@ -1,11 +1,1 @@
-Voilier: num voilier, longueur
-Offrir0, /11 Réservation, 0N Voilier: tarif
-:
-
-:
-Réservation: num résa, arrhes, date résa
-Offrir1, /11 Réservation, 0N Semaine
-
-:
-:
-Semaine: num semaine, 1_date début
+% same as the source file

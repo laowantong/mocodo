@@ -11,17 +11,22 @@ class Splitter(Visitor):
         # It is not possible to use a method `assoc_clause` since the amount of indentation needs
         # to be known for the added clauses.
 
-        # In this guard, store the indentation and abort if the clause is not an association.
+        # Guard: store the indentation and abort if the clause is not an association.
         indent = next(tree.find_data("indent"), None)
         indent = indent.children[0].value if indent else ""
         tree = next(tree.find_data("assoc_clause"), None)
         if tree is None:
             return
 
-        # In this guard, ensure that only one max cardinality is 1 and there are more than 2 legs.
+        # Guard: ensure that only one max cardinality is 1 and there are more than 2 legs.
         cards = [node.children[0].value for node in tree.find_data("card")]
         max_cards = Counter(card[1] for card in cards)
         if max_cards["1"] != 1 or max_cards["N"] < 2:
+            return
+        
+        # Guard: don't split a clustered association
+        card_prefixes = [node.children[0].value == "/" for node in tree.find_data("card_prefix")]
+        if any(card_prefixes):
             return
         
         # Concatenate the constituting elements (cf. grammar.lark) of the original legs

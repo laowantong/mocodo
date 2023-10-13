@@ -392,6 +392,10 @@ msgstr "lève une erreur quand des pattes horizontales ou verticales se chevauch
 msgid "set the visibility and the contents of the lateral gutters"
 msgstr "définit la visibilité et le contenu des gouttières latérales"
 
+#: mocodo/association.py:50
+msgid "The association \"{name}\" should have at least 3 legs to become a cluster."
+msgstr "L'association « {name} » devrait avoir au moins 3 pattes pour devenir un agrégat."
+
 #: mocodo/association.py:77
 msgid "An association named \"{df_label}\" must have at least one leg with a maximal cardinality of 1."
 msgstr "Une association nommée « {df_label} » doit avoir au moins une patte avec une cardinalité maximale de 1."

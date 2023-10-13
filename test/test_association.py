@@ -77,11 +77,13 @@ class ParseTest(unittest.TestCase):
         self.assertEqual(a.legs[1].card_view, "1,N")
 
     def test_note_in_agregation(self):
-        a = association_wrapper("ENGENDRER, /0N [Parent] PERSONNE, 1N [Enfant] PERSONNE")
-        self.assertEqual(a.legs[0].note, "Parent")
-        self.assertEqual(a.legs[1].note, "Enfant")
+        a = association_wrapper("ENGENDRER, 0N [Père] PERSONNE, 0N [Mère] PERSONNE, /1N [Enfant] PERSONNE")
+        self.assertEqual(a.legs[0].note, "Père")
+        self.assertEqual(a.legs[1].note, "Mère")
+        self.assertEqual(a.legs[2].note, "Enfant")
         self.assertEqual(a.legs[0].card_view, "0,N")
-        self.assertEqual(a.legs[1].card_view, "1,N")
+        self.assertEqual(a.legs[1].card_view, "0,N")
+        self.assertEqual(a.legs[2].card_view, "1,N")
 
     def test_attributes(self):
         l = [
@@ -122,11 +124,7 @@ class ParseTest(unittest.TestCase):
         self.assertRaisesRegex(MocodoError, r"Mocodo Err\.37", association_wrapper, "DF, 0N CLIENT, 0N COMMANDE")
 
     def test_cluster_of_one_entity(self):
-        a = association_wrapper("SUIVRE, 0N DATE, /1N ÉTUDIANT")
-        self.assertEqual(a.legs[0].entity_name, "DATE")
-        self.assertEqual(a.legs[0].kind, "cluster_leg")
-        self.assertEqual(a.legs[1].entity_name, "ÉTUDIANT")
-        self.assertEqual(a.legs[1].kind, "cluster_peg")
+        self.assertRaisesRegex(MocodoError, r"Mocodo Err\.51", association_wrapper, "SUIVRE, 0N DATE, /1N ÉTUDIANT")
 
     def test_cluster_of_two_entities(self):
         a = association_wrapper("SUIVRE, 0N DATE, /1N ÉTUDIANT, 0N ENSEIGNANT")

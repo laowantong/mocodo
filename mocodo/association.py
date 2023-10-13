@@ -46,6 +46,8 @@ class Association:
                 if leg.get("card_prefix") == "/":
                     self.peg_count += 1
             if self.peg_count > 0:
+                if len(legs) < 3:
+                    raise MocodoError(51, _('The association "{name}" should have at least 3 legs to become a cluster.').format(name=self.name))
                 self.kind = "cluster"
             else:
                 self.kind = "association"

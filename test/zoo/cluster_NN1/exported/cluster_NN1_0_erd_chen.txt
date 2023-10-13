@@ -1,4 +1,3 @@
-[Réservation] ==N== <Offrir>
-[Réservation] ==N== <Offrir>
-[Semaine] --1-- <Offrir>
-[Voilier] --1-- <Offrir>
+[Réservation] ==1== <Offrir>
+[Semaine] --N-- <Offrir>
+[Voilier] --N-- <Offrir>

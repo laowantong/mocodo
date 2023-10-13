@@ -8,9 +8,10 @@ Table("Voilier") {
     {field} + longueur
 }
 
-"Réservation" "*" --- "1" "Voilier": "Offrir0"
-
-"Réservation" "*" --- "1" "Semaine": "Offrir1"
+diamond N_ARY_0
+N_ARY_0 -- "*" "Voilier"
+N_ARY_0 -- "*" "Semaine"
+N_ARY_0 -- "1" "Réservation"
 
 Table("Semaine") {
     {field} + pk(num semaine)
