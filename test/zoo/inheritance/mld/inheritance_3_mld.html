@@ -22,7 +22,7 @@
   <details><summary><span class='relation'>TRISTIS</span> (
     <span class='primary'>magna</span>,
     <span class='normal'>vestibulum</span>,
-    <span class='normal'>type</span>,
+    <span class='normal'>type!</span>,
     <span class='normal'>convallis?</span>,
     <span class='normal'>ipsum?</span>,
     <span class='normal'>pulvinar?</span>,
@@ -35,7 +35,7 @@
   <ul>
     <li>Le champ <i>magna</i> constitue la clé primaire de la table. C'était déjà un identifiant de l'entité <i>TRISTIS</i>.</li>
     <li>Le champ <i>vestibulum</i> était déjà un simple attribut de l'entité <i>TRISTIS</i>.</li>
-    <li>Un champ entier <i>type</i> est ajouté pour indiquer la nature de la spécialisation : 1 pour la première entité-fille, 2 pour la deuxième, etc. Jamais vide, du fait de la contrainte de totalité.</li>
+    <li>Un discriminateur à saisie obligatoire <i>type</i> est ajouté pour indiquer la nature de la spécialisation. Jamais vide, du fait de la contrainte de totalité.</li>
     <li>Le champ à saisie facultative <i>convallis</i> a migré à partir de l'entité-fille <i>SODALES</i> (supprimée).</li>
     <li>Le champ à saisie facultative <i>ipsum</i> a migré à partir de l'entité-fille <i>SODALES</i> (supprimée).</li>
     <li>Le champ à saisie facultative <i>pulvinar</i> a migré à partir de l'entité-fille <i>NEC</i> (supprimée).</li>

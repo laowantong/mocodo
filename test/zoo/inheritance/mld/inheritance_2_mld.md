@@ -3,7 +3,7 @@
 - **ALIQUET** (<ins>magna</ins>, <ins>_#tellus_</ins>, type!)
   - Le champ _magna_ fait partie de la clé primaire de la table. Il a migré par l'association de dépendance fonctionnelle _ALIQUET_ à partir de l'entité _TRISTIS_ (supprimée). **Attention** : aucune contrainte d'intégrité référentielle n'est plus assurée.
   - Le champ _tellus_ fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité _DIGNISSIM_.
-  - Un champ entier à saisie obligatoire _type_ est ajouté pour indiquer la nature de la spécialisation : 1 pour la première entité-fille, 2 pour la deuxième, etc. Jamais vide, du fait de la contrainte de totalité.
+  - Un discriminateur à saisie obligatoire _type_ est ajouté pour indiquer la nature de la spécialisation. Jamais vide, du fait de la contrainte de totalité.
 
 - **CONSEQUAT** (<ins>fermentum</ins>, dederit)
   - Le champ _fermentum_ constitue la clé primaire de la table. C'était déjà un identifiant de l'entité _CONSEQUAT_.
@@ -49,7 +49,7 @@
   - Le champ _orci_ constitue la clé primaire de la table. C'était déjà un identifiant de l'entité _SUSCIPIT_.
   - Le champ _lorem_ était déjà un simple attribut de l'entité _SUSCIPIT_.
   - Le champ à saisie obligatoire _magna_ a migré par l'association de dépendance fonctionnelle _RHONCUS_ à partir de l'entité _TRISTIS_ (supprimée). **Attention** : aucune contrainte d'intégrité référentielle n'est plus assurée.
-  - Un champ entier à saisie obligatoire _type_ est ajouté pour indiquer la nature de la spécialisation : 1 pour la première entité-fille, 2 pour la deuxième, etc. Jamais vide, du fait de la contrainte de totalité.
+  - Un discriminateur à saisie obligatoire _type_ est ajouté pour indiquer la nature de la spécialisation. Jamais vide, du fait de la contrainte de totalité.
 
 - **ULTRICES** (<ins>_#posuere_</ins>, <ins>_#magna_</ins>)
   - Le champ _posuere_ fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité _LIBERO_.

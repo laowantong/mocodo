@@ -1,7 +1,7 @@
 Table TRISTIS {
   magna VARCHAR(42) [pk, not null]
   vestibulum VARCHAR(42)
-  type UNSIGNED_INT
+  type UNSIGNED_INT [not null]
   convallis VARCHAR(42) [null]
   ipsum VARCHAR(42) [null]
   pulvinar VARCHAR(42) [null]

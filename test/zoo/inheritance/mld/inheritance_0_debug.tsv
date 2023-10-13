@@ -18,7 +18,7 @@ SUSCIPIT	magna	!		foreign_key	False	TRISTIS	TRISTIS	RHONCUS
 TRISTIS	magna	!		primary_key	True					
 TRISTIS	vestibulum			normal_attribute	False					
 TRISTIS	fermentum	!		foreign_key	False	CONSEQUAT	CONSEQUAT	ELIT		
-TRISTIS	type			deleted_child_discriminator_XT	False			TRISTIS parent #1	UNSIGNED_INT_PLACEHOLDER	
+TRISTIS	type	!		deleted_child_discriminator_XT	False			TRISTIS parent #1	UNSIGNED_INT_PLACEHOLDER	
 TRISTIS	convallis	?		deleted_child_attribute	False	SODALES		TRISTIS parent #1		
 TRISTIS	ipsum	?		deleted_child_attribute	False	SODALES		TRISTIS parent #1		
 TRISTIS	pulvinar	?		deleted_child_attribute	False	NEC		TRISTIS parent #1		

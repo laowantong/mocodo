@@ -7,7 +7,7 @@ Table ANIMAL {
   "code espèce mère" VARCHAR(42) [null]
   "nom mère" VARCHAR(42) [null]
   "date naissance mère" VARCHAR(42) [null]
-  "type alimentation" UNSIGNED_INT [not null]
+  "type alimentation" UNSIGNED_INT [null]
   CARNIVORE BOOLEAN [not null]
   "quantité viande" VARCHAR(42) [null]
   HERBIVORE BOOLEAN [not null]

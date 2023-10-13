@@ -4,7 +4,7 @@ CREATE TABLE TRISTIS (
   PRIMARY KEY (magna),
   magna VARCHAR(42) NOT NULL,
   vestibulum VARCHAR(42),
-  type UNSIGNED INT,
+  type UNSIGNED INT NOT NULL,
   convallis VARCHAR(42) NULL,
   ipsum VARCHAR(42) NULL,
   pulvinar VARCHAR(42) NULL,

@@ -22,7 +22,7 @@
   \begin{itemize}
     \item Le champ \emph{magna} fait partie de la clé primaire de la table. Il a migré par l'association de dépendance fonctionnelle \emph{ALIQUET} à partir de l'entité \emph{TRISTIS} (supprimée). **Attention** : aucune contrainte d'intégrité référentielle n'est plus assurée.
     \item Le champ \emph{tellus} fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité \emph{DIGNISSIM}.
-    \item Un champ entier à saisie obligatoire \emph{type} est ajouté pour indiquer la nature de la spécialisation : 1 pour la première entité-fille, 2 pour la deuxième, etc. Jamais vide, du fait de la contrainte de totalité.
+    \item Un discriminateur à saisie obligatoire \emph{type} est ajouté pour indiquer la nature de la spécialisation. Jamais vide, du fait de la contrainte de totalité.
   \end{itemize}
 
   \item \relat{CONSEQUAT} (\prim{fermentum}, \attr{dederit})
@@ -86,7 +86,7 @@
     \item Le champ \emph{orci} constitue la clé primaire de la table. C'était déjà un identifiant de l'entité \emph{SUSCIPIT}.
     \item Le champ \emph{lorem} était déjà un simple attribut de l'entité \emph{SUSCIPIT}.
     \item Le champ à saisie obligatoire \emph{magna} a migré par l'association de dépendance fonctionnelle \emph{RHONCUS} à partir de l'entité \emph{TRISTIS} (supprimée). **Attention** : aucune contrainte d'intégrité référentielle n'est plus assurée.
-    \item Un champ entier à saisie obligatoire \emph{type} est ajouté pour indiquer la nature de la spécialisation : 1 pour la première entité-fille, 2 pour la deuxième, etc. Jamais vide, du fait de la contrainte de totalité.
+    \item Un discriminateur à saisie obligatoire \emph{type} est ajouté pour indiquer la nature de la spécialisation. Jamais vide, du fait de la contrainte de totalité.
   \end{itemize}
 
   \item \relat{ULTRICES} (\foreign{\prim{posuere}}, \foreign{\prim{magna}})

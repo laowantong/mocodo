@@ -12,6 +12,6 @@ SODALES	convallis			normal_attribute	False
 SODALES	ipsum			normal_attribute	False					
 TRISTIS	magna	!		primary_key	True					
 TRISTIS	vestibulum			normal_attribute	False					
-TRISTIS	type			deleted_child_discriminator_XT	False			TRISTIS parent #1	UNSIGNED_INT_PLACEHOLDER	
+TRISTIS	type	!		deleted_child_discriminator_XT	False			TRISTIS parent #1	UNSIGNED_INT_PLACEHOLDER	
 ULTRICES	magna	!		primary_foreign_key	True	SODALES	SODALES	ULTRICES		sodales
 ULTRICES	magna	!		primary_foreign_key	True	LACUS	LACUS	ULTRICES		lacus

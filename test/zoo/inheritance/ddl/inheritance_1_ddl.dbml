@@ -61,7 +61,7 @@ Table TRISTIS {
   magna VARCHAR(42) [pk, not null]
   vestibulum VARCHAR(42)
   fermentum VARCHAR(42) [not null]
-  type UNSIGNED_INT
+  type UNSIGNED_INT [not null]
 }
 
 Table ULTRICES {

@@ -38,11 +38,11 @@
     \item Les champs \emph{convallis} et \emph{ipsum} étaient déjà de simples attributs de l'entité \emph{SODALES}.
   \end{itemize}
 
-  \item \relat{TRISTIS} (\prim{magna}, \attr{vestibulum}, \attr{type})
+  \item \relat{TRISTIS} (\prim{magna}, \attr{vestibulum}, \attr{type!})
   \begin{itemize}
     \item Le champ \emph{magna} constitue la clé primaire de la table. C'était déjà un identifiant de l'entité \emph{TRISTIS}.
     \item Le champ \emph{vestibulum} était déjà un simple attribut de l'entité \emph{TRISTIS}.
-    \item Un champ entier \emph{type} est ajouté pour indiquer la nature de la spécialisation : 1 pour la première entité-fille, 2 pour la deuxième, etc. Jamais vide, du fait de la contrainte de totalité.
+    \item Un discriminateur à saisie obligatoire \emph{type} est ajouté pour indiquer la nature de la spécialisation. Jamais vide, du fait de la contrainte de totalité.
   \end{itemize}
 
   \item \relat{ULTRICES} (\foreign{\prim{magna sodales}}, \foreign{\prim{magna lacus}})

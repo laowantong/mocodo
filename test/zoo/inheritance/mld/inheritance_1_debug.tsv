@@ -28,6 +28,6 @@ SUSCIPIT	magna	!		foreign_key	False	TRISTIS	TRISTIS	RHONCUS
 TRISTIS	magna	!		primary_key	True					
 TRISTIS	vestibulum			normal_attribute	False					
 TRISTIS	fermentum	!		foreign_key	False	CONSEQUAT	CONSEQUAT	ELIT		
-TRISTIS	type			deleted_child_discriminator_XT	False			TRISTIS parent #1	UNSIGNED_INT_PLACEHOLDER	
+TRISTIS	type	!		deleted_child_discriminator_XT	False			TRISTIS parent #1	UNSIGNED_INT_PLACEHOLDER	
 ULTRICES	posuere	!		primary_foreign_key	True	LIBERO	LIBERO	ULTRICES		
 ULTRICES	magna	!		primary_foreign_key	True	LACUS	LACUS	ULTRICES

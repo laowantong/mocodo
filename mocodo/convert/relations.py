@@ -361,7 +361,7 @@ class Relations:
                 parent_leg = inheritance.legs[0]
                 self.relations[parent_leg.entity_name]["columns"].extend({ 
                     "attribute": attribute.label,
-                    "optionality": "" if 'T' in inheritance.name_view else "!",
+                    "optionality": "!" if 'T' in inheritance.name_view else "?",
                     "datatype": attribute.datatype or "UNSIGNED_INT_PLACEHOLDER",
                     "adjacent_source": None,
                     "outer_source": None,
@@ -587,7 +587,7 @@ class Relations:
             else: # migration: triangle attributes > parent
                 self.relations[parent_leg.entity_name]["columns"].extend({ 
                     "attribute": attribute.label,
-                    "optionality": "" if 'T' in inheritance.name_view else "!",
+                    "optionality": "!" if 'T' in inheritance.name_view else "?",
                     "datatype": attribute.datatype or "UNSIGNED_INT_PLACEHOLDER",
                     "adjacent_source": None,
                     "outer_source": None,

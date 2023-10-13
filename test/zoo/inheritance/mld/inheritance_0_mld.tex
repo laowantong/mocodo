@@ -62,12 +62,12 @@
     \item Le champ à saisie obligatoire \emph{magna} est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle \emph{RHONCUS} à partir de l'entité \emph{TRISTIS} en perdant son caractère identifiant.
   \end{itemize}
 
-  \item \relat{TRISTIS} (\prim{magna}, \attr{vestibulum}, \foreign{fermentum!}, \attr{type}, \attr{convallis?}, \attr{ipsum?}, \attr{pulvinar?}, \attr{audis?}, \foreign{gravida?}, \attr{tempor?}, \attr{fugit?})
+  \item \relat{TRISTIS} (\prim{magna}, \attr{vestibulum}, \foreign{fermentum!}, \attr{type!}, \attr{convallis?}, \attr{ipsum?}, \attr{pulvinar?}, \attr{audis?}, \foreign{gravida?}, \attr{tempor?}, \attr{fugit?})
   \begin{itemize}
     \item Le champ \emph{magna} constitue la clé primaire de la table. C'était déjà un identifiant de l'entité \emph{TRISTIS}.
     \item Le champ \emph{vestibulum} était déjà un simple attribut de l'entité \emph{TRISTIS}.
     \item Le champ à saisie obligatoire \emph{fermentum} est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle \emph{ELIT} à partir de l'entité \emph{CONSEQUAT} en perdant son caractère identifiant.
-    \item Un champ entier \emph{type} est ajouté pour indiquer la nature de la spécialisation : 1 pour la première entité-fille, 2 pour la deuxième, etc. Jamais vide, du fait de la contrainte de totalité.
+    \item Un discriminateur à saisie obligatoire \emph{type} est ajouté pour indiquer la nature de la spécialisation. Jamais vide, du fait de la contrainte de totalité.
     \item Le champ à saisie facultative \emph{convallis} a migré à partir de l'entité-fille \emph{SODALES} (supprimée).
     \item Le champ à saisie facultative \emph{ipsum} a migré à partir de l'entité-fille \emph{SODALES} (supprimée).
     \item Le champ à saisie facultative \emph{pulvinar} a migré à partir de l'entité-fille \emph{NEC} (supprimée).

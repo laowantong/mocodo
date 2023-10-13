@@ -10,7 +10,7 @@ CREATE TABLE ANIMAL (
   code_espece_mere VARCHAR(8) NULL,
   nom_mere VARCHAR(255) NULL,
   date_naissance_mere DATE NULL,
-  type_alimentation UNSIGNED INT NOT NULL,
+  type_alimentation UNSIGNED INT NULL,
   CARNIVORE BOOLEAN NOT NULL,
   quantite_viande INTEGER NULL,
   HERBIVORE BOOLEAN NOT NULL,

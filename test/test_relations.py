@@ -259,7 +259,7 @@ class relationsTest(unittest.TestCase):
             |:-------------------|:----------------|:------------|:----------|:-----------------------------|:-----------|:----------------|:-------------|:-----------------|
             | ANIMAL             | animal          | !           |           | primary_key                  | True       |                 |              |                  |
             | ANIMAL             | poids           |             |           | normal_attribute             | False      |                 |              |                  |
-            | ANIMAL             | type            | !           |           | deleted_child_discriminator_ | False      |                 |              | ANIMAL parent #1 |
+            | ANIMAL             | type            | ?           |           | deleted_child_discriminator_ | False      |                 |              | ANIMAL parent #1 |
             | ANIMAL             | quantité viande | ?           |           | deleted_child_attribute      | False      | CARNIVORE       |              | ANIMAL parent #1 |
             | ANIMAL             | plante préférée | ?           |           | deleted_child_attribute      | False      | HERBIVORE       |              | ANIMAL parent #1 |
         """
@@ -285,7 +285,7 @@ class relationsTest(unittest.TestCase):
             |:-------------------|:----------------|:------------|:----------|:-----------------------------|:-----------|
             | ANIMAL             | animal          | !           |           | primary_key                  | True       |
             | ANIMAL             | poids           |             |           | normal_attribute             | False      |
-            | ANIMAL             | type            | !           |           | deleted_child_discriminator_ | False      |
+            | ANIMAL             | type            | ?           |           | deleted_child_discriminator_ | False      |
             | CARNIVORE          | animal          | !           |           | parent_primary_key           | True       |
             | CARNIVORE          | quantité viande |             |           | normal_attribute             | False      |
             | HERBIVORE          | animal          | !           |           | parent_primary_key           | True       |
@@ -348,7 +348,7 @@ class relationsTest(unittest.TestCase):
             |:-------------------|:----------------|:------------|:----------|:-----------------------------|:-----------|:----------------|:-------------|:-----------------|
             | ANIMAL             | animal          | !           |           | primary_key                  | True       |                 |              |                  |
             | ANIMAL             | poids           |             |           | normal_attribute             | False      |                 |              |                  |
-            | ANIMAL             | type            | !           |           | deleted_child_discriminator_ | False      |                 |              | ANIMAL parent #1 |
+            | ANIMAL             | type            | ?           |           | deleted_child_discriminator_ | False      |                 |              | ANIMAL parent #1 |
             | ANIMAL             | quantité viande | ?           |           | deleted_child_attribute      | False      | CARNIVORE       |              | ANIMAL parent #1 |
             | ANIMAL             | plante préférée | ?           |           | deleted_child_attribute      | False      | HERBIVORE       |              | ANIMAL parent #1 |
         """
@@ -372,7 +372,7 @@ class relationsTest(unittest.TestCase):
             |:-------------------|:----------------|:------------|:----------|:-----------------------------|:-----------|
             | ANIMAL             | animal          | !           |           | primary_key                  | True       |
             | ANIMAL             | poids           |             |           | normal_attribute             | False      |
-            | ANIMAL             | type            | !           |           | deleted_child_discriminator_ | False      |
+            | ANIMAL             | type            | ?           |           | deleted_child_discriminator_ | False      |
             | CARNIVORE          | animal          | !           |           | parent_primary_key           | True       |
             | CARNIVORE          | quantité viande |             |           | normal_attribute             | False      |
         """
