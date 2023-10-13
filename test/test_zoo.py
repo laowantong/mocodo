@@ -1,9 +1,8 @@
 import json
 import time
-import gettext
 from pathlib import Path
 import shutil
-from mocodo.argument_parser import parsed_arguments
+from mocodo.argument_parser import parsed_arguments, init_localization
 from mocodo.common import Common
 from mocodo.convert.read_template import read_template
 from mocodo.font_metrics import font_metrics_factory
@@ -89,7 +88,6 @@ def main():
         templates.append(read_template(name, TEMPLATE_DIR))
 
     params = parsed_arguments()
-    gettext.NullTranslations().install()
     params["guess_title"] = False
     params["id_gutter_visibility"] = "auto"
     params["id_gutter_strong_string"] = "ID"
@@ -100,6 +98,7 @@ def main():
     params["df"] = "DF"
     params["seed"] = 42 # only to be dumped in graphviz files
     common = Common(params)
+    init_localization("fr")
     get_font_metrics = font_metrics_factory(params)
     for path in ZOO_DIR.glob("*/*"):
         if path.is_dir():

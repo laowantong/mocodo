@@ -1,19 +1,19 @@
-ENTITY 01_: attr 01 1, attr 01 2, attr 01 3, attr 01 4
--ASSOC 08_, 11 ENTITY 03_, 01 ENTITY 03_
--ENTITY 02_: attr 02 1, _attr 02 2, attr 02 3, attr 02 4
--ASSOC 09_, 11 ENTITY 04_, 1N ENTITY 04_
+ENTITÉ 01_: at 01 1, at 01 2, at 01 3, at 01 4
+-ASSOC 08_, 11 ENTITÉ 03_, 01 ENTITÉ 03_
+-ENTITÉ 02_: at 02 1, _at 02 2, at 02 3, at 02 4
+-ASSOC 09_, 11 ENTITÉ 04_, 1N ENTITÉ 04_
 
-DF, 0N ENTITY 01_, 11 ENTITY 03_
-ENTITY 03_: attr 03 1, attr 03 2, attr 03 3
--ASSOC 11_, 0N ENTITY 02_, 0N ENTITY 03_, 1N ENTITY 04_
-ENTITY 04_: attr 04 1, attr 04 2, attr 04 3
+DF, 0N ENTITÉ 01_, 11 ENTITÉ 03_
+ENTITÉ 03_: at 03 1, at 03 2, at 03 3
+-ASSOC 11_, 0N ENTITÉ 02_, 0N ENTITÉ 03_, 1N ENTITÉ 04_
+ENTITÉ 04_: at 04 1, at 04 2, at 04 3
 
--ENTITY 05_: attr 05 1, attr 05 2, attr 05 3, attr 05 4
--ASSOC 12_, 0N ENTITY 05_, 01 ENTITY 06_
-ASSOC 13_, 1N ENTITY 03_, 0N ENTITY 04_: attr 13 1
--ASSOC 14_, 1N ENTITY 07_, 1N ENTITY 04_: attr 14 1
+-ENTITÉ 05_: at 05 1, at 05 2, at 05 3, at 05 4
+-ASSOC 12_, 0N ENTITÉ 05_, 01 ENTITÉ 06_
+ASSOC 13_, 1N ENTITÉ 03_, 0N ENTITÉ 04_: at 13 1
+-ASSOC 14_, 1N ENTITÉ 07_, 1N ENTITÉ 04_: at 14 1
 
--ASSOC 15_, 0N ENTITY 05_, 1N ENTITY 06_
--ENTITY 06_: attr 06 1, attr 06 2
--ASSOC 16_, 0N ENTITY 06_, 11 ENTITY 07_: attr 16 1
--ENTITY 07_: attr 07 1, attr 07 2, attr 07 3
+-ASSOC 15_, 0N ENTITÉ 05_, 1N ENTITÉ 06_
+-ENTITÉ 06_: at 06 1, at 06 2
+-ASSOC 16_, 0N ENTITÉ 06_, 11 ENTITÉ 07_: at 16 1
+-ENTITÉ 07_: at 07 1, at 07 2, at 07 3

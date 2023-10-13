@@ -40,7 +40,7 @@
 		<rect x="287" y="18" width="106" height="58" fill="none" rx="14" stroke="#000000" stroke-width="1.5"/>
 		<line x1="287" y1="46" x2="393" y2="46" stroke="#000000" stroke-width="1.5"/>
 		<text x="295" y="39.3" fill="#000000" font-family="Copperplate" font-size="18">ASSOC 08</text>
-		<text x="294" y="64.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 08 1</text>
+		<text x="294" y="64.1" fill="#000000" font-family="Gill Sans" font-size="15">at 08 1</text>
 	</g>
 	<text x="345" y="101" fill="#000000" font-family="Futura" font-size="11">1,N</text>
 	<text x="398" y="63" fill="#000000" font-family="Futura" font-size="11">0,N</text>
@@ -56,7 +56,7 @@
 		<rect x="561" y="18" width="106" height="58" fill="none" rx="14" stroke="#000000" stroke-width="1.5"/>
 		<line x1="561" y1="46" x2="667" y2="46" stroke="#000000" stroke-width="1.5"/>
 		<text x="569" y="39.3" fill="#000000" font-family="Copperplate" font-size="18">ASSOC 09</text>
-		<text x="568" y="64.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 09 1</text>
+		<text x="568" y="64.1" fill="#000000" font-family="Gill Sans" font-size="15">at 09 1</text>
 	</g>
 	<text x="537" y="40" fill="#000000" font-family="Futura" font-size="11">0,N</text>
 	<text x="537" y="62" fill="#000000" font-family="Futura" font-size="11">0,N</text>
@@ -86,7 +86,7 @@
 		<rect x="424" y="118" width="106" height="58" fill="none" rx="14" stroke="#000000" stroke-width="1.5"/>
 		<line x1="424" y1="146" x2="530" y2="146" stroke="#000000" stroke-width="1.5"/>
 		<text x="432" y="139.3" fill="#000000" font-family="Copperplate" font-size="18">ASSOC 11</text>
-		<text x="431" y="164.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 11 1</text>
+		<text x="431" y="164.1" fill="#000000" font-family="Gill Sans" font-size="15">at 11 1</text>
 	</g>
 	<text x="400" y="163" fill="#000000" font-family="Futura" font-size="11">1,N</text>
 	<text x="482" y="101" fill="#000000" font-family="Futura" font-size="11">1,N</text>
@@ -139,7 +139,7 @@
 	<text x="537" y="262" fill="#000000" font-family="Futura" font-size="11">0,1</text>
 </g>
 
-<!-- Entity ENTITY 01_ -->
+<!-- Entity ENTITÉ 01_ -->
 <g>
 	<g>
 		<rect x="9" y="9" width="110" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
@@ -147,13 +147,13 @@
 		<rect x="9" y="9" width="110" height="76" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
 		<line x1="9" y1="39" x2="119" y2="39" stroke="#000000" stroke-width="1.5"/>
 	</g>
-	<text x="18" y="30.3" fill="#000000" font-family="Copperplate" font-size="18">ENTITY 01</text>
-	<text x="17" y="56.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 01 1</text>
-	<line x1="17" y1="59" x2="72" y2="59" stroke="#000000" stroke-width="1" stroke-dasharray="4"/>
-	<text x="17" y="73.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 01 2</text>
+	<text x="17" y="30.3" fill="#000000" font-family="Copperplate" font-size="18">ENTITÉ 01</text>
+	<text x="17" y="56.1" fill="#000000" font-family="Gill Sans" font-size="15">at 01 1</text>
+	<line x1="17" y1="59" x2="61" y2="59" stroke="#000000" stroke-width="1" stroke-dasharray="4"/>
+	<text x="17" y="73.1" fill="#000000" font-family="Gill Sans" font-size="15">at 01 2</text>
 </g>
 
-<!-- Entity ENTITY 02_ -->
+<!-- Entity ENTITÉ 02_ -->
 <g>
 	<g>
 		<rect x="422" y="9" width="110" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
@@ -161,13 +161,13 @@
 		<rect x="422" y="9" width="110" height="76" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
 		<line x1="422" y1="39" x2="532" y2="39" stroke="#000000" stroke-width="1.5"/>
 	</g>
-	<text x="431" y="30.3" fill="#000000" font-family="Copperplate" font-size="18">ENTITY 02</text>
-	<text x="430" y="56.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 02 1</text>
-	<line x1="430" y1="59" x2="485" y2="59" stroke="#000000" stroke-width="1"/>
-	<text x="430" y="73.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 02 2</text>
+	<text x="430" y="30.3" fill="#000000" font-family="Copperplate" font-size="18">ENTITÉ 02</text>
+	<text x="430" y="56.1" fill="#000000" font-family="Gill Sans" font-size="15">at 02 1</text>
+	<line x1="430" y1="59" x2="474" y2="59" stroke="#000000" stroke-width="1"/>
+	<text x="430" y="73.1" fill="#000000" font-family="Gill Sans" font-size="15">at 02 2</text>
 </g>
 
-<!-- Entity ENTITY 03_ -->
+<!-- Entity ENTITÉ 03_ -->
 <g>
 	<g>
 		<rect x="146" y="109" width="110" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
@@ -175,13 +175,13 @@
 		<rect x="146" y="109" width="110" height="76" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
 		<line x1="146" y1="139" x2="256" y2="139" stroke="#000000" stroke-width="1.5"/>
 	</g>
-	<text x="155" y="130.3" fill="#000000" font-family="Copperplate" font-size="18">ENTITY 03</text>
-	<text x="154" y="156.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 03 1</text>
-	<line x1="154" y1="159" x2="209" y2="159" stroke="#000000" stroke-width="1"/>
-	<text x="154" y="173.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 03 2</text>
+	<text x="154" y="130.3" fill="#000000" font-family="Copperplate" font-size="18">ENTITÉ 03</text>
+	<text x="154" y="156.1" fill="#000000" font-family="Gill Sans" font-size="15">at 03 1</text>
+	<line x1="154" y1="159" x2="198" y2="159" stroke="#000000" stroke-width="1"/>
+	<text x="154" y="173.1" fill="#000000" font-family="Gill Sans" font-size="15">at 03 2</text>
 </g>
 
-<!-- Entity ENTITY 04_ -->
+<!-- Entity ENTITÉ 04_ -->
 <g>
 	<g>
 		<rect x="285" y="109" width="110" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
@@ -189,13 +189,13 @@
 		<rect x="285" y="109" width="110" height="76" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
 		<line x1="285" y1="139" x2="395" y2="139" stroke="#000000" stroke-width="1.5"/>
 	</g>
-	<text x="294" y="130.3" fill="#000000" font-family="Copperplate" font-size="18">ENTITY 04</text>
-	<text x="293" y="156.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 04 1</text>
-	<line x1="293" y1="159" x2="348" y2="159" stroke="#000000" stroke-width="1"/>
-	<text x="293" y="173.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 04 2</text>
+	<text x="293" y="130.3" fill="#000000" font-family="Copperplate" font-size="18">ENTITÉ 04</text>
+	<text x="293" y="156.1" fill="#000000" font-family="Gill Sans" font-size="15">at 04 1</text>
+	<line x1="293" y1="159" x2="337" y2="159" stroke="#000000" stroke-width="1"/>
+	<text x="293" y="173.1" fill="#000000" font-family="Gill Sans" font-size="15">at 04 2</text>
 </g>
 
-<!-- Entity ENTITY 05_ -->
+<!-- Entity ENTITÉ 05_ -->
 <g>
 	<g>
 		<rect x="9" y="209" width="110" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
@@ -203,13 +203,13 @@
 		<rect x="9" y="209" width="110" height="76" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
 		<line x1="9" y1="239" x2="119" y2="239" stroke="#000000" stroke-width="1.5"/>
 	</g>
-	<text x="18" y="230.3" fill="#000000" font-family="Copperplate" font-size="18">ENTITY 05</text>
-	<text x="17" y="256.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 05 1</text>
-	<line x1="17" y1="259" x2="72" y2="259" stroke="#000000" stroke-width="1"/>
-	<text x="17" y="273.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 05 2</text>
+	<text x="17" y="230.3" fill="#000000" font-family="Copperplate" font-size="18">ENTITÉ 05</text>
+	<text x="17" y="256.1" fill="#000000" font-family="Gill Sans" font-size="15">at 05 1</text>
+	<line x1="17" y1="259" x2="61" y2="259" stroke="#000000" stroke-width="1"/>
+	<text x="17" y="273.1" fill="#000000" font-family="Gill Sans" font-size="15">at 05 2</text>
 </g>
 
-<!-- Entity ENTITY 06_ -->
+<!-- Entity ENTITÉ 06_ -->
 <g>
 	<g>
 		<rect x="422" y="209" width="110" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
@@ -217,9 +217,9 @@
 		<rect x="422" y="209" width="110" height="76" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
 		<line x1="422" y1="239" x2="532" y2="239" stroke="#000000" stroke-width="1.5"/>
 	</g>
-	<text x="431" y="230.3" fill="#000000" font-family="Copperplate" font-size="18">ENTITY 06</text>
-	<text x="430" y="256.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 06 1</text>
-	<line x1="430" y1="259" x2="485" y2="259" stroke="#000000" stroke-width="1"/>
-	<text x="430" y="273.1" fill="#000000" font-family="Gill Sans" font-size="15">attr 06 2</text>
+	<text x="430" y="230.3" fill="#000000" font-family="Copperplate" font-size="18">ENTITÉ 06</text>
+	<text x="430" y="256.1" fill="#000000" font-family="Gill Sans" font-size="15">at 06 1</text>
+	<line x1="430" y1="259" x2="474" y2="259" stroke="#000000" stroke-width="1"/>
+	<text x="430" y="273.1" fill="#000000" font-family="Gill Sans" font-size="15">at 06 2</text>
 </g>
 </svg>

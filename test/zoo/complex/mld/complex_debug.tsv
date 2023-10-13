@@ -8,9 +8,9 @@ ANIMAL	code espèce	?		foreign_key	False	ANIMAL	ANIMAL	A MÈRE		mère
 ANIMAL	nom	?		foreign_key	False	ANIMAL	ANIMAL	A MÈRE		mère
 ANIMAL	date naissance	?		foreign_key	False	ANIMAL	ANIMAL	A MÈRE		mère
 ANIMAL	type alimentation	?		deleted_child_discriminator_	False			ANIMAL parent #1	UNSIGNED_INT_PLACEHOLDER	
-ANIMAL	CARNIVORE	!		deleted_child_entity_name	False	CARNIVORE	CARNIVORE	ANIMAL parent #1	BOOLEAN_PLACEHOLDER	
+ANIMAL	est carnivore	!		deleted_child_entity_name	False	CARNIVORE	CARNIVORE	ANIMAL parent #1	BOOLEAN_PLACEHOLDER	
 ANIMAL	quantité viande	?		deleted_child_attribute	False	CARNIVORE		ANIMAL parent #1		
-ANIMAL	HERBIVORE	!		deleted_child_entity_name	False	HERBIVORE	HERBIVORE	ANIMAL parent #1	BOOLEAN_PLACEHOLDER	
+ANIMAL	est herbivore	!		deleted_child_entity_name	False	HERBIVORE	HERBIVORE	ANIMAL parent #1	BOOLEAN_PLACEHOLDER	
 ANIMAL	plante préférée	?		deleted_child_attribute	False	HERBIVORE		ANIMAL parent #1		
 ESPÈCE	code espèce	!		primary_key	True					
 ESPÈCE	nom latin		1	normal_attribute	False					

@@ -602,7 +602,7 @@ class Relations:
                         if inheritance.kind == "<=":
                             # make the child's name a boolean attribute of the parent
                             self.relations[parent_leg.entity_name]["columns"].append({
-                                "attribute": child_leg.entity_name,
+                                "attribute": _('is {name}').format(name=child_leg.entity_name.lower()),
                                 "optionality": "!",
                                 "datatype": "BOOLEAN_PLACEHOLDER",
                                 "adjacent_source": child_leg.entity_name,

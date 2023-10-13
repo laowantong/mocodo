@@ -8,9 +8,9 @@ Table ANIMAL {
   "nom mère" VARCHAR(42) [null]
   "date naissance mère" VARCHAR(42) [null]
   "type alimentation" UNSIGNED_INT [null]
-  CARNIVORE BOOLEAN [not null]
+  "est carnivore" BOOLEAN [not null]
   "quantité viande" VARCHAR(42) [null]
-  HERBIVORE BOOLEAN [not null]
+  "est herbivore" BOOLEAN [not null]
   "plante préférée" VARCHAR(42) [null]
   Indexes {
     ("code espèce", nom, "date naissance") [pk]

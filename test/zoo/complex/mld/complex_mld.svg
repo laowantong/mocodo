@@ -45,9 +45,9 @@
 	<text x="578" y="158.1" fill="#000000" font-family="Gill Sans" font-size="15">#nom mère</text>
 	<text x="578" y="175" fill="#000000" font-family="Gill Sans" font-size="15">#date naissance mère</text>
 	<text x="578" y="192" fill="#000000" font-family="Gill Sans" font-size="15">type alimentation</text>
-	<text x="578" y="209" fill="#000000" font-family="Gill Sans" font-size="15">CARNIVORE</text>
+	<text x="578" y="209" fill="#000000" font-family="Gill Sans" font-size="15">est carnivore</text>
 	<text x="578" y="226" fill="#000000" font-family="Gill Sans" font-size="15">quantité viande</text>
-	<text x="578" y="243" fill="#000000" font-family="Gill Sans" font-size="15">HERBIVORE</text>
+	<text x="578" y="243" fill="#000000" font-family="Gill Sans" font-size="15">est herbivore</text>
 	<text x="578" y="260" fill="#000000" font-family="Gill Sans" font-size="15">plante préférée</text>
 </g>
 

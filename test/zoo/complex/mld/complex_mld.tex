@@ -18,16 +18,16 @@
 \maketitle
 
 \begin{itemize}
-  \item \relat{ANIMAL} (\foreign{\prim{code espèce}}, \prim{nom}, \prim{date naissance}, \attr{sexe}, \attr{date décès}, \foreign{code espèce mère?}, \foreign{nom mère?}, \foreign{date naissance mère?}, \attr{type alimentation?}, \attr{CARNIVORE!}, \attr{quantité viande?}, \attr{HERBIVORE!}, \attr{plante préférée?})
+  \item \relat{ANIMAL} (\foreign{\prim{code espèce}}, \prim{nom}, \prim{date naissance}, \attr{sexe}, \attr{date décès}, \foreign{code espèce mère?}, \foreign{nom mère?}, \foreign{date naissance mère?}, \attr{type alimentation?}, \attr{est carnivore!}, \attr{quantité viande?}, \attr{est herbivore!}, \attr{plante préférée?})
   \begin{itemize}
     \item Le champ \emph{code espèce} fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré à partir de l'entité \emph{ESPÈCE} pour renforcer l'identifiant.
     \item Les champs \emph{nom} et \emph{date naissance} font partie de la clé primaire de la table. C'étaient déjà des identifiants de l'entité \emph{ANIMAL}.
     \item Les champs \emph{sexe} et \emph{date décès} étaient déjà de simples attributs de l'entité \emph{ANIMAL}.
     \item Les champs à saisie facultative \emph{code espèce mère}, \emph{nom mère} et \emph{date naissance mère} sont des clés étrangères. Ils ont migré par l'association de dépendance fonctionnelle \emph{A MÈRE} à partir de l'entité \emph{ANIMAL} en perdant leur caractère identifiant.
     \item Un discriminateur à saisie facultative \emph{type alimentation} est ajouté pour indiquer la nature de la spécialisation. Peut être vide, du fait de l'absence de contrainte de totalité.
-    \item Un champ booléen à saisie obligatoire \emph{CARNIVORE} est ajouté pour indiquer si on a affaire ou pas à la spécialisation de même nom.
+    \item Un champ booléen à saisie obligatoire \emph{est carnivore} est ajouté pour indiquer si on a affaire ou pas à la spécialisation de même nom.
     \item Le champ à saisie facultative \emph{quantité viande} a migré à partir de l'entité-fille \emph{CARNIVORE} (supprimée).
-    \item Un champ booléen à saisie obligatoire \emph{HERBIVORE} est ajouté pour indiquer si on a affaire ou pas à la spécialisation de même nom.
+    \item Un champ booléen à saisie obligatoire \emph{est herbivore} est ajouté pour indiquer si on a affaire ou pas à la spécialisation de même nom.
     \item Le champ à saisie facultative \emph{plante préférée} a migré à partir de l'entité-fille \emph{HERBIVORE} (supprimée).
   \end{itemize}
 

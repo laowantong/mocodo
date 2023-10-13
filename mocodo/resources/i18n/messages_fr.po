@@ -484,6 +484,10 @@ msgstr "Cycle d'entités faibles dans {entities}."
 msgid "Totality (/T\\ or /XT\\) is mandatory for \"=>\" inheritance of parent \"{name}\"."
 msgstr "La totalité (/T\\ ou /XT\\) est obligatoire pour l'héritage « => » de l'entité-mère « {name} »."
 
+#: mocodo/convert/relations.py:600
+msgid "is {name}"
+msgstr "est {name}"
+
 #: mocodo/diagram_link.py:11 mocodo/leg.py:443
 msgid "Attribute \"{attribute}\" in entity \"{entity_1}\" references an unknown entity \"{entity_2}\"."
 msgstr "L'attribut « {attribute} » de l'entité « {entity_1} » fait référence à une entité « {entity_2} » inconnue."

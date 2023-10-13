@@ -1,5 +1,5 @@
-ENTITY 1_: attr 1 1, attr 1 2
-DF, _11 ENTITY 2_, 0N ENTITY 1_
-ENTITY 2_: _attr 2 1
-DF, _11 ENTITY 2_, 1N ENTITY 3_
-ENTITY 3_: attr 3 1, attr 3 2
+ENTITÉ 1_: at 1 1, at 1 2
+DF, _11 ENTITÉ 2_, 0N ENTITÉ 1_
+ENTITÉ 2_: _at 2 1
+DF, _11 ENTITÉ 2_, 1N ENTITÉ 3_
+ENTITÉ 3_: at 3 1, at 3 2

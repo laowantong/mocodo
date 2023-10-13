@@ -1,4 +1,4 @@
-ENTITY 1_: attr 1 1
-ASSOC 3_, 0N [role 1] ENTITY 1_, 0N [role 2] ENTITY 1_
-ENTITY 2_: attr 2 1, attr 2 2, attr 2 3
-ASSOC 4_, 0N [role 1] ENTITY 2_, 01 [role 2] ENTITY 2_
+ENTITÉ 1_: at 1 1
+ASSOC 3_, 0N [rôle 1] ENTITÉ 1_, 0N [rôle 2] ENTITÉ 1_
+ENTITÉ 2_: at 2 1, at 2 2, at 2 3
+ASSOC 4_, 0N [rôle 1] ENTITÉ 2_, 01 [rôle 2] ENTITÉ 2_

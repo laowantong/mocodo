@@ -223,7 +223,7 @@ class relationsTest(unittest.TestCase):
             HERBIVORE: plante préférée
         """
         text = """
-            ANIMAL (_animal_, poids, CARNIVORE, quantité viande, HERBIVORE, plante préférée)
+            ANIMAL (_animal_, poids, est carnivore, quantité viande, est herbivore, plante préférée)
         """.strip().replace("    ", "")
         mcd = Mcd(source, params)
         t = Relations(mcd, params)
@@ -233,9 +233,9 @@ class relationsTest(unittest.TestCase):
             |:-------------------|:----------------|:------------|:----------|:--------------------------|:-----------|:----------------|:-------------|:-----------------|
             | ANIMAL             | animal          | !           |           | primary_key               | True       |                 |              |                  |
             | ANIMAL             | poids           |             |           | normal_attribute          | False      |                 |              |                  |
-            | ANIMAL             | CARNIVORE       | !           |           | deleted_child_entity_name | False      | CARNIVORE       | CARNIVORE    | ANIMAL parent #1 |
+            | ANIMAL             | est carnivore   | !           |           | deleted_child_entity_name | False      | CARNIVORE       | CARNIVORE    | ANIMAL parent #1 |
             | ANIMAL             | quantité viande | ?           |           | deleted_child_attribute   | False      | CARNIVORE       |              | ANIMAL parent #1 |
-            | ANIMAL             | HERBIVORE       | !           |           | deleted_child_entity_name | False      | HERBIVORE       | HERBIVORE    | ANIMAL parent #1 |
+            | ANIMAL             | est herbivore   | !           |           | deleted_child_entity_name | False      | HERBIVORE       | HERBIVORE    | ANIMAL parent #1 |
             | ANIMAL             | plante préférée | ?           |           | deleted_child_attribute   | False      | HERBIVORE       |              | ANIMAL parent #1 |
         """
         actual = debug_table(t)

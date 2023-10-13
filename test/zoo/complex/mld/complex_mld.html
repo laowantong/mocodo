@@ -29,9 +29,9 @@
     <span class='foreign'>#nom mère?</span>,
     <span class='foreign'>#date naissance mère?</span>,
     <span class='normal'>type alimentation?</span>,
-    <span class='normal'>CARNIVORE!</span>,
+    <span class='normal'>est carnivore!</span>,
     <span class='normal'>quantité viande?</span>,
-    <span class='normal'>HERBIVORE!</span>,
+    <span class='normal'>est herbivore!</span>,
     <span class='normal'>plante préférée?</span>
   )</summary>
   <ul>
@@ -40,9 +40,9 @@
     <li>Les champs <i>sexe</i> et <i>date décès</i> étaient déjà de simples attributs de l'entité <i>ANIMAL</i>.</li>
     <li>Les champs à saisie facultative <i>code espèce mère</i>, <i>nom mère</i> et <i>date naissance mère</i> sont des clés étrangères. Ils ont migré par l'association de dépendance fonctionnelle <i>A MÈRE</i> à partir de l'entité <i>ANIMAL</i> en perdant leur caractère identifiant.</li>
     <li>Un discriminateur à saisie facultative <i>type alimentation</i> est ajouté pour indiquer la nature de la spécialisation. Peut être vide, du fait de l'absence de contrainte de totalité.</li>
-    <li>Un champ booléen à saisie obligatoire <i>CARNIVORE</i> est ajouté pour indiquer si on a affaire ou pas à la spécialisation de même nom.</li>
+    <li>Un champ booléen à saisie obligatoire <i>est carnivore</i> est ajouté pour indiquer si on a affaire ou pas à la spécialisation de même nom.</li>
     <li>Le champ à saisie facultative <i>quantité viande</i> a migré à partir de l'entité-fille <i>CARNIVORE</i> (supprimée).</li>
-    <li>Un champ booléen à saisie obligatoire <i>HERBIVORE</i> est ajouté pour indiquer si on a affaire ou pas à la spécialisation de même nom.</li>
+    <li>Un champ booléen à saisie obligatoire <i>est herbivore</i> est ajouté pour indiquer si on a affaire ou pas à la spécialisation de même nom.</li>
     <li>Le champ à saisie facultative <i>plante préférée</i> a migré à partir de l'entité-fille <i>HERBIVORE</i> (supprimée).</li>
   </ul></details>
 </div>

@@ -1,14 +1,14 @@
 :
-ASSOC 5_, 1N [role 1] ENTITY 2_, 11 ENTITY 1_
-ENTITY 1_: attr 1 1, attr 1 2
+ASSOC 5_, 1N [rôle 1] ENTITÉ 2_, 11 ENTITÉ 1_
+ENTITÉ 1_: at 1 1, at 1 2
 :
 
-ENTITY 2_: attr 2 1, attr 2 2
-/XT\ ENTITY 3_ <- ENTITY 4_, ENTITY 1_, ENTITY 2_: type
-ENTITY 3_: attr 3 1, attr 3 2
-ASSOC 6_, 11 ENTITY 1_, 1N [role 1] ENTITY 4_
+ENTITÉ 2_: at 2 1, at 2 2
+/XT\ ENTITÉ 3_ <- ENTITÉ 4_, ENTITÉ 1_, ENTITÉ 2_: type
+ENTITÉ 3_: at 3 1, at 3 2
+ASSOC 6_, 11 ENTITÉ 1_, 1N [rôle 1] ENTITÉ 4_
 
 :
-ASSOC 7_, 1N [role 1] ENTITY 4_, 1N [role 2] ENTITY 2_
-ENTITY 4_: attr 4 1, attr 4 2
+ASSOC 7_, 1N [rôle 1] ENTITÉ 4_, 1N [rôle 2] ENTITÉ 2_
+ENTITÉ 4_: at 4 1, at 4 2
 :

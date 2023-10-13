@@ -11,9 +11,9 @@ CREATE TABLE ANIMAL (
   nom_mere VARCHAR(255) NULL,
   date_naissance_mere DATE NULL,
   type_alimentation UNSIGNED INT NULL,
-  CARNIVORE BOOLEAN NOT NULL,
+  est_carnivore BOOLEAN NOT NULL,
   quantite_viande INTEGER NULL,
-  HERBIVORE BOOLEAN NOT NULL,
+  est_herbivore BOOLEAN NOT NULL,
   plante_preferee VARCHAR(42) NULL
 );
 
