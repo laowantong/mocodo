@@ -105,10 +105,12 @@ class Runner:
         
         if self.params["print_params"]:
             for added_key in self.params["keys_to_hide"][:]:
-                del self.params[added_key]
-            self.params["print_params"] = False
-            self.params_contents = json.dumps(self.params, ensure_ascii=False, indent=2, sort_keys=True)
-            return safe_print_for_PHP(self.params_contents)
+                self.params.pop(added_key, None)
+            self.params["output_dir"] = str(Path(self.params["output_dir"]).resolve().relative_to(Path.cwd()))
+            text = json.dumps(self.params, ensure_ascii=False, indent=2, sort_keys=True)
+            text = text.replace("\n    ", " ")
+            text = text.replace("\n  ]", " ]")
+            return safe_print_for_PHP(text.strip())
 
         self.add_gutter_params(self.params)
 

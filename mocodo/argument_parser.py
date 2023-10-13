@@ -754,7 +754,23 @@ def parsed_arguments():
     params["opt_to_restore"] = transformations.opt_to_restore
     params["op_tk_rewritings"] = transformations.op_tk_rewritings
     params["redirect_output"] = ("-T" in remaining_args or "--Transform" in remaining_args)
-    params["keys_to_hide"] = ["keys_to_hide", "params_path", "script_directory", "output_name", "rewrite", "convert", "redirect_output"]
+    params["keys_to_hide"] = [
+        "keys_to_hide",
+        "script_directory",
+        "output_name",
+        "rewrite",
+        "convert",
+        "args_to_delete",
+        "opt_to_restore",
+        "op_tk_rewritings",
+        "redirect_output",
+        "params_path",
+        "Transform",
+        "is_magic",
+        "print_params",
+        "reuse_geo",
+        "input",
+    ]
 
     if not os.path.exists(params["input"]):
         path = Path(SCRIPT_DIRECTORY, "resources", "pristine_sandbox.mcd")

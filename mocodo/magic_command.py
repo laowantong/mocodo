@@ -35,15 +35,13 @@ def update_cell(content):
 PARAM_TEMPLATE = '''\
 # You may edit and run the following lines
 import json, pathlib
-params = """
-{stdoutdata}
-"""
+params = """\\
+{stdoutdata}"""
 try:
     json.loads(params)
 except:
     raise RuntimeError("Invalid JSON. Check your syntax on https://jsonlint.com.")
-pathlib.Path("{output_dir}/params.json").write_text(params.strip(), encoding="utf8")
-'''
+pathlib.Path("{output_dir}/params.json").write_text(params);'''
 
 OUTPUT_PART_HEADER = re.sub("  +", "", """
 <div style="position: relative; height: 3ex; background-color: transparent">
@@ -156,7 +154,7 @@ class MocodoMagics(Magics):
             return
         
         if "--print_params" in remaining_args:
-            update_cell(PARAM_TEMPLATE.format(stdoutdata=stdoutdata, output_dir=output_dir))
+            update_cell(PARAM_TEMPLATE.format(stdoutdata=stdoutdata, output_dir=output_dir.relative_to(Path.cwd())))
             return
         
         response_path = Path(f"{output_path_radical}_response_for_magic_command.json")
