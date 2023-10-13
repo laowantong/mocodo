@@ -1,8 +1,8 @@
-this_relation_name	label	datatype	nature	adjacent_source	outer_source	unicities
-Projet	projet		primary_key			
-Projet	libellé		normal_attribute			
-Technicien	technicien		primary_key			
-Technicien	nom technicien		normal_attribute			
-Utiliser	carnet		primary_ex_foreign_key	Carnet	Carnet	1
-Utiliser	projet		primary_foreign_key	Projet	Projet	2
-Utiliser	technicien		stopped_foreign_key	Technicien	Technicien	12
+this relation name	attribute	optionality	unicities	nature	is primary	adjacent source	outer source	association name	datatype	leg note
+Projet	projet	!		primary_key	True					
+Projet	libellé			normal_attribute	False					
+Technicien	technicien	!		primary_key	True					
+Technicien	nom technicien			normal_attribute	False					
+Utiliser	carnet	!	1	primary_ex_foreign_key	True	Carnet	Carnet	Utiliser		
+Utiliser	projet	!	2	primary_foreign_key	True	Projet	Projet	Utiliser		
+Utiliser	technicien	!	12	stopped_foreign_key	False	Technicien	Technicien	Utiliser

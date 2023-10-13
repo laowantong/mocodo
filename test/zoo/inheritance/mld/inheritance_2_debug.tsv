@@ -1,37 +1,37 @@
-this_relation_name	label	datatype	nature	adjacent_source	outer_source	unicities
-ALIQUET	magna		unsourced_primary_foreign_key	TRISTIS		
-ALIQUET	tellus		primary_foreign_key	DIGNISSIM	DIGNISSIM	
-ALIQUET	type	UNSIGNED_INT_PLACEHOLDER	deleted_parent_discriminator_XT	TRISTIS		
-CONSEQUAT	fermentum		primary_key			
-CONSEQUAT	dederit		normal_attribute			
-CURABITUR	gravida		primary_key			
-CURABITUR	amor		normal_attribute			
-DIGNISSIM	tellus		primary_key			
-DIGNISSIM	terra		normal_attribute			
-LACUS	magna		deleted_parent_primary_key	TRISTIS	TRISTIS	
-LACUS	vestibulum		deleted_parent_attribute	TRISTIS		
-LACUS	fermentum		deleted_parent_foreign_key	TRISTIS	CONSEQUAT	
-LACUS	tempor		normal_attribute			
-LACUS	fugit		normal_attribute			
-LIBERO	posuere		primary_key			
-LIBERO	lacrima		normal_attribute			
-NEC	magna		deleted_parent_primary_key	TRISTIS	TRISTIS	
-NEC	vestibulum		deleted_parent_attribute	TRISTIS		
-NEC	fermentum		deleted_parent_foreign_key	TRISTIS	CONSEQUAT	
-NEC	pulvinar		normal_attribute			
-NEC	audis		normal_attribute			
-NEC	gravida		foreign_key	CURABITUR	CURABITUR	
-QUAM	cras		primary_key			
-QUAM	sed		normal_attribute			
-QUAM	magna		foreign_key	SODALES	SODALES	
-SODALES	magna		deleted_parent_primary_key	TRISTIS	TRISTIS	
-SODALES	vestibulum		deleted_parent_attribute	TRISTIS		
-SODALES	fermentum		deleted_parent_foreign_key	TRISTIS	CONSEQUAT	
-SODALES	convallis		normal_attribute			
-SODALES	ipsum		normal_attribute			
-SUSCIPIT	orci		primary_key			
-SUSCIPIT	lorem		normal_attribute			
-SUSCIPIT	magna		unsourced_foreign_key	TRISTIS		
-SUSCIPIT	type	UNSIGNED_INT_PLACEHOLDER	deleted_parent_discriminator_XT	TRISTIS		
-ULTRICES	posuere		primary_foreign_key	LIBERO	LIBERO	
-ULTRICES	magna		primary_foreign_key	LACUS	LACUS
+this relation name	attribute	optionality	unicities	nature	is primary	adjacent source	outer source	association name	datatype	leg note
+ALIQUET	magna	!		unsourced_primary_foreign_key	True	TRISTIS		ALIQUET		
+ALIQUET	tellus	!		primary_foreign_key	True	DIGNISSIM	DIGNISSIM	ALIQUET		
+ALIQUET	type	!		deleted_parent_discriminator_XT	False	TRISTIS		ALIQUET	UNSIGNED_INT_PLACEHOLDER	
+CONSEQUAT	fermentum	!		primary_key	True					
+CONSEQUAT	dederit			normal_attribute	False					
+CURABITUR	gravida	!		primary_key	True					
+CURABITUR	amor			normal_attribute	False					
+DIGNISSIM	tellus	!		primary_key	True					
+DIGNISSIM	terra			normal_attribute	False					
+LACUS	magna	!		deleted_parent_primary_key	True	TRISTIS	TRISTIS	TRISTIS parent #1		
+LACUS	vestibulum			deleted_parent_attribute	False	TRISTIS		TRISTIS parent #1		
+LACUS	fermentum	!		deleted_parent_foreign_key	False	TRISTIS	CONSEQUAT	TRISTIS parent #1		
+LACUS	tempor			normal_attribute	False					
+LACUS	fugit			normal_attribute	False					
+LIBERO	posuere	!		primary_key	True					
+LIBERO	lacrima			normal_attribute	False					
+NEC	magna	!		deleted_parent_primary_key	True	TRISTIS	TRISTIS	TRISTIS parent #1		
+NEC	vestibulum			deleted_parent_attribute	False	TRISTIS		TRISTIS parent #1		
+NEC	fermentum	!		deleted_parent_foreign_key	False	TRISTIS	CONSEQUAT	TRISTIS parent #1		
+NEC	pulvinar			normal_attribute	False					
+NEC	audis			normal_attribute	False					
+NEC	gravida	!		foreign_key	False	CURABITUR	CURABITUR	MOLLIS		
+QUAM	cras	!		primary_key	True					
+QUAM	sed			normal_attribute	False					
+QUAM	magna	!		foreign_key	False	SODALES	SODALES	VITAE		
+SODALES	magna	!		deleted_parent_primary_key	True	TRISTIS	TRISTIS	TRISTIS parent #1		
+SODALES	vestibulum			deleted_parent_attribute	False	TRISTIS		TRISTIS parent #1		
+SODALES	fermentum	!		deleted_parent_foreign_key	False	TRISTIS	CONSEQUAT	TRISTIS parent #1		
+SODALES	convallis			normal_attribute	False					
+SODALES	ipsum			normal_attribute	False					
+SUSCIPIT	orci	!		primary_key	True					
+SUSCIPIT	lorem			normal_attribute	False					
+SUSCIPIT	magna	!		unsourced_foreign_key	False	TRISTIS		RHONCUS		
+SUSCIPIT	type	!		deleted_parent_discriminator_XT	False	TRISTIS		RHONCUS	UNSIGNED_INT_PLACEHOLDER	
+ULTRICES	posuere	!		primary_foreign_key	True	LIBERO	LIBERO	ULTRICES		
+ULTRICES	magna	!		primary_foreign_key	True	LACUS	LACUS	ULTRICES

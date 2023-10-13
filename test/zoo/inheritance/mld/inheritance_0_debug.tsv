@@ -1,30 +1,30 @@
-this_relation_name	label	datatype	nature	adjacent_source	outer_source	unicities
-ALIQUET	magna		primary_foreign_key	TRISTIS	TRISTIS	
-ALIQUET	tellus		primary_foreign_key	DIGNISSIM	DIGNISSIM	
-CONSEQUAT	fermentum		primary_key			
-CONSEQUAT	dederit		normal_attribute			
-CURABITUR	gravida		primary_key			
-CURABITUR	amor		normal_attribute			
-DIGNISSIM	tellus		primary_key			
-DIGNISSIM	terra		normal_attribute			
-LIBERO	posuere		primary_key			
-LIBERO	lacrima		normal_attribute			
-QUAM	cras		primary_key			
-QUAM	sed		normal_attribute			
-QUAM	magna		foreign_key	SODALES	TRISTIS	
-SUSCIPIT	orci		primary_key			
-SUSCIPIT	lorem		normal_attribute			
-SUSCIPIT	magna		foreign_key	TRISTIS	TRISTIS	
-TRISTIS	magna		primary_key			
-TRISTIS	vestibulum		normal_attribute			
-TRISTIS	fermentum		foreign_key	CONSEQUAT	CONSEQUAT	
-TRISTIS	type	UNSIGNED_INT_PLACEHOLDER	deleted_child_discriminator_XT			
-TRISTIS	convallis		deleted_child_attribute	SODALES		
-TRISTIS	ipsum		deleted_child_attribute	SODALES		
-TRISTIS	pulvinar		deleted_child_attribute	NEC		
-TRISTIS	audis		deleted_child_attribute	NEC		
-TRISTIS	gravida		deleted_child_foreign_key	NEC	CURABITUR	
-TRISTIS	tempor		deleted_child_attribute	LACUS		
-TRISTIS	fugit		deleted_child_attribute	LACUS		
-ULTRICES	posuere		primary_foreign_key	LIBERO	LIBERO	
-ULTRICES	magna		primary_foreign_key	LACUS	TRISTIS
+this relation name	attribute	optionality	unicities	nature	is primary	adjacent source	outer source	association name	datatype	leg note
+ALIQUET	magna	!		primary_foreign_key	True	TRISTIS	TRISTIS	ALIQUET		
+ALIQUET	tellus	!		primary_foreign_key	True	DIGNISSIM	DIGNISSIM	ALIQUET		
+CONSEQUAT	fermentum	!		primary_key	True					
+CONSEQUAT	dederit			normal_attribute	False					
+CURABITUR	gravida	!		primary_key	True					
+CURABITUR	amor			normal_attribute	False					
+DIGNISSIM	tellus	!		primary_key	True					
+DIGNISSIM	terra			normal_attribute	False					
+LIBERO	posuere	!		primary_key	True					
+LIBERO	lacrima			normal_attribute	False					
+QUAM	cras	!		primary_key	True					
+QUAM	sed			normal_attribute	False					
+QUAM	magna	!		foreign_key	False	SODALES	TRISTIS	VITAE		
+SUSCIPIT	orci	!		primary_key	True					
+SUSCIPIT	lorem			normal_attribute	False					
+SUSCIPIT	magna	!		foreign_key	False	TRISTIS	TRISTIS	RHONCUS		
+TRISTIS	magna	!		primary_key	True					
+TRISTIS	vestibulum			normal_attribute	False					
+TRISTIS	fermentum	!		foreign_key	False	CONSEQUAT	CONSEQUAT	ELIT		
+TRISTIS	type			deleted_child_discriminator_XT	False			TRISTIS parent #1	UNSIGNED_INT_PLACEHOLDER	
+TRISTIS	convallis	?		deleted_child_attribute	False	SODALES		TRISTIS parent #1		
+TRISTIS	ipsum	?		deleted_child_attribute	False	SODALES		TRISTIS parent #1		
+TRISTIS	pulvinar	?		deleted_child_attribute	False	NEC		TRISTIS parent #1		
+TRISTIS	audis	?		deleted_child_attribute	False	NEC		TRISTIS parent #1		
+TRISTIS	gravida	?		deleted_child_foreign_key	False	NEC	CURABITUR	TRISTIS parent #1		
+TRISTIS	tempor	?		deleted_child_attribute	False	LACUS		TRISTIS parent #1		
+TRISTIS	fugit	?		deleted_child_attribute	False	LACUS		TRISTIS parent #1		
+ULTRICES	posuere	!		primary_foreign_key	True	LIBERO	LIBERO	ULTRICES		
+ULTRICES	magna	!		primary_foreign_key	True	LACUS	TRISTIS	ULTRICES

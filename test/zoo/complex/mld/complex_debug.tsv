@@ -1,29 +1,29 @@
-this_relation_name	label	datatype	nature	adjacent_source	outer_source	unicities
-ANIMAL	code espèce		strengthening_primary_foreign_key	ESPÈCE	ESPÈCE	
-ANIMAL	nom		primary_key			
-ANIMAL	date naissance		primary_key			
-ANIMAL	sexe		normal_attribute			
-ANIMAL	date décès		normal_attribute			
-ANIMAL	code espèce mère		foreign_key	ANIMAL	ANIMAL	
-ANIMAL	nom mère		foreign_key	ANIMAL	ANIMAL	
-ANIMAL	date naissance mère		foreign_key	ANIMAL	ANIMAL	
-ANIMAL	type alimentation	UNSIGNED_INT_PLACEHOLDER	deleted_child_discriminator_			
-ANIMAL	CARNIVORE	BOOLEAN_PLACEHOLDER	deleted_child_entity_name	CARNIVORE	CARNIVORE	
-ANIMAL	quantité viande		deleted_child_attribute	CARNIVORE		
-ANIMAL	HERBIVORE	BOOLEAN_PLACEHOLDER	deleted_child_entity_name	HERBIVORE	HERBIVORE	
-ANIMAL	plante préférée		deleted_child_attribute	HERBIVORE		
-ESPÈCE	code espèce		primary_key			
-ESPÈCE	nom latin		normal_attribute			1
-ESPÈCE	nom vernaculaire		normal_attribute			
-OCCUPE	code espèce		primary_foreign_key	ANIMAL	ANIMAL	
-OCCUPE	nom		primary_foreign_key	ANIMAL	ANIMAL	
-OCCUPE	date naissance		primary_foreign_key	ANIMAL	ANIMAL	
-OCCUPE	num. enclos		primary_ex_foreign_key	ENCLOS	ENCLOS	
-OCCUPE	date début		stopped_ex_foreign_key	PÉRIODE	PÉRIODE	
-OCCUPE	date fin		stopped_ex_foreign_key	PÉRIODE	PÉRIODE	
-PEUT COHABITER AVEC	code espèce		primary_foreign_key	ESPÈCE	ESPÈCE	
-PEUT COHABITER AVEC	code espèce commensale		primary_foreign_key	ESPÈCE	ESPÈCE	
-PEUT COHABITER AVEC	nb. max. commensaux		association_attribute			
-PEUT VIVRE DANS	code espèce		primary_foreign_key	ESPÈCE	ESPÈCE	
-PEUT VIVRE DANS	num. enclos		primary_ex_foreign_key	ENCLOS	ENCLOS	
-PEUT VIVRE DANS	nb. max. congénères		association_attribute
+this relation name	attribute	optionality	unicities	nature	is primary	adjacent source	outer source	association name	datatype	leg note
+ANIMAL	code espèce	!		strengthening_primary_foreign_key	True	ESPÈCE	ESPÈCE	DF0		
+ANIMAL	nom	!		primary_key	True					
+ANIMAL	date naissance	!		primary_key	True					
+ANIMAL	sexe			normal_attribute	False					
+ANIMAL	date décès			normal_attribute	False					
+ANIMAL	code espèce	?		foreign_key	False	ANIMAL	ANIMAL	A MÈRE		mère
+ANIMAL	nom	?		foreign_key	False	ANIMAL	ANIMAL	A MÈRE		mère
+ANIMAL	date naissance	?		foreign_key	False	ANIMAL	ANIMAL	A MÈRE		mère
+ANIMAL	type alimentation	!		deleted_child_discriminator_	False			ANIMAL parent #1	UNSIGNED_INT_PLACEHOLDER	
+ANIMAL	CARNIVORE	!		deleted_child_entity_name	False	CARNIVORE	CARNIVORE	ANIMAL parent #1	BOOLEAN_PLACEHOLDER	
+ANIMAL	quantité viande	?		deleted_child_attribute	False	CARNIVORE		ANIMAL parent #1		
+ANIMAL	HERBIVORE	!		deleted_child_entity_name	False	HERBIVORE	HERBIVORE	ANIMAL parent #1	BOOLEAN_PLACEHOLDER	
+ANIMAL	plante préférée	?		deleted_child_attribute	False	HERBIVORE		ANIMAL parent #1		
+ESPÈCE	code espèce	!		primary_key	True					
+ESPÈCE	nom latin		1	normal_attribute	False					
+ESPÈCE	nom vernaculaire			normal_attribute	False					
+OCCUPE	code espèce	!		primary_foreign_key	True	ANIMAL	ANIMAL	OCCUPE		
+OCCUPE	nom	!		primary_foreign_key	True	ANIMAL	ANIMAL	OCCUPE		
+OCCUPE	date naissance	!		primary_foreign_key	True	ANIMAL	ANIMAL	OCCUPE		
+OCCUPE	num. enclos	!		primary_ex_foreign_key	True	ENCLOS	ENCLOS	OCCUPE		
+OCCUPE	date début	!		stopped_ex_foreign_key	False	PÉRIODE	PÉRIODE	OCCUPE		
+OCCUPE	date fin	!		stopped_ex_foreign_key	False	PÉRIODE	PÉRIODE	OCCUPE		
+PEUT COHABITER AVEC	code espèce	!		primary_foreign_key	True	ESPÈCE	ESPÈCE	PEUT COHABITER AVEC		
+PEUT COHABITER AVEC	code espèce	!		primary_foreign_key	True	ESPÈCE	ESPÈCE	PEUT COHABITER AVEC		commensale
+PEUT COHABITER AVEC	nb. max. commensaux			association_attribute	False			PEUT COHABITER AVEC		
+PEUT VIVRE DANS	code espèce	!		primary_foreign_key	True	ESPÈCE	ESPÈCE	PEUT VIVRE DANS		
+PEUT VIVRE DANS	num. enclos	!		primary_ex_foreign_key	True	ENCLOS	ENCLOS	PEUT VIVRE DANS		
+PEUT VIVRE DANS	nb. max. congénères			association_attribute	False			PEUT VIVRE DANS

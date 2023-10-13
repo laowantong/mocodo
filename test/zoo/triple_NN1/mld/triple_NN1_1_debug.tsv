@@ -1,10 +1,10 @@
-this_relation_name	label	datatype	nature	adjacent_source	outer_source	unicities
-Gérer	ingénieur		primary_foreign_key	Ingénieur	Ingénieur	
-Gérer	projet		primary_foreign_key	Projet	Projet	
-Gérer	responsable		stopped_foreign_key	Responsable	Responsable	
-Ingénieur	ingénieur		primary_key			
-Ingénieur	nom ingénieur		normal_attribute			
-Projet	projet		primary_key			
-Projet	libellé projet		normal_attribute			
-Responsable	responsable		primary_key			
-Responsable	nom responsable		normal_attribute
+this relation name	attribute	optionality	unicities	nature	is primary	adjacent source	outer source	association name	datatype	leg note
+Gérer	ingénieur	!		primary_foreign_key	True	Ingénieur	Ingénieur	Gérer		
+Gérer	projet	!		primary_foreign_key	True	Projet	Projet	Gérer		
+Gérer	responsable	!		stopped_foreign_key	False	Responsable	Responsable	Gérer		
+Ingénieur	ingénieur	!		primary_key	True					
+Ingénieur	nom ingénieur			normal_attribute	False					
+Projet	projet	!		primary_key	True					
+Projet	libellé projet			normal_attribute	False					
+Responsable	responsable	!		primary_key	True					
+Responsable	nom responsable			normal_attribute	False

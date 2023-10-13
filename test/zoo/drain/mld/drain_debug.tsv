@@ -1,14 +1,14 @@
-this_relation_name	label	datatype	nature	adjacent_source	outer_source	unicities
-Entreprise	nom entreprise		primary_key			
-Entreprise	adresse		normal_attribute			
-Entreprise	téléphone		normal_attribute			
-Stage	num. stage		primary_key			
-Stage	sujet		normal_attribute			
-Stage	nom entreprise		foreign_key	Entreprise	Entreprise	
-Stage	date proposition		outer_attribute			
-Étudiant	num étudiant		primary_key			
-Étudiant	nom		normal_attribute			
-Étudiant	num. stage		foreign_key	Stage	Stage	1
-Étudiant	date signature		outer_attribute			
-Étudiant	date		ex_foreign_key	Date	Date	
-Étudiant	note stage		outer_attribute
+this relation name	attribute	optionality	unicities	nature	is primary	adjacent source	outer source	association name	datatype	leg note
+Entreprise	nom entreprise	!		primary_key	True					
+Entreprise	adresse			normal_attribute	False					
+Entreprise	téléphone			normal_attribute	False					
+Stage	num. stage	!		primary_key	True					
+Stage	sujet			normal_attribute	False					
+Stage	nom entreprise	!		foreign_key	False	Entreprise	Entreprise	Proposer		
+Stage	date proposition			outer_attribute	False			Proposer		
+Étudiant	num étudiant	!		primary_key	True					
+Étudiant	nom			normal_attribute	False					
+Étudiant	num. stage	!	1	foreign_key	False	Stage	Stage	Attribuer		
+Étudiant	date signature			outer_attribute	False			Attribuer		
+Étudiant	date	?		ex_foreign_key	False	Date	Date	Soutenir		
+Étudiant	note stage			outer_attribute	False			Soutenir

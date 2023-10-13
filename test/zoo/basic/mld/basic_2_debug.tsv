@@ -1,15 +1,15 @@
-this_relation_name	label	datatype	nature	adjacent_source	outer_source	unicities
-CLIENT	Réf. client	VARCHAR(8)	primary_key			
-CLIENT	Nom	VARCHAR(255)	normal_attribute			
-CLIENT	Prénom	VARCHAR(255)	normal_attribute			
-CLIENT	Adresse	VARCHAR(255)	normal_attribute			
-COMMANDE	Num. commande	VARCHAR(8)	primary_key			
-COMMANDE	Date	DATE	normal_attribute			
-COMMANDE	Montant	DECIMAL(10,2)	normal_attribute			
-COMMANDE	Réf. client	VARCHAR(8)	foreign_key	CLIENT	CLIENT	
-INCLURE	Num. commande	VARCHAR(8)	primary_foreign_key	COMMANDE	COMMANDE	
-INCLURE	Réf. produit	VARCHAR(8)	primary_foreign_key	PRODUIT	PRODUIT	
-INCLURE	Quantité	INTEGER	association_attribute			
-PRODUIT	Réf. produit	VARCHAR(8)	primary_key			
-PRODUIT	Libellé	VARCHAR(50)	normal_attribute			
-PRODUIT	Prix unitaire	DECIMAL(10,2)	normal_attribute
+this relation name	attribute	optionality	unicities	nature	is primary	adjacent source	outer source	association name	datatype	leg note
+CLIENT	Réf. client	!		primary_key	True				VARCHAR(8)	
+CLIENT	Nom			normal_attribute	False				VARCHAR(255)	
+CLIENT	Prénom			normal_attribute	False				VARCHAR(255)	
+CLIENT	Adresse			normal_attribute	False				VARCHAR(255)	
+COMMANDE	Num. commande	!		primary_key	True				VARCHAR(8)	
+COMMANDE	Date			normal_attribute	False				DATE	
+COMMANDE	Montant			normal_attribute	False				DECIMAL(10,2)	
+COMMANDE	Réf. client	!		foreign_key	False	CLIENT	CLIENT	PASSER	VARCHAR(8)	
+INCLURE	Num. commande	!		primary_foreign_key	True	COMMANDE	COMMANDE	INCLURE	VARCHAR(8)	
+INCLURE	Réf. produit	!		primary_foreign_key	True	PRODUIT	PRODUIT	INCLURE	VARCHAR(8)	
+INCLURE	Quantité			association_attribute	False			INCLURE	INTEGER	
+PRODUIT	Réf. produit	!		primary_key	True				VARCHAR(8)	
+PRODUIT	Libellé			normal_attribute	False				VARCHAR(50)	
+PRODUIT	Prix unitaire			normal_attribute	False				DECIMAL(10,2)

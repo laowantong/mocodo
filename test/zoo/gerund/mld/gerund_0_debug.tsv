@@ -1,4 +1,4 @@
-this_relation_name	label	datatype	nature	adjacent_source	outer_source	unicities
-Ligne de commande	commande		strengthening_primary_ex_foreign_key	Commande	Commande	
-Ligne de commande	produit		strengthening_primary_ex_foreign_key	Produit	Produit	
-Ligne de commande	quantité		normal_attribute
+this relation name	attribute	optionality	unicities	nature	is primary	adjacent source	outer source	association name	datatype	leg note
+Ligne de commande	commande	!		strengthening_primary_ex_foreign_key	True	Commande	Commande	DF1		
+Ligne de commande	produit	!		strengthening_primary_ex_foreign_key	True	Produit	Produit	DF0		
+Ligne de commande	quantité			normal_attribute	False

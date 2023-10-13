@@ -1,11 +1,11 @@
-this_relation_name	label	datatype	nature	adjacent_source	outer_source	unicities
-Réservation	num résa		primary_key			
-Réservation	arrhes		normal_attribute			
-Réservation	date résa		normal_attribute			
-Réservation	num voilier		foreign_key	Voilier	Voilier	1
-Réservation	num semaine		foreign_key	Semaine	Semaine	1
-Réservation	tarif		outer_attribute			
-Semaine	num semaine		primary_key			
-Semaine	date début		normal_attribute			1
-Voilier	num voilier		primary_key			
-Voilier	longueur		normal_attribute
+this relation name	attribute	optionality	unicities	nature	is primary	adjacent source	outer source	association name	datatype	leg note
+Réservation	num résa	!		primary_key	True					
+Réservation	arrhes			normal_attribute	False					
+Réservation	date résa			normal_attribute	False					
+Réservation	num voilier	!	1	foreign_key	False	Voilier	Voilier	Offrir		
+Réservation	num semaine	!	1	foreign_key	False	Semaine	Semaine	Offrir		
+Réservation	tarif			outer_attribute	False			Offrir		
+Semaine	num semaine	!		primary_key	True					
+Semaine	date début		1	normal_attribute	False					
+Voilier	num voilier	!		primary_key	True					
+Voilier	longueur			normal_attribute	False

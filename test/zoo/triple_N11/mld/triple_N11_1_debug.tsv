@@ -1,10 +1,10 @@
-this_relation_name	label	datatype	nature	adjacent_source	outer_source	unicities
-Affecter	projet		primary_foreign_key	Projet	Projet	
-Affecter	employé		primary_foreign_key	Employé	Employé	1
-Affecter	site		stopped_foreign_key	Site	Site	1
-Employé	employé		primary_key			
-Employé	nom employé		normal_attribute			
-Projet	projet		primary_key			
-Projet	libellé		normal_attribute			
-Site	site		primary_key			
-Site	position		normal_attribute
+this relation name	attribute	optionality	unicities	nature	is primary	adjacent source	outer source	association name	datatype	leg note
+Affecter	projet	!		primary_foreign_key	True	Projet	Projet	Affecter		
+Affecter	employé	!	1	primary_foreign_key	True	Employé	Employé	Affecter		
+Affecter	site	!	1	stopped_foreign_key	False	Site	Site	Affecter		
+Employé	employé	!		primary_key	True					
+Employé	nom employé			normal_attribute	False					
+Projet	projet	!		primary_key	True					
+Projet	libellé			normal_attribute	False					
+Site	site	!		primary_key	True					
+Site	position			normal_attribute	False

@@ -1,4 +1,4 @@
-this_relation_name	label	datatype	nature	adjacent_source	outer_source	unicities
-Appliquer	employé		primary_ex_foreign_key	Employé	Employé	
-Appliquer	projet		primary_ex_foreign_key	Projet	Projet	
-Appliquer	compétence		primary_ex_foreign_key	Compétence	Compétence
+this relation name	attribute	optionality	unicities	nature	is primary	adjacent source	outer source	association name	datatype	leg note
+Appliquer	employé	!		primary_ex_foreign_key	True	Employé	Employé	Appliquer		
+Appliquer	projet	!		primary_ex_foreign_key	True	Projet	Projet	Appliquer		
+Appliquer	compétence	!		primary_ex_foreign_key	True	Compétence	Compétence	Appliquer

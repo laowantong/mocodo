@@ -229,14 +229,14 @@ class relationsTest(unittest.TestCase):
         t = Relations(mcd, params)
         self.assertEqual(t.get_text(minimal_template), text)
         expected = """
-            | relation | label           | datatype            | nature                    | adjacent_source |
-            |:---------|:----------------|:--------------------|:--------------------------|:----------------|
-            | ANIMAL   | animal          |                     | primary_key               |                 |
-            | ANIMAL   | poids           |                     | normal_attribute          |                 |
-            | ANIMAL   | CARNIVORE       | BOOLEAN_PLACEHOLDER | deleted_child_entity_name | CARNIVORE       |
-            | ANIMAL   | quantité viande |                     | deleted_child_attribute   | CARNIVORE       |
-            | ANIMAL   | HERBIVORE       | BOOLEAN_PLACEHOLDER | deleted_child_entity_name | HERBIVORE       |
-            | ANIMAL   | plante préférée |                     | deleted_child_attribute   | HERBIVORE       |
+            | this relation name | attribute       | optionality | unicities | nature                    | is primary | adjacent source | outer source | association name |
+            |:-------------------|:----------------|:------------|:----------|:--------------------------|:-----------|:----------------|:-------------|:-----------------|
+            | ANIMAL             | animal          | !           |           | primary_key               | True       |                 |              |                  |
+            | ANIMAL             | poids           |             |           | normal_attribute          | False      |                 |              |                  |
+            | ANIMAL             | CARNIVORE       | !           |           | deleted_child_entity_name | False      | CARNIVORE       | CARNIVORE    | ANIMAL parent #1 |
+            | ANIMAL             | quantité viande | ?           |           | deleted_child_attribute   | False      | CARNIVORE       |              | ANIMAL parent #1 |
+            | ANIMAL             | HERBIVORE       | !           |           | deleted_child_entity_name | False      | HERBIVORE       | HERBIVORE    | ANIMAL parent #1 |
+            | ANIMAL             | plante préférée | ?           |           | deleted_child_attribute   | False      | HERBIVORE       |              | ANIMAL parent #1 |
         """
         actual = debug_table(t)
         self.assertEqual(actual.strip(), expected.strip())
@@ -255,13 +255,13 @@ class relationsTest(unittest.TestCase):
         t = Relations(mcd, params)
         self.assertEqual(t.get_text(minimal_template), text)
         expected = """
-            | relation | label           | datatype                 | nature                       | adjacent_source |
-            |:---------|:----------------|:-------------------------|:-----------------------------|:----------------|
-            | ANIMAL   | animal          |                          | primary_key                  |                 |
-            | ANIMAL   | poids           |                          | normal_attribute             |                 |
-            | ANIMAL   | type            | UNSIGNED_INT_PLACEHOLDER | deleted_child_discriminator_ |                 |
-            | ANIMAL   | quantité viande |                          | deleted_child_attribute      | CARNIVORE       |
-            | ANIMAL   | plante préférée |                          | deleted_child_attribute      | HERBIVORE       |
+            | this relation name | attribute       | optionality | unicities | nature                       | is primary | adjacent source | outer source | association name |
+            |:-------------------|:----------------|:------------|:----------|:-----------------------------|:-----------|:----------------|:-------------|:-----------------|
+            | ANIMAL             | animal          | !           |           | primary_key                  | True       |                 |              |                  |
+            | ANIMAL             | poids           |             |           | normal_attribute             | False      |                 |              |                  |
+            | ANIMAL             | type            | !           |           | deleted_child_discriminator_ | False      |                 |              | ANIMAL parent #1 |
+            | ANIMAL             | quantité viande | ?           |           | deleted_child_attribute      | False      | CARNIVORE       |              | ANIMAL parent #1 |
+            | ANIMAL             | plante préférée | ?           |           | deleted_child_attribute      | False      | HERBIVORE       |              | ANIMAL parent #1 |
         """
         actual = debug_table(t)
         self.assertEqual(actual.strip(), expected.strip())
@@ -281,15 +281,15 @@ class relationsTest(unittest.TestCase):
         t = Relations(Mcd(source, params), params)
         self.assertEqual(t.get_text(minimal_template), text)
         expected = """
-            | relation  | label           | datatype                 | nature                       |
-            |:----------|:----------------|:-------------------------|:-----------------------------|
-            | ANIMAL    | animal          |                          | primary_key                  |
-            | ANIMAL    | poids           |                          | normal_attribute             |
-            | ANIMAL    | type            | UNSIGNED_INT_PLACEHOLDER | deleted_child_discriminator_ |
-            | CARNIVORE | animal          |                          | parent_primary_key           |
-            | CARNIVORE | quantité viande |                          | normal_attribute             |
-            | HERBIVORE | animal          |                          | parent_primary_key           |
-            | HERBIVORE | plante préférée |                          | normal_attribute             |
+            | this relation name | attribute       | optionality | unicities | nature                       | is primary |
+            |:-------------------|:----------------|:------------|:----------|:-----------------------------|:-----------|
+            | ANIMAL             | animal          | !           |           | primary_key                  | True       |
+            | ANIMAL             | poids           |             |           | normal_attribute             | False      |
+            | ANIMAL             | type            | !           |           | deleted_child_discriminator_ | False      |
+            | CARNIVORE          | animal          | !           |           | parent_primary_key           | True       |
+            | CARNIVORE          | quantité viande |             |           | normal_attribute             | False      |
+            | HERBIVORE          | animal          | !           |           | parent_primary_key           | True       |
+            | HERBIVORE          | plante préférée |             |           | normal_attribute             | False      |
         """
         actual = debug_table(t)
         self.assertEqual(actual.strip(), expected.strip())
@@ -309,14 +309,14 @@ class relationsTest(unittest.TestCase):
         t = Relations(mcd, params)
         self.assertEqual(t.get_text(minimal_template), text)
         expected = """
-            | relation  | label           | datatype | nature                     |
-            |:----------|:----------------|:---------|:---------------------------|
-            | CARNIVORE | animal          |          | deleted_parent_primary_key |
-            | CARNIVORE | poids           |          | deleted_parent_attribute   |
-            | CARNIVORE | quantité viande |          | normal_attribute           |
-            | HERBIVORE | animal          |          | deleted_parent_primary_key |
-            | HERBIVORE | poids           |          | deleted_parent_attribute   |
-            | HERBIVORE | plante préférée |          | normal_attribute           |
+            | this relation name | attribute       | optionality | unicities | nature                     | is primary |
+            |:-------------------|:----------------|:------------|:----------|:---------------------------|:-----------|
+            | CARNIVORE          | animal          | !           |           | deleted_parent_primary_key | True       |
+            | CARNIVORE          | poids           |             |           | deleted_parent_attribute   | False      |
+            | CARNIVORE          | quantité viande |             |           | normal_attribute           | False      |
+            | HERBIVORE          | animal          | !           |           | deleted_parent_primary_key | True       |
+            | HERBIVORE          | poids           |             |           | deleted_parent_attribute   | False      |
+            | HERBIVORE          | plante préférée |             |           | normal_attribute           | False      |
         """
         actual = debug_table(t)
         self.assertEqual(actual.strip(), expected.strip())
@@ -344,13 +344,13 @@ class relationsTest(unittest.TestCase):
         t = Relations(Mcd(source, params), params)
         self.assertEqual(t.get_text(minimal_template), text)
         expected = """
-            | relation | label           | datatype                 | nature                       | adjacent_source |
-            |:---------|:----------------|:-------------------------|:-----------------------------|:----------------|
-            | ANIMAL   | animal          |                          | primary_key                  |                 |
-            | ANIMAL   | poids           |                          | normal_attribute             |                 |
-            | ANIMAL   | type            | UNSIGNED_INT_PLACEHOLDER | deleted_child_discriminator_ |                 |
-            | ANIMAL   | quantité viande |                          | deleted_child_attribute      | CARNIVORE       |
-            | ANIMAL   | plante préférée |                          | deleted_child_attribute      | HERBIVORE       |
+            | this relation name | attribute       | optionality | unicities | nature                       | is primary | adjacent source | outer source | association name |
+            |:-------------------|:----------------|:------------|:----------|:-----------------------------|:-----------|:----------------|:-------------|:-----------------|
+            | ANIMAL             | animal          | !           |           | primary_key                  | True       |                 |              |                  |
+            | ANIMAL             | poids           |             |           | normal_attribute             | False      |                 |              |                  |
+            | ANIMAL             | type            | !           |           | deleted_child_discriminator_ | False      |                 |              | ANIMAL parent #1 |
+            | ANIMAL             | quantité viande | ?           |           | deleted_child_attribute      | False      | CARNIVORE       |              | ANIMAL parent #1 |
+            | ANIMAL             | plante préférée | ?           |           | deleted_child_attribute      | False      | HERBIVORE       |              | ANIMAL parent #1 |
         """
         actual = debug_table(t)
         self.assertEqual(actual.strip(), expected.strip())
@@ -368,13 +368,13 @@ class relationsTest(unittest.TestCase):
         t = Relations(Mcd(source, params), params)
         self.assertEqual(t.get_text(minimal_template), text)
         expected = """
-            | relation  | label           | datatype                 | nature                       |
-            |:----------|:----------------|:-------------------------|:-----------------------------|
-            | ANIMAL    | animal          |                          | primary_key                  |
-            | ANIMAL    | poids           |                          | normal_attribute             |
-            | ANIMAL    | type            | UNSIGNED_INT_PLACEHOLDER | deleted_child_discriminator_ |
-            | CARNIVORE | animal          |                          | parent_primary_key           |
-            | CARNIVORE | quantité viande |                          | normal_attribute             |
+            | this relation name | attribute       | optionality | unicities | nature                       | is primary |
+            |:-------------------|:----------------|:------------|:----------|:-----------------------------|:-----------|
+            | ANIMAL             | animal          | !           |           | primary_key                  | True       |
+            | ANIMAL             | poids           |             |           | normal_attribute             | False      |
+            | ANIMAL             | type            | !           |           | deleted_child_discriminator_ | False      |
+            | CARNIVORE          | animal          | !           |           | parent_primary_key           | True       |
+            | CARNIVORE          | quantité viande |             |           | normal_attribute             | False      |
         """
         actual = debug_table(t)
         self.assertEqual(actual.strip(), expected.strip())

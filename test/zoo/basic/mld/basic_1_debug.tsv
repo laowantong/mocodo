@@ -1,15 +1,15 @@
-this_relation_name	label	datatype	nature	adjacent_source	outer_source	unicities
-CLIENT	Réf. client		primary_key			
-CLIENT	Nom		normal_attribute			
-CLIENT	Prénom		normal_attribute			
-CLIENT	Adresse		normal_attribute			
-COMMANDE	Num. commande		primary_key			
-COMMANDE	Date		normal_attribute			
-COMMANDE	Montant		normal_attribute			
-COMMANDE	Réf. client		foreign_key	CLIENT	CLIENT	
-INCLURE	Num. commande		primary_foreign_key	COMMANDE	COMMANDE	
-INCLURE	Réf. produit		primary_foreign_key	PRODUIT	PRODUIT	
-INCLURE	Quantité		association_attribute			
-PRODUIT	Réf. produit		primary_key			
-PRODUIT	Libellé		normal_attribute			
-PRODUIT	Prix unitaire		normal_attribute
+this relation name	attribute	optionality	unicities	nature	is primary	adjacent source	outer source	association name	datatype	leg note
+CLIENT	Réf. client	!		primary_key	True					
+CLIENT	Nom			normal_attribute	False					
+CLIENT	Prénom			normal_attribute	False					
+CLIENT	Adresse			normal_attribute	False					
+COMMANDE	Num. commande	!		primary_key	True					
+COMMANDE	Date			normal_attribute	False					
+COMMANDE	Montant			normal_attribute	False					
+COMMANDE	Réf. client	!		foreign_key	False	CLIENT	CLIENT	DF0		
+INCLURE	Num. commande	!		primary_foreign_key	True	COMMANDE	COMMANDE	INCLURE		
+INCLURE	Réf. produit	!		primary_foreign_key	True	PRODUIT	PRODUIT	INCLURE		
+INCLURE	Quantité			association_attribute	False			INCLURE		
+PRODUIT	Réf. produit	!		primary_key	True					
+PRODUIT	Libellé			normal_attribute	False					
+PRODUIT	Prix unitaire			normal_attribute	False

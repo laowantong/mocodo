@@ -1,15 +1,15 @@
-this_relation_name	label	datatype	nature	adjacent_source	outer_source	unicities
-Appartement	code rue		strengthening_primary_foreign_key	Étage	Étage	
-Appartement	num immeuble		strengthening_primary_foreign_key	Étage	Étage	
-Appartement	num étage		strengthening_primary_foreign_key	Étage	Étage	
-Appartement	num appart.		primary_key			
-Appartement	nb pièces		normal_attribute			
-Immeuble	code rue		strengthening_primary_foreign_key	Rue	Rue	
-Immeuble	num immeuble		primary_key			
-Immeuble	nb étages		normal_attribute			
-Rue	code rue		primary_key			
-Rue	nom rue		normal_attribute			
-Étage	code rue		strengthening_primary_foreign_key	Immeuble	Immeuble	
-Étage	num immeuble		strengthening_primary_foreign_key	Immeuble	Immeuble	
-Étage	num étage		primary_key			
-Étage	nb appartements		normal_attribute
+this relation name	attribute	optionality	unicities	nature	is primary	adjacent source	outer source	association name	datatype	leg note
+Appartement	code rue	!		strengthening_primary_foreign_key	True	Étage	Étage	Composer		
+Appartement	num immeuble	!		strengthening_primary_foreign_key	True	Étage	Étage	Composer		
+Appartement	num étage	!		strengthening_primary_foreign_key	True	Étage	Étage	Composer		
+Appartement	num appart.	!		primary_key	True					
+Appartement	nb pièces			normal_attribute	False					
+Immeuble	code rue	!		strengthening_primary_foreign_key	True	Rue	Rue	Se situer		
+Immeuble	num immeuble	!		primary_key	True					
+Immeuble	nb étages			normal_attribute	False					
+Rue	code rue	!		primary_key	True					
+Rue	nom rue			normal_attribute	False					
+Étage	code rue	!		strengthening_primary_foreign_key	True	Immeuble	Immeuble	Appartenir		
+Étage	num immeuble	!		strengthening_primary_foreign_key	True	Immeuble	Immeuble	Appartenir		
+Étage	num étage	!		primary_key	True					
+Étage	nb appartements			normal_attribute	False
