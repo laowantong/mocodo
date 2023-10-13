@@ -5,12 +5,12 @@
 
 <!-- Association Utiliser -->
 <g>
+	<circle cx="158" cy="74" r="6" stroke="#000000" stroke-width="1" fill="#FFFFFF55"/>
 	<line x1="94" y1="74" x2="256" y2="74" stroke="#000000" stroke-width="1"/>
-	<polygon points="152 74 164 68 160 74 164 80" fill="#000000" stroke-width="0"/>
+	<circle cx="256" cy="151" r="6" stroke="#000000" stroke-width="1" fill="#FFFFFF55"/>
 	<line x1="256" y1="187" x2="256" y2="74" stroke="#000000" stroke-width="1"/>
-	<polygon points="256 157 250 145 256 149 262 145" fill="#000000" stroke-width="0"/>
+	<circle cx="354" cy="74" r="6" stroke="#000000" stroke-width="1" fill="#FFFFFF55"/>
 	<line x1="399" y1="74" x2="256" y2="74" stroke="#000000" stroke-width="1"/>
-	<polygon points="360 74 348 80 352 74 348 68" fill="#000000" stroke-width="0"/>
 	<g>
 		<path d="M208 26 L441 26 a7 7 0 0 1 7 7 L448 115 a7 7 0 0 1 &#45;7 7 L318 122 a7 7 0 0 0 &#45;7 7 L311 220 a7 7 0 0 1 &#45;7 7 L208 227 a7 7 0 0 1 &#45;7 &#45;7 L201 33 a7 7 0 0 1 7 &#45;7" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="0.1"/>
 		<path d="M208 26 L441 26 a7 7 0 0 1 7 7 L448 115 a7 7 0 0 1 &#45;7 7 L318 122 a7 7 0 0 0 &#45;7 7 L311 220 a7 7 0 0 1 &#45;7 7 L208 227 a7 7 0 0 1 &#45;7 &#45;7 L201 33 a7 7 0 0 1 7 &#45;7" fill="none" stroke="#000000" stroke-width="1.5" stroke-dasharray="0,4" stroke-linecap="round"/>

@@ -36,8 +36,8 @@
 <!-- Association OCCUPE -->
 <g>
 	<line x1="470" y1="183" x2="315" y2="183" stroke="#000000" stroke-width="1"/>
+	<circle cx="315" cy="100" r="6" stroke="#000000" stroke-width="1" fill="#FFFFFF55"/>
 	<line x1="315" y1="56" x2="315" y2="183" stroke="#000000" stroke-width="1"/>
-	<polygon points="315 94 321 106 315 102 309 106" fill="#000000" stroke-width="0"/>
 	<line x1="108" y1="183" x2="315" y2="183" stroke="#000000" stroke-width="1"/>
 	<g>
 		<path d="M47 123 L535 123 a7 7 0 0 1 7 7 L542 236 a7 7 0 0 1 &#45;7 7 L47 243 a7 7 0 0 1 &#45;7 &#45;7 L40 130 a7 7 0 0 1 7 &#45;7" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="0.3"/>

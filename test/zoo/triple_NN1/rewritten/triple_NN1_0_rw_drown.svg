@@ -5,8 +5,8 @@
 
 <!-- Association ASSOC 4_ -->
 <g>
+	<circle cx="203" cy="106" r="6" stroke="#000000" stroke-width="1" fill="#FFFFFF55"/>
 	<line x1="203" y1="142" x2="203" y2="48" stroke="#000000" stroke-width="1"/>
-	<polygon points="203 112 197 100 203 104 209 100" fill="#000000" stroke-width="0"/>
 	<line x1="67" y1="48" x2="203" y2="48" stroke="#000000" stroke-width="1"/>
 	<line x1="339" y1="48" x2="203" y2="48" stroke="#000000" stroke-width="1"/>
 	<g>

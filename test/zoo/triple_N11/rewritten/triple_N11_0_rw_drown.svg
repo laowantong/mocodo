@@ -5,10 +5,10 @@
 
 <!-- Association ASSOC 4_ -->
 <g>
+	<circle cx="313" cy="57" r="6" stroke="#000000" stroke-width="1" fill="#FFFFFF55"/>
 	<line x1="368" y1="57" x2="222" y2="57" stroke="#000000" stroke-width="1"/>
-	<polygon points="319 57 307 63 311 57 307 51" fill="#000000" stroke-width="0"/>
+	<circle cx="131" cy="57" r="6" stroke="#000000" stroke-width="1" fill="#FFFFFF55"/>
 	<line x1="76" y1="57" x2="222" y2="57" stroke="#000000" stroke-width="1"/>
-	<polygon points="125 57 137 51 133 57 137 63" fill="#000000" stroke-width="0"/>
 	<line x1="222" y1="161" x2="222" y2="57" stroke="#000000" stroke-width="1"/>
 	<g>
 		<path d="M27 20 L272 20 a7 7 0 0 1 7 7 L279 192 a7 7 0 0 1 &#45;7 7 L173 199 a7 7 0 0 1 &#45;7 &#45;7 L166 102 a7 7 0 0 0 &#45;7 &#45;7 L27 95 a7 7 0 0 1 &#45;7 &#45;7 L20 27 a7 7 0 0 1 7 &#45;7" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="0.15"/>

@@ -36,8 +36,8 @@
 <!-- Association ASSOC 08_ -->
 <g>
 	<line x1="415" y1="183" x2="252" y2="183" stroke="#000000" stroke-width="1"/>
+	<circle cx="252" cy="100" r="6" stroke="#000000" stroke-width="1" fill="#FFFFFF55"/>
 	<line x1="252" y1="56" x2="252" y2="183" stroke="#000000" stroke-width="1"/>
-	<polygon points="252 94 258 106 252 102 246 106" fill="#000000" stroke-width="0"/>
 	<line x1="89" y1="183" x2="252" y2="183" stroke="#000000" stroke-width="1"/>
 	<g>
 		<path d="M20 123 L482 123 a7 7 0 0 1 7 7 L489 236 a7 7 0 0 1 &#45;7 7 L20 243 a7 7 0 0 1 &#45;7 &#45;7 L13 130 a7 7 0 0 1 7 &#45;7" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="0.3"/>

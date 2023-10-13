@@ -5,12 +5,12 @@
 
 <!-- Association ASSOC 4_ -->
 <g>
+	<circle cx="140" cy="74" r="6" stroke="#000000" stroke-width="1" fill="#FFFFFF55"/>
 	<line x1="85" y1="74" x2="241" y2="74" stroke="#000000" stroke-width="1"/>
-	<polygon points="134 74 146 68 142 74 146 80" fill="#000000" stroke-width="0"/>
+	<circle cx="241" cy="160" r="6" stroke="#000000" stroke-width="1" fill="#FFFFFF55"/>
 	<line x1="241" y1="196" x2="241" y2="74" stroke="#000000" stroke-width="1"/>
-	<polygon points="241 166 235 154 241 158 247 154" fill="#000000" stroke-width="0"/>
+	<circle cx="342" cy="74" r="6" stroke="#000000" stroke-width="1" fill="#FFFFFF55"/>
 	<line x1="397" y1="74" x2="241" y2="74" stroke="#000000" stroke-width="1"/>
-	<polygon points="348 74 336 80 340 74 336 68" fill="#000000" stroke-width="0"/>
 	<g>
 		<path d="M189 26 L449 26 a7 7 0 0 1 7 7 L456 115 a7 7 0 0 1 &#45;7 7 L307 122 a7 7 0 0 0 &#45;7 7 L300 229 a7 7 0 0 1 &#45;7 7 L189 236 a7 7 0 0 1 &#45;7 &#45;7 L182 33 a7 7 0 0 1 7 &#45;7" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="0.1"/>
 		<path d="M189 26 L449 26 a7 7 0 0 1 7 7 L456 115 a7 7 0 0 1 &#45;7 7 L307 122 a7 7 0 0 0 &#45;7 7 L300 229 a7 7 0 0 1 &#45;7 7 L189 236 a7 7 0 0 1 &#45;7 &#45;7 L182 33 a7 7 0 0 1 7 &#45;7" fill="none" stroke="#000000" stroke-width="1.5" stroke-dasharray="0,4" stroke-linecap="round"/>

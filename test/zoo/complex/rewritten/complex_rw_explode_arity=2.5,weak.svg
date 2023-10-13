@@ -75,8 +75,8 @@
 <!-- Association OCCUPE -->
 <g>
 	<line x1="241" y1="167" x2="241" y2="294" stroke="#000000" stroke-width="1"/>
+	<circle cx="162" cy="294" r="6" stroke="#000000" stroke-width="1" fill="#FFFFFF55"/>
 	<line x1="90" y1="294" x2="241" y2="294" stroke="#000000" stroke-width="1"/>
-	<polygon points="156 294 168 288 164 294 168 300" fill="#000000" stroke-width="0"/>
 	<line x1="241" y1="396" x2="241" y2="294" stroke="#000000" stroke-width="1"/>
 	<g>
 		<path d="M176 107 L306 107 a7 7 0 0 1 7 7 L313 424 a7 7 0 0 1 &#45;7 7 L176 431 a7 7 0 0 1 &#45;7 &#45;7 L169 114 a7 7 0 0 1 7 &#45;7" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="0.3"/>

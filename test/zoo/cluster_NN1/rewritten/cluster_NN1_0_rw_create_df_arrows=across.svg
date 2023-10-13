@@ -9,8 +9,8 @@
 	<polygon points="138 56 150 50 146 56 150 62" fill="#000000" stroke-width="0"/>
 	<line x1="359" y1="56" x2="216" y2="56" stroke="#000000" stroke-width="1"/>
 	<polygon points="294 56 282 62 286 56 282 50" fill="#000000" stroke-width="0"/>
+	<circle cx="216" cy="122" r="6" stroke="#000000" stroke-width="1" fill="#FFFFFF55"/>
 	<line x1="216" y1="175" x2="216" y2="56" stroke="#000000" stroke-width="1"/>
-	<polygon points="216 128 210 116 216 120 222 116" fill="#000000" stroke-width="0"/>
 	<g>
 		<path d="M20 13 L422 13 a7 7 0 0 1 7 7 L429 92 a7 7 0 0 1 &#45;7 7 L20 99 a7 7 0 0 1 &#45;7 &#45;7 L13 20 a7 7 0 0 1 7 &#45;7" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="0.3"/>
 		<path d="M20 13 L422 13 a7 7 0 0 1 7 7 L429 92 a7 7 0 0 1 &#45;7 7 L20 99 a7 7 0 0 1 &#45;7 &#45;7 L13 20 a7 7 0 0 1 7 &#45;7" fill="none" stroke="#000000" stroke-width="1.5" stroke-dasharray="0,4" stroke-linecap="round"/>

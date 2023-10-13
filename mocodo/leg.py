@@ -33,7 +33,8 @@ class Leg:
         else:
             self.kind = "leg"
         
-        self.arrow = leg.get("leg_arrow", (">" if self.kind == "cluster_peg" else ""))
+        self.arrow = leg.get("leg_arrow", "")
+        self.peg = ("o" if self.kind == "cluster_peg" and not self.arrow else "")
         self.note = leg.get("leg_note")
         self.association = association
         self.entity_name = leg["entity"]
@@ -48,7 +49,7 @@ class Leg:
     def register_mcd_has_cif(self, mcd_has_cif):
         self.mcd_has_cif = mcd_has_cif
         if self.mcd_has_cif:
-            self.arrow = ""
+            self.peg = ""
 
     def append_candidate_group(self, candidate_number: str):
         if candidate_number == "0":
@@ -83,6 +84,23 @@ class Leg:
         cw = self.w + 2 * card_margin
         ch = self.h + 2 * card_margin
         leg = straight_leg_factory(ex, ey, ew, eh, ax, ay, aw, ah, cw, ch, card_margin)
+        if self.peg:
+            (x, y, a, b) = leg.arrow_pos(self.arrow, 1)
+            c = hypot(a, b)
+            (cos, sin) = (a / c, b / c)
+            result.append(
+                (
+                    "circle",
+                    {
+                        "cx": x + cos * style["arrow_width"] / 2,
+                        "cy": y - sin * style["arrow_width"] / 2,
+                        "r": style["arrow_width"] / 2,
+                        "stroke_color": style["entity_stroke_color"],
+                        "stroke_depth": style["leg_stroke_depth"],
+                        "color": style["entity_color"]+ "55", # alpha channel
+                    },
+                ),
+            )
         result.append(
             (
                 "line",
@@ -182,6 +200,23 @@ class Leg:
         spin = self.spin
         leg = curved_leg_factory(ex, ey, ew, eh, ax, ay, aw, ah, cw, ch, card_margin, spin)
         (x0, y0, x1, y1, x2, y2, x3, y3) = leg.points
+        if self.peg:
+            (x, y, a, b) = leg.arrow_pos(self.arrow, 1)
+            c = hypot(a, b)
+            (cos, sin) = (a / c, b / c)
+            result.append(
+                (
+                    "circle",
+                    {
+                        "cx": x + cos * style["arrow_width"] / 2,
+                        "cy": y - sin * style["arrow_width"] / 2,
+                        "r": style["arrow_width"] / 2,
+                        "stroke_color": style["entity_stroke_color"],
+                        "stroke_depth": style["leg_stroke_depth"],
+                        "color": style["entity_color"]+ "55", # alpha channel
+                    },
+                ),
+            )
         result.append(
             (
                 "curve",

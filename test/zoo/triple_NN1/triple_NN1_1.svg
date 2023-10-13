@@ -5,8 +5,8 @@
 
 <!-- Association Gérer -->
 <g>
+	<circle cx="200" cy="122" r="6" stroke="#000000" stroke-width="1" fill="#FFFFFF55"/>
 	<line x1="200" y1="166" x2="200" y2="56" stroke="#000000" stroke-width="1"/>
-	<polygon points="200 128 194 116 200 120 206 116" fill="#000000" stroke-width="0"/>
 	<line x1="72" y1="56" x2="200" y2="56" stroke="#000000" stroke-width="1"/>
 	<line x1="322" y1="56" x2="200" y2="56" stroke="#000000" stroke-width="1"/>
 	<g>
