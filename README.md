@@ -1,14 +1,12 @@
-**Octobre 2023.** Mocodo [4](https://github.com/laowantong/mocodo/releases/tag/4.0.3) introduit la gestion des contraintes d'optionalité et d'unicité, améliore les interfaces graphique et en ligne de commande, et ajoute un grand nombre de fonctionnalités : liens de partage, exportation en UML, en notation de Chen et _crow's foot_, génération de MCD aléatoires, décomposition des associations et autres opérations de réécriture.
+**Octobre 2023.** Mocodo [4](https://github.com/laowantong/mocodo/releases/tag/4.0.4) introduit la gestion des contraintes d'optionalité et d'unicité, améliore les interfaces graphique et en ligne de commande, et ajoute un grand nombre de fonctionnalités : liens de partage, exportation en UML, en notation de Chen et _crow's foot_, génération de MCD aléatoires, décomposition des associations et autres opérations de réécriture.
 
 **Septembre 2022.** Mocodo 3 introduit l'[héritage](https://rawgit.com/laowantong/mocodo/master/doc/fr_refman.html#Héritage-(ou-spécialisation)), l'[agrégation](https://rawgit.com/laowantong/mocodo/master/doc/fr_refman.html#Agrégation-(ou-pseudo-entité)), les [calques](https://rawgit.com/laowantong/mocodo/master/doc/fr_refman.html#Héritage-(ou-spécialisation)), les [sorties PDF et PNG](https://rawgit.com/laowantong/mocodo/master/doc/fr_refman.html#Héritage-(ou-spécialisation)), etc. : [3.0](https://github.com/laowantong/mocodo/releases/tag/3.0), [3.1](https://github.com/laowantong/mocodo/releases/tag/3.1.0), [3.2](https://github.com/laowantong/mocodo/releases/tag/3.2.0).
 
 ------
 
-<!--
-Documentation [au format HTML](https://rawgit.com/laowantong/mocodo/master/doc/fr_refman.html) ou sous forme de [notebook](doc/fr_refman.ipynb) Jupyter.
+Toute la documentation sur [une seule page web](https://rawgit.com/laowantong/mocodo/master/doc/fr_refman.html) ou sous forme de [notebook](doc/fr_refman.ipynb) Jupyter. Consultez également l'[aide-mémoire des transformations](doc/fr_cheat_sheet.md).
 
 ----
--->
 
 ![](logos/banner.svg)
 
@@ -36,7 +34,7 @@ Ci-dessous, un exemple d'utilisation sous Jupyter Notebook. L'appel du programme
 
 ## Opérations de conversion
 
-Dans la suite, on récupère ce texte-source avec `--input` pour lui appliquer diverses opérations. Ainsi, l'appel suivant génère et affiche son MLD, son diagramme relationnel et son DDL :
+On peut récupérer ce texte-source avec `--input` pour lui appliquer diverses opérations. Ainsi, l'appel suivant génère et affiche son MLD, son diagramme relationnel et son DDL :
 
 ```
 %mocodo --input ccp --transform mld diagram ddl --colors desert
@@ -92,7 +90,7 @@ ALTER TABLE INCLURE ADD FOREIGN KEY (ref_produit) REFERENCES PRODUIT (ref_produi
 ALTER TABLE INCLURE ADD FOREIGN KEY (num_commande) REFERENCES COMMANDE (num_commande);
 ```
 
-Dans la suite, pour épargner le clavier, les options `--input` et `--transform` seront respectivement abrégées en `-i` et `-t`.
+Dans la suite, pour épargner la frappe, les options `--input` et `--transform` seront respectivement abrégées en `-i` et `-t`.
 
 Les opérations de conversion ne se limitent pas forcément au schéma relationnel. En voici une qui extrait un dictionnaire des données, par défaut sous la forme d'un tableau Markdown à trois colonnes :
 
@@ -197,7 +195,3 @@ Plusieurs opérations de réécriture de nature sémantique sont également offe
 Notez la sous-option `arrange:wide`. Elle a procédé à une réorganisation aléatoire des boîtes, ce que l'insertion de deux nouvelles associations de dépendance fonctionnelles avait rendu nécessaire. Quant à l'option `--seed=3`, elle garantit que le résultat sera le même à chaque exécution.
 
 Pour vous familiariser avec Mocodo, le mieux est d'utiliser [sa version en ligne](https://www.mocodo.net).
-
-----
-
-Documentation en cours de réécriture. En attendant, vous pouvez consulter la sortie de [`mocodo --help`](doc/fr_refman_4.txt) et l'[aide-mémoire des transformations](doc/fr_cheat_sheet.md).

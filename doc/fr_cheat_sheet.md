@@ -1,5 +1,3 @@
-<h2><center>Aide-mémoire des sous-options de <code>--transform</code></center></h2>
-
 - Opérations de <span style="color:blue; font-family:monospace; font-weight:600;">conversion en bleu</span> et de <span style="color:green; font-family:monospace; font-weight:600;">réécriture en vert</span>.
 - Survolez un nom d'opération pour voir ses éventuels alias.
 
@@ -48,9 +46,9 @@
 | <span style="color:green; font-family:monospace; font-weight:600">cut</span> | cf. `slice` |  |  |
 | <span title="Alias : data_dictionary." style="color:blue; font-family:monospace; font-weight:600">data_dict</span> | extrait tous les attributs du MCD dans une table | `` data_dict `` | tableau Markdown, trois colonnes |
 |  |  | `` data_dict:label `` | liste Markdown, une colonne |
-|  |  | `` data_dict:label,type="Description" `` | deux colonnes, un libellé personnalisé |
-|  |  | `` data_dict:label="Attribut",type="Description" `` | deux colonnes, deux libellés personnalisés |
-|  |  | `` data_dict:**box**="Entité ou<br>association",label,`type`=`"Type de données"` `` | mise en forme de certains libellés |
+|  |  | `` data_dict:label,type='Description' `` | deux colonnes, un libellé personnalisé |
+|  |  | `` data_dict:label='Attribut',type='Description' `` | deux colonnes, deux libellés personnalisés |
+|  |  | `` data_dict:**box**='Entité ou<br>association',label,`type`=`'Type de données'` `` | mise en forme de certains libellés |
 |  |  | `` data_dict:tsv `` | tableau TSV, trois colonnes |
 |  |  | `` data_dict:tsv,label `` | liste des attributs séparés par des retours à la ligne |
 | <span style="color:blue; font-family:monospace; font-weight:600">data_dictionary</span> | cf. `data_dict` |  |  |
@@ -93,10 +91,10 @@
 |  |  | `` grow:composite_ids=1 `` | nombre d'identifiants composites (défaut) |
 |  |  | `` grow:ent_attrs=4 `` | nombre maximal d'attributs par entité (défaut) |
 |  |  | `` grow:assoc_attrs=2 `` | nombre maximal d'attributs par association (défaut) |
-|  |  | `` grow:"*1-*N"=3 `` | nombre d'associations `*1-*N` (défaut) |
-|  |  | `` grow:"01-11"=1 `` | nombre d'associations `01-11` (défaut) |
-|  |  | `` grow:"_11-*N"=1 `` | une entité faible (zéro par défaut) |
-|  |  | `` grow:"/1N-*N"=1 `` | un agrégat (zéro par défaut) |
+|  |  | `` grow:'*1-*N'=3 `` | nombre d'associations `*1-*N` (défaut) |
+|  |  | `` grow:'01-11'=1 `` | nombre d'associations `01-11` (défaut) |
+|  |  | `` grow:'_11-*N'=1 `` | une entité faible (zéro par défaut) |
+|  |  | `` grow:'/1N-*N'=1 `` | un agrégat (zéro par défaut) |
 |  |  | `` grow:from_scratch arrange `` | à partir d'un MCD vide |
 |  |  | `` grow:from_scratch,arity_3=1 obfuscate create:roles lower:roles arrange `` | créer un MCD d'entraînement à la conversion en relationnel |
 | <span style="color:green; font-family:monospace; font-weight:600">guess</span> | cf. `create` |  |  |
@@ -134,15 +132,16 @@
 | <span style="color:green; font-family:monospace; font-weight:600">new</span> | cf. `create` |  |  |
 | <span style="color:green; font-family:monospace; font-weight:600">obfuscate</span> | cf. `randomize` |  |  |
 | <span style="color:green; font-family:monospace; font-weight:600">obscure</span> | cf. `randomize` |  |  |
-| <span style="color:blue; font-family:monospace; font-weight:600">oracle</span> | convertit le modèle conceptuel en un modèle physique pour Oracle | `` oracle `` | version de base |
+| <span title="Alias : oracle_db." style="color:blue; font-family:monospace; font-weight:600">oracle</span> | convertit le modèle conceptuel en un modèle physique pour Oracle DB | `` oracle `` | version de base |
 |  |  | `` oracle:b `` | avec _boilerplate_ |
+| <span style="color:blue; font-family:monospace; font-weight:600">oracle_db</span> | cf. `oracle` |  |  |
 | <span title="Alias : pascalcase, pascal_case." style="color:green; font-family:monospace; font-weight:600">pascal</span> | rewrite the given elements in PascalCase |  |  |
 | <span style="color:green; font-family:monospace; font-weight:600">pascal_case</span> | cf. `pascal` |  |  |
 | <span style="color:green; font-family:monospace; font-weight:600">pascalcase</span> | cf. `pascal` |  |  |
 | <span style="color:blue; font-family:monospace; font-weight:600">postgres</span> | cf. `postgresql` |  |  |
 | <span title="Alias : postgres." style="color:blue; font-family:monospace; font-weight:600">postgresql</span> | convertit le modèle conceptuel en un modèle physique pour PostgreSQL | `` postgresql `` | version de base |
 |  |  | `` postgresql:b `` | avec _boilerplate_ |
-| <span title="Alias : prepend." style="color:green; font-family:monospace; font-weight:600">prefix</span> | préfixe les éléments donnés avec la chaîne donnée | `` prefix:roles="-" `` | force les rôles à remplacer le nom des clés étrangères lors du passage au relationnel |
+| <span title="Alias : prepend." style="color:green; font-family:monospace; font-weight:600">prefix</span> | préfixe les éléments donnés avec la chaîne donnée | `` prefix:roles='-' `` | force les rôles à remplacer le nom des clés étrangères lors du passage au relationnel |
 | <span style="color:green; font-family:monospace; font-weight:600">prepend</span> | cf. `prefix` |  |  |
 | <span style="color:blue; font-family:monospace; font-weight:600">qr</span> | cf. `share` |  |  |
 | <span style="color:blue; font-family:monospace; font-weight:600">qr_code</span> | cf. `share` |  |  |
@@ -160,13 +159,13 @@
 | <span style="color:blue; font-family:monospace; font-weight:600">relation_template</span> | cf. `relation` |  |  |
 | <span style="color:green; font-family:monospace; font-weight:600">remove</span> | cf. `delete` |  |  |
 | <span style="color:green; font-family:monospace; font-weight:600">repl</span> | cf. `replace` |  |  |
-| <span title="Alias : substitute, sub, repl." style="color:green; font-family:monospace; font-weight:600">replace</span> | réécrit les éléments donnés en appliquant le motif « recherche/remplacement » donné | `` replace:boxes="DIRIGER/RÉPONDRE DE" `` | renomme une boîte |
-|  |  | `` replace:texts="personel/personnel" `` | corrige une faute d'orthographe |
-|  |  | `` replace:replace:texts="_/ " `` | remplace les tirets bas par des espaces |
-|  |  | `` replace:types="VARCHAR/VARCHAR2" `` | modifie un nom de type |
+| <span title="Alias : substitute, sub, repl." style="color:green; font-family:monospace; font-weight:600">replace</span> | réécrit les éléments donnés en appliquant le motif « recherche/remplacement » donné | `` replace:boxes='DIRIGER/RÉPONDRE DE' `` | renomme une boîte |
+|  |  | `` replace:texts='personel/personnel' `` | corrige une faute d'orthographe |
+|  |  | `` replace:replace:texts='_/ ' `` | remplace les tirets bas par des espaces |
+|  |  | `` replace:types='VARCHAR/VARCHAR2' `` | modifie un nom de type |
 |  |  | `` replace:cards=0N/1N `` | remplace toutes les cardinalités 0N par 1N |
 |  |  | `` replace:cards=1N//1N `` | crée des agrégats un peu partout |
-|  |  | `` replace:cards="0/X" replace:cards="11/X1" replace:cards="1N/XN" `` | masque les cardinalités minimales |
+|  |  | `` replace:cards='0/X' replace:cards='11/X1' replace:cards='1N/XN' `` | masque les cardinalités minimales |
 |  |  | `` delete:card_prefixes replace:cards=11/_11 `` | ajoute des marqueurs d'entités faibles |
 | <span title="Alias : url, link, qr, qr_code." style="color:blue; font-family:monospace; font-weight:600">share</span> | encode le MCD dans une URL pour Mocodo online | `` qr --defer `` | génère un QR code via un service web |
 | <span style="color:green; font-family:monospace; font-weight:600">shorten</span> | cf. `truncate` |  |  |
