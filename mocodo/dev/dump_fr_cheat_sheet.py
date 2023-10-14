@@ -29,7 +29,7 @@ for (option, data) in sorted(metadata.items()):
         rows.append(row)
         row = ["", ""]  # empty cells for the first two columns
 table = "\n".join("| " + " | ".join(row) + " |" for row in rows)
-text = f'<h2><center>Aide-mémoire des sous-options de <code>--transform</code></center></h2>\n\n- Opérations de <span style="color:blue; font-family:monospace; font-weight:600;">conversion en bleu</span> et de <span style="color:green; font-family:monospace; font-weight:600;">réécriture en vert</span>.\n- Survolez un nom d\'opération pour voir ses éventuels alias.\n\n{table}\n'
+text = f'- Opérations de <span style="color:blue; font-family:monospace; font-weight:600;">conversion en bleu</span> et de <span style="color:green; font-family:monospace; font-weight:600;">réécriture en vert</span>.\n- Survolez un nom d\'opération pour voir ses éventuels alias.\n\n{table}\n'
 output_path = Path("doc/fr_cheat_sheet.md")
 output_path.write_text(text)
 print(f"File written: {output_path}")

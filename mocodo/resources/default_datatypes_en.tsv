@@ -10,10 +10,11 @@ Date and Time
 
 Identifying and Validating Information
 
-\bid$	VARCHAR(8)
+\bid(entifier)?$	VARCHAR(8)
 \bcode$	VARCHAR(8)
-\bref$	VARCHAR(8)
-\bnum$	VARCHAR(8)
+\bref(erence)?$	VARCHAR(8)
+\bnum(ber)?$	VARCHAR(8)
+\bnb$	VARCHAR(8)
 \buuid$	VARCHAR(36)
 \bsalt$	BINARY(16)
 \bhash$	BINARY(64)

@@ -3,12 +3,12 @@ import re
 
 from ..parse_mcd import Visitor
 from ..tools.parser_tools import first_child, parse_source, reconstruct_source
-from ..tools.string_tools import ascii, snake
+from ..tools.string_tools import ascii, snake, strip_surrounds
 
 class CreateTypePlaceholder(Visitor):
 
     def __init__(self, subsubarg):
-        self.default = subsubarg
+        self.default = strip_surrounds(subsubarg, "[]")
 
     def typed_attr(self, tree):
         if len(tree.children) == 1:

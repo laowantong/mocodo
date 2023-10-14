@@ -10,10 +10,10 @@ Date and Time
 
 Identifying and Validating Information
 
-^id\b	VARCHAR(8)
+^id(entifiant)?\b	VARCHAR(8)
 ^code\b	VARCHAR(8)
-^ref\b	VARCHAR(8)
-^num\b	VARCHAR(8)
+^ref(erence)?\b	VARCHAR(8)
+^num(ero)?\b	VARCHAR(8)
 ^uuid\b	VARCHAR(36)
 ^sel\b	BINARY(16)
 ^empreinte\b	BINARY(64)
