@@ -1,16 +1,14 @@
-**Octobre 2023.** Mocodo [4](https://github.com/laowantong/mocodo/releases/tag/4.0.4) introduit la gestion des contraintes d'optionalité et d'unicité, améliore les interfaces graphique et en ligne de commande, et ajoute un grand nombre de fonctionnalités : liens de partage, exportation en UML, en notation de Chen et _crow's foot_, génération de MCD aléatoires, décomposition des associations et autres opérations de réécriture.
+**Octobre 2023.** Mocodo [4](https://github.com/laowantong/mocodo/releases/tag/4.0.4) introduit la gestion manuelle et automatique des contraintes d'optionalité et d'unicité, améliore les interfaces graphique et en ligne de commande, et ajoute un grand nombre de fonctionnalités : coloration syntaxique, liens de partage, exportation en UML, en notation de Chen et _crow's foot_, génération de MCD aléatoires, décomposition des associations et autres opérations de réécriture.
 
 **Septembre 2022.** Mocodo 3 introduit l'[héritage](https://rawgit.com/laowantong/mocodo/master/doc/fr_refman.html#Héritage-(ou-spécialisation)), l'[agrégation](https://rawgit.com/laowantong/mocodo/master/doc/fr_refman.html#Agrégation-(ou-pseudo-entité)), les [calques](https://rawgit.com/laowantong/mocodo/master/doc/fr_refman.html#Héritage-(ou-spécialisation)), les [sorties PDF et PNG](https://rawgit.com/laowantong/mocodo/master/doc/fr_refman.html#Héritage-(ou-spécialisation)), etc. : [3.0](https://github.com/laowantong/mocodo/releases/tag/3.0), [3.1](https://github.com/laowantong/mocodo/releases/tag/3.1.0), [3.2](https://github.com/laowantong/mocodo/releases/tag/3.2.0).
 
 ------
 
-Toute la documentation sur [une seule page web](https://rawgit.com/laowantong/mocodo/master/doc/fr_refman.html) ou sous forme de [notebook](doc/fr_refman.ipynb) Jupyter. Consultez également l'[aide-mémoire des transformations](doc/fr_cheat_sheet.md).
+[Documentation](https://rawgit.com/laowantong/mocodo/master/doc/fr_refman.html) sur une seule page, incluant la sortie de [`mocodo --help`](https://rawgit.com/laowantong/mocodo/master/doc/fr_refman.html#mocodo---help) et l'[aide-mémoire des transformations](https://rawgit.com/laowantong/mocodo/master/doc/fr_refman.html#Aide-mémoire-des-arguments-de---transform).
 
 ----
 
 ![](logos/banner.svg)
-
-# Introduction
 
 Mocodo est un logiciel d'aide à l'enseignement et à l'apprentissage des [bases de données relationnelles](https://fr.wikipedia.org/wiki/Base_de_données_relationnelle).
 
@@ -194,4 +192,4 @@ Plusieurs opérations de réécriture de nature sémantique sont également offe
 
 Notez la sous-option `arrange:wide`. Elle a procédé à une réorganisation aléatoire des boîtes, ce que l'insertion de deux nouvelles associations de dépendance fonctionnelles avait rendu nécessaire. Quant à l'option `--seed=3`, elle garantit que le résultat sera le même à chaque exécution.
 
-Pour vous familiariser avec Mocodo, le mieux est d'utiliser [sa version en ligne](https://www.mocodo.net).
+Pour vous familiariser avec Mocodo, le plus simple est d'utiliser [sa version en ligne](https://www.mocodo.net). Vous pourrez ensuite vous plonger dans la [documentation](https://rawgit.com/laowantong/mocodo/master/doc/fr_refman.html).
