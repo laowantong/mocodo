@@ -1,0 +1,414 @@
+{
+  "arrange": {
+    "category": "rw",
+    "help": "réarrange la disposition, soit par Branch & Bound, soit avec un algorithme génétique",
+    "fr_examples": {
+      "arrange": "B&B sans contraintes",
+      "arrange:timeout=60": "B&B limité à une minute",
+      "arrange:wide": "B&B privilégiant la largeur",
+      "arrange:current": "B&B sur la grille courante",
+      "arrange:balanced=0": "B&B sur la plus petite grille équilibrée",
+      "arrange:balanced=1": "B&B sur la seconde plus petite grille équilibrée",
+      "arrange:algo=ga": "algorithme génétique"
+    },
+    "aliases": []
+  },
+  "ascii": {
+    "category": "rw",
+    "help": "réécrit les éléments donnés en ASCII",
+    "fr_examples": {
+      "ascii:roles,labels": "rôles, libellés des boîtes et des attributs en ASCII"
+    },
+    "aliases": [],
+    "op_tk": true
+  },
+  "ast": {
+    "category": "cv",
+    "help": "crée l'arbre de syntaxe abstraite du texte source (pour le débogage)",
+    "aliases": []
+  },
+  "camel": {
+    "category": "rw",
+    "help": "réécrit les éléments donnés en camelCase",
+    "aliases": [
+      "camelcase",
+      "camel_case"
+    ],
+    "op_tk": true
+  },
+  "capitalize": {
+    "category": "rw",
+    "help": "réécrit les éléments donnés en capitalisant la première lettre de chaque mot",
+    "aliases": [],
+    "op_tk": true
+  },
+  "casefold": {
+    "category": "rw",
+    "help": "réécrit les éléments donnés en minuscules, mais plus agressivement que « lower »",
+    "aliases": [
+      "case_fold"
+    ],
+    "op_tk": true
+  },
+  "chen": {
+    "category": "cv",
+    "help": "convertit le modèle conceptuel dans la notation de Chen",
+    "fr_examples": {
+      "chen": "sans attributs",
+      "chen:attrs": "avec attributs",
+      "chen:attrs --defer": "calcule le rendu graphique via un service web",
+      "chen:layout=circo,mindist=2,scale=0.6": "ajoute des options arbitraires pour Graphviz"
+    },
+    "aliases": []
+  },
+  "create": {
+    "category": "rw",
+    "help": "essaie d'inférer les types, entités, CIFs ou flèches de DF à partir des éléments existants",
+    "fr_examples": {
+      "guess:types": "deviner les types manquants",
+      "create:types=": "remplacer les types manquants par `[]`",
+      "create:types=TODO": "remplacer les types manquants par `[TODO]`",
+      "make:entities": "réparer l'oubli d'entités référencées dans des associations",
+      "create:dfs": "mettre des DF partout où c'est possible",
+      "add:df_arrows": "ajouter des flèches aux DF",
+      "add:cifs": "ajouter les CIF correspondant aux agrégats",
+      "add:cifs=light": "même chose en visualisation allégée",
+      "add:roles": "mettre comme rôles le nom des associations partout où c'est utile"
+    },
+    "aliases": [
+      "add",
+      "insert",
+      "make",
+      "guess",
+      "infer",
+      "complete",
+      "new"
+    ],
+    "op_tk": true
+  },
+  "crow": {
+    "category": "cv",
+    "help": "convertit le modèle conceptuel dans la notation crow's foot",
+    "fr_examples": {
+      "crow": "format Graphviz",
+      "crow --defer": "calcule le rendu graphique via un service web",
+      "crow:mmd": "format Mermaid",
+      "crow:mermaid": "idem"
+    },
+    "aliases": [
+      "crowfoot",
+      "crowsfoot"
+    ]
+  },
+  "data_dict": {
+    "category": "cv",
+    "help": "extrait tous les attributs du MCD dans une table",
+    "aliases": [
+      "data_dictionary"
+    ],
+    "fr_examples": {
+      "data_dict": "tableau Markdown, trois colonnes",
+      "data_dict:label": "liste Markdown, une colonne",
+      "data_dict:label,type='Description'": "deux colonnes, un libellé personnalisé",
+      "data_dict:label='Attribut',type='Description'": "deux colonnes, deux libellés personnalisés",
+      "data_dict:**box**='Entité ou<br>association',label,`type`=`'Type de données'`": "mise en forme de certains libellés",
+      "data_dict:tsv": "tableau TSV, trois colonnes",
+      "data_dict:tsv,label": "liste des attributs séparés par des retours à la ligne"
+    }
+  },
+  "delete": {
+    "category": "rw",
+    "help": "supprime les éléments donnés quand c'est possible",
+    "fr_examples": {
+      "empty": "ne garde que la structure et le nom des boîtes",
+      "delete:types,notes,attrs,cards": "idem",
+      "delete:cards": "remplace les cardinalités par `XX`",
+      "delete:card_prefixes": "supprime les marqueurs d'entités faibles et d'agrégats",
+      "delete:dfs": "supprime les entités indépendantes dont tous les attributs sont identifiants (et les DF qui les relient)"
+    },
+    "aliases": [
+      "del",
+      "suppress",
+      "erase",
+      "remove",
+      "hide",
+      "empty"
+    ],
+    "op_tk": true
+  },
+  "drain": {
+    "category": "rw",
+    "help": "déplace tout attribut d'association (1,1) vers l'entité appropriée",
+    "aliases": []
+  },
+  "drown": {
+    "category": "rw",
+    "help": "remplace tous les noms d'éléments par un libellé générique numéroté",
+    "aliases": [
+      "drown_by_numbers",
+      "anonymize",
+      "anonymise"
+    ]
+  },
+  "echo": {
+    "category": "rw",
+    "help": "réécrit le texte source tel quel",
+    "aliases": []
+  },
+  "explode": {
+    "category": "rw",
+    "help": "décompose toute association n-aire (*,N) en n associations binaires",
+    "fr_examples": {
+      "explode arrange": "décomposer les non-DF ternaires et plus, puis réarranger",
+      "explode:arity=3 arrange": "idem",
+      "explode:weak arrange": "idem, avec création d'entités faibles",
+      "explode:arity=2.5 arrange": "étendre aux non-DF binaires porteuses d'attributs",
+      "explode:arity=2 arrange": "étendre à toutes les non-DF binaires"
+    },
+    "aliases": []
+  },
+  "fix": {
+    "category": "rw",
+    "help": "essaie de corriger les erreurs courantes dans les éléments donnés",
+    "fr_examples": {
+      "fix:cards": "normaliser les cardinalités en 01, 11, 0N et 1N"
+    },
+    "aliases": [],
+    "op_tk": true
+  },
+  "flip": {
+    "category": "rw",
+    "help": "applique au diagramme une symétrie verticale, horizontale ou diagonale",
+    "fr_examples": {
+      "flip:v": "symétrie verticale",
+      "flip:h": "symétrie horizontale",
+      "flip:d": "symétrie selon la seconde diagonale",
+      "flip:vhd": "symétrie selon la première diagonale",
+      "flip:dhv": "idem (ordre indifférent)"
+    },
+    "aliases": [
+      "mirror",
+      "reflect"
+    ]
+  },
+  "grow": {
+    "category": "rw",
+    "help": "ajoute des entités et associations aléatoires (par défaut : 10 nouvelles associations)",
+    "fr_examples": {
+      "grow arrange": "ajouter des éléments avec les paramètres par défaut, puis réarranger",
+      "grow:n=10": "nombre total d'associations à ajouter (défaut)",
+      "grow:arity_1=2": "nombre d'associations réflexives (défaut)",
+      "grow:arity_3=2": "nombre d'associations ternaires (défaut)",
+      "grow:arity_4=0": "nombre d'associations quaternaires (défaut)",
+      "grow:doubles=1": "nombre d'associations liant deux mêmes entités (défaut)",
+      "grow:composite_ids=1": "nombre d'identifiants composites (défaut)",
+      "grow:ent_attrs=4": "nombre maximal d'attributs par entité (défaut)",
+      "grow:assoc_attrs=2": "nombre maximal d'attributs par association (défaut)",
+      "grow:'*1-*N'=3": "nombre d'associations `*1-*N` (défaut)",
+      "grow:'01-11'=1": "nombre d'associations `01-11` (défaut)",
+      "grow:'_11-*N'=1": "une entité faible (zéro par défaut)",
+      "grow:'/1N-*N'=1": "un agrégat (zéro par défaut)",
+      "grow:from_scratch arrange": "à partir d'un MCD vide",
+      "grow:from_scratch,arity_3=1 obfuscate create:roles lower:roles arrange": "créer un MCD d'entraînement à la conversion en relationnel"
+    },
+    "aliases": []
+  },
+  "lower": {
+    "category": "rw",
+    "help": "réécrit les éléments donnés en minuscules",
+    "fr_examples": {
+      "lower:attrs,roles": "attributs et rôles en minuscules"
+    },
+    "aliases": [
+      "lowercase",
+      "lower_case"
+    ],
+    "op_tk": true
+  },
+  "pascal": {
+    "category": "rw",
+    "help": "rewrite the given elements in PascalCase",
+    "aliases": [
+      "pascalcase",
+      "pascal_case"
+    ],
+    "op_tk": true
+  },
+  "prefix": {
+    "category": "rw",
+    "help": "préfixe les éléments donnés avec la chaîne donnée",
+    "fr_examples": {
+      "prefix:roles='-'": "force les rôles à remplacer le nom des clés étrangères lors du passage au relationnel"
+    },
+    "aliases": [
+      "prepend"
+    ],
+    "op_tk": true
+  },
+  "randomize": {
+    "category": "rw",
+    "help": "garde la structure, mais randomise les éléments donnés quand c'est possible",
+    "fr_examples": {
+      "obfuscate": "libellés remplacés par du Lorem Ipsum",
+      "obfuscate:labels=lorem": "idem",
+      "obfuscate:labels=disparition": "idem, lexique du roman de Perec",
+      "obfuscate:labels=en4": "idem, mots anglais de 4 lettres (SFW)",
+      "obfuscate:attrs=fr,boxes=fr5": "idem, mots français de longueur quelconque pour les attributs, de 5 lettres pour les boîtes",
+      "randomize:types": "types randomisés avec les fréquences de `default_datatypes_fr.tsv`."
+    },
+    "aliases": [
+      "rand",
+      "random",
+      "randomise",
+      "obfuscate",
+      "obscure"
+    ],
+    "op_tk": true
+  },
+  "relation": {
+    "category": "cv",
+    "help": "convertit le modèle conceptuel en schéma relationnel avec le gabarit donné",
+    "fr_examples": {
+      "relation:path/to/my_template.yaml": "chemin relatif, extension obligatoire"
+    },
+    "aliases": [
+      "template",
+      "relation_template"
+    ]
+  },
+  "replace": {
+    "category": "rw",
+    "help": "réécrit les éléments donnés en appliquant le motif « recherche/remplacement » donné",
+    "fr_examples": {
+      "replace:boxes='DIRIGER/RÉPONDRE DE'": "renomme une boîte",
+      "replace:texts='personel/personnel'": "corrige une faute d'orthographe",
+      "replace:replace:texts='_/ '": "remplace les tirets bas par des espaces",
+      "replace:types='VARCHAR/VARCHAR2'": "modifie un nom de type",
+      "replace:cards=0N/1N": "remplace toutes les cardinalités 0N par 1N",
+      "replace:cards=1N//1N": "crée des agrégats un peu partout",
+      "replace:cards='0/X' replace:cards='11/X1' replace:cards='1N/XN'": "masque les cardinalités minimales",
+      "delete:card_prefixes replace:cards=11/_11": "ajoute des marqueurs d'entités faibles"
+    },
+    "aliases": [
+      "substitute",
+      "sub",
+      "repl"
+    ],
+    "op_tk": true
+  },
+  "slice": {
+    "category": "rw",
+    "help": "réécrit les éléments donnés en n'en gardant qu'une tranche donnée",
+    "fr_examples": {
+      "slice:boxes=5:10": "de l'indice 5 (inclus) à l'indice 10 (exclu)",
+      "slice:boxes=5:": "supprime les 5 premiers caractères",
+      "slice:boxes=:5": "ne garde que les 5 premiers caractères",
+      "slice:boxes=:-5": "supprime les 5 derniers caractères",
+      "slice:boxes=:": "équivalent de `echo`",
+      "slice:boxes=": "idem",
+      "slice:boxes": "idem"
+    },
+    "aliases": [
+      "cut",
+      "interval"
+    ],
+    "op_tk": true
+  },
+  "snake": {
+    "category": "rw",
+    "help": "réécrit les éléments donnés en snake_case",
+    "aliases": [
+      "snakecase",
+      "snake_case"
+    ],
+    "op_tk": true
+  },
+  "split": {
+    "category": "rw",
+    "help": "décompose toute association n-aire (*,1) en n-1 associations binaires",
+    "fr_examples": {
+      "split arrange": "décomposer, puis réarranger"
+    },
+    "aliases": []
+  },
+  "suffix": {
+    "category": "rw",
+    "help": "suffixe les éléments donnés avec la chaîne donnée",
+    "fr_examples": {
+      "suffix:boxes=1": "Ajoute un suffixe numérique au nom des boîtes en vue de mettre un MCD et sa copie sur le même diagramme."
+    },
+    "aliases": [
+      "append"
+    ],
+    "op_tk": true
+  },
+  "swapcase": {
+    "category": "rw",
+    "help": "réécrit les éléments donnés en inversant la casse de chaque lettre",
+    "aliases": [
+      "swap_case"
+    ],
+    "op_tk": true
+  },
+  "title": {
+    "category": "rw",
+    "help": "réécrit les éléments donnés en mettant la première lettre de chaque mot en majuscule",
+    "aliases": [
+      "titlecase",
+      "title_case"
+    ],
+    "op_tk": true
+  },
+  "truncate": {
+    "category": "rw",
+    "help": "tronque les éléments donnés à la longueur donnée (par défaut : 64)",
+    "fr_examples": {
+      "truncate:boxes=10": "tronque les noms des boîtes à 10 caractères"
+    },
+    "aliases": [
+      "trunc",
+      "shorten"
+    ],
+    "op_tk": true
+  },
+  "uml": {
+    "category": "cv",
+    "help": "convertit le modèle conceptuel en diagramme de classes UML",
+    "fr_examples": {
+      "uml": "format PlantUML",
+      "uml:plantuml": "idem",
+      "uml --defer": "calcule le rendu graphique via un service web",
+      "uml:plantuml=-": "supprime les styles par défaut",
+      "uml:plantuml='skinparam backgroundColor yellow\nskinparam classAttributeFontName Arial\n'": "ajoute des styles personnalisés"
+    },
+    "aliases": [
+      "uml",
+      "class_diagram"
+    ]
+  },
+  "share": {
+    "category": "cv",
+    "help": "encode le MCD dans une URL pour Mocodo online",
+    "fr_examples": {
+      "qr --defer": "génère un QR code via un service web"
+    },
+    "aliases": [
+      "url",
+      "link",
+      "qr",
+      "qr_code"
+    ]
+  },
+  "upper": {
+    "category": "rw",
+    "help": "réécrit les éléments donnés en majuscules",
+    "fr_examples": {
+      "upper:boxes": "noms des boîtes en majuscules"
+    },
+    "aliases": [
+      "uppercase",
+      "upper_case"
+    ],
+    "op_tk": true
+  }
+}

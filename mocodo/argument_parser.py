@@ -53,342 +53,8 @@ def init_localization(language):
 class Transformations:
 
     def __init__(self, language):
-        self.metadata = {
-            "arrange": {
-                "category": "rw",
-                "help": _("rearrange the layout with either a Branch & Bound or a Genetic Algorithm"),
-                "fr_examples": {
-                    "arrange": "B&B sans contraintes",
-                    "arrange:timeout=60": "B&B limité à une minute",
-                    "arrange:wide": "B&B privilégiant la largeur",
-                    "arrange:current": "B&B sur la grille courante",
-                    "arrange:balanced=0": "B&B sur la plus petite grille équilibrée",
-                    "arrange:balanced=1": "B&B sur la seconde plus petite grille équilibrée",
-                    "arrange:algo=ga": "algorithme génétique",
-                },
-                "aliases": [],
-            },
-            "ascii": {
-                "category": "rw",
-                "help": _("rewrite the given elements in ASCII"),
-                "fr_examples": {
-                    "ascii:roles,labels": "rôles, libellés des boîtes et des attributs en ASCII",
-                },
-                "aliases": [],
-                "op_tk": True,
-            },
-            "ast": {
-                "category": "cv",
-                "help": _("dump the abstract syntax tree of the source text (for debugging purposes)"),
-                "aliases": []
-            },
-            "camel": {
-                "category": "rw",
-                "help": _("rewrite the given elements in camelCase"),
-                "aliases": ["camelcase", "camel_case"],
-                "op_tk": True,
-            },
-            "capitalize": {
-                "category": "rw",
-                "help": _("rewrite the given elements by capitalizing the first letter of each word"),
-                "aliases": [],
-                "op_tk": True,
-            },
-            "casefold": {
-                "category": "rw",
-                "help": _("rewrite the given elements in lowercase, but more aggressively than 'lower'"),
-                "aliases": ["case_fold"],
-                "op_tk": True,
-            },
-            "chen": {
-                "category": "cv",
-                "help": _("convert the conceptual model into a Chen's ERD"),
-                "fr_examples": {
-                    "chen": "sans attributs",
-                    "chen:attrs": "avec attributs",
-                    "chen:attrs --defer": "calcule le rendu graphique via un service web",
-                    "chen:layout=circo,mindist=2,scale=0.6": "ajoute des options arbitraires pour Graphviz",
-                },
-                "aliases": [],
-            },
-            "create": {
-                "category": "rw",
-                "help": _("try to infer types, entities, CIFs or DF arrows from the existing elements"),
-                "fr_examples": {
-                    "guess:types": "deviner les types manquants",
-                    "create:types=": "remplacer les types manquants par `[]`",
-                    "create:types=TODO": "remplacer les types manquants par `[TODO]`",
-                    "make:entities": "réparer l'oubli d'entités référencées dans des associations",
-                    "create:dfs": "mettre des DF partout où c'est possible",
-                    "add:df_arrows": "ajouter des flèches aux DF",
-                    "add:cifs": "ajouter les CIF correspondant aux agrégats",
-                    "add:cifs=light": "même chose en visualisation allégée",
-                    "add:roles": "mettre comme rôles le nom des associations partout où c'est utile",
-                },
-                "aliases": ["add", "insert", "make", "guess", "infer", "complete", "new"],
-                "op_tk": True,
-            },
-            "crow": {
-                "category": "cv",
-                "help": _("convert the conceptual model into a crow's foot ERD"),
-                "fr_examples": {
-                    "crow": "format Graphviz",
-                    "crow --defer": "calcule le rendu graphique via un service web",
-                    "crow:mmd": "format Mermaid",
-                    "crow:mermaid": "idem",
-                },
-                "aliases": ["crowfoot", "crowsfoot"],
-            },
-            "data_dict": {
-                "category": "cv",
-                "help": _("collect all the attributes of the MCD in a table"),
-                "aliases": ["data_dictionary"],
-                "fr_examples": {
-                    "data_dict": "tableau Markdown, trois colonnes",
-                    "data_dict:label": "liste Markdown, une colonne",
-                    'data_dict:label,type="Description"': "deux colonnes, un libellé personnalisé",
-                    'data_dict:label="Attribut",type="Description"': "deux colonnes, deux libellés personnalisés",
-                    'data_dict:**box**="Entité ou<br>association",label,`type`=`"Type de données"`': "mise en forme de certains libellés",
-                    "data_dict:tsv": "tableau TSV, trois colonnes",
-                    "data_dict:tsv,label": "liste des attributs séparés par des retours à la ligne",
-                },
-            },
-            "delete": {
-                "category": "rw",
-                "help": _("suppress the given elements whenever possible"),
-                "fr_examples": {
-                    "empty": "ne garde que la structure et le nom des boîtes",
-                    "delete:types,notes,attrs,cards": "idem",
-                    "delete:cards": "remplace les cardinalités par `XX`",
-                    "delete:card_prefixes": "supprime les marqueurs d'entités faibles et d'agrégats",
-                    "delete:dfs": "supprime les entités indépendantes dont tous les attributs sont identifiants (et les DF qui les relient)",
-                },
-                "aliases": ["del", "suppress", "erase", "remove", "hide", "empty"],
-                "op_tk": True,
-            },
-            "drain": {
-                "category": "rw",
-                "help": _("move any (1,1) association attribute to the appropriate entity"),
-                "aliases": [],
-            },
-            "drown": {
-                "category": "rw",
-                "help": _("replace all element names by a numbered generic label"),
-                "aliases": ["drown_by_numbers", "anonymize", "anonymise"],
-            },
-            "echo": {
-                "category": "rw",
-                "help": _("rewrite the source text as is"),
-                "aliases": [], 
-            },
-            "explode": {
-                "category": "rw",
-                "help": _("decompose any n-ary (*,N) associations into n binary ones"),
-                "fr_examples": {
-                    "explode arrange": "décomposer les non-DF ternaires et plus, puis réarranger",
-                    "explode:arity=3 arrange": "idem",
-                    "explode:weak arrange": "idem, avec création d'entités faibles",
-                    "explode:arity=2.5 arrange": "étendre aux non-DF binaires porteuses d'attributs",
-                    "explode:arity=2 arrange": "étendre à toutes les non-DF binaires",
-                },
-                "aliases": [],
-            },
-            "fix": {
-                "category": "rw",
-                "help": _("try to fix common errors in the given elements"),
-                "fr_examples": {
-                    "fix:cards": "normaliser les cardinalités en 01, 11, 0N et 1N",
-                },
-                "aliases": [],
-                "op_tk": True,
-            },
-            "flip": {
-                "category": "rw",
-                "help": _("apply a vertical, horizontal or diagonal symmetry to the diagram"),
-                "fr_examples": {
-                    "flip:v": "symétrie verticale",
-                    "flip:h": "symétrie horizontale",
-                    "flip:d": "symétrie selon la seconde diagonale",
-                    "flip:vhd": "symétrie selon la première diagonale",
-                    "flip:dhv": "idem (ordre indifférent)",
-                },
-                "aliases": ["mirror", "reflect"],
-            },
-            "grow": {
-                "category": "rw",
-                "help": _("add random entities and associations (default: 10 new associations)"),
-                "fr_examples": {
-                    'grow arrange': "ajouter des éléments avec les paramètres par défaut, puis réarranger",
-                    'grow:n=10': "nombre total d'associations à ajouter (défaut)",
-                    'grow:arity_1=2': "nombre d'associations réflexives (défaut)",
-                    'grow:arity_3=2': "nombre d'associations ternaires (défaut)",
-                    'grow:arity_4=0': "nombre d'associations quaternaires (défaut)",
-                    'grow:doubles=1': "nombre d'associations liant deux mêmes entités (défaut)",
-                    'grow:composite_ids=1': "nombre d'identifiants composites (défaut)",
-                    'grow:ent_attrs=4': "nombre maximal d'attributs par entité (défaut)",
-                    'grow:assoc_attrs=2': "nombre maximal d'attributs par association (défaut)",
-                    'grow:"*1-*N"=3': "nombre d'associations `*1-*N` (défaut)",
-                    'grow:"01-11"=1': "nombre d'associations `01-11` (défaut)",
-                    'grow:"_11-*N"=1': "une entité faible (zéro par défaut)",
-                    'grow:"/1N-*N"=1': "un agrégat (zéro par défaut)",
-                    'grow:from_scratch arrange': "à partir d'un MCD vide",
-                    'grow:from_scratch,arity_3=1 obfuscate create:roles lower:roles arrange': "créer un MCD d'entraînement à la conversion en relationnel",
-                },
-                "aliases": []
-            },
-            "lower": {
-                "category": "rw",
-                "help": _("rewrite the given elements in lowercase"),
-                "fr_examples": {
-                    "lower:attrs,roles": "attributs et rôles en minuscules",
-                },
-                "aliases": ["lowercase", "lower_case"],
-                "op_tk": True,
-            },
-            "pascal": {
-                "category": "rw",
-                "help": _("rewrite the given elements in PascalCase"),
-                "aliases": ["pascalcase", "pascal_case"],
-                "op_tk": True,
-            },
-            "prefix": {
-                "category": "rw",
-                "help": _("prefix the given elements with the given string"),
-                "fr_examples": {
-                    'prefix:roles="-"': "force les rôles à remplacer le nom des clés étrangères lors du passage au relationnel",
-                },
-                "aliases": ["prepend"],
-                "op_tk": True,
-            },
-            "randomize": {
-                "category": "rw",
-                "help": _("keep the stucture, but replace the given elements with random ones whenever possible"),
-                "fr_examples": {
-                    "obfuscate": "libellés remplacés par du Lorem Ipsum",
-                    "obfuscate:labels=lorem": "idem",
-                    "obfuscate:labels=disparition": "idem, lexique du roman de Perec",
-                    "obfuscate:labels=en4": "idem, mots anglais de 4 lettres (SFW)",
-                    "obfuscate:attrs=fr,boxes=fr5": "idem, mots français de longueur quelconque pour les attributs, de 5 lettres pour les boîtes",
-                    "randomize:types": "types randomisés avec les fréquences de `default_datatypes_fr.tsv`.",
-                },
-                "aliases": ["rand", "random", "randomise", "obfuscate", "obscure"],
-                "op_tk": True,
-            },
-            "relation": {
-                "category": "cv",
-                "help": _("convert the conceptual model into a relational schema with the given template path"),
-                "fr_examples": {
-                    'relation:path/to/my_template.yaml': "chemin relatif, extension obligatoire",
-                },
-                "aliases": ["template", "relation_template"]
-            },
-            "replace": {
-                "category": "rw",
-                "help": _("rewrite the given elements by applying the given 'search/repl' pattern"),
-                "fr_examples": {
-                    'replace:boxes="DIRIGER/RÉPONDRE DE"': "renomme une boîte",
-                    'replace:texts="personel/personnel"': "corrige une faute d'orthographe",
-                    'replace:replace:texts="_/ "': "remplace les tirets bas par des espaces",
-                    'replace:types="VARCHAR/VARCHAR2"': "modifie un nom de type",
-                    'replace:cards=0N/1N': "remplace toutes les cardinalités 0N par 1N",
-                    'replace:cards=1N//1N': "ajout des marqueurs d'agrégats",
-                    'replace:cards="0/X" replace:cards="11/X1" replace:cards="1N/XN"': "masque les cardinalités minimales",
-                    'replace:cards=1N//1N': "crée des agrégats un peu partout",
-                    'delete:card_prefixes replace:cards=11/_11': "ajoute des marqueurs d'entités faibles",
-                },
-                "aliases": ["substitute", "sub", "repl"],
-                "op_tk": True,
-            },
-            "slice": {
-                "category": "rw",
-                "help": _("rewrite the given elements by keeping only a given slice"),
-                "fr_examples": {
-                    "slice:boxes=5:10": "de l'indice 5 (inclus) à l'indice 10 (exclu)",
-                    "slice:boxes=5:": "supprime les 5 premiers caractères",
-                    "slice:boxes=:5": "ne garde que les 5 premiers caractères",
-                    "slice:boxes=:-5": "supprime les 5 derniers caractères",
-                    "slice:boxes=:": "équivalent de `echo`",
-                    "slice:boxes=": "idem",
-                    "slice:boxes": "idem",
-                },
-                "aliases": ["cut", "interval"],
-                "op_tk": True,
-            },
-            "snake": {
-                "category": "rw",
-                "help": _("rewrite the given elements in snake_case"),
-                "aliases": ["snakecase", "snake_case"],
-                "op_tk": True,
-            },
-            "split": {
-                "category": "rw",
-                "help": _("decompose any n-ary (*,1) associations into n-1 binary ones"),
-                "fr_examples": {
-                    "split arrange": "décomposer, puis réarranger",
-                },
-                "aliases": [],
-            },
-            "suffix": {
-                "category": "rw",
-                "help": _("suffix the given elements with the given string"),
-                "fr_examples": {
-                    "suffix:boxes=1": "Ajoute un suffixe numérique au nom des boîtes en vue de mettre un MCD et sa copie sur le même diagramme.",
-                },
-                "aliases": ["append"],
-                "op_tk": True,
-            },
-            "swapcase": {
-                "category": "rw",
-                "help": _("rewrite the given elements by swapping the case of each letter"),
-                "aliases": ["swap_case"],
-                "op_tk": True,
-            },
-            "title": {
-                "category": "rw",
-                "help": _("rewrite the given elements in Title Case"),
-                "aliases": ["titlecase", "title_case"],
-                "op_tk": True,
-            },
-            "truncate": {
-                "category": "rw",
-                "help": _("truncate the given elements to the given length (default: {n})").format(n=TRUNCATE_DEFAULT_SIZE),
-                "fr_examples": {
-                    "truncate:boxes=10": "tronque les noms des boîtes à 10 caractères",
-                },
-                "aliases": ["trunc", "shorten"],
-                "op_tk": True,
-            },
-            "uml": {
-                "category": "cv",
-                "help": _("convert the conceptual model into a UML class diagram"),
-                "fr_examples": {
-                    "uml": "format PlantUML",
-                    "uml:plantuml": "idem",
-                    "uml --defer": "calcule le rendu graphique via un service web",
-                    "uml:plantuml=-": "supprime les styles par défaut",
-                    'uml:plantuml="skinparam backgroundColor yellow\nskinparam classAttributeFontName Arial\n"': "ajoute des styles personnalisés",
-                },
-                "aliases": ["uml", "class_diagram"],
-            },
-            "share": {
-                "category": "cv",
-                "help": _("encode the MCD into a URL for Mocodo online"),
-                "fr_examples": {
-                    "qr --defer": "génère un QR code via un service web",
-                },
-                "aliases": ["url", "link", "qr", "qr_code"],
-            },
-            "upper": {
-                "category": "rw",
-                "help": _("rewrite the given elements in UPPERCASE"),
-                "fr_examples": {
-                    "upper:boxes": "noms des boîtes en majuscules",
-                },
-                "aliases": ["uppercase", "upper_case"],
-                "op_tk": True,
-            },
-        }
-
+        metadata_path = Path(f"{SCRIPT_DIRECTORY}/resources/transformations.json")
+        self.metadata = json.loads(metadata_path.read_text())
         index_path = Path(f"{SCRIPT_DIRECTORY}/resources/relation_templates/_index.json")
         template_data = json.loads(index_path.read_text())
         for (stem, d) in template_data.items():
@@ -406,14 +72,14 @@ class Transformations:
         self.args_to_delete = ["-t", "-T", "--transform"]
         self.opt_to_restore = " "
     
-    def extract_subargs(self, arg):
+    def extract_transformation_subargs(self, arg):
         (subopt, __, tail) = arg.partition(":")
         try:
             subopt = self.normalize[subopt.lower()]
         except:
             valid = ", ".join(sorted(self.normalize.keys()))
             raise MocodoError(45, _("The transformation '{subopt}' is not among the possible ones:\n{valid}.").format(subopt=subopt, valid=valid)) # fmt: skip
-        result = extract_subargs(f"{subopt}:{tail}") # NB: calls the global function, not the method
+        result = extract_subargs(f"{subopt}:{tail}")
         category = self.metadata[subopt]["category"]
         self.operations[category].append(result)
         if category == "rw":
@@ -662,14 +328,14 @@ def parsed_arguments():
     io_group.add_argument("--transform", "-t",
         metavar="STR",
         nargs="*",
-        type=transformations.extract_subargs,
+        type=transformations.extract_transformation_subargs,
         default=argparse.SUPPRESS,
         help=_("make a new version of the MCD by applying sequentially the given rewriting operations, and/or convert it into the given formats or languages. Under Jupyter Notebook, '-T' respectively replaces the current cell by the textual result, or copies it into the clipboard (pip3 install pyperclip)"),
     )
     io_group.add_argument("--Transform", "--TRANSFORM", "-T",
         metavar="STR",
         nargs="*",
-        type=transformations.extract_subargs,
+        type=transformations.extract_transformation_subargs,
         help=argparse.SUPPRESS, # don't show this argument in the help message
     )
     io_group.add_argument("--seed",
