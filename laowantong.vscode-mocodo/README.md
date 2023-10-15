@@ -16,6 +16,10 @@ MIT.
 
 ## Release Notes
 
+### 1.0.5 -> 1.0.6
+
+Update for Mocodo 4.0.5.
+
 ### 1.0.2
 
 Add support for Mocodo 4.0's invisible boxes.

@@ -20,12 +20,11 @@ PERCENT: "%"
 SP.-50: /[^\S\r\n]+/
 
 BOX_NAME: /(?![\W_\d])[^=<>,:\n\\]*[^-\[\\\]=<>,:\s\\]/
-typed_attr: (attr attr_suffix? (LBRACKET datatype? RBRACKET)?)?
-!attr_suffix: "!" | "?"
+typed_attr: (attr (LBRACKET datatype? RBRACKET)?)?
 datatype: note
 !box_def_prefix: "+" | "-"
 
-ATTR: /(?=\w)(?!_)[^\[\]>,\r\n!?]*[^\[\]>,\s!?]/
+ATTR: /(?=\w)(?!_)[^\[\]>,\r\n!?]*[^\[\]>,\s]/
 ?note: /[^\r\n\]]+/
 
 start: (break_ | line)*
@@ -62,7 +61,7 @@ entity_or_table_attr: _id_symbols? (typed_attr | HASHTAG foreign_reference)
 _id_symbols: id_groups? id_mark
 ID_GROUPS.10: /\d+(?=_)/
 ID_MARK: "_"
-foreign_reference: this_table_attr attr_suffix? MORETHAN that_table MORETHAN that_table_attr
+foreign_reference: this_table_attr MORETHAN that_table MORETHAN that_table_attr
 this_table_attr: attr
 that_table_attr: attr
 that_table: entity_name_ref

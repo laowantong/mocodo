@@ -230,6 +230,20 @@ class Relations:
                     if weak_count == 2:
                         raise MocodoError(11, _('Reciprocal relative identification around {association}.').format(association=association.name)) # fmt: skip
 
+    @staticmethod
+    def pop_optionality_from_datatype(attribute, is_primary = False):
+        (datatype, n) = re.subn(r"(?i) *\bnot +null\b *", " ", attribute.datatype)
+        attribute.datatype = datatype.strip() # suppress the NOT NULL, if any
+        if n: # A NOT NULL has been suppressed
+            return "!" # the attribute is mandatory (as explicitely stated)
+        (datatype, n) = re.subn(r"(?i) *\bnull\b *", " ", attribute.datatype)
+        attribute.datatype = datatype.strip() # suppress the NULL, if any
+        if is_primary:
+            return "!" # the attribute is mandatory (even if not explicitely stated)
+        if n: # A NULL has been suppressed
+            return "?" # the attribute is optional (as explicitely stated)
+        return "" # the attribute is neither optional nor mandatory
+
     def relations_from_entities(self):
         for (name, entity) in self.mcd.entities.items():
             if entity.is_invisible:
@@ -247,7 +261,7 @@ class Relations:
                 nature = "primary_key" if attribute.kind in ("strong", "weak") else "normal_attribute"
                 unicities = "".join(c for c in sorted(attribute.id_groups) if c != "0")
                 is_primary = (nature == "primary_key")
-                optionality = "!" if is_primary else attribute.optionality
+                optionality = self.pop_optionality_from_datatype(attribute, is_primary)
                 self.relations[name]["columns"].append({
                     "attribute": attribute.label,
                     "optionality": optionality,
@@ -455,7 +469,7 @@ class Relations:
                             })
                 self.relations[association.name]["columns"].extend({ # and the attributes already existing in the association
                         "attribute": attribute.label,
-                        "optionality": attribute.optionality,
+                        "optionality": self.pop_optionality_from_datatype(attribute),
                         "datatype": attribute.datatype,
                         "adjacent_source": None,
                         "outer_source": None,
@@ -554,7 +568,7 @@ class Relations:
             # Add the attributes already existing in the association
             self.relations[df_leg.entity_name]["columns"].extend([{
                     "attribute": attribute.label,
-                    "optionality": attribute.optionality,
+                    "optionality": self.pop_optionality_from_datatype(attribute),
                     "datatype": attribute.datatype,
                     "association_name": association.name,
                     "adjacent_source": None,

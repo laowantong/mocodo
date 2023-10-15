@@ -1709,8 +1709,7 @@ COMMANDE: Num commande, Date, Montant, #Réf. client!>CLIENT>Réf. client
           #
           foreign_reference
             this_table_attr
-              attr	Réf. client
-            attr_suffix	!
+              attr	Réf. client!
             >
             that_table
               entity_name_ref
@@ -1723,8 +1722,7 @@ COMMANDE: Num commande, Date, Montant, #Réf. client!>CLIENT>Réf. client
   'attrs': [{'attribute_label': 'Num commande', 'rank': 0},
             {'attribute_label': 'Date', 'rank': 1},
             {'attribute_label': 'Montant', 'rank': 2},
-            {'attribute_label': 'Réf. client',
-             'attr_suffix': '!',
+            {'attribute_label': 'Réf. client!',
              'that_table': 'CLIENT',
              'that_table_attribute_label': 'Réf. client',
              'rank': 3}],
@@ -1756,14 +1754,13 @@ COMMANDE: Num commande, Date, Montant, Réf. client!
         , 
         entity_or_table_attr
           typed_attr
-            attr	Réf. client
-            attr_suffix	!
+            attr	Réf. client!
 --------------------------------------------------------------------------------
 [{'name': 'COMMANDE',
   'attrs': [{'attribute_label': 'Num commande', 'rank': 0},
             {'attribute_label': 'Date', 'rank': 1},
             {'attribute_label': 'Montant', 'rank': 2},
-            {'attribute_label': 'Réf. client', 'attr_suffix': '!', 'rank': 3}],
+            {'attribute_label': 'Réf. client!', 'rank': 3}],
   'type': 'entity',
   'indent': '',
   'source': 'COMMANDE: Num commande, Date, Montant, Réf. client!'}]

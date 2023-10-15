@@ -62,10 +62,8 @@ def parse_source(source):
             raise MocodoError(500, _('{pin}An attribute label cannot start with "{v[1]!r}".').format(pin=pin, v=v)) # fmt: skip
         if expected == {'NL', 'ATTR', 'COMMA'}:
             raise MocodoError(500, _('{pin}An attribute label cannot start with "{v[1]!r}".').format(pin=pin, v=v)) # fmt: skip
-        if expected == {'LBRACKET', 'NL', 'COMMA', "BANG", "QMARK"}:
+        if expected == {'LBRACKET', 'NL', 'COMMA'}:
             raise MocodoError(521, _('{pin}An attribute label cannot contain "{v}".').format(pin=pin, v=v)) # fmt: skip
-        if t in ("COMMA", "NL", "BREAK") and expected == {'MORETHAN', 'QMARK', 'BANG'}:
-            raise MocodoError(522, _('{pin}An attribute starting with "#" must contain two ">".').format(pin=pin)) # fmt: skip
         if t in ("COMMA", "NL", "BREAK") and expected == {'MORETHAN'}:
             raise MocodoError(522, _('{pin}An attribute starting with "#" must contain two ">".').format(pin=pin)) # fmt: skip
         if t in ("COMMA", "NL", "BREAK") and expected == {'ATTR'}:
@@ -147,7 +145,6 @@ class ClauseExtractor(Transformer):
     attr = lambda self, tree: self._item("attribute_label", tree)
     box_def_prefix = lambda self, tree: self._item("box_def_prefix", tree)
     id_mark = lambda self, tree: self._item("id_mark", tree)
-    attr_suffix = lambda self, tree: self._item("attr_suffix", tree)
 
     def start(self, tree):
         return tree

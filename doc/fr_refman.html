@@ -13089,7 +13089,7 @@ div#notebook {
 <script>
 $( document ).ready(function(){
 
-            var cfg = {"base_numbering": 1, "nav_menu": {}, "number_sections": true, "sideBar": true, "skip_h1_title": false, "title_cell": "Mocodo", "title_sidebar": "Mocodo", "toc_cell": false, "toc_position": {"height": "calc(100% - 180px)", "left": "10px", "top": "150px", "width": "513.625px"}, "toc_section_display": true, "toc_window_display": true};
+            var cfg = {"base_numbering": 1, "nav_menu": {}, "number_sections": true, "sideBar": true, "skip_h1_title": false, "title_cell": "Mocodo", "title_sidebar": "Mocodo", "toc_cell": false, "toc_position": {"height": "calc(100% - 180px)", "left": "10px", "top": "150px", "width": "513.625px"}, "toc_section_display": true, "toc_window_display": false};
 
             // fire the main function with these parameters
             require(['nbextensions/toc2/toc2'], function (toc2) {
@@ -13103,7 +13103,7 @@ $( document ).ready(function(){
 
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[152]:</div>
+<div class="prompt input_prompt">In&nbsp;[334]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">reload_ext</span> mocodo
@@ -13116,7 +13116,7 @@ $( document ).ready(function(){
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[153]:</div>
+<div class="prompt input_prompt">In&nbsp;[335]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">IPython</span> <span class="kn">import</span> <span class="n">display</span>
@@ -18830,18 +18830,18 @@ sandbox_mld.md
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Pour les contraintes d'optionalité, les mêmes notations fonctionnent au niveau du texte-source. Ci-dessous, on précise que <em>nom</em> est à saisie obligatoire, et on explicite le fait que <em>nom de jeune fille</em> peut être laissé vide. Les marqueurs sont visibles dans le MCD :</p>
+<p>Les contraintes <code>NOT NULL</code> ou <code>NULL</code> spécifiées dans les types peuvent également faire l'objet d'une visualisation au niveau relationnel :</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[182]:</div>
+<div class="prompt input_prompt">In&nbsp;[340]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">mocodo</span> --select all -t mld:c
-Personne: id. personne, nom!, prénom, nom de jeune fille?, adresse
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">mocodo</span> -t mld:c
+Personne: id. personne [VARCHAR(8)], nom [VARCHAR(255) NOT NULL], prénom [VARCHAR(255)], nom de jeune fille [VARCHAR(255) NULL]
 </pre></div>
 
     </div>
@@ -18851,37 +18851,6 @@ Personne: id. personne, nom!, prénom, nom de jeune fille?, adresse
 <div class="output_wrapper">
 <div class="output">
 
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-
-<div class="output_svg output_subarea ">
-<svg xmlns="http://www.w3.org/2000/svg" width="150" height="146" viewBox="0 0 150 146">
-<rect x="0" y="0" width="150" height="146" fill="#FFFFFF" stroke="none" stroke-width="0"/>
-
-<!-- Entity Personne -->
-<g>
-	<g>
-		<rect x="9" y="9" width="132" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
-		<rect x="9" y="39" width="132" height="98" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
-		<rect x="9" y="9" width="132" height="128" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
-		<line x1="9" y1="39" x2="141" y2="39" stroke="#000000" stroke-width="1.5"/>
-	</g>
-	<text x="31" y="30.3" fill="#000000" font-family="Copperplate" font-size="18">Personne</text>
-	<text x="17" y="56.1" fill="#000000" font-family="Gill Sans" font-size="15">id. personne</text>
-	<line x1="17" y1="59" x2="95" y2="59" stroke="#000000" stroke-width="1"/>
-	<text x="17" y="73.1" fill="#000000" font-family="Gill Sans" font-size="15">nom!</text>
-	<text x="17" y="90.1" fill="#000000" font-family="Gill Sans" font-size="15">prénom</text>
-	<text x="17" y="107" fill="#000000" font-family="Gill Sans" font-size="15">nom de jeune fille?</text>
-	<text x="17" y="124" fill="#000000" font-family="Gill Sans" font-size="15">adresse</text>
-</g>
-</svg>
-</div>
-
-</div>
 
 <div class="output_area">
 
@@ -18910,7 +18879,7 @@ sandbox_mld.md
 
 <div class="output_markdown rendered_html output_subarea ">
 <ul>
-<li><strong>Personne</strong> (<ins>id. personne</ins>, nom!, prénom, nom de jeune fille?, adresse)</li>
+<li><strong>Personne</strong> (<ins>id. personne</ins>, nom!, prénom, nom de jeune fille?)</li>
 </ul>
 
 </div>
@@ -35509,7 +35478,7 @@ $$<p></p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[309]:</div>
+<div class="prompt input_prompt">In&nbsp;[319]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">display</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="s2">&quot;../fr_cheat_sheet.md&quot;</span><span class="p">)</span>
@@ -35525,7 +35494,7 @@ $$<p></p>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[309]:</div>
+    <div class="prompt output_prompt">Out[319]:</div>
 
 
 
@@ -35804,19 +35773,19 @@ $$<p></p>
 <tr>
 <td style="text-align:right"></td>
 <td style="text-align:left"></td>
-<td style="text-align:left"><code>data_dict:label,type="Description"</code></td>
+<td style="text-align:left"><code>data_dict:label,type='Description'</code></td>
 <td style="text-align:left">deux colonnes, un libellé personnalisé</td>
 </tr>
 <tr>
 <td style="text-align:right"></td>
 <td style="text-align:left"></td>
-<td style="text-align:left"><code>data_dict:label="Attribut",type="Description"</code></td>
+<td style="text-align:left"><code>data_dict:label='Attribut',type='Description'</code></td>
 <td style="text-align:left">deux colonnes, deux libellés personnalisés</td>
 </tr>
 <tr>
 <td style="text-align:right"></td>
 <td style="text-align:left"></td>
-<td style="text-align:left"><code>data_dict:**box**="Entité ou&lt;br&gt;association",label,`type`=`"Type de données"`</code></td>
+<td style="text-align:left"><code>data_dict:**box**='Entité ou&lt;br&gt;association',label,`type`=`'Type de données'`</code></td>
 <td style="text-align:left">mise en forme de certains libellés</td>
 </tr>
 <tr>
@@ -36074,25 +36043,25 @@ $$<p></p>
 <tr>
 <td style="text-align:right"></td>
 <td style="text-align:left"></td>
-<td style="text-align:left"><code>grow:"*1-*N"=3</code></td>
+<td style="text-align:left"><code>grow:'*1-*N'=3</code></td>
 <td style="text-align:left">nombre d'associations <code>*1-*N</code> (défaut)</td>
 </tr>
 <tr>
 <td style="text-align:right"></td>
 <td style="text-align:left"></td>
-<td style="text-align:left"><code>grow:"01-11"=1</code></td>
+<td style="text-align:left"><code>grow:'01-11'=1</code></td>
 <td style="text-align:left">nombre d'associations <code>01-11</code> (défaut)</td>
 </tr>
 <tr>
 <td style="text-align:right"></td>
 <td style="text-align:left"></td>
-<td style="text-align:left"><code>grow:"_11-*N"=1</code></td>
+<td style="text-align:left"><code>grow:'_11-*N'=1</code></td>
 <td style="text-align:left">une entité faible (zéro par défaut)</td>
 </tr>
 <tr>
 <td style="text-align:right"></td>
 <td style="text-align:left"></td>
-<td style="text-align:left"><code>grow:"/1N-*N"=1</code></td>
+<td style="text-align:left"><code>grow:'/1N-*N'=1</code></td>
 <td style="text-align:left">un agrégat (zéro par défaut)</td>
 </tr>
 <tr>
@@ -36374,7 +36343,7 @@ $$<p></p>
 <tr>
 <td style="text-align:right"><span title="Alias : prepend." style="color:green; font-family:monospace; font-weight:600">prefix</span></td>
 <td style="text-align:left">préfixe les éléments donnés avec la chaîne donnée</td>
-<td style="text-align:left"><code>prefix:roles="-"</code></td>
+<td style="text-align:left"><code>prefix:roles='-'</code></td>
 <td style="text-align:left">force les rôles à remplacer le nom des clés étrangères lors du passage au relationnel</td>
 </tr>
 <tr>
@@ -36482,25 +36451,25 @@ $$<p></p>
 <tr>
 <td style="text-align:right"><span title="Alias : substitute, sub, repl." style="color:green; font-family:monospace; font-weight:600">replace</span></td>
 <td style="text-align:left">réécrit les éléments donnés en appliquant le motif « recherche/remplacement » donné</td>
-<td style="text-align:left"><code>replace:boxes="DIRIGER/RÉPONDRE DE"</code></td>
+<td style="text-align:left"><code>replace:boxes='DIRIGER/RÉPONDRE DE'</code></td>
 <td style="text-align:left">renomme une boîte</td>
 </tr>
 <tr>
 <td style="text-align:right"></td>
 <td style="text-align:left"></td>
-<td style="text-align:left"><code>replace:texts="personel/personnel"</code></td>
+<td style="text-align:left"><code>replace:texts='personel/personnel'</code></td>
 <td style="text-align:left">corrige une faute d'orthographe</td>
 </tr>
 <tr>
 <td style="text-align:right"></td>
 <td style="text-align:left"></td>
-<td style="text-align:left"><code>replace:replace:texts="_/ "</code></td>
+<td style="text-align:left"><code>replace:replace:texts='_/ '</code></td>
 <td style="text-align:left">remplace les tirets bas par des espaces</td>
 </tr>
 <tr>
 <td style="text-align:right"></td>
 <td style="text-align:left"></td>
-<td style="text-align:left"><code>replace:types="VARCHAR/VARCHAR2"</code></td>
+<td style="text-align:left"><code>replace:types='VARCHAR/VARCHAR2'</code></td>
 <td style="text-align:left">modifie un nom de type</td>
 </tr>
 <tr>
@@ -36518,7 +36487,7 @@ $$<p></p>
 <tr>
 <td style="text-align:right"></td>
 <td style="text-align:left"></td>
-<td style="text-align:left"><code>replace:cards="0/X" replace:cards="11/X1" replace:cards="1N/XN"</code></td>
+<td style="text-align:left"><code>replace:cards='0/X' replace:cards='11/X1' replace:cards='1N/XN'</code></td>
 <td style="text-align:left">masque les cardinalités minimales</td>
 </tr>
 <tr>
