@@ -23,10 +23,12 @@ $transformations = array(
   "_mld.html" => "html:e",
   "_mld.md" => "markdown",
   "_mld.txt" => "text",
+  "_mld.tex" => "latex",
   "_mld.mcd" => "diagram",
   "_mld_with_constraints.html" => "html:ce",
   "_mld_with_constraints.md" => "markdown:c",
   "_mld_with_constraints.txt" => "text:c",
+  "_mld_with_constraints.tex" => "latex:c",
   "_mld_with_constraints.mcd" => "diagram:c",
   "_dependencies.gv" => "dependencies",
   "_ddl.sql" => "sql",
@@ -101,12 +103,12 @@ if ($_POST['conversions']) {
   foreach ($_POST['conversions'] as $ext) {
     if ($ext == "_ddl.sql") {
       $transformation_options .= " " . $_POST['sql_case'] . ":labels";
-    }
+    };
     if ($_POST['with_constraints']) {
       $option = $transformations[str_replace("_mld", "_mld_with_constraints", $ext)];
     } else {
       $option = $transformations[$ext];
-    }
+    };
     $transformation_options .= " " . $option;
     $conversions[] = $ext;
   };
