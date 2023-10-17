@@ -24,6 +24,10 @@ $transformations = array(
   "_mld.md" => "markdown",
   "_mld.txt" => "text",
   "_mld.mcd" => "diagram",
+  "_mld_with_constraints.html" => "html:ce",
+  "_mld_with_constraints.md" => "markdown:c",
+  "_mld_with_constraints.txt" => "text:c",
+  "_mld_with_constraints.mcd" => "diagram:c",
   "_dependencies.gv" => "dependencies",
   "_ddl.sql" => "sql",
   "_uml.puml" => "uml",
@@ -97,8 +101,13 @@ if ($_POST['conversions']) {
   foreach ($_POST['conversions'] as $ext) {
     if ($ext == "_ddl.sql") {
       $transformation_options .= " " . $_POST['sql_case'] . ":labels";
-    };
-    $transformation_options .= " " . $transformations[$ext];
+    }
+    if ($_POST['with_constraints']) {
+      $option = $transformations[str_replace("_mld", "_mld_with_constraints", $ext)];
+    } else {
+      $option = $transformations[$ext];
+    }
+    $transformation_options .= " " . $option;
     $conversions[] = $ext;
   };
   $mocodo .= " -t{$transformation_options}";

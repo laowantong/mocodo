@@ -293,11 +293,7 @@ function generate() {
     data.push({ name: "seed", value: text.indexOf("\n").toString() });
   }
   if ($("#constraints").prop("checked")) {
-    for (var i = 0; i < data.length; i++) {
-      if (data[i].value.startsWith("_mld")) {
-        data[i].value += "_with_constraints";
-      }
-    }
+    data.push({ name: "with_constraints", value: true })
   }
   $.ajax({
     type: "POST",
