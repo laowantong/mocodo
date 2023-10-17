@@ -1,9 +1,6 @@
 import mimetypes
 from pathlib import Path
-import re
 import sys
-
-import urllib3
 
 if sys.version_info < (3, 6):
     print(f"Mocodo requires Python 3.6 or later to run.\nThis version is {sys.version}.")
@@ -11,12 +8,11 @@ if sys.version_info < (3, 6):
 
 import importlib
 import json
-import contextlib
 import requests
 import shutil
 import urllib
 
-from .argument_parser import parsed_arguments, Transformations
+from .argument_parser import parsed_arguments
 from .common import Common, safe_print_for_PHP
 from .convert.read_template import read_template
 from .convert.relations import Relations
