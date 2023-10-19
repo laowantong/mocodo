@@ -2,7 +2,7 @@ import operator
 from math import hypot, sqrt
 
 from .mocodo_error import MocodoError
-from .tools.string_tools import surrounds, is_a_description
+from .tools.string_tools import surrounds
 
 
 class Leg:
@@ -118,7 +118,7 @@ class Leg:
         tx = x + card_margin
         ty = y - card_margin - style["card_baseline"]
         self.saved_card_description = []
-        if is_a_description(self.note):
+        if self.note:
             self.saved_card_description.append(
                 (
                     "text_with_note",
@@ -128,8 +128,8 @@ class Leg:
                         "text_color": style["card_text_color"],
                         "family": style["card_font"]["family"],
                         "size": style["card_font"]["size"],
-                        "note": self.note,
                         "text": self.card_view,
+                        "note": self.note.lstrip("+").lstrip("-")
                     },
                 )
             )
@@ -143,8 +143,7 @@ class Leg:
                         "text_color": style["card_text_color"],
                         "family": style["card_font"]["family"],
                         "size": style["card_font"]["size"],
-                        "note": self.note,
-                        "text": self.card_view.strip("_"),
+                        "text": self.card_view,
                     },
                 )
             )
@@ -238,7 +237,7 @@ class Leg:
         tx = x + card_margin
         ty = y - card_margin - style["card_baseline"]
         self.saved_card_description = []
-        if is_a_description(self.note):
+        if self.note:
             self.saved_card_description.append(
                 (
                     "text_with_note",
@@ -248,8 +247,8 @@ class Leg:
                         "text_color": style["card_text_color"],
                         "family": style["card_font"]["family"],
                         "size": style["card_font"]["size"],
-                        "note": self.note,
                         "text": self.card_view,
+                        "note": self.note.lstrip("+").lstrip("-"),
                     },
                 )
             )
@@ -263,7 +262,6 @@ class Leg:
                         "text_color": style["card_text_color"],
                         "family": style["card_font"]["family"],
                         "size": style["card_font"]["size"],
-                        "note": self.note,
                         "text": self.card_view,
                     },
                 )
