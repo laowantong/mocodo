@@ -160,19 +160,86 @@
 					</div>
 				</div>
 				<div id="paramContents" class="contents">
-					<div><label class="fixedWidth" for="shapes">Police et proportions</label><select onchange="markAsDirty();writeCookie()" name="shapes" id="shapes"></select></div>
-					<div><label class="fixedWidth" for="colors">Palette de couleurs</label><select onchange="markAsDirty();writeCookie()" name="colors" id="colors"></select></div>
-					<div><label class="fixedWidth" for="flashlight">Mode nuit</label><input type="checkbox" id="flashlight" onclick="switchOnFlashlight(event)"></div>
-					<div>
-						<label class="fixedWidth" for="adjust_width">Ajustement de la largeur des libellés</label>
-						<input type="number" value="1.00" max="2.00" min="0.50" step="0.01" onchange="writeCookie()" name="adjust_width" id="adjust_width" style="width: 5em; border-radius: 0;">
-					</div>
-					<div><label class="fixedWidth" for="delays">Temps de calcul limité à </label><select onchange="writeCookie()" name="delays" id="delays"></select></div>
-					<div><label class="fixedWidth" for="detect_overlaps" title="Lève une erreur en cas de chevauchement de pattes horizontales ou verticales.">Détection des chevauchements</label><input type="checkbox" name="detect_overlaps" id="detect_overlaps" onchange='markAsDirty();writeCookie()' checked /></div>
-					<div style="color:#222;"><label class="fixedWidth" title="Les formats cochés seront générés et inclus dans l'archive téléchargée.">Format des images en sortie</label><span title="Pour le web, zoom illimité. Requis."><input type="checkbox" disabled="true" id="svg" checked /><label for="svg">&nbsp;SVG&nbsp;&nbsp;</label></span><span title="Multi-usage, zoom limité."><input type="checkbox" name="png" id="png" onchange='markAsDirty();writeCookie()' /><label for="png">&nbsp;PNG&nbsp;&nbsp;</label></span><span title="Pour l'impression, zoom illimité."><input type="checkbox" name="pdf" id="pdf" onchange='markAsDirty();writeCookie()' /><label for="pdf">&nbsp;PDF&nbsp;&nbsp;</label></span></div>
-					<div><label class="fixedWidth" for="knowledge" title="Vous pouvez adapter les traitements et l'interface de Mocodo online à des besoins plus avancés.">Notions et fonctionnalités supplémentaires</label><details style="display: inline-flex;"><summary style="color:#666;">Découvrir…</summary><label class="fixedWidth"></label><ul name="knowledge" id="knowledge"></ul></details></div>
-					<div><label class="fixedWidth" for="sql_case">Mise en forme des libellés pour SQL</label><select onchange="markAsDirty();writeCookie()" name="sql_case" id="sql_case"></select></div>
-					<div><label class="fixedWidth" for="conversions" title="Les formats cochés seront affichés sous l'onglet « Autres sorties » et inclus dans l'archive téléchargée.">Conversions en sortie</label><ul name="conversions" id="conversions"><details><summary style="color:#666;">Autres options de conversions…</summary></details></ul>
+					<div class="settings-pane">
+						<div class="setting-row">
+							<label class="setting-label" for="shapes">Police et proportions</label>
+							<div class="setting-controls">
+								<select onchange="markAsDirty();writeCookie()" name="shapes" id="shapes">
+									<!-- To be populated by JS -->
+								</select>
+							</div>
+						</div>
+						<div class="setting-row">
+							<label class="setting-label" for="colors">Palette de couleurs</label>
+							<div class="setting-controls">
+								<select onchange="markAsDirty();writeCookie()" name="colors" id="colors">
+									<!-- To be populated by JS -->
+								</select>
+							</div>
+						</div>
+						<div class="setting-row">
+							<label class="setting-label" for="flashlight">Mode nuit</label>
+							<div class="setting-controls">
+								<input type="checkbox" id="flashlight" onclick="switchOnFlashlight(event)">
+							</div>
+						</div>
+						<div class="setting-row">
+							<label class="setting-label" for="adjust_width">Ajustement de la largeur des libellés</label>
+							<div class="setting-controls">
+								<input type="number" value="1.00" max="2.00" min="0.50" step="0.01" onchange="writeCookie()" name="adjust_width" id="adjust_width" style="width: 5em; border-radius: 0;">
+							</div>
+						</div>
+						<div class="setting-row">
+							<label class="setting-label" for="delays">Temps de calcul limité à </label>
+							<div class="setting-controls">
+								<select onchange="writeCookie()" name="delays" id="delays"></select>
+							</div>
+						</div>
+						<div class="setting-row">
+							<label class="setting-label" for="detect_overlaps" title="Lève une erreur en cas de chevauchement de pattes horizontales ou verticales.">Détection des chevauchements</label>
+							<div class="setting-controls">
+								<input type="checkbox" name="detect_overlaps" id="detect_overlaps" onchange='markAsDirty();writeCookie()' checked />
+							</div>
+						</div>
+						<div class="setting-row">
+							<label class="setting-label" title="Les formats cochés seront générés et inclus dans l'archive téléchargée.">Format des images en sortie</label>
+							<div class="setting-row">
+								<span>
+									<input type="checkbox" disabled="true" id="svg" checked />
+									<label for="svg" title="Pour le web, zoom illimité. Requis.">&nbsp;SVG&nbsp;&nbsp;</label>
+									<input type="checkbox" name="png" id="png" onchange='markAsDirty();writeCookie()' />
+									<label for="png" title="Multi-usage, zoom limité.">&nbsp;PNG&nbsp;&nbsp;</label>
+									<input type="checkbox" name="pdf" id="pdf" onchange='markAsDirty();writeCookie()' />
+									<label for="pdf" title="Pour l'impression, zoom illimité.">&nbsp;PDF&nbsp;&nbsp;</label>
+								</span>
+							</div>
+						</div>
+						<div class="setting-row">
+							<label class="setting-label" for="knowledge" title="Vous pouvez adapter les traitements et l'interface de Mocodo online à des besoins plus avancés.">Notions et fonctionnalités supplémentaires</label>
+							<details class="setting-details">
+								<summary>Découvrir…</summary>
+								<ul class="setting-controls" name="knowledge" id="knowledge">
+									<!-- To be populated by JS -->
+								</ul>
+							</details>
+						</div>
+						<div class="setting-row">
+							<label class="setting-label" for="sql_case">Mise en forme des libellés pour SQL</label>
+							<div class="setting-controls">
+								<select onchange="markAsDirty();writeCookie()" name="sql_case" id="sql_case">
+									<!-- To be populated by JS -->
+								</select>
+							</div>
+						</div>
+						<div class="setting-row">
+							<label class="setting-label" for="conversions" title="Les formats cochés seront affichés sous l'onglet « Autres sorties » et inclus dans l'archive téléchargée.">Conversions en sortie</label>
+							<details class="setting-details">
+								<summary>Autres options de conversions…</summary>
+								<ul class="setting-controls" name="conversions" id="conversions">
+									<!-- To be populated by JS -->
+								</ul>
+							</details>
+						</div>
 					</div>
 				</div>
 				<div id="geoContents" class="contents">

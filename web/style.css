@@ -118,7 +118,7 @@ form input[type="text"] {
   overflow:auto;
   border:0px;
 }
-form label.fixedWidth, #geoContents label {
+form #geoContents label {
   color:#222;
   float: left;
   width: 325px;
@@ -469,4 +469,46 @@ ul.tabs a:hover {
 }
 .pulsating {
   animation: pulse 1s linear infinite;
+}
+
+.settings-pane {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Two equally sized columns */
+  gap: 0.3ex 0.8em; /* Vertical and horizontal gap */
+}
+
+.setting-row {
+  display: contents; /* Makes .setting-row transparent to the grid */
+  color:#222;
+}
+
+.setting-label {
+  grid-column: 1; /* Position in the first column */
+  text-align: right;
+  padding-right: 10px; /* A little spacing between the label and the control */
+}
+
+.setting-controls {
+  grid-column: 2; /* Position in the second column */
+  list-style-type: none; /* Removes bullets from the list */
+  padding: 0; /* Removes default padding from the list */
+  margin: 0; /* Removes default margin from the list */
+}
+
+.setting-controls li {
+  display: flex; /* Makes sure checkbox and its label are side by side */
+  align-items: center; /* Vertically centers checkbox with its label */
+}
+
+.setting-control {
+  margin-right: 10px; /* Adds some space between a checkbox and its label */
+}
+.setting-details {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.setting-details summary {
+  cursor: pointer; /* Makes it clear that this is clickable */
+  color: #666;
 }
