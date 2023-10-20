@@ -221,6 +221,7 @@
 									<!-- To be populated by JS -->
 									<details class="setting-details">
 										<summary>Autres options de conversions…</summary>
+										<!-- To be populated by JS -->
 									</details>
 								</ul
 							</div>

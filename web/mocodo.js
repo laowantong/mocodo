@@ -324,6 +324,12 @@ function generate() {
       }
       $("#errorTab").fadeOut();
       markAsReady();
+      // suppress the sessions older than 24 hours
+      $.ajax({
+        type: "POST",
+        url: "web/purge.php",
+        data: {}
+      });
     },
     complete: function (data) {
       $("#refreshButton").show();
