@@ -8,7 +8,7 @@ def parse_source(source):
     try:
         return parser.parse(f"{source}\n")
     except Exception as error:
-        pin = f"Parsing error:\n{error.get_context(source)}\n"
+        pin = _("Parsing error:\n{e}\n").format(e=error.get_context(source))
         expected = set(error.expected)
         t = error.token.type
         v = repr(error.token.value)

@@ -632,6 +632,10 @@ msgstr "L'obfuscation a échoué. Pas assez de mots de substitution dans « {fi
 msgid "Operation \"{op_name}\" cannot be applied to \"{pre_token}\"."
 msgstr "L'opération « {op_name} » ne peut pas être appliquée à « {pre_token} »."
 
+#: mocodo/tools/parser_tools.py:11
+msgid "Parsing error:\n{e}\n"
+msgstr "Erreur d'analyse syntaxique :\n{e}\n"
+
 #: mocodo/tools/parser_tools.py:22 mocodo/tools/parser_tools.py:24
 msgid "{pin}\"{v}\" is not a valid line beginning."
 msgstr "{pin}« {v} » n'est pas un début de ligne valide."
@@ -738,5 +742,5 @@ msgid "{pin}An attribute label cannot have more than one optionality marker."
 msgstr "{pin}Un nom d'attribut ne peut pas avoir plus d'un marqueur d'optionnalité."
 
 #: mocodo/tools/parser_tools.py:85
-msgid "{pin}\nToken \"{t}\" encountered. Expected tokens: {expected}."
-msgstr "{pin}\Token « {t} » rencontré. Tokens attendus : {expected}."
+msgid "{pin}Token \"{t}\" encountered. Expected tokens: {expected}."
+msgstr "{pin}Token « {t} » rencontré. Tokens attendus : {expected}."
