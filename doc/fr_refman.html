@@ -13089,7 +13089,7 @@ div#notebook {
 <script>
 $( document ).ready(function(){
 
-            var cfg = {"base_numbering": 1, "nav_menu": {}, "number_sections": true, "sideBar": true, "skip_h1_title": false, "title_cell": "Mocodo", "title_sidebar": "Mocodo", "toc_cell": false, "toc_position": {"height": "calc(100% - 180px)", "left": "10px", "top": "150px", "width": "513.625px"}, "toc_section_display": true, "toc_window_display": false};
+            var cfg = {"base_numbering": 1, "nav_menu": {}, "number_sections": true, "sideBar": true, "skip_h1_title": false, "title_cell": "Mocodo", "title_sidebar": "Mocodo", "toc_cell": false, "toc_position": {"height": "47.7031px", "left": "10px", "top": "150px", "width": "469.641px"}, "toc_section_display": false, "toc_window_display": true};
 
             // fire the main function with these parameters
             require(['nbextensions/toc2/toc2'], function (toc2) {
@@ -13103,7 +13103,7 @@ $( document ).ready(function(){
 
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[334]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">reload_ext</span> mocodo
@@ -13113,10 +13113,28 @@ $( document ).ready(function(){
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Mocodo 4.0.4 loaded.
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[335]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">IPython</span> <span class="kn">import</span> <span class="n">display</span>
@@ -20955,7 +20973,7 @@ sandbox_mld.md
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="&#201;viter-la-cr&#233;ation-d'un-champ-optionnel">&#201;viter la cr&#233;ation d'un champ optionnel<a class="anchor-link" href="#&#201;viter-la-cr&#233;ation-d'un-champ-optionnel">&#182;</a></h4>
+<h4 id="Forcer-une-table-pour-&#233;viter-un-champ-optionnel">Forcer une table pour &#233;viter un champ optionnel<a class="anchor-link" href="#Forcer-une-table-pour-&#233;viter-un-champ-optionnel">&#182;</a></h4>
 </div>
 </div>
 </div>
@@ -20969,7 +20987,7 @@ sandbox_mld.md
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[198]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">mocodo</span> --select all -t mld:c
@@ -21095,10 +21113,10 @@ sandbox_mld.md
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[199]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">mocodo</span> --select all -t mld:c
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">mocodo</span> --select all -t mld:c --colors mondrian
 Entreprise: id. entreprise, raison, activité, adresse
 +Envoyer, 0N Entreprise, 01 Participant
 Participant: id. inscrit, nom, adresse
@@ -21120,53 +21138,53 @@ Participant: id. inscrit, nom, adresse
 
 <div class="output_svg output_subarea ">
 <svg xmlns="http://www.w3.org/2000/svg" width="408" height="128" viewBox="0 0 408 128">
-<rect x="0" y="0" width="408" height="128" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="0" y="0" width="408" height="128" fill="#fefeec" stroke="none" stroke-width="0"/>
 
 <!-- Association Envoyer -->
 <g>
-	<line x1="68" y1="64" x2="202" y2="64" stroke="#000000" stroke-width="1"/>
-	<line x1="338" y1="64" x2="202" y2="64" stroke="#000000" stroke-width="1"/>
+	<line x1="68" y1="64" x2="202" y2="64" stroke="#060100" stroke-width="1"/>
+	<line x1="338" y1="64" x2="202" y2="64" stroke="#060100" stroke-width="1"/>
 	<g>
-		<path d="M234 35 a14 14 90 0 1 14 14 V63 h-92 V49 a14 14 90 0 1 14 -14" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
-		<path d="M248 63 v16 a14 14 90 0 1 -14 14 H170 a14 14 90 0 1 -14 -14 V63 H92" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
-		<rect x="156" y="35" width="92" height="58" fill="none" rx="14" stroke="#000000" stroke-width="1.5"/>
-		<rect x="156" y="35" width="92" height="58" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
-		<line x1="156" y1="63" x2="248" y2="63" stroke="#000000" stroke-width="1.5"/>
-		<text x="164" y="56.3" fill="#000000" font-family="Copperplate" font-size="18">Envoyer</text>
+		<rect x="146" y="25" width="112" height="78" fill="#fced5f55" rx="7" stroke="#06010055" stroke-width="1.5"/>
+		<path d="M234 35 a14 14 90 0 1 14 14 V63 h-92 V49 a14 14 90 0 1 14 -14" fill="#081a84" stroke="#081a84" stroke-width="0"/>
+		<path d="M248 63 v16 a14 14 90 0 1 -14 14 H170 a14 14 90 0 1 -14 -14 V63 H92" fill="#fefeec" stroke="#fefeec" stroke-width="0"/>
+		<rect x="156" y="35" width="92" height="58" fill="none" rx="14" stroke="#060100" stroke-width="1.5"/>
+		<line x1="156" y1="63" x2="248" y2="63" stroke="#060100" stroke-width="1.5"/>
+		<text x="164" y="56.3" fill="#fefeec" font-family="Copperplate" font-size="18">Envoyer</text>
 	</g>
-	<text x="132" y="80" fill="#000000" font-family="Futura" font-size="11">0,N</text>
-	<text x="254" y="80" fill="#000000" font-family="Futura" font-size="11">0,1</text>
+	<text x="132" y="80" fill="#060100" font-family="Futura" font-size="11">0,N</text>
+	<text x="254" y="80" fill="#060100" font-family="Futura" font-size="11">0,1</text>
 </g>
 
 <!-- Entity Entreprise -->
 <g>
 	<g>
-		<rect x="9" y="9" width="118" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
-		<rect x="9" y="39" width="118" height="80" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
-		<rect x="9" y="9" width="118" height="110" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
-		<line x1="9" y1="39" x2="127" y2="39" stroke="#000000" stroke-width="1.5"/>
+		<rect x="9" y="9" width="118" height="30" fill="#c6281b" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="9" y="39" width="118" height="80" fill="#fced5f" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="9" y="9" width="118" height="110" fill="none" stroke="#060100" stroke-width="1.5" opacity="1"/>
+		<line x1="9" y1="39" x2="127" y2="39" stroke="#060100" stroke-width="1.5"/>
 	</g>
-	<text x="17" y="30.3" fill="#000000" font-family="Copperplate" font-size="18">Entreprise</text>
-	<text x="17" y="56.1" fill="#000000" font-family="Gill Sans" font-size="15">id. entreprise</text>
-	<line x1="17" y1="59" x2="101" y2="59" stroke="#000000" stroke-width="1"/>
-	<text x="17" y="73.1" fill="#000000" font-family="Gill Sans" font-size="15">raison</text>
-	<text x="17" y="90.1" fill="#000000" font-family="Gill Sans" font-size="15">activité</text>
-	<text x="17" y="107" fill="#000000" font-family="Gill Sans" font-size="15">adresse</text>
+	<text x="17" y="30.3" fill="#fefeec" font-family="Copperplate" font-size="18">Entreprise</text>
+	<text x="17" y="56.1" fill="#060100" font-family="Gill Sans" font-size="15">id. entreprise</text>
+	<line x1="17" y1="59" x2="101" y2="59" stroke="#060100" stroke-width="1"/>
+	<text x="17" y="73.1" fill="#060100" font-family="Gill Sans" font-size="15">raison</text>
+	<text x="17" y="90.1" fill="#060100" font-family="Gill Sans" font-size="15">activité</text>
+	<text x="17" y="107" fill="#060100" font-family="Gill Sans" font-size="15">adresse</text>
 </g>
 
 <!-- Entity Participant -->
 <g>
 	<g>
-		<rect x="277" y="17" width="122" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
-		<rect x="277" y="47" width="122" height="64" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
-		<rect x="277" y="17" width="122" height="94" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
-		<line x1="277" y1="47" x2="399" y2="47" stroke="#000000" stroke-width="1.5"/>
+		<rect x="277" y="17" width="122" height="30" fill="#c6281b" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="277" y="47" width="122" height="64" fill="#fced5f" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="277" y="17" width="122" height="94" fill="none" stroke="#060100" stroke-width="1.5" opacity="1"/>
+		<line x1="277" y1="47" x2="399" y2="47" stroke="#060100" stroke-width="1.5"/>
 	</g>
-	<text x="285" y="38.3" fill="#000000" font-family="Copperplate" font-size="18">Participant</text>
-	<text x="285" y="64.1" fill="#000000" font-family="Gill Sans" font-size="15">id. inscrit</text>
-	<line x1="285" y1="67" x2="343" y2="67" stroke="#000000" stroke-width="1"/>
-	<text x="285" y="81.1" fill="#000000" font-family="Gill Sans" font-size="15">nom</text>
-	<text x="285" y="98" fill="#000000" font-family="Gill Sans" font-size="15">adresse</text>
+	<text x="285" y="38.3" fill="#fefeec" font-family="Copperplate" font-size="18">Participant</text>
+	<text x="285" y="64.1" fill="#060100" font-family="Gill Sans" font-size="15">id. inscrit</text>
+	<line x1="285" y1="67" x2="343" y2="67" stroke="#060100" stroke-width="1"/>
+	<text x="285" y="81.1" fill="#060100" font-family="Gill Sans" font-size="15">nom</text>
+	<text x="285" y="98" fill="#060100" font-family="Gill Sans" font-size="15">adresse</text>
 </g>
 </svg>
 </div>
@@ -21216,7 +21234,7 @@ sandbox_mld.md
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Cela permet du même coup d'éviter un champ optionnel, dont la gestion peut être délicate (notamment sous Microsoft SQL Server qui, contrairement au standard SQL, ne semble pas convaincu qu'une colonne <code>UNIQUE</code> peut contenir plusieurs un <code>NULL</code> !).</p>
+<p>Cela permet du même coup d'éviter un champ optionnel, dont la gestion peut être délicate (notamment sous Microsoft SQL Server qui, contrairement au standard SQL, ne semble pas convaincu qu'une colonne <code>UNIQUE</code> peut contenir plus d'un <code>NULL</code> !).</p>
 
 </div>
 </div>
@@ -21451,7 +21469,7 @@ sandbox_mld.md
 <li><em>date visite resp.</em> : <code>+</code> en préfixe supprime le séparateur.</li>
 <li><em>num. ens. resp.</em> : <code>-</code> en préfixe supprime le nom de la clé et le remplace par le rôle.</li>
 </ul>
-<p>Le premier préfixe peut également être utilisé simplement pour éviter qu'un rôle contenant des espaces ne soit considéré comme une note explicative affichable au survol de la cardinalité.</p>
+<p>Pour ne pas surcharger le dessin, le rôle n'est pas affiché à côté du lien, mais il apparaît au survol de la cardinalité.</p>
 
 </div>
 </div>
@@ -23625,7 +23643,7 @@ Parrainer, 01 [Un client peut avoir été parrainé ou non.] Client, 0N [Un clie
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Remarquez que la syntaxe est la même que pour les rôles, qui eux ne s'affichent pas au survol, mais sont utilisés lors du passage au relationnel. Comment Mocodo fait-il la différence ? En appliquant les règles suivantes :</p>
+<p>Remarquez que la syntaxe est la même que pour les rôles, qui sont en plus utilisés lors du passage au relationnel. Comment Mocodo fait-il la différence ? En appliquant les règles suivantes :</p>
 <ul>
 <li>si la note de patte commence par <code>+</code> ou <code>-</code>, c'est un rôle.</li>
 <li>sinon, si elle ne contient aucun espace, c'est un rôle.</li>
@@ -28802,7 +28820,7 @@ PRODUIT: Réf. produit, Libellé, Prix unitaire
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[251]:</div>
+<div class="prompt input_prompt">In&nbsp;[344]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">mocodo</span>
@@ -35208,7 +35226,7 @@ VOIR AUSSI :
   Version en ligne      https://mocodo.net
   Code source           https://github.com/laowantong/mocodo
   Documentation         https://rawgit.com/laowantong/mocodo/master/doc/fr_refman.html
-  Aide-mémoire pour -t  https://github.com/laowantong/mocodo/blob/master/doc/fr_cheat_sheet.md
+  Aide-mémoire pour -t  https://github.com/laowantong/mocodo/master/doc/fr_cheat_sheet.md
 
 LICENCE :               MIT
 
@@ -35218,7 +35236,7 @@ CONTACT :
                         Laboratoire LCOMS - UFR MIM
                         3 rue Augustin Fresnel
                         57070 METZ Technopôle
-                        France
+                        https://github.com/laowantong/mocodo/blob/master/doc/fr_cheat_sheet.md
   Courriel              &lt;prénom.nom&gt;@univ-lorraine.fr
     
 

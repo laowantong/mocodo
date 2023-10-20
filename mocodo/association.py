@@ -203,6 +203,22 @@ class Association:
         def description_when_default(style):
             result = []
             result.extend(optional_description_for_cluster(style))
+            if self.is_protected:
+                result.append(
+                    (
+                        "round_rect",
+                        {
+                            "x": self.l - style["card_margin"] * 2,
+                            "y": self.t - style["card_margin"] * 2,
+                            "w": self.w + style["card_margin"] * 4,
+                            "h": self.h + style["card_margin"] * 4,
+                            "radius": style["round_corner_radius"] // 2,
+                            "stroke_color": style['entity_stroke_color'] + "55", # alpha channel
+                            "stroke_depth": style["box_stroke_depth"],
+                            "color": style["entity_color"] + "55", # alpha channel
+                        },
+                    )
+                )
             x = self.l
             y = self.t
             w = self.w
@@ -257,22 +273,6 @@ class Association:
                     },
                 )
             )
-            if self.is_protected:
-                result.append(
-                    (
-                        "rect",
-                        {
-                            "x": self.l,
-                            "y": self.t,
-                            "w": self.w,
-                            "h": self.h,
-                            "color": style['transparent_color'],
-                            "stroke_color": style['entity_stroke_color'],
-                            "stroke_depth": style["box_stroke_depth"],
-                            "opacity": 1,
-                        },
-                    )
-                )
             result.append(
                 (
                     "line",
