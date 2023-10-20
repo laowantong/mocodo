@@ -14,7 +14,7 @@
   -webkit-box-shadow: 0px 0px 10px 0px gray;
   box-shadow: 0px 0px 10px 0px gray;
   display:block;
-	padding-bottom:4em;
+	padding-bottom:30px;
 }
 
 #banner{
@@ -30,8 +30,7 @@
   clear: both;
   position: relative;
   z-index: 10;
-  height: 3em;
-  margin-top: -3em;
+  height:30px;
 }
 #navigation a:hover {
   color:black;
