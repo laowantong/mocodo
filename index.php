@@ -217,12 +217,12 @@
 							</div>
 							<div class="setting-row">
 								<label class="setting-label" for="conversions" title="Les formats cochés seront affichés sous l'onglet « Autres sorties » et inclus dans l'archive téléchargée.">Conversions en sortie</label>
-								<details class="setting-details">
-									<summary>Autres options de conversions…</summary>
-									<ul class="setting-controls" name="conversions" id="conversions">
-										<!-- To be populated by JS -->
-									</ul>
-								</details>
+								<ul class="setting-controls" name="conversions" id="conversions">
+									<!-- To be populated by JS -->
+									<details class="setting-details">
+										<summary>Autres options de conversions…</summary>
+									</details>
+								</ul
 							</div>
 						</div>
 					</div>
