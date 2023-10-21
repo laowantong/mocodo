@@ -223,7 +223,7 @@
 										<summary>Autres options de conversions…</summary>
 										<!-- To be populated by JS -->
 									</details>
-								</ul
+								</ul>
 							</div>
 						</div>
 					</div>
