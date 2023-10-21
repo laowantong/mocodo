@@ -1,27 +1,27 @@
-Table Entreprise {
+Table "Entreprise" {
   "nom entreprise" VARCHAR(42) [pk, not null]
-  adresse VARCHAR(42)
-  "téléphone" VARCHAR(42)
+  "adresse"        VARCHAR(42)
+  "téléphone"      VARCHAR(42)
 }
 
-Table Stage {
-  "num. stage" VARCHAR(42) [pk, not null]
-  sujet VARCHAR(42)
-  "nom entreprise" VARCHAR(42) [not null]
+Table "Stage" {
+  "num. stage"       VARCHAR(42) [pk, not null]
+  "sujet"            VARCHAR(42)
+  "nom entreprise"   VARCHAR(42) [not null]
   "date proposition" VARCHAR(42)
 }
 
 Table "Étudiant" {
-  "num étudiant" VARCHAR(42) [pk, not null]
-  nom VARCHAR(42)
-  "num. stage" VARCHAR(42) [not null]
+  "num étudiant"   VARCHAR(42) [pk, not null]
+  "nom"            VARCHAR(42)
+  "num. stage"     VARCHAR(42) [not null]
   "date signature" VARCHAR(42)
-  date VARCHAR(42) [null]
-  "note stage" VARCHAR(42)
+  "date"           VARCHAR(42) [null]
+  "note stage"     VARCHAR(42)
   Indexes {
     "num. stage" [unique]
   }
 }
 
-Ref:Stage."nom entreprise" > Entreprise."nom entreprise"
-Ref:"Étudiant"."num. stage" > Stage."num. stage"
+Ref:"Stage"."nom entreprise" > "Entreprise"."nom entreprise"
+Ref:"Étudiant"."num. stage" > "Stage"."num. stage"

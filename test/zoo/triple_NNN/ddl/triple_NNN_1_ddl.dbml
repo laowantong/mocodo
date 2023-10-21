@@ -1,28 +1,28 @@
-Table Appliquer {
-  "employé" VARCHAR(42) [not null]
-  projet VARCHAR(42) [not null]
+Table "Appliquer" {
+  "employé"    VARCHAR(42) [not null]
+  "projet"     VARCHAR(42) [not null]
   "compétence" VARCHAR(42) [not null]
   Indexes {
-    ("employé", projet, "compétence") [pk]
+    ("employé", "projet", "compétence") [pk]
   }
 }
 
 Table "Compétence" {
   "compétence" VARCHAR(42) [pk, not null]
-  "libellé" VARCHAR(42)
+  "libellé"    VARCHAR(42)
 }
 
 Table "Employé" {
   "employé" VARCHAR(42) [pk, not null]
-  nom VARCHAR(42)
+  "nom"     VARCHAR(42)
 }
 
-Table Projet {
-  projet VARCHAR(42) [pk, not null]
+Table "Projet" {
+  "projet"     VARCHAR(42) [pk, not null]
   "date début" VARCHAR(42)
-  "date fin" VARCHAR(42)
+  "date fin"   VARCHAR(42)
 }
 
-Ref:Appliquer."employé" > "Employé"."employé"
-Ref:Appliquer.projet > Projet.projet
-Ref:Appliquer."compétence" > "Compétence"."compétence"
+Ref:"Appliquer"."employé" > "Employé"."employé"
+Ref:"Appliquer"."projet" > "Projet"."projet"
+Ref:"Appliquer"."compétence" > "Compétence"."compétence"

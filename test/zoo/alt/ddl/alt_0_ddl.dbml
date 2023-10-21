@@ -1,36 +1,36 @@
-Table CLIENT {
+Table "CLIENT" {
   "Réf. client" VARCHAR(42) [pk, not null]
-  Nom VARCHAR(42)
-  "Prénom" VARCHAR(42)
-  Adresse VARCHAR(42)
-  Mail VARCHAR(42)
+  "Nom"         VARCHAR(42)
+  "Prénom"      VARCHAR(42)
+  "Adresse"     VARCHAR(42)
+  "Mail"        VARCHAR(42)
   Indexes {
-    (Nom, "Prénom") [unique]
-    Mail [unique]
+    ("Nom", "Prénom") [unique]
+    "Mail" [unique]
   }
 }
 
-Table FOO {
-  foo VARCHAR(42) [pk, not null]
-  bar VARCHAR(42)
-  biz VARCHAR(42)
-  buz VARCHAR(42)
-  qux VARCHAR(42)
-  quux VARCHAR(42)
+Table "FOO" {
+  "foo"  VARCHAR(42) [pk, not null]
+  "bar"  VARCHAR(42)
+  "biz"  VARCHAR(42)
+  "buz"  VARCHAR(42)
+  "qux"  VARCHAR(42)
+  "quux" VARCHAR(42)
   Indexes {
-    (biz, quux, buz) [unique]
-    (quux, qux) [unique]
-    (bar, biz, quux) [unique]
+    ("biz", "quux", "buz") [unique]
+    ("quux", "qux") [unique]
+    ("bar", "biz", "quux") [unique]
   }
 }
 
-Table UTILISER {
-  carnet VARCHAR(42) [not null]
-  projet VARCHAR(42) [not null]
-  technicien VARCHAR(42)
+Table "UTILISER" {
+  "carnet"     VARCHAR(42) [not null]
+  "projet"     VARCHAR(42) [not null]
+  "technicien" VARCHAR(42)
   Indexes {
-    (carnet, projet) [pk]
-    (technicien, projet) [unique]
-    (carnet, technicien) [unique]
+    ("carnet", "projet") [pk]
+    ("technicien", "projet") [unique]
+    ("carnet", "technicien") [unique]
   }
 }

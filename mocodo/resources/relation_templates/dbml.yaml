@@ -35,10 +35,10 @@ transform_optionality:
     comment: 'Replace QMARK with NULL.'
     search: '^\?$'
     replace: 'null'
-compose_primary_key: '  "{label}" {datatype} [{optionality}] [pk]\nADD_PRIMARY_KEY "{label}"'
-compose_normal_attribute: '  "{label}" {datatype} [{optionality}]'
-compose_primary_foreign_key: '  "{label}" {datatype} [{optionality}] [pk]\nADD_PRIMARY_KEY "{label}"\nADD_FOREIGN_KEY "{this_relation_name}".("{label}") > "{outer_source}".("{non_disambiguated_label}")'
-compose_foreign_key: '  "{label}" {datatype} [{optionality}]\nADD_FOREIGN_KEY "{this_relation_name}".("{label}") > "{outer_source}".("{non_disambiguated_label}")'
+compose_primary_key: '  "{label}"{filler}{datatype} [{optionality}] [pk]\nADD_PRIMARY_KEY "{label}"'
+compose_normal_attribute: '  "{label}"{filler}{datatype} [{optionality}]'
+compose_primary_foreign_key: '  "{label}"{filler}{datatype} [{optionality}] [pk]\nADD_PRIMARY_KEY "{label}"\nADD_FOREIGN_KEY "{this_relation_name}".("{label}") > "{outer_source}".("{non_disambiguated_label}")'
+compose_foreign_key: '  "{label}"{filler}{datatype} [{optionality}]\nADD_FOREIGN_KEY "{this_relation_name}".("{label}") > "{outer_source}".("{non_disambiguated_label}")'
 add_unicity_constraints:
   - order: 100
     search: '$'
@@ -117,7 +117,3 @@ transform_relational_schema:
     comment: 'Clean up the useless parenthesis (without comma inside).'
     search: '(?m)^(Ref:.+)\.\(([^,\n]+)\) > (.+)\.\(([^,\n]+)\)'
     replace: '\1.\2 > \3.\4'
-  - order: 400
-    comment: 'Clean up the useless double quotes (only ASCII \w inside).'
-    search: '"([a-zA-Z1-9_]+?)"|("[^"]+")'
-    replace: '\1\2'

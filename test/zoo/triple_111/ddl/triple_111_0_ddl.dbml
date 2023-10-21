@@ -1,10 +1,10 @@
-Table Utiliser {
-  carnet VARCHAR(42) [not null]
-  projet VARCHAR(42) [not null]
-  technicien VARCHAR(42) [not null]
+Table "Utiliser" {
+  "carnet"     VARCHAR(42) [not null]
+  "projet"     VARCHAR(42) [not null]
+  "technicien" VARCHAR(42) [not null]
   Indexes {
-    (carnet, projet) [pk]
-    (technicien, projet) [unique]
-    (carnet, technicien) [unique]
+    ("carnet", "projet") [pk]
+    ("technicien", "projet") [unique]
+    ("carnet", "technicien") [unique]
   }
 }

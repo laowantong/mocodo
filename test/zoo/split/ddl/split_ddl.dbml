@@ -1,22 +1,22 @@
-Table Bataille {
+Table "Bataille" {
   "nom bataille" VARCHAR(42) [pk, not null]
-  lieu VARCHAR(42)
-  date VARCHAR(42)
+  "lieu"         VARCHAR(42)
+  "date"         VARCHAR(42)
 }
 
 Table "Trophée" {
-  "numéro" VARCHAR(42) [pk, not null]
-  type VARCHAR(42)
-  "état" VARCHAR(42)
+  "numéro"         VARCHAR(42) [pk, not null]
+  "type"           VARCHAR(42)
+  "état"           VARCHAR(42)
   "nom villageois" VARCHAR(42) [not null]
-  "nom bataille" VARCHAR(42) [not null]
+  "nom bataille"   VARCHAR(42) [not null]
 }
 
-Table Villageois {
+Table "Villageois" {
   "nom villageois" VARCHAR(42) [pk, not null]
-  adresse VARCHAR(42)
-  fonction VARCHAR(42)
+  "adresse"        VARCHAR(42)
+  "fonction"       VARCHAR(42)
 }
 
-Ref:"Trophée"."nom villageois" > Villageois."nom villageois"
-Ref:"Trophée"."nom bataille" > Bataille."nom bataille"
+Ref:"Trophée"."nom villageois" > "Villageois"."nom villageois"
+Ref:"Trophée"."nom bataille" > "Bataille"."nom bataille"

@@ -1,70 +1,70 @@
-Table ALIQUET {
-  magna VARCHAR(42) [not null]
-  tellus VARCHAR(42) [not null]
+Table "ALIQUET" {
+  "magna"  VARCHAR(42) [not null]
+  "tellus" VARCHAR(42) [not null]
   Indexes {
-    (magna, tellus) [pk]
+    ("magna", "tellus") [pk]
   }
 }
 
-Table CONSEQUAT {
-  fermentum VARCHAR(42) [pk, not null]
-  dederit VARCHAR(42)
+Table "CONSEQUAT" {
+  "fermentum" VARCHAR(42) [pk, not null]
+  "dederit"   VARCHAR(42)
 }
 
-Table CURABITUR {
-  gravida VARCHAR(42) [pk, not null]
-  amor VARCHAR(42)
+Table "CURABITUR" {
+  "gravida" VARCHAR(42) [pk, not null]
+  "amor"    VARCHAR(42)
 }
 
-Table DIGNISSIM {
-  tellus VARCHAR(42) [pk, not null]
-  terra VARCHAR(42)
+Table "DIGNISSIM" {
+  "tellus" VARCHAR(42) [pk, not null]
+  "terra"  VARCHAR(42)
 }
 
-Table LIBERO {
-  posuere VARCHAR(42) [pk, not null]
-  lacrima VARCHAR(42)
+Table "LIBERO" {
+  "posuere" VARCHAR(42) [pk, not null]
+  "lacrima" VARCHAR(42)
 }
 
-Table QUAM {
-  cras VARCHAR(42) [pk, not null]
-  sed VARCHAR(42)
-  magna VARCHAR(42) [not null]
+Table "QUAM" {
+  "cras"  VARCHAR(42) [pk, not null]
+  "sed"   VARCHAR(42)
+  "magna" VARCHAR(42) [not null]
 }
 
-Table SUSCIPIT {
-  orci VARCHAR(42) [pk, not null]
-  lorem VARCHAR(42)
-  magna VARCHAR(42) [not null]
+Table "SUSCIPIT" {
+  "orci"  VARCHAR(42) [pk, not null]
+  "lorem" VARCHAR(42)
+  "magna" VARCHAR(42) [not null]
 }
 
-Table TRISTIS {
-  magna VARCHAR(42) [pk, not null]
-  vestibulum VARCHAR(42)
-  fermentum VARCHAR(42) [not null]
-  type UNSIGNED_INT [not null]
-  convallis VARCHAR(42) [null]
-  ipsum VARCHAR(42) [null]
-  pulvinar VARCHAR(42) [null]
-  audis VARCHAR(42) [null]
-  gravida VARCHAR(42) [null]
-  tempor VARCHAR(42) [null]
-  fugit VARCHAR(42) [null]
+Table "TRISTIS" {
+  "magna"      VARCHAR(42) [pk, not null]
+  "vestibulum" VARCHAR(42)
+  "fermentum"  VARCHAR(42) [not null]
+  "type"       UNSIGNED_INT [not null]
+  "convallis"  VARCHAR(42) [null]
+  "ipsum"      VARCHAR(42) [null]
+  "pulvinar"   VARCHAR(42) [null]
+  "audis"      VARCHAR(42) [null]
+  "gravida"    VARCHAR(42) [null]
+  "tempor"     VARCHAR(42) [null]
+  "fugit"      VARCHAR(42) [null]
 }
 
-Table ULTRICES {
-  posuere VARCHAR(42) [not null]
-  magna VARCHAR(42) [not null]
+Table "ULTRICES" {
+  "posuere" VARCHAR(42) [not null]
+  "magna"   VARCHAR(42) [not null]
   Indexes {
-    (posuere, magna) [pk]
+    ("posuere", "magna") [pk]
   }
 }
 
-Ref:ALIQUET.magna > TRISTIS.magna
-Ref:ALIQUET.tellus > DIGNISSIM.tellus
-Ref:QUAM.magna > TRISTIS.magna
-Ref:SUSCIPIT.magna > TRISTIS.magna
-Ref:TRISTIS.fermentum > CONSEQUAT.fermentum
-Ref:TRISTIS.gravida > CURABITUR.gravida
-Ref:ULTRICES.posuere > LIBERO.posuere
-Ref:ULTRICES.magna > TRISTIS.magna
+Ref:"ALIQUET"."magna" > "TRISTIS"."magna"
+Ref:"ALIQUET"."tellus" > "DIGNISSIM"."tellus"
+Ref:"QUAM"."magna" > "TRISTIS"."magna"
+Ref:"SUSCIPIT"."magna" > "TRISTIS"."magna"
+Ref:"TRISTIS"."fermentum" > "CONSEQUAT"."fermentum"
+Ref:"TRISTIS"."gravida" > "CURABITUR"."gravida"
+Ref:"ULTRICES"."posuere" > "LIBERO"."posuere"
+Ref:"ULTRICES"."magna" > "TRISTIS"."magna"

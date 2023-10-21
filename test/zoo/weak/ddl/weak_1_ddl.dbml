@@ -1,17 +1,17 @@
-Table Exemplaire {
-  "œuvre" VARCHAR(42) [not null]
-  exemplaire VARCHAR(42) [not null]
-  "nb pages" VARCHAR(42)
+Table "Exemplaire" {
+  "œuvre"      VARCHAR(42) [not null]
+  "exemplaire" VARCHAR(42) [not null]
+  "nb pages"   VARCHAR(42)
   "date achat" VARCHAR(42)
-  foobar VARCHAR(42)
+  "foobar"     VARCHAR(42)
   Indexes {
-    ("œuvre", exemplaire) [pk]
+    ("œuvre", "exemplaire") [pk]
   }
 }
 
 Table "Œuvre" {
-  "œuvre" VARCHAR(42) [pk, not null]
-  auteur VARCHAR(42)
+  "œuvre"  VARCHAR(42) [pk, not null]
+  "auteur" VARCHAR(42)
 }
 
-Ref:Exemplaire."œuvre" > "Œuvre"."œuvre"
+Ref:"Exemplaire"."œuvre" > "Œuvre"."œuvre"

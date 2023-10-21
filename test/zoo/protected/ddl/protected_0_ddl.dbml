@@ -1,4 +1,4 @@
-Table Agence {
+Table "Agence" {
   "id. agence" VARCHAR(42) [pk, not null]
   "nom agence" VARCHAR(42)
 }
@@ -8,10 +8,10 @@ Table "Direction régionale" {
   "nom dir." VARCHAR(42)
 }
 
-Table Superviser {
+Table "Superviser" {
   "id. agence" VARCHAR(42) [pk, not null]
-  "id. dir." VARCHAR(42) [not null]
+  "id. dir."   VARCHAR(42) [not null]
 }
 
-Ref:Superviser."id. agence" > Agence."id. agence"
-Ref:Superviser."id. dir." > "Direction régionale"."id. dir."
+Ref:"Superviser"."id. agence" > "Agence"."id. agence"
+Ref:"Superviser"."id. dir." > "Direction régionale"."id. dir."

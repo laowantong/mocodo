@@ -1,32 +1,32 @@
-Table CLIENT {
+Table "CLIENT" {
   "Réf. client" VARCHAR(42) [pk, not null]
-  Nom VARCHAR(42)
-  "Prénom" VARCHAR(42)
-  Adresse VARCHAR(42)
+  "Nom"         VARCHAR(42)
+  "Prénom"      VARCHAR(42)
+  "Adresse"     VARCHAR(42)
 }
 
-Table COMMANDE {
+Table "COMMANDE" {
   "Num. commande" VARCHAR(42) [pk, not null]
-  Date VARCHAR(42)
-  Montant VARCHAR(42)
-  "Réf. client" VARCHAR(42) [not null]
+  "Date"          VARCHAR(42)
+  "Montant"       VARCHAR(42)
+  "Réf. client"   VARCHAR(42) [not null]
 }
 
-Table INCLURE {
+Table "INCLURE" {
   "Num. commande" VARCHAR(42) [not null]
-  "Réf. produit" VARCHAR(42) [not null]
-  "Quantité" VARCHAR(42)
+  "Réf. produit"  VARCHAR(42) [not null]
+  "Quantité"      VARCHAR(42)
   Indexes {
     ("Num. commande", "Réf. produit") [pk]
   }
 }
 
-Table PRODUIT {
-  "Réf. produit" VARCHAR(42) [pk, not null]
-  "Libellé" VARCHAR(42)
+Table "PRODUIT" {
+  "Réf. produit"  VARCHAR(42) [pk, not null]
+  "Libellé"       VARCHAR(42)
   "Prix unitaire" VARCHAR(42)
 }
 
-Ref:COMMANDE."Réf. client" > CLIENT."Réf. client"
-Ref:INCLURE."Num. commande" > COMMANDE."Num. commande"
-Ref:INCLURE."Réf. produit" > PRODUIT."Réf. produit"
+Ref:"COMMANDE"."Réf. client" > "CLIENT"."Réf. client"
+Ref:"INCLURE"."Num. commande" > "COMMANDE"."Num. commande"
+Ref:"INCLURE"."Réf. produit" > "PRODUIT"."Réf. produit"

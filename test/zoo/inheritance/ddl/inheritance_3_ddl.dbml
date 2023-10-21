@@ -1,24 +1,24 @@
-Table TRISTIS {
-  magna VARCHAR(42) [pk, not null]
-  vestibulum VARCHAR(42)
-  type UNSIGNED_INT [not null]
-  convallis VARCHAR(42) [null]
-  ipsum VARCHAR(42) [null]
-  pulvinar VARCHAR(42) [null]
-  audis VARCHAR(42) [null]
+Table "TRISTIS" {
+  "magna"            VARCHAR(42) [pk, not null]
+  "vestibulum"       VARCHAR(42)
+  "type"             UNSIGNED_INT [not null]
+  "convallis"        VARCHAR(42) [null]
+  "ipsum"            VARCHAR(42) [null]
+  "pulvinar"         VARCHAR(42) [null]
+  "audis"            VARCHAR(42) [null]
   "magna via_mollis" VARCHAR(42) [null]
-  "magna via_vitae" VARCHAR(42) [null]
-  tempor VARCHAR(42) [null]
-  fugit VARCHAR(42) [null]
+  "magna via_vitae"  VARCHAR(42) [null]
+  "tempor"           VARCHAR(42) [null]
+  "fugit"            VARCHAR(42) [null]
 }
 
-Table ULTRICES {
+Table "ULTRICES" {
   "magna sodales" VARCHAR(42) [not null]
-  "magna lacus" VARCHAR(42) [not null]
+  "magna lacus"   VARCHAR(42) [not null]
   Indexes {
     ("magna sodales", "magna lacus") [pk]
   }
 }
 
-Ref:TRISTIS.("magna via_mollis", "magna via_vitae") > TRISTIS.(magna, magna)
-Ref:ULTRICES.("magna sodales", "magna lacus") > TRISTIS.(magna, magna)
+Ref:"TRISTIS".("magna via_mollis", "magna via_vitae") > "TRISTIS".("magna", "magna")
+Ref:"ULTRICES".("magna sodales", "magna lacus") > "TRISTIS".("magna", "magna")

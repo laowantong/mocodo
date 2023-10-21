@@ -133,7 +133,14 @@ class Relations:
                         occurrences[column["label"]] -= 1
                         column["label"] = column["label"] + template["label_role_separator"] + str(occurrences[column["label"]] + 1)
         make_labels_from_non_disambiguated_labels()
-        
+    
+        def add_fillers():
+            for relation in self.relations.values():
+                label_max_length = max(len(column["label"]) for column in relation["columns"])
+                for column in relation["columns"]:
+                    column["filler"] = " " * (label_max_length - len(column["label"]) + 1)
+        add_fillers()
+
         data = {}
         data["stem"] = self.output_stem
         data["title"] = transform(self.mcd.title, "transform_title")
@@ -663,4 +670,3 @@ class Relations:
     def make_primary_keys_first(self):
         for relation in self.relations.values():
             relation["columns"].sort(key=lambda column: not column["is_primary"])
-        

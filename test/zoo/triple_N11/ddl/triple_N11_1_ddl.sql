@@ -1,26 +1,26 @@
 CREATE TABLE AFFECTER (
   PRIMARY KEY (projet, employe),
-  projet VARCHAR(42) NOT NULL,
+  projet  VARCHAR(42) NOT NULL,
   employe VARCHAR(42) NOT NULL,
-  site VARCHAR(42) NOT NULL,
+  site    VARCHAR(42) NOT NULL,
   UNIQUE (employe, site)
 );
 
 CREATE TABLE EMPLOYE (
   PRIMARY KEY (employe),
-  employe VARCHAR(42) NOT NULL,
+  employe     VARCHAR(42) NOT NULL,
   nom_employe VARCHAR(255)
 );
 
 CREATE TABLE PROJET (
   PRIMARY KEY (projet),
-  projet VARCHAR(42) NOT NULL,
+  projet  VARCHAR(42) NOT NULL,
   libelle VARCHAR(50)
 );
 
 CREATE TABLE SITE (
   PRIMARY KEY (site),
-  site VARCHAR(42) NOT NULL,
+  site     VARCHAR(42) NOT NULL,
   position POINT
 );
 

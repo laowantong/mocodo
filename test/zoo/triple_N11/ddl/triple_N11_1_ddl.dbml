@@ -1,28 +1,28 @@
-Table Affecter {
-  projet VARCHAR(42) [not null]
+Table "Affecter" {
+  "projet"  VARCHAR(42) [not null]
   "employé" VARCHAR(42) [not null]
-  site VARCHAR(42) [not null]
+  "site"    VARCHAR(42) [not null]
   Indexes {
-    (projet, "employé") [pk]
-    ("employé", site) [unique]
+    ("projet", "employé") [pk]
+    ("employé", "site") [unique]
   }
 }
 
 Table "Employé" {
-  "employé" VARCHAR(42) [pk, not null]
+  "employé"     VARCHAR(42) [pk, not null]
   "nom employé" VARCHAR(42)
 }
 
-Table Projet {
-  projet VARCHAR(42) [pk, not null]
+Table "Projet" {
+  "projet"  VARCHAR(42) [pk, not null]
   "libellé" VARCHAR(42)
 }
 
-Table Site {
-  site VARCHAR(42) [pk, not null]
-  position VARCHAR(42)
+Table "Site" {
+  "site"     VARCHAR(42) [pk, not null]
+  "position" VARCHAR(42)
 }
 
-Ref:Affecter.projet > Projet.projet
-Ref:Affecter."employé" > "Employé"."employé"
-Ref:Affecter.site > Site.site
+Ref:"Affecter"."projet" > "Projet"."projet"
+Ref:"Affecter"."employé" > "Employé"."employé"
+Ref:"Affecter"."site" > "Site"."site"

@@ -1,8 +1,8 @@
 Table "Gérer" {
-  "ingénieur" VARCHAR(42) [not null]
-  projet VARCHAR(42) [not null]
-  responsable VARCHAR(42) [not null]
+  "ingénieur"   VARCHAR(42) [not null]
+  "projet"      VARCHAR(42) [not null]
+  "responsable" VARCHAR(42) [not null]
   Indexes {
-    ("ingénieur", projet) [pk]
+    ("ingénieur", "projet") [pk]
   }
 }

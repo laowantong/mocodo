@@ -1,35 +1,35 @@
 CREATE TABLE ALIQUET (
   PRIMARY KEY (magna, tellus),
-  magna VARCHAR(42) NOT NULL,
+  magna  VARCHAR(42) NOT NULL,
   tellus VARCHAR(42) NOT NULL,
-  type UNSIGNED INT NOT NULL
+  type   UNSIGNED INT NOT NULL
 );
 
 CREATE TABLE CONSEQUAT (
   PRIMARY KEY (fermentum),
   fermentum VARCHAR(42) NOT NULL,
-  dederit VARCHAR(42)
+  dederit   VARCHAR(42)
 );
 
 CREATE TABLE CURABITUR (
   PRIMARY KEY (gravida),
   gravida VARCHAR(42) NOT NULL,
-  amor VARCHAR(42)
+  amor    VARCHAR(42)
 );
 
 CREATE TABLE DIGNISSIM (
   PRIMARY KEY (tellus),
   tellus VARCHAR(42) NOT NULL,
-  terra VARCHAR(42)
+  terra  VARCHAR(42)
 );
 
 CREATE TABLE LACUS (
   PRIMARY KEY (magna),
-  magna VARCHAR(42) NOT NULL,
+  magna      VARCHAR(42) NOT NULL,
   vestibulum VARCHAR(42),
-  fermentum VARCHAR(42) NOT NULL,
-  tempor VARCHAR(42),
-  fugit VARCHAR(42)
+  fermentum  VARCHAR(42) NOT NULL,
+  tempor     VARCHAR(42),
+  fugit      VARCHAR(42)
 );
 
 CREATE TABLE LIBERO (
@@ -40,42 +40,42 @@ CREATE TABLE LIBERO (
 
 CREATE TABLE NEC (
   PRIMARY KEY (magna),
-  magna VARCHAR(42) NOT NULL,
+  magna      VARCHAR(42) NOT NULL,
   vestibulum VARCHAR(42),
-  fermentum VARCHAR(42) NOT NULL,
-  pulvinar VARCHAR(42),
-  audis VARCHAR(42),
-  gravida VARCHAR(42) NOT NULL
+  fermentum  VARCHAR(42) NOT NULL,
+  pulvinar   VARCHAR(42),
+  audis      VARCHAR(42),
+  gravida    VARCHAR(42) NOT NULL
 );
 
 CREATE TABLE QUAM (
   PRIMARY KEY (cras),
-  cras VARCHAR(42) NOT NULL,
-  sed VARCHAR(42),
+  cras  VARCHAR(42) NOT NULL,
+  sed   VARCHAR(42),
   magna VARCHAR(42) NOT NULL
 );
 
 CREATE TABLE SODALES (
   PRIMARY KEY (magna),
-  magna VARCHAR(42) NOT NULL,
+  magna      VARCHAR(42) NOT NULL,
   vestibulum VARCHAR(42),
-  fermentum VARCHAR(42) NOT NULL,
-  convallis VARCHAR(42),
-  ipsum VARCHAR(42)
+  fermentum  VARCHAR(42) NOT NULL,
+  convallis  VARCHAR(42),
+  ipsum      VARCHAR(42)
 );
 
 CREATE TABLE SUSCIPIT (
   PRIMARY KEY (orci),
-  orci VARCHAR(42) NOT NULL,
+  orci  VARCHAR(42) NOT NULL,
   lorem VARCHAR(42),
   magna VARCHAR(42) NOT NULL,
-  type UNSIGNED INT NOT NULL
+  type  UNSIGNED INT NOT NULL
 );
 
 CREATE TABLE ULTRICES (
   PRIMARY KEY (posuere, magna),
   posuere VARCHAR(42) NOT NULL,
-  magna VARCHAR(42) NOT NULL
+  magna   VARCHAR(42) NOT NULL
 );
 
 ALTER TABLE ALIQUET ADD FOREIGN KEY (tellus) REFERENCES DIGNISSIM (tellus);

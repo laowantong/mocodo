@@ -1,10 +1,10 @@
 CREATE TABLE EXEMPLAIRE (
   PRIMARY KEY (oeuvre, exemplaire),
-  oeuvre VARCHAR(42) NOT NULL,
+  oeuvre     VARCHAR(42) NOT NULL,
   exemplaire VARCHAR(42) NOT NULL,
-  nb_pages INTEGER,
+  nb_pages   INTEGER,
   date_achat DATE,
-  foobar VARCHAR(42)
+  foobar     VARCHAR(42)
 );
 
 CREATE TABLE OEUVRE (
