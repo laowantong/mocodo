@@ -8,7 +8,6 @@
 
 #wrap {
   width:1024px;
-  min-height:100%;
   margin:0 auto;
   background:#fff;
   -webkit-box-shadow: 0px 0px 10px 0px gray;
@@ -203,6 +202,15 @@ code {
 	display: block;
 	height:38px;
   border-bottom:solid 1px #ccc; /* ligne continue sur toute la largeur */
+}
+.info-symbol {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  vertical-align: middle;
 }
 ul.tabs {
 	display: block;

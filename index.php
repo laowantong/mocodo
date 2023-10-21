@@ -32,7 +32,7 @@
 			<div id="inputZone">
 				<div class="line"></div>
 				<ul class="tabs">
-					<li><a href="#aboutContents" class="first_tab"><span class="circled">&#8505;</span></a></li>
+					<li><a href="#aboutContents" class="first_tab"><span class="info-symbol" style="background-image: url(web/png/info.png);"></span></a></li>
 					<li><a href="#inputContents" class="active"><span>Entrée</span></a></li>
 					<li><a href="#paramContents"><span>Options</span></a></li>
 					<li><a href="#geoContents" id="geoTab"><span>Retouches</span></a></li>
