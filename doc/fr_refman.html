@@ -13103,7 +13103,7 @@ $( document ).ready(function(){
 
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">reload_ext</span> mocodo
@@ -13113,28 +13113,10 @@ $( document ).ready(function(){
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Mocodo 4.0.4 loaded.
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">IPython</span> <span class="kn">import</span> <span class="n">display</span>
@@ -36935,7 +36917,7 @@ $$<p></p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Les gabarits de Mocodo étaient à l'origine écrits en JSON. Par conséquente, un grand nombre des caractères utilisés dans les expressions régulières devaient être échappés, ce qui rendait celles-ci (encore) plus difficiles à écrire, à relire et à tester. La version 4 passe à YAML, qui n'a pas cet inconvénient. Voici par exemple un extrait de gabarit dans l'ancienne syntaxe :</p>
+<p>Les gabarits de Mocodo étaient à l'origine écrits en JSON. Par conséquent, un grand nombre des caractères utilisés dans les expressions régulières devaient être échappés, ce qui rendait celles-ci (encore) plus difficiles à écrire, à relire et à tester. La version 4 passe à YAML, qui n'a pas cet inconvénient. Voici par exemple un extrait de gabarit dans l'ancienne syntaxe :</p>
 <div class="highlight"><pre><span></span><span class="p">{</span>
 <span class="w">      </span><span class="nt">&quot;order&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">400</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;comment&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Move all foreign keys constraints at the end of the document&quot;</span><span class="p">,</span>
@@ -36961,7 +36943,7 @@ $$<p></p>
 </li>
 <li>Toute <em>valeur</em> chaîne doit être délimitée par des simples quotes (<code>'</code>). Les quotes internes sont échappées en les doublant (<code>''</code>).</li>
 <li>Les expressions régulières de recherche et de remplacement suivent les mêmes règles d'échappement que les r-strings de Python.</li>
-<li>Les autres chaînes (notamment les chaînes de composition) ne demandent pas à échapper les anti-slashes, mais à doubler les accolades (règles des fr-strings). Exception : pour les distinguer du retour-chariot et de la tabulation, il faudra échapper les <code>\n</code> et les <code>\t</code> si on veut les laisser littéralement. Vous en avez un exemple pour <code>\newcommand</code> et <code>\title</code> dans le gabarit pour $\LaTeX$ ci-dessous:</li>
+<li>Les autres chaînes (notamment les chaînes de composition) ne demandent pas à échapper les anti-slashes, mais à doubler les accolades (règles des fr-strings). Exception : pour les distinguer du retour-chariot et de la tabulation, il faudra échapper les <code>\n</code> et les <code>\t</code> si on veut les laisser littéralement. Vous en avez un exemple pour <code>\newcommand</code> et <code>\title</code> dans le <a href="https://github.com/laowantong/mocodo/blob/53ba0fce41aaf7b8156821a50dd3d3f1051f8af0/mocodo/resources/relation_templates/latex-bce.yaml#L2"><em>boilerplate</em> du gabarit pour $\LaTeX$</a>.</li>
 </ul>
 
 </div>
@@ -38922,6 +38904,7 @@ sandbox_ddl.sql
 <li>JavaScript<ul>
 <li><a href="http://jquery.com/">JQuery</a> (John Resig).</li>
 <li><a href="https://github.com/js-cookie/js-cookie">JS-Cookie</a> (Klaus Hartl).</li>
+<li><a href="https://ace.c9.io">Ace Editor</a> (<a href="https://c9.io/">Cloud9 IDE</a> et <a href="https://mozilla.org/">Mozilla</a>).</li>
 </ul>
 </li>
 <li>Python<ul>
