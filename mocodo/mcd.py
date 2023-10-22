@@ -75,19 +75,19 @@ class Mcd:
                     if clause["type"] == "association":
                         element = Association(clause, **params)
                         if element.bid in self.associations:
-                            raise MocodoError(7, _('Duplicate association "{name}". If you want to make two associations appear with the same name, you must suffix it with a number.').format(name=element.bid)) # fmt: skip
+                            raise MocodoError(7, _('Duplicate association "{name}". If you want to make two associations appear with the same name, you must suffix it with a number.').format(name=element.raw_name)) # fmt: skip
                         self.associations[element.bid] = element
                         pages[indentation].append(element)
                     elif clause["type"] == "entity":
                         element = Entity(clause)
                         if element.bid in self.entities:
-                            raise MocodoError(6, _('Duplicate entity "{name}". If you want to make two entities appear with the same name, you must suffix it with a number.').format(name=element.bid)) # fmt: skip
+                            raise MocodoError(6, _('Duplicate entity "{name}". If you want to make two entities appear with the same name, you must suffix it with a number.').format(name=element.raw_name)) # fmt: skip
                         self.entities[element.bid] = element
                         pages[indentation].append(element)
                     else:
                         raise NotImplementedError
                     if element.bid in seen:
-                        raise MocodoError(8, _('One entity and one association share the same name "{name}".').format(name=element.bid)) # fmt: skip
+                        raise MocodoError(8, _('One entity and one association share the same name "{name}".').format(name=element.raw_name)) # fmt: skip
                     seen.add(element.bid)
                 self.rows[-1].append(element)
             if not seen:
@@ -140,7 +140,7 @@ class Mcd:
                     raise MocodoError(43, _('Constraint "{constraint}" aligned with an unknown entity or association "{box}"!').format(constraint=constraint.bid, box=bid)) # fmt: skip
         
         def add_attributes():
-            strengthening_legs = dict((entity_name, []) for entity_name in self.entities)
+            strengthening_legs = dict((entity_bid, []) for entity_bid in self.entities)
             for association in self.associations.values():
                 for leg in association.legs:
                     if leg.kind == "strengthening":
@@ -152,8 +152,8 @@ class Mcd:
             Attribute.id_gutter_strong_string = params["id_gutter_strong_string"]
             Attribute.id_gutter_weak_string = params["id_gutter_weak_string"]
             Attribute.id_gutter_alts = params["id_gutter_alts"]
-            for (entity_name, entity) in self.entities.items():
-                entity.add_attributes(strengthening_legs[entity_name], entity_name in children)
+            for (entity_bid, entity) in self.entities.items():
+                entity.add_attributes(strengthening_legs[entity_bid], entity_bid in children)
             self.has_alt_identifier = any(entity.has_alt_identifier for entity in self.entities.values())
 
         def check_weak_entities_without_discriminator():
