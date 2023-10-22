@@ -309,8 +309,8 @@ class InheritanceLeg:
         self.arrow = leg["arrow"]
         self.inheritance = inheritance
         self.entity_bid = raw_to_bid(leg["entity"])
+        self.entity_raw_name = leg["entity"]
         self.lid = f"{self.inheritance.bid} / {self.entity_bid}"
-        self.identifier = f"{self.inheritance.bid} / {self.entity_bid}"
 
     def register_entity(self, entity):
         self.entity = entity
@@ -393,6 +393,7 @@ class ConstraintLeg:
         self.constraint = constraint
         self.kind = kind
         self.bid = raw_to_bid(box_raw_name)
+        self.entity_raw_name = box_raw_name
         self.lid = None
     
     def register_box(self, box):
