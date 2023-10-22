@@ -2,7 +2,7 @@ from math import sqrt
 
 from .attribute import *
 from .leg import *
-from .tools.string_tools import rstrip_digit_or_underline
+from .tools.string_tools import rstrip_digit_or_underline, raw_to_bid
 
 TRIANGLE_ALTITUDE = sqrt(3) / 2
 INCIRCLE_RADIUS = 1 / sqrt(12)
@@ -18,11 +18,10 @@ class Inheritance:
 
     def __init__(self, clause, **params):
         self.source = clause["source"]
-        leg_entities = [leg["entity"] for leg in clause["legs"]]
-        if clause["name"] == "TX":
-            clause["name"] = "XT"
+        self.raw_name = clause["name"] if clause["name"] != "TX" else "XT"
         Inheritance.counter += 1
-        self.name = f'{leg_entities[0]} parent #{Inheritance.counter}'
+        parent_bid = raw_to_bid(clause["legs"][0]["entity"])
+        self.bid = f'{parent_bid}_PARENT_#{Inheritance.counter}'
         self.name_view = rstrip_digit_or_underline(clause["name"])
         self.attributes = [InheritanceAttribute(attr) for attr in clause.get("attrs", [])]
         for leg_clause in clause["legs"]:
@@ -63,8 +62,8 @@ class Inheritance:
             leg.calculate_size(style, get_font_metrics)
 
     def register_center(self, geo):
-        self.cx = geo["cx"][self.name]
-        self.cy = geo["cy"][self.name]
+        self.cx = geo["cx"][self.bid]
+        self.cy = geo["cy"][self.bid]
         self.l = self.cx - self.w // 2
         self.r = self.cx + self.w // 2
         self.t = self.cy - self.h // 2
@@ -72,7 +71,7 @@ class Inheritance:
 
     def description(self, style, geo):
         result = []
-        result.append(("comment", {"text": f"Inheritance {self.name}"}))
+        result.append(("comment", {"text": f"Inheritance {self.bid}"}))
         result.append(
             (
                 "begin_component",

@@ -2,7 +2,7 @@
 <svg width="362" height="262" viewBox="0 0 362 262" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="362" height="262" fill="#FFFFFF" stroke="none" stroke-width="0"/>
 
-<!-- Entity Disponibilité -->
+<!-- Entity DISPONIBILITE -->
 <g>
 	<g>
 		<rect x="38" y="9" width="138" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
@@ -17,7 +17,7 @@
 	<line x1="46" y1="76" x2="86" y2="76" stroke="#000000" stroke-width="1"/>
 </g>
 
-<!-- Entity Semaine -->
+<!-- Entity SEMAINE -->
 <g>
 	<g>
 		<rect x="234" y="9" width="90" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
@@ -31,7 +31,7 @@
 	<text x="242" y="73.1" fill="#000000" font-family="Gill Sans" font-size="15">date début</text>
 </g>
 
-<!-- Entity Réservation -->
+<!-- Entity RESERVATION -->
 <g>
 	<g>
 		<rect x="42" y="109" width="130" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
@@ -49,17 +49,17 @@
 	<text x="50" y="241" fill="#000000" font-family="Gill Sans" font-size="15">#voilier</text>
 </g>
 
-<!-- Link from &quot;semaine&quot; (Disponibilité) to &quot;semaine&quot; (Semaine) -->
+<!-- Link from &quot;semaine&quot; (DISPONIBILITE) to &quot;semaine&quot; (SEMAINE) -->
 <path d="M176 53.5 C205 53.5 195.33 53.5 234 53.5" fill="none" stroke="#000000" stroke-width="1"/>
 <polygon points="234 53.5 222 59.5 226 53.5 222 47.5" fill="#000000" stroke-width="0"/>
 <circle cx="176" cy="53.5" r="1.5" stroke="#000000" stroke-width="1.5" fill="#000000"/>
 
-<!-- Link from &quot;semaine&quot; (Réservation) to &quot;semaine&quot; (Disponibilité) -->
+<!-- Link from &quot;semaine&quot; (RESERVATION) to &quot;semaine&quot; (DISPONIBILITE) -->
 <path d="M172 221.5 C220 137.5 224 53.5 176 53.5" fill="none" stroke="#000000" stroke-width="1"/>
 <polygon points="176 53.5 188 47.5 184 53.5 188 59.5" fill="#000000" stroke-width="0"/>
 <circle cx="172" cy="221.5" r="1.5" stroke="#000000" stroke-width="1.5" fill="#000000"/>
 
-<!-- Link from &quot;voilier&quot; (Réservation) to &quot;voilier&quot; (Disponibilité) -->
+<!-- Link from &quot;voilier&quot; (RESERVATION) to &quot;voilier&quot; (DISPONIBILITE) -->
 <path d="M42 238.5 C-6 154.5 -10 70.5 38 70.5" fill="none" stroke="#000000" stroke-width="1"/>
 <polygon points="38 70.5 26 76.5 30 70.5 26 64.5" fill="#000000" stroke-width="0"/>
 <circle cx="42" cy="238.5" r="1.5" stroke="#000000" stroke-width="1.5" fill="#000000"/>

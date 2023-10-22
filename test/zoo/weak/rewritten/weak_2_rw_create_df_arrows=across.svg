@@ -2,7 +2,7 @@
 <svg width="952" height="94" viewBox="0 0 952 94" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="952" height="94" fill="#FFFFFF" stroke="none" stroke-width="0"/>
 
-<!-- Association Composer -->
+<!-- Association COMPOSER -->
 <g>
 	<line x1="366" y1="47" x2="224" y2="47" stroke="#000000" stroke-width="1"/>
 	<polygon points="305 47 293 53 297 47 293 41" fill="#000000" stroke-width="0"/>
@@ -19,7 +19,7 @@
 	<line x1="148" y1="65" x2="166" y2="65" stroke="#000000" stroke-width="1"/>
 </g>
 
-<!-- Association Appartenir -->
+<!-- Association APPARTENIR -->
 <g>
 	<line x1="656" y1="47" x2="514" y2="47" stroke="#000000" stroke-width="1"/>
 	<polygon points="601 47 589 53 593 47 589 41" fill="#000000" stroke-width="0"/>
@@ -36,7 +36,7 @@
 	<line x1="432" y1="65" x2="450" y2="65" stroke="#000000" stroke-width="1"/>
 </g>
 
-<!-- Association Se situer -->
+<!-- Association SE_SITUER -->
 <g>
 	<line x1="906" y1="47" x2="790" y2="47" stroke="#000000" stroke-width="1"/>
 	<polygon points="869 47 857 53 861 47 857 41" fill="#000000" stroke-width="0"/>
@@ -53,7 +53,7 @@
 	<line x1="716" y1="65" x2="734" y2="65" stroke="#000000" stroke-width="1"/>
 </g>
 
-<!-- Entity Appartement -->
+<!-- Entity APPARTEMENT -->
 <g>
 	<g>
 		<rect x="9" y="9" width="134" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
@@ -67,7 +67,7 @@
 	<text x="17" y="73.1" fill="#000000" font-family="Gill Sans" font-size="15">nb pièces</text>
 </g>
 
-<!-- Entity Étage -->
+<!-- Entity ETAGE -->
 <g>
 	<g>
 		<rect x="305" y="9" width="122" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
@@ -81,7 +81,7 @@
 	<text x="313" y="73.1" fill="#000000" font-family="Gill Sans" font-size="15">nb appartements</text>
 </g>
 
-<!-- Entity Immeuble -->
+<!-- Entity IMMEUBLE -->
 <g>
 	<g>
 		<rect x="601" y="9" width="110" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
@@ -95,7 +95,7 @@
 	<text x="609" y="73.1" fill="#000000" font-family="Gill Sans" font-size="15">nb étages</text>
 </g>
 
-<!-- Entity Rue -->
+<!-- Entity RUE -->
 <g>
 	<g>
 		<rect x="869" y="9" width="74" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>

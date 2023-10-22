@@ -130,7 +130,7 @@ class ClauseExtractor(Transformer):
     
     card = lambda self, tree: self._item("card", tree)
     entity_name_ref = lambda self, tree: self._item("entity", tree)
-    box_name_ref = lambda self, tree: self._item("box", tree)
+    box_name_ref = lambda self, tree: self._item("name", tree)
     leg_note = lambda self, tree: self._item("leg_note", tree)
     constraint_note = lambda self, tree: self._item("constraint_note", tree)
     constraint_leg = lambda self, tree: self._item("constraint_leg", tree)

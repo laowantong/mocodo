@@ -40,7 +40,7 @@
 	<text x="305" y="84" fill="#000000" font-family="Futura" font-size="11">0,1</text>
 </g>
 
-<!-- Entity Voilier -->
+<!-- Entity VOILIER -->
 <g>
 	<g>
 		<rect x="9" y="17" width="116" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
@@ -56,7 +56,7 @@
 	<line x1="49" y1="67" x2="89" y2="67" stroke="#000000" stroke-width="1"/>
 </g>
 
-<!-- Entity Disponibilité -->
+<!-- Entity DISPONIBILITE -->
 <g>
 	<g>
 		<rect x="223" y="26" width="154" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
@@ -69,7 +69,7 @@
 	<text x="240" y="47.3" fill="#000000" font-family="Copperplate" font-size="18">Disponibilité</text>
 </g>
 
-<!-- Entity Semaine -->
+<!-- Entity SEMAINE -->
 <g>
 	<g>
 		<rect x="475" y="9" width="122" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
@@ -87,7 +87,7 @@
 	<text x="486" y="73.1" fill="#000000" font-family="Gill Sans" font-size="15">1</text>
 </g>
 
-<!-- Entity Réservation -->
+<!-- Entity RESERVATION -->
 <g>
 	<g>
 		<rect x="219" y="156" width="162" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>

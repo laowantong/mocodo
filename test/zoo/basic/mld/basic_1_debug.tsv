@@ -6,7 +6,7 @@ CLIENT	Adresse			normal_attribute	False
 COMMANDE	Num. commande	!		primary_key	True					
 COMMANDE	Date			normal_attribute	False					
 COMMANDE	Montant			normal_attribute	False					
-COMMANDE	Réf. client	!		foreign_key	False	CLIENT	CLIENT	DF0		
+COMMANDE	Réf. client	!		foreign_key	False	CLIENT	CLIENT	DF		
 INCLURE	Num. commande	!		primary_foreign_key	True	COMMANDE	COMMANDE	INCLURE		
 INCLURE	Réf. produit	!		primary_foreign_key	True	PRODUIT	PRODUIT	INCLURE		
 INCLURE	Quantité			association_attribute	False			INCLURE		

@@ -2,7 +2,7 @@
 <svg width="792" height="576" viewBox="0 0 792 576" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="792" height="576" fill="#FFFFFF" stroke="none" stroke-width="0"/>
 
-<!-- Inheritance TRISTIS parent #1 -->
+<!-- Inheritance TRISTIS_PARENT_#1 -->
 <g>
 	<line x1="398" y1="330" x2="265" y2="330" stroke="#000000" stroke-width="1"/>
 	<line x1="398" y1="328" x2="265" y2="328" stroke="#000000" stroke-width="1"/>

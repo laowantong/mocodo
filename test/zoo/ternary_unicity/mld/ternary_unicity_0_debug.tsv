@@ -1,11 +1,11 @@
 this relation name	attribute	optionality	unicities	nature	is primary	adjacent source	outer source	association name	datatype	leg note
-Disponibilité	semaine	!		strengthening_primary_foreign_key	True	Semaine	Semaine	DF1		
-Disponibilité	voilier	!		strengthening_primary_ex_foreign_key	True	Voilier	Voilier	DF0		
+Disponibilité	semaine	!		strengthening_primary_foreign_key	True	Semaine	Semaine	DF		
+Disponibilité	voilier	!		strengthening_primary_ex_foreign_key	True	Voilier	Voilier	DF		
 Réservation	id résa	!		primary_key	True					
 Réservation	num résa		1	normal_attribute	False					
 Réservation	arrhes			normal_attribute	False					
 Réservation	date réservation			normal_attribute	False					
-Réservation	semaine	!	2	foreign_key	False	Disponibilité	Disponibilité	DF2		
-Réservation	voilier	!	2	foreign_key	False	Disponibilité	Disponibilité	DF2		
+Réservation	semaine	!	2	foreign_key	False	Disponibilité	Disponibilité	DF		
+Réservation	voilier	!	2	foreign_key	False	Disponibilité	Disponibilité	DF		
 Semaine	semaine	!		primary_key	True					
 Semaine	date début		1	normal_attribute	False

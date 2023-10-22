@@ -2,7 +2,7 @@
 <svg width="500" height="162" viewBox="0 0 500 162" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="500" height="162" fill="#FFFFFF" stroke="none" stroke-width="0"/>
 
-<!-- Entity ENTITÉ 1_ -->
+<!-- Entity ENTITE_1_ -->
 <g>
 	<g>
 		<rect x="9" y="17" width="132" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
@@ -26,7 +26,7 @@
 	<text x="20" y="132" fill="#000000" font-family="Gill Sans" font-size="15">2</text>
 </g>
 
-<!-- Entity ENTITÉ 2_ -->
+<!-- Entity ENTITE_2_ -->
 <g>
 	<g>
 		<rect x="170" y="9" width="148" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
@@ -52,7 +52,7 @@
 	<text x="178" y="141" fill="#000000" font-family="Gill Sans" font-size="15">1 2 3</text>
 </g>
 
-<!-- Entity ENTITÉ 3_ -->
+<!-- Entity ENTITE_3_ -->
 <g>
 	<g>
 		<rect x="347" y="34" width="144" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>

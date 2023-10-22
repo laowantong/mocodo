@@ -41,7 +41,7 @@
 	<text x="208" y="139" fill="#000000" font-family="Futura" font-size="11">1,N</text>
 </g>
 
-<!-- Entity Projet -->
+<!-- Entity PROJET -->
 <g>
 	<g>
 		<rect x="9" y="9" width="78" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
@@ -54,7 +54,7 @@
 	<line x1="17" y1="59" x2="56" y2="59" stroke="#000000" stroke-width="1"/>
 </g>
 
-<!-- Entity Appliquer -->
+<!-- Entity APPLIQUER -->
 <g>
 	<g>
 		<rect x="197" y="18" width="110" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
@@ -65,7 +65,7 @@
 	<text x="206" y="39.3" fill="#000000" font-family="Copperplate" font-size="18">Appliquer</text>
 </g>
 
-<!-- Entity Compétence -->
+<!-- Entity COMPETENCE -->
 <g>
 	<g>
 		<rect x="77" y="93" width="126" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
@@ -78,7 +78,7 @@
 	<line x1="85" y1="143" x2="162" y2="143" stroke="#000000" stroke-width="1"/>
 </g>
 
-<!-- Entity Employé -->
+<!-- Entity EMPLOYE -->
 <g>
 	<g>
 		<rect x="309" y="93" width="94" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>

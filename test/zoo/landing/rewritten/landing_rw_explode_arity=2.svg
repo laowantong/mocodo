@@ -2,7 +2,7 @@
 <svg width="868" height="576" viewBox="0 0 868 576" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="868" height="576" fill="#FFFFFF" stroke="none" stroke-width="0"/>
 
-<!-- Constraint I constraint #1 -->
+<!-- Constraint I_CONSTRAINT_#1 -->
 <g>
 	<line x1="684" y1="429" x2="604.5" y2="304" stroke="#000000" stroke-width="2"  stroke-dasharray="0,5" stroke-linecap="round"/>
 	<polygon points="618.28 291 613.67 303.6 612.46 296.49 605.43 294.87" fill="#000000" stroke-width="0"/>
@@ -14,7 +14,7 @@
 	</g>
 </g>
 
-<!-- Association CONTRÔLER -->
+<!-- Association CONTROLER -->
 <g>
 	<path d="M794 129 C755.33 92.67 755.33 62.33 794 38" fill="none" stroke="#000000" stroke-width="1"/>
 	<polygon points="767.13 66.99 768.65 80.32 764.39 74.51 757.38 76.21" fill="#000000" stroke-width="0"/>
@@ -181,7 +181,7 @@
 	<text x="689" y="483" fill="#000000" font-family="Futura" font-size="11">0,N</text>
 </g>
 
-<!-- Entity DÉPARTEMENT -->
+<!-- Entity DEPARTEMENT -->
 <g>
 	<g>
 		<rect x="9" y="91" width="154" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
@@ -208,7 +208,7 @@
 	<line x1="295" y1="149" x2="369" y2="149" stroke="#000000" stroke-width="1"/>
 </g>
 
-<!-- Entity SOCIÉTÉ -->
+<!-- Entity SOCIETE -->
 <g>
 	<g>
 		<rect x="743" y="91" width="102" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
@@ -222,7 +222,7 @@
 	<text x="751" y="155.1" fill="#000000" font-family="Gill Sans" font-size="15">raison sociale</text>
 </g>
 
-<!-- Entity EMPLOYÉ -->
+<!-- Entity EMPLOYE -->
 <g>
 	<g>
 		<rect x="173" y="191" width="104" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
@@ -264,7 +264,7 @@
 	<text x="641" y="255.1" fill="#000000" font-family="Gill Sans" font-size="15">qté fournie</text>
 </g>
 
-<!-- Entity REQUÉRIR -->
+<!-- Entity REQUERIR -->
 <g>
 	<g>
 		<rect x="521" y="291" width="114" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
@@ -278,7 +278,7 @@
 	<text x="529" y="355.1" fill="#000000" font-family="Gill Sans" font-size="15">qté requise</text>
 </g>
 
-<!-- Entity AYANT&#45;DROIT -->
+<!-- Entity AYANT_DROIT -->
 <g>
 	<g>
 		<rect x="155" y="391" width="140" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
@@ -292,7 +292,7 @@
 	<text x="163" y="455.1" fill="#000000" font-family="Gill Sans" font-size="15">lien</text>
 </g>
 
-<!-- Entity PIÈCE -->
+<!-- Entity PIECE -->
 <g>
 	<g>
 		<rect x="639" y="391" width="90" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>

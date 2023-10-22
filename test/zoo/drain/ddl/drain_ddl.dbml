@@ -4,13 +4,6 @@ Table "Entreprise" {
   "téléphone"      VARCHAR(42)
 }
 
-Table "Stage" {
-  "num. stage"       VARCHAR(42) [pk, not null]
-  "sujet"            VARCHAR(42)
-  "nom entreprise"   VARCHAR(42) [not null]
-  "date proposition" VARCHAR(42)
-}
-
 Table "Étudiant" {
   "num étudiant"   VARCHAR(42) [pk, not null]
   "nom"            VARCHAR(42)
@@ -23,5 +16,12 @@ Table "Étudiant" {
   }
 }
 
-Ref:"Stage"."nom entreprise" > "Entreprise"."nom entreprise"
+Table "Stage" {
+  "num. stage"       VARCHAR(42) [pk, not null]
+  "sujet"            VARCHAR(42)
+  "nom entreprise"   VARCHAR(42) [not null]
+  "date proposition" VARCHAR(42)
+}
+
 Ref:"Étudiant"."num. stage" > "Stage"."num. stage"
+Ref:"Stage"."nom entreprise" > "Entreprise"."nom entreprise"

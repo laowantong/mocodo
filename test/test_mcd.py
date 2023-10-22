@@ -24,8 +24,8 @@ class McdTest(unittest.TestCase):
             self.assertEqual(box.kind, "entity")
 
     def test_association_recognition(self):
-        entities = ["FONCTION:", "DÉPARTEMENT:", "EMPLOYÉ:", "PERSONNE:",
-                    "ÉTUDIANT:", "DATE:", "CLIENT:", "COMMANDE:", "BANDIT:", "EMPLOYÉ ABC:"]
+        entities = ["FONCTION:", "DEPARTEMENT:", "EMPLOYE:", "PERSONNE:",
+                    "ETUDIANT:", "DATE:", "CLIENT:", "COMMANDE:", "BANDIT:", "EMPLOYE_ABC:"]
         associations = [
             "ASSUMER, 1N EMPLOYÉ, 1N FONCTION: date début, date fin",
             "DIRIGER, 11 DÉPARTEMENT, 01 EMPLOYÉ",
@@ -39,7 +39,7 @@ class McdTest(unittest.TestCase):
         mcd = Mcd("\n".join(clauses), **params)
         self.assertEqual(mcd.box_count, len(clauses))
         for box in mcd.boxes:
-            if box.name + ":" in entities:
+            if box.bid + ":" in entities:
                 self.assertEqual(box.kind, "entity")
             else:
                 self.assertIn(box.kind, ["association", "df"])
@@ -79,10 +79,10 @@ class McdTest(unittest.TestCase):
             FLÉAU: battadère, van, mesure
         """
         mcd = Mcd(source, **params)
-        self.assertEqual([element.name for element in mcd.rows[0]], ["BARATTE", "MARTEAU", "TINET", "CROCHET"])
-        self.assertEqual([element.name for element in mcd.rows[1]], ["DF0", "BALANCE", "BANNETON", "PORTE"])
-        self.assertEqual([element.name for element in mcd.rows[2]], [" 0", "ROULEAU", "HERSE", " 1"])
-        self.assertEqual([element.name for element in mcd.rows[3]], [" 2", "FLÉAU", " 3", " 4"])
+        self.assertEqual([element.bid for element in mcd.rows[0]], ["BARATTE", "MARTEAU", "TINET", "CROCHET"])
+        self.assertEqual([element.bid for element in mcd.rows[1]], ["DF0", "BALANCE", "BANNETON", "PORTE"])
+        self.assertEqual([element.bid for element in mcd.rows[2]], ['PHANTOM_#1', 'ROULEAU', 'HERSE', 'PHANTOM_#2'])
+        self.assertEqual([element.bid for element in mcd.rows[3]], ['PHANTOM_#3', 'FLEAU', 'PHANTOM_#4', 'PHANTOM_#5'])
 
     def test_layout(self):
         clauses = [

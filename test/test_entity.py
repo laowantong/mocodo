@@ -22,7 +22,7 @@ class EntityTest(unittest.TestCase):
             entity_wrapper("PARTICIPANT :numero ,nom ,adresse"),
         ]
         for e in entities:
-            self.assertEqual(e.name, "PARTICIPANT")
+            self.assertEqual(e.bid, "PARTICIPANT")
             self.assertEqual(e.name_view, "PARTICIPANT")
             self.assertEqual([a.label for a in e.attributes], ["numero", "nom", "adresse"])
             self.assertEqual([a.kind for a in e.attributes], ["strong", "simple", "simple"])
@@ -38,10 +38,10 @@ class EntityTest(unittest.TestCase):
 
     def test_numbered_entity(self):
         e = entity_wrapper("PARTICIPANT5: numero, nom, adresse")
-        self.assertEqual(e.name, "PARTICIPANT5")
+        self.assertEqual(e.bid, "PARTICIPANT5")
         self.assertEqual(e.name_view, "PARTICIPANT")
         e = entity_wrapper("PARTICIPANT123: numero, nom, adresse")
-        self.assertEqual(e.name, "PARTICIPANT123")
+        self.assertEqual(e.bid, "PARTICIPANT123")
         self.assertEqual(e.name_view, "PARTICIPANT12")
 
     def test_blank(self):

@@ -15,7 +15,7 @@
 	<line x1="162" y1="82" x2="180" y2="82" stroke="#000000" stroke-width="1"/>
 </g>
 
-<!-- Entity Œuvre -->
+<!-- Entity OEUVRE -->
 <g>
 	<g>
 		<rect x="9" y="26" width="78" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
@@ -29,7 +29,7 @@
 	<text x="17" y="90.1" fill="#000000" font-family="Gill Sans" font-size="15">auteur</text>
 </g>
 
-<!-- Entity Exemplaire -->
+<!-- Entity EXEMPLAIRE -->
 <g>
 	<g>
 		<rect x="185" y="9" width="120" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>

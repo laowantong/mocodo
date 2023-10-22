@@ -2,13 +2,13 @@ this relation name	attribute	optionality	unicities	nature	is primary	adjacent so
 Entreprise	nom entreprise	!		primary_key	True					
 Entreprise	adresse			normal_attribute	False					
 Entreprise	téléphone			normal_attribute	False					
-Stage	num. stage	!		primary_key	True					
-Stage	sujet			normal_attribute	False					
-Stage	nom entreprise	!		foreign_key	False	Entreprise	Entreprise	Proposer		
-Stage	date proposition			outer_attribute	False			Proposer		
 Étudiant	num étudiant	!		primary_key	True					
 Étudiant	nom			normal_attribute	False					
 Étudiant	num. stage	!	1	foreign_key	False	Stage	Stage	Attribuer		
 Étudiant	date signature			outer_attribute	False			Attribuer		
 Étudiant	date	?		ex_foreign_key	False	Date	Date	Soutenir		
-Étudiant	note stage			outer_attribute	False			Soutenir
+Étudiant	note stage			outer_attribute	False			Soutenir		
+Stage	num. stage	!		primary_key	True					
+Stage	sujet			normal_attribute	False					
+Stage	nom entreprise	!		foreign_key	False	Entreprise	Entreprise	Proposer		
+Stage	date proposition			outer_attribute	False			Proposer

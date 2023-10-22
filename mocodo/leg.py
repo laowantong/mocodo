@@ -2,7 +2,7 @@ import operator
 from math import hypot, sqrt
 
 from .mocodo_error import MocodoError
-from .tools.string_tools import surrounds
+from .tools.string_tools import surrounds, raw_to_bid
 
 
 class Leg:
@@ -37,9 +37,10 @@ class Leg:
         self.peg = ("o" if self.kind == "cluster_peg" and not self.arrow else "")
         self.note = leg.get("leg_note")
         self.association = association
-        self.entity_name = leg["entity"]
+        self.entity_raw_name = leg["entity"]
+        self.entity_bid = raw_to_bid(self.entity_raw_name)
         self.twist = False
-        self.identifier = None
+        self.lid = None
         self.unicities = ""
         self.is_in_elected_group = False
 
@@ -66,9 +67,9 @@ class Leg:
     def set_spin_strategy(self, spin):
         self.spin = spin
         self.description = self._curved_description if spin else self._straight_description
-        if self.identifier is None:
+        if self.lid is None:
             spin_str = str(round(spin, 2)).replace(".", "_")  # avoid dot for the web version
-            self.identifier = f"{self.association.name},{self.entity_name},{spin_str}"
+            self.lid = f"{self.association.bid},{self.entity_bid},{spin_str}"
 
     def _straight_description(self, style, geo):
         result = []
@@ -114,7 +115,7 @@ class Leg:
                 },
             )
         )
-        (x, y) = leg.card_pos(self.twist, geo["shift"][self.identifier])
+        (x, y) = leg.card_pos(self.twist, geo["shift"][self.lid])
         tx = x + card_margin
         ty = y - card_margin - style["card_baseline"]
         self.saved_card_description = []
@@ -162,7 +163,7 @@ class Leg:
                 )
             )
         if self.arrow:
-            (x, y, a, b) = leg.arrow_pos(self.arrow, geo["ratio"][self.identifier])
+            (x, y, a, b) = leg.arrow_pos(self.arrow, geo["ratio"][self.lid])
             c = hypot(a, b)
             (cos, sin) = (a / c, b / c)
             result.append(
@@ -233,7 +234,7 @@ class Leg:
                 },
             )
         )
-        (x, y) = leg.card_pos(geo["shift"][self.identifier])
+        (x, y) = leg.card_pos(geo["shift"][self.lid])
         tx = x + card_margin
         ty = y - card_margin - style["card_baseline"]
         self.saved_card_description = []
@@ -281,7 +282,7 @@ class Leg:
                 )
             )
         if self.arrow:
-            (x, y, a, b) = leg.arrow_pos(self.arrow, geo["ratio"][self.identifier])
+            (x, y, a, b) = leg.arrow_pos(self.arrow, geo["ratio"][self.lid])
             c = hypot(a, b)
             (cos, sin) = (a / c, b / c)
             result.append(
@@ -307,8 +308,9 @@ class InheritanceLeg:
         self.kind = leg["kind"] # "-" or "="
         self.arrow = leg["arrow"]
         self.inheritance = inheritance
-        self.entity_name = leg["entity"]
-        self.identifier = f"{self.inheritance.name} / {self.entity_name}"
+        self.entity_bid = raw_to_bid(leg["entity"])
+        self.lid = f"{self.inheritance.bid} / {self.entity_bid}"
+        self.identifier = f"{self.inheritance.bid} / {self.entity_bid}"
 
     def register_entity(self, entity):
         self.entity = entity
@@ -363,7 +365,7 @@ class InheritanceLeg:
                 )
             )
         if self.arrow:
-            (x, y, a, b) = leg.arrow_pos(self.arrow, geo["ratio"][self.identifier])
+            (x, y, a, b) = leg.arrow_pos(self.arrow, geo["ratio"][self.lid])
             c = hypot(a, b)
             (cos, sin) = (a / c, b / c)
             result.append(
@@ -387,11 +389,11 @@ class InheritanceLeg:
 
 class ConstraintLeg:
 
-    def __init__(self, constraint, kind, box_name):
+    def __init__(self, constraint, kind, box_raw_name):
         self.constraint = constraint
         self.kind = kind
-        self.box_name = box_name
-        self.identifier = None
+        self.bid = raw_to_bid(box_raw_name)
+        self.lid = None
     
     def register_box(self, box):
         self.box = box
@@ -463,110 +465,6 @@ class ConstraintLeg:
             )
         else:
             raise NotImplementedError
-        return result
-
-
-class DiagramLink:
-    def __init__(self, entities, foreign_entity, foreign_key):
-        self.foreign_entity = foreign_entity
-        self.foreign_key = foreign_key
-        try:
-            self.primary_entity = entities[foreign_key.primary_entity_name]
-        except KeyError:
-            raise MocodoError(14, _('Attribute "{attribute}" in entity "{entity_1}" references an unknown entity "{entity_2}".').format(attribute=foreign_key.label, entity_1=foreign_entity.name, entity_2=foreign_key.primary_entity_name)) # fmt: skip
-        for candidate in self.primary_entity.attributes:
-            if candidate.label.lstrip("#") == foreign_key.primary_key_label.lstrip("#"):
-                self.primary_key = candidate
-                break
-        else:
-            raise MocodoError(15, _('Attribute "{attribute_1}" in entity "{entity_1}" references an unknown attribute "{attribute_2}" in entity "{entity_2}".').format(attribute_1=foreign_key.label, entity_1=foreign_entity.name, attribute_2=foreign_key.primary_key_label, entity_2=foreign_key.primary_entity_name)) # fmt: skip
-
-    def calculate_size(self, style, *ignored):
-        self.fdx = self.foreign_entity.w // 2
-        self.pdx = self.primary_entity.w // 2
-        self.fdy = (
-            -self.foreign_entity.h // 2
-            + 3 * style["rect_margin_height"]
-            + self.foreign_entity.cartouche_height
-            + (self.foreign_key.rank + 0.5)
-            * (self.foreign_entity.attribute_height + style["line_skip_height"])
-        )
-        self.pdy = (
-            -self.primary_entity.h // 2
-            + 3 * style["rect_margin_height"]
-            + self.primary_entity.cartouche_height
-            + (self.primary_key.rank + 0.5)
-            * (self.primary_entity.attribute_height + style["line_skip_height"])
-        )
-        self.offset = 2 * (style["card_margin"] + style["card_max_width"])
-
-    def description(self, style, geo):
-        result = [
-            (
-                "comment",
-                {
-                    "text": f'Link from "{self.foreign_key.primary_key_label}" ({self.foreign_entity.name}) to "{self.primary_key.label}" ({self.primary_entity.name})'
-                },
-            )
-        ]
-        spins = (
-            [(-1, -1), (1, -1), (-1, 1), (1, 1)]
-            if self.foreign_key.rank % 2
-            else [(1, 1), (-1, 1), (1, -1), (-1, -1)]
-        )
-        (fs, ps) = min(
-            spins,
-            key=lambda fs_ps: abs(
-                geo["cx"][self.foreign_entity.name]
-                + self.fdx * fs_ps[0]
-                - geo["cx"][self.primary_entity.name]
-                - self.pdx * fs_ps[1]
-            ),
-        )
-        xf = geo["cx"][self.foreign_entity.name] + self.fdx * fs
-        yf = geo["cy"][self.foreign_entity.name] + self.fdy
-        xp = geo["cx"][self.primary_entity.name] + self.pdx * ps
-        yp = geo["cy"][self.primary_entity.name] + self.pdy
-        result.append(
-            (
-                "curve",
-                {
-                    "x0": xf,
-                    "y0": yf,
-                    "x1": xf + (xp - xf) / 2 if fs != ps else xf + self.offset * fs,
-                    "y1": yf + (yp - yf) / 2,
-                    "x2": xf + (xp - xf) / 3 if fs != ps else xp + self.offset * ps,
-                    "y2": yp,
-                    "x3": xp,
-                    "y3": yp,
-                    "stroke_color": style["leg_stroke_color"],
-                    "stroke_depth": style["leg_stroke_depth"],
-                },
-            )
-        )
-        result.append(
-            (
-                "arrow",
-                {
-                    "color": style["leg_stroke_color"],
-                    "x": xp,
-                    "y": yp,
-                    "a": ps,
-                    "b": 0,
-                },
-            )
-        )
-        result.append(
-            (
-                "circle",
-                {
-                    "stroke_depth": style["box_stroke_depth"],
-                    "cx": xf,
-                    "cy": yf,
-                    "r": style["box_stroke_depth"],
-                },
-            )
-        )
         return result
 
 

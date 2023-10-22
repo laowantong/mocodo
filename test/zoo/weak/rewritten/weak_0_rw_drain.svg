@@ -15,7 +15,7 @@
 	<line x1="162" y1="65" x2="180" y2="65" stroke="#000000" stroke-width="1"/>
 </g>
 
-<!-- Entity Œuvre -->
+<!-- Entity OEUVRE -->
 <g>
 	<g>
 		<rect x="9" y="17" width="78" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
@@ -28,7 +28,7 @@
 	<line x1="17" y1="67" x2="58" y2="67" stroke="#000000" stroke-width="1"/>
 </g>
 
-<!-- Entity Exemplaire -->
+<!-- Entity EXEMPLAIRE -->
 <g>
 	<g>
 		<rect x="185" y="9" width="120" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>

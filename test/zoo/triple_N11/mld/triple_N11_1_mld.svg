@@ -2,7 +2,7 @@
 <svg width="440" height="212" viewBox="0 0 440 212" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="440" height="212" fill="#FFFFFF" stroke="none" stroke-width="0"/>
 
-<!-- Entity Projet -->
+<!-- Entity PROJET -->
 <g>
 	<g>
 		<rect x="38" y="18" width="78" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
@@ -16,7 +16,7 @@
 	<text x="46" y="82.1" fill="#000000" font-family="Gill Sans" font-size="15">libellé</text>
 </g>
 
-<!-- Entity Affecter -->
+<!-- Entity AFFECTER -->
 <g>
 	<g>
 		<rect x="175" y="9" width="100" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
@@ -32,7 +32,7 @@
 	<text x="183" y="90" fill="#000000" font-family="Gill Sans" font-size="15">#site</text>
 </g>
 
-<!-- Entity Site -->
+<!-- Entity SITE -->
 <g>
 	<g>
 		<rect x="334" y="18" width="68" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
@@ -46,7 +46,7 @@
 	<text x="342" y="82.1" fill="#000000" font-family="Gill Sans" font-size="15">position</text>
 </g>
 
-<!-- Entity Employé -->
+<!-- Entity EMPLOYE -->
 <g>
 	<g>
 		<rect x="174" y="127" width="102" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
@@ -60,17 +60,17 @@
 	<text x="182" y="191.1" fill="#000000" font-family="Gill Sans" font-size="15">nom employé</text>
 </g>
 
-<!-- Link from &quot;projet&quot; (Affecter) to &quot;projet&quot; (Projet) -->
+<!-- Link from &quot;projet&quot; (AFFECTER) to &quot;projet&quot; (PROJET) -->
 <path d="M175 53.5 C145.5 58 155.33 62.5 116 62.5" fill="none" stroke="#000000" stroke-width="1"/>
 <polygon points="116 62.5 128 56.5 124 62.5 128 68.5" fill="#000000" stroke-width="0"/>
 <circle cx="175" cy="53.5" r="1.5" stroke="#000000" stroke-width="1.5" fill="#000000"/>
 
-<!-- Link from &quot;employé&quot; (Affecter) to &quot;employé&quot; (Employé) -->
+<!-- Link from &quot;employé&quot; (AFFECTER) to &quot;employé&quot; (EMPLOYE) -->
 <path d="M175 70.5 C127 121 126 171.5 174 171.5" fill="none" stroke="#000000" stroke-width="1"/>
 <polygon points="174 171.5 162 177.5 166 171.5 162 165.5" fill="#000000" stroke-width="0"/>
 <circle cx="175" cy="70.5" r="1.5" stroke="#000000" stroke-width="1.5" fill="#000000"/>
 
-<!-- Link from &quot;site&quot; (Affecter) to &quot;site&quot; (Site) -->
+<!-- Link from &quot;site&quot; (AFFECTER) to &quot;site&quot; (SITE) -->
 <path d="M275 87.5 C304.5 75 294.67 62.5 334 62.5" fill="none" stroke="#000000" stroke-width="1"/>
 <polygon points="334 62.5 322 68.5 326 62.5 322 56.5" fill="#000000" stroke-width="0"/>
 <circle cx="275" cy="87.5" r="1.5" stroke="#000000" stroke-width="1.5" fill="#000000"/>

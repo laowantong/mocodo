@@ -2,7 +2,7 @@
 <svg width="530" height="212" viewBox="0 0 530 212" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="530" height="212" fill="#FFFFFF" stroke="none" stroke-width="0"/>
 
-<!-- Entity Ingénieur -->
+<!-- Entity INGENIEUR -->
 <g>
 	<g>
 		<rect x="38" y="18" width="108" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
@@ -16,7 +16,7 @@
 	<text x="46" y="82.1" fill="#000000" font-family="Gill Sans" font-size="15">nom ingénieur</text>
 </g>
 
-<!-- Entity Gérer -->
+<!-- Entity GERER -->
 <g>
 	<g>
 		<rect x="221" y="9" width="100" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
@@ -32,7 +32,7 @@
 	<text x="229" y="90" fill="#000000" font-family="Gill Sans" font-size="15">#responsable</text>
 </g>
 
-<!-- Entity Projet -->
+<!-- Entity PROJET -->
 <g>
 	<g>
 		<rect x="396" y="18" width="96" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
@@ -46,7 +46,7 @@
 	<text x="404" y="82.1" fill="#000000" font-family="Gill Sans" font-size="15">libellé projet</text>
 </g>
 
-<!-- Entity Responsable -->
+<!-- Entity RESPONSABLE -->
 <g>
 	<g>
 		<rect x="204" y="127" width="134" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
@@ -60,17 +60,17 @@
 	<text x="212" y="191.1" fill="#000000" font-family="Gill Sans" font-size="15">nom responsable</text>
 </g>
 
-<!-- Link from &quot;ingénieur&quot; (Gérer) to &quot;ingénieur&quot; (Ingénieur) -->
+<!-- Link from &quot;ingénieur&quot; (GERER) to &quot;ingénieur&quot; (INGENIEUR) -->
 <path d="M221 53.5 C183.5 58 196 62.5 146 62.5" fill="none" stroke="#000000" stroke-width="1"/>
 <polygon points="146 62.5 158 56.5 154 62.5 158 68.5" fill="#000000" stroke-width="0"/>
 <circle cx="221" cy="53.5" r="1.5" stroke="#000000" stroke-width="1.5" fill="#000000"/>
 
-<!-- Link from &quot;projet&quot; (Gérer) to &quot;projet&quot; (Projet) -->
+<!-- Link from &quot;projet&quot; (GERER) to &quot;projet&quot; (PROJET) -->
 <path d="M321 70.5 C358.5 66.5 346 62.5 396 62.5" fill="none" stroke="#000000" stroke-width="1"/>
 <polygon points="396 62.5 384 68.5 388 62.5 384 56.5" fill="#000000" stroke-width="0"/>
 <circle cx="321" cy="70.5" r="1.5" stroke="#000000" stroke-width="1.5" fill="#000000"/>
 
-<!-- Link from &quot;responsable&quot; (Gérer) to &quot;responsable&quot; (Responsable) -->
+<!-- Link from &quot;responsable&quot; (GERER) to &quot;responsable&quot; (RESPONSABLE) -->
 <path d="M321 87.5 C369 129.5 386 171.5 338 171.5" fill="none" stroke="#000000" stroke-width="1"/>
 <polygon points="338 171.5 350 165.5 346 171.5 350 177.5" fill="#000000" stroke-width="0"/>
 <circle cx="321" cy="87.5" r="1.5" stroke="#000000" stroke-width="1.5" fill="#000000"/>

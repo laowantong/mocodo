@@ -4,7 +4,6 @@ from hashlib import md5
 import json
 from pathlib import Path
 
-
 from .association import Association
 from .attribute import Attribute
 from .constraint import Constraint
@@ -14,7 +13,7 @@ from .grid import Grid
 from .inheritance import Inheritance
 from .mocodo_error import MocodoError
 from .phantom import Phantom
-
+from .tools.string_tools import raw_to_bid
 from .tools.parser_tools import extract_clauses
 
 def cmp(x, y):
@@ -75,21 +74,21 @@ class Mcd:
                 else:
                     if clause["type"] == "association":
                         element = Association(clause, **params)
-                        if element.name in self.associations:
-                            raise MocodoError(7, _('Duplicate association "{name}". If you want to make two associations appear with the same name, you must suffix it with a number.').format(name=element.name)) # fmt: skip
-                        self.associations[element.name] = element
+                        if element.bid in self.associations:
+                            raise MocodoError(7, _('Duplicate association "{name}". If you want to make two associations appear with the same name, you must suffix it with a number.').format(name=element.bid)) # fmt: skip
+                        self.associations[element.bid] = element
                         pages[indentation].append(element)
                     elif clause["type"] == "entity":
                         element = Entity(clause)
-                        if element.name in self.entities:
-                            raise MocodoError(6, _('Duplicate entity "{name}". If you want to make two entities appear with the same name, you must suffix it with a number.').format(name=element.name)) # fmt: skip
-                        self.entities[element.name] = element
+                        if element.bid in self.entities:
+                            raise MocodoError(6, _('Duplicate entity "{name}". If you want to make two entities appear with the same name, you must suffix it with a number.').format(name=element.bid)) # fmt: skip
+                        self.entities[element.bid] = element
                         pages[indentation].append(element)
                     else:
                         raise NotImplementedError
-                    if element.name in seen:
-                        raise MocodoError(8, _('One entity and one association share the same name "{name}".').format(name=element.name)) # fmt: skip
-                    seen.add(element.name)
+                    if element.bid in seen:
+                        raise MocodoError(8, _('One entity and one association share the same name "{name}".').format(name=element.bid)) # fmt: skip
+                    seen.add(element.bid)
                 self.rows[-1].append(element)
             if not seen:
                 raise MocodoError(4, _('The ERD "{title}" is empty.').format(title=params["title"])) # fmt: skip
@@ -107,48 +106,49 @@ class Mcd:
         def add_legs():
             for association in self.associations.values():
                 for leg in association.legs:
-                    if leg.entity_name in self.entities:
-                        entity = self.entities[leg.entity_name]
-                    elif leg.entity_name in self.associations:
-                        raise MocodoError(18, _('Association "{association}" linked to another association "{entity}"!').format(association=association.name, entity=leg.entity_name)) # fmt: skip
+                    if leg.entity_bid in self.entities:
+                        entity = self.entities[leg.entity_bid]
+                    elif leg.entity_bid in self.associations:
+                        raise MocodoError(18, _('Association "{association}" linked to another association "{entity}"!').format(association=association.bid, entity=leg.entity_bid)) # fmt: skip
                     else:
-                        raise MocodoError(1, _('Association "{association}" linked to an unknown entity "{entity}"!').format(association=association.name, entity=leg.entity_name)) # fmt: skip
+                        raise MocodoError(1, _('Association "{association}" linked to an unknown entity "{entity}"!').format(association=association.bid, entity=leg.entity_bid)) # fmt: skip
                     leg.register_entity(entity)
             for inheritance in self.inheritances:
                 for leg in inheritance.legs:
-                    if leg.entity_name in self.entities:
-                        entity = self.entities[leg.entity_name]
-                    elif leg.entity_name in self.associations:
-                        raise MocodoError(44, _('Inheritance "{inheritance}" linked to an association "{entity}"!').format(inheritance=inheritance.name, entity=leg.entity_name))
+                    if leg.entity_bid in self.entities:
+                        entity = self.entities[leg.entity_bid]
+                    elif leg.entity_bid in self.associations:
+                        raise MocodoError(44, _('Inheritance "{inheritance}" linked to an association "{entity}"!').format(inheritance=inheritance.bid, entity=leg.entity_bid))
                     else:
-                        raise MocodoError(42, _('Inheritance "{inheritance}" linked to an unknown entity "{entity}"!').format(inheritance=inheritance.name, entity=leg.entity_name))
+                        raise MocodoError(42, _('Inheritance "{inheritance}" linked to an unknown entity "{entity}"!').format(inheritance=inheritance.bid, entity=leg.entity_bid))
                     leg.register_entity(entity)
             for constraint in self.constraints:
                 for leg in constraint.legs:
-                    if leg.box_name in self.associations:
-                        box = self.associations[leg.box_name]
-                    elif leg.box_name in self.entities:
-                        box = self.entities[leg.box_name]
+                    if leg.bid in self.associations:
+                        box = self.associations[leg.bid]
+                    elif leg.bid in self.entities:
+                        box = self.entities[leg.bid]
                     else:
-                        raise MocodoError(40, _('Constraint "{constraint}" linked to an unknown entity or association "{box}"!').format(constraint=constraint.name, box=leg.box_name)) # fmt: skip
+                        raise MocodoError(40, _('Constraint "{constraint}" linked to an unknown entity or association "{box}"!').format(constraint=constraint.bid, box=leg.bid)) # fmt: skip
                     leg.register_box(box)
-                for box_name in constraint.coords:
-                    if isinstance(box_name, (float, int)):
+                for coord in constraint.coords:
+                    if isinstance(coord, (float, int)):
                         continue
-                    if box_name in self.associations or box_name in self.entities:
+                    bid = raw_to_bid(coord)
+                    if bid in self.associations or bid in self.entities:
                         continue
-                    raise MocodoError(43, _('Constraint "{constraint}" aligned with an unknown entity or association "{box}"!').format(constraint=constraint.name, box=box_name)) # fmt: skip
+                    raise MocodoError(43, _('Constraint "{constraint}" aligned with an unknown entity or association "{box}"!').format(constraint=constraint.bid, box=bid)) # fmt: skip
         
         def add_attributes():
             strengthening_legs = dict((entity_name, []) for entity_name in self.entities)
             for association in self.associations.values():
                 for leg in association.legs:
                     if leg.kind == "strengthening":
-                        strengthening_legs[leg.entity_name].append(leg)
+                        strengthening_legs[leg.entity_bid].append(leg)
             children = set()
             for inheritance in self.inheritances:
                 for leg in inheritance.legs[1:]: # the first leg is the parent
-                    children.add(leg.entity_name) # the other legs are its children
+                    children.add(leg.entity_bid) # the other legs are its children
             Attribute.id_gutter_strong_string = params["id_gutter_strong_string"]
             Attribute.id_gutter_weak_string = params["id_gutter_weak_string"]
             Attribute.id_gutter_alts = params["id_gutter_alts"]
@@ -172,7 +172,7 @@ class Mcd:
                                 continue
                             if other_leg.card[1] != "1":
                                 # Otherwise, accumulate them
-                                too_weak_entities[leg.entity.name] += 1
+                                too_weak_entities[leg.entity.bid] += 1
             for (too_weak_entity, count) in too_weak_entities.items():
                 if count < 2: # one isolated "too weak entity"
                     raise MocodoError(50, _('The weak entity "{entity}" should have a discriminator.').format(entity=too_weak_entity)) # fmt: skip
@@ -243,7 +243,7 @@ class Mcd:
             self.diagram_links = []
             for entity in self.entities.values():
                 for attribute in entity.attributes:
-                    if attribute.primary_entity_name:
+                    if attribute.primary_entity_bid:
                         self.diagram_links.append(DiagramLink(self.entities, entity, attribute))
             
         def may_center():
@@ -258,7 +258,7 @@ class Mcd:
             self.boxes = []
             for row in self.rows:
                 for box in row:
-                    box.identifier = next(i)
+                    box.index = next(i)
                     self.boxes.append(box)
                     box.register_boxes(self.boxes)
             self.box_count = len(self.boxes)
@@ -297,21 +297,21 @@ class Mcd:
         multiplicity = defaultdict(int) # but count the multiplicity (1 or 2) of each link
         for inheritance in self.inheritances:
             for leg in inheritance.legs:
-                successors[inheritance.identifier].add(leg.entity.identifier)
-                successors[leg.entity.identifier].add(inheritance.identifier)
-                multiplicity[(inheritance.identifier, leg.entity.identifier)] += 1
-                multiplicity[(leg.entity.identifier, inheritance.identifier)] += 1
+                successors[inheritance.index].add(leg.entity.index)
+                successors[leg.entity.index].add(inheritance.index)
+                multiplicity[(inheritance.index, leg.entity.index)] += 1
+                multiplicity[(leg.entity.index, inheritance.index)] += 1
         if self.associations:
             for association in self.associations.values():
                 for leg in association.legs:
-                    successors[association.identifier].add(leg.entity.identifier)
-                    successors[leg.entity.identifier].add(association.identifier)
-                    multiplicity[(association.identifier, leg.entity.identifier)] += 1
-                    multiplicity[(leg.entity.identifier, association.identifier)] += 1
+                    successors[association.index].add(leg.entity.index)
+                    successors[leg.entity.index].add(association.index)
+                    multiplicity[(association.index, leg.entity.index)] += 1
+                    multiplicity[(leg.entity.index, association.index)] += 1
         else:
             for diagram_link in self.diagram_links:
-                fei = diagram_link.foreign_entity.identifier
-                pei = diagram_link.primary_entity.identifier
+                fei = diagram_link.foreign_entity.index
+                pei = diagram_link.primary_entity.index
                 if fei != pei:
                     successors[fei].add(pei)
                     successors[pei].add(fei)
@@ -327,7 +327,7 @@ class Mcd:
         }
     
     def get_layout(self):
-        return [box.identifier for row in self.rows for box in row]
+        return [box.index for row in self.rows for box in row]
     
     def get_row_text(self, row):
         return "\n".join(box.source for box in row)
@@ -430,25 +430,25 @@ class Mcd:
             "width": self.w,
             "height": self.h,
             "cx": {
-                box.name: box.x + box.w // 2
+                box.bid: box.x + box.w // 2
                 for row in self.rows
                 for box in row
                 if box.kind != "phantom"
             },
             "cy": {
-                box.name: box.y + box.h // 2
+                box.bid: box.y + box.h // 2
                 for row in self.rows
                 for box in row
                 if box.kind != "phantom"
             },
             "shift": {
-                leg.identifier: 0
+                leg.lid: 0
                 for row in self.rows
                 for box in row
                 for leg in box.legs
                 if hasattr(leg, "card_view")},
             "ratio": {
-                leg.identifier: 1.0
+                leg.lid: 1.0
                 for row in self.rows
                 for box in row
                 for leg in box.legs
@@ -640,10 +640,10 @@ class Mcd:
         for quadruples in segments.values():
             quadruples.sort()
             for (l1, r1, e1, a1), (l2, r2, e2, a2) in zip(quadruples, quadruples[1:]):
-                if e1.name == e2.name and a1.name == a2.name: # reflexive association
+                if e1.bid == e2.bid and a1.bid == a2.bid: # reflexive association
                     continue
                 if l2 < r1:
-                    result.append((e1.name, a1.name, e2.name, a2.name))
+                    result.append((e1.bid, a1.bid, e2.bid, a2.bid))
         return result
 
 if __name__=="__main__":

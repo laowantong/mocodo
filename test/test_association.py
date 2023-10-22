@@ -16,12 +16,12 @@ class ParseTest(unittest.TestCase):
     
     def test_reflexive(self):
         a = association_wrapper("ÊTRE AMI, 0N BANDIT, 0N BANDIT")
-        self.assertEqual(a.name, "ÊTRE AMI")
+        self.assertEqual(a.bid, "ETRE_AMI")
         self.assertEqual(a.name_view, "ÊTRE AMI")
         self.assertEqual(a.attributes, [])
         for (i, leg) in enumerate(a.legs):
             self.assertEqual(leg.card_view, "0,N")
-            self.assertEqual(leg.entity_name, "BANDIT")
+            self.assertEqual(leg.entity_bid, "BANDIT")
             self.assertEqual(leg.arrow, "")
             self.assertEqual(leg.note, None)
 
@@ -31,14 +31,14 @@ class ParseTest(unittest.TestCase):
             association_wrapper("EMPLOYER, 01 PARTICIPANT, 0N ENTREPRISE:"),
         ]
         for a in l:
-            self.assertEqual(a.name, "EMPLOYER")
+            self.assertEqual(a.bid, "EMPLOYER")
             self.assertEqual(a.name_view, "EMPLOYER")
             self.assertEqual(a.legs[0].card_view, "0,1")
-            self.assertEqual(a.legs[0].entity_name, "PARTICIPANT")
+            self.assertEqual(a.legs[0].entity_bid, "PARTICIPANT")
             self.assertEqual(a.legs[0].arrow, "")
             self.assertEqual(a.legs[0].note, None)
             self.assertEqual(a.legs[1].card_view, "0,N")
-            self.assertEqual(a.legs[1].entity_name, "ENTREPRISE")
+            self.assertEqual(a.legs[1].entity_bid, "ENTREPRISE")
             self.assertEqual(a.legs[1].arrow, "")
             self.assertEqual(a.legs[1].note, None)
         self.assertEqual(l[0].attributes, [])
@@ -46,19 +46,19 @@ class ParseTest(unittest.TestCase):
 
     def test_triple(self):
         a = association_wrapper("SUIVRE, 0N DATE, 11 ÉTUDIANT, 0N ENSEIGNANT")
-        self.assertEqual(a.name, "SUIVRE")
+        self.assertEqual(a.bid, "SUIVRE")
         self.assertEqual(a.name_view, "SUIVRE")
         self.assertEqual(a.attributes, [])
         self.assertEqual(a.legs[0].card_view, "0,N")
-        self.assertEqual(a.legs[0].entity_name, "DATE")
+        self.assertEqual(a.legs[0].entity_bid, "DATE")
         self.assertEqual(a.legs[0].arrow, "")
         self.assertEqual(a.legs[0].note, None)
         self.assertEqual(a.legs[1].card_view, "1,1")
-        self.assertEqual(a.legs[1].entity_name, "ÉTUDIANT")
+        self.assertEqual(a.legs[1].entity_bid, "ETUDIANT")
         self.assertEqual(a.legs[1].arrow, "")
         self.assertEqual(a.legs[1].note, None)
         self.assertEqual(a.legs[2].card_view, "0,N")
-        self.assertEqual(a.legs[2].entity_name, "ENSEIGNANT")
+        self.assertEqual(a.legs[2].entity_bid, "ENSEIGNANT")
         self.assertEqual(a.legs[2].arrow, "")
         self.assertEqual(a.legs[2].note, None)
 
@@ -108,18 +108,18 @@ class ParseTest(unittest.TestCase):
 
     def test_numbered_association_wrapper(self):
         a = association_wrapper("SOUTENIR1, 01 ÉTUDIANT, 0N DATE: note stage")
-        self.assertEqual(a.name, "SOUTENIR1")
+        self.assertEqual(a.bid, "SOUTENIR1")
         self.assertEqual(a.name_view, "SOUTENIR")
         a = association_wrapper("SOUTENIR123, 01 ÉTUDIANT, 0N DATE: note stage")
-        self.assertEqual(a.name, "SOUTENIR123")
+        self.assertEqual(a.bid, "SOUTENIR123")
         self.assertEqual(a.name_view, "SOUTENIR12")
 
     def test_df(self):
         a = association_wrapper("DF, 0N CLIENT, 11 COMMANDE")
-        self.assertEqual(a.name, "DF0")
+        self.assertEqual(a.bid, "DF0")
         self.assertEqual(a.name_view, "DF")
         a = association_wrapper("CIF, 0N CLIENT, 11 COMMANDE", df_label="CIF")
-        self.assertEqual(a.name, "CIF")
+        self.assertEqual(a.bid, "CIF")
         self.assertEqual(a.name_view, "CIF")
         self.assertRaisesRegex(MocodoError, r"Mocodo Err\.37", association_wrapper, "DF, 0N CLIENT, 0N COMMANDE")
 
@@ -128,11 +128,11 @@ class ParseTest(unittest.TestCase):
 
     def test_cluster_of_two_entities(self):
         a = association_wrapper("SUIVRE, 0N DATE, /1N ÉTUDIANT, 0N ENSEIGNANT")
-        self.assertEqual(a.legs[0].entity_name, "DATE")
+        self.assertEqual(a.legs[0].entity_bid, "DATE")
         self.assertEqual(a.legs[0].kind, "cluster_leg")
-        self.assertEqual(a.legs[1].entity_name, "ÉTUDIANT")
+        self.assertEqual(a.legs[1].entity_bid, "ETUDIANT")
         self.assertEqual(a.legs[1].kind, "cluster_peg")
-        self.assertEqual(a.legs[2].entity_name, "ENSEIGNANT")
+        self.assertEqual(a.legs[2].entity_bid, "ENSEIGNANT")
         self.assertEqual(a.legs[2].kind, "cluster_leg")
 
 

@@ -41,7 +41,7 @@
 	<text x="50" y="85" fill="#000000" font-family="Futura" font-size="11">0,N</text>
 </g>
 
-<!-- Entity PIÈCE -->
+<!-- Entity PIECE -->
 <g>
 	<g>
 		<rect x="9" y="9" width="72" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>

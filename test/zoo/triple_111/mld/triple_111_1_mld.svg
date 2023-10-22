@@ -2,7 +2,7 @@
 <svg width="478" height="112" viewBox="0 0 478 112" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="478" height="112" fill="#FFFFFF" stroke="none" stroke-width="0"/>
 
-<!-- Entity Technicien -->
+<!-- Entity TECHNICIEN -->
 <g>
 	<g>
 		<rect x="38" y="18" width="116" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
@@ -16,7 +16,7 @@
 	<text x="46" y="82.1" fill="#000000" font-family="Gill Sans" font-size="15">nom technicien</text>
 </g>
 
-<!-- Entity Utiliser -->
+<!-- Entity UTILISER -->
 <g>
 	<g>
 		<rect x="212" y="9" width="92" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
@@ -32,7 +32,7 @@
 	<text x="220" y="90" fill="#000000" font-family="Gill Sans" font-size="15">#technicien</text>
 </g>
 
-<!-- Entity Projet -->
+<!-- Entity PROJET -->
 <g>
 	<g>
 		<rect x="362" y="18" width="78" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
@@ -46,12 +46,12 @@
 	<text x="370" y="82.1" fill="#000000" font-family="Gill Sans" font-size="15">libellé</text>
 </g>
 
-<!-- Link from &quot;projet&quot; (Utiliser) to &quot;projet&quot; (Projet) -->
+<!-- Link from &quot;projet&quot; (UTILISER) to &quot;projet&quot; (PROJET) -->
 <path d="M304 70.5 C333 66.5 323.33 62.5 362 62.5" fill="none" stroke="#000000" stroke-width="1"/>
 <polygon points="362 62.5 350 68.5 354 62.5 350 56.5" fill="#000000" stroke-width="0"/>
 <circle cx="304" cy="70.5" r="1.5" stroke="#000000" stroke-width="1.5" fill="#000000"/>
 
-<!-- Link from &quot;technicien&quot; (Utiliser) to &quot;technicien&quot; (Technicien) -->
+<!-- Link from &quot;technicien&quot; (UTILISER) to &quot;technicien&quot; (TECHNICIEN) -->
 <path d="M212 87.5 C183 75 192.67 62.5 154 62.5" fill="none" stroke="#000000" stroke-width="1"/>
 <polygon points="154 62.5 166 56.5 162 62.5 166 68.5" fill="#000000" stroke-width="0"/>
 <circle cx="212" cy="87.5" r="1.5" stroke="#000000" stroke-width="1.5" fill="#000000"/>

@@ -55,8 +55,8 @@ def get_dimensions(mcd, verbose=False):
     result = []
     log = ["["]
     for box in mcd.boxes:
-        log.append("{'name': %s, " % repr(box.name))
-        d = {"name": box.name}
+        log.append("{'bid': %s, " % repr(box.bid))
+        d = {"bid": box.bid}
         for key in "xywh":
             d[key] = getattr(box, key)
             log.append("'%s': %s, " % (key, d[key]))
@@ -76,7 +76,7 @@ class McdGeometryTest(unittest.TestCase):
             "My entity: first, second",
         ]
         mcd = Mcd("\n".join(clauses), stub_for_get_font_metrics, **params)
-        self.assertEqual(get_dimensions(mcd), [{'name': 'My entity', 'x': 9, 'y': 9, 'w': 62, 'h': 54}])
+        self.assertEqual(get_dimensions(mcd), [{'bid': 'MY_ENTITY', 'x': 9, 'y': 9, 'w': 62, 'h': 54}])
     
     def test_read_me_mcd(self):
         clauses = [
@@ -96,18 +96,18 @@ class McdGeometryTest(unittest.TestCase):
         ]
         mcd = Mcd("\n".join(clauses), stub_for_get_font_metrics, **params)
         self.assertEqual(get_dimensions(mcd), [
-            {'name': 'DF0', 'x': 30, 'y': 24, 'w': 24, 'h': 24},
-            {'name': 'Classe', 'x': 95, 'y': 9, 'w': 72, 'h': 54},
-            {'name': 'Faire Cours', 'x': 195, 'y': 15, 'w': 74, 'h': 42},
-            {'name': 'Catégorie', 'x': 294, 'y': 9, 'w': 86, 'h': 54},
-            {'name': 'Élève', 'x': 9, 'y': 83, 'w': 66, 'h': 54},
-            {'name': 'Noter', 'x': 111, 'y': 89, 'w': 40, 'h': 42},
-            {'name': 'Prof', 'x': 201, 'y': 83, 'w': 62, 'h': 54},
-            {'name': 'Relever', 'x': 312, 'y': 89, 'w': 50, 'h': 42},
-            {'name': 'Date', 'x': 24, 'y': 157, 'w': 36, 'h': 44},
-            {'name': 'Matière', 'x': 85, 'y': 157, 'w': 92, 'h': 44},
-            {'name': 'Enseigner', 'x': 202, 'y': 158, 'w': 60, 'h': 42},
-            {'name': ' 0', 'x': 337, 'y': 179, 'w': 0, 'h': 0}
+            {'bid': 'DF0', 'x': 30, 'y': 24, 'w': 24, 'h': 24},
+            {'bid': 'CLASSE', 'x': 95, 'y': 9, 'w': 72, 'h': 54},
+            {'bid': 'FAIRE_COURS', 'x': 195, 'y': 15, 'w': 74, 'h': 42},
+            {'bid': 'CATEGORIE', 'x': 294, 'y': 9, 'w': 86, 'h': 54},
+            {'bid': 'ELEVE', 'x': 9, 'y': 83, 'w': 66, 'h': 54},
+            {'bid': 'NOTER', 'x': 111, 'y': 89, 'w': 40, 'h': 42},
+            {'bid': 'PROF', 'x': 201, 'y': 83, 'w': 62, 'h': 54},
+            {'bid': 'RELEVER', 'x': 312, 'y': 89, 'w': 50, 'h': 42},
+            {'bid': 'DATE', 'x': 24, 'y': 157, 'w': 36, 'h': 44},
+            {'bid': 'MATIERE', 'x': 85, 'y': 157, 'w': 92, 'h': 44},
+            {'bid': 'ENSEIGNER', 'x': 202, 'y': 158, 'w': 60, 'h': 42},
+            {'bid': 'PHANTOM_#1', 'x': 337, 'y': 179, 'w': 0, 'h': 0}
         ])
     
     def test_mocodo_online_mcd(self):
@@ -129,18 +129,18 @@ class McdGeometryTest(unittest.TestCase):
         ]
         mcd = Mcd("\n".join(clauses), stub_for_get_font_metrics, **params)
         self.assertEqual(get_dimensions(mcd), [
-            {'name': 'PEUT VIVRE DANS', 'x': 9, 'y': 15, 'w': 110, 'h': 42},
-            {'name': 'ENCLOS', 'x': 144, 'y': 14, 'w': 72, 'h': 44},
-            {'name': 'OCCUPE', 'x': 241, 'y': 15, 'w': 44, 'h': 42},
-            {'name': 'PÉRIODE', 'x': 320, 'y': 9, 'w': 66, 'h': 54},
-            {'name': 'ESPÈCE', 'x': 28, 'y': 93, 'w': 72, 'h': 54},
-            {'name': 'DF0', 'x': 168, 'y': 108, 'w': 24, 'h': 24},
-            {'name': 'ANIMAL', 'x': 220, 'y': 83, 'w': 86, 'h': 74},
-            {'name': 'A MÈRE', 'x': 331, 'y': 99, 'w': 44, 'h': 42},
-            {'name': 'PEUT COHABITER AVEC', 'x': 9, 'y': 177, 'w': 110, 'h': 42},
-            {'name': ' 0', 'x': 180, 'y': 198, 'w': 0, 'h': 0},
-            {'name': 'A PÈRE', 'x': 241, 'y': 177, 'w': 44, 'h': 42},
-            {'name': 'INVISIBLE', 'x': 353, 'y': 198, 'w': 0, 'h': 0}
+            {'bid': 'PEUT_VIVRE_DANS', 'x': 9, 'y': 15, 'w': 110, 'h': 42},
+            {'bid': 'ENCLOS', 'x': 144, 'y': 14, 'w': 72, 'h': 44},
+            {'bid': 'OCCUPE', 'x': 241, 'y': 15, 'w': 44, 'h': 42},
+            {'bid': 'PERIODE', 'x': 320, 'y': 9, 'w': 66, 'h': 54},
+            {'bid': 'ESPECE', 'x': 28, 'y': 93, 'w': 72, 'h': 54},
+            {'bid': 'DF0', 'x': 168, 'y': 108, 'w': 24, 'h': 24},
+            {'bid': 'ANIMAL', 'x': 220, 'y': 83, 'w': 86, 'h': 74},
+            {'bid': 'A_MERE', 'x': 331, 'y': 99, 'w': 44, 'h': 42},
+            {'bid': 'PEUT_COHABITER_AVEC', 'x': 9, 'y': 177, 'w': 110, 'h': 42},
+            {'bid': 'PHANTOM_#1', 'x': 180, 'y': 198, 'w': 0, 'h': 0},
+            {'bid': 'A_PERE', 'x': 241, 'y': 177, 'w': 44, 'h': 42},
+            {'bid': 'INVISIBLE', 'x': 353, 'y': 198, 'w': 0, 'h': 0}
         ])
     
 if __name__ == '__main__':

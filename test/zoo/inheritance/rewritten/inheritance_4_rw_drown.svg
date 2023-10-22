@@ -2,7 +2,7 @@
 <svg width="474" height="294" viewBox="0 0 474 294" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="474" height="294" fill="#FFFFFF" stroke="none" stroke-width="0"/>
 
-<!-- Inheritance ENTITÉ 3_ parent #1 -->
+<!-- Inheritance ENTITE_3__PARENT_#1 -->
 <g>
 	<line x1="290" y1="147" x2="163" y2="147" stroke="#000000" stroke-width="1"/>
 	<line x1="290" y1="247" x2="163" y2="147" stroke="#000000" stroke-width="1"/>
@@ -17,7 +17,7 @@
 	</g>
 </g>
 
-<!-- Association ASSOC 5_ -->
+<!-- Association ASSOC_5_ -->
 <g>
 	<line x1="59" y1="147" x2="163" y2="47" stroke="#000000" stroke-width="1"/>
 	<line x1="290" y1="47" x2="163" y2="47" stroke="#000000" stroke-width="1"/>
@@ -32,7 +32,7 @@
 	<text x="217" y="63" fill="#000000" font-family="Futura" font-size="11">1,1</text>
 </g>
 
-<!-- Association ASSOC 6_ -->
+<!-- Association ASSOC_6_ -->
 <g>
 	<line x1="290" y1="47" x2="417" y2="147" stroke="#000000" stroke-width="1"/>
 	<line x1="290" y1="247" x2="417" y2="147" stroke="#000000" stroke-width="1"/>
@@ -47,7 +47,7 @@
 	<text x="320.15" y="201" fill="#000000" font-family="Futura" font-size="11">1,N</text>
 </g>
 
-<!-- Association ASSOC 7_ -->
+<!-- Association ASSOC_7_ -->
 <g>
 	<line x1="290" y1="247" x2="163" y2="247" stroke="#000000" stroke-width="1"/>
 	<line x1="59" y1="147" x2="163" y2="247" stroke="#000000" stroke-width="1"/>
@@ -62,7 +62,7 @@
 	<text x="81.39" y="201" fill="#000000" font-family="Futura" font-size="11">1,N</text>
 </g>
 
-<!-- Entity ENTITÉ 1_ -->
+<!-- Entity ENTITE_1_ -->
 <g>
 	<g>
 		<rect x="240" y="9" width="100" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
@@ -75,7 +75,7 @@
 	<text x="248" y="73.1" fill="#000000" font-family="Gill Sans" font-size="15">at 1 2</text>
 </g>
 
-<!-- Entity ENTITÉ 2_ -->
+<!-- Entity ENTITE_2_ -->
 <g>
 	<g>
 		<rect x="9" y="109" width="100" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
@@ -88,7 +88,7 @@
 	<text x="17" y="173.1" fill="#000000" font-family="Gill Sans" font-size="15">at 2 2</text>
 </g>
 
-<!-- Entity ENTITÉ 3_ -->
+<!-- Entity ENTITE_3_ -->
 <g>
 	<g>
 		<rect x="240" y="109" width="100" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
@@ -102,7 +102,7 @@
 	<text x="248" y="173.1" fill="#000000" font-family="Gill Sans" font-size="15">at 3 2</text>
 </g>
 
-<!-- Entity ENTITÉ 4_ -->
+<!-- Entity ENTITE_4_ -->
 <g>
 	<g>
 		<rect x="240" y="209" width="100" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>

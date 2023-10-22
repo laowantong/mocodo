@@ -7,19 +7,19 @@ CURABITUR	gravida	!		primary_key	True
 CURABITUR	amor			normal_attribute	False					
 DIGNISSIM	tellus	!		primary_key	True					
 DIGNISSIM	terra			normal_attribute	False					
-LACUS	magna	!		parent_primary_key	True	TRISTIS	TRISTIS	TRISTIS parent #1		
+LACUS	magna	!		parent_primary_key	True	TRISTIS	TRISTIS	XT		
 LACUS	tempor			normal_attribute	False					
 LACUS	fugit			normal_attribute	False					
 LIBERO	posuere	!		primary_key	True					
 LIBERO	lacrima			normal_attribute	False					
-NEC	magna	!		parent_primary_key	True	TRISTIS	TRISTIS	TRISTIS parent #1		
+NEC	magna	!		parent_primary_key	True	TRISTIS	TRISTIS	XT		
 NEC	pulvinar			normal_attribute	False					
 NEC	audis			normal_attribute	False					
 NEC	gravida	!		foreign_key	False	CURABITUR	CURABITUR	MOLLIS		
 QUAM	cras	!		primary_key	True					
 QUAM	sed			normal_attribute	False					
 QUAM	magna	!		foreign_key	False	SODALES	SODALES	VITAE		
-SODALES	magna	!		parent_primary_key	True	TRISTIS	TRISTIS	TRISTIS parent #1		
+SODALES	magna	!		parent_primary_key	True	TRISTIS	TRISTIS	XT		
 SODALES	convallis			normal_attribute	False					
 SODALES	ipsum			normal_attribute	False					
 SUSCIPIT	orci	!		primary_key	True					
@@ -28,6 +28,6 @@ SUSCIPIT	magna	!		foreign_key	False	TRISTIS	TRISTIS	RHONCUS
 TRISTIS	magna	!		primary_key	True					
 TRISTIS	vestibulum			normal_attribute	False					
 TRISTIS	fermentum	!		foreign_key	False	CONSEQUAT	CONSEQUAT	ELIT		
-TRISTIS	type	!		deleted_child_discriminator_XT	False			TRISTIS parent #1	UNSIGNED_INT_PLACEHOLDER	
+TRISTIS	type	!		deleted_child_discriminator_XT	False			XT	UNSIGNED_INT_PLACEHOLDER	
 ULTRICES	posuere	!		primary_foreign_key	True	LIBERO	LIBERO	ULTRICES		
 ULTRICES	magna	!		primary_foreign_key	True	LACUS	LACUS	ULTRICES

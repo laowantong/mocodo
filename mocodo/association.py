@@ -2,7 +2,7 @@ import re
 from .attribute import *
 from .leg import *
 from .mocodo_error import MocodoError
-from .tools.string_tools import rstrip_digit_or_underline
+from .tools.string_tools import rstrip_digit_or_underline, raw_to_bid
 
 class Association:
 
@@ -14,7 +14,8 @@ class Association:
 
     def __init__(self, clause, **params):
         self.source = clause["source"]
-        self.name = clause["name"]
+        self.raw_name = clause["name"]
+        self.bid = raw_to_bid(self.raw_name)
         # A protected association results in a table, even if this association is a DF.
         self.is_protected = (clause.get("box_def_prefix") == "+")
         if clause.get("box_def_prefix") == "-":
@@ -33,13 +34,13 @@ class Association:
             else:
                 self.attributes.append(SimpleAssociationAttribute(attr))
         df_label = params.get("df", "DF")
-        if re.match(fr"^{df_label.upper()}\d*$", self.name.upper()):
+        if re.match(fr"^{df_label.upper()}\d*$", self.raw_name.upper()):
             self.name_view = df_label # strip all digits suffixing a DF name
-            self.name = f"{df_label}{Association.df_counter}" # internal name
+            self.bid = f"{df_label}{Association.df_counter}"
             Association.df_counter += 1
             self.kind = "df"
         else:
-            self.name_view = rstrip_digit_or_underline(self.name)
+            self.name_view = rstrip_digit_or_underline(self.raw_name)
             legs = clause["legs"]
             # A "peg" is a leg that is prefixed by a "/" character.
             for leg in legs:
@@ -47,19 +48,19 @@ class Association:
                     self.peg_count += 1
             if self.peg_count > 0:
                 if len(legs) < 3:
-                    raise MocodoError(51, _('The association "{name}" should have at least 3 legs to become a cluster.').format(name=self.name))
+                    raise MocodoError(51, _('The association "{name}" should have at least 3 legs to become a cluster.').format(name=self.raw_name))
                 self.kind = "cluster"
             else:
                 self.kind = "association"
         self.set_view_strategies()
-        entity_names = [leg["entity"] for leg in clause["legs"]]
+        entity_raw_names = [leg["entity"] for leg in clause["legs"]]
         self.legs = []
         for leg_clause in clause["legs"]:
-            entity_name = leg_clause["entity"]
+            entity_raw_name = leg_clause["entity"]
             rank = leg_clause["rank"]
             leg = Leg(self, leg_clause, **params)
-            mutiplicity = entity_names.count(entity_name)
-            rank = entity_names[:rank].count(entity_name)
+            mutiplicity = entity_raw_names.count(entity_raw_name)
+            rank = entity_raw_names[:rank].count(entity_raw_name)
             leg.set_spin_strategy(0 if mutiplicity == 1 else 2 * rank / (mutiplicity - 1) - 1)
             self.legs.append(leg)
         if self.kind == "cluster":
@@ -104,8 +105,8 @@ class Association:
             leg.calculate_size(style, get_font_metrics)
 
     def register_center(self, geo):
-        self.cx = geo["cx"][self.name]
-        self.cy = geo["cy"][self.name]
+        self.cx = geo["cx"][self.bid]
+        self.cy = geo["cy"][self.bid]
         self.l = self.cx - self.w // 2
         self.r = self.cx + self.w // 2
         self.t = self.cy - self.h // 2
@@ -303,7 +304,6 @@ class Association:
             dx = 0
             dy = style["round_rect_margin_height"] + self.cartouche_height + 2 * style["rect_margin_height"] - self.h // 2
             for attribute in self.attributes:
-                attribute.name = self.name
                 result.extend(attribute.description(style, x, self.cy, dx, dy))
                 dy += self.attribute_height + style["line_skip_height"]
             return result
@@ -318,7 +318,7 @@ class Association:
     def description_when_visible(self, style, geo):
         self.saved_card_description = []
         result = []
-        result.append(("comment", {"text": f"Association {self.name}"}))
+        result.append(("comment", {"text": f"Association {self.bid}"}))
         result.append(
             (
                 "begin_component",
