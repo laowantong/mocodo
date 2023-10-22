@@ -1,17 +1,17 @@
 this relation name	attribute	optionality	unicities	nature	is primary	adjacent source	outer source	association name	datatype	leg note
-LACUS	magna	!		parent_primary_key	True	TRISTIS	TRISTIS	TRISTIS parent #1		
+LACUS	magna	!		parent_primary_key	True	TRISTIS	TRISTIS	XT		
 LACUS	tempor			normal_attribute	False					
 LACUS	fugit			normal_attribute	False					
-NEC	magna	!		parent_primary_key	True	TRISTIS	TRISTIS	TRISTIS parent #1		
+NEC	magna	!		parent_primary_key	True	TRISTIS	TRISTIS	XT		
 NEC	pulvinar			normal_attribute	False					
 NEC	audis			normal_attribute	False					
 NEC	magna	!		foreign_key	False	LACUS	LACUS	MOLLIS		via_mollis
 NEC	magna	!		foreign_key	False	SODALES	SODALES	VITAE		via_vitae
-SODALES	magna	!		parent_primary_key	True	TRISTIS	TRISTIS	TRISTIS parent #1		
+SODALES	magna	!		parent_primary_key	True	TRISTIS	TRISTIS	XT		
 SODALES	convallis			normal_attribute	False					
 SODALES	ipsum			normal_attribute	False					
 TRISTIS	magna	!		primary_key	True					
 TRISTIS	vestibulum			normal_attribute	False					
-TRISTIS	type	!		deleted_child_discriminator_XT	False			TRISTIS parent #1	UNSIGNED_INT_PLACEHOLDER	
+TRISTIS	type	!		deleted_child_discriminator_XT	False			XT	UNSIGNED_INT_PLACEHOLDER	
 ULTRICES	magna	!		primary_foreign_key	True	SODALES	SODALES	ULTRICES		sodales
 ULTRICES	magna	!		primary_foreign_key	True	LACUS	LACUS	ULTRICES		lacus

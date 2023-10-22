@@ -55,6 +55,9 @@ ASCII = "ae ae ae d d f h i l o o oe oe ss t ue AE AE AE D D F H I L O O OE OE S
 def ascii(s, outliers=str.maketrans(dict(zip(LATIN.split(), ASCII.split())))):
     return "".join(c for c in normalize("NFD", s.translate(outliers)) if not combining(c))
 
+def raw_to_bid(box_raw_name):
+    return re.sub(r"\W", "_", ascii(box_raw_name).upper())
+
 def aggressive_split(
     input_string,
     find_all_words = re.compile(r"(?u)[^\W_]+").findall

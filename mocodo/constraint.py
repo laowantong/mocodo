@@ -2,7 +2,7 @@ import re
 
 from .attribute import *
 from .leg import ConstraintLeg
-from .tools.string_tools import is_a_description
+from .tools.string_tools import is_a_description, raw_to_bid
 
 class Constraint:
 
@@ -14,13 +14,14 @@ class Constraint:
 
     def __init__(self, clause):
         self.source = clause["source"]
+        self.raw_name = clause.get("name", "Anonymous")
         self.name_view = clause.get("name", "")
         Constraint.counter += 1
-        self.name = f'{clause.get("name", "Anonymous")} constraint #{Constraint.counter}'
+        self.bid = f'{raw_to_bid(self.raw_name)}_CONSTRAINT_#{Constraint.counter}'
         self.note = clause.get("constraint_note")
         self.legs = []
         for target in clause.get("constraint_targets", []):
-            self.legs.append(ConstraintLeg(self, target.get("constraint_leg", ""), target["box"]))
+            self.legs.append(ConstraintLeg(self, target.get("constraint_leg", ""), target["name"]))
         if self.legs:
             self.coords = clause.get("constraint_coords", [])
         else:
@@ -51,15 +52,15 @@ class Constraint:
             if isinstance(self.coords[0], (float, int)):
                 self.cx = self.coords[0] * self.page_width // 100
             else:
-                self.cx = geo["cx"][self.coords[0]]
+                self.cx = geo["cx"][raw_to_bid(self.coords[0])]
             if isinstance(self.coords[1], (float, int)):
                 self.cy = self.coords[1] * self.page_height // 100
             else:
-                self.cy = geo["cy"][self.coords[1]]
+                self.cy = geo["cy"][raw_to_bid(self.coords[1])]
         else:
             # The center of a constraint is the barycenter of the centers of its boxes
-            self.cx = sum(geo["cx"][leg.box_name] for leg in self.legs) / len(self.legs)
-            self.cy = sum(geo["cy"][leg.box_name] for leg in self.legs) / len(self.legs)
+            self.cx = sum(geo["cx"][leg.bid] for leg in self.legs) / len(self.legs)
+            self.cy = sum(geo["cy"][leg.bid] for leg in self.legs) / len(self.legs)
         self.l = self.cx - self.w // 2
         self.r = self.cx + self.w // 2
         self.t = self.cy - self.h // 2
@@ -94,7 +95,7 @@ class Constraint:
 
     def description(self, style, geo):
         result = []
-        result.append(("comment", {"text": f"Constraint {self.name}"}))
+        result.append(("comment", {"text": f"Constraint {self.bid}"}))
         result.append(
             (
                 "begin_component",

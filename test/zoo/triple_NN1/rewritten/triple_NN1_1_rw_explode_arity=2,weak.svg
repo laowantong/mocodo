@@ -40,7 +40,7 @@
 	<text x="213" y="163" fill="#000000" font-family="Futura" font-size="11">1,N</text>
 </g>
 
-<!-- Entity Projet -->
+<!-- Entity PROJET -->
 <g>
 	<g>
 		<rect x="9" y="9" width="96" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
@@ -54,7 +54,7 @@
 	<text x="17" y="73.1" fill="#000000" font-family="Gill Sans" font-size="15">libellé projet</text>
 </g>
 
-<!-- Entity Gérer -->
+<!-- Entity GERER -->
 <g>
 	<g>
 		<rect x="221" y="26" width="72" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
@@ -65,7 +65,7 @@
 	<text x="229" y="47.3" fill="#000000" font-family="Copperplate" font-size="18">Gérer</text>
 </g>
 
-<!-- Entity Ingénieur -->
+<!-- Entity INGENIEUR -->
 <g>
 	<g>
 		<rect x="100" y="109" width="108" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
@@ -79,7 +79,7 @@
 	<text x="108" y="173.1" fill="#000000" font-family="Gill Sans" font-size="15">nom ingénieur</text>
 </g>
 
-<!-- Entity Responsable -->
+<!-- Entity RESPONSABLE -->
 <g>
 	<g>
 		<rect x="306" y="109" width="134" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>

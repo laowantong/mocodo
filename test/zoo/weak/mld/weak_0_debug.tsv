@@ -1,4 +1,4 @@
 this relation name	attribute	optionality	unicities	nature	is primary	adjacent source	outer source	association name	datatype	leg note
-Exemplaire	œuvre	!		strengthening_primary_ex_foreign_key	True	Œuvre	Œuvre	DF0		
+Exemplaire	œuvre	!		strengthening_primary_ex_foreign_key	True	Œuvre	Œuvre	DF		
 Exemplaire	exemplaire	!		primary_key	True					
-Exemplaire	foobar			outer_attribute	False			DF0
+Exemplaire	foobar			outer_attribute	False			DF

@@ -7,13 +7,13 @@ class Phantom:
         cls.counter = 0
 
     def __init__(self):
-        self.name_view = self.name = f" {Phantom.counter}"
+        self.source = ":"
+        self.name_view = ""
         Phantom.counter += 1
+        self.bid = f"PHANTOM_#{Phantom.counter}"
         self.attributes = []
         self.legs = [] # iterating over box's legs does nothing if it is not an association
         self.kind = "phantom"
-        self.source = ":"
-        self.identifier = None
         self.page = 0
 
     def calculate_size(self, *ignored):

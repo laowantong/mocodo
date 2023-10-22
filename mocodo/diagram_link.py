@@ -6,15 +6,15 @@ class DiagramLink:
         self.foreign_entity = foreign_entity
         self.foreign_key = foreign_key
         try:
-            self.primary_entity = entities[foreign_key.primary_entity_name]
+            self.primary_entity = entities[foreign_key.primary_entity_bid]
         except KeyError:
-            raise MocodoError(14, _('Attribute "{attribute}" in entity "{entity_1}" references an unknown entity "{entity_2}".').format(attribute=foreign_key.label, entity_1=foreign_entity.name, entity_2=foreign_key.primary_entity_name)) # fmt: skip
+            raise MocodoError(14, _('Attribute "{attribute}" in entity "{entity_1}" references an unknown entity "{entity_2}".').format(attribute=foreign_key.label, entity_1=foreign_entity.bid, entity_2=foreign_key.primary_entity_bid)) # fmt: skip
         for candidate in self.primary_entity.attributes:
             if candidate.label.lstrip("#") == foreign_key.primary_key_label.lstrip("#"):
                 self.primary_key = candidate
                 break
         else:
-            raise MocodoError(15, _('Attribute "{attribute_1}" in entity "{entity_1}" references an unknown attribute "{attribute_2}" in entity "{entity_2}".').format(attribute_1=foreign_key.label, entity_1=foreign_entity.name, attribute_2=foreign_key.primary_key_label, entity_2=foreign_key.primary_entity_name)) # fmt: skip
+            raise MocodoError(15, _('Attribute "{attribute_1}" in entity "{entity_1}" references an unknown attribute "{attribute_2}" in entity "{entity_2}".').format(attribute_1=foreign_key.label, entity_1=foreign_entity.bid, attribute_2=foreign_key.primary_key_label, entity_2=foreign_key.primary_entity_bid)) # fmt: skip
 
     def calculate_size(self, style, *ignored):
         self.fdx = self.foreign_entity.w // 2
@@ -36,7 +36,7 @@ class DiagramLink:
         self.offset = 2 * (style["card_margin"] + style["card_max_width"])
 
     def description(self, style, geo):
-        result = [("comment", {"text": f'Link from "{self.foreign_key.primary_key_label}" ({self.foreign_entity.name}) to "{self.primary_key.label}" ({self.primary_entity.name})'})]
+        result = [("comment", {"text": f'Link from "{self.foreign_key.primary_key_label}" ({self.foreign_entity.bid}) to "{self.primary_key.label}" ({self.primary_entity.bid})'})]
         spins = (
             [(-1, -1), (1, -1), (-1, 1), (1, 1)]
             if self.foreign_key.rank % 2
@@ -45,16 +45,16 @@ class DiagramLink:
         (fs, ps) = min(
             spins,
             key=lambda fs_ps: abs(
-                geo["cx"][self.foreign_entity.name]
+                geo["cx"][self.foreign_entity.bid]
                 + self.fdx * fs_ps[0]
-                - geo["cx"][self.primary_entity.name]
+                - geo["cx"][self.primary_entity.bid]
                 - self.pdx * fs_ps[1]
             ),
         )
-        xf = geo["cx"][self.foreign_entity.name] + self.fdx * fs
-        yf = geo["cy"][self.foreign_entity.name] + self.fdy
-        xp = geo["cx"][self.primary_entity.name] + self.pdx * ps
-        yp = geo["cy"][self.primary_entity.name] + self.pdy
+        xf = geo["cx"][self.foreign_entity.bid] + self.fdx * fs
+        yf = geo["cy"][self.foreign_entity.bid] + self.fdy
+        xp = geo["cx"][self.primary_entity.bid] + self.pdx * ps
+        yp = geo["cy"][self.primary_entity.bid] + self.pdy
         result.append(
             (
                 "curve",

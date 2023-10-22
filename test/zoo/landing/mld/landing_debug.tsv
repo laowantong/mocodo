@@ -1,5 +1,5 @@
 this relation name	attribute	optionality	unicities	nature	is primary	adjacent source	outer source	association name	datatype	leg note
-AYANT-DROIT	matricule	!		strengthening_primary_foreign_key	True	EMPLOYÉ	EMPLOYÉ	DF0		
+AYANT-DROIT	matricule	!		strengthening_primary_foreign_key	True	EMPLOYÉ	EMPLOYÉ	DF		
 AYANT-DROIT	nom ayant-droit	!		primary_key	True					
 AYANT-DROIT	lien			normal_attribute	False					
 COMPOSER	réf. pièce	!		primary_foreign_key	True	PIÈCE	PIÈCE	COMPOSER		composée

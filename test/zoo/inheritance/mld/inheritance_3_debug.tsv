@@ -1,14 +1,14 @@
 this relation name	attribute	optionality	unicities	nature	is primary	adjacent source	outer source	association name	datatype	leg note
 TRISTIS	magna	!		primary_key	True					
 TRISTIS	vestibulum			normal_attribute	False					
-TRISTIS	type	!		deleted_child_discriminator_XT	False			TRISTIS parent #1	UNSIGNED_INT_PLACEHOLDER	
-TRISTIS	convallis	?		deleted_child_attribute	False	SODALES		TRISTIS parent #1		
-TRISTIS	ipsum	?		deleted_child_attribute	False	SODALES		TRISTIS parent #1		
-TRISTIS	pulvinar	?		deleted_child_attribute	False	NEC		TRISTIS parent #1		
-TRISTIS	audis	?		deleted_child_attribute	False	NEC		TRISTIS parent #1		
-TRISTIS	magna	?		deleted_child_foreign_key	False	NEC	TRISTIS	TRISTIS parent #1		via_mollis
-TRISTIS	magna	?		deleted_child_foreign_key	False	NEC	TRISTIS	TRISTIS parent #1		via_vitae
-TRISTIS	tempor	?		deleted_child_attribute	False	LACUS		TRISTIS parent #1		
-TRISTIS	fugit	?		deleted_child_attribute	False	LACUS		TRISTIS parent #1		
+TRISTIS	type	!		deleted_child_discriminator_XT	False			XT	UNSIGNED_INT_PLACEHOLDER	
+TRISTIS	convallis	?		deleted_child_attribute	False	SODALES		XT		
+TRISTIS	ipsum	?		deleted_child_attribute	False	SODALES		XT		
+TRISTIS	pulvinar	?		deleted_child_attribute	False	NEC		XT		
+TRISTIS	audis	?		deleted_child_attribute	False	NEC		XT		
+TRISTIS	magna	?		deleted_child_foreign_key	False	NEC	TRISTIS	XT		via_mollis
+TRISTIS	magna	?		deleted_child_foreign_key	False	NEC	TRISTIS	XT		via_vitae
+TRISTIS	tempor	?		deleted_child_attribute	False	LACUS		XT		
+TRISTIS	fugit	?		deleted_child_attribute	False	LACUS		XT		
 ULTRICES	magna	!		primary_foreign_key	True	SODALES	TRISTIS	ULTRICES		sodales
 ULTRICES	magna	!		primary_foreign_key	True	LACUS	TRISTIS	ULTRICES		lacus

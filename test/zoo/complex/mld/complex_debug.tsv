@@ -1,5 +1,5 @@
 this relation name	attribute	optionality	unicities	nature	is primary	adjacent source	outer source	association name	datatype	leg note
-ANIMAL	code espèce	!		strengthening_primary_foreign_key	True	ESPÈCE	ESPÈCE	DF0		
+ANIMAL	code espèce	!		strengthening_primary_foreign_key	True	ESPÈCE	ESPÈCE	DF		
 ANIMAL	nom	!		primary_key	True					
 ANIMAL	date naissance	!		primary_key	True					
 ANIMAL	sexe			normal_attribute	False					
@@ -7,11 +7,11 @@ ANIMAL	date décès			normal_attribute	False
 ANIMAL	code espèce	?		foreign_key	False	ANIMAL	ANIMAL	A MÈRE		mère
 ANIMAL	nom	?		foreign_key	False	ANIMAL	ANIMAL	A MÈRE		mère
 ANIMAL	date naissance	?		foreign_key	False	ANIMAL	ANIMAL	A MÈRE		mère
-ANIMAL	type alimentation	?		deleted_child_discriminator_	False			ANIMAL parent #1	UNSIGNED_INT_PLACEHOLDER	
-ANIMAL	est carnivore	!		deleted_child_entity_name	False	CARNIVORE	CARNIVORE	ANIMAL parent #1	BOOLEAN_PLACEHOLDER	
-ANIMAL	quantité viande	?		deleted_child_attribute	False	CARNIVORE		ANIMAL parent #1		
-ANIMAL	est herbivore	!		deleted_child_entity_name	False	HERBIVORE	HERBIVORE	ANIMAL parent #1	BOOLEAN_PLACEHOLDER	
-ANIMAL	plante préférée	?		deleted_child_attribute	False	HERBIVORE		ANIMAL parent #1		
+ANIMAL	type alimentation	?		deleted_child_discriminator_	False				UNSIGNED_INT_PLACEHOLDER	
+ANIMAL	est carnivore	!		deleted_child_entity_name	False	CARNIVORE	CARNIVORE		BOOLEAN_PLACEHOLDER	
+ANIMAL	quantité viande	?		deleted_child_attribute	False	CARNIVORE				
+ANIMAL	est herbivore	!		deleted_child_entity_name	False	HERBIVORE	HERBIVORE		BOOLEAN_PLACEHOLDER	
+ANIMAL	plante préférée	?		deleted_child_attribute	False	HERBIVORE				
 ESPÈCE	code espèce	!		primary_key	True					
 ESPÈCE	nom latin		1	normal_attribute	False					
 ESPÈCE	nom vernaculaire			normal_attribute	False					

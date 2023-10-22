@@ -2,7 +2,7 @@
 <svg width="508" height="224" viewBox="0 0 508 224" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="508" height="224" fill="#FFFFFF" stroke="none" stroke-width="0"/>
 
-<!-- Entity Voilier -->
+<!-- Entity VOILIER -->
 <g>
 	<g>
 		<rect x="38" y="9" width="88" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
@@ -16,7 +16,7 @@
 	<text x="46" y="73.1" fill="#000000" font-family="Gill Sans" font-size="15">longueur</text>
 </g>
 
-<!-- Entity Semaine -->
+<!-- Entity SEMAINE -->
 <g>
 	<g>
 		<rect x="372" y="9" width="98" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
@@ -30,7 +30,7 @@
 	<text x="380" y="73.1" fill="#000000" font-family="Gill Sans" font-size="15">date début</text>
 </g>
 
-<!-- Entity Réservation -->
+<!-- Entity RESERVATION -->
 <g>
 	<g>
 		<rect x="184" y="71" width="130" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
@@ -48,12 +48,12 @@
 	<text x="192" y="203" fill="#000000" font-family="Gill Sans" font-size="15">tarif</text>
 </g>
 
-<!-- Link from &quot;num voilier&quot; (Réservation) to &quot;num voilier&quot; (Voilier) -->
+<!-- Link from &quot;num voilier&quot; (RESERVATION) to &quot;num voilier&quot; (VOILIER) -->
 <path d="M184 166.5 C155 110 164.67 53.5 126 53.5" fill="none" stroke="#000000" stroke-width="1"/>
 <polygon points="126 53.5 138 47.5 134 53.5 138 59.5" fill="#000000" stroke-width="0"/>
 <circle cx="184" cy="166.5" r="1.5" stroke="#000000" stroke-width="1.5" fill="#000000"/>
 
-<!-- Link from &quot;num semaine&quot; (Réservation) to &quot;num semaine&quot; (Semaine) -->
+<!-- Link from &quot;num semaine&quot; (RESERVATION) to &quot;num semaine&quot; (SEMAINE) -->
 <path d="M314 183.5 C343 118.5 333.33 53.5 372 53.5" fill="none" stroke="#000000" stroke-width="1"/>
 <polygon points="372 53.5 360 59.5 364 53.5 360 47.5" fill="#000000" stroke-width="0"/>
 <circle cx="314" cy="183.5" r="1.5" stroke="#000000" stroke-width="1.5" fill="#000000"/>

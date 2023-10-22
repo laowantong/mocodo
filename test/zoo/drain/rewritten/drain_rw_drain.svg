@@ -2,7 +2,7 @@
 <svg width="900" height="112" viewBox="0 0 900 112" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="900" height="112" fill="#FFFFFF" stroke="none" stroke-width="0"/>
 
-<!-- Association Proposer -->
+<!-- Association PROPOSER -->
 <g>
 	<line x1="68" y1="56" x2="207" y2="56" stroke="#000000" stroke-width="1"/>
 	<line x1="347" y1="56" x2="207" y2="56" stroke="#000000" stroke-width="1"/>
@@ -17,7 +17,7 @@
 	<text x="264" y="72" fill="#000000" font-family="Futura" font-size="11">1,1</text>
 </g>
 
-<!-- Association Attribuer -->
+<!-- Association ATTRIBUER -->
 <g>
 	<line x1="623" y1="56" x2="489" y2="56" stroke="#000000" stroke-width="1"/>
 	<line x1="347" y1="56" x2="489" y2="56" stroke="#000000" stroke-width="1"/>
@@ -32,7 +32,7 @@
 	<text x="412" y="72" fill="#000000" font-family="Futura" font-size="11">0,1</text>
 </g>
 
-<!-- Association Soutenir -->
+<!-- Association SOUTENIR -->
 <g>
 	<line x1="623" y1="56" x2="753" y2="56" stroke="#000000" stroke-width="1"/>
 	<line x1="861" y1="56" x2="753" y2="56" stroke="#000000" stroke-width="1"/>
@@ -48,7 +48,7 @@
 	<text x="807" y="72" fill="#000000" font-family="Futura" font-size="11">0,N</text>
 </g>
 
-<!-- Entity Entreprise -->
+<!-- Entity ENTREPRISE -->
 <g>
 	<g>
 		<rect x="9" y="9" width="118" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
@@ -63,7 +63,7 @@
 	<text x="17" y="90" fill="#000000" font-family="Gill Sans" font-size="15">téléphone</text>
 </g>
 
-<!-- Entity Stage -->
+<!-- Entity STAGE -->
 <g>
 	<g>
 		<rect x="287" y="9" width="120" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
@@ -78,7 +78,7 @@
 	<text x="295" y="90" fill="#000000" font-family="Gill Sans" font-size="15">date proposition</text>
 </g>
 
-<!-- Entity Étudiant -->
+<!-- Entity ETUDIANT -->
 <g>
 	<g>
 		<rect x="571" y="9" width="104" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
@@ -93,7 +93,7 @@
 	<text x="579" y="90" fill="#000000" font-family="Gill Sans" font-size="15">date signature</text>
 </g>
 
-<!-- Entity Date -->
+<!-- Entity DATE -->
 <g>
 	<g>
 		<rect x="831" y="26" width="60" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>

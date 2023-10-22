@@ -8,25 +8,25 @@ CURABITUR	gravida	!		primary_key	True
 CURABITUR	amor			normal_attribute	False					
 DIGNISSIM	tellus	!		primary_key	True					
 DIGNISSIM	terra			normal_attribute	False					
-LACUS	magna	!		deleted_parent_primary_key	True	TRISTIS	TRISTIS	TRISTIS parent #1		
-LACUS	vestibulum			deleted_parent_attribute	False	TRISTIS		TRISTIS parent #1		
-LACUS	fermentum	!		deleted_parent_foreign_key	False	TRISTIS	CONSEQUAT	TRISTIS parent #1		
+LACUS	magna	!		deleted_parent_primary_key	True	TRISTIS	TRISTIS	XT		
+LACUS	vestibulum			deleted_parent_attribute	False	TRISTIS		XT		
+LACUS	fermentum	!		deleted_parent_foreign_key	False	TRISTIS	CONSEQUAT	XT		
 LACUS	tempor			normal_attribute	False					
 LACUS	fugit			normal_attribute	False					
 LIBERO	posuere	!		primary_key	True					
 LIBERO	lacrima			normal_attribute	False					
-NEC	magna	!		deleted_parent_primary_key	True	TRISTIS	TRISTIS	TRISTIS parent #1		
-NEC	vestibulum			deleted_parent_attribute	False	TRISTIS		TRISTIS parent #1		
-NEC	fermentum	!		deleted_parent_foreign_key	False	TRISTIS	CONSEQUAT	TRISTIS parent #1		
+NEC	magna	!		deleted_parent_primary_key	True	TRISTIS	TRISTIS	XT		
+NEC	vestibulum			deleted_parent_attribute	False	TRISTIS		XT		
+NEC	fermentum	!		deleted_parent_foreign_key	False	TRISTIS	CONSEQUAT	XT		
 NEC	pulvinar			normal_attribute	False					
 NEC	audis			normal_attribute	False					
 NEC	gravida	!		foreign_key	False	CURABITUR	CURABITUR	MOLLIS		
 QUAM	cras	!		primary_key	True					
 QUAM	sed			normal_attribute	False					
 QUAM	magna	!		foreign_key	False	SODALES	SODALES	VITAE		
-SODALES	magna	!		deleted_parent_primary_key	True	TRISTIS	TRISTIS	TRISTIS parent #1		
-SODALES	vestibulum			deleted_parent_attribute	False	TRISTIS		TRISTIS parent #1		
-SODALES	fermentum	!		deleted_parent_foreign_key	False	TRISTIS	CONSEQUAT	TRISTIS parent #1		
+SODALES	magna	!		deleted_parent_primary_key	True	TRISTIS	TRISTIS	XT		
+SODALES	vestibulum			deleted_parent_attribute	False	TRISTIS		XT		
+SODALES	fermentum	!		deleted_parent_foreign_key	False	TRISTIS	CONSEQUAT	XT		
 SODALES	convallis			normal_attribute	False					
 SODALES	ipsum			normal_attribute	False					
 SUSCIPIT	orci	!		primary_key	True					

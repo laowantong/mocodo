@@ -1,5 +1,5 @@
 digraph {
   node [shape=box]
-  "Entreprise" -> "Stage"
   "Stage" -> "Étudiant"
+  "Entreprise" -> "Stage"
 }

@@ -1,8 +1,8 @@
 this relation name	attribute	optionality	unicities	nature	is primary	adjacent source	outer source	association name	datatype	leg note
 Commande	commande	!		primary_key	True					
 Commande	date			normal_attribute	False					
-Ligne de commande	commande	!		strengthening_primary_foreign_key	True	Commande	Commande	DF1		
-Ligne de commande	produit	!		strengthening_primary_foreign_key	True	Produit	Produit	DF0		
+Ligne de commande	commande	!		strengthening_primary_foreign_key	True	Commande	Commande	DF		
+Ligne de commande	produit	!		strengthening_primary_foreign_key	True	Produit	Produit	DF		
 Ligne de commande	quantité			normal_attribute	False					
 Produit	produit	!		primary_key	True					
 Produit	libellé			normal_attribute	False

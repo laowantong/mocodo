@@ -2,7 +2,7 @@
 <svg width="536" height="162" viewBox="0 0 536 162" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="536" height="162" fill="#FFFFFF" stroke="none" stroke-width="0"/>
 
-<!-- Entity Entreprise -->
+<!-- Entity ENTREPRISE -->
 <g>
 	<g>
 		<rect x="38" y="34" width="118" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
@@ -17,7 +17,7 @@
 	<text x="46" y="115" fill="#000000" font-family="Gill Sans" font-size="15">téléphone</text>
 </g>
 
-<!-- Entity Stage -->
+<!-- Entity STAGE -->
 <g>
 	<g>
 		<rect x="214" y="26" width="122" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
@@ -33,7 +33,7 @@
 	<text x="222" y="124" fill="#000000" font-family="Gill Sans" font-size="15">date proposition</text>
 </g>
 
-<!-- Entity Étudiant -->
+<!-- Entity ETUDIANT -->
 <g>
 	<g>
 		<rect x="394" y="9" width="104" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
@@ -51,12 +51,12 @@
 	<text x="402" y="141" fill="#000000" font-family="Gill Sans" font-size="15">note stage</text>
 </g>
 
-<!-- Link from &quot;nom entreprise&quot; (Stage) to &quot;nom entreprise&quot; (Entreprise) -->
+<!-- Link from &quot;nom entreprise&quot; (STAGE) to &quot;nom entreprise&quot; (ENTREPRISE) -->
 <path d="M214 104.5 C185 91.5 194.67 78.5 156 78.5" fill="none" stroke="#000000" stroke-width="1"/>
 <polygon points="156 78.5 168 72.5 164 78.5 168 84.5" fill="#000000" stroke-width="0"/>
 <circle cx="214" cy="104.5" r="1.5" stroke="#000000" stroke-width="1.5" fill="#000000"/>
 
-<!-- Link from &quot;num. stage&quot; (Étudiant) to &quot;num. stage&quot; (Stage) -->
+<!-- Link from &quot;num. stage&quot; (ETUDIANT) to &quot;num. stage&quot; (STAGE) -->
 <path d="M394 87.5 C365 79 374.67 70.5 336 70.5" fill="none" stroke="#000000" stroke-width="1"/>
 <polygon points="336 70.5 348 64.5 344 70.5 348 76.5" fill="#000000" stroke-width="0"/>
 <circle cx="394" cy="87.5" r="1.5" stroke="#000000" stroke-width="1.5" fill="#000000"/>

@@ -50,7 +50,7 @@
 	<text x="578" y="260" fill="#000000" font-family="Gill Sans" font-size="15">plante préférée</text>
 </g>
 
-<!-- Entity PEUT VIVRE DANS -->
+<!-- Entity PEUT_VIVRE_DANS -->
 <g>
 	<g>
 		<rect x="38" y="250" width="182" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
@@ -66,7 +66,7 @@
 	<text x="46" y="331" fill="#000000" font-family="Gill Sans" font-size="15">nb. max. congénères</text>
 </g>
 
-<!-- Entity ESPÈCE -->
+<!-- Entity ESPECE -->
 <g>
 	<g>
 		<rect x="333" y="250" width="124" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
@@ -81,7 +81,7 @@
 	<text x="341" y="331" fill="#000000" font-family="Gill Sans" font-size="15">nom vernaculaire</text>
 </g>
 
-<!-- Entity PEUT COHABITER AVEC -->
+<!-- Entity PEUT_COHABITER_AVEC -->
 <g>
 	<g>
 		<rect x="278" y="368" width="234" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
@@ -112,7 +112,7 @@
 <polygon points="570 87.5 558 93.5 562 87.5 558 81.5" fill="#000000" stroke-width="0"/>
 <circle cx="453" cy="147.5" r="1.5" stroke="#000000" stroke-width="1.5" fill="#000000"/>
 
-<!-- Link from &quot;code espèce&quot; (ANIMAL) to &quot;code espèce&quot; (ESPÈCE) -->
+<!-- Link from &quot;code espèce&quot; (ANIMAL) to &quot;code espèce&quot; (ESPECE) -->
 <path d="M570 53.5 C513.5 174 532.33 294.5 457 294.5" fill="none" stroke="#000000" stroke-width="1"/>
 <polygon points="457 294.5 469 288.5 465 294.5 469 300.5" fill="#000000" stroke-width="0"/>
 <circle cx="570" cy="53.5" r="1.5" stroke="#000000" stroke-width="1.5" fill="#000000"/>
@@ -132,17 +132,17 @@
 <polygon points="570 87.5 558 93.5 562 87.5 558 81.5" fill="#000000" stroke-width="0"/>
 <circle cx="570" cy="172.5" r="1.5" stroke="#000000" stroke-width="1.5" fill="#000000"/>
 
-<!-- Link from &quot;code espèce&quot; (PEUT VIVRE DANS) to &quot;code espèce&quot; (ESPÈCE) -->
+<!-- Link from &quot;code espèce&quot; (PEUT_VIVRE_DANS) to &quot;code espèce&quot; (ESPECE) -->
 <path d="M220 294.5 C276.5 294.5 257.67 294.5 333 294.5" fill="none" stroke="#000000" stroke-width="1"/>
 <polygon points="333 294.5 321 300.5 325 294.5 321 288.5" fill="#000000" stroke-width="0"/>
 <circle cx="220" cy="294.5" r="1.5" stroke="#000000" stroke-width="1.5" fill="#000000"/>
 
-<!-- Link from &quot;code espèce&quot; (PEUT COHABITER AVEC) to &quot;code espèce&quot; (ESPÈCE) -->
+<!-- Link from &quot;code espèce&quot; (PEUT_COHABITER_AVEC) to &quot;code espèce&quot; (ESPECE) -->
 <path d="M512 412.5 C560 353.5 505 294.5 457 294.5" fill="none" stroke="#000000" stroke-width="1"/>
 <polygon points="457 294.5 469 288.5 465 294.5 469 300.5" fill="#000000" stroke-width="0"/>
 <circle cx="512" cy="412.5" r="1.5" stroke="#000000" stroke-width="1.5" fill="#000000"/>
 
-<!-- Link from &quot;code espèce&quot; (PEUT COHABITER AVEC) to &quot;code espèce&quot; (ESPÈCE) -->
+<!-- Link from &quot;code espèce&quot; (PEUT_COHABITER_AVEC) to &quot;code espèce&quot; (ESPECE) -->
 <path d="M278 429.5 C230 362 285 294.5 333 294.5" fill="none" stroke="#000000" stroke-width="1"/>
 <polygon points="333 294.5 321 300.5 325 294.5 321 288.5" fill="#000000" stroke-width="0"/>
 <circle cx="278" cy="429.5" r="1.5" stroke="#000000" stroke-width="1.5" fill="#000000"/>

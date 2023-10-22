@@ -1,14 +1,15 @@
 from collections import defaultdict
 from .attribute import *
-from .tools.string_tools import rstrip_digit_or_underline
+from .tools.string_tools import rstrip_digit_or_underline, raw_to_bid
 
 class Entity:
     def __init__(self, clause):
         self.source = clause["source"]
+        self.raw_name = clause["name"]
         # A protected entity results in a table, even if all its columns are part of its primary key.
-        self.is_protected = (clause.get("box_def_prefix") == "+") 
-        self.name = clause["name"]
-        self.name_view = rstrip_digit_or_underline(self.name)
+        self.is_protected = (clause.get("box_def_prefix") == "+")
+        self.bid = raw_to_bid(self.raw_name)
+        self.name_view = rstrip_digit_or_underline(self.raw_name)
         self.attributes = clause.get("attrs", [])
         self.legs = []  # iterating over box's legs does nothing if it is not an association
         self.kind = "entity"
@@ -89,8 +90,8 @@ class Entity:
             attribute.set_id_gutter_width(self.id_gutter_width)
 
     def register_center(self, geo):
-        self.cx = geo["cx"][self.name]
-        self.cy = geo["cy"][self.name]
+        self.cx = geo["cx"][self.bid]
+        self.cy = geo["cy"][self.bid]
         self.l = self.cx - self.w // 2
         self.r = self.cx + self.w // 2
         self.t = self.cy - self.h // 2
@@ -98,7 +99,7 @@ class Entity:
 
     def description_when_visible(self, style, geo):
         result = []
-        result.append(("comment", {"text": f"Entity {self.name}"}))
+        result.append(("comment", {"text": f"Entity {self.bid}"}))
         result.append(
             (
                 "begin_component",
@@ -214,7 +215,6 @@ class Entity:
         dx = self.id_gutter_width
         dy = self.cartouche_height + 3 * style["rect_margin_height"] - self.h // 2
         for attribute in self.attributes:
-            # attribute.name = self.name
             result.extend(attribute.description(style, x, self.cy, dx, dy))
             dy += self.attribute_height + style["line_skip_height"]
         result.append(("end", {}))
