@@ -13123,7 +13123,7 @@ $( document ).ready(function(){
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Mocodo 4.0.4 loaded.
+<pre>Mocodo 4.0.7 loaded.
 </pre>
 </div>
 </div>
@@ -14497,6 +14497,141 @@ $$<p></p>
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Astuce.</strong> Si vous recopiez un MCD ou que vous l'avez bien en tête, commencez par les associations et, à tout moment, faites apparaître les entités manquantes (double clic sur le lapin magique sous Mocodo online). Elles auront comme identifiant le nom de l'entité en minuscules, par défaut précédé de « id. » (sauf pour les entités DATE). Vous n'aurez plus qu'à remplir les autres attributs :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">mocodo</span> -t guess:entities
+Réserver, 1N Client, 1N Chambre, 0N Date: Durée
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_svg output_subarea ">
+<svg xmlns="http://www.w3.org/2000/svg" width="312" height="176" viewBox="0 0 312 176">
+<rect x="0" y="0" width="312" height="176" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+
+<!-- Association Réserver -->
+<g>
+	<line x1="264" y1="129" x2="166" y2="38" stroke="#000000" stroke-width="1"/>
+	<line x1="58" y1="129" x2="166" y2="38" stroke="#000000" stroke-width="1"/>
+	<line x1="166" y1="129" x2="166" y2="38" stroke="#000000" stroke-width="1"/>
+	<g>
+		<path d="M202 9 a14 14 90 0 1 14 14 V37 h-100 V23 a14 14 90 0 1 14 -14" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+		<path d="M216 37 v16 a14 14 90 0 1 -14 14 H130 a14 14 90 0 1 -14 -14 V37 H100" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+		<rect x="116" y="9" width="100" height="58" fill="none" rx="14" stroke="#000000" stroke-width="1.5"/>
+		<line x1="116" y1="37" x2="216" y2="37" stroke="#000000" stroke-width="1.5"/>
+		<text x="123" y="30.3" fill="#000000" font-family="Copperplate" font-size="18">Réserver</text>
+		<text x="123" y="55.1" fill="#000000" font-family="Gill Sans" font-size="15">Durée</text>
+	</g>
+	<text x="201" y="102.08" fill="#000000" font-family="Futura" font-size="11">1,N</text>
+	<text x="85.32" y="83" fill="#000000" font-family="Futura" font-size="11">1,N</text>
+	<text x="171" y="91" fill="#000000" font-family="Futura" font-size="11">0,N</text>
+</g>
+
+<!-- Entity Chambre -->
+<g>
+	<g>
+		<rect x="9" y="91" width="98" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="9" y="121" width="98" height="46" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="9" y="91" width="98" height="76" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
+		<line x1="9" y1="121" x2="107" y2="121" stroke="#000000" stroke-width="1.5"/>
+	</g>
+	<text x="18" y="112.3" fill="#000000" font-family="Copperplate" font-size="18">Chambre</text>
+	<text x="17" y="138.1" fill="#000000" font-family="Gill Sans" font-size="15">id. chambre</text>
+	<line x1="17" y1="141" x2="90" y2="141" stroke="#000000" stroke-width="1"/>
+</g>
+
+<!-- Entity Date -->
+<g>
+	<g>
+		<rect x="136" y="99" width="60" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="136" y="129" width="60" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="136" y="99" width="60" height="60" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
+		<line x1="136" y1="129" x2="196" y2="129" stroke="#000000" stroke-width="1.5"/>
+	</g>
+	<text x="145" y="120.3" fill="#000000" font-family="Copperplate" font-size="18">Date</text>
+	<text x="144" y="146.1" fill="#000000" font-family="Gill Sans" font-size="15">date</text>
+	<line x1="144" y1="149" x2="172" y2="149" stroke="#000000" stroke-width="1"/>
+</g>
+
+<!-- Entity Client -->
+<g>
+	<g>
+		<rect x="225" y="91" width="78" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="225" y="121" width="78" height="46" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="225" y="91" width="78" height="76" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
+		<line x1="225" y1="121" x2="303" y2="121" stroke="#000000" stroke-width="1.5"/>
+	</g>
+	<text x="234" y="112.3" fill="#000000" font-family="Copperplate" font-size="18">Client</text>
+	<text x="233" y="138.1" fill="#000000" font-family="Gill Sans" font-size="15">id. client</text>
+	<line x1="233" y1="141" x2="286" y2="141" stroke="#000000" stroke-width="1"/>
+</g>
+</svg>
+</div>
+
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<div style="position: relative; height: 3ex; background-color: transparent">
+<hr style="margin: 1ex 0 0 0; border-top: 1px solid #BBB">
+<span style="position: absolute; right: 0; color: #BBB">
+<tt>
+sandbox.mcd
+</tt>
+</span>
+</div>
+</div>
+
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>%%mocodo 
+Réserver, 1N Client, 1N Chambre, 0N Date: Durée
+
+Chambre: id. chambre, 
+Date: date
+Client: id. client, 
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
@@ -26150,7 +26285,7 @@ ccp_url.svg
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="R&#233;arrangement-automatique">R&#233;arrangement automatique<a class="anchor-link" href="#R&#233;arrangement-automatique">&#182;</a></h2>
+<h2 id="Param&#233;trage-du-r&#233;arrangement-automatique">Param&#233;trage du r&#233;arrangement automatique<a class="anchor-link" href="#Param&#233;trage-du-r&#233;arrangement-automatique">&#182;</a></h2>
 </div>
 </div>
 </div>
@@ -30334,7 +30469,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 
 <div class="output_png output_subarea output_execute_result">
-<img src="fr_refman_files/fr_refman_417_0.png"
+<img src="fr_refman_files/fr_refman_419_0.png"
 >
 </div>
 
