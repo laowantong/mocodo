@@ -715,7 +715,7 @@ msgstr "{pin}Un nom d'attribut ne peut pas contenir « {v} »."
 
 #: mocodo/tools/parser_tools.py:70 mocodo/tools/parser_tools.py:72
 msgid "{pin}An attribute starting with \"#\" must contain two \">\"."
-msgstr "{pin}Un attribut commençant par « # » doit contenir deux « > »."
+msgstr "{pin}Vous semblez essayer de spécifier une clé étrangère. Au niveau du MCD (modèle conceptuel de données), ce sont les associations qui répondent à ce besoin. Les clés étrangères n'apparaîtront qu'après passage au relationnel, dans le MLD (modèle logique de données). À ce niveau, elles devront suivre la syntaxe : « #clé étrangère > table d'origine > clé primaire »."
 
 #: mocodo/tools/parser_tools.py:74
 msgid "{pin}Expected an entity name."
