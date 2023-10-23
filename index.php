@@ -27,6 +27,9 @@
 		<div id="banner">
 			<img src="web/mocodonline.svg" alt="Mocodo online" />
 		</div>
+		<div id="motto">
+			<span>Modélisation Conceptuelle de Données. Nickel. Ni souris.</span>
+		</div>
 		<form method="post" id="mainForm" action="web/download.php" autocomplete="off">
 			<input type="hidden" name="state" id="state" value="dirty" />
 			<div id="inputZone">

@@ -19,7 +19,14 @@
 #banner{
   text-align:center;
   padding-top:30px;
-  padding-bottom:20px;
+}
+#motto {
+  text-align: center;
+  letter-spacing: 4px;
+  font-size: 14px;
+  font-family: "Helvetica Neue", "Helvetica", "Liberation Sans", Arial, sans-serif;
+  color: #666;
+  margin-bottom: 30px;
 }
 #navigation {
 	font-size: 15px;
