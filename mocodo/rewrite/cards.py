@@ -50,13 +50,16 @@ class RoleInference(Visitor):
         legs = list(tree.find_data("assoc_leg"))
         cards = [first_child(leg, "card") for leg in legs]
         roles = [first_child(leg, "leg_note") for leg in legs]
-        if {"01", "11"}.intersection(cards):
+        if "01" in cards or "11" in cards:
             for (card, role) in zip(cards, roles):
                 if role:
                     continue
-                if card in ("01", "11"):
-                    continue
-                card.value += f" [{assoc_name}]"
+                if card[1] != "1": # *1 vs *N
+                    card.value += f" [{assoc_name}]"
+                elif card == "01" and "11" in cards: # 01 vs 11
+                    card.value += f" [{assoc_name}]"
+                elif card == "11" and cards.count("11") > 1: # 11 vs 11
+                    card.value += f" [{assoc_name}]"
 
 def infer_roles(source):
     tree = parse_source(source)

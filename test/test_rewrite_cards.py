@@ -59,5 +59,59 @@ class TestUpdateCards(unittest.TestCase):
         expected = "A, 0N B, _1N No"
         self.assertEqual(actual, expected)
     
+    def test_infer_roles(self):
+
+        # Cases *N vs *1
+
+        source = "Rule, 0N Else, 11 Peel"
+        actual = op_tk.run(source, "create", {"roles": 1}, {}).strip()
+        expected = "Rule, 0N [Rule] Else, 11 Peel"
+        self.assertEqual(actual, expected)
+        
+        source = "Rule, 1N Else, 11 Peel"
+        actual = op_tk.run(source, "create", {"roles": 1}, {}).strip()
+        expected = "Rule, 1N [Rule] Else, 11 Peel"
+        self.assertEqual(actual, expected)
+
+        source = "Rule, 0N Else, 01 Peel"
+        actual = op_tk.run(source, "create", {"roles": 1}, {}).strip()
+        expected = "Rule, 0N [Rule] Else, 01 Peel"
+        self.assertEqual(actual, expected)
+        
+        source = "Rule, 1N Else, 01 Peel"
+        actual = op_tk.run(source, "create", {"roles": 1}, {}).strip()
+        expected = "Rule, 1N [Rule] Else, 01 Peel"
+        self.assertEqual(actual, expected)
+
+        source = "Rule, XX Else, 11 Peel"
+        actual = op_tk.run(source, "create", {"roles": 1}, {}).strip()
+        expected = "Rule, XX [Rule] Else, 11 Peel"
+        self.assertEqual(actual, expected)
+
+        source = "Rule, XX Else, 01 Peel"
+        actual = op_tk.run(source, "create", {"roles": 1}, {}).strip()
+        expected = "Rule, XX [Rule] Else, 01 Peel"
+        self.assertEqual(actual, expected)
+
+        # Cases *1 vs *1
+        
+        source = "Rule, 01 Else, 11 Peel"
+        actual = op_tk.run(source, "create", {"roles": 1}, {}).strip()
+        expected = "Rule, 01 [Rule] Else, 11 Peel"
+        self.assertEqual(actual, expected)
+        
+        source = "Rule, 11 Else, 11 Peel"
+        actual = op_tk.run(source, "create", {"roles": 1}, {}).strip()
+        expected = "Rule, 11 [Rule] Else, 11 [Rule] Peel"  # slightly overkill
+        self.assertEqual(actual, expected)
+
+        # Other cases
+
+        source = "Rule, 0N Else, 1N Peel"
+        actual = op_tk.run(source, "create", {"roles": 1}, {}).strip()
+        expected = "Rule, 0N Else, 1N Peel"
+        self.assertEqual(actual, expected)
+
+    
 if __name__ == "__main__":
     unittest.main()
