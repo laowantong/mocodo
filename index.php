@@ -137,7 +137,7 @@
 						<p style="font-size: small; font-style: italic; text-align: right;">Aristide Grange, Université de Lorraine, Metz (France)</p>
 						<div class="footnote">
 							<hr>
-							<p>¹ Côté client, Mocodo online stocke les réglages de l'onglet Options dans un <a href="https://www.cnil.fr/fr/cookies-et-autres-traceurs/regles/cookies/que-dit-la-loi">cookie non soumis à obligation de consentement préalable</a>. Le dernier état de votre travail est stocké côté serveur afin de le mettre à votre disposition sous forme d'archive téléchargeable. Ce dossier est détruit au bout de 24 heures. Pour le détruire dès la fin d'une session, effacez le texte d'entrée et pressez le bouton de rafraîchissement. Avec une installation locale de Mocodo, rien ne quitte votre ordinateur.</p>
+							<p>¹ Côté client, Mocodo online stocke vos réglages de l'onglet Options dans un <a href="https://www.cnil.fr/fr/cookies-et-autres-traceurs/regles/cookies/que-dit-la-loi">cookie non soumis à obligation de consentement préalable</a>. Le dernier état de votre travail est stocké côté serveur afin de le mettre à votre disposition sous forme d'archive téléchargeable. Ce dossier est détruit au bout de 24 heures. Pour le détruire dès la fin d'une session, effacez le texte d'entrée et pressez le bouton de rafraîchissement. Avec une installation locale de Mocodo, rien ne quitte votre ordinateur.</p>
 						</div>
 					</div>
 					<div id="inputContents" class="contents">
