@@ -144,7 +144,10 @@
 						<div id="inputPane">
 							<div><input type="text" oninput="markAsDirty();unbox()" onfocus="onFocus(this)" name="title" id="title" value="MCD" onblur="onBlur(this)" autocomplete="off" /></div>
 							<select onchange="changeTitleToNthTuto();unbox()" name="tutorial" id="tutorial" title="Parcourez notre galerie de MCD pour apprendre la syntaxe de Mocodo."></select>
-							<textarea hidden name="text"></textarea>
+							<textarea hidden name="text"><?php
+								$encoded_string = (isset($_GET['mcd'])) ? $_GET['mcd'] : '';
+								echo (zlib_decode(base64_decode(strtr($encoded_string, '-_', '+/'))));
+							?></textarea>
 							<div id="editor-wrapper">
 								<div id="editor"></div>
 							</div>
