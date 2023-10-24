@@ -126,7 +126,7 @@
 							<li>En sortie, il produit un diagramme entité-association et, à la demande, un <a href="https://fr.wikipedia.org/wiki/Merise_(informatique)#MLD_:_modèle_logique_des_données">MLD</a> (schéma relationnel, sous forme graphique ou textuelle), un <a href="https://fr.wikipedia.org/wiki/Langage_de_définition_de_données">DDL</a> (requêtes SQL de création de la base), un <a href="https://fr.wikipedia.org/wiki/Diagramme_de_classes">diagramme de classes UML</a>, etc.</li>
 							<li>En bonus, il est capable de réarranger automatiquement votre MCD de façon esthétique, et de lui appliquer des opérations de réécriture qui vont du mondain (typographie) à l'académique (décomposition d'associations), en passant par le merveilleux (inférence de types, génération d'exercices et d'exemples).</li>
 						</ul>
-						<p>Ce site est prévu pour une utilisation basique et occasionnelle, typiquement en salle de classe. Si vous souhaitez avoir accès à toutes les fonctionnalités de Mocodo, une installation en local est recommandée :</p>
+						<p>Ce site est prévu pour une utilisation basique et occasionnelle, typiquement en salle de classe. Si vous travaillez sur des données confidentielles¹, ou souhaitez avoir accès à toutes les fonctionnalités de Mocodo, une installation locale est recommandée :</p>
 						<br />
 						<pre>&gt; pip install mocodo</pre>
 						<br />
@@ -135,6 +135,10 @@
 						<p>Pour en savoir plus, suivez nos tutoriels interactifs (onglet Entrée), puis plongez-vous dans la <a target="_blank" href="https://rawgit.com/laowantong/mocodo/master/doc/fr_refman.html">documentation</a>.</p>
 						<br />
 						<p style="font-size: small; font-style: italic; text-align: right;">Aristide Grange, Université de Lorraine, Metz (France)</p>
+						<div class="footnote">
+							<hr>
+							<p>¹ Côté client, Mocodo online stocke les réglages de l'onglet Options dans un <a href="https://www.cnil.fr/fr/cookies-et-autres-traceurs/regles/cookies/que-dit-la-loi">cookie non soumis à obligation de consentement préalable</a>. Le dernier état de votre travail est stocké côté serveur afin de le mettre à votre disposition sous forme d'archive téléchargeable. Ce dossier est détruit au bout de 24 heures. Pour le détruire dès la fin d'une session, effacez le texte d'entrée et pressez le bouton de rafraîchissement. Avec une installation locale de Mocodo, rien ne quitte votre ordinateur.</p>
+						</div>
 					</div>
 					<div id="inputContents" class="contents">
 						<div id="inputPane">

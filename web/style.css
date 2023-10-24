@@ -529,3 +529,16 @@ ul.tabs a:hover {
   cursor: pointer; /* Makes it clear that this is clickable */
   color: #666;
 }
+.footnote {
+  margin-top: 50px;
+}
+
+.footnote p {
+  font-size: 11px;
+  color: #666;
+  line-height:normal;
+}
+
+.footnote p a {
+  color: black;
+}
