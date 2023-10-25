@@ -209,7 +209,7 @@
       "grow:'_11-*N'=1": "une entité faible (zéro par défaut)",
       "grow:'/1N-*N'=1": "un agrégat (zéro par défaut)",
       "grow:from_scratch arrange": "à partir d'un MCD vide",
-      "grow:from_scratch,arity_3=1 obfuscate create:roles lower:roles arrange": "créer un MCD d'entraînement à la conversion en relationnel"
+      "grow:grow:n=9,from_scratch,ent_attrs=3 obfuscate:labels=en4 create:roles lower:roles arrange": "créer un MCD d'entraînement à la conversion en relationnel"
     },
     "aliases": []
   },
