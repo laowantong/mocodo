@@ -33,7 +33,7 @@ compose_unsourced_ex_foreign_key: '<span class=''normal''>{label}</span><item>Le
 compose_unsourced_primary_foreign_key: '<span class=''primary''>{label}</span><item>Le champ <i>{label}</i> fait partie de la clé primaire de la table<primary></primary>. Il a migré par l''association de dépendance fonctionnelle <i>{association_name}</i> à partir de l''entité <i>{adjacent_source}</i> (supprimée). **Attention**\xa0: aucune contrainte d''intégrité référentielle n''est plus assurée.</item>'
 compose_unsourced_primary_ex_foreign_key: '<span class=''primary''>{label}</span><item>Le champ <i>{label}</i> fait partie de la clé primaire de la table<primary></primary>. Il a migré par l''association de dépendance fonctionnelle <i>{association_name}</i> à partir de l''entité <i>{adjacent_source}</i> (supprimée). **Attention**\xa0: aucune contrainte d''intégrité référentielle n''est plus assurée.</item>'
 compose_relation: '<div>\n  <details><summary><span class=''relation''>{this_relation_name}</span> (\n    {columns}\n  )</summary>\n</div>'
-compose_deleted_relation: 'La table <i>{this_relation_name}</i> a été supprimée car elle était réduite à la clé primaire de son entité d''origine.'
+compose_deleted_relation: 'La table <i>{this_relation_name}</i> a été supprimée car elle était réduite à la clé primaire de son entité d''origine. Pour conserver une telle table, suffixez d''un « + » le nom de l''entité correspondante dans sa définition.'
 add_unicity_constraints:
   - order: 100
     search: '</span>'

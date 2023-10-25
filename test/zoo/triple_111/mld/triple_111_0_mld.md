@@ -6,4 +6,4 @@
 ----
 
 
-**NB.** Les tables _Carnet_, _Projet_ et _Technicien_ ont été supprimées car elles étaient réduites à la clé primaire de leur entité d'origine.
+**NB.** Les tables _Carnet_, _Projet_ et _Technicien_ ont été supprimées car elles étaient réduites à la clé primaire de leur entité d'origine. Pour conserver une telle table, suffixez d'un « + » le nom de l'entité correspondante dans sa définition.
