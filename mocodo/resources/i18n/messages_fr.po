@@ -1,8 +1,8 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR ORGANIZATION
+# MOCODO
+# Copyright (C) 2023 Aristide Grange
 # 
 # Translators:
-# Aristide Grange <chewingword@wingi.net>, 2015-2016,2022-2023
+# Aristide Grange, 2023
 msgid ""
 msgstr "Project-Id-Version: mocodo\nPOT-Creation-Date: 2023-09-23 13:41+0200\nPO-Revision-Date: 2015-08-16 07:00+0000\nLast-Translator: Aristide Grange <chewingword@wingi.net>, 2015-2016,2022-2023\nLanguage-Team: French (http://app.transifex.com/aristide/mocodo/language/fr/)\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nGenerated-By: pygettext.py 1.5\nLanguage: fr\nPlural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
@@ -241,8 +241,8 @@ msgid "rewrite the given elements by swapping the case of each letter"
 msgstr "réécrit les éléments donnés en inversant la casse de chaque lettre"
 
 #: mocodo/argument_parser.py:238
-msgid "The template '{stem}' doesn't have a help message in language of code '{language}'."
-msgstr "Le gabarit « {stem} » n'a pas de message d'aide dans la langue de code « {language} »."
+msgid "The template '{stem}' doesn't have a help message in language of code '{language}' or 'en'."
+msgstr "Le gabarit « {stem} » n'a pas de message d'aide dans la langue de code « {language} » ou « en »."
 
 #: mocodo/argument_parser.py:242
 msgid "rewrite the given elements in Title Case"

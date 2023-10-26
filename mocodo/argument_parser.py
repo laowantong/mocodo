@@ -58,10 +58,13 @@ class Transformations:
         index_path = Path(f"{SCRIPT_DIRECTORY}/resources/relation_templates/_index.json")
         template_data = json.loads(index_path.read_text())
         for (stem, d) in template_data.items():
-            try:
+            if f"help_{language}" in d:
                 d["help"] = d.pop(f"help_{language}")
+                continue
+            try:
+                d["help"] = d[f"help_en"]
             except KeyError:
-                raise MocodoError(22, _("The template '{stem}' doesn't have a help message in language of code '{language}'.").format(stem=stem, language=language)) # fmt: skip
+                raise MocodoError(22, _("The template '{stem}' doesn't have a help message in language of code '{language}' or 'en'.").format(stem=stem, language=language)) # fmt: skip
         self.metadata.update(template_data)
         self.normalize = invert_dict({k: v["aliases"] for (k, v) in self.metadata.items()})
         self.normalize.update((k, k) for k in self.metadata)
