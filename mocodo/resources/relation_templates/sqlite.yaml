@@ -1,5 +1,6 @@
 help_en: 'convert the conceptual model into a physical model for SQLite'
 help_fr: 'convertit le modèle conceptuel en un modèle physique pour SQLite'
+help_zh: '将概念模型转换为 SQLite 的物理模型'
 fr_examples:
   - order: 1
     example: 'sqlite'

@@ -19,6 +19,7 @@ for path in sorted(folder.glob("*.yaml")):
             "category": "cv",
             "help_en": data["help_en"],
             "help_fr": data["help_fr"],
+            "help_zh": data["help_zh"],
             "aliases": [],
         }
         if "fr_examples" in data:

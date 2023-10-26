@@ -1,5 +1,6 @@
 help_en: 'convert the conceptual model into a physical model for MySQL'
 help_fr: 'convertit le modèle conceptuel en un modèle physique pour MySQL'
+help_zh: '将概念模型转换为 MySQL 物理模型'
 fr_examples:
   - order: 1
     example: 'mysql'

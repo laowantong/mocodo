@@ -1,5 +1,6 @@
 help_en: 'convert the conceptual model into a dependency graph'
 help_fr: 'convertit le modèle conceptuel en un graphe de dépendances'
+help_zh: '将概念模型转换为依赖图'
 stem_suffix: '_dependencies'
 extension: 'gv'
 to_defer: true

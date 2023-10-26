@@ -3,6 +3,7 @@
     "category": "cv",
     "help_en": "convert the conceptual model into a relational schema in DBML format",
     "help_fr": "convertit le modèle conceptuel en un schéma relationnel au format DBML",
+    "help_zh": "将概念模型转换为 DBML 格式的关系模式",
     "aliases": [],
     "fr_examples": {
       "dbml": "version de base", "dbml:b": "avec _boilerplate_"
@@ -12,24 +13,28 @@
     "category": "cv",
     "help_en": "convert the conceptual model into a physical model for SQL",
     "help_fr": "convertit le modèle conceptuel en un modèle physique pour SQL",
+    "help_zh": "将概念模型转换为 SQL 的物理模型",
     "aliases": ["ddl"]
   },
   "debug": {
     "category": "cv",
     "help_en": "list internal informations relative to the conversion into relational schema",
     "help_fr": "liste des informations internes relatives à la conversion en schéma relationnel",
+    "help_zh": "列出与转换为关系模式相关的内部信息",
     "aliases": []
   },
   "dependencies": {
     "category": "cv",
     "help_en": "convert the conceptual model into a dependency graph",
     "help_fr": "convertit le modèle conceptuel en un graphe de dépendances",
+    "help_zh": "将概念模型转换为依赖图",
     "aliases": []
   },
   "diagram": {
     "category": "cv",
     "help_en": "convert the conceptual model into a relational diagram in Mocodo syntax",
     "help_fr": "convertit le modèle conceptuel en un diagramme relationnel au format Mocodo",
+    "help_zh": "将概念模型转换为 Mocodo 格式的关系图",
     "aliases": [],
     "fr_examples": {
       "diagram": "version de base", "diagram:c": "avec contraintes d'unicité et d'optionnalité"
@@ -39,6 +44,7 @@
     "category": "cv",
     "help_en": "convert the conceptual model into a relational schema in HTML format",
     "help_fr": "convertit le modèle conceptuel en un schéma relationnel au format HTML",
+    "help_zh": "将概念模型转换为 HTML 格式的关系模式",
     "aliases": [],
     "fr_examples": {
       "html": "version de base", "html:b": "avec _boilerplate_", "html:c": "avec contraintes d'unicité et d'optionnalité", "html:e": "avec explications", "html:bce": "avec _boilerplate_, contraintes et explications"
@@ -48,6 +54,7 @@
     "category": "cv",
     "help_en": "convert the conceptual model into a relational schema in LaTeX format",
     "help_fr": "convertit le modèle conceptuel en un schéma relationnel au format LaTeX",
+    "help_zh": "将概念模型转换为 LaTeX 格式的关系模式",
     "aliases": ["tex"],
     "fr_examples": {
       "latex": "version de base", "latex:b": "avec _boilerplate_", "latex:c": "avec contraintes d'unicité et d'optionnalité", "latex:e": "avec explications", "latex:bce": "avec _boilerplate_, contraintes et explications"
@@ -57,6 +64,7 @@
     "category": "cv",
     "help_en": "convert the conceptual model into a relational schema in Markdown format",
     "help_fr": "convertit le modèle conceptuel en un schéma relationnel au format Markdown",
+    "help_zh": "将概念模型转换为 Markdown 格式的关系模式",
     "aliases": ["md", "mld"],
     "fr_examples": {
       "markdown": "version de base", "markdown:c": "avec contraintes d'unicité et d'optionnalité", "markdown:e": "avec explications", "markdown:ce": "avec contraintes et explications"
@@ -66,6 +74,7 @@
     "category": "cv",
     "help_en": "convert the conceptual model into a physical model for Microsoft SQL Server",
     "help_fr": "convertit le modèle conceptuel en un modèle physique pour Microsoft SQL Server",
+    "help_zh": "将概念模型转换为 Microsoft SQL Server 的物理模型",
     "aliases": ["ms_sql", "sql_server", "sqlserver"],
     "fr_examples": {
       "mssql": "version de base", "mssql:b": "avec _boilerplate_"
@@ -75,6 +84,7 @@
     "category": "cv",
     "help_en": "convert the conceptual model into a physical model for MySQL",
     "help_fr": "convertit le modèle conceptuel en un modèle physique pour MySQL",
+    "help_zh": "将概念模型转换为 MySQL 物理模型",
     "aliases": [],
     "fr_examples": {
       "mysql": "version de base", "mysql:b": "avec _boilerplate_"
@@ -84,6 +94,7 @@
     "category": "cv",
     "help_en": "convert the conceptual model into a physical model for Oracle DB",
     "help_fr": "convertit le modèle conceptuel en un modèle physique pour Oracle DB",
+    "help_zh": "将概念模型转换为 Oracle DB 的物理模型",
     "aliases": ["oracle_db"],
     "fr_examples": {
       "oracle": "version de base", "oracle:b": "avec _boilerplate_"
@@ -93,6 +104,7 @@
     "category": "cv",
     "help_en": "convert the conceptual model into a physical model for PostgreSQL",
     "help_fr": "convertit le modèle conceptuel en un modèle physique pour PostgreSQL",
+    "help_zh": "将概念模型转换为 PostgreSQL 的物理模型",
     "aliases": ["postgres"],
     "fr_examples": {
       "postgresql": "version de base", "postgresql:b": "avec _boilerplate_"
@@ -102,6 +114,7 @@
     "category": "cv",
     "help_en": "convert the conceptual model into a physical model for SQLite",
     "help_fr": "convertit le modèle conceptuel en un modèle physique pour SQLite",
+    "help_zh": "将概念模型转换为 SQLite 的物理模型",
     "aliases": [],
     "fr_examples": {
       "sqlite": "version de base", "sqlite:b": "avec _boilerplate_"
@@ -111,6 +124,7 @@
     "category": "cv",
     "help_en": "convert the conceptual model into a relational schema in text format",
     "help_fr": "convertit le modèle conceptuel en un schéma relationnel au format texte",
+    "help_zh": "将概念模型转换为文本格式的关系模式",
     "aliases": ["txt"],
     "fr_examples": {
       "text": "version de base", "text:c": "avec contraintes d'unicité et d'optionnalité", "html:e": "avec explications", "html:ce": "avec contraintes et explications"

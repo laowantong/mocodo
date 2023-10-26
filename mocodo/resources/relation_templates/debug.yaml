@@ -1,5 +1,6 @@
 help_en: 'list internal informations relative to the conversion into relational schema'
 help_fr: 'liste des informations internes relatives à la conversion en schéma relationnel'
+help_zh: '列出与转换为关系模式相关的内部信息'
 stem_suffix: '_debug'
 extension: 'tsv'
 to_defer: false
