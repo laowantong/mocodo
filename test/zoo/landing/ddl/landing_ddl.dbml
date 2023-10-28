@@ -1,6 +1,6 @@
 Table "AYANT-DROIT" {
-  "matricule"       VARCHAR(42) [not null]
-  "nom ayant-droit" VARCHAR(42) [not null]
+  "matricule"       VARCHAR(42) [NOT NULL]
+  "nom ayant-droit" VARCHAR(42) [NOT NULL]
   "lien"            VARCHAR(42)
   Indexes {
     ("matricule", "nom ayant-droit") [pk]
@@ -8,8 +8,8 @@ Table "AYANT-DROIT" {
 }
 
 Table "COMPOSER" {
-  "réf. pièce composée"   VARCHAR(42) [not null]
-  "réf. pièce composante" VARCHAR(42) [not null]
+  "réf. pièce composée"   VARCHAR(42) [NOT NULL]
+  "réf. pièce composante" VARCHAR(42) [NOT NULL]
   "quantité"              VARCHAR(42)
   Indexes {
     ("réf. pièce composée", "réf. pièce composante") [pk]
@@ -17,20 +17,20 @@ Table "COMPOSER" {
 }
 
 Table "DÉPARTEMENT" {
-  "num. département" VARCHAR(42) [pk, not null]
+  "num. département" VARCHAR(42) [pk, NOT NULL]
   "nom département"  VARCHAR(42)
 }
 
 Table "EMPLOYÉ" {
-  "matricule"        VARCHAR(42) [pk, not null]
+  "matricule"        VARCHAR(42) [pk, NOT NULL]
   "nom employé"      VARCHAR(42)
-  "num. département" VARCHAR(42) [not null]
+  "num. département" VARCHAR(42) [NOT NULL]
 }
 
 Table "FOURNIR" {
-  "num. projet"  VARCHAR(42) [not null]
-  "réf. pièce"   VARCHAR(42) [not null]
-  "num. société" VARCHAR(42) [not null]
+  "num. projet"  VARCHAR(42) [NOT NULL]
+  "réf. pièce"   VARCHAR(42) [NOT NULL]
+  "num. société" VARCHAR(42) [NOT NULL]
   "qté fournie"  VARCHAR(42)
   Indexes {
     ("num. projet", "réf. pièce", "num. société") [pk]
@@ -38,19 +38,19 @@ Table "FOURNIR" {
 }
 
 Table "PIÈCE" {
-  "réf. pièce"    VARCHAR(42) [pk, not null]
+  "réf. pièce"    VARCHAR(42) [pk, NOT NULL]
   "libellé pièce" VARCHAR(42)
 }
 
 Table "PROJET" {
-  "num. projet"           VARCHAR(42) [pk, not null]
+  "num. projet"           VARCHAR(42) [pk, NOT NULL]
   "nom projet"            VARCHAR(42)
-  "matricule responsable" VARCHAR(42) [null]
+  "matricule responsable" VARCHAR(42) ["NULL"]
 }
 
 Table "REQUÉRIR" {
-  "num. projet" VARCHAR(42) [not null]
-  "réf. pièce"  VARCHAR(42) [not null]
+  "num. projet" VARCHAR(42) [NOT NULL]
+  "réf. pièce"  VARCHAR(42) [NOT NULL]
   "qté requise" VARCHAR(42)
   Indexes {
     ("num. projet", "réf. pièce") [pk]
@@ -58,14 +58,14 @@ Table "REQUÉRIR" {
 }
 
 Table "SOCIÉTÉ" {
-  "num. société"      VARCHAR(42) [pk, not null]
+  "num. société"      VARCHAR(42) [pk, NOT NULL]
   "raison sociale"    VARCHAR(42)
-  "num. société mère" VARCHAR(42) [null]
+  "num. société mère" VARCHAR(42) ["NULL"]
 }
 
 Table "TRAVAILLER" {
-  "matricule"   VARCHAR(42) [not null]
-  "num. projet" VARCHAR(42) [not null]
+  "matricule"   VARCHAR(42) [NOT NULL]
+  "num. projet" VARCHAR(42) [NOT NULL]
   Indexes {
     ("matricule", "num. projet") [pk]
   }

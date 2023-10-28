@@ -1,60 +1,60 @@
 Table "ALIQUET" {
-  "magna"  VARCHAR(42) [not null]
-  "tellus" VARCHAR(42) [not null]
+  "magna"  VARCHAR(42) [NOT NULL]
+  "tellus" VARCHAR(42) [NOT NULL]
   Indexes {
     ("magna", "tellus") [pk]
   }
 }
 
 Table "CONSEQUAT" {
-  "fermentum" VARCHAR(42) [pk, not null]
+  "fermentum" VARCHAR(42) [pk, NOT NULL]
   "dederit"   VARCHAR(42)
 }
 
 Table "CURABITUR" {
-  "gravida" VARCHAR(42) [pk, not null]
+  "gravida" VARCHAR(42) [pk, NOT NULL]
   "amor"    VARCHAR(42)
 }
 
 Table "DIGNISSIM" {
-  "tellus" VARCHAR(42) [pk, not null]
+  "tellus" VARCHAR(42) [pk, NOT NULL]
   "terra"  VARCHAR(42)
 }
 
 Table "LIBERO" {
-  "posuere" VARCHAR(42) [pk, not null]
+  "posuere" VARCHAR(42) [pk, NOT NULL]
   "lacrima" VARCHAR(42)
 }
 
 Table "QUAM" {
-  "cras"  VARCHAR(42) [pk, not null]
+  "cras"  VARCHAR(42) [pk, NOT NULL]
   "sed"   VARCHAR(42)
-  "magna" VARCHAR(42) [not null]
+  "magna" VARCHAR(42) [NOT NULL]
 }
 
 Table "SUSCIPIT" {
-  "orci"  VARCHAR(42) [pk, not null]
+  "orci"  VARCHAR(42) [pk, NOT NULL]
   "lorem" VARCHAR(42)
-  "magna" VARCHAR(42) [not null]
+  "magna" VARCHAR(42) [NOT NULL]
 }
 
 Table "TRISTIS" {
-  "magna"      VARCHAR(42) [pk, not null]
+  "magna"      VARCHAR(42) [pk, NOT NULL]
   "vestibulum" VARCHAR(42)
-  "fermentum"  VARCHAR(42) [not null]
-  "type"       UNSIGNED_INT [not null]
-  "convallis"  VARCHAR(42) [null]
-  "ipsum"      VARCHAR(42) [null]
-  "pulvinar"   VARCHAR(42) [null]
-  "audis"      VARCHAR(42) [null]
-  "gravida"    VARCHAR(42) [null]
-  "tempor"     VARCHAR(42) [null]
-  "fugit"      VARCHAR(42) [null]
+  "fermentum"  VARCHAR(42) [NOT NULL]
+  "type"       UNSIGNED_INT [NOT NULL]
+  "convallis"  VARCHAR(42) ["NULL"]
+  "ipsum"      VARCHAR(42) ["NULL"]
+  "pulvinar"   VARCHAR(42) ["NULL"]
+  "audis"      VARCHAR(42) ["NULL"]
+  "gravida"    VARCHAR(42) ["NULL"]
+  "tempor"     VARCHAR(42) ["NULL"]
+  "fugit"      VARCHAR(42) ["NULL"]
 }
 
 Table "ULTRICES" {
-  "posuere" VARCHAR(42) [not null]
-  "magna"   VARCHAR(42) [not null]
+  "posuere" VARCHAR(42) [NOT NULL]
+  "magna"   VARCHAR(42) [NOT NULL]
   Indexes {
     ("posuere", "magna") [pk]
   }

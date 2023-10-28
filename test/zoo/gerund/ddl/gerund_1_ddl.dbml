@@ -1,11 +1,11 @@
 Table "Commande" {
-  "commande" VARCHAR(42) [pk, not null]
+  "commande" VARCHAR(42) [pk, NOT NULL]
   "date"     VARCHAR(42)
 }
 
 Table "Ligne de commande" {
-  "commande" VARCHAR(42) [not null]
-  "produit"  VARCHAR(42) [not null]
+  "commande" VARCHAR(42) [NOT NULL]
+  "produit"  VARCHAR(42) [NOT NULL]
   "quantité" VARCHAR(42)
   Indexes {
     ("commande", "produit") [pk]
@@ -13,7 +13,7 @@ Table "Ligne de commande" {
 }
 
 Table "Produit" {
-  "produit" VARCHAR(42) [pk, not null]
+  "produit" VARCHAR(42) [pk, NOT NULL]
   "libellé" VARCHAR(42)
 }
 

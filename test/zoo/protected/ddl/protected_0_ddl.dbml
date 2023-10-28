@@ -1,16 +1,16 @@
 Table "Agence" {
-  "id. agence" VARCHAR(42) [pk, not null]
+  "id. agence" VARCHAR(42) [pk, NOT NULL]
   "nom agence" VARCHAR(42)
 }
 
 Table "Direction régionale" {
-  "id. dir." VARCHAR(42) [pk, not null]
+  "id. dir." VARCHAR(42) [pk, NOT NULL]
   "nom dir." VARCHAR(42)
 }
 
 Table "Superviser" {
-  "id. agence" VARCHAR(42) [pk, not null]
-  "id. dir."   VARCHAR(42) [not null]
+  "id. agence" VARCHAR(42) [pk, NOT NULL]
+  "id. dir."   VARCHAR(42) [NOT NULL]
 }
 
 Ref:"Superviser"."id. agence" > "Agence"."id. agence"

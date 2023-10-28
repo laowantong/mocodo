@@ -1,18 +1,18 @@
 Table "Disponibilité" {
-  "semaine" VARCHAR(42) [not null]
-  "voilier" VARCHAR(42) [not null]
+  "semaine" VARCHAR(42) [NOT NULL]
+  "voilier" VARCHAR(42) [NOT NULL]
   Indexes {
     ("semaine", "voilier") [pk]
   }
 }
 
 Table "Réservation" {
-  "id résa"          VARCHAR(42) [pk, not null]
+  "id résa"          VARCHAR(42) [pk, NOT NULL]
   "num résa"         VARCHAR(42)
   "arrhes"           VARCHAR(42)
   "date réservation" VARCHAR(42)
-  "semaine"          VARCHAR(42) [not null]
-  "voilier"          VARCHAR(42) [not null]
+  "semaine"          VARCHAR(42) [NOT NULL]
+  "voilier"          VARCHAR(42) [NOT NULL]
   Indexes {
     "num résa" [unique]
     ("semaine", "voilier") [unique]
@@ -20,7 +20,7 @@ Table "Réservation" {
 }
 
 Table "Semaine" {
-  "semaine"    VARCHAR(42) [pk, not null]
+  "semaine"    VARCHAR(42) [pk, NOT NULL]
   "date début" VARCHAR(42)
   Indexes {
     "date début" [unique]

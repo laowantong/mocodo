@@ -1,8 +1,8 @@
 Table "Appartement" {
-  "code rue"     VARCHAR(42) [not null]
-  "num immeuble" VARCHAR(42) [not null]
-  "num étage"    VARCHAR(42) [not null]
-  "num appart."  VARCHAR(42) [not null]
+  "code rue"     VARCHAR(42) [NOT NULL]
+  "num immeuble" VARCHAR(42) [NOT NULL]
+  "num étage"    VARCHAR(42) [NOT NULL]
+  "num appart."  VARCHAR(42) [NOT NULL]
   "nb pièces"    VARCHAR(42)
   Indexes {
     ("code rue", "num immeuble", "num étage", "num appart.") [pk]
@@ -10,9 +10,9 @@ Table "Appartement" {
 }
 
 Table "Étage" {
-  "code rue"        VARCHAR(42) [not null]
-  "num immeuble"    VARCHAR(42) [not null]
-  "num étage"       VARCHAR(42) [not null]
+  "code rue"        VARCHAR(42) [NOT NULL]
+  "num immeuble"    VARCHAR(42) [NOT NULL]
+  "num étage"       VARCHAR(42) [NOT NULL]
   "nb appartements" VARCHAR(42)
   Indexes {
     ("code rue", "num immeuble", "num étage") [pk]
@@ -20,8 +20,8 @@ Table "Étage" {
 }
 
 Table "Immeuble" {
-  "code rue"     VARCHAR(42) [not null]
-  "num immeuble" VARCHAR(42) [not null]
+  "code rue"     VARCHAR(42) [NOT NULL]
+  "num immeuble" VARCHAR(42) [NOT NULL]
   "nb étages"    VARCHAR(42)
   Indexes {
     ("code rue", "num immeuble") [pk]
@@ -29,7 +29,7 @@ Table "Immeuble" {
 }
 
 Table "Rue" {
-  "code rue" VARCHAR(42) [pk, not null]
+  "code rue" VARCHAR(42) [pk, NOT NULL]
   "nom rue"  VARCHAR(42)
 }
 

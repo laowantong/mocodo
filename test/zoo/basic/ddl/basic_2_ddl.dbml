@@ -1,20 +1,20 @@
 Table "CLIENT" {
-  "Réf. client" VARCHAR(8) [pk, not null]
+  "Réf. client" VARCHAR(8) [pk, NOT NULL]
   "Nom"         VARCHAR(255)
   "Prénom"      VARCHAR(255)
   "Adresse"     VARCHAR(255)
 }
 
 Table "COMMANDE" {
-  "Num. commande" VARCHAR(8) [pk, not null]
+  "Num. commande" VARCHAR(8) [pk, NOT NULL]
   "Date"          DATE
   "Montant"       DECIMAL(10,2)
-  "Réf. client"   VARCHAR(8) [not null]
+  "Réf. client"   VARCHAR(8) [NOT NULL]
 }
 
 Table "INCLURE" {
-  "Num. commande" VARCHAR(8) [not null]
-  "Réf. produit"  VARCHAR(8) [not null]
+  "Num. commande" VARCHAR(8) [NOT NULL]
+  "Réf. produit"  VARCHAR(8) [NOT NULL]
   "Quantité"      INTEGER
   Indexes {
     ("Num. commande", "Réf. produit") [pk]
@@ -22,7 +22,7 @@ Table "INCLURE" {
 }
 
 Table "PRODUIT" {
-  "Réf. produit"  VARCHAR(8) [pk, not null]
+  "Réf. produit"  VARCHAR(8) [pk, NOT NULL]
   "Libellé"       VARCHAR(50)
   "Prix unitaire" DECIMAL(10,2)
 }

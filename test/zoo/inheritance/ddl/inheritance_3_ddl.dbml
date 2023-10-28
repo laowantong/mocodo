@@ -1,20 +1,20 @@
 Table "TRISTIS" {
-  "magna"            VARCHAR(42) [pk, not null]
+  "magna"            VARCHAR(42) [pk, NOT NULL]
   "vestibulum"       VARCHAR(42)
-  "type"             UNSIGNED_INT [not null]
-  "convallis"        VARCHAR(42) [null]
-  "ipsum"            VARCHAR(42) [null]
-  "pulvinar"         VARCHAR(42) [null]
-  "audis"            VARCHAR(42) [null]
-  "magna via_mollis" VARCHAR(42) [null]
-  "magna via_vitae"  VARCHAR(42) [null]
-  "tempor"           VARCHAR(42) [null]
-  "fugit"            VARCHAR(42) [null]
+  "type"             UNSIGNED_INT [NOT NULL]
+  "convallis"        VARCHAR(42) ["NULL"]
+  "ipsum"            VARCHAR(42) ["NULL"]
+  "pulvinar"         VARCHAR(42) ["NULL"]
+  "audis"            VARCHAR(42) ["NULL"]
+  "magna via_mollis" VARCHAR(42) ["NULL"]
+  "magna via_vitae"  VARCHAR(42) ["NULL"]
+  "tempor"           VARCHAR(42) ["NULL"]
+  "fugit"            VARCHAR(42) ["NULL"]
 }
 
 Table "ULTRICES" {
-  "magna sodales" VARCHAR(42) [not null]
-  "magna lacus"   VARCHAR(42) [not null]
+  "magna sodales" VARCHAR(42) [NOT NULL]
+  "magna lacus"   VARCHAR(42) [NOT NULL]
   Indexes {
     ("magna sodales", "magna lacus") [pk]
   }

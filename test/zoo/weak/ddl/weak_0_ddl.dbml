@@ -1,6 +1,6 @@
 Table "Exemplaire" {
-  "œuvre"      VARCHAR(42) [not null]
-  "exemplaire" VARCHAR(42) [not null]
+  "œuvre"      VARCHAR(42) [NOT NULL]
+  "exemplaire" VARCHAR(42) [NOT NULL]
   "foobar"     VARCHAR(42)
   Indexes {
     ("œuvre", "exemplaire") [pk]

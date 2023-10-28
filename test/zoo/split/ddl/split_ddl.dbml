@@ -1,19 +1,19 @@
 Table "Bataille" {
-  "nom bataille" VARCHAR(42) [pk, not null]
+  "nom bataille" VARCHAR(42) [pk, NOT NULL]
   "lieu"         VARCHAR(42)
   "date"         VARCHAR(42)
 }
 
 Table "Trophée" {
-  "numéro"         VARCHAR(42) [pk, not null]
+  "numéro"         VARCHAR(42) [pk, NOT NULL]
   "type"           VARCHAR(42)
   "état"           VARCHAR(42)
-  "nom villageois" VARCHAR(42) [not null]
-  "nom bataille"   VARCHAR(42) [not null]
+  "nom villageois" VARCHAR(42) [NOT NULL]
+  "nom bataille"   VARCHAR(42) [NOT NULL]
 }
 
 Table "Villageois" {
-  "nom villageois" VARCHAR(42) [pk, not null]
+  "nom villageois" VARCHAR(42) [pk, NOT NULL]
   "adresse"        VARCHAR(42)
   "fonction"       VARCHAR(42)
 }

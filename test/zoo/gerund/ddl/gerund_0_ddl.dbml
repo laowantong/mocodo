@@ -1,6 +1,6 @@
 Table "Ligne de commande" {
-  "commande" VARCHAR(42) [not null]
-  "produit"  VARCHAR(42) [not null]
+  "commande" VARCHAR(42) [NOT NULL]
+  "produit"  VARCHAR(42) [NOT NULL]
   "quantité" VARCHAR(42)
   Indexes {
     ("commande", "produit") [pk]

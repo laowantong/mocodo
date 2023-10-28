@@ -1,5 +1,5 @@
 Table "CLIENT" {
-  "Réf. client" VARCHAR(42) [pk, not null]
+  "Réf. client" VARCHAR(42) [pk, NOT NULL]
   "Nom"         VARCHAR(42)
   "Prénom"      VARCHAR(42)
   "Adresse"     VARCHAR(42)
@@ -11,7 +11,7 @@ Table "CLIENT" {
 }
 
 Table "FOO" {
-  "foo"  VARCHAR(42) [pk, not null]
+  "foo"  VARCHAR(42) [pk, NOT NULL]
   "bar"  VARCHAR(42)
   "biz"  VARCHAR(42)
   "buz"  VARCHAR(42)
@@ -25,8 +25,8 @@ Table "FOO" {
 }
 
 Table "UTILISER" {
-  "carnet"     VARCHAR(42) [not null]
-  "projet"     VARCHAR(42) [not null]
+  "carnet"     VARCHAR(42) [NOT NULL]
+  "projet"     VARCHAR(42) [NOT NULL]
   "technicien" VARCHAR(42)
   Indexes {
     ("carnet", "projet") [pk]

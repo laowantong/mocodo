@@ -1,17 +1,17 @@
 Table "Projet" {
-  "projet"  VARCHAR(42) [pk, not null]
+  "projet"  VARCHAR(42) [pk, NOT NULL]
   "libellé" VARCHAR(42)
 }
 
 Table "Technicien" {
-  "technicien"     VARCHAR(42) [pk, not null]
+  "technicien"     VARCHAR(42) [pk, NOT NULL]
   "nom technicien" VARCHAR(42)
 }
 
 Table "Utiliser" {
-  "carnet"     VARCHAR(42) [not null]
-  "projet"     VARCHAR(42) [not null]
-  "technicien" VARCHAR(42) [not null]
+  "carnet"     VARCHAR(42) [NOT NULL]
+  "projet"     VARCHAR(42) [NOT NULL]
+  "technicien" VARCHAR(42) [NOT NULL]
   Indexes {
     ("carnet", "projet") [pk]
     ("technicien", "projet") [unique]

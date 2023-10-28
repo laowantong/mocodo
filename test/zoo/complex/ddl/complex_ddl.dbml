@@ -1,24 +1,24 @@
 Table "ANIMAL" {
-  "code espèce"         VARCHAR(42) [not null]
-  "nom"                 VARCHAR(42) [not null]
-  "date naissance"      VARCHAR(42) [not null]
+  "code espèce"         VARCHAR(42) [NOT NULL]
+  "nom"                 VARCHAR(42) [NOT NULL]
+  "date naissance"      VARCHAR(42) [NOT NULL]
   "sexe"                VARCHAR(42)
   "date décès"          VARCHAR(42)
-  "code espèce mère"    VARCHAR(42) [null]
-  "nom mère"            VARCHAR(42) [null]
-  "date naissance mère" VARCHAR(42) [null]
-  "type alimentation"   UNSIGNED_INT [null]
-  "est carnivore"       BOOLEAN [not null]
-  "quantité viande"     VARCHAR(42) [null]
-  "est herbivore"       BOOLEAN [not null]
-  "plante préférée"     VARCHAR(42) [null]
+  "code espèce mère"    VARCHAR(42) ["NULL"]
+  "nom mère"            VARCHAR(42) ["NULL"]
+  "date naissance mère" VARCHAR(42) ["NULL"]
+  "type alimentation"   UNSIGNED_INT ["NULL"]
+  "est carnivore"       BOOLEAN [NOT NULL]
+  "quantité viande"     VARCHAR(42) ["NULL"]
+  "est herbivore"       BOOLEAN [NOT NULL]
+  "plante préférée"     VARCHAR(42) ["NULL"]
   Indexes {
     ("code espèce", "nom", "date naissance") [pk]
   }
 }
 
 Table "ESPÈCE" {
-  "code espèce"      VARCHAR(42) [pk, not null]
+  "code espèce"      VARCHAR(42) [pk, NOT NULL]
   "nom latin"        VARCHAR(42)
   "nom vernaculaire" VARCHAR(42)
   Indexes {
@@ -27,20 +27,20 @@ Table "ESPÈCE" {
 }
 
 Table "OCCUPE" {
-  "code espèce"    VARCHAR(42) [not null]
-  "nom"            VARCHAR(42) [not null]
-  "date naissance" VARCHAR(42) [not null]
-  "num. enclos"    VARCHAR(42) [not null]
-  "date début"     VARCHAR(42) [not null]
-  "date fin"       VARCHAR(42) [not null]
+  "code espèce"    VARCHAR(42) [NOT NULL]
+  "nom"            VARCHAR(42) [NOT NULL]
+  "date naissance" VARCHAR(42) [NOT NULL]
+  "num. enclos"    VARCHAR(42) [NOT NULL]
+  "date début"     VARCHAR(42) [NOT NULL]
+  "date fin"       VARCHAR(42) [NOT NULL]
   Indexes {
     ("code espèce", "nom", "date naissance", "num. enclos") [pk]
   }
 }
 
 Table "PEUT COHABITER AVEC" {
-  "code espèce"            VARCHAR(42) [not null]
-  "code espèce commensale" VARCHAR(42) [not null]
+  "code espèce"            VARCHAR(42) [NOT NULL]
+  "code espèce commensale" VARCHAR(42) [NOT NULL]
   "nb. max. commensaux"    VARCHAR(42)
   Indexes {
     ("code espèce", "code espèce commensale") [pk]
@@ -48,8 +48,8 @@ Table "PEUT COHABITER AVEC" {
 }
 
 Table "PEUT VIVRE DANS" {
-  "code espèce"         VARCHAR(42) [not null]
-  "num. enclos"         VARCHAR(42) [not null]
+  "code espèce"         VARCHAR(42) [NOT NULL]
+  "num. enclos"         VARCHAR(42) [NOT NULL]
   "nb. max. congénères" VARCHAR(42)
   Indexes {
     ("code espèce", "num. enclos") [pk]

@@ -1,7 +1,7 @@
 Table "Affecter" {
-  "projet"  VARCHAR(42) [not null]
-  "employé" VARCHAR(42) [not null]
-  "site"    VARCHAR(42) [not null]
+  "projet"  VARCHAR(42) [NOT NULL]
+  "employé" VARCHAR(42) [NOT NULL]
+  "site"    VARCHAR(42) [NOT NULL]
   Indexes {
     ("projet", "employé") [pk]
     ("employé", "site") [unique]

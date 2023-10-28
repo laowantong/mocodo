@@ -1,7 +1,7 @@
 Table "Appliquer" {
-  "employé"    VARCHAR(42) [not null]
-  "projet"     VARCHAR(42) [not null]
-  "compétence" VARCHAR(42) [not null]
+  "employé"    VARCHAR(42) [NOT NULL]
+  "projet"     VARCHAR(42) [NOT NULL]
+  "compétence" VARCHAR(42) [NOT NULL]
   Indexes {
     ("employé", "projet", "compétence") [pk]
   }

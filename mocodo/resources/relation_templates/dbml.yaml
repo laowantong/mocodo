@@ -31,11 +31,11 @@ transform_optionality:
   - order: 100
     comment: 'Replace BANG with NOT NULL.'
     search: '^!$'
-    replace: 'not null'
+    replace: 'NOT NULL'
   - order: 200
     comment: 'Replace QMARK with NULL.'
     search: '^\?$'
-    replace: 'null'
+    replace: 'NULL'
 compose_primary_key: '  "{label}"{filler}{datatype} [{optionality}] [pk]\nADD_PRIMARY_KEY "{label}"'
 compose_normal_attribute: '  "{label}"{filler}{datatype} [{optionality}]'
 compose_primary_foreign_key: '  "{label}"{filler}{datatype} [{optionality}] [pk]\nADD_PRIMARY_KEY "{label}"\nADD_FOREIGN_KEY "{this_relation_name}".("{label}") > "{outer_source}".("{non_disambiguated_label}")'

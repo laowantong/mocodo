@@ -1,24 +1,24 @@
 Table "Appliquer" {
-  "employé"    VARCHAR(42) [not null]
-  "projet"     VARCHAR(42) [not null]
-  "compétence" VARCHAR(42) [not null]
+  "employé"    VARCHAR(42) [NOT NULL]
+  "projet"     VARCHAR(42) [NOT NULL]
+  "compétence" VARCHAR(42) [NOT NULL]
   Indexes {
     ("employé", "projet", "compétence") [pk]
   }
 }
 
 Table "Compétence" {
-  "compétence" VARCHAR(42) [pk, not null]
+  "compétence" VARCHAR(42) [pk, NOT NULL]
   "libellé"    VARCHAR(42)
 }
 
 Table "Employé" {
-  "employé" VARCHAR(42) [pk, not null]
+  "employé" VARCHAR(42) [pk, NOT NULL]
   "nom"     VARCHAR(42)
 }
 
 Table "Projet" {
-  "projet"     VARCHAR(42) [pk, not null]
+  "projet"     VARCHAR(42) [pk, NOT NULL]
   "date début" VARCHAR(42)
   "date fin"   VARCHAR(42)
 }

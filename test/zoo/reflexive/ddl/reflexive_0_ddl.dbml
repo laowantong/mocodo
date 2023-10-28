@@ -1,16 +1,16 @@
 Table "COMPOSER" {
-  "pièce composante" VARCHAR(42) [not null]
-  "pièce composée"   VARCHAR(42) [not null]
+  "pièce composante" VARCHAR(42) [NOT NULL]
+  "pièce composée"   VARCHAR(42) [NOT NULL]
   Indexes {
     ("pièce composante", "pièce composée") [pk]
   }
 }
 
 Table "HOMME" {
-  "Num. SS"      VARCHAR(42) [pk, not null]
+  "Num. SS"      VARCHAR(42) [pk, NOT NULL]
   "Nom"          VARCHAR(42)
   "Prénom"       VARCHAR(42)
-  "Num. SS père" VARCHAR(42) [null]
+  "Num. SS père" VARCHAR(42) ["NULL"]
 }
 
 Ref:"HOMME"."Num. SS père" > "HOMME"."Num. SS"

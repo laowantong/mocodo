@@ -1,7 +1,7 @@
 Table "Utiliser" {
-  "carnet"     VARCHAR(42) [not null]
-  "projet"     VARCHAR(42) [not null]
-  "technicien" VARCHAR(42) [not null]
+  "carnet"     VARCHAR(42) [NOT NULL]
+  "projet"     VARCHAR(42) [NOT NULL]
+  "technicien" VARCHAR(42) [NOT NULL]
   Indexes {
     ("carnet", "projet") [pk]
     ("technicien", "projet") [unique]

@@ -1,6 +1,6 @@
 Table "Exemplaire" {
-  "œuvre"      VARCHAR(42) [not null]
-  "exemplaire" VARCHAR(42) [not null]
+  "œuvre"      VARCHAR(42) [NOT NULL]
+  "exemplaire" VARCHAR(42) [NOT NULL]
   "nb pages"   VARCHAR(42)
   "date achat" VARCHAR(42)
   "foobar"     VARCHAR(42)
@@ -10,7 +10,7 @@ Table "Exemplaire" {
 }
 
 Table "Œuvre" {
-  "œuvre"  VARCHAR(42) [pk, not null]
+  "œuvre"  VARCHAR(42) [pk, NOT NULL]
   "auteur" VARCHAR(42)
 }
 

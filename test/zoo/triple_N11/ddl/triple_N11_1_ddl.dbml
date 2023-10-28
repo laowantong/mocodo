@@ -1,7 +1,7 @@
 Table "Affecter" {
-  "projet"  VARCHAR(42) [not null]
-  "employé" VARCHAR(42) [not null]
-  "site"    VARCHAR(42) [not null]
+  "projet"  VARCHAR(42) [NOT NULL]
+  "employé" VARCHAR(42) [NOT NULL]
+  "site"    VARCHAR(42) [NOT NULL]
   Indexes {
     ("projet", "employé") [pk]
     ("employé", "site") [unique]
@@ -9,17 +9,17 @@ Table "Affecter" {
 }
 
 Table "Employé" {
-  "employé"     VARCHAR(42) [pk, not null]
+  "employé"     VARCHAR(42) [pk, NOT NULL]
   "nom employé" VARCHAR(42)
 }
 
 Table "Projet" {
-  "projet"  VARCHAR(42) [pk, not null]
+  "projet"  VARCHAR(42) [pk, NOT NULL]
   "libellé" VARCHAR(42)
 }
 
 Table "Site" {
-  "site"     VARCHAR(42) [pk, not null]
+  "site"     VARCHAR(42) [pk, NOT NULL]
   "position" VARCHAR(42)
 }
 
