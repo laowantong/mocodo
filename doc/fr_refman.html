@@ -14585,7 +14585,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <script>
 $( document ).ready(function(){
 
-            var cfg = {"base_numbering": 1, "nav_menu": {}, "number_sections": true, "sideBar": true, "skip_h1_title": false, "title_cell": "Mocodo", "title_sidebar": "Mocodo", "toc_cell": false, "toc_position": {"height": "47.7031px", "left": "10px", "top": "150px", "width": "279.361px"}, "toc_section_display": false, "toc_window_display": true};
+            var cfg = {"base_numbering": 1, "nav_menu": {}, "number_sections": true, "sideBar": true, "skip_h1_title": false, "title_cell": "Mocodo", "title_sidebar": "Mocodo", "toc_cell": false, "toc_position": {"height": "47.7031px", "left": "10px", "top": "150px", "width": "325.54px"}, "toc_section_display": false, "toc_window_display": true};
             cfg.navigate_menu=false;
             // fire the main function with these parameters
             require(['nbextensions/toc2/toc2'], function (toc2) {
@@ -40390,7 +40390,7 @@ $$<p></p>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Aide-m%C3%A9moire-des-arguments-de---transform">Aide-m&#233;moire des arguments de <code>--transform</code><a class="anchor-link" href="#Aide-m%C3%A9moire-des-arguments-de---transform">&#182;</a></h3>
+<h3 id="Aide-m%C3%A9moire-des-transformations">Aide-m&#233;moire des transformations<a class="anchor-link" href="#Aide-m%C3%A9moire-des-transformations">&#182;</a></h3>
 </div>
 </div>
 </div>
@@ -40401,6 +40401,7 @@ $$<p></p>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>L'option <code>-t</code> (ou <code>--transform</code>) permet d'accéder à un grand nombre d'opérations de conversion ou de réécriture.</p>
 <p>Toutes les opérations de conversion ont déjà été décrites dans ce document :</p>
 <ul>
 <li>produits dérivés : <code>data_dict</code>, <code>share</code> ;</li>
@@ -40420,7 +40421,7 @@ $$<p></p>
 <li>traitement de chaînes de caractères : <code>truncate</code>, <code>slice</code>, <code>prefix</code>, <code>suffix</code>, <code>replace</code> ;</li>
 <li>homogénéisation de la mise en forme : <code>ascii</code>, <code>camel</code>, <code>snake</code>, <code>pascal</code>, <code>lower</code>, <code>upper</code>, etc.</li>
 </ul>
-<p>L'aide-mémoire suivant devrait vous permettre de prendre en main les opérations qui vous intéressent :</p>
+<p>L'aide-mémoire suivant devrait vous permettre de prendre en main les sous-options de <code>--transform</code> qui vous intéressent. Survolez une sous-option pour afficher ses alias éventuels.</p>
 
 </div>
 </div>
@@ -40430,7 +40431,7 @@ $$<p></p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[19]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">display</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="s2">&quot;../fr_cheat_sheet.md&quot;</span><span class="p">)</span>
@@ -40451,18 +40452,14 @@ $$<p></p>
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[8]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[19]:</div>
 
 
 
 <div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/markdown">
-<ul>
-<li>Opérations de <span style="color:blue; font-family:monospace; font-weight:600;">conversion en bleu</span> et de <span style="color:green; font-family:monospace; font-weight:600;">réécriture en vert</span>.</li>
-<li>Survolez un nom d'opération pour voir ses éventuels alias.</li>
-</ul>
-<table>
+<h3 id="Op%C3%A9rations-de-conversion">Op&#233;rations de conversion<a class="anchor-link" href="#Op%C3%A9rations-de-conversion">&#182;</a></h3><table>
 <thead><tr>
-<th style="text-align:right">Sous-option</th>
+<th style="text-align:left">Sous-option</th>
 <th style="text-align:left">Description</th>
 <th style="text-align:left">Exemples</th>
 <th style="text-align:left">Explications</th>
@@ -40470,1240 +40467,879 @@ $$<p></p>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:right"><span style="color:green; font-family:monospace; font-weight:600">add</span></td>
-<td style="text-align:left">cf. <code>create</code></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:right"><span style="color:green; font-family:monospace; font-weight:600">anonymise</span></td>
-<td style="text-align:left">cf. <code>drown</code></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:right"><span style="color:green; font-family:monospace; font-weight:600">anonymize</span></td>
-<td style="text-align:left">cf. <code>drown</code></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:right"><span style="color:green; font-family:monospace; font-weight:600">append</span></td>
-<td style="text-align:left">cf. <code>suffix</code></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:right"><span style="color:green; font-family:monospace; font-weight:600">arrange</span></td>
-<td style="text-align:left">réarrange la disposition, soit par Branch &amp; Bound, soit avec un algorithme génétique</td>
-<td style="text-align:left"><code>arrange</code></td>
-<td style="text-align:left">B&amp;B sans contraintes</td>
-</tr>
-<tr>
-<td style="text-align:right"></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"><code>arrange:timeout=60</code></td>
-<td style="text-align:left">B&amp;B limité à une minute</td>
-</tr>
-<tr>
-<td style="text-align:right"></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"><code>arrange:wide</code></td>
-<td style="text-align:left">B&amp;B privilégiant la largeur</td>
-</tr>
-<tr>
-<td style="text-align:right"></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"><code>arrange:current</code></td>
-<td style="text-align:left">B&amp;B sur la grille courante</td>
-</tr>
-<tr>
-<td style="text-align:right"></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"><code>arrange:balanced=0</code></td>
-<td style="text-align:left">B&amp;B sur la plus petite grille équilibrée</td>
-</tr>
-<tr>
-<td style="text-align:right"></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"><code>arrange:balanced=1</code></td>
-<td style="text-align:left">B&amp;B sur la seconde plus petite grille équilibrée</td>
-</tr>
-<tr>
-<td style="text-align:right"></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"><code>arrange:algo=ga</code></td>
-<td style="text-align:left">algorithme génétique</td>
-</tr>
-<tr>
-<td style="text-align:right"><span style="color:green; font-family:monospace; font-weight:600">ascii</span></td>
-<td style="text-align:left">réécrit les éléments donnés en ASCII</td>
-<td style="text-align:left"><code>ascii:roles,labels</code></td>
-<td style="text-align:left">rôles, libellés des boîtes et des attributs en ASCII</td>
-</tr>
-<tr>
-<td style="text-align:right"><span style="color:blue; font-family:monospace; font-weight:600">ast</span></td>
+<td style="text-align:left"><span style="font-family:monospace; font-weight:600">ast</span></td>
 <td style="text-align:left">crée l'arbre de syntaxe abstraite du texte source (pour le débogage)</td>
 <td style="text-align:left"></td>
 <td style="text-align:left"></td>
 </tr>
 <tr>
-<td style="text-align:right"><span title="Alias : camelcase, camel_case." style="color:green; font-family:monospace; font-weight:600">camel</span></td>
-<td style="text-align:left">réécrit les éléments donnés en camelCase</td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:right"><span style="color:green; font-family:monospace; font-weight:600">camel_case</span></td>
-<td style="text-align:left">cf. <code>camel</code></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:right"><span style="color:green; font-family:monospace; font-weight:600">camelcase</span></td>
-<td style="text-align:left">cf. <code>camel</code></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:right"><span style="color:green; font-family:monospace; font-weight:600">capitalize</span></td>
-<td style="text-align:left">réécrit les éléments donnés en capitalisant la première lettre de chaque mot</td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:right"><span style="color:green; font-family:monospace; font-weight:600">case_fold</span></td>
-<td style="text-align:left">cf. <code>casefold</code></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:right"><span title="Alias : case_fold." style="color:green; font-family:monospace; font-weight:600">casefold</span></td>
-<td style="text-align:left">réécrit les éléments donnés en minuscules, mais plus agressivement que « lower »</td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:right"><span style="color:blue; font-family:monospace; font-weight:600">chen</span></td>
+<td style="text-align:left"><span style="font-family:monospace; font-weight:600">chen</span></td>
 <td style="text-align:left">convertit le modèle conceptuel dans la notation de Chen</td>
 <td style="text-align:left"><code>chen</code></td>
 <td style="text-align:left">sans attributs</td>
 </tr>
 <tr>
-<td style="text-align:right"></td>
+<td style="text-align:left"></td>
 <td style="text-align:left"></td>
 <td style="text-align:left"><code>chen:attrs</code></td>
 <td style="text-align:left">avec attributs</td>
 </tr>
 <tr>
-<td style="text-align:right"></td>
+<td style="text-align:left"></td>
 <td style="text-align:left"></td>
 <td style="text-align:left"><code>chen:attrs --defer</code></td>
 <td style="text-align:left">calcule le rendu graphique via un service web</td>
 </tr>
 <tr>
-<td style="text-align:right"></td>
+<td style="text-align:left"></td>
 <td style="text-align:left"></td>
 <td style="text-align:left"><code>chen:layout=circo,mindist=2,scale=0.6</code></td>
 <td style="text-align:left">ajoute des options arbitraires pour Graphviz</td>
 </tr>
 <tr>
-<td style="text-align:right"><span style="color:blue; font-family:monospace; font-weight:600">class_diagram</span></td>
-<td style="text-align:left">cf. <code>uml</code></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:right"><span style="color:green; font-family:monospace; font-weight:600">complete</span></td>
-<td style="text-align:left">cf. <code>create</code></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:right"><span title="Alias : add, insert, make, guess, infer, complete, new." style="color:green; font-family:monospace; font-weight:600">create</span></td>
-<td style="text-align:left">essaie d'inférer les types, entités, CIFs ou flèches de DF à partir des éléments existants</td>
-<td style="text-align:left"><code>guess:types</code></td>
-<td style="text-align:left">deviner les types manquants</td>
-</tr>
-<tr>
-<td style="text-align:right"></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"><code>create:types=</code></td>
-<td style="text-align:left">remplacer les types manquants par <code>[]</code></td>
-</tr>
-<tr>
-<td style="text-align:right"></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"><code>create:types=TODO</code></td>
-<td style="text-align:left">remplacer les types manquants par <code>[TODO]</code></td>
-</tr>
-<tr>
-<td style="text-align:right"></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"><code>make:entities</code></td>
-<td style="text-align:left">réparer l'oubli d'entités référencées dans des associations</td>
-</tr>
-<tr>
-<td style="text-align:right"></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"><code>create:dfs</code></td>
-<td style="text-align:left">mettre des DF partout où c'est possible</td>
-</tr>
-<tr>
-<td style="text-align:right"></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"><code>add:df_arrows</code></td>
-<td style="text-align:left">ajouter des flèches aux DF</td>
-</tr>
-<tr>
-<td style="text-align:right"></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"><code>add:cifs</code></td>
-<td style="text-align:left">ajouter les CIF correspondant aux agrégats</td>
-</tr>
-<tr>
-<td style="text-align:right"></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"><code>add:cifs=light</code></td>
-<td style="text-align:left">même chose en visualisation allégée</td>
-</tr>
-<tr>
-<td style="text-align:right"></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"><code>add:roles</code></td>
-<td style="text-align:left">mettre comme rôles le nom des associations partout où c'est utile</td>
-</tr>
-<tr>
-<td style="text-align:right"><span title="Alias : crowfoot, crowsfoot." style="color:blue; font-family:monospace; font-weight:600">crow</span></td>
+<td style="text-align:left"><span title="Alias : crowfoot, crowsfoot." style="font-family:monospace; font-weight:600">crow</span></td>
 <td style="text-align:left">convertit le modèle conceptuel dans la notation crow's foot</td>
 <td style="text-align:left"><code>crow</code></td>
 <td style="text-align:left">format Graphviz</td>
 </tr>
 <tr>
-<td style="text-align:right"></td>
+<td style="text-align:left"></td>
 <td style="text-align:left"></td>
 <td style="text-align:left"><code>crow --defer</code></td>
 <td style="text-align:left">calcule le rendu graphique via un service web</td>
 </tr>
 <tr>
-<td style="text-align:right"></td>
+<td style="text-align:left"></td>
 <td style="text-align:left"></td>
 <td style="text-align:left"><code>crow:mmd</code></td>
 <td style="text-align:left">format Mermaid</td>
 </tr>
 <tr>
-<td style="text-align:right"></td>
+<td style="text-align:left"></td>
 <td style="text-align:left"></td>
 <td style="text-align:left"><code>crow:mermaid</code></td>
 <td style="text-align:left">idem</td>
 </tr>
 <tr>
-<td style="text-align:right"><span style="color:blue; font-family:monospace; font-weight:600">crowfoot</span></td>
-<td style="text-align:left">cf. <code>crow</code></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:right"><span style="color:blue; font-family:monospace; font-weight:600">crowsfoot</span></td>
-<td style="text-align:left">cf. <code>crow</code></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:right"><span style="color:green; font-family:monospace; font-weight:600">cut</span></td>
-<td style="text-align:left">cf. <code>slice</code></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:right"><span style="color:blue; font-family:monospace; font-weight:600">d2</span></td>
+<td style="text-align:left"><span style="font-family:monospace; font-weight:600">d2</span></td>
 <td style="text-align:left">convertit le modèle conceptuel en un schéma relationnel au format D2</td>
 <td style="text-align:left"></td>
 <td style="text-align:left"></td>
 </tr>
 <tr>
-<td style="text-align:right"><span title="Alias : data_dictionary." style="color:blue; font-family:monospace; font-weight:600">data_dict</span></td>
+<td style="text-align:left"><span title="Alias : data_dictionary." style="font-family:monospace; font-weight:600">data_dict</span></td>
 <td style="text-align:left">extrait tous les attributs du MCD dans une table</td>
 <td style="text-align:left"><code>data_dict</code></td>
 <td style="text-align:left">tableau Markdown, trois colonnes</td>
 </tr>
 <tr>
-<td style="text-align:right"></td>
+<td style="text-align:left"></td>
 <td style="text-align:left"></td>
 <td style="text-align:left"><code>data_dict:label</code></td>
 <td style="text-align:left">liste Markdown, une colonne</td>
 </tr>
 <tr>
-<td style="text-align:right"></td>
+<td style="text-align:left"></td>
 <td style="text-align:left"></td>
 <td style="text-align:left"><code>data_dict:label,type='Description'</code></td>
 <td style="text-align:left">deux colonnes, un libellé personnalisé</td>
 </tr>
 <tr>
-<td style="text-align:right"></td>
+<td style="text-align:left"></td>
 <td style="text-align:left"></td>
 <td style="text-align:left"><code>data_dict:label='Attribut',type='Description'</code></td>
 <td style="text-align:left">deux colonnes, deux libellés personnalisés</td>
 </tr>
 <tr>
-<td style="text-align:right"></td>
+<td style="text-align:left"></td>
 <td style="text-align:left"></td>
 <td style="text-align:left"><code>data_dict:**box**='Entité ou&lt;br&gt;association',label,`type`=`'Type de données'`</code></td>
 <td style="text-align:left">mise en forme de certains libellés</td>
 </tr>
 <tr>
-<td style="text-align:right"></td>
+<td style="text-align:left"></td>
 <td style="text-align:left"></td>
 <td style="text-align:left"><code>data_dict:tsv</code></td>
 <td style="text-align:left">tableau TSV, trois colonnes</td>
 </tr>
 <tr>
-<td style="text-align:right"></td>
+<td style="text-align:left"></td>
 <td style="text-align:left"></td>
 <td style="text-align:left"><code>data_dict:tsv,label</code></td>
 <td style="text-align:left">liste des attributs séparés par des retours à la ligne</td>
 </tr>
 <tr>
-<td style="text-align:right"><span style="color:blue; font-family:monospace; font-weight:600">data_dictionary</span></td>
-<td style="text-align:left">cf. <code>data_dict</code></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:right"><span style="color:blue; font-family:monospace; font-weight:600">dbml</span></td>
+<td style="text-align:left"><span style="font-family:monospace; font-weight:600">dbml</span></td>
 <td style="text-align:left">convertit le modèle conceptuel en un schéma relationnel au format DBML</td>
 <td style="text-align:left"><code>dbml</code></td>
 <td style="text-align:left">version de base</td>
 </tr>
 <tr>
-<td style="text-align:right"></td>
+<td style="text-align:left"></td>
 <td style="text-align:left"></td>
 <td style="text-align:left"><code>dbml:b</code></td>
 <td style="text-align:left">avec <em>boilerplate</em></td>
 </tr>
 <tr>
-<td style="text-align:right"><span style="color:blue; font-family:monospace; font-weight:600">ddl</span></td>
-<td style="text-align:left">cf. <code>sql</code></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:right"><span style="color:blue; font-family:monospace; font-weight:600">debug</span></td>
+<td style="text-align:left"><span style="font-family:monospace; font-weight:600">debug</span></td>
 <td style="text-align:left">liste des informations internes relatives à la conversion en schéma relationnel</td>
 <td style="text-align:left"></td>
 <td style="text-align:left"></td>
 </tr>
 <tr>
-<td style="text-align:right"><span style="color:green; font-family:monospace; font-weight:600">del</span></td>
-<td style="text-align:left">cf. <code>delete</code></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:right"><span title="Alias : del, suppress, erase, remove, hide, empty." style="color:green; font-family:monospace; font-weight:600">delete</span></td>
-<td style="text-align:left">supprime les éléments donnés quand c'est possible</td>
-<td style="text-align:left"><code>empty</code></td>
-<td style="text-align:left">ne garde que la structure et le nom des boîtes</td>
-</tr>
-<tr>
-<td style="text-align:right"></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"><code>delete:types,notes,attrs,cards</code></td>
-<td style="text-align:left">idem</td>
-</tr>
-<tr>
-<td style="text-align:right"></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"><code>delete:cards</code></td>
-<td style="text-align:left">remplace les cardinalités par <code>XX</code></td>
-</tr>
-<tr>
-<td style="text-align:right"></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"><code>delete:card_prefixes</code></td>
-<td style="text-align:left">supprime les marqueurs d'entités faibles et d'agrégats</td>
-</tr>
-<tr>
-<td style="text-align:right"></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"><code>delete:dfs</code></td>
-<td style="text-align:left">supprime les entités indépendantes dont tous les attributs sont identifiants (et les DF qui les relient)</td>
-</tr>
-<tr>
-<td style="text-align:right"><span style="color:blue; font-family:monospace; font-weight:600">dependencies</span></td>
+<td style="text-align:left"><span style="font-family:monospace; font-weight:600">dependencies</span></td>
 <td style="text-align:left">convertit le modèle conceptuel en un graphe de dépendances</td>
 <td style="text-align:left"></td>
 <td style="text-align:left"></td>
 </tr>
 <tr>
-<td style="text-align:right"><span style="color:blue; font-family:monospace; font-weight:600">diagram</span></td>
+<td style="text-align:left"><span style="font-family:monospace; font-weight:600">diagram</span></td>
 <td style="text-align:left">convertit le modèle conceptuel en un diagramme relationnel au format Mocodo</td>
 <td style="text-align:left"><code>diagram</code></td>
 <td style="text-align:left">version de base</td>
 </tr>
 <tr>
-<td style="text-align:right"></td>
+<td style="text-align:left"></td>
 <td style="text-align:left"></td>
 <td style="text-align:left"><code>diagram:c</code></td>
 <td style="text-align:left">avec contraintes d'unicité et d'optionalité</td>
 </tr>
 <tr>
-<td style="text-align:right"><span style="color:green; font-family:monospace; font-weight:600">drain</span></td>
-<td style="text-align:left">déplace tout attribut d'association (1,1) vers l'entité appropriée</td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:right"><span title="Alias : drown_by_numbers, anonymize, anonymise." style="color:green; font-family:monospace; font-weight:600">drown</span></td>
-<td style="text-align:left">remplace tous les noms d'éléments par un libellé générique numéroté</td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:right"><span style="color:green; font-family:monospace; font-weight:600">drown_by_numbers</span></td>
-<td style="text-align:left">cf. <code>drown</code></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:right"><span style="color:green; font-family:monospace; font-weight:600">echo</span></td>
-<td style="text-align:left">réécrit le texte source tel quel</td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:right"><span style="color:green; font-family:monospace; font-weight:600">empty</span></td>
-<td style="text-align:left">cf. <code>delete</code></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:right"><span style="color:green; font-family:monospace; font-weight:600">erase</span></td>
-<td style="text-align:left">cf. <code>delete</code></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:right"><span style="color:green; font-family:monospace; font-weight:600">explode</span></td>
-<td style="text-align:left">décompose toute association n-aire (*,N) en n associations binaires</td>
-<td style="text-align:left"><code>explode arrange</code></td>
-<td style="text-align:left">décomposer les non-DF ternaires et plus, puis réarranger</td>
-</tr>
-<tr>
-<td style="text-align:right"></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"><code>explode:arity=3 arrange</code></td>
-<td style="text-align:left">idem</td>
-</tr>
-<tr>
-<td style="text-align:right"></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"><code>explode:weak arrange</code></td>
-<td style="text-align:left">idem, avec création d'entités faibles</td>
-</tr>
-<tr>
-<td style="text-align:right"></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"><code>explode:arity=2.5 arrange</code></td>
-<td style="text-align:left">étendre aux non-DF binaires porteuses d'attributs</td>
-</tr>
-<tr>
-<td style="text-align:right"></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"><code>explode:arity=2 arrange</code></td>
-<td style="text-align:left">étendre à toutes les non-DF binaires</td>
-</tr>
-<tr>
-<td style="text-align:right"><span style="color:green; font-family:monospace; font-weight:600">fix</span></td>
-<td style="text-align:left">essaie de corriger les erreurs courantes dans les éléments donnés</td>
-<td style="text-align:left"><code>fix:cards</code></td>
-<td style="text-align:left">normaliser les cardinalités en 01, 11, 0N et 1N</td>
-</tr>
-<tr>
-<td style="text-align:right"><span title="Alias : mirror, reflect." style="color:green; font-family:monospace; font-weight:600">flip</span></td>
-<td style="text-align:left">applique au diagramme une symétrie verticale, horizontale ou diagonale</td>
-<td style="text-align:left"><code>flip:v</code></td>
-<td style="text-align:left">symétrie verticale</td>
-</tr>
-<tr>
-<td style="text-align:right"></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"><code>flip:h</code></td>
-<td style="text-align:left">symétrie horizontale</td>
-</tr>
-<tr>
-<td style="text-align:right"></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"><code>flip:d</code></td>
-<td style="text-align:left">symétrie selon la seconde diagonale</td>
-</tr>
-<tr>
-<td style="text-align:right"></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"><code>flip:vhd</code></td>
-<td style="text-align:left">symétrie selon la première diagonale</td>
-</tr>
-<tr>
-<td style="text-align:right"></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"><code>flip:dhv</code></td>
-<td style="text-align:left">idem (ordre indifférent)</td>
-</tr>
-<tr>
-<td style="text-align:right"><span style="color:green; font-family:monospace; font-weight:600">grow</span></td>
-<td style="text-align:left">ajoute des entités et associations aléatoires (par défaut : 10 nouvelles associations)</td>
-<td style="text-align:left"><code>grow arrange</code></td>
-<td style="text-align:left">ajouter des éléments avec les paramètres par défaut, puis réarranger</td>
-</tr>
-<tr>
-<td style="text-align:right"></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"><code>grow:n=10</code></td>
-<td style="text-align:left">nombre total d'associations à ajouter (défaut)</td>
-</tr>
-<tr>
-<td style="text-align:right"></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"><code>grow:arity_1=2</code></td>
-<td style="text-align:left">nombre d'associations réflexives (défaut)</td>
-</tr>
-<tr>
-<td style="text-align:right"></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"><code>grow:arity_3=2</code></td>
-<td style="text-align:left">nombre d'associations ternaires (défaut)</td>
-</tr>
-<tr>
-<td style="text-align:right"></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"><code>grow:arity_4=0</code></td>
-<td style="text-align:left">nombre d'associations quaternaires (défaut)</td>
-</tr>
-<tr>
-<td style="text-align:right"></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"><code>grow:doubles=1</code></td>
-<td style="text-align:left">nombre d'associations liant deux mêmes entités (défaut)</td>
-</tr>
-<tr>
-<td style="text-align:right"></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"><code>grow:composite_ids=1</code></td>
-<td style="text-align:left">nombre d'identifiants composites (défaut)</td>
-</tr>
-<tr>
-<td style="text-align:right"></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"><code>grow:ent_attrs=4</code></td>
-<td style="text-align:left">nombre maximal d'attributs par entité (défaut)</td>
-</tr>
-<tr>
-<td style="text-align:right"></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"><code>grow:assoc_attrs=2</code></td>
-<td style="text-align:left">nombre maximal d'attributs par association (défaut)</td>
-</tr>
-<tr>
-<td style="text-align:right"></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"><code>grow:'*1-*N'=3</code></td>
-<td style="text-align:left">nombre d'associations <code>*1-*N</code> (défaut)</td>
-</tr>
-<tr>
-<td style="text-align:right"></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"><code>grow:'01-11'=1</code></td>
-<td style="text-align:left">nombre d'associations <code>01-11</code> (défaut)</td>
-</tr>
-<tr>
-<td style="text-align:right"></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"><code>grow:'_11-*N'=1</code></td>
-<td style="text-align:left">une entité faible (zéro par défaut)</td>
-</tr>
-<tr>
-<td style="text-align:right"></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"><code>grow:'/1N-*N'=1</code></td>
-<td style="text-align:left">un agrégat (zéro par défaut)</td>
-</tr>
-<tr>
-<td style="text-align:right"></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"><code>grow:from_scratch arrange</code></td>
-<td style="text-align:left">à partir d'un MCD vide</td>
-</tr>
-<tr>
-<td style="text-align:right"></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"><code>grow:grow:n=9,from_scratch,ent_attrs=3 obfuscate:labels=en4 create:roles lower:roles arrange</code></td>
-<td style="text-align:left">créer un MCD d'entraînement à la conversion en relationnel</td>
-</tr>
-<tr>
-<td style="text-align:right"><span style="color:green; font-family:monospace; font-weight:600">guess</span></td>
-<td style="text-align:left">cf. <code>create</code></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:right"><span style="color:green; font-family:monospace; font-weight:600">hide</span></td>
-<td style="text-align:left">cf. <code>delete</code></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:right"><span style="color:blue; font-family:monospace; font-weight:600">html</span></td>
+<td style="text-align:left"><span style="font-family:monospace; font-weight:600">html</span></td>
 <td style="text-align:left">convertit le modèle conceptuel en un schéma relationnel au format HTML</td>
 <td style="text-align:left"><code>html</code></td>
 <td style="text-align:left">version de base</td>
 </tr>
 <tr>
-<td style="text-align:right"></td>
+<td style="text-align:left"></td>
 <td style="text-align:left"></td>
 <td style="text-align:left"><code>html:b</code></td>
 <td style="text-align:left">avec <em>boilerplate</em></td>
 </tr>
 <tr>
-<td style="text-align:right"></td>
+<td style="text-align:left"></td>
 <td style="text-align:left"></td>
 <td style="text-align:left"><code>html:c</code></td>
 <td style="text-align:left">avec contraintes d'unicité et d'optionalité</td>
 </tr>
 <tr>
-<td style="text-align:right"></td>
+<td style="text-align:left"></td>
 <td style="text-align:left"></td>
 <td style="text-align:left"><code>html:e</code></td>
 <td style="text-align:left">avec explications</td>
 </tr>
 <tr>
-<td style="text-align:right"></td>
+<td style="text-align:left"></td>
 <td style="text-align:left"></td>
 <td style="text-align:left"><code>html:bce</code></td>
 <td style="text-align:left">avec <em>boilerplate</em>, contraintes et explications</td>
 </tr>
 <tr>
-<td style="text-align:right"><span style="color:green; font-family:monospace; font-weight:600">infer</span></td>
-<td style="text-align:left">cf. <code>create</code></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:right"><span style="color:green; font-family:monospace; font-weight:600">insert</span></td>
-<td style="text-align:left">cf. <code>create</code></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:right"><span style="color:green; font-family:monospace; font-weight:600">interval</span></td>
-<td style="text-align:left">cf. <code>slice</code></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:right"><span title="Alias : tex." style="color:blue; font-family:monospace; font-weight:600">latex</span></td>
+<td style="text-align:left"><span title="Alias : tex." style="font-family:monospace; font-weight:600">latex</span></td>
 <td style="text-align:left">convertit le modèle conceptuel en un schéma relationnel au format LaTeX</td>
 <td style="text-align:left"><code>latex</code></td>
 <td style="text-align:left">version de base</td>
 </tr>
 <tr>
-<td style="text-align:right"></td>
+<td style="text-align:left"></td>
 <td style="text-align:left"></td>
 <td style="text-align:left"><code>latex:b</code></td>
 <td style="text-align:left">avec <em>boilerplate</em></td>
 </tr>
 <tr>
-<td style="text-align:right"></td>
+<td style="text-align:left"></td>
 <td style="text-align:left"></td>
 <td style="text-align:left"><code>latex:c</code></td>
 <td style="text-align:left">avec contraintes d'unicité et d'optionalité</td>
 </tr>
 <tr>
-<td style="text-align:right"></td>
+<td style="text-align:left"></td>
 <td style="text-align:left"></td>
 <td style="text-align:left"><code>latex:e</code></td>
 <td style="text-align:left">avec explications</td>
 </tr>
 <tr>
-<td style="text-align:right"></td>
+<td style="text-align:left"></td>
 <td style="text-align:left"></td>
 <td style="text-align:left"><code>latex:bce</code></td>
 <td style="text-align:left">avec <em>boilerplate</em>, contraintes et explications</td>
 </tr>
 <tr>
-<td style="text-align:right"><span style="color:blue; font-family:monospace; font-weight:600">link</span></td>
-<td style="text-align:left">cf. <code>share</code></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:right"><span title="Alias : lowercase, lower_case." style="color:green; font-family:monospace; font-weight:600">lower</span></td>
-<td style="text-align:left">réécrit les éléments donnés en minuscules</td>
-<td style="text-align:left"><code>lower:attrs,roles</code></td>
-<td style="text-align:left">attributs et rôles en minuscules</td>
-</tr>
-<tr>
-<td style="text-align:right"><span style="color:green; font-family:monospace; font-weight:600">lower_case</span></td>
-<td style="text-align:left">cf. <code>lower</code></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:right"><span style="color:green; font-family:monospace; font-weight:600">lowercase</span></td>
-<td style="text-align:left">cf. <code>lower</code></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:right"><span style="color:green; font-family:monospace; font-weight:600">make</span></td>
-<td style="text-align:left">cf. <code>create</code></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:right"><span title="Alias : md, mld." style="color:blue; font-family:monospace; font-weight:600">markdown</span></td>
+<td style="text-align:left"><span title="Alias : md, mld." style="font-family:monospace; font-weight:600">markdown</span></td>
 <td style="text-align:left">convertit le modèle conceptuel en un schéma relationnel au format Markdown</td>
 <td style="text-align:left"><code>markdown</code></td>
 <td style="text-align:left">version de base</td>
 </tr>
 <tr>
-<td style="text-align:right"></td>
+<td style="text-align:left"></td>
 <td style="text-align:left"></td>
 <td style="text-align:left"><code>markdown:c</code></td>
 <td style="text-align:left">avec contraintes d'unicité et d'optionalité</td>
 </tr>
 <tr>
-<td style="text-align:right"></td>
+<td style="text-align:left"></td>
 <td style="text-align:left"></td>
 <td style="text-align:left"><code>markdown:e</code></td>
 <td style="text-align:left">avec explications</td>
 </tr>
 <tr>
-<td style="text-align:right"></td>
+<td style="text-align:left"></td>
 <td style="text-align:left"></td>
 <td style="text-align:left"><code>markdown:ce</code></td>
 <td style="text-align:left">avec contraintes et explications</td>
 </tr>
 <tr>
-<td style="text-align:right"><span style="color:blue; font-family:monospace; font-weight:600">md</span></td>
-<td style="text-align:left">cf. <code>markdown</code></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:right"><span style="color:green; font-family:monospace; font-weight:600">mirror</span></td>
-<td style="text-align:left">cf. <code>flip</code></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:right"><span style="color:blue; font-family:monospace; font-weight:600">mld</span></td>
-<td style="text-align:left">cf. <code>markdown</code></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:right"><span style="color:blue; font-family:monospace; font-weight:600">ms_sql</span></td>
-<td style="text-align:left">cf. <code>mssql</code></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:right"><span title="Alias : ms_sql, sql_server, sqlserver." style="color:blue; font-family:monospace; font-weight:600">mssql</span></td>
+<td style="text-align:left"><span title="Alias : ms_sql, sql_server, sqlserver." style="font-family:monospace; font-weight:600">mssql</span></td>
 <td style="text-align:left">convertit le modèle conceptuel en un modèle physique pour Microsoft SQL Server</td>
 <td style="text-align:left"><code>mssql</code></td>
 <td style="text-align:left">version de base</td>
 </tr>
 <tr>
-<td style="text-align:right"></td>
+<td style="text-align:left"></td>
 <td style="text-align:left"></td>
 <td style="text-align:left"><code>mssql:b</code></td>
 <td style="text-align:left">avec <em>boilerplate</em></td>
 </tr>
 <tr>
-<td style="text-align:right"><span style="color:blue; font-family:monospace; font-weight:600">mysql</span></td>
+<td style="text-align:left"><span style="font-family:monospace; font-weight:600">mysql</span></td>
 <td style="text-align:left">convertit le modèle conceptuel en un modèle physique pour MySQL</td>
 <td style="text-align:left"><code>mysql</code></td>
 <td style="text-align:left">version de base</td>
 </tr>
 <tr>
-<td style="text-align:right"></td>
+<td style="text-align:left"></td>
 <td style="text-align:left"></td>
 <td style="text-align:left"><code>mysql:b</code></td>
 <td style="text-align:left">avec <em>boilerplate</em></td>
 </tr>
 <tr>
-<td style="text-align:right"><span style="color:green; font-family:monospace; font-weight:600">new</span></td>
-<td style="text-align:left">cf. <code>create</code></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:right"><span style="color:green; font-family:monospace; font-weight:600">obfuscate</span></td>
-<td style="text-align:left">cf. <code>randomize</code></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:right"><span style="color:green; font-family:monospace; font-weight:600">obscure</span></td>
-<td style="text-align:left">cf. <code>randomize</code></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:right"><span title="Alias : oracle_db." style="color:blue; font-family:monospace; font-weight:600">oracle</span></td>
+<td style="text-align:left"><span title="Alias : oracle_db." style="font-family:monospace; font-weight:600">oracle</span></td>
 <td style="text-align:left">convertit le modèle conceptuel en un modèle physique pour Oracle DB</td>
 <td style="text-align:left"><code>oracle</code></td>
 <td style="text-align:left">version de base</td>
 </tr>
 <tr>
-<td style="text-align:right"></td>
+<td style="text-align:left"></td>
 <td style="text-align:left"></td>
 <td style="text-align:left"><code>oracle:b</code></td>
 <td style="text-align:left">avec <em>boilerplate</em></td>
 </tr>
 <tr>
-<td style="text-align:right"><span style="color:blue; font-family:monospace; font-weight:600">oracle_db</span></td>
-<td style="text-align:left">cf. <code>oracle</code></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:right"><span title="Alias : pascalcase, pascal_case." style="color:green; font-family:monospace; font-weight:600">pascal</span></td>
-<td style="text-align:left">rewrite the given elements in PascalCase</td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:right"><span style="color:green; font-family:monospace; font-weight:600">pascal_case</span></td>
-<td style="text-align:left">cf. <code>pascal</code></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:right"><span style="color:green; font-family:monospace; font-weight:600">pascalcase</span></td>
-<td style="text-align:left">cf. <code>pascal</code></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:right"><span style="color:blue; font-family:monospace; font-weight:600">postgres</span></td>
-<td style="text-align:left">cf. <code>postgresql</code></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:right"><span title="Alias : postgres." style="color:blue; font-family:monospace; font-weight:600">postgresql</span></td>
+<td style="text-align:left"><span title="Alias : postgres." style="font-family:monospace; font-weight:600">postgresql</span></td>
 <td style="text-align:left">convertit le modèle conceptuel en un modèle physique pour PostgreSQL</td>
 <td style="text-align:left"><code>postgresql</code></td>
 <td style="text-align:left">version de base</td>
 </tr>
 <tr>
-<td style="text-align:right"></td>
+<td style="text-align:left"></td>
 <td style="text-align:left"></td>
 <td style="text-align:left"><code>postgresql:b</code></td>
 <td style="text-align:left">avec <em>boilerplate</em></td>
 </tr>
 <tr>
-<td style="text-align:right"><span title="Alias : prepend." style="color:green; font-family:monospace; font-weight:600">prefix</span></td>
-<td style="text-align:left">préfixe les éléments donnés avec la chaîne donnée</td>
-<td style="text-align:left"><code>prefix:roles='-'</code></td>
-<td style="text-align:left">force les rôles à remplacer le nom des clés étrangères lors du passage au relationnel</td>
-</tr>
-<tr>
-<td style="text-align:right"><span style="color:green; font-family:monospace; font-weight:600">prepend</span></td>
-<td style="text-align:left">cf. <code>prefix</code></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:right"><span style="color:blue; font-family:monospace; font-weight:600">qr</span></td>
-<td style="text-align:left">cf. <code>share</code></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:right"><span style="color:blue; font-family:monospace; font-weight:600">qr_code</span></td>
-<td style="text-align:left">cf. <code>share</code></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:right"><span style="color:green; font-family:monospace; font-weight:600">rand</span></td>
-<td style="text-align:left">cf. <code>randomize</code></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:right"><span style="color:green; font-family:monospace; font-weight:600">random</span></td>
-<td style="text-align:left">cf. <code>randomize</code></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:right"><span style="color:green; font-family:monospace; font-weight:600">randomise</span></td>
-<td style="text-align:left">cf. <code>randomize</code></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:right"><span title="Alias : rand, random, randomise, obfuscate, obscure." style="color:green; font-family:monospace; font-weight:600">randomize</span></td>
-<td style="text-align:left">garde la structure, mais randomise les éléments donnés quand c'est possible</td>
-<td style="text-align:left"><code>obfuscate</code></td>
-<td style="text-align:left">libellés remplacés par du Lorem Ipsum</td>
-</tr>
-<tr>
-<td style="text-align:right"></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"><code>obfuscate:labels=lorem</code></td>
-<td style="text-align:left">idem</td>
-</tr>
-<tr>
-<td style="text-align:right"></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"><code>obfuscate:labels=disparition</code></td>
-<td style="text-align:left">idem, lexique du roman de Perec</td>
-</tr>
-<tr>
-<td style="text-align:right"></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"><code>obfuscate:labels=en4</code></td>
-<td style="text-align:left">idem, mots anglais de 4 lettres (SFW)</td>
-</tr>
-<tr>
-<td style="text-align:right"></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"><code>obfuscate:attrs=fr,boxes=fr5</code></td>
-<td style="text-align:left">idem, mots français de longueur quelconque pour les attributs, de 5 lettres pour les boîtes</td>
-</tr>
-<tr>
-<td style="text-align:right"></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"><code>randomize:types</code></td>
-<td style="text-align:left">types randomisés avec les fréquences de <code>default_datatypes_fr.tsv</code>.</td>
-</tr>
-<tr>
-<td style="text-align:right"><span style="color:green; font-family:monospace; font-weight:600">reflect</span></td>
-<td style="text-align:left">cf. <code>flip</code></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:right"><span title="Alias : template, relation_template." style="color:blue; font-family:monospace; font-weight:600">relation</span></td>
+<td style="text-align:left"><span title="Alias : template, relation_template." style="font-family:monospace; font-weight:600">relation</span></td>
 <td style="text-align:left">convertit le modèle conceptuel en schéma relationnel avec le gabarit donné</td>
 <td style="text-align:left"><code>relation:path/to/my_template.yaml</code></td>
 <td style="text-align:left">chemin relatif, extension obligatoire</td>
 </tr>
 <tr>
-<td style="text-align:right"><span style="color:blue; font-family:monospace; font-weight:600">relation_template</span></td>
-<td style="text-align:left">cf. <code>relation</code></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:right"><span style="color:green; font-family:monospace; font-weight:600">remove</span></td>
-<td style="text-align:left">cf. <code>delete</code></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:right"><span style="color:green; font-family:monospace; font-weight:600">repl</span></td>
-<td style="text-align:left">cf. <code>replace</code></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:right"><span title="Alias : substitute, sub, repl." style="color:green; font-family:monospace; font-weight:600">replace</span></td>
-<td style="text-align:left">réécrit les éléments donnés en appliquant le motif « recherche/remplacement » donné</td>
-<td style="text-align:left"><code>replace:boxes='DIRIGER/RÉPONDRE DE'</code></td>
-<td style="text-align:left">renomme une boîte</td>
-</tr>
-<tr>
-<td style="text-align:right"></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"><code>replace:texts='personel/personnel'</code></td>
-<td style="text-align:left">corrige une faute d'orthographe</td>
-</tr>
-<tr>
-<td style="text-align:right"></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"><code>replace:replace:texts='_/ '</code></td>
-<td style="text-align:left">remplace les tirets bas par des espaces</td>
-</tr>
-<tr>
-<td style="text-align:right"></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"><code>replace:types='VARCHAR/VARCHAR2'</code></td>
-<td style="text-align:left">modifie un nom de type</td>
-</tr>
-<tr>
-<td style="text-align:right"></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"><code>replace:cards=0N/1N</code></td>
-<td style="text-align:left">remplace toutes les cardinalités 0N par 1N</td>
-</tr>
-<tr>
-<td style="text-align:right"></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"><code>replace:cards=1N//1N</code></td>
-<td style="text-align:left">crée des agrégats un peu partout</td>
-</tr>
-<tr>
-<td style="text-align:right"></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"><code>replace:cards='0/X' replace:cards='11/X1' replace:cards='1N/XN'</code></td>
-<td style="text-align:left">masque les cardinalités minimales</td>
-</tr>
-<tr>
-<td style="text-align:right"></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"><code>delete:card_prefixes replace:cards=11/_11</code></td>
-<td style="text-align:left">ajoute des marqueurs d'entités faibles</td>
-</tr>
-<tr>
-<td style="text-align:right"><span title="Alias : url, link, qr, qr_code." style="color:blue; font-family:monospace; font-weight:600">share</span></td>
+<td style="text-align:left"><span title="Alias : url, link, qr, qr_code." style="font-family:monospace; font-weight:600">share</span></td>
 <td style="text-align:left">encode le MCD dans une URL pour Mocodo online</td>
 <td style="text-align:left"><code>qr --defer</code></td>
 <td style="text-align:left">génère un QR code via un service web</td>
 </tr>
 <tr>
-<td style="text-align:right"><span style="color:green; font-family:monospace; font-weight:600">shorten</span></td>
-<td style="text-align:left">cf. <code>truncate</code></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:right"><span title="Alias : cut, interval." style="color:green; font-family:monospace; font-weight:600">slice</span></td>
-<td style="text-align:left">réécrit les éléments donnés en n'en gardant qu'une tranche donnée</td>
-<td style="text-align:left"><code>slice:boxes=5:10</code></td>
-<td style="text-align:left">de l'indice 5 (inclus) à l'indice 10 (exclu)</td>
-</tr>
-<tr>
-<td style="text-align:right"></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"><code>slice:boxes=5:</code></td>
-<td style="text-align:left">supprime les 5 premiers caractères</td>
-</tr>
-<tr>
-<td style="text-align:right"></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"><code>slice:boxes=:5</code></td>
-<td style="text-align:left">ne garde que les 5 premiers caractères</td>
-</tr>
-<tr>
-<td style="text-align:right"></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"><code>slice:boxes=:-5</code></td>
-<td style="text-align:left">supprime les 5 derniers caractères</td>
-</tr>
-<tr>
-<td style="text-align:right"></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"><code>slice:boxes=:</code></td>
-<td style="text-align:left">équivalent de <code>echo</code></td>
-</tr>
-<tr>
-<td style="text-align:right"></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"><code>slice:boxes=</code></td>
-<td style="text-align:left">idem</td>
-</tr>
-<tr>
-<td style="text-align:right"></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"><code>slice:boxes</code></td>
-<td style="text-align:left">idem</td>
-</tr>
-<tr>
-<td style="text-align:right"><span title="Alias : snakecase, snake_case." style="color:green; font-family:monospace; font-weight:600">snake</span></td>
-<td style="text-align:left">réécrit les éléments donnés en snake_case</td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:right"><span style="color:green; font-family:monospace; font-weight:600">snake_case</span></td>
-<td style="text-align:left">cf. <code>snake</code></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:right"><span style="color:green; font-family:monospace; font-weight:600">snakecase</span></td>
-<td style="text-align:left">cf. <code>snake</code></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:right"><span style="color:green; font-family:monospace; font-weight:600">split</span></td>
-<td style="text-align:left">décompose toute association n-aire (*,1) en n-1 associations binaires</td>
-<td style="text-align:left"><code>split arrange</code></td>
-<td style="text-align:left">décomposer, puis réarranger</td>
-</tr>
-<tr>
-<td style="text-align:right"><span title="Alias : ddl." style="color:blue; font-family:monospace; font-weight:600">sql</span></td>
+<td style="text-align:left"><span title="Alias : ddl." style="font-family:monospace; font-weight:600">sql</span></td>
 <td style="text-align:left">convertit le modèle conceptuel en un modèle physique pour SQL</td>
 <td style="text-align:left"></td>
 <td style="text-align:left"></td>
 </tr>
 <tr>
-<td style="text-align:right"><span style="color:blue; font-family:monospace; font-weight:600">sql_server</span></td>
-<td style="text-align:left">cf. <code>mssql</code></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:right"><span style="color:blue; font-family:monospace; font-weight:600">sqlite</span></td>
+<td style="text-align:left"><span style="font-family:monospace; font-weight:600">sqlite</span></td>
 <td style="text-align:left">convertit le modèle conceptuel en un modèle physique pour SQLite</td>
 <td style="text-align:left"><code>sqlite</code></td>
 <td style="text-align:left">version de base</td>
 </tr>
 <tr>
-<td style="text-align:right"></td>
+<td style="text-align:left"></td>
 <td style="text-align:left"></td>
 <td style="text-align:left"><code>sqlite:b</code></td>
 <td style="text-align:left">avec <em>boilerplate</em></td>
 </tr>
 <tr>
-<td style="text-align:right"><span style="color:blue; font-family:monospace; font-weight:600">sqlserver</span></td>
-<td style="text-align:left">cf. <code>mssql</code></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:right"><span style="color:green; font-family:monospace; font-weight:600">sub</span></td>
-<td style="text-align:left">cf. <code>replace</code></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:right"><span style="color:green; font-family:monospace; font-weight:600">substitute</span></td>
-<td style="text-align:left">cf. <code>replace</code></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:right"><span title="Alias : append." style="color:green; font-family:monospace; font-weight:600">suffix</span></td>
-<td style="text-align:left">suffixe les éléments donnés avec la chaîne donnée</td>
-<td style="text-align:left"><code>suffix:boxes=1</code></td>
-<td style="text-align:left">Ajoute un suffixe numérique au nom des boîtes en vue de mettre un MCD et sa copie sur le même diagramme.</td>
-</tr>
-<tr>
-<td style="text-align:right"><span style="color:green; font-family:monospace; font-weight:600">suppress</span></td>
-<td style="text-align:left">cf. <code>delete</code></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:right"><span style="color:green; font-family:monospace; font-weight:600">swap_case</span></td>
-<td style="text-align:left">cf. <code>swapcase</code></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:right"><span title="Alias : swap_case." style="color:green; font-family:monospace; font-weight:600">swapcase</span></td>
-<td style="text-align:left">réécrit les éléments donnés en inversant la casse de chaque lettre</td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:right"><span style="color:blue; font-family:monospace; font-weight:600">template</span></td>
-<td style="text-align:left">cf. <code>relation</code></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:right"><span style="color:blue; font-family:monospace; font-weight:600">tex</span></td>
-<td style="text-align:left">cf. <code>latex</code></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:right"><span title="Alias : txt." style="color:blue; font-family:monospace; font-weight:600">text</span></td>
+<td style="text-align:left"><span title="Alias : txt." style="font-family:monospace; font-weight:600">text</span></td>
 <td style="text-align:left">convertit le modèle conceptuel en un schéma relationnel au format texte</td>
 <td style="text-align:left"><code>text</code></td>
 <td style="text-align:left">version de base</td>
 </tr>
 <tr>
-<td style="text-align:right"></td>
+<td style="text-align:left"></td>
 <td style="text-align:left"></td>
 <td style="text-align:left"><code>text:c</code></td>
 <td style="text-align:left">avec contraintes d'unicité et d'optionalité</td>
 </tr>
 <tr>
-<td style="text-align:right"></td>
+<td style="text-align:left"></td>
 <td style="text-align:left"></td>
 <td style="text-align:left"><code>html:e</code></td>
 <td style="text-align:left">avec explications</td>
 </tr>
 <tr>
-<td style="text-align:right"></td>
+<td style="text-align:left"></td>
 <td style="text-align:left"></td>
 <td style="text-align:left"><code>html:ce</code></td>
 <td style="text-align:left">avec contraintes et explications</td>
 </tr>
 <tr>
-<td style="text-align:right"><span title="Alias : titlecase, title_case." style="color:green; font-family:monospace; font-weight:600">title</span></td>
+<td style="text-align:left"><span title="Alias : uml, class_diagram." style="font-family:monospace; font-weight:600">uml</span></td>
+<td style="text-align:left">convertit le modèle conceptuel en diagramme de classes UML</td>
+<td style="text-align:left"><code>uml</code></td>
+<td style="text-align:left">format PlantUML</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>uml:plantuml</code></td>
+<td style="text-align:left">idem</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>uml --defer</code></td>
+<td style="text-align:left">calcule le rendu graphique via un service web</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>uml:plantuml=-</code></td>
+<td style="text-align:left">supprime les styles par défaut</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>uml:plantuml='skinparam backgroundColor yellow\nskinparam classAttributeFontName Arial\n'</code></td>
+<td style="text-align:left">ajoute des styles personnalisés</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Op%C3%A9rations-de-r%C3%A9%C3%A9criture">Op&#233;rations de r&#233;&#233;criture<a class="anchor-link" href="#Op%C3%A9rations-de-r%C3%A9%C3%A9criture">&#182;</a></h3><table>
+<thead><tr>
+<th style="text-align:left">Sous-option</th>
+<th style="text-align:left">Description</th>
+<th style="text-align:left">Exemples</th>
+<th style="text-align:left">Explications</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><span style="font-family:monospace; font-weight:600">arrange</span></td>
+<td style="text-align:left">réarrange la disposition, soit par Branch &amp; Bound, soit avec un algorithme génétique</td>
+<td style="text-align:left"><code>arrange</code></td>
+<td style="text-align:left">B&amp;B sans contraintes</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>arrange:timeout=60</code></td>
+<td style="text-align:left">B&amp;B limité à une minute</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>arrange:wide</code></td>
+<td style="text-align:left">B&amp;B privilégiant la largeur</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>arrange:current</code></td>
+<td style="text-align:left">B&amp;B sur la grille courante</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>arrange:balanced=0</code></td>
+<td style="text-align:left">B&amp;B sur la plus petite grille équilibrée</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>arrange:balanced=1</code></td>
+<td style="text-align:left">B&amp;B sur la seconde plus petite grille équilibrée</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>arrange:algo=ga</code></td>
+<td style="text-align:left">algorithme génétique</td>
+</tr>
+<tr>
+<td style="text-align:left"><span style="font-family:monospace; font-weight:600">ascii</span></td>
+<td style="text-align:left">réécrit les éléments donnés en ASCII</td>
+<td style="text-align:left"><code>ascii:roles,labels</code></td>
+<td style="text-align:left">rôles, libellés des boîtes et des attributs en ASCII</td>
+</tr>
+<tr>
+<td style="text-align:left"><span title="Alias : camelcase, camel_case." style="font-family:monospace; font-weight:600">camel</span></td>
+<td style="text-align:left">réécrit les éléments donnés en camelCase</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"><span style="font-family:monospace; font-weight:600">capitalize</span></td>
+<td style="text-align:left">réécrit les éléments donnés en capitalisant la première lettre de chaque mot</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"><span title="Alias : case_fold." style="font-family:monospace; font-weight:600">casefold</span></td>
+<td style="text-align:left">réécrit les éléments donnés en minuscules, mais plus agressivement que « lower »</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"><span title="Alias : add, insert, make, guess, infer, complete, new." style="font-family:monospace; font-weight:600">create</span></td>
+<td style="text-align:left">essaie d'inférer les types, entités, CIFs ou flèches de DF à partir des éléments existants</td>
+<td style="text-align:left"><code>guess:types</code></td>
+<td style="text-align:left">deviner les types manquants</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>create:types=</code></td>
+<td style="text-align:left">remplacer les types manquants par <code>[]</code></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>create:types=TODO</code></td>
+<td style="text-align:left">remplacer les types manquants par <code>[TODO]</code></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>make:entities</code></td>
+<td style="text-align:left">réparer l'oubli d'entités référencées dans des associations</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>create:dfs</code></td>
+<td style="text-align:left">mettre des DF partout où c'est possible</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>add:df_arrows</code></td>
+<td style="text-align:left">ajouter des flèches aux DF</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>add:cifs</code></td>
+<td style="text-align:left">ajouter les CIF correspondant aux agrégats</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>add:cifs=light</code></td>
+<td style="text-align:left">même chose en visualisation allégée</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>add:roles</code></td>
+<td style="text-align:left">mettre comme rôles le nom des associations partout où c'est utile</td>
+</tr>
+<tr>
+<td style="text-align:left"><span title="Alias : del, suppress, erase, remove, hide, empty." style="font-family:monospace; font-weight:600">delete</span></td>
+<td style="text-align:left">supprime les éléments donnés quand c'est possible</td>
+<td style="text-align:left"><code>empty</code></td>
+<td style="text-align:left">ne garde que la structure et le nom des boîtes</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>delete:types,notes,attrs,cards</code></td>
+<td style="text-align:left">idem</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>delete:cards</code></td>
+<td style="text-align:left">remplace les cardinalités par <code>XX</code></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>delete:card_prefixes</code></td>
+<td style="text-align:left">supprime les marqueurs d'entités faibles et d'agrégats</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>delete:dfs</code></td>
+<td style="text-align:left">supprime les entités indépendantes dont tous les attributs sont identifiants (et les DF qui les relient)</td>
+</tr>
+<tr>
+<td style="text-align:left"><span style="font-family:monospace; font-weight:600">drain</span></td>
+<td style="text-align:left">déplace tout attribut d'association (1,1) vers l'entité appropriée</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"><span title="Alias : drown_by_numbers, anonymize, anonymise." style="font-family:monospace; font-weight:600">drown</span></td>
+<td style="text-align:left">remplace tous les noms d'éléments par un libellé générique numéroté</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"><span style="font-family:monospace; font-weight:600">echo</span></td>
+<td style="text-align:left">réécrit le texte source tel quel</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"><span style="font-family:monospace; font-weight:600">explode</span></td>
+<td style="text-align:left">décompose toute association n-aire (*,N) en n associations binaires</td>
+<td style="text-align:left"><code>explode arrange</code></td>
+<td style="text-align:left">décomposer les non-DF ternaires et plus, puis réarranger</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>explode:arity=3 arrange</code></td>
+<td style="text-align:left">idem</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>explode:weak arrange</code></td>
+<td style="text-align:left">idem, avec création d'entités faibles</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>explode:arity=2.5 arrange</code></td>
+<td style="text-align:left">étendre aux non-DF binaires porteuses d'attributs</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>explode:arity=2 arrange</code></td>
+<td style="text-align:left">étendre à toutes les non-DF binaires</td>
+</tr>
+<tr>
+<td style="text-align:left"><span style="font-family:monospace; font-weight:600">fix</span></td>
+<td style="text-align:left">essaie de corriger les erreurs courantes dans les éléments donnés</td>
+<td style="text-align:left"><code>fix:cards</code></td>
+<td style="text-align:left">normaliser les cardinalités en 01, 11, 0N et 1N</td>
+</tr>
+<tr>
+<td style="text-align:left"><span title="Alias : mirror, reflect." style="font-family:monospace; font-weight:600">flip</span></td>
+<td style="text-align:left">applique au diagramme une symétrie verticale, horizontale ou diagonale</td>
+<td style="text-align:left"><code>flip:v</code></td>
+<td style="text-align:left">symétrie verticale</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>flip:h</code></td>
+<td style="text-align:left">symétrie horizontale</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>flip:d</code></td>
+<td style="text-align:left">symétrie selon la seconde diagonale</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>flip:vhd</code></td>
+<td style="text-align:left">symétrie selon la première diagonale</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>flip:dhv</code></td>
+<td style="text-align:left">idem (ordre indifférent)</td>
+</tr>
+<tr>
+<td style="text-align:left"><span style="font-family:monospace; font-weight:600">grow</span></td>
+<td style="text-align:left">ajoute des entités et associations aléatoires (par défaut : 10 nouvelles associations)</td>
+<td style="text-align:left"><code>grow arrange</code></td>
+<td style="text-align:left">ajouter des éléments avec les paramètres par défaut, puis réarranger</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>grow:n=10</code></td>
+<td style="text-align:left">nombre total d'associations à ajouter (défaut)</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>grow:arity_1=2</code></td>
+<td style="text-align:left">nombre d'associations réflexives (défaut)</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>grow:arity_3=2</code></td>
+<td style="text-align:left">nombre d'associations ternaires (défaut)</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>grow:arity_4=0</code></td>
+<td style="text-align:left">nombre d'associations quaternaires (défaut)</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>grow:doubles=1</code></td>
+<td style="text-align:left">nombre d'associations liant deux mêmes entités (défaut)</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>grow:composite_ids=1</code></td>
+<td style="text-align:left">nombre d'identifiants composites (défaut)</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>grow:ent_attrs=4</code></td>
+<td style="text-align:left">nombre maximal d'attributs par entité (défaut)</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>grow:assoc_attrs=2</code></td>
+<td style="text-align:left">nombre maximal d'attributs par association (défaut)</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>grow:'*1-*N'=3</code></td>
+<td style="text-align:left">nombre d'associations <code>*1-*N</code> (défaut)</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>grow:'01-11'=1</code></td>
+<td style="text-align:left">nombre d'associations <code>01-11</code> (défaut)</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>grow:'_11-*N'=1</code></td>
+<td style="text-align:left">une entité faible (zéro par défaut)</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>grow:'/1N-*N'=1</code></td>
+<td style="text-align:left">un agrégat (zéro par défaut)</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>grow:from_scratch arrange</code></td>
+<td style="text-align:left">à partir d'un MCD vide</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>grow:grow:n=9,from_scratch,ent_attrs=3 obfuscate:labels=en4 create:roles lower:roles arrange</code></td>
+<td style="text-align:left">créer un MCD d'entraînement à la conversion en relationnel</td>
+</tr>
+<tr>
+<td style="text-align:left"><span title="Alias : lowercase, lower_case." style="font-family:monospace; font-weight:600">lower</span></td>
+<td style="text-align:left">réécrit les éléments donnés en minuscules</td>
+<td style="text-align:left"><code>lower:attrs,roles</code></td>
+<td style="text-align:left">attributs et rôles en minuscules</td>
+</tr>
+<tr>
+<td style="text-align:left"><span title="Alias : pascalcase, pascal_case." style="font-family:monospace; font-weight:600">pascal</span></td>
+<td style="text-align:left">rewrite the given elements in PascalCase</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"><span title="Alias : prepend." style="font-family:monospace; font-weight:600">prefix</span></td>
+<td style="text-align:left">préfixe les éléments donnés avec la chaîne donnée</td>
+<td style="text-align:left"><code>prefix:roles='-'</code></td>
+<td style="text-align:left">force les rôles à remplacer le nom des clés étrangères lors du passage au relationnel</td>
+</tr>
+<tr>
+<td style="text-align:left"><span title="Alias : rand, random, randomise, obfuscate, obscure." style="font-family:monospace; font-weight:600">randomize</span></td>
+<td style="text-align:left">garde la structure, mais randomise les éléments donnés quand c'est possible</td>
+<td style="text-align:left"><code>obfuscate</code></td>
+<td style="text-align:left">libellés remplacés par du Lorem Ipsum</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>obfuscate:labels=lorem</code></td>
+<td style="text-align:left">idem</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>obfuscate:labels=disparition</code></td>
+<td style="text-align:left">idem, lexique du roman de Perec</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>obfuscate:labels=en4</code></td>
+<td style="text-align:left">idem, mots anglais de 4 lettres (SFW)</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>obfuscate:attrs=fr,boxes=fr5</code></td>
+<td style="text-align:left">idem, mots français de longueur quelconque pour les attributs, de 5 lettres pour les boîtes</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>randomize:types</code></td>
+<td style="text-align:left">types randomisés avec les fréquences de <code>default_datatypes_fr.tsv</code>.</td>
+</tr>
+<tr>
+<td style="text-align:left"><span title="Alias : substitute, sub, repl." style="font-family:monospace; font-weight:600">replace</span></td>
+<td style="text-align:left">réécrit les éléments donnés en appliquant le motif « recherche/remplacement » donné</td>
+<td style="text-align:left"><code>replace:boxes='DIRIGER/RÉPONDRE DE'</code></td>
+<td style="text-align:left">renomme une boîte</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>replace:texts='personel/personnel'</code></td>
+<td style="text-align:left">corrige une faute d'orthographe</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>replace:replace:texts='_/ '</code></td>
+<td style="text-align:left">remplace les tirets bas par des espaces</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>replace:types='VARCHAR/VARCHAR2'</code></td>
+<td style="text-align:left">modifie un nom de type</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>replace:cards=0N/1N</code></td>
+<td style="text-align:left">remplace toutes les cardinalités 0N par 1N</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>replace:cards=1N//1N</code></td>
+<td style="text-align:left">crée des agrégats un peu partout</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>replace:cards='0/X' replace:cards='11/X1' replace:cards='1N/XN'</code></td>
+<td style="text-align:left">masque les cardinalités minimales</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>delete:card_prefixes replace:cards=11/_11</code></td>
+<td style="text-align:left">ajoute des marqueurs d'entités faibles</td>
+</tr>
+<tr>
+<td style="text-align:left"><span title="Alias : cut, interval." style="font-family:monospace; font-weight:600">slice</span></td>
+<td style="text-align:left">réécrit les éléments donnés en n'en gardant qu'une tranche donnée</td>
+<td style="text-align:left"><code>slice:boxes=5:10</code></td>
+<td style="text-align:left">de l'indice 5 (inclus) à l'indice 10 (exclu)</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>slice:boxes=5:</code></td>
+<td style="text-align:left">supprime les 5 premiers caractères</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>slice:boxes=:5</code></td>
+<td style="text-align:left">ne garde que les 5 premiers caractères</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>slice:boxes=:-5</code></td>
+<td style="text-align:left">supprime les 5 derniers caractères</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>slice:boxes=:</code></td>
+<td style="text-align:left">équivalent de <code>echo</code></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>slice:boxes=</code></td>
+<td style="text-align:left">idem</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>slice:boxes</code></td>
+<td style="text-align:left">idem</td>
+</tr>
+<tr>
+<td style="text-align:left"><span title="Alias : snakecase, snake_case." style="font-family:monospace; font-weight:600">snake</span></td>
+<td style="text-align:left">réécrit les éléments donnés en snake_case</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"><span style="font-family:monospace; font-weight:600">split</span></td>
+<td style="text-align:left">décompose toute association n-aire (*,1) en n-1 associations binaires</td>
+<td style="text-align:left"><code>split arrange</code></td>
+<td style="text-align:left">décomposer, puis réarranger</td>
+</tr>
+<tr>
+<td style="text-align:left"><span title="Alias : append." style="font-family:monospace; font-weight:600">suffix</span></td>
+<td style="text-align:left">suffixe les éléments donnés avec la chaîne donnée</td>
+<td style="text-align:left"><code>suffix:boxes=1</code></td>
+<td style="text-align:left">Ajoute un suffixe numérique au nom des boîtes en vue de mettre un MCD et sa copie sur le même diagramme.</td>
+</tr>
+<tr>
+<td style="text-align:left"><span title="Alias : swap_case." style="font-family:monospace; font-weight:600">swapcase</span></td>
+<td style="text-align:left">réécrit les éléments donnés en inversant la casse de chaque lettre</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"><span title="Alias : titlecase, title_case." style="font-family:monospace; font-weight:600">title</span></td>
 <td style="text-align:left">réécrit les éléments donnés en mettant la première lettre de chaque mot en majuscule</td>
 <td style="text-align:left"></td>
 <td style="text-align:left"></td>
 </tr>
 <tr>
-<td style="text-align:right"><span style="color:green; font-family:monospace; font-weight:600">title_case</span></td>
-<td style="text-align:left">cf. <code>title</code></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:right"><span style="color:green; font-family:monospace; font-weight:600">titlecase</span></td>
-<td style="text-align:left">cf. <code>title</code></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:right"><span style="color:green; font-family:monospace; font-weight:600">trunc</span></td>
-<td style="text-align:left">cf. <code>truncate</code></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:right"><span title="Alias : trunc, shorten." style="color:green; font-family:monospace; font-weight:600">truncate</span></td>
+<td style="text-align:left"><span title="Alias : trunc, shorten." style="font-family:monospace; font-weight:600">truncate</span></td>
 <td style="text-align:left">tronque les éléments donnés à la longueur donnée (par défaut : 64)</td>
 <td style="text-align:left"><code>truncate:boxes=10</code></td>
 <td style="text-align:left">tronque les noms des boîtes à 10 caractères</td>
 </tr>
 <tr>
-<td style="text-align:right"><span style="color:blue; font-family:monospace; font-weight:600">txt</span></td>
-<td style="text-align:left">cf. <code>text</code></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:right"><span style="color:blue; font-family:monospace; font-weight:600">uml</span></td>
-<td style="text-align:left">cf. <code>uml</code></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:right"><span title="Alias : uppercase, upper_case." style="color:green; font-family:monospace; font-weight:600">upper</span></td>
+<td style="text-align:left"><span title="Alias : uppercase, upper_case." style="font-family:monospace; font-weight:600">upper</span></td>
 <td style="text-align:left">réécrit les éléments donnés en majuscules</td>
 <td style="text-align:left"><code>upper:boxes</code></td>
 <td style="text-align:left">noms des boîtes en majuscules</td>
-</tr>
-<tr>
-<td style="text-align:right"><span style="color:green; font-family:monospace; font-weight:600">upper_case</span></td>
-<td style="text-align:left">cf. <code>upper</code></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:right"><span style="color:green; font-family:monospace; font-weight:600">uppercase</span></td>
-<td style="text-align:left">cf. <code>upper</code></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:right"><span style="color:blue; font-family:monospace; font-weight:600">url</span></td>
-<td style="text-align:left">cf. <code>share</code></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
 </tr>
 </tbody>
 </table>
