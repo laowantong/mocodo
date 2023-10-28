@@ -10,7 +10,7 @@ fr_examples:
     explanation: 'avec _boilerplate_'
   - order: 3
     example: 'latex:c'
-    explanation: 'avec contraintes d''unicité et d''optionnalité'
+    explanation: 'avec contraintes d''unicité et d''optionalité'
   - order: 4
     example: 'latex:e'
     explanation: 'avec explications'

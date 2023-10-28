@@ -7,7 +7,7 @@ fr_examples:
     explanation: 'version de base'
   - order: 2
     example: 'markdown:c'
-    explanation: 'avec contraintes d''unicité et d''optionnalité'
+    explanation: 'avec contraintes d''unicité et d''optionalité'
   - order: 3
     example: 'markdown:e'
     explanation: 'avec explications'

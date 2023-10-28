@@ -739,7 +739,7 @@ msgstr "{pin}Plus de deux coordonnées."
 
 #: mocodo/tools/parser_tools.py:84
 msgid "{pin}An attribute label cannot have more than one optionality marker."
-msgstr "{pin}Un nom d'attribut ne peut pas avoir plus d'un marqueur d'optionnalité."
+msgstr "{pin}Un nom d'attribut ne peut pas avoir plus d'un marqueur d'optionalité."
 
 #: mocodo/tools/parser_tools.py:85
 msgid "{pin}Token \"{t}\" encountered. Expected tokens: {expected}."

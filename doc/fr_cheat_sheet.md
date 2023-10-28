@@ -44,6 +44,8 @@
 | <span style="color:blue; font-family:monospace; font-weight:600">crowfoot</span> | cf. `crow` |  |  |
 | <span style="color:blue; font-family:monospace; font-weight:600">crowsfoot</span> | cf. `crow` |  |  |
 | <span style="color:green; font-family:monospace; font-weight:600">cut</span> | cf. `slice` |  |  |
+| <span style="color:blue; font-family:monospace; font-weight:600">d2</span> | convertit le modèle conceptuel en un schéma relationnel au format D2 | `` d2 `` | version de base |
+|  |  | `` d2:b `` | avec _boilerplate_ |
 | <span title="Alias : data_dictionary." style="color:blue; font-family:monospace; font-weight:600">data_dict</span> | extrait tous les attributs du MCD dans une table | `` data_dict `` | tableau Markdown, trois colonnes |
 |  |  | `` data_dict:label `` | liste Markdown, une colonne |
 |  |  | `` data_dict:label,type='Description' `` | deux colonnes, un libellé personnalisé |
@@ -64,7 +66,7 @@
 |  |  | `` delete:dfs `` | supprime les entités indépendantes dont tous les attributs sont identifiants (et les DF qui les relient) |
 | <span style="color:blue; font-family:monospace; font-weight:600">dependencies</span> | convertit le modèle conceptuel en un graphe de dépendances |  |  |
 | <span style="color:blue; font-family:monospace; font-weight:600">diagram</span> | convertit le modèle conceptuel en un diagramme relationnel au format Mocodo | `` diagram `` | version de base |
-|  |  | `` diagram:c `` | avec contraintes d'unicité et d'optionnalité |
+|  |  | `` diagram:c `` | avec contraintes d'unicité et d'optionalité |
 | <span style="color:green; font-family:monospace; font-weight:600">drain</span> | déplace tout attribut d'association (1,1) vers l'entité appropriée |  |  |
 | <span title="Alias : drown_by_numbers, anonymize, anonymise." style="color:green; font-family:monospace; font-weight:600">drown</span> | remplace tous les noms d'éléments par un libellé générique numéroté |  |  |
 | <span style="color:green; font-family:monospace; font-weight:600">drown_by_numbers</span> | cf. `drown` |  |  |
@@ -96,12 +98,12 @@
 |  |  | `` grow:'_11-*N'=1 `` | une entité faible (zéro par défaut) |
 |  |  | `` grow:'/1N-*N'=1 `` | un agrégat (zéro par défaut) |
 |  |  | `` grow:from_scratch arrange `` | à partir d'un MCD vide |
-|  |  | `` grow:from_scratch,arity_3=1 obfuscate create:roles lower:roles arrange `` | créer un MCD d'entraînement à la conversion en relationnel |
+|  |  | `` grow:grow:n=9,from_scratch,ent_attrs=3 obfuscate:labels=en4 create:roles lower:roles arrange `` | créer un MCD d'entraînement à la conversion en relationnel |
 | <span style="color:green; font-family:monospace; font-weight:600">guess</span> | cf. `create` |  |  |
 | <span style="color:green; font-family:monospace; font-weight:600">hide</span> | cf. `delete` |  |  |
 | <span style="color:blue; font-family:monospace; font-weight:600">html</span> | convertit le modèle conceptuel en un schéma relationnel au format HTML | `` html `` | version de base |
 |  |  | `` html:b `` | avec _boilerplate_ |
-|  |  | `` html:c `` | avec contraintes d'unicité et d'optionnalité |
+|  |  | `` html:c `` | avec contraintes d'unicité et d'optionalité |
 |  |  | `` html:e `` | avec explications |
 |  |  | `` html:bce `` | avec _boilerplate_, contraintes et explications |
 | <span style="color:green; font-family:monospace; font-weight:600">infer</span> | cf. `create` |  |  |
@@ -109,7 +111,7 @@
 | <span style="color:green; font-family:monospace; font-weight:600">interval</span> | cf. `slice` |  |  |
 | <span title="Alias : tex." style="color:blue; font-family:monospace; font-weight:600">latex</span> | convertit le modèle conceptuel en un schéma relationnel au format LaTeX | `` latex `` | version de base |
 |  |  | `` latex:b `` | avec _boilerplate_ |
-|  |  | `` latex:c `` | avec contraintes d'unicité et d'optionnalité |
+|  |  | `` latex:c `` | avec contraintes d'unicité et d'optionalité |
 |  |  | `` latex:e `` | avec explications |
 |  |  | `` latex:bce `` | avec _boilerplate_, contraintes et explications |
 | <span style="color:blue; font-family:monospace; font-weight:600">link</span> | cf. `share` |  |  |
@@ -118,7 +120,7 @@
 | <span style="color:green; font-family:monospace; font-weight:600">lowercase</span> | cf. `lower` |  |  |
 | <span style="color:green; font-family:monospace; font-weight:600">make</span> | cf. `create` |  |  |
 | <span title="Alias : md, mld." style="color:blue; font-family:monospace; font-weight:600">markdown</span> | convertit le modèle conceptuel en un schéma relationnel au format Markdown | `` markdown `` | version de base |
-|  |  | `` markdown:c `` | avec contraintes d'unicité et d'optionnalité |
+|  |  | `` markdown:c `` | avec contraintes d'unicité et d'optionalité |
 |  |  | `` markdown:e `` | avec explications |
 |  |  | `` markdown:ce `` | avec contraintes et explications |
 | <span style="color:blue; font-family:monospace; font-weight:600">md</span> | cf. `markdown` |  |  |
@@ -194,7 +196,7 @@
 | <span style="color:blue; font-family:monospace; font-weight:600">template</span> | cf. `relation` |  |  |
 | <span style="color:blue; font-family:monospace; font-weight:600">tex</span> | cf. `latex` |  |  |
 | <span title="Alias : txt." style="color:blue; font-family:monospace; font-weight:600">text</span> | convertit le modèle conceptuel en un schéma relationnel au format texte | `` text `` | version de base |
-|  |  | `` text:c `` | avec contraintes d'unicité et d'optionnalité |
+|  |  | `` text:c `` | avec contraintes d'unicité et d'optionalité |
 |  |  | `` html:e `` | avec explications |
 |  |  | `` html:ce `` | avec contraintes et explications |
 | <span title="Alias : titlecase, title_case." style="color:green; font-family:monospace; font-weight:600">title</span> | réécrit les éléments donnés en mettant la première lettre de chaque mot en majuscule |  |  |

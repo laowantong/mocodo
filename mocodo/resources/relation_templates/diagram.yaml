@@ -7,6 +7,6 @@ fr_examples:
     explanation: 'version de base'
   - order: 2
     example: 'diagram:c'
-    explanation: 'avec contraintes d''unicité et d''optionnalité'
+    explanation: 'avec contraintes d''unicité et d''optionalité'
 parent: 'diagram-c'
 add_optionality_constraints:

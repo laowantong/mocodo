@@ -37,7 +37,7 @@
     "help_zh": "将概念模型转换为 Mocodo 格式的关系图",
     "aliases": [],
     "fr_examples": {
-      "diagram": "version de base", "diagram:c": "avec contraintes d'unicité et d'optionnalité"
+      "diagram": "version de base", "diagram:c": "avec contraintes d'unicité et d'optionalité"
     }
   },
   "html": {
@@ -47,7 +47,7 @@
     "help_zh": "将概念模型转换为 HTML 格式的关系模式",
     "aliases": [],
     "fr_examples": {
-      "html": "version de base", "html:b": "avec _boilerplate_", "html:c": "avec contraintes d'unicité et d'optionnalité", "html:e": "avec explications", "html:bce": "avec _boilerplate_, contraintes et explications"
+      "html": "version de base", "html:b": "avec _boilerplate_", "html:c": "avec contraintes d'unicité et d'optionalité", "html:e": "avec explications", "html:bce": "avec _boilerplate_, contraintes et explications"
     }
   },
   "latex": {
@@ -57,7 +57,7 @@
     "help_zh": "将概念模型转换为 LaTeX 格式的关系模式",
     "aliases": ["tex"],
     "fr_examples": {
-      "latex": "version de base", "latex:b": "avec _boilerplate_", "latex:c": "avec contraintes d'unicité et d'optionnalité", "latex:e": "avec explications", "latex:bce": "avec _boilerplate_, contraintes et explications"
+      "latex": "version de base", "latex:b": "avec _boilerplate_", "latex:c": "avec contraintes d'unicité et d'optionalité", "latex:e": "avec explications", "latex:bce": "avec _boilerplate_, contraintes et explications"
     }
   },
   "markdown": {
@@ -67,7 +67,7 @@
     "help_zh": "将概念模型转换为 Markdown 格式的关系模式",
     "aliases": ["md", "mld"],
     "fr_examples": {
-      "markdown": "version de base", "markdown:c": "avec contraintes d'unicité et d'optionnalité", "markdown:e": "avec explications", "markdown:ce": "avec contraintes et explications"
+      "markdown": "version de base", "markdown:c": "avec contraintes d'unicité et d'optionalité", "markdown:e": "avec explications", "markdown:ce": "avec contraintes et explications"
     }
   },
   "mssql": {
@@ -127,7 +127,7 @@
     "help_zh": "将概念模型转换为文本格式的关系模式",
     "aliases": ["txt"],
     "fr_examples": {
-      "text": "version de base", "text:c": "avec contraintes d'unicité et d'optionnalité", "html:e": "avec explications", "html:ce": "avec contraintes et explications"
+      "text": "version de base", "text:c": "avec contraintes d'unicité et d'optionalité", "html:e": "avec explications", "html:ce": "avec contraintes et explications"
     }
   }
 }
