@@ -12,7 +12,7 @@ from mocodo.rewrite import (
 class TestUpdater(unittest.TestCase):
     def test_split(self):
         source = """
-            Easy, 0N Team, 0N Tire, 11 Bath
+            Easy, 0N Team, 0N Tire, 11 Bath: foo, bar
             Plea, 0N Toll, 01 Calm, 0N Path
             Busy, 0N Vast, 0N Goal, 0N Chop
             Pole, 0N Snap, 11 Vary, 0N Tide, 1N Peak
@@ -22,10 +22,15 @@ class TestUpdater(unittest.TestCase):
             Body, 11> File, 1N< Dust, 0N Peak
             Odds, 1N Tone, 01 Peak, 0N Bold, 0N Slip: item, snap
             Chef, 1N Skip, 01 City, 0N Cell: bold [VARCHAR(42)], dead [DATE]
+            Victima, 11 Tradidit, 01 Periculosum, 0N Superbiam
+            Clamorem, 01 Priorum, 0N Iret, 11 Loquatur
+            Tuam, 11 Initiis, 01 Genua, 01 Haesit
+            Commemorat, 01 Furius, 01 Sermonis, 01 Panem
+            Anus, 11 Dianam, 11 Emplastrum, 1N Piscium
         """
         actual = split.run(source)
         expected = """
-            Easy0, 11 Bath, 0N Team
+            Easy0, 11 Bath, 0N Team: foo, bar
             Easy1, 11 Bath, 0N Tire
             Plea0, 01 Calm, 0N Toll
             Plea1, 01 Calm, 0N Path
@@ -45,6 +50,16 @@ class TestUpdater(unittest.TestCase):
             Odds2, 01 Peak, 0N Slip
             Chef0, 01 City, 1N Skip: bold [VARCHAR(42)], dead [DATE]
             Chef1, 01 City, 0N Cell
+            Victima0, 11 Tradidit, 01 Periculosum
+            Victima1, 11 Tradidit, 0N Superbiam
+            Clamorem0, 11 Loquatur, 01 Priorum
+            Clamorem1, 11 Loquatur, 0N Iret
+            Tuam0, 11 Initiis, 01 Genua
+            Tuam1, 11 Initiis, 01 Haesit
+            Commemorat0, 01 Furius, 01 Sermonis
+            Commemorat1, 01 Furius, 01 Panem
+            Anus0, 11 Dianam, 11 Emplastrum
+            Anus1, 11 Dianam, 1N Piscium
          """
         self.assertEqual(actual.strip(), expected.strip())
 

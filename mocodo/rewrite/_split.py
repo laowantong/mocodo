@@ -18,30 +18,36 @@ class Splitter(Visitor):
         if tree is None:
             return
 
-        # Guard: ensure that only one max cardinality is 1 and there are more than 2 legs.
-        cards = [node.children[0].value for node in tree.find_data("card")]
-        max_cards = Counter(card[1] for card in cards)
-        if max_cards["1"] != 1 or max_cards["N"] < 2:
+        # Guard: abort if the association has less than 3 legs.
+        legs = [node for node in tree.find_data("assoc_leg")]
+        if len(legs) < 3:
+            return
+
+        # Reorder the legs with "11" cards first, then "01", then the other ones.
+        d = {"11": 0, "01": 1}
+        legs.sort(key=lambda leg: d.get(first_child(leg, "card").value, 2))
+
+        # Guard: ensure that the first max cardinality is 1.
+        if first_child(legs[0], "card")[1] != "1":
             return
         
         # Guard: don't split a clustered association
-        card_prefixes = [node.children[0].value == "/" for node in tree.find_data("card_prefix")]
+        card_prefixes = [first_child(leg, "card_prefix") == "/" for leg in legs]
         if any(card_prefixes):
             return
         
-        # Concatenate the constituting elements (cf. grammar.lark) of the original legs
-        # and associate them to their max cardinality.
-        legs = {"1": [], "N": []}
-        for (card, child) in zip(cards, tree.find_data("assoc_leg")):
+        # Accumulate the constituting elements (cf. grammar.lark) of the original legs.
+        new_items = []
+        for leg in legs:
             acc = []
-            acc.append(first_child(child, "card_hidden"))
-            acc.append(first_child(child, "card_prefix"))
-            acc.append(first_child(child, "card"))
-            acc.append(first_child(child, "leg_arrow"))
-            acc.append(first_child(child, "leg_note"))
+            acc.append(first_child(leg, "card_hidden"))
+            acc.append(first_child(leg, "card_prefix"))
+            acc.append(first_child(leg, "card"))
+            acc.append(first_child(leg, "leg_arrow"))
+            acc.append(first_child(leg, "leg_note"))
             acc[-1] = f" [{acc[-1]}] " if acc[-1] else " "
-            acc.append(first_child(child, "entity_name_ref").children[0])
-            legs[card[1]].append("".join(acc))
+            acc.append(first_child(leg, "entity_name_ref").children[0])
+            new_items.append("".join(acc))
         
         # Concatenate any attributes of the association.
         attrs = []
@@ -57,8 +63,8 @@ class Splitter(Visitor):
         result = []
         box_def_prefix = first_child(tree, "box_def_prefix")
         assoc_name_def = first_child(tree, "assoc_name_def").children[0]
-        for (i, leg) in enumerate(legs["N"]):
-            result.append(f"{indent}{box_def_prefix}{assoc_name_def}{i}, {legs['1'][0]}, {leg}")
+        for (i, new_item) in enumerate(new_items[1:]):
+            result.append(f"{indent}{box_def_prefix}{assoc_name_def}{i}, {new_items[0]}, {new_item}")
 
         # Add the attributes to the first clause only. Duplicating them would be an error.
         result[0] += f": {', '.join(attrs)}" if attrs else ""
