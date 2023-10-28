@@ -6,7 +6,7 @@ __import__("sys").path[0:0] = ["mocodo"]
 from mocodo.convert.read_template import read_template
 from mocodo.tools import load_mini_yaml
 from mocodo.mocodo_error import MocodoError
-from mocodo.dev import build_template_index # just update the graph and index
+from mocodo.dev import update_transfo_metadata # just update the graph and index
 
 gettext.NullTranslations().install()
 

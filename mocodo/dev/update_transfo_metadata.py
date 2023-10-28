@@ -3,6 +3,7 @@ from collections import defaultdict
 import json
 import os
 
+from mocodo.argument_parser import init_localization, Transformations
 from mocodo.tools import load_mini_yaml
 
 # Build the index of templates
@@ -36,6 +37,7 @@ result = result.replace("[\n      ", "[")
 result = result.replace("\n    ]", "]")
 result = result.replace(",\n      ", ", ")
 Path(folder, "_index.json").write_text(result + "\n")
+print(f"File written: {folder}/_index.json")
 
 # Build the graph of templates
 
@@ -56,3 +58,42 @@ path = Path(folder, "_graph.gv")
 path.write_text(result)
 os.system(f"dot -Tsvg {folder}/_graph.gv > {folder}/_graph.svg")
 path.unlink()
+print(f"File written: {folder}/_graph.svg")
+
+# Build the cheat sheet
+
+init_localization("fr")
+metadata = Transformations("fr").metadata
+tables = {}
+for category in ["rw", "cv"]:
+    rows = []
+    rows.append(("Sous-option", "Description", "Exemples", "Explications"))
+    rows.append((":--", ":--", ":--", ":--"))
+    for (option, data) in sorted(metadata.items()):
+        if data["category"] != category:
+            continue
+        title = f" title=\"Alias : {', '.join(data['aliases'])}.\"" if data.get("aliases") else ""
+        option = f'<span{title} style="font-family:monospace; font-weight:600">{option}</span>'
+        row = [option, data['help']]
+        if not data.get(f"fr_examples"):
+            rows.append(row + ["", ""])
+            continue
+        for (example, description) in data[f"fr_examples"].items():
+            example = example.replace("\n", "\\n")
+            example = f"`` {example} ``"
+            row.extend([example, description])
+            rows.append(row)
+            row = ["", ""]  # empty cells for the first two columns
+    tables[category] = "\n".join("| " + " | ".join(row) + " |" for row in rows)
+text = f"""
+### Opérations de conversion
+
+{tables['cv']}
+
+### Opérations de réécriture
+
+{tables['rw']}
+""".strip()
+output_path = Path("doc/fr_cheat_sheet.md")
+output_path.write_text(text)
+print(f"File written: {output_path}")
