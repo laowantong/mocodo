@@ -1,0 +1,53 @@
+"ANIMAL": { shape: sql_table
+  "code espèce":         VARCHAR(42) {constraint: [PK; FK]}
+  "nom":                 VARCHAR(42) {constraint: PK}
+  "date naissance":      VARCHAR(42) {constraint: PK}
+  "sexe":                VARCHAR(42) 
+  "date décès":          VARCHAR(42) 
+  "code espèce mère":    VARCHAR(42) {constraint: [FK; "NULL"]}
+  "nom mère":            VARCHAR(42) {constraint: [FK; "NULL"]}
+  "date naissance mère": VARCHAR(42) {constraint: [FK; "NULL"]}
+  "type alimentation":   UNSIGNED INT {constraint: "NULL"}
+  "est carnivore":       BOOLEAN {constraint: NOT NULL}
+  "quantité viande":     VARCHAR(42) {constraint: "NULL"}
+  "est herbivore":       BOOLEAN {constraint: NOT NULL}
+  "plante préférée":     VARCHAR(42) {constraint: "NULL"}
+}
+
+"ESPÈCE": { shape: sql_table
+  "code espèce":      VARCHAR(42) {constraint: PK}
+  "nom latin":        VARCHAR(42) {constraint: UNQ1}
+  "nom vernaculaire": VARCHAR(42) 
+}
+
+"OCCUPE": { shape: sql_table
+  "code espèce":    VARCHAR(42) {constraint: [PK; FK]}
+  "nom":            VARCHAR(42) {constraint: [PK; FK]}
+  "date naissance": VARCHAR(42) {constraint: [PK; FK]}
+  "num. enclos":    VARCHAR(42) {constraint: PK}
+  "date début":     VARCHAR(42) {constraint: NOT NULL}
+  "date fin":       VARCHAR(42) {constraint: NOT NULL}
+}
+
+"PEUT COHABITER AVEC": { shape: sql_table
+  "code espèce":            VARCHAR(42) {constraint: [PK; FK]}
+  "code espèce commensale": VARCHAR(42) {constraint: [PK; FK]}
+  "nb. max. commensaux":    VARCHAR(42) 
+}
+
+"PEUT VIVRE DANS": { shape: sql_table
+  "code espèce":         VARCHAR(42) {constraint: [PK; FK]}
+  "num. enclos":         VARCHAR(42) {constraint: PK}
+  "nb. max. congénères": VARCHAR(42) 
+}
+
+"ANIMAL"."code espèce" -> "ESPÈCE"."code espèce"
+"ANIMAL"."code espèce mère" -> "ANIMAL"."code espèce"
+"ANIMAL"."nom mère" -> "ANIMAL"."nom"
+"ANIMAL"."date naissance mère" -> "ANIMAL"."date naissance"
+"OCCUPE"."code espèce" -> "ANIMAL"."code espèce"
+"OCCUPE"."nom" -> "ANIMAL"."nom"
+"OCCUPE"."date naissance" -> "ANIMAL"."date naissance"
+"PEUT COHABITER AVEC"."code espèce" -> "ESPÈCE"."code espèce"
+"PEUT COHABITER AVEC"."code espèce commensale" -> "ESPÈCE"."code espèce"
+"PEUT VIVRE DANS"."code espèce" -> "ESPÈCE"."code espèce"

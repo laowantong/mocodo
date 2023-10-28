@@ -158,7 +158,7 @@ def main():
         subfolder = Path(source_path.parent / "mld")
         subfolder.mkdir(exist_ok=True)
         for template in templates:
-            if template["extension"] in ("sql", "dbml"):
+            if template["extension"] in ("sql", "dbml", "d2"):
                 continue
             relations = Relations(mcd, params)
             output = relations.get_text(template).strip() + "\n"
@@ -177,14 +177,13 @@ def main():
         # Create the svg output file.
         dump_static_svg(mcd, source_path.parent / f"{source_path.stem[1:]}.mcd")
 
-        # Create the dbml output file.
+        # Create the dbml and d2 output files.
         subfolder = Path(source_path.parent / "ddl")
         subfolder.mkdir(exist_ok=True)
         for template in templates:
-            if template["extension"] == "dbml":
+            if template["extension"] in ("dbml", "d2"):
                 output = relations.get_text(template).strip() + "\n"
-                save(subfolder / f"{source_path.stem[1:]}{template['stem_suffix']}.dbml", output)
-                break
+                save(subfolder / f"{source_path.stem[1:]}{template['stem_suffix']}.{template['extension']}", output)
 
         # Create the sql output files. Warning: modifies source. Must be final.
         subfolder = Path(source_path.parent / "ddl")

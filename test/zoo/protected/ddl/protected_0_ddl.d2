@@ -1,0 +1,17 @@
+"Agence": { shape: sql_table
+  "id. agence": VARCHAR(42) {constraint: PK}
+  "nom agence": VARCHAR(42) 
+}
+
+"Direction régionale": { shape: sql_table
+  "id. dir.": VARCHAR(42) {constraint: PK}
+  "nom dir.": VARCHAR(42) 
+}
+
+"Superviser": { shape: sql_table
+  "id. agence": VARCHAR(42) {constraint: [PK; FK]}
+  "id. dir.":   VARCHAR(42) {constraint: [FK; NOT NULL]}
+}
+
+"Superviser"."id. agence" -> "Agence"."id. agence"
+"Superviser"."id. dir." -> "Direction régionale"."id. dir."

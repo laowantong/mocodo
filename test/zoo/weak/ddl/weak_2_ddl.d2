@@ -1,0 +1,32 @@
+"Appartement": { shape: sql_table
+  "code rue":     VARCHAR(42) {constraint: [PK; FK]}
+  "num immeuble": VARCHAR(42) {constraint: [PK; FK]}
+  "num étage":    VARCHAR(42) {constraint: [PK; FK]}
+  "num appart.":  VARCHAR(42) {constraint: PK}
+  "nb pièces":    VARCHAR(42) 
+}
+
+"Étage": { shape: sql_table
+  "code rue":        VARCHAR(42) {constraint: [PK; FK]}
+  "num immeuble":    VARCHAR(42) {constraint: [PK; FK]}
+  "num étage":       VARCHAR(42) {constraint: PK}
+  "nb appartements": VARCHAR(42) 
+}
+
+"Immeuble": { shape: sql_table
+  "code rue":     VARCHAR(42) {constraint: [PK; FK]}
+  "num immeuble": VARCHAR(42) {constraint: PK}
+  "nb étages":    VARCHAR(42) 
+}
+
+"Rue": { shape: sql_table
+  "code rue": VARCHAR(42) {constraint: PK}
+  "nom rue":  VARCHAR(42) 
+}
+
+"Appartement"."code rue" -> "Étage"."code rue"
+"Appartement"."num immeuble" -> "Étage"."num immeuble"
+"Appartement"."num étage" -> "Étage"."num étage"
+"Étage"."code rue" -> "Immeuble"."code rue"
+"Étage"."num immeuble" -> "Immeuble"."num immeuble"
+"Immeuble"."code rue" -> "Rue"."code rue"

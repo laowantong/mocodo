@@ -1,0 +1,5 @@
+"Affecter": { shape: sql_table
+  "projet":  VARCHAR(42) {constraint: PK}
+  "employé": VARCHAR(42) {constraint: [PK; UNQ1]}
+  "site":    VARCHAR(42) {constraint: [NOT NULL; UNQ1]}
+}

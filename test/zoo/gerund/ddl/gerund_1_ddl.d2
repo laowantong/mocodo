@@ -1,0 +1,18 @@
+"Commande": { shape: sql_table
+  "commande": VARCHAR(42) {constraint: PK}
+  "date":     VARCHAR(42) 
+}
+
+"Ligne de commande": { shape: sql_table
+  "commande": VARCHAR(42) {constraint: [PK; FK]}
+  "produit":  VARCHAR(42) {constraint: [PK; FK]}
+  "quantité": VARCHAR(42) 
+}
+
+"Produit": { shape: sql_table
+  "produit": VARCHAR(42) {constraint: PK}
+  "libellé": VARCHAR(42) 
+}
+
+"Ligne de commande"."commande" -> "Commande"."commande"
+"Ligne de commande"."produit" -> "Produit"."produit"

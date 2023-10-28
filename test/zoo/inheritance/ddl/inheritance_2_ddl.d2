@@ -1,0 +1,77 @@
+"ALIQUET": { shape: sql_table
+  "magna":  VARCHAR(42) {constraint: PK}
+  "tellus": VARCHAR(42) {constraint: [PK; FK]}
+  "type":   UNSIGNED INT {constraint: NOT NULL}
+}
+
+"CONSEQUAT": { shape: sql_table
+  "fermentum": VARCHAR(42) {constraint: PK}
+  "dederit":   VARCHAR(42) 
+}
+
+"CURABITUR": { shape: sql_table
+  "gravida": VARCHAR(42) {constraint: PK}
+  "amor":    VARCHAR(42) 
+}
+
+"DIGNISSIM": { shape: sql_table
+  "tellus": VARCHAR(42) {constraint: PK}
+  "terra":  VARCHAR(42) 
+}
+
+"LACUS": { shape: sql_table
+  "magna":      VARCHAR(42) {constraint: PK}
+  "vestibulum": VARCHAR(42) 
+  "fermentum":  VARCHAR(42) {constraint: [FK; NOT NULL]}
+  "tempor":     VARCHAR(42) 
+  "fugit":      VARCHAR(42) 
+}
+
+"LIBERO": { shape: sql_table
+  "posuere": VARCHAR(42) {constraint: PK}
+  "lacrima": VARCHAR(42) 
+}
+
+"NEC": { shape: sql_table
+  "magna":      VARCHAR(42) {constraint: PK}
+  "vestibulum": VARCHAR(42) 
+  "fermentum":  VARCHAR(42) {constraint: [FK; NOT NULL]}
+  "pulvinar":   VARCHAR(42) 
+  "audis":      VARCHAR(42) 
+  "gravida":    VARCHAR(42) {constraint: [FK; NOT NULL]}
+}
+
+"QUAM": { shape: sql_table
+  "cras":  VARCHAR(42) {constraint: PK}
+  "sed":   VARCHAR(42) 
+  "magna": VARCHAR(42) {constraint: [FK; NOT NULL]}
+}
+
+"SODALES": { shape: sql_table
+  "magna":      VARCHAR(42) {constraint: PK}
+  "vestibulum": VARCHAR(42) 
+  "fermentum":  VARCHAR(42) {constraint: [FK; NOT NULL]}
+  "convallis":  VARCHAR(42) 
+  "ipsum":      VARCHAR(42) 
+}
+
+"SUSCIPIT": { shape: sql_table
+  "orci":  VARCHAR(42) {constraint: PK}
+  "lorem": VARCHAR(42) 
+  "magna": VARCHAR(42) {constraint: NOT NULL}
+  "type":  UNSIGNED INT {constraint: NOT NULL}
+}
+
+"ULTRICES": { shape: sql_table
+  "posuere": VARCHAR(42) {constraint: [PK; FK]}
+  "magna":   VARCHAR(42) {constraint: [PK; FK]}
+}
+
+"ALIQUET"."tellus" -> "DIGNISSIM"."tellus"
+"LACUS"."fermentum" -> "CONSEQUAT"."fermentum"
+"NEC"."fermentum" -> "CONSEQUAT"."fermentum"
+"NEC"."gravida" -> "CURABITUR"."gravida"
+"QUAM"."magna" -> "SODALES"."magna"
+"SODALES"."fermentum" -> "CONSEQUAT"."fermentum"
+"ULTRICES"."posuere" -> "LIBERO"."posuere"
+"ULTRICES"."magna" -> "LACUS"."magna"

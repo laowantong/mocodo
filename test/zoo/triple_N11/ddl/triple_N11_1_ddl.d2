@@ -1,0 +1,24 @@
+"Affecter": { shape: sql_table
+  "projet":  VARCHAR(42) {constraint: [PK; FK]}
+  "employé": VARCHAR(42) {constraint: [PK; FK]}
+  "site":    VARCHAR(42) {constraint: [FK; NOT NULL]}
+}
+
+"Employé": { shape: sql_table
+  "employé":     VARCHAR(42) {constraint: PK}
+  "nom employé": VARCHAR(42) 
+}
+
+"Projet": { shape: sql_table
+  "projet":  VARCHAR(42) {constraint: PK}
+  "libellé": VARCHAR(42) 
+}
+
+"Site": { shape: sql_table
+  "site":     VARCHAR(42) {constraint: PK}
+  "position": VARCHAR(42) 
+}
+
+"Affecter"."projet" -> "Projet"."projet"
+"Affecter"."employé" -> "Employé"."employé"
+"Affecter"."site" -> "Site"."site"

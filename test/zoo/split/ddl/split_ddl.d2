@@ -1,0 +1,22 @@
+"Bataille": { shape: sql_table
+  "nom bataille": VARCHAR(42) {constraint: PK}
+  "lieu":         VARCHAR(42) 
+  "date":         VARCHAR(42) 
+}
+
+"Trophée": { shape: sql_table
+  "numéro":         VARCHAR(42) {constraint: PK}
+  "type":           VARCHAR(42) 
+  "état":           VARCHAR(42) 
+  "nom villageois": VARCHAR(42) {constraint: [FK; NOT NULL]}
+  "nom bataille":   VARCHAR(42) {constraint: [FK; NOT NULL]}
+}
+
+"Villageois": { shape: sql_table
+  "nom villageois": VARCHAR(42) {constraint: PK}
+  "adresse":        VARCHAR(42) 
+  "fonction":       VARCHAR(42) 
+}
+
+"Trophée"."nom villageois" -> "Villageois"."nom villageois"
+"Trophée"."nom bataille" -> "Bataille"."nom bataille"

@@ -1,0 +1,23 @@
+"TRISTIS": { shape: sql_table
+  "magna":            VARCHAR(42) {constraint: PK}
+  "vestibulum":       VARCHAR(42) 
+  "type":             UNSIGNED INT {constraint: NOT NULL}
+  "convallis":        VARCHAR(42) {constraint: "NULL"}
+  "ipsum":            VARCHAR(42) {constraint: "NULL"}
+  "pulvinar":         VARCHAR(42) {constraint: "NULL"}
+  "audis":            VARCHAR(42) {constraint: "NULL"}
+  "magna via_mollis": VARCHAR(42) {constraint: [FK; "NULL"]}
+  "magna via_vitae":  VARCHAR(42) {constraint: [FK; "NULL"]}
+  "tempor":           VARCHAR(42) {constraint: "NULL"}
+  "fugit":            VARCHAR(42) {constraint: "NULL"}
+}
+
+"ULTRICES": { shape: sql_table
+  "magna sodales": VARCHAR(42) {constraint: [PK; FK]}
+  "magna lacus":   VARCHAR(42) {constraint: [PK; FK]}
+}
+
+"TRISTIS"."magna via_mollis" -> "TRISTIS"."magna"
+"TRISTIS"."magna via_vitae" -> "TRISTIS"."magna"
+"ULTRICES"."magna sodales" -> "TRISTIS"."magna"
+"ULTRICES"."magna lacus" -> "TRISTIS"."magna"

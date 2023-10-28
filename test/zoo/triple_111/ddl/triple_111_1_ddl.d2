@@ -1,0 +1,18 @@
+"Projet": { shape: sql_table
+  "projet":  VARCHAR(42) {constraint: PK}
+  "libellé": VARCHAR(42) 
+}
+
+"Technicien": { shape: sql_table
+  "technicien":     VARCHAR(42) {constraint: PK}
+  "nom technicien": VARCHAR(42) 
+}
+
+"Utiliser": { shape: sql_table
+  "carnet":     VARCHAR(42) {constraint: [PK; UNQ1]}
+  "projet":     VARCHAR(42) {constraint: [PK; FK]}
+  "technicien": VARCHAR(42) {constraint: [FK; NOT NULL]}
+}
+
+"Utiliser"."projet" -> "Projet"."projet"
+"Utiliser"."technicien" -> "Technicien"."technicien"

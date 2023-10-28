@@ -1,0 +1,29 @@
+"CLIENT": { shape: sql_table
+  "Réf. client": VARCHAR(8) {constraint: PK}
+  "Nom":         VARCHAR(255) 
+  "Prénom":      VARCHAR(255) 
+  "Adresse":     VARCHAR(255) 
+}
+
+"COMMANDE": { shape: sql_table
+  "Num. commande": VARCHAR(8) {constraint: PK}
+  "Date":          DATE 
+  "Montant":       DECIMAL(10,2) 
+  "Réf. client":   VARCHAR(8) {constraint: [FK; NOT NULL]}
+}
+
+"INCLURE": { shape: sql_table
+  "Num. commande": VARCHAR(8) {constraint: [PK; FK]}
+  "Réf. produit":  VARCHAR(8) {constraint: [PK; FK]}
+  "Quantité":      INTEGER 
+}
+
+"PRODUIT": { shape: sql_table
+  "Réf. produit":  VARCHAR(8) {constraint: PK}
+  "Libellé":       VARCHAR(50) 
+  "Prix unitaire": DECIMAL(10,2) 
+}
+
+"COMMANDE"."Réf. client" -> "CLIENT"."Réf. client"
+"INCLURE"."Num. commande" -> "COMMANDE"."Num. commande"
+"INCLURE"."Réf. produit" -> "PRODUIT"."Réf. produit"

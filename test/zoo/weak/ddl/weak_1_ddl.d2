@@ -1,0 +1,14 @@
+"Exemplaire": { shape: sql_table
+  "œuvre":      VARCHAR(42) {constraint: [PK; FK]}
+  "exemplaire": VARCHAR(42) {constraint: PK}
+  "nb pages":   VARCHAR(42) 
+  "date achat": VARCHAR(42) 
+  "foobar":     VARCHAR(42) 
+}
+
+"Œuvre": { shape: sql_table
+  "œuvre":  VARCHAR(42) {constraint: PK}
+  "auteur": VARCHAR(42) 
+}
+
+"Exemplaire"."œuvre" -> "Œuvre"."œuvre"

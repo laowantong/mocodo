@@ -1,0 +1,71 @@
+"AYANT-DROIT": { shape: sql_table
+  "matricule":       VARCHAR(42) {constraint: [PK; FK]}
+  "nom ayant-droit": VARCHAR(42) {constraint: PK}
+  "lien":            VARCHAR(42) 
+}
+
+"COMPOSER": { shape: sql_table
+  "réf. pièce composée":   VARCHAR(42) {constraint: [PK; FK]}
+  "réf. pièce composante": VARCHAR(42) {constraint: [PK; FK]}
+  "quantité":              VARCHAR(42) 
+}
+
+"DÉPARTEMENT": { shape: sql_table
+  "num. département": VARCHAR(42) {constraint: PK}
+  "nom département":  VARCHAR(42) 
+}
+
+"EMPLOYÉ": { shape: sql_table
+  "matricule":        VARCHAR(42) {constraint: PK}
+  "nom employé":      VARCHAR(42) 
+  "num. département": VARCHAR(42) {constraint: [FK; NOT NULL]}
+}
+
+"FOURNIR": { shape: sql_table
+  "num. projet":  VARCHAR(42) {constraint: [PK; FK]}
+  "réf. pièce":   VARCHAR(42) {constraint: [PK; FK]}
+  "num. société": VARCHAR(42) {constraint: [PK; FK]}
+  "qté fournie":  VARCHAR(42) 
+}
+
+"PIÈCE": { shape: sql_table
+  "réf. pièce":    VARCHAR(42) {constraint: PK}
+  "libellé pièce": VARCHAR(42) 
+}
+
+"PROJET": { shape: sql_table
+  "num. projet":           VARCHAR(42) {constraint: PK}
+  "nom projet":            VARCHAR(42) 
+  "matricule responsable": VARCHAR(42) {constraint: [FK; "NULL"]}
+}
+
+"REQUÉRIR": { shape: sql_table
+  "num. projet": VARCHAR(42) {constraint: [PK; FK]}
+  "réf. pièce":  VARCHAR(42) {constraint: [PK; FK]}
+  "qté requise": VARCHAR(42) 
+}
+
+"SOCIÉTÉ": { shape: sql_table
+  "num. société":      VARCHAR(42) {constraint: PK}
+  "raison sociale":    VARCHAR(42) 
+  "num. société mère": VARCHAR(42) {constraint: [FK; "NULL"]}
+}
+
+"TRAVAILLER": { shape: sql_table
+  "matricule":   VARCHAR(42) {constraint: [PK; FK]}
+  "num. projet": VARCHAR(42) {constraint: [PK; FK]}
+}
+
+"AYANT-DROIT"."matricule" -> "EMPLOYÉ"."matricule"
+"COMPOSER"."réf. pièce composée" -> "PIÈCE"."réf. pièce"
+"COMPOSER"."réf. pièce composante" -> "PIÈCE"."réf. pièce"
+"EMPLOYÉ"."num. département" -> "DÉPARTEMENT"."num. département"
+"FOURNIR"."num. projet" -> "PROJET"."num. projet"
+"FOURNIR"."réf. pièce" -> "PIÈCE"."réf. pièce"
+"FOURNIR"."num. société" -> "SOCIÉTÉ"."num. société"
+"PROJET"."matricule responsable" -> "EMPLOYÉ"."matricule"
+"REQUÉRIR"."num. projet" -> "PROJET"."num. projet"
+"REQUÉRIR"."réf. pièce" -> "PIÈCE"."réf. pièce"
+"SOCIÉTÉ"."num. société mère" -> "SOCIÉTÉ"."num. société"
+"TRAVAILLER"."matricule" -> "EMPLOYÉ"."matricule"
+"TRAVAILLER"."num. projet" -> "PROJET"."num. projet"

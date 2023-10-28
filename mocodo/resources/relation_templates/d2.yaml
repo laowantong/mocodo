@@ -1,0 +1,81 @@
+help_en: 'convert the conceptual model into a relational schema in D2 format'
+help_fr: 'convertit le modèle conceptuel en un schéma relationnel au format D2'
+help_zh: '将概念模型转换为 D2 格式的关系模式'
+stem_suffix: '_ddl'
+extension: 'd2'
+to_defer: true
+highlight: 'text'
+transform_datatype:
+  - order: 100
+    comment: 'Fill in empty data types with the default one.'
+    search: '^\s*$'
+    replace: 'VARCHAR(42)'
+  - order: 300
+    search: 'UNSIGNED_INT_PLACEHOLDER'
+    replace: 'UNSIGNED INT'
+  - order: 400
+    search: 'BOOLEAN_PLACEHOLDER'
+    replace: 'BOOLEAN'
+transform_optionality:
+  - order: 100
+    comment: 'Replace BANG with NOT NULL.'
+    search: '^!$'
+    replace: 'NOT NULL'
+  - order: 200
+    comment: 'Replace QMARK with NULL. NB: without the double quotes, NULL is not rendered (https://github.com/terrastruct/d2/issues/1655)'
+    search: '^\?$'
+    replace: '"NULL"'
+compose_primary_key: '  "{label}":{filler}{datatype} OPENING_BRACE constraint: [PK] CLOSING_BRACE'
+compose_normal_attribute: '  "{label}":{filler}{datatype} OPENING_BRACE constraint: [{optionality}] CLOSING_BRACE'
+compose_primary_foreign_key: '  "{label}":{filler}{datatype} OPENING_BRACE constraint: [PK; FK] CLOSING_BRACE\nADD_FOREIGN_KEY "{this_relation_name}".("{label}") -> "{outer_source}".("{non_disambiguated_label}")'
+compose_foreign_key: '  "{label}":{filler}{datatype} OPENING_BRACE constraint: [FK; {optionality}] CLOSING_BRACE\nADD_FOREIGN_KEY "{this_relation_name}".("{label}") -> "{outer_source}".("{non_disambiguated_label}")'
+add_unicity_constraints:
+  - order: 100
+    search: '(  .+)$'
+    replace: '\1; UNQ{unicities}'
+column_separator: '\n'
+compose_relation: '"{this_relation_name}": {{ shape: sql_table\n{columns}\n}}'
+transform_relation:
+  - order: 100
+    comment: 'Replace brace placeholders'
+    search: 'OPENING_BRACE (.+?) CLOSING_BRACE'
+    replace: '{\1}'
+  - order: 200
+    search: '(UNQ\d)(\d+)'
+    replace: '\1; UNQ\2'
+    iterated: true
+  - order: 300
+    search: '(\]\})((?:; UNQ\d)+)'
+    replace: '\2\1'
+  - order: 400
+    comment: 'Suppress useless UNQ constraint separator'
+    search: '(?m)({constraint: \[); '
+    replace: '\1'
+  - order: 500
+    comment: 'Suppress brackets with no semi-colon inside.'
+    search: '\[([^\];\n]*)\]'
+    replace: '\1'
+  - order: 600
+    comment: 'Suppress empty constraints'
+    search: '(?m){constraint: }$'
+    replace: ''
+relation_separator: '\n\n'
+compose_relational_schema: '{relations}\n'
+transform_relational_schema:
+  - order: 100
+    comment: 'Move the foreign keys to the end of the document.'
+    search: '(?sm)^ADD_FOREIGN_KEY ([^\n]+\n)(.+)'
+    replace: '\2\nRef:\1'
+    iterated: true
+  - order: 250
+    comment: 'Suppress multiple newlines between Ref lines.'
+    search: '(?m)^(Ref:.+)\n+(?=Ref:)'
+    replace: '\1\n'
+  - order: 300
+    comment: 'Clean up the useless parenthesis (without comma inside).'
+    search: '(?m)^(Ref:.+)\.\((.+?)\) -> (.+)\.\((.+?)\)'
+    replace: '\1.\2 -> \3.\4'
+  - order: 400
+    comment: 'Suppress Ref:'
+    search: '(?m)^Ref:'
+    replace: ''

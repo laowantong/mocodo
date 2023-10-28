@@ -1,0 +1,21 @@
+"Réservation": { shape: sql_table
+  "num résa":    VARCHAR(42) {constraint: PK}
+  "arrhes":      VARCHAR(42) 
+  "date résa":   VARCHAR(42) 
+  "num voilier": VARCHAR(42) {constraint: [FK; NOT NULL]}
+  "num semaine": VARCHAR(42) {constraint: [FK; NOT NULL]}
+  "tarif":       VARCHAR(42) 
+}
+
+"Semaine": { shape: sql_table
+  "num semaine": VARCHAR(42) {constraint: PK}
+  "date début":  VARCHAR(42) {constraint: UNQ1}
+}
+
+"Voilier": { shape: sql_table
+  "num voilier": VARCHAR(42) {constraint: PK}
+  "longueur":    VARCHAR(42) 
+}
+
+"Réservation"."num voilier" -> "Voilier"."num voilier"
+"Réservation"."num semaine" -> "Semaine"."num semaine"

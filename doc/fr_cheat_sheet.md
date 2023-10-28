@@ -44,8 +44,7 @@
 | <span style="color:blue; font-family:monospace; font-weight:600">crowfoot</span> | cf. `crow` |  |  |
 | <span style="color:blue; font-family:monospace; font-weight:600">crowsfoot</span> | cf. `crow` |  |  |
 | <span style="color:green; font-family:monospace; font-weight:600">cut</span> | cf. `slice` |  |  |
-| <span style="color:blue; font-family:monospace; font-weight:600">d2</span> | convertit le modèle conceptuel en un schéma relationnel au format D2 | `` d2 `` | version de base |
-|  |  | `` d2:b `` | avec _boilerplate_ |
+| <span style="color:blue; font-family:monospace; font-weight:600">d2</span> | convertit le modèle conceptuel en un schéma relationnel au format D2 |  |  |
 | <span title="Alias : data_dictionary." style="color:blue; font-family:monospace; font-weight:600">data_dict</span> | extrait tous les attributs du MCD dans une table | `` data_dict `` | tableau Markdown, trois colonnes |
 |  |  | `` data_dict:label `` | liste Markdown, une colonne |
 |  |  | `` data_dict:label,type='Description' `` | deux colonnes, un libellé personnalisé |

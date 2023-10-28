@@ -1,0 +1,24 @@
+"Entreprise": { shape: sql_table
+  "nom entreprise": VARCHAR(42) {constraint: PK}
+  "adresse":        VARCHAR(42) 
+  "téléphone":      VARCHAR(42) 
+}
+
+"Étudiant": { shape: sql_table
+  "num étudiant":   VARCHAR(42) {constraint: PK}
+  "nom":            VARCHAR(42) 
+  "num. stage":     VARCHAR(42) {constraint: [FK; NOT NULL]}
+  "date signature": VARCHAR(42) 
+  "date":           VARCHAR(42) {constraint: "NULL"}
+  "note stage":     VARCHAR(42) 
+}
+
+"Stage": { shape: sql_table
+  "num. stage":       VARCHAR(42) {constraint: PK}
+  "sujet":            VARCHAR(42) 
+  "nom entreprise":   VARCHAR(42) {constraint: [FK; NOT NULL]}
+  "date proposition": VARCHAR(42) 
+}
+
+"Étudiant"."num. stage" -> "Stage"."num. stage"
+"Stage"."nom entreprise" -> "Entreprise"."nom entreprise"

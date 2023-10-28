@@ -1,0 +1,22 @@
+"CLIENT": { shape: sql_table
+  "Réf. client": VARCHAR(42) {constraint: PK}
+  "Nom":         VARCHAR(42) {constraint: UNQ1}
+  "Prénom":      VARCHAR(42) {constraint: UNQ1}
+  "Adresse":     VARCHAR(42) 
+  "Mail":        VARCHAR(42) {constraint: UNQ2}
+}
+
+"FOO": { shape: sql_table
+  "foo":  VARCHAR(42) {constraint: PK}
+  "bar":  VARCHAR(42) {constraint: UNQ1}
+  "biz":  VARCHAR(42) {constraint: [UNQ1; UNQ2]}
+  "buz":  VARCHAR(42) {constraint: UNQ2}
+  "qux":  VARCHAR(42) {constraint: UNQ3}
+  "quux": VARCHAR(42) {constraint: [UNQ1; UNQ2; UNQ3]}
+}
+
+"UTILISER": { shape: sql_table
+  "carnet":     VARCHAR(42) {constraint: [PK; UNQ1]}
+  "projet":     VARCHAR(42) {constraint: [PK; UNQ2]}
+  "technicien": VARCHAR(42) {constraint: [UNQ1; UNQ2]}
+}

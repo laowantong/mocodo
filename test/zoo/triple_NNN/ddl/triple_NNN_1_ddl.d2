@@ -1,0 +1,25 @@
+"Appliquer": { shape: sql_table
+  "employé":    VARCHAR(42) {constraint: [PK; FK]}
+  "projet":     VARCHAR(42) {constraint: [PK; FK]}
+  "compétence": VARCHAR(42) {constraint: [PK; FK]}
+}
+
+"Compétence": { shape: sql_table
+  "compétence": VARCHAR(42) {constraint: PK}
+  "libellé":    VARCHAR(42) 
+}
+
+"Employé": { shape: sql_table
+  "employé": VARCHAR(42) {constraint: PK}
+  "nom":     VARCHAR(42) 
+}
+
+"Projet": { shape: sql_table
+  "projet":     VARCHAR(42) {constraint: PK}
+  "date début": VARCHAR(42) 
+  "date fin":   VARCHAR(42) 
+}
+
+"Appliquer"."employé" -> "Employé"."employé"
+"Appliquer"."projet" -> "Projet"."projet"
+"Appliquer"."compétence" -> "Compétence"."compétence"

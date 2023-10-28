@@ -1,0 +1,24 @@
+"Gérer": { shape: sql_table
+  "ingénieur":   VARCHAR(42) {constraint: [PK; FK]}
+  "projet":      VARCHAR(42) {constraint: [PK; FK]}
+  "responsable": VARCHAR(42) {constraint: [FK; NOT NULL]}
+}
+
+"Ingénieur": { shape: sql_table
+  "ingénieur":     VARCHAR(42) {constraint: PK}
+  "nom ingénieur": VARCHAR(42) 
+}
+
+"Projet": { shape: sql_table
+  "projet":         VARCHAR(42) {constraint: PK}
+  "libellé projet": VARCHAR(42) 
+}
+
+"Responsable": { shape: sql_table
+  "responsable":     VARCHAR(42) {constraint: PK}
+  "nom responsable": VARCHAR(42) 
+}
+
+"Gérer"."ingénieur" -> "Ingénieur"."ingénieur"
+"Gérer"."projet" -> "Projet"."projet"
+"Gérer"."responsable" -> "Responsable"."responsable"

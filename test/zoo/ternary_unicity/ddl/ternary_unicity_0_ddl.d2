@@ -1,0 +1,22 @@
+"Disponibilité": { shape: sql_table
+  "semaine": VARCHAR(42) {constraint: [PK; FK]}
+  "voilier": VARCHAR(42) {constraint: PK}
+}
+
+"Réservation": { shape: sql_table
+  "id résa":          VARCHAR(42) {constraint: PK}
+  "num résa":         VARCHAR(42) {constraint: UNQ1}
+  "arrhes":           VARCHAR(42) 
+  "date réservation": VARCHAR(42) 
+  "semaine":          VARCHAR(42) {constraint: [FK; NOT NULL]}
+  "voilier":          VARCHAR(42) {constraint: [FK; NOT NULL]}
+}
+
+"Semaine": { shape: sql_table
+  "semaine":    VARCHAR(42) {constraint: PK}
+  "date début": VARCHAR(42) {constraint: UNQ1}
+}
+
+"Disponibilité"."semaine" -> "Semaine"."semaine"
+"Réservation"."semaine" -> "Disponibilité"."semaine"
+"Réservation"."voilier" -> "Disponibilité"."voilier"

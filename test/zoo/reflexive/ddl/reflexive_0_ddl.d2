@@ -1,0 +1,13 @@
+"COMPOSER": { shape: sql_table
+  "pièce composante": VARCHAR(42) {constraint: PK}
+  "pièce composée":   VARCHAR(42) {constraint: PK}
+}
+
+"HOMME": { shape: sql_table
+  "Num. SS":      VARCHAR(42) {constraint: PK}
+  "Nom":          VARCHAR(42) 
+  "Prénom":       VARCHAR(42) 
+  "Num. SS père": VARCHAR(42) {constraint: [FK; "NULL"]}
+}
+
+"HOMME"."Num. SS père" -> "HOMME"."Num. SS"

@@ -1,0 +1,32 @@
+"LACUS": { shape: sql_table
+  "magna":      VARCHAR(42) {constraint: PK}
+  "vestibulum": VARCHAR(42) 
+  "tempor":     VARCHAR(42) 
+  "fugit":      VARCHAR(42) 
+}
+
+"NEC": { shape: sql_table
+  "magna":            VARCHAR(42) {constraint: PK}
+  "vestibulum":       VARCHAR(42) 
+  "pulvinar":         VARCHAR(42) 
+  "audis":            VARCHAR(42) 
+  "magna via_mollis": VARCHAR(42) {constraint: [FK; NOT NULL]}
+  "magna via_vitae":  VARCHAR(42) {constraint: [FK; NOT NULL]}
+}
+
+"SODALES": { shape: sql_table
+  "magna":      VARCHAR(42) {constraint: PK}
+  "vestibulum": VARCHAR(42) 
+  "convallis":  VARCHAR(42) 
+  "ipsum":      VARCHAR(42) 
+}
+
+"ULTRICES": { shape: sql_table
+  "magna sodales": VARCHAR(42) {constraint: [PK; FK]}
+  "magna lacus":   VARCHAR(42) {constraint: [PK; FK]}
+}
+
+"NEC"."magna via_mollis" -> "LACUS"."magna"
+"NEC"."magna via_vitae" -> "SODALES"."magna"
+"ULTRICES"."magna sodales" -> "SODALES"."magna"
+"ULTRICES"."magna lacus" -> "LACUS"."magna"

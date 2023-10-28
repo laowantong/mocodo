@@ -1,4 +1,8 @@
 {
+    "d2": {
+        "preprocessing": ["urlsafe_encoding"],
+        "url": "https://kroki.io/d2/svg/{data}"
+    },
     "gv": {
         "preprocessing": ["minify_graphviz", "urlsafe_encoding"],
         "url": "https://kroki.io/graphviz/svg/{data}"
