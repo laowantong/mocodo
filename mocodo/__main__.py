@@ -1,5 +1,3 @@
-import mimetypes
-from pathlib import Path
 import sys
 
 if sys.version_info < (3, 6):
@@ -7,10 +5,8 @@ if sys.version_info < (3, 6):
     sys.exit()
 
 import importlib
+from pathlib import Path
 import json
-import requests
-import shutil
-import urllib
 
 from .argument_parser import parsed_arguments
 from .common import Common, safe_print_for_PHP
@@ -95,6 +91,7 @@ class Runner:
         source = self.common.load_input_file()
 
         if self.params["restore"]:
+            shutil = importlib.import_module("shutil")
             path = Path(self.params["script_directory"], "resources", "pristine_sandbox.mcd")
             shutil.copyfile(path, "sandbox.mcd")
             return write_contents("self.params.json", "{}")
@@ -248,6 +245,9 @@ class Runner:
     def get_converted_file_paths(self, result):
         if result.get("to_defer") and "defer" in self.params:
             # This text must be rendered by a third-party service
+            urllib = importlib.import_module("urllib")
+            requests = importlib.import_module("requests")
+            mimetypes = importlib.import_module("mimetypes")
             service = self.get_rendering_service(result["extension"])
             data = result["text"]
             for preprocessing in service.get("preprocessing", []):
