@@ -98,7 +98,8 @@ var knowledge = {
   "weak": {
     "name": "Entité faible (ou identification relative)",
     "title": "Cochez pour inclure des entités faibles dans les MCD aléatoires et certaines opérations de décomposition. Une entité faible est une entité dont l&#39;identifiant nécessite d&#39;être renforcé par une ou plusieurs entités dont elle dépend fonctionnellement.",
-    "default": false
+    "default": false,
+    "extra": "&nbsp;<div class=\"setting-controls\"><select onchange=\"writeCookie()\" name=\"strengthen_card\" id=\"strengthen_card\"></select></div>",
   },
   "cluster": {
     "name": "Agrégation (ou pseudo-entité) / CIF",
@@ -173,7 +174,9 @@ function createCheckboxes(group, group_name) {
     if (value["onchange"]) { s += ";" + value["onchange"] }
     s += "'\/> <label for='" + key + "'";
     if (value["title"]) { s += " title='" + value["title"] + "'" };
-    s += ">" + value["name"] + "<\/label><\/span><\/li>";
+    s += ">" + value["name"] + "<\/label><\/span>";
+    if (value["extra"]) {s += value["extra"]};
+    s += "<\/li>";
     if (value["advanced"]) {
       $("#" + group_name).find("details").append(s);
     } else {
@@ -597,6 +600,7 @@ $().ready(function () {
   createOptions("delays", items.map(function (value, index) { return value["name"] }), "1 minute");
   createCheckboxes(conversions, "conversions");
   createCheckboxes(knowledge, "knowledge");
+  createOptions("strengthen_card", ["_1,1_", "(1,1)", "1,1", "1,1 (R)", "(R) 1,1"], "_1,1_");
   readCookie();
   setTutorialKnowledge($("#advanced_tutorial").prop("checked"))
   setDecompositionKnowledge($("#decomposition").prop("checked"));
