@@ -7,13 +7,14 @@ class Attribute:
     id_gutter_strong_string = "ID"
     id_gutter_weak_string = "id"
     id_gutter_alts = dict(zip("123456789", "123456789"))
+    hashtag_symbol = "#"
 
     def __init__(self, attribute):
         self.label = attribute.get("attribute_label", "")
         self.rank = attribute["rank"]
         self.datatype = attribute.get("datatype", "")
         self.primary_entity_bid = raw_to_bid(attribute.get("that_table", ""))
-        self.hashtag = "#" if self.primary_entity_bid else ""
+        self.hashtag = self.hashtag_symbol if self.primary_entity_bid else ""
         self.primary_key_label = attribute.get("that_table_attribute_label")
         self.id_groups = set(attribute.get("id_groups", "").replace("0", ""))
         self.id_text =  " ".join(map(self.id_gutter_alts.get, sorted(self.id_groups)))

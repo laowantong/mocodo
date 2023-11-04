@@ -152,6 +152,7 @@ class Mcd:
             Attribute.id_gutter_strong_string = params["id_gutter_strong_string"]
             Attribute.id_gutter_weak_string = params["id_gutter_weak_string"]
             Attribute.id_gutter_alts = params["id_gutter_alts"]
+            Attribute.hashtag_symbol = params["hashtag"]
             for (entity_bid, entity) in self.entities.items():
                 entity.add_attributes(strengthening_legs[entity_bid], entity_bid in children)
             self.has_alt_identifier = any(entity.has_alt_identifier for entity in self.entities.values())

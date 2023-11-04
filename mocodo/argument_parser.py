@@ -373,6 +373,13 @@ def parsed_arguments():
         nargs="?",
         default="_1,1_",
         help=_("string for relative cardinalities"),
+    ),
+    aspect_group.add_argument("--hashtag",
+        metavar="STR",
+        type=str,
+        nargs="?",
+        default="#",
+        help=_("character to display a foreign key"),
     )
     aspect_group.add_argument("--flex",
         metavar="FLOAT",
