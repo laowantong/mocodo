@@ -23,25 +23,26 @@ class Entity:
             self.is_invisible = False
         self.has_alt_identifier = False
 
-    def add_attributes(self, legs_to_strengthen, is_child=False):
+    def add_attributes(self, legs_to_strengthen, is_child, fk_format):
         weak_entity = bool(legs_to_strengthen)
         self.strengthening_legs = legs_to_strengthen
         for (i, a) in enumerate(self.attributes):
             id_mark = a.get("id_mark","")
             explicit_underscore = "0" in a.get("id_groups", "") or a.get("id_groups", "") == ""
             if a.get("attribute_label", "") == "":
-                self.attributes[i] = PhantomAttribute(a)
+                attribute = PhantomAttribute(a)
             elif is_child:
-                self.attributes[i] = SimpleEntityAttribute(a)
+                attribute = SimpleEntityAttribute(a)
             elif i == 0 and id_mark != "_":
-                self.attributes[i] = WeakAttribute(a) if  weak_entity else StrongAttribute(a)
+                attribute = WeakAttribute(a) if  weak_entity else StrongAttribute(a)
             elif i == 0 and id_mark == "_" and not explicit_underscore:
-                self.attributes[i] = WeakAttribute(a) if  weak_entity else StrongAttribute(a)
+                attribute = WeakAttribute(a) if  weak_entity else StrongAttribute(a)
             elif i != 0 and id_mark == "_" and explicit_underscore:
-                self.attributes[i] = WeakAttribute(a) if  weak_entity else StrongAttribute(a)
+                attribute = WeakAttribute(a) if  weak_entity else StrongAttribute(a)
             else:
-                self.attributes[i] = SimpleEntityAttribute(a)
-        
+                attribute = SimpleEntityAttribute(a)
+            attribute.register_foreign_key_status(a, fk_format)
+            self.attributes[i] = attribute
         self.candidates = defaultdict(set)
         for a in self.attributes:
             for id_group in a.id_groups:
@@ -50,7 +51,6 @@ class Entity:
         if len(self.candidates) > 1:
             self.has_alt_identifier = True
         
-
     def register_boxes(self, boxes):
         self.boxes = boxes
     

@@ -10,19 +10,25 @@ class Attribute:
 
     def __init__(self, attribute):
         self.label = attribute.get("attribute_label", "")
+        self.label_view = self.label # may be updated in self.register_foreign_key_status()
         self.rank = attribute["rank"]
         self.datatype = attribute.get("datatype", "")
         self.primary_entity_bid = raw_to_bid(attribute.get("that_table", ""))
-        self.hashtag = "#" if self.primary_entity_bid else ""
-        self.primary_key_label = attribute.get("that_table_attribute_label")
         self.id_groups = set(attribute.get("id_groups", "").replace("0", ""))
         self.id_text =  " ".join(map(self.id_gutter_alts.get, sorted(self.id_groups)))
         self.id_gutter_width = 0  # For anything but entities
 
+    def register_foreign_key_status(self, attribute, fk_format):
+        that_table = attribute.get("that_table")
+        if not that_table:
+            return
+        self.primary_key_label = attribute.get("that_table_attribute_label")
+        self.label_view = fk_format.format(label=self.label)
+
     def calculate_size(self, style, get_font_metrics):
         self.attribute_font = style[self.font_type]
         self.font = get_font_metrics(self.attribute_font)
-        self.w = self.font.get_pixel_width(f"{self.hashtag}{self.label}")
+        self.w = self.font.get_pixel_width(self.label_view)
         self.h = self.font.get_pixel_height()
         self.id_width = self.font.get_pixel_width(self.id_text)
 
@@ -36,7 +42,7 @@ class Attribute:
                 {
                     "x": x + dx,
                     "y": y + round(dy + style["attribute_text_height_ratio"] * self.h, 1),
-                    "text": f"{self.hashtag}{self.label}",
+                    "text": self.label_view,
                     "text_color": style[f"{self.box_type}_attribute_text_color"],
                     "family": self.attribute_font["family"],
                     "size": self.attribute_font["size"],

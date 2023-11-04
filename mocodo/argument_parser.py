@@ -367,6 +367,13 @@ def parsed_arguments():
         default="{min_card},{max_card}",
         help=_("format string for minimal and maximal cardinalities"),
     )
+    aspect_group.add_argument("--fk_format",
+        metavar="STR",
+        type=str,
+        nargs="?",
+        default="#{label}",
+        help=_("format string for foreign keys in relational diagram"),
+    )
     aspect_group.add_argument("--strengthen_card",
         metavar="STR",
         type=str,

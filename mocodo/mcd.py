@@ -153,7 +153,11 @@ class Mcd:
             Attribute.id_gutter_weak_string = params["id_gutter_weak_string"]
             Attribute.id_gutter_alts = params["id_gutter_alts"]
             for (entity_bid, entity) in self.entities.items():
-                entity.add_attributes(strengthening_legs[entity_bid], entity_bid in children)
+                entity.add_attributes(
+                    legs_to_strengthen=strengthening_legs[entity_bid],
+                    is_child=entity_bid in children,
+                    fk_format=params.get("fk_format", "#{label}")
+                )
             self.has_alt_identifier = any(entity.has_alt_identifier for entity in self.entities.values())
 
         def check_weak_entities_without_discriminator():

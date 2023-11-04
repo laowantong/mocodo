@@ -9,7 +9,7 @@ def entity_wrapper(s, legs_to_strengthen=None, is_child=False):
     if legs_to_strengthen is None:
         legs_to_strengthen = []
     e = Entity(extract_clauses(s)[0])
-    e.add_attributes(legs_to_strengthen, is_child)
+    e.add_attributes(legs_to_strengthen, is_child, fk_format=None)
     return e
 
 class EntityTest(unittest.TestCase):
