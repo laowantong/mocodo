@@ -40022,7 +40022,7 @@ sandbox_ddl.sql
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[189]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[94]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">mocodo</span> --help
@@ -40054,9 +40054,10 @@ sandbox_ddl.sql
               [--select [{all,mcd,rw,source,text,code,mocodo,cv,mld,ddl,sql} ...]]
               [--defer [STR ...]] [--mld] [--transform [STR ...]]
               [--seed [FLOAT]] [--title STR] [--df STR] [--card_format [STR]]
-              [--strengthen_card [STR]] [--flex FLOAT] [--colors STEM_OR_PATH]
-              [--shapes STEM_OR_PATH] [--scale RATE] [--adjust_width RATE]
-              [--detect_overlaps] [--gutters STR [STR ...]]
+              [--fk_format [STR]] [--strengthen_card [STR]] [--flex FLOAT]
+              [--colors STEM_OR_PATH] [--shapes STEM_OR_PATH] [--scale RATE]
+              [--adjust_width RATE] [--detect_overlaps]
+              [--gutters STR [STR ...]]
 
 NOM :
 Mocodo - Un générateur de diagrammes entité-association.
@@ -40138,6 +40139,8 @@ ASPECT DE LA SORTIE GRAPHIQUE :
                         fonctionnelle (default: DF)
   --card_format [STR]   chaîne de formatage pour les cardinalités minimales et
                         maximales (default: {min_card},{max_card})
+  --fk_format [STR]     chaîne de formatage pour les clés étrangères dans le
+                        diagramme relationnel (default: #{label})
   --strengthen_card [STR]
                         chaîne pour les cardinalités relatives (default:
                         _1,1_)

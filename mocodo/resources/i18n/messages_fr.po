@@ -360,6 +360,10 @@ msgstr "l'acronyme à entourer dans une dépendance fonctionnelle"
 msgid "format string for minimal and maximal cardinalities"
 msgstr "chaîne de formatage pour les cardinalités minimales et maximales"
 
+#: mocodo/argument_parser.py:370
+msgid "format string for foreign keys in relational diagram"
+msgstr "chaîne de formatage pour les clés étrangères dans le diagramme relationnel"
+
 #: mocodo/argument_parser.py:548
 msgid "string for relative cardinalities"
 msgstr "chaîne pour les cardinalités relatives"
