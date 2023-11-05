@@ -166,7 +166,7 @@ fieldset.listing legend {
 }
 code {
   display: block;
-  white-space: pre-wrap   
+  white-space: pre
 }
 .circled {
   display: inline-block;
@@ -184,7 +184,7 @@ code {
   color: red;
 }
 #errorOutput {
-  font-family: 'Andale mono', 'Source Code Pro', monospace;
+  font-family: menlo, consolas, 'DejaVu Sans Mono', monospace;
 	color: #00ff00;
 	background: black;
 	font-size: 12pt;
@@ -198,16 +198,11 @@ code {
   min-height: 135px;
 }
 #convertOutput pre {
-  font-family: 'Source Code Pro', monospace;
+  font-family: menlo, consolas, 'DejaVu Sans Mono', monospace;
   font-size: 9pt;
-  line-height: 100%;
+  line-height: 1.4em;
   overflow-x: auto;
   overflow-y: hidden;
-  white-space: wrap;       /* CSS 3 */
-  white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
-  white-space: -pre-wrap;      /* Opera 4-6 */
-  white-space: -o-pre-wrap;    /* Opera 7 */
-  word-wrap: break-word;       /* Internet Explorer 5.5+ */
 }
 .line {
 	display: block;
