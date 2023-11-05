@@ -520,21 +520,25 @@ var clickTimer = null;
 var currentPopup = null;
 
 function handleClick(element, rewrite_operation) {
-  if (clickTimer != null) { // double-click
-    clearTimeout(clickTimer); // cancel the timer
-    clickTimer = null;
-    rewrite(rewrite_operation); // and call the default rewriting.
-  } else { // simple click
+  if (clickTimer != null) { // a double-click: call the default rewriting and close the popup menu if needed.
     if (currentPopup) {
       currentPopup.style.display = "none";
       currentPopup = null;
-    } else {
-      clickTimer = setTimeout(function () { // start a timer that will call the default rewriting after a short delay.
-        clickTimer = null;
-        currentPopup = element.nextElementSibling;
-        currentPopup.style.display = "block"; // show the popup menu.
-      }, 500);
     };
+    clearTimeout(clickTimer);
+    clickTimer = null;
+    rewrite(rewrite_operation);
+  } else { // may be a simple click: if eventually so, switch the popup menu visibility.
+    clickTimer = setTimeout(function () {
+      clickTimer = null;
+      if (currentPopup) {
+        currentPopup.style.display = "none";
+        currentPopup = null;
+      } else {
+        currentPopup = element.nextElementSibling;
+        currentPopup.style.display = "block";
+      }
+    }, 500);
   }
 }
 function closePopup() {
