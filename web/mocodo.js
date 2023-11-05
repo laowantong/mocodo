@@ -20,7 +20,7 @@ var conversions = {
     "default": false,
     "highlighting": "none",
     "title": "Résultat à réinjecter sous l&#39;onglet Entrée pour tracer un diagramme sagittal des relations.",
-    "name": "Diagramme relationnel en Mocodo",
+    "name": "Diagramme relationnel en Mocodo, clés étrangères&nbsp;&nbsp;",
   },
   "_mld.html": {
     "default": false,
@@ -32,7 +32,7 @@ var conversions = {
     "default": false,
     "highlighting": "sql",
     "title": "DDL œcuménique, pour peu que vous utilisiez les types requis par le dialecte-cible (MySQL, SQLite, PostgreSQL, Oracle, SQL Server, etc.). Les libellés sont automatiquement privés de leurs accents et espaces pour éviter de polluer le code SQL avec des délimiteurs de chaînes, qui plus est non portables.",
-    "name": "Requêtes SQL de création des tables",
+    "name": "Requêtes SQL de création des tables, libellés en&nbsp;&nbsp;",
   },
   "_data_dict_2.md": {
     "default": false,
@@ -96,7 +96,7 @@ var knowledge = {
     "onchange": "setTutorialKnowledge(event.target.checked)",
   },
   "weak": {
-    "name": "Entité faible (ou identification relative)",
+    "name": "Entité faible (ou identification relative), cardinalités notées&nbsp;&nbsp;",
     "title": "Cochez pour inclure des entités faibles dans les MCD aléatoires et certaines opérations de décomposition. Une entité faible est une entité dont l&#39;identifiant nécessite d&#39;être renforcé par une ou plusieurs entités dont elle dépend fonctionnellement.",
     "default": false
   },
@@ -184,6 +184,9 @@ function createCheckboxes(group, group_name) {
       }
     }
   })
+}
+function appendMenuToInput(menuId, inputId) {
+  document.getElementById(inputId).parentNode.appendChild(document.getElementById(menuId));
 }
 function refreshSize(geo) {
   var s = '<div><label>&nbsp;<\/label> ' +
@@ -595,12 +598,14 @@ $().ready(function () {
   var default_color = "brewer" + "+-"[Math.floor(Math.random() * 2)] + (Math.floor(Math.random() * 9) + 1);
   createOptions("colors", ["blank", "bw", "bw-alpha", "desert", "keepsake", "mondrian", "ocean", "pond", "wb", "xinnian", "brewer+1", "brewer-1", "brewer+2", "brewer-2", "brewer+3", "brewer-3", "brewer+4", "brewer-4", "brewer+5", "brewer-5", "brewer+6", "brewer-6", "brewer+7", "brewer-7", "brewer+8", "brewer-8", "brewer+9", "brewer-9"], default_color);
   createOptions("shapes", ["arial", "copperplate", "georgia", "mondrian", "sans", "serif", "times", "trebuchet", "verdana", "xinnian"], "verdana");
-  createOptions("sql_case", ["snake_case", "camelCase", "PascalCase"], "snake_case");
   var items = Object.keys(delays).map(function (key) { return { "value": delays[key], "name": key } });
   items.sort(function (a, b) { return a["value"] - b["value"] });
   createOptions("delays", items.map(function (value, index) { return value["name"] }), "1 minute");
   createCheckboxes(conversions, "conversions");
   createCheckboxes(knowledge, "knowledge");
+  appendMenuToInput("sql_case", "_ddl.sql");
+  appendMenuToInput("fk_format", "_mld.mcd");
+  appendMenuToInput("strengthen_card", "weak");
   readCookie();
   setTutorialKnowledge($("#advanced_tutorial").prop("checked"))
   setDecompositionKnowledge($("#decomposition").prop("checked"));

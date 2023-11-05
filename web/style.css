@@ -486,7 +486,7 @@ ul.tabs a:hover {
 
 .settings-pane {
   display: grid;
-  grid-template-columns: 1fr 1fr; /* Two equally sized columns */
+  grid-template-columns: 0.5fr 1fr;
   gap: 0.3ex 0.8em; /* Vertical and horizontal gap */
 }
 

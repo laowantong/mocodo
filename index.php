@@ -209,23 +209,6 @@
 								</div>
 							</div>
 							<div class="setting-row">
-								<label class="setting-label" for="knowledge" title="Vous pouvez adapter les traitements et l'interface de Mocodo online à des besoins plus avancés.">Notions et fonctionnalités supplémentaires</label>
-								<details class="setting-details">
-									<summary>Découvrir…</summary>
-									<ul class="setting-controls" name="knowledge" id="knowledge">
-										<!-- To be populated by JS -->
-									</ul>
-								</details>
-							</div>
-							<div class="setting-row">
-								<label class="setting-label" for="sql_case">Mise en forme des libellés pour SQL</label>
-								<div class="setting-controls">
-									<select onchange="markAsDirty();writeCookie()" name="sql_case" id="sql_case">
-										<!-- To be populated by JS -->
-									</select>
-								</div>
-							</div>
-							<div class="setting-row">
 								<label class="setting-label" for="conversions" title="Les formats cochés seront affichés sous l'onglet « Autres sorties » et inclus dans l'archive téléchargée.">Conversions en sortie</label>
 								<ul class="setting-controls" name="conversions" id="conversions">
 									<!-- To be populated by JS -->
@@ -234,6 +217,33 @@
 										<!-- To be populated by JS -->
 									</details>
 								</ul>
+							</div>
+							<div class="setting-row">
+								<label class="setting-label" for="knowledge" title="Vous pouvez adapter les traitements et l'interface de Mocodo online à des besoins plus avancés.">Notions supplémentaires</label>
+								<details class="setting-details">
+									<summary>Découvrir…</summary>
+									<ul class="setting-controls" name="knowledge" id="knowledge">
+										<!-- To be populated by JS -->
+									</ul>
+								</details>
+							</div>
+							<div style="display: none;">
+								<select onchange="markAsDirty();writeCookie()" name="sql_case" id="sql_case">
+									<option selected="selected">snake_case</option>
+									<option>camelCase</option>
+									<option>PascalCase</option>
+								</select>
+								<select onchange="markAsDirty();writeCookie()" name="fk_format" id="fk_format">
+									<option value="#{label}" selected="selected">préfixées par #</option>
+									<option value="{label}">non préfixées</option>
+								</select>
+								<select onchange="markAsDirty();writeCookie()" name="strengthen_card" id="strengthen_card">
+									<option value="_1,1_" selected="selected">1̲,1̲</option>
+									<option>(1,1)</option>
+									<option>1,1(R)</option>
+									<option>(R)1,1</option>
+									<option>1,1</option>
+								</select>
 							</div>
 						</div>
 					</div>
