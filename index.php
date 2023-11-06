@@ -234,15 +234,20 @@
 									<option>PascalCase</option>
 								</select>
 								<select onchange="markAsDirty();writeCookie()" name="fk_format" id="fk_format">
-									<option value="#{label}" selected="selected">préfixées par #</option>
-									<option value="{label}">non préfixées</option>
+									<option value="#{label}" selected="selected">avec # au début</option>
+									<option value="{label}#" selected="selected">avec # à la fin</option>
+									<option value="{label}">telles quelles</option>
 								</select>
 								<select onchange="markAsDirty();writeCookie()" name="strengthen_card" id="strengthen_card">
+									<option>1,1</option>
 									<option value="_1,1_" selected="selected">1̲,1̲</option>
 									<option>(1,1)</option>
 									<option>1,1(R)</option>
+									<option>1,1🄡</option>
+									<option>1,1®</option>
 									<option>(R)1,1</option>
-									<option>1,1</option>
+									<option>🄡1,1</option>
+									<option>®1,1</option>
 								</select>
 							</div>
 						</div>
