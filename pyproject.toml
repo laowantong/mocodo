@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "mocodo"
-version = "4.0.12"
+version = "4.0.13"
 description = "Modélisation Conceptuelle de Données. Nickel. Ni souris."
 authors = ["Aristide Grange"]
 license = "MIT"
