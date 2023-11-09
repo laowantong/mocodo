@@ -245,7 +245,7 @@ function refreshConvertOutput(result) {
   var name = '';
   var highlighting = '';
   $.each(result["conversions"], function (i, item) {
-    name = conversions[item[0]]["name"];
+    name = conversions[item[0]]["name"].replace(/,.*$/, "");
     highlighting = conversions[item[0]]["highlighting"];
     s += `<fieldset class="listing">`;
     s += `<legend data-index=${i}>⧉ ${name}</legend>`;
@@ -541,7 +541,7 @@ function handleClick(element, rewrite_operation) {
         currentPopup = element.nextElementSibling;
         currentPopup.style.display = "block";
       }
-    }, 500);
+    }, 350);
   }
 }
 function closePopup() {
