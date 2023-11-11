@@ -32,7 +32,7 @@ var conversions = {
     "default": false,
     "highlighting": "sql",
     "title": "DDL œcuménique, pour peu que vous utilisiez les types requis par le dialecte-cible (MySQL, SQLite, PostgreSQL, Oracle, SQL Server, etc.). Les libellés sont automatiquement privés de leurs accents et espaces pour éviter de polluer le code SQL avec des délimiteurs de chaînes, qui plus est non portables.",
-    "name": "Requêtes SQL de création des tables, libellés en&nbsp;&nbsp;",
+    "name": "Script SQL de création des tables, libellés en&nbsp;&nbsp;",
   },
   "_data_dict_2.md": {
     "default": false,

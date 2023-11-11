@@ -13,7 +13,7 @@
 Mocodo est un logiciel d'aide à l'enseignement et à l'apprentissage des [bases de données relationnelles](https://fr.wikipedia.org/wiki/Base_de_données_relationnelle).
 
 - En entrée, il prend un [MCD](https://fr.wikipedia.org/wiki/Modèle_entité-association) (modèle conceptuel de données) décrit dans un langage dédié minimaliste.
-- En sortie, il produit un diagramme entité-association et, à la demande, un [MLD](https://fr.wikipedia.org/wiki/Merise_(informatique)#MLD_:_modèle_logique_des_données) (schéma relationnel, sous forme graphique ou textuelle), un [DDL](https://fr.wikipedia.org/wiki/Langage_de_définition_de_données) (requêtes SQL de création de la base), un [diagramme de classes UML](https://fr.wikipedia.org/wiki/Diagramme_de_classes), etc.
+- En sortie, il produit un diagramme entité-association et, à la demande, un [MLD](https://fr.wikipedia.org/wiki/Merise_(informatique)#MLD_:_modèle_logique_des_données) (schéma relationnel, sous forme graphique ou textuelle), un [DDL](https://fr.wikipedia.org/wiki/Langage_de_définition_de_données) (script SQL de création de la base), un [diagramme de classes UML](https://fr.wikipedia.org/wiki/Diagramme_de_classes), etc.
 - En bonus, il est capable de réarranger automatiquement votre MCD de façon esthétique, et de lui appliquer des opérations de réécriture qui vont du mondain (typographie) à l'académique (décomposition d'associations), en passant par le merveilleux (inférence de types, génération d'exercices et d'exemples).
 
 Vous pouvez utiliser Mocodo :
