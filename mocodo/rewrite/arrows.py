@@ -5,7 +5,7 @@ class ArrowsHere(Visitor):
 
     def assoc_leg(self, tree):
         card = first_child(tree, "card")
-        if not card.endswith("1"):
+        if card != "11":
             return
         if first_child(tree, "leg_arrow") != "":
             return
@@ -17,7 +17,7 @@ class ArrowsAcross(Visitor):
         legs = [node for node in tree.find_data("assoc_leg")]
         cards = [first_child(leg, "card") for leg in legs]
         for (i, card) in enumerate(cards):
-            if card.endswith("1"):
+            if card == "11":
                 for (j, other_leg) in enumerate(legs):
                     if i != j and first_child(other_leg, "leg_arrow") == "":
                         other_card = first_child(other_leg, "card")

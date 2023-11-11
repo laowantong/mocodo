@@ -84,7 +84,7 @@
 							<div class="popup-menu" onmouseleave="closePopup(this)">
 								<span class="popup-item popup-close" onclick="closePopup()">⨉</span>
 								<span class="popup-item" onclick="rewrite('create:dfs')">mettre des DF partout où c'est possible</span>
-								<span class="popup-item" onclick="rewrite('create:df_arrows')">ajouter des flèches aux DF</span>
+								<span class="popup-item" onclick="rewrite('create:df_arrows')">ajouter des flèches aux DF 11</span>
 								<span class="popup-item" onclick="rewrite('create:cifs')" id="createCifs" style="display: none;">ajouter les CIF correspondant aux agrégats</span>
 								<span class="popup-item" onclick="rewrite('create:types=')">mettre en évidence les types à remplir</span>
 								<span class="popup-item" onclick="rewrite('create:types')">deviner les types à partir du nom des attributs</span>

@@ -82,7 +82,7 @@
 |  |  | `` create:types=TODO `` | remplacer les types manquants par `[TODO]` |
 |  |  | `` make:entities `` | réparer l'oubli d'entités référencées dans des associations |
 |  |  | `` create:dfs `` | mettre des DF partout où c'est possible |
-|  |  | `` add:df_arrows `` | ajouter des flèches aux DF |
+|  |  | `` add:df_arrows `` | ajouter des flèches aux DF 11 |
 |  |  | `` add:cifs `` | ajouter les CIF correspondant aux agrégats |
 |  |  | `` add:cifs=light `` | même chose en visualisation allégée |
 |  |  | `` add:roles `` | mettre comme rôles le nom des associations partout où c'est utile |
