@@ -1,6 +1,7 @@
 Date and Time
 
 \bdate$	DATE
+\bday$	DATE
 \btime$	TIME
 \bdatetime$	DATETIME
 \btimestamp$	TIMESTAMP
@@ -62,8 +63,7 @@ Addressing
 
 Financial
 
-\bprice$	DECIMAL(10,2)
-\bamount$	DECIMAL(10,2)
+\b(price|amount|fees|charges|cost|bill)$	DECIMAL(10,2)
 \barn$	VARCHAR(8)"	 Acquirer Reference Number
 \barn code$	VARCHAR(8)
 \bbic$	VARCHAR(11)"	 Bank Identifier Code

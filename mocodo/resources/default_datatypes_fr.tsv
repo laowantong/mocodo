@@ -1,6 +1,7 @@
 Date and Time
 
 ^date\b	DATE
+^jour\b	DATE
 ^heure\b	TIME
 ^date et heure\b	DATETIME
 ^horodatage\b	TIMESTAMP
@@ -56,6 +57,7 @@ Addressing
 ^tel(ephone)?\b	VARCHAR(20)
 ^fax\b	VARCHAR(20)
 ^e?mail\b	VARCHAR(255)
+^courriel\b	VARCHAR(255)
 ^(nom )?pays\b	VARCHAR(100)
 ^(nom )?ville\b	VARCHAR(100)
 ^code pays\b	CHAR(2)
@@ -63,8 +65,7 @@ Addressing
 
 Financial
 
-^prix\b	DECIMAL(10,2)
-^montant\b	DECIMAL(10,2)
+^(prix|montant|frais|charges|coût)\b	DECIMAL(10,2)
 ^code nra\b	VARCHAR(8)
 ^nra\b	VARCHAR(8)"	 Numéro de Référence de l'Acquéreur”, pour identifier les transactions par carte bancaire
 ^bic\b	VARCHAR(11)"	 Bank Identifier Code
