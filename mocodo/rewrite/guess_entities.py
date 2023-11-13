@@ -9,9 +9,14 @@ def run(source, id_prefix):
     new_entity_names = entity_name_refs - entity_name_defs
     new_entity_clauses = [source]
     for ent in new_entity_names:
-        if ent.lower() != "date":
-            clause = f"{ent}: {id_prefix}{ent.lower()}, "
-        else:
+        lower_ent = ent.lower()
+        if lower_ent in ("date", "calendrier", "calendar"):
             clause = f"{ent}: date"
+        elif lower_ent == "période":
+            clause = f"{ent}: début, _fin"
+        elif lower_ent == "period":
+            clause = f"{ent}: start, _end"
+        else:
+            clause = f"{ent}: {id_prefix}{lower_ent}, "
         new_entity_clauses.append(clause)
     return "\n".join(new_entity_clauses)

@@ -10,8 +10,8 @@ from .tools.parser_tools import parse_source
 from .tools.string_tools import rstrip_digit_or_underline
 
 BLACKLIST = {
-    "fr": ["date", "calendrier"],
-    "en": ["date", "calendar"]
+    "fr": ["date", "calendrier", "période"],
+    "en": ["date", "calendar", "period"]
 }
 
 def guess_title(source, language):
