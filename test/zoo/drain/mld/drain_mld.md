@@ -19,4 +19,4 @@
 ----
 
 
-**NB.** La table _Date_ a été supprimée car elle était réduite à la clé primaire de son entité d'origine. Pour conserver une telle table, suffixez d'un « + » le nom de l'entité correspondante dans sa définition.
+**NB.** La table _Date_ a été supprimée car elle était réduite à la clé primaire de son entité d'origine. Pour conserver de telles tables, préfixez d'un « + » la définition des entités d'origine.

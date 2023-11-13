@@ -33,7 +33,6 @@
 <!-- Association DF2 -->
 <g>
 	<line x1="300" y1="211" x2="300" y2="112" stroke="#000000" stroke-width="1"/>
-	<polygon points="300 156 294 144 300 148 306 144" fill="#000000" stroke-width="0"/>
 	<line x1="300" y1="47" x2="300" y2="112" stroke="#000000" stroke-width="1"/>
 	<polygon points="300 68 306 80 300 76 294 80" fill="#000000" stroke-width="0"/>
 	<g>

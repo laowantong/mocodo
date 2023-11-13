@@ -22,7 +22,6 @@
 <!-- Association ATTRIBUER -->
 <g>
 	<line x1="601" y1="56" x2="469" y2="56" stroke="#000000" stroke-width="1"/>
-	<polygon points="551 56 539 62 543 56 539 50" fill="#000000" stroke-width="0"/>
 	<line x1="345" y1="56" x2="469" y2="56" stroke="#000000" stroke-width="1"/>
 	<polygon points="387 56 399 50 395 56 399 62" fill="#000000" stroke-width="0"/>
 	<g>
@@ -41,7 +40,6 @@
 <g>
 	<line x1="601" y1="56" x2="729" y2="56" stroke="#000000" stroke-width="1"/>
 	<line x1="837" y1="56" x2="729" y2="56" stroke="#000000" stroke-width="1"/>
-	<polygon points="807 56 795 62 799 56 795 50" fill="#000000" stroke-width="0"/>
 	<g>
 		<path d="M764 27 a14 14 90 0 1 14 14 V55 h-98 V41 a14 14 90 0 1 14 -14" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
 		<path d="M778 55 v16 a14 14 90 0 1 -14 14 H694 a14 14 90 0 1 -14 -14 V55 H98" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>

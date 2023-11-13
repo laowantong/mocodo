@@ -1,5 +1,5 @@
 AYANT-DROIT: nom ayant-droit, lien
-DIRIGER, 0N> [responsable] EMPLOYÉ, 01 PROJET
+DIRIGER, 0N [responsable] EMPLOYÉ, 01 PROJET
 REQUÉRIR, 1N PROJET, 0N PIÈCE: qté requise
 PIÈCE: réf. pièce, libellé pièce
 COMPOSER, 0N [composée] PIÈCE, 0N [composante] PIÈCE: quantité

@@ -6,4 +6,4 @@
 ----
 
 
-**NB.** Les tables _Ingénieur_, _Projet_ et _Responsable_ ont été supprimées car elles étaient réduites à la clé primaire de leur entité d'origine. Pour conserver une telle table, suffixez d'un « + » le nom de l'entité correspondante dans sa définition.
+**NB.** Les tables _Ingénieur_, _Projet_ et _Responsable_ ont été supprimées car elles étaient réduites à la clé primaire de leur entité d'origine. Pour conserver de telles tables, préfixez d'un « + » la définition des entités d'origine.

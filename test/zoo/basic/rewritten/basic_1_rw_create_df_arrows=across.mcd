@@ -1,5 +1,5 @@
 CLIENT: Réf. client, Nom, Prénom, Adresse
--Reflexive 6_, 11> COMMANDE, 01> COMMANDE
+-Reflexive 6_, 11 COMMANDE, 01> COMMANDE
 -Entity 7_: id 7 1, _id 7 2, attr 7 3, attr 7 4
 -Reflexive 13_, 11 PRODUIT, 1N> PRODUIT
 
@@ -9,7 +9,7 @@ COMMANDE: Num. commande, Date, Montant
 PRODUIT: Réf. produit, Libellé, Prix unitaire
 
 -Entity 14_: id 14 1, attr 14 2, attr 14 3, attr 14 4
--Binary 15_, 0N> Entity 14_, 01 Entity 11_
+-Binary 15_, 0N Entity 14_, 01 Entity 11_
 INCLURE, 1N COMMANDE, 0N PRODUIT: Quantité
 -Binary 10_, 1N Entity 9_, 1N PRODUIT: attr 10 1
 
