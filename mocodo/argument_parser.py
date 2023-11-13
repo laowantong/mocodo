@@ -29,7 +29,7 @@ def init_localization(language):
             sys.platform.lower().startswith("darwin")
             and os.system("defaults read -g AppleLanguages > /tmp/languages.txt") == 0
         ):
-            language = re.search(r"\W*(\w+)", Path("/tmp/languages.txt").read_text()).group(1)
+            language = re.search(r"\W*(\w+)", Path("/tmp/languages.txt").read_text(encoding="utf8")).group(1)
         else:
             try:
                 language = locale.getdefaultlocale()[0][:2]
@@ -54,9 +54,9 @@ class Transformations:
 
     def __init__(self, language):
         metadata_path = Path(f"{SCRIPT_DIRECTORY}/resources/transformations.json")
-        self.metadata = json.loads(metadata_path.read_text())
+        self.metadata = json.loads(metadata_path.read_text(encoding="utf8"))
         index_path = Path(f"{SCRIPT_DIRECTORY}/resources/relation_templates/_index.json")
-        template_data = json.loads(index_path.read_text())
+        template_data = json.loads(index_path.read_text(encoding="utf8"))
         for (stem, d) in template_data.items():
             if f"help_{language}" in d:
                 d["help"] = d.pop(f"help_{language}")
@@ -210,7 +210,7 @@ def parsed_arguments():
     default_params["input"] = args.input
 
     if os.path.exists(args.params_path):
-        default_params.update(json.loads(Path(args.params_path).read_text()))
+        default_params.update(json.loads(Path(args.params_path).read_text(encoding="utf8")))
     if not default_params["input"]:
         default_params["input"] = "sandbox.mcd"
     default_params["language"] = init_localization(default_params.get("language", args.language))

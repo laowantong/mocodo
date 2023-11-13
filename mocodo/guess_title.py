@@ -44,6 +44,6 @@ def may_update_params_with_guessed_title(source, params):
     title = guess_title(source, language)
     if not title:
         return
-    Path(f"{params['output_name']}_new_title.txt").write_text(title)
+    Path(f"{params['output_name']}_new_title.txt").write_text(title, encoding="utf8")
     params["title"] = title
     params["output_name"] = str(Path(params["output_dir"], title))

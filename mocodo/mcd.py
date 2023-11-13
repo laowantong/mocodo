@@ -419,7 +419,7 @@ class Mcd:
         geo_path = Path(f"{params['output_name']}_geo.json")
         if geo_path.is_file() and params["scale"] == 1 and params["reuse_geo"]:
             try:
-                web_geo = json.loads(geo_path.read_text("utf8"))
+                web_geo = json.loads(geo_path.read_text(encoding="utf8"))
             except:
                 raise MocodoError(33, _('Unable to reuse the geometry file "{filename}".').format(filename=geo_path)) # fmt: skip
             # convert lists of couples to dicts
@@ -465,7 +465,7 @@ class Mcd:
         text = text.replace("\n    ]", " ]")
         text = text + "\n"
         try:
-            geo_path.write_text(text)
+            geo_path.write_text(text, encoding="utf8")
         except IOError:
             raise MocodoError(34, _('Unable to save geometry file "{filename}".').format(filename=geo_path)) # fmt: skip
         return geo

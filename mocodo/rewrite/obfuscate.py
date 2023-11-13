@@ -32,15 +32,15 @@ def obfuscator_factory(pool, params):
     # Initialize the random word generator
     try:
         lorem_path = Path(pool)
-        lorem_text = lorem_path.read_text()
+        lorem_text = lorem_path.read_text(encoding="utf8")
     except IOError:
         lorem_dir = Path(params["script_directory"], "resources", "lorem")
         lorem_path = lorem_dir / f"{lorem_path.stem}.txt"
         try:
-            lorem_text = lorem_path.read_text()
+            lorem_text = lorem_path.read_text(encoding="utf8")
         except IOError:
             lorem_path = lorem_dir / "lorem.txt"
-            lorem_text = lorem_path.read_text()
+            lorem_text = lorem_path.read_text(encoding="utf8")
     random_word = random_words_generator(lorem_text)
 
     # Define and return the inner obfuscator function

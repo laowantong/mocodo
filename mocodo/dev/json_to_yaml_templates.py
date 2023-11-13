@@ -8,7 +8,7 @@ def repr_single(s):
 def convert(source_path, target_path):
     for path in sorted(source_path.glob("*.json"), reverse=True):
         print(path)
-        data = loads(path.read_text())
+        data = loads(path.read_text(encoding="utf8"))
         result = []
         for (key, stuff) in data.items():
             if isinstance(stuff, str):
@@ -33,7 +33,7 @@ def convert(source_path, target_path):
                 result.append(f"{key}: {stuff}")
         result.append("")
         dest = Path(target_path, path.stem + ".yaml")
-        dest.write_text("\n".join(result))
+        dest.write_text("\n".join(result), encoding="utf8")
 
 if __name__ == "__main__":
     convert(Path("test/test_data/templates"), Path("test/test_data/new_templates"))

@@ -36,7 +36,7 @@ result = json.dumps(metadata, indent=2, ensure_ascii=False)
 result = result.replace("[\n      ", "[")
 result = result.replace("\n    ]", "]")
 result = result.replace(",\n      ", ", ")
-Path(folder, "_index.json").write_text(result + "\n")
+Path(folder, "_index.json").write_text(result + "\n", encoding="utf8")
 print(f"File written: {folder}/_index.json")
 
 # Build the graph of templates
@@ -55,7 +55,7 @@ for path in sorted(folder.glob("*.yaml")):
 edges = "\n  ".join(edges)
 result = f'digraph G {{\n  rankdir=LR\n  edge [dir="back"]\n  node [shape=box style="rounded,filled" colorscheme=reds9 fontname="Arial" penwidth=0]\n  {edges}\n}}\n'
 path = Path(folder, "_graph.gv")
-path.write_text(result)
+path.write_text(result, encoding="utf8")
 os.system(f"dot -Tsvg {folder}/_graph.gv > {folder}/_graph.svg")
 path.unlink()
 print(f"File written: {folder}/_graph.svg")
@@ -95,5 +95,5 @@ text = f"""
 {tables['rw']}
 """.strip()
 output_path = Path("doc/fr_cheat_sheet.md")
-output_path.write_text(text)
+output_path.write_text(text, encoding="utf8")
 print(f"File written: {output_path}")

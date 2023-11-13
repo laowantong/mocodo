@@ -12,7 +12,6 @@ from .argument_parser import parsed_arguments
 from .common import Common, safe_print_for_PHP
 from .convert.read_template import read_template
 from .convert.relations import Relations
-from .file_helpers import write_contents
 from .font_metrics import font_metrics_factory
 from .guess_title import may_update_params_with_guessed_title
 from .mcd import Mcd
@@ -55,7 +54,7 @@ class ResponseLogger:
         self.dump()
     
     def dump(self):
-        self.path.write_text(json.dumps(self.response, ensure_ascii=False))
+        self.path.write_text(json.dumps(self.response, ensure_ascii=False), encoding="utf8")
 
 
 def flip(source, subargs):
@@ -94,7 +93,7 @@ class Runner:
             shutil = importlib.import_module("shutil")
             path = Path(self.params["script_directory"], "resources", "pristine_sandbox.mcd")
             shutil.copyfile(path, "sandbox.mcd")
-            return write_contents("self.params.json", "{}")
+            return Path("params.json").write_text("{}\n", encoding="utf8")
         
         if self.params["print_params"]:
             for added_key in self.params["keys_to_hide"][:]:
@@ -230,7 +229,7 @@ class Runner:
     def get_rendering_service(self, extension):
         path = Path(self.params["script_directory"], "resources", "rendering_services.json")
         try:
-            rendering_services = json.loads(path.read_text())
+            rendering_services = json.loads(path.read_text(encoding="utf8"))
         except FileNotFoundError:
             raise MocodoError(46, _('The file "{path}" is missing.').format(path=path))  # fmt: skip
         except json.decoder.JSONDecodeError:
@@ -268,7 +267,7 @@ class Runner:
             extension = mimetypes.guess_extension(content_type)
             resp_path = result["text_path"].with_suffix(extension)
             if content_type.startswith("text/"):
-                resp_path.write_text(response.text)
+                resp_path.write_text(response.text, encoding="utf8")
             else:
                 resp_path.write_bytes(response.content)
             yield str(resp_path)

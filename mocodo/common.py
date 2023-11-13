@@ -1,11 +1,9 @@
 import json
 import numbers
-import os
 import sys
 from pathlib import Path
 import contextlib
 
-from .file_helpers import read_contents, write_contents
 from .mocodo_error import MocodoError
 
 
@@ -28,34 +26,35 @@ class Common:
 
     def update_source(self, source):
         path = Path(f"{self.params['output_name']}.mcd")
-        path.write_text(source)
+        path.write_text(source, encoding="utf8")
         return _('Source file "{filename}" successfully updated.').format(filename=path)
 
     def load_input_file(self):
+        path = Path(self.params["input"])
         for encoding in self.params["encodings"]:
             with contextlib.suppress(UnicodeError):
                 self.encoding = encoding
-                return read_contents(self.params["input"], encoding=encoding).replace('"', '')
+                return path.read_text(encoding=encoding).replace('"', '')
         raise MocodoError(5, _('Unable to read "{filename}" with any of the following encodings: "{encodings}".').format(filename=self.params["input"], encodings= ", ".join(self.params["encodings"]))) # fmt: skip
 
     def update_input_file(self, source):
         if not source.startswith("%%mocodo"):
             source = f"%%mocodo\n{source}"
-        write_contents(self.params["input"], source, encoding=self.encoding)
+        Path(self.params["input"])(source, encoding=self.encoding)
         safe_print_for_PHP(self.output_success_message(self.params["input"]))
 
     def load_style(self):
         
         def load_by_name(name):
-            path = self.params[name] + ("" if self.params[name].endswith(".json") else ".json") 
-            if os.path.exists(path):
+            path = Path(self.params[name]).with_suffix(".json")
+            if path.is_file():
                 try:
-                    return json.loads(read_contents(path))
+                    return json.loads(path.read_text(encoding="utf8"))
                 except:
                     raise MocodoError(3, _('Problem with "{name}" file "{path}".').format(name=name, path=path)) # fmt: skip
-            path = os.path.join(self.params["script_directory"], "resources", name, path)
+            path = Path(self.params["script_directory"], "resources", name, path)
             try:
-                return json.loads(read_contents(path))
+                return json.loads(path.read_text(encoding="utf8"))
             except:
                 raise MocodoError(3, _('Problem with "{name}" file "{path}".').format(name=name, path=path)) # fmt: skip
         
@@ -85,5 +84,5 @@ class Common:
         return style
 
     def dump_file(self, path, content):
-        write_contents(path, content)
+        Path(path).write_text(content, encoding="utf8")
         safe_print_for_PHP(self.output_success_message(path))

@@ -24,7 +24,7 @@ def read_default_datatypes(resource_dir, language="en"):
     path = Path(resource_dir, f"default_datatypes_{language}.tsv")
     if not path.exists():
         return
-    for line in path.read_text().splitlines():
+    for line in path.read_text(encoding="utf8").splitlines():
         fields = line.split("\t")
         if len(fields) < 2:
             continue

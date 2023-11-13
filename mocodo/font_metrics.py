@@ -5,7 +5,7 @@ from pathlib import Path
 def font_metrics_factory(params):
     class FontMetrics:
 
-        data = json.loads(Path(params["script_directory"]).joinpath("resources").joinpath("font_metrics.json").read_text("utf8"))
+        data = json.loads(Path(params["script_directory"]).joinpath("resources").joinpath("font_metrics.json").read_text(encoding="utf8"))
 
         def __init__(self, font):
             if font["family"] not in self.data["fonts"]:

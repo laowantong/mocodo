@@ -37,7 +37,7 @@ for (dialect, filename) in dialects.items():
         continue
     alternative = "|".join(words_by_dialect[dialect])
     path = Path("mocodo", "resources", "relation_templates", filename)
-    text = path.read_text()
+    text = path.read_text(encoding="utf8")
     text = re.sub(r"('Protect reserved keywords'\n    search: ).+", fr"\1'(?i)^({alternative})$'", text)
-    path.write_text(text)
+    path.write_text(text, encoding="utf8")
     print(f"{filename} updated.")

@@ -26,7 +26,7 @@ def parse_value(v):
         return []
 
 def run(path):
-    text = path.read_text()
+    text = path.read_text(encoding="utf8")
     data = {}
     lines = text.splitlines()
     i = 0
