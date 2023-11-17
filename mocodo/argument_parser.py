@@ -1,15 +1,16 @@
 import argparse
+import contextlib
 import gettext
 import json
 import locale
 import os
 import random
 import re
-import shutil
+import importlib
 import sys
 from pathlib import Path
 
-from mocodo.tools.string_tools import strip_surrounds, TRUNCATE_DEFAULT_SIZE
+from mocodo.tools.string_tools import strip_surrounds
 from mocodo.tools.various import invert_dict
 
 from .version_number import version
@@ -196,17 +197,20 @@ def parsed_arguments():
     params_path_action = io_group._group_actions[-1]
     io_group.add_argument("--input", "-i",
         metavar="PATH",
+        default=""
     )
     input_action = io_group._group_actions[-1]
     
     (args, remaining_args) = parser.parse_known_args()
 
-    if args.input and not os.path.exists(args.input):
-        if os.path.exists(args.input + ".mcd"):
-            args.input += ".mcd"
-        else:  # the user has explicitely specified a non existent input file
-            init_localization(default_params.get("language", args.language))
-            raise MocodoError(2, _('The file "{input}" doesn\'t exist.').format(input=args.input))  # fmt: skip
+    if not args.input:
+        # no input file is specified, use the pristine sandbox
+        source = Path(SCRIPT_DIRECTORY, "resources", "pristine_sandbox.mcd").read_text(encoding="utf8")
+        args.input = "sandbox.mcd"
+        Path(args.input).write_text(source, encoding="utf8")
+    elif not args.input.endswith(".mcd"):
+        # the input file has no extension, assume it is a stem
+        args.input += ".mcd"
     default_params["input"] = args.input
 
     if os.path.exists(args.params_path):
@@ -279,6 +283,11 @@ def parsed_arguments():
         help=_("recreate a pristine version of the files 'sandbox.mcd' and 'params.json' in the input directory, then exit"),
     )
 
+    io_group.add_argument("--lib",
+        metavar="URL",
+        nargs="?",
+        help=_("remote directory to use as fallback when the input file is not found locally"),
+    )
     io_group.add_argument("--output_dir",
         metavar="PATH",
         help=_("the directory of the output files"),
@@ -448,13 +457,17 @@ def parsed_arguments():
         "input",
     ]
 
-    if not os.path.exists(params["input"]):
-        path = Path(SCRIPT_DIRECTORY, "resources", "pristine_sandbox.mcd")
-        shutil.copyfile(path, params["input"])
+    lib = "https://mocodo.net/web/lib"
+    if params["lib"]:
+        parse_url = importlib.import_module("urllib.parse").urlparse
+        if parse_url(params["lib"]).scheme:
+            lib = params["lib"]
+    params["lib"] = lib
+
     if params["seed"] is not None:
         random.seed(params["seed"])
-    try:
+    
+    with contextlib.suppress(UnicodeDecodeError, AttributeError):
         params["title"] = params["title"].decode("utf8")
-    except:
-        pass
+    
     return params

@@ -284,10 +284,6 @@ msgstr "le chemin du fichier de paramètres. S'il est omis, utilise « params.j
 msgid "the path of the input file. By default, the output files will be generated in the same directory"
 msgstr "le chemin du fichier d'entrée. Par défaut, les fichiers de sortie seront générés dans le même répertoire"
 
-#: mocodo/argument_parser.py:431
-msgid "The file \"{input}\" doesn't exist."
-msgstr "Le fichier « {input} » n'existe pas."
-
 #: mocodo/argument_parser.py:443
 msgid "show this help message, then exit"
 msgstr "affiche ce message d'aide, puis termine"
@@ -415,6 +411,10 @@ msgstr "Fichier source « {filename} » mis à jour avec succès."
 #: mocodo/common.py:44
 msgid "Unable to read \"{filename}\" with any of the following encodings: \"{encodings}\"."
 msgstr "Impossible de lire « {filename} » dans aucun des encodages suivants : \\\"{encodings}\\\"."
+
+#: mocodo/common.py:50
+msgid "The file \"{input}\" doesn't exist."
+msgstr "Le fichier « {input} » n'existe pas."
 
 #: mocodo/common.py:60 mocodo/common.py:65
 msgid "Problem with \"{name}\" file \"{path}\"."

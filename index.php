@@ -21,7 +21,12 @@
 	<script src="web/ace-builds/ext-language_tools.js"></script>
 	<script async defer src="https://buttons.github.io/buttons.js"></script>
 </head>
-
+<?php
+$lib = $_GET['lib'];
+if ($lib) {
+	echo "<script>$(document).ready(function() { $('#lib').val('{$lib}'); });</script>";
+}
+?>
 <body>
 	<div id="wrap">
 		<div id="banner">
@@ -142,8 +147,8 @@
 					</div>
 					<div id="inputContents" class="contents">
 						<div id="inputPane">
-							<div><input type="text" oninput="markAsDirty();unbox()" onfocus="onFocus(this)" name="title" id="title" value="MCD" onblur="onBlur(this)" autocomplete="off" /></div>
-							<select onchange="changeTitleToNthTuto();unbox()" name="tutorial" id="tutorial" title="Parcourez notre galerie de MCD pour apprendre la syntaxe de Mocodo."></select>
+							<div><input type="text" oninput="markAsDirty();get_from_lib()" onfocus="onFocus(this)" name="title" id="title" value="MCD" onblur="onBlur(this)" autocomplete="off" /></div>
+							<select onchange="changeTitleToNthTuto();get_from_lib()" name="tutorial" id="tutorial" title="Parcourez notre galerie de MCD pour apprendre la syntaxe de Mocodo."></select>
 							<textarea hidden name="text"><?php
 								$encoded_string = (isset($_GET['mcd'])) ? $_GET['mcd'] : '';
 								echo (zlib_decode(base64_decode(strtr($encoded_string, '-_', '+/'))));
@@ -219,13 +224,20 @@
 								</ul>
 							</div>
 							<div class="setting-row">
-								<label class="setting-label" for="knowledge" title="Vous pouvez adapter les traitements et l'interface de Mocodo online à des besoins plus avancés.">Notions supplémentaires</label>
+								<label class="setting-label" for="knowledge" title="Vous pouvez adapter les traitements et l'interface de Mocodo online à des besoins plus avancés.">Utilisation avancée</label>
 								<details class="setting-details">
 									<summary>Découvrir…</summary>
 									<ul class="setting-controls" name="knowledge" id="knowledge">
 										<!-- To be populated by JS -->
 									</ul>
 								</details>
+							</div>
+							<div class="setting-row">
+								<label class="setting-label" for="lib" title="URL d'un répertoire distant. Si l'utilisateur modifie le titre du MCD, Mocodo y cherchera un fichier de même nom (extension '.mcd' facultative) et, s'il existe, remplacera le texte d'entrée par son contenu.">Bibliothèque de MCD</label>
+								<div class="setting-controls">
+									<input type="url" name="lib" id="lib" onchange="markAsDirty();writeCookie()" placeholder="https://your_server.com/path/to/your/mcd/directory"
+									pattern="[Hh][Tt][Tt][Pp][Ss]?:\/\/(?:(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)(?:\.(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)*(?:\.(?:[a-zA-Z\u00a1-\uffff]{2,}))(?::\d{2,5})?(?:\/[^\s]*)?" />
+								</div>
 							</div>
 							<div style="display: none;">
 								<select onchange="markAsDirty();writeCookie()" name="sql_case" id="sql_case">
@@ -299,7 +311,7 @@
 		</form>
 	</div>
 	<div id="navigation">
-		<a target="_blank" href="https://github.com/laowantong/mocodo">Mocodo 4.0.14</a>
+		<a target="_blank" href="https://github.com/laowantong/mocodo">Mocodo 4.1.0</a>
 		&nbsp;∙&nbsp;
 		<a target="_blank" href="https://rawgit.com/laowantong/mocodo/master/doc/fr_refman.html">Documentation</a>
 		&nbsp;∙&nbsp;

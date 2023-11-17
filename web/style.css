@@ -538,3 +538,11 @@ ul.tabs a:hover {
 .footnote p a {
   color: black;
 }
+
+#paramContents input[type="url"] {
+  width: 100%;
+  height: 2em;
+  border: 1px solid #CCC;
+  border-radius: 0px;
+  padding: 0px 0.5em 0px 0.5em;
+}

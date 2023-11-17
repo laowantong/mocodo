@@ -90,14 +90,14 @@ var conversions = {
 }
 var knowledge = {
   "advanced_tutorial": {
-    "name": "Tutoriel interactif avancé",
+    "name": "Tutoriel (2/2)",
     "title": "Cochez pour remplacer la première partie du tutoriel par la seconde.",
     "default": false,
     "onchange": "setTutorialKnowledge(event.target.checked)",
   },
   "weak": {
     "name": "Entité faible (ou identification relative), cardinalités notées&nbsp;&nbsp;",
-    "title": "Cochez pour inclure des entités faibles dans les MCD aléatoires et certaines opérations de décomposition. Une entité faible est une entité dont l&#39;identifiant nécessite d&#39;être renforcé par une ou plusieurs entités dont elle dépend fonctionnellement.",
+    "title": "Cochez pour inclure des entités faibles dans les MCD aléatoires et certaines opérations de décomposition. Une entité faible est une entité dont l&#39;identifiant nécessite d&#39;être renforcé par une ou plusieurs entités dont elle dépend fonctionnellement. NB : laisser cette option non cochée ne vous empêchera pas de créer vous-même des entités faibles.",
     "default": false
   },
   "cluster": {
@@ -391,12 +391,12 @@ function rewrite(args) {
       }
     });
   };
-function unbox() {
+function get_from_lib() {
   if (request_lock) return;
   request_lock = true
   $.ajax({
     type: "POST",
-    url: "web/unbox.php",
+    url: "web/get_from_lib.php",
     data: { title: $("#title").attr("value") },
     success: function (result) {
       if (result) {
