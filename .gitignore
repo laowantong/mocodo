@@ -19,7 +19,7 @@ magic/dist/*
 magic/mocodo_magic.egg-info/*
 magic/README.rst
 web/sessions/*
-web/box/*
+web/lib/*
 .pytest_cache/*
 .ipynb_checkpoints/*
 */.ipynb_checkpoints/*

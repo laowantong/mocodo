@@ -3,6 +3,7 @@ import numbers
 import sys
 from pathlib import Path
 import contextlib
+import importlib
 
 from .mocodo_error import MocodoError
 
@@ -30,18 +31,27 @@ class Common:
         return _('Source file "{filename}" successfully updated.').format(filename=path)
 
     def load_input_file(self):
+        # Try to read the file locally.
         path = Path(self.params["input"])
-        for encoding in self.params["encodings"]:
-            with contextlib.suppress(UnicodeError):
-                self.encoding = encoding
-                return path.read_text(encoding=encoding).replace('"', '')
-        raise MocodoError(5, _('Unable to read "{filename}" with any of the following encodings: "{encodings}".').format(filename=self.params["input"], encodings= ", ".join(self.params["encodings"]))) # fmt: skip
-
-    def update_input_file(self, source):
-        if not source.startswith("%%mocodo"):
-            source = f"%%mocodo\n{source}"
-        Path(self.params["input"])(source, encoding=self.encoding)
-        safe_print_for_PHP(self.output_success_message(self.params["input"]))
+        if path.is_file():
+            for encoding in self.params["encodings"]:
+                with contextlib.suppress(UnicodeError):
+                    self.encoding = encoding
+                    return path.read_text(encoding=encoding).replace('"', '')
+            raise MocodoError(5, _('Unable to read "{filename}" with any of the following encodings: "{encodings}".').format(filename=self.params["input"], encodings= ", ".join(self.params["encodings"]))) # fmt: skip
+        # The file is not found locally, try to retrieve it from the server.
+        self.encoding = self.params["encodings"][0]
+        requests = importlib.import_module("requests")
+        with contextlib.suppress(requests.exceptions.ConnectionError):
+            response = requests.get(f"{self.params['lib']}/{path.name}")
+            if response.status_code == 200:
+                source = response.text.replace('"', '')
+                # Save the file locally.
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_text(source, encoding=self.encoding)
+                return source
+        # The file is not found locally nor on the server.
+        raise MocodoError(2, _('The file "{input}" doesn\'t exist.').format(input=path))  # fmt: skip
 
     def load_style(self):
         
