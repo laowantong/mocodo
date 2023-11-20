@@ -115,11 +115,14 @@ if ($_POST['conversions']) {
   $mocodo .= " -t{$transformation_options}";
 };
 
+if (!isset($_POST["knowledge"]) || !is_array($_POST["knowledge"]) || !in_array("assoc_ids", $_POST["knowledge"])) {
+  $mocodo .= " --no_assoc_ids";
+};
+
 // Launch the script
 
 $out = array();
 $command_line = "{$mocodo} 2>&1 >/dev/null";
-// fwrite($php_log, $command_line . "\n");
 exec($command_line, $out);
 
 if (!empty($out)) {

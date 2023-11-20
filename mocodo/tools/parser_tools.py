@@ -60,7 +60,7 @@ def parse_source(source):
             raise MocodoError(519, _('{pin}The constraint targets must be comma-separated.').format(pin=pin)) # fmt: skip
         if expected == {'HASHTAG', 'NL', 'ID_GROUPS', 'ID_MARK', 'ATTR', 'COMMA'}:
             raise MocodoError(500, _('{pin}An attribute label cannot start with "{v[1]!r}".').format(pin=pin, v=v)) # fmt: skip
-        if expected == {'NL', 'ATTR', 'COMMA'}:
+        if expected == {'ID_MARK', 'NL', 'ATTR', 'COMMA'}:
             raise MocodoError(500, _('{pin}An attribute label cannot start with "{v[1]!r}".').format(pin=pin, v=v)) # fmt: skip
         if expected == {'LBRACKET', 'NL', 'COMMA'}:
             raise MocodoError(521, _('{pin}An attribute label cannot contain "{v}".').format(pin=pin, v=v)) # fmt: skip
@@ -206,6 +206,11 @@ class ClauseExtractor(Transformer):
             d["rank"] = rank
             items.append(d)
         return (f"{tree[0][0]}s", items)
+
+    def assoc_attr(self, tree):
+        if tree[0] == "_":
+            tree[-1][1]["id_mark"] = "_"
+        return ("attr", tree[-1][1])
 
     def assoc_leg(self, tree):
         return ("leg", dict(tree))

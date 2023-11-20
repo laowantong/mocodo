@@ -388,9 +388,17 @@ msgstr "applique à tous les textes calculés le facteur de mise à l'échelle d
 msgid "raise an error when horizontal or vertical legs overlap"
 msgstr "lève une erreur quand des pattes horizontales ou verticales se chevauchent"
 
+#: mocodo/argument_parser.py:424
+msgid "forbid the use of identifiers in associations (according to the Merise standard)"
+msgstr "interdit l'utilisation d'identifiants dans les associations (conformément au standard Merise)"
+
 #: mocodo/argument_parser.py:586
 msgid "set the visibility and the contents of the lateral gutters"
 msgstr "définit la visibilité et le contenu des gouttières latérales"
+
+#: mocodo/association.py:40
+msgid "The association \"{name}\" cannot have an identifier."
+msgstr "L'association « {name} » ne peut pas avoir d'identifiant."
 
 #: mocodo/association.py:50
 msgid "The association \"{name}\" should have at least 3 legs to become a cluster."

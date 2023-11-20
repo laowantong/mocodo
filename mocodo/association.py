@@ -31,6 +31,10 @@ class Association:
         for attr in clause.get("attrs", []):
             if attr.get("attribute_label", "") == "":
                 self.attributes.append(PhantomAttribute(attr))
+            elif attr.get("id_mark", "") == "_":
+                if params.get("no_assoc_ids"):
+                    raise MocodoError(52, _('The association "{name}" cannot have an identifier.').format(name=self.raw_name))
+                self.attributes.append(StrongAttribute(attr))
             else:
                 self.attributes.append(SimpleAssociationAttribute(attr))
         df_label = params.get("df", "DF")

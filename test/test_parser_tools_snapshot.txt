@@ -153,8 +153,9 @@ REQUÉRIR, 1N PROJET, 0N PIÈCE: qté requise
             box_name	PIÈCE
       : 
       seq
-        typed_attr
-          attr	qté requise
+        assoc_attr
+          typed_attr
+            attr	qté requise
 --------------------------------------------------------------------------------
 [{'name': 'REQUÉRIR',
   'legs': [{'card': '1N', 'entity': 'PROJET', 'rank': 0},
@@ -190,8 +191,9 @@ COMPOSER, 0N [composée] PIÈCE, 0N [composante] PIÈCE: quantité
             box_name	PIÈCE
       : 
       seq
-        typed_attr
-          attr	quantité
+        assoc_attr
+          typed_attr
+            attr	quantité
 --------------------------------------------------------------------------------
 [{'name': 'COMPOSER',
   'legs': [{'card': '0N', 'leg_note': 'composée', 'entity': 'PIÈCE', 'rank': 0},
@@ -264,8 +266,9 @@ FOURNIR, 1N PROJET, 1N PIÈCE, 1N SOCIÉTÉ: qté fournie
             box_name	SOCIÉTÉ
       : 
       seq
-        typed_attr
-          attr	qté fournie
+        assoc_attr
+          typed_attr
+            attr	qté fournie
 --------------------------------------------------------------------------------
 [{'name': 'FOURNIR',
   'legs': [{'card': '1N', 'entity': 'PROJET', 'rank': 0},
@@ -577,8 +580,9 @@ Réserver, /1N Client, 1N Chambre, 0N Date: Durée
             box_name	Date
       : 
       seq
-        typed_attr
-          attr	Durée
+        assoc_attr
+          typed_attr
+            attr	Durée
 --------------------------------------------------------------------------------
 [{'name': 'Réserver',
   'legs': [{'card_prefix': '/', 'card': '1N', 'entity': 'Client', 'rank': 0},
@@ -624,8 +628,9 @@ LIGULA, 0N LACUS, /1N EROS, 0N TELLUS, 0N CONSEQUAT: metus
             box_name	CONSEQUAT
       : 
       seq
-        typed_attr
-          attr	metus
+        assoc_attr
+          typed_attr
+            attr	metus
 --------------------------------------------------------------------------------
 [{'name': 'LIGULA',
   'legs': [{'card': '0N', 'entity': 'LACUS', 'rank': 0},
@@ -680,8 +685,9 @@ Réserver: _Durée
             box_name	EROS
       : 
       seq
-        typed_attr
-          attr	metus
+        assoc_attr
+          typed_attr
+            attr	metus
 --------------------------------------------------------------------------------
 [{'box_def_prefix': '+',
   'name': 'LIGULA',
@@ -715,8 +721,9 @@ Réserver: _Durée
             box_name	EROS
       : 
       seq
-        typed_attr
-          attr	metus
+        assoc_attr
+          typed_attr
+            attr	metus
 --------------------------------------------------------------------------------
 [{'box_def_prefix': '-',
   'name': 'LIGULA',
@@ -794,8 +801,9 @@ INCLURE, 1N [Une commande peut inclure plusieurs produits distincts, et en inclu
             box_name	PRODUIT
       : 
       seq
-        typed_attr
-          attr	Quantité
+        assoc_attr
+          typed_attr
+            attr	Quantité
 --------------------------------------------------------------------------------
 [{'name': 'INCLURE',
   'legs': [{'card': '1N',
@@ -957,16 +965,20 @@ HERE, 0N NICE, 0N MEAN: wood, much, , stop
             box_name	MEAN
       : 
       seq
-        typed_attr
-          attr	wood
+        assoc_attr
+          typed_attr
+            attr	wood
         , 
-        typed_attr
-          attr	much
+        assoc_attr
+          typed_attr
+            attr	much
         , 
-        typed_attr
+        assoc_attr
+          typed_attr
         , 
-        typed_attr
-          attr	stop
+        assoc_attr
+          typed_attr
+            attr	stop
 --------------------------------------------------------------------------------
 [{'name': 'HERE',
   'legs': [{'card': '0N', 'entity': 'NICE', 'rank': 0},
@@ -1035,13 +1047,16 @@ Unit, 1N Draw, 11 Folk: Peer, Tour,
             box_name	Folk
       : 
       seq
-        typed_attr
-          attr	Peer
+        assoc_attr
+          typed_attr
+            attr	Peer
         , 
-        typed_attr
-          attr	Tour
+        assoc_attr
+          typed_attr
+            attr	Tour
         , 
-        typed_attr
+        assoc_attr
+          typed_attr
 --------------------------------------------------------------------------------
 [{'name': 'Unit',
   'legs': [{'card': '1N', 'entity': 'Draw', 'rank': 0},
@@ -1103,7 +1118,8 @@ INCLURE, XX COMMANDE, XX PRODUIT:
             box_name	PRODUIT
       : 
       seq
-        typed_attr
+        assoc_attr
+          typed_attr
 --------------------------------------------------------------------------------
 [{'name': 'INCLURE',
   'legs': [{'card': 'XX', 'entity': 'COMMANDE', 'rank': 0},
@@ -1634,11 +1650,12 @@ INCLURE, 1N COMMANDE, 0N PRODUIT: Quantité [tinyint(4)]
             box_name	PRODUIT
       : 
       seq
-        typed_attr
-          attr	Quantité
-           [
-          datatype	tinyint(4)
-          ]
+        assoc_attr
+          typed_attr
+            attr	Quantité
+             [
+            datatype	tinyint(4)
+            ]
 --------------------------------------------------------------------------------
 [{'name': 'INCLURE',
   'legs': [{'card': '1N', 'entity': 'COMMANDE', 'rank': 0},
@@ -1902,8 +1919,9 @@ L33T123, 0N> H4X0R12, 0N< H4X0R0
             box_name	PIÈCE
       : 
       seq
-        typed_attr
-          attr	qté requise
+        assoc_attr
+          typed_attr
+            attr	qté requise
 --------------------------------------------------------------------------------
 [{'type': 'association',
   'indent': '  ',
@@ -1996,11 +2014,13 @@ DIRIGER, EMPLOYÉ, PROJET: biz, buz
             box_name	PROJET
       : 
       seq
-        typed_attr
-          attr	biz
+        assoc_attr
+          typed_attr
+            attr	biz
         , 
-        typed_attr
-          attr	buz
+        assoc_attr
+          typed_attr
+            attr	buz
 --------------------------------------------------------------------------------
 [{'name': 'DIRIGER',
   'legs': [{'entity': 'EMPLOYÉ', 'rank': 0}, {'entity': 'PROJET', 'rank': 1}],
@@ -2028,11 +2048,13 @@ A, B, C: biz, buz
             box_name	C
       : 
       seq
-        typed_attr
-          attr	biz
+        assoc_attr
+          typed_attr
+            attr	biz
         , 
-        typed_attr
-          attr	buz
+        assoc_attr
+          typed_attr
+            attr	buz
 --------------------------------------------------------------------------------
 [{'name': 'A',
   'legs': [{'entity': 'B', 'rank': 0}, {'entity': 'C', 'rank': 1}],
@@ -2056,11 +2078,13 @@ Foo, Bar: biz, buz
             box_name	Bar
       : 
       seq
-        typed_attr
-          attr	biz
+        assoc_attr
+          typed_attr
+            attr	biz
         , 
-        typed_attr
-          attr	buz
+        assoc_attr
+          typed_attr
+            attr	buz
 --------------------------------------------------------------------------------
 [{'name': 'Foo',
   'legs': [{'entity': 'Bar', 'rank': 0}],
@@ -2116,11 +2140,13 @@ DIRIGER   ,    0N    EMPLOYÉ   ,    01    PROJET   : fizz,  buzz
             box_name	PROJET
          : 
       seq
-        typed_attr
-          attr	fizz
+        assoc_attr
+          typed_attr
+            attr	fizz
         ,  
-        typed_attr
-          attr	buzz
+        assoc_attr
+          typed_attr
+            attr	buzz
 --------------------------------------------------------------------------------
 [{'name': 'DIRIGER',
   'legs': [{'card': '0N', 'entity': 'EMPLOYÉ', 'rank': 0},
@@ -2178,11 +2204,13 @@ DIRIGER  ,  0N  EMPLOYÉ  ,  01  PROJET  : fizz, buzz 
             box_name	PROJET
         : 
       seq
-        typed_attr
-          attr	fizz
+        assoc_attr
+          typed_attr
+            attr	fizz
         , 
-        typed_attr
-          attr	buzz
+        assoc_attr
+          typed_attr
+            attr	buzz
 --------------------------------------------------------------------------------
 [{'name': 'DIRIGER',
   'legs': [{'card': '0N', 'entity': 'EMPLOYÉ', 'rank': 0},
@@ -2240,11 +2268,13 @@ DIRIGER	 ,		0N		EMPLOYÉ	 ,		01		PROJET	 : fizz,	buzz
             box_name	PROJET
       	 : 
       seq
-        typed_attr
-          attr	fizz
+        assoc_attr
+          typed_attr
+            attr	fizz
         ,	
-        typed_attr
-          attr	buzz
+        assoc_attr
+          typed_attr
+            attr	buzz
 --------------------------------------------------------------------------------
 [{'name': 'DIRIGER',
   'legs': [{'card': '0N', 'entity': 'EMPLOYÉ', 'rank': 0},
@@ -3505,4 +3535,44 @@ Foo: bar, 1_baz, 21_qux, 123_quux
   'type': 'entity',
   'indent': '',
   'source': 'Foo: bar, 1_baz, 21_qux, 123_quux'}]
+
+--------------------------------------------------------------------------------
+Réserver, 1N Client, 0N Chambre: _date, durée
+--------------------------------------------------------------------------------start
+  line
+    assoc_clause
+      assoc_name_def
+        box_name	Réserver
+      , 
+      seq
+        assoc_leg
+          card	1N
+           
+          entity_name_ref
+            box_name	Client
+        , 
+        assoc_leg
+          card	0N
+           
+          entity_name_ref
+            box_name	Chambre
+      : 
+      seq
+        assoc_attr
+          _
+          typed_attr
+            attr	date
+        , 
+        assoc_attr
+          typed_attr
+            attr	durée
+--------------------------------------------------------------------------------
+[{'name': 'Réserver',
+  'legs': [{'card': '1N', 'entity': 'Client', 'rank': 0},
+           {'card': '0N', 'entity': 'Chambre', 'rank': 1}],
+  'attrs': [{'attribute_label': 'date', 'id_mark': '_', 'rank': 0},
+            {'attribute_label': 'durée', 'rank': 1}],
+  'type': 'association',
+  'indent': '',
+  'source': 'Réserver, 1N Client, 0N Chambre: _date, durée'}]
 
