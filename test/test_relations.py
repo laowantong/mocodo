@@ -112,6 +112,18 @@ class relationsTest(unittest.TestCase):
         mcd = Mcd(source, params)
         self.assertRaisesRegex(MocodoError, r"Mocodo Err\.11", Relations, mcd, params)
 
+    def test_association_attributes(self):
+        source = """
+            Client: Id. client
+            Réserver, 1N Client, 0N Chambre: _Date, Durée
+            Chambre: Num. chambre, Prix
+        """
+        expected = """
+            Chambre (_Num. chambre_, Prix)
+            Réserver (_Id. client_, _#Num. chambre_, _Date_, Durée)
+        """.strip().replace("    ", "")
+        t = Relations(Mcd(source, params), params)
+        self.assertEqual(t.get_text(minimal_template), expected)
     
     def test_weak_entities_strengthened_by_itself(self):
         source = """
@@ -139,7 +151,7 @@ class relationsTest(unittest.TestCase):
             Unit (_#Norm_, _#Soon_, _Folk_, Peer, Hall, Tour)
         """.strip().replace("    ", "")
         t = Relations(Mcd(source, params), params)
-        self.assertTrue(t.get_text(minimal_template) == expected)
+        self.assertEqual(t.get_text(minimal_template), expected)
     
     def test_weak_entities_with_cycle(self):
         source = """

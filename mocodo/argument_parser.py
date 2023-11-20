@@ -421,6 +421,10 @@ def parsed_arguments():
         action="store_true",
         help=_("raise an error when horizontal or vertical legs overlap"),
     )
+    aspect_group.add_argument("--no_assoc_ids",
+        action="store_true",
+        help=_("forbid the use of identifiers in associations (according to the Merise standard)"),
+    )
     aspect_group.add_argument("--gutters",
         metavar="STR",
         nargs="+",

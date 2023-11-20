@@ -111,6 +111,11 @@ var knowledge = {
     "title": "Cochez pour faire apparaître dans le schéma relationnel les contraintes d&#39unicité en exposant, d&#39optionalité comme des « ? », et de non-optionalité comme des « ! ». Ces notations sont non standard et peuvent gêner la lecture. NB : quel que soit votre choix, Mocodo ajoute systématiquement les contraintes UNIQUE, NULL ou NOT NULL appropriées dans le code SQL généré.",
     "default": false
   },
+  "assoc_ids": {
+    "name": "Autoriser les identifiants dans les associations",
+    "title": "Cochez pour activer cette possibilité, non prévue par Merise, mais qui permet dans certains cas de produire un même schéma relationnel à partir d&#39un schéma conceptuel plus simple.",
+    "default": false
+  },
   "reproductibility": {
     "name": "Reproductibilité des résultats",
     "title": "Cochez pour que la longueur de la première ligne du texte-source soit prise comme germe du générateur aléatoire. Ainsi, les algorithmes randomisés produiront toujours la même sortie sur un même texte-source.",

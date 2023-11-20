@@ -42,7 +42,7 @@ comment: PERCENT /.*\r?\n/
 
 // Associations
 
-assoc_clause: box_def_prefix? assoc_name_def COMMA seq{assoc_leg} (COLON seq{typed_attr})? NL
+assoc_clause: box_def_prefix? assoc_name_def COMMA seq{assoc_leg} (COLON seq{assoc_attr})? NL
 assoc_name_def: box_name
 assoc_leg: _assoc_card? leg_arrow? SP? (LBRACKET leg_note? RBRACKET)? entity_name_ref
 _assoc_card: card_hidden? card_prefix? card
@@ -52,6 +52,7 @@ entity_name_ref: box_name
 CARD.2: /(?![-_\/])(\w|\?){2}(?=[ \t]*[^\w,\r\n:])/
 LEG_ARROW: /[<>]/
 leg_note: note
+assoc_attr: id_mark? typed_attr
 
 // Entities
 

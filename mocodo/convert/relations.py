@@ -37,6 +37,7 @@ def set_defaults(template):
     result.setdefault("compose_ex_foreign_key", result["compose_normal_attribute"])
     result.setdefault("compose_primary_ex_foreign_key", result["compose_primary_key"])
     result.setdefault("compose_association_attribute", result["compose_normal_attribute"])
+    result.setdefault("compose_association_primary_key", result["compose_primary_key"])
     result.setdefault("compose_deleted_child_attribute", result["compose_normal_attribute"])
     result.setdefault("compose_deleted_child_discriminator_", result["compose_normal_attribute"])
     result.setdefault("compose_deleted_child_discriminator_T", result["compose_normal_attribute"])
@@ -53,6 +54,7 @@ def set_defaults(template):
     result.setdefault("compose_deleted_parent_primary_key", result["compose_primary_key"])
     result.setdefault("compose_stopped_foreign_key", result["compose_foreign_key"])
     result.setdefault("compose_outer_attribute", result["compose_normal_attribute"])
+    result.setdefault("compose_outer_primary_key", result["compose_primary_key"])
     result.setdefault("compose_parent_primary_key", result["compose_primary_foreign_key"])
     result.setdefault("compose_strengthening_primary_foreign_key", result["compose_primary_foreign_key"])
     result.setdefault("compose_strengthening_primary_ex_foreign_key", result["compose_primary_key"])
@@ -476,14 +478,14 @@ class Relations:
                             })
                 self.relations[association.bid]["columns"].extend({ # and the attributes already existing in the association
                         "attribute": attribute.label,
-                        "optionality": self.pop_optionality_from_datatype(attribute),
+                        "optionality": "!" if attribute.kind == "strong" else self.pop_optionality_from_datatype(attribute),
                         "datatype": attribute.datatype,
                         "adjacent_source": None,
                         "outer_source": None,
                         "association_name": association.name_view,
                         "leg_note": None,
-                        "is_primary": False,
-                        "nature": "association_attribute",
+                        "is_primary": attribute.kind == "strong",
+                        "nature": "association_primary_key" if attribute.kind == "strong" else "association_attribute",
                         "unicities": "",
                     } for attribute in association.attributes if attribute.label.strip() != ""
                 )
@@ -575,14 +577,14 @@ class Relations:
             # Add the attributes already existing in the association
             self.relations[df_leg.entity_bid]["columns"].extend([{
                     "attribute": attribute.label,
-                    "optionality": self.pop_optionality_from_datatype(attribute),
+                    "optionality": "!" if attribute.kind == "strong" else self.pop_optionality_from_datatype(attribute),
                     "datatype": attribute.datatype,
                     "association_name": association.name_view,
                     "adjacent_source": None,
                     "outer_source": None,
                     "leg_note": None,
-                    "is_primary": False,
-                    "nature": "outer_attribute",
+                    "is_primary": attribute.kind == "strong",
+                    "nature": "outer_primary_key" if attribute.kind == "strong" else "outer_attribute",
                     "unicities": "",
                 } for attribute in association.attributes if attribute.label.strip() != ""])
 

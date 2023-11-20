@@ -95,6 +95,11 @@ class ParseTest(unittest.TestCase):
             self.assertEqual([att.label for att in a.attributes], ["note stage", "heure soutenance"])
             self.assertEqual([att.__class__ for att in a.attributes], [SimpleAssociationAttribute, SimpleAssociationAttribute])
 
+    def test_identifiers(self):
+        a = association_wrapper("Réserver, 1N Client, 0N Chambre: _Date, Durée")
+        self.assertEqual([att.label for att in a.attributes], ["Date", "Durée"])
+        self.assertEqual([att.__class__ for att in a.attributes], [StrongAttribute, SimpleAssociationAttribute])
+
     def test_other_card(self):
         a = association_wrapper("SOUTENIR, XX ÉTUDIANT, XX DATE: note stage")
         self.assertTrue(not a.legs[0].card_view.strip())

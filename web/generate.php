@@ -115,6 +115,10 @@ if ($_POST['conversions']) {
   $mocodo .= " -t{$transformation_options}";
 };
 
+if (!in_array("assoc_ids", $_POST["knowledge"])) {
+  $mocodo .= " --no_assoc_ids";
+};
+
 // Launch the script
 
 $out = array();
