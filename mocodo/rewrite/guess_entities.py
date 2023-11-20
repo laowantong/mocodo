@@ -1,3 +1,4 @@
+from ..tools.string_tools import rstrip_digit_or_underline
 from ..tools.parser_tools import parse_source
 
 def run(source, id_prefix):
@@ -9,7 +10,7 @@ def run(source, id_prefix):
     new_entity_names = entity_name_refs - entity_name_defs
     new_entity_clauses = [source]
     for ent in new_entity_names:
-        lower_ent = ent.lower()
+        lower_ent = rstrip_digit_or_underline(ent.lower())
         if lower_ent in ("date", "calendrier", "calendar"):
             clause = f"{ent}: date"
         elif lower_ent == "période":
