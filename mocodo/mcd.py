@@ -629,10 +629,14 @@ class Mcd:
                 coordinates[box] = (i, j)
         segments = defaultdict(list)
         for entity in self.entities.values():
+            if entity.is_invisible:
+                continue
             (ie, je) = coordinates[entity]
             segments["i", ie].append((je, je, entity, entity))
             segments["j", je].append((ie, ie, entity, entity))
         for association in self.associations.values():
+            if association.is_invisible:
+                continue
             (ia, ja) = coordinates[association]
             segments[("i", ia)].append((ja, ja, association, association))
             segments[("j", ja)].append((ia, ia, association, association))
