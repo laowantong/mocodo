@@ -195,6 +195,8 @@ class Mcd:
             d = defaultdict(list)
             tweakable_legs = {}
             for association in self.associations.values():
+                if association.is_invisible:
+                    continue
                 for leg in association.legs:
                     (ei, ej) = coordinates[leg.entity]
                     (ai, aj) = coordinates[leg.association]
