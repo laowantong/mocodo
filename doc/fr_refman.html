@@ -13103,7 +13103,7 @@ $( document ).ready(function(){
 
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="prompt input_prompt">In&nbsp;[37]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">reload_ext</span> mocodo
@@ -13113,28 +13113,10 @@ $( document ).ready(function(){
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Mocodo 4.1.1 loaded.
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[38]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">IPython</span> <span class="kn">import</span> <span class="n">display</span>
@@ -39015,7 +38997,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[184]:</div>
+<div class="prompt input_prompt">In&nbsp;[39]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">display</span><span class="o">.</span><span class="n">Code</span><span class="p">(</span><span class="s2">&quot;../../mocodo/resources/relation_templates/latex-c.yaml&quot;</span><span class="p">)</span>
@@ -39031,7 +39013,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[184]:</div>
+    <div class="prompt output_prompt">Out[39]:</div>
 
 
 
@@ -39126,11 +39108,11 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="w">    </span><span class="nt">replace</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;\\prim{\1}&#39;</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">order</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1200</span>
 <span class="w">    </span><span class="nt">comment</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Compose</span><span class="nv"> </span><span class="s">foreign</span><span class="nv"> </span><span class="s">primary</span><span class="nv"> </span><span class="s">keys&#39;</span>
-<span class="w">    </span><span class="nt">search</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;&lt;span</span><span class="nv"> </span><span class="s">class=</span><span class="se">&#39;&#39;</span><span class="s">foreign</span><span class="nv"> </span><span class="s">primary</span><span class="se">&#39;&#39;</span><span class="s">&gt;(.+?)&lt;/span&gt;&#39;</span>
+<span class="w">    </span><span class="nt">search</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;&lt;span</span><span class="nv"> </span><span class="s">class=</span><span class="se">&#39;&#39;</span><span class="s">foreign</span><span class="nv"> </span><span class="s">primary</span><span class="se">&#39;&#39;</span><span class="s">&gt;#(.+?)&lt;/span&gt;&#39;</span>
 <span class="w">    </span><span class="nt">replace</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;\\foreign{\\prim{\1}}&#39;</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">order</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1300</span>
 <span class="w">    </span><span class="nt">comment</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Compose</span><span class="nv"> </span><span class="s">foreign</span><span class="nv"> </span><span class="s">attributes&#39;</span>
-<span class="w">    </span><span class="nt">search</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;&lt;span</span><span class="nv"> </span><span class="s">class=</span><span class="se">&#39;&#39;</span><span class="s">foreign</span><span class="se">&#39;&#39;</span><span class="s">&gt;(.+?)&lt;/span&gt;&#39;</span>
+<span class="w">    </span><span class="nt">search</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;&lt;span</span><span class="nv"> </span><span class="s">class=</span><span class="se">&#39;&#39;</span><span class="s">foreign</span><span class="se">&#39;&#39;</span><span class="s">&gt;#(.+?)&lt;/span&gt;&#39;</span>
 <span class="w">    </span><span class="nt">replace</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;\\foreign{\1}&#39;</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">order</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1400</span>
 <span class="w">    </span><span class="nt">comment</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Exponents&#39;</span>
@@ -39478,6 +39460,14 @@ sandbox_ddl.sql
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>NB.</strong> Les gabarits définis par l'utilisateur n'ont <strong>pas</strong> vocation à être placés dans le répertoire <code>relation_templates</code> de la distribution. Votre nouveau gabarit <code>new_sql</code> ne peut donc pas être invoqué aussi simplement que les gabarits officiels (i.e., avec <code>-t new_sql</code>). Si vous faites une modification ou un ajout que vous voulez voir inclus dans la distribution, n'hésitez pas à faire une PR.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="M&#233;canisme-de-mise-&#224;-jour">M&#233;canisme de mise &#224; jour<a class="anchor-link" href="#M&#233;canisme-de-mise-&#224;-jour">&#182;</a></h3>
 </div>
 </div>
@@ -39533,7 +39523,7 @@ sandbox_ddl.sql
 <tr>
 <td>oui</td>
 <td>oui</td>
-<td>s'il y a une seule clé : suppression<br> s'il y a plusieurs clés : <a href="https://docs.python.org/3/library/stdtypes.html#dict.update">mise à jour</a></td>
+<td>si les clés sont parmi {<code>"order"</code>, <code>"comment"</code>} : suppression<br> s'il y a plusieurs clés : <a href="https://docs.python.org/3/library/stdtypes.html#dict.update">mise à jour</a></td>
 </tr>
 <tr>
 <td>non</td>

@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "mocodo"
-version = "4.1.1"
+version = "4.1.2"
 description = "Modélisation Conceptuelle de Données. Nickel. Ni souris."
 authors = ["Aristide Grange"]
 license = "MIT"
@@ -15,7 +15,7 @@ keywords = ["education",
             "SVG",
             "Merise"]
 classifiers = [
-    "Development Status :: 4 - Beta",
+    "Development Status :: 5 - Production/Stable",
     "Environment :: Console",
     "Framework :: IPython",
     "Intended Audience :: Education",
