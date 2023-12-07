@@ -402,7 +402,10 @@ function get_from_lib() {
   $.ajax({
     type: "POST",
     url: "web/get_from_lib.php",
-    data: { title: $("#title").attr("value") },
+    data: {
+      title: $("#title").val(),
+      lib: $("#lib").val(),
+    },
     success: function (result) {
       if (result) {
         setEditorContent(result);
