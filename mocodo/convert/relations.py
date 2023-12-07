@@ -11,6 +11,7 @@ from ..version_number import version
 def set_defaults(template):
     result = {
         "transform_attribute": [],
+        "transform_label": [],
         "transform_title": [],
         "transform_datatype": [],
         "transform_optionality": [],
@@ -135,6 +136,12 @@ class Relations:
                         occurrences[column["label"]] -= 1
                         column["label"] = column["label"] + template["label_role_separator"] + str(occurrences[column["label"]] + 1)
         make_labels_from_non_disambiguated_labels()
+
+        def transform_labels(): # after labels have been disambiguated by roles
+            for relation in self.relations.values():
+                for column in relation["columns"]:
+                    column["label"] = transform(column["label"], "transform_label")
+        transform_labels()
     
         def add_fillers():
             for relation in self.relations.values():
