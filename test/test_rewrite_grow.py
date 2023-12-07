@@ -30,7 +30,7 @@ class TestGrow(unittest.TestCase):
             Binary 15_, 11 Entity 14_, 01 Entity 10_
             Entity 16_: id 16 1, attr 16 2
             Binary 17_, 0N Entity 16_, 1N Entity 14_
-            Binary 18_, 1N Entity 16_, 01 Entity 14_
+            Binary 18_, 1N Entity 14_, 01 Entity 10_
         """.replace("    ", "")
         self.assertEqual(actual.strip(), expected.strip())
 

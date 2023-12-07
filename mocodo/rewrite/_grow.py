@@ -105,7 +105,7 @@ def run(source, subargs=None, params=None, **kargs):
     while max_tries > 0:
         random.shuffle(arities)
         # Slightly push the non binary arities towards the end (one iteration of bubble sort).
-        # Reason: the non binary arities are tougher to place when there a not many entities yet
+        # Reason: the non binary arities are tougher to place when there are not many entities yet
         for i in range(len(arities) - 1):
             if arities[i] != 2 and arities[i + 1] == 2:
                 (arities[i], arities[i + 1]) = (arities[i + 1], arities[i])
@@ -175,8 +175,8 @@ def run(source, subargs=None, params=None, **kargs):
         associations.append(new_association)
         counter += 1
     for i in range(settings["n"] - settings["doubles"], settings["n"]):
-        old_refs = biased_choice(ref_pool)
-        arity = len(set(old_refs))
+        refs = biased_choice(ref_pool)
+        arity = len(set(refs))
         new_association = f"{association_bases[arity]} {counter}_"
         cards = calculate_cards(card_schemes[i], refs)
         clauses.append(", ".join([new_association] + [f"{card} {ref}" for (card, ref) in zip(cards, refs)]))
