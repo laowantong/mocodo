@@ -15,11 +15,11 @@ transform_relation:
     replace: '\\prim{\1}'
   - order: 1200
     comment: 'Compose foreign primary keys'
-    search: '<span class=''foreign primary''>(.+?)</span>'
+    search: '<span class=''foreign primary''>#(.+?)</span>'
     replace: '\\foreign{\\prim{\1}}'
   - order: 1300
     comment: 'Compose foreign attributes'
-    search: '<span class=''foreign''>(.+?)</span>'
+    search: '<span class=''foreign''>#(.+?)</span>'
     replace: '\\foreign{\1}'
   - order: 1400
     comment: 'Exponents'
