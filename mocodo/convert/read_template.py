@@ -60,8 +60,8 @@ def read_template(stem_or_path, official_template_dir):
                     i = bisect_left(orders, order)
                     if i < len(result[key]) and result[key][i]["order"] == order:
                         # a dictionary with the same order already exists
-                        if len(new_dictionary) == 1:
-                            # the new dictionary is reduced to an "order" key: remove the existing dictionary
+                        if set(new_dictionary.keys()).issubset({"order", "comment"}):
+                            # the new dictionary defines nothing: remove the existing dictionary
                             del result[key][i]
                         else:
                             # update the existing dictionary in place
