@@ -9,14 +9,14 @@
 \newcommand{\prim}[1]{\uline{#1}}
 \newcommand{\foreign}[1]{\#\textsl{#1}}
 
-\title{Conversion en relationnel\\du MCD \emph{triple_N11}}
+\title{Conversion en relationnel\\du MCD \emph{triple\_N11}}
 \author{\emph{Généré par Mocodo}}
 
 \begin{document}
 \maketitle
 
 \begin{itemize}
-  \item \relat{Affecter} (\foreign{\prim{projet}}, \foreign{\prim{employé}}$^{u_1}$, \foreign{site}$^{u_1}$)
+  \item \relat{Affecter} (\foreign{\prim{projet}}, \foreign{\prim{employé}}$^{u\_1}$, \foreign{site}$^{u\_1}$)
   \begin{itemize}
     \item Le champ \emph{projet} fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité \emph{Projet}.
     \item Le champ \emph{employé} fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité \emph{Employé}. Il obéit en outre à la contrainte d'unicité 1.

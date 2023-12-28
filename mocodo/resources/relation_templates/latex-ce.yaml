@@ -52,3 +52,7 @@ transform_relational_schema:
   - order: 1500
     search: '((    \\item .+\n)+)'
     replace: '  \\begin{itemize}\n\1  \\end{itemize}\n'
+  - order: 1600
+    comment: 'Escape underlines'
+    search: '_'
+    replace: '\_'

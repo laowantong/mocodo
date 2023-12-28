@@ -30,3 +30,7 @@ transform_relation:
     comment: 'Exponents'
     search: ' <sup>(.+?)</sup>'
     replace: '$^{\1}$'
+  - order: 1600
+    comment: 'Escape underlines'
+    search: '_'
+    replace: '\_'
