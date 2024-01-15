@@ -88,7 +88,7 @@ def main():
             continue
         templates.append(read_template(name, TEMPLATE_DIR))
 
-    params = parsed_arguments()
+    params = parsed_arguments([])
     params["guess_title"] = False
     params["id_gutter_visibility"] = "auto"
     params["id_gutter_strong_string"] = "ID"

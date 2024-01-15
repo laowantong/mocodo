@@ -11,7 +11,7 @@ from mocodo.tools.load_mini_yaml import run as load_mini_yaml
 
 minimal_template = load_mini_yaml(Path("mocodo/resources/relation_templates/text.yaml"))
 debug_template = load_mini_yaml(Path("mocodo/resources/relation_templates/debug.yaml"))
-params = parsed_arguments()
+params = parsed_arguments([])
 params["title"] = "Untitled"
 params["guess_title"] = False
 

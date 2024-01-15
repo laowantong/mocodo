@@ -8,17 +8,12 @@ import warnings
 from base64 import b64encode
 from itertools import takewhile
 from pathlib import Path
-from subprocess import PIPE, Popen
 
-import pkg_resources
 from IPython import get_ipython
-from IPython.core.magic import Magics, line_cell_magic, magics_class
 from IPython.display import HTML, SVG, Code, Image, Markdown, display
 
-try:
-    MOCODO_VERSION = pkg_resources.get_distribution("mocodo").version
-except pkg_resources.DistributionNotFound:
-    MOCODO_VERSION = "(unknown version)"  # For tests during CI
+from .__main__ import Printer, Runner
+from .mocodo_error import MocodoError
 
 # ANSI color codes
 OK = "\033[92m"
@@ -90,129 +85,112 @@ def display_converted_file(path, hide_header):
     else:
         display(Markdown(f"```{extension}\n{read_and_cleanup_text(path)}\n```"))
 
-@magics_class
-class MocodoMagics(Magics):
-    @staticmethod
-    @line_cell_magic
-    def mocodo(line, cell=""):
-        """
-        Mocodo IPython magic extension
+def mocodo(line, cell=""):
+    """
+    Mocodo IPython magic extension
 
-        Magic methods:
-            %mocodo [command line options]
-            %%mocodo [command line options]
-            < MCD ... >
+    Magic methods:
+        %mocodo [command line options]
+        %%mocodo [command line options]
+        < MCD ... >
 
-        Usage:
-            %load_ext mocodo
-        """
+    Usage:
+        %load_ext mocodo
+    """
 
-        parser = argparse.ArgumentParser(add_help=False)
-        parser.add_argument("--input", "-i")
-        parser.add_argument("--output_dir")
-        (args, remaining_args) = parser.parse_known_args(shlex.split(line))
-        remaining_args = list(takewhile(lambda x: not x.startswith("#"), remaining_args))
-        new_args = remaining_args[:]
+    parser = argparse.ArgumentParser(add_help=False)
+    parser.add_argument("--input", "-i")
+    parser.add_argument("--output_dir")
+    (args, remaining_args) = parser.parse_known_args(shlex.split(line))
+    remaining_args = list(takewhile(lambda x: not x.startswith("#"), remaining_args))
+    new_args = remaining_args[:]
 
-        mocodo_notebook_dir = Path.cwd()
-        if mocodo_notebook_dir.name != "mocodo_notebook":
-            mocodo_notebook_dir = mocodo_notebook_dir / "mocodo_notebook"
-            mocodo_notebook_dir.mkdir(parents=True, exist_ok=True)
-        if not args.input:
-            input_path = mocodo_notebook_dir / "sandbox.mcd"
-            input_path.write_text(cell, encoding="utf8")
-        else:
-            input_path = Path(args.input)
-            if not input_path.suffix:
-                input_path = input_path.with_suffix(".mcd")
+    mocodo_notebook_dir = Path.cwd()
+    if mocodo_notebook_dir.name != "mocodo_notebook":
+        mocodo_notebook_dir = mocodo_notebook_dir / "mocodo_notebook"
+        mocodo_notebook_dir.mkdir(parents=True, exist_ok=True)
+    if not args.input:
+        input_path = mocodo_notebook_dir / "sandbox.mcd"
+        input_path.write_text(cell, encoding="utf8")
+    else:
+        input_path = Path(args.input)
+        if not input_path.suffix:
+            input_path = input_path.with_suffix(".mcd")
 
-        if not args.output_dir:
-            output_dir = mocodo_notebook_dir
-        else:
-            output_dir = Path(args.output_dir)
-            output_dir.mkdir(parents=True, exist_ok=True)
-        output_path_radical = output_dir / input_path.stem
+    if not args.output_dir:
+        output_dir = mocodo_notebook_dir
+    else:
+        output_dir = Path(args.output_dir)
+        output_dir.mkdir(parents=True, exist_ok=True)
+    output_path_radical = output_dir / input_path.stem
 
-        remaining_args.extend([
-            "--input", str(input_path),
-            "--output_dir", str(output_dir),
-            "--is_magic",
-        ]) # may override user's provided options
+    remaining_args.extend([
+        "--input", str(input_path),
+        "--output_dir", str(output_dir),
+        "--is_magic",
+    ]) # may override user's provided options
 
-        process = Popen(["mocodo"] + remaining_args, stdin=PIPE, stdout=PIPE, stderr=PIPE)
-        stdoutdata, stderrdata = process.communicate()
-        try:
-            stdoutdata = stdoutdata.decode("utf8")
-            stderrdata = stderrdata.decode("utf8")
-        except:
-            pass
-        status = process.wait()
+    stdoutdata = ""
+    stderrdata = ""
+    printer = Printer(accumulate=True)
+    run = Runner(remaining_args, printer)
+    try:
+        stdoutdata = run()
+    except MocodoError as err:
+        stderrdata = str(err)
+    except SystemExit: # raised by argparse when --help is used
+        return
+    
+    if "--print_params" in remaining_args:
+        update_cell(PARAM_TEMPLATE.format(stdoutdata=stdoutdata, output_dir=output_dir.relative_to(Path.cwd())))
+        return
+    
+    response_path = Path(f"{output_path_radical}_response_for_magic_command.json")
+    try: 
+        response = json.loads(response_path.read_text(encoding="utf8"))
+    except (json.decoder.JSONDecodeError, FileNotFoundError):
+        response = {}
+    finally:
+        with contextlib.suppress(FileNotFoundError): # From Python 3.8, use the missing_ok argument
+            response_path.unlink()
+    
+    rewritten_source = response.get("rewritten_source", "")
+    redirect_output = response.get("redirect_output", False)
+    converted_file_paths = response.get("converted_file_paths", [])
 
-        if "--help" in remaining_args:
-            print(stdoutdata)
-            return
-        
-        if "--print_params" in remaining_args:
-            update_cell(PARAM_TEMPLATE.format(stdoutdata=stdoutdata, output_dir=output_dir.relative_to(Path.cwd())))
-            return
-        
-        response_path = Path(f"{output_path_radical}_response_for_magic_command.json")
-        try: 
-            response = json.loads(response_path.read_text(encoding="utf8"))
-        except (json.decoder.JSONDecodeError, FileNotFoundError):
-            response = {}
-        finally:
-            with contextlib.suppress(FileNotFoundError): # From Python 3.8, use the missing_ok argument
-                response_path.unlink()
-        
-        rewritten_source = response.get("rewritten_source", "")
-        redirect_output = response.get("redirect_output", False)
-        converted_file_paths = response.get("converted_file_paths", [])
+    if stderrdata:
+        message = stderrdata
+        if rewritten_source:
+            message = f"{rewritten_source}\n\n{message}"
+        warnings.formatwarning = lambda x, *args, **kargs : str(x)
+        warnings.warn(message)
+        return
+    
+    if rewritten_source and not rewritten_source.startswith("%%mocodo"):
+        new_args = " ".join(filter(lambda x: x not in response["args_to_delete"], new_args))
+        new_args = response["opt_to_restore"] + new_args
+        rewritten_source = f"%%mocodo{new_args}\n{rewritten_source}"
+    
+    for select in response.get("select", []):
+        if select == "mcd":
+            svg_path = output_path_radical.with_suffix(".svg")
+            if svg_path.is_file() and input_path.stat().st_mtime <= svg_path.stat().st_mtime:
+                display(SVG(filename=svg_path))
+        elif select == "rw":
+            path = output_path_radical.with_suffix(".mcd")
+            display(Markdown(OUTPUT_PART_HEADER.format(label=path.relative_to(output_dir))))
+            print(rewritten_source or cell)
+        elif select == "cv":
+            for converted_file_path in converted_file_paths:
+                display_converted_file(Path(converted_file_path), hide_header=response.get("mld"))
 
-        if status != 0 or stderrdata:
-            message = stderrdata
-            if rewritten_source:
-                message = f"{rewritten_source}\n\n{message}"
-            warnings.formatwarning = lambda x, *args, **kargs : str(x)
-            warnings.warn(message)
-            return
-        
-        if rewritten_source and not rewritten_source.startswith("%%mocodo"):
-            new_args = " ".join(filter(lambda x: x not in response["args_to_delete"], new_args))
-            new_args = response["opt_to_restore"] + new_args
-            rewritten_source = f"%%mocodo{new_args}\n{rewritten_source}"
-        
-        for select in response.get("select", []):
-            if select == "mcd":
-                svg_path = output_path_radical.with_suffix(".svg")
-                if svg_path.is_file() and input_path.stat().st_mtime <= svg_path.stat().st_mtime:
-                    display(SVG(filename=svg_path))
-            elif select == "rw":
-                path = output_path_radical.with_suffix(".mcd")
-                display(Markdown(OUTPUT_PART_HEADER.format(label=path.relative_to(output_dir))))
-                print(rewritten_source or cell)
-            elif select == "cv":
-                for converted_file_path in converted_file_paths:
-                    display_converted_file(Path(converted_file_path), hide_header=response.get("mld"))
-
-        if redirect_output:
-            if rewritten_source:
-                update_cell(rewritten_source)
-            if converted_file_paths:
-                # Copy the last converted file source to the clipboard
-                with contextlib.suppress(ImportError):
-                    pyperclip = importlib.import_module("pyperclip")
-                    converted_file_path = Path(converted_file_paths[-1])
-                    pyperclip.copy(converted_file_path.read_text(encoding="utf8"))
-                    print(f'⧉ {OK}The contents of "{converted_file_path.relative_to(output_dir)}" has been copied to the clipboard.{RESET}')
-
-
-
-
-try:
-    IPYTHON.register_magics(MocodoMagics)
-except AttributeError:
-    pass # necessary for launching the tests
-else:
-    print(f"Mocodo {MOCODO_VERSION} loaded.")
-
+    if redirect_output:
+        if rewritten_source:
+            update_cell(rewritten_source)
+        if converted_file_paths:
+            # Copy the last converted file source to the clipboard
+            with contextlib.suppress(ImportError):
+                pyperclip = importlib.import_module("pyperclip")
+                converted_file_path = Path(converted_file_paths[-1])
+                pyperclip.copy(converted_file_path.read_text(encoding="utf8"))
+                print(f'⧉ {OK}The contents of "{converted_file_path.relative_to(output_dir)}" has been copied to the clipboard.{RESET}')

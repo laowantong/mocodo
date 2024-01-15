@@ -17,7 +17,7 @@ class ArrangeBB(unittest.TestCase):
             NIBH, 1N SCELERISQUE LOREM, 11 PELLENTESQUE IPSUM
             PELLENTESQUE IPSUM: tincidunt, bibendum, consequat, integer
         """
-        params = parsed_arguments()
+        params = parsed_arguments([])
         mcd = Mcd(source, params)
         params.update(mcd.get_layout_data())
         d = mcd.get_layout_data()
@@ -38,7 +38,7 @@ class ArrangeBB(unittest.TestCase):
             Lappa: graffiti, champignon
             Puni, 11 Lappa, 0N Lappa
         """
-        params = parsed_arguments()
+        params = parsed_arguments([])
         mcd = Mcd(source, params)
         params.update(mcd.get_layout_data())
         d = mcd.get_layout_data()
@@ -56,7 +56,7 @@ class ArrangeBB(unittest.TestCase):
             :
             Baby, 1N Norm, 0N> Norm
         """
-        params = parsed_arguments()
+        params = parsed_arguments([])
         mcd = Mcd(source, params)
         params.update(mcd.get_layout_data())
         d = mcd.get_layout_data()
@@ -73,7 +73,7 @@ class ArrangeBB(unittest.TestCase):
             :
             COMMANDE: Num commande, Date, Montant
         """
-        params = parsed_arguments()
+        params = parsed_arguments([])
         mcd = Mcd(source, params)
         params.update(mcd.get_layout_data())
         d = mcd.get_layout_data()
@@ -91,7 +91,7 @@ class ArrangeBB(unittest.TestCase):
             COMMANDE: Num commande, Date, Montant
             :
         """
-        params = parsed_arguments()
+        params = parsed_arguments([])
         mcd = Mcd(source, params)
         params.update(mcd.get_layout_data())
         d = mcd.get_layout_data()
@@ -111,7 +111,7 @@ class ArrangeBB(unittest.TestCase):
             :
             :
         """
-        params = parsed_arguments()
+        params = parsed_arguments([])
         mcd = Mcd(source, params)
         params.update(mcd.get_layout_data())
         d = mcd.get_layout_data()
@@ -131,7 +131,7 @@ class ArrangeBB(unittest.TestCase):
             SODALES, 1N DIGNISSIM, 1N IMPERDIET, 1N TINCIDUNT
             QUIS ENIM, 1N DIGNISSIM, 1N IMPERDIET, 1N TINCIDUNT
         """
-        params = parsed_arguments()
+        params = parsed_arguments([])
         mcd = Mcd(source, params)
         params.update(mcd.get_layout_data())
         d = mcd.get_layout_data()
@@ -150,7 +150,7 @@ class ArrangeBB(unittest.TestCase):
             TINCIDUNT: faucibus, orci, cursus
             QUIS ENIM, 1N DIGNISSIM, 1N IMPERDIET, 1N TINCIDUNT
         """
-        params = parsed_arguments()
+        params = parsed_arguments([])
         mcd = Mcd(source, params)
         params.update(mcd.get_layout_data())
         d = mcd.get_layout_data()

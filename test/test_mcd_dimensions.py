@@ -7,7 +7,7 @@ from mocodo.mcd import *
 
 gettext.NullTranslations().install()
 
-params = parsed_arguments()
+params = parsed_arguments([])
 
 style = {
     "cartouche_text_height_ratio" : 0.85,
