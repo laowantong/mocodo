@@ -10,7 +10,16 @@ from itertools import takewhile
 from pathlib import Path
 
 from IPython import get_ipython
-from IPython.display import HTML, SVG, Code, Image, Markdown, display
+from IPython.display import HTML, SVG, Image, Markdown, display
+
+try:
+    from IPython.display import Code
+    latex = lambda x: Code(x, language='latex')
+except ImportError:
+    # Fallback for Basthon
+    from IPython.display import Latex
+    latex = lambda x: Latex(x)
+
 
 from .__main__ import Printer, Runner
 from .mocodo_error import MocodoError
@@ -72,7 +81,7 @@ def display_converted_file(path, hide_header):
         text = re.sub('<!-- TO_BE_DELETED_BY_MOCODO_MAGIC -->.+\n', "", text)
         display(HTML(text))
     elif extension == "tex":
-        display(Code(filename=path, language="latex"))
+        display(latex(read_and_cleanup_text(path)))
     elif extension == "url":
         print(path.read_text(encoding="utf8")) # make the link clickable
     elif extension == "tsv":
