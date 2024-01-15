@@ -184,7 +184,9 @@ def mocodo(line, cell=""):
         if select == "mcd":
             svg_path = output_path_radical.with_suffix(".svg")
             if svg_path.is_file() and input_path.stat().st_mtime <= svg_path.stat().st_mtime:
-                display(SVG(filename=svg_path))
+                # SVG(filename=...) argument not working under Basthon
+                text = svg_path.read_text(encoding="utf8")
+                display(SVG(text))
         elif select == "rw":
             path = output_path_radical.with_suffix(".mcd")
             display(Markdown(OUTPUT_PART_HEADER.format(label=path.relative_to(output_dir))))
