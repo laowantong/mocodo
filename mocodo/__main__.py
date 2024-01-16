@@ -5,8 +5,8 @@ if sys.version_info < (3, 6):
     sys.exit()
 
 import importlib
-from pathlib import Path
 import json
+from pathlib import Path
 
 from .argument_parser import parsed_arguments
 from .common import Common, Printer
@@ -330,7 +330,7 @@ class Runner:
 
 
 def main():
-    printer = Printer(accumulate=False)
+    printer = Printer(quiet=True)
     run = Runner(sys.argv[1:], printer)
     try:
         run()

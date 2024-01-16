@@ -311,7 +311,7 @@ if ($lib) {
 		</form>
 	</div>
 	<div id="navigation">
-		<a target="_blank" href="https://github.com/laowantong/mocodo">Mocodo 4.1.3-beta.4</a>
+		<a target="_blank" href="https://github.com/laowantong/mocodo">Mocodo 4.1.3-beta.5</a>
 		&nbsp;∙&nbsp;
 		<a target="_blank" href="https://rawgit.com/laowantong/mocodo/master/doc/fr_refman.html">Documentation</a>
 		&nbsp;∙&nbsp;

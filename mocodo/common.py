@@ -22,9 +22,9 @@ def contract_path(path):
 
 class Printer:
 
-    def __init__(self, accumulate=False):
+    def __init__(self, quiet=False):
         self.accumulator = []
-        if accumulate:
+        if quiet:
             self.write = self.accumulator.append
         else:
             self.write = self.safe_print_for_PHP

@@ -94,7 +94,7 @@ def display_converted_file(path, hide_header):
     else:
         display(Markdown(f"```{extension}\n{read_and_cleanup_text(path)}\n```"))
 
-def mocodo(line, cell=""):
+def mocodo(line="", source=""):
     """
     Mocodo IPython magic extension
 
@@ -120,7 +120,7 @@ def mocodo(line, cell=""):
         mocodo_notebook_dir.mkdir(parents=True, exist_ok=True)
     if not args.input:
         input_path = mocodo_notebook_dir / "sandbox.mcd"
-        input_path.write_text(cell, encoding="utf8")
+        input_path.write_text(source, encoding="utf8")
     else:
         input_path = Path(args.input)
         if not input_path.suffix:
@@ -141,7 +141,7 @@ def mocodo(line, cell=""):
 
     stdoutdata = ""
     stderrdata = ""
-    printer = Printer(accumulate=True)
+    printer = Printer(quiet=True)
     run = Runner(remaining_args, printer)
     try:
         stdoutdata = run()
@@ -190,7 +190,7 @@ def mocodo(line, cell=""):
         elif select == "rw":
             path = output_path_radical.with_suffix(".mcd")
             display(Markdown(OUTPUT_PART_HEADER.format(label=path.relative_to(output_dir))))
-            print(rewritten_source or cell)
+            print(rewritten_source or source)
         elif select == "cv":
             for converted_file_path in converted_file_paths:
                 display_converted_file(Path(converted_file_path), hide_header=response.get("mld"))
