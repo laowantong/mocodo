@@ -22,9 +22,10 @@ Mocodo est un logiciel d'aide à l'enseignement et à l'apprentissage des [bases
 
 Vous pouvez utiliser Mocodo :
 
-- à distance, sans rien installer, avec [Mocodo _online_](https://www.mocodo.net) ;
-- en local, comme n'importe quel programme Python ;
-- dans un document [Jupyter Notebook](https://jupyter.org).
+- sur son site web [Mocodo _online_](https://www.mocodo.net) ;
+- dans un document [Jupyter Notebook](https://jupyter.org), avec ou [sans](https://basthon.fr) installation ;
+- en ligne de commande ;
+- comme une bibliothèque Python.
 
 ## Tracé du modèle conceptuel
 
