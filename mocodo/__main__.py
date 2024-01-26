@@ -4,6 +4,7 @@ if sys.version_info < (3, 6):
     print(f"Mocodo requires Python 3.6 or later to run.\nThis version is {sys.version}.")
     sys.exit()
 
+import contextlib
 import importlib
 import json
 from pathlib import Path
@@ -100,12 +101,13 @@ class Runner:
         if self.params["print_params"]:
             for added_key in self.params["keys_to_hide"][:]:
                 self.params.pop(added_key, None)
-            self.params["output_dir"] = str(Path(self.params["output_dir"]).resolve().relative_to(Path.cwd()))
+            with contextlib.suppress(ValueError): # raised when called as a function (from mocodo import mocodo)
+                self.params["output_dir"] = str(Path(self.params["output_dir"]).resolve().relative_to(Path.cwd()))
             text = json.dumps(self.params, ensure_ascii=False, indent=2, sort_keys=True)
             text = text.replace("\n    ", " ")
             text = text.replace("\n  ]", " ]")
             self.printer.write(text.strip())
-            return
+            return "\n".join(self.printer.accumulator)
 
         self.add_gutter_params(self.params)
 

@@ -10,16 +10,7 @@ from itertools import takewhile
 from pathlib import Path
 
 from IPython import get_ipython
-from IPython.display import HTML, SVG, Image, Markdown, display
-
-try:
-    from IPython.display import Code
-    latex = lambda x: Code(x, language='latex')
-except ImportError:
-    # Fallback for Basthon
-    from IPython.display import Latex
-    latex = lambda x: Latex(x)
-
+from IPython.display import HTML, SVG, Code, Image, Markdown, display
 
 from .__main__ import Printer, Runner
 from .mocodo_error import MocodoError
@@ -81,7 +72,7 @@ def display_converted_file(path, hide_header):
         text = re.sub('<!-- TO_BE_DELETED_BY_MOCODO_MAGIC -->.+\n', "", text)
         display(HTML(text))
     elif extension == "tex":
-        display(latex(read_and_cleanup_text(path)))
+        display(Code(filename=path, language="latex"))
     elif extension == "url":
         print(path.read_text(encoding="utf8")) # make the link clickable
     elif extension == "tsv":
@@ -142,13 +133,14 @@ def mocodo(line="", source=""):
     stdoutdata = ""
     stderrdata = ""
     printer = Printer(quiet=True)
-    run = Runner(remaining_args, printer)
+    try:
+        run = Runner(remaining_args, printer)
+    except SystemExit: # raised by argparse with certain arguments: --help, --version
+        return
     try:
         stdoutdata = run()
     except MocodoError as err:
         stderrdata = str(err)
-    except SystemExit: # raised by argparse when --help is used
-        return
     
     if "--print_params" in remaining_args:
         update_cell(PARAM_TEMPLATE.format(stdoutdata=stdoutdata, output_dir=output_dir.relative_to(Path.cwd())))
@@ -184,9 +176,7 @@ def mocodo(line="", source=""):
         if select == "mcd":
             svg_path = output_path_radical.with_suffix(".svg")
             if svg_path.is_file() and input_path.stat().st_mtime <= svg_path.stat().st_mtime:
-                # SVG(filename=...) argument not working under Basthon
-                text = svg_path.read_text(encoding="utf8")
-                display(SVG(text))
+                display(SVG(filename=svg_path))
         elif select == "rw":
             path = output_path_radical.with_suffix(".mcd")
             display(Markdown(OUTPUT_PART_HEADER.format(label=path.relative_to(output_dir))))
