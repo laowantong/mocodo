@@ -8,7 +8,7 @@ from mocodo.mcd import *
 
 gettext.NullTranslations().install()
 
-params = parsed_arguments()
+params = parsed_arguments([])
 
 class McdTest(unittest.TestCase):
 

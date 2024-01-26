@@ -8,13 +8,34 @@ import importlib
 from .mocodo_error import MocodoError
 
 
-def safe_print_for_PHP(s):
-    """ It seems that when called from PHP, Python is unable to guess correctly
-        the encoding of the standard output. """
-    try:
-        print(s, file=sys.stdout)
-    except UnicodeEncodeError:
-        print(s.encode("utf8"), file=sys.stdout)
+def contract_path(path):
+    """
+    Contract a full path to one with ~, if it's under the user's home directory.
+    """
+    home = str(Path.home())
+    absolute_path = str(Path(path).resolve())
+    if absolute_path.startswith(home):
+        return absolute_path.replace(home, '~', 1)
+    else:
+        return absolute_path
+
+
+class Printer:
+
+    def __init__(self, quiet=False):
+        self.accumulator = []
+        if quiet:
+            self.write = self.accumulator.append
+        else:
+            self.write = self.safe_print_for_PHP
+
+    def safe_print_for_PHP(self, s):
+        """ It seems that when called from PHP, Python is unable to guess correctly
+            the encoding of the standard output. """
+        try:
+            print(s, file=sys.stdout)
+        except UnicodeEncodeError:
+            print(s.encode("utf8"), file=sys.stdout)
 
 
 class Common:
@@ -23,12 +44,12 @@ class Common:
         self.params = params
 
     def output_success_message(self, path):
-        return _('Output file "{filename}" successfully generated.').format(filename=path)
+        return _('Output file "{filename}" successfully generated.').format(filename=contract_path(path))
 
     def update_source(self, source):
         path = Path(f"{self.params['output_name']}.mcd")
         path.write_text(source, encoding="utf8")
-        return _('Source file "{filename}" successfully updated.').format(filename=path)
+        return _('Source file "{filename}" successfully updated.').format(filename=contract_path(path))
 
     def load_input_file(self):
         # Try to read the file locally.
@@ -92,7 +113,3 @@ class Common:
         style.update(shapes)
         style["transparent_color"] = None
         return style
-
-    def dump_file(self, path, content):
-        Path(path).write_text(content, encoding="utf8")
-        safe_print_for_PHP(self.output_success_message(path))

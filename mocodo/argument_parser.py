@@ -153,7 +153,9 @@ def positive_integer(string):
         raise argparse.ArgumentTypeError(msg)
     return value
 
-def parsed_arguments():
+def parsed_arguments(args):
+    # When mocodo is called from the command line, `args` is just `sys.argv[1:]`.
+    # When it is imported, `args` is a list of strings constructed with shlex.split().
 
     parser = argparse.ArgumentParser(
         prog="mocodo",
@@ -201,7 +203,7 @@ def parsed_arguments():
     )
     input_action = io_group._group_actions[-1]
     
-    (args, remaining_args) = parser.parse_known_args()
+    (args, remaining_args) = parser.parse_known_args(args)
 
     if not args.input:
         # no input file is specified, use the pristine sandbox

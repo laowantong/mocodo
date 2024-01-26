@@ -4,12 +4,13 @@ if sys.version_info < (3, 6):
     print(f"Mocodo requires Python 3.6 or later to run.\nThis version is {sys.version}.")
     sys.exit()
 
+import contextlib
 import importlib
-from pathlib import Path
 import json
+from pathlib import Path
 
 from .argument_parser import parsed_arguments
-from .common import Common, safe_print_for_PHP
+from .common import Common, Printer
 from .convert.read_template import read_template
 from .convert.relations import Relations
 from .font_metrics import font_metrics_factory
@@ -73,9 +74,10 @@ def flip(source, subargs):
 
 class Runner:
 
-    def __init__(self):
+    def __init__(self, args, printer):
+        self.printer = printer
         try:
-            self.params = parsed_arguments()
+            self.params = parsed_arguments(args)
             self.parsing_error = None
             self.common = Common(self.params)
             self.get_font_metrics = font_metrics_factory(self.params)
@@ -93,16 +95,19 @@ class Runner:
             shutil = importlib.import_module("shutil")
             path = Path(self.params["script_directory"], "resources", "pristine_sandbox.mcd")
             shutil.copyfile(path, "sandbox.mcd")
-            return Path("params.json").write_text("{}\n", encoding="utf8")
+            Path("params.json").write_text("{}\n", encoding="utf8")
+            return
         
         if self.params["print_params"]:
             for added_key in self.params["keys_to_hide"][:]:
                 self.params.pop(added_key, None)
-            self.params["output_dir"] = str(Path(self.params["output_dir"]).resolve().relative_to(Path.cwd()))
+            with contextlib.suppress(ValueError): # raised when called as a function (from mocodo import mocodo)
+                self.params["output_dir"] = str(Path(self.params["output_dir"]).resolve().relative_to(Path.cwd()))
             text = json.dumps(self.params, ensure_ascii=False, indent=2, sort_keys=True)
             text = text.replace("\n    ", " ")
             text = text.replace("\n  ]", " ]")
-            return safe_print_for_PHP(text.strip())
+            self.printer.write(text.strip())
+            return "\n".join(self.printer.accumulator)
 
         self.add_gutter_params(self.params)
 
@@ -156,7 +161,7 @@ class Runner:
                     source = module.run(source, subopt=subopt, subargs=subargs, params=self.params).rstrip()
                 response.may_log("rewritten_source", source)
             if not self.params["is_magic"]:
-                safe_print_for_PHP(self.common.update_source(source))
+                self.printer.write(self.common.update_source(source))
         
         may_update_params_with_guessed_title(source, self.params)
 
@@ -213,7 +218,8 @@ class Runner:
                     result = module.run(source, subargs, self.common)
                 
                 result["text_path"] = Path(f"{self.params['output_name']}{result['stem_suffix']}.{result['extension']}")
-                self.common.dump_file(result["text_path"], f"{result['text'].rstrip()}\n")
+                result["text_path"].write_text(f"{result['text'].rstrip()}\n", encoding="utf8")
+                self.printer.write(self.common.output_success_message(result["text_path"]))
                 results.append(result)
             for result in results:
                 converted_file_paths.extend(self.get_converted_file_paths(result))
@@ -224,7 +230,7 @@ class Runner:
         self.control_for_overlaps(mcd)
         resulting_paths = dump_mcd_to_svg(mcd, self.common)  # potential side-effect: update *_geo.json
         for path in resulting_paths:
-            safe_print_for_PHP(self.common.output_success_message(path))
+            self.printer.write(self.common.output_success_message(path))
 
     def get_rendering_service(self, extension):
         path = Path(self.params["script_directory"], "resources", "rendering_services.json")
@@ -324,8 +330,10 @@ class Runner:
         # We are sure that gutters is a dict with keys "ids" and "types" only. Order matters.
         (params["left_gutter"], params["right_gutter"]) = tuple(gutters.keys())
 
+
 def main():
-    run = Runner()
+    printer = Printer(quiet=True)
+    run = Runner(sys.argv[1:], printer)
     try:
         run()
     except MocodoError as err:

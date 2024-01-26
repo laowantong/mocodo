@@ -131,11 +131,11 @@ if ($lib) {
 							<li>En sortie, il produit un diagramme entité-association et, à la demande, un <a href="https://fr.wikipedia.org/wiki/Merise_(informatique)#MLD_:_modèle_logique_des_données">MLD</a> (schéma relationnel, sous forme graphique ou textuelle), un <a href="https://fr.wikipedia.org/wiki/Langage_de_définition_de_données">DDL</a> (script SQL de création de la base), un <a href="https://fr.wikipedia.org/wiki/Diagramme_de_classes">diagramme de classes UML</a>, etc.</li>
 							<li>En bonus, il est capable de réarranger automatiquement votre MCD de façon esthétique, et de lui appliquer des opérations de réécriture qui vont du mondain (typographie) à l'académique (décomposition d'associations), en passant par le merveilleux (inférence de types, génération d'exercices et d'exemples).</li>
 						</ul>
-						<p>Ce site est prévu pour une utilisation basique et occasionnelle, typiquement en salle de classe. Si vous travaillez sur des données confidentielles¹, ou souhaitez avoir accès à toutes les fonctionnalités de Mocodo, une installation locale est recommandée :</p>
+						<p>Ce site est prévu pour une utilisation basique et occasionnelle, typiquement en salle de classe. Si vous travaillez sur des données confidentielles¹, ou souhaitez avoir accès à toutes les fonctionnalités de Mocodo, vous pouvez, soit utiliser Mocodo sous [Basthon](https://www.basthon.fr), soit l'installer sur votre ordinateur :</p>
 						<br />
 						<pre>&gt; pip install mocodo</pre>
 						<br />
-						<p>Sous cette forme, Mocodo est un puissant <a href="https://fr.wikipedia.org/wiki/Interface_en_ligne_de_commande">logiciel en ligne de commande</a>, multiplateforme, <a href="https://github.com/laowantong/mocodo"><i>open-source</i></a>, <a href="https://fr.wikipedia.org/wiki/Licence_MIT">libre</a> et gratuit. Il s'intègre particulièrement bien à l'environnement <a href="https://jupyter.org">Jupyter Notebook</a>.</p>
+						<p>Sous cette dernière forme, Mocodo est un puissant <a href="https://fr.wikipedia.org/wiki/Interface_en_ligne_de_commande">logiciel en ligne de commande</a>, multiplateforme, <a href="https://github.com/laowantong/mocodo"><i>open-source</i></a>, <a href="https://fr.wikipedia.org/wiki/Licence_MIT">libre</a> et gratuit. Il s'intègre particulièrement bien à l'environnement <a href="https://jupyter.org">Jupyter Notebook</a>.</p>
 						<br />
 						<p>Pour en savoir plus, suivez nos tutoriels interactifs (onglet Entrée), puis plongez-vous dans la <a target="_blank" href="https://rawgit.com/laowantong/mocodo/master/doc/fr_refman.html">documentation</a>.</p>
 						<br />
@@ -311,11 +311,13 @@ if ($lib) {
 		</form>
 	</div>
 	<div id="navigation">
-		<a target="_blank" href="https://github.com/laowantong/mocodo">Mocodo 4.1.2</a>
+		<a target="_blank" href="https://github.com/laowantong/mocodo">Mocodo 4.2.0</a>
 		&nbsp;∙&nbsp;
 		<a target="_blank" href="https://rawgit.com/laowantong/mocodo/master/doc/fr_refman.html">Documentation</a>
 		&nbsp;∙&nbsp;
 		<a target="_blank" href="https://github.com/laowantong/mocodo/issues">Récriminations</a>
+		&nbsp;∙&nbsp;
+		<a target="_blank" href="https://notebook.basthon.fr/?from=examples/python3-mocodo.ipynb">Basthon</a>
 		&nbsp;∙&nbsp;
 		<a href="" title="En ligne de commande, faites `mocodo --help` pour afficher l\'adresse mail de l\'auteur." onclick="alert('En ligne de commande, faites :\n\xA0\xA0\xA0\xA0mocodo --help\npour afficher l\'adresse mail de l\'auteur.')">Contact</a>
 	</div>
