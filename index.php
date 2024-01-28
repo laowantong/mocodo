@@ -309,13 +309,7 @@ if ($lib) {
 		&nbsp;∙&nbsp;
 		<img class="inlineIcon"
 			src="web/png/basthon_play.png" 
-			alt="Basthon" title="Ouvrir ce MCD dans un notebook pour accéder sans installation à toutes les fonctionnalités du logiciel."
-			onclick="sendToBasthon()"
-		/>&nbsp;&nbsp;<a target="_blank" title="Un bac à sable en ligne basé sur Jupyter Notebook." href="https://basthon.fr">Basthon</a>
-		&nbsp;∙&nbsp;
-		<img class="inlineIcon"
-			src="web/basthon_play.svg" 
-			alt="Basthon" title="Ouvrir ce MCD dans un notebook pour accéder sans installation à toutes les fonctionnalités."
+			alt="Basthon" title="Ouvrir ce MCD dans un notebook pour accéder à toutes les fonctionnalités du logiciel sans avoir à l'installer."
 			onclick="sendToBasthon()"
 		/>&nbsp;&nbsp;<a target="_blank" title="Un bac à sable en ligne basé sur Jupyter Notebook." href="https://basthon.fr">Basthon</a>
 		&nbsp;∙&nbsp;
