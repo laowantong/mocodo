@@ -4,23 +4,16 @@ import os
 import shlex
 from pathlib import Path
 
-import pkg_resources
-
 from .__main__ import Printer, Runner
 from .argument_parser import SCRIPT_DIRECTORY
-
-try:
-    MOCODO_VERSION = pkg_resources.get_distribution("mocodo").version
-except pkg_resources.DistributionNotFound:
-    MOCODO_VERSION = "(unknown version)"  # For tests during CI
+from .version_number import version
 
 def load_ipython_extension(ipython):
     # This function is called when the extension is loaded in a notebook
     # with %load_ext mocodo or %reload_ext mocodo.
-
     mocodo = importlib.import_module("mocodo.magic").mocodo
     ipython.register_magic_function(mocodo, 'line_cell', 'mocodo')
-    print(f"Mocodo {MOCODO_VERSION} loaded.")
+    print(f"Mocodo {version} loaded.")
 
 
 def mocodo(arg_string=None, quiet=True):
@@ -53,7 +46,7 @@ def mocodo(arg_string=None, quiet=True):
         run = Runner(remaining_args, printer)
     except SystemExit: # raised by argparse with certain arguments: --help, --version
         if "--version" in remaining_args:
-            return MOCODO_VERSION
+            return version
         return
     run()
     return "".join(printer.accumulator)
