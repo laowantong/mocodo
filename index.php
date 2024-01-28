@@ -313,6 +313,12 @@ if ($lib) {
 			onclick="sendToBasthon()"
 		/>&nbsp;&nbsp;<a target="_blank" title="Un bac à sable en ligne basé sur Jupyter Notebook." href="https://basthon.fr">Basthon</a>
 		&nbsp;∙&nbsp;
+		<img class="inlineIcon"
+			src="web/basthon_play.svg" 
+			alt="Basthon" title="Ouvrir ce MCD dans un notebook pour accéder sans installation à toutes les fonctionnalités."
+			onclick="sendToBasthon()"
+		/>&nbsp;&nbsp;<a target="_blank" title="Un bac à sable en ligne basé sur Jupyter Notebook." href="https://basthon.fr">Basthon</a>
+		&nbsp;∙&nbsp;
 		<a target="_blank" href="https://rawgit.com/laowantong/mocodo/master/doc/fr_refman.html">Documentation</a>
 		&nbsp;∙&nbsp;
 		<a title="Contacter l'auteur par mail." onclick="alert('Pour envoyer vos compliments à l\'auteur, trouvez d\'abord son nom sous l\'onglet d\'information, puis adressez un mail à prénom.nom@univ-lorraine.fr. Attention, tout problème ou demande concernant le logiciel doit préférablement faire l\'objet d\'une issue GitHub (« Récriminations »).')">Félicitations</a>
