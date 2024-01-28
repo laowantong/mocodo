@@ -1,5 +1,39 @@
 /*global $, jQuery*/
 'use strict';
+const openInNewTab = (href) => {
+  Object.assign(document.createElement("a"), {
+    target: "_blank",
+    rel: "noopener noreferrer",
+    href: href,
+  }).click();
+};
+const basthon_template = JSON.stringify({
+  cells: [
+    {
+      metadata: { trusted: true },
+      cell_type: "code",
+      source: "from mocodo.magic import mocodo",
+      execution_count: null,
+      outputs: [],
+    },
+    {
+      metadata: { trusted: true },
+      cell_type: "code",
+      source: 'mocodo("""\n{options}\n""", """\n{source}\n""")',
+      execution_count: null,
+      outputs: [],
+    },
+  ],
+  metadata: {
+    kernelspec: {
+      name: "python3",
+      display_name: "Python 3",
+      language: "python",
+    },
+  },
+  nbformat: 4,
+  nbformat_minor: 2,
+});
 var request_lock = false;
 var conversions = {
   "_url.url": {
@@ -280,7 +314,34 @@ $.fn.highlight = function () {
       })
       .fadeOut(500);
   });
-}
+};
+function sendToBasthon() {
+  var text = ace.edit("editor").getSession().getValue();
+  $('textarea[name="text"]').val(text);
+  var data = $("#mainForm").serializeArray();
+  data.push({ name: "basthon", value: true });
+  if ($("#reproductibility").prop("checked")) {
+    data.push({ name: "seed", value: text.indexOf("\n") });
+  };
+  if ($("#constraints").prop("checked")) {
+    data.push({ name: "with_constraints", value: true })
+  };
+  $.ajax({
+    type: "POST",
+    url: "web/generate.php",
+    data: $.param(data),
+    success: function (result) {
+      result = $.parseJSON(result);
+      let ipynb = basthon_template;
+      ipynb = ipynb.replace("{options}", result["options"]);
+      ipynb = ipynb.replace("{source}", result["source"].replaceAll("\r", "").replaceAll("\n", "\\n"));
+      ipynb = encodeURIComponent(ipynb);
+      const url = new URL("https://notebook.basthon.fr");
+      url.searchParams.set("ipynb", ipynb);
+      openInNewTab(url.href);
+    },
+  });
+};
 function generate() {
   if (request_lock) return;
   request_lock = true;
@@ -290,11 +351,11 @@ function generate() {
   $('textarea[name="text"]').val(text);
   var data = $("#mainForm").serializeArray();
   if ($("#reproductibility").prop("checked")) {
-    data.push({ name: "seed", value: text.indexOf("\n").toString() });
-  }
+    data.push({ name: "seed", value: text.indexOf("\n") });
+  };
   if ($("#constraints").prop("checked")) {
     data.push({ name: "with_constraints", value: true })
-  }
+  };
   $.ajax({
     type: "POST",
     url: "web/generate.php",
@@ -346,7 +407,6 @@ function rewrite(args) {
     $("#downloadButton").hide();
     $("#editor").addClass("flash");
     if (args.includes("arrange")) {
-      args += ",timeout=" + delays[$("#delays").attr("value")];
       args = args.replace("arrange,", "arrange:");
     }
     if (args.includes("explode")) {

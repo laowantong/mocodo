@@ -131,7 +131,7 @@ if ($lib) {
 							<li>En sortie, il produit un diagramme entité-association et, à la demande, un <a href="https://fr.wikipedia.org/wiki/Merise_(informatique)#MLD_:_modèle_logique_des_données">MLD</a> (schéma relationnel, sous forme graphique ou textuelle), un <a href="https://fr.wikipedia.org/wiki/Langage_de_définition_de_données">DDL</a> (script SQL de création de la base), un <a href="https://fr.wikipedia.org/wiki/Diagramme_de_classes">diagramme de classes UML</a>, etc.</li>
 							<li>En bonus, il est capable de réarranger automatiquement votre MCD de façon esthétique, et de lui appliquer des opérations de réécriture qui vont du mondain (typographie) à l'académique (décomposition d'associations), en passant par le merveilleux (inférence de types, génération d'exercices et d'exemples).</li>
 						</ul>
-						<p>Ce site est prévu pour une utilisation basique et occasionnelle, typiquement en salle de classe. Si vous travaillez sur des données confidentielles¹, ou souhaitez avoir accès à toutes les fonctionnalités de Mocodo, vous pouvez, soit utiliser Mocodo sous [Basthon](https://www.basthon.fr), soit l'installer sur votre ordinateur :</p>
+						<p>Ce site est prévu pour une utilisation basique et occasionnelle, typiquement en salle de classe. Si vous travaillez sur des données confidentielles¹, ou souhaitez avoir accès à toutes les fonctionnalités de Mocodo, vous pouvez, soit utiliser Mocodo sous <a href="https://www.basthon.fr">Basthon</a>, soit l'installer sur votre ordinateur :</p>
 						<br />
 						<pre>&gt; pip install mocodo</pre>
 						<br />
@@ -142,7 +142,7 @@ if ($lib) {
 						<p style="font-size: small; font-style: italic; text-align: right;">Aristide Grange, Université de Lorraine, Metz (France)</p>
 						<div class="footnote">
 							<hr>
-							<p>¹ En local, rien ne quitte votre ordinateur. En ligne, Mocodo stocke dans votre navigateur un <a href="https://www.cnil.fr/fr/cookies-et-autres-traceurs/regles/cookies/que-dit-la-loi">cookie non soumis à obligation de consentement préalable</a> qui lui permet de retrouver vos réglages de l'onglet Options. Côté serveur, il stocke le dernier état de votre travail afin de le mettre à votre disposition sous forme d'archive téléchargeable. Ce dossier est détruit au bout de 24 heures. Pour le détruire dès la fin d'une session, effacez le texte d'entrée et pressez le bouton de rafraîchissement.</p>
+							<p>¹ Ce site stocke dans votre navigateur un <a href="https://www.cnil.fr/fr/cookies-et-autres-traceurs/regles/cookies/que-dit-la-loi">cookie non soumis à obligation de consentement préalable</a> qui lui permet de retrouver vos réglages de l'onglet Options. Côté serveur, il stocke le dernier état de votre travail afin de le mettre à votre disposition sous forme d'archive téléchargeable. Ce dossier est détruit au bout de 24 heures. Pour le détruire dès la fin d'une session, effacez le texte d'entrée et pressez le bouton de rafraîchissement. Sous Basthon ou en local, rien ne quitte votre ordinateur.</p>
 						</div>
 					</div>
 					<div id="inputContents" class="contents">
@@ -186,12 +186,6 @@ if ($lib) {
 								<label class="setting-label" for="adjust_width">Ajustement de la largeur des libellés</label>
 								<div class="setting-controls">
 									<input type="number" value="1.00" max="2.00" min="0.50" step="0.01" onchange="writeCookie()" name="adjust_width" id="adjust_width" style="width: 5em; border-radius: 0;" />
-								</div>
-							</div>
-							<div class="setting-row">
-								<label class="setting-label" for="delays">Temps de calcul limité à </label>
-								<div class="setting-controls">
-									<select onchange="writeCookie()" name="delays" id="delays"></select>
 								</div>
 							</div>
 							<div class="setting-row">
@@ -313,13 +307,17 @@ if ($lib) {
 	<div id="navigation">
 		<a target="_blank" href="https://github.com/laowantong/mocodo">Mocodo 4.2.1</a>
 		&nbsp;∙&nbsp;
+		<img class="inlineIcon"
+			src="web/basthon_play.svg" 
+			alt="Basthon" title="Ouvrir ce MCD dans un notebook pour accéder sans installation à toutes les fonctionnalités."
+			onclick="sendToBasthon()"
+		/>&nbsp;&nbsp;<a target="_blank" title="Un bac à sable en ligne basé sur Jupyter Notebook." href="https://basthon.fr">Basthon</a>
+		&nbsp;∙&nbsp;
 		<a target="_blank" href="https://rawgit.com/laowantong/mocodo/master/doc/fr_refman.html">Documentation</a>
 		&nbsp;∙&nbsp;
-		<a target="_blank" href="https://github.com/laowantong/mocodo/issues">Récriminations</a>
+		<a title="Contacter l'auteur par mail." onclick="alert('Pour envoyer vos compliments à l\'auteur, trouvez d\'abord son nom sous l\'onglet d\'information, puis adressez un mail à prénom.nom@univ-lorraine.fr. Attention, tout problème ou demande concernant le logiciel doit faire l\'objet d\'une issue GitHub (« Récriminations »).')">Félicitations</a>
 		&nbsp;∙&nbsp;
-		<a target="_blank" href="https://notebook.basthon.fr/?from=examples/python3-mocodo.ipynb">Basthon</a>
-		&nbsp;∙&nbsp;
-		<a href="" title="En ligne de commande, faites `mocodo --help` pour afficher l\'adresse mail de l\'auteur." onclick="alert('En ligne de commande, faites :\n\xA0\xA0\xA0\xA0mocodo --help\npour afficher l\'adresse mail de l\'auteur.')">Contact</a>
+		<a title="Créer une issue GitHub." target="_blank" href="https://github.com/laowantong/mocodo/issues">Récriminations</a>
 	</div>
 </body>
 </html>

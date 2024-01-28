@@ -346,6 +346,15 @@ ul.tabs a:hover {
   transform: scale(1.4);
 }
 
+.inlineIcon {
+  height: 1.5em;
+  vertical-align: bottom;
+  transition: transform 0.2s ease-in-out;
+}
+.inlineIcon:hover {
+  transform: scale(1.4);
+}
+
 .tooltip {
   position: relative;
   display: inline-block;
