@@ -1,14 +1,6 @@
 /*global $, jQuery*/
 'use strict';
 var request_lock = false;
-var delays = {
-  "15 secondes": 15,
-  "30 secondes": 30,
-  "1 minute": 60,
-  "2 minutes": 120,
-  "4 minutes": 240,
-  "8 minutes": 480,
-}
 var conversions = {
   "_url.url": {
     "default": true,
@@ -606,9 +598,6 @@ $().ready(function () {
   var default_color = "brewer" + "+-"[Math.floor(Math.random() * 2)] + (Math.floor(Math.random() * 9) + 1);
   createOptions("colors", ["blank", "bw", "bw-alpha", "desert", "keepsake", "mondrian", "ocean", "pond", "wb", "xinnian", "brewer+1", "brewer-1", "brewer+2", "brewer-2", "brewer+3", "brewer-3", "brewer+4", "brewer-4", "brewer+5", "brewer-5", "brewer+6", "brewer-6", "brewer+7", "brewer-7", "brewer+8", "brewer-8", "brewer+9", "brewer-9"], default_color);
   createOptions("shapes", ["arial", "copperplate", "georgia", "mondrian", "sans", "serif", "times", "trebuchet", "verdana", "xinnian"], "verdana");
-  var items = Object.keys(delays).map(function (key) { return { "value": delays[key], "name": key } });
-  items.sort(function (a, b) { return a["value"] - b["value"] });
-  createOptions("delays", items.map(function (value, index) { return value["name"] }), "1 minute");
   createCheckboxes(conversions, "conversions");
   createCheckboxes(knowledge, "knowledge");
   appendMenuToInput("sql_case", "_ddl.sql");
