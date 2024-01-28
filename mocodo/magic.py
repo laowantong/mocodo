@@ -98,6 +98,17 @@ def mocodo(line="", source=""):
         %load_ext mocodo
     """
 
+    if source == "":
+        # When this function is NOT invoked as a magic command, the first (and normally unique)
+        # argument can consist of several lines, separated by "\n". The first line is the magic
+        # command, the other ones (if any) are the source of the MCD. Redistribute the lines to
+        # conform to the magic command's expected format.
+        line = re.sub(r"^\s*%%?mocodo\s*", "", line)
+        lines = line.split("\n")
+        if len(lines) > 1:
+            source = "\n".join(lines[1:])
+            line = lines[0]
+
     parser = argparse.ArgumentParser(add_help=False)
     parser.add_argument("--input", "-i")
     parser.add_argument("--output_dir")

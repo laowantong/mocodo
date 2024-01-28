@@ -53,6 +53,8 @@ $_POST['input'] = "{$title}.mcd";
 if ($_POST['png']) { $mocodo .= " --svg_to png"; };
 if ($_POST['pdf']) { $mocodo .= " --svg_to pdf"; };
 
+$basthon_source = preg_replace("/\n+$/", "", $_POST['text']);
+
 if ($_POST['state']=="moved") {
     $geo = json_decode(file_get_contents("{$title}_geo.json"),true);
     $geo['width'] = intval($_POST['width']);
@@ -97,6 +99,8 @@ else {
     fclose($chan);
   };
 
+$basthon_options .= "";
+
 if ($_POST['conversions']) {
   $transformation_options = "";
   $conversions = array();
@@ -113,10 +117,38 @@ if ($_POST['conversions']) {
     $conversions[] = $ext;
   };
   $mocodo .= " -t{$transformation_options}";
+  $basthon_options .= " --select all -t{$transformation_options}";
 };
 
 if (!isset($_POST["knowledge"]) || !is_array($_POST["knowledge"]) || !in_array("assoc_ids", $_POST["knowledge"])) {
   $mocodo .= " --no_assoc_ids";
+};
+
+if (isset($_POST["basthon"])) {
+  $default_option_values = array(
+    "shapes" => "copperplate",
+    "colors" => "bw",
+    "adjust_width" => "1.00",
+    "fk_format" => "#{label}",
+    "strengthen_card" => "_1,1_",
+    "lib" => null,
+    "seed" => null,
+  );
+  foreach ($default_option_values as $option => $default_value) {
+    if (isset($_POST[$option]) && ($_POST[$option] != $default_value)) {
+      $basthon_options .= " --{$option}=" . $_POST[$option];
+    };
+  };
+  $basthon_options = substr($basthon_options, 1); // strip the first space
+  if ($_POST["detect_overlaps"] == "on") {
+    $basthon_options .= " --detect_overlaps";
+  };
+  $result = array(
+    "options" => $basthon_options,
+    "source" => $basthon_source,
+  );
+  echo json_encode($result);
+  exit();
 };
 
 // Launch the script
