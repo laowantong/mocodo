@@ -13,7 +13,7 @@ from pathlib import Path
 from mocodo.tools.string_tools import strip_surrounds
 from mocodo.tools.various import invert_dict
 
-from .version_number import version
+from .version import __version__
 from .mocodo_error import MocodoError
 
 SCRIPT_DIRECTORY = os.path.dirname(os.path.realpath(os.path.join(__file__)))
@@ -277,7 +277,7 @@ def parsed_arguments(args):
     )
     mocodo_group.add_argument("--version",
         action="version",
-        version="%(prog)s " + version,
+        version="%(prog)s " + __version__,
         help=_("display the version number, then exit"),
     )
     mocodo_group.add_argument("--restore",

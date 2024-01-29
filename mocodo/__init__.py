@@ -6,14 +6,14 @@ from pathlib import Path
 
 from .__main__ import Printer, Runner
 from .argument_parser import SCRIPT_DIRECTORY
-from .version_number import version
+from .version import __version__
 
 def load_ipython_extension(ipython):
     # This function is called when the extension is loaded in a notebook
     # with %load_ext mocodo or %reload_ext mocodo.
     mocodo = importlib.import_module("mocodo.magic").mocodo
     ipython.register_magic_function(mocodo, 'line_cell', 'mocodo')
-    print(f"Mocodo {version} loaded.")
+    print(f"Mocodo {__version__} loaded.")
 
 
 def mocodo(arg_string=None, quiet=True):
@@ -46,7 +46,7 @@ def mocodo(arg_string=None, quiet=True):
         run = Runner(remaining_args, printer)
     except SystemExit: # raised by argparse with certain arguments: --help, --version
         if "--version" in remaining_args:
-            return version
+            return __version__
         return
     run()
     return "".join(printer.accumulator)
