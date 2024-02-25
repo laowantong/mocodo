@@ -224,7 +224,7 @@ class Relations:
     def may_retrieve_distant_leg_note(self, leg, attribute):
         if leg.entity_bid in self.inheritance_parent_or_children_to_delete:
             for d in self.relations[leg.entity.bid]["columns"]:
-                if d["attribute"] == attribute["attribute"] and d["adjacent_source"] == attribute["adjacent_source"]:
+                if all(d[k] == attribute[k] for k in ("attribute", "adjacent_source", "association_name")):
                     return d["leg_note"]
         return leg.note
 

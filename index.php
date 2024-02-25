@@ -305,7 +305,7 @@ if ($lib) {
 		</form>
 	</div>
 	<div id="navigation">
-		<a title="Voir le code sur GitHub." target="_blank" href="https://github.com/laowantong/mocodo">Mocodo 4.2.2</a>
+		<a title="Voir le code sur GitHub." target="_blank" href="https://github.com/laowantong/mocodo">Mocodo 4.2.3</a>
 		&nbsp;∙&nbsp;
 		<img class="inlineIcon"
 			src="web/png/basthon_play.png" 

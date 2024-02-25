@@ -439,6 +439,24 @@ class relationsTest(unittest.TestCase):
         t = Relations(Mcd(source, params), params)
         self.assertEqual(t.get_text(minimal_template), text)
     
+    def test_roles_with_inheritance(self):
+        # https://github.com/laowantong/mocodo/issues/110
+        source = """
+            Équipe: id équipe,nom équipe
+            Accueille, 11 Match, 0N [-hôte] Équipe
+
+            Reçoit, 11 Match, 0N [-visiteur] Équipe
+            Match: id match
+
+            Rencontre: id rencontre
+            /XT\\ Rencontre <- Match: type rencontre
+        """
+        text = """
+            Équipe (_id équipe_, nom équipe)
+            Rencontre (_id rencontre_, type rencontre, id match, #hôte, #visiteur)
+        """.strip().replace("    ", "")
+        t = Relations(Mcd(source, params), params)
+        self.assertEqual(t.get_text(minimal_template), text)
 
 if __name__ == '__main__':
     unittest.main()
