@@ -9,7 +9,7 @@ from ..rewrite import (
     _split as split,
     _drain as drain,
 )
-from ..version import __version__
+from .. import __version__
 
 MIN_MAX_IN_UML = {
     "01": "1..*",

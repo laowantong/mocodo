@@ -22,6 +22,16 @@
 	<script async defer src="https://buttons.github.io/buttons.js"></script>
 </head>
 <?php
+if (strpos($_SERVER['HTTP_REFERER'], 'localhost')) {
+    $mocodo = "~/opt/anaconda3/bin/mocodo";
+    $web_url = "http://localhost:8898/mocodo/web/";
+  } else {
+    $mocodo = "~/.local/bin/mocodo";
+    $web_url = "https://www.mocodo.net/web/";
+  }
+$version = shell_exec("$mocodo --version");
+$version = !empty($version) ? trim($version) : '';
+
 $lib = $_GET['lib'];
 if ($lib) {
 	echo "<script>$(document).ready(function() { $('#lib').val('{$lib}'); });</script>";
@@ -305,7 +315,7 @@ if ($lib) {
 		</form>
 	</div>
 	<div id="navigation">
-		<a title="Voir le code sur GitHub." target="_blank" href="https://github.com/laowantong/mocodo">Mocodo 4.2.3</a>
+		<a title="Voir le code sur GitHub." target="_blank" href="https://github.com/laowantong/mocodo">Mocodo <?php echo $version; ?></a>
 		&nbsp;∙&nbsp;
 		<img class="inlineIcon"
 			src="web/png/basthon_play.png" 

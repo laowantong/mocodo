@@ -5,7 +5,7 @@ import re
 from mocodo.tools.various import first_missing_positive
 
 from ..mocodo_error import MocodoError
-from ..version import __version__
+from .. import __version__
 
 
 def set_defaults(template):

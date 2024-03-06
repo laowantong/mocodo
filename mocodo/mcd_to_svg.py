@@ -2,7 +2,7 @@ from pathlib import Path
 import re
 
 from .mocodo_error import MocodoError
-from .version import __version__
+from . import __version__
 
 try:
     from cairosvg import svg2png, svg2pdf

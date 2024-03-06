@@ -13,10 +13,8 @@ from pathlib import Path
 from mocodo.tools.string_tools import strip_surrounds
 from mocodo.tools.various import invert_dict
 
-from .version import __version__
+from . import __version__, SCRIPT_DIRECTORY
 from .mocodo_error import MocodoError
-
-SCRIPT_DIRECTORY = os.path.dirname(os.path.realpath(os.path.join(__file__)))
 
 class ArgumentDefaultsRawDescriptionHelpFormatter(
     argparse.ArgumentDefaultsHelpFormatter,
@@ -37,7 +35,7 @@ def init_localization(language):
             except:
                 language = "en"
     try:
-        path = Path(f"{SCRIPT_DIRECTORY}/resources/i18n/messages_{language}.mo")
+        path = Path(SCRIPT_DIRECTORY, "resources", "i18n", f"messages_{language}.mo")
         with path.open("rb") as mo_contents:
             trans = gettext.GNUTranslations(mo_contents)
     except IOError:
@@ -54,9 +52,9 @@ def init_localization(language):
 class Transformations:
 
     def __init__(self, language):
-        metadata_path = Path(f"{SCRIPT_DIRECTORY}/resources/transformations.json")
+        metadata_path = Path(SCRIPT_DIRECTORY, "resources", "transformations.json")
         self.metadata = json.loads(metadata_path.read_text(encoding="utf8"))
-        index_path = Path(f"{SCRIPT_DIRECTORY}/resources/relation_templates/_index.json")
+        index_path = Path(SCRIPT_DIRECTORY, "resources", "relation_templates", "_index.json")
         template_data = json.loads(index_path.read_text(encoding="utf8"))
         for (stem, d) in template_data.items():
             if f"help_{language}" in d:
@@ -277,7 +275,7 @@ def parsed_arguments(args):
     )
     mocodo_group.add_argument("--version",
         action="version",
-        version="%(prog)s " + __version__,
+        version=__version__,
         help=_("display the version number, then exit"),
     )
     mocodo_group.add_argument("--restore",

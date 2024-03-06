@@ -9,7 +9,7 @@ from ..tools.parser_tools import first_child, parse_source, is_identifier
 from ..rewrite import _split as split
 from ..tools.graphviz_tools import create_name_to_index
 from ..tools.string_tools import wrap_label, rstrip_digit_or_underline
-from ..version import __version__
+from .. import __version__
 
 class Chen(Visitor):
     def __init__(self, subargs, common):

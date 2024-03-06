@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "mocodo"
-version = "4.2.3"
+version = "0" # actually dynamically set by poetry-version-plugin
 description = "Modélisation Conceptuelle de Données. Nickel. Ni souris."
 authors = ["Aristide Grange"]
 license = "MIT"
@@ -28,6 +28,10 @@ classifiers = [
     "Topic :: Database",
     "Topic :: Education",
 ]
+
+# see https://github.com/tiangolo/poetry-version-plugin
+[tool.poetry-version-plugin]
+source = "init" # read version from __init__.py
 
 [tool.poetry.dependencies]
 python = "^3.6.1"

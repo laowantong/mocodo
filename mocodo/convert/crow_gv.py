@@ -9,7 +9,7 @@ from ..rewrite import (
 )
 from ..tools.string_tools import rstrip_digit_or_underline
 from ..tools.graphviz_tools import NODE_OPTIONS_TEMPLATE, table_as_label
-from ..version import __version__
+from .. import __version__
 
 SUFFIX = "_crows_foot_erd.gv"
 
