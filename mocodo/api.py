@@ -21,6 +21,8 @@ def mocodo(arg_string=None, quiet=True):
     if not args.input:
         # No path is provided for the source of the MCD. Fall back to the pristine sandbox.
         input_path = str(Path(SCRIPT_DIRECTORY, "resources", "pristine_sandbox.mcd"))
+    
+    output_dir = Path(args.output_dir)
     if not args.output_dir:
         output_dir = Path(os.getcwd())
 
