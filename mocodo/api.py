@@ -6,7 +6,7 @@ from . import __version__, SCRIPT_DIRECTORY
 from .__main__ import Printer, Runner
 
 
-def mocodo(arg_string=None, quiet=True):
+def mocodo(arg_string="", quiet=True):
     """
     Simulate the command line `mocodo` as a function, with the same arguments provided as a string.
     With `quiet=True`, no success messages are printed.
@@ -22,13 +22,13 @@ def mocodo(arg_string=None, quiet=True):
         # No path is provided for the source of the MCD. Fall back to the pristine sandbox.
         input_path = str(Path(SCRIPT_DIRECTORY, "resources", "pristine_sandbox.mcd"))
     
-    output_dir = Path(args.output_dir)
+    output_dir = args.output_dir
     if not args.output_dir:
-        output_dir = Path(os.getcwd())
+        output_dir = os.getcwd()
 
     remaining_args.extend([
-        "--input", str(input_path),
-        "--output_dir", str(output_dir),
+        "--input", input_path,
+        "--output_dir", output_dir,
     ]) # may override user's provided options
     printer = Printer(quiet=quiet)
     try:
