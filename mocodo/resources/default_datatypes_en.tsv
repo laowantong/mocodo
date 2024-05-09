@@ -64,11 +64,11 @@ Addressing
 Financial
 
 \b(price|amount|fees|charges|cost|bill)$	DECIMAL(10,2)
-\barn$	VARCHAR(8)"	 Acquirer Reference Number
+\barn$	VARCHAR(8)	 Acquirer Reference Number
 \barn code$	VARCHAR(8)
-\bbic$	VARCHAR(11)"	 Bank Identifier Code
+\bbic$	VARCHAR(11)	 Bank Identifier Code
 \bbic code$	VARCHAR(11)
-\biban$	VARCHAR(34)"	 Maximum value
+\biban$	VARCHAR(34)	 Maximum value
 
 Predicate
 

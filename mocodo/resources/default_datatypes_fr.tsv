@@ -67,10 +67,10 @@ Financial
 
 ^(prix|montant|frais|charges|coût)\b	DECIMAL(10,2)
 ^code nra\b	VARCHAR(8)
-^nra\b	VARCHAR(8)"	 Numéro de Référence de l'Acquéreur”, pour identifier les transactions par carte bancaire
-^bic\b	VARCHAR(11)"	 Bank Identifier Code
+^nra\b	VARCHAR(8)	 Numéro de Référence de l'Acquéreur, pour identifier les transactions par carte bancaire
+^bic\b	VARCHAR(11)	 Bank Identifier Code
 ^code bic\b	VARCHAR(11)
-^iban\b	VARCHAR(27)"	 France, Monaco, etc.
+^iban\b	VARCHAR(27)	 France, Monaco, etc.
 
 Predicate
 
