@@ -42,7 +42,7 @@ if (strpos($_SERVER['HTTP_REFERER'], 'localhost')) {
   } else {
     $mocodo = "~/.local/bin/mocodo";
 };
-$command_line = "{$mocodo} -t " . escapeshellarg($_POST['args']) . " 2>&1"; //
+$command_line = "{$mocodo} -t " . escapeshellcmd($_POST['args']) . " 2>&1";
 
 // Execute the command and test the exit code.
 // If it is not 0, return an array with a key "err" and the error message.
