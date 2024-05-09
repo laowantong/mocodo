@@ -106,7 +106,7 @@ if ($_POST['conversions']) {
   $conversions = array();
   foreach ($_POST['conversions'] as $ext) {
     if ($ext == "_ddl.sql") {
-      $transformation_options .= " " . $_POST['sql_case'] . ":labels";
+      $transformation_options .= " " . escapeshellarg($_POST["sql_case"]) . ":labels";
     };
     if ($_POST['with_constraints']) {
       $option = $transformations[str_replace("_mld", "_mld_with_constraints", $ext)];
@@ -136,7 +136,7 @@ if (isset($_POST["basthon"])) {
   );
   foreach ($default_option_values as $option => $default_value) {
     if (isset($_POST[$option]) && ($_POST[$option] != $default_value)) {
-      $basthon_options .= " --{$option}=" . $_POST[$option];
+      $basthon_options .= " --{$option}=" . escapeshellarg($_POST[$option]);
     };
   };
   $basthon_options = substr($basthon_options, 1); // strip the first space
