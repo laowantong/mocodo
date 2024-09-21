@@ -103,7 +103,7 @@ def mocodo(line="", source=""):
         # argument can consist of several lines, separated by "\n". The first line is the magic
         # command, the other ones (if any) are the source of the MCD. Redistribute the lines to
         # conform to the magic command's expected format.
-        line = re.sub(r"^\s*%%?mocodo\s*", "", line)
+        line = re.sub(r"^\s*%%?mocodo\b *", "", line)
         lines = line.split("\n")
         if len(lines) > 1:
             source = "\n".join(lines[1:])
