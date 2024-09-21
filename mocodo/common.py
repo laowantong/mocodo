@@ -66,6 +66,7 @@ class Common:
         with contextlib.suppress(requests.exceptions.ConnectionError):
             response = requests.get(f"{self.params['lib']}/{path.name}")
             if response.status_code == 200:
+                response.encoding = 'utf-8'  # Force the response encoding to UTF-8
                 source = response.text.replace('"', '')
                 # Save the file locally.
                 path.parent.mkdir(parents=True, exist_ok=True)
