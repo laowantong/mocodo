@@ -317,11 +317,13 @@ if ($lib) {
 	<div id="navigation">
 		<a title="Voir le code sur GitHub." target="_blank" href="https://github.com/laowantong/mocodo">Mocodo <?php echo $version; ?></a>
 		&nbsp;∙&nbsp;
-		<img class="inlineIcon"
-			src="web/png/basthon_play.png" 
-			alt="Basthon" title="Ouvrir ce MCD dans un notebook pour accéder à toutes les fonctionnalités du logiciel sans avoir à l'installer."
-			onclick="sendToBasthon()"
-		/>&nbsp;&nbsp;<a target="_blank" title="Un bac à sable en ligne basé sur Jupyter Notebook." href="https://basthon.fr">Basthon</a>
+		<a href="javascript:void(0);" 
+			onclick="sendToBasthon()" 
+			title="Ouvrir ce MCD dans un notebook pour accéder à toutes les fonctionnalités du logiciel sans avoir à l'installer."
+			style="cursor: pointer; display: inline-block;">
+			<img class="inlineIcon" src="web/png/basthon_play.png" alt="Basthon" />
+			&nbsp;&nbsp;Basthon
+		</a>
 		&nbsp;∙&nbsp;
 		<a target="_blank" href="https://rawgit.com/laowantong/mocodo/master/doc/fr_refman.html">Documentation</a>
 		&nbsp;∙&nbsp;

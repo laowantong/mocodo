@@ -1,3 +1,5 @@
+**Septembre 2024.** Basthon prend maintenant en charge Mocodo 4.2.8, qui simplifie l'appel à la fonction `mocodo()` de `mocodo.magic`. Voir l'[exemple mis à jour](https://notebook.basthon.fr/?from=examples/python3-mocodo.ipynb) dans la galerie de Basthon.
+
 **Janvier 2024.** Mocodo [4.2](https://github.com/laowantong/mocodo/releases/tag/4.2.0) est maintenant disponible sous [Basthon](https://basthon.fr). Après [Mocodo _online_](https://www.mocodo.net), Basthon constitue donc une deuxième manière d'utiliser Mocodo sans rien installer. Elle a l'avantage de donner accès à l'intégralité des fonctionnalités du logiciel. Merci à son auteur, Romain Casati !
 
 **Novembre 2023.** Mocodo [4.1](https://github.com/laowantong/mocodo/releases/tag/4.1.0) gère les bibliothèques de MCD. Un enseignant peut par exemple placer sur son propre serveur la correction d'un MCD sous un nom « secret », que le moment venu il communiquera oralement à ses étudiants pour leur permettre de le récupérer (soit sous Mocodo online, soit en ligne de commande).

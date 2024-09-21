@@ -1,11 +1,14 @@
 /*global $, jQuery*/
 'use strict';
 const openInNewTab = (href) => {
-  Object.assign(document.createElement("a"), {
-    target: "_blank",
-    rel: "noopener noreferrer",
-    href: href,
-  }).click();
+  const a = document.createElement("a");
+  a.target = "_blank";
+  a.rel = "noopener noreferrer";
+  a.href = href;
+  a.style.display = "none";
+  document.body.appendChild(a); // Append the link to the document
+  a.click(); // Programmatically click the link
+  document.body.removeChild(a); // Remove the link after clicking
 };
 const basthon_template = JSON.stringify({
   cells: [
