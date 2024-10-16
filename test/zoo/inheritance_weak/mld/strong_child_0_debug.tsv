@@ -1,0 +1,14 @@
+this relation name	attribute	optionality	unicities	nature	is primary	adjacent source	outer source	association name	datatype	leg note
+CONTRAT	num prof	!		strengthening_primary_foreign_key	True	VACATAIRE	VACATAIRE	DF		
+CONTRAT	date contrat	!		primary_key	True					
+CONTRAT	salaire horaire contrat			normal_attribute	False					
+PROFESSEUR	num prof	!		primary_key	True					
+PROFESSEUR	nom prof			normal_attribute	False					
+PROFESSEUR	prénom prof			normal_attribute	False					
+PROFESSEUR	téléphone prof			normal_attribute	False					
+SALARIÉ	num prof	!		parent_primary_key	True	PROFESSEUR	PROFESSEUR	XT		
+SALARIÉ	date embauche salarié			normal_attribute	False					
+SALARIÉ	échelon salarié			normal_attribute	False					
+SALARIÉ	salaire salarié			normal_attribute	False					
+VACATAIRE	num prof	!		parent_primary_key	True	PROFESSEUR	PROFESSEUR	XT		
+VACATAIRE	statut vacataire			normal_attribute	False

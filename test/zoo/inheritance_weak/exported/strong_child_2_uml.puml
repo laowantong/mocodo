@@ -1,0 +1,36 @@
+@startuml "inheritance_weak"
+
+!define Table(x) class "x" << (T,#FFFFFF) >>
+!define pk(x) <b>x</b>
+
+"CONTRAT" "1..*" --* "1" "VACATAIRE"
+
+Table("VACATAIRE") {
+    {field} + pk(statut vacataire)
+}
+
+Table("CONTRAT") {
+    {field} + pk(date contrat)
+    {field} + salaire horaire contrat
+}
+
+note "{complete, disjoint}" as GENERALIZATION_0
+GENERALIZATION_0 -[dotted]- SALARIÉ
+GENERALIZATION_0 -[dotted]- VACATAIRE
+PROFESSEUR <|-- SALARIÉ
+PROFESSEUR <|-- VACATAIRE
+
+Table("SALARIÉ") {
+    {field} + pk(date embauche salarié)
+    {field} + échelon salarié
+    {field} + salaire salarié
+}
+
+Table("PROFESSEUR") {
+    {field} + pk(num prof)
+    {field} + nom prof
+    {field} + prénom prof
+    {field} + téléphone prof
+}
+
+@enduml

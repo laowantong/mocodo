@@ -1,0 +1,18 @@
+"CONTRAT": { shape: sql_table
+  "num prof":                VARCHAR(42) {constraint: [PK; FK]}
+  "date contrat":            VARCHAR(42) {constraint: PK}
+  "salaire horaire contrat": VARCHAR(42) 
+}
+
+"PROFESSEUR": { shape: sql_table
+  "num prof":              VARCHAR(42) {constraint: PK}
+  "nom prof":              VARCHAR(42) 
+  "prénom prof":           VARCHAR(42) 
+  "téléphone prof":        VARCHAR(42) 
+  "statut vacataire":      VARCHAR(42) {constraint: "NULL"}
+  "date embauche salarié": VARCHAR(42) {constraint: "NULL"}
+  "échelon salarié":       VARCHAR(42) {constraint: "NULL"}
+  "salaire salarié":       VARCHAR(42) {constraint: "NULL"}
+}
+
+"CONTRAT"."num prof" -> "PROFESSEUR"."num prof"

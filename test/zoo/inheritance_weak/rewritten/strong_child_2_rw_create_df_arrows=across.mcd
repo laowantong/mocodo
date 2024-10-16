@@ -1,0 +1,11 @@
+% https://github.com/laowantong/mocodo/issues/118
+% Concrete table inheritance: parent disappears
+
+DF, _11 CONTRAT, 1N> VACATAIRE
+VACATAIRE: statut vacataire
+
+CONTRAT: date contrat, salaire horaire contrat
+/XT\ PROFESSEUR => VACATAIRE, SALARIÉ
+SALARIÉ: date embauche salarié, échelon salarié, salaire salarié
+
+PROFESSEUR: num prof, nom prof, prénom prof, téléphone prof

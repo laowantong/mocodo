@@ -1,0 +1,72 @@
+<html>
+<head>
+<!-- TO_BE_DELETED_BY_MOCODO_MAGIC --><link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+<meta charset="utf-8">
+<style>
+  .mld .relation { font-variant: small-caps; font-weight: bold }
+  .mld .primary { text-decoration: underline }
+  .mld .foreign { font-style: oblique }
+  .mld strong { font-weight: bold }
+  .mld i { font-style: italic }
+  .mld ul { list-style-type:square; margin: 0 0 1em 2em }
+</style>
+</head>
+<body>
+<!-- TO_BE_DELETED_BY_MOCODO_MAGIC --><header><h1>Conversion en relationnel</h1><p>Générée par <a href="https://github.com/laowantong/mocodo">Mocodo</a></p></header>
+<main>
+<!-- TO_BE_DELETED_BY_MOCODO_MAGIC --><figure><center><img src="strong_child_0_mld.svg"/></center><figcaption>MCD <i>inheritance_weak</i></figcaption></figure>
+<div class="mld">
+<div>
+  <details><summary><span class='relation'>CONTRAT</span> (
+    <span class='foreign primary'>#num prof</span>,
+    <span class='primary'>date contrat</span>,
+    <span class='normal'>salaire horaire contrat</span>
+  )</summary>
+  <ul>
+    <li>Le champ <i>num prof</i> fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré à partir de l'entité <i>VACATAIRE</i> pour renforcer l'identifiant.</li>
+    <li>Le champ <i>date contrat</i> fait partie de la clé primaire de la table. C'était déjà un identifiant de l'entité <i>CONTRAT</i>.</li>
+    <li>Le champ <i>salaire horaire contrat</i> était déjà un simple attribut de l'entité <i>CONTRAT</i>.</li>
+  </ul></details>
+</div>
+
+<div>
+  <details><summary><span class='relation'>PROFESSEUR</span> (
+    <span class='primary'>num prof</span>,
+    <span class='normal'>nom prof</span>,
+    <span class='normal'>prénom prof</span>,
+    <span class='normal'>téléphone prof</span>
+  )</summary>
+  <ul>
+    <li>Le champ <i>num prof</i> constitue la clé primaire de la table. C'était déjà un identifiant de l'entité <i>PROFESSEUR</i>.</li>
+    <li>Les champs <i>nom prof</i>, <i>prénom prof</i> et <i>téléphone prof</i> étaient déjà de simples attributs de l'entité <i>PROFESSEUR</i>.</li>
+  </ul></details>
+</div>
+
+<div>
+  <details><summary><span class='relation'>SALARIÉ</span> (
+    <span class='foreign primary'>#num prof</span>,
+    <span class='normal'>date embauche salarié</span>,
+    <span class='normal'>échelon salarié</span>,
+    <span class='normal'>salaire salarié</span>
+  )</summary>
+  <ul>
+    <li>Le champ <i>num prof</i> constitue la clé primaire de la table. C'est une clé étrangère qui a migré à partir de l'entité-mère <i>PROFESSEUR</i>.</li>
+    <li>Les champs <i>date embauche salarié</i>, <i>échelon salarié</i> et <i>salaire salarié</i> étaient déjà de simples attributs de l'entité <i>SALARIÉ</i>.</li>
+  </ul></details>
+</div>
+
+<div>
+  <details><summary><span class='relation'>VACATAIRE</span> (
+    <span class='foreign primary'>#num prof</span>,
+    <span class='normal'>statut vacataire</span>
+  )</summary>
+  <ul>
+    <li>Le champ <i>num prof</i> constitue la clé primaire de la table. C'est une clé étrangère qui a migré à partir de l'entité-mère <i>PROFESSEUR</i>.</li>
+    <li>Le champ <i>statut vacataire</i> était déjà un simple attribut de l'entité <i>VACATAIRE</i>.</li>
+  </ul></details>
+</div>
+
+</div>
+</main>
+</body>
+</html>

@@ -1,0 +1,16 @@
+- CONTRAT (_#num prof_, _date contrat_, salaire horaire contrat)
+  - Le champ « num prof » fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré à partir de l'entité « VACATAIRE » pour renforcer l'identifiant.
+  - Le champ « date contrat » fait partie de la clé primaire de la table. C'était déjà un identifiant de l'entité « CONTRAT ».
+  - Le champ « salaire horaire contrat » était déjà un simple attribut de l'entité « CONTRAT ».
+
+- PROFESSEUR (_num prof_, nom prof, prénom prof, téléphone prof)
+  - Le champ « num prof » constitue la clé primaire de la table. C'était déjà un identifiant de l'entité « PROFESSEUR ».
+  - Les champs « nom prof », « prénom prof » et « téléphone prof » étaient déjà de simples attributs de l'entité « PROFESSEUR ».
+
+- SALARIÉ (_#num prof_, date embauche salarié, échelon salarié, salaire salarié)
+  - Le champ « num prof » constitue la clé primaire de la table. C'est une clé étrangère qui a migré à partir de l'entité-mère « PROFESSEUR ».
+  - Les champs « date embauche salarié », « échelon salarié » et « salaire salarié » étaient déjà de simples attributs de l'entité « SALARIÉ ».
+
+- VACATAIRE (_#num prof_, statut vacataire)
+  - Le champ « num prof » constitue la clé primaire de la table. C'est une clé étrangère qui a migré à partir de l'entité-mère « PROFESSEUR ».
+  - Le champ « statut vacataire » était déjà un simple attribut de l'entité « VACATAIRE ».

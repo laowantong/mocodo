@@ -1,0 +1,6 @@
+digraph {
+  node [shape=box]
+  "VACATAIRE" -> "CONTRAT"
+  "PROFESSEUR" -> "SALARIÉ"
+  "PROFESSEUR" -> "VACATAIRE"
+}
