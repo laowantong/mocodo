@@ -1,0 +1,21 @@
+Table "CONTRAT" {
+  "num prof"                VARCHAR(42) [NOT NULL]
+  "date contrat"            VARCHAR(42) [NOT NULL]
+  "salaire horaire contrat" VARCHAR(42)
+  Indexes {
+    ("num prof", "date contrat") [pk]
+  }
+}
+
+Table "PROFESSEUR" {
+  "num prof"              VARCHAR(42) [pk, NOT NULL]
+  "nom prof"              VARCHAR(42)
+  "prénom prof"           VARCHAR(42)
+  "téléphone prof"        VARCHAR(42)
+  "statut vacataire"      VARCHAR(42) ["NULL"]
+  "date embauche salarié" VARCHAR(42) ["NULL"]
+  "échelon salarié"       VARCHAR(42) ["NULL"]
+  "salaire salarié"       VARCHAR(42) ["NULL"]
+}
+
+Ref:"CONTRAT"."num prof" > "PROFESSEUR"."num prof"

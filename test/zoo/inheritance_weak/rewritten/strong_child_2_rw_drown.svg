@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="326" height="330" viewBox="0 0 326 330" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="326" height="330" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+
+<!-- Inheritance ENTITE_4__PARENT_#1 -->
+<g>
+	<line x1="164" y1="266" x2="164" y2="140" stroke="#000000" stroke-width="1"/>
+	<line x1="162" y1="266" x2="162" y2="140" stroke="#000000" stroke-width="1"/>
+	<line x1="163" y1="39" x2="163" y2="140" stroke="#000000" stroke-width="1"/>
+	<polygon points="163 69 169 81 163 77 157 81" fill="#000000" stroke-width="0"/>
+	<line x1="267" y1="140" x2="163" y2="140" stroke="#000000" stroke-width="1"/>
+	<polygon points="217 140 205 146 209 140 205 134" fill="#000000" stroke-width="0"/>
+	<g>
+		<polygon points="163 111.13 138 154.43 188 154.43" stroke="#000000" stroke-width="1.5" fill="#FFFFFF"/>
+		<text x="151" y="146" fill="#000000" font-family="Copperplate" font-size="18">XT</text>
+	</g>
+</g>
+
+<!-- Association DF0 -->
+<g>
+	<line x1="59" y1="140" x2="59" y2="39" stroke="#000000" stroke-width="1"/>
+	<line x1="163" y1="39" x2="59" y2="39" stroke="#000000" stroke-width="1"/>
+	<g>
+		<circle cx="59" cy="39" r="20" stroke="#000000" stroke-width="1.5" fill="#FFFFFF"/>
+		<text x="46" y="43.8" fill="#000000" font-family="Copperplate" font-size="18">DF</text>
+	</g>
+	<text x="64" y="94" fill="#000000" font-family="Futura" font-size="11">1,1</text>
+	<line x1="64" y1="96" x2="82" y2="96" stroke="#000000" stroke-width="1"/>
+	<text x="89" y="55" fill="#000000" font-family="Futura" font-size="11">1,N</text>
+</g>
+
+<!-- Entity ENTITE_1_ -->
+<g>
+	<g>
+		<rect x="113" y="9" width="100" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="113" y="39" width="100" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="113" y="9" width="100" height="60" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
+		<line x1="113" y1="39" x2="213" y2="39" stroke="#000000" stroke-width="1.5"/>
+	</g>
+	<text x="122" y="30.3" fill="#000000" font-family="Copperplate" font-size="18">ENTITÉ 1</text>
+	<text x="121" y="56.1" fill="#000000" font-family="Gill Sans" font-size="15">at 1 1</text>
+</g>
+
+<!-- Entity ENTITE_2_ -->
+<g>
+	<g>
+		<rect x="9" y="102" width="100" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="9" y="132" width="100" height="46" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="9" y="102" width="100" height="76" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
+		<line x1="9" y1="132" x2="109" y2="132" stroke="#000000" stroke-width="1.5"/>
+	</g>
+	<text x="18" y="123.3" fill="#000000" font-family="Copperplate" font-size="18">ENTITÉ 2</text>
+	<text x="17" y="149.1" fill="#000000" font-family="Gill Sans" font-size="15">at 2 1</text>
+	<line x1="17" y1="152" x2="53" y2="152" stroke="#000000" stroke-width="1" stroke-dasharray="4"/>
+	<text x="17" y="166.1" fill="#000000" font-family="Gill Sans" font-size="15">at 2 2</text>
+</g>
+
+<!-- Entity ENTITE_3_ -->
+<g>
+	<g>
+		<rect x="217" y="93" width="100" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="217" y="123" width="100" height="64" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="217" y="93" width="100" height="94" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
+		<line x1="217" y1="123" x2="317" y2="123" stroke="#000000" stroke-width="1.5"/>
+	</g>
+	<text x="226" y="114.3" fill="#000000" font-family="Copperplate" font-size="18">ENTITÉ 3</text>
+	<text x="225" y="140.1" fill="#000000" font-family="Gill Sans" font-size="15">at 3 1</text>
+	<text x="225" y="157.1" fill="#000000" font-family="Gill Sans" font-size="15">at 3 2</text>
+	<text x="225" y="174" fill="#000000" font-family="Gill Sans" font-size="15">at 3 3</text>
+</g>
+
+<!-- Entity ENTITE_4_ -->
+<g>
+	<g>
+		<rect x="113" y="211" width="100" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="113" y="241" width="100" height="80" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="113" y="211" width="100" height="110" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
+		<line x1="113" y1="241" x2="213" y2="241" stroke="#000000" stroke-width="1.5"/>
+	</g>
+	<text x="122" y="232.3" fill="#000000" font-family="Copperplate" font-size="18">ENTITÉ 4</text>
+	<text x="121" y="258.1" fill="#000000" font-family="Gill Sans" font-size="15">at 4 1</text>
+	<line x1="121" y1="261" x2="157" y2="261" stroke="#000000" stroke-width="1"/>
+	<text x="121" y="275.1" fill="#000000" font-family="Gill Sans" font-size="15">at 4 2</text>
+	<text x="121" y="292.1" fill="#000000" font-family="Gill Sans" font-size="15">at 4 3</text>
+	<text x="121" y="309" fill="#000000" font-family="Gill Sans" font-size="15">at 4 4</text>
+</g>
+</svg>

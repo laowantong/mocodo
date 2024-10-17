@@ -1,0 +1,8 @@
+:
+CONTRAT: #num prof > PROFESSEUR > num prof, _date contrat, salaire horaire contrat
+:::
+
+
+:::
+PROFESSEUR: num prof, nom prof, prénom prof, téléphone prof, statut vacataire, date embauche salarié, échelon salarié, salaire salarié
+:

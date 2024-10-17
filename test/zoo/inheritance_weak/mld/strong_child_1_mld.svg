@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="444" height="267" viewBox="0 0 444 267" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="444" height="267" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+
+<!-- Entity CONTRAT -->
+<g>
+	<g>
+		<rect x="38" y="9" width="156" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="38" y="39" width="156" height="64" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="38" y="9" width="156" height="94" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
+		<line x1="38" y1="39" x2="194" y2="39" stroke="#000000" stroke-width="1.5"/>
+	</g>
+	<text x="72" y="30.3" fill="#000000" font-family="Copperplate" font-size="18">CONTRAT</text>
+	<text x="46" y="56.1" fill="#000000" font-family="Gill Sans" font-size="15">#num prof</text>
+	<line x1="46" y1="59" x2="113" y2="59" stroke="#000000" stroke-width="1"/>
+	<text x="46" y="73.1" fill="#000000" font-family="Gill Sans" font-size="15">date contrat</text>
+	<line x1="46" y1="76" x2="123" y2="76" stroke="#000000" stroke-width="1"/>
+	<text x="46" y="90" fill="#000000" font-family="Gill Sans" font-size="15">salaire horaire contrat</text>
+</g>
+
+<!-- Entity PROFESSEUR -->
+<g>
+	<g>
+		<rect x="252" y="80" width="154" height="30" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="252" y="110" width="154" height="148" fill="#FFFFFF" stroke="none" stroke-width="0" opacity="1"/>
+		<rect x="252" y="80" width="154" height="178" fill="none" stroke="#000000" stroke-width="1.5" opacity="1"/>
+		<line x1="252" y1="110" x2="406" y2="110" stroke="#000000" stroke-width="1.5"/>
+	</g>
+	<text x="267" y="101.3" fill="#000000" font-family="Copperplate" font-size="18">PROFESSEUR</text>
+	<text x="260" y="127" fill="#000000" font-family="Gill Sans" font-size="15">num prof</text>
+	<line x1="260" y1="130" x2="318" y2="130" stroke="#000000" stroke-width="1"/>
+	<text x="260" y="144.1" fill="#000000" font-family="Gill Sans" font-size="15">nom prof</text>
+	<text x="260" y="161.1" fill="#000000" font-family="Gill Sans" font-size="15">prénom prof</text>
+	<text x="260" y="178.1" fill="#000000" font-family="Gill Sans" font-size="15">téléphone prof</text>
+	<text x="260" y="195.1" fill="#000000" font-family="Gill Sans" font-size="15">statut vacataire</text>
+	<text x="260" y="212" fill="#000000" font-family="Gill Sans" font-size="15">date embauche salarié</text>
+	<text x="260" y="229" fill="#000000" font-family="Gill Sans" font-size="15">échelon salarié</text>
+	<text x="260" y="246" fill="#000000" font-family="Gill Sans" font-size="15">salaire salarié</text>
+</g>
+
+<!-- Link from &quot;num prof&quot; (CONTRAT) to &quot;num prof&quot; (PROFESSEUR) -->
+<path d="M194 53.5 C223 89 213.33 124.5 252 124.5" fill="none" stroke="#000000" stroke-width="1"/>
+<polygon points="252 124.5 240 130.5 244 124.5 240 118.5" fill="#000000" stroke-width="0"/>
+<circle cx="194" cy="53.5" r="1.5" stroke="#000000" stroke-width="1.5" fill="#000000"/>
+</svg>

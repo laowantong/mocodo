@@ -1,0 +1,38 @@
+\documentclass[a4paper]{article}
+\usepackage[normalem]{ulem}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\frenchsetup{StandardLayout=true}
+
+\newcommand{\relat}[1]{\textsc{#1}}
+\newcommand{\attr}[1]{#1}
+\newcommand{\prim}[1]{\uline{#1}}
+\newcommand{\foreign}[1]{\#\textsl{#1}}
+
+\title{Conversion en relationnel\\du MCD \emph{inheritance\_weak}}
+\author{\emph{Généré par Mocodo}}
+
+\begin{document}
+\maketitle
+
+\begin{itemize}
+  \item \relat{CONTRAT} (\foreign{\prim{num prof}}, \prim{date contrat}, \attr{salaire horaire contrat})
+  \begin{itemize}
+    \item Le champ \emph{num prof} fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré à partir de l'entité \emph{PROFESSEUR} pour renforcer l'identifiant.
+    \item Le champ \emph{date contrat} fait partie de la clé primaire de la table. C'était déjà un identifiant de l'entité \emph{CONTRAT}.
+    \item Le champ \emph{salaire horaire contrat} était déjà un simple attribut de l'entité \emph{CONTRAT}.
+  \end{itemize}
+
+  \item \relat{PROFESSEUR} (\prim{num prof}, \attr{nom prof}, \attr{prénom prof}, \attr{téléphone prof}, \attr{statut vacataire?}, \attr{date embauche salarié?}, \attr{échelon salarié?}, \attr{salaire salarié?})
+  \begin{itemize}
+    \item Le champ \emph{num prof} constitue la clé primaire de la table. C'était déjà un identifiant de l'entité \emph{PROFESSEUR}.
+    \item Les champs \emph{nom prof}, \emph{prénom prof} et \emph{téléphone prof} étaient déjà de simples attributs de l'entité \emph{PROFESSEUR}.
+    \item Le champ à saisie facultative \emph{statut vacataire} a migré à partir de l'entité-fille \emph{VACATAIRE} (supprimée).
+    \item Le champ à saisie facultative \emph{date embauche salarié} a migré à partir de l'entité-fille \emph{SALARIÉ} (supprimée).
+    \item Le champ à saisie facultative \emph{échelon salarié} a migré à partir de l'entité-fille \emph{SALARIÉ} (supprimée).
+    \item Le champ à saisie facultative \emph{salaire salarié} a migré à partir de l'entité-fille \emph{SALARIÉ} (supprimée).
+  \end{itemize}
+
+\end{itemize}
+
+\end{document}

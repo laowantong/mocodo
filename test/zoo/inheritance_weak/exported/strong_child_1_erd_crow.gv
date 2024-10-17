@@ -1,0 +1,112 @@
+digraph{
+  layout=dot
+  bgcolor="#FFFFFF"
+  nodesep=0.5
+
+  // Nodes
+  node [
+      shape=none
+      fontcolor="#000000"
+      fontsize=15
+      fontname="Helvetica"
+]
+  node [
+      shape=none
+      fontcolor="#000000"
+      fontsize=15
+      fontname="Helvetica"
+]
+  1 [label=<<table
+        border="0"
+        cellborder="1"
+        cellspacing="0"
+        bgcolor="#FFFFFF"
+        color="#000000"
+        cellpadding="4"
+    >
+        <tr>
+            <td bgcolor="#FFFFFF" colspan="2">
+                <font
+                    color="#000000"
+                    point-size="18"
+                >VACATAIRE</font>
+            </td>
+        </tr>
+        <tr><td>PK</td><td align="left">statut vacataire</td></tr>
+    </table>
+>]
+  2 [label=<<table
+        border="0"
+        cellborder="1"
+        cellspacing="0"
+        bgcolor="#FFFFFF"
+        color="#000000"
+        cellpadding="4"
+    >
+        <tr>
+            <td bgcolor="#FFFFFF" colspan="2">
+                <font
+                    color="#000000"
+                    point-size="18"
+                >CONTRAT</font>
+            </td>
+        </tr>
+        <tr><td>PK</td><td align="left">date contrat</td></tr>
+        <tr><td> </td><td align="left">salaire horaire contrat</td></tr>
+    </table>
+>]
+  3 [label=<<table
+        border="0"
+        cellborder="1"
+        cellspacing="0"
+        bgcolor="#FFFFFF"
+        color="#000000"
+        cellpadding="4"
+    >
+        <tr>
+            <td bgcolor="#FFFFFF" colspan="2">
+                <font
+                    color="#000000"
+                    point-size="18"
+                >SALARIÉ</font>
+            </td>
+        </tr>
+        <tr><td>PK</td><td align="left">date embauche salarié</td></tr>
+        <tr><td> </td><td align="left">échelon salarié</td></tr>
+        <tr><td> </td><td align="left">salaire salarié</td></tr>
+    </table>
+>]
+  4 [label=<<table
+        border="0"
+        cellborder="1"
+        cellspacing="0"
+        bgcolor="#FFFFFF"
+        color="#000000"
+        cellpadding="4"
+    >
+        <tr>
+            <td bgcolor="#FFFFFF" colspan="2">
+                <font
+                    color="#000000"
+                    point-size="18"
+                >PROFESSEUR</font>
+            </td>
+        </tr>
+        <tr><td>PK</td><td align="left">num prof</td></tr>
+        <tr><td> </td><td align="left">nom prof</td></tr>
+        <tr><td> </td><td align="left">prénom prof</td></tr>
+        <tr><td> </td><td align="left">téléphone prof</td></tr>
+    </table>
+>]
+
+  // Edges
+  edge [
+    penwidth=1
+    color="#000000"
+    fontcolor="#000000"
+    fontname="Futura"
+    fontsize=11
+    dir=both
+  ]
+  2 -> 1 [arrowhead="teetee" arrowtail="crowtee" label="DF" style=dotted]
+}

@@ -1,0 +1,20 @@
+erDiagram
+  VACATAIRE {
+    TYPE statut_vacataire PK
+  }
+  CONTRAT {
+    TYPE date_contrat PK
+    TYPE salaire_horaire_contrat
+  }
+  SALARIE {
+    TYPE date_embauche_salarie PK
+    TYPE echelon_salarie
+    TYPE salaire_salarie
+  }
+  PROFESSEUR {
+    TYPE num_prof PK
+    TYPE nom_prof
+    TYPE prenom_prof
+    TYPE telephone_prof
+  }
+  CONTRAT }|..|| VACATAIRE: DF

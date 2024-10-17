@@ -81,10 +81,10 @@ class Relations:
         self.freeze_strengthening_foreign_key_migration = set()
         self.relations = {}
         self.relations_from_entities()
-        self.strengthen_weak_identifiers()
         self.inheritance_parent_or_children_to_delete = self.find_inheritance_parent_or_children_to_delete()
         self.strengthen_children()
         self.strengthen_parents()
+        self.strengthen_weak_identifiers()
         self.process_associations()
         self.process_inheritances()
         self.delete_inheritance_parent_or_children_to_delete()
@@ -320,13 +320,26 @@ class Relations:
                                 break
                         else:
                             leg_note = None
+                        
+                        # Patch for #118: if a child disappears but strengthens a weak entity, the outer source
+                        # of this entity must be the outer source of this child. Otherwise, the relational diagram
+                        # will contains the reference: #parent_id > CHILD > parent_id where CHILD no more exists.
+                        # This doesn't fix #119: in the case of cascading inheritance, the outer source should be
+                        # searched in the parent of the parent, etc.
+                        outer_source = strengthening_entity.name_view
+                        if strengthening_entity.bid in self.inheritance_parent_or_children_to_delete:
+                            for attribute in self.relations[leg.entity_bid]["columns"]:
+                                if attribute["is_primary"]:
+                                    outer_source = attribute["outer_source"]
+                                    break
+
                         # migrate the whole primary key of the strengthening entity into the weak one
                         self.relations[entity.bid]["columns"][0:0] = [{
                                 "attribute": attribute["attribute"],
                                 "optionality": "!",
                                 "datatype": attribute["datatype"],
                                 "adjacent_source": strengthening_entity.name_view,
-                                "outer_source": strengthening_entity.name_view,
+                                "outer_source": outer_source,
                                 "association_name": association.name_view,
                                 "leg_note": leg_note,
                                 "is_primary": True,

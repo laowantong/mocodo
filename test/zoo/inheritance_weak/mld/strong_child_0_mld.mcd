@@ -1,0 +1,16 @@
+%%mocodo
+:::
+VACATAIRE: #num prof > PROFESSEUR > num prof, statut vacataire
+:::
+
+
+:
+CONTRAT: #num prof > VACATAIRE > num prof, _date contrat, salaire horaire contrat
+:::
+SALARIÉ: #num prof > PROFESSEUR > num prof, date embauche salarié, échelon salarié, salaire salarié
+:
+
+
+:::
+PROFESSEUR: num prof, nom prof, prénom prof, téléphone prof
+:::

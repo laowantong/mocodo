@@ -1,0 +1,11 @@
+% https://github.com/laowantong/mocodo/issues/118
+% Concrete table inheritance: parent disappears
+
+DF, _11 ENTITÉ 2_, 1N ENTITÉ 1_
+ENTITÉ 1_: at 1 1
+
+ENTITÉ 2_: at 2 1, at 2 2
+/XT\ ENTITÉ 4_ => ENTITÉ 1_, ENTITÉ 3_
+ENTITÉ 3_: at 3 1, at 3 2, at 3 3
+
+ENTITÉ 4_: at 4 1, at 4 2, at 4 3, at 4 4
