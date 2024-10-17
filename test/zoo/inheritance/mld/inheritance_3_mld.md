@@ -1,4 +1,4 @@
-- **TRISTIS** (<ins>magna</ins>, vestibulum, type!, convallis?, ipsum?, pulvinar?, audis?, _#magna via_mollis?_, _#magna via_vitae?_, tempor?, fugit?)
+- **TRISTIS** (<u>magna</u>, vestibulum, type!, convallis?, ipsum?, pulvinar?, audis?, _#magna via_mollis?_, _#magna via_vitae?_, tempor?, fugit?)
   - Le champ _magna_ constitue la clé primaire de la table. C'était déjà un identifiant de l'entité _TRISTIS_.
   - Le champ _vestibulum_ était déjà un simple attribut de l'entité _TRISTIS_.
   - Un discriminateur à saisie obligatoire _type_ est ajouté pour indiquer la nature de la spécialisation. Jamais vide, du fait de la contrainte de totalité.
@@ -11,5 +11,5 @@
   - Le champ à saisie facultative _tempor_ a migré à partir de l'entité-fille _LACUS_ (supprimée).
   - Le champ à saisie facultative _fugit_ a migré à partir de l'entité-fille _LACUS_ (supprimée).
 
-- **ULTRICES** (<ins>_#magna sodales_</ins>, <ins>_#magna lacus_</ins>)
+- **ULTRICES** (<u>_#magna sodales_</u>, <u>_#magna lacus_</u>)
   - Les champs _magna sodales_ et _magna lacus_ constituent la clé primaire de la table. Ce sont des clés étrangères qui ont migré directement à partir de l'entité _TRISTIS_.

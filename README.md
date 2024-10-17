@@ -47,10 +47,10 @@ On peut récupérer ce texte-source avec `--input` pour lui appliquer diverses o
 
 ---
 
-- **CLIENT** (<ins>Réf. client</ins>, Nom, Prénom, Adresse)
-- **COMMANDE** (<ins>Num. commande</ins>, Date, Montant, _#Réf. client_)
-- **INCLURE** (<ins>_#Num. commande_</ins>, <ins>_#Réf. produit_</ins>, Quantité)
-- **PRODUIT** (<ins>Réf. produit</ins>, Libellé, Prix unitaire)
+- **CLIENT** (<u>Réf. client</u>, Nom, Prénom, Adresse)
+- **COMMANDE** (<u>Num. commande</u>, Date, Montant, _#Réf. client_)
+- **INCLURE** (<u>_#Num. commande_</u>, <u>_#Réf. produit_</u>, Quantité)
+- **PRODUIT** (<u>Réf. produit</u>, Libellé, Prix unitaire)
 
 ---
 

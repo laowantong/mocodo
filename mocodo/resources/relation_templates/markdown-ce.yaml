@@ -12,11 +12,11 @@ transform_relation:
   - order: 10100
     comment: 'Compose primary keys'
     search: '<span class=''primary''>(.+?)</span>'
-    replace: '<ins>\1</ins>'
+    replace: '<u>\1</u>'
   - order: 10200
     comment: 'Compose foreign primary keys'
     search: '<span class=''foreign primary''>(.+?)</span>'
-    replace: '<ins>_\1_</ins>'
+    replace: '<u>_\1_</u>'
   - order: 10300
     comment: 'Compose foreign attributes'
     search: '<span class=''foreign''>(.+?)</span>'
