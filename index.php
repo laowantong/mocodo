@@ -40,7 +40,11 @@ if ($lib) {
 <body>
 	<div id="wrap">
 		<div id="banner">
-			<img src="web/mocodonline.svg" alt="Mocodo online" />
+			<img
+				src="web/mocodonline.svg"
+				alt="Mocodo online"
+				style="width: 589px; height: auto;"
+			/>
 		</div>
 		<div id="motto">
 			<span>Modélisation Conceptuelle de Données. Nickel. Ni souris.</span>
