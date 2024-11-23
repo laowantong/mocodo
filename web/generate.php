@@ -125,6 +125,7 @@ if (!isset($_POST["knowledge"]) || !is_array($_POST["knowledge"]) || !in_array("
 };
 
 if (isset($_POST["basthon"])) {
+  $basthon_options = str_replace(" html:", " md:", $basthon_options); // patch: since the CSS style is not generated along with the HTML, important features are lost, such as the underlining of primary keys. We use markdown instead.
   $default_option_values = array(
     "shapes" => "copperplate",
     "colors" => "bw",
