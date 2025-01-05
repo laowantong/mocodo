@@ -46,9 +46,17 @@ chdir($local_path);
 
 $postId = md5(serialize($_POST));
 
-$title = preg_replace("/[^- _a-zA-Z0-9.]/","",$_POST['title']); # double-check js validation
-$title = preg_replace("/^ *$/","Sans titre",$title); # double-check js validation
-$_POST['input'] = "{$title}.mcd";
+$title = $_POST['title'];
+
+// Sanitize the title for filesystem safety
+$sanitizedTitle = preg_replace('/[\/\\:*?"<>|]/', '-', $title); // Replace invalid characters with '-'
+$sanitizedTitle = trim($sanitizedTitle); // Remove leading/trailing spaces
+if (empty($sanitizedTitle) || $sanitizedTitle === '.' || $sanitizedTitle === '..') {
+    $sanitizedTitle = "MCD"; // Default title if invalid
+    $title = "MCD";
+};
+
+$_POST['input'] = "{$sanitizedTitle}.mcd";
 
 if ($_POST['png']) { $mocodo .= " --svg_to png"; };
 if ($_POST['pdf']) { $mocodo .= " --svg_to pdf"; };
@@ -163,44 +171,54 @@ if (!empty($out)) {
     exit();
 };
 
-// make the archive
-$zipName = iconv('UTF-8', 'ASCII//TRANSLIT', $title);
-$zipName = str_replace("'", "", $zipName) . ".zip";
-$zip = new ZipArchive();
-if ($zip->open($zipName, ZIPARCHIVE::CREATE)!==TRUE) {
-    die('{"err": "PHP: Can\'t open <{$zipName}>\n"}');
-};
+// Use the sanitized title for the ZIP file on the server
+$zipName = $sanitizedTitle . ".zip";
 
-$zip->addFile("{$title}_geo.json");
-$zip->addFile("{$title}.mcd");
-$zip->addFile("{$title}.svg");
-// The following instructions fail silently if the (optional) files do not exist
-$zip->addFile("{$title}_static.svg");
-$zip->addFile("{$title}.png");
-$zip->addFile("{$title}.pdf");
+// Create the ZIP archive
+$zip = new ZipArchive();
+if ($zip->open($zipName, ZIPARCHIVE::CREATE) !== TRUE) {
+    die('{"err": "PHP: Can\'t open <{$zipName}>\n"}');
+}
+
+// Add files to the ZIP archive with error handling
+$filesToAdd = [
+    "{$sanitizedTitle}_geo.json",
+    "{$sanitizedTitle}.mcd",
+    "{$sanitizedTitle}.svg",
+    "{$sanitizedTitle}_static.svg", // Optional
+    "{$sanitizedTitle}.png", // Optional
+    "{$sanitizedTitle}.pdf", // Optional
+];
+
+foreach ($filesToAdd as $file) {
+    if (file_exists($file)) {
+        $zip->addFile($file);
+    }
+}
+
 foreach ($conversions as $ext) {
-  $zip->addFile("{$title}{$ext}");
-};
+    $file = "{$sanitizedTitle}{$ext}";
+    if (file_exists($file)) {
+        $zip->addFile($file);
+    }
+}
+
 $zip->close();
 
 // return the response
-$svg = file_get_contents("{$title}.svg");
+$svg = file_get_contents("{$sanitizedTitle}.svg");
 $count = 1;
-$curLocale = setlocale(LC_ALL, 0); //gets current locale
-setlocale(LC_ALL, "en_US.utf8"); //without this iconv removes accented letters. If you use another locale it will also fail
-setlocale(LC_ALL, $curLocale); //set locale to what it was before   
 
 $result = array(
     "svg" => str_replace('stroke="none" stroke-width="0"', 'stroke="#808080" stroke-width="1" stroke-dasharray="2,2"', $svg, $count),
-    "geo" => file_get_contents("{$title}_geo.json"),
+    "geo" => file_get_contents("{$sanitizedTitle}_geo.json"),
     "zipName" => $zipName,
     "zipURL" => $web_url . $user_path . "/" . $zipName,
     "conversions" => array(),
     "title" => $title,
 );
 foreach ($conversions as $ext) {
-    $str = file_get_contents("{$title}{$ext}");
-    $str = str_replace('<','&lt;', $str);
+    $str = file_get_contents("{$sanitizedTitle}{$ext}");
     $result["conversions"][] = array($ext, $str);
 };
 // fwrite($php_log, json_encode($result) . "\n");

@@ -529,7 +529,6 @@ function setEditorContent(text) {
   editor.selection.moveCursorFileStart();
 };
 function markAsDirty() {
-  $("#title").val($("#title").attr("value").replace(/[^A-Za-zÀ-ÖØ-öø-ÿ0-9 '\._-]/g, '-'));
   $("#geoTab").fadeOut();
   $("#downloadButton").fadeOut();
   $("#state").val("dirty");
