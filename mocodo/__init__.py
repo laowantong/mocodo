@@ -1,7 +1,7 @@
 from pathlib import Path
 from importlib import import_module
 
-__version__ = "4.2.12"
+__version__ = "4.2.13"
 SCRIPT_DIRECTORY = Path(__file__).resolve().parent
 
 
