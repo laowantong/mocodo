@@ -40,7 +40,9 @@ issues = "https://github.com/laowantong/mocodo/issues"
 mocodo = "mocodo.__main__:main"
 
 [dependency-groups]
-dev = []
+dev = [
+    "pytest>=7.0.1",
+]
 
 [tool.poetry-version-plugin]
 source = "init" # read version from __init__.py
