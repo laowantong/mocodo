@@ -33,15 +33,15 @@ ELEMENT_TO_TOKENS = {
 GENERAL_OPERATIONS = { # operations that can be applied to any token
     "ascii": ascii,
     "camel": camel,
-    "capitalize": lambda x: x.capitalize(),
-    "casefold": lambda x: x.casefold(),
+    "capitalize": str.capitalize,
+    "casefold": str.casefold,
     "echo": lambda x: x,
-    "lower": lambda x: x.lower(),
+    "lower": str.lower,
     "pascal": pascal,
     "snake": snake,
-    "swapcase": lambda x: x.swapcase(),
-    "title": lambda x: x.title(),
-    "upper": lambda x: x.upper(),
+    "swapcase": str.swapcase,
+    "title": str.title,
+    "upper": str.upper,
 }
 
 

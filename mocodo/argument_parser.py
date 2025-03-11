@@ -68,7 +68,7 @@ class Transformations:
         self.normalize = invert_dict({k: v["aliases"] for (k, v) in self.metadata.items()})
         self.normalize.update((k, k) for k in self.metadata)
         # recreate the dictionary to have it in alphabetical order
-        self.metadata = {k: self.metadata[k] for k in sorted(self.metadata.keys(), key=lambda x: x.lower())}
+        self.metadata = {k: self.metadata[k] for k in sorted(self.metadata.keys(), key=str.casefold)}
         self.operations = {"rw": [], "cv": []}
         self.op_tk_rewritings = set(k for (k, v) in self.metadata.items() if v.get("op_tk"))
         self.args_to_delete = ["-t", "-T", "--transform"]
