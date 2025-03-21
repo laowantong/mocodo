@@ -62,12 +62,13 @@ class Common:
             raise MocodoError(5, _('Unable to read "{filename}" with any of the following encodings: "{encodings}".').format(filename=self.params["input"], encodings= ", ".join(self.params["encodings"]))) # fmt: skip
         # The file is not found locally, try to retrieve it from the server.
         self.encoding = self.params["encodings"][0]
-        requests = importlib.import_module("requests")
-        with contextlib.suppress(requests.exceptions.ConnectionError):
-            response = requests.get(f"{self.params['lib']}/{path.name}")
-            if response.status_code == 200:
-                response.encoding = 'utf-8'  # Force the response encoding to UTF-8
-                source = response.text.replace('"', '')
+        urllib_request = importlib.import_module("urllib.request") # cf. https://bugs.python.org/issue36701
+        urllib_error = importlib.import_module("urllib.error")
+        socket = importlib.import_module("socket")
+        with (contextlib.suppress(urllib_error.URLError, socket.error),
+            urllib_request.urlopen(f"{self.params['lib']}/{path.name}") as response):
+            if response.status == 200:
+                source = response.read().decode('utf-8').replace('"', '')
                 # Save the file locally.
                 path.parent.mkdir(parents=True, exist_ok=True)
                 path.write_text(source, encoding=self.encoding)

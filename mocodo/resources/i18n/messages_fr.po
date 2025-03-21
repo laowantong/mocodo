@@ -30,6 +30,10 @@ msgstr "Aucun service de rendu tiers pour l'extension « {extension} ». Vous 
 msgid "The HTTP status code {code} was returned by:\n{url}"
 msgstr "Le code HTTP {code} a été retourné par :\n{url}"
 
+#: mocodo/__main__.py:257
+msgid "Error while trying to retrieve the URL:\n{url}\n{e}"
+msgstr "Erreur lors de la tentative de récupération de l'URL :\n{url}\n{e}"
+
 #: mocodo/__main__.py:285
 msgid "  - Leg \"{b1} — {b2}\" overlaps \"{b3}\"."
 msgstr "  - La patte « {b1} — {b2} » chevauche « {b3} »."

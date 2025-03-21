@@ -1,6 +1,6 @@
 [project]
 name = "mocodo"
-version = "4.2.13" # previously dynamically set by poetry-version-plugin
+version = "4.2.15" # previously dynamically set by poetry-version-plugin
 description = "Modélisation Conceptuelle de Données. Nickel. Ni souris."
 authors = [{ name = "Aristide Grange" }]
 requires-python = ">=3.6.1,<4"
@@ -29,7 +29,7 @@ classifiers = [
     "Topic :: Database",
     "Topic :: Education",
 ]
-dependencies = ["requests>=2.22.0,<3"]
+dependencies = []
 
 [project.urls]
 Homepage = "https://www.mocodo.net/"
@@ -38,6 +38,14 @@ issues = "https://github.com/laowantong/mocodo/issues"
 
 [project.scripts]
 mocodo = "mocodo.__main__:main"
+
+[project.optional-dependencies]
+svg = [
+    "cairosvg>=2.7.1",
+]
+clipboard = [
+    "pyperclip>=1.9.0",
+]
 
 [dependency-groups]
 dev = [

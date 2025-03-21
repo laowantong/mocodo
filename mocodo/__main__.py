@@ -250,8 +250,9 @@ class Runner:
     def get_converted_file_paths(self, result):
         if result.get("to_defer") and "defer" in self.params:
             # This text must be rendered by a third-party service
-            urllib = importlib.import_module("urllib")
-            requests = importlib.import_module("requests")
+            urllib_parse = importlib.import_module("urllib.parse")
+            urllib_request = importlib.import_module("urllib.request") # cf. https://bugs.python.org/issue36701
+            urllib_error = importlib.import_module("urllib.error")
             mimetypes = importlib.import_module("mimetypes")
             service = self.get_rendering_service(result["extension"])
             data = result["text"]
@@ -264,18 +265,23 @@ class Runner:
                 elif preprocessing == "encode_prefix":
                     # Sole use case (so far): "https://mocodo.net/?mcd="" becomes "https%3A//mocodo.net/%3Fmcd%3D"
                     index = data.find("=") + 1
-                    data = urllib.parse.quote(data[:index]) + data[index:]
+                    data = urllib_parse.quote(data[:index]) + data[index:]
             url = service["url"].format(data=data)
-            response = requests.get(url)
-            if not response.ok:
-                raise MocodoError(23, _("The HTTP status code {code} was returned by:\n{url}").format(code=response.status_code, url=url)) # fmt: skip
-            content_type = response.headers['content-type']
-            extension = mimetypes.guess_extension(content_type)
+            try:
+                with urllib_request.urlopen(url) as response:
+                    headers = dict(response.info())
+                    content_type = headers.get('Content-Type', '')
+                    extension = mimetypes.guess_extension(content_type)
+                    content = response.read()
+            except urllib_error.HTTPError as e:
+                raise MocodoError(23, _("The HTTP status code {code} was returned by:\n{url}").format(code=e.code, url=url)) # fmt: skip
+            except Exception as e:
+                raise MocodoError(53, _("Error while trying to retrieve the URL:\n{url}\n{e}").format(url=url, e=e)) # fmt: skip
             resp_path = result["text_path"].with_suffix(extension)
             if content_type.startswith("text/"):
-                resp_path.write_text(response.text, encoding="utf8")
+                resp_path.write_text(content.decode('utf-8'), encoding="utf8")
             else:
-                resp_path.write_bytes(response.content)
+                resp_path.write_bytes(content)
             yield str(resp_path)
         elif result.get("stem_suffix") == "_mld" and result.get("extension") == "mcd" and self.params["is_magic"]: # relational diagram
             mld = Mcd(result["text"], self.get_font_metrics, **self.params)
