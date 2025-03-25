@@ -83,6 +83,18 @@ class Association:
             else:
                 raise MocodoError(37, _('An association named "{df_label}" must have at least one leg with a maximal cardinality of 1.').format(df_label=df_label)) # fmt: skip
 
+    def get_note_data(self):
+        result = {}
+        for leg in self.legs:
+            result[leg.lid] = {
+                "subject": leg.entity_bid,
+                "predicate": self.name_view,
+                "min": leg.card[:1],
+                "max": leg.card[-1:],
+                "objects": [other.entity_bid for other in self.legs if other is not leg],
+                "note": leg.note,
+            }
+        return result
 
     def register_boxes(self, boxes):
         self.boxes = boxes

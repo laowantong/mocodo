@@ -293,7 +293,27 @@ class Mcd:
         make_boxes()
         tweak_straight_cards()
         self.title = params.get("title", "Untitled")
+
+    def get_notes_data(self):
+        notes_data = {}
+        for association in self.associations.values():
+            components = association.get_note_data()
+            for (lid, leg) in components.items():
+                leg["subject"] = self.entities[leg["subject"]].name_view
+                leg["objects"] = [self.entities[bid].name_view for bid in leg["objects"]]
+                note = leg.pop("note")
+                leg["jsonl"] = json.dumps(leg, ensure_ascii=False)
+                leg["tsv"] = "\t".join(str(leg[k]) for k in ["subject", "predicate", "min", "max", "objects"])
+                leg["note"] = note
+                notes_data[lid] = leg   
+        return notes_data
     
+    def update_notes_data(self, notes_data):
+        for association in self.associations.values():
+            for leg in association.legs:
+                if leg.lid in notes_data:
+                    leg.note = notes_data[leg.lid]
+
     def update_footer(self):
         constraint_sources = [constraint.source for constraint in self.constraints]
         self.footer = "\n\n" + "\n".join(constraint_sources) if constraint_sources else ""
