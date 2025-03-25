@@ -1,6 +1,6 @@
 [project]
 name = "mocodo"
-version = "4.2.15" # previously dynamically set by poetry-version-plugin
+version = "4.3.2" # previously dynamically set by poetry-version-plugin
 description = "Modélisation Conceptuelle de Données. Nickel. Ni souris."
 authors = [{ name = "Aristide Grange" }]
 requires-python = ">=3.6.1,<4"
