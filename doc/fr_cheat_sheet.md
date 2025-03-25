@@ -47,6 +47,8 @@
 |  |  | `` oracle:b `` | avec _boilerplate_ |
 | <span title="Alias : postgres." style="font-family:monospace; font-weight:600">postgresql</span> | convertit le modèle conceptuel en un modèle physique pour PostgreSQL | `` postgresql `` | version de base |
 |  |  | `` postgresql:b `` | avec _boilerplate_ |
+| <span title="Alias : chat, chatbot, ia, ai." style="font-family:monospace; font-weight:600">prompt</span> | génère un prompt pour demander à une IA de compléter le MCD | `` prompt:cards `` | avec les explications des cardinalités |
+|  |  | `` prompt:types `` | avec les types des attributs |
 | <span title="Alias : template, relation_template." style="font-family:monospace; font-weight:600">relation</span> | convertit le modèle conceptuel en schéma relationnel avec le gabarit donné | `` relation:path/to/my_template.yaml `` | chemin relatif, extension obligatoire |
 | <span title="Alias : url, link, qr, qr_code." style="font-family:monospace; font-weight:600">share</span> | encode le MCD dans une URL pour Mocodo online | `` qr --defer `` | génère un QR code via un service web |
 | <span title="Alias : ddl." style="font-family:monospace; font-weight:600">sql</span> | convertit le modèle conceptuel en un modèle physique pour SQL |  |  |
@@ -121,7 +123,7 @@
 |  |  | `` grow:from_scratch arrange `` | à partir d'un MCD vide |
 |  |  | `` grow:grow:n=9,from_scratch,ent_attrs=3 obfuscate:labels=en4 create:roles lower:roles arrange `` | créer un MCD d'entraînement à la conversion en relationnel |
 | <span title="Alias : lowercase, lower_case." style="font-family:monospace; font-weight:600">lower</span> | réécrit les éléments donnés en minuscules | `` lower:attrs,roles `` | attributs et rôles en minuscules |
-| <span title="Alias : pascalcase, pascal_case." style="font-family:monospace; font-weight:600">pascal</span> | rewrite the given elements in PascalCase |  |  |
+| <span title="Alias : pascalcase, pascal_case." style="font-family:monospace; font-weight:600">pascal</span> | réécrit les élements donnés en PascalCase |  |  |
 | <span title="Alias : prepend." style="font-family:monospace; font-weight:600">prefix</span> | préfixe les éléments donnés avec la chaîne donnée | `` prefix:roles='-' `` | force les rôles à remplacer le nom des clés étrangères lors du passage au relationnel |
 | <span title="Alias : rand, random, randomise, obfuscate, obscure." style="font-family:monospace; font-weight:600">randomize</span> | garde la structure, mais randomise les éléments donnés quand c'est possible | `` obfuscate `` | libellés remplacés par du Lorem Ipsum |
 |  |  | `` obfuscate:labels=lorem `` | idem |
