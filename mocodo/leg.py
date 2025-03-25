@@ -6,11 +6,11 @@ from .tools.string_tools import surrounds, raw_to_bid
 
 
 class Leg:
-    def __init__(self, association, leg, **params):
+    def __init__(self, association, leg_clause, **params):
         params["card_format"] = params.get("card_format", "{min_card},{max_card}")
 
-        self.card = leg.get("card", "XX")
-        if self.card == "XX" or leg.get("card_hidden") == "-":
+        self.card = leg_clause.get("card", "XX")
+        if self.card == "XX" or leg_clause.get("card_hidden") == "-":
             self.card_view = "     "
         elif "X" in self.card:
             self.card_view = self.card.replace("X", "")
@@ -18,10 +18,10 @@ class Leg:
             self.card_view = params["card_format"].format(min_card=self.card[0], max_card=self.card[1])
         
         self.has_underlined_card = False
-        if leg.get("card_prefix") == "_":
+        if leg_clause.get("card_prefix") == "_":
             if self.card != "11": # silently ignore the prefix
                 self.kind = "leg"
-                del leg["card_prefix"]
+                del leg_clause["card_prefix"]
             else:
                 self.kind = "strengthening"
                 self.card_view = params.get("strengthen_card", "_1,1_")
@@ -29,15 +29,15 @@ class Leg:
                     self.has_underlined_card = True
                     self.card_view = self.card_view[1:-1]
         elif association.kind == "cluster":
-            self.kind = "cluster_peg" if leg.get("card_prefix") == "/" else "cluster_leg"
+            self.kind = "cluster_peg" if leg_clause.get("card_prefix") == "/" else "cluster_leg"
         else:
             self.kind = "leg"
         
-        self.arrow = leg.get("leg_arrow", "")
+        self.arrow = leg_clause.get("leg_arrow", "")
         self.peg = ("o" if self.kind == "cluster_peg" and not self.arrow else "")
-        self.note = leg.get("leg_note")
+        self.note = leg_clause.get("leg_note")
         self.association = association
-        self.entity_raw_name = leg["entity"]
+        self.entity_raw_name = leg_clause["entity"]
         self.entity_bid = raw_to_bid(self.entity_raw_name)
         self.twist = False
         self.lid = None
