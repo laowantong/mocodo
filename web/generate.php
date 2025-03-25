@@ -34,6 +34,8 @@ $transformations = array(
   "_ddl.sql" => "sql",
   "_uml.puml" => "uml",
   "_ddl.dbml" => "dbml",
+  "_prompt_for_types.md" => "prompt:types",
+  "_prompt_for_cards.md" => "prompt:cards",
 );
 
 

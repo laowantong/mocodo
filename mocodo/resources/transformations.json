@@ -50,6 +50,20 @@
     ],
     "op_tk": true
   },
+  "prompt": {
+    "category": "cv",
+    "help": "génère un prompt pour demander à une IA de compléter le MCD",
+    "fr_examples": {
+      "prompt:cards": "avec les explications des cardinalités",
+      "prompt:types": "avec les types des attributs"
+    },
+    "aliases": [
+      "chat",
+      "chatbot",
+      "ia",
+      "ai"
+    ]
+  },
   "chen": {
     "category": "cv",
     "help": "convertit le modèle conceptuel dans la notation de Chen",
@@ -227,7 +241,7 @@
   },
   "pascal": {
     "category": "rw",
-    "help": "rewrite the given elements in PascalCase",
+    "help": "réécrit les élements donnés en PascalCase",
     "aliases": [
       "pascalcase",
       "pascal_case"

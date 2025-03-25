@@ -57,11 +57,25 @@ var conversions = {
     "title": "Affiché également au-dessous du diagramme conceptuel. Cliquez sur un schéma de relation pour faire apparaître une explication du passage du MCD au MLD.",
     "name": "Schéma relationnel expliqué",
   },
+  "_prompt_for_types.md": {
+    "default": false,
+    "highlighting": "markdown",
+    "title": "À copier-coller sous l&#39;IA conversationnelle de votre choix pour remplir les types des attributs.",
+    "name": "Prompt de remplissage des types par IA",
+    "advanced": false,
+  },
   "_ddl.sql": {
     "default": false,
     "highlighting": "sql",
     "title": "DDL œcuménique, pour peu que vous utilisiez les types requis par le dialecte-cible (MySQL, SQLite, PostgreSQL, Oracle, SQL Server, etc.). Les libellés sont automatiquement privés de leurs accents et espaces pour éviter de polluer le code SQL avec des délimiteurs de chaînes, qui plus est non portables.",
     "name": "Script SQL de création des tables, libellés en&nbsp;&nbsp;",
+  },
+  "_prompt_for_cards.md": {
+    "default": false,
+    "highlighting": "markdown",
+    "title": "À copier-coller sous l&#39;IA conversationnelle de votre choix pour ajouter les explications qui apparaîtront au survol des cardinalités.",
+    "name": "Prompt d'explication des cardinalités par IA",
+    "advanced": true,
   },
   "_data_dict_2.md": {
     "default": false,
