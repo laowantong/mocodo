@@ -376,7 +376,7 @@ source = { editable = "." }
 clipboard = [
     { name = "pyperclip" },
 ]
-svg-to = [
+svg = [
     { name = "cairosvg" },
 ]
 
@@ -389,7 +389,7 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "cairosvg", marker = "extra == 'svg-to'", specifier = ">=2.7.1" },
+    { name = "cairosvg", marker = "extra == 'svg'", specifier = ">=2.7.1" },
     { name = "pyperclip", marker = "extra == 'clipboard'", specifier = ">=1.9.0" },
 ]
 
