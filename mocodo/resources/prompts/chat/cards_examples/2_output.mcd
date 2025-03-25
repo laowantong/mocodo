@@ -1,0 +1,17 @@
+Rejoindre, 01 [Une rivière peut rejoindre au plus une autre rivière.] Rivière, 0N [Une rivière a un nombre quelconque d'affluents.] Rivière
+Rivière: pos. source, nom rivière, longueur, position fin
+Se Jeter, 01 [Une rivière peut se jeter dans au plus une mer.] Rivière, 1N [Une mer reçoit au moins un fleuve.] Mer
+Mer: nom mer, surface mer
+:
+
+Crue, 1N [À toute date répertoriée dans la base, il y a au moins une crue.] Date, 0N [Une ville peut subir un nombre quelconque de crues.] Ville, 0N [Une rivière peut avoir des crues.] Rivière: durée crue, hauteur atteinte
+Traverser, 0N [Une rivière peut traverser un nombre quelconque de villes.] Rivière, 0N [Une ville peut être traversée par un nombre quelconque de rivières.] Ville: ordre traversée
+Arroser, 1N [Une rivière arrose au moins un pays.] Rivière, 0N [Un pays peut être arrosé par un nombre quelconque de rivières.] Pays
+Baigner, 1N [Une mer baigne au moins un pays.] Mer, 0N [Un pays peut avoir des côtes.] Pays: longueur côte
+:
+
+Date: date
+Ville: pos. ville, nom ville
+DF, 11 [Une ville appartient à exactement un pays.] Ville, 1N [Un pays compte au moins une ville.] Pays
+Pays: nom pays, surface pays
+Toucher, 0N [Un pays peut être limitrophe à un nombre quelconque d'autres pays.] Pays, 0N [Un pays peut être limitrophe à un nombre quelconque d'autres pays.] Pays

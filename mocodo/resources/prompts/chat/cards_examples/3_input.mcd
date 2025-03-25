@@ -1,0 +1,35 @@
+:
+:
+DF2, 11 Ville, 0N Pays
+Ville: code ville, nom ville, population, code postal
+DF1, 0N Ville, 11 Producteur
+
+Langue: code_langue, nom_langue, famille
+Parler, 0N Langue, 1N Pays
+Pays: code pays, nom pays, capitale, population, monnaie
+DF3, 0N Ville, 11 Distributeur
+Producteur: id producteur, nom commercial, date de création, site web
+
+Aka, 0N Langue, 1N Film: titre localisé, statut titre
+DF6, 01 Film, 0N Langue
+Distribuer, 0N Pays, 0N Distributeur, 0N Film: date de sortie, nombre de copies, nombre d'entrées
+Distributeur: id distributeur, nom distributeur, type, site web
+Produire, 1N Producteur, 1N Film: budget, date de début, date de fin
+
+Genre: id genre, nom genre, descriptif
+DF4, 1N Genre, 11 Film
+Film: num. d'exploitation, titre original, durée, procédé couleur, procédé son, synopsis, restriction âge
+Participer, 0N Fonction, 1N Film, 1N Personne: rang dans la fonction, salaire
+Fonction: id fonction, intitulé, département
+
+Être sous-genre, 0N Genre, 01 Genre
+DF5, 1N Prise de Vues, 11 Film
+:
+Jouer, 0N Film, 0N Personne, 11 Personnage: importance du rôle, cachet
+Personne: id personne, nom, prénom, genre, date de naissance, biographie, photo, téléphone, adresse
+
+:
+Prise de Vues: procédé, format, largeur, définition
+Être en lien avec, 0N Personnage, 0N Personnage: nature de la relation
+Personnage: id personnage, nom, âge, genre, description
+:

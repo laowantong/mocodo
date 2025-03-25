@@ -1,0 +1,17 @@
+Recevoir, 01 Rivière, 0N Rivière
+Rivière: pos. source, nom rivière, longueur, position fin
+Se Jeter, 01 Rivière, 1N Mer
+Mer: nom mer, surface mer
+:
+
+Crue, 1N Date, 0N Ville, 0N Rivière: durée crue, hauteur atteinte
+Traverser, 0N Rivière, 0N Ville: ordre traversée
+Arroser, 1N Rivière, 0N Pays
+Baigner, 1N Mer, 0N Pays: longueur côte
+:
+
+Date: date
+Ville: pos. ville, nom ville
+DF, 11 Ville, 1N Pays
+Pays: nom pays, surface pays
+Toucher, 0N Pays, 0N Pays

@@ -1,0 +1,35 @@
+:
+:
+DF2, 11 Ville, 0N Pays
+Ville: code ville [VARCHAR(10)], nom ville [VARCHAR(255)], population [INTEGER], code postal [VARCHAR(10)]
+DF1, 0N Ville, 11 Producteur
+
+Langue: code_langue [CHAR(2)], nom_langue [VARCHAR(50)], famille [VARCHAR(50)]
+Parler, 0N Langue, 1N Pays
+Pays: code pays [CHAR(2)], nom pays [VARCHAR(100)], capitale [VARCHAR(100)], population [INTEGER], monnaie [VARCHAR(50)]
+DF3, 0N Ville, 11 Distributeur
+Producteur: id producteur [VARCHAR(20)], nom commercial [VARCHAR(255)], date de création [DATE], site web [VARCHAR(255)]
+
+Aka, 0N Langue, 1N Film: titre localisé [VARCHAR(255)], statut titre [VARCHAR(50)]
+DF6, 01 Film, 0N Langue
+Distribuer, 0N Pays, 0N Distributeur, 0N Film: date de sortie [DATE], nombre de copies [INTEGER], nombre d'entrées [INTEGER]
+Distributeur: id distributeur [VARCHAR(20)], nom distributeur [VARCHAR(255)], type [VARCHAR(50)], site web [VARCHAR(255)]
+Produire, 1N Producteur, 1N Film: budget [DECIMAL(15,2)], date de début [DATE], date de fin [DATE]
+
+Genre: id genre [VARCHAR(20)], nom genre [VARCHAR(100)], descriptif [TEXT]
+DF4, 1N Genre, 11 Film
+Film: num. d'exploitation [VARCHAR(20)], titre original [VARCHAR(255)], durée [INTEGER], procédé couleur [VARCHAR(50)], procédé son [VARCHAR(50)], synopsis [TEXT], restriction âge [VARCHAR(10)]
+Participer, 0N Fonction, 1N Film, 1N Personne: rang dans la fonction [INTEGER], salaire [DECIMAL(12,2)]
+Fonction: id fonction [VARCHAR(20)], intitulé [VARCHAR(100)], département [VARCHAR(100)]
+
+Être sous-genre, 0N Genre, 01 Genre
+DF5, 1N Prise de Vues, 11 Film
+:
+Jouer, 0N Film, 0N Personne, 11 Personnage: importance du rôle [VARCHAR(50)], cachet [DECIMAL(12,2)]
+Personne: id personne [VARCHAR(20)], nom [VARCHAR(100)], prénom [VARCHAR(100)], genre [CHAR(1)], date de naissance [DATE], biographie [TEXT], photo [BLOB], téléphone [VARCHAR(20)], adresse [VARCHAR(255)]
+
+:
+Prise de Vues: procédé [VARCHAR(100)], format [VARCHAR(50)], largeur [DECIMAL(5,2)], définition [INTEGER]
+Être en lien avec, 0N Personnage, 0N Personnage: nature de la relation [VARCHAR(100)]
+Personnage: id personnage [VARCHAR(20)], nom [VARCHAR(100)], âge [INTEGER], genre [CHAR(1)], description [TEXT]
+:

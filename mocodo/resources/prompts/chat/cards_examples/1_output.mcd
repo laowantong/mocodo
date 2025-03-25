@@ -1,0 +1,16 @@
+Bureau: num. bureau
+Rattacher, 11 [Tout bureau est rattaché à un département.] Bureau, 1N [Tout département compte au moins un bureau.] Département
+Département: num. département, budget département
+Dépendre, 11 [Un projet dépend d'un et un seul département.] Projet, 1N [Il y a au moins un projet par département.] Département
+Projet: num. projet, nom projet, budget projet
+
+Se Situer, 11 [Le téléphone d'un employé se situe dans son bureau.]  Téléphone, 1N [Il y a un ou plusieurs téléphones par bureau.] Bureau
+:
+Diriger, 11 [Tout département a un directeur.] Département, 01 [Un employé peut être le directeur d'au plus un département.] Employé
+Travailler, 1N [Plusieurs employés peuvent travailler sur un même projet.] Projet, 01 [Un employé travaille sur au plus un projet.] Employé
+
+Téléphone: num. téléphone
+Joindre, 1N [Un téléphone peut être attribué à plusieurs employés du même bureau.] Téléphone, 11 [Un employé n'a qu'un seul téléphone.] Employé
+Employé: matricule, nom employé, adr. employé
+Assumer, 1N [Un employé peut avoir assumé différentes fonctions.] Employé, 1N [Une même fonction peut avoir été remplie par différents employés.] Fonction: date début, date fin
+Fonction: num. fonction, salaire

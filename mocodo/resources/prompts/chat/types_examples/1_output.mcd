@@ -1,0 +1,17 @@
+Recevoir, 01 Rivière, 0N Rivière
+Rivière: pos. source [POINT], nom rivière [VARCHAR(255)], longueur [INTEGER], position fin [POINT]
+Se Jeter, 01 Rivière, 1N Mer
+Mer: nom mer [VARCHAR(255)], surface mer [DECIMAL(15,2)]
+:
+
+Crue, 1N Date, 0N Ville, 0N Rivière: durée crue [INTEGER], hauteur atteinte [DECIMAL(5,2)]
+Traverser, 0N Rivière, 0N Ville: ordre traversée [INTEGER]
+Arroser, 1N Rivière, 0N Pays
+Baigner, 1N Mer, 0N Pays: longueur côte [INTEGER]
+:
+
+Date: date [DATE]
+Ville: pos. ville [POINT], nom ville [VARCHAR(255)]
+DF, 11 Ville, 1N Pays
+Pays: nom pays [VARCHAR(255)], surface pays [DECIMAL(15,2)]
+Toucher, 0N Pays, 0N Pays

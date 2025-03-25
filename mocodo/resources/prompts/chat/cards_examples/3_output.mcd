@@ -1,0 +1,35 @@
+:
+:
+DF2, 11 [Une ville appartient à un et un seul pays.] Ville, 0N [Un pays peut avoir un nombre quelconque de villes.] Pays
+Ville: code ville, nom ville, population, code postal
+DF1, 0N [Une ville peut accueillir un nombre quelconque de producteurs.] Ville, 11 [Un producteur est basé dans une et une seule ville.] Producteur
+
+Langue: code_langue, nom_langue, famille
+Parler, 0N [Une langue est parlée dans zéro (langue morte), un ou plusieurs pays.] Langue, 1N [Un pays parle au moins une langue.] Pays
+Pays: code pays, nom pays, capitale, population, monnaie
+DF3, 0N [Une ville peut accueillir un nombre quelconque de distributeurs.] Ville, 11 [Un distributeur est basé dans une et une seule ville.] Distributeur
+Producteur: id producteur, nom commercial, date de création, site web
+
+Aka, 0N [Une langue peut être associée à un nombre quelconque de films.] Langue, 1N [Un film peut avoir des titres dans plusieurs langues.] Film: titre localisé, statut titre
+DF6, 01 [Un film a une langue originale ou pas (film muet).] Film, 0N [Une langue peut être la langue originale de plusieurs films.] Langue
+Distribuer, 0N [Un pays peut être concerné par un nombre quelconque de distributions.] Pays, 0N [Un distributeur peut distribuer un nombre quelconque de films dans différents pays.] Distributeur, 0N [Un film peut être distribué dans un nombre quelconque de pays.] Film: date de sortie, nombre de copies, nombre d'entrées
+Distributeur: id distributeur, nom distributeur, type, site web
+Produire, 1N [Un producteur produit au moins un film.] Producteur, 1N [Un film est produit par au moins un producteur.] Film: budget, date de début, date de fin
+
+Genre: id genre, nom genre, descriptif
+DF4, 1N [Un genre peut caractériser plusieurs films.] Genre, 11 [Tout film appartient à un et un seul genre.] Film
+Film: num. d'exploitation, titre original, durée, procédé couleur, procédé son, synopsis, restriction âge
+Participer, 0N [Une fonction peut être remplie sur plusieurs films.] Fonction, 1N [Un film ne peut se faire sans participants.] Film, 1N [Une personne peut participer à plusieurs films.] Personne: rang dans la fonction, salaire
+Fonction: id fonction, intitulé, département
+
+Être sous-genre, 0N [Un genre peut avoir zéro ou plusieurs sous-genres.] Genre, 01 [Un genre peut être sous-genre d'au plus un autre genre.] Genre
+DF5, 1N [Un procédé de prise de vues peut être utilisé pour plusieurs films.] Prise de Vues, 11 [Un film utilise une et une seule prise de vues.] Film
+:
+Jouer, 0N [Un film peut comporter plusieurs personnages.] Film, 0N [Une personne peut jouer dans plusieurs films.] Personne, 11 [Un personnage est incarné par un seul acteur dans un seul film.] Personnage: importance du rôle, cachet
+Personne: id personne, nom, prénom, genre, date de naissance, biographie, photo, téléphone, adresse
+
+:
+Prise de Vues: procédé, format, largeur, définition
+Être en lien avec, 0N [Un personnage peut être en relation avec plusieurs autres personnages.] Personnage, 0N [Un personnage peut être en relation avec plusieurs autres personnages.] Personnage: nature de la relation
+Personnage: id personnage, nom, âge, genre, description
+:

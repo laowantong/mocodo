@@ -1,0 +1,16 @@
+Bureau: num. bureau
+Rattacher, 11 [?] Bureau, 1N [?] Département
+Département: num. département, budget département
+Dépendre, 11 [?] Projet, 1N [?] Département
+Projet: num. projet, nom projet, budget projet
+
+Se Situer, 11 [?]  Téléphone, 1N [?] Bureau
+:
+Diriger, 11 [?] Département, 01 [?] Employé
+Travailler, 1N [?] Projet, 01 [?] Employé
+
+Téléphone: num. téléphone
+Joindre, 1N [?] Téléphone, 11 [?] Employé
+Employé: matricule, nom employé, adr. employé
+Assumer, 1N [?] Employé, 1N [?] Fonction: date début, date fin
+Fonction: num. fonction, salaire
