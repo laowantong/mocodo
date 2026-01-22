@@ -46,7 +46,7 @@ More
 <http://mocodo.net/>`_
 
 `Documentation
-<https://rawgit.com/laowantong/mocodo/master/doc/fr_refman.html>`_
+<https://laowantong.github.io/mocodo/doc/fr_refman.html>`_
 
 `Source code on GitHub
 <https://github.com/laowantong/mocodo/>`_"""

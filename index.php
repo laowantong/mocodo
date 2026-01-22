@@ -151,7 +151,7 @@ if ($lib) {
 						<br />
 						<p>Sous cette dernière forme, Mocodo est un puissant <a href="https://fr.wikipedia.org/wiki/Interface_en_ligne_de_commande">logiciel en ligne de commande</a>, multiplateforme, <a href="https://github.com/laowantong/mocodo"><i>open-source</i></a>, <a href="https://fr.wikipedia.org/wiki/Licence_MIT">libre</a> et gratuit. Il s'intègre particulièrement bien à l'environnement <a href="https://jupyter.org">Jupyter Notebook</a>.</p>
 						<br />
-						<p>Pour en savoir plus, suivez nos tutoriels interactifs (onglet Entrée), puis plongez-vous dans la <a target="_blank" href="https://rawgit.com/laowantong/mocodo/master/doc/fr_refman.html">documentation</a>.</p>
+						<p>Pour en savoir plus, suivez nos tutoriels interactifs (onglet Entrée), puis plongez-vous dans la <a target="_blank" href="https://laowantong.github.io/mocodo/doc/fr_refman.html">documentation</a>.</p>
 						<br />
 						<p style="font-size: small; font-style: italic; text-align: right;">Aristide Grange, Université de Lorraine, Metz (France)</p>
 						<div class="footnote">
@@ -329,7 +329,7 @@ if ($lib) {
 			&nbsp;&nbsp;Basthon
 		</a>
 		&nbsp;∙&nbsp;
-		<a target="_blank" href="https://rawgit.com/laowantong/mocodo/master/doc/fr_refman.html">Documentation</a>
+		<a target="_blank" href="https://laowantong.github.io/mocodo/doc/fr_refman.html">Documentation</a>
 		&nbsp;∙&nbsp;
 		<a title="Contacter l'auteur par mail." onclick="alert('Pour envoyer vos compliments à l\'auteur, trouvez d\'abord son nom sous l\'onglet d\'information, puis adressez un mail à prénom.nom@univ-lorraine.fr. Attention, tout problème ou demande concernant le logiciel doit préférablement faire l\'objet d\'une issue GitHub (« Récriminations »).')">Félicitations</a>
 		&nbsp;∙&nbsp;

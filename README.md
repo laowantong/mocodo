@@ -10,11 +10,11 @@
 
 **Octobre 2023.** Mocodo [4](https://github.com/laowantong/mocodo/releases/tag/4.0.4) introduit la gestion manuelle et automatique des contraintes d'optionalité et d'unicité, améliore les interfaces graphique et en ligne de commande, et ajoute un grand nombre de fonctionnalités : coloration syntaxique, liens de partage, exportation en UML, en notation de Chen et _crow's foot_, génération de MCD aléatoires, décomposition des associations et autres opérations de réécriture.
 
-**Septembre 2022.** Mocodo 3 introduit l'[héritage](https://rawgit.com/laowantong/mocodo/master/doc/fr_refman.html#Héritage-(ou-spécialisation)), l'[agrégation](https://rawgit.com/laowantong/mocodo/master/doc/fr_refman.html#Agrégation-(ou-pseudo-entité)), les [calques](https://rawgit.com/laowantong/mocodo/master/doc/fr_refman.html#Héritage-(ou-spécialisation)), les [sorties PDF et PNG](https://rawgit.com/laowantong/mocodo/master/doc/fr_refman.html#Héritage-(ou-spécialisation)), etc. : [3.0](https://github.com/laowantong/mocodo/releases/tag/3.0), [3.1](https://github.com/laowantong/mocodo/releases/tag/3.1.0), [3.2](https://github.com/laowantong/mocodo/releases/tag/3.2.0).
+**Septembre 2022.** Mocodo 3 introduit l'[héritage](https://laowantong.github.io/mocodo/doc/fr_refman.html#Héritage-(ou-spécialisation)), l'[agrégation](https://laowantong.github.io/mocodo/doc/fr_refman.html#Agrégation-(ou-pseudo-entité)), les [calques](https://laowantong.github.io/mocodo/doc/fr_refman.html#Héritage-(ou-spécialisation)), les [sorties PDF et PNG](https://laowantong.github.io/mocodo/doc/fr_refman.html#Héritage-(ou-spécialisation)), etc. : [3.0](https://github.com/laowantong/mocodo/releases/tag/3.0), [3.1](https://github.com/laowantong/mocodo/releases/tag/3.1.0), [3.2](https://github.com/laowantong/mocodo/releases/tag/3.2.0).
 
 ------
 
-[Documentation](https://rawgit.com/laowantong/mocodo/master/doc/fr_refman.html) sur une seule page, incluant la sortie de [`mocodo --help`](https://rawgit.com/laowantong/mocodo/master/doc/fr_refman.html#mocodo---help) et l'[aide-mémoire des transformations](https://rawgit.com/laowantong/mocodo/master/doc/fr_refman.html#Aide-mémoire-des-arguments-de---transform).
+[Documentation](https://laowantong.github.io/mocodo/doc/fr_refman.html) sur une seule page, incluant la sortie de [`mocodo --help`](https://laowantong.github.io/mocodo/doc/fr_refman.html#mocodo---help) et l'[aide-mémoire des transformations](https://laowantong.github.io/mocodo/doc/fr_refman.html#Aide-mémoire-des-arguments-de---transform).
 
 ----
 
@@ -203,4 +203,4 @@ Plusieurs opérations de réécriture de nature sémantique sont également offe
 
 Notez la sous-option `arrange:wide`. Elle a procédé à une réorganisation aléatoire des boîtes, ce que l'insertion de deux nouvelles associations de dépendance fonctionnelles avait rendu nécessaire. Quant à l'option `--seed=3`, elle garantit que le résultat sera le même à chaque exécution.
 
-Pour vous familiariser avec Mocodo, le plus simple est d'utiliser [sa version en ligne](https://www.mocodo.net). Vous pourrez ensuite vous plonger dans la [documentation](https://rawgit.com/laowantong/mocodo/master/doc/fr_refman.html).
+Pour vous familiariser avec Mocodo, le plus simple est d'utiliser [sa version en ligne](https://www.mocodo.net). Vous pourrez ensuite vous plonger dans la [documentation](https://laowantong.github.io/mocodo/doc/fr_refman.html).

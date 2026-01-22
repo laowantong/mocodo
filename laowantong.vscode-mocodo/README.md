@@ -44,4 +44,4 @@ Initial release.
 
 * [Mocodo online](https://mocodo.net)
 * [Github](https://github.com/laowantong/mocodo/)
-* [Documentation](https://rawgit.com/laowantong/mocodo/master/doc/fr_refman.html)
+* [Documentation](https://laowantong.github.io/mocodo/doc/fr_refman.html)

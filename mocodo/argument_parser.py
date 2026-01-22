@@ -252,7 +252,7 @@ def parsed_arguments(args):
         SEE ALSO:
           Online version        https://mocodo.net
           Source code           https://github.com/laowantong/mocodo
-          Documentation         https://rawgit.com/laowantong/mocodo/master/doc/fr_refman.html
+          Documentation         https://laowantong.github.io/mocodo/doc/fr_refman.html
           Cheat sheet for -t    https://github.com/laowantong/mocodo/blob/master/doc/fr_cheat_sheet.md
 
         LICENSE:                MIT
