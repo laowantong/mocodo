@@ -297,13 +297,13 @@ function refreshConvertOutput(result) {
     highlighting = conversions[item[0]]["highlighting"];
     s += `<fieldset class="listing">`;
     s += `<legend data-index=${i}>⧉ ${name}</legend>`;
-    s += `<pre><code class="language-${highlighting}" id="code-${i}">`
-    s += item[1];
+    s += `<pre><code class="language-${highlighting}" id="code-${i}">`;
+    s += escapeHtml(item[1]);
     s += `</code></pre></fieldset>`;
     if (item[0] == "_mld.html") {
-      supplement = item[1].replace(new RegExp("&lt;", "g"), "<")
-    };
-  })
+      supplement = item[1].replace(/&lt;/g, "<");
+    }
+  });
   $("#convertOutput").html(s);
   $("#diagramOutputSupplement").html(supplement);
   var legends = document.getElementsByTagName("legend");
@@ -313,8 +313,16 @@ function refreshConvertOutput(result) {
       var code = document.getElementById(`code-${index}`);
       navigator.clipboard.writeText(code.innerText + "\n");
       $(`#code-${index}`).highlight();
-    })
+    });
   }
+}
+function escapeHtml(text) {
+  return text
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
 }
 // stolen from https://stackoverflow.com/a/11589350/173003
 $.fn.highlight = function () {
